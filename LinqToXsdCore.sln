@@ -7,9 +7,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XObjectsCode", "XObjectsCod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCore", "XObjectsCore\XObjectsCore.csproj", "{71210419-4EA9-442B-ACA2-4FCD647929E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XObjectsGenerator", "XObjectsGenerator\XObjectsGenerator.csproj", "{6EC5747E-A36D-4645-98BB-50EF4AEC0EE8}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		XObjectsCode\XObjects.projitems*{34ac3718-d2dc-48ab-becc-f00a87e910c2}*SharedItemsImports = 13
+		XObjectsCode\XObjectsCode.projitems*{34ac3718-d2dc-48ab-becc-f00a87e910c2}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC5747E-A36D-4645-98BB-50EF4AEC0EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC5747E-A36D-4645-98BB-50EF4AEC0EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC5747E-A36D-4645-98BB-50EF4AEC0EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC5747E-A36D-4645-98BB-50EF4AEC0EE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

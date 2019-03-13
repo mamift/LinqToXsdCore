@@ -5,7 +5,7 @@
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
   </PropertyGroup>
 
-  <Import Project="..\XObjects\XObjects.projitems" Label="Shared" />
+  <Import Project="..\XObjectsCode\XObjectsCode.projitems" Label="Shared" />
 
   <ItemGroup>
     <PackageReference Include="System.CodeDom" Version="4.5.0" />
