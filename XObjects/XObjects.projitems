@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>34ac3718-d2dc-48ab-becc-f00a87e910c2</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>XObjects</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\ContentModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\FsmXObjects.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\Interfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XObjects.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XObjectsQueryExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XObjectsSimpleType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ClrAnnotation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ClrPropertyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ClrSimpleTypeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ClrTypeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\CodeDomHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\CompiledFacets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FacetChecker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FSM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FSMGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FXT\Base.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FXT\Deanonymize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FXT\DmlExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FXT\Linq2Xsd.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\FXT\QueryExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\NameMangler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\NamespaceList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\PropertyBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\SimpleTypeCodeDomHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\SimpleTypeValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\SOMQueryExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\TypeBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\TypesToCodeDom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\XmlComplianceUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\XmlConvert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\XObjectException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\XObjectsSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\XsdToTypesConverter.cs" />
+  </ItemGroup>
+</Project>

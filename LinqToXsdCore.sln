@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XObjects", "XObjects\XObjects.shproj", "{34AC3718-D2DC-48AB-BECC-F00A87E910C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XObjectsCore", "XObjectsCore\XObjectsCore.csproj", "{71210419-4EA9-442B-ACA2-4FCD647929E3}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		XObjects\XObjects.projitems*{34ac3718-d2dc-48ab-becc-f00a87e910c2}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {515FF9D5-932D-4E95-A20B-E2A06A52858F}
+	EndGlobalSection
+EndGlobal

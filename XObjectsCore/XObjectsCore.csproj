@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Xml.Schema.Linq</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\XObjects\XObjects.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="System.CodeDom" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>
