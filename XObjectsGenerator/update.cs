@@ -1,37 +1,37 @@
-﻿namespace XObjectsGenerator
-{
-    using S = global::System;
-    using IO = global::System.IO;
-    using T = global::System.Text;
+﻿using System.IO;
+using System.Text;
+using System;
 
-    internal class Update: S.IDisposable
+namespace XObjectsGenerator
+{
+    internal class Update: IDisposable
     {
-        private readonly IO.MemoryStream stream = new IO.MemoryStream();
+        private readonly MemoryStream stream = new MemoryStream();
 
         private readonly string filename;
 
-        private readonly T.Encoding encoding;
+        private readonly Encoding encoding;
 
-        public readonly IO.TextWriter Writer;
+        public readonly TextWriter Writer;
 
-        public Update(string filename, T.Encoding encoding)
+        public Update(string filename, Encoding encoding)
         {
             this.filename = filename;
             this.encoding = encoding;
-            this.Writer = new IO.StreamWriter(this.stream, encoding);
+            this.Writer = new StreamWriter(this.stream, encoding);
         }
 
         public bool Close()
         {
             this.Writer.Close();
-            var memoryString = new IO.StreamReader(
-                    new IO.MemoryStream(this.stream.ToArray()), this.encoding).
+            var memoryString = new StreamReader(
+                    new MemoryStream(this.stream.ToArray()), this.encoding).
                 ReadToEnd();
             var fileString = "";
-            using (var file = new IO.FileStream(
-                this.filename, IO.FileMode.OpenOrCreate))
+            using (var file = new FileStream(
+                this.filename, FileMode.OpenOrCreate))
             {
-                using (var fileReader = new IO.StreamReader(file))
+                using (var fileReader = new StreamReader(file))
                 {
                     fileString = fileReader.ReadToEnd();
                 }
@@ -40,11 +40,11 @@
             {
                 using (
                     var file = 
-                        new IO.FileStream(this.filename, IO.FileMode.Create))
+                        new FileStream(this.filename, FileMode.Create))
                 {
                     using (
                         var fileWriter = 
-                            new IO.StreamWriter(file, this.encoding))
+                            new StreamWriter(file, this.encoding))
                     {
                         fileWriter.Write(memoryString);
                         file.SetLength(file.Position);

@@ -1,0 +1,92 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+ <xsd:annotation>
+  <xsd:documentation xml:lang="en">
+   Adobe LiveCycle Designer Purchase Order Schema Sample
+  </xsd:documentation>
+ </xsd:annotation>
+
+ <xsd:element name="purchaseOrder" type="poType"/>
+
+ <xsd:complexType name="poType">
+  <xsd:sequence>
+   <xsd:element name="general"  type="generalType"/>
+   <xsd:element name="order"    type="orderType"/>
+   <xsd:element name="delivery" type="deliveryType"/>
+   <xsd:element name="item"     type="itemType"/>
+   <xsd:element name="terms"    type="termsType"/>
+   <xsd:element name="tax"      type="taxType"/>
+   <xsd:element name="shipping" type="shippingType"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="generalType">
+  <xsd:sequence>
+   <xsd:element name="poNum"   type="xsd:string"/>
+   <xsd:element name="poDate"  type="xsd:date"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="orderType">
+  <xsd:sequence>
+   <xsd:element name="companyName" type="xsd:string"/>
+   <xsd:element name="address"     type="xsd:string"/>
+   <xsd:element name="city"        type="xsd:string"/>
+   <xsd:element name="stateProv"   type="xsd:string"/>
+   <xsd:element name="zipCode"     type="xsd:string"/>
+   <xsd:element name="country"     type="xsd:string"/>
+   <xsd:element name="phone"       type="xsd:string"/>
+   <xsd:element name="fax"         type="xsd:string"/>
+   <xsd:element name="contactName" type="xsd:string"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="deliveryType">
+  <xsd:sequence>
+   <xsd:element name="companyName" type="xsd:string"/>
+   <xsd:element name="address"     type="xsd:string"/>
+   <xsd:element name="city"        type="xsd:string"/>
+   <xsd:element name="stateProv"   type="xsd:string"/>
+   <xsd:element name="zipCode"     type="xsd:string"/>
+   <xsd:element name="country"     type="xsd:string"/>
+   <xsd:element name="phone"       type="xsd:string"/>
+   <xsd:element name="fax"         type="xsd:string"/>
+   <xsd:element name="contactName" type="xsd:string"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="itemType">
+  <xsd:sequence>
+   <xsd:element name="item" minOccurs="0" maxOccurs="unbounded">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="partNum"     type="xsd:string"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="quantity"    type="xsd:positiveInteger"/>
+      <xsd:element name="unitPrice"   type="xsd:float"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="termsType">
+  <xsd:sequence>
+   <xsd:element name="termsCondition" type="xsd:string"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="taxType">
+  <xsd:sequence>
+   <xsd:element name="stateTaxRate"   type="xsd:float"/>
+   <xsd:element name="federalTaxRate" type="xsd:float"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <xsd:complexType name="shippingType">
+  <xsd:sequence>
+   <xsd:element name="shippingCharge" type="xsd:float"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+</xsd:schema>
