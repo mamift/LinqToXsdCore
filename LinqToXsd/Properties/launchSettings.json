@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LinqToXsd": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"..\\..\\..\\..\\Samples\\purchase Order.xsd\""
+    }
+  }
+}
