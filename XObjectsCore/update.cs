@@ -4,7 +4,7 @@ using System;
 
 namespace XObjectsGenerator
 {
-    internal class Update: IDisposable
+    public class Update: IDisposable
     {
         private readonly MemoryStream stream = new MemoryStream();
 

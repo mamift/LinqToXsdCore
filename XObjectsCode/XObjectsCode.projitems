@@ -42,7 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\XmlComplianceUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\XmlConvert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\XObjectException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\XObjectsSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\LinqToXsdSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\XsdToTypesConverter.cs" />
   </ItemGroup>
 </Project>

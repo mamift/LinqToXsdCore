@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using CommandLine;
 using Xml.Schema.Linq;
+using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
 {
-    public class Program
+    public static class Program
     {
         internal static int ReturnCode { get; private set; }
 
@@ -37,18 +38,36 @@ namespace LinqToXsd
 
         private static void DispatchForGenerateOptions(GenerateOptions generateOptions)
         {
-            var files = generateOptions.SchemaReaders;
-            var config = new LinqToXsdSettings(true);
-            var file = generateOptions.Output;
+            void T()
+            {
+                var schemaFileReaders = generateOptions.SchemaReaders;
+                var tConfig = new LinqToXsdSettings(true);
+                var tOutputFile = generateOptions.Output.IsEmpty() ? generateOptions.SchemaFiles.First() : generateOptions.Output;
 
-            var writers = files.Select(f => XObjectsCoreGenerator.Generate(f, config));
+                var writers = schemaFileReaders.Select(f => XObjectsCoreGenerator.Generate(f, tConfig));
 
-            var stringBuilder = new StringBuilder();
+                var stringBuilder = new StringBuilder();
 
-            foreach (var writer in writers)
-                stringBuilder.Append(writer);
+                foreach (var writer in writers)
+                    stringBuilder.Append(writer);
 
-            File.WriteAllTextAsync(generateOptions.Output, stringBuilder.ToString());
+                File.WriteAllTextAsync(tOutputFile, stringBuilder.ToString());
+            }
+
+            var files = generateOptions.SchemaFiles;
+
+            var multipleFilesWriter = XObjectsCoreGenerator.Generate(files);
+
+            var sb = new StringBuilder();
+            sb.Append(multipleFilesWriter);
+
+            using (var outputFileStream = File.Open(generateOptions.Output, FileMode.Create))
+            {
+                using (var fileWriter = new StreamWriter(outputFileStream))
+                {
+                    fileWriter.Write(sb);
+                }
+            }
         }
     }
 }
