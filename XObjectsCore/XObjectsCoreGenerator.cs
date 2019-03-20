@@ -142,11 +142,9 @@ namespace Xml.Schema.Linq
             sb.Append(writer);
 
             using (var outputFileStream = File.Open(outputFilePath, FileMode.Create))
+            using (var fileWriter = new StreamWriter(outputFileStream))
             {
-                using (var fileWriter = new StreamWriter(outputFileStream))
-                {
-                    fileWriter.Write(sb);
-                }
+                fileWriter.Write(sb);
             }
         }
     }

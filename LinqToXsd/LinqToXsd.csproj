@@ -14,4 +14,10 @@
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="invokeTest.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

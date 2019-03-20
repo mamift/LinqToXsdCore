@@ -15,8 +15,17 @@ namespace LinqToXsd
 
         public static int Main(string[] args)
         {
+            var cliParser = new Parser(settings =>
+            {
+                settings.CaseSensitive = false;
+                settings.AutoHelp = false;
+                settings.AutoVersion = false;
+                settings.MaximumDisplayWidth = Console.WindowWidth - 1;
+                settings.HelpWriter = Console.Out;
+            });
+
             var parserResult =
-                Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
+                cliParser.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
             parserResult.WithParsed<GenerateOptions>(DispatchForGenerateOptions);
             parserResult.WithParsed<ConfigurationOptions>(DispatchForConfigurationOptions);
@@ -56,17 +65,12 @@ namespace LinqToXsd
 
             var files = generateOptions.SchemaFiles;
 
-            var multipleFilesWriter = XObjectsCoreGenerator.Generate(files);
-
-            var sb = new StringBuilder();
-            sb.Append(multipleFilesWriter);
-
+            var multipleFilesWriter = XObjectsCoreGenerator.Generate(files, generateOptions.Config);
+            
             using (var outputFileStream = File.Open(generateOptions.Output, FileMode.Create))
+            using (var fileWriter = new StreamWriter(outputFileStream))
             {
-                using (var fileWriter = new StreamWriter(outputFileStream))
-                {
-                    fileWriter.Write(sb);
-                }
+                fileWriter.Write(multipleFilesWriter);
             }
         }
     }

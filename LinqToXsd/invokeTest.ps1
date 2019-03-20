@@ -1,0 +1,1 @@
+dotnet .\LinqToXsd.dll gen "..\..\..\..\Samples\purchase Order.xsd" --config "..\..\..\..\Samples\purchase Order.xsd.config" 

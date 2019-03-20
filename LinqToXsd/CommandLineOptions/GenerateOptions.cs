@@ -38,7 +38,7 @@ namespace LinqToXsd
             }
         }
 
-        [Option(nameof(Output), HelpText = "Output file name. When specifying multiple XSD's, the output will be merged into a single file, whereby the output file name is taken from the first input file.")]
+        [Option('o', nameof(Output), HelpText = "Output file name. When specifying multiple XSD's, the output will be merged into a single file, whereby the output file name is taken from the first input file.")]
         public string Output
         {
             get
@@ -50,13 +50,13 @@ namespace LinqToXsd
             set => output = value;
         }
 
-        [Option(nameof(Configuration), HelpText = "Specify the file path to an configuration file.")]
-        public string Configuration { get; set; }
+        [Option('c', nameof(Config), HelpText = "Specify the file path to an configuration file.")]
+        public string Config { get; set; }
 
-        [Option(nameof(Assembly), HelpText = "Generate an assembly (.dll). " + nameof(Output) + " is ignored if this is given.")]
+        [Option('a', nameof(Assembly), HelpText = "Generate an assembly (.dll). " + nameof(Output) + " is ignored if this is given.")]
         public string Assembly { get; set; }
 
-        [Option(nameof(EnableServiceReference), HelpText = "Enable code output for use as a service reference.")]
+        [Option('e', nameof(EnableServiceReference), HelpText = "Enable code output for use as a service reference.")]
         public bool EnableServiceReference { get; set; }
     }
 }
