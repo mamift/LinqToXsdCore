@@ -13,6 +13,9 @@ using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq
 {
+    /// <summary>
+    /// Static methods to support multiple ways of generating code. Probably contains too many overloads...
+    /// </summary>
     public static class XObjectsCoreGenerator
     {
         /// <summary>
@@ -34,16 +37,30 @@ namespace Xml.Schema.Linq
         /// <param name="xsdFilePaths"></param>
         /// <param name="linqToXsdSettingsFilePath"></param>
         /// <returns></returns>
-        public static TextWriter Generate(IEnumerable<string> xsdFilePaths, string linqToXsdSettingsFilePath = null)
+        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> xsdFilePaths, string linqToXsdSettingsFilePath = null)
         {
-            var xsdReaders = xsdFilePaths
-                             .ToList().Select(file =>
-                                 XmlReader.Create(file, new XmlReaderSettings { DtdProcessing = DtdProcessing.Parse }));
+            if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
 
-            var xmlSet = xsdReaders.ToXmlSchemaSet();
             var settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath);
 
-            return Generate(xmlSet, settings);
+            var textWriters = Generate(xsdFilePaths, settings);
+
+            return textWriters.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }
+
+        /// <summary>
+        /// Generates code for a sequence of file paths and an instance of a <see cref="LinqToXsdSettings"/>.
+        /// </summary>
+        /// <param name="xsdFilePaths"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings)
+        {
+            if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
+            
+            var textWriters = xsdFilePaths.Select(file => Generate(file, settings));
+
+            return textWriters.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 
         /// <summary>
@@ -53,7 +70,7 @@ namespace Xml.Schema.Linq
         /// <param name="linqToXsdSettingsFilePath"></param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static TextWriter Generate(string xsdFilePath, string linqToXsdSettingsFilePath = null)
+        public static KeyValuePair<string, TextWriter> Generate(string xsdFilePath, string linqToXsdSettingsFilePath = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             var settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath);
@@ -62,23 +79,25 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
-        /// Generates code using a given <see cref="xsdFilePath"/>, and an optional <see cref="LinqToXsdSettings"/> instance. 
+        /// Generates code using a given <see cref="xsdFilePath"/> for a single file, and an optional <see cref="LinqToXsdSettings"/> instance. 
         /// </summary>
         /// <param name="xsdFilePath"></param>
         /// <param name="settings">If null, uses default or </param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static TextWriter Generate(string xsdFilePath, LinqToXsdSettings settings = null)
+        public static KeyValuePair<string, TextWriter> Generate(string xsdFilePath, LinqToXsdSettings settings = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
 
-            var xmlReaderSettings = new XmlReaderSettings {
+            var xmlReader = XmlReader.Create(xsdFilePath, new XmlReaderSettings {
                 DtdProcessing = DtdProcessing.Parse
-            };
-            var xmlReader = XmlReader.Create(File.OpenRead(xsdFilePath), xmlReaderSettings);
+            });
 
-            return Generate(xmlReader, settings);
+            var codeWriter = Generate(xmlReader, settings);
+            var kvp = new KeyValuePair<string, TextWriter>(xsdFilePath, codeWriter);
+
+            return kvp;
         }
 
         /// <summary>
@@ -93,8 +112,7 @@ namespace Xml.Schema.Linq
         {
             if (xmlReader == null) throw new ArgumentNullException(nameof(xmlReader));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
-            var schemaSet = new XmlSchemaSet();
-            schemaSet.Add(null, xmlReader);
+            var schemaSet = xmlReader.ToXmlSchemaSet();
             return Generate(schemaSet, settings);
         }
 

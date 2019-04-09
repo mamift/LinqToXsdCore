@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using CommandLine;
+using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
@@ -11,6 +13,7 @@ namespace LinqToXsd
     /// Instantiated by the CommandLineParser library.
     /// </summary>
     [Verb("gen", HelpText = "Code generation options.")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global"), SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class GenerateOptions
     {
         private List<string> schemaFiles = new List<string>();
@@ -38,7 +41,7 @@ namespace LinqToXsd
             }
         }
 
-        [Option('o', nameof(Output), HelpText = "Output file name. When specifying multiple XSD's, the output will be merged into a single file, whereby the output file name is taken from the first input file.")]
+        [Option('o', nameof(Output), HelpText = "Output file name. When specifying multiple XSD's, this value is ignored. For specifying multiple output files for multiple input files, supply configuration XML document.")]
         public string Output
         {
             get
@@ -53,10 +56,26 @@ namespace LinqToXsd
         [Option('c', nameof(Config), HelpText = "Specify the file path to an configuration file.")]
         public string Config { get; set; }
 
+        /// <summary>
+        /// If the <see cref="Config"/> property resolves to an actual file, then this property returns an actual <see cref="LinqToXsdSettings"/>
+        /// instance of that configuration file.
+        /// </summary>
+        public LinqToXsdSettings ConfigInstance 
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Config) || !File.Exists(Config)) return null;
+                var newConfig = new LinqToXsdSettings();
+                newConfig.Load(Config);
+
+                return newConfig;
+            }
+        }
+
         [Option('a', nameof(Assembly), HelpText = "Generate an assembly (.dll). " + nameof(Output) + " is ignored if this is given.")]
         public string Assembly { get; set; }
 
-        [Option('e', nameof(EnableServiceReference), HelpText = "Enable code output for use as a service reference.")]
+        [Option('e', nameof(EnableServiceReference), HelpText = "Enable code output for use as a service reference; imports the 'System.Xml.Serialization' namespace into the generated code.")]
         public bool EnableServiceReference { get; set; }
     }
 }

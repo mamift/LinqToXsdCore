@@ -47,30 +47,23 @@ namespace LinqToXsd
 
         private static void DispatchForGenerateOptions(GenerateOptions generateOptions)
         {
-            void T()
-            {
-                var schemaFileReaders = generateOptions.SchemaReaders;
-                var tConfig = new LinqToXsdSettings(true);
-                var tOutputFile = generateOptions.Output.IsEmpty() ? generateOptions.SchemaFiles.First() : generateOptions.Output;
-
-                var writers = schemaFileReaders.Select(f => XObjectsCoreGenerator.Generate(f, tConfig));
-
-                var stringBuilder = new StringBuilder();
-
-                foreach (var writer in writers)
-                    stringBuilder.Append(writer);
-
-                File.WriteAllTextAsync(tOutputFile, stringBuilder.ToString());
-            }
-
             var files = generateOptions.SchemaFiles;
 
-            var multipleFilesWriter = XObjectsCoreGenerator.Generate(files, generateOptions.Config);
+            var settings = generateOptions.ConfigInstance;
+
+            settings.EnableServiceReference = generateOptions.EnableServiceReference;
             
-            using (var outputFileStream = File.Open(generateOptions.Output, FileMode.Create))
-            using (var fileWriter = new StreamWriter(outputFileStream))
+            foreach (var kvp in XObjectsCoreGenerator.Generate(files, settings))
             {
-                fileWriter.Write(multipleFilesWriter);
+                var outputFile = $"{kvp.Key}.cs";
+
+                Console.WriteLine($"Outputting to {Path.GetFullPath(outputFile)}");
+
+                using (var outputFileStream = File.Open(outputFile, FileMode.Create, FileAccess.ReadWrite))
+                using (var fileWriter = new StreamWriter(outputFileStream))
+                {
+                    fileWriter.Write(kvp.Value);
+                }
             }
         }
     }

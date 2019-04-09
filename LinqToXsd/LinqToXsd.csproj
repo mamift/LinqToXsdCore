@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <None Update="invokeTest.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
