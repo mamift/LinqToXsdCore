@@ -46,17 +46,40 @@ var city = order.city;
 
 The amount of code one writes to traverse an XML document is reduced as LinqToXsd builds a strongly-typed model for you through its code generator. This makes LinqToXsd incredibly helpful when dealing and handling XML data, especially if it comes with an accompanying XSD file, as most XML formats tend to do. Even if there isn't a native XSD, you can just infer an XSD from an existing XML file and speed up your development that way.
 
-## Status
-Everything, except the unit tests and the Visual Studio targets project is here. The VS target (that allows feeding an XSD in a solution or project to a custom build action) is planned to be ported later on. 
+### Things not supported
 
-Currently to generate code you have to invoke the *XObjectsGenerator* program.
+* No assembly generation - due to a dependency on CodeDOM, no direct code-generation (making .DLL's) is supported. CodeDOM for .NET Core does not support this on any platform [(even Windows)](https://github.com/dotnet/corefx/issues/12180)
+
+* The Visual Studio targets project is in the repo, but is not properly ported over to .NET core. The VS target (that allows feeding an XSD in a solution or project to a custom build action) is planned to be ported later on. 
 
 ## Mini-instructions
-This is a .NET Core app; after building the entire solution in Visual Studio 2017, navigate to the output folder for the XObjectsGenerator project *(XObjectsGenerator\bin\Debug\netcoreapp2.1)* and invoke the CLI tool:
+
+There are two CLI apps present in this repo: *LinqToXsd* and *XObjectsGenerator*. Both are .NET core console apps:
+
+* XObjectsGenerator is a straight-up copy and paste of the legacy CLI tool. Use this if you have custom build events that use its syntax.
+* LinqToXsd uses a [custom CLI parser](https://github.com/commandlineparser/commandline). It provides a better interface for functions that are explicitly supported.
+
+To invoke either of the CLI tools:
 ```
 dotnet .\XObjectsGenerator.dll
 ```
-You'll see a help screen explaining all the arguments it accepts (it's the same as the original CLI tool).
+or 
+
+```
+dotnet .\LinqToXsd.dll
+```
+
+## Using LinqToXsd
+
+We recommend you use this tool to generate code. To generate code from an XSD (will output to **filename.xsd.cs**):
+```
+dotnet LinqToXsd.dll gen "SharePoint2010\wss.xsd"
+```
+
+To generate code from an XSD with a configuration file (that maps XML namespaces to CLR namespace):
+```
+dotnet LinqToXsd.dll gen "SharePoint2010\wss.xsd" --Config "SharePoint2010\wss.xsd.config"
+```
 
 # License
 This is licensed under the same license that the original LinqToXsd project was licensed under, which is the Microsoft Public License (MS-PL): https://opensource.org/licenses/MS-PL

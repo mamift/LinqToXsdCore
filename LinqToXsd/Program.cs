@@ -6,22 +6,14 @@ using Xml.Schema.Linq;
 
 namespace LinqToXsd
 {
-    public static partial class Program
+    public static class Program
     {
         internal static int ReturnCode { get; private set; }
 
         public static int Main(string[] args)
         {
-            var cliParser = new Parser(settings => {
-                settings.CaseSensitive = false;
-                settings.AutoHelp = false;
-                settings.AutoVersion = false;
-                settings.MaximumDisplayWidth = Console.WindowWidth - 1;
-                settings.HelpWriter = Console.Out;
-            });
-
             var parserResult =
-                cliParser.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
+                Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
             parserResult.WithParsed<GenerateOptions>(HandleGenerateCode);
             parserResult.WithParsed<ConfigurationOptions>(HandleConfigurationOptions);
