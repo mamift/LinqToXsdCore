@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CamlView" targetNamespace="http://schemas.microsoft.com/sharepoint/" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/sharepoint/" xmlns:mstns="http://schemas.microsoft.com/sharepoint/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified">
+  <xs:include id="CoreDefA" schemaLocation="coredefinitions.xsd" />
+  <xs:include id="CamlQueryA" schemaLocation="CamlQuery.xsd" />
+  <xs:complexType name="CamlViewRoot">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+        <xs:sequence>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HtmlRenderingElement">
+    <xs:sequence>
+    </xs:sequence>
+    <xs:attribute name="AutoHyperLink" type="TRUEFALSE" />
+    <xs:attribute name="URLEncode" type="TRUEFALSE" />
+    <xs:attribute name="HTMLEncode" type="TRUEFALSE" />
+    <xs:attribute name="AutoNewLine" type="TRUEFALSE" />
+    <xs:attribute name="URLEncodeAsURL" type="xs:string" />
+    <xs:attribute name="Default" type="xs:string" />
+    <xs:attribute name="StripWS" type="TRUEFALSE" />
+    <xs:attribute name="ExpandXML" type="TRUEFALSE" />
+    <xs:attribute name="AutoHyperLinkNoEncoding" type="TRUEFALSE" />
+  </xs:complexType>
+  <xs:complexType name="HtmlDefinition">
+    <xs:sequence>
+      <xs:any />
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="HtmlContentDefinition" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+        <xs:sequence>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldRefViewDefinition">
+    <xs:sequence />
+    <xs:attribute name="Ascending" type="TRUEFALSE" />
+    <xs:attribute name="Type" type="ReferenceType" />
+    <xs:attribute name="TextOnly" type="TRUEFALSE" />
+    <xs:attribute name="CreateURL" type="xs:string" />
+    <xs:attribute name="DisplayName" type="xs:string" />
+    <xs:attribute name="Explicit" type="TRUEFALSE" />
+    <xs:attribute name="Key" type="xs:string" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="BatchDefinition">
+    <xs:sequence>
+      <xs:element name="Method" type="MethodDefinition" />
+    </xs:sequence>
+    <xs:attribute name="OnError" type="ErrorHandling" />
+    <xs:attribute name="ListVersion" type="xs:int" />
+    <xs:attribute name="Version" type="BasicVersion" />
+    <xs:attribute name="ViewName" type="UniqueIdentifier" />
+  </xs:complexType>
+  <xs:simpleType name="ErrorHandling">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Return" />
+      <xs:enumeration value="Continue" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UpdateMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Delete" />
+      <xs:enumeration value="New" />
+      <xs:enumeration value="Update" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MethodDefinition">
+    <xs:all>
+      <xs:element name="SetVar" type="SetVarDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="SetList" type="SetListDefinition" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="ID" type="xs:string" />
+    <xs:attribute name="Cmd" type="UpdateMethod" />
+  </xs:complexType>
+  <xs:complexType name="SetListDefinition">
+    <xs:sequence>
+      <xs:any />
+    </xs:sequence>
+    <xs:attribute name="Scope" type="RequestParameter" />
+    <xs:attribute name="PreserveContext" type="TRUEFALSE" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="RequestParameter">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Request" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SetVarDefinition">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" />
+        <xs:attribute name="Scope" type="RequestParameter" />
+        <xs:attribute name="Value" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CamlViewElement" mixed="true">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Column" type="QueryColumnDefinition" />
+        <xs:element name="Column2" type="QueryColumnDefinition" />
+        <xs:element name="Counter" type="CounterDefinition" />
+        <xs:element name="CurrentRights" type="EmptyElement" />
+        <xs:element name="Field" type="FieldViewReferenceDefinition" />
+        <xs:element name="FieldPrefix" type="EmptyElement" />
+        <xs:element name="FieldProperty" type="FieldPropertyDefinition" />
+        <xs:element name="Fields" type="CamlViewElement" />
+        <xs:element name="FieldSwitch" type="SwitchDefinition" />
+        <xs:element name="FilterLink" type="FilterLinkDefinition" />
+        <xs:element name="GetFileExtension" type="xs:anyType" />
+        <xs:element name="GetVar" type="GetVarDefinition" />
+        <xs:element name="HTML" type="HtmlContentDefinition" />
+        <xs:element name="HttpHost" type="HttpHostDefinition" />
+        <xs:element name="HttpPath" type="HttpPathDefinition" />
+        <xs:element name="HttpVDir" type="HttpVDirDefinition" />
+        <xs:element name="ID" type="EmptyElement" />
+        <xs:element name="IfEqual" type="IfEqualDefinition" />
+        <xs:element name="IfNeg" type="IfNegDefinition" />
+        <xs:element name="IfNew" type="IfNewDefinition" />
+        <xs:element name="IfSubString" type="IfSubStringDefinition" />
+        <xs:element name="Length" type="xs:anyType" />
+        <xs:element name="Limit" type="LimitDefinition" />
+        <xs:element name="List" type="EmptyElement" />
+        <xs:element name="ListUrl" type="EmptyElement" />
+        <xs:element name="ListUrlDir" type="HttpPathDefinition" />
+        <xs:element name="ListProperty" type="ListPropertyDefinition" />
+        <xs:element name="LookupColumn" type="LookupColumnDefinition" />
+        <xs:element name="MapToAll" type="CamlViewElement" />
+        <xs:element name="MapToIcon" type="CamlViewElement" />
+        <xs:element name="PageUrl" type="HtmlRenderingElement" />
+        <xs:element name="Property" type="FieldPropertyDefinition" />
+        <xs:element name="ScriptQuote" type="ScriptQuoteDefinition" />
+        <xs:element name="SelectionOptions" type="SelectOptionsDefinition" />
+        <xs:element name="ServerProperty" type="ServerPropertyDefinition" />
+        <xs:element name="SetVar" type="SetVarDefinition" />
+        <xs:element name="Switch" type="SwitchDefinition" />
+        <xs:element name="ThreadStamp" type="ThreadStampDefinition" />
+        <xs:element name="URL" type="URLDefinition" />
+        <xs:element name="UrlDirName" type="xs:anyType" />
+        <xs:element name="UrlBaseName" type="UrlBaseNameDefinition" />
+        <xs:element name="MeetingProperty" type="MeetingPropertyDefinition" />
+        <xs:element name="ProjectProperty" type="ProjectPropertyDefinition" />
+        <xs:element name="UserID" type="UserIDDefinition" />
+        <xs:element name="FieldSortParams" type="HtmlRenderingElement" />
+        <xs:element name="WebQueryInfo" type="EmptyElement" />
+        <xs:element name="Identity" type="EmptyElement" />
+        <xs:element name="IfHasRights" type="IfHasRightsDefinition" />
+        <xs:element name="MapToControl" type="CamlViewElement" />
+        <xs:element name="ForEach" type="ForEachElement" />
+        <xs:element name="ContentTypes" type="CamlViewElement" />
+        <xs:element name="MapToContentType" type="CamlViewElement" />        
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetVarDefinition">
+    <xs:complexContent>
+      <xs:extension base="HtmlRenderingElement">
+        <xs:sequence />
+        <xs:attribute name="Name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SwitchDefinition">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Expr" type="ExprDefinition" minOccurs="0" maxOccurs="1" />
+        <xs:element name="Case" type="CaseDefinition" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="Default" type="DefaultDefinition" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="StripWS" type="TrueFalseMixed" />
+  </xs:complexType>
+  <xs:complexType name="ExprDefinition" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="xs:anyType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CaseDefinition">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="Value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefaultDefinition">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+       <xs:sequence/>
+      </xs:extension>     
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ListPropertyDefinition">
+    <xs:complexContent>
+      <xs:extension base="HtmlRenderingElement">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="Select" type="xs:string" />
+        <xs:attribute name="ForInstance" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldPropertyDefinition">
+    <xs:complexContent>
+      <xs:extension base="HtmlRenderingElement">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="Select" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="HTMLEncode" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldViewReferenceDefinition">
+    <xs:sequence />
+    <xs:attribute name="AutoHyperLink" type="TRUEFALSE" />
+    <xs:attribute name="AutoHyperLinkNoEncoding" type="TRUEFALSE" />
+    <xs:attribute name="AutoNewLine" type="TRUEFALSE" />
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="StripWS" type="TRUEFALSE" />
+    <xs:attribute name="URLEncode" type="TRUEFALSE" />
+    <xs:attribute name="URLEncodeAsURL" type="TRUEFALSE" />
+    <xs:attribute name="HTMLEncode" type="TRUEFALSE" />
+  </xs:complexType>
+  <xs:complexType name="EmptyElement">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="ScriptQuoteDefinition">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+        <xs:sequence />
+        <xs:attribute name="NotAddingQuote" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ThreadStampDefinition">
+    <xs:sequence />
+    <xs:attribute name="StripWS" type="TRUEFALSE" />
+  </xs:complexType>
+  <xs:complexType name="SelectOptionsDefinition">
+    <xs:sequence />
+    <xs:attribute name="Len" type="xs:int" />
+    <xs:attribute name="BlankPattern" type="xs:string" />
+    <xs:attribute name="MoreText" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="CounterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="View" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CounterDefinition">
+    <xs:sequence />
+    <xs:attribute name="Type" type="CounterType" />
+  </xs:complexType>
+  <xs:complexType name="IfEqualDefinition">
+    <xs:all>
+      <xs:element name="Expr1" type="CamlQueryRoot" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Expr2" type="CamlQueryRoot" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Then" type="CamlViewRoot" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Else" type="CamlViewRoot" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="IfNegDefinition">
+    <xs:all>
+      <xs:element name="Expr1" type="CamlQueryRoot" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Expr2" type="CamlQueryRoot" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="IfSubStringDefinition">
+    <xs:all>
+      <xs:element name="Expr1" type="CamlQueryRoot" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Expr2" type="CamlQueryRoot" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Then" type="CamlViewRoot" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Else" type="CamlViewRoot" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LimitDefinition">
+    <xs:complexContent>
+      <xs:extension base="HtmlRenderingElement">
+        <xs:all>
+          <xs:element name="Text" type="xs:anyType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="More" type="xs:anyType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="Column" type="ColumnDefinition" minOccurs="0" maxOccurs="1" />
+        </xs:all>
+        <xs:attribute name="IgnoreTags" type="TRUEFALSE" />
+        <xs:attribute name="Len" type="xs:int" />
+        <xs:attribute name="MoreText" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ColumnDefinition">
+    <xs:sequence />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="URLDefinition">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Cmd" type="xs:string" />
+        <xs:attribute name="NoID" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="UrlBaseNameDefinition">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Field" type="xs:anyType" minOccurs="0" maxOccurs="1" />
+        <xs:element name="LookupColumn" type="LookupColumnDefinition" minOccurs="0" maxOccurs="1" />
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="HTMLEncode" type="TRUEFALSE" />
+  </xs:complexType>
+  <xs:complexType name="HttpHostDefinition">
+    <xs:sequence />
+    <xs:attribute name="URLEncodeAsURL" type="TRUEFALSE" />
+  </xs:complexType>
+  <xs:complexType name="ServerPropertyDefinition">
+    <xs:sequence>
+      <xs:element name="Column" type="QueryColumnDefinition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="Select" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="CamlBdcMethod">
+    <xs:sequence>
+      <xs:element name="Filter" type="CamlBdcFilter" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="CamlBdcFilter">
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Type" type="xs:string" />
+    <xs:attribute name="Value" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="FilterLinkDefinition">
+    <xs:complexContent>
+      <xs:extension base="HtmlRenderingElement">
+        <xs:sequence />
+        <xs:attribute name="Default" type="xs:string" />
+        <xs:attribute name="Paged" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IfNewDefinition">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+        <xs:sequence />
+        <xs:attribute name="Name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MeetingPropertyDefinition">
+    <xs:complexContent>
+      <xs:extension base="HtmlRenderingElement">
+        <xs:sequence />
+        <xs:attribute name="Select" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ProjectPropertyDefinition">
+    <xs:complexContent>
+      <xs:extension base="HtmlRenderingElement">
+        <xs:sequence />
+        <xs:attribute name="Select" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UserIDDefinition">
+    <xs:complexContent>
+      <xs:extension base="EmptyElement">
+        <xs:sequence />
+        <xs:attribute name="AllowAnonymous" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HttpPathDefinition">
+    <xs:complexContent>
+      <xs:extension base="EmptyElement">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="ServerRel" type="TRUEFALSE" />
+        <xs:attribute name="URLEncodeAsURL" type="TRUEFALSE" />
+        <xs:attribute name="HTMLEncode" type="TRUEFALSE" />
+        <xs:attribute name="ForInstance" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HttpVDirDefinition">
+    <xs:complexContent>
+      <xs:extension base="EmptyElement">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="CurrentWeb" type="TRUEFALSE" />
+        <xs:attribute name="URLEncodeAsURL" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IfHasRightsDefinition">
+    <xs:sequence>
+      <xs:element name="RightsChoices" type="RightsChoiceDefinitions" />
+      <xs:element name="Then" type="CamlViewElement" />
+      <xs:element name="Else" type="CamlViewElement" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RightsChoiceDefinitions">
+    <xs:sequence>
+      <xs:element name="RightsGroup" type="RightsGroupDefinition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RightsGroupDefinition">
+    <xs:sequence />
+    <xs:attribute name="PermAddListItems" type="PermissionState" />
+    <xs:attribute name="PermEditListItems" type="PermissionState" />
+  </xs:complexType>
+  <xs:simpleType name="PermissionState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="required" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ForEachElement">
+    <xs:complexContent>
+      <xs:extension base="CamlViewElement">
+        <xs:sequence />
+        <xs:attribute name="Select" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

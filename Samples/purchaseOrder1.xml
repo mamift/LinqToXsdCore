@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<purchaseOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="./Purchase Order.xsd">
+    <general>
+        <poNum>poNum0</poNum>
+        <poDate>2006-05-04</poDate>
+    </general>
+    <order>
+        <companyName>companyName0</companyName>
+        <address>address0</address>
+        <city>city0</city>
+        <stateProv>stateProv0</stateProv>
+        <zipCode>zipCode0</zipCode>
+        <country>country0</country>
+        <phone>phone0</phone>
+        <fax>fax0</fax>
+        <contactName>contactName0</contactName>
+    </order>
+    <delivery>
+        <companyName>companyName1</companyName>
+        <address>address1</address>
+        <city>city1</city>
+        <stateProv>stateProv1</stateProv>
+        <zipCode>zipCode1</zipCode>
+        <country>country1</country>
+        <phone>phone1</phone>
+        <fax>fax1</fax>
+        <contactName>contactName1</contactName>
+    </delivery>
+    <item>
+    </item>
+    <terms>
+        <termsCondition>termsCondition0</termsCondition>
+    </terms>
+    <tax>
+        <stateTaxRate>0</stateTaxRate>
+        <federalTaxRate>0</federalTaxRate>
+    </tax>
+    <shipping>
+        <shippingCharge>0</shippingCharge>
+    </shipping>
+</purchaseOrder>
