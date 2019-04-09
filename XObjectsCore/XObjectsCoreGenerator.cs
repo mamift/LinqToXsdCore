@@ -4,7 +4,6 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 using Microsoft.CSharp;
@@ -14,7 +13,7 @@ using Xml.Schema.Linq.Extensions;
 namespace Xml.Schema.Linq
 {
     /// <summary>
-    /// Static methods to support multiple ways of generating code. Probably contains too many overloads...
+    /// Static methods to support multiple ways of generating code. Probably contains too many Generate() overloads...
     /// </summary>
     public static class XObjectsCoreGenerator
     {
@@ -101,6 +100,23 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
+        /// Creates a <see cref="KeyValuePair{TKey,TValue}"/> with the file path as a key and an <see cref="XmlReader"/> as a value. Assumes the XML is a schema.
+        /// </summary>
+        /// <param name="xsdFilePath"></param>
+        /// <returns></returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
+        public static KeyValuePair<string, XmlReader> ToKeyedReader(string xsdFilePath)
+        {
+            if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
+
+            var xmlReader = XmlReader.Create(xsdFilePath, new XmlReaderSettings {
+                DtdProcessing = DtdProcessing.Parse
+            });
+
+            return new KeyValuePair<string, XmlReader>(xsdFilePath, xmlReader);
+        }
+
+        /// <summary>
         /// Generates code using a given <paramref name="xmlReader"/> and a <see cref="LinqToXsdSettings"/> instance.
         /// </summary>
         /// <param name="xmlReader"></param>
@@ -126,15 +142,7 @@ namespace Xml.Schema.Linq
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
         public static TextWriter Generate(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
-            if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
-            var xsdConverter = new XsdToTypesConverter(settings);
-            var mapping = xsdConverter.GenerateMapping(schemaSet);
-
-            var codeGenerator = new CodeDomTypesGenerator(settings);
-            var ccu = new CodeCompileUnit();
-            foreach(var codeNs in codeGenerator.GenerateTypes(mapping)) 
-                ccu.Namespaces.Add(codeNs);
+            var ccu = GenerateCodeCompileUnit(schemaSet, settings);
 
             var stringWriter = new StringWriter();
 
@@ -146,24 +154,46 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
-        /// Generates code from a given <paramref cref="schemaSet"/> and <paramref name="settings"/> then writes to the given
-        /// <paramref name="outputFilePath"/>.
+        /// Creates a <see cref="CodeCompileUnit"/> from a given <see cref="XmlSchemaSet"/> and <see cref="LinqToXsdSettings"/>.
         /// </summary>
         /// <param name="schemaSet"></param>
-        /// <param name="outputFilePath"></param>
         /// <param name="settings"></param>
-        public static void GenerateToFile(XmlSchemaSet schemaSet, LinqToXsdSettings settings, string outputFilePath)
+        /// <returns></returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
+        public static CodeCompileUnit GenerateCodeCompileUnit(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
-            var writer = Generate(schemaSet, settings);
+            if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
+            var xsdConverter = new XsdToTypesConverter(settings);
+            var mapping = xsdConverter.GenerateMapping(schemaSet);
 
-            var sb = new StringBuilder();
-            sb.Append(writer);
+            var codeGenerator = new CodeDomTypesGenerator(settings);
+            var ccu = new CodeCompileUnit();
+            foreach(var codeNs in codeGenerator.GenerateTypes(mapping)) 
+                ccu.Namespaces.Add(codeNs);
 
-            using (var outputFileStream = File.Open(outputFilePath, FileMode.Create))
-            using (var fileWriter = new StreamWriter(outputFileStream))
-            {
-                fileWriter.Write(sb);
-            }
+            return ccu;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="CodeCompileUnit"/> from a given <see cref="XmlSchemaSet"/> and <see cref="LinqToXsdSettings"/>.
+        /// </summary>
+        /// <param name="xsdFilePaths"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePaths"/> is <see langword="null"/></exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
+        public static Dictionary<string, CodeCompileUnit> GenerateCodeCompileUnits(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings)
+        {
+            if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
+
+            var xsdFiles = xsdFilePaths as string[] ?? xsdFilePaths.ToArray();
+
+            var readers = xsdFiles.Select(ToKeyedReader);
+
+            return readers.ToDictionary(r => r.Key, r => GenerateCodeCompileUnit(r.Value.ToXmlSchemaSet(), settings));
         }
     }
 }

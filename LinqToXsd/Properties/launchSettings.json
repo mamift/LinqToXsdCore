@@ -2,7 +2,7 @@
   "profiles": {
     "LinqToXsd": {
       "commandName": "Project",
-      "commandLineArgs": "gen \"SharePoint2010\\wss.xsd\"  --Config \"SharePoint2010\\wss.xsd.config\" "
+      "commandLineArgs": "gen \"SharePoint2010\\wss.xsd\"  --Config \"SharePoint2010\\wss.xsd.config\" -a wss.dll"
     }
   }
 }

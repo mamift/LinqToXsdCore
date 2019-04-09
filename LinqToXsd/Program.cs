@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using CommandLine;
-using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
 {
-    public static class Program
+    public static partial class Program
     {
         internal static int ReturnCode { get; private set; }
 
         public static int Main(string[] args)
         {
-            var cliParser = new Parser(settings =>
-            {
+            var cliParser = new Parser(settings => {
                 settings.CaseSensitive = false;
                 settings.AutoHelp = false;
                 settings.AutoVersion = false;
@@ -47,24 +44,10 @@ namespace LinqToXsd
 
         private static void DispatchForGenerateOptions(GenerateOptions generateOptions)
         {
-            var files = generateOptions.SchemaFiles;
-
-            var settings = generateOptions.ConfigInstance;
-
-            settings.EnableServiceReference = generateOptions.EnableServiceReference;
-            
-            foreach (var kvp in XObjectsCoreGenerator.Generate(files, settings))
-            {
-                var outputFile = $"{kvp.Key}.cs";
-
-                Console.WriteLine($"Outputting to {Path.GetFullPath(outputFile)}");
-
-                using (var outputFileStream = File.Open(outputFile, FileMode.Create, FileAccess.ReadWrite))
-                using (var fileWriter = new StreamWriter(outputFileStream))
-                {
-                    fileWriter.Write(kvp.Value);
-                }
-            }
+            if (generateOptions.Assembly.IsNotEmpty())
+                GenerateHandler.GenerateAssemblies(generateOptions);
+            else
+                GenerateHandler.GenerateCode(generateOptions);
         }
     }
 }
