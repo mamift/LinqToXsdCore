@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
+    <Version>3.0.0</Version>
+    <Company>None</Company>
+    <Authors>Muhammad Miftah</Authors>
+    <PackageLicenseUrl>https://opensource.org/licenses/MS-PL</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/mamift/LinqToXsdCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mamift/LinqToXsdCore</RepositoryUrl>
+    <Description>Original Authors: Microsoft Corporation</Description>
   </PropertyGroup>
 
   <Import Project="..\XObjectsCode\XObjectsCode.projitems" Label="Shared" />
