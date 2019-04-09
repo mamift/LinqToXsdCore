@@ -22,29 +22,12 @@ namespace Xml.Schema.Linq
         /// </summary>
         /// <param name="fromXmlFile">Null or empty value will simply return a default instance.</param>
         /// <returns></returns>
-        private static LinqToXsdSettings LoadLinqToXsdSettings(string fromXmlFile = null)
+        public static LinqToXsdSettings LoadLinqToXsdSettings(string fromXmlFile = null)
         {
             var settings = new LinqToXsdSettings();
             if (fromXmlFile.IsNotEmpty()) settings.Load(fromXmlFile);
 
             return settings;
-        }
-
-        /// <summary>
-        /// Generates code for a sequence of file paths and an optional file path to an XML configuration file.
-        /// </summary>
-        /// <param name="xsdFilePaths"></param>
-        /// <param name="linqToXsdSettingsFilePath"></param>
-        /// <returns></returns>
-        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> xsdFilePaths, string linqToXsdSettingsFilePath = null)
-        {
-            if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
-
-            var settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath);
-
-            var textWriters = Generate(xsdFilePaths, settings);
-
-            return textWriters.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 
         /// <summary>
@@ -97,23 +80,6 @@ namespace Xml.Schema.Linq
             var kvp = new KeyValuePair<string, TextWriter>(xsdFilePath, codeWriter);
 
             return kvp;
-        }
-
-        /// <summary>
-        /// Creates a <see cref="KeyValuePair{TKey,TValue}"/> with the file path as a key and an <see cref="XmlReader"/> as a value. Assumes the XML is a schema.
-        /// </summary>
-        /// <param name="xsdFilePath"></param>
-        /// <returns></returns>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static KeyValuePair<string, XmlReader> ToKeyedReader(string xsdFilePath)
-        {
-            if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
-
-            var xmlReader = XmlReader.Create(xsdFilePath, new XmlReaderSettings {
-                DtdProcessing = DtdProcessing.Parse
-            });
-
-            return new KeyValuePair<string, XmlReader>(xsdFilePath, xmlReader);
         }
 
         /// <summary>
@@ -174,26 +140,6 @@ namespace Xml.Schema.Linq
                 ccu.Namespaces.Add(codeNs);
 
             return ccu;
-        }
-
-        /// <summary>
-        /// Creates a <see cref="CodeCompileUnit"/> from a given <see cref="XmlSchemaSet"/> and <see cref="LinqToXsdSettings"/>.
-        /// </summary>
-        /// <param name="xsdFilePaths"></param>
-        /// <param name="settings"></param>
-        /// <returns></returns>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePaths"/> is <see langword="null"/></exception>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static Dictionary<string, CodeCompileUnit> GenerateCodeCompileUnits(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings)
-        {
-            if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
-
-            var xsdFiles = xsdFilePaths as string[] ?? xsdFilePaths.ToArray();
-
-            var readers = xsdFiles.Select(ToKeyedReader);
-
-            return readers.ToDictionary(r => r.Key, r => GenerateCodeCompileUnit(r.Value.ToXmlSchemaSet(), settings));
         }
     }
 }

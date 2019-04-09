@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using CommandLine;
-using Xml.Schema.Linq.Extensions;
+using Xml.Schema.Linq;
 
 namespace LinqToXsd
 {
@@ -24,8 +23,8 @@ namespace LinqToXsd
             var parserResult =
                 cliParser.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
-            parserResult.WithParsed<GenerateOptions>(DispatchForGenerateOptions);
-            parserResult.WithParsed<ConfigurationOptions>(DispatchForConfigurationOptions);
+            parserResult.WithParsed<GenerateOptions>(HandleGenerateCode);
+            parserResult.WithParsed<ConfigurationOptions>(HandleConfigurationOptions);
 
             parserResult.WithNotParsed(ErrorHandler);
 
@@ -37,17 +36,31 @@ namespace LinqToXsd
             ReturnCode = 1;
         }
 
-        private static void DispatchForConfigurationOptions(ConfigurationOptions configOpts)
+        internal static void HandleConfigurationOptions(ConfigurationOptions configOpts)
         {
             Console.WriteLine($"");
         }
 
-        private static void DispatchForGenerateOptions(GenerateOptions generateOptions)
+        internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
-            if (generateOptions.Assembly.IsNotEmpty())
-                GenerateHandler.GenerateAssemblies(generateOptions);
-            else
-                GenerateHandler.GenerateCode(generateOptions);
+            var files = generateOptions.SchemaFiles;
+
+            var settings = generateOptions.ConfigInstance;
+
+            settings.EnableServiceReference = generateOptions.EnableServiceReference;
+
+            foreach (var kvp in XObjectsCoreGenerator.Generate(files, settings))
+            {
+                var outputFile = $"{kvp.Key}.cs";
+
+                Console.WriteLine($"Outputting to {Path.GetFullPath(outputFile)}");
+
+                using (var outputFileStream = File.Open(outputFile, FileMode.Create, FileAccess.ReadWrite))
+                using (var fileWriter = new StreamWriter(outputFileStream))
+                {
+                    fileWriter.Write(kvp.Value);
+                }
+            }
         }
     }
 }

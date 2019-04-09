@@ -74,18 +74,9 @@ namespace LinqToXsd
             get
             {
                 if (string.IsNullOrWhiteSpace(Config) || !File.Exists(Config)) return null;
-                var newConfig = new LinqToXsdSettings();
-                newConfig.Load(Config);
-
-                return newConfig;
+                return XObjectsCoreGenerator.LoadLinqToXsdSettings(Config);
             }
         }
-
-        /// <summary>
-        /// CLI argument: generate an assembly by given name.
-        /// </summary>
-        [Option('a', nameof(Assembly), HelpText = "Generate an assembly (.dll). " + nameof(Output) + " is ignored if this is given.")]
-        public string Assembly { get; set; }
 
         /// <summary>
         /// CLI argument: imports 'System.Xml.Serialization' namespace into code or assembly.
