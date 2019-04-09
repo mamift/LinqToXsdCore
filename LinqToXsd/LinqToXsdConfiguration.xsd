@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  targetNamespace="http://www.microsoft.com/xml/schema/linq"
+  xmlns:linq="http://www.microsoft.com/xml/schema/linq">
+  <xs:element name="Configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="linq:Namespaces"/>
+        <xs:element ref="linq:Validation" minOccurs="0"/>
+        <xs:element ref="linq:Transformation" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Namespaces">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="linq:Namespace"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Namespace">
+    <xs:complexType>
+      <xs:attribute name="Clr" use="required" type="xs:NCName"/>
+      <xs:attribute name="Schema" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="linq:VerifyRequired"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRequired" type="xs:boolean" default="0"/>
+  <xs:element name="Transformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="linq:Deanonymize"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Deanonymize">
+    <xs:complexType>
+      <xs:attribute name="strict" use="optional" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

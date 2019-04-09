@@ -11,7 +11,7 @@ namespace Xml.Fxt
     {
         static void interpret(XmlSchemaSet schemas, XElement trafo, FxtLog log, List<IFxtTransformation> trafos)
         {
-            foreach (var child in trafo.Elements())
+            foreach (XElement child in trafo.Elements())
             {
                 if (child.Name == FxtInterpreter.FxtNs + "Deanonymize"
                     && child.Elements().Count() == 0)

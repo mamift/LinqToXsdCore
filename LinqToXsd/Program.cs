@@ -37,7 +37,7 @@ namespace LinqToXsd
         {
             var files = generateOptions.SchemaFiles;
 
-            var settings = generateOptions.ConfigInstance;
+            var settings = generateOptions.ConfigInstance ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
