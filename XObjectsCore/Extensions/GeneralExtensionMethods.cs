@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Schema;
 
 namespace Xml.Schema.Linq.Extensions

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CommandLine;
 using Xml.Schema.Linq;
 
 namespace LinqToXsd
 {
-    public static class Program
+    public static partial class Program
     {
         internal static int ReturnCode { get; private set; }
 
@@ -30,7 +31,15 @@ namespace LinqToXsd
 
         internal static void HandleConfigurationOptions(ConfigurationOptions configOpts)
         {
-            Console.WriteLine($"");
+            if (configOpts.Example)
+            {
+                ConfigurationDispatcher.HandleGenerateExampleConfig();
+            }
+
+            if (configOpts.SchemaFiles.Any())
+            {
+                ConfigurationDispatcher.HandleAutoGenConfig(configOpts);
+            }
         }
 
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
@@ -43,9 +52,9 @@ namespace LinqToXsd
 
             foreach (var kvp in XObjectsCoreGenerator.Generate(files, settings))
             {
-                var outputFile = $"{kvp.Key}.cs";
+                var outputFile = Path.GetFullPath($"{kvp.Key}.cs");
 
-                Console.WriteLine($"Outputting to {Path.GetFullPath(outputFile)}");
+                Console.WriteLine($"Outputting to {outputFile}");
 
                 using (var outputFileStream = File.Open(outputFile, FileMode.Create, FileAccess.ReadWrite))
                 using (var fileWriter = new StreamWriter(outputFileStream))

@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using CommandLine;
 using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
@@ -12,37 +10,11 @@ namespace LinqToXsd
     /// <summary>
     /// Instantiated by the CommandLineParser library.
     /// </summary>
-    [Verb("gen", HelpText = "Code generation options.")]
+    [Verb(nameof(CommandLineOptions.gen), HelpText = "Code generation options.")]
     [SuppressMessage("ReSharper", "UnusedMember.Global"), SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-    public class GenerateOptions
+    internal class GenerateOptions: OptionsAbstract
     {
-        private List<string> schemaFiles = new List<string>();
         private string output;
-
-        /// <summary>
-        /// CLI argument: one or more schema files.
-        /// </summary>
-        [Value(1, HelpText = "One or more schema files.", Required = true)]
-        public IEnumerable<string> SchemaFiles
-        {
-            get => schemaFiles;
-            set => schemaFiles = value?.ToList() ?? new List<string>();
-        }
-
-        /// <summary>
-        /// Returns <see cref="XmlReader"/> instances of every file specified in <see cref="SchemaFiles"/>.
-        /// </summary>
-        public IEnumerable<XmlReader> SchemaReaders
-        {
-            get
-            {
-                if (!SchemaFiles.Any()) return new XmlReader[0];
-                var xmlReaderSettings = new XmlReaderSettings {
-                    DtdProcessing = DtdProcessing.Parse
-                };
-                return SchemaFiles.Select(sf => XmlReader.Create(sf, xmlReaderSettings));
-            }
-        }
 
         /// <summary>
         /// CLI argument: output file name.
@@ -73,7 +45,7 @@ namespace LinqToXsd
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(Config) || !File.Exists(Config)) return null;
+                if (Config.IsEmpty() || !File.Exists(Config)) return null;
                 return XObjectsCoreGenerator.LoadLinqToXsdSettings(Config);
             }
         }

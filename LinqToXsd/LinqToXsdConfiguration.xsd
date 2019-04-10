@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
   targetNamespace="http://www.microsoft.com/xml/schema/linq"
   xmlns:linq="http://www.microsoft.com/xml/schema/linq">
@@ -13,8 +13,8 @@
   </xs:element>
   <xs:element name="Namespaces">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="linq:Namespace"/>
+      <xs:sequence maxOccurs="1">
+        <xs:element ref="linq:Namespace" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

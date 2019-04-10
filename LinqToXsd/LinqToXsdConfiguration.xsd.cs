@@ -174,10 +174,13 @@ namespace Xml.Schema.Linq {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (@Namespace)
+    /// Regular expression: (@Namespace+)
     /// </para>
     /// </summary>
     public partial class Namespaces : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<@Namespace> @NamespaceField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         static Dictionary<XName, System.Type> localElementDictionary = new Dictionary<XName, System.Type>();
@@ -194,7 +197,7 @@ namespace Xml.Schema.Linq {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (@Namespace)
+        /// Regular expression: (@Namespace+)
         /// </para>
         /// </summary>
         public Namespaces() {
@@ -202,22 +205,31 @@ namespace Xml.Schema.Linq {
         
         /// <summary>
         /// <para>
-        /// Occurrence: required
+        /// Occurrence: required, repeating
         /// </para>
         /// <para>
-        /// Regular expression: (@Namespace)
+        /// Regular expression: (@Namespace+)
         /// </para>
         /// </summary>
-        public @Namespace @Namespace {
+        public IList<@Namespace> @Namespace {
             get {
-                XElement x = this.GetElement(XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq"));
-                if ((x == null)) {
-                    throw new LinqToXsdException("Missing required Element");
+                if ((this.@NamespaceField == null)) {
+                    this.@NamespaceField = new XTypedList<@Namespace>(this, LinqToXsdTypeManager.Instance, XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq"));
                 }
-                return ((@Namespace)(x));
+                return this.@NamespaceField;
             }
             set {
-                this.SetElement(XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq"), value);
+                if ((value == null)) {
+                    this.@NamespaceField = null;
+                }
+                else {
+                    if ((this.@NamespaceField == null)) {
+                        this.@NamespaceField = XTypedList<@Namespace>.Initialize(this, LinqToXsdTypeManager.Instance, value, XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq"));
+                    }
+                    else {
+                        XTypedServices.SetList<@Namespace>(this.@NamespaceField, value);
+                    }
+                }
             }
         }
         

@@ -1,4 +1,6 @@
-﻿namespace Xml.Schema.Linq.Extensions
+﻿using System.Linq;
+
+namespace Xml.Schema.Linq.Extensions
 {
     public static class StringExtensionMethods
     {

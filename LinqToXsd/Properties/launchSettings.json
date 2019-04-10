@@ -2,7 +2,7 @@
   "profiles": {
     "LinqToXsd": {
       "commandName": "Project",
-      "commandLineArgs": "gen ..\\..\\..\\LinqToXsdConfiguration.xsd -c ..\\..\\..\\LinqToXsdConfiguration.xsd.config"
+      "commandLineArgs": "config -e"
     }
   }
 }
