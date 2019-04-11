@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml;
 using CommandLine;
 
 namespace LinqToXsd
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     internal abstract class OptionsAbstract
     {
         private List<string> schemaFiles;
@@ -22,16 +24,18 @@ namespace LinqToXsd
         /// <summary>
         /// Returns <see cref="XmlReader"/> instances of every file specified in <see cref="SchemaFiles"/>.
         /// </summary>
-        public IEnumerable<XmlReader> SchemaReaders
+        public Dictionary<string, XmlReader> SchemaReaders
         {
-            get {
-                if (!SchemaFiles.Any()) return new XmlReader[0];
-                var xmlReaderSettings = new XmlReaderSettings
-                {
+            get
+            {
+                if (!SchemaFiles.Any()) return new Dictionary<string, XmlReader>();
+                var xmlReaderSettings = new XmlReaderSettings {
                     DtdProcessing = DtdProcessing.Parse
                 };
-                return SchemaFiles.Select(sf => XmlReader.Create(sf, xmlReaderSettings));
+                return SchemaFiles.ToDictionary(f => f, f => XmlReader.Create(f, xmlReaderSettings));
             }
         }
+
+        public abstract string Output { get; set; }
     }
 }

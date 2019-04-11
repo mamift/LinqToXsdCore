@@ -11,6 +11,11 @@ namespace LinqToXsd
     {
         internal static int ReturnCode { get; private set; }
 
+        /// <summary>
+        /// CLI will parse arguments here and then dispatch to the right method.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static int Main(string[] args)
         {
             var parserResult =
@@ -29,19 +34,23 @@ namespace LinqToXsd
             ReturnCode = 1;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configOpts"></param>
         internal static void HandleConfigurationOptions(ConfigurationOptions configOpts)
         {
-            if (configOpts.Example)
-            {
+            if (!configOpts.Example) return;
+            if (!configOpts.SchemaFiles.Any()) 
                 ConfigurationDispatcher.HandleGenerateExampleConfig();
-            }
-
-            if (configOpts.SchemaFiles.Any())
-            {
+            else 
                 ConfigurationDispatcher.HandleAutoGenConfig(configOpts);
-            }
         }
 
+        /// <summary>
+        /// Generates code for one or multiple XSD input files.
+        /// </summary>
+        /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
             var files = generateOptions.SchemaFiles;

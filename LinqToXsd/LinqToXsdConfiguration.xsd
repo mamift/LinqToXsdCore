@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
   targetNamespace="http://www.microsoft.com/xml/schema/linq"
-  xmlns:linq="http://www.microsoft.com/xml/schema/linq">
+  xmlns:linq="http://www.microsoft.com/xml/schema/linq" version="3">
   <xs:element name="Configuration">
+    <xs:annotation>
+      <xs:documentation>The root element.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="linq:Namespaces"/>
@@ -12,6 +15,9 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="Namespaces">
+    <xs:annotation>
+      <xs:documentation>Lists chlid Namespace elements.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence maxOccurs="1">
         <xs:element ref="linq:Namespace" maxOccurs="unbounded"/>
@@ -19,20 +25,33 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="Namespace">
+    <xs:annotation>
+      <xs:documentation>Element that maps an XML namespace (which is usually a URL or URI, sometimes a URN) to a .NET CLR namespace.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:attribute name="Clr" use="required" type="xs:NCName"/>
       <xs:attribute name="Schema" use="required" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="Validation">
+    <xs:annotation>
+      <xs:documentation>So there is code that interprets and looks for this element, but it is not documented as to what this does. Unknown as to what it currently does.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="linq:VerifyRequired"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="VerifyRequired" type="xs:boolean" default="0"/>
+  <xs:element name="VerifyRequired" type="xs:boolean" default="0">
+    <xs:annotation>
+      <xs:documentation>Currently unknown what this does. It is referenced in the 'ClrBasePropertyInfo' class in the XObjects code.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
   <xs:element name="Transformation">
+    <xs:annotation>
+      <xs:documentation>Referenced in 'LinqToXsdSettings' class which then chucks it to 'FxtLinq2XsdInterpreter' class. Unknown purpose.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="linq:Deanonymize"/>
@@ -40,6 +59,9 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="Deanonymize">
+    <xs:annotation>
+      <xs:documentation>Used by 'FxtDeanonymize' class. Unknown purpose.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:attribute name="strict" use="optional" type="xs:boolean"/>
     </xs:complexType>

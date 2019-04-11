@@ -20,7 +20,7 @@ namespace LinqToXsd
         /// CLI argument: output file name.
         /// </summary>
         [Option('o', nameof(Output), HelpText = "Output file name. When specifying multiple XSD's, this value is ignored. For specifying multiple output files for multiple input files, supply configuration XML document.")]
-        public string Output
+        public override string Output
         {
             get
             {
