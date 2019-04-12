@@ -9,7 +9,7 @@ namespace Xml.Schema.Linq
     public partial class Configuration
     {
         /// <summary>
-        /// Saves the current instance
+        /// Saves the current instance without overwriting an existing file. Adds a number to the end of the file name.
         /// </summary>
         /// <param name="fileNameOrFullPath"></param>
         public void SaveNoOverwrite(string fileNameOrFullPath)

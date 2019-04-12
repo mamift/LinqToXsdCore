@@ -26,7 +26,7 @@ namespace LinqToXsd
             {
                 if (output.IsNotEmpty()) return output;
                 var file = SchemaFiles.First();
-                return Path.ChangeExtension(file, ".cs");
+                return $"{file}.cs";
             }
             set => output = value;
         }

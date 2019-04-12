@@ -4,6 +4,10 @@ using System.Xml.Linq;
 
 namespace Xml.Schema.Linq
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Used to filter down <see cref="XAttribute"/>s that have the same namespace value.
+    /// </summary>
     public class XAttributeNamespaceValueEqualityComparer: IEqualityComparer<XAttribute>
     {
         public bool Equals(XAttribute left, XAttribute right)

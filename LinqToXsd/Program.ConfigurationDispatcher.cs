@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Xml.Schema.Linq;
+using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
 {
@@ -24,16 +25,13 @@ namespace LinqToXsd
                 });
 
                 var egConfigXmlFile = "exampleConfiguration.xml";
-                while (File.Exists(egConfigXmlFile))
-                {
-                    var strings = egConfigXmlFile.Split('.');
-                    var firstHalf = strings.First();
-                    firstHalf = firstHalf.AppendNumberToString();
-                    egConfigXmlFile = string.Join(".", firstHalf, strings.Last());
-                }
+
+                var comment = new XComment("Replace these with your own");
+                var namespacesEl = exampleConfig.Untyped.Descendants(XName.Get(nameof(Namespaces))).First();
+                namespacesEl.Add(comment);
 
                 Console.WriteLine($"Saving to: {egConfigXmlFile}");
-                exampleConfig.Save(egConfigXmlFile);
+                exampleConfig.SaveNoOverwrite(egConfigXmlFile);
             }
 
             /// <summary>
@@ -63,15 +61,18 @@ namespace LinqToXsd
                     var nsComparer = new XAttributeNamespaceValueEqualityComparer();
                     foreach (var udn in namespaceAttrs.Except(theXsdNamespace).Distinct(nsComparer))
                     {
-                        var unmangleUriToClrNs = Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
+                        var unmangleUriToClrNamespace = Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
                         egConfig.Namespaces.Namespace.Add(new Namespace {
                             Schema = new Uri(udn.Value),
-                            Clr = unmangleUriToClrNs
+                            Clr = unmangleUriToClrNamespace
                         });
                     }
                 }
 
-                var output = $"{configOpts.SchemaFiles.First()}.config";
+                var outputFile = configOpts.Output.IsEmpty() ? configOpts.SchemaFiles.First() : configOpts.Output;
+                var addConfigExtIfItDoesntHaveIt = Path.GetExtension(outputFile).EndsWith("config") ? string.Empty : ".config";
+                var output = outputFile + addConfigExtIfItDoesntHaveIt;
+                Console.WriteLine($"Saving to {output}...");
                 egConfig.SaveNoOverwrite(output);
             }
 
