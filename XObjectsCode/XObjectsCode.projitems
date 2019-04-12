@@ -9,12 +9,30 @@
     <Import_RootNamespace>XObjects</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\ChoiceContentModelEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\ContentModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\FsmXObjects.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\Interfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\NamedContentModelEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\OrderUnawareContentModelEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\SchemaAwareContentModelEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\SequenceContentModelEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\SubstitutedContentModelEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\SubstitutionMembersList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\TypeManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XListContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XListVisualizable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XNamespaceResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XObjects.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XObjectsQueryExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XObjectsSimpleType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XSimpleList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedElementAnnotation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedElementWrapperAnnotation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedSubstitutedList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrAnnotation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrPropertyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrSimpleTypeInfo.cs" />
