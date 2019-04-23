@@ -58,8 +58,8 @@ namespace LinqToXsd
                     if (!hasXmlnsForXsd)
                         Console.WriteLine("This does not appear to be a valid XSD file. It has no namespace declaration for W3C XML Schema.");
 
-                    var nsComparer = new XAttributeNamespaceValueEqualityComparer();
-                    foreach (var udn in namespaceAttrs.Except(theXsdNamespace).Distinct(nsComparer))
+                    var nsValueComparer = new XAttributeValueEqualityComparer();
+                    foreach (var udn in namespaceAttrs.Except(theXsdNamespace).Distinct(nsValueComparer))
                     {
                         var unmangleUriToClrNamespace = Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
                         egConfig.Namespaces.Namespace.Add(new Namespace {

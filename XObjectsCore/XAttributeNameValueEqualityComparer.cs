@@ -4,6 +4,9 @@ using System.Xml.Linq;
 
 namespace Xml.Schema.Linq
 {
+    /// <summary>
+    /// Determines if multiple <see cref="XAttribute"/>s have the same value for the namespace and local name.
+    /// </summary>
     public class XAttributeNameValueEqualityComparer: IEqualityComparer<XAttribute>
     {
         public bool Equals(XAttribute left, XAttribute right)

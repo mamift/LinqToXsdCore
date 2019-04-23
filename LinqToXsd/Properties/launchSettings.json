@@ -2,7 +2,7 @@
   "profiles": {
     "LinqToXsd": {
       "commandName": "Project",
-      "commandLineArgs": "config W:\\Projects\\LinqToXsdCore\\Samples\\SharePoint2010\\wss.xsd -e"
+      "commandLineArgs": "gen \"..\\..\\..\\..\\Samples\\PSMaml\\Maml.xsd,..\\..\\..\\..\\Samples\\wss.xsd\" -o psMaml_s.cs"
     }
   }
 }

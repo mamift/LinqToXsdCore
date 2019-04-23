@@ -12,7 +12,7 @@ namespace Xml.Schema.Linq.Extensions
         public static bool IsEmpty(this string theString) => string.IsNullOrWhiteSpace(theString);
         
         /// <summary>
-        /// Determines if a string is NOT <c>null</c>, empty or all whitespace.
+        /// Determines if a string is NOT <c>null</c>, empty or all whitespace. The inverse of <see cref="IsEmpty"/>.
         /// </summary>
         /// <remarks>Because I hate using <c>!</c></remarks>
         /// <param name="theString"></param>

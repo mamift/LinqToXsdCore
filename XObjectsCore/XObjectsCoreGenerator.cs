@@ -76,26 +76,11 @@ namespace Xml.Schema.Linq
                 DtdProcessing = DtdProcessing.Parse
             });
 
-            var codeWriter = Generate(xmlReader, settings);
-            var kvp = new KeyValuePair<string, TextWriter>(xsdFilePath, codeWriter);
-
-            return kvp;
-        }
-
-        /// <summary>
-        /// Generates code using a given <paramref name="xmlReader"/> and a <see cref="LinqToXsdSettings"/> instance.
-        /// </summary>
-        /// <param name="xmlReader"></param>
-        /// <param name="settings"></param>
-        /// <returns></returns>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="xmlReader"/> is <see langword="null"/></exception>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static TextWriter Generate(XmlReader xmlReader, LinqToXsdSettings settings)
-        {
-            if (xmlReader == null) throw new ArgumentNullException(nameof(xmlReader));
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
             var schemaSet = xmlReader.ToXmlSchemaSet();
-            return Generate(schemaSet, settings);
+
+            var codeWriter = Generate(schemaSet, settings);
+
+            return new KeyValuePair<string, TextWriter>(xsdFilePath, codeWriter);
         }
 
         /// <summary>

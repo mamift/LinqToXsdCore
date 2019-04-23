@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using CommandLine;
 using Xml.Schema.Linq;
+using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
 {
@@ -56,10 +58,25 @@ namespace LinqToXsd
             var files = generateOptions.SchemaFiles;
 
             var settings = generateOptions.ConfigInstance ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
-
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
-            foreach (var kvp in XObjectsCoreGenerator.Generate(files, settings))
+            var textWriters = XObjectsCoreGenerator.Generate(files, settings);
+
+            // merge the output into a single file
+            if (generateOptions.Output.IsNotEmpty())
+            {
+                var target = generateOptions.Output.EndsWith(".cs") ? generateOptions.Output : $"{generateOptions.Output}.cs";
+
+                var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite);
+                using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))
+                {
+                    foreach (var kvp in textWriters) fileWriter.Write(kvp.Value);
+                }
+
+                return;
+            }
+
+            foreach (var kvp in textWriters)
             {
                 var outputFile = Path.GetFullPath($"{kvp.Key}.cs");
 

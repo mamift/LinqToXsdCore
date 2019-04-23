@@ -19,7 +19,6 @@ namespace Xml.Schema.Linq.Extensions
             };
 
             newXmlSet.Add(null, reader);
-
             newXmlSet.Compile();
 
             return newXmlSet;

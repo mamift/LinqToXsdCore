@@ -19,7 +19,7 @@ namespace LinqToXsd
         /// <summary>
         /// CLI argument: output file name.
         /// </summary>
-        [Option('o', nameof(Output), HelpText = "Output file name. When specifying multiple XSD's, this value is ignored. For specifying multiple output files for multiple input files, supply configuration XML document.")]
+        [Option('o', nameof(Output), HelpText = "Output file name. When specifying multiple XSDs or folders of XSDs, all output is merged into a single file. For specifying multiple output files for multiple input files, supply configuration XML document.")]
         public override string Output
         {
             get
@@ -53,7 +53,7 @@ namespace LinqToXsd
         /// <summary>
         /// CLI argument: imports 'System.Xml.Serialization' namespace into code or assembly.
         /// </summary>
-        [Option('e', nameof(EnableServiceReference), HelpText = "Enable code output for use as a service reference; imports the 'System.Xml.Serialization' namespace into the generated code.")]
+        [Option('e', nameof(EnableServiceReference), HelpText = "Imports the 'System.Xml.Serialization' namespace into the generated code.")]
         public bool EnableServiceReference { get; set; }
     }
 }
