@@ -14,7 +14,8 @@ namespace LinqToXsd
         private static readonly XName ImportXName = XName.Get("import", W3CXmlSchemaNamespaceUri);
 
         /// <summary>
-        /// Determines if the current <see cref="XDocument"/> is a W3C Xml Schema.
+        /// Determines if the current <see cref="XDocument"/> is a W3C Xml Schema by checking for the presence of the
+        /// W3C namespace URI in the root element.
         /// </summary>
         /// <param name="xDoc"></param>
         /// <returns></returns>
@@ -29,22 +30,23 @@ namespace LinqToXsd
         /// From an existing collection of <see cref="XDocument"/>s, filter out the ones that are themselves referenced in xs:include or xs:import
         /// directives from within other XML documents in the same collection. This ensures that they are not referenced twice.
         /// </summary>
-        /// <remarks>This extension operates on a dictionary collection to ensure that the file name remains associated with it's relevant XDocument,
-        /// as XDocuments do not contain any information about where the XML document was or is stored.</remarks>
+        /// <remarks>This extension operates on a dictionary collection to ensure that the file name remains associated with it's relevant XDocument
+        /// instance, as XDocuments do not contain any information about the file name or where the XML document was/is stored.</remarks>
         /// <param name="xDocs"></param>
         /// <returns></returns>
         public static Dictionary<string, XDocument> FilterOutSchemasThatAreIncludedOrImported(this Dictionary<string, XDocument> xDocs)
         {
             var actualSchemas = xDocs.Where(kvp => kvp.Value.IsAnXmlSchema()).ToList();
-            var allImportReferences = actualSchemas
-                                           .SelectMany(kvp => kvp.Value.Descendants(ImportXName));
+            var allImportReferences = actualSchemas.SelectMany(kvp => kvp.Value.Descendants(ImportXName));
             var allIncludeReferences = actualSchemas.SelectMany(kvp => kvp.Value.Descendants(IncludeXName));
 
             var importAndIncludeElements = allIncludeReferences.Union(allImportReferences).ToList();
             var schemaLocationXName = XName.Get("schemaLocation");
 
-            var filesReferredToInImportAndIncludeElements = importAndIncludeElements.SelectMany(iie =>
-                iie.Attributes(schemaLocationXName)).Distinct(new XAttributeValueEqualityComparer()).Select(attr => attr.Value);
+            var filesReferredToInImportAndIncludeElements = importAndIncludeElements
+                                                            .SelectMany(iie => iie.Attributes(schemaLocationXName))
+                                                            .Distinct(new XAttributeValueEqualityComparer())
+                                                            .Select(attr => attr.Value);
 
             var theXDocsReferencedByImportOrInclude = from xDoc in xDocs
                                                       where filesReferredToInImportAndIncludeElements.Any(f =>

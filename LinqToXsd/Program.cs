@@ -55,6 +55,7 @@ namespace LinqToXsd
         /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
+            string possibleOutputFolder = null;
             var files = generateOptions.SchemaFiles;
 
             var settings = generateOptions.ConfigInstance ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
@@ -65,24 +66,45 @@ namespace LinqToXsd
             // merge the output into a single file
             if (generateOptions.Output.IsNotEmpty())
             {
-                var target = generateOptions.Output.EndsWith(".cs") ? generateOptions.Output : $"{generateOptions.Output}.cs";
-
-                var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite);
-                using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))
+                if (Path.GetExtension(generateOptions.Output).IsEmpty()) // most likely a directory
                 {
-                    foreach (var kvp in textWriters) fileWriter.Write(kvp.Value);
+                    possibleOutputFolder = Path.GetFullPath(generateOptions.Output);
                 }
+                else
+                {
+                    var target = generateOptions.Output.EndsWith(".cs") ? generateOptions.Output : $"{generateOptions.Output}.cs";
 
-                return;
+                    Console.WriteLine($"Outputting to {target}");
+
+                    using (var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite))
+                    using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))
+                    {
+                        foreach (var kvp in textWriters) fileWriter.Write(kvp.Value);
+                    }
+
+                    return;
+                }
             }
 
+            Console.WriteLine($"Outputting {textWriters.Count} files...");
             foreach (var kvp in textWriters)
             {
-                var outputFile = Path.GetFullPath($"{kvp.Key}.cs");
+                var outputFilename = Path.GetFileName($"{kvp.Key}.cs");
+                var outputFilePath = possibleOutputFolder.IsNotEmpty()
+                    ? Path.Combine(possibleOutputFolder, outputFilename)
+                    : Path.GetFullPath(outputFilename);
 
-                Console.WriteLine($"Outputting to {outputFile}");
+                var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
 
-                using (var outputFileStream = File.Open(outputFile, FileMode.Create, FileAccess.ReadWrite))
+                if (!Directory.Exists(fullPathOfContainingDir))
+                {
+                    Console.WriteLine($"Creating directory: {fullPathOfContainingDir}");
+                    Directory.CreateDirectory(fullPathOfContainingDir);
+                }
+
+                Console.WriteLine($"Outputting to {outputFilePath}");
+
+                using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
                 using (var fileWriter = new StreamWriter(outputFileStream))
                 {
                     fileWriter.Write(kvp.Value);

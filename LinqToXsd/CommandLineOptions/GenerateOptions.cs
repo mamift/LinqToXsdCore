@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 using CommandLine;
 using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
@@ -14,23 +13,6 @@ namespace LinqToXsd
     [SuppressMessage("ReSharper", "UnusedMember.Global"), SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     internal class GenerateOptions: OptionsAbstract
     {
-        private string output;
-
-        /// <summary>
-        /// CLI argument: output file name.
-        /// </summary>
-        [Option('o', nameof(Output), HelpText = "Output file name. When specifying multiple XSDs or folders of XSDs, all output is merged into a single file. For specifying multiple output files for multiple input files, supply configuration XML document.")]
-        public override string Output
-        {
-            get
-            {
-                if (output.IsNotEmpty()) return output;
-                var file = SchemaFiles.First();
-                return $"{file}.cs";
-            }
-            set => output = value;
-        }
-
         /// <summary>
         /// CLI argument: file path to configuration XML file.
         /// </summary>
