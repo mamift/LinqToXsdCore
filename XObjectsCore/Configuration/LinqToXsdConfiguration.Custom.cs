@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using LinqToXsd;
+using Xml.Schema.Linq.Extensions;
 
 // ReSharper disable once CheckNamespace
 namespace Xml.Schema.Linq
@@ -23,6 +23,9 @@ namespace Xml.Schema.Linq
             var initialFileName = fileNameComponent; // save for referencing when we find and replace at the end
             var initialDir = Path.GetDirectoryName(fileNameOrFullPath);
 
+            if (initialDir.IsEmpty()) throw new InvalidOperationException();
+
+            // ReSharper disable once AssignNullToNotNullAttribute
             while (File.Exists(Path.Combine(initialDir, fileNameComponent))) // yes this needs to be refresh using Path.Combine each iteration
             {
                 var splitFileName = fileNameComponent.Split('.');

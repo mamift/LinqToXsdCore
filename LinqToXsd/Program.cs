@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using CommandLine;
 using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
@@ -20,8 +19,7 @@ namespace LinqToXsd
         /// <returns></returns>
         public static int Main(string[] args)
         {
-            var parserResult =
-                Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
+            var parserResult = Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
             parserResult.WithParsed<GenerateOptions>(HandleGenerateCode);
             parserResult.WithParsed<ConfigurationOptions>(HandleConfigurationOptions);
@@ -37,79 +35,48 @@ namespace LinqToXsd
         }
 
         /// <summary>
-        /// 
+        /// Dispatches to the right handler method for creating configuration files.
         /// </summary>
         /// <param name="configOpts"></param>
         internal static void HandleConfigurationOptions(ConfigurationOptions configOpts)
         {
             if (!configOpts.Example) return;
-            if (!configOpts.SchemaFiles.Any()) 
+            if (!configOpts.SchemaFiles.Any())
                 ConfigurationDispatcher.HandleGenerateExampleConfig();
-            else 
+            else
                 ConfigurationDispatcher.HandleAutoGenConfig(configOpts);
         }
 
         /// <summary>
-        /// Generates code for one or multiple XSD input files.
+        /// Dispatches to the right handler method for writing generated code to output file(s).
         /// </summary>
         /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
-            string possibleOutputFolder = null;
             var files = generateOptions.SchemaFiles;
 
             var settings = generateOptions.ConfigInstance ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
+            if (generateOptions.ConfigInstance != null)
+                Console.WriteLine($"Reading configuration file: {generateOptions.Config}");
+
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
             var textWriters = XObjectsCoreGenerator.Generate(files, settings);
 
-            // merge the output into a single file
-            if (generateOptions.Output.IsNotEmpty())
+            if (generateOptions.Output.IsEmpty())
             {
-                if (Path.GetExtension(generateOptions.Output).IsEmpty()) // most likely a directory
-                {
-                    possibleOutputFolder = Path.GetFullPath(generateOptions.Output);
-                }
-                else
-                {
-                    var target = generateOptions.Output.EndsWith(".cs") ? generateOptions.Output : $"{generateOptions.Output}.cs";
-
-                    Console.WriteLine($"Outputting to {target}");
-
-                    using (var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite))
-                    using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))
-                    {
-                        foreach (var kvp in textWriters) fileWriter.Write(kvp.Value);
-                    }
-
-                    return;
-                }
+                generateOptions.Output = Environment.CurrentDirectory;
+                Console.WriteLine("No output directory given: defaulting to current working directory.");
             }
 
-            Console.WriteLine($"Outputting {textWriters.Count} files...");
-            foreach (var kvp in textWriters)
+            // most likely a directory, output to multiple files
+            if (!Path.GetExtension(generateOptions.Output).EndsWith(".cs"))
             {
-                var outputFilename = Path.GetFileName($"{kvp.Key}.cs");
-                var outputFilePath = possibleOutputFolder.IsNotEmpty()
-                    ? Path.Combine(possibleOutputFolder, outputFilename)
-                    : Path.GetFullPath(outputFilename);
-
-                var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
-
-                if (!Directory.Exists(fullPathOfContainingDir))
-                {
-                    Console.WriteLine($"Creating directory: {fullPathOfContainingDir}");
-                    Directory.CreateDirectory(fullPathOfContainingDir);
-                }
-
-                Console.WriteLine($"Outputting to {outputFilePath}");
-
-                using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
-                using (var fileWriter = new StreamWriter(outputFileStream))
-                {
-                    fileWriter.Write(kvp.Value);
-                }
+                var possibleOutputFolder = Path.GetFullPath(generateOptions.Output);
+                GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(possibleOutputFolder, textWriters);
             }
+            else // merge the output into a single file
+                GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions.Output, textWriters);
         }
     }
 }

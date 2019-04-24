@@ -11,7 +11,7 @@ namespace LinqToXsd
 {
     public static partial class Program
     {
-        internal struct ConfigurationDispatcher
+        internal static class ConfigurationDispatcher
         {
             /// <summary>
             /// Outputs an example configuration file for use with LinqToXsd.
@@ -54,7 +54,7 @@ namespace LinqToXsd
                     var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration).ToArray();
                     var theXsdNamespace = namespaceAttrs
                                           .Where(attr => attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
-                    var hasXmlnsForXsd = theXsdNamespace.Any();
+                    var hasXmlnsForXsd = xDoc.IsAnXmlSchema();
                     if (!hasXmlnsForXsd)
                         Console.WriteLine("This does not appear to be a valid XSD file. It has no namespace declaration for W3C XML Schema.");
 
@@ -77,10 +77,10 @@ namespace LinqToXsd
             }
 
             /// <summary>
-            /// Returns a new, skeletal <see cref="Configuration"/> instance.
+            /// Returns a new, default <see cref="Configuration"/> instance.
             /// </summary>
             /// <returns></returns>
-            private static Configuration ProvideExampleConfig()
+            internal static Configuration ProvideExampleConfig()
             {
                 return new Configuration {
                     Namespaces = new Namespaces {

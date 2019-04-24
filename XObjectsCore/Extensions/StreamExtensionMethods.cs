@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace LinqToXsd
+namespace Xml.Schema.Linq.Extensions
 {
     public static class StreamExtensionMethods
     {

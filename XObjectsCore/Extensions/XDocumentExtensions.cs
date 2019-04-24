@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Xml.Schema.Linq;
 
-namespace LinqToXsd
+namespace Xml.Schema.Linq.Extensions
 {
     public static class XDocumentExtensions
     {
