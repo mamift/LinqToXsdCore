@@ -13,7 +13,7 @@ using Xml.Schema.Linq.Extensions;
 namespace Xml.Schema.Linq
 {
     /// <summary>
-    /// Static methods to support multiple ways of generating code. Probably contains too many Generate() overloads...
+    /// Static methods to support multiple ways of generating code.
     /// </summary>
     public static class XObjectsCoreGenerator
     {
@@ -46,7 +46,7 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
-        /// Generates code using a given <see cref="xsdFilePath"/>, and an optionally, the file path to an 
+        /// Generates code using a given <see cref="xsdFilePath"/>, and an optionally, the file path to a configuration file.
         /// </summary>
         /// <param name="xsdFilePath"></param>
         /// <param name="linqToXsdSettingsFilePath"></param>
@@ -125,6 +125,24 @@ namespace Xml.Schema.Linq
                 ccu.Namespaces.Add(codeNs);
 
             return ccu;
+        }
+
+        /// <summary>
+        /// Generates code by searching for an accompanying configuration file, whereby each configuration file is named the same as the XSD file, but with an
+        /// .config extension (i.e. schemaFileName.xsd.config). Will skip over XSDs that have no accompanying .config file.
+        /// </summary>
+        /// <param name="schemaFiles"></param>
+        /// <returns></returns>
+        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> schemaFiles)
+        {
+            var dictOfSchemasAndTheirConfigs = schemaFiles.Select(s => new KeyValuePair<string, FileInfo>(s,
+                                                               new FileInfo($"{s}.config")))
+                                                           .ToDictionary(k => k.Key, v => v.Value);
+            var textWriters =
+                dictOfSchemasAndTheirConfigs.Where(kvp => kvp.Value.Exists).Select(kvp =>
+                    Generate(kvp.Key, kvp.Value.FullName));
+
+            return textWriters.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
     }
 }

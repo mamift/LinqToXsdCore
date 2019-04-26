@@ -34,7 +34,7 @@ namespace LinqToXsd
                         Directory.CreateDirectory(fullPathOfContainingDir);
                     }
 
-                    Console.WriteLine($"Outputting to {outputFilePath}");
+                    Console.WriteLine($"{kvp.Key} => {outputFilePath}");
 
                     using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
                     using (var fileWriter = new StreamWriter(outputFileStream))
@@ -49,11 +49,13 @@ namespace LinqToXsd
             /// </summary>
             /// <param name="outputFile"></param>
             /// <param name="textWriters"></param>
-            public static void HandleWriteOutputToSingleFile(string outputFile, Dictionary<string, TextWriter> textWriters)
+            internal static void HandleWriteOutputToSingleFile(string outputFile, Dictionary<string, TextWriter> textWriters)
             {
+                // add .cs extension to filename if it doesn't have it already.
                 var target = outputFile.EndsWith(".cs") ? outputFile : $"{outputFile}.cs";
 
-                Console.WriteLine($"Outputting to {target}");
+                var extractFileNameOnlyFunctor = new Func<string, string>(k => $"'{Path.GetFileName(k)}'");
+                Console.WriteLine($"{textWriters.Keys.ToDelimitedString(extractFileNameOnlyFunctor)}\n output to {target}");
 
                 using (var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite))
                 using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))

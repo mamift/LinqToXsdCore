@@ -14,23 +14,43 @@ namespace LinqToXsd
     [SuppressMessage("ReSharper", "UnusedMember.Global"), SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     internal class GenerateOptions: OptionsAbstract
     {
+        private LinqToXsdSettings linqToXsdSettings;
+        private string config;
+        private bool autoConfig;
+
         /// <summary>
         /// CLI argument: file path to configuration XML file.
         /// </summary>
-        [Option('c', nameof(Config), HelpText = "Specify the file path to an configuration file.")]
-        public string Config { get; set; }
+        [Option('c', nameof(Config), HelpText =
+            "Specify the file or folder path to one or more configuration file(s). Multiple configuration files are merged as one. Incompatible with -" +
+            nameof(AutoConfig))]
+        public string Config
+        {
+            get => config;
+            set
+            {
+                if (autoConfig) throw new IncompatibleArgumentException(nameof(AutoConfig));
+                config = value;
+            }
+        }
 
         /// <summary>
-        /// If the <see cref="Config"/> property resolves to an actual file, then this property returns an actual <see cref="LinqToXsdSettings"/>
+        /// If the <see cref="Config"/> property resolves to an actual file, then this property returns an <see cref="linqToXsdSettings"/>
         /// instance of that configuration file.
+        /// <para>If this resolves to a folder, then all those configuration files are merged into a single instance.</para>
         /// </summary>
-        public LinqToXsdSettings ConfigInstance 
+        public LinqToXsdSettings GetConfigInstance(IProgress<string> progress = null)
         {
-            get
-            {
-                if (Config.IsEmpty() || !File.Exists(Config)) return null;
-                return XObjectsCoreGenerator.LoadLinqToXsdSettings(Config);
-            }
+            if (linqToXsdSettings != null) return linqToXsdSettings; // don't run twice
+            if (Config.IsEmpty()) return null;
+            if (!File.Exists(Config) && !Directory.Exists(Config)) return null;
+
+            var fileInfo = new FileInfo(Config);
+            linqToXsdSettings = fileInfo.Attributes.HasFlag(FileAttributes.Directory)
+                ? Configuration.Load(new DirectoryInfo(fileInfo.FullName), progress) // load directory
+                : XObjectsCoreGenerator.LoadLinqToXsdSettings(Config); // load file
+
+            return linqToXsdSettings;
         }
 
         /// <summary>
@@ -38,5 +58,18 @@ namespace LinqToXsd
         /// </summary>
         [Option('e', nameof(EnableServiceReference), HelpText = "Imports the 'System.Xml.Serialization' namespace into the generated code.")]
         public bool EnableServiceReference { get; set; }
+
+        [Option('f', nameof(AutoConfig), HelpText =
+            "Specify one folder containing XSDs and their accompanying configuration files. This argument can associate a configuration file with an XSD if you follow the naming convention: 'schema.xsd' + 'schema.xsd.config'. The XSD and .config file must be in the same directory as each other; use this parameter to individually associate an XSD with its own configuration settings to prevent those settings being overriden or merged as the -" +
+            nameof(Config) + " argument would do. Only accepts folder paths. Incompatible with -" + nameof(Config))]
+        public bool AutoConfig
+        {
+            get => autoConfig;
+            set
+            {
+                if (config.IsNotEmpty()) throw new IncompatibleArgumentException(nameof(Config));
+                autoConfig = value;
+            }
+        }
     }
 }

@@ -42,11 +42,9 @@ namespace LinqToXsd
             {
                 var egConfig = ProvideExampleConfig();
 
-                foreach (var xsd in configOpts.SchemaReaders)
-                {
+                foreach (var xsd in configOpts.SchemaReaders) {
                     var xDoc = XDocument.Load(xsd.Value);
-                    if (xDoc.Root == null)
-                    {
+                    if (xDoc.Root == null) {
                         Console.WriteLine($"Cannot parse this XML file: {xsd.Key}");
                         continue;
                     }
@@ -59,8 +57,7 @@ namespace LinqToXsd
                         Console.WriteLine("This does not appear to be a valid XSD file. It has no namespace declaration for W3C XML Schema.");
 
                     var nsValueComparer = new XAttributeValueEqualityComparer();
-                    foreach (var udn in namespaceAttrs.Except(theXsdNamespace).Distinct(nsValueComparer))
-                    {
+                    foreach (var udn in namespaceAttrs.Except(theXsdNamespace).Distinct(nsValueComparer)) {
                         var unmangleUriToClrNamespace = Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
                         egConfig.Namespaces.Namespace.Add(new Namespace {
                             Schema = new Uri(udn.Value),

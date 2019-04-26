@@ -12,6 +12,8 @@ namespace LinqToXsd
     {
         internal static int ReturnCode { get; private set; }
 
+        internal static IProgress<string> ProgressReporter { get; } = new Progress<string>(Console.WriteLine);
+
         /// <summary>
         /// CLI will parse arguments here and then dispatch to the right method.
         /// </summary>
@@ -19,8 +21,9 @@ namespace LinqToXsd
         /// <returns></returns>
         public static int Main(string[] args)
         {
-            var parserResult = Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
-
+            var parserResult =
+                Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
+            
             parserResult.WithParsed<GenerateOptions>(HandleGenerateCode);
             parserResult.WithParsed<ConfigurationOptions>(HandleConfigurationOptions);
 
@@ -31,6 +34,15 @@ namespace LinqToXsd
 
         private static void ErrorHandler(IEnumerable<Error> errors)
         {
+            foreach (var error in errors)
+            {
+                if (error is SetValueExceptionError setValueException && 
+                    setValueException.Exception is IncompatibleArgumentException iae)
+                {
+                    ReturnCode = 1;
+                    return;
+                }
+            }
             ReturnCode = 1;
         }
 
@@ -53,15 +65,15 @@ namespace LinqToXsd
         /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
-            var files = generateOptions.SchemaFiles;
-
-            var settings = generateOptions.ConfigInstance ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
-            if (generateOptions.ConfigInstance != null)
-                Console.WriteLine($"Reading configuration file: {generateOptions.Config}");
+            var settings = generateOptions.GetConfigInstance(ProgressReporter) ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
+            if (generateOptions.GetConfigInstance() != null)
+                Console.WriteLine("Configuration file(s) loaded...");
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
-            var textWriters = XObjectsCoreGenerator.Generate(files, settings);
+            var textWriters = generateOptions.AutoConfig
+                ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles)
+                : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
 
             if (generateOptions.Output.IsEmpty())
             {
@@ -69,14 +81,15 @@ namespace LinqToXsd
                 Console.WriteLine("No output directory given: defaulting to current working directory.");
             }
 
-            // most likely a directory, output to multiple files
-            if (!Path.GetExtension(generateOptions.Output).EndsWith(".cs"))
+            var hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
+            if (hasCsExt) // merge the output into a single file
+                GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions.Output, textWriters);
+            else
             {
+                // most likely a directory, output to multiple files
                 var possibleOutputFolder = Path.GetFullPath(generateOptions.Output);
                 GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(possibleOutputFolder, textWriters);
             }
-            else // merge the output into a single file
-                GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions.Output, textWriters);
         }
     }
 }

@@ -20,25 +20,34 @@ namespace Xml.Schema.Linq
             this.NameMangler2 = nameMangler2;
             namespaceMapping = new Dictionary<string, string>();
         }
+        
+        public LinqToXsdSettings(string filePath, bool nameMangler2 = false)
+        {
+            this.NameMangler2 = nameMangler2;
+            namespaceMapping = new Dictionary<string, string>();
+            Load(filePath);
+        }
 
         public void Load(string configFile)
         {
-            if (configFile == null || configFile.Length == 0)
-            {
+            if (string.IsNullOrEmpty(configFile))
                 throw new ArgumentException("Argument configFile should be non-null and non-empty.");
-            }
+            
+            Load(XDocument.Load(configFile));
+        }
 
-            XDocument configDoc = XDocument.Load(configFile);
-            XElement rootElement = configDoc.Root;
+        public void Load(XDocument configDocument)
+        {
+            if (configDocument?.Root == null) throw new ArgumentNullException(nameof(configDocument));
+
+            var rootElement = configDocument.Root;
             GenerateNamespaceMapping(rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs)));
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
             XElement validationSettings = rootElement.Element(XName.Get("Validation", Constants.TypedXLinqNs));
             if (validationSettings != null)
             {
                 verifyRequired =
-                    (string) validationSettings.Element(XName.Get("VerifyRequired", Constants.TypedXLinqNs)) == "true"
-                        ? true
-                        : false;
+                    (string)validationSettings.Element(XName.Get("VerifyRequired", Constants.TypedXLinqNs)) == "true";
             }
         }
 
