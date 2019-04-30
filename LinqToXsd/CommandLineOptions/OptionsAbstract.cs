@@ -13,19 +13,37 @@ namespace LinqToXsd
     internal abstract class OptionsAbstract
     {
         internal const string OutputHelpText = "Output file name or folder. When specifying multiple input XSDs or input folders, and this value is a file, all output is merged into a single file. If this value is a folder, multiple output files are output to this folder.";
-        internal const string SchemaFilesHelpText = "One or more schema files or folders containing schema files. Separate multiple files using a comma (,). If folders are given, then the files referenced in xs:include or xs:import directives are not imported twice. Usage: 'LinqToXsd [verb] <file1.xsd>,<file2.xsd>' or 'LinqToXsd [verb] <folder1>,<folder2>'.";
+        internal const string FilesOrFoldersHelpText = "One or more schema files or folders containing schema files. Separate multiple files using a comma (,). If folders are given, then the files referenced in xs:include or xs:import directives are not imported twice. Usage: 'LinqToXsd [verb] <file1.xsd>,<file2.xsd>' or 'LinqToXsd [verb] <folder1>,<folder2>'.";
 
-        private List<string> schemaFiles = new List<string>();
+        private List<string> filesOrFolders = new List<string>();
 
         /// <summary>
-        /// CLI argument: One or more schema files or folders containing schema files. Filters to include only .xsd files.
+        /// CLI argument: The file or folder paths given at the CL.
         /// </summary>
-        [Value(1, HelpText = SchemaFilesHelpText, Required = true)]
+        [Value(1, HelpText = FilesOrFoldersHelpText, Required = true)]
+        public IEnumerable<string> FilesOrFolders
+        {
+            get => filesOrFolders;
+            set
+            {
+                // this fixes a curious issue in the CommandLine parser that sometimes pops up
+                var possibleUnparsedCommas = value
+                                             .Select(v => v.Replace("\\", @"\"))
+                                             .SelectMany(pf => pf.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                                             .Select(v => v.Trim('\\', '/')); // removes trailing slashes for directories
+                filesOrFolders = possibleUnparsedCommas.ToList();
+            }
+        }
+
+        /// <summary>
+        /// Resolves the file or folder paths in <see cref="FilesOrFolders"/> property as just files, filtering to only include *.xsd files under
+        /// any folder paths present.
+        /// </summary>
         public IEnumerable<string> SchemaFiles
         {
             get
             {
-                var files = FileSystemUtilities.ResolveFileAndFolderPathsToJustFiles(schemaFiles, "*.xsd");
+                var files = FileSystemUtilities.ResolveFileAndFolderPathsToJustFiles(FilesOrFolders, "*.xsd");
                 // convert files to XDocuments and check if they are proper W3C schemas
                 var xDocs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)))
                                  .Where(kvp => kvp.Value.IsAnXmlSchema())
@@ -34,16 +52,6 @@ namespace LinqToXsd
                 var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key);
 
                 return files.Except(filteredIncludeAndImportRefs).Distinct();
-            }
-
-            set
-            {
-                // this fixes a curious issue in the CommandLine parser that sometimes pops up
-                var possibleUnparsedCommas = value
-                    .Select(v => v.Replace("\\", @"\"))
-                    .SelectMany(pf => pf.Split(',', StringSplitOptions.RemoveEmptyEntries))
-                    .Select(v => v.Trim('\\','/')); // removes trailing slashes for directories
-                schemaFiles = possibleUnparsedCommas.ToList();
             }
         }
 

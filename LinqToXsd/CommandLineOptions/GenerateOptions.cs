@@ -14,9 +14,7 @@ namespace LinqToXsd
     [SuppressMessage("ReSharper", "UnusedMember.Global"), SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     internal class GenerateOptions: OptionsAbstract
     {
-        private LinqToXsdSettings linqToXsdSettings;
         private string config;
-        private bool autoConfig;
 
         /// <summary>
         /// CLI argument: file path to configuration XML file.
@@ -33,6 +31,8 @@ namespace LinqToXsd
                 config = value;
             }
         }
+
+        private LinqToXsdSettings linqToXsdSettings;
 
         /// <summary>
         /// If the <see cref="Config"/> property resolves to an actual file, then this property returns an <see cref="linqToXsdSettings"/>
@@ -58,6 +58,8 @@ namespace LinqToXsd
         /// </summary>
         [Option('e', nameof(EnableServiceReference), HelpText = "Imports the 'System.Xml.Serialization' namespace into the generated code.")]
         public bool EnableServiceReference { get; set; }
+
+        private bool autoConfig;
 
         [Option('f', nameof(AutoConfig), HelpText =
             "Specify one folder containing XSDs and their accompanying configuration files. This argument can associate a configuration file with an XSD if you follow the naming convention: 'schema.xsd' + 'schema.xsd.config'. The XSD and .config file must be in the same directory as each other; use this parameter to individually associate an XSD with its own configuration settings to prevent those settings being overriden or merged as the -" +
