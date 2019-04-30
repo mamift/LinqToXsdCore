@@ -35,5 +35,11 @@ namespace LinqToXsd
             var filteredOut = sequenceFilterFunctor(enumeratedFileAndOrFolderPaths) ?? new List<string>(); // can't be certain that the return value is not null
             return files.Except(filteredOut).Distinct().ToList();
         }
+
+        public static bool HasFolderPaths(IEnumerable<string> sequenceOfFileAndOrFolderPaths) => 
+            sequenceOfFileAndOrFolderPaths.Any(Directory.Exists);
+
+        public static bool HasFilePaths(IEnumerable<string> sequenceOfFileAndOrFolderPaths) =>
+            sequenceOfFileAndOrFolderPaths.Any(File.Exists);
     }
 }

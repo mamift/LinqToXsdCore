@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Xml.Schema.Linq.Extensions;
 
@@ -27,8 +29,8 @@ namespace Xml.Schema.Linq
             if (initialDir.IsEmpty()) throw new InvalidOperationException();
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            while (File.Exists(Path.Combine(initialDir, fileNameComponent))) // yes this needs to be refresh using Path.Combine each iteration
-            {
+            // yes this needs to be refresh using Path.Combine each iteration
+            while (File.Exists(Path.Combine(initialDir, fileNameComponent))) { 
                 var splitFileName = fileNameComponent.Split('.');
                 var firstHalf = splitFileName.First();
                 firstHalf = firstHalf.AppendNumberToString();
@@ -94,5 +96,54 @@ namespace Xml.Schema.Linq
             progress?.Report($"Merged {configurationsToMerge.Length} + 1 configuration files...");
             return firstConfig.ToLinqToXsdSettings();
         }
+
+        /// <summary>
+        /// Loads a new <see cref="Configuration"/> instance by reading an existing XSD schema and creating default values.
+        /// </summary>
+        /// <param name="xDoc"></param>
+        /// <returns></returns>
+        /// <exception cref="T:Xml.Schema.Linq.LinqToXsdException">Invalid XSD file; or it has no namespace declaration for W3C XML Schema.</exception>
+        public static Configuration LoadForSchema(XDocument xDoc)
+        {
+            if (!xDoc.IsAnXmlSchema()) throw new LinqToXsdException("This does not appear to be a valid XSD file. " +
+                                                                    "It has no namespace declaration for W3C XML Schema.");
+            if (xDoc.Root == null) throw new LinqToXsdException("Cannot parse this XSD file.");
+
+            var egConfig = ExampleConfigurationInstance;
+
+            var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration).ToArray();
+            var theXsdNamespace = namespaceAttrs
+                                  .Where(attr => attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
+
+            var namespacesToRead = namespaceAttrs.Except(theXsdNamespace);
+            foreach (var udn in namespacesToRead.Distinct(new XAttributeValueEqualityComparer())) {
+                var uriToClrNamespaceValue = Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
+                egConfig.Namespaces.Namespace.Add(new Namespace {
+                    Schema = new Uri(udn.Value),
+                    Clr = uriToClrNamespaceValue
+                });
+            }
+
+            return egConfig;
+        }
+
+        /// <summary>
+        /// Returns a new, default <see cref="Configuration"/> instance with no <see cref="Namespaces"/> present.
+        /// </summary>
+        /// <returns></returns>
+        public static Configuration ExampleConfigurationInstance => new Configuration
+        {
+            Namespaces = new Namespaces {
+                Namespace = new List<Namespace>()
+            },
+            Transformation = new Transformation {
+                Deanonymize = new Deanonymize {
+                    strict = false
+                }
+            },
+            Validation = new Validation {
+                VerifyRequired = new VerifyRequired(false)
+            }
+        };
     }
 }

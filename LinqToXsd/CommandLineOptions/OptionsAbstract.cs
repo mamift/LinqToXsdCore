@@ -15,6 +15,18 @@ namespace LinqToXsd
         internal const string OutputHelpText = "Output file name or folder. When specifying multiple input XSDs or input folders, and this value is a file, all output is merged into a single file. If this value is a folder, multiple output files are output to this folder.";
         internal const string FilesOrFoldersHelpText = "One or more schema files or folders containing schema files. Separate multiple files using a comma (,). If folders are given, then the files referenced in xs:include or xs:import directives are not imported twice. Usage: 'LinqToXsd [verb] <file1.xsd>,<file2.xsd>' or 'LinqToXsd [verb] <folder1>,<folder2>'.";
 
+        /// <summary>
+        /// Determines if at least one folder path was given in <see cref="FilesOrFolders"/>.
+        /// </summary>
+        /// <returns></returns>
+        public bool FoldersWereGiven => FileSystemUtilities.HasFolderPaths(FilesOrFolders);
+
+        /// <summary>
+        /// Determines if at least one file path were given in <see cref="FilesOrFolders"/>.
+        /// </summary>
+        /// <returns></returns>
+        public bool FilesWereGiven => FileSystemUtilities.HasFilePaths(FilesOrFolders);
+
         private List<string> filesOrFolders = new List<string>();
 
         /// <summary>

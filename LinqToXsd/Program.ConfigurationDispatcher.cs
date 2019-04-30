@@ -18,7 +18,7 @@ namespace LinqToXsd
             /// </summary>
             internal static void HandleGenerateExampleConfig()
             {
-                var exampleConfig = ExampleConfigurationInstance;
+                var exampleConfig = Configuration.ExampleConfigurationInstance;
                 var configNsUri = new Uri("http://www.microsoft.com/xml/schema/linq");
                 exampleConfig.Namespaces.Namespace.Add(new Namespace {
                     Schema = configNsUri,
@@ -43,57 +43,39 @@ namespace LinqToXsd
             /// <param name="configOpts"></param>
             public static void HandleAutoGenConfig(ConfigurationOptions configOpts)
             {
-                var egConfig = ExampleConfigurationInstance;
+                var egConfig = Configuration.ExampleConfigurationInstance;
+                var outputWasGiven = configOpts.Output.IsNotEmpty();
+                var foldersWereGiven = configOpts.FoldersWereGiven;
 
-                foreach (var xsd in configOpts.SchemaReaders) {
-                    var xDoc = XDocument.Load(xsd.Value);
-                    if (xDoc.Root == null) {
-                        Console.WriteLine($"Cannot parse this XML file: {xsd.Key}");
-                        continue;
+                if (foldersWereGiven && outputWasGiven)
+                    Console.WriteLine($"Folders were given to the CLI; --{nameof(ConfigurationOptions.Output)} argument is ignored.");
+
+                var inputFiles = configOpts.SchemaFiles.ToArray();
+                var schemaReaders = configOpts.SchemaReaders;
+
+                if (foldersWereGiven) {
+                    foreach (var xsd in schemaReaders) {
+                        var schemaDoc = XDocument.Load(xsd.Value);
+                        var config = Configuration.LoadForSchema(schemaDoc);
+
+                        var outputConfig = xsd.Key.AppendIfNotPresent(".config");
+                        Console.WriteLine($"Saving {outputConfig.Except(Environment.CurrentDirectory)}");
+                        config.Save(outputConfig);
                     }
 
-                    var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration).ToArray();
-                    var theXsdNamespace = namespaceAttrs
-                                          .Where(attr => attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
-                    var hasXmlnsForXsd = xDoc.IsAnXmlSchema();
-                    if (!hasXmlnsForXsd)
-                        Console.WriteLine("This does not appear to be a valid XSD file. It has no namespace declaration for W3C XML Schema.");
-
-                    var nsValueComparer = new XAttributeValueEqualityComparer();
-                    foreach (var udn in namespaceAttrs.Except(theXsdNamespace).Distinct(nsValueComparer)) {
-                        var unmangleUriToClrNamespace = Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
-                        egConfig.Namespaces.Namespace.Add(new Namespace {
-                            Schema = new Uri(udn.Value),
-                            Clr = unmangleUriToClrNamespace
-                        });
-                    }
+                    return;
                 }
 
-                var outputFile = configOpts.Output.IsEmpty() ? configOpts.SchemaFiles.First() : configOpts.Output;
-                var addConfigExtIfItDoesntHaveIt = Path.GetExtension(outputFile).EndsWith("config") ? string.Empty : ".config";
-                var output = outputFile + addConfigExtIfItDoesntHaveIt;
+                var mergedOutput = schemaReaders.Aggregate(egConfig, (theEgConfig, pair) => {
+                    var loadedForXsd = Configuration.LoadForSchema(XDocument.Load(pair.Value));
+                    return theEgConfig.MergeNamespaces(loadedForXsd);
+                });
+
+                var outputFile = outputWasGiven ? configOpts.Output : $"{inputFiles.First()}_plus{inputFiles.Length - 1}others";
+                var output = outputFile.AppendIfNotPresent(".config");
                 Console.WriteLine($"Saving to {output}...");
-                egConfig.SaveNoOverwrite(output);
+                mergedOutput.Save(output);
             }
-
-            /// <summary>
-            /// Returns a new, default <see cref="Configuration"/> instance.
-            /// </summary>
-            /// <returns></returns>
-            internal static Configuration ExampleConfigurationInstance => new Configuration
-            {
-                Namespaces = new Namespaces {
-                    Namespace = new List<Namespace>()
-                },
-                Transformation = new Transformation {
-                    Deanonymize = new Deanonymize {
-                        strict = false
-                    }
-                },
-                Validation = new Validation {
-                    VerifyRequired = new VerifyRequired(false)
-                }
-            };
         }
     }
 }

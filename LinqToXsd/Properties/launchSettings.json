@@ -2,7 +2,7 @@
   "profiles": {
     "LinqToXsd": {
       "commandName": "Project",
-      "commandLineArgs": "config .\\Samples\\ -e"
+      "commandLineArgs": "config .\\Samples\\wss.xsd, .\\Samples\\PSMaml\\base.xsd -e"
     }
   }
 }

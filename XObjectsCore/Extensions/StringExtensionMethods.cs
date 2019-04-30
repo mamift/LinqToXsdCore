@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Xml.Schema.Linq.Extensions
 {
@@ -52,5 +53,21 @@ namespace Xml.Schema.Linq.Extensions
             return theNumber;
         }
 
+        /// <summary>
+        /// Append a string to the end of the current string if it isn't already there.
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <param name="appendage"></param>
+        public static string AppendIfNotPresent(this string theString, string appendage) 
+            => !theString.EndsWith(appendage) ? theString + appendage : theString;
+
+        /// <summary>
+        /// Returns the current string without the given <paramref name="exception"/> string if it is present in the current string.
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        public static string Except(this string theString, string exception) 
+            => theString.Replace(exception, string.Empty);
     }
 }
