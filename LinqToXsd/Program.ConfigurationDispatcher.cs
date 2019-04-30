@@ -18,20 +18,23 @@ namespace LinqToXsd
             /// </summary>
             internal static void HandleGenerateExampleConfig()
             {
-                var exampleConfig = ProvideExampleConfig();
+                var exampleConfig = ExampleConfigurationInstance;
+                var configNsUri = new Uri("http://www.microsoft.com/xml/schema/linq");
                 exampleConfig.Namespaces.Namespace.Add(new Namespace {
-                    Schema = new Uri("http://www.microsoft.com/xml/schema/linq"),
+                    Schema = configNsUri,
                     Clr = "Xml.Schema.Linq"
                 });
 
                 var egConfigXmlFile = "exampleConfiguration.xml";
 
-                var comment = new XComment("Replace these with your own");
-                var namespacesEl = exampleConfig.Untyped.Descendants(XName.Get(nameof(Namespaces))).First();
+                var comment = new XComment("Add more of your own XML namespace to CLR namespace entries here");
+                var namespacesXName = XName.Get(nameof(Namespaces), configNsUri.AbsoluteUri);
+                var namespacesElements = exampleConfig.Untyped.Descendants(namespacesXName);
+                var namespacesEl = namespacesElements.First();
                 namespacesEl.Add(comment);
 
                 Console.WriteLine($"Saving to: {egConfigXmlFile}");
-                exampleConfig.SaveNoOverwrite(egConfigXmlFile);
+                exampleConfig.Save(egConfigXmlFile);
             }
 
             /// <summary>
@@ -40,7 +43,7 @@ namespace LinqToXsd
             /// <param name="configOpts"></param>
             public static void HandleAutoGenConfig(ConfigurationOptions configOpts)
             {
-                var egConfig = ProvideExampleConfig();
+                var egConfig = ExampleConfigurationInstance;
 
                 foreach (var xsd in configOpts.SchemaReaders) {
                     var xDoc = XDocument.Load(xsd.Value);
@@ -77,22 +80,20 @@ namespace LinqToXsd
             /// Returns a new, default <see cref="Configuration"/> instance.
             /// </summary>
             /// <returns></returns>
-            internal static Configuration ProvideExampleConfig()
+            internal static Configuration ExampleConfigurationInstance => new Configuration
             {
-                return new Configuration {
-                    Namespaces = new Namespaces {
-                        Namespace = new List<Namespace>()
-                    },
-                    Transformation = new Transformation {
-                        Deanonymize = new Deanonymize {
-                            strict = false
-                        }
-                    },
-                    Validation = new Validation {
-                        VerifyRequired = new VerifyRequired(false)
+                Namespaces = new Namespaces {
+                    Namespace = new List<Namespace>()
+                },
+                Transformation = new Transformation {
+                    Deanonymize = new Deanonymize {
+                        strict = false
                     }
-                };
-            }
+                },
+                Validation = new Validation {
+                    VerifyRequired = new VerifyRequired(false)
+                }
+            };
         }
     }
 }
