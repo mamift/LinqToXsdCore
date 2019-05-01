@@ -22,9 +22,14 @@ namespace LinqToXsd
                 foreach (var kvp in textWriters)
                 {
                     var outputFilename = Path.GetFileName($"{kvp.Key}.cs");
-                    var outputFilePath = possibleOutputFolder.IsNotEmpty()
-                        ? Path.Combine(possibleOutputFolder, outputFilename)
-                        : Path.GetFullPath(outputFilename);
+                    string outputFilePath;
+
+                    if (possibleOutputFolder == "-1")
+                        outputFilePath = Path.Combine(Path.GetDirectoryName(kvp.Key), outputFilename);
+                    else if (possibleOutputFolder.IsNotEmpty())
+                        outputFilePath = Path.Combine(possibleOutputFolder, outputFilename);
+                    else
+                        outputFilePath = Path.GetFullPath(outputFilename);
 
                     var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using CommandLine;
 using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
@@ -77,8 +78,14 @@ namespace LinqToXsd
 
             if (generateOptions.Output.IsEmpty())
             {
-                generateOptions.Output = Environment.CurrentDirectory;
-                Console.WriteLine("No output directory given: defaulting to current working directory.");
+                if (generateOptions.FoldersWereGiven) {
+                    Console.WriteLine("No output directory given: defaulting to same directory as XSD file(s).");
+                    generateOptions.Output = "-1";
+                }
+                else {
+                    generateOptions.Output = Environment.CurrentDirectory;
+                    Console.WriteLine($"No output directory given: defaulting to current working directory: {Environment.CurrentDirectory}.");
+                }
             }
 
             var hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
@@ -86,9 +93,7 @@ namespace LinqToXsd
                 GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions.Output, textWriters);
             else
             {
-                // most likely a directory, output to multiple files
-                var possibleOutputFolder = Path.GetFullPath(generateOptions.Output);
-                GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(possibleOutputFolder, textWriters);
+                GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions.Output, textWriters);
             }
         }
     }
