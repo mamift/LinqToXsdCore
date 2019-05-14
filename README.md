@@ -58,6 +58,7 @@ There are two CLI apps present in this repo: *LinqToXsd* and *XObjectsGenerator*
 
 * XObjectsGenerator is a straight-up copy and paste of the legacy CLI tool. Use this if you have custom build events that use its syntax.
 * LinqToXsd uses a [custom CLI parser](https://github.com/commandlineparser/commandline). It provides a better interface for functions that are explicitly supported.
+* Both of these tools target .NET Core 2.0.
 
 To invoke either of the CLI tools:
 ```
@@ -67,6 +68,24 @@ or
 
 ```
 dotnet .\LinqToXsd.dll
+```
+
+### Pre-release Nuget package
+
+To use the pre-release Nuget package, install LinqToXsdCore (it has a dependency on XObjectsCore and will install that as well). Then use the CLI tool generate a configuration file for your XSD files first before generating code.
+
+After that, and editing the config file so namespaces map properly to the CLR, add an invocation to the CLI tool as a pre-build event into your project:
+
+Visual Studio 2017+
+```
+dotnet %userprofile%\.nuget\packages\LinqToXsdCore\lib\netcoreapp2.0\XObjectsCore.dll <commandlineargs>
+```
+
+If you're using Visual Studio 2017 or above you won't have a solution-scoped packages folder. It gets downloaded to your user profile nuget repository.
+
+Visual Studio 2015 and below:
+```
+dotnet $(SolutionDir)packages\LinqToXsdCore\lib\netcoreapp2.0\XObjectsCore.dll <commandlineargs>
 ```
 
 ## Using LinqToXsd
