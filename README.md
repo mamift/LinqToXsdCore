@@ -72,7 +72,7 @@ dotnet .\LinqToXsd.dll
 
 ### Pre-release Nuget package
 
-To use the pre-release Nuget package, install LinqToXsdCore (it has a dependency on XObjectsCore and will install that as well). Then use the CLI tool generate a configuration file for your XSD files first before generating code.
+To use the pre-release Nuget package (https://www.nuget.org/packages/LinqToXsdCore/3.0.0.1-beta), install LinqToXsdCore (it has a dependency on XObjectsCore and will install that as well). Then use the CLI tool generate a configuration file for your XSD files first before generating code.
 
 After that, and editing the config file so namespaces map properly to the CLR, add an invocation to the CLI tool as a pre-build event into your project:
 
