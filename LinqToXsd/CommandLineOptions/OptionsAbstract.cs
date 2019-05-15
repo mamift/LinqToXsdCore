@@ -41,7 +41,7 @@ namespace LinqToXsd
                 // this fixes a curious issue in the CommandLine parser that sometimes pops up
                 var possibleUnparsedCommas = value
                                              .Select(v => v.Replace("\\", @"\"))
-                                             .SelectMany(pf => pf.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                                             .SelectMany(pf => pf.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                              .Select(v => v.Trim('\\', '/')); // removes trailing slashes for directories
                 filesOrFolders = possibleUnparsedCommas.ToList();
             }
@@ -77,7 +77,8 @@ namespace LinqToXsd
                 var schemasFiles = SchemaFiles.ToArray(); // save a reference otherwise it gets enumerated twice
                 if (!schemasFiles.Any()) return new Dictionary<string, XmlReader>();
 
-                var xmlReaderSettings = new XmlReaderSettings {
+                var xmlReaderSettings = new XmlReaderSettings
+                {
                     DtdProcessing = DtdProcessing.Parse
                 };
                 return schemasFiles.ToDictionary(f => f, f => XmlReader.Create(f, xmlReaderSettings));
