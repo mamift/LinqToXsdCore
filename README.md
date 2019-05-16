@@ -52,53 +52,48 @@ The amount of code one writes to traverse an XML document is reduced as LinqToXs
 
 * The Visual Studio targets project is in the repo, but is not properly ported over to .NET core. The VS target (that allows feeding an XSD in a solution or project to a custom build action) is planned to be ported later on. 
 
-## Mini-instructions
+## Installation instructions
 
-There are two CLI apps present in this repo: *LinqToXsd* and *XObjectsGenerator*. Both are .NET core console apps:
-
-* XObjectsGenerator is a straight-up copy and paste of the legacy CLI tool. Use this if you have custom build events that use its syntax.
-* LinqToXsd uses a [custom CLI parser](https://github.com/commandlineparser/commandline). It provides a better interface for functions that are explicitly supported.
-* Both of these tools target .NET Core 2.0.
-
-To invoke either of the CLI tools:
+Before doing anything, install the code-generator, published as a global .NET tool here: https://www.nuget.org/packages/LinqToXsdCore/3.0.0.3-beta. Install it using 
 ```
-dotnet .\XObjectsGenerator.dll
-```
-or 
-
-```
-dotnet .\LinqToXsd.dll
+dotnet tool install LinqToXsdCore --version 3.0.0.3-beta -g
 ```
 
-### Pre-release Nuget package
+After that, you can use the tool globally via the command 'LinqToXsd' at a console (cmd or powershell).
 
-To use the pre-release Nuget package (https://www.nuget.org/packages/LinqToXsdCore/3.0.0.1-beta), install LinqToXsdCore (it has a dependency on XObjectsCore and will install that as well). Then use the CLI tool generate a configuration file for your XSD files first before generating code.
+## Using LinqToXsd to generate code
 
-After that, and editing the config file so namespaces map properly to the CLR, add an invocation to the CLI tool as a pre-build event into your project:
+Before generating code, create an example configuration file from your XSD (this will allow you to customize how XML namespaces map to C#/CLR namepsaces).
 
-Visual Studio 2017+
 ```
-dotnet %userprofile%\.nuget\packages\LinqToXsdCore\lib\netcoreapp2.0\XObjectsCore.dll <commandlineargs>
-```
-
-If you're using Visual Studio 2017 or above you won't have a solution-scoped packages folder. It gets downloaded to your user profile nuget repository.
-
-Visual Studio 2015 and below:
-```
-dotnet $(SolutionDir)packages\LinqToXsdCore\lib\netcoreapp2.0\XObjectsCore.dll <commandlineargs>
+linqtoxsd config -e wss.xsd
 ```
 
-## Using LinqToXsd
+Currently as this is a port of the LinqToXsd project, some configuration elements are not documented. But the gist of what you need as a developer is pay attention to the ``<Namespaces />`` element. 
 
-We recommend you use this tool to generate code. To generate code from an XSD (will output to **filename.xsd.cs**):
-```
-dotnet LinqToXsd.dll gen "SharePoint2010\wss.xsd"
+Under that element, it will create default namepsace mappings similar to the following example: 
+
+```XML
+<Namespaces>
+  <Namespace Schema="http://schemas.microsoft.com/sharepoint/" Clr="schemas.microsoft.com.sharepoint" />
+</Namespaces>
 ```
 
-To generate code from an XSD with a configuration file (that maps XML namespaces to CLR namespace):
+The XML namespace ``http://schemas.microsoft.com/sharepoint/`` becomes: ``schemas.microsoft.com.sharepoint`` in the generated C# code. And obviously now that you have a configuration file you can change the default values to something more suitable for you.
+
+To use your new configuraton file to generate code:
+
 ```
-dotnet LinqToXsd.dll gen "SharePoint2010\wss.xsd" --Config "SharePoint2010\wss.xsd.config"
+linqtoxsd gen wss.xsd -c .\wss.xsd.config
 ```
+
+It will output code to *'file.xsd.cs'*, or in this case *'wss.xsd.cs'*.
+
+### Using generated code
+
+You can include the generated code a library DLL or other .NET application so long as the project that contains the generated code include a dependency on the XObjectsCore library. The nuget package for that is here: https://www.nuget.org/packages/XObjectsCore/3.0.0.1-beta. You do not need to include a reference to the LinqToXsdCore library in any shipping application or library.
+
+## 
 
 # License
 This is licensed under the same license that the original LinqToXsd project was licensed under, which is the Microsoft Public License (MS-PL): https://opensource.org/licenses/MS-PL
