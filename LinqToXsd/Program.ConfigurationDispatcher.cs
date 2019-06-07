@@ -71,7 +71,10 @@ namespace LinqToXsd
                     return theEgConfig.MergeNamespaces(loadedForXsd);
                 });
 
-                var outputFile = outputWasGiven ? configOpts.Output : $"{inputFiles.First()}_plus{inputFiles.Length - 1}others";
+                // use a generic filename if multiple inputs were given
+                var outputFileName = inputFiles.Length > 1 ? "LinqToXsdConfig.config" : inputFiles.First();
+
+                var outputFile = outputWasGiven ? configOpts.Output : outputFileName;
                 var output = outputFile.AppendIfNotPresent(".config");
                 Console.WriteLine($"Saving to {output}...");
                 mergedOutput.Save(output);
