@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCore", "XObjectsCor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsGenerator", "XObjectsGenerator\XObjectsGenerator.csproj", "{6EC5747E-A36D-4645-98BB-50EF4AEC0EE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToXsd", "LinqToXsd\LinqToXsd.csproj", "{39BF4375-E14A-4779-8D9D-90C39E1C5BBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqToXsd", "LinqToXsd\LinqToXsd.csproj", "{39BF4375-E14A-4779-8D9D-90C39E1C5BBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XObjectsTests", "XObjectsTests\XObjectsTests.csproj", "{5BA935F4-E5A4-4679-8F55-3E875C797C54}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -32,6 +34,10 @@ Global
 		{39BF4375-E14A-4779-8D9D-90C39E1C5BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39BF4375-E14A-4779-8D9D-90C39E1C5BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39BF4375-E14A-4779-8D9D-90C39E1C5BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BA935F4-E5A4-4679-8F55-3E875C797C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BA935F4-E5A4-4679-8F55-3E875C797C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BA935F4-E5A4-4679-8F55-3E875C797C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BA935F4-E5A4-4679-8F55-3E875C797C54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

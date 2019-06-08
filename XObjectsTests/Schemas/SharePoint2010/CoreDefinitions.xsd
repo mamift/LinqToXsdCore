@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Core" targetNamespace="http://schemas.microsoft.com/sharepoint/" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/sharepoint/" xmlns:mstns="http://schemas.microsoft.com/sharepoint/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" attributeFormDefault="unqualified">
+  <xs:simpleType name="TRUEFALSE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TRUE" />
+      <xs:enumeration value="FALSE" />
+      <xs:enumeration value="True" />
+      <xs:enumeration value="False" />
+      <xs:enumeration value="true" />
+      <xs:enumeration value="false" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UniqueIdentifier">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="RelativeFolderPath">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="RelativeFilePath">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="LocalizableString">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="RelativeUrl">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="AssemblyStrongName">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AssemblyClass">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String255Chars">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255" />
+      <xs:minLength value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Int0To1024">
+    <xs:restriction base="xs:long">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="1024" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BasicVersion">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="AbsoluteOrRelativeUrl">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="AbsoluteUrl">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="ContentDirection">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RTL" />
+      <xs:enumeration value="LTR" />
+      <xs:enumeration value="none" />
+      <xs:enumeration value="0" />
+      <xs:enumeration value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Sequence">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="65536" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Int0To65536">
+    <xs:restriction base="xs:long">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="65536" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TrueFalseMixed">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="True" />
+      <xs:enumeration value="False" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NonEmptyString">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

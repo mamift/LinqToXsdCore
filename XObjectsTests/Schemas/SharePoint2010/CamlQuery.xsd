@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CamlQuery" targetNamespace="http://schemas.microsoft.com/sharepoint/" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/sharepoint/" xmlns:mstns="http://schemas.microsoft.com/sharepoint/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified">
+  <xs:include id="CoreDef" schemaLocation="coredefinitions.xsd" />
+  <xs:complexType name="CamlQueryRoot" mixed="true">
+    <xs:all>
+      <xs:element name="Where" type="LogicalJoinDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="OrderBy" type="OrderByDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Eq" type="LogicalTestDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Field" type="SimpleFieldRef" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ListProperty" type="ListPropertyDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="LookupColumn" type="LookupColumnDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Column" type="QueryColumnDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="GetVar" type="QueryGetVarDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="GroupBy" type="GroupByDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Contains" type="LogicalTestDefinition" minOccurs="0" maxOccurs="1" />
+      <xs:element name="BeginsWith" type="LogicalTestDefinition" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LogicalTestDefinition">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FieldRef" type="FieldRefDefinition" />
+        <xs:element name="Value" type="ValueDefinition" />
+        <xs:element name="XML" type="xs:string" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LogicalMultiTestDefinition">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FieldRef" type="FieldRefDefinition" />
+        <xs:element name="Values" type="ValueDefinitions" />
+        <xs:element name="XML" type="xs:string" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LogicalJoinDefinition">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Eq" type="LogicalTestDefinition" />
+        <xs:element name="Geq" type="LogicalTestDefinition" />
+        <xs:element name="Gt" type="LogicalTestDefinition" />
+        <xs:element name="Leq" type="LogicalTestDefinition" />
+        <xs:element name="Lt" type="LogicalTestDefinition" />
+        <xs:element name="Neq" type="LogicalTestDefinition" />
+        <xs:element name="And" type="ExtendedLogicalJoinDefinition" />
+        <xs:element name="Or" type="ExtendedLogicalJoinDefinition" />
+        <xs:element name="Membership" type="MembershipDefinition" />
+        <xs:element name="IsNull" type="LogicalTestDefinition" />
+        <xs:element name="IsNotNull" type="LogicalTestDefinition" />
+        <xs:element name="DateRangesOverlap" type="UnlimitedLogicalTestDefinition" />
+        <xs:element name="BeginsWith" type="LogicalTestDefinition" />
+        <xs:element name="Contains" type="LogicalTestDefinition" />
+        <xs:element name="In" type="LogicalMultiTestDefinition" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FieldRefDefinition" mixed="true">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Alias" type="xs:string" />
+        <xs:attribute name="Ascending" type="TRUEFALSE" />
+        <xs:attribute name="CreateURL" type="xs:string" />
+        <xs:attribute name="DisplayName" type="xs:string" />
+        <xs:attribute name="Explicit" type="TRUEFALSE" />
+        <xs:attribute name="ID" type="xs:string" />
+        <xs:attribute name="Key" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="RefType" type="xs:string" />
+        <xs:attribute name="ShowField" type="xs:string" />
+        <xs:attribute name="TextOnly" type="TRUEFALSE" />
+        <xs:attribute name="Type" type="ReferenceType" />
+        <xs:attribute name="Format" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ReferenceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AVG" />
+      <xs:enumeration value="COUNT" />
+      <xs:enumeration value="MAX" />
+      <xs:enumeration value="MIN" />
+      <xs:enumeration value="SUM" />
+      <xs:enumeration value="STDEV" />
+      <xs:enumeration value="VAR" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ValueDefinitions">
+      <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="Value" type="ValueDefinition" />
+          </xs:choice>
+      </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ValueDefinition" mixed="true">
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Today" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="UserID" type="xs:string" nillable="true" />
+            <xs:element name="ListProperty" type="QueryListProperty" />
+            <xs:element name="Now" type="xs:string" />
+            <xs:element name="Month" type="xs:string" />
+            <xs:element name="XML" type="xs:string" />
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Type" type="xs:string" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LogicalNullDefinition">
+    <xs:sequence>
+      <xs:element name="FieldRef" type="FieldRefDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExtendedLogicalJoinDefinition">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Eq" type="LogicalTestDefinition" />
+        <xs:element name="Geq" type="LogicalTestDefinition" />
+        <xs:element name="Gt" type="LogicalTestDefinition" />
+        <xs:element name="Leq" type="LogicalTestDefinition" />
+        <xs:element name="Lt" type="LogicalTestDefinition" />
+        <xs:element name="Neq" type="LogicalTestDefinition" />
+        <xs:element name="And" type="ExtendedLogicalJoinDefinition" />
+        <xs:element name="Or" type="ExtendedLogicalJoinDefinition" />
+        <xs:element name="IsNull" type="LogicalNullDefinition" />
+        <xs:element name="IsNotNull" type="LogicalNullDefinition" />
+        <xs:element name="DateRangesOverlap" type="LogicalTestDefinition" />
+        <xs:element name="BeginsWith" type="LogicalTestDefinition" />
+        <xs:element name="Contains" type="LogicalTestDefinition" />
+        <xs:element name="Membership" type="MembershipDefinition" />
+        <xs:element name="In" type="LogicalMultiTestDefinition" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FieldRefDefinitions" mixed="true">
+    <xs:sequence>
+      <xs:element name="FieldRef" type="FieldRefDefinition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderByDefinition" mixed="true">
+    <xs:sequence>
+      <xs:element name="FieldRef" type="FieldRefDefinition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="UseIndexForOrderBy" type="TRUEFALSE" use="optional" />
+    <xs:attribute name="Override" type="TRUEFALSE" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="RowDefinition">
+    <xs:sequence>
+      <xs:element name="Field" type="FieldDataDefinition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FieldDataDefinition">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Name" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RowDefinitions">
+    <xs:sequence>
+      <xs:element name="Row" type="RowDefinition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmptyQueryDefinition">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="SimpleFieldRef">
+    <xs:sequence />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="LookupColumnDefinition">
+    <xs:sequence>
+    </xs:sequence>
+    <xs:attribute name="HTMLEncode" type="TRUEFALSE" />
+    <xs:attribute name="StripWS" type="TRUEFALSE" />
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="ShowField" type="xs:string" />
+    <xs:attribute name="URLEncode" type="TRUEFALSE" />
+    <xs:attribute type="TRUEFALSE" name="URLEncodeAsURL" />
+    <xs:attribute type="TRUEFALSE" name="IncludeVersions" />
+  </xs:complexType>
+  <xs:complexType name="QueryColumnDefinition" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="LookupColumnDefinition">
+        <xs:sequence />
+        <xs:attribute name="Default" type="xs:string" />
+        <xs:attribute name="URLEncode" type="TRUEFALSE" />
+        <xs:attribute name="Format" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QueryGetVarDefinition">
+    <xs:sequence>
+    </xs:sequence>
+    <xs:attribute name="HTMLEncode" type="TRUEFALSE" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="QueryListProperty">
+    <xs:sequence />
+    <xs:attribute name="URLEncodeAsURL" type="TRUEFALSE" />
+    <xs:attribute name="Select" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="MembershipDefinition">
+    <xs:complexContent>
+      <xs:extension base="LogicalTestDefinition">
+        <xs:sequence />
+        <xs:attribute name="Type" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GroupByDefinition">
+    <xs:complexContent>
+      <xs:extension base="LogicalTestDefinition">
+        <xs:sequence />
+        <xs:attribute name="Collapse" type="TRUEFALSE" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UnlimitedLogicalTestDefinition">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FieldRef" type="FieldRefDefinition" />
+        <xs:element name="Value" type="ValueDefinition" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
