@@ -111,9 +111,11 @@ namespace Xml.Schema.Linq
 
             var egConfig = ExampleConfigurationInstance;
 
-            var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration).ToArray();
+            var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration || 
+                                                                      attr.Name == XName.Get("targetNamespace")).ToArray();
             var theXsdNamespace = namespaceAttrs
-                                  .Where(attr => attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
+                                  .Where(attr => attr.Name.LocalName == XName.Get("xs") && 
+                                                 attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
 
             var namespacesToRead = namespaceAttrs.Except(theXsdNamespace);
             foreach (var udn in namespacesToRead.Distinct(new XAttributeValueEqualityComparer())) {

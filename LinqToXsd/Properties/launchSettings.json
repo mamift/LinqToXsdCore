@@ -2,7 +2,7 @@
   "profiles": {
     "LinqToXsd": {
       "commandName": "Project",
-      "commandLineArgs": "gen .\\Samples -a"
+      "commandLineArgs": "config \"C:\\Users\\mmiftah\\Projects\\LinqToXsdCore\\XObjectsTests\\Schemas\\XSD\" -e"
     }
   }
 }
