@@ -44,7 +44,19 @@ var order = po.order;
 var city = order.city;
 ```
 
-The amount of code one writes to traverse an XML document is reduced as LinqToXsd builds a strongly-typed model for you through its code generator. This makes LinqToXsd incredibly helpful when dealing with XML data, especially if it comes with an accompanying XSD file, as most XML formats tend to do. Even if there isn't a native XSD, you can infer an XSD from an existing XML file and speed up your development that way.
+The amount of code one writes to traverse an XML document is reduced as LinqToXsd builds a strongly-typed model for you through its code generator. This makes LinqToXsd incredibly helpful when dealing with XML data, especially if it comes with an accompanying XSD file, as most XML formats tend to do nowadays.
+
+You can also use LinqToXsd to create XML documents programmatically using the object API:
+
+```C#
+var newPo = new PurchaseOrder();
+newPo.order = new Order();
+order.city = "city1";
+// now save
+newPo.Save("newPo.xml");
+```
+
+Even if there isn't a native XSD, you can infer an XSD from an existing XML file and speed up your development that way.
 
 ### Things not supported in this .NET Core port
 
