@@ -2,7 +2,7 @@
 
 This project forms the command-line interface utility used to generate C# code that represents the structure of an XML document that conforms to an [W3C XML Schema (XSD)](https://www.w3.org/standards/xml/schema). 
 
-Most of the logic for reading an XSD is coded in the `XObjectsCore` project, but logic that is specific to an individual XSD (like custom types and elements), is generated as C# code using the CodeDOM provider (also inside XObjectsCore) that is invoked via this CLI tool.
+Most of the logic for reading an XSD is coded in the `XObjectsCore` project, but logic that is specific to an individual XSD (like custom types and elements), is generated as C# code using the CodeDOM provider (also inside `XObjectsCore`) that is invoked via this CLI tool.
 
 The code this tool generates has a dependency on namespaces defined in the `XObjectsCore` library. You can add a reference to that library via nuget here: https://www.nuget.org/packages/XObjectsCore 
 
@@ -27,7 +27,7 @@ Before generating code, create an example configuration file from your XSD (this
 linqtoxsd config -e wss.xsd
 ```
 
-Currently as this is a port of the LinqToXsd project, some configuration elements are not documented. But the gist of what you need as a developer is to pay attention to the ``<Namespaces />`` element. 
+Currently, as this is a port of the LinqToXsd project, some configuration elements are not documented but for some reason or another are processed and interpreted in source code. But the gist of what you need as a developer is to pay attention to the ``<Namespaces />`` element. 
 
 Under that element, it will create default namepsace mappings similar to the following example: 
 
@@ -56,3 +56,17 @@ linqtoxsd gen "$(ProjectDir)wss.xsd" -c "$(ProjectDir)wss.xsd.config"
 ```
 
 In the above example, the strings beginning with `$()` are MSBuild macros.
+
+### Help for other functions
+
+There's some other miscellaneous functions in the CLI tool that may be helpful to you, and be used to exert finer control over code output. To view the help screen for this tool: 
+
+``linqtoxsd help``
+
+To view help for a specific verb: 
+
+``linqtoxsd <verb> --help``
+
+To view help on configuration file generation:
+
+``linqtoxsd config --help``
