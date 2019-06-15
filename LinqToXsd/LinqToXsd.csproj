@@ -21,6 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Alba.CsConsoleFormat.ColorfulConsole" Version="1.0.0" />
     <PackageReference Include="CommandLineParser" Version="2.4.3" />
   </ItemGroup>
 

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Alba.CsConsoleFormat.Fluent;
 using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
 
@@ -33,7 +34,7 @@ namespace LinqToXsd
                 var namespacesEl = namespacesElements.First();
                 namespacesEl.Add(comment);
 
-                Console.WriteLine($"Saving to: {egConfigXmlFile}");
+                Colors.WriteLine($"Saving to: {egConfigXmlFile}".Green());
                 exampleConfig.Save(egConfigXmlFile);
             }
 
@@ -48,7 +49,7 @@ namespace LinqToXsd
                 var foldersWereGiven = configOpts.FoldersWereGiven;
 
                 if (foldersWereGiven && outputWasGiven)
-                    Console.WriteLine($"Folders were given to the CLI; --{nameof(ConfigurationOptions.Output)} argument is ignored.");
+                    Colors.WriteLine($"Folders were given to the CLI; --{nameof(ConfigurationOptions.Output)} argument is ignored.".Gray());
 
                 var inputFiles = configOpts.SchemaFiles.ToArray();
                 var schemaReaders = configOpts.SchemaReaders;
@@ -59,7 +60,7 @@ namespace LinqToXsd
                         var config = Configuration.LoadForSchema(schemaDoc);
 
                         var outputConfig = xsd.Key.AppendIfNotPresent(".config");
-                        Console.WriteLine($"Saving {outputConfig.Except(Environment.CurrentDirectory)}");
+                        Colors.WriteLine($"Saving {outputConfig.Except(Environment.CurrentDirectory)}".Green());
                         config.Save(outputConfig);
                     }
 
@@ -76,7 +77,7 @@ namespace LinqToXsd
 
                 var outputFile = outputWasGiven ? configOpts.Output : outputFileName;
                 var output = outputFile.AppendIfNotPresent(".config");
-                Console.WriteLine($"Saving to {output}...");
+                Colors.WriteLine($"Saving to {output}...".Green());
                 mergedOutput.Save(output);
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using Alba.CsConsoleFormat.Fluent;
 using CommandLine;
 using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
@@ -13,7 +13,7 @@ namespace LinqToXsd
     {
         internal static int ReturnCode { get; private set; }
 
-        internal static IProgress<string> ProgressReporter { get; } = new Progress<string>(Console.WriteLine);
+        internal static IProgress<string> ProgressReporter { get; } = new Progress<string>(Colors.WriteLine);
 
         /// <summary>
         /// CLI will parse arguments here and then dispatch to the right method.
@@ -22,17 +22,38 @@ namespace LinqToXsd
         /// <returns></returns>
         public static int Main(string[] args)
         {
+#if !DEBUG
+            try {
+                AttemptExecute(args);
+            }
+            catch (Exception e) {
+                Colors.WriteLine(e.ToString().DarkRed());
+            }
+#else
+            ParseCliArgsAndDispatch(args);
+#endif
+            return ReturnCode;
+        }
+
+        /// <summary>
+        /// Parse CLI args and dispatch to the right method.
+        /// </summary>
+        /// <param name="args"></param>
+        private static void ParseCliArgsAndDispatch(string[] args)
+        {
             var parserResult =
                 Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
-            
+
             parserResult.WithParsed<GenerateOptions>(HandleGenerateCode);
             parserResult.WithParsed<ConfigurationOptions>(HandleConfigurationOptions);
 
             parserResult.WithNotParsed(ErrorHandler);
-
-            return ReturnCode;
         }
 
+        /// <summary>
+        /// Prints out CLI argument parsing errors.
+        /// </summary>
+        /// <param name="errors"></param>
         private static void ErrorHandler(IEnumerable<Error> errors)
         {
             foreach (var error in errors)
@@ -40,6 +61,11 @@ namespace LinqToXsd
                 if (error is SetValueExceptionError setValueException && 
                     setValueException.Exception is IncompatibleArgumentException iae)
                 {
+                    Colors.WriteLine("Errors occurred: ".Red());
+                    Colors.WriteLine(iae.Message.Yellow());
+                    if (iae.InnerException != null)
+                        Colors.WriteLine(iae.InnerException.ToString().Red());
+
                     ReturnCode = 1;
                     return;
                 }
@@ -68,7 +94,7 @@ namespace LinqToXsd
         {
             var settings = generateOptions.GetConfigInstance(ProgressReporter) ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
             if (generateOptions.GetConfigInstance() != null)
-                Console.WriteLine("Configuration file(s) loaded...");
+                Colors.WriteLine("Configuration file(s) loaded...".Gray());
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
@@ -79,18 +105,22 @@ namespace LinqToXsd
             if (generateOptions.Output.IsEmpty())
             {
                 if (generateOptions.FoldersWereGiven) {
-                    Console.WriteLine("No output directory given: defaulting to same directory as XSD file(s).");
+                    Colors.WriteLine("No output directory given: defaulting to same directory as XSD file(s).".Gray());
                     generateOptions.Output = "-1";
                 }
                 else {
                     generateOptions.Output = Environment.CurrentDirectory;
-                    Console.WriteLine($"No output directory given: defaulting to current working directory: {Environment.CurrentDirectory}.");
+                    Colors.WriteLine("No output directory given: defaulting to current working directory:".Gray());
+                    Colors.WriteLine($"{ Environment.CurrentDirectory}.".Yellow());
                 }
             }
 
             var hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
-            if (hasCsExt) // merge the output into a single file
+            if (hasCsExt) 
+            {
+                // merge the output into a single file
                 GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions.Output, textWriters);
+            }
             else
             {
                 GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions.Output, textWriters);
