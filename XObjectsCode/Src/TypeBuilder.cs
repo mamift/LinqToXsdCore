@@ -457,8 +457,8 @@ namespace Xml.Schema.Linq.CodeGen
             //Create static constructor
             CodeTypeConstructor staticServicesConstructor = new CodeTypeConstructor();
 
-            CodeTypeReference returnType = CodeDomHelper.CreateDictionaryType("XName", "System.Type");
-            CodeTypeReference wrapperReturnType = CodeDomHelper.CreateDictionaryType("System.Type", "System.Type");
+            CodeTypeReference returnType = CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName);
+            CodeTypeReference wrapperReturnType = CodeDomHelper.CreateDictionaryType(Constants.SystemTypeName, Constants.SystemTypeName);
 
             //Create a dictionary of TypeName vs System.Type and the method to create it
             CodeMemberProperty typeDictProperty = null;
@@ -468,7 +468,7 @@ namespace Xml.Schema.Linq.CodeGen
                     Constants.ILinqToXsdTypeManager, returnType, Constants.TypeDictionaryField);
 
                 CodeMemberField staticTypeDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.TypeDictionaryField, "XName", "System.Type");
+                    CodeDomHelper.CreateDictionaryField(Constants.TypeDictionaryField, Constants.XNameType, Constants.SystemTypeName);
                 CodeMemberMethod buildTypeDictionary =
                     CodeDomHelper.CreateMethod(Constants.BuildTypeDictionary, privateStatic, null);
                 buildTypeDictionary.Statements.AddRange(typeDictionaryStatements);
@@ -497,7 +497,7 @@ namespace Xml.Schema.Linq.CodeGen
                     Constants.ILinqToXsdTypeManager, returnType, Constants.ElementDictionaryField);
 
                 CodeMemberField staticElementDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.ElementDictionaryField, "XName", "System.Type");
+                    CodeDomHelper.CreateDictionaryField(Constants.ElementDictionaryField, Constants.XNameType, Constants.SystemTypeName);
                 CodeMemberMethod buildElementDictionary =
                     CodeDomHelper.CreateMethod(Constants.BuildElementDictionary, privateStatic, null);
                 buildElementDictionary.Statements.AddRange(elementDictionaryStatements);
@@ -526,7 +526,7 @@ namespace Xml.Schema.Linq.CodeGen
                     Constants.ILinqToXsdTypeManager, wrapperReturnType, Constants.WrapperDictionaryField);
 
                 CodeMemberField staticWrapperDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.WrapperDictionaryField, "System.Type", "System.Type");
+                    CodeDomHelper.CreateDictionaryField(Constants.WrapperDictionaryField, Constants.SystemTypeName, Constants.SystemTypeName);
                 CodeMemberMethod buildWrapperDictionary =
                     CodeDomHelper.CreateMethod(Constants.BuildWrapperDictionary, privateStatic, null);
                 buildWrapperDictionary.Statements.AddRange(wrapperDictionaryStatements);
@@ -609,7 +609,7 @@ namespace Xml.Schema.Linq.CodeGen
             CodeMemberMethod getRootType = new CodeMemberMethod();
             getRootType.Attributes = MemberAttributes.Static | MemberAttributes.Public;
             getRootType.Name = Constants.GetRootType;
-            getRootType.ReturnType = new CodeTypeReference("System.Type");
+            getRootType.ReturnType = new CodeTypeReference(Constants.SystemTypeName);
             if (rootElementName.IsEmpty)
             {
                 getRootType.Statements.Add(
@@ -880,7 +880,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             //new override for derived classes
             CodeMemberField localDictionaryField =
-                CodeDomHelper.CreateDictionaryField(Constants.LocalElementDictionaryField, "XName", "System.Type");
+                CodeDomHelper.CreateDictionaryField(Constants.LocalElementDictionaryField, Constants.XNameType, "System.Type");
             CodeMemberMethod localDictionaryMethod = CodeDomHelper.CreateMethod(Constants.BuildElementDictionary,
                 MemberAttributes.Private | MemberAttributes.Static, null);
             localDictionaryMethod.Statements.AddRange(propertyDictionaryAddStatements);
