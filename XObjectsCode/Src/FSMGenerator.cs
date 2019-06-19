@@ -381,7 +381,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         internal static CodeExpression CreateXNameExpr(XName name)
         {
-            return CodeDomHelper.CreateMethodCall(new CodeTypeReferenceExpression("XName"),
+            return CodeDomHelper.CreateMethodCall(new CodeTypeReferenceExpression(Constants.XNameType),
                 "Get",
                 new CodeExpression[]
                 {

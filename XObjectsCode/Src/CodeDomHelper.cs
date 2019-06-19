@@ -16,7 +16,7 @@ namespace Xml.Schema.Linq.CodeGen
         public static CodeMethodInvokeExpression XNameGetExpression(CodeExpression name, CodeExpression ns)
         {
             return new CodeMethodInvokeExpression(
-                new CodeTypeReferenceExpression("XName"),
+                new CodeTypeReferenceExpression(Constants.XNameType),
                 "Get",
                 name,
                 ns);
