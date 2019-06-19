@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 Samples/
 *.diff
+LinqToXsd/Properties/launchSettings.json
