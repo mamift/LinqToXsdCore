@@ -13,7 +13,7 @@ namespace LinqToXsd
     {
         internal static int ReturnCode { get; private set; }
 
-        internal static IProgress<string> ProgressReporter { get; } = new Progress<string>(Colors.WriteLine);
+        internal static IProgress<string> ProgressReporter { get; } = new Progress<string>(s => Colors.WriteLine(s));
 
         /// <summary>
         /// CLI will parse arguments here and then dispatch to the right method.
