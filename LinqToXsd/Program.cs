@@ -24,7 +24,7 @@ namespace LinqToXsd
         {
 #if !DEBUG
             try {
-                AttemptExecute(args);
+                ParseCliArgsAndDispatch(args);
             }
             catch (Exception e) {
                 Colors.WriteLine(e.ToString().DarkRed());
