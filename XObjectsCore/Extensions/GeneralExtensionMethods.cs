@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -26,6 +27,20 @@ namespace Xml.Schema.Linq.Extensions
             newXmlSet.Compile();
 
             return newXmlSet;
+        }
+
+        /// <summary>
+        /// Converts an <see cref="XmlReader"/>s to an <see cref="XmlSchema"/>, assuming the reader points to an XML Schema file.
+        /// </summary>
+        /// <param name="reader">The current <see cref="XmlReader"/>.</param>
+        /// <returns></returns>
+        public static XmlSchema ToXmlSchema(this XmlReader reader)
+        {
+            return XmlSchema.Read(reader, (sender, args) => {
+                if (args.Severity == XmlSeverityType.Error) {
+                    throw args.Exception;
+                }
+            });
         }
 
         /// <summary>
