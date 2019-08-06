@@ -9,6 +9,7 @@ using System.Xml.Schema;
 using Microsoft.CSharp;
 using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq
 {
@@ -95,13 +96,7 @@ namespace Xml.Schema.Linq
         {
             var ccu = GenerateCodeCompileUnit(schemaSet, settings);
 
-            var stringWriter = new StringWriter();
-
-            var provider = new CSharpCodeProvider();
-            var codeGeneratorOptions = new CodeGeneratorOptions();
-            provider.GenerateCodeFromCompileUnit(ccu, stringWriter, codeGeneratorOptions);
-
-            return stringWriter;
+            return ccu.ToStringWriter();
         }
 
         /// <summary>

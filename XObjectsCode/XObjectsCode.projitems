@@ -9,6 +9,7 @@
     <Import_RootNamespace>XObjects</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\GeneralExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\ChoiceContentModelEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\ContentModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\FsmXObjects.cs" />

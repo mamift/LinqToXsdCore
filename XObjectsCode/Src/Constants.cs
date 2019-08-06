@@ -9,6 +9,7 @@ namespace Xml.Schema.Linq.CodeGen
         public const string XSD = "http://www.w3.org/2001/XMLSchema";
 
         public static readonly string SystemTypeName = $"{nameof(System)}.{nameof(System.Type)}";
+        public static readonly string SystemXmlLinqNamespaceQualifer = $"{nameof(System)}.{nameof(System.Xml)}.{nameof(System.Xml.Linq)}";
 
         //Custom Attribute names
         public const string XElement = "XElement";
@@ -48,7 +49,7 @@ namespace Xml.Schema.Linq.CodeGen
         public const string XTypedElement = "XTypedElement";
         public const string XTypedServices = "XTypedServices";
         public const string LinqToXsdTypeManager = "LinqToXsdTypeManager";
-        public static readonly string XNameType = $"{nameof(System)}.{nameof(System.Xml)}.{nameof(System.Xml.Linq)}.{nameof(System.Xml.Linq.XName)}";
+        public static readonly string XNameType = $"{SystemXmlLinqNamespaceQualifer}.{nameof(System.Xml.Linq.XName)}";
         public const string XmlSchemaType = "XmlSchemaType";
         public const string XmlTypeCode = "XmlTypeCode";
         public const string Any = "Any";

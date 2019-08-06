@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Alba.CsConsoleFormat.Fluent;
 using Xml.Schema.Linq;
@@ -23,7 +20,8 @@ namespace LinqToXsd
                 var configNsUri = new Uri("http://www.microsoft.com/xml/schema/linq");
                 exampleConfig.Namespaces.Namespace.Add(new Namespace {
                     Schema = configNsUri,
-                    Clr = "Xml.Schema.Linq"
+                    Clr = "Xml.Schema.Linq",
+                    //DefaultVisibility = "public"
                 });
 
                 var egConfigXmlFile = "exampleConfiguration.xml";

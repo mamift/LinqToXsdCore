@@ -7,13 +7,20 @@ using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq
 {
+    public enum GeneratedTypesVisibility
+    {
+        Public,
+        Internal
+    }
+
     public class LinqToXsdSettings
     {
-        Dictionary<string, string> namespaceMapping;
+        private Dictionary<string, string> namespaceMapping;
+        public Dictionary<string, GeneratedTypesVisibility> NamespaceTypesVisibilityMap { get; } = new Dictionary<string, GeneratedTypesVisibility>();
         internal XElement trafo;
-        bool verifyRequired = false;
-        bool enableServiceReference = false;
-        readonly bool NameMangler2;
+        private bool verifyRequired = false;
+        private bool enableServiceReference = false;
+        private readonly bool NameMangler2;
         
         public LinqToXsdSettings(bool nameMangler2 = false)
         {
@@ -41,7 +48,9 @@ namespace Xml.Schema.Linq
             if (configDocument?.Root == null) throw new ArgumentNullException(nameof(configDocument));
 
             var rootElement = configDocument.Root;
-            GenerateNamespaceMapping(rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs)));
+            var namespacesElement = rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs));
+            GenerateNamespaceMapping(namespacesElement);
+            GenerateNamespaceVisibilityMapping(namespacesElement);
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
             XElement validationSettings = rootElement.Element(XName.Get("Validation", Constants.TypedXLinqNs));
             if (validationSettings != null)
@@ -89,6 +98,20 @@ namespace Xml.Schema.Linq
             {
                 namespaceMapping.Add((string) ns.Attribute(XName.Get("Schema")),
                     (string) ns.Attribute(XName.Get("Clr")));
+            }
+        }
+
+        private void GenerateNamespaceVisibilityMapping(XElement namespaces)
+        {
+            if (namespaces == null) return;
+            foreach (var ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs))) {
+                var clrNs = (string) ns.Attribute(XName.Get("Clr"));
+                var visibilityValue = (string) ns.Attribute(XName.Get("DefaultVisibility"));
+                var visibility = visibilityValue == "internal"
+                    ? GeneratedTypesVisibility.Internal
+                    : GeneratedTypesVisibility.Public;
+
+                NamespaceTypesVisibilityMap.Add(clrNs, visibility);
             }
         }
     }

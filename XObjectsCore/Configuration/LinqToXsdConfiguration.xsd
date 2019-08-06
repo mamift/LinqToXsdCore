@@ -29,8 +29,27 @@
       <xs:documentation>Element that maps an XML namespace (which is usually a URL or URI, sometimes a URN) to a .NET CLR namespace.</xs:documentation>
     </xs:annotation>
     <xs:complexType>
-      <xs:attribute name="Clr" use="required" type="xs:NCName"/>
-      <xs:attribute name="Schema" use="required" type="xs:anyURI"/>
+      <xs:attribute name="Clr" use="required" type="xs:NCName">
+        <xs:annotation>
+          <xs:documentation>The CLR namespace to contain the generated types under.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Schema" use="required" type="xs:anyURI">
+        <xs:annotation>
+          <xs:documentation>The XML namespaces to map to CLR namepsace.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DefaultVisibility">
+        <xs:annotation>
+          <xs:documentation>This changes the default visibility of the generated types. No value for this implies a default value of 'public'. The only other acceptable value is 'internal'.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="public"/>
+            <xs:enumeration value="internal"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
   <xs:element name="Validation">

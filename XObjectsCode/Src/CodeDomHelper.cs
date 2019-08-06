@@ -3,6 +3,8 @@
 using System;
 using System.CodeDom;
 using System.Reflection;
+using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -38,10 +40,11 @@ namespace Xml.Schema.Linq.CodeGen
                 new CodePrimitiveExpression(key));
         }
 
-        public static CodeTypeDeclaration CreateTypeDeclaration(string clrTypeName, string innerType)
+        public static CodeTypeDeclaration CreateTypeDeclaration(string clrTypeName, string innerType, 
+            GeneratedTypesVisibility generatedTypesVisibility = GeneratedTypesVisibility.Public)
         {
             CodeTypeDeclaration typeDecl = new CodeTypeDeclaration(clrTypeName);
-            typeDecl.TypeAttributes = TypeAttributes.Public;
+            typeDecl.TypeAttributes = generatedTypesVisibility.ToTypeAttribute();
             typeDecl.IsPartial = true;
             return typeDecl;
         }
@@ -55,11 +58,11 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static CodeTypeMember CreateStaticMethod(string methodName, string typeT, string typeT1,
-            string parameterName, string parameterType, bool useAutoTyping)
+            string parameterName, string parameterType, bool useAutoTyping, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             CodeMemberMethod staticMethod = new CodeMemberMethod();
             staticMethod.Name = methodName;
-            staticMethod.Attributes = MemberAttributes.Static | MemberAttributes.Public;
+            staticMethod.Attributes = MemberAttributes.Static | visibility.ToMemberAttribute();
             staticMethod.ReturnType = new CodeTypeReference(typeT);
 
             staticMethod.Parameters.Add(CreateParameter(parameterName, parameterType));
@@ -94,11 +97,11 @@ namespace Xml.Schema.Linq.CodeGen
             return staticMethod;
         }
 
-        public static CodeTypeMember CreateSave(string paramName, string paramType)
+        public static CodeTypeMember CreateSave(string paramName, string paramType, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             CodeMemberMethod saveMethod = new CodeMemberMethod();
             saveMethod.Name = "Save";
-            saveMethod.Attributes = (saveMethod.Attributes & ~MemberAttributes.AccessMask) | MemberAttributes.Public;
+            saveMethod.Attributes = (saveMethod.Attributes & ~MemberAttributes.AccessMask) | visibility.ToMemberAttribute();
 
             saveMethod.Parameters.Add(CreateParameter(paramName, paramType));
             saveMethod.Statements.Add(
@@ -169,10 +172,10 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static CodeMemberProperty CreateProperty(string propertyName, CodeTypeReference propertyType,
-            MemberAttributes propertyAttributes)
+            MemberAttributes attributes)
         {
             CodeMemberProperty clrProperty = new CodeMemberProperty();
-            clrProperty.Attributes = (clrProperty.Attributes & ~MemberAttributes.AccessMask) | propertyAttributes;
+            clrProperty.Attributes = attributes;
             clrProperty.HasGet = true;
 
             clrProperty.Name = propertyName;
@@ -180,10 +183,11 @@ namespace Xml.Schema.Linq.CodeGen
             return clrProperty;
         }
 
-        public static CodeMemberProperty CreateProperty(CodeTypeReference returnType, bool hasSet)
+        public static CodeMemberProperty CreateProperty(CodeTypeReference returnType, bool hasSet, 
+            MemberAttributes attributes)
         {
             CodeMemberProperty clrProperty = new CodeMemberProperty();
-            clrProperty.Attributes = (clrProperty.Attributes & ~MemberAttributes.AccessMask) | MemberAttributes.Public;
+            clrProperty.Attributes = attributes;
             clrProperty.HasGet = true;
             clrProperty.HasSet = hasSet;
             clrProperty.Type = returnType;
@@ -191,9 +195,9 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static CodeMemberProperty CreateInterfaceImplProperty(string propertyName, string interfaceName,
-            CodeTypeReference returnType, string fieldName)
+            CodeTypeReference returnType, string fieldName, MemberAttributes attributes = MemberAttributes.Public)
         {
-            CodeMemberProperty interfaceProperty = CreateInterfaceImplProperty(propertyName, interfaceName, returnType);
+            CodeMemberProperty interfaceProperty = CreateInterfaceImplProperty(propertyName, interfaceName, returnType, attributes);
             interfaceProperty.GetStatements.Add(
                 new CodeMethodReturnStatement(
                     new CodeVariableReferenceExpression(fieldName)));
@@ -201,52 +205,56 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static CodeMemberProperty CreateInterfaceImplProperty(string propertyName, string interfaceName,
-            CodeTypeReference returnType)
+            CodeTypeReference returnType, MemberAttributes attributes = MemberAttributes.Public)
         {
-            CodeMemberProperty interfaceProperty = CreateProperty(propertyName, returnType, MemberAttributes.Public);
+            CodeMemberProperty interfaceProperty = CreateProperty(propertyName, returnType, attributes);
             interfaceProperty.PrivateImplementationType = new CodeTypeReference(interfaceName);
             interfaceProperty.ImplementationTypes.Add(new CodeTypeReference(interfaceName));
             return interfaceProperty;
         }
 
-        public static CodeMemberMethod CreateInterfaceImplMethod(string methodName, string interfaceName)
+        public static CodeMemberMethod CreateInterfaceImplMethod(string methodName, string interfaceName,
+            MemberAttributes attributes = MemberAttributes.Public)
         {
-            CodeMemberMethod interfaceMethod = CreateMethod(methodName, MemberAttributes.Public, null);
+            CodeMemberMethod interfaceMethod = CreateMethod(methodName, null, attributes);
             CodeTypeReference interfaceType = new CodeTypeReference(interfaceName);
             interfaceMethod.PrivateImplementationType = interfaceType;
             interfaceMethod.ImplementationTypes.Add(interfaceType);
             return interfaceMethod;
         }
 
-        public static CodeMemberProperty CreateTypeManagerProperty()
+        public static CodeMemberProperty CreateTypeManagerProperty(MemberAttributes attributes)
         {
             CodeMemberProperty property = CreateInterfaceImplProperty(Constants.TypeManager, Constants.IXMetaData,
                 new CodeTypeReference(Constants.ILinqToXsdTypeManager));
+            property.Attributes = attributes;
             property.GetStatements.Add(new CodeMethodReturnStatement(SingletonTypeManager()));
             return property;
         }
 
-        public static CodeMemberProperty CreateSchemaNameProperty(string schemaName, string schemaNs)
+        public static CodeMemberProperty CreateSchemaNameProperty(string schemaName, string schemaNs,
+            MemberAttributes attributes)
         {
             CodeMemberProperty property = CreateInterfaceImplProperty(Constants.SchemaName, Constants.IXMetaData,
-                new CodeTypeReference(Constants.XNameType));
+                new CodeTypeReference(Constants.XNameType), attributes);
             property.GetStatements.Add(new CodeMethodReturnStatement(XNameGetExpression(schemaName, schemaNs)));
             return property;
         }
 
-        public static CodeMemberProperty CreateTypeOriginProperty(SchemaOrigin typeOrigin)
+        public static CodeMemberProperty CreateTypeOriginProperty(SchemaOrigin typeOrigin,
+            MemberAttributes visibility)
         {
             CodeTypeReference originType = new CodeTypeReference(Constants.Origin);
             CodeMemberProperty property =
-                CreateInterfaceImplProperty(Constants.TypeOrigin, Constants.IXMetaData, originType);
+                CreateInterfaceImplProperty(Constants.TypeOrigin, Constants.IXMetaData, originType, visibility);
             property.GetStatements.Add(new CodeMethodReturnStatement(new CodeFieldReferenceExpression(
                 new CodeTypeReferenceExpression(originType),
                 typeOrigin == SchemaOrigin.Element ? "Element" : "Fragment")));
             return property;
         }
 
-        public static CodeMemberMethod CreateMethod(string methodName, MemberAttributes methodAttributes,
-            CodeTypeReference returnType)
+        public static CodeMemberMethod CreateMethod(string methodName,
+            CodeTypeReference returnType, MemberAttributes methodAttributes)
         {
             CodeMemberMethod method = new CodeMemberMethod();
             method.Name = methodName;
@@ -257,9 +265,9 @@ namespace Xml.Schema.Linq.CodeGen
 
 
         public static CodeMemberMethod CreateInterfaceImplMethod(string methodName, string interfaceName,
-            CodeTypeReference returnType, string fieldName)
+            CodeTypeReference returnType, string fieldName, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
-            CodeMemberMethod interfaceMethod = CreateMethod(methodName, MemberAttributes.Public, returnType);
+            CodeMemberMethod interfaceMethod = CreateMethod(methodName, returnType, visibility.ToMemberAttribute());
             interfaceMethod.PrivateImplementationType = new CodeTypeReference(interfaceName);
             interfaceMethod.ImplementationTypes.Add(new CodeTypeReference(interfaceName));
 
@@ -270,9 +278,9 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static CodeMemberMethod CreateInterfaceImplMethod(string methodName, string interfaceName,
-            CodeTypeReference returnType)
+            CodeTypeReference returnType, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
-            CodeMemberMethod interfaceMethod = CreateMethod(methodName, MemberAttributes.Public, returnType);
+            CodeMemberMethod interfaceMethod = CreateMethod(methodName, returnType, visibility.ToMemberAttribute());
             interfaceMethod.PrivateImplementationType = new CodeTypeReference(interfaceName);
             interfaceMethod.ImplementationTypes.Add(new CodeTypeReference(interfaceName));
             return interfaceMethod;
@@ -300,17 +308,18 @@ namespace Xml.Schema.Linq.CodeGen
                 parameters);
         }
 
-        public static CodeMemberField CreateDictionaryField(string dictionaryName, string keyType, string valueType)
+        public static CodeMemberField CreateDictionaryField(string dictionaryName, string keyType, string valueType, 
+            MemberAttributes attributes)
         {
             CodeMemberField staticDictionary =
                 new CodeMemberField(CreateDictionaryType(keyType, valueType), dictionaryName);
-            staticDictionary.Attributes = MemberAttributes.Static;
+            staticDictionary.Attributes = MemberAttributes.Static | attributes;
             staticDictionary.InitExpression = new CodeObjectCreateExpression(CreateDictionaryType(keyType, valueType));
             return staticDictionary;
         }
 
-        public static CodeMemberField CreateMemberField(string memberName, string typeName, MemberAttributes attributes,
-            bool init)
+        public static CodeMemberField CreateMemberField(string memberName, string typeName,
+            bool init, MemberAttributes attributes)
         {
             CodeMemberField field = new CodeMemberField(typeName, memberName);
             AddBrowseNever(field);
@@ -461,20 +470,24 @@ namespace Xml.Schema.Linq.CodeGen
             return String.Concat(methodName, "<", typeName, ">");
         }
 
-        public static CodeSnippetTypeMember CreateCast(string typeT, string typeT1, bool useAutoTyping)
+        public static CodeSnippetTypeMember CreateCast(string typeT, string typeT1, bool useAutoTyping, string @namespace = "",
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             CodeSnippetTypeMember castMember = new CodeSnippetTypeMember();
+            @namespace = @namespace.IsNotEmpty() ? $"{@namespace}." : "";
+            var visibilityKeyword = visibility.ToKeyword();
+            var servicesClassName = @namespace + NameGenerator.GetServicesClassName();
             if (useAutoTyping)
             {
-                castMember.Text = String.Concat("         public static explicit operator ", typeT, "(XElement xe) {  ",
+                castMember.Text = String.Concat($"\t\t{visibilityKeyword} static explicit operator ", typeT, "(XElement xe) {  ",
                     "return (", typeT, ")", Constants.XTypedServices, ".ToXTypedElement(xe,",
-                    NameGenerator.GetServicesClassName(), ".Instance as ILinqToXsdTypeManager); }");
+                    servicesClassName, ".Instance as ILinqToXsdTypeManager); }");
             }
             else
             {
-                castMember.Text = String.Concat("         public static explicit operator ", typeT,
+                castMember.Text = String.Concat($"\t\t{visibilityKeyword} static explicit operator ", typeT,
                     "(XElement xe) { return ", Constants.XTypedServices, ".ToXTypedElement<",
-                    GetInnerType(typeT, typeT1), ">(xe,", NameGenerator.GetServicesClassName(),
+                    GetInnerType(typeT, typeT1), ">(xe,", servicesClassName,
                     ".Instance as ILinqToXsdTypeManager); }");
             }
 
@@ -482,23 +495,25 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        public static CodeSnippetTypeMember CreateXRootGetter(string typeName, string fqTypeName, LocalSymbolTable lst)
+        public static CodeSnippetTypeMember CreateXRootGetter(string typeName, string fqTypeName, LocalSymbolTable lst, 
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             string symbolName = lst.AddMember(typeName);
             CodeSnippetTypeMember castMember = new CodeSnippetTypeMember();
-
-            castMember.Text = String.Concat("\r\n", "    public ", fqTypeName, " ", symbolName, " {  get {",
+            
+            castMember.Text = String.Concat("\r\n", $"\t\t{visibility.ToKeyword()} ", fqTypeName, " ", symbolName, " {  get {",
                 "return rootObject as ", fqTypeName, "; } }");
             return castMember;
         }
 
-        public static CodeMemberMethod CreateXRootMethod(string returnType, string methodName, string[][] paramList)
+        public static CodeMemberMethod CreateXRootMethod(string returnType, string methodName, string[][] paramList, 
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             CodeTypeReference xRootType = new CodeTypeReference(returnType);
 
             CodeMemberMethod staticMethod = new CodeMemberMethod();
             staticMethod.Name = methodName;
-            staticMethod.Attributes = MemberAttributes.Static | MemberAttributes.Public;
+            staticMethod.Attributes = visibility.ToMemberAttribute() | MemberAttributes.Static;
             staticMethod.ReturnType = xRootType;
             CodeExpression[] parameterExp = new CodeExpression[paramList.Length];
 
@@ -556,11 +571,11 @@ namespace Xml.Schema.Linq.CodeGen
             return staticMethod;
         }
 
-        public static CodeMemberMethod CreateXRootSave(string[][] paramList)
+        public static CodeMemberMethod CreateXRootSave(string[][] paramList, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             CodeMemberMethod staticMethod = new CodeMemberMethod();
             staticMethod.Name = "Save";
-            staticMethod.Attributes = MemberAttributes.Public;
+            staticMethod.Attributes = visibility.ToMemberAttribute();
             CodeExpression[] parameterExp = new CodeExpression[paramList.Length];
 
             for (int i = 0; i < paramList.Length; i++)
@@ -580,9 +595,9 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        public static CodeConstructor CreateXRootFunctionalConstructor(string typeName)
+        public static CodeConstructor CreateXRootFunctionalConstructor(string typeName, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
-            CodeConstructor constructor = CodeDomHelper.CreateConstructor(MemberAttributes.Public);
+            CodeConstructor constructor = CodeDomHelper.CreateConstructor(visibility.ToMemberAttribute());
             constructor.Parameters.Add(new CodeParameterDeclarationExpression(new CodeTypeReference(typeName), "root"));
 
             constructor.Statements.Add(

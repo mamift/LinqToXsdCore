@@ -7,10 +7,14 @@ using System.Collections.Generic;
 using System.CodeDom;
 using System.Reflection;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
+using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     internal abstract class TypeBuilder
     {
         protected CodeTypeDeclaration decl;
@@ -20,6 +24,22 @@ namespace Xml.Schema.Linq.CodeGen
         // this type is reused. Be sure to clear any state in Init();
 
         static CodeMemberMethod defaultContentModel;
+        
+        protected LinqToXsdSettings Settings { get; set; }
+
+        protected GeneratedTypesVisibility DefaultVisibility
+        {
+            get
+            {
+                var typeNamespace = clrTypeInfo?.clrtypeNs ?? throw new InvalidOperationException();
+                return Settings.NamespaceTypesVisibilityMap[typeNamespace];
+            }
+        }
+
+        protected TypeBuilder(LinqToXsdSettings settings)
+        {
+            Settings = settings;
+        }
 
         internal CodeTypeDeclaration TypeDeclaration
         {
@@ -28,7 +48,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         internal virtual void CreateDefaultConstructor(List<ClrAnnotation> annotations)
         {
-            decl.Members.Add(ApplyAnnotations(CodeDomHelper.CreateConstructor(MemberAttributes.Public), annotations,
+            decl.Members.Add(ApplyAnnotations(CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute()), annotations,
                 null));
         }
 
@@ -111,7 +131,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 string baseTypeClrNs = clrTypeInfo.baseTypeClrNs;
                 string baseTypeRef;
-                if (baseTypeClrNs != string.Empty)
+                if (baseTypeClrNs.IsNotEmpty())
                     baseTypeRef = "global::" + baseTypeClrNs + "." + baseTypeClrName;
                 else
                     baseTypeRef = "global::" + baseTypeClrName;
@@ -143,7 +163,7 @@ namespace Xml.Schema.Linq.CodeGen
             string clrTypeName = clrTypeInfo.clrtypeName;
             SchemaOrigin typeOrigin = clrTypeInfo.typeOrigin;
 
-            CodeTypeDeclaration typeDecl = CodeDomHelper.CreateTypeDeclaration(clrTypeName, InnerType);
+            CodeTypeDeclaration typeDecl = CodeDomHelper.CreateTypeDeclaration(clrTypeName, InnerType, DefaultVisibility);
 
             if (clrTypeInfo.IsAbstract)
             {
@@ -171,12 +191,12 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 //Disable load and parse for complex types
                 CodeTypeMember load = CodeDomHelper.CreateStaticMethod(
-                    "Load", clrTypeName, innerType, "xmlFile", "System.String", useAutoTyping);
+                    "Load", clrTypeName, innerType, "xmlFile", "System.String", useAutoTyping, DefaultVisibility);
                 // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=4093
                 var loadReader = CodeDomHelper.CreateStaticMethod(
-                    "Load", clrTypeName, innerType, "xmlFile", "System.IO.TextReader", useAutoTyping);
+                    "Load", clrTypeName, innerType, "xmlFile", "System.IO.TextReader", useAutoTyping, DefaultVisibility);
                 CodeTypeMember parse = CodeDomHelper.CreateStaticMethod("Parse", clrTypeName, innerType, "xml",
-                    "System.String", useAutoTyping);
+                    "System.String", useAutoTyping, DefaultVisibility);
                 if (clrTypeInfo.IsDerived)
                 {
                     load.Attributes |= MemberAttributes.New;
@@ -184,9 +204,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else
                 {
-                    decl.Members.Add(CodeDomHelper.CreateSave("xmlFile", "System.String"));
-                    decl.Members.Add(CodeDomHelper.CreateSave("tw", "System.IO.TextWriter"));
-                    decl.Members.Add(CodeDomHelper.CreateSave("xmlWriter", "System.Xml.XmlWriter"));
+                    decl.Members.Add(CodeDomHelper.CreateSave("xmlFile", "System.String", DefaultVisibility));
+                    decl.Members.Add(CodeDomHelper.CreateSave("tw", "System.IO.TextWriter", DefaultVisibility));
+                    decl.Members.Add(CodeDomHelper.CreateSave("xmlWriter", "System.Xml.XmlWriter", DefaultVisibility));
                 }
 
                 decl.Members.Add(load);
@@ -194,15 +214,14 @@ namespace Xml.Schema.Linq.CodeGen
                 decl.Members.Add(parse);
             }
 
-            CodeTypeMember cast = CodeDomHelper.CreateCast(clrTypeName, innerType, useAutoTyping);
+            CodeTypeMember cast = CodeDomHelper.CreateCast(clrTypeName, innerType, useAutoTyping); // dont pass default visibility; as operators must be public and static
             decl.Members.Add(cast);
 
             if (!clrTypeInfo.IsAbstract)
             {
                 //Add Clone for non-abstract types
                 CodeMemberMethod clone = CodeDomHelper.CreateMethod("Clone",
-                    MemberAttributes.Public | MemberAttributes.Override,
-                    new CodeTypeReference(Constants.XTypedElement));
+                    new CodeTypeReference(Constants.XTypedElement), DefaultVisibility.ToMemberAttribute() | MemberAttributes.Override);
                 if (innerType == null)
                 {
                     CodeMethodInvokeExpression callClone = CodeDomHelper.CreateMethodCall(
@@ -238,21 +257,24 @@ namespace Xml.Schema.Linq.CodeGen
             string interfaceName = Constants.IXMetaData;
 
             CodeMemberProperty schemaNameProperty =
-                CodeDomHelper.CreateSchemaNameProperty(clrTypeInfo.schemaName, clrTypeInfo.schemaNs);
+                CodeDomHelper.CreateSchemaNameProperty(clrTypeInfo.schemaName, clrTypeInfo.schemaNs, DefaultVisibility.ToMemberAttribute());
 
             ImplementCommonIXMetaData();
             if (clrTypeInfo.HasElementWildCard) ImplementFSMMetaData();
             else ImplementContentModelMetaData();
 
 
-            CodeMemberProperty typeOriginProperty = CodeDomHelper.CreateTypeOriginProperty(clrTypeInfo.typeOrigin);
+            CodeMemberProperty typeOriginProperty = 
+                CodeDomHelper.CreateTypeOriginProperty(clrTypeInfo.typeOrigin, DefaultVisibility.ToMemberAttribute());
 
             CodeDomHelper.AddBrowseNever(schemaNameProperty);
             CodeDomHelper.AddBrowseNever(typeOriginProperty);
 
             decl.Members.Add(schemaNameProperty);
             decl.Members.Add(typeOriginProperty);
-            decl.Members.Add(CodeDomHelper.AddBrowseNever(CodeDomHelper.CreateTypeManagerProperty()));
+            var typeManagerProperty = CodeDomHelper.CreateTypeManagerProperty(DefaultVisibility.ToMemberAttribute());
+            typeManagerProperty.Attributes = MemberAttributes.FamilyOrAssembly;
+            decl.Members.Add(CodeDomHelper.AddBrowseNever(typeManagerProperty));
             decl.BaseTypes.Add(interfaceName);
         }
 
@@ -262,7 +284,7 @@ namespace Xml.Schema.Linq.CodeGen
             string typeManagerName = NameGenerator.GetServicesClassName();
             string methodName = clrTypeInfo.clrtypeName + "SchemaProvider";
             CodeMemberMethod schemaProviderMethod =
-                CodeDomHelper.CreateMethod(methodName, MemberAttributes.Public | MemberAttributes.Static, null);
+                CodeDomHelper.CreateMethod(methodName, null, DefaultVisibility.ToMemberAttribute() | MemberAttributes.Static);
 
             schemaProviderMethod.Parameters.Add(new CodeParameterDeclarationExpression("XmlSchemaSet", "schemas"));
             schemaProviderMethod.Statements.Add(
@@ -318,13 +340,13 @@ namespace Xml.Schema.Linq.CodeGen
             //Do nothing.
         }
 
-        protected static CodeMemberMethod DefaultContentModel()
+        protected static CodeMemberMethod DefaultContentModel(GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             if (defaultContentModel == null)
             {
                 CodeTypeReference cmType = new CodeTypeReference(Constants.ContentModelType);
                 CodeMemberMethod getContentModelMethod =
-                    CodeDomHelper.CreateInterfaceImplMethod(Constants.GetContentModel, Constants.IXMetaData, cmType);
+                    CodeDomHelper.CreateInterfaceImplMethod(Constants.GetContentModel, Constants.IXMetaData, cmType, visibility);
                 getContentModelMethod.Statements.Add(
                     new CodeMethodReturnStatement(
                         new CodeFieldReferenceExpression(
@@ -342,7 +364,8 @@ namespace Xml.Schema.Linq.CodeGen
         {
             string typeName = typeInfo.clrtypeName;
             CodeTypeDeclaration simpleTypeDecl = new CodeTypeDeclaration(typeName);
-            simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.Public;
+            var typeVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs].ToTypeAttribute();
+            simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
 
             //Add private constructor so it cannot be instantiated
             CodeConstructor privateConst = new CodeConstructor();
@@ -350,9 +373,9 @@ namespace Xml.Schema.Linq.CodeGen
             simpleTypeDecl.Members.Add(privateConst);
 
             //Create a static field for the XTypedSchemaSimpleType
+            var memberVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs].ToMemberAttribute();
             CodeMemberField typeField =
-                CodeDomHelper.CreateMemberField(Constants.SimpleTypeDefInnerType, Constants.SimpleTypeValidator,
-                    MemberAttributes.Public | MemberAttributes.Static, false);
+                CodeDomHelper.CreateMemberField(Constants.SimpleTypeDefInnerType, Constants.SimpleTypeValidator, false, memberVisibility | MemberAttributes.Static);
             typeField.InitExpression =
                 SimpleTypeCodeDomHelper.CreateSimpleTypeDef(typeInfo, nameMappings, settings, false);
 
@@ -380,8 +403,6 @@ namespace Xml.Schema.Linq.CodeGen
             ApplyAnnotations(typeDecl, typeInfo.Annotations, null);
         }
 
-        // return the declaration that is passed in to support the pattern of one-line creation:
-        // decl.Members.Add(CodeDomHelper.CreateConstructor(MemberAttributes.Public));
         internal static CodeTypeMember ApplyAnnotations(CodeTypeMember typeDecl, List<ClrAnnotation> annotations,
             List<ClrAnnotation> typeAnnotations)
         {
@@ -440,18 +461,21 @@ namespace Xml.Schema.Linq.CodeGen
             bool enableServiceReference,
             CodeStatementCollection typeDictionaryStatements,
             CodeStatementCollection elementDictionaryStatements,
-            CodeStatementCollection wrapperDictionaryStatements)
+            CodeStatementCollection wrapperDictionaryStatements,
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             //Create the services type class and add members
             string servicesClassName = NameGenerator.GetServicesClassName();
-            CodeTypeDeclaration servicesTypeDecl = new CodeTypeDeclaration(servicesClassName);
-            servicesTypeDecl.Attributes = MemberAttributes.Public;
+            var memberVisibility = visibility.ToMemberAttribute();
+            CodeTypeDeclaration servicesTypeDecl = new CodeTypeDeclaration(servicesClassName) {
+                TypeAttributes = visibility.ToTypeAttribute()
+            };
 
             //Create singleton
             CodeMemberField singletonField = CodeDomHelper.CreateMemberField(Constants.TypeManagerSingletonField,
-                servicesClassName, MemberAttributes.Static, true);
+                servicesClassName, true, MemberAttributes.Static | MemberAttributes.Private);
             CodeMemberProperty singletonProperty = CodeDomHelper.CreateProperty(Constants.TypeManagerInstance, null,
-                singletonField, MemberAttributes.Public | MemberAttributes.Static, false);
+                singletonField, MemberAttributes.Static | memberVisibility, false);
 
             MemberAttributes privateStatic = MemberAttributes.Private | MemberAttributes.Static;
             //Create static constructor
@@ -465,12 +489,13 @@ namespace Xml.Schema.Linq.CodeGen
             if (typeDictionaryStatements.Count > 0)
             {
                 typeDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalTypeDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType, Constants.TypeDictionaryField);
+                    Constants.ILinqToXsdTypeManager, returnType, Constants.TypeDictionaryField, MemberAttributes.Private);
 
                 CodeMemberField staticTypeDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.TypeDictionaryField, Constants.XNameType, Constants.SystemTypeName);
+                    CodeDomHelper.CreateDictionaryField(Constants.TypeDictionaryField, Constants.XNameType, Constants.SystemTypeName,
+                        MemberAttributes.Private);
                 CodeMemberMethod buildTypeDictionary =
-                    CodeDomHelper.CreateMethod(Constants.BuildTypeDictionary, privateStatic, null);
+                    CodeDomHelper.CreateMethod(Constants.BuildTypeDictionary, null, privateStatic);
                 buildTypeDictionary.Statements.AddRange(typeDictionaryStatements);
 
                 staticServicesConstructor.Statements.Add(
@@ -481,7 +506,7 @@ namespace Xml.Schema.Linq.CodeGen
             else
             {
                 typeDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalTypeDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType);
+                    Constants.ILinqToXsdTypeManager, returnType, MemberAttributes.Private);
                 typeDictProperty.GetStatements.Add(
                     new CodeMethodReturnStatement(
                         new CodeFieldReferenceExpression(
@@ -494,12 +519,13 @@ namespace Xml.Schema.Linq.CodeGen
             if (elementDictionaryStatements.Count > 0)
             {
                 elementDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalElementDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType, Constants.ElementDictionaryField);
+                    Constants.ILinqToXsdTypeManager, returnType, Constants.ElementDictionaryField, MemberAttributes.Private);
 
                 CodeMemberField staticElementDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.ElementDictionaryField, Constants.XNameType, Constants.SystemTypeName);
+                    CodeDomHelper.CreateDictionaryField(Constants.ElementDictionaryField, Constants.XNameType, Constants.SystemTypeName,
+                        MemberAttributes.Private);
                 CodeMemberMethod buildElementDictionary =
-                    CodeDomHelper.CreateMethod(Constants.BuildElementDictionary, privateStatic, null);
+                    CodeDomHelper.CreateMethod(Constants.BuildElementDictionary, null, privateStatic);
                 buildElementDictionary.Statements.AddRange(elementDictionaryStatements);
 
                 staticServicesConstructor.Statements.Add(
@@ -510,7 +536,7 @@ namespace Xml.Schema.Linq.CodeGen
             else
             {
                 elementDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalElementDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType);
+                    Constants.ILinqToXsdTypeManager, returnType, MemberAttributes.Private);
                 elementDictProperty.GetStatements.Add(
                     new CodeMethodReturnStatement(
                         new CodeFieldReferenceExpression(
@@ -526,9 +552,10 @@ namespace Xml.Schema.Linq.CodeGen
                     Constants.ILinqToXsdTypeManager, wrapperReturnType, Constants.WrapperDictionaryField);
 
                 CodeMemberField staticWrapperDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.WrapperDictionaryField, Constants.SystemTypeName, Constants.SystemTypeName);
+                    CodeDomHelper.CreateDictionaryField(Constants.WrapperDictionaryField, Constants.SystemTypeName, Constants.SystemTypeName,
+                        MemberAttributes.Private);
                 CodeMemberMethod buildWrapperDictionary =
-                    CodeDomHelper.CreateMethod(Constants.BuildWrapperDictionary, privateStatic, null);
+                    CodeDomHelper.CreateMethod(Constants.BuildWrapperDictionary, null, privateStatic);
                 buildWrapperDictionary.Statements.AddRange(wrapperDictionaryStatements);
 
                 staticServicesConstructor.Statements.Add(
@@ -556,8 +583,7 @@ namespace Xml.Schema.Linq.CodeGen
             schemaSetField.Attributes = MemberAttributes.Private | MemberAttributes.Static;
 
             //AddSchemas method
-            CodeMemberMethod addSchemasMethod = CodeDomHelper.CreateMethod("AddSchemas",
-                MemberAttributes.FamilyOrAssembly | MemberAttributes.Static, null);
+            CodeMemberMethod addSchemasMethod = CodeDomHelper.CreateMethod("AddSchemas", null, MemberAttributes.FamilyOrAssembly | MemberAttributes.Static);
             addSchemasMethod.Parameters.Add(new CodeParameterDeclarationExpression("XmlSchemaSet", "schemas"));
             //schemas.Add(schemaSet);
             addSchemasMethod.Statements.Add(CodeDomHelper.CreateMethodCall(
@@ -569,7 +595,7 @@ namespace Xml.Schema.Linq.CodeGen
                 new CodeTypeReferenceExpression("System.Threading.Interlocked");
 
             CodeMemberProperty schemaSetProperty =
-                CodeDomHelper.CreateInterfaceImplProperty("Schemas", Constants.ILinqToXsdTypeManager, schemaSetType);
+                CodeDomHelper.CreateInterfaceImplProperty("Schemas", Constants.ILinqToXsdTypeManager, schemaSetType, memberVisibility);
             CodeFieldReferenceExpression schemaSetFieldRef = new CodeFieldReferenceExpression(null, schemaSetFieldName);
 
             CodeDirectionExpression schemaSetParam = new CodeDirectionExpression(FieldDirection.Ref, schemaSetFieldRef);
@@ -607,7 +633,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Add a getter that will get the root type name
             CodeMemberMethod getRootType = new CodeMemberMethod();
-            getRootType.Attributes = MemberAttributes.Static | MemberAttributes.Public;
+            getRootType.Attributes = MemberAttributes.Static | memberVisibility;
             getRootType.Name = Constants.GetRootType;
             getRootType.ReturnType = new CodeTypeReference(Constants.SystemTypeName);
             if (rootElementName.IsEmpty)
@@ -669,7 +695,7 @@ namespace Xml.Schema.Linq.CodeGen
         CodeStatementCollection propertyDictionaryAddStatements;
 
 
-        internal XTypedElementBuilder()
+        internal XTypedElementBuilder(LinqToXsdSettings settings): base(settings)
         {
             InnerInit();
         }
@@ -714,7 +740,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void StartGrouping(GroupingInfo groupingInfo)
         {
             InitializeTables();
-            propertyBuilder = TypePropertyBuilder.Create(groupingInfo, decl, declItemsInfo);
+            propertyBuilder = TypePropertyBuilder.Create(groupingInfo, decl, declItemsInfo, DefaultVisibility);
             propertyBuilder.StartCodeGen(); //Start the group's code gen, like setting up functional const etc
             propertyBuilderStack.Push(propertyBuilder);
         }
@@ -751,7 +777,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void CreateAttributeProperty(ClrBasePropertyInfo propertyInfo,
             List<ClrAnnotation> annotations)
         {
-            propertyBuilder = TypePropertyBuilder.Create(decl, declItemsInfo);
+            propertyBuilder = TypePropertyBuilder.Create(decl, declItemsInfo, DefaultVisibility);
             propertyBuilder.GenerateCode(propertyInfo, annotations);
         }
 
@@ -843,8 +869,7 @@ namespace Xml.Schema.Linq.CodeGen
             FSM fsm = clrTypeInfo.CreateFSM(fsmNameSource);
 
             //Add a member field: private static FSM fsm;
-            decl.Members.Add(CodeDomHelper.CreateMemberField(Constants.FSMMember, Constants.FSMClass,
-                MemberAttributes.Private | MemberAttributes.Static, false));
+            decl.Members.Add(CodeDomHelper.CreateMemberField(Constants.FSMMember, Constants.FSMClass, false, MemberAttributes.Private | MemberAttributes.Static));
 
             //Add a function: FSM  FSM IXMetaData.GetFSM() {return fsm}
             CodeMemberMethod getFSM =
@@ -857,8 +882,8 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Add InitFSM() and construct the FSM
             CodeMemberMethod initFSM =
-                CodeDomHelper.CreateMethod(Constants.InitFSM, MemberAttributes.Private | MemberAttributes.Static,
-                    new CodeTypeReference());
+                CodeDomHelper.CreateMethod(Constants.InitFSM,
+                    new CodeTypeReference(), MemberAttributes.Private | MemberAttributes.Static);
             FSMCodeDomHelper.CreateFSMStmt(fsm, initFSM.Statements);
             decl.Members.Add(initFSM);
 
@@ -876,13 +901,12 @@ namespace Xml.Schema.Linq.CodeGen
         {
             CodeMemberProperty localDictionaryProperty = CodeDomHelper.CreateInterfaceImplProperty(
                 Constants.LocalElementsDictionary, Constants.IXMetaData,
-                CodeDomHelper.CreateDictionaryType(Constants.XNameType, "System.Type"));
+                CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName));
 
             //new override for derived classes
             CodeMemberField localDictionaryField =
-                CodeDomHelper.CreateDictionaryField(Constants.LocalElementDictionaryField, Constants.XNameType, "System.Type");
-            CodeMemberMethod localDictionaryMethod = CodeDomHelper.CreateMethod(Constants.BuildElementDictionary,
-                MemberAttributes.Private | MemberAttributes.Static, null);
+                CodeDomHelper.CreateDictionaryField(Constants.LocalElementDictionaryField, Constants.XNameType, Constants.SystemTypeName, MemberAttributes.Private);
+            CodeMemberMethod localDictionaryMethod = CodeDomHelper.CreateMethod(Constants.BuildElementDictionary, null, MemberAttributes.Private | MemberAttributes.Static);
             localDictionaryMethod.Statements.AddRange(propertyDictionaryAddStatements);
 
             decl.Members.Add(localDictionaryField);
@@ -920,6 +944,7 @@ namespace Xml.Schema.Linq.CodeGen
 
     internal class XEmptyTypedElementBuilder : TypeBuilder
     {
+        public XEmptyTypedElementBuilder(LinqToXsdSettings settings) : base(settings) { }
     }
 
     internal class XSimpleTypedElementBuilder : TypeBuilder
@@ -927,9 +952,7 @@ namespace Xml.Schema.Linq.CodeGen
         string simpleTypeName;
         bool isSchemaList;
 
-        public XSimpleTypedElementBuilder()
-        {
-        }
+        public XSimpleTypedElementBuilder(LinqToXsdSettings settings) : base(settings) { }
 
         internal void Init(string simpleTypeName, bool isSchemaList)
         {
@@ -942,7 +965,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             //Create Constructor that takes type to wrap
             string parameterName = Constants.InnerTypeParamName;
-            CodeConstructor constructor = CodeDomHelper.CreateConstructor(MemberAttributes.Public);
+            CodeConstructor constructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
             CodeTypeReference returnType = null;
             if (isSchemaList)
             {
@@ -969,7 +992,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         internal override void CreateProperty(ClrBasePropertyInfo propertyInfo, List<ClrAnnotation> annotations)
         {
-            propertyInfo.AddToType(this.decl, annotations);
+            propertyInfo.AddToType(this.decl, annotations, DefaultVisibility);
         }
     }
 
@@ -980,9 +1003,7 @@ namespace Xml.Schema.Linq.CodeGen
         string memberName;
         TypeAttributes innerTypeAttributes;
 
-        public XWrapperTypedElementBuilder()
-        {
-        }
+        public XWrapperTypedElementBuilder(LinqToXsdSettings settings) : base(settings) { }
 
         internal void Init(string innerTypeFullName, string innerTypeNs, TypeAttributes innerTypeAttributes)
         {
@@ -1002,11 +1023,11 @@ namespace Xml.Schema.Linq.CodeGen
         {
             //create type field to wrap
             CodeMemberField typeField =
-                CodeDomHelper.CreateMemberField(memberName, innerTypeName, MemberAttributes.Private, false);
+                CodeDomHelper.CreateMemberField(memberName, innerTypeName, false, MemberAttributes.Private);
             CodeFieldReferenceExpression fieldRef = CodeDomHelper.CreateFieldReference("this", memberName);
 
             //Create empty constructor
-            CodeConstructor emptyConstructor = CodeDomHelper.CreateConstructor(MemberAttributes.Public);
+            CodeConstructor emptyConstructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
             if ((innerTypeAttributes & TypeAttributes.Abstract) == 0)
             {
                 //New up inner type in default constructor only if inner type is not abstract
@@ -1058,7 +1079,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override CodeConstructor CreateFunctionalConstructor(List<ClrAnnotation> annotations)
         {
             //Create Constructor that takes type to wrap
-            CodeConstructor constructor = CodeDomHelper.CreateConstructor(MemberAttributes.Public);
+            CodeConstructor constructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
             if (clrTypeInfo.IsSubstitutionMember())
             {
                 //If member of subst group, call dummy base constructor
@@ -1080,14 +1101,14 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void CreateProperty(ClrBasePropertyInfo propertyInfo, List<ClrAnnotation> annotations)
         {
             ((ClrWrappingPropertyInfo) propertyInfo).WrappedFieldName = this.memberName;
-            propertyInfo.AddToType(decl, annotations);
+            propertyInfo.AddToType(decl, annotations, DefaultVisibility);
         }
 
         protected override void ImplementCommonIXMetaData()
         {
             CodeMemberProperty localElementDictionary = CodeDomHelper.CreateInterfaceImplProperty(
                 Constants.LocalElementsDictionary, Constants.IXMetaData,
-                CodeDomHelper.CreateDictionaryType(Constants.XNameType, "System.Type"));
+                CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName));
             localElementDictionary.GetStatements.Add(CodeDomHelper.CreateCastToInterface(Constants.IXMetaData,
                 "schemaMetaData", Constants.CInnerTypePropertyName));
             localElementDictionary.GetStatements.Add(
@@ -1140,9 +1161,9 @@ namespace Xml.Schema.Linq.CodeGen
         {
             //Create new XElement property so that the setter can set the wrapped object XElement as well
             CodeMemberProperty xElementProperty =
-                CodeDomHelper.CreateProperty(new CodeTypeReference(Constants.XElement), true);
+                CodeDomHelper.CreateProperty(new CodeTypeReference(Constants.XElement), true, DefaultVisibility.ToMemberAttribute());
             xElementProperty.Name = Constants.Untyped;
-            xElementProperty.Attributes = MemberAttributes.Public | MemberAttributes.Override;
+            xElementProperty.Attributes |= MemberAttributes.Override;
 
             CodePropertyReferenceExpression baseUntyped =
                 new CodePropertyReferenceExpression(new CodeBaseReferenceExpression(), Constants.Untyped);
@@ -1182,7 +1203,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             //Create InnerType Property of type T  to go with the inner type field
             CodeMemberProperty innerTypeProperty = CodeDomHelper.CreateProperty(Constants.CInnerTypePropertyName,
-                new CodeTypeReference(innerTypeName), MemberAttributes.Public);
+                new CodeTypeReference(innerTypeName), DefaultVisibility.ToMemberAttribute());
             innerTypeProperty.HasSet = false;
             if (clrTypeInfo.IsSubstitutionMember())
             {
@@ -1199,7 +1220,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             //This is for setting base type fields from types representing substitutionGroup members
             CodeMemberMethod setSubstMember =
-                CodeDomHelper.CreateMethod(Constants.SetSubstitutionMember, MemberAttributes.Family, null);
+                CodeDomHelper.CreateMethod(Constants.SetSubstitutionMember, null, MemberAttributes.Family);
             setSubstMember.Parameters.Add(
                 new CodeParameterDeclarationExpression(
                     new CodeTypeReference(innerTypeName), memberName));
@@ -1221,7 +1242,7 @@ namespace Xml.Schema.Linq.CodeGen
         private CodeMemberMethod SetInnerType()
         {
             CodeMemberMethod setInnerType =
-                CodeDomHelper.CreateMethod(Constants.SetInnerType, MemberAttributes.Private, null);
+                CodeDomHelper.CreateMethod(Constants.SetInnerType, null, MemberAttributes.Private);
             setInnerType.Parameters.Add(
                 new CodeParameterDeclarationExpression(
                     new CodeTypeReference(innerTypeName), memberName));

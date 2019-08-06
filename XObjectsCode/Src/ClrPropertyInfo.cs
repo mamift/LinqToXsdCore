@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.CodeDom;
 using System.Globalization;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -147,7 +148,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        internal abstract CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations);
+        internal abstract CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public);
         internal abstract void AddToContentModel(CodeObjectCreateExpression contentModelExpression);
         internal abstract void AddToConstructor(CodeConstructor functionalConstructor);
 
@@ -195,13 +196,14 @@ namespace Xml.Schema.Linq.CodeGen
             this.occursInSchema = schemaOccurs;
         }
 
-        internal override CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations)
+        internal override CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations,
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             if (!addToTypeDef) return null;
 
-            CodeMemberProperty property = CodeDomHelper.CreateProperty(ReturnType, false);
+            CodeMemberProperty property = CodeDomHelper.CreateProperty(ReturnType, false, visibility.ToMemberAttribute());
             property.Name = PropertyName;
-            property.Attributes = (property.Attributes & ~MemberAttributes.AccessMask) | MemberAttributes.Public;
+            //property.Attributes = (property.Attributes & ~MemberAttributes.AccessMask) | visibility.ToMemberAttribute();
 
             AddGetStatements(property.GetStatements);
 
@@ -263,9 +265,10 @@ namespace Xml.Schema.Linq.CodeGen
             set { wrappedFieldName = value; }
         }
 
-        internal override CodeMemberProperty AddToType(CodeTypeDeclaration typeDecl, List<ClrAnnotation> annotations)
+        internal override CodeMemberProperty AddToType(CodeTypeDeclaration typeDecl, List<ClrAnnotation> annotations, 
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
-            CodeMemberProperty wrapperProperty = CodeDomHelper.CreateProperty(this.returnType, this.hasSet);
+            CodeMemberProperty wrapperProperty = CodeDomHelper.CreateProperty(this.returnType, this.hasSet, visibility.ToMemberAttribute());
             wrapperProperty.Name = CheckPropertyName(typeDecl.Name);
             wrapperProperty.Attributes = this.wrappedPropertyAttributes;
 
@@ -619,24 +622,24 @@ namespace Xml.Schema.Linq.CodeGen
             this.parentTypeFullName = clrFullTypeName;
         }
 
-        internal void SetPropertyAttributes(CodeMemberProperty clrProperty)
+        internal void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
         {
             if (isVirtual)
             {
                 clrProperty.Attributes =
                     ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
-                     MemberAttributes.Public);
+                     visibility);
             }
             else if (isOverride)
             {
                 clrProperty.Attributes =
                     ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
-                     MemberAttributes.Public | MemberAttributes.Override);
+                     visibility | MemberAttributes.Override);
             }
         }
 
         internal override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
-            List<ClrAnnotation> annotations)
+            List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             if (IsDuplicate || (FromBaseType && !IsNew))
             {
@@ -644,9 +647,9 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             CreateFixedDefaultValue(parentTypeDecl);
-            CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(ReturnType, hasSet);
+            CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(ReturnType, hasSet, visibility.ToMemberAttribute());
             clrProperty.Name = propertyName;
-            SetPropertyAttributes(clrProperty);
+            SetPropertyAttributes(clrProperty, visibility.ToMemberAttribute());
             if (IsNew)
             {
                 clrProperty.Attributes |= MemberAttributes.New;

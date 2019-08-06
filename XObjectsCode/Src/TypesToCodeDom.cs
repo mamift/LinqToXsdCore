@@ -8,6 +8,8 @@ using System.CodeDom;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -119,6 +121,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Build type using TypeBuilder
             typeBuilder = GetTypeBuilder();
+            var typeVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs];
             typeBuilder.CreateTypeDeclaration(typeInfo);
             ProcessProperties(typeInfo.Content, typeInfo.Annotations);
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
@@ -269,30 +272,28 @@ namespace Xml.Schema.Linq.CodeGen
                     allNamespaces.Add(codeNamespace);
                 }
 
-                CreateXRoot(codeNamespace, "XRootNamespace", xroots[codeNamespace], null);
+                CreateXRoot(codeNamespace, "XRootNamespace", xroots[codeNamespace], null, settings.NamespaceTypesVisibilityMap[rootClrNamespace]);
             }
 
-            CreateXRoot(rootCodeNamespace, "XRoot", allTypes, allNamespaces);
+            CreateXRoot(rootCodeNamespace, "XRoot", allTypes, allNamespaces, settings.NamespaceTypesVisibilityMap[rootClrNamespace]);
         }
 
 
         private void CreateXRoot(CodeNamespace codeNamespace, string rootName, List<CodeTypeDeclaration> elements,
-            List<CodeNamespace> namespaces)
+            List<CodeNamespace> namespaces, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             LocalSymbolTable lst = new LocalSymbolTable();
 
-            CodeTypeDeclaration xroot = CodeDomHelper.CreateTypeDeclaration(rootName, null);
+            CodeTypeDeclaration xroot = CodeDomHelper.CreateTypeDeclaration(rootName, null, visibility);
 
             //Create Methods
             CodeMemberField docField = CodeDomHelper.CreateMemberField("doc",
                 "XDocument",
-                MemberAttributes.Private,
-                false);
+                false, MemberAttributes.Private);
 
             CodeMemberField rootField = CodeDomHelper.CreateMemberField("rootObject",
                 Constants.XTypedElement,
-                MemberAttributes.Private,
-                false);
+                false, MemberAttributes.Private);
 
             xroot.Members.Add(docField);
             xroot.Members.Add(rootField);
@@ -311,62 +312,62 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Load Methods
             xroot.Members.Add(CodeDomHelper.CreateXRootMethod(rootName, "Load",
-                new string[][] {new string[] {"System.String", "xmlFile"}}));
+                new string[][] {new string[] {"System.String", "xmlFile"}}, visibility));
 
             xroot.Members.Add(CodeDomHelper.CreateXRootMethod(rootName, "Load", new string[][]
             {
                 new string[] {"System.String", "xmlFile"},
                 new string[] {"LoadOptions", "options"}
-            }));
+            }, visibility));
 
 
             xroot.Members.Add(CodeDomHelper.CreateXRootMethod(rootName, "Load",
-                new string[][] {new string[] {"TextReader", "textReader"}}));
+                new string[][] {new string[] {"TextReader", "textReader"}}, visibility));
 
             xroot.Members.Add(CodeDomHelper.CreateXRootMethod(rootName, "Load", new string[][]
             {
                 new string[] {"TextReader", "textReader"},
                 new string[] {"LoadOptions", "options"}
-            }));
+            }, visibility));
 
 
             xroot.Members.Add(CodeDomHelper.CreateXRootMethod(rootName, "Load",
-                new string[][] {new string[] {"XmlReader", "xmlReader"}}));
+                new string[][] {new string[] {"XmlReader", "xmlReader"}}, visibility));
 
 
             //Parse Methods
             xroot.Members.Add(CodeDomHelper.CreateXRootMethod(rootName, "Parse",
-                new string[][] {new string[] {"System.String", "text"}}));
+                new string[][] {new string[] {"System.String", "text"}}, visibility));
 
             xroot.Members.Add(CodeDomHelper.CreateXRootMethod(rootName, "Parse", new string[][]
             {
                 new string[] {"System.String", "text"},
                 new string[] {"LoadOptions", "options"}
-            }));
+            }, visibility));
 
 
             //Save Methods
             xroot.Members.Add(
-                CodeDomHelper.CreateXRootSave(new string[][] {new string[] {"System.String", "fileName"}}));
+                CodeDomHelper.CreateXRootSave(new string[][] {new string[] {"System.String", "fileName"}}, visibility));
             xroot.Members.Add(CodeDomHelper.CreateXRootSave(new string[][]
-                {new string[] {"TextWriter", "textWriter"}}));
-            xroot.Members.Add(CodeDomHelper.CreateXRootSave(new string[][] {new string[] {"XmlWriter", "writer"}}));
+                {new string[] {"TextWriter", "textWriter"}}, visibility));
+            xroot.Members.Add(CodeDomHelper.CreateXRootSave(new string[][] {new string[] {"XmlWriter", "writer"}}, visibility));
 
             xroot.Members.Add(CodeDomHelper.CreateXRootSave(new string[][]
             {
                 new string[] {"TextWriter", "textWriter"},
                 new string[] {"SaveOptions", "options"}
-            }));
+            }, visibility));
             xroot.Members.Add(CodeDomHelper.CreateXRootSave(new string[][]
             {
                 new string[] {"System.String", "fileName"},
                 new string[] {"SaveOptions", "options"}
-            }));
+            }, visibility));
 
             CodeMemberProperty prop = CodeDomHelper.CreateProperty("XDocument",
                 "XDocument",
                 docField,
-                MemberAttributes.Public,
+                visibility.ToMemberAttribute(),
                 false);
             xroot.Members.Add(prop);
 
@@ -377,8 +378,8 @@ namespace Xml.Schema.Linq.CodeGen
                     ? typeName
                     : "global::" + namespaces[i].Name + "." + typeName;
 
-                xroot.Members.Add(CodeDomHelper.CreateXRootFunctionalConstructor(fqTypeName));
-                xroot.Members.Add(CodeDomHelper.CreateXRootGetter(typeName, fqTypeName, lst));
+                xroot.Members.Add(CodeDomHelper.CreateXRootFunctionalConstructor(fqTypeName, visibility));
+                xroot.Members.Add(CodeDomHelper.CreateXRootGetter(typeName, fqTypeName, lst, visibility));
             }
 
             codeNamespace.Types.Add(xroot);
@@ -392,13 +393,14 @@ namespace Xml.Schema.Linq.CodeGen
                 return;
             }
 
-            XWrapperTypedElementBuilder wrapperBuilder = new XWrapperTypedElementBuilder();
-            XSimpleTypedElementBuilder simpleTypeBuilder = new XSimpleTypedElementBuilder();
+            XWrapperTypedElementBuilder wrapperBuilder = new XWrapperTypedElementBuilder(settings);
+            XSimpleTypedElementBuilder simpleTypeBuilder = new XSimpleTypedElementBuilder(settings);
 
             TypeBuilder builder = null;
             ClrPropertyInfo typedValPropertyInfo = null;
             foreach (ClrWrapperTypeInfo typeInfo in wrapperRootElements)
             {
+                var typeVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs];
                 SetFullTypeName(typeInfo, null);
                 ClrTypeReference innerType = typeInfo.InnerType;
                 if (innerType.IsSimpleType)
@@ -486,6 +488,7 @@ namespace Xml.Schema.Linq.CodeGen
         private void CreateTypeManager()
         {
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
+            var typeVisibility = settings.NamespaceTypesVisibilityMap[rootClrNamespace];
             CodeNamespace rootCodeNamespace = null;
             if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out rootCodeNamespace))
             {
@@ -497,9 +500,15 @@ namespace Xml.Schema.Linq.CodeGen
             if (rootCodeNamespace != null)
             {
                 //It might be null if schema has only simple typed global elements or simple types which we are ignoring for now
-                rootCodeNamespace.Types.Add(TypeBuilder.CreateTypeManager(rootElementName,
-                    settings.EnableServiceReference, typeDictionaryAddStatements,
-                    elementDictionaryAddStatements, wrapperDictionaryAddStatements));
+                var typeManagerDeclaration = TypeBuilder.CreateTypeManager(
+                    rootElementName: rootElementName,
+                    enableServiceReference: settings.EnableServiceReference,
+                    typeDictionaryStatements: typeDictionaryAddStatements,
+                    elementDictionaryStatements: elementDictionaryAddStatements,
+                    wrapperDictionaryStatements: wrapperDictionaryAddStatements,
+                    visibility: typeVisibility);
+
+                rootCodeNamespace.Types.Add(typeManagerDeclaration);
                 //Add using statements in the rest of the namespaces for the root namespace to avoid error on TypeManager reference
                 //Add using statements in the root namespace for the rest of the namespaces to avoid errors while building type dictionaries
                 CodeNamespaceImport rootImport = new CodeNamespaceImport(rootCodeNamespace.Name);
@@ -567,7 +576,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (typeBuilder == null)
             {
-                typeBuilder = new XTypedElementBuilder();
+                typeBuilder = new XTypedElementBuilder(settings);
             }
             else
             {
@@ -581,7 +590,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (emptyTypeBuilder == null)
             {
-                emptyTypeBuilder = new XEmptyTypedElementBuilder();
+                emptyTypeBuilder = new XEmptyTypedElementBuilder(settings);
             }
             else
             {

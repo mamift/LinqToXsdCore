@@ -9,7 +9,7 @@ using Xml.Schema.Linq.Extensions;
 // ReSharper disable once CheckNamespace
 namespace Xml.Schema.Linq
 {
-    public partial class Configuration
+    internal partial class Configuration
     {
         /// <summary>
         /// Saves the current instance without overwriting an existing file. Adds a number to the end of the file name.
