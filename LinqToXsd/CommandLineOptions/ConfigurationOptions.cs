@@ -7,7 +7,7 @@ namespace LinqToXsd
     [SuppressMessage("ReSharper", "UnusedMember.Global"), SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     internal class ConfigurationOptions: OptionsAbstract
     {
-        [Option('e', nameof(Example), HelpText = "Produce an example XML configuration file for a given XSD file. e.g. LinqToXsd config 'file.xsd' -e'. Also: optionally specify this parameter with folder paths and it will create configuration files for multiple XSD files.")]
+        [Option('e', nameof(Example), HelpText = "Produce an example XML configuration file for a given XSD file. e.g. LinqToXsd config 'file.xsd' -e'. Also: optionally specify this parameter with folder paths and it will create configuration files for multiple XSD files. This will overwrite any existing configuration files.")]
         public bool Example { get; set; }
 
         [Option('o', nameof(Output), HelpText = "When you specify multiple input files with --"+nameof(Example)+", use this to specify an output file for the configuration file that's generated. e.g. LinqToXsd config 'file.xsd' -e -o 'file.xsd.config'")]
