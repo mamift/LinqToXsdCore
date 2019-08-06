@@ -65,7 +65,7 @@ namespace Xml.Schema.Linq
         }
 
         //Cast XElement to XTypedElement type T, Called from Load and Parse
-        public static T ToXTypedElement<T>(XElement xe) where T : XTypedElement, new()
+        public static T ToXTypedElement<T>(XElement xe) where T : XTypedElement
         {
             if (xe == null)
             {
@@ -76,7 +76,7 @@ namespace Xml.Schema.Linq
             if (xoSubType == null)
             {
                 //No association bet XTypedElement and xelement
-                xoSubType = new T();
+                xoSubType = Activator.CreateInstance<T>();
                 if (TypeValid(xoSubType, xe.Name))
                 {
                     xoSubType.Untyped = xe;
@@ -208,7 +208,7 @@ namespace Xml.Schema.Linq
             return null;
         }
 
-        public static T CloneXTypedElement<T>(T xTypedElement) where T : XTypedElement, new()
+        public static T CloneXTypedElement<T>(T xTypedElement) where T : XTypedElement
         {
             if (xTypedElement == null)
             {
@@ -216,21 +216,21 @@ namespace Xml.Schema.Linq
             }
 
             XElement clonedElement = new XElement(xTypedElement.Untyped);
-            T newObject = new T();
+            T newObject = Activator.CreateInstance<T>();
             newObject.Untyped = clonedElement;
             clonedElement.AddAnnotation(
                 new XTypedElementAnnotation(newObject)); //Need to set up association for the cloned type
             return newObject;
         }
 
-        public static T Load<T>(System.IO.TextReader reader) where T : XTypedElement, new()
+        public static T Load<T>(System.IO.TextReader reader) where T : XTypedElement
         {
             XDocument doc = XDocument.Load(reader);
             XElement xeroot = doc.Root;
             return ToXTypedElement<T>(xeroot);
         }
 
-        public static T Load<T>(string uri) where T : XTypedElement, new()
+        public static T Load<T>(string uri) where T : XTypedElement
         {
             XDocument doc = XDocument.Load(uri);
             XElement xeroot = doc.Root;
@@ -254,7 +254,7 @@ namespace Xml.Schema.Linq
             return ToXTypedElement<W, T>(xeroot, typeManager);
         }
 
-        public static T Parse<T>(string xml) where T : XTypedElement, new()
+        public static T Parse<T>(string xml) where T : XTypedElement
         {
             return ToXTypedElement<T>(XElement.Parse(xml));
         }
