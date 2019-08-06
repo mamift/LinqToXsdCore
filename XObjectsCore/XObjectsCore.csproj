@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>XObjectsCore.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\XObjectsCore.xml</DocumentationFile>
   </PropertyGroup>
 
   <Import Project="..\XObjectsCode\XObjectsCode.projitems" Label="Shared" />
