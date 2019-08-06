@@ -154,7 +154,7 @@ namespace Xml.Schema.Linq {
             return XTypedServices.Parse<Configuration>(xml);
         }
         
-        internal override XTypedElement Clone() {
+        public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Configuration>(this);
         }
         
@@ -282,7 +282,7 @@ namespace Xml.Schema.Linq {
             return XTypedServices.Parse<Namespaces>(xml);
         }
         
-        internal override XTypedElement Clone() {
+        public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Namespaces>(this);
         }
         
@@ -401,7 +401,7 @@ namespace Xml.Schema.Linq {
             return XTypedServices.Parse<@Namespace>(xml);
         }
         
-        internal override XTypedElement Clone() {
+        public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<@Namespace>(this);
         }
         
@@ -508,7 +508,7 @@ namespace Xml.Schema.Linq {
             return XTypedServices.Parse<Validation>(xml);
         }
         
-        internal override XTypedElement Clone() {
+        public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Validation>(this);
         }
         
@@ -619,7 +619,7 @@ namespace Xml.Schema.Linq {
             return XTypedServices.Parse<Transformation>(xml);
         }
         
-        internal override XTypedElement Clone() {
+        public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Transformation>(this);
         }
         
@@ -702,7 +702,7 @@ namespace Xml.Schema.Linq {
             return XTypedServices.Parse<Deanonymize>(xml);
         }
         
-        internal override XTypedElement Clone() {
+        public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Deanonymize>(this);
         }
         
@@ -777,7 +777,7 @@ namespace Xml.Schema.Linq {
             return XTypedServices.Parse<VerifyRequired>(xml);
         }
         
-        internal override XTypedElement Clone() {
+        public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<VerifyRequired>(this);
         }
         

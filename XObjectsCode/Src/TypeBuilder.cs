@@ -221,7 +221,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 //Add Clone for non-abstract types
                 CodeMemberMethod clone = CodeDomHelper.CreateMethod("Clone",
-                    new CodeTypeReference(Constants.XTypedElement), DefaultVisibility.ToMemberAttribute() | MemberAttributes.Override);
+                    new CodeTypeReference(Constants.XTypedElement), MemberAttributes.Public | MemberAttributes.Override);
                 if (innerType == null)
                 {
                     CodeMethodInvokeExpression callClone = CodeDomHelper.CreateMethodCall(
@@ -1161,7 +1161,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             //Create new XElement property so that the setter can set the wrapped object XElement as well
             CodeMemberProperty xElementProperty =
-                CodeDomHelper.CreateProperty(new CodeTypeReference(Constants.XElement), true, DefaultVisibility.ToMemberAttribute());
+                CodeDomHelper.CreateProperty(new CodeTypeReference(Constants.XElement), true, MemberAttributes.Public); // because this is an override, it should not obey DefaultVisibility
             xElementProperty.Name = Constants.Untyped;
             xElementProperty.Attributes |= MemberAttributes.Override;
 

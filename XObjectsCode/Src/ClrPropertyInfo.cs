@@ -634,7 +634,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 clrProperty.Attributes =
                     ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
-                     visibility | MemberAttributes.Override);
+                     MemberAttributes.Public | MemberAttributes.Override);
             }
         }
 

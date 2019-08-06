@@ -7,7 +7,7 @@ namespace Xml.Schema.Linq
     /// <summary>
     /// Compares <see cref="Namespace"/> objects (from <see cref="Configuration"/> instances).
     /// </summary>
-    public class NamespaceEqualityValueComparer: IEqualityComparer<Namespace>
+    internal class NamespaceEqualityValueComparer: IEqualityComparer<Namespace>
     {
         public bool Equals(Namespace x, Namespace y)
         {
