@@ -47,7 +47,7 @@ namespace LinqToXsd
 
             var fileInfo = new FileInfo(Config);
             linqToXsdSettings = fileInfo.Attributes.HasFlag(FileAttributes.Directory)
-                ? Configuration.Load(new DirectoryInfo(fileInfo.FullName), progress) // load directory
+                ? ConfigurationProvider.Load(new DirectoryInfo(fileInfo.FullName), progress) // load directory
                 : XObjectsCoreGenerator.LoadLinqToXsdSettings(Config); // load file
 
             return linqToXsdSettings;

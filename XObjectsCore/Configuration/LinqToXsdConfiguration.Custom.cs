@@ -30,7 +30,7 @@ namespace Xml.Schema.Linq
 
             // ReSharper disable once AssignNullToNotNullAttribute
             // yes this needs to be refresh using Path.Combine each iteration
-            while (File.Exists(Path.Combine(initialDir, fileNameComponent))) { 
+            while (File.Exists(Path.Combine(initialDir, fileNameComponent))) {
                 var splitFileName = fileNameComponent.Split('.');
                 var firstHalf = splitFileName.First();
                 firstHalf = firstHalf.AppendNumberToString();
@@ -48,7 +48,7 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public Configuration MergeNamespaces(Configuration config)
         {
-            foreach (var ns in config.Namespaces.Namespace) 
+            foreach (var ns in config.Namespaces.Namespace)
                 Namespaces.Namespace.Add(ns);
 
             Namespaces.Namespace = Namespaces.Namespace.Distinct(new NamespaceEqualityValueComparer()).ToList();
@@ -68,36 +68,6 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
-        /// Load configuration files (.xml, .config) from a <see cref="DirectoryInfo"/> and merge all the configuration instances
-        /// into one and return it as a <see cref="LinqToXsdSettings"/> instance.
-        /// </summary>
-        /// <param name="directory"></param>
-        /// <param name="progress"></param>
-        /// <returns><c>null</c> if not configs are present in the <paramref name="directory"/>.</returns>
-        public static LinqToXsdSettings Load(DirectoryInfo directory, IProgress<string> progress = null)
-        {
-            var configFiles = directory.EnumerateFiles("*", SearchOption.AllDirectories)
-                .Where(f => f.Extension.EndsWith(".xml") || f.Extension.EndsWith(".config"))
-                .ToArray();
-
-            var configs = configFiles
-                .Select(f => { try { return Load(f.FullName); } catch { return null; } })
-                .Where(c => c != null)
-                .ToArray();
-
-            if (!configs.Any()) return null;
-            progress?.Report($"Reading ({configs.Length}) configuration file(s) from: {directory.FullName}");
-            var firstConfig = configs.First();
-            if (configs.Length == 1) return firstConfig.ToLinqToXsdSettings();
-            var configurationsToMerge = configs.Skip(1).ToArray();
-            foreach (var config in configurationsToMerge)
-                firstConfig.MergeNamespaces(config);
-
-            progress?.Report($"Merged {configurationsToMerge.Length} + 1 configuration files...");
-            return firstConfig.ToLinqToXsdSettings();
-        }
-
-        /// <summary>
         /// Loads a new <see cref="Configuration"/> instance by reading an existing XSD schema and creating default values.
         /// </summary>
         /// <param name="xDoc"></param>
@@ -105,21 +75,24 @@ namespace Xml.Schema.Linq
         /// <exception cref="T:Xml.Schema.Linq.LinqToXsdException">Invalid XSD file; or it has no namespace declaration for W3C XML Schema.</exception>
         public static Configuration LoadForSchema(XDocument xDoc)
         {
-            if (!xDoc.IsAnXmlSchema()) throw new LinqToXsdException("This does not appear to be a valid XSD file. " +
-                                                                    "It has no namespace declaration for W3C XML Schema.");
+            if (!xDoc.IsAnXmlSchema())
+                throw new LinqToXsdException("This does not appear to be a valid XSD file. " +
+                                             "It has no namespace declaration for W3C XML Schema.");
             if (xDoc.Root == null) throw new LinqToXsdException("Cannot parse this XSD file.");
 
-            var egConfig = ExampleConfigurationInstance;
+            var egConfig = GetBlankConfigurationInstance();
 
-            var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration || 
-                                                                      attr.Name == XName.Get("targetNamespace")).ToArray();
+            var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration ||
+                                                                      attr.Name == XName.Get("targetNamespace"))
+                                     .ToArray();
             var theXsdNamespace = namespaceAttrs
-                                  .Where(attr => attr.Name.LocalName == XName.Get("xs") && 
+                                  .Where(attr => attr.Name.LocalName == XName.Get("xs") &&
                                                  attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
 
             var namespacesToRead = namespaceAttrs.Except(theXsdNamespace);
             foreach (var udn in namespacesToRead.Distinct(new XAttributeValueEqualityComparer())) {
-                var uriToClrNamespaceValue = Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
+                var uriToClrNamespaceValue =
+                    Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
                 egConfig.Namespaces.Namespace.Add(new Namespace {
                     Schema = new Uri(udn.Value),
                     Clr = uriToClrNamespaceValue
@@ -133,19 +106,38 @@ namespace Xml.Schema.Linq
         /// Returns a new, default <see cref="Configuration"/> instance with no <see cref="Namespaces"/> present.
         /// </summary>
         /// <returns></returns>
-        public static Configuration ExampleConfigurationInstance => new Configuration
+        public static Configuration GetBlankConfigurationInstance()
         {
-            Namespaces = new Namespaces {
-                Namespace = new List<Namespace>()
-            },
-            Transformation = new Transformation {
-                Deanonymize = new Deanonymize {
-                    strict = false
+            return new Configuration {
+                Namespaces = new Namespaces {
+                    Namespace = new List<Namespace>()
+                },
+                Transformation = new Transformation {
+                    Deanonymize = new Deanonymize {
+                        strict = false
+                    }
+                },
+                Validation = new Validation {
+                    VerifyRequired = new VerifyRequired(false)
                 }
-            },
-            Validation = new Validation {
-                VerifyRequired = new VerifyRequired(false)
-            }
-        };
+            };
+        }
+
+        /// <summary>
+        /// Returns an example <see cref="Configuration"/> instance with one <see cref="Namespace"/> element present.
+        /// </summary>
+        /// <returns></returns>
+        public static Configuration GetExampleConfigurationInstance()
+        {
+            var blank = GetBlankConfigurationInstance();
+            var configNsUri = new Uri("http://www.microsoft.com/xml/schema/linq");
+            blank.Namespaces.Namespace.Add(new Namespace {
+                Schema = configNsUri,
+                Clr = "Xml.Schema.Linq",
+                DefaultVisibility = "internal"
+            });
+
+            return blank;
+        }
     }
 }
