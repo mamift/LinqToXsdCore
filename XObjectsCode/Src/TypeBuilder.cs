@@ -32,7 +32,7 @@ namespace Xml.Schema.Linq.CodeGen
             get
             {
                 var typeNamespace = clrTypeInfo?.clrtypeNs ?? throw new InvalidOperationException();
-                return Settings.NamespaceTypesVisibilityMap[typeNamespace];
+                return Settings.NamespaceTypesVisibilityMap.ValueForKey(typeNamespace);
             }
         }
 
@@ -364,7 +364,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             string typeName = typeInfo.clrtypeName;
             CodeTypeDeclaration simpleTypeDecl = new CodeTypeDeclaration(typeName);
-            var typeVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs].ToTypeAttribute();
+            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
 
             //Add private constructor so it cannot be instantiated
@@ -373,7 +373,7 @@ namespace Xml.Schema.Linq.CodeGen
             simpleTypeDecl.Members.Add(privateConst);
 
             //Create a static field for the XTypedSchemaSimpleType
-            var memberVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs].ToMemberAttribute();
+            var memberVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToMemberAttribute();
             CodeMemberField typeField =
                 CodeDomHelper.CreateMemberField(Constants.SimpleTypeDefInnerType, Constants.SimpleTypeValidator, false, memberVisibility | MemberAttributes.Static);
             typeField.InitExpression =

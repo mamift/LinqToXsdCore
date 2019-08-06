@@ -100,5 +100,23 @@ namespace Xml.Schema.Linq.Extensions
 
             return ToDelimitedString(sequence.Select(functor), delimiter);
         }
+
+        /// <summary>
+        /// Tries to get a value for a given key, otherwise returns default value. No exceptions.
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="tsDictionary"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static TValue ValueForKey<TKey, TValue>(this IDictionary<TKey, TValue> tsDictionary, TKey key)
+        {
+            try {
+                return tsDictionary[key];
+            }
+            catch {
+                return default(TValue);
+            }
+        }
     }
 }

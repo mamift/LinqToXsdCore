@@ -121,7 +121,6 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Build type using TypeBuilder
             typeBuilder = GetTypeBuilder();
-            var typeVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs];
             typeBuilder.CreateTypeDeclaration(typeInfo);
             ProcessProperties(typeInfo.Content, typeInfo.Annotations);
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
@@ -262,6 +261,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Build list of types that will need to be included 
             //in XRoot
+            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(rootClrNamespace);
             foreach (CodeNamespace codeNamespace in xroots.Keys)
             {
                 if (rootCodeNamespace == null) rootCodeNamespace = codeNamespace;
@@ -272,10 +272,10 @@ namespace Xml.Schema.Linq.CodeGen
                     allNamespaces.Add(codeNamespace);
                 }
 
-                CreateXRoot(codeNamespace, "XRootNamespace", xroots[codeNamespace], null, settings.NamespaceTypesVisibilityMap[rootClrNamespace]);
+                CreateXRoot(codeNamespace, "XRootNamespace", xroots[codeNamespace], null, typeVisibility);
             }
 
-            CreateXRoot(rootCodeNamespace, "XRoot", allTypes, allNamespaces, settings.NamespaceTypesVisibilityMap[rootClrNamespace]);
+            CreateXRoot(rootCodeNamespace, "XRoot", allTypes, allNamespaces, typeVisibility);
         }
 
 
@@ -400,7 +400,6 @@ namespace Xml.Schema.Linq.CodeGen
             ClrPropertyInfo typedValPropertyInfo = null;
             foreach (ClrWrapperTypeInfo typeInfo in wrapperRootElements)
             {
-                var typeVisibility = settings.NamespaceTypesVisibilityMap[typeInfo.clrtypeNs];
                 SetFullTypeName(typeInfo, null);
                 ClrTypeReference innerType = typeInfo.InnerType;
                 if (innerType.IsSimpleType)
@@ -488,7 +487,7 @@ namespace Xml.Schema.Linq.CodeGen
         private void CreateTypeManager()
         {
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
-            var typeVisibility = settings.NamespaceTypesVisibilityMap[rootClrNamespace];
+            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(rootClrNamespace);
             CodeNamespace rootCodeNamespace = null;
             if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out rootCodeNamespace))
             {
