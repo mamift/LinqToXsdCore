@@ -12,6 +12,31 @@ namespace Xml.Schema.Linq
     internal partial class Configuration
     {
         /// <summary>
+        /// Adds helpful XML comments if there are <see cref="Xml.Schema.Linq.Namespaces" /> and <see cref="Namespace"/> elements present,
+        /// and returns the current <see cref="Configuration"/> instance as a regular <see cref="XDocument"/> which can then be output
+        /// to a file so users can understand the configuration elements.
+        /// </summary>
+        /// <returns></returns>
+        public XDocument AddHelpfulComments()
+        {
+            var doc = new XDocument(Untyped);
+
+            var visibilityComment = new XComment("The @DefaultVisibility attribute controls the access modifier on generated class code. " +
+                                                 "Only 'public' and 'internal' are acceptable values here.");
+            var moreNamespacesComment = new XComment("Add more of your own XML Schema-to-CLR namespace mapping elements here");
+
+            var descendants = doc.Descendants().ToList();
+
+            var namespacesElement = descendants.FirstOrDefault(d => d.Name.LocalName == nameof(Linq.Namespaces));
+            namespacesElement?.Add(moreNamespacesComment);
+
+            var firstNamespaceElement = descendants.FirstOrDefault(d => d.Name.LocalName == nameof(Namespace));
+            firstNamespaceElement?.AddBeforeSelf(visibilityComment);
+
+            return doc;
+        }
+
+        /// <summary>
         /// Saves the current instance without overwriting an existing file. Adds a number to the end of the file name.
         /// </summary>
         /// <param name="fileNameOrFullPath"></param>
@@ -29,7 +54,7 @@ namespace Xml.Schema.Linq
             if (initialDir.IsEmpty()) throw new InvalidOperationException();
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            // yes this needs to be refresh using Path.Combine each iteration
+            // yes, this needs to be refresh using Path.Combine each iteration
             while (File.Exists(Path.Combine(initialDir, fileNameComponent))) {
                 var splitFileName = fileNameComponent.Split('.');
                 var firstHalf = splitFileName.First();
@@ -93,10 +118,8 @@ namespace Xml.Schema.Linq
             foreach (var udn in namespacesToRead.Distinct(new XAttributeValueEqualityComparer())) {
                 var uriToClrNamespaceValue =
                     Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
-                egConfig.Namespaces.Namespace.Add(new Namespace {
-                    Schema = new Uri(udn.Value),
-                    Clr = uriToClrNamespaceValue
-                });
+                var newNamespace = Namespace.New(udn.Value, uriToClrNamespaceValue);
+                egConfig.Namespaces.Namespace.Add(newNamespace);
             }
 
             return egConfig;
@@ -130,12 +153,8 @@ namespace Xml.Schema.Linq
         public static Configuration GetExampleConfigurationInstance()
         {
             var blank = GetBlankConfigurationInstance();
-            var configNsUri = new Uri("http://www.microsoft.com/xml/schema/linq");
-            blank.Namespaces.Namespace.Add(new Namespace {
-                Schema = configNsUri,
-                Clr = "Xml.Schema.Linq",
-                DefaultVisibility = "internal"
-            });
+            var newNamespace = Namespace.New("http://www.microsoft.com/xml/schema/linq", "Xml.Schema.Linq");
+            blank.Namespaces.Namespace.Add(newNamespace);
 
             return blank;
         }

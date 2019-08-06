@@ -84,7 +84,7 @@ namespace LinqToXsd
         {
             if (!configOpts.Example) return;
             if (!configOpts.SchemaFiles.Any())
-                ConfigurationDispatcher.HandleGenerateExampleConfig();
+                ConfigurationDispatcher.HandleGenerateExampleConfig(configOpts);
             else
                 ConfigurationDispatcher.HandleAutoGenConfig(configOpts);
         }

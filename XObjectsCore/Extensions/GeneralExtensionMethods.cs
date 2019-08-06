@@ -45,8 +45,7 @@ namespace Xml.Schema.Linq.Extensions
         }
 
         /// <summary>
-        /// Generic ToString method that will execute a given <see cref="Func{TResult}"/> that accepts the current object as a sole parameter and
-        /// returns a string.
+        /// Execute a <see cref="Func{TResult}"/> on the current <paramref name="@object"/>, that returns a string.
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="object"></param>
@@ -60,14 +59,28 @@ namespace Xml.Schema.Linq.Extensions
         }
 
         /// <summary>
-        /// Converts the current <paramref name="sequence"/> into a delimited string.
+        /// Converts the current <paramref name="sequence"/> into a delimited string, whereby the
+        /// <paramref name="delimiter"/> is a given <see cref="char"/>.
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="sequence"></param>
         /// <param name="delimiter"></param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="sequence"/> is <see langword="null"/></exception>
-        public static string ToDelimitedString<TType>(this IEnumerable<TType> sequence, char delimiter = ',')
+        public static string ToDelimitedString<TType>(this IEnumerable<TType> sequence, char delimiter = ',') 
+            => sequence.ToDelimitedString($"{delimiter}");
+
+        /// <summary>
+        /// Converts the current <paramref name="sequence"/> into a delimited string, whereby the
+        /// <paramref name="delimiter"/> is a given <see cref="string"/>.
+        /// </summary>
+        /// <typeparam name="TType"></typeparam>
+        /// <param name="sequence"></param>
+        /// <param name="delimiter">The delimiter string.</param>
+        /// <param name="delimitAfterLast">By default the <paramref name="delimiter"/> is not appended after the last element in the <paramref name="sequence"/>.</param>
+        /// <returns></returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="sequence"/> is <see langword="null"/></exception>
+        public static string ToDelimitedString<TType>(this IEnumerable<TType> sequence, string delimiter = "", bool delimitAfterLast = false)
         {
             if (sequence == null) throw new ArgumentNullException(nameof(sequence));
 
@@ -78,7 +91,7 @@ namespace Xml.Schema.Linq.Extensions
             for (var i = 0; i < count; i++)
             {
                 stringBuilder.Append(enumeratedSequence.ElementAt(i));
-                if (i == (count - 1)) break;
+                if (i == (count - 1) && !delimitAfterLast) break;
                 stringBuilder.Append(delimiter);
             }
 

@@ -8,6 +8,9 @@ using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq
 {
+    /// <summary>
+    /// Public class that exposes some default methods and behaviour for configuration schema files.
+    /// </summary>
     public class ConfigurationProvider
     {
         /// <summary>
@@ -17,16 +20,8 @@ namespace Xml.Schema.Linq
         public static XDocument ProvideExampleConfigurationXml()
         {
             var exampleConfig = Configuration.GetExampleConfigurationInstance();
-
-            var comment = new XComment("Add more of your own XML namespace to CLR namespace entries here");
-            var namespacesXName = XName.Get(nameof(Namespaces), exampleConfig.Namespaces.Namespace.First().Schema.AbsoluteUri);
-
-            var exampleConfigUntyped = exampleConfig.Untyped;
-            var namespacesElements = exampleConfigUntyped.Descendants(namespacesXName);
-            var namespacesEl = namespacesElements.First();
-            namespacesEl.Add(comment);
-
-            return exampleConfigUntyped.Document;
+            
+            return exampleConfig.AddHelpfulComments();
         }
 
         /// <summary>
@@ -38,20 +33,21 @@ namespace Xml.Schema.Linq
         /// <param name="schemaReaders"></param>
         /// <param name="progress"></param>
         public static void GenerateConfigurationFiles(string possibleOutputFile, string[] inputFiles, bool foldersWereGiven,
-            Dictionary<string, XmlReader> schemaReaders,
-            IProgress<string> progress = null)
+            Dictionary<string, XmlReader> schemaReaders, IProgress<string> progress = null)
         {
             var egConfig = Configuration.GetExampleConfigurationInstance();
             var outputWasGiven = possibleOutputFile.IsNotEmpty();
 
             if (foldersWereGiven) {
-                foreach (var xsd in schemaReaders) {
-                    var schemaDoc = XDocument.Load(xsd.Value);
+                if (schemaReaders.Any()) progress?.Report($"Generating {schemaReaders.Count} configuration files...");
+                foreach (var xsdKvp in schemaReaders) {
+                    var schemaDoc = XDocument.Load(xsdKvp.Value);
                     var config = Configuration.LoadForSchema(schemaDoc);
 
-                    var outputConfig = xsd.Key.AppendIfNotPresent(".config");
-                    progress?.Report($"Saving {outputConfig.Except(Environment.CurrentDirectory)}");
-                    config.Save(outputConfig);
+                    var outputConfig = xsdKvp.Key.AppendIfNotPresent(".config");
+                    progress?.Report($"Saving {outputConfig}");
+                    var withHelpfulComments = config.AddHelpfulComments();
+                    withHelpfulComments.Save(outputConfig);
                 }
 
                 return;
@@ -99,6 +95,18 @@ namespace Xml.Schema.Linq
 
             progress?.Report($"Merged {configurationsToMerge.Length} + 1 configuration files...");
             return firstConfig.ToLinqToXsdSettings();
+        }
+
+        /// <summary>
+        /// Returns configuration XML as an <see cref="XDocument"/> instance by reading an existing XSD schema and creating default values.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static XDocument LoadForSchema(string filePath)
+        {
+            var xsdDoc = XDocument.Load(File.OpenRead(filePath));
+            var configForXsd = Configuration.LoadForSchema(xsdDoc);
+            return configForXsd.AddHelpfulComments();
         }
     }
 }
