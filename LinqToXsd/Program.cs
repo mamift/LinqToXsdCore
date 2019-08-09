@@ -59,11 +59,9 @@ namespace LinqToXsd
         /// <param name="errors"></param>
         private static void ErrorHandler(IEnumerable<Error> errors)
         {
-            foreach (var error in errors)
-            {
+            foreach (var error in errors) {
                 if (error is SetValueExceptionError setValueException && 
-                    setValueException.Exception is IncompatibleArgumentException iae)
-                {
+                    setValueException.Exception is IncompatibleArgumentException iae) {
                     Colors.WriteLine("Errors occurred: ".Red());
                     Colors.WriteLine(iae.Message.Yellow());
                     if (iae.InnerException != null)
@@ -72,6 +70,8 @@ namespace LinqToXsd
                     ReturnCode = 1;
                     return;
                 }
+
+                Colors.WriteLine($"{error}".Red());
             }
             ReturnCode = 1;
         }
@@ -105,8 +105,7 @@ namespace LinqToXsd
                 ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles)
                 : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
 
-            if (generateOptions.Output.IsEmpty())
-            {
+            if (generateOptions.Output.IsEmpty()) {
                 if (generateOptions.FoldersWereGiven) {
                     Colors.WriteLine("No output directory given: defaulting to same directory as XSD file(s).".Gray());
                     generateOptions.Output = "-1";
@@ -114,20 +113,16 @@ namespace LinqToXsd
                 else {
                     generateOptions.Output = Environment.CurrentDirectory;
                     Colors.WriteLine("No output directory given: defaulting to current working directory:".Gray());
-                    Colors.WriteLine($"{ Environment.CurrentDirectory}.".Yellow());
+                    Colors.WriteLine($"{Environment.CurrentDirectory}.".Yellow());
                 }
             }
 
             var hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
-            if (hasCsExt) 
-            {
-                // merge the output into a single file
+            // merge the output into a single file
+            if (hasCsExt)
                 GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions.Output, textWriters);
-            }
             else
-            {
                 GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions.Output, textWriters);
-            }
         }
     }
 }

@@ -17,18 +17,27 @@ namespace LinqToXsd
             internal static void HandleGenerateExampleConfig(ConfigurationOptions configOpts)
             {
                 if (!configOpts.SchemaFiles.Any() && configOpts.FoldersWereGiven) {
-                    Colors.WriteLine("A folder was provided, but no XSD files were found!".Red());
-                    Colors.WriteLine("To generate a single example configuration file, specify an output file name.".Yellow());
+                    Colors.WriteLine("Folder inputs(s) were provided, but no XSD files were found inside!".Red());
+                    Colors.WriteLine("To generate a single example configuration file, specify an output file name or folder.".Yellow());
                     return;
                 }
 
-                var egConfig = ConfigurationProvider.ProvideExampleConfigurationXml();
+                var egConfigXml = ConfigurationProvider.ProvideExampleConfigurationXml();
 
-                var egConfigXmlFile = "exampleConfiguration.xml";
+                var defaultFileName = "exampleConfiguration.xml";
+                var outputWasGiven = configOpts.Output.IsNotEmpty();
+                var outputFilePath = outputWasGiven ? configOpts.Output : defaultFileName;
 
-                Colors.WriteLine($"Saving to: {egConfigXmlFile.White()}".Green());
+                var possibleGivenFileName = Path.GetFileName(outputFilePath);
+                var noGivenFileName = possibleGivenFileName.IsEmpty() || !Path.HasExtension(possibleGivenFileName);
+                if (noGivenFileName) { // assume this is a directory that may or may not exist
+                    outputFilePath = Path.Combine(outputFilePath, defaultFileName);
+                }
+                
+                Colors.WriteLine("Saving to:".Green());
+                Colors.WriteLine($"\t{outputFilePath}".White());
 
-                egConfig.Save(egConfigXmlFile);
+                egConfigXml.Save(outputFilePath);
             }
 
             /// <summary>
@@ -39,14 +48,10 @@ namespace LinqToXsd
             {
                 if (configOpts.FilesOrFolders.Any()) {
                     var folders = configOpts.FilesOrFolders.Select(Path.GetDirectoryName).Distinct().ToList();
-                    if (!folders.Any()) {
-                        Colors.WriteLine("No XSD files found.");
-                        goto gen;
-                    }
-
-                    var folderString = folders.ToDelimitedString("\r\n \t", true);
-                    Colors.WriteLine("Looking under: ".White());
-                    Colors.WriteLine($"\t{folderString}".Green());
+                    
+                    var folderString = folders.ToDelimitedString("\n \t", delimitAfterLast: true);
+                    Colors.WriteLine("Looking under: ".Green());
+                    Colors.WriteLine($"\t{folderString}".White());
                 }
 
                 gen:

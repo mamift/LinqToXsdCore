@@ -11,7 +11,7 @@ namespace Xml.Schema.Linq
     /// <summary>
     /// Public class that exposes some default methods and behaviour for configuration schema files.
     /// </summary>
-    public class ConfigurationProvider
+    public static class ConfigurationProvider
     {
         /// <summary>
         /// Provides an example configuration XML.

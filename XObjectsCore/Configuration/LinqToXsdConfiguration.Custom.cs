@@ -22,7 +22,7 @@ namespace Xml.Schema.Linq
             var doc = new XDocument(Untyped);
 
             var visibilityComment = new XComment("The @DefaultVisibility attribute controls the access modifier on generated class code. " +
-                                                 "Only 'public' and 'internal' are acceptable values here.");
+                                                 "Only 'public' and 'internal' are acceptable values. Unrecognised values default to 'public'.");
             var moreNamespacesComment = new XComment("Add more of your own XML Schema-to-CLR namespace mapping elements here");
 
             var descendants = doc.Descendants().ToList();

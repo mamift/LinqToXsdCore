@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Schema;
@@ -64,11 +63,12 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="sequence"></param>
-        /// <param name="delimiter"></param>
+        /// <param name="delimiter">The delimiter string. Defaults to a comma.</param>
+        /// <param name="delimitAfterLast">By default the <paramref name="delimiter"/> is not appended after the last element in the <paramref name="sequence"/>.</param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="sequence"/> is <see langword="null"/></exception>
-        public static string ToDelimitedString<TType>(this IEnumerable<TType> sequence, char delimiter = ',') 
-            => sequence.ToDelimitedString($"{delimiter}");
+        public static string ToDelimitedString<TType>(this IEnumerable<TType> sequence, char delimiter = ',', bool delimitAfterLast = false) 
+            => sequence.ToDelimitedString($"{delimiter}", delimitAfterLast);
 
         /// <summary>
         /// Converts the current <paramref name="sequence"/> into a delimited string, whereby the
@@ -76,22 +76,22 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="sequence"></param>
-        /// <param name="delimiter">The delimiter string.</param>
+        /// <param name="delimiter">The delimiter string. Defaults to a comma.</param>
         /// <param name="delimitAfterLast">By default the <paramref name="delimiter"/> is not appended after the last element in the <paramref name="sequence"/>.</param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="sequence"/> is <see langword="null"/></exception>
-        public static string ToDelimitedString<TType>(this IEnumerable<TType> sequence, string delimiter = "", bool delimitAfterLast = false)
+        public static string ToDelimitedString<TType>(this IEnumerable<TType> sequence, string delimiter = ",", bool delimitAfterLast = false)
         {
             if (sequence == null) throw new ArgumentNullException(nameof(sequence));
 
             var stringBuilder = new StringBuilder();
-            var enumeratedSequence = sequence as TType[] ?? sequence.ToArray();
+            var enumeratedSequence = sequence as List<TType> ?? sequence.ToList();
 
-            var count = enumeratedSequence.Length;
-            for (var i = 0; i < count; i++)
-            {
+            var count = enumeratedSequence.Count;
+            for (var i = 0; i < count; i++) {
                 stringBuilder.Append(enumeratedSequence.ElementAt(i));
-                if (i == (count - 1) && !delimitAfterLast) break;
+                var isTheLast = i == (count - 1);
+                if (isTheLast && !delimitAfterLast) break;
                 stringBuilder.Append(delimiter);
             }
 
@@ -99,7 +99,8 @@ namespace Xml.Schema.Linq.Extensions
         }
 
         /// <summary>
-        /// Converts the current <paramref name="sequence"/> into a delimited string.
+        /// Converts the current <paramref name="sequence"/> into a delimited string by executing a <paramref name="functor"/> on each
+        /// item in the sequence.
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="sequence"></param>
