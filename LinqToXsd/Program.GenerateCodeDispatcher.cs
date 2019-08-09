@@ -19,7 +19,7 @@ namespace LinqToXsd
             /// </summary>
             internal static void HandleWriteOutputToMultipleFiles(string possibleOutputFolder, Dictionary<string, TextWriter> textWriters)
             {
-                Colors.WriteLine($"Outputting {textWriters.Count} files...".Gray());
+                PrintLn($"Outputting {textWriters.Count} files...".Gray());
                 foreach (var kvp in textWriters)
                 {
                     var outputFilename = Path.GetFileName($"{kvp.Key}.cs");
@@ -36,11 +36,11 @@ namespace LinqToXsd
 
                     if (!Directory.Exists(fullPathOfContainingDir))
                     {
-                        Colors.WriteLine($"Creating directory: {fullPathOfContainingDir}".Yellow());
+                        PrintLn($"Creating directory: {fullPathOfContainingDir}".Yellow());
                         Directory.CreateDirectory(fullPathOfContainingDir);
                     }
 
-                    Colors.WriteLine($"{kvp.Key} => {outputFilePath}".Gray());
+                    PrintLn($"{kvp.Key} => {outputFilePath}".Gray());
 
                     using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
                     using (var fileWriter = new StreamWriter(outputFileStream))
@@ -61,7 +61,7 @@ namespace LinqToXsd
                 var target = outputFile.EndsWith(".cs") ? outputFile : $"{outputFile}.cs";
 
                 var extractFileNameOnlyFunctor = new Func<string, string>(k => $"'{Path.GetFileName(k)}'");
-                Colors.WriteLine($"{textWriters.Keys.ToDelimitedString(extractFileNameOnlyFunctor).Yellow()}\n \toutput to \n{target}");
+                PrintLn($"{textWriters.Keys.ToDelimitedString(extractFileNameOnlyFunctor).Yellow()}\n \toutput to \n{target}");
 
                 using (var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite))
                 using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))

@@ -9,6 +9,10 @@ using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
 {
+    /// <summary>
+    /// Base class for creating new verbs (to place under <see cref="CommandLineOptions"/>).
+    /// <para>Note to future devs: make everything <c>virtual</c>!</para>
+    /// </summary>
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     internal abstract class OptionsAbstract: IDisposable
     {
@@ -29,6 +33,8 @@ namespace LinqToXsd
         public virtual bool FilesWereGiven => FileSystemUtilities.HasFilePaths(FilesOrFolders);
 
         protected List<string> filesOrFolders = new List<string>();
+
+        protected Dictionary<string, XmlReader> schemaReaders = new Dictionary<string, XmlReader>();
 
         /// <summary>
         /// CLI argument: The file or folder paths given at the CL.
@@ -51,6 +57,7 @@ namespace LinqToXsd
         /// <summary>
         /// Resolves the file or folder paths in <see cref="FilesOrFolders"/> property as just files, filtering to only include *.xsd files under
         /// any folder paths present.
+        /// <para>Computed on every read.</para>
         /// </summary>
         public virtual IEnumerable<string> SchemaFiles
         {
@@ -77,12 +84,14 @@ namespace LinqToXsd
             {
                 var schemasFiles = SchemaFiles.ToArray(); // save a reference otherwise it gets enumerated twice
                 if (!schemasFiles.Any()) return new Dictionary<string, XmlReader>();
+                if (schemaReaders.Any()) return schemaReaders;
 
-                var xmlReaderSettings = new XmlReaderSettings
-                {
+                var xmlReaderSettings = new XmlReaderSettings {
                     DtdProcessing = DtdProcessing.Parse
                 };
-                return schemasFiles.ToDictionary(f => f, f => XmlReader.Create(f, xmlReaderSettings));
+                
+                schemaReaders = schemasFiles.ToDictionary(f => f, f => XmlReader.Create(f, xmlReaderSettings));
+                return schemaReaders;
             }
         }
 
@@ -97,7 +106,8 @@ namespace LinqToXsd
         /// </summary>
         public virtual void Dispose()
         {
-            foreach (var kvp in SchemaReaders) {
+            foreach (var kvp in schemaReaders) {
+                if (!kvp.Value.ReadState.HasFlag(ReadState.Closed)) kvp.Value.Close();
                 kvp.Value.Dispose();
             }
         }

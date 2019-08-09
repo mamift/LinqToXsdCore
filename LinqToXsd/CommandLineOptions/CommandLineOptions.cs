@@ -3,7 +3,7 @@
 namespace LinqToXsd
 {
     [SuppressMessage("ReSharper", "UnusedMember.Global"), SuppressMessage("ReSharper", "ClassNeverInstantiated.Global"), SuppressMessage("ReSharper", "InconsistentNaming")]
-    internal struct CommandLineOptions
+    internal class CommandLineOptions
     {
         public ConfigurationOptions config { get; set; }
 

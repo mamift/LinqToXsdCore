@@ -17,8 +17,8 @@ namespace LinqToXsd
             internal static void HandleGenerateExampleConfig(ConfigurationOptions configOpts)
             {
                 if (!configOpts.SchemaFiles.Any() && configOpts.FoldersWereGiven) {
-                    Colors.WriteLine("Folder inputs(s) were provided, but no XSD files were found inside!".Red());
-                    Colors.WriteLine("To generate a single example configuration file, specify an output file name or folder.".Yellow());
+                    PrintLn("Folder inputs(s) were provided, but no XSD files were found inside!".Red());
+                    PrintLn("To generate a single example configuration file, specify an output file name or folder.".Yellow());
                     return;
                 }
 
@@ -34,8 +34,8 @@ namespace LinqToXsd
                     outputFilePath = Path.Combine(outputFilePath, defaultFileName);
                 }
                 
-                Colors.WriteLine("Saving to:".Green());
-                Colors.WriteLine($"\t{outputFilePath}".White());
+                PrintLn("Saving to:".Green());
+                PrintLn($"\t{outputFilePath}".White());
 
                 egConfigXml.Save(outputFilePath);
             }
@@ -50,8 +50,8 @@ namespace LinqToXsd
                     var folders = configOpts.FilesOrFolders.Select(Path.GetDirectoryName).Distinct().ToList();
                     
                     var folderString = folders.ToDelimitedString("\n \t", delimitAfterLast: true);
-                    Colors.WriteLine("Looking under: ".Green());
-                    Colors.WriteLine($"\t{folderString}".White());
+                    PrintLn("Looking under: ".Green());
+                    PrintLn($"\t{folderString}".White());
                 }
 
                 ConfigurationProvider.GenerateConfigurationFiles(

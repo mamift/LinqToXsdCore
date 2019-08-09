@@ -37,7 +37,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotNull(_copyOfSchemasFolder);
             Assert.IsTrue(_copyOfSchemasFolder.Exists);
             
-            var programResult = LinqToXsd.Program.Main(new[] {$"config", "-e", _copyOfSchemasFolder.FullName});
+            var programResult = LinqToXsd.Program.Main(new[] {"config", "-e", _copyOfSchemasFolder.FullName});
 
             configFiles = _copyOfSchemasFolder.GetFiles("*.config", SearchOption.AllDirectories);
 

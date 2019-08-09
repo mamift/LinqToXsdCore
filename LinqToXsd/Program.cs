@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Alba.CsConsoleFormat.Fluent;
@@ -18,6 +19,33 @@ namespace LinqToXsd
             Console.WriteLine(s);
         });
 
+        public static bool IsConsolePresent
+        {
+            get {
+                try {
+                    return (Console.Title.Length > 0 || Console.WindowHeight > 0) && Environment.UserInteractive;
+                } catch {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Prints to either colored console output or <see cref="Debug"/>.
+        /// </summary>
+        /// <param name="element"></param>
+        public static void PrintLn(object element)
+        {
+#if TEST
+            Debug.WriteLine(element);
+#else
+            var consoleIsPresent = IsConsolePresent && Environment.UserInteractive;
+            if (consoleIsPresent) Colors.WriteLine(element);
+            else
+                Debug.WriteLine(element);
+#endif
+        }
+
         /// <summary>
         /// CLI will parse arguments here and then dispatch to the right method.
         /// </summary>
@@ -30,7 +58,7 @@ namespace LinqToXsd
                 ParseCliArgsAndDispatch(args);
             }
             catch (Exception e) {
-                Colors.WriteLine(e.ToString().DarkRed());
+                PrintLn(e.ToString().DarkRed());
             }
 #else
             ParseCliArgsAndDispatch(args);
@@ -92,16 +120,16 @@ namespace LinqToXsd
             foreach (var error in errors) {
                 if (error is SetValueExceptionError setValueException && 
                     setValueException.Exception is IncompatibleArgumentException iae) {
-                    Colors.WriteLine("Errors occurred: ".Red());
-                    Colors.WriteLine(iae.Message.Yellow());
+                    PrintLn("Errors occurred: ".Red());
+                    PrintLn(iae.Message.Yellow());
                     if (iae.InnerException != null)
-                        Colors.WriteLine(iae.InnerException.ToString().Red());
+                        PrintLn(iae.InnerException.ToString().Red());
 
                     ReturnCode = 1;
                     return;
                 }
 
-                Colors.WriteLine($"{error}".Red());
+                PrintLn($"{error}".Red());
             }
             ReturnCode = 1;
         }
@@ -127,7 +155,7 @@ namespace LinqToXsd
         {
             var settings = generateOptions.GetConfigInstance(ProgressReporter) ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
             if (generateOptions.GetConfigInstance() != null)
-                Colors.WriteLine("Configuration file(s) loaded...".Gray());
+                PrintLn("Configuration file(s) loaded...".Gray());
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
@@ -137,13 +165,13 @@ namespace LinqToXsd
 
             if (generateOptions.Output.IsEmpty()) {
                 if (generateOptions.FoldersWereGiven) {
-                    Colors.WriteLine("No output directory given: defaulting to same directory as XSD file(s).".Gray());
+                    PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
                     generateOptions.Output = "-1";
                 }
                 else {
                     generateOptions.Output = Environment.CurrentDirectory;
-                    Colors.WriteLine("No output directory given: defaulting to current working directory:".Gray());
-                    Colors.WriteLine($"{Environment.CurrentDirectory}.".Yellow());
+                    PrintLn("No output directory given: defaulting to current working directory:".Gray());
+                    PrintLn($"{Environment.CurrentDirectory}.".Yellow());
                 }
             }
 
