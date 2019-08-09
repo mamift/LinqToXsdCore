@@ -54,7 +54,6 @@ namespace LinqToXsd
                     Colors.WriteLine($"\t{folderString}".White());
                 }
 
-                gen:
                 ConfigurationProvider.GenerateConfigurationFiles(
                     possibleOutputFile: configOpts.Output,
                     inputFiles: configOpts.FilesOrFolders.ToArray(),

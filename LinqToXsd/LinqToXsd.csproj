@@ -18,6 +18,11 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>LinqToXsd</ToolCommandName>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+    <Copyright>Copyright (C) 2008-2019 Microsoft Corporation, github.com/mamift</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

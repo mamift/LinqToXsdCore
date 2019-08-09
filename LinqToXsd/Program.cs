@@ -13,7 +13,7 @@ namespace LinqToXsd
     {
         internal static int ReturnCode { get; private set; }
 
-        internal static IProgress<string> ProgressReporter { get; } = new Progress<string>(s => 
+        public static IProgress<string> ProgressReporter { get; } = new Progress<string>(s => 
         {
             Console.WriteLine(s);
         });
@@ -42,16 +42,46 @@ namespace LinqToXsd
         /// Parse CLI args and dispatch to the right method.
         /// </summary>
         /// <param name="args"></param>
-        private static void ParseCliArgsAndDispatch(string[] args)
+        internal static void ParseCliArgsAndDispatch(string[] args)
         {
             var parserResult =
                 Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
+#if TEST
+            var generateHandlerAction = 
+                InvokeWithAutomaticDisposalToCorrectHandler<GenerateOptions>(HandleGenerateCode);
+            parserResult.WithParsed<GenerateOptions>(generateHandlerAction);
+
+            var configHandlerAction =
+                InvokeWithAutomaticDisposalToCorrectHandler<ConfigurationOptions>(HandleConfigurationOptions);
+            parserResult.WithParsed<ConfigurationOptions>(configHandlerAction);
+#else
             parserResult.WithParsed<GenerateOptions>(HandleGenerateCode);
             parserResult.WithParsed<ConfigurationOptions>(HandleConfigurationOptions);
+#endif
 
             parserResult.WithNotParsed(ErrorHandler);
         }
+
+#if TEST
+        /// <summary>
+        /// Because the <see cref="OptionsAbstract"/> implements <see cref="IDisposable"/> for those <see cref="OptionsAbstract.SchemaReaders"/>,
+        /// this helper function will ensure that the <see cref="TOptions"/> is disposed of automatically.
+        /// <para>Necessary when <see cref="Main"/> is invoked from code and not from the OS (as in unit testing).</para>
+        /// </summary>
+        /// <typeparam name="TOptions"></typeparam>
+        /// <param name="handler"></param>
+        /// <returns></returns>
+        private static Action<TOptions> InvokeWithAutomaticDisposalToCorrectHandler<TOptions>(Action<TOptions> handler)
+            where TOptions: OptionsAbstract, IDisposable
+        {
+            return delegate(TOptions opts) {
+                using (opts) {
+                    handler(opts);
+                }
+            };
+        }
+#endif
 
         /// <summary>
         /// Prints out CLI argument parsing errors.

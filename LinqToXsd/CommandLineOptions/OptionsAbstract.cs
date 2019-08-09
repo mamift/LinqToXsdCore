@@ -10,7 +10,7 @@ using Xml.Schema.Linq.Extensions;
 namespace LinqToXsd
 {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    internal abstract class OptionsAbstract
+    internal abstract class OptionsAbstract: IDisposable
     {
         internal const string OutputHelpText = "Output file name or folder. When specifying multiple input XSDs or input folders, and this value is a file, all output is merged into a single file. If this value is a folder, multiple output files are output to this folder.";
 
@@ -91,5 +91,15 @@ namespace LinqToXsd
         /// </summary>
         [Option('o', nameof(Output), HelpText = OutputHelpText)]
         public virtual string Output { get; set; }
+
+        /// <summary>
+        /// Default method for disposing of the <see cref="XmlReader"/>s in the <see cref="SchemaReaders"/> property.
+        /// </summary>
+        public virtual void Dispose()
+        {
+            foreach (var kvp in SchemaReaders) {
+                kvp.Value.Dispose();
+            }
+        }
     }
 }
