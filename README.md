@@ -4,6 +4,10 @@ This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET
 
 ![Build Status](https://dev.azure.com/mamift1/LinqToXsdCore/_apis/build/status/LinqToXsdCore-.NET%20Desktop-CI) ![Nuget](https://buildstats.info/nuget/LinqToXsdCore)
 
+## Get started
+
+You can get started by reading the [instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md) to use the CLI tool to generate code (and use said code in a shipping app or library).
+
 ### Wait so what is this?
 LinqToXsd was first released back in 2009, and it was billed then as a way of '*providing .NET developers with support for typed XML programming...LINQ to XSD enhances the existing LINQ to XML technology*'.
 
@@ -62,11 +66,7 @@ Even if there isn't a native XSD, you can infer an XSD from an existing XML file
 
 * No assembly generation - due to a dependency on CodeDOM, no direct code-generation (i.e. emitting .DLL files) is supported. CodeDOM for .NET Core does not support this on any platform [(even Windows)](https://github.com/dotnet/corefx/issues/12180).
 
-* Custom build action - the Visual Studio targets project (which allowed feeding an XSD and configuration file as a custom build action) has not been ported and there are no plans to do so at the moment. This was decided because the code generation utility can be installed as a global tool using `dotnet`. Regenerating code on build can be automated by adding a Visual Studio pre-build event ([see instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md)). 
-
-## Instructions
-
-View the [instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md) to use the CLI tool to generate code (and use said code in a shipping app or library).
+* Custom build action - the Visual Studio targets project (which allowed feeding an XSD and configuration file as a custom build action) has not been ported and there are no plans to do so at the moment. This was decided because the code generation utility can be installed as a global tool using `dotnet`. Regenerating code on build can be automated by adding a Visual Studio pre-build event ([see instructions here](https://github.com/mamift/LinqToXsdCore/blob/master/LinqToXsd/README.md#regenerating-code)). 
 
 # License
 This is licensed under the same license that the original LinqToXsd project was licensed under, which is the Microsoft Public License (MS-PL): https://opensource.org/licenses/MS-PL
