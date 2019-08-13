@@ -16,9 +16,9 @@ namespace LinqToXsd
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     internal abstract class OptionsAbstract: IDisposable
     {
-        internal const string OutputHelpText = "Output file name or folder. When specifying multiple input XSDs or input folders, and this value is a file, all output is merged into a single file. If this value is a folder, multiple output files are output to this folder.";
+        internal const string OutputHelpText = "(string) Output file name or folder. When specifying multiple input XSDs or input folders, and this value is a file, all output is merged into a single file. If this value is a folder, multiple output files are output to this folder.";
 
-        internal const string FilesOrFoldersHelpText = "One or more schema files or folders containing schema files. Separate multiple files using a comma (,). If folders are given, then the files referenced in xs:include or xs:import directives are not imported twice. Usage: 'LinqToXsd [verb] <file1.xsd>,<file2.xsd>' or 'LinqToXsd [verb] <folder1>,<folder2>'. You can also include folder and file paths in the same invocation: 'LinqToXsd [verb] <file1.xsd>,<folder1>'";
+        internal const string FilesOrFoldersHelpText = "(string[]) One or more schema files or folders containing schema files. Separate multiple files using a comma (,). If folders are given, then the files referenced in xs:include or xs:import directives are not imported twice. Usage: 'LinqToXsd [verb] <file1.xsd>,<file2.xsd>' or 'LinqToXsd [verb] <folder1>,<folder2>'. You can also include folder and file paths in the same invocation: 'LinqToXsd [verb] <file1.xsd>,<folder1>'";
 
         /// <summary>
         /// Determines if at least one folder path was given in <see cref="FilesOrFolders"/>.
@@ -35,6 +35,8 @@ namespace LinqToXsd
         protected List<string> filesOrFolders = new List<string>();
 
         protected Dictionary<string, XmlReader> schemaReaders = new Dictionary<string, XmlReader>();
+
+        protected List<string> resolvedSchemaFiles = new List<string>();
 
         /// <summary>
         /// CLI argument: The file or folder paths given at the CL.
@@ -63,15 +65,20 @@ namespace LinqToXsd
         {
             get
             {
+                if (resolvedSchemaFiles.Any()) return resolvedSchemaFiles;
+
                 var files = FileSystemUtilities.ResolveFileAndFolderPathsToJustFiles(FilesOrFolders, "*.xsd");
+
                 // convert files to XDocuments and check if they are proper W3C schemas
-                var xDocs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)))
-                                 .Where(kvp => kvp.Value.IsAnXmlSchema())
+                var pairs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)));
+                var xDocs = pairs.Where(kvp => kvp.Value.IsAnXmlSchema())
                                  .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
                 var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key);
 
-                return files.Except(filteredIncludeAndImportRefs).Distinct();
+                resolvedSchemaFiles = files.Except(filteredIncludeAndImportRefs).Distinct().ToList();
+
+                return resolvedSchemaFiles;
             }
         }
 
@@ -111,5 +118,9 @@ namespace LinqToXsd
                 kvp.Value.Dispose();
             }
         }
+
+        protected OptionsAbstract() { }
+
+        ~OptionsAbstract() { Dispose(); }
     }
 }

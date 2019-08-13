@@ -21,9 +21,11 @@ namespace LinqToXsd
 
         public static bool IsConsolePresent
         {
-            get {
+            get
+            {
                 try {
-                    return (Console.Title.Length > 0 || Console.WindowHeight > 0) && Environment.UserInteractive;
+                    var thereIsBuffer = Console.BufferHeight > 0 | Console.BufferWidth > 0;
+                    return (Console.Title.Length > 0 || Console.WindowHeight > 0) && thereIsBuffer && Environment.UserInteractive;
                 } catch {
                     return false;
                 }
@@ -36,14 +38,17 @@ namespace LinqToXsd
         /// <param name="element"></param>
         public static void PrintLn(object element)
         {
-#if TEST
-            Debug.WriteLine(element);
-#else
             var consoleIsPresent = IsConsolePresent && Environment.UserInteractive;
-            if (consoleIsPresent) Colors.WriteLine(element);
+            if (consoleIsPresent) {
+                try {
+                    Colors.WriteLine(element);
+                }
+                catch (IOException ioe) {
+                    if (ioe.Message == "The handle is invalid") return;
+                }
+            }
             else
                 Debug.WriteLine(element);
-#endif
         }
 
         /// <summary>
@@ -72,26 +77,19 @@ namespace LinqToXsd
         /// <param name="args"></param>
         internal static void ParseCliArgsAndDispatch(string[] args)
         {
-            var parserResult =
-                Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
+            using (Parser.Default) {
+                var parserResult = Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
-#if TEST
-            var generateHandlerAction = 
-                InvokeWithAutomaticDisposalToCorrectHandler<GenerateOptions>(HandleGenerateCode);
-            parserResult.WithParsed<GenerateOptions>(generateHandlerAction);
+                var generateHandlerAction = GenerateDisposalWrapper<GenerateOptions>(HandleGenerateCode);
+                parserResult.WithParsed<GenerateOptions>(generateHandlerAction);
 
-            var configHandlerAction =
-                InvokeWithAutomaticDisposalToCorrectHandler<ConfigurationOptions>(HandleConfigurationOptions);
-            parserResult.WithParsed<ConfigurationOptions>(configHandlerAction);
-#else
-            parserResult.WithParsed<GenerateOptions>(HandleGenerateCode);
-            parserResult.WithParsed<ConfigurationOptions>(HandleConfigurationOptions);
-#endif
+                var configHandlerAction = GenerateDisposalWrapper<ConfigurationOptions>(HandleConfigurationOptions);
+                parserResult.WithParsed<ConfigurationOptions>(configHandlerAction);
 
-            parserResult.WithNotParsed(ErrorHandler);
+                parserResult.WithNotParsed(ErrorHandler);
+            }
         }
 
-#if TEST
         /// <summary>
         /// Because the <see cref="OptionsAbstract"/> implements <see cref="IDisposable"/> for those <see cref="OptionsAbstract.SchemaReaders"/>,
         /// this helper function will ensure that the <see cref="TOptions"/> is disposed of automatically.
@@ -100,16 +98,15 @@ namespace LinqToXsd
         /// <typeparam name="TOptions"></typeparam>
         /// <param name="handler"></param>
         /// <returns></returns>
-        private static Action<TOptions> InvokeWithAutomaticDisposalToCorrectHandler<TOptions>(Action<TOptions> handler)
+        private static Action<TOptions> GenerateDisposalWrapper<TOptions>(Action<TOptions> handler)
             where TOptions: OptionsAbstract, IDisposable
         {
-            return delegate(TOptions opts) {
+            return opts => {
                 using (opts) {
                     handler(opts);
                 }
             };
         }
-#endif
 
         /// <summary>
         /// Prints out CLI argument parsing errors.
@@ -164,23 +161,16 @@ namespace LinqToXsd
                 : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
 
             if (generateOptions.Output.IsEmpty()) {
-                if (generateOptions.FoldersWereGiven) {
-                    PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
-                    generateOptions.Output = "-1";
-                }
-                else {
-                    generateOptions.Output = Environment.CurrentDirectory;
-                    PrintLn("No output directory given: defaulting to current working directory:".Gray());
-                    PrintLn($"{Environment.CurrentDirectory}.".Yellow());
-                }
+                PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
+                generateOptions.Output = "-1";
             }
 
             var hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
             // merge the output into a single file
             if (hasCsExt)
-                GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions.Output, textWriters);
+                GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);
             else
-                GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions.Output, textWriters);
+                GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions, textWriters);
         }
     }
 }

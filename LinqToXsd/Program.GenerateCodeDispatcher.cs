@@ -15,10 +15,12 @@ namespace LinqToXsd
         internal static class GenerateCodeDispatcher
         {
             /// <summary>
-            /// Writes generated code for to multiple output files, given by a <paramref name="possibleOutputFolder"/>.
+            /// Writes generated code for to multiple output files, inferred by <see cref="GenerateOptions.Output"/>.
             /// </summary>
-            internal static void HandleWriteOutputToMultipleFiles(string possibleOutputFolder, Dictionary<string, TextWriter> textWriters)
+            internal static void HandleWriteOutputToMultipleFiles(GenerateOptions options, Dictionary<string, TextWriter> textWriters)
             {
+                var possibleOutputFolder = options.Output;
+
                 PrintLn($"Outputting {textWriters.Count} files...".Gray());
                 foreach (var kvp in textWriters)
                 {
@@ -53,15 +55,17 @@ namespace LinqToXsd
             /// <summary>
             /// Writes generated code to a single output file.
             /// </summary>
-            /// <param name="outputFile"></param>
+            /// <param name="options"></param>
             /// <param name="textWriters"></param>
-            internal static void HandleWriteOutputToSingleFile(string outputFile, Dictionary<string, TextWriter> textWriters)
+            internal static void HandleWriteOutputToSingleFile(GenerateOptions options, Dictionary<string, TextWriter> textWriters)
             {
+                var outputFile = options.Output;
                 // add .cs extension to filename if it doesn't have it already.
                 var target = outputFile.EndsWith(".cs") ? outputFile : $"{outputFile}.cs";
 
                 var extractFileNameOnlyFunctor = new Func<string, string>(k => $"'{Path.GetFileName(k)}'");
-                PrintLn($"{textWriters.Keys.ToDelimitedString(extractFileNameOnlyFunctor).Yellow()}\n \toutput to \n{target}");
+                PrintLn($"{textWriters.Keys.ToDelimitedString(extractFileNameOnlyFunctor).Yellow()}");
+                PrintLn($"\toutput to \n{target}");
 
                 using (var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite))
                 using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))

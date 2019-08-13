@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using CommandLine;
@@ -20,7 +21,7 @@ namespace LinqToXsd
         /// CLI argument: file path to configuration XML file.
         /// </summary>
         [Option('c', nameof(Config), HelpText =
-            "Specify the file or folder path to one or more configuration file(s). Multiple configuration files are merged as one. Incompatible with -" +
+            "(string) Specify the file or folder path to one or more configuration file(s). Multiple configuration files are merged as one. Incompatible with -" +
             nameof(AutoConfig))]
         public string Config
         {
@@ -56,13 +57,13 @@ namespace LinqToXsd
         /// <summary>
         /// CLI argument: imports 'System.Xml.Serialization' namespace into code or assembly.
         /// </summary>
-        [Option('e', nameof(EnableServiceReference), HelpText = "Imports the 'System.Xml.Serialization' namespace into the generated code.")]
+        [Option('e', nameof(EnableServiceReference), HelpText = "(bool) Imports the 'System.Xml.Serialization' namespace into the generated code.")]
         public bool EnableServiceReference { get; set; }
 
         private bool autoConfig;
 
         [Option('a', nameof(AutoConfig), HelpText =
-            "Specify one folder containing XSDs and their accompanying configuration files. This argument associate a configuration file with an XSD when one follows the naming convention: 'schema.xsd' + 'schema.xsd.config'. The XSD and .config file must be in the same directory as each other; use this parameter to individually associate an XSD with its own configuration settings to prevent those settings being overriden or merged as the -" +
+            "(bool) Specify this with a folder containing XSDs and accompanying configuration files. This argument associate a configuration file with an XSD when one follows the naming convention: 'schema.xsd' + 'schema.xsd.config' - this is the default convention used by the 'config -e' verb when you specify a folder. Use this parameter to associate an XSD with its own configuration settings to prevent those settings being overriden or merged as the -" +
             nameof(Config) + " argument would do. Only accepts folder paths. Incompatible with -" + nameof(Config) + ". Will only generate code for XSDs that have an accompanying .config file. If no output is generated, run the 'config' verb on the folder first.")]
         public bool AutoConfig
         {

@@ -130,6 +130,7 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public static Dictionary<string, TextWriter> Generate(IEnumerable<string> schemaFiles)
         {
+            // xsd file paths are keys, the FileInfo's to their config files are values
             var dictOfSchemasAndTheirConfigs = schemaFiles.Select(s => new KeyValuePair<string, FileInfo>(s,
                                                                new FileInfo($"{s}.config")))
                                                            .ToDictionary(k => k.Key, v => v.Value);

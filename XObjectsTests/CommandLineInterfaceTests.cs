@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 
@@ -8,28 +9,44 @@ namespace Xml.Schema.Linq.Tests
     public class CommandLineInterfaceTests
     {
         private static readonly DirectoryInfo SchemasFolder = new DirectoryInfo(@".\Schemas");
-        private const string SchemasCopy = @".\Schemas_Test";
+        private static string SchemasCopy
+        {
+            get
+            {
+                var tempFolderName = Guid.NewGuid().ToString("N");
+                SetupAndCleanup.Guids.Add(tempFolderName);
+                return tempFolderName;
+            }
+        }
+
         private static DirectoryInfo _copyOfSchemasFolder = new DirectoryInfo(SchemasCopy);
 
         public static void CopySchemasFolder()
         {
-            if (_copyOfSchemasFolder.Exists) DeleteSchemasFolder();
-            _copyOfSchemasFolder = SchemasFolder.Copy(@".\Schemas_test", overwrite: true);
-            _copyOfSchemasFolder.DeleteFilesInside("*.config");
+            DeleteSchemasFolder();
+            _copyOfSchemasFolder = SchemasFolder.Copy(SchemasCopy, overwrite: true);
+            _copyOfSchemasFolder.DeleteFilesInside("*.config"); // delete any config files
+            _copyOfSchemasFolder.DeleteFilesInside("*.cs"); // and delete any generated code
         }
 
         public static void DeleteSchemasFolder()
         {
-            _copyOfSchemasFolder.Delete(true);
+            try {
+                if (_copyOfSchemasFolder.Exists) _copyOfSchemasFolder.Delete(true);
+            }
+            catch(IOException ioe) { // this only is important when running unit tests
+                TestContext.Out.WriteLine($"Could not delete temporary folder: {_copyOfSchemasFolder.FullName}:\nError: {ioe.Message}");
+            }
+
             _copyOfSchemasFolder.Refresh();
         }
 
+        /// <summary>
+        /// Tests "linqtoxsd config -e '(folderpath)'".
+        /// </summary>
         [Test]
         public void TestGenerateConfigurationFilesFromFolder()
         {
-            Assert.IsFalse(_copyOfSchemasFolder.Exists);
-            CopySchemasFolder();
-
             var configFiles = _copyOfSchemasFolder.GetFiles("*.config", SearchOption.AllDirectories);
 
             Assert.IsFalse(configFiles.Any());
@@ -38,19 +55,76 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(_copyOfSchemasFolder.Exists);
             
             var programResult = LinqToXsd.Program.Main(new[] {"config", "-e", _copyOfSchemasFolder.FullName});
+            Assert.IsTrue(programResult == 0);
 
             configFiles = _copyOfSchemasFolder.GetFiles("*.config", SearchOption.AllDirectories);
 
             Assert.IsTrue(configFiles.Any());
-            Assert.IsTrue(configFiles.Length == 2);
+            Assert.IsTrue(configFiles.Length == 3);
         }
 
+        /// <summary>
+        /// Tests "linqtoxsd gen '(file)' -a"
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeFromSingleFileWithAutoConfig()
+        {
+            _copyOfSchemasFolder.Refresh();
+            var microsoftBuildXsd = "Microsoft.Build.xsd";
+            var msBuildXsd = Directory.GetFiles(_copyOfSchemasFolder.FullName, microsoftBuildXsd, SearchOption.AllDirectories).Single();
+
+            var genConfigResult = LinqToXsd.Program.Main(new[] { "config", "-e", _copyOfSchemasFolder.FullName });
+            Assert.IsTrue(genConfigResult == 0);
+            var generatedConfig = _copyOfSchemasFolder.GetFiles("*.xsd.config", SearchOption.AllDirectories);
+            Assert.IsNotEmpty(generatedConfig);
+
+            var genCodeResult = LinqToXsd.Program.Main(new[] {"gen", msBuildXsd, "-a"});
+            Assert.IsTrue(genCodeResult == 0);
+            Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd.cs", SearchOption.AllDirectories));
+
+            var generatedCsFile = _copyOfSchemasFolder.GetFiles($"{microsoftBuildXsd}.cs", SearchOption.AllDirectories);
+
+            Assert.IsTrue(generatedCsFile.Any());
+            var _ = generatedCsFile.Single();
+        }
+
+        /// <summary>
+        /// Tests "linqtoxsd gen '(folder)' -a"
+        /// </summary>
+        [Test]
+        public void TestGenerateCodeFromSingleDirectoryWithAutoConfig()
+        {
+            _copyOfSchemasFolder.Refresh();
+            var microsoftBuildXsd = "Microsoft.Build.xsd";
+            var msBuildXsd = _copyOfSchemasFolder.GetFiles(microsoftBuildXsd, SearchOption.AllDirectories).Single();
+
+            var genConfigResult = LinqToXsd.Program.Main(new[] { "config", "-e", _copyOfSchemasFolder.FullName });
+            Assert.IsTrue(genConfigResult == 0);
+            Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd.config", SearchOption.AllDirectories));
+
+            var directoryName = Path.GetDirectoryName(msBuildXsd.FullName);
+            var genCodeResult = LinqToXsd.Program.Main(new[] {"gen", directoryName, "-a"});
+            Assert.IsTrue(genCodeResult == 0);
+            Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd.cs", SearchOption.AllDirectories));
+
+            var generatedCsFile = _copyOfSchemasFolder.GetFiles($"{microsoftBuildXsd}.cs", SearchOption.AllDirectories);
+
+            Assert.IsTrue(generatedCsFile.Any());
+            var _ = generatedCsFile.Single();
+        }
+
+        /// <summary>
+        /// Delete the test Schemas folder if it exists.
+        /// </summary>
         [SetUp]
         public void Up()
         {
-            if (_copyOfSchemasFolder.Exists) DeleteSchemasFolder();
+            CopySchemasFolder();
         }
 
+        /// <summary>
+        /// Delete the test Schemas folder always.
+        /// </summary>
         [TearDown]
         public void Down()
         {
