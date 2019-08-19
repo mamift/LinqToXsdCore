@@ -150,8 +150,9 @@ namespace LinqToXsd
         /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
-            var settings = generateOptions.GetConfigInstance(ProgressReporter) ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
-            if (generateOptions.GetConfigInstance() != null)
+            var settingsFromFile = generateOptions.GetConfigInstance(ProgressReporter);
+            var settings = settingsFromFile ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
+            if (settingsFromFile != null)
                 PrintLn("Configuration file(s) loaded...".Gray());
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;

@@ -94,7 +94,8 @@ namespace LinqToXsd
                 if (schemaReaders.Any()) return schemaReaders;
 
                 var xmlReaderSettings = new XmlReaderSettings {
-                    DtdProcessing = DtdProcessing.Parse
+                    DtdProcessing = DtdProcessing.Parse,
+                    CloseInput = true
                 };
                 
                 schemaReaders = schemasFiles.ToDictionary(f => f, f => XmlReader.Create(f, xmlReaderSettings));

@@ -104,6 +104,7 @@ namespace Xml.Schema.Linq.Tests
 
             var directoryName = Path.GetDirectoryName(msBuildXsd.FullName);
             var genCodeResult = LinqToXsd.Program.Main(new[] {"gen", directoryName, "-a"});
+
             Assert.IsTrue(genCodeResult == 0);
             Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd.cs", SearchOption.AllDirectories));
 

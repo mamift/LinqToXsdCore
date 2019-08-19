@@ -74,14 +74,17 @@ namespace Xml.Schema.Linq
             if (settings == null) settings = new LinqToXsdSettings();
 
             var xmlReader = XmlReader.Create(xsdFilePath, new XmlReaderSettings {
-                DtdProcessing = DtdProcessing.Parse
+                DtdProcessing = DtdProcessing.Parse,
+                CloseInput = true
             });
 
-            var schemaSet = xmlReader.ToXmlSchemaSet();
+            using (xmlReader) {
+                var schemaSet = xmlReader.ToXmlSchemaSet();
 
-            var codeWriter = Generate(schemaSet, settings);
+                var codeWriter = Generate(schemaSet, settings);
 
-            return new KeyValuePair<string, TextWriter>(xsdFilePath, codeWriter);
+                return new KeyValuePair<string, TextWriter>(xsdFilePath, codeWriter);
+            }
         }
 
         /// <summary>
