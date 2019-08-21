@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Linq;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Xml.Schema.Linq.Tests
 {
@@ -51,6 +54,20 @@ namespace Xml.Schema.Linq.Tests
             foreach (var file in files) {
                 File.Delete(file.FullName);
             }
+        }
+
+        /// <summary>
+        /// Returns the first <see cref="NamespaceDeclarationSyntax"/> found in the current <paramref name="tree"/>.
+        /// </summary>
+        /// <param name="tree"></param>
+        /// <returns></returns>
+        public static NamespaceDeclarationSyntax GetNamespaceRoot(this SyntaxTree tree)
+        {
+            var root = tree.GetRoot();
+            var namespaceNode = root.DescendantNodes()
+                                    .First(dn => dn is NamespaceDeclarationSyntax) as NamespaceDeclarationSyntax;
+
+            return namespaceNode;
         }
     }
 }

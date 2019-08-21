@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace Xml.Schema.Linq.Tests
 {
-    [TestFixture]
     public class CommandLineInterfaceTests
     {
         private static readonly DirectoryInfo SchemasFolder = new DirectoryInfo(@".\Schemas");
