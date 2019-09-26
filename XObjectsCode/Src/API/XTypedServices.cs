@@ -216,7 +216,7 @@ namespace Xml.Schema.Linq
             }
 
             XElement clonedElement = new XElement(xTypedElement.Untyped);
-            T newObject = Activator.CreateInstance<T>();
+            T newObject = (T)Activator.CreateInstance(typeof(T), nonPublic: true); // this allows cloning XTypeElements that are internal
             newObject.Untyped = clonedElement;
             clonedElement.AddAnnotation(
                 new XTypedElementAnnotation(newObject)); //Need to set up association for the cloned type
