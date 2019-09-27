@@ -8,6 +8,10 @@ This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET
 
 You can get started by reading the [instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md) to use the CLI tool to generate code (and use said code in a shipping app or library).
 
+### Release notes are [here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/RELEASENOTES.md).
+
+[RELEASENOTES.md](RELEASENOTES.md)
+
 ### Wait so what is this?
 LinqToXsd was first released back in 2009, and it was billed then as a way of '*providing .NET developers with support for typed XML programming...LINQ to XSD enhances the existing LINQ to XML technology*'.
 
