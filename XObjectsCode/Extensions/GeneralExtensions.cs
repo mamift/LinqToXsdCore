@@ -20,9 +20,9 @@ namespace XObjects
         /// <param name="gtv"></param>
         /// <returns></returns>
         public static MemberAttributes ToMemberAttribute(this GeneratedTypesVisibility gtv) =>
-            (gtv.HasFlag(GeneratedTypesVisibility.Internal) || gtv == GeneratedTypesVisibility.Internal
+            gtv.HasFlag(GeneratedTypesVisibility.Internal) || gtv == GeneratedTypesVisibility.Internal
                 ? MemberAttributes.Assembly
-                : MemberAttributes.Public) | MemberAttributes.Final;
+                : MemberAttributes.Public;
 
         /// <summary>
         /// Converts <see cref="GeneratedTypesVisibility"/> to a keyword for use in code-generation.
