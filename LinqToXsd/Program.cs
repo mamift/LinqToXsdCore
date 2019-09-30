@@ -86,7 +86,7 @@ namespace LinqToXsd
                 var configHandlerAction = GenerateDisposalWrapper<ConfigurationOptions>(HandleConfigurationOptions);
                 parserResult.WithParsed<ConfigurationOptions>(configHandlerAction);
 
-                parserResult.WithNotParsed(ErrorHandler);
+                //parserResult.WithNotParsed(ErrorHandler);
             }
         }
 
