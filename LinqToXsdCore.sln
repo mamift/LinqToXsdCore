@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsGenerator", "XObjec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqToXsd", "LinqToXsd\LinqToXsd.csproj", "{39BF4375-E14A-4779-8D9D-90C39E1C5BBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XObjectsTests", "XObjectsTests\XObjectsTests.csproj", "{5BA935F4-E5A4-4679-8F55-3E875C797C54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsTests", "XObjectsTests\XObjectsTests.csproj", "{5BA935F4-E5A4-4679-8F55-3E875C797C54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E2B0371-0473-46A8-B096-ADF655B9D526}"
+	ProjectSection(SolutionItems) = preProject
+		RELEASENOTES.md = RELEASENOTES.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
