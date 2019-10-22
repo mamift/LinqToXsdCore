@@ -66,6 +66,16 @@ newPo.Save("newPo.xml");
 
 Even if there isn't a native XSD, you can infer an XSD from an existing XML file and speed up your development that way.
 
+### How does this compare to xsd.exe?
+
+LinqToXsd, ends up providing something very similar to the C# code-generation facilities that [`xsd.exe`](https://docs.microsoft.com/en-us/dotnet/standard/serialization/xml-schema-definition-tool-xsd-exe) provides. The main difference between the two is that LinqToXsd takes a code-generation, in-memory model and LINQ-only approach where as `xsd.exe` provides several legacy facilities such as XDR to XSD, XSD to [DataSet](https://docs.microsoft.com/en-us/dotnet/api/system.data.dataset), direct assembly generation, and can even do the reverse of what LinqToXsd does and generate an XSD from CLR types.
+
+LinqToXsd also tries very closely to model XSD constraints and compositors (sequence, choice, all, substitution groups) and user defined types as much as possible, including simple and complex types, both named and anonymous. A key distinction is that LinqToXsd models XML elements and types with generated C# classes to build 'XML Objects', transposing XSD semantics in a CLR, object-oriented way. These XML objects inherit from the base class `XTypedElement`. 
+
+Essentially LinqToXsd generates an in memory model of the XSD schema as opposed to the classes that `xsd.exe` generates, which are closer to plain old C# objects (POCOs). This has the end result of making LinqToXsd a very powerful tool for modelling custom document markup langauges, and preserving schema semantics in code.
+
+To get a more technical explanation of what LinqToXsd provides, please see the [wiki](https://github.com/mamift/LinqToXsdCore/wiki).
+
 ### Things not supported in this .NET Core port
 
 * No assembly generation - due to a dependency on CodeDOM, no direct code-generation (i.e. emitting .DLL files) is supported. CodeDOM for .NET Core does not support this on any platform [(even Windows)](https://github.com/dotnet/corefx/issues/12180).
