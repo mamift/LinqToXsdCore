@@ -39,16 +39,37 @@ namespace Xml.Schema.Linq
             var outputWasGiven = possibleOutputFile.IsNotEmpty();
 
             if (foldersWereGiven) {
-                if (schemaReaders.Any()) progress?.Report($"Generating {schemaReaders.Count} configuration files...");
+                if (schemaReaders.Any()) progress?.Report($"Generating for {schemaReaders.Count} schema files...");
+
+                var schemaConfigs = new List<Configuration>();
                 foreach (var xsdKvp in schemaReaders) {
                     var schemaDoc = XDocument.Load(xsdKvp.Value);
                     var config = Configuration.LoadForSchema(schemaDoc);
 
-                    var outputConfig = xsdKvp.Key.AppendIfNotPresent(".config");
-                    progress?.Report($"Saving {outputConfig}");
-                    var withHelpfulComments = config.AddHelpfulComments();
-                    withHelpfulComments.Save(outputConfig);
+                    schemaConfigs.Add(config);
                 }
+
+                if (!outputWasGiven) {
+                    for (var i = 0; i < schemaReaders.Count; i++) {
+                        var xsdKvp = schemaReaders.ElementAt(i);
+                        var config = schemaConfigs.ElementAt(i);
+                        var outputConfig = xsdKvp.Key.AppendIfNotPresent(".config");
+                        progress?.Report($"Saving {outputConfig}");
+                        var withHelpfulComments = config.AddHelpfulComments();
+                        withHelpfulComments.Save(outputConfig);
+                    }
+                    return;
+                }
+
+                var mergedConfigOutput = schemaConfigs.Aggregate(egConfig,
+                    (theEgConfig, loadedConfig) => theEgConfig.MergeNamespaces(loadedConfig));
+
+                var defaultMergedOutputFilename = schemaReaders.Keys
+                                                               .ToDelimitedString(Path.GetFileNameWithoutExtension, '_')
+                                                               .AppendIfNotPresent(".config");
+
+                progress?.Report($"Saving to {defaultMergedOutputFilename}");
+                mergedConfigOutput.Save(possibleOutputFile.IsEmpty() ? defaultMergedOutputFilename : possibleOutputFile);
 
                 return;
             }
