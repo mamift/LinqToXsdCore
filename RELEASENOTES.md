@@ -1,5 +1,10 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.0.0.8
+Nuget packages: 
+* https://www.nuget.org/packages/LinqToXsdCore/3.0.0.8
+	* Implemented saving merged output from multiple XSD files when generating a config file (using 'config -e' switch) using a folder as a source.
+
 ## XObjectsCore 3.0.0.5 and LinqToXsdCore 3.0.0.7
 Nuget packages: 
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.5

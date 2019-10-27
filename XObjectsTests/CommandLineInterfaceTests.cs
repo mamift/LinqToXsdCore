@@ -63,6 +63,31 @@ namespace Xml.Schema.Linq.Tests
         }
 
         /// <summary>
+        /// Tests "linqtoxsd config -e '(folderpath)' -o '(mergedoutput.config)'".
+        /// </summary>
+        [Test]
+        public void TestGenerateConfigurationFilesFromFolderAndMergeOutput()
+        {
+            var configFiles = _copyOfSchemasFolder.GetFiles("*.config", SearchOption.AllDirectories);
+
+            Assert.IsFalse(configFiles.Any());
+
+            Assert.IsNotNull(_copyOfSchemasFolder);
+            Assert.IsTrue(_copyOfSchemasFolder.Exists);
+
+            var mergedConfigFilename = "merged.config";
+            var programResult = LinqToXsd.Program.Main(new[] {"config", _copyOfSchemasFolder.FullName, "-e", "-o", mergedConfigFilename});
+            Assert.IsTrue(programResult == 0);
+
+            configFiles = new DirectoryInfo(Environment.CurrentDirectory)
+                .GetFiles("*.config", SearchOption.AllDirectories);
+
+            Assert.IsTrue(configFiles.Any());
+            Assert.IsTrue(configFiles.Length > 1);
+            Assert.IsTrue(configFiles.Any(c => c.Name == mergedConfigFilename));
+        }
+
+        /// <summary>
         /// Tests "linqtoxsd gen '(file)' -a"
         /// </summary>
         [Test]
