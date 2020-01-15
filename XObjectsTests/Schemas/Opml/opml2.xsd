@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    <xs:annotation>
+        <xs:documentation>
+            This is the XML-Schema for the OPML 2.0 specification that is used
+            when validating opml documents that does not declare a namespace. A
+            copy of this schema that declares opml with namespace can be found
+            in the file opml-2.0-ns.xsd
+        </xs:documentation>
+    </xs:annotation>
+    
+    <xs:element name="opml" type="OPML"/>
+    
+    <xs:complexType name="OPML">
+        <xs:sequence>
+            <xs:element name="head" type="Head" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="body" type="Body" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="version" type="Version" use="required"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Body">
+        <xs:sequence>
+            <xs:element name="outline" type="Outline" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Head">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dateCreated" type="RFC822Date" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dateModified" type="RFC822Date" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ownerName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ownerEmail" type="EmailAddress" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ownerId" type="xs:anyURI" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="docs" type="xs:anyURI" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="expansionState" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="vertScrollState" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="windowTop" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="windowLeft" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="windowBottom" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="windowRight" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Outline">
+        <xs:sequence>
+            <xs:element name="outline" type="Outline" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="text" type="xs:string" use="required"/>
+        <xs:attribute name="isComment" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="isBreakpoint" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="created" type="RFC822Date" use="optional"/>
+        <xs:attribute name="category" type="xs:string" use="optional"/>
+        <xs:attribute name="description" type="xs:string" use="optional"/>
+        <xs:attribute name="url" type="xs:anyURI" use="optional"/>
+        <xs:attribute name="htmlUrl" type="xs:anyURI" use="optional"/>
+        <xs:attribute name="xmlUrl" type="xs:anyURI" use="optional"/>
+        <xs:attribute name="title" type="xs:string" use="optional"/>
+        <xs:attribute name="version" type="xs:string" use="optional"/>
+        <xs:attribute name="language" type="Language" use="optional"/>
+        <xs:attribute name="type" type="xs:string" use="optional"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="RFC822Date">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="((Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s*)?\d\d?\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d\d(\d\d)?\s+\d\d:\d\d(:\d\d)?\s+([+\-]?\d\d\d\d|[A-Z]{2,3})"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="EmailAddress">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z0-9_\-][a-zA-Z0-9_.\-]*@[a-zA-Z0-9_\-][a-zA-Z0-9_.\-]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Language">
+        <xs:union memberTypes="xs:language Unknown"/>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Unknown">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Version">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1.0"/>
+            <xs:enumeration value="2.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="opml">
+      <optional>
+        <attribute name="transformation" ns="http://www.w3.org/2003/g/data-view#">
+          <text />
+        </attribute>
+      </optional>
+      <choice>
+        <group>
+          <attribute name="version">
+			<choice>
+            	<value type="string">1.0</value>
+            	<value type="string">1.1</value>
+			</choice>
+          </attribute>
+          <ref name="head"/>
+          <element name="body">
+            <ref name="onode1"/>
+          </element>
+        </group>
+        <group>
+          <attribute name="version">
+            <value type="string">2.0</value>
+          </attribute>
+          <ref name="head"/>
+          <element name="body">
+            <oneOrMore>
+              <ref name="onode2"/>
+            </oneOrMore>
+          </element>
+        </group>
+      </choice>
+    </element>
+  </start>
+  <define name="head">
+    <element name="head">
+      <interleave>
+        <optional>
+          <element name="title">
+            <a:documentation xml:lang="en">The title of the document.</a:documentation>
+            <data type="string"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="dateCreated">
+            <a:documentation xml:lang="en">A date-time, indicating when the document was created.</a:documentation>
+            <ref name="rfc_822_opml_rx" />
+          </element>
+        </optional>
+        <optional>
+          <element name="dateModified">
+            <a:documentation xml:lang="en">A date-time, indicating when the document was last modified.</a:documentation>
+            <ref name="rfc_822_opml_rx" />
+          </element>
+        </optional>
+        <optional>
+          <element name="ownerName">
+            <a:documentation xml:lang="en">The owner of the document.</a:documentation>
+            <data type="string" />
+          </element>
+        </optional>
+        <optional>
+          <element name="ownerEmail">
+            <a:documentation xml:lang="en">The email address of the owner of the document.</a:documentation>
+            <data type="string" />
+          </element>
+        </optional>
+        <optional>
+          <element name="ownerId">
+            <a:documentation xml:lang="en">The HTTP address of a web page that contains a form that allows a human reader to communicate with the author of the document via email or other means. The linked page may contain link elements pointing to other documents containing information about the owner.</a:documentation>
+            <data type="anyURI" />
+          </element>
+        </optional>
+        <optional>
+          <element name="docs">
+            <a:documentation xml:lang="en">The HTTP address of documentation for the format used in the OPML file. It's probably a pointer to this page for people who might stumble across the file on a web server 25 years from now and wonder what it is.</a:documentation>
+            <data type="anyURI" />
+          </element>
+        </optional>
+        <optional>
+          <element name="expansionState">
+            <a:documentation xml:lang="en">A comma-separated list of line numbers that are expanded. The line numbers in the list tell you which headlines to expand. The order is important. For each element in the list, X, starting at the first summit, navigate flatdown X times and expand. Repeat for each element in the list.</a:documentation>
+            <choice>
+              <ref name="commasep" />
+              <empty />
+            </choice>
+          </element>
+        </optional>
+        <optional>
+          <element name="vertScrollState">
+            <a:documentation xml:lang="en">A number, saying which line of the outline is displayed on the top line of the window. This number is calculated with the expansion state already applied.</a:documentation>
+            <data type="int" />
+          </element>
+        </optional>
+        <optional>
+          <element name="windowTop">
+            <a:documentation xml:lang="en">The pixel location of the top edge of the window.</a:documentation>
+            <data type="int" />
+          </element>
+        </optional>
+        <optional>
+          <element name="windowBottom">
+            <a:documentation xml:lang="en">The pixel location of the bottom edge of the window.</a:documentation>
+            <data type="int" />
+          </element>
+        </optional>
+        <optional>
+          <element name="windowLeft">
+            <a:documentation xml:lang="en">The pixel location of the left edge of the window.</a:documentation>
+            <data type="int" />
+          </element>
+        </optional>
+        <optional>
+          <element name="windowRight">
+            <a:documentation xml:lang="en">The pixel location of the right edge of the window.</a:documentation>
+            <data type="int" />
+          </element>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="sharedatts">
+    <attribute name="text">
+      <a:documentation xml:lang="en">Every outline element must have at least a text attribute, which is what is displayed when an outliner opens the OPML file</a:documentation>
+      <data type="string"/>
+    </attribute>
+    <optional>
+      <attribute name="isComment">
+        <a:documentation xml:lang="en">Indicates whether the outline is commented or not. By convention if an outline is commented, all subordinate outlines are considered to also be commented. If it's not present, the value is false.</a:documentation>
+        <choice>
+          <value type="string">true</value>
+          <value type="string">false</value>
+        </choice>
+      </attribute>      
+    </optional>
+    <optional>
+      <attribute name="isBreakpoint">
+        <a:documentation xml:lang="en">Indicates whether a breakpoint is set on this outline. This attribute is mainly necessary for outlines used to edit scripts. If it's not present, the value is false.</a:documentation>
+        <choice>
+          <value type="string">true</value>
+          <value type="string">false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="category">
+        <a:documentation xml:lang="en">A string of comma-separated slash-delimited category strings, in the format defined by the RSS 2.0 category element. To represent a "tag," the category string should contain no slashes.</a:documentation>
+<!--        <value type="string" /> -->
+		<text />
+      </attribute>      
+    </optional>
+    <optional>
+      <attribute name="created">
+        <a:documentation xml:lang="en">The date and time that the outline node was created. Follows RFC 822 (eg. "Sat, 09 Apr 2007 14:57:36 GMT").</a:documentation>
+        <ref name="rfc_822_opml_rx" />
+      </attribute>
+    </optional>
+  </define>
+  <define name="onode1">
+      <element name="outline">
+        <interleave>
+          <ref name="sharedatts" />
+          <choice>
+            <ref name="weblink"/>
+            <ref name="rsslink"/>
+            <ref name="song" />
+            <zeroOrMore>
+              <ref name="onode1"/>
+            </zeroOrMore>
+          </choice>          
+        </interleave>
+      </element>
+  </define>
+  <define name="onode2">
+    <element name="outline">
+      <interleave>
+        <ref name="sharedatts" />
+        <choice>
+          <ref name="weblink"/>
+          <ref name="rsslink"/>
+          <ref name="include"/>
+          <ref name="song" />
+          <zeroOrMore>
+            <ref name="onode2"/>
+          </zeroOrMore>
+        </choice>
+      </interleave>
+    </element>
+  </define>
+  <define name="weblink">
+    <attribute name="type">
+      <a:documentation xml:lang="en">A string which says how other attributes are to be interpreted. OPML can also be extended by the addition of new values for the type attribute.</a:documentation>      
+      <value type="string">link</value>
+    </attribute>
+    <attribute name="url">
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="rsslink">
+    <attribute name="type">
+      <a:documentation xml:lang="en">A string which says how other attributes are to be interpreted. OPML can also be extended by the addition of new values for the type attribute.</a:documentation>
+      <value type="string">rss</value>
+    </attribute>
+    <optional>
+      <attribute name="version">
+        <a:documentation xml:lang="en">Varies depending on the version of RSS that's being supplied.</a:documentation>
+        <choice>
+          <value type="string">RSS</value>
+          <value type="string">RSS2</value>
+          <value type="string">RSS1</value>
+          <value type="string">scriptingNews</value>
+          <value type="string">atom</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="language">
+        <a:documentation xml:lang="en">The value of the top-level language element from the feed.</a:documentation>
+        <data type="string" />
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="title">
+        <a:documentation xml:lang="en">Contains the top-level title element from the feed.</a:documentation>
+        <data type="string" />
+      </attribute>
+    </optional>
+    <attribute name="htmlUrl">
+      <a:documentation xml:lang="en">The top-level link element from the RSS feed.</a:documentation>
+      <data type="anyURI"/>
+    </attribute>
+    <optional>
+      <attribute name="xmlUrl">
+        <a:documentation xml:lang="en">The HTTP address of the RSS feed.</a:documentation>
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="include">
+    <attribute name="type">
+      <a:documentation xml:lang="en">A string which says how other attributes are to be interpreted. OPML can also be extended by the addition of new values for the type attribute.</a:documentation>
+      <value type="string">include</value>
+    </attribute>
+    <attribute name="url">
+      <data type="anyURI"/>
+    </attribute>
+  </define>
+  <define name="song">
+    <attribute name="type">
+      <a:documentation xml:lang="en">A string which says how other attributes are to be interpreted. OPML can also be extended by the addition of new values for the type attribute.</a:documentation>
+      <value type="string">song</value>
+    </attribute>
+      <optional>
+        <attribute name="f">
+          <a:documentation xml:lang="en">The file that contains the MP3 on the local hard drive.</a:documentation>
+          <data type="string" />
+        </attribute>      
+      </optional>
+      <optional>
+        <attribute name="ctPlays">
+          <a:documentation xml:lang="en">The number of times the song has been played.</a:documentation>
+          <data type="string" />
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="ctSeconds">
+          <a:documentation xml:lang="en">The duration of the song, defined by a heuristic that's pretty accurate. ;-></a:documentation>
+          <data type="duration" />
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="whenFirstPlayed">
+          <a:documentation xml:lang="en">The time/date the song was played for the first time.</a:documentation>
+          <ref name="rfc_822_opml_rx" />
+        </attribute>
+      </optional>
+    <optional>
+      <attribute name="whenLastPlayed">
+        <a:documentation xml:lang="en">The time/date that the song was played most recently.</a:documentation>
+        <ref name="rfc_822_opml_rx" />
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="whenLoaded">
+        <a:documentation xml:lang="en">The time/date that Radio UserLand discovered the file in your MP3 folder.</a:documentation>
+      </attribute>
+    </optional>
+  </define>
+  <define name="commasep">
+    <data type="string">
+      <param name="pattern">[\-+]?(\d+|\d+(\.\d+)?%)(,\s?(\d+|\d+(\.\d+)?%))*</param>
+    </data>
+  </define>
+  <define name="rfc_822_opml_rx">
+    <data type="string">
+      <param name="pattern">((Mon|Tue|Wed|Thu|Fri|Sat|Sun), )?(\d+) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{2,4}) (\d{2}):(\d{2})(:(\d{2})?) (\S{1,4}|(\+|\-)\d{4})</param>
+    </data>
+  </define>
+</grammar>
