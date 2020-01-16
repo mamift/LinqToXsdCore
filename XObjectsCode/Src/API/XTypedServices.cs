@@ -114,9 +114,8 @@ namespace Xml.Schema.Linq
                 throw new ArgumentNullException("typeManager");
             }
 
-            XTypedElement
-                xoSubType = GetAnnotation(t,
-                    xe); //Try getting back as the type first, optimized for the cases where xsi:type cannot appear
+            //Try getting back as the type first, optimized for the cases where xsi:type cannot appear
+            XTypedElement xoSubType = GetAnnotation(t, xe); 
             if (xoSubType == null)
             {
                 //Try xsi:type and lookup in the typeDictionary
@@ -146,7 +145,11 @@ namespace Xml.Schema.Linq
                     throw new InvalidOperationException("Cannot cast XElement to an abstract type");
                 }
 
-                ConstructorInfo constrInfo = clrType.GetConstructor(System.Type.EmptyTypes);
+                // get public or instance
+                ConstructorInfo constrInfo = clrType.GetConstructor(BindingFlags.Instance | 
+                                                                    BindingFlags.NonPublic | 
+                                                                    BindingFlags.ExactBinding, null, Type.EmptyTypes, null);
+
                 xoSubType = (XTypedElement) constrInfo.Invoke(null);
                 xoSubType.Untyped = xe;
                 xe.AddAnnotation(new XTypedElementAnnotation(xoSubType));

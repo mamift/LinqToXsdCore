@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using NUnit.Framework;
 
 namespace Xml.Schema.Linq.Tests
@@ -26,6 +27,18 @@ namespace Xml.Schema.Linq.Tests
             var comments = helpfulVersion.DescendantNodes().Where(d => d.NodeType == XmlNodeType.Comment);
 
             Assert.IsTrue(comments.Any());
+        }
+
+        [Test]
+        public void TestThatConfigHasDefaultNamespaceMappingForXsdWithNoTargetNamespace()
+        {
+            var rssSchema = XDocument.Load(@".\Schemas\Rss\rss-2_0.xsd");
+            var loaded = Configuration.LoadForSchema(rssSchema);
+
+            var namespaceEl = loaded.Namespaces.Namespace.First();
+
+            Assert.IsTrue(namespaceEl.Clr == "Default");
+            Assert.IsTrue(namespaceEl.Schema.OriginalString == "");
         }
     }
 }

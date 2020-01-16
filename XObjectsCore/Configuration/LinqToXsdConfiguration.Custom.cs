@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 // ReSharper disable once CheckNamespace
 namespace Xml.Schema.Linq
@@ -114,7 +115,18 @@ namespace Xml.Schema.Linq
                                   .Where(attr => attr.Name.LocalName == XName.Get("xs") &&
                                                  attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
 
-            var namespacesToRead = namespaceAttrs.Except(theXsdNamespace);
+            var namespacesToRead = namespaceAttrs.Except(theXsdNamespace).ToList();
+            // an empty list means the schema has no default target namespace. we'll add a default mapping anyway
+            if (!namespacesToRead.Any()) {
+                var defaultNamespace = new Namespace {
+                    DefaultVisibility = GeneratedTypesVisibility.Public.ToKeyword(), 
+                    Clr = "Default"
+                };
+                var defaultNamespaceEl = (XElement)defaultNamespace;
+                defaultNamespaceEl.SetAttributeValue(XName.Get(nameof(Namespace.Schema)), string.Empty);
+                egConfig.Namespaces.Namespace.Add(defaultNamespace);
+            }
+
             foreach (var udn in namespacesToRead.Distinct(new XAttributeValueEqualityComparer())) {
                 var uriToClrNamespaceValue =
                     Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');

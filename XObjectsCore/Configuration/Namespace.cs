@@ -1,4 +1,5 @@
 ﻿using System;
+using Xml.Schema.Linq.Extensions;
 using XObjects;
 
 namespace Xml.Schema.Linq
@@ -16,7 +17,7 @@ namespace Xml.Schema.Linq
         {
             return new Namespace {
                 DefaultVisibility = visibility.ToKeyword(),
-                Schema = new Uri(schemaUri),
+                Schema = schemaUri.IsEmpty() ? null : new Uri(schemaUri),
                 Clr = clrNamespace
             };
         }

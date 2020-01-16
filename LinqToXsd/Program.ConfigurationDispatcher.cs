@@ -50,8 +50,10 @@ namespace LinqToXsd
                     var folders = configOpts.FilesOrFolders.Where(Directory.Exists).Distinct().ToList();
                     
                     var folderString = folders.ToDelimitedString("\n \t", delimitAfterLast: true);
-                    PrintLn("Looking under: ".Green());
-                    PrintLn($"\t{folderString}".White());
+                    if (folderString.IsNotEmpty()) {
+                        PrintLn("Looking under: ".Green());
+                        PrintLn($"\t{folderString}".White());
+                    }
                 }
 
                 ConfigurationProvider.GenerateConfigurationFiles(

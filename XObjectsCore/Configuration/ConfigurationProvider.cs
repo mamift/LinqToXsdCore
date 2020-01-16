@@ -35,7 +35,7 @@ namespace Xml.Schema.Linq
         public static void GenerateConfigurationFiles(string possibleOutputFile, string[] inputFiles, bool foldersWereGiven,
             Dictionary<string, XmlReader> schemaReaders, IProgress<string> progress = null)
         {
-            var egConfig = Configuration.GetExampleConfigurationInstance();
+            var egConfig = Configuration.GetBlankConfigurationInstance();
             var outputWasGiven = possibleOutputFile.IsNotEmpty();
 
             if (foldersWereGiven) {
