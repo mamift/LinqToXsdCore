@@ -1,5 +1,12 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.0.0.9 and XObjectsCore 3.0.0.6
+Nuget packages: 
+* https://www.nuget.org/packages/XObjectsCore/3.0.0.6
+	* Fixed an issue when performing an explicit type conversion from XElement to its XTyped-equivalent when the XTyped-equivalent type was an internal class.
+* https://www.nuget.org/packages/LinqToXsdCore/3.0.0.9
+	* Generating a new config file no longers includes the Xml.Schema.Linq schema namespace mapping. Also generating a new config file will generate a default namespace mapping when the XSD does not target a namespace. 
+
 ## LinqToXsdCore 3.0.0.8
 Nuget packages: 
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.8
