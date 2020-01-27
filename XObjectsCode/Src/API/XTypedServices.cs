@@ -146,9 +146,11 @@ namespace Xml.Schema.Linq
                 }
 
                 // get public or instance
-                ConstructorInfo constrInfo = clrType.GetConstructor(BindingFlags.Instance | 
-                                                                    BindingFlags.NonPublic | 
-                                                                    BindingFlags.ExactBinding, null, Type.EmptyTypes, null);
+                var exactBinding = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+                ConstructorInfo constrInfo = clrType.GetConstructor(exactBinding, null, Type.EmptyTypes, null);
+                if (constrInfo == null) {
+                    throw new TypeAccessException($"There is no public/internal parameter-less constructor for type:  {clrType.FullName}");
+                }
 
                 xoSubType = (XTypedElement) constrInfo.Invoke(null);
                 xoSubType.Untyped = xe;
