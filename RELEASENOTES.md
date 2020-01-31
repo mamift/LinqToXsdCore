@@ -1,5 +1,10 @@
 # LinqToXsdCore Release Notes
 
+## XObjectsCore 3.0.0.7
+Nuget packages: 
+* https://www.nuget.org/packages/XObjectsCore/3.0.0.7
+	* Fixed a regression bug with previous release.
+
 ## LinqToXsdCore 3.0.0.9 and XObjectsCore 3.0.0.6
 Nuget packages: 
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.6
