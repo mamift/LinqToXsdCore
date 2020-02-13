@@ -512,6 +512,11 @@ namespace Xml.Schema.Linq
 
         internal static T ParseValue<T>(string value, XElement element, XmlSchemaDatatype datatype)
         {
+            if (datatype.TypeCode == XmlTypeCode.AnyAtomicType && value is T)
+            {
+                return (T) (value as object);
+            }
+
             if (datatype.TypeCode == XmlTypeCode.QName || datatype.TypeCode == XmlTypeCode.NCName)
             {
                 return (T) datatype.ParseValue(value, NameTable, new XNamespaceResolver(element));
