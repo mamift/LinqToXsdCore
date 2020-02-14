@@ -1,5 +1,12 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.0.0.10 and XObjectsCore 3.0.0.8
+Nuget packages: 
+* https://www.nuget.org/packages/XObjectsCore/3.0.0.8
+* https://www.nuget.org/packages/LinqToXsdCore/3.0.0.9
+
+Modified the behaviour of retrieving the value of an attribute, when the schema type is anyAtomicType (which is the default for attributes when no type is given). The value literal is now returned as a string (pre-existing behaviour would throw an exception saying that anyAtomicType is not a supported conversion to the CLR type 'string').
+
 ## XObjectsCore 3.0.0.7
 Nuget packages: 
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.7
