@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XObjectsSimpleType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XSimpleList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedElementAnnotation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedElementEqualityComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedElementWrapperAnnotation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\API\XTypedServices.cs" />

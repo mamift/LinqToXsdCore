@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## XObjectsCore 3.0.0.9
+Nuget packages: 
+* https://www.nuget.org/packages/XObjectsCore/3.0.0.9
+
+Added `XTypedElementEqualityComparer` and `XTypedElementDeepEqualityComparer` classes that implement `IEqualityComparer{T}` for the `XTypedElement` class.
+
 ## LinqToXsdCore 3.0.0.10 and XObjectsCore 3.0.0.8
 Nuget packages: 
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.8
