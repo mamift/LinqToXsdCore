@@ -644,9 +644,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
 
                 refTypeName = clrTypeName;
-                if (typeNs != string.Empty && typeNs != parentTypeClrNs)
+                if (typeNs != string.Empty /*&& typeNs != parentTypeClrNs*/)
                 {
-                    //Namespace of the property's type is different than the namespace of the enclosing CLR Type
+                    //Keep the full type name to avoid conflicts when we have types with the same name in different namespaces.
                     clrTypeName = typeNs + "." + clrTypeName;
                 }
             }
