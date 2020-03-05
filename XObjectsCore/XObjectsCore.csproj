@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
-    <Version>3.0.0.9</Version>
+    <Version>3.0.0.10</Version>
     <Company>Microsoft Corporation</Company>
     <Authors>https://github.com/mamift</Authors>
     <PackageLicense>https://licenses.nuget.org/MS-PL</PackageLicense>

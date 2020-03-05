@@ -1,5 +1,12 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.0.0.11 and XObjectsCore 3.0.0.10
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.0.0.11
+* https://www.nuget.org/packages/XObjectsCore/3.0.0.10
+	* Avoid type name conflicts in generated code. 
+	* Do not prefix an identifier with the '@' character when not needed.
+
 ## XObjectsCore 3.0.0.9
 Nuget packages: 
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.9
@@ -9,7 +16,7 @@ Added `XTypedElementEqualityComparer` and `XTypedElementDeepEqualityComparer` cl
 ## LinqToXsdCore 3.0.0.10 and XObjectsCore 3.0.0.8
 Nuget packages: 
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.8
-* https://www.nuget.org/packages/LinqToXsdCore/3.0.0.9
+* https://www.nuget.org/packages/LinqToXsdCore/3.0.0.10
 
 Modified the behaviour of retrieving the value of an attribute, when the schema type is anyAtomicType (which is the default for attributes when no type is given). The value literal is now returned as a string (pre-existing behaviour would throw an exception saying that anyAtomicType is not a supported conversion to the CLR type 'string').
 

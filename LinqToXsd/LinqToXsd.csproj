@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <StartupObject>LinqToXsd.Program</StartupObject>
-    <Version>3.0.0.10</Version>
+    <Version>3.0.0.11</Version>
     <Description>A command line tool that facilitates generating code from an XSD; also generates configuration files to control code generation. Do not include this nuget package as a dependency in shipping applications or libraries; use the code it generates in a shipping library or app and include a dependency on the XObjectsCore nuget package. Can be installed via 'dotnet tool install LinqToXsdCore --global', and then invoked via 'linqtoxsd'. Original Authors: Microsoft Corporation.</Description>
     <Authors>https://github.com/mamift</Authors>
     <Company>Microsoft Corporation</Company>
