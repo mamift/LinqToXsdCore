@@ -76,7 +76,7 @@ namespace Xml.Schema.Linq
             if (xoSubType == null)
             {
                 //No association bet XTypedElement and xelement
-                xoSubType = Activator.CreateInstance<T>();
+                xoSubType = (T)Activator.CreateInstance(typeof(T), nonPublic: true);
                 if (TypeValid(xoSubType, xe.Name))
                 {
                     xoSubType.Untyped = xe;
