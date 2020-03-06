@@ -592,9 +592,10 @@ namespace Xml.Schema.Linq
                 Debug.Assert(qName != null);
                 stringValue = XTypedServices.QNameToString(qName, element);
             }
-            else
-            {
-                stringValue = (string) datatype.ChangeType(value, XTypedServices.typeOfString);
+            else {
+                // just return the string when the value is a string type and the XmlType is AnyAtomicType
+                if (datatype.TypeCode == XmlTypeCode.AnyAtomicType && value is string str) stringValue = str;
+                else stringValue = (string) datatype.ChangeType(value, XTypedServices.typeOfString);
             }
 
             return stringValue;
