@@ -80,6 +80,10 @@ namespace Xml.Schema.Linq.CodeGen
                     ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
                     if (stInfo != null)
                     {
+                        if (stInfo is EnumSimpleTypeInfo enumTypeInfo)
+                        {
+                            codeNamespace.Types.Add(TypeBuilder.CreateEnumType(enumTypeInfo, settings));
+                        }
                         codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     }
                     else
@@ -559,6 +563,7 @@ namespace Xml.Schema.Linq.CodeGen
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.IO"));
+            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Linq"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Diagnostics"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Schema"));

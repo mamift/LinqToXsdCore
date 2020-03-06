@@ -54,6 +54,7 @@ namespace Xml.Schema.Linq.CodeGen
         public const string XmlTypeCode = "XmlTypeCode";
         public const string Any = "Any";
         public const string LinqToXsdException = "LinqToXsdException";
+        public const string EnumValidator = "Validator";
 
         //Field, Property names
         public const string GlobalTypeDictionary = "GlobalTypeDictionary";

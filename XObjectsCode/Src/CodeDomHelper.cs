@@ -307,6 +307,16 @@ namespace Xml.Schema.Linq.CodeGen
                 new CodeMethodReferenceExpression(targetOBject, methodName, typeParam1),
                 parameters);
         }
+        public static CodeExpression CreateParseEnumCall(string enumType, CodeExpression value)
+        {
+            var enumTypeRef = new CodeTypeReference(enumType);
+            var callExp = new CodeMethodInvokeExpression(
+                new CodeTypeReferenceExpression("Enum"),
+                "Parse",
+                new CodeTypeOfExpression(enumTypeRef),
+                value);
+            return new CodeCastExpression(enumTypeRef, callExp);
+        }
 
         public static CodeMemberField CreateDictionaryField(string dictionaryName, string keyType, string valueType, 
             MemberAttributes attributes)

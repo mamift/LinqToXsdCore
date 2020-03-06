@@ -4,6 +4,7 @@ using System;
 using System.Xml;
 using System.Xml.Schema;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -131,6 +132,24 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        public static bool IsEnum(this XmlSchemaSimpleType type)
+        {
+            switch (type.Datatype.Variety)
+            {
+                case XmlSchemaDatatypeVariety.Atomic:
+                    return type.Content is XmlSchemaSimpleTypeRestriction simpleTypeRestriction
+                        && simpleTypeRestriction.Facets
+                            .Cast<object>()
+                            .All(facet => facet is XmlSchemaEnumerationFacet);
+                case XmlSchemaDatatypeVariety.List:
+                    return type.GetListItemType().IsEnum();
+                case XmlSchemaDatatypeVariety.Union:
+                    return false;
+
+                default:
+                    throw new InvalidOperationException("Unknown type variety");
+            }
+        }
         public static XmlSchemaWhiteSpace GetBuiltInWSFacet(this XmlSchemaDatatype dt)
         {
             if (dt.TypeCode == XmlTypeCode.NormalizedString)

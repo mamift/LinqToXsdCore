@@ -79,7 +79,14 @@ namespace Xml.Schema.Linq.CodeGen
             switch (type.Datatype.Variety)
             {
                 case XmlSchemaDatatypeVariety.Atomic:
-                    typeInfo = new AtomicSimpleTypeInfo(type);
+                    if (type is XmlSchemaSimpleType simpleType && simpleType.IsEnum())
+                    {
+                        typeInfo = new EnumSimpleTypeInfo(simpleType);
+                    }
+                    else
+                    {
+                        typeInfo = new AtomicSimpleTypeInfo(type);
+                    }
                     break;
                 case XmlSchemaDatatypeVariety.List:
                     typeInfo = new ListSimpleTypeInfo(type);
@@ -119,6 +126,14 @@ namespace Xml.Schema.Linq.CodeGen
     internal class AtomicSimpleTypeInfo : ClrSimpleTypeInfo
     {
         internal AtomicSimpleTypeInfo(XmlSchemaType innerType)
+            : base(innerType)
+        {
+        }
+    }
+
+    internal class EnumSimpleTypeInfo : ClrSimpleTypeInfo
+    {
+        internal EnumSimpleTypeInfo(XmlSchemaSimpleType innerType)
             : base(innerType)
         {
         }

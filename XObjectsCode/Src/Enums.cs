@@ -125,8 +125,9 @@ namespace Xml.Schema.Linq.CodeGen
         IsAnyType = 0x08,
         IsElementRef = 0x10,
         IsUnion = 0x20,
-        IsSchemaList = 0x40,
-        Validate = 0x80,
+        IsEnum = 0x40,
+        IsSchemaList = 0x80,
+        Validate = 0x100,
     }
 
     [Flags]

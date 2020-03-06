@@ -1,6 +1,7 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Collections.Generic;
@@ -454,6 +455,11 @@ namespace Xml.Schema.Linq.CodeGen
                     typeRefFlags |= ClrTypeRefFlags.Validate;
                 }
 
+                if (st.IsEnum())
+                {
+                    typeRefFlags |= ClrTypeRefFlags.IsEnum;
+                }
+
                 XmlSchemaDatatype datatype = st.Datatype;
                 if (setVariety)
                 {
@@ -575,6 +581,11 @@ namespace Xml.Schema.Linq.CodeGen
             get { return (typeRefFlags & ClrTypeRefFlags.IsUnion) != 0; }
         }
 
+        internal bool IsEnum
+        {
+            get { return (typeRefFlags & ClrTypeRefFlags.IsEnum) != 0; }
+        }
+
         internal bool IsAnyType
         {
             get { return (typeRefFlags & ClrTypeRefFlags.IsAnyType) != 0; }
@@ -615,6 +626,11 @@ namespace Xml.Schema.Linq.CodeGen
             else
             {
                 clrTypeName = typeName;
+            }
+
+            if (IsEnum)
+            {
+                clrTypeName += Constants.EnumValidator;
             }
 
             if (typeNs != string.Empty && !IsLocalType)
