@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Linq;
+using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
 {
@@ -41,5 +43,29 @@ namespace LinqToXsd
 
         public static bool HasFilePaths(IEnumerable<string> sequenceOfFileAndOrFolderPaths) =>
             sequenceOfFileAndOrFolderPaths.Any(File.Exists);
+
+        /// <summary>
+        /// THe next logical step after <see cref="ResolveFileAndFolderPathsToJustFiles"/>, takes those resolved file paths
+        /// and then narrows down the list to a list of file paths that refer to schemas that LinqToXsd can processes.
+        /// <para>Filters out schemas that are themselves included or imported (invokes
+        /// <see cref="XDocumentExtensions.FilterOutSchemasThatAreIncludedOrImported"/>).</para>
+        /// </summary>
+        /// <param name="filesOrFolders"></param>
+        /// <returns></returns>
+        public static List<string> ResolvePossibleFileAndFolderPathsToProcessableSchemas(IEnumerable<string> filesOrFolders)
+        {
+            var files = ResolveFileAndFolderPathsToJustFiles(filesOrFolders, "*.xsd");
+
+            // convert files to XDocuments and check if they are proper W3C schemas
+            var pairs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)));
+            var xDocs = pairs.Where(kvp => kvp.Value.IsAnXmlSchema())
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key);
+
+            var resolvedSchemaFiles = files.Except(filteredIncludeAndImportRefs).Distinct().ToList();
+
+            return resolvedSchemaFiles;
+        }
     }
 }

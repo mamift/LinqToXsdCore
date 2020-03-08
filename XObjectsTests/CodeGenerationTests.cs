@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Resolvers;
+using LinqToXsd;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -79,7 +80,7 @@ namespace Xml.Schema.Linq.Tests
             var voidTypeOfExpressions = typeOfExpressions.Except(nonVoidTypeOfExpressions).ToArray();
 
             Assert.IsNotEmpty(nonVoidTypeOfExpressions);
-            Assert.IsTrue(nonVoidTypeOfExpressions.Length == 2);
+            Assert.IsTrue(nonVoidTypeOfExpressions.Length == 4);
 
             // if this is not empty, then you have a problem...
             Assert.IsEmpty(voidTypeOfExpressions);
@@ -89,12 +90,19 @@ namespace Xml.Schema.Linq.Tests
         public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
         {
             var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Schemas"));
-            var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories);
+            var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
+                // this will have typeof(void) expressions due to other bugs
+                .Where(f => !f.FullName.Contains("Microsoft.Build.")) 
+                .Select(f => f.FullName).ToArray();
 
-            foreach (var xsd in allXsds) {
+            var allProcessableXsds = FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(allXsds)
+                .Select(fp => new FileInfo(fp));
+
+            foreach (var xsd in allProcessableXsds) {
                 var generatedCodeTree = Utilities.GenerateSyntaxTree(xsd);
 
                 var root = generatedCodeTree.GetRoot();
+
                 var allDescendents = root.DescendantNodes().SelectMany(d => d.DescendantNodes());
                 var allStatements = allDescendents.OfType<StatementSyntax>();
                 var allExpressions = allStatements.SelectMany(s => s.DescendantNodes()).OfType<ExpressionSyntax>();
@@ -107,7 +115,6 @@ namespace Xml.Schema.Linq.Tests
                 var voidTypeOfExpressions = typeOfExpressions.Where(toe => toe.IsEquivalentTo(typeOfVoid)).ToArray();
 
                 Assert.IsNotEmpty(nonVoidTypeOfExpressions);
-                if (xsd.Name == "Microsoft.Build.xsd") continue; // this will have typeof(void) expressions due to other bugs
                 Assert.IsEmpty(voidTypeOfExpressions);
             }
         }
