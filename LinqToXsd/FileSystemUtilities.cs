@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
@@ -61,9 +62,17 @@ namespace LinqToXsd
             var xDocs = pairs.Where(kvp => kvp.Value.IsAnXmlSchema())
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-            var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key);
-
+            var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key).ToList();
+            
             var resolvedSchemaFiles = files.Except(filteredIncludeAndImportRefs).Distinct().ToList();
+
+
+            if (filteredIncludeAndImportRefs.Count == files.Count && !resolvedSchemaFiles.Any()) {
+                throw new LinqToXsdException("Cannot decide which XSD files to process as the specified " +
+                                             "XSD files or folder of XSD files recursively import and/or " +
+                                             "include each other! In this case you must explicitly provide" +
+                                             "a file path and not a folder path.");
+            }
 
             return resolvedSchemaFiles;
         }
