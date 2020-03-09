@@ -70,7 +70,11 @@ namespace Xml.Schema.Linq.Tests
                 xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}"), File.OpenRead(xsd.FullName));
             }
 
-            var atomXsdSchemaSet = XmlReader.Create(xsdFile.FullName)
+            var xmlReaderSettings = new XmlReaderSettings() {
+                DtdProcessing = DtdProcessing.Ignore,
+                CloseInput = true
+            };
+            var atomXsdSchemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
                                             .ToXmlSchemaSet(xmlPreloadedResolver);
 
             var sourceText = GenerateSourceText(atomXsdSchemaSet, xsdFile.FullName);

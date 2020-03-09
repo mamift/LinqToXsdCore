@@ -43,10 +43,11 @@ namespace Xml.Schema.Linq.Tests
 
         /// <summary>
         /// Tests the the BuildWrapperDictionary() method of the LinqToXsdTypeManager class that's
-        /// generated does not contain <c>typeof(void)</c> expressions.
+        /// generated does not contain <c>typeof(void)</c> expressions, which are meaningless and break
+        /// typed XElement conversion.
         /// </summary>
         [Test]
-        public void NoVoidTypeOfExpressionsInXsdLinqToXsdTypeManagerBuildWrapperDictionaryMethodTest1()
+        public void AtomNoVoidTypeOfExpressionsInLinqToXsdTypeManagerBuildWrapperDictionaryMethodTest()
         {
             const string atomDir = @"Schemas\Atom";
             var atomXsdFolder = Path.Combine(Environment.CurrentDirectory, atomDir);
@@ -86,12 +87,16 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsEmpty(voidTypeOfExpressions);
         }
 
+        /// <summary>
+        /// There shouldn't be <c>typeof(void)</c> expressions in any generated code.
+        /// <para>See commit bc75ea0 which introduced this incorrect behaviour.</para>
+        /// </summary>
         [Test]
         public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
         {
             var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Schemas"));
             var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
-                // this will have typeof(void) expressions due to other bugs
+                // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
                 .Where(f => !f.FullName.Contains("Microsoft.Build.")) 
                 .Select(f => f.FullName).ToArray();
 
@@ -106,7 +111,7 @@ namespace Xml.Schema.Linq.Tests
                 var allDescendents = root.DescendantNodes().SelectMany(d => d.DescendantNodes());
                 var allStatements = allDescendents.OfType<StatementSyntax>();
                 var allExpressions = allStatements.SelectMany(s => s.DescendantNodes()).OfType<ExpressionSyntax>();
-                var typeOfExpressions = allExpressions.OfType<TypeOfExpressionSyntax>().ToArray();
+                var typeOfExpressions = allExpressions.OfType<TypeOfExpressionSyntax>().Distinct().ToArray();
 
                 Assert.IsNotEmpty(typeOfExpressions);
 
