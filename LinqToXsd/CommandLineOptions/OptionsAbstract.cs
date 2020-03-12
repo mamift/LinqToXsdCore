@@ -67,16 +67,7 @@ namespace LinqToXsd
             {
                 if (resolvedSchemaFiles.Any()) return resolvedSchemaFiles;
 
-                var files = FileSystemUtilities.ResolveFileAndFolderPathsToJustFiles(FilesOrFolders, "*.xsd");
-
-                // convert files to XDocuments and check if they are proper W3C schemas
-                var pairs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)));
-                var xDocs = pairs.Where(kvp => kvp.Value.IsAnXmlSchema())
-                                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-                var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key);
-
-                resolvedSchemaFiles = files.Except(filteredIncludeAndImportRefs).Distinct().ToList();
+                resolvedSchemaFiles = FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(FilesOrFolders);
 
                 return resolvedSchemaFiles;
             }
