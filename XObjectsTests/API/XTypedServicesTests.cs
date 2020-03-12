@@ -2,6 +2,7 @@
 using System.Xml.Linq;
 using System.Xml.Schema;
 using NUnit.Framework;
+using W3C.XSD;
 
 namespace Xml.Schema.Linq.Tests.API
 {
@@ -16,6 +17,24 @@ namespace Xml.Schema.Linq.Tests.API
 
                 Assert.IsTrue(d.GetTypeCode() == TypeCode.String);
                 Assert.IsTrue(d == "abcdef");
+            });
+        }
+        
+        [Test]
+        public void TestAnyAtomicTypeConversionFromString()
+        {
+            Assert.DoesNotThrow(() => {
+                var ncName = new localSimpleType() {
+                    restriction = new restriction() {
+                        enumeration = {
+                            new enumeration(new noFixedFacet() { value = "default" }),
+                            new enumeration(new noFixedFacet() { value = "preserve" })
+                        }
+                    }
+                };
+
+                var str = XTypedServices.GetXmlString("default",
+                    XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType).Datatype, XElement.Parse("<element />"));
             });
         }
 

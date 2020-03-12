@@ -15,12 +15,11 @@ namespace Xml.Schema.Linq.CodeGen
     internal static class NameGenerator
     {
         static int uniqueIdCounter = 0;
-        static Hashtable keywords;
+        static HashSet<string> keywords;
 
         static NameGenerator()
         {
-            keywords = new Hashtable();
-            string[] keywordlist =
+            keywords = new HashSet<string>(StringComparer.Ordinal)
             {
                 "abstract", "event", "new", "struct", "as", "explicit", "null", "switch",
                 "base", "extern", "object", "this", "bool", "false", "operator", "throw",
@@ -33,11 +32,6 @@ namespace Xml.Schema.Linq.CodeGen
                 "do", "is", "sizeof", "while", "double", "lock", "stackalloc", "else", "long",
                 "static", "enum", "namespace", "string", "var"
             };
-
-            foreach (string k in keywordlist)
-            {
-                keywords.Add(k.ToUpper(CultureInfo.InvariantCulture), k);
-            }
         }
 
         public static int GetUniqueID()
@@ -131,7 +125,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         public static bool isKeyword(string identifier)
         {
-            return keywords.ContainsKey(identifier.ToUpper(CultureInfo.InvariantCulture));
+            return keywords.Contains(identifier);
         }
     }
 
@@ -144,7 +138,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         public override int GetHashCode()
         {
-            return identifierName.ToUpper(CultureInfo.InvariantCulture).GetHashCode();
+            return identifierName.GetHashCode();
         }
 
         public override bool Equals(object obj)

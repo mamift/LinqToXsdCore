@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A testing XSD to test out how LinqToXsd handles types, elements or attributes that conflict with C# language keywords -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:name-mangled-linqtoxsdcore-test"
+    xmlns="urn:name-mangled-linqtoxsdcore-test">
+    <xs:attributeGroup name="nameMangledAttrs">
+        <xs:attribute name="abstract"/>
+        <xs:attribute name="event"/>
+        <xs:attribute name="new"/>
+        <xs:attribute name="struct"/>
+        <xs:attribute name="as"/>
+        <xs:attribute name="explicit"/>
+        <xs:attribute name="null"/>
+        <xs:attribute name="switch"/>
+        <xs:attribute name="base"/>
+        <xs:attribute name="extern"/>
+        <xs:attribute name="object"/>
+        <xs:attribute name="this"/>
+        <xs:attribute name="bool"/>
+        <xs:attribute name="false"/>
+        <xs:attribute name="operator"/>
+        <xs:attribute name="throw"/>
+        <xs:attribute name="break"/>
+        <xs:attribute name="finally"/>
+        <xs:attribute name="out"/>
+        <xs:attribute name="true"/>
+        <xs:attribute name="byte"/>
+        <xs:attribute name="fixed"/>
+        <xs:attribute name="override"/>
+        <xs:attribute name="try"/>
+        <xs:attribute name="case"/>
+        <xs:attribute name="float"/>
+        <xs:attribute name="params"/>
+        <xs:attribute name="typeof"/>
+        <xs:attribute name="catch"/>
+        <xs:attribute name="for"/>
+        <xs:attribute name="private"/>
+        <xs:attribute name="uint"/>
+        <xs:attribute name="char"/>
+        <xs:attribute name="foreach"/>
+        <xs:attribute name="protected"/>
+        <xs:attribute name="ulong"/>
+        <xs:attribute name="checked"/>
+        <xs:attribute name="goto"/>
+        <xs:attribute name="public"/>
+        <xs:attribute name="unchecked"/>
+        <xs:attribute name="class"/>
+        <xs:attribute name="if"/>
+        <xs:attribute name="readonly"/>
+        <xs:attribute name="unsafe"/>
+        <xs:attribute name="const"/>
+        <xs:attribute name="implicit"/>
+        <xs:attribute name="ref"/>
+        <xs:attribute name="ushort"/>
+        <xs:attribute name="continue"/>
+        <xs:attribute name="in"/>
+        <xs:attribute name="return"/>
+        <xs:attribute name="using"/>
+        <xs:attribute name="decimal"/>
+        <xs:attribute name="int"/>
+        <xs:attribute name="sbyte"/>
+        <xs:attribute name="virtual"/>
+        <xs:attribute name="default"/>
+        <xs:attribute name="interface"/>
+        <xs:attribute name="sealed"/>
+        <xs:attribute name="volatile"/>
+        <xs:attribute name="delegate"/>
+        <xs:attribute name="internal"/>
+        <xs:attribute name="short"/>
+        <xs:attribute name="void"/>
+        <xs:attribute name="do"/>
+        <xs:attribute name="is"/>
+        <xs:attribute name="sizeof"/>
+        <xs:attribute name="while"/>
+        <xs:attribute name="double"/>
+        <xs:attribute name="lock"/>
+        <xs:attribute name="stackalloc"/>
+        <xs:attribute name="else"/>
+        <xs:attribute name="long"/>
+        <xs:attribute name="static"/>
+        <xs:attribute name="enum"/>
+        <xs:attribute name="namespace"/>
+        <xs:attribute name="string"/>
+        <xs:attribute name="var"/>
+    </xs:attributeGroup>
+    <xs:element name="abstract" type="abstract" />
+    <xs:complexType name="abstract">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="event" type="event" />
+    <xs:complexType name="event">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="new" type="new" />
+    <xs:complexType name="new">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="struct" type="struct" />
+    <xs:complexType name="struct">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="as" type="as" />
+    <xs:complexType name="as">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="explicit" type="explicit" />
+    <xs:complexType name="explicit">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="null" type="null" />
+    <xs:complexType name="null">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="switch" type="switch" />
+    <xs:complexType name="switch">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="base" type="base" />
+    <xs:complexType name="base">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="extern" type="extern" />
+    <xs:complexType name="extern">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="object" type="object" />
+    <xs:complexType name="object">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="this" type="this" />
+    <xs:complexType name="this">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="bool" type="bool" />
+    <xs:complexType name="bool">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="false" type="false" />
+    <xs:complexType name="false">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="operator" type="operator" />
+    <xs:complexType name="operator">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="throw" type="throw" />
+    <xs:complexType name="throw">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="break" type="break" />
+    <xs:complexType name="break">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="finally" type="finally" />
+    <xs:complexType name="finally">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="out" type="out" />
+    <xs:complexType name="out">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="true" type="true" />
+    <xs:complexType name="true">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="byte" type="byte" />
+    <xs:complexType name="byte">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="fixed" type="fixed" />
+    <xs:complexType name="fixed">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="override" type="override" />
+    <xs:complexType name="override">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="try" type="try" />
+    <xs:complexType name="try">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="case" type="case" />
+    <xs:complexType name="case">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="float" type="float" />
+    <xs:complexType name="float">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="params" type="params" />
+    <xs:complexType name="params">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="typeof" type="typeof" />
+    <xs:complexType name="typeof">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="catch" type="catch" />
+    <xs:complexType name="catch">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="for" type="for" />
+    <xs:complexType name="for">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="private" type="private" />
+    <xs:complexType name="private">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="uint" type="uint" />
+    <xs:complexType name="uint">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="char" type="char" />
+    <xs:complexType name="char">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="foreach" type="foreach" />
+    <xs:complexType name="foreach">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="protected" type="protected" />
+    <xs:complexType name="protected">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="ulong" type="ulong" />
+    <xs:complexType name="ulong">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="checked" type="checked" />
+    <xs:complexType name="checked">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="goto" type="goto" />
+    <xs:complexType name="goto">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="public" type="public" />
+    <xs:complexType name="public">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="unchecked" type="unchecked" />
+    <xs:complexType name="unchecked">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="class" type="class" />
+    <xs:complexType name="class">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="if" type="if" />
+    <xs:complexType name="if">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="readonly" type="readonly" />
+    <xs:complexType name="readonly">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="unsafe" type="unsafe" />
+    <xs:complexType name="unsafe">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="const" type="const" />
+    <xs:complexType name="const">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="implicit" type="implicit" />
+    <xs:complexType name="implicit">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="ref" type="ref" />
+    <xs:complexType name="ref">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="ushort" type="ushort" />
+    <xs:complexType name="ushort">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="continue" type="continue" />
+    <xs:complexType name="continue">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="in" type="in" />
+    <xs:complexType name="in">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="return" type="return" />
+    <xs:complexType name="return">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="using" type="using" />
+    <xs:complexType name="using">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="decimal" type="decimal" />
+    <xs:complexType name="decimal">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="int" type="int" />
+    <xs:complexType name="int">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="sbyte" type="sbyte" />
+    <xs:complexType name="sbyte">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="virtual" type="virtual" />
+    <xs:complexType name="virtual">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="default" type="default" />
+    <xs:complexType name="default">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="interface" type="interface" />
+    <xs:complexType name="interface">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="sealed" type="sealed" />
+    <xs:complexType name="sealed">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="volatile" type="volatile" />
+    <xs:complexType name="volatile">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="delegate" type="delegate" />
+    <xs:complexType name="delegate">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="internal" type="internal" />
+    <xs:complexType name="internal">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="short" type="short" />
+    <xs:complexType name="short">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="void" type="void" />
+    <xs:complexType name="void">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="do" type="do" />
+    <xs:complexType name="do">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="is" type="is" />
+    <xs:complexType name="is">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="sizeof" type="sizeof" />
+    <xs:complexType name="sizeof">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="while" type="while" />
+    <xs:complexType name="while">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="double" type="double" />
+    <xs:complexType name="double">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="lock" type="lock" />
+    <xs:complexType name="lock">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="stackalloc" type="stackalloc" />
+    <xs:complexType name="stackalloc">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="else" type="else" />
+    <xs:complexType name="else">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="long" type="long" />
+    <xs:complexType name="long">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="static" type="static" />
+    <xs:complexType name="static">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="enum" type="enum" />
+    <xs:complexType name="enum">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="namespace" type="namespace" />
+    <xs:complexType name="namespace">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="string" type="string" />
+    <xs:complexType name="string">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+    <xs:element name="var" type="var" />
+    <xs:complexType name="var">
+        <xs:attributeGroup ref="nameMangledAttrs"/>
+    </xs:complexType>
+</xs:schema>
