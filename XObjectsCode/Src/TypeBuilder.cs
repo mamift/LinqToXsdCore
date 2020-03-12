@@ -366,6 +366,7 @@ namespace Xml.Schema.Linq.CodeGen
             CodeTypeDeclaration simpleTypeDecl = new CodeTypeDeclaration(typeName);
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
+            //simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.NestedAssembly;
 
             //Add private constructor so it cannot be instantiated
             CodeConstructor privateConst = new CodeConstructor();
@@ -1138,11 +1139,9 @@ namespace Xml.Schema.Linq.CodeGen
             CodeStatementCollection wrapperDictionaryStatements)
         {
             base.AddTypeToTypeManager(elementDictionaryStatements, Constants.ElementDictionaryField);
-            string innerTypeFullName = null;
-            if (!innerTypeName.Contains(innerTypeNs))
-            {
-                innerTypeFullName = "global::" + innerTypeNs + "." + innerTypeName;
-            }
+            var innerTypeFullName = innerTypeName.Contains(innerTypeNs)
+                ? "global::" + innerTypeName
+                : "global::" + innerTypeNs + "." + innerTypeName;
 
             wrapperDictionaryStatements.Add(CodeDomHelper.CreateMethodCallFromField(Constants.WrapperDictionaryField,
                 "Add", CodeDomHelper.Typeof(clrTypeInfo.clrFullTypeName), CodeDomHelper.Typeof(innerTypeFullName)));
