@@ -367,6 +367,7 @@ namespace Xml.Schema.Linq.CodeGen
             var simpleTypeDecl = new CodeTypeDeclaration(typeName);
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
+            //simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.NestedAssembly;
 
             //Add private constructor so it cannot be instantiated
             var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
