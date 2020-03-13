@@ -1084,7 +1084,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (!IsRef && typeRef.IsSimpleType)
             {
                 //for referencing properties, directly create the object of referenced type
-                CodeTypeReference parseType = ReturnType;
+                CodeTypeReference parseType = DefaultValueType;
                 if (typeRef.IsValueType && IsNullable)
                 {
                     parseType = new CodeTypeReference(clrTypeName);
