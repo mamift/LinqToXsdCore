@@ -179,6 +179,14 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
+
+                    var typeRef = propertyInfo.TypeReference;
+                    if (typeRef.IsEnum && string.IsNullOrEmpty(typeRef.Name))
+                    {
+                        typeRef.Name = $"{propertyInfo.PropertyName}s";
+                        CreateNestedEnumType(typeRef);
+                    }
+
                     propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings);
                     typeBuilder.CreateAttributeProperty(child as ClrPropertyInfo, null);
                 }
@@ -197,6 +205,19 @@ namespace Xml.Schema.Linq.CodeGen
                     }
                 }
             }
+        }
+
+        private void CreateNestedEnumType(ClrTypeReference typeRef)
+        {
+            var innerType = typeRef.SchemaObject as XmlSchemaType;
+            Debug.Assert(innerType != null);
+            var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) { IsEnum = true };
+            enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.Public;
+            foreach (var facet in innerType.GetEnumFacets())
+            {
+                enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet));
+            }
+            typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
         }
 
         private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)

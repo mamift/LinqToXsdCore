@@ -395,12 +395,9 @@ namespace Xml.Schema.Linq.CodeGen
             var enumTypeDecl = new CodeTypeDeclaration(typeName) { IsEnum = true };
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
-            if (typeInfo.InnerType is XmlSchemaSimpleType innerType && innerType.Content is XmlSchemaSimpleTypeRestriction content)
+            foreach (var facet in typeInfo.InnerType.GetEnumFacets())
             {
-                foreach (var valueName in content.Facets.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value).Cast<string>())
-                {
-                    enumTypeDecl.Members.Add(new CodeMemberField(typeName, valueName));
-                }
+                enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet));
             }
 
             ApplyAnnotations(enumTypeDecl, typeInfo);

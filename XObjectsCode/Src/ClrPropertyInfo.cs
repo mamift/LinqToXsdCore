@@ -33,7 +33,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         protected bool hasSet;
         protected XCodeTypeReference returnType;
-        protected XCodeTypeReference returnEnumType;
+        protected XCodeTypeReference defaultValueType;
         protected bool isVirtual;
         protected bool isOverride;
 
@@ -45,6 +45,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.IsVirtual = false;
             this.isOverride = false;
             this.returnType = null;
+            this.defaultValueType = null;
             annotations = new List<ClrAnnotation>();
         }
 
@@ -114,10 +115,10 @@ namespace Xml.Schema.Linq.CodeGen
             set { returnType = value; }
         }
 
-        internal virtual XCodeTypeReference ReturnEnumType
+        internal virtual XCodeTypeReference DefaultValueType
         {
-            get { return returnEnumType; }
-            set { returnEnumType = value; }
+            get { return defaultValueType; }
+            set { defaultValueType = value; }
         }
 
         internal virtual string ClrTypeName
@@ -372,6 +373,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.schemaName = schemaName;
             this.hasSet = true;
             this.returnType = null;
+            this.defaultValueType = null;
             this.clrTypeName = null;
             this.occursInSchema = occursInSchema;
             if (this.occursInSchema > Occurs.ZeroOrOne)
@@ -587,22 +589,38 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (returnType == null)
                 {
-                    returnType = CreateReturnType(clrTypeName);
+                    if (IsEnum)
+                    {
+                        returnType = CreateReturnType(typeRef.Name);
+
+                    }
+                    else
+                    {
+                        returnType = CreateReturnType(clrTypeName);
+                    }
                 }
 
                 return returnType;
             }
         }
-        internal override XCodeTypeReference ReturnEnumType
+
+        internal override XCodeTypeReference DefaultValueType
         {
             get
             {
-                if (returnEnumType == null)
+                if (defaultValueType == null)
                 {
-                    returnEnumType = CreateReturnType(typeRef.Name);
-                }
+                    if (IsEnum)
+                    {
+                        defaultValueType = CreateReturnType(clrTypeName);
 
-                return returnEnumType;
+                    }
+                    else
+                    {
+                        defaultValueType = ReturnType;
+                    }
+                }
+                return defaultValueType;
             }
         }
 
@@ -684,7 +702,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             CreateFixedDefaultValue(parentTypeDecl);
-            CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(IsEnum ? ReturnEnumType : ReturnType, hasSet, visibility.ToMemberAttribute());
+            CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(ReturnType, hasSet, visibility.ToMemberAttribute());
             clrProperty.Name = propertyName;
             SetPropertyAttributes(clrProperty, visibility.ToMemberAttribute());
             if (IsNew)
@@ -898,9 +916,11 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (xNameParm)
                 {
+                    var setValue = CodeDomHelper.SetValue();
+                    CodeExpression valueExpr = IsEnum ? CodeDomHelper.CreateMethodCall(setValue, "ToString") as CodeExpression : setValue;
                     methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
                         xNameGetExpression,
-                        CodeDomHelper.SetValue()
+                        valueExpr
                     );
                     if (!IsRef && typeRef.IsSimpleType)
                     {
@@ -1099,18 +1119,18 @@ namespace Xml.Schema.Linq.CodeGen
                         returnValueExp,
                         simpleTypeExpression);
 
-                    if (this.IsEnum)
-                    {
-                        // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
-                        returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.Name, returnExp);
-                    }
-
                     if (DefaultValue != null)
                     {
                         ((CodeMethodInvokeExpression) returnExp).Parameters.Add(
                             new CodeFieldReferenceExpression(null,
                                 NameGenerator.ChangeClrName(this.propertyName,
                                     NameOptions.MakeDefaultValueField)));
+                    }
+
+                    if (this.IsEnum)
+                    {
+                        // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
+                        returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.Name, returnExp);
                     }
                 }
             }
@@ -1338,7 +1358,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 //Add Fixed/Default value wrapping field
                 CodeMemberField fixedOrDefaultField = null;
-                CodeTypeReference returnType = ReturnType;
+                CodeTypeReference returnType = DefaultValueType;
                 if (this.unionDefaultType != null)
                 {
                     returnType = new CodeTypeReference(unionDefaultType.ToString());

@@ -628,7 +628,7 @@ namespace Xml.Schema.Linq.CodeGen
                 clrTypeName = typeName;
             }
 
-            if (IsEnum)
+            if (IsEnum && !string.IsNullOrEmpty(clrTypeName))
             {
                 clrTypeName += Constants.EnumValidator;
             }
