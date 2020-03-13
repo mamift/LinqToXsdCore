@@ -505,6 +505,10 @@ namespace Xml.Schema.Linq.CodeGen
             CodeTypeReference returnType = CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName);
             CodeTypeReference wrapperReturnType = CodeDomHelper.CreateDictionaryType(Constants.SystemTypeName, Constants.SystemTypeName);
 
+            //Add private constructor so it cannot be instantiated
+            var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
+            servicesTypeDecl.Members.Add(privateConst);
+
             //Create a dictionary of TypeName vs System.Type and the method to create it
             CodeMemberProperty typeDictProperty = null;
             if (typeDictionaryStatements.Count > 0)
