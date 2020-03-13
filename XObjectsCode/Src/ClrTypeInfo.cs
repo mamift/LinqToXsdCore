@@ -424,6 +424,8 @@ namespace Xml.Schema.Linq.CodeGen
     {
         string typeName;
         string typeNs;
+        string clrName;
+        string clrFullTypeName;
 
         string typeCodeString;
         XmlSchemaObject schemaObject;
@@ -514,9 +516,19 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        internal string ClrName
+        {
+            get { return clrName; }
+        }
+
         internal string Namespace
         {
             get { return typeNs; }
+        }
+
+        internal string ClrFullTypeName
+        {
+            get { return clrFullTypeName; }
         }
 
         internal string TypeCodeString
@@ -628,6 +640,8 @@ namespace Xml.Schema.Linq.CodeGen
                 clrTypeName = typeName;
             }
 
+            this.clrName = clrTypeName;
+
             if (IsEnum && !string.IsNullOrEmpty(clrTypeName))
             {
                 clrTypeName += Constants.EnumValidator;
@@ -683,6 +697,16 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return clrTypeName;
+        }
+
+        internal void UpdateClrFullTypeName(ClrPropertyInfo property)
+        {
+            if (IsEnum)
+            {
+                this.clrFullTypeName = this.Namespace == property.ClrNamespace
+                    ? this.ClrName
+                    : $"{this.Namespace}.{this.ClrName}";
+            }
         }
     }
 

@@ -964,6 +964,7 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.Origin = SchemaOrigin.Element;
             propertyInfo.FromBaseType = fromBaseType;
             propertyInfo.TypeReference = typeRef;
+            propertyInfo.ClrNamespace = clrNs;
 
             //SetFixedDefaultValue(elem, propertyInfo);
 

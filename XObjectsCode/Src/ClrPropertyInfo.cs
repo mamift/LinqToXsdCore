@@ -360,6 +360,7 @@ namespace Xml.Schema.Linq.CodeGen
         CodeMethodInvokeExpression xNameGetExpression;
         string parentTypeFullName;
         string clrTypeName;
+        string clrNamespace;
         string fixedDefaultValue;
         string simpleTypeClrTypeName;
 
@@ -393,6 +394,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             this.returnType = null;
             this.clrTypeName = null;
+            this.clrNamespace = null;
             this.fixedDefaultValue = null;
             this.propertyFlags = PropertyFlags.None;
         }
@@ -464,6 +466,12 @@ namespace Xml.Schema.Linq.CodeGen
         internal override string ClrTypeName
         {
             get { return clrTypeName; }
+        }
+
+        internal string ClrNamespace
+        {
+            get { return clrNamespace; }
+            set { clrNamespace = value; }
         }
 
         internal override bool IsList
@@ -591,7 +599,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     if (IsEnum)
                     {
-                        returnType = CreateReturnType(typeRef.Name);
+                        returnType = CreateReturnType(typeRef.ClrFullTypeName);
 
                     }
                     else
@@ -610,15 +618,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (defaultValueType == null)
                 {
-                    if (IsEnum)
-                    {
-                        defaultValueType = CreateReturnType(clrTypeName);
-
-                    }
-                    else
-                    {
-                        defaultValueType = ReturnType;
-                    }
+                    defaultValueType = CreateReturnType(clrTypeName);
                 }
                 return defaultValueType;
             }
@@ -673,6 +673,8 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespace, nameMappings);
             }
+
+            typeRef.UpdateClrFullTypeName(this);
 
             this.parentTypeFullName = clrFullTypeName;
         }
@@ -970,7 +972,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (IsEnum)
             {
-                var lambdaExpr = new CodeSnippetExpression($"item => ({this.TypeReference.Name}) Enum.Parse(typeof({this.TypeReference.Name}), item)");
+                var lambdaExpr = new CodeSnippetExpression($"item => ({this.TypeReference.ClrFullTypeName}) Enum.Parse(typeof({this.TypeReference.ClrFullTypeName}), item)");
                 var selectExpr = CodeDomHelper.CreateMethodCall(listFieldRef, "Select", lambdaExpr);
                 var toListExpr = new CodeMethodInvokeExpression(selectExpr, "ToList");
                 getStatements.Add(
@@ -1130,7 +1132,7 @@ namespace Xml.Schema.Linq.CodeGen
                     if (this.IsEnum)
                     {
                         // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
-                        returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.Name, returnExp);
+                        returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.ClrFullTypeName, returnExp);
                     }
                 }
             }
