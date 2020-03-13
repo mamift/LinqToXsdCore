@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Diagnostics;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -137,10 +138,15 @@ namespace Xml.Schema.Linq.CodeGen
             switch (type.Datatype.Variety)
             {
                 case XmlSchemaDatatypeVariety.Atomic:
-                    return type.Content is XmlSchemaSimpleTypeRestriction simpleTypeRestriction
-                        && simpleTypeRestriction.Facets
-                            .Cast<object>()
-                            .All(facet => facet is XmlSchemaEnumerationFacet);
+                    var facetObjects = type.Content is XmlSchemaSimpleTypeRestriction content ? content.Facets.Cast<object>() : Enumerable.Empty<object>();
+                    var isEnum = facetObjects.Any() && facetObjects.All(facet => facet is XmlSchemaEnumerationFacet);
+                    if (isEnum)
+                    {
+                        var codeProvider = CodeDomHelper.CodeProvider;
+                        var facets = facetObjects.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value).Cast<string>();
+                        isEnum = facets.All(facet => codeProvider.IsValidIdentifier(facet));
+                    }
+                    return isEnum;
                 case XmlSchemaDatatypeVariety.List:
                     return type.GetListItemType().IsEnum();
                 case XmlSchemaDatatypeVariety.Union:
@@ -150,6 +156,25 @@ namespace Xml.Schema.Linq.CodeGen
                     throw new InvalidOperationException("Unknown type variety");
             }
         }
+
+        public static IEnumerable<string> GetEnumFacets(this XmlSchemaType type)
+        {
+            return type is XmlSchemaSimpleType simpleType
+                ? simpleType.GetEnumFacets()
+                : Enumerable.Empty<string>();
+        }
+        public static IEnumerable<string> GetEnumFacets(this XmlSchemaSimpleType simpleType)
+        {
+            if (simpleType.Content is XmlSchemaSimpleTypeRestriction content)
+            {
+                return content.Facets.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value).Cast<string>();
+            }
+            else
+            {
+                return Enumerable.Empty<string>();
+            }
+        }
+
         public static XmlSchemaWhiteSpace GetBuiltInWSFacet(this XmlSchemaDatatype dt)
         {
             if (dt.TypeCode == XmlTypeCode.NormalizedString)

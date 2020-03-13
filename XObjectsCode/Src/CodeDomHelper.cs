@@ -2,7 +2,8 @@
 
 using System;
 using System.CodeDom;
-using System.Reflection;
+using System.CodeDom.Compiler;
+using Microsoft.CSharp;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
 
@@ -10,6 +11,9 @@ namespace Xml.Schema.Linq.CodeGen
 {
     internal static class CodeDomHelper
     {
+        // used to validate C# identifiers
+        public static readonly CodeDomProvider CodeProvider = new CSharpCodeProvider();
+
         public static CodeMethodInvokeExpression XNameGetExpression(string name, string ns)
         {
             return XNameGetExpression(new CodePrimitiveExpression(name), new CodePrimitiveExpression(ns));
