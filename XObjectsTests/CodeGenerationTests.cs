@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -122,6 +123,49 @@ namespace Xml.Schema.Linq.Tests
                 Assert.IsNotEmpty(nonVoidTypeOfExpressions);
                 Assert.IsEmpty(voidTypeOfExpressions);
             }
+        }
+
+        /// <summary>
+        /// Tests that in all the properties generated, there are no <c>void.TypeDefinition</c> expressions.
+        /// </summary>
+        [Test]
+        public void NoVoidTypeDefReferencesInAnyStatementsInClrPropertiesTest()
+        {
+            const string xsdSchema = @"Schemas\XSD\W3C XMLSchema v1.xsd";
+            var xsdCode = Utilities.GenerateSyntaxTree(new FileInfo(xsdSchema));
+
+            var allClasses = xsdCode.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>();
+            var allProperties = allClasses.SelectMany(cds => cds.DescendantNodes().OfType<PropertyDeclarationSyntax>())
+                .Distinct();
+
+            var readWriteable = (from prop in allProperties
+                where prop.AccessorList.Accessors.Any(a => a.IsKind(SyntaxKind.GetAccessorDeclaration) ||
+                                                           a.IsKind(SyntaxKind.SetAccessorDeclaration))
+                      && prop.AccessorList.Accessors.Count >= 2
+                select prop).Distinct();
+
+            var virtualProps = readWriteable.Where(prop => prop.Modifiers.Any(SyntaxKind.VirtualKeyword)).ToList();
+            var accessors = virtualProps.SelectMany(prop => prop.AccessorList.Accessors).ToList();
+            var getters = accessors.Where(getter => getter.IsKind(SyntaxKind.GetAccessorDeclaration));
+            var setters = accessors.Where(setter => setter.IsKind(SyntaxKind.SetAccessorDeclaration));
+
+            var getterStatements = getters.SelectMany(getter => getter.DescendantNodes().OfType<StatementSyntax>());
+            var setterStatements = setters.SelectMany(getter => getter.DescendantNodes().OfType<StatementSyntax>());
+
+            var getterReturnStatements = getterStatements.OfType<ReturnStatementSyntax>();
+            var getterTypeDefinitionReferences = getterReturnStatements.SelectMany(r => r.DescendantNodes()
+                .OfType<PredefinedTypeSyntax>());
+            var getterVoidTypeDefinitionReferences =
+                getterTypeDefinitionReferences.Where(tdefr => tdefr.Keyword.Text == "void");
+            
+            var setterExpressionSyntaxStatements = setterStatements.OfType<ExpressionStatementSyntax>();
+            var setterTypeDefinitionReferences = setterExpressionSyntaxStatements.SelectMany(s => s.DescendantNodes())
+                .OfType<PredefinedTypeSyntax>();
+            var setterVoidTypeDefinitionReferences =
+                setterTypeDefinitionReferences.Where(tdefr => tdefr.Keyword.Text == "void");
+            
+            Assert.IsEmpty(setterVoidTypeDefinitionReferences);
+            Assert.IsEmpty(getterVoidTypeDefinitionReferences);
         }
     }
 }
