@@ -1,5 +1,14 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.0.1 and XObjectsCore 3.0.1
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.0.1
+* https://www.nuget.org/packages/XObjectsCore/3.0.1
+	* Fixed [Github Issue #10](https://github.com/mamift/LinqToXsdCore/issues/10)
+	* Imported code changesets for v2.0.2 from the legacy [LinqToXsd project](https://archive.codeplex.com/?p=linqtoxsd), which generates the proper type definitions for union types.
+	* Switched to a tripartite versioning scheme.
+	* The global tool LinqToXsd now targets .NET Core 3.1 in addition to .NET Core 2.1. This allows users using either version of .NET Core to still use the global tool to generate code.
+
 ## LinqToXsdCore 3.0.0.12 and XObjectsCore 3.0.0.11
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.12
