@@ -306,6 +306,7 @@ namespace Xml.Schema.Linq.CodeGen
             lst.RegisterMember("Parse");
             lst.RegisterMember("Save");
             lst.RegisterMember("XDocument");
+            lst.RegisterMember("Root");
 
             // Constructor
             xroot.Members.Add(CodeDomHelper.CreateConstructor(MemberAttributes.Private));
@@ -364,12 +365,19 @@ namespace Xml.Schema.Linq.CodeGen
                 new string[] {"SaveOptions", "options"}
             }, visibility));
 
-            CodeMemberProperty prop = CodeDomHelper.CreateProperty("XDocument",
+            CodeMemberProperty docProp = CodeDomHelper.CreateProperty("XDocument",
                 "XDocument",
                 docField,
                 visibility.ToMemberAttribute(),
                 false);
-            xroot.Members.Add(prop);
+            xroot.Members.Add(docProp);
+
+            CodeMemberProperty rootProp = CodeDomHelper.CreateProperty("Root",
+                "XTypedElement",
+                rootField,
+                visibility.ToMemberAttribute(),
+                false);
+            xroot.Members.Add(rootProp);
 
             for (int i = 0; i < elements.Count; i++)
             {
