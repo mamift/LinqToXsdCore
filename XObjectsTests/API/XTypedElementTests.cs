@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
+using W3C;
 using W3C.XSD;
 
 namespace Xml.Schema.Linq.Tests.API
@@ -79,7 +81,6 @@ namespace Xml.Schema.Linq.Tests.API
 
             var xsdExample = new schema() {
                 targetNamespace = new Uri("http://www.w3.org/XML/1998/namespace"),
-                //lang = "en",
                 attribute = new List<attribute>() {
                     new attribute(new topLevelAttribute() { name = "base", type = new XmlQualifiedName("anyURI") }),
                     new attribute(new topLevelAttribute() { name = "lang", type = new XmlQualifiedName("language") }),
@@ -97,10 +98,14 @@ namespace Xml.Schema.Linq.Tests.API
                 }
             };
 
+            Assert.DoesNotThrow(() => { xsdExample.lang = "en-GB"; });
+
             var xsdString = xsdExample.ToString();
 
             Assert.DoesNotThrow(() => {
                 schema schema = schema.Parse(xsdString);
+
+                Assert.IsNotNull(schema.lang as string);
             });
         }
     }
