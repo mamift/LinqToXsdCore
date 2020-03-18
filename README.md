@@ -6,7 +6,9 @@ This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET
 
 ## Get started
 
-You can get started by reading the [instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md) to use the CLI tool to generate code (and use said code in a shipping app or library).
+You can get started by reading the [instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md) to use the CLI tool to generate code. 
+
+After you've generated code for a given XSD, you can include the generated code in a shipping app or library, so long as it has a reference to the [XObjectsCore nuget package](https://www.nuget.org/packages/XObjectsCore). Don't add the **LinqToXsdCore** nuget package to your shipping app or library! That's just a command line tool to generate code.
 
 ### Release notes are [here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/RELEASENOTES.md).
 
@@ -72,7 +74,7 @@ LinqToXsd, ends up providing something very similar to the C# code-generation fa
 
 LinqToXsd also tries very closely to model XSD constraints and compositors (sequence, choice, all, substitution groups) and user defined types as much as possible, including simple and complex types, both named and anonymous. A key distinction is that LinqToXsd models XML elements and types with generated C# classes to build 'XML Objects', transposing XSD semantics in a CLR, object-oriented way. These XML objects inherit from the base class `XTypedElement`. 
 
-Essentially LinqToXsd generates an in memory model of the XSD schema as opposed to the classes that `xsd.exe` generates, which are closer to plain old C# objects (POCOs). This has the end result of making LinqToXsd a very powerful tool for modelling custom document markup langauges, and preserving schema semantics in code.
+Essentially LinqToXsd generates an in memory model of the XSD schema as opposed to the classes that `xsd.exe` generates, which are closer to plain old C# objects (POCOs). This has the end result of making LinqToXsd a very powerful tool for modeling custom document markup languages, and preserving schema semantics in code.
 
 To get a more technical explanation of what LinqToXsd provides, please see the [wiki](https://github.com/mamift/LinqToXsdCore/wiki).
 
