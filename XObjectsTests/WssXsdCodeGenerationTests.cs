@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -19,8 +20,8 @@ namespace Xml.Schema.Linq.Tests
         public void GenerateCode()
         {
             const string wssXsdFilePath = @"Schemas\SharePoint2010\wss.xsd";
-            var code = Utilities.GenerateSourceText(wssXsdFilePath);
-            Tree = CSharpSyntaxTree.ParseText(code);
+            var wssXsdFileInfo = new FileInfo(wssXsdFilePath);
+            Tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo);
 
             GeneratedTypes = Tree
                              .GetNamespaceRoot()
@@ -42,7 +43,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotEmpty(sealedTypes);
             Assert.IsTrue(sealedTypes.Count == 89);
 
-            var partialTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.PartialKeyword)) && 
+            var partialTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.PartialKeyword)) &&
                                                             t.Modifiers.All(c => !c.IsKind(SyntaxKind.SealedKeyword)))
                                                 .ToList();
             Assert.IsNotEmpty(partialTypes);
@@ -65,20 +66,28 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsNotEmpty(typesThatInheritFromXTypedElement);
             Assert.IsTrue(typesThatInheritFromXTypedElement.Count == 279);
 
-            var x = (from cds in typesThatInheritFromXTypedElement
-             where cds.Members.OfType<PropertyDeclarationSyntax>().Any(pds => pds.Modifiers.Any(m => m.ToFullString().Contains("virtual")))
-             select cds).ToList();
+            var typesWithGeneratedProperties = (from cds in typesThatInheritFromXTypedElement
+                                                where cds.Members.OfType<PropertyDeclarationSyntax>().Any(pds =>
+                                                    pds.Modifiers.Any(m => m.ToFullString().Contains("virtual")))
+                                                select cds).ToList();
 
-            var members = (from cds in typesThatInheritFromXTypedElement
-                            from member in cds.Members
-                            select member).ToList();
+            Assert.IsNotEmpty(typesWithGeneratedProperties);
+            Assert.IsTrue(typesWithGeneratedProperties.Count == 275);
+
+            var typesWithoutGeneratedProperties =
+                typesThatInheritFromXTypedElement.Except(typesWithGeneratedProperties).ToList();
+
+            Assert.IsNotEmpty(typesWithoutGeneratedProperties);
+            Assert.IsTrue(typesWithoutGeneratedProperties.Count == 4);
+
+            var members = typesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
 
             Assert.IsTrue(members.Count == 5080);
 
             var propertyMembers = members.OfType<PropertyDeclarationSyntax>().ToList();
 
             Assert.IsTrue(propertyMembers.Count == 2939);
-            
+
             var virtualPropertyMembers = propertyMembers
                 .Where(p => p.Modifiers.Any(m => m.ToFullString().Contains("virtual")))
                 .ToList();
@@ -91,6 +100,23 @@ namespace Xml.Schema.Linq.Tests
 
             Assert.IsNotEmpty(typesWhoseMembersAreVirtual);
             Assert.IsTrue(typesWhoseMembersAreVirtual.Count == 275);
+        }
+
+        [Test]
+        public void GeneratedXRootClassTest()
+        {
+            var xRootClass = GeneratedTypes
+                .First(cds => cds.Identifier.Value.ToString() == nameof(XRoot));
+
+            Assert.IsNotNull(xRootClass);
+
+            var xRootClassMembers = xRootClass.DescendantNodes().OfType<PropertyDeclarationSyntax>().ToList();
+
+            Assert.IsNotEmpty(xRootClassMembers);
+
+            var last = xRootClassMembers.LastOrDefault(m => m.Identifier.ValueText == "Root");
+
+            Assert.IsNotNull(last);
         }
     }
 }
