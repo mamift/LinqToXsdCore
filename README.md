@@ -1,6 +1,8 @@
 # LinqToXsdCore
 ## Introduction
-This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET Core. Most of what was in the original project is here, but built for .NET Core! For people who specifically need .NET 4/3.5 support, please use the original code on the [codeplex archive](https://archive.codeplex.com/?p=linqtoxsd). There's also a legacy [nuget package](https://www.nuget.org/packages/LinqToXsd/).
+This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET Core. Most of what was in the original project is here, but built for .NET Core! For people who specifically need .NET Framework 3.5 and 4.0-4.5 support, please use the original code on the [codeplex archive](https://archive.codeplex.com/?p=linqtoxsd). There's also a legacy [nuget package](https://www.nuget.org/packages/LinqToXsd/).
+
+This .NET Core port itself requires .NET Core 2.1 or 3.1, but it can generate code that is compatible with .NET Framework 4.6.x and .NET Core 2.x.
 
 ![Build Status](https://dev.azure.com/mamift1/LinqToXsdCore/_apis/build/status/LinqToXsdCore-.NET%20Desktop-CI) ![Nuget](https://buildstats.info/nuget/LinqToXsdCore)
 
