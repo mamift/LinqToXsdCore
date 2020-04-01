@@ -1,6 +1,7 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Collections.Generic;
@@ -423,6 +424,8 @@ namespace Xml.Schema.Linq.CodeGen
     {
         string typeName;
         string typeNs;
+        string clrName;
+        string clrFullTypeName;
 
         string typeCodeString;
         XmlSchemaObject schemaObject;
@@ -452,6 +455,11 @@ namespace Xml.Schema.Linq.CodeGen
                 if (st.HasFacetRestrictions() || st.IsOrHasUnion())
                 {
                     typeRefFlags |= ClrTypeRefFlags.Validate;
+                }
+
+                if (st.IsEnum())
+                {
+                    typeRefFlags |= ClrTypeRefFlags.IsEnum;
                 }
 
                 XmlSchemaDatatype datatype = st.Datatype;
@@ -508,9 +516,19 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        internal string ClrName
+        {
+            get { return clrName; }
+        }
+
         internal string Namespace
         {
             get { return typeNs; }
+        }
+
+        internal string ClrFullTypeName
+        {
+            get { return clrFullTypeName; }
         }
 
         internal string TypeCodeString
@@ -575,6 +593,11 @@ namespace Xml.Schema.Linq.CodeGen
             get { return (typeRefFlags & ClrTypeRefFlags.IsUnion) != 0; }
         }
 
+        internal bool IsEnum
+        {
+            get { return (typeRefFlags & ClrTypeRefFlags.IsEnum) != 0; }
+        }
+
         internal bool IsAnyType
         {
             get { return (typeRefFlags & ClrTypeRefFlags.IsAnyType) != 0; }
@@ -617,6 +640,13 @@ namespace Xml.Schema.Linq.CodeGen
                 clrTypeName = typeName;
             }
 
+            this.clrName = clrTypeName;
+
+            if (IsEnum && !string.IsNullOrEmpty(clrTypeName))
+            {
+                clrTypeName += Constants.EnumValidator;
+            }
+
             if (typeNs != string.Empty && !IsLocalType)
             {
                 //Namespace of the property's type is different than the namespace of the enclosing CLR Type
@@ -644,9 +674,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
 
                 refTypeName = clrTypeName;
-                if (typeNs != string.Empty && typeNs != parentTypeClrNs)
+                if (typeNs != string.Empty && (typeNs != parentTypeClrNs || nameMappings.Values.Where(v => v == clrTypeName).Skip(1).Any()))
                 {
-                    //Namespace of the property's type is different than the namespace of the enclosing CLR Type
+                    //Keep the full type name to avoid conflicts when we have types with the same name in different namespaces.
                     clrTypeName = typeNs + "." + clrTypeName;
                 }
             }
@@ -667,6 +697,16 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return clrTypeName;
+        }
+
+        internal void UpdateClrFullTypeName(ClrPropertyInfo property)
+        {
+            if (IsEnum)
+            {
+                this.clrFullTypeName = this.Namespace == property.ClrNamespace
+                    ? this.ClrName
+                    : $"{this.Namespace}.{this.ClrName}";
+            }
         }
     }
 

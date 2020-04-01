@@ -80,6 +80,10 @@ namespace Xml.Schema.Linq.CodeGen
                     ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
                     if (stInfo != null)
                     {
+                        if (stInfo is EnumSimpleTypeInfo enumTypeInfo)
+                        {
+                            codeNamespace.Types.Add(TypeBuilder.CreateEnumType(enumTypeInfo, settings));
+                        }
                         codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     }
                     else
@@ -175,6 +179,14 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
+
+                    var typeRef = propertyInfo.TypeReference;
+                    if (typeRef.IsEnum && string.IsNullOrEmpty(typeRef.Name))
+                    {
+                        typeRef.Name = $"{propertyInfo.PropertyName}s";
+                        CreateNestedEnumType(typeRef);
+                    }
+
                     propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings);
                     typeBuilder.CreateAttributeProperty(child as ClrPropertyInfo, null);
                 }
@@ -193,6 +205,19 @@ namespace Xml.Schema.Linq.CodeGen
                     }
                 }
             }
+        }
+
+        private void CreateNestedEnumType(ClrTypeReference typeRef)
+        {
+            var innerType = typeRef.SchemaObject as XmlSchemaType;
+            Debug.Assert(innerType != null);
+            var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) { IsEnum = true };
+            enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.Public;
+            foreach (var facet in innerType.GetEnumFacets())
+            {
+                enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet));
+            }
+            typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
         }
 
         private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
@@ -567,6 +592,7 @@ namespace Xml.Schema.Linq.CodeGen
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.IO"));
+            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Linq"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Diagnostics"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Schema"));

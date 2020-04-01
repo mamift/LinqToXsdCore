@@ -2,7 +2,8 @@
 
 using System;
 using System.CodeDom;
-using System.Reflection;
+using System.CodeDom.Compiler;
+using Microsoft.CSharp;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
 
@@ -10,6 +11,9 @@ namespace Xml.Schema.Linq.CodeGen
 {
     internal static class CodeDomHelper
     {
+        // used to validate C# identifiers
+        public static readonly CodeDomProvider CodeProvider = new CSharpCodeProvider();
+
         public static CodeMethodInvokeExpression XNameGetExpression(string name, string ns)
         {
             return XNameGetExpression(new CodePrimitiveExpression(name), new CodePrimitiveExpression(ns));
@@ -306,6 +310,16 @@ namespace Xml.Schema.Linq.CodeGen
             return new CodeMethodInvokeExpression(
                 new CodeMethodReferenceExpression(targetOBject, methodName, typeParam1),
                 parameters);
+        }
+        public static CodeExpression CreateParseEnumCall(string enumType, CodeExpression value)
+        {
+            var enumTypeRef = new CodeTypeReference(enumType);
+            var callExp = new CodeMethodInvokeExpression(
+                new CodeTypeReferenceExpression("Enum"),
+                "Parse",
+                new CodeTypeOfExpression(enumTypeRef),
+                value);
+            return new CodeCastExpression(enumTypeRef, callExp);
         }
 
         public static CodeMemberField CreateDictionaryField(string dictionaryName, string keyType, string valueType, 

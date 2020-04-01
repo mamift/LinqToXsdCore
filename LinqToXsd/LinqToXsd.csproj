@@ -17,6 +17,7 @@
     <!-- This is for use as a global dotnet tool -->
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>LinqToXsd</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <Copyright>Copyright (C) 2008-2019 Microsoft Corporation, github.com/mamift</Copyright>
   </PropertyGroup>

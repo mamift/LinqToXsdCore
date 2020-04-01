@@ -33,6 +33,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         protected bool hasSet;
         protected XCodeTypeReference returnType;
+        protected XCodeTypeReference defaultValueType;
         protected bool isVirtual;
         protected bool isOverride;
 
@@ -44,6 +45,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.IsVirtual = false;
             this.isOverride = false;
             this.returnType = null;
+            this.defaultValueType = null;
             annotations = new List<ClrAnnotation>();
         }
 
@@ -113,6 +115,12 @@ namespace Xml.Schema.Linq.CodeGen
             set { returnType = value; }
         }
 
+        internal virtual XCodeTypeReference DefaultValueType
+        {
+            get { return defaultValueType; }
+            set { defaultValueType = value; }
+        }
+
         internal virtual string ClrTypeName
         {
             get { return null; }
@@ -131,6 +139,12 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         internal virtual bool IsUnion
+        {
+            get { throw new InvalidOperationException(); }
+            set { throw new InvalidOperationException(); }
+        }
+
+        internal virtual bool IsEnum
         {
             get { throw new InvalidOperationException(); }
             set { throw new InvalidOperationException(); }
@@ -346,6 +360,7 @@ namespace Xml.Schema.Linq.CodeGen
         CodeMethodInvokeExpression xNameGetExpression;
         string parentTypeFullName;
         string clrTypeName;
+        string clrNamespace;
         string fixedDefaultValue;
         string simpleTypeClrTypeName;
 
@@ -359,6 +374,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.schemaName = schemaName;
             this.hasSet = true;
             this.returnType = null;
+            this.defaultValueType = null;
             this.clrTypeName = null;
             this.occursInSchema = occursInSchema;
             if (this.occursInSchema > Occurs.ZeroOrOne)
@@ -378,6 +394,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             this.returnType = null;
             this.clrTypeName = null;
+            this.clrNamespace = null;
             this.fixedDefaultValue = null;
             this.propertyFlags = PropertyFlags.None;
         }
@@ -451,6 +468,12 @@ namespace Xml.Schema.Linq.CodeGen
             get { return clrTypeName; }
         }
 
+        internal string ClrNamespace
+        {
+            get { return clrNamespace; }
+            set { clrNamespace = value; }
+        }
+
         internal override bool IsList
         {
             //This is for repeating elements, not schema list
@@ -492,6 +515,11 @@ namespace Xml.Schema.Linq.CodeGen
         internal override bool IsUnion
         {
             get { return this.typeRef.IsUnion; }
+        }
+
+        internal override bool IsEnum
+        {
+            get { return this.typeRef.IsEnum; }
         }
 
         internal bool Validation
@@ -569,30 +597,57 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (returnType == null)
                 {
-                    string fullTypeName = clrTypeName;
-                    if (typeRef.IsLocalType && !typeRef.IsSimpleType)
+                    if (IsEnum)
                     {
-                        //For simple types, return type is always XSD -> CLR mapping
-                        fullTypeName = parentTypeFullName + "." + clrTypeName;
-                    }
+                        returnType = CreateReturnType(typeRef.ClrFullTypeName);
 
-                    if (IsList || !IsRef && IsSchemaList)
-                    {
-                        returnType = CreateListReturnType(fullTypeName);
-                    }
-                    else if (!IsRef && typeRef.IsValueType && IsNullable)
-                    {
-                        returnType = new XCodeTypeReference("System.Nullable", new CodeTypeReference(fullTypeName));
                     }
                     else
                     {
-                        returnType = new XCodeTypeReference(clrTypeName);
-                        returnType.fullTypeName = fullTypeName;
+                        returnType = CreateReturnType(clrTypeName);
                     }
                 }
 
                 return returnType;
             }
+        }
+
+        internal override XCodeTypeReference DefaultValueType
+        {
+            get
+            {
+                if (defaultValueType == null)
+                {
+                    defaultValueType = CreateReturnType(clrTypeName);
+                }
+                return defaultValueType;
+            }
+        }
+
+        private XCodeTypeReference CreateReturnType(string typeName)
+        {
+            XCodeTypeReference returnType;
+            string fullTypeName = typeName;
+            if (typeRef.IsLocalType && !typeRef.IsSimpleType)
+            {
+                //For simple types, return type is always XSD -> CLR mapping
+                fullTypeName = parentTypeFullName + "." + typeName;
+            }
+
+            if (IsList || !IsRef && IsSchemaList)
+            {
+                returnType = CreateListReturnType(fullTypeName);
+            }
+            else if (!IsRef && typeRef.IsValueType && IsNullable)
+            {
+                returnType = new XCodeTypeReference("System.Nullable", new CodeTypeReference(fullTypeName));
+            }
+            else
+            {
+                returnType = new XCodeTypeReference(typeName);
+                returnType.fullTypeName = fullTypeName;
+            }
+            return returnType;
         }
 
         private XCodeTypeReference CreateListReturnType(string fullTypeName)
@@ -618,6 +673,8 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespace, nameMappings);
             }
+
+            typeRef.UpdateClrFullTypeName(this);
 
             this.parentTypeFullName = clrFullTypeName;
         }
@@ -841,9 +898,11 @@ namespace Xml.Schema.Linq.CodeGen
                 setMethodName = string.Concat(setMethodName, "WithValidation");
                 if (xNameParm)
                 {
+                    var setValue = CodeDomHelper.SetValue();
+                    CodeExpression valueExpr = IsEnum ? CodeDomHelper.CreateMethodCall(setValue, "ToString") as CodeExpression : setValue;
                     methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
                         xNameGetExpression,
-                        CodeDomHelper.SetValue(),
+                        valueExpr,
                         new CodePrimitiveExpression(PropertyName),
                         GetSimpleTypeClassExpression());
                 }
@@ -859,9 +918,11 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (xNameParm)
                 {
+                    var setValue = CodeDomHelper.SetValue();
+                    CodeExpression valueExpr = IsEnum ? CodeDomHelper.CreateMethodCall(setValue, "ToString") as CodeExpression : setValue;
                     methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
                         xNameGetExpression,
-                        CodeDomHelper.SetValue()
+                        valueExpr
                     );
                     if (!IsRef && typeRef.IsSimpleType)
                     {
@@ -893,29 +954,37 @@ namespace Xml.Schema.Linq.CodeGen
                 return;
             }
 
+            var listFieldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), listName);
+
             getStatements.Add(
                 new CodeConditionStatement(
                     new CodeBinaryOperatorExpression(
-                        new CodeFieldReferenceExpression(
-                            new CodeThisReferenceExpression(),
-                            listName),
+                        listFieldRef,
                         CodeBinaryOperatorType.IdentityEquality,
                         new CodePrimitiveExpression(null)
                     ),
                     new CodeAssignStatement(
-                        new CodeFieldReferenceExpression(
-                            new CodeThisReferenceExpression(),
-                            listName),
+                        listFieldRef,
                         new CodeObjectCreateExpression(
                             listType,
                             GetListParameters(false /*set*/, false /*constructor*/)
                         ))));
-            getStatements.Add(
-                new CodeMethodReturnStatement(
-                    new CodeFieldReferenceExpression(
-                        new CodeThisReferenceExpression(),
-                        listName
-                    )));
+
+            if (IsEnum)
+            {
+                var lambdaExpr = new CodeSnippetExpression($"item => ({this.TypeReference.ClrFullTypeName}) Enum.Parse(typeof({this.TypeReference.ClrFullTypeName}), item)");
+                var selectExpr = CodeDomHelper.CreateMethodCall(listFieldRef, "Select", lambdaExpr);
+                var toListExpr = new CodeMethodInvokeExpression(selectExpr, "ToList");
+                getStatements.Add(
+                    new CodeMethodReturnStatement(
+                        toListExpr));
+            }
+            else
+            {
+                getStatements.Add(
+                    new CodeMethodReturnStatement(
+                        listFieldRef));
+            }
         }
 
 
@@ -924,13 +993,13 @@ namespace Xml.Schema.Linq.CodeGen
         {
             AddFixedValueChecking(setStatements);
 
+            var listFieldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), listName);
+
             CodeStatement[] trueStatements =
                 new CodeStatement[]
                 {
-                    new CodeAssignStatement( //True 1 THen
-                        new CodeFieldReferenceExpression(
-                            new CodeThisReferenceExpression(),
-                            listName),
+                    new CodeAssignStatement( //True 1 Then
+                        listFieldRef,
                         new CodePrimitiveExpression(null)
                     )
                 };
@@ -940,18 +1009,14 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     new CodeConditionStatement( //False 1 Else if
                         new CodeBinaryOperatorExpression( // Condition2
-                            new CodeFieldReferenceExpression(
-                                new CodeThisReferenceExpression(),
-                                listName),
+                            listFieldRef,
                             CodeBinaryOperatorType.IdentityEquality,
                             new CodePrimitiveExpression(null)
                         ),
                         new CodeStatement[]
                         {
                             new CodeAssignStatement( //Then 2
-                                new CodeFieldReferenceExpression(
-                                    new CodeThisReferenceExpression(),
-                                    listName),
+                                listFieldRef,
                                 new CodeMethodInvokeExpression(
                                     new CodeTypeReferenceExpression(listType),
                                     Constants.Initialize,
@@ -964,10 +1029,8 @@ namespace Xml.Schema.Linq.CodeGen
                                 new CodeMethodInvokeExpression(
                                     new CodeTypeReferenceExpression("XTypedServices"),
                                     Constants.SetList + "<" + clrTypeName + ">",
-                                    new CodeFieldReferenceExpression(
-                                        new CodeThisReferenceExpression(),
-                                        listName),
-                                    CodeDomHelper.SetValue()))
+                                    listFieldRef,
+                                    GetListSetStatementValueExpr()))
                         })
                 };
 
@@ -980,6 +1043,20 @@ namespace Xml.Schema.Linq.CodeGen
                     ),
                     trueStatements,
                     falseStatements));
+        }
+
+        private CodeExpression GetListSetStatementValueExpr()
+        {
+            if (IsEnum)
+            {
+                var lambdaExpr = new CodeSnippetExpression("item => item.ToString()");
+                var selectExpr = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
+                return new CodeMethodInvokeExpression(selectExpr, "ToList");
+            }
+            else
+            {
+                return CodeDomHelper.SetValue();
+            }
         }
 
         private void AddGetStatements(CodeStatementCollection getStatements)
@@ -1009,7 +1086,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (!IsRef && typeRef.IsSimpleType)
             {
                 //for referencing properties, directly create the object of referenced type
-                CodeTypeReference parseType = ReturnType;
+                CodeTypeReference parseType = DefaultValueType;
                 if (typeRef.IsValueType && IsNullable)
                 {
                     parseType = new CodeTypeReference(clrTypeName);
@@ -1050,6 +1127,12 @@ namespace Xml.Schema.Linq.CodeGen
                             new CodeFieldReferenceExpression(null,
                                 NameGenerator.ChangeClrName(this.propertyName,
                                     NameOptions.MakeDefaultValueField)));
+                    }
+
+                    if (this.IsEnum)
+                    {
+                        // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
+                        returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.ClrFullTypeName, returnExp);
                     }
                 }
             }
@@ -1169,6 +1252,11 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     nameOrValue = new CodeVariableReferenceExpression(propertyName);
                 }
+                else if (IsEnum)
+                {
+                    var lambdaExpr = new CodeSnippetExpression("item => item.ToString()");
+                    nameOrValue = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
+                }
                 else
                 {
                     nameOrValue = CodeDomHelper.SetValue();
@@ -1272,7 +1360,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 //Add Fixed/Default value wrapping field
                 CodeMemberField fixedOrDefaultField = null;
-                CodeTypeReference returnType = ReturnType;
+                CodeTypeReference returnType = DefaultValueType;
                 if (this.unionDefaultType != null)
                 {
                     returnType = new CodeTypeReference(unionDefaultType.ToString());

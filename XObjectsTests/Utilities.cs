@@ -78,6 +78,8 @@ namespace Xml.Schema.Linq.Tests
                                             .ToXmlSchemaSet(xmlPreloadedResolver);
 
             var sourceText = GenerateSourceText(atomXsdSchemaSet, xsdFile.FullName);
+            using var writer = new StreamWriter(xsdFile.FullName + ".cs");
+            sourceText.Write(writer);
 
             var tree = CSharpSyntaxTree.ParseText(sourceText, CSharpParseOptions.Default);
 

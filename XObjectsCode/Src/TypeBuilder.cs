@@ -11,6 +11,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
+using System.Linq;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -362,15 +363,14 @@ namespace Xml.Schema.Linq.CodeGen
             Dictionary<XmlSchemaObject, string> nameMappings,
             LinqToXsdSettings settings)
         {
-            string typeName = typeInfo.clrtypeName;
-            CodeTypeDeclaration simpleTypeDecl = new CodeTypeDeclaration(typeName);
+            string typeName = typeInfo is EnumSimpleTypeInfo ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
+            var simpleTypeDecl = new CodeTypeDeclaration(typeName);
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
             //simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.NestedAssembly;
 
             //Add private constructor so it cannot be instantiated
-            CodeConstructor privateConst = new CodeConstructor();
-            privateConst.Attributes = MemberAttributes.Private;
+            var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
             simpleTypeDecl.Members.Add(privateConst);
 
             //Create a static field for the XTypedSchemaSimpleType
@@ -386,6 +386,24 @@ namespace Xml.Schema.Linq.CodeGen
             ApplyAnnotations(simpleTypeDecl, typeInfo);
 
             return simpleTypeDecl;
+        }
+
+        internal static CodeTypeDeclaration CreateEnumType(EnumSimpleTypeInfo typeInfo,
+            LinqToXsdSettings settings)
+        {
+            string typeName = typeInfo.clrtypeName;
+
+            var enumTypeDecl = new CodeTypeDeclaration(typeName) { IsEnum = true };
+            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
+            enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
+            foreach (var facet in typeInfo.InnerType.GetEnumFacets())
+            {
+                enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet));
+            }
+
+            ApplyAnnotations(enumTypeDecl, typeInfo);
+
+            return enumTypeDecl;
         }
 
         internal void ApplyAnnotations(ClrTypeInfo typeInfo)
@@ -484,6 +502,10 @@ namespace Xml.Schema.Linq.CodeGen
 
             CodeTypeReference returnType = CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName);
             CodeTypeReference wrapperReturnType = CodeDomHelper.CreateDictionaryType(Constants.SystemTypeName, Constants.SystemTypeName);
+
+            //Add private constructor so it cannot be instantiated
+            var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
+            servicesTypeDecl.Members.Add(privateConst);
 
             //Create a dictionary of TypeName vs System.Type and the method to create it
             CodeMemberProperty typeDictProperty = null;
