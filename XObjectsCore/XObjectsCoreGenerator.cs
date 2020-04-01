@@ -119,7 +119,8 @@ namespace Xml.Schema.Linq
 
             var codeGenerator = new CodeDomTypesGenerator(settings);
             var ccu = new CodeCompileUnit();
-            foreach(var codeNs in codeGenerator.GenerateTypes(mapping)) 
+            var namespaces = codeGenerator.GenerateTypes(mapping);
+            foreach(var codeNs in namespaces) 
                 ccu.Namespaces.Add(codeNs);
 
             return ccu;

@@ -54,7 +54,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             schemas.ValidationEventHandler += new ValidationEventHandler(Validationcallback);
-            schemas.Compile();
+            if (!schemas.IsCompiled) schemas.Compile();
 
             this.schemas = schemas;
             if (schemaErrorCount > 0)
@@ -81,6 +81,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             BuildSubstitutionGroups();
             ElementsToTypes();
+            AttributesToTypes();
             TypesToTypes();
             binding.NameMappings = symbolTable.schemaNameToIdentifiers;
             return binding;
@@ -182,54 +183,75 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        internal void AttributesToTypes()
+        {
+            foreach (XmlSchemaAttribute a in schemas.GlobalAttributes.Values)
+            {
+                if (
+                    a.AttributeSchemaType.QualifiedName.IsEmpty &&
+                    a.AttributeSchemaType.IsOrHasUnion())
+                {
+                    AddSimpleType(a.QualifiedName, a.AttributeSchemaType);
+                }
+            }
+        }
+
+        internal void AddSimpleType(XmlQualifiedName name, XmlSchemaSimpleType simpleType)
+        {
+            SymbolEntry symbol = symbolTable.AddType(name, simpleType);
+            string xsdNamespace = simpleType.QualifiedName.Namespace;
+            // Create corresponding simple type info objects
+            ClrSimpleTypeInfo typeInfo = ClrSimpleTypeInfo.CreateSimpleTypeInfo(simpleType);
+            typeInfo.IsAbstract = false;
+            typeInfo.clrtypeName = symbol.identifierName;
+            typeInfo.clrtypeNs = symbol.clrNamespace;
+            typeInfo.schemaName = symbol.symbolName;
+            typeInfo.schemaNs = xsdNamespace;
+            typeInfo.typeOrigin = SchemaOrigin.Fragment;
+            BuildAnnotationInformation(typeInfo, simpleType);
+            binding.Types.Add(typeInfo);
+        }
+
+        internal void TypeToType(XmlSchemaType st)
+        {
+            XmlSchemaSimpleType simpleType = st as XmlSchemaSimpleType;
+            if (simpleType != null)
+            {
+                this.AddSimpleType(simpleType.QualifiedName, simpleType);
+            }
+            else
+            {
+                XmlSchemaComplexType ct = st as XmlSchemaComplexType;
+                if (ct != null && ct.TypeCode != XmlTypeCode.Item)
+                {
+                    SymbolEntry symbol = symbolTable.AddType(ct.QualifiedName, ct);
+                    string xsdNamespace = ct.QualifiedName.Namespace;
+
+                    localSymbolTable.Init(symbol.identifierName);
+
+                    ClrContentTypeInfo typeInfo = new ClrContentTypeInfo();
+                    typeInfo.IsAbstract = ct.IsAbstract;
+                    typeInfo.IsSealed = ct.IsFinal();
+                    typeInfo.clrtypeName = symbol.identifierName;
+                    typeInfo.clrtypeNs = symbol.clrNamespace;
+                    typeInfo.schemaName = symbol.symbolName;
+                    typeInfo.schemaNs = xsdNamespace;
+
+                    typeInfo.typeOrigin = SchemaOrigin.Fragment;
+                    typeInfo.baseType = BaseType(ct);
+                    BuildProperties(null, ct, typeInfo);
+                    BuildNestedTypes(typeInfo);
+                    BuildAnnotationInformation(typeInfo, ct);
+                    binding.Types.Add(typeInfo);
+                }
+            }
+        }
 
         internal void TypesToTypes()
         {
             foreach (XmlSchemaType st in schemas.GlobalTypes.Values)
             {
-                XmlSchemaSimpleType simpleType = st as XmlSchemaSimpleType;
-                if (simpleType != null)
-                {
-                    SymbolEntry symbol = symbolTable.AddType(simpleType);
-                    string xsdNamespace = simpleType.QualifiedName.Namespace;
-                    ClrSimpleTypeInfo
-                        typeInfo = ClrSimpleTypeInfo
-                            .CreateSimpleTypeInfo(simpleType); //Create corresponding simple type info objects
-                    typeInfo.IsAbstract = false;
-                    typeInfo.clrtypeName = symbol.identifierName;
-                    typeInfo.clrtypeNs = symbol.clrNamespace;
-                    typeInfo.schemaName = symbol.symbolName;
-                    typeInfo.schemaNs = xsdNamespace;
-                    typeInfo.typeOrigin = SchemaOrigin.Fragment;
-                    BuildAnnotationInformation(typeInfo, st);
-                    binding.Types.Add(typeInfo);
-                }
-                else
-                {
-                    XmlSchemaComplexType ct = st as XmlSchemaComplexType;
-                    if (ct != null && ct.TypeCode != XmlTypeCode.Item)
-                    {
-                        SymbolEntry symbol = symbolTable.AddType(ct);
-                        string xsdNamespace = ct.QualifiedName.Namespace;
-
-                        localSymbolTable.Init(symbol.identifierName);
-
-                        ClrContentTypeInfo typeInfo = new ClrContentTypeInfo();
-                        typeInfo.IsAbstract = ct.IsAbstract;
-                        typeInfo.IsSealed = ct.IsFinal();
-                        typeInfo.clrtypeName = symbol.identifierName;
-                        typeInfo.clrtypeNs = symbol.clrNamespace;
-                        typeInfo.schemaName = symbol.symbolName;
-                        typeInfo.schemaNs = xsdNamespace;
-
-                        typeInfo.typeOrigin = SchemaOrigin.Fragment;
-                        typeInfo.baseType = BaseType(ct);
-                        BuildProperties(null, ct, typeInfo);
-                        BuildNestedTypes(typeInfo);
-                        BuildAnnotationInformation(typeInfo, ct);
-                        binding.Types.Add(typeInfo);
-                    }
-                }
+                TypeToType(st);
             }
         }
 
@@ -992,9 +1014,13 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.VerifyRequired = configSettings.VerifyRequired;
 
             XmlSchemaSimpleType schemaType = attribute.AttributeSchemaType;
+            var qName = schemaType.QualifiedName;
+            if (qName.IsEmpty) {
+                qName = attribute.QualifiedName;
+            }
             // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=4106
             ClrTypeReference typeRef =
-                BuildTypeReference(schemaType, attribute.AttributeSchemaType.QualifiedName, false, true);
+                BuildTypeReference(schemaType, qName, false, true);
             propertyInfo.TypeReference = typeRef;
             Debug.Assert(schemaType.Datatype != null);
             SetFixedDefaultValue(attribute, propertyInfo);

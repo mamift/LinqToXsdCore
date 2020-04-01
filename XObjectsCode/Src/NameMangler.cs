@@ -178,9 +178,9 @@ namespace Xml.Schema.Linq.CodeGen
             return AddSymbol(element.QualifiedName, element, string.Empty);
         }
 
-        public SymbolEntry AddType(XmlSchemaType type)
+        public SymbolEntry AddType(XmlQualifiedName qualifiedName, XmlSchemaType type)
         {
-            return AddSymbol(type.QualifiedName, type, Constants.TypeSuffix);
+            return AddSymbol(qualifiedName, type, Constants.TypeSuffix);
         }
 
         protected SymbolEntry AddSymbol(XmlQualifiedName qname, XmlSchemaObject schemaObject, string suffix)

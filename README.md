@@ -1,12 +1,16 @@
 # LinqToXsdCore
 ## Introduction
-This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET Core. Most of what was in the original project is here, but built for .NET Core! For people who specifically need .NET 4/3.5 support, please use the original code on the [codeplex archive](https://archive.codeplex.com/?p=linqtoxsd). There's also a legacy [nuget package](https://www.nuget.org/packages/LinqToXsd/).
+This is a port of [LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd) to .NET Core. Most of what was in the original project is here, but built for .NET Core! For people who specifically need .NET Framework 3.5 and 4.0-4.5 support, please use the original code on the [codeplex archive](https://archive.codeplex.com/?p=linqtoxsd). There's also a legacy [nuget package](https://www.nuget.org/packages/LinqToXsd/).
+
+This .NET Core port itself requires .NET Core 2.1 or 3.1, but it can generate code that is compatible with .NET Framework 4.6.x and .NET Core 2.x.
 
 ![Build Status](https://dev.azure.com/mamift1/LinqToXsdCore/_apis/build/status/LinqToXsdCore-.NET%20Desktop-CI) ![Nuget](https://buildstats.info/nuget/LinqToXsdCore)
 
 ## Get started
 
-You can get started by reading the [instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md) to use the CLI tool to generate code (and use said code in a shipping app or library).
+You can get started by reading the [instructions here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/README.md) to use the CLI tool to generate code. 
+
+After you've generated code for a given XSD, you can include the generated code in a shipping app or library, so long as it has a reference to the [XObjectsCore nuget package](https://www.nuget.org/packages/XObjectsCore). Don't add the **LinqToXsdCore** nuget package to your shipping app or library! That's just a command line tool to generate code.
 
 ### Release notes are [here](https://github.com/mamift/LinqToXsdCore/tree/master/LinqToXsd/RELEASENOTES.md).
 
@@ -72,7 +76,7 @@ LinqToXsd, ends up providing something very similar to the C# code-generation fa
 
 LinqToXsd also tries very closely to model XSD constraints and compositors (sequence, choice, all, substitution groups) and user defined types as much as possible, including simple and complex types, both named and anonymous. A key distinction is that LinqToXsd models XML elements and types with generated C# classes to build 'XML Objects', transposing XSD semantics in a CLR, object-oriented way. These XML objects inherit from the base class `XTypedElement`. 
 
-Essentially LinqToXsd generates an in memory model of the XSD schema as opposed to the classes that `xsd.exe` generates, which are closer to plain old C# objects (POCOs). This has the end result of making LinqToXsd a very powerful tool for modelling custom document markup langauges, and preserving schema semantics in code.
+Essentially LinqToXsd generates an in memory model of the XSD schema as opposed to the classes that `xsd.exe` generates, which are closer to plain old C# objects (POCOs). This has the end result of making LinqToXsd a very powerful tool for modeling custom document markup languages, and preserving schema semantics in code.
 
 To get a more technical explanation of what LinqToXsd provides, please see the [wiki](https://github.com/mamift/LinqToXsdCore/wiki).
 

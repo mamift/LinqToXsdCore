@@ -18,6 +18,7 @@ namespace W3C.XSD {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
+    using W3C;
     
     
     /// <summary>
@@ -567,10 +568,10 @@ namespace W3C.XSD {
         public virtual object lang {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace"));
-                return XTypedServices.ParseUnionValue(x, null);
+                return XTypedServices.ParseUnionValue(x, global::W3C.lang.TypeDefinition);
             }
             set {
-                this.SetUnionAttribute(value, "lang", this, System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace"), null);
+                this.SetUnionAttribute(value, "lang", this, System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace"), global::W3C.lang.TypeDefinition);
             }
         }
         
@@ -2616,10 +2617,10 @@ namespace W3C.XSD {
         public virtual object lang {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace"));
-                return XTypedServices.ParseUnionValue(x, null);
+                return XTypedServices.ParseUnionValue(x, global::W3C.lang.TypeDefinition);
             }
             set {
-                this.SetUnionAttribute(value, "lang", this, System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace"), null);
+                this.SetUnionAttribute(value, "lang", this, System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace"), global::W3C.lang.TypeDefinition);
             }
         }
         
@@ -7964,12 +7965,12 @@ namespace W3C.XSD {
         }
     }
     
-    public sealed class NOTATIONType {
+    public sealed class NOTATION {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Notation), null);
         
-        private NOTATIONType() {
+        private NOTATION() {
         }
     }
     
@@ -12077,6 +12078,31 @@ namespace W3C.XSD {
         
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
+        }
+    }
+}
+namespace W3C {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Diagnostics;
+    using System.Xml;
+    using System.Xml.Schema;
+    using System.Xml.Linq;
+    using Xml.Schema.Linq;
+    using W3C.XSD;
+    
+    
+    public sealed class lang {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
+                    new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language), null),
+                    new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                                    ""}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve))});
+        
+        private lang() {
         }
     }
 }

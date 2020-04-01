@@ -21,7 +21,7 @@ After that, you can use the tool globally via the command 'LinqToXsd' at a conso
 
 ## Using LinqToXsd to generate code
 
-Before generating code, create an example configuration file from your XSD (this will allow you to customize how XML namespaces map to .NET CLR namepsaces).
+Before generating code, create an example configuration file from your XSD (this will allow you to customize how XML namespaces map to .NET CLR namespaces).
 
 ```
 linqtoxsd config -e wss.xsd
@@ -29,7 +29,7 @@ linqtoxsd config -e wss.xsd
 
 Currently, as this is a port of the LinqToXsd project, some configuration elements are not documented but for some reason or another are processed and interpreted in source code. But the gist of what you need as a developer is to pay attention to the ``<Namespaces />`` element. 
 
-Under that element, it will create default namepsace mappings similar to the following example: 
+Under that element, it will create default namespace mappings similar to the following example: 
 
 ```XML
 <Namespaces>
@@ -39,7 +39,7 @@ Under that element, it will create default namepsace mappings similar to the fol
 
 The XML namespace ``http://schemas.microsoft.com/sharepoint/`` becomes: ``schemas.microsoft.com.sharepoint`` in the generated C# code. And obviously now that you have a configuration file you can change the default values to something more suitable for you.
 
-To use your new configuraton file to generate code:
+To use your new configuration file to generate code:
 
 ```
 linqtoxsd gen wss.xsd -c .\wss.xsd.config
@@ -56,6 +56,10 @@ linqtoxsd gen "$(ProjectDir)wss.xsd" -c "$(ProjectDir)wss.xsd.config"
 ```
 
 In the above example, the strings beginning with `$()` are MSBuild macros.
+
+## Using generated code in a shipping app or library
+
+For any project that includes the generated code, add a reference to the **XObjectsCore** nuget package. The latest version can be found here: https://www.nuget.org/packages/XObjectsCore/
 
 ### Help for other functions
 

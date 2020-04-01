@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XObjectsCode", "XObjectsCode\XObjectsCode.shproj", "{34AC3718-D2DC-48AB-BECC-F00A87E910C2}"
 EndProject
@@ -21,6 +21,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		XObjectsCode\XObjectsCode.projitems*{34ac3718-d2dc-48ab-becc-f00a87e910c2}*SharedItemsImports = 13
+		XObjectsCode\XObjectsCode.projitems*{71210419-4ea9-442b-aca2-4fcd647929e3}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
