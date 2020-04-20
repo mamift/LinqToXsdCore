@@ -205,6 +205,11 @@ namespace Xml.Schema.Linq
 
         internal void SetElement(XName name, object value, bool addToExisting, XmlSchemaDatatype datatype)
         {
+            SetElement(name, value, addToExisting, datatype, null);
+        }
+
+        internal void SetElement(XName name, object value, bool addToExisting, XmlSchemaDatatype datatype, Type elementBaseType)
+        {
             XElement parentElement = this.GetUntyped();
             CheckXsiNil(parentElement);
             if (value == null)
@@ -218,7 +223,17 @@ namespace Xml.Schema.Linq
                 IXMetaData schemaMetaData = this as IXMetaData; //Get parent's content model
                 Debug.Assert(schemaMetaData != null);
                 ContentModelEntity cm = schemaMetaData.GetContentModel();
-                cm.AddElementToParent(name, value, parentElement, addToExisting, datatype);
+
+                if (elementBaseType == null)
+                {
+                    if (!schemaMetaData.LocalElementsDictionary.TryGetValue(name, out elementBaseType))
+                    {
+                        elementBaseType = value?.GetType();
+                    }
+                }
+
+
+                cm.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
             }
         }
 

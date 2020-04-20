@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
@@ -12,9 +13,9 @@ namespace Xml.Schema.Linq
         internal override ContentModelType ContentModelType => ContentModelType.Choice;
 
         public override void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
-            XmlSchemaDatatype datatype)
+            XmlSchemaDatatype datatype, Type elementBaseType)
         {
-            base.AddElementToParent(name, value, parentElement, addToExisting, datatype);
+            base.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
             CheckChoiceBranches(name, parentElement);
         }
 

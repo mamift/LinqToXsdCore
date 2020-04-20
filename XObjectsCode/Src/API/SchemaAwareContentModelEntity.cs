@@ -169,7 +169,7 @@ namespace Xml.Schema.Linq
             }
         }
 
-        internal void AddElementInPosition(XName name, XElement parentElement, bool addToExisting, XTypedElement xObj)
+        internal void AddElementInPosition(XName name, XElement parentElement, bool addToExisting, XTypedElement xObj, Type elementBaseType)
         {
             NamedContentModelEntity namedEntity = GetNamedEntity(name);
             if (namedEntity == null)
@@ -183,7 +183,7 @@ namespace Xml.Schema.Linq
             EditAction editAction = EditAction.None;
             XElement elementMarker = FindElementPosition(namedEntity, parentElement, addToExisting, out editAction);
 
-            XElement newElement = XTypedServices.GetXElement(xObj, name);
+            XElement newElement = XTypedServices.GetXElement(xObj, name, elementBaseType);
             Debug.Assert(xObj != null);
 
             switch (editAction)
@@ -204,7 +204,7 @@ namespace Xml.Schema.Linq
         }
 
         public override void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
-            XmlSchemaDatatype datatype)
+            XmlSchemaDatatype datatype, Type elementBaseType)
         {
             Debug.Assert(value != null);
             if (datatype != null)
@@ -213,7 +213,7 @@ namespace Xml.Schema.Linq
             }
             else
             {
-                AddElementInPosition(name, parentElement, addToExisting, value as XTypedElement);
+                AddElementInPosition(name, parentElement, addToExisting, value as XTypedElement, elementBaseType);
             }
         }
 
