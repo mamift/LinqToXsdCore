@@ -674,7 +674,7 @@ namespace Xml.Schema.Linq.CodeGen
                 this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespace, nameMappings);
             }
 
-            typeRef.UpdateClrFullTypeName(this);
+            typeRef.UpdateClrFullTypeName(this, currentNamespace);
 
             this.parentTypeFullName = clrFullTypeName;
         }

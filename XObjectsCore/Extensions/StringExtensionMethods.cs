@@ -19,6 +19,20 @@ namespace Xml.Schema.Linq.Extensions
         /// <param name="theString"></param>
         /// <returns></returns>
         public static bool IsNotEmpty(this string theString) => !string.IsNullOrWhiteSpace(theString);
+        
+        /// <summary>
+        /// Determines if the current string is either <c>null</c> or just <see cref="string.Empty"/>.
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string theString) => string.IsNullOrEmpty(theString);
+
+        /// <summary>
+        /// Determines if the current string is either NOT <c>null</c> or just <see cref="string.Empty"/>.
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <returns></returns>
+        public static bool IsNotNullOrEmpty(this string theString) => !string.IsNullOrEmpty(theString);
 
         /// <summary>
         /// Adds a number to the end of a string.

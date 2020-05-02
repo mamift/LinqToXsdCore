@@ -64,5 +64,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\XObjectException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\LinqToXsdSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\XsdToTypesConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\XsdToTypesConverter.Enums.cs" />
   </ItemGroup>
 </Project>

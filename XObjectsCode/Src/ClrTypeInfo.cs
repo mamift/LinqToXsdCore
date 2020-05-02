@@ -1,11 +1,14 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
+using System.CodeDom;
 using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
+using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -57,6 +60,8 @@ namespace Xml.Schema.Linq.CodeGen
         internal string baseTypeClrName;
         internal string baseTypeClrNs;
 
+        internal ClrTypeInfo Parent { get; set; }
+
         //Type properties 
         protected ClrTypeFlags clrTypeFlags;
         internal SchemaOrigin typeOrigin;
@@ -67,6 +72,39 @@ namespace Xml.Schema.Linq.CodeGen
         public ClrTypeInfo()
         {
             Init();
+        }
+
+        /// <summary>
+        /// If this instance is nested under another <see cref="ClrTypeInfo"/> instance,
+        /// this method will resolve all the parent references and return a string that can be used
+        /// in a fully-qualified type reference string.
+        /// <para>Intended for type references that are themselves defined inside another.</para>
+        /// </summary>
+        /// <param name="includeNs">Optionally set to true to include the namespace.</param>
+        /// <returns></returns>
+        internal string GetNestedTypeScopedResolutionString(bool includeNs = true)
+        {
+            var scopeSb = includeNs ? new StringBuilder(this.clrtypeNs) : new StringBuilder();
+
+            var theParent = Parent;
+            var iterationCount = 0;
+            do {
+                if (theParent?.clrtypeName.IsNullOrEmpty() ?? true) {
+                    if (iterationCount == 0) goto appendThis;
+                    else continue;
+                }
+
+                scopeSb.Append("." + theParent.clrtypeName);
+                theParent = theParent.Parent;
+                iterationCount++;
+                appendThis:
+                if (theParent == null) {
+                    // add this instance typename after exhausting all parent refs
+                    scopeSb.Append("." + this.clrtypeName);
+                }
+            } while (theParent != null);
+
+            return scopeSb.ToString();
         }
 
         private void Init()
@@ -699,13 +737,25 @@ namespace Xml.Schema.Linq.CodeGen
             return clrTypeName;
         }
 
-        internal void UpdateClrFullTypeName(ClrPropertyInfo property)
+        internal void UpdateClrFullTypeName(ClrPropertyInfo property, string @namespace)
         {
-            if (IsEnum)
-            {
-                this.clrFullTypeName = this.Namespace == property.ClrNamespace
-                    ? this.ClrName
-                    : $"{this.Namespace}.{this.ClrName}";
+            if (@namespace == null) throw new ArgumentNullException(nameof(@namespace));
+
+            if (IsEnum) {
+                var theClrNamespace = this.Namespace.IsNullOrEmpty() ? @namespace : this.Namespace;
+                // when the current namespace and property CLR namespace is null, just use the CLR type name
+                if (this.Namespace.IsNullOrEmpty() && property.ClrNamespace.IsNullOrEmpty()) {
+                    if (theClrNamespace.IsNullOrEmpty()) {
+                        this.clrFullTypeName = this.clrName;
+                        return;
+                    }
+                }
+
+                if (this.clrFullTypeName.IsNotEmpty()) return;
+
+                this.clrFullTypeName = theClrNamespace == property.ClrNamespace ? 
+                    this.ClrName : 
+                    theClrNamespace + "." + (this.ClrName ?? this.Name); // if ClrName is null, use the Name
             }
         }
     }

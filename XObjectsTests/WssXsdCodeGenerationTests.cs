@@ -82,7 +82,7 @@ namespace Xml.Schema.Linq.Tests
 
             var members = typesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
 
-            Assert.IsTrue(members.Count == 5080);
+            Assert.IsTrue(members.Count == 5084);
 
             var propertyMembers = members.OfType<PropertyDeclarationSyntax>().ToList();
 

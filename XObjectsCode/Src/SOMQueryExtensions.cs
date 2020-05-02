@@ -138,13 +138,12 @@ namespace Xml.Schema.Linq.CodeGen
             switch (type.Datatype.Variety)
             {
                 case XmlSchemaDatatypeVariety.Atomic:
-                    var facetObjects = type.Content is XmlSchemaSimpleTypeRestriction content ? content.Facets.Cast<object>() : Enumerable.Empty<object>();
+                    var facetObjects = (type.Content is XmlSchemaSimpleTypeRestriction content ? content.Facets.Cast<object>() : Enumerable.Empty<object>()).ToList();
                     var isEnum = facetObjects.Any() && facetObjects.All(facet => facet is XmlSchemaEnumerationFacet);
                     if (isEnum)
                     {
-                        var codeProvider = CodeDomHelper.CodeProvider;
-                        var facets = facetObjects.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value).Cast<string>();
-                        isEnum = facets.All(facet => codeProvider.IsValidIdentifier(facet));
+                        var facets = facetObjects.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value);
+                        isEnum = facets.All(facet => CodeDomHelper.CodeProvider.IsValidIdentifier(facet));
                     }
                     return isEnum;
                 case XmlSchemaDatatypeVariety.List:
