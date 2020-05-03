@@ -63,7 +63,6 @@ namespace Xml.Schema.Linq.Extensions
         /// <summary>
         /// Searches the current namespace for the same equivalent <see cref="CodeTypeDeclaration"/> of the given <paramref name="enum"/>
         /// and returns the type containing it.
-        /// <para>Uses the <see cref="IsEquivalent(System.CodeDom.CodeTypeMember,System.CodeDom.CodeTypeMember)"/></para>
         /// </summary>
         /// <param name="namespace"></param>
         /// <param name="enum"></param>
@@ -93,57 +92,30 @@ namespace Xml.Schema.Linq.Extensions
             return namespaceScopedEnums.ToList();
         }
 
-        public static bool IsEquivalent(this CodeObject x, CodeObject y)
-        {
-            if (x == null || y == null) return false;
-            if (x.UserData == null || y.UserData == null) return false;
-
-            var keys = x.UserData.Keys.Cast<string>().ToList();
-
-            return keys.SequenceEqual(y.UserData.Keys.Cast<string>()) || x.Equals(y);
-        }
-
+        /// <summary>
+        /// Determines if the current <see cref="CodeMemberField"/> and another are the same in terms of their
+        /// name and type.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public static bool IsEquivalent(this CodeMemberField x, CodeMemberField y)
         {
+            if (x == null && y == null) return true;
             if (x == null || y == null) return false;
-
-            return x.Name.Equals(y.Name) && (x.Type?.BaseType?.Equals(y.Type?.BaseType) ?? false);
+            
+            return x.Name.Equals(y.Name) && x.Attributes == y.Attributes &&
+                   (x.Type?.BaseType?.Equals(y.Type?.BaseType) ?? false);
         }
 
-        public static bool IsEquivalent(this CodeLinePragma x, CodeLinePragma y)
-        {
-            if (x == null || y == null) return false;
-
-            return x.FileName.Equals(y.FileName) && x.LineNumber == y.LineNumber;
-        }
-
-        public static bool IsEquivalent(this CodeTypeReference x, CodeTypeReference y)
-        {
-            if (x == null || y == null) return false;
-
-            return x.Equals(y);
-        }
-
-        public static bool IsEquivalent(CodeAttributeDeclaration x, CodeAttributeDeclaration y)
-        {
-            if (x == null || y == null) return false;
-
-            return x.Name == y.Name && x.AttributeType.IsEquivalent(y.AttributeType);
-        }
-
-        [Obsolete]
-        public static bool IsEquivalent(this CodeTypeMember x, CodeTypeMember y)
-        {
-            if (x == null || y == null) return false;
-            var sameAttributes = x.Attributes == y.Attributes;
-            var sameName = x.Name.Equals(y.Name);
-            var sameLinePragma = x.LinePragma.IsEquivalent(y.LinePragma);
-            var sameCustomAttrs = x.CustomAttributes.Cast<CodeAttributeDeclaration>()
-                .SequenceEqual(y.CustomAttributes.Cast<CodeAttributeDeclaration>(), CodeAttributeDeclarationEqualityComparer.Default);
-
-            return sameAttributes && sameName && sameLinePragma && sameCustomAttrs;
-        }
-
+        /// <summary>
+        /// Determines if two <see cref="CodeTypeDeclaration"/> (where the <see cref="CodeTypeDeclaration.IsEnum"/> is true)
+        /// are the same in terms of their name and <see cref="CodeTypeDeclaration.Members"/> (whereby each <see cref="CodeMemberField"/>
+        /// is compared for their name and value).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public static bool IsEquivalentEnumDeclaration(this CodeTypeDeclaration x, CodeTypeDeclaration y)
         {
             if (x == null && y == null) return true;
