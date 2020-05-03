@@ -104,6 +104,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
             } while (theParent != null);
 
+            // this happens when both this.clrTypeName is null and Parent is null
+            if (scopeSb.Length == 1) return string.Empty;
+
             return scopeSb.ToString();
         }
 
