@@ -16,7 +16,7 @@ namespace Xml.Schema.Linq
         }
 
         public override void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
-            XmlSchemaDatatype datatype)
+            XmlSchemaDatatype datatype, Type elementBaseType)
         {
             throw new InvalidOperationException();
         }

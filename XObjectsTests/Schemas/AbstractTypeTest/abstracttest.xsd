@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.org/AbstractTest" xmlns:tns="http://example.org/AbstractTest"  attributeFormDefault="unqualified" elementFormDefault="qualified">
+
+  <xs:element name="Action">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ActionInfo" type="tns:BaseInfo" />
+        <xs:element name="Commands" type="tns:BaseCommand" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="BaseInfo" />
+  <xs:complexType name="BaseCommand" abstract="true" />
+
+  <xs:complexType name="UpdateCommand">
+      <xs:complexContent mixed="false">
+        <xs:extension base="tns:BaseCommand">
+          <xs:attribute name="value" use="required" type="xs:string" />
+        </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Record">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseInfo">
+        <xs:attribute name="id" use="required" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

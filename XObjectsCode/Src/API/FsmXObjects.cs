@@ -1,5 +1,6 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Xml.Schema;
 using System.Xml.Linq;
@@ -140,9 +141,16 @@ namespace Xml.Schema.Linq
             }
             else
             {
+                Type elementBaseType = null;
+                IXMetaData schemaMetaData = this as IXMetaData;
+                if (!schemaMetaData.LocalElementsDictionary.TryGetValue(name, out elementBaseType))
+                {
+                    elementBaseType = value.GetType();
+                }
+                
                 //Setting XTypedElement
                 XTypedElement xObj = value as XTypedElement;
-                XElement newElement = XTypedServices.GetXElement(xObj, name);
+                XElement newElement = XTypedServices.GetXElement(xObj, name, elementBaseType);
                 XElement pos = this.GetElement(name); //Find the matching element
                 if (pos == null)
                 {

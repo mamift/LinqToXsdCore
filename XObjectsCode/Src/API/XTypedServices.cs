@@ -603,6 +603,11 @@ namespace Xml.Schema.Linq
 
         internal static XElement GetXElement(XTypedElement xObj, XName name)
         {
+            return GetXElement(xObj, name, xObj.GetType());
+        }
+
+        internal static XElement GetXElement(XTypedElement xObj, XName name, Type elementBaseType)
+        {
             XElement newElement = xObj.Untyped;
             if (newElement.Parent != null)
             {
@@ -616,6 +621,31 @@ namespace Xml.Schema.Linq
             {
                 //Set correct element name as the name of the property/element
                 newElement.Name = name;
+            }
+
+            //Does this need a type qualifier?
+            if (xObj.GetType() != elementBaseType)
+            {
+                //Don't overwrite anything explicitly added 
+                var xsiType = (string)newElement.Attribute(XName.Get("type", XmlSchema.InstanceNamespace));
+                if (xsiType == null)
+                {
+                    var defNs = xObj.Untyped.GetDefaultNamespace();
+                    string typeName = null;
+                    if (metaData.SchemaName.Namespace == defNs ||
+                        (defNs == XNamespace.None && metaData.SchemaName.Namespace == name.Namespace))
+                        typeName = metaData.SchemaName.LocalName;
+                    else
+                    {
+                        var prefix = xObj.Untyped.GetPrefixOfNamespace(metaData.SchemaName.Namespace);
+                        if (prefix == null)
+                            typeName = metaData.SchemaName.LocalName;
+                        else
+                            typeName = prefix + ":" + metaData.SchemaName.LocalName;
+                    }
+
+                    newElement.Add(new XAttribute(XName.Get("type", XmlSchema.InstanceNamespace), typeName));
+                }
             }
 
             return newElement;
