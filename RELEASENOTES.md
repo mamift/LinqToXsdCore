@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.1.0 and XObjectsCore 3.1.0
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.1.0
+* https://www.nuget.org/packages/XObjectsCore/3.1.0
+	* Fixed a enum type generation bug that occurs when referencing locally defined enum types.
+	* Also fixed another one enum generation bug for multiple inline enum types defined with the same name; the XSD spec allows for multiple inline enum types to share the same name so long as they're not defined in the same complex type or element, and are not global types.
+	* Fixed an issue with ambiguous types where an element is a base type and a derrived type is used.
+
 ## LinqToXsdCore 3.0.1 and XObjectsCore 3.0.1
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.1
