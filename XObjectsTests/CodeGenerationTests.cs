@@ -167,5 +167,19 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsEmpty(setterVoidTypeDefinitionReferences);
             Assert.IsEmpty(getterVoidTypeDefinitionReferences);
         }
+
+        [Test]
+        public void EnumAtNamespaceLevelGenerationTest()
+        {
+            const string wssXsdFilePath = @"Schemas\SharePoint2010\wss.xsd";
+            var wssXsdFileInfo = new FileInfo(wssXsdFilePath);
+            var tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo);
+            var root = tree.GetNamespaceRoot();
+
+            var namespaceScopedEnums = root.DescendantNodes().OfType<EnumDeclarationSyntax>().ToList();
+
+            Assert.IsNotEmpty(namespaceScopedEnums);
+            Assert.IsTrue(namespaceScopedEnums.Count == 46);
+        }
     }
 }

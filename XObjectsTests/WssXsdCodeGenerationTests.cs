@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
 using Xml.Schema.Linq.CodeGen;
 
@@ -117,6 +118,54 @@ namespace Xml.Schema.Linq.Tests
             var last = xRootClassMembers.LastOrDefault(m => m.Identifier.ValueText == "Root");
 
             Assert.IsNotNull(last);
+        }
+
+        [Test]
+        public void ClassesWithInlineEnumsGenerationTest()
+        {
+            var typesWithEnumsDefined = GeneratedTypes.Where(t => t.Members.OfType<EnumDeclarationSyntax>().Any()).ToList();
+
+            Assert.IsNotEmpty(typesWithEnumsDefined);
+            Assert.IsTrue(typesWithEnumsDefined.Count() == 3);
+        }
+
+        [Test]
+        public void GenerateInlineDeclaredEnumsTest()
+        {
+            var inlineDeclaredEnums = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>()).ToList();
+
+            Assert.IsNotEmpty(inlineDeclaredEnums);
+            Assert.IsTrue(inlineDeclaredEnums.Count == 4);
+        }
+
+        [Test]
+        public void DuplicateInlineDeclaredEnumsAllowedTest()
+        {
+            // multiple inline defined enum types can be declared with the same name so long as they exist in
+            // different complex types or elements.
+            var inlineDeclaredEnumsWithSameName = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>())
+                .Where(c => c.Identifier.ValueText == nameof(parametersType.ParameterLocalType.DesignerTypeEnum)).ToList();
+
+            Assert.IsNotEmpty(inlineDeclaredEnumsWithSameName);
+            Assert.IsTrue(inlineDeclaredEnumsWithSameName.Count == 2);
+        }
+
+        [Test]
+        public void DuplicateInlineDeclaredEnumsActuallyHaveDifferingMembersTest()
+        {
+            // multiple inline defined enum types can be declared with the same name so long as they exist in
+            // different complex types or elements.
+            var inlineDeclaredEnumsWithSameName = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>())
+                .Where(c => c.Identifier.ValueText == nameof(parametersType.ParameterLocalType.DesignerTypeEnum)).ToList();
+
+            var membersGroupedByParentId = inlineDeclaredEnumsWithSameName.SelectMany(e => e.Members)
+                .GroupBy(k => ((EnumDeclarationSyntax) k.Parent).Identifier)
+                .ToList();
+
+            Assert.IsTrue(membersGroupedByParentId.Count() == 2);
+
+            Assert.IsTrue(membersGroupedByParentId.First().Count() == 33);
+            Assert.IsTrue(membersGroupedByParentId.Last().Count() == 20);
         }
     }
 }
