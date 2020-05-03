@@ -1,11 +1,17 @@
-﻿using System.IO;
+﻿using System;
+using System.CodeDom;
+using System.IO;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
-    public static class Extensions
+    /// <summary>
+    /// Extension methods use specifically in unit tests.
+    /// </summary>
+    public static class TestExtensionsMethods
     {
         /// <summary>
         /// Copies an existing <paramref name="dir"/> to a <paramref name="destination"/> directory, that may or may not exist.
@@ -68,6 +74,25 @@ namespace Xml.Schema.Linq.Tests
                                     .First(dn => dn is NamespaceDeclarationSyntax) as NamespaceDeclarationSyntax;
 
             return namespaceNode;
+        }
+
+        /// <summary>
+        /// Returns the <see cref="TextWriter"/> of the current <see cref="CodeTypeDeclaration"/>.
+        /// </summary>
+        /// <param name="codeObject"></param>
+        /// <param name="namespaceName"></param>
+        /// <returns></returns>
+        public static TextWriter ToTextWriter(this CodeTypeDeclaration codeObject, string namespaceName = null)
+        {
+            if (namespaceName == null) namespaceName = "DefaultCodeNamespace";
+
+            var ccu = new CodeCompileUnit();
+
+            var codeNamespace = new CodeNamespace(namespaceName);
+            codeNamespace.Types.Add(codeObject);
+            ccu.Namespaces.Add(codeNamespace);
+
+            return ccu.ToStringWriter();
         }
     }
 }
