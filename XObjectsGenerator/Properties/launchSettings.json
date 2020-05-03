@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "XObjectsGenerator": {
-      "commandName": "Project",
-      "commandLineArgs": "\"..\\..\\..\\..\\Samples\\purchase Order.xsd\""
-    }
-  }
-}

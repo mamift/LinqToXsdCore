@@ -8,7 +8,7 @@ The code this tool generates has a dependency on namespaces defined in the `XObj
 
 **Don't add this project as a dependency to your shipping libraries or app - depend on the code it generates, and the XObjectsCore library instead.**
 
-This project adds additional features from the old CLI tool (the [XObjectsGenerator](https://github.com/mamift/LinqToXsdCore/tree/master/XObjectsGenerator) project is the legacy CLI), like generating `.config` files with default values from an existing XSD and generating code from multiple XSD's and multiple `.config` files.
+This project adds additional features from the old CLI tool ([LinqToXsd](https://archive.codeplex.com/?p=linqtoxsd)), like generating `.config` files with default values from an existing XSD and generating code from multiple XSD's and multiple `.config` files.
 
 ## Installation
 
