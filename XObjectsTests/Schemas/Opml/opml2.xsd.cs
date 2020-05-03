@@ -13,6 +13,7 @@ namespace XObjectsTests.Schemas.Opml {
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Diagnostics;
     using System.Xml;
     using System.Xml.Schema;
@@ -25,7 +26,7 @@ namespace XObjectsTests.Schemas.Opml {
     /// Regular expression: (head, body)
     /// </para>
     /// </summary>
-    public partial class OPMLType : XTypedElement, IXMetaData {
+    public partial class OPML : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -33,9 +34,9 @@ namespace XObjectsTests.Schemas.Opml {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ContentModelEntity contentModel;
         
-		public static explicit operator OPMLType(XElement xe) { return XTypedServices.ToXTypedElement<OPMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator OPML(XElement xe) { return XTypedServices.ToXTypedElement<OPML>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static OPMLType() {
+        static OPML() {
             BuildElementDictionary();
             contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(System.Xml.Linq.XName.Get("head", "")), new NamedContentModelEntity(System.Xml.Linq.XName.Get("body", "")));
         }
@@ -45,7 +46,7 @@ namespace XObjectsTests.Schemas.Opml {
         /// Regular expression: (head, body)
         /// </para>
         /// </summary>
-        public OPMLType() {
+        public OPML() {
         }
         
         /// <summary>
@@ -128,7 +129,7 @@ namespace XObjectsTests.Schemas.Opml {
         }
         
         public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<OPMLType>(this);
+            return XTypedServices.CloneXTypedElement<OPML>(this);
         }
         
         private static void BuildElementDictionary() {
@@ -902,19 +903,24 @@ namespace XObjectsTests.Schemas.Opml {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language), null),
-                    XObjectsTests.Schemas.Opml.Unknown.TypeDefinition});
+                    XObjectsTests.Schemas.Opml.UnknownValidator.TypeDefinition});
         
         private Language() {
         }
     }
     
-    public sealed class Unknown {
+    public enum Unknown {
+        
+        unknown,
+    }
+    
+    public sealed class UnknownValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "unknown"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private Unknown() {
+        private UnknownValidator() {
         }
     }
     
@@ -932,15 +938,15 @@ namespace XObjectsTests.Schemas.Opml {
     public partial class opml : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private OPMLType ContentField;
+        private OPML ContentField;
         
-		public static explicit operator opml(XElement xe) { return XTypedServices.ToXTypedElement<opml, OPMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator opml(XElement xe) { return XTypedServices.ToXTypedElement<opml, OPML>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public opml() {
-            SetInnerType(new OPMLType());
+            SetInnerType(new OPML());
         }
         
-        public opml(OPMLType content) {
+        public opml(OPML content) {
             SetInnerType(content);
         }
         
@@ -954,7 +960,7 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
-        public virtual OPMLType Content {
+        public virtual OPML Content {
             get {
                 return ContentField;
             }
@@ -1055,23 +1061,23 @@ namespace XObjectsTests.Schemas.Opml {
         }
         
         public static opml Load(string xmlFile) {
-            return XTypedServices.Load<opml, OPMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+            return XTypedServices.Load<opml, OPML>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
         public static opml Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<opml, OPMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+            return XTypedServices.Load<opml, OPML>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
         public static opml Parse(string xml) {
-            return XTypedServices.Parse<opml, OPMLType>(xml, LinqToXsdTypeManager.Instance);
+            return XTypedServices.Parse<opml, OPML>(xml, LinqToXsdTypeManager.Instance);
         }
         
         public override XTypedElement Clone() {
-            return new opml(((OPMLType)(this.Content.Clone())));
+            return new opml(((OPML)(this.Content.Clone())));
         }
         
-        private void SetInnerType(OPMLType ContentField) {
-            this.ContentField = ((OPMLType)(XTypedServices.GetCloneIfRooted(ContentField)));
+        private void SetInnerType(OPML ContentField) {
+            this.ContentField = ((OPML)(XTypedServices.GetCloneIfRooted(ContentField)));
             XTypedServices.SetName(this, this.ContentField);
         }
         
@@ -1097,6 +1103,9 @@ namespace XObjectsTests.Schemas.Opml {
             BuildTypeDictionary();
             BuildElementDictionary();
             BuildWrapperDictionary();
+        }
+        
+        private LinqToXsdTypeManager() {
         }
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
@@ -1137,7 +1146,7 @@ namespace XObjectsTests.Schemas.Opml {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("OPML", ""), typeof(global::XObjectsTests.Schemas.Opml.OPMLType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("OPML", ""), typeof(global::XObjectsTests.Schemas.Opml.OPML));
             typeDictionary.Add(System.Xml.Linq.XName.Get("Body", ""), typeof(global::XObjectsTests.Schemas.Opml.Body));
             typeDictionary.Add(System.Xml.Linq.XName.Get("Head", ""), typeof(global::XObjectsTests.Schemas.Opml.Head));
             typeDictionary.Add(System.Xml.Linq.XName.Get("Outline", ""), typeof(global::XObjectsTests.Schemas.Opml.Outline));
@@ -1148,7 +1157,7 @@ namespace XObjectsTests.Schemas.Opml {
         }
         
         private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.Opml.opml), typeof(global::XObjectsTests.Schemas.Opml.OPMLType));
+            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.Opml.opml), typeof(global::XObjectsTests.Schemas.Opml.OPML));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -1182,6 +1191,12 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual XDocument XDocument {
             get {
                 return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
             }
         }
         
@@ -1305,6 +1320,12 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual XDocument XDocument {
             get {
                 return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
             }
         }
         

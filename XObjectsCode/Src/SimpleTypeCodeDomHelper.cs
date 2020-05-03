@@ -21,7 +21,11 @@ namespace Xml.Schema.Linq.CodeGen
             if (memberOrItemType && typeInfo.IsGlobal)
             {
                 typeInfo.UpdateClrTypeName(nameMappings, settings);
-                return CodeDomHelper.CreateFieldReference(typeInfo.clrtypeName, Constants.SimpleTypeDefInnerType);
+                var typeNameToUse = typeInfo.clrtypeName;
+                if (typeInfo is EnumSimpleTypeInfo) {
+                    typeNameToUse += Constants.EnumValidator;
+                }
+                return CodeDomHelper.CreateFieldReference(typeNameToUse, Constants.SimpleTypeDefInnerType);
             }
             else
             {
@@ -64,9 +68,9 @@ namespace Xml.Schema.Linq.CodeGen
                     UnionSimpleTypeInfo unionType = typeInfo as UnionSimpleTypeInfo;
                     CodeArrayCreateExpression memberTypeCreate = new CodeArrayCreateExpression();
                     memberTypeCreate.CreateType = new CodeTypeReference(Constants.SimpleTypeValidator);
-                    foreach (ClrSimpleTypeInfo st in unionType.MemberTypes)
-                    {
-                        memberTypeCreate.Initializers.Add(CreateSimpleTypeDef(st, nameMappings, settings, true));
+                    foreach (ClrSimpleTypeInfo st in unionType.MemberTypes) {
+                        var simpleTypeDef = CreateSimpleTypeDef(st, nameMappings, settings, true);
+                        memberTypeCreate.Initializers.Add(simpleTypeDef);
                     }
 
                     expressions.Add(memberTypeCreate);
