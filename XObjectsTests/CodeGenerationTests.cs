@@ -168,6 +168,9 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsEmpty(getterVoidTypeDefinitionReferences);
         }
 
+        /// <summary>
+        /// Tests enums declared at the namespace level.
+        /// </summary>
         [Test]
         public void EnumAtNamespaceLevelGenerationTest()
         {
@@ -180,6 +183,41 @@ namespace Xml.Schema.Linq.Tests
 
             Assert.IsNotEmpty(namespaceScopedEnums);
             Assert.IsTrue(namespaceScopedEnums.Count == 46);
+        }
+
+        /// <summary>
+        /// Tests that all invocations of <see cref="System.Xml.Linq.XName.Get"/> are fully qualified.
+        /// </summary>
+        [Test]
+        public void TestXNameGetInvocationsAreFullyQualified()
+        {
+            const string atomXsdFilePath = @"Schemas\Atom\atom.xsd";
+            var atomXsdFileInfo = new FileInfo(atomXsdFilePath);
+
+            var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo);
+            var root = tree.GetNamespaceRoot();
+
+            var allInvocationExpressions = root.DescendantNodes().OfType<InvocationExpressionSyntax>().ToList();
+
+            var xNameInvocationsUpToClassName = (from ie in allInvocationExpressions
+                                                 where ie.ToFullString().Contains("System.Xml.Linq.XName")
+                                                 select ie).ToList();
+
+            var xNameInvocationsUpToMethodName = (from ie in allInvocationExpressions
+                                                  where ie.ToFullString().Contains("System.Xml.Linq.XName.Get(")
+                                                  select ie).ToList();
+
+            var xNameInvocationsAbbreviated = (from ie in allInvocationExpressions
+                                                  where ie.ToFullString().Contains("XName.Get(")
+                                                  select ie).ToList();
+
+            Assert.IsNotEmpty(xNameInvocationsUpToMethodName);
+            Assert.IsNotEmpty(xNameInvocationsUpToClassName);
+            Assert.IsNotEmpty(xNameInvocationsAbbreviated);
+
+            Assert.IsTrue(xNameInvocationsUpToMethodName.Count == 971);
+            Assert.IsTrue(xNameInvocationsUpToClassName.Count == 971);
+            Assert.IsTrue(xNameInvocationsAbbreviated.Count == 971);
         }
     }
 }
