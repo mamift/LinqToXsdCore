@@ -1,6 +1,7 @@
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -22,6 +23,8 @@ namespace Xml.Schema.Linq.Tests
 
     public class CodeGenerationTests
     {
+        private const string AtomXsdFilePath = @"Schemas\Atom\atom.xsd";
+
         [Test]
         public void NamespaceCodeGenerationConventionTest()
         {
@@ -191,8 +194,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void TestXNameGetInvocationsAreFullyQualified()
         {
-            const string atomXsdFilePath = @"Schemas\Atom\atom.xsd";
-            var atomXsdFileInfo = new FileInfo(atomXsdFilePath);
+            var atomXsdFileInfo = new FileInfo(AtomXsdFilePath);
 
             var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo);
             var root = tree.GetNamespaceRoot();
@@ -218,6 +220,50 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(xNameInvocationsUpToMethodName.Count == 971);
             Assert.IsTrue(xNameInvocationsUpToClassName.Count == 971);
             Assert.IsTrue(xNameInvocationsAbbreviated.Count == 971);
+        }
+
+        /// <summary>
+        /// Tests that all fields and properties that have attributes are decorated with the same attribute, <see cref="DebuggerBrowsableAttribute"/>.
+        /// </summary>
+        [Test]
+        public void DebuggerBrowsableAttributesGeneratedTest()
+        {
+            var atomXsdFileInfo = new FileInfo(AtomXsdFilePath);
+
+            var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo);
+            var root = tree.GetNamespaceRoot();
+
+            var allMethods = root.DescendantNodes().OfType<MethodDeclarationSyntax>().ToList();
+            var allFields = root.DescendantNodes().OfType<FieldDeclarationSyntax>().ToList();
+
+            var allFieldsWithAttrs = (from field in allFields
+                                      where field.AttributeLists.Select(al => al.Attributes).Any()
+                                      select field).ToList();
+            
+            var allPropertiesWithAttrs = (from p in root.DescendantNodes().OfType<PropertyDeclarationSyntax>()
+                                          where p.AttributeLists.Select(al => al.Attributes).Any()
+                                          select p).ToList();
+
+            var allPropsAttributes = allPropertiesWithAttrs
+                .SelectMany(p => p.AttributeLists.SelectMany(al => al.Attributes)).ToList();
+
+            var allFieldAttributes = allFieldsWithAttrs
+                .SelectMany(f => f.AttributeLists.SelectMany(al => al.Attributes)).ToList();
+
+            var allPropAttributeNames = allPropsAttributes.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
+            var allFieldAttributeNames = allFieldAttributes.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
+            
+            Assert.IsNotEmpty(allPropAttributeNames);
+            Assert.IsNotEmpty(allFieldAttributeNames);
+
+            Assert.IsTrue(allPropAttributeNames.Count == 52);
+            Assert.IsTrue(allFieldAttributeNames.Count == 58);
+
+            var debuggerBrowsableName = nameof(DebuggerBrowsableAttribute).Replace(nameof(Attribute), string.Empty);
+            var allNamesAreTheSame = allPropAttributeNames.Concat(allFieldAttributeNames)
+                .All(s => s == debuggerBrowsableName);
+
+            Assert.IsTrue(allNamesAreTheSame);
         }
     }
 }
