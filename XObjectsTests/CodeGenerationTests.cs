@@ -233,14 +233,14 @@ namespace Xml.Schema.Linq.Tests
             var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo);
             var root = tree.GetNamespaceRoot();
 
-            var allMethods = root.DescendantNodes().OfType<MethodDeclarationSyntax>().ToList();
+            var allProperties = root.DescendantNodes().OfType<PropertyDeclarationSyntax>().ToList();
             var allFields = root.DescendantNodes().OfType<FieldDeclarationSyntax>().ToList();
 
             var allFieldsWithAttrs = (from field in allFields
                                       where field.AttributeLists.Select(al => al.Attributes).Any()
                                       select field).ToList();
             
-            var allPropertiesWithAttrs = (from p in root.DescendantNodes().OfType<PropertyDeclarationSyntax>()
+            var allPropertiesWithAttrs = (from p in allProperties
                                           where p.AttributeLists.Select(al => al.Attributes).Any()
                                           select p).ToList();
 
