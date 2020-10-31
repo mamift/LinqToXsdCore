@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema.xsd http://www.w3.org/2001/XMLSchema.xsd" xmlns:eutils="http://www.ncbi.nlm.nih.gov/eutils" targetNamespace="http://www.ncbi.nlm.nih.gov/eutils" elementFormDefault="qualified">
+ 
+    <!-- http://www.ncbi.nlm.nih.gov/entrez/query/DTD/pubmed_100101.dtd -->
+    
+    <complexType name="AbstractType">
+        <sequence>
+            <element ref="eutils:AbstractText"/>
+            <element ref="eutils:CopyrightInformation" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <element name="AbstractText" type="string"/>
+    <element name="AccessionNumber" type="string"/>
+    <complexType name="AccessionNumberListType">
+        <sequence>
+            <element ref="eutils:AccessionNumber" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="Acronym" type="string"/>
+    <element name="Affiliation" type="string"/>
+    <element name="Agency" type="string"/>
+    <complexType name="ArticleType">
+        <sequence>
+            <element name="Journal" type="eutils:JournalType"/>
+            <element ref="eutils:ArticleTitle"/>
+            <choice>
+                <sequence>
+                    <element name="Pagination" type="eutils:PaginationType"/>
+                    <element name="ELocationID" type="eutils:ELocationIDType" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+                <element name="ELocationID" type="eutils:ELocationIDType" maxOccurs="unbounded"/>
+            </choice>
+            <element name="Abstract" type="eutils:AbstractType" minOccurs="0"/>
+            <element ref="eutils:Affiliation" minOccurs="0"/>
+            <element name="AuthorList" type="eutils:AuthorListType" minOccurs="0"/>
+            <element ref="eutils:Language" maxOccurs="unbounded"/>
+            <element name="DataBankList" type="eutils:DataBankListType" minOccurs="0"/>
+            <element name="GrantList" type="eutils:GrantListType" minOccurs="0"/>
+            <element name="PublicationTypeList" type="eutils:PublicationTypeListType"/>
+            <element ref="eutils:VernacularTitle" minOccurs="0"/>
+            <element name="ArticleDate" type="eutils:ArticleDateType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="PubModel" use="required">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Print"/>
+                    <enumeration value="Print-Electronic"/>
+                    <enumeration value="Electronic"/>
+                    <enumeration value="Electronic-Print"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="ArticleDateType">
+        <sequence>
+            <element ref="eutils:Year"/>
+            <element ref="eutils:Month"/>
+            <element ref="eutils:Day"/>
+        </sequence>
+        <attribute name="DateType" type="string" fixed="Electronic"/>
+    </complexType>
+    <complexType name="ArticleIdType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="IdType" default="pubmed">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="doi"/>
+                            <enumeration value="pii"/>
+                            <enumeration value="pmcpid"/>
+                            <enumeration value="pmpid"/>
+                            <enumeration value="pmc"/>
+                            <enumeration value="mid"/>
+                            <enumeration value="sici"/>
+                            <enumeration value="pubmed"/>
+                            <enumeration value="medline"/>
+                            <enumeration value="pmcid"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="ArticleIdListType">
+        <sequence>
+            <element name="ArticleId" type="eutils:ArticleIdType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="ArticleTitle" type="string"/>
+    <complexType name="AuthorType">
+        <choice>
+            <sequence>
+                <element ref="eutils:LastName"/>
+                <element ref="eutils:ForeName" minOccurs="0"/>
+                <element ref="eutils:Initials" minOccurs="0"/>
+                <element ref="eutils:Suffix" minOccurs="0"/>
+                <element name="NameID" type="eutils:NameIDType" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <sequence>
+                <element ref="eutils:CollectiveName"/>
+                <element name="NameID" type="eutils:NameIDType" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </choice>
+        <attribute name="ValidYN" default="Y">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Y"/>
+                    <enumeration value="N"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="AuthorListType">
+        <sequence>
+            <element name="Author" type="eutils:AuthorType" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="CompleteYN" default="Y">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Y"/>
+                    <enumeration value="N"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="ChemicalType">
+        <sequence>
+            <element ref="eutils:RegistryNumber"/>
+            <element ref="eutils:NameOfSubstance"/>
+        </sequence>
+    </complexType>
+    <complexType name="ChemicalListType">
+        <sequence>
+            <element name="Chemical" type="eutils:ChemicalType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="CitationSubset" type="string"/>
+    <element name="CollectiveName" type="string"/>
+    <complexType name="CommentsCorrectionsType">
+        <sequence>
+            <element ref="eutils:RefSource"/>
+            <element ref="eutils:PMID" minOccurs="0"/>
+            <element ref="eutils:Note" minOccurs="0"/>
+        </sequence>
+        <attribute name="RefType" use="required">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="CommentOn"/>
+                    <enumeration value="CommentIn"/>
+                    <enumeration value="ErratumIn"/>
+                    <enumeration value="ErratumFor"/>
+                    <enumeration value="PartialRetractionIn"/>
+                    <enumeration value="PartialRetractionOf"/>
+                    <enumeration value="RepublishedFrom"/>
+                    <enumeration value="RepublishedIn"/>
+                    <enumeration value="RetractionOf"/>
+                    <enumeration value="RetractionIn"/>
+                    <enumeration value="UpdateIn"/>
+                    <enumeration value="UpdateOf"/>
+                    <enumeration value="SummaryForPatientsIn"/>
+                    <enumeration value="OriginalReportIn"/>
+                    <enumeration value="ReprintOf"/>
+                    <enumeration value="ReprintIn"/>
+                    <enumeration value="Cites"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="CommentsCorrectionsListType">
+        <sequence>
+            <element name="CommentsCorrections" type="eutils:CommentsCorrectionsType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="CopyrightInformation" type="string"/>
+    <element name="Country" type="string"/>
+    <complexType name="DataBankType">
+        <sequence>
+            <element ref="eutils:DataBankName"/>
+            <element name="AccessionNumberList" type="eutils:AccessionNumberListType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <complexType name="DataBankListType">
+        <sequence>
+            <element name="DataBank" type="eutils:DataBankType" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="CompleteYN" default="Y">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Y"/>
+                    <enumeration value="N"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <element name="DataBankName" type="string"/>
+    <complexType name="DateCompletedType">
+        <sequence>
+            <element ref="eutils:Year"/>
+            <element ref="eutils:Month"/>
+            <element ref="eutils:Day"/>
+        </sequence>
+    </complexType>
+    <complexType name="DateCreatedType">
+        <sequence>
+            <element ref="eutils:Year"/>
+            <element ref="eutils:Month"/>
+            <element ref="eutils:Day"/>
+        </sequence>
+    </complexType>
+    <complexType name="DateRevisedType">
+        <sequence>
+            <element ref="eutils:Year"/>
+            <element ref="eutils:Month"/>
+            <element ref="eutils:Day"/>
+        </sequence>
+    </complexType>
+    <element name="Day" type="string"/>
+    <complexType name="DeleteCitationType">
+        <sequence>
+            <element ref="eutils:PMID" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="DescriptorNameType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="MajorTopicYN" default="N">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="Y"/>
+                            <enumeration value="N"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="ELocationIDType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="EIdType" use="required">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="doi"/>
+                            <enumeration value="pii"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+                <attribute name="ValidYN" default="Y">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="Y"/>
+                            <enumeration value="N"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <element name="EndPage" type="string"/>
+    <element name="ForeName" type="string"/>
+    <element name="GeneSymbol" type="string"/>
+    <complexType name="GeneSymbolListType">
+        <sequence>
+            <element ref="eutils:GeneSymbol" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="GeneralNoteType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="Owner" default="NLM">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="NLM"/>
+                            <enumeration value="NASA"/>
+                            <enumeration value="PIP"/>
+                            <enumeration value="KIE"/>
+                            <enumeration value="HSR"/>
+                            <enumeration value="HMD"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="GrantType">
+        <sequence>
+            <element ref="eutils:GrantID" minOccurs="0"/>
+            <element ref="eutils:Acronym" minOccurs="0"/>
+            <element ref="eutils:Agency"/>
+            <element ref="eutils:Country"/>
+        </sequence>
+    </complexType>
+    <element name="GrantID" type="string"/>
+    <complexType name="GrantListType">
+        <sequence>
+            <element name="Grant" type="eutils:GrantType" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="CompleteYN" default="Y">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Y"/>
+                    <enumeration value="N"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="HistoryType">
+        <sequence>
+            <element name="PubMedPubDate" type="eutils:PubMedPubDateType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="Hour" type="string"/>
+    <element name="ISOAbbreviation" type="string"/>
+    <complexType name="ISSNType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="IssnType" use="required">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="Electronic"/>
+                            <enumeration value="Print"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <element name="ISSNLinking" type="string"/>
+    <element name="Initials" type="string"/>
+    <complexType name="InvestigatorType">
+        <sequence>
+            <element ref="eutils:LastName"/>
+            <element ref="eutils:ForeName" minOccurs="0"/>
+            <element ref="eutils:Initials" minOccurs="0"/>
+            <element ref="eutils:Suffix" minOccurs="0"/>
+            <element name="NameID" type="eutils:NameIDType" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="eutils:Affiliation" minOccurs="0"/>
+        </sequence>
+        <attribute name="ValidYN" default="Y">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Y"/>
+                    <enumeration value="N"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="InvestigatorListType">
+        <sequence>
+            <element name="Investigator" type="eutils:InvestigatorType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="Issue" type="string"/>
+    <complexType name="JournalType">
+        <sequence>
+            <element name="ISSN" type="eutils:ISSNType" minOccurs="0"/>
+            <element name="JournalIssue" type="eutils:JournalIssueType"/>
+            <element ref="eutils:Title" minOccurs="0"/>
+            <element ref="eutils:ISOAbbreviation" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <complexType name="JournalIssueType">
+        <sequence>
+            <element ref="eutils:Volume" minOccurs="0"/>
+            <element ref="eutils:Issue" minOccurs="0"/>
+            <element name="PubDate" type="eutils:PubDateType"/>
+        </sequence>
+        <attribute name="CitedMedium" use="required">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Internet"/>
+                    <enumeration value="Print"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="KeywordType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="MajorTopicYN" default="N">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="Y"/>
+                            <enumeration value="N"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="KeywordListType">
+        <sequence>
+            <element name="Keyword" type="eutils:KeywordType" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="Owner" default="NLM">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="NLM"/>
+                    <enumeration value="NASA"/>
+                    <enumeration value="PIP"/>
+                    <enumeration value="KIE"/>
+                    <enumeration value="NOTNLM"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <element name="Language" type="string"/>
+    <element name="LastName" type="string"/>
+    <complexType name="MedlineCitationType">
+        <sequence>
+            <element ref="eutils:PMID"/>
+            <element name="DateCreated" type="eutils:DateCreatedType"/>
+            <element name="DateCompleted" type="eutils:DateCompletedType" minOccurs="0"/>
+            <element name="DateRevised" type="eutils:DateRevisedType" minOccurs="0"/>
+            <element name="Article" type="eutils:ArticleType"/>
+            <element name="MedlineJournalInfo" type="eutils:MedlineJournalInfoType"/>
+            <element name="ChemicalList" type="eutils:ChemicalListType" minOccurs="0"/>
+            <element ref="eutils:CitationSubset" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="CommentsCorrectionsList" type="eutils:CommentsCorrectionsListType" minOccurs="0"/>
+            <element name="GeneSymbolList" type="eutils:GeneSymbolListType" minOccurs="0"/>
+            <element name="MeshHeadingList" type="eutils:MeshHeadingListType" minOccurs="0"/>
+            <element ref="eutils:NumberOfReferences" minOccurs="0"/>
+            <element name="PersonalNameSubjectList" type="eutils:PersonalNameSubjectListType" minOccurs="0"/>
+            <element name="OtherID" type="eutils:OtherIDType" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="OtherAbstract" type="eutils:OtherAbstractType" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="KeywordList" type="eutils:KeywordListType" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="eutils:SpaceFlightMission" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="InvestigatorList" type="eutils:InvestigatorListType" minOccurs="0"/>
+            <element name="GeneralNote" type="eutils:GeneralNoteType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="Owner" default="NLM">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="NLM"/>
+                    <enumeration value="NASA"/>
+                    <enumeration value="PIP"/>
+                    <enumeration value="KIE"/>
+                    <enumeration value="HSR"/>
+                    <enumeration value="HMD"/>
+                    <enumeration value="NOTNLM"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+        <attribute name="Status" use="required">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="Completed"/>
+                    <enumeration value="In-Process"/>
+                    <enumeration value="PubMed-not-MEDLINE"/>
+                    <enumeration value="In-Data-Review"/>
+                    <enumeration value="Publisher"/>
+                    <enumeration value="MEDLINE"/>
+                    <enumeration value="OLDMEDLINE"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <element name="MedlineCitationSet">
+        <complexType>
+            <sequence>
+                <element name="MedlineCitation" type="eutils:MedlineCitationType" minOccurs="0" maxOccurs="unbounded"/>
+                <element name="DeleteCitation" type="eutils:DeleteCitationType" minOccurs="0"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="MedlineDate" type="string"/>
+    <complexType name="MedlineJournalInfoType">
+        <sequence>
+            <element ref="eutils:Country" minOccurs="0"/>
+            <element ref="eutils:MedlineTA"/>
+            <element ref="eutils:NlmUniqueID" minOccurs="0"/>
+            <element ref="eutils:ISSNLinking" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <element name="MedlinePgn" type="string"/>
+    <element name="MedlineTA" type="string"/>
+    <complexType name="MeshHeadingType">
+        <sequence>
+            <element name="DescriptorName" type="eutils:DescriptorNameType"/>
+            <element name="QualifierName" type="eutils:QualifierNameType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="MeshHeadingListType">
+        <sequence>
+            <element name="MeshHeading" type="eutils:MeshHeadingType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <element name="Minute" type="string"/>
+    <element name="Month" type="string"/>
+    <complexType name="NameIDType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="Source" use="required">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="NCBI"/>
+                            <enumeration value="Publisher"/>
+                            <enumeration value="NISO"/>
+                            <enumeration value="ISO"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <element name="NameOfSubstance" type="string"/>
+    <element name="NlmUniqueID" type="string"/>
+    <element name="Note" type="string"/>
+    <element name="NumberOfReferences" type="string"/>
+    <complexType name="ObjectType">
+        <sequence minOccurs="0" maxOccurs="unbounded">
+            <element name="Param" type="eutils:ParamType"/>
+        </sequence>
+        <attribute name="Type" type="string" use="required"/>
+    </complexType>
+    <complexType name="ObjectListType">
+        <sequence maxOccurs="unbounded">
+            <element name="Object" type="eutils:ObjectType"/>
+        </sequence>
+    </complexType>
+    <complexType name="OtherAbstractType">
+        <sequence>
+            <element ref="eutils:AbstractText"/>
+            <element ref="eutils:CopyrightInformation" minOccurs="0"/>
+        </sequence>
+        <attribute name="Type" use="required">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="AAMC"/>
+                    <enumeration value="AIDS"/>
+                    <enumeration value="KIE"/>
+                    <enumeration value="PIP"/>
+                    <enumeration value="NASA"/>
+                    <enumeration value="Publisher"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="OtherIDType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="Source" use="required">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="NASA"/>
+                            <enumeration value="KIE"/>
+                            <enumeration value="PIP"/>
+                            <enumeration value="POP"/>
+                            <enumeration value="ARPL"/>
+                            <enumeration value="CPC"/>
+                            <enumeration value="IND"/>
+                            <enumeration value="CPFH"/>
+                            <enumeration value="CLML"/>
+                            <enumeration value="NRCBL"/>
+                            <enumeration value="NLM"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <element name="PMID" type="string"/>
+    <complexType name="PaginationType">
+        <choice>
+            <sequence>
+                <element ref="eutils:StartPage"/>
+                <element ref="eutils:EndPage" minOccurs="0"/>
+                <element ref="eutils:MedlinePgn" minOccurs="0"/>
+            </sequence>
+            <element ref="eutils:MedlinePgn"/>
+        </choice>
+    </complexType>
+    <complexType name="ParamType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="Name" type="string" use="required"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="PersonalNameSubjectType">
+        <sequence>
+            <element ref="eutils:LastName"/>
+            <element ref="eutils:ForeName" minOccurs="0"/>
+            <element ref="eutils:Initials" minOccurs="0"/>
+            <element ref="eutils:Suffix" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <complexType name="PersonalNameSubjectListType">
+        <sequence>
+            <element name="PersonalNameSubject" type="eutils:PersonalNameSubjectType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="PubDateType">
+        <choice>
+            <sequence>
+                <element ref="eutils:Year"/>
+                <choice minOccurs="0">
+                    <sequence>
+                        <element ref="eutils:Month"/>
+                        <element ref="eutils:Day" minOccurs="0"/>
+                    </sequence>
+                    <element ref="eutils:Season"/>
+                </choice>
+            </sequence>
+            <element ref="eutils:MedlineDate"/>
+        </choice>
+    </complexType>
+    <complexType name="PubMedPubDateType">
+        <sequence>
+            <element ref="eutils:Year"/>
+            <element ref="eutils:Month"/>
+            <element ref="eutils:Day"/>
+            <sequence minOccurs="0">
+                <element ref="eutils:Hour"/>
+                <sequence minOccurs="0">
+                    <element ref="eutils:Minute"/>
+                    <element ref="eutils:Second" minOccurs="0"/>
+                </sequence>
+            </sequence>
+        </sequence>
+        <attribute name="PubStatus" use="required">
+            <simpleType>
+                <restriction base="NMTOKEN">
+                    <enumeration value="received"/>
+                    <enumeration value="accepted"/>
+                    <enumeration value="epublish"/>
+                    <enumeration value="ppublish"/>
+                    <enumeration value="revised"/>
+                    <enumeration value="aheadofprint"/>
+                    <enumeration value="retracted"/>
+                    <enumeration value="pmc"/>
+                    <enumeration value="pmcr"/>
+                    <enumeration value="pubmed"/>
+                    <enumeration value="pubmedr"/>
+                    <enumeration value="premedline"/>
+                    <enumeration value="medline"/>
+                    <enumeration value="medliner"/>
+                    <enumeration value="entrez"/>
+                    <enumeration value="pmc-release"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <element name="PublicationStatus" type="string"/>
+    <element name="PublicationType" type="string"/>
+    <complexType name="PublicationTypeListType">
+        <sequence>
+            <element ref="eutils:PublicationType" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <!-- modified, added monOccurs -->
+    <complexType name="PubmedArticleType">
+        <sequence>
+            <element name="MedlineCitation" type="eutils:MedlineCitationType" minOccurs="0"/>
+            <element name="PubmedData" type="eutils:PubmedDataType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <element name="PubmedArticleSet">
+        <complexType>
+            <sequence>
+                <element minOccurs="0" maxOccurs="unbounded" name="PubmedArticle" type="eutils:PubmedArticleType"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="PubmedDataType">
+        <sequence>
+            <element name="History" type="eutils:HistoryType" minOccurs="0"/>
+            <element ref="eutils:PublicationStatus"/>
+            <element name="ArticleIdList" type="eutils:ArticleIdListType"/>
+            <element name="ObjectList" type="eutils:ObjectListType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    <complexType name="QualifierNameType">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="MajorTopicYN" default="N">
+                    <simpleType>
+                        <restriction base="NMTOKEN">
+                            <enumeration value="Y"/>
+                            <enumeration value="N"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <element name="RefSource" type="string"/>
+    <element name="RegistryNumber" type="string"/>
+    <element name="Season" type="string"/>
+    <element name="Second" type="string"/>
+    <element name="SpaceFlightMission" type="string"/>
+    <element name="StartPage" type="string"/>
+    <element name="Suffix" type="string"/>
+    <element name="Title" type="string"/>
+    <element name="URL">
+        <complexType>
+            <simpleContent>
+                <extension base="string">
+                    <attribute name="lang">
+                        <simpleType>
+                            <restriction base="NMTOKEN">
+                                <enumeration value="AF"/>
+                                <enumeration value="AR"/>
+                                <enumeration value="AZ"/>
+                                <enumeration value="BG"/>
+                                <enumeration value="CS"/>
+                                <enumeration value="DA"/>
+                                <enumeration value="DE"/>
+                                <enumeration value="EN"/>
+                                <enumeration value="EL"/>
+                                <enumeration value="ES"/>
+                                <enumeration value="FA"/>
+                                <enumeration value="FI"/>
+                                <enumeration value="FR"/>
+                                <enumeration value="HE"/>
+                                <enumeration value="HU"/>
+                                <enumeration value="HY"/>
+                                <enumeration value="IN"/>
+                                <enumeration value="IS"/>
+                                <enumeration value="IT"/>
+                                <enumeration value="IW"/>
+                                <enumeration value="JA"/>
+                                <enumeration value="KA"/>
+                                <enumeration value="KO"/>
+                                <enumeration value="LT"/>
+                                <enumeration value="MK"/>
+                                <enumeration value="ML"/>
+                                <enumeration value="NL"/>
+                                <enumeration value="NO"/>
+                                <enumeration value="PL"/>
+                                <enumeration value="PT"/>
+                                <enumeration value="PS"/>
+                                <enumeration value="RO"/>
+                                <enumeration value="RU"/>
+                                <enumeration value="SL"/>
+                                <enumeration value="SK"/>
+                                <enumeration value="SQ"/>
+                                <enumeration value="SR"/>
+                                <enumeration value="SV"/>
+                                <enumeration value="SW"/>
+                                <enumeration value="TH"/>
+                                <enumeration value="TR"/>
+                                <enumeration value="UK"/>
+                                <enumeration value="VI"/>
+                                <enumeration value="ZH"/>
+                            </restriction>
+                        </simpleType>
+                    </attribute>
+                    <attribute name="Type">
+                        <simpleType>
+                            <restriction base="NMTOKEN">
+                                <enumeration value="FullText"/>
+                                <enumeration value="Summary"/>
+                                <enumeration value="fulltext"/>
+                                <enumeration value="summary"/>
+                            </restriction>
+                        </simpleType>
+                    </attribute>
+                </extension>
+            </simpleContent>
+        </complexType>
+    </element>
+    <element name="VernacularTitle" type="string"/>
+    <element name="Volume" type="string"/>
+    <element name="Year" type="string"/>
+</schema>
