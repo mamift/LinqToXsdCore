@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Xml.Schema.Linq.Extensions;
+using XObjects;
+using XmlSchemaElement = System.Xml.Schema.XmlSchemaElement;
 
 // using Xml.Fxt;
 
@@ -1035,7 +1037,13 @@ namespace Xml.Schema.Linq.CodeGen
             if (isInlineEnum && isAnonymous) {
                 typeRef.Name += "Enum";
                 if (typeRef.ClrFullTypeName.IsNullOrEmpty()) {
-                    typeRef.UpdateClrFullTypeName(propertyInfo, containingType.GetNestedTypeScopedResolutionString());
+                    var typeScopedResolutionString = containingType?.GetNestedTypeScopedResolutionString();
+                    if (typeScopedResolutionString.IsNullOrEmpty()) { // if this is empty, then take the referencing element
+                        var closestNamedParent = attribute.GetClosestNamedParent().GetPotentialName();
+                        typeScopedResolutionString = closestNamedParent;
+                    }
+                        
+                    typeRef.UpdateClrFullTypeName(propertyInfo, typeScopedResolutionString);
                 }
             }
             propertyInfo.TypeReference = typeRef;

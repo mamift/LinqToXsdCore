@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Xml.Schema;
 using Xml.Schema.Linq.CodeGen;
 
@@ -133,6 +135,27 @@ namespace XObjects
             if (@object.Parent is XmlSchemaWhiteSpaceFacet xmlSchemaWhiteSpaceFacet) { return null; }
 
             return null;
+        }
+
+        /// <summary>
+        /// Using reflection, retrieves the value for any property
+        /// </summary>
+        /// <param name="object"></param>
+        /// <returns></returns>
+        public static string GetPotentialName(this XmlSchemaObject @object)
+        {
+            var properties = @object.GetType().GetProperties();
+
+            var possibleNameProp = properties.FirstOrDefault(p => p.Name == "Name");
+
+            if (possibleNameProp == null) return null;
+
+            var possibleNameValue = possibleNameProp.GetValue(@object);
+
+            if (!(possibleNameValue is string)) 
+                throw new NotSupportedException("Bad type!");
+
+            return Convert.ToString(possibleNameValue);
         }
     }
 }
