@@ -85,7 +85,7 @@ namespace Xml.Schema.Linq.CodeGen
                             codeNamespace.Types.Add(enumType);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
-                            if (enumsInOtherTypes.EnumDeclarationExists(enumType)) {
+                            if (enumsInOtherTypes.EquivalentEnumDeclarationExists(enumType)) {
                                 var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
                                 var duplicateEnum = typeWithDuplicateEnum.Members.OfType<CodeTypeDeclaration>()
                                     .First(c => c.IsEquivalentEnumDeclaration(enumType));
@@ -220,28 +220,34 @@ namespace Xml.Schema.Linq.CodeGen
 
         private void CreateNestedEnumType(ClrTypeReference typeRef)
         {
+            if (typeRef == null) throw new ArgumentNullException(nameof(typeRef));
+
             var innerType = typeRef.SchemaObject as XmlSchemaType;
             Debug.Assert(innerType != null);
-            var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) { IsEnum = true };
-            enumTypeDecl.TypeAttributes = this.settings.NamespaceTypesVisibilityMap.ValueForKey(typeRef.Namespace).ToTypeAttribute();
-            foreach (var facet in innerType.GetEnumFacets())
-            {
+            var visibilitySetting = this.settings.NamespaceTypesVisibilityMap.ValueForKey(typeRef.Namespace);
+            var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) {
+                IsEnum = true,
+                TypeAttributes = visibilitySetting.ToTypeAttribute()
+            };
+            foreach (var facet in innerType.GetEnumFacets()) {
                 enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet));
             }
 
-            if (!EnumTypeDeclarationExists(enumTypeDecl)) {
+            enumTypeDecl.UserData[nameof(ClrTypeReference)] = typeRef;
+
+            if (!EqualEnumTypeDeclarationExists(enumTypeDecl)) {
                 typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
             }
         }
 
-        private bool EnumTypeDeclarationExists(CodeTypeDeclaration ctd)
+        private bool EqualEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
         {
             var enumsUnderNamespace = codeNamespace.DescendentTypeScopedEnumDeclarations();
             var enumsInOtherTypesUnderNamespace = codeNamespace.NamespaceScopedEnumDeclarations();
             var enumsInCurrentType = typeBuilder.TypeDeclaration.Members.OfType<CodeTypeDeclaration>().Where(c => c.IsEnum);
             var allEnumsDefinedAlready = enumsUnderNamespace.Union(enumsInCurrentType).Union(enumsInOtherTypesUnderNamespace);
 
-            return allEnumsDefinedAlready.EnumDeclarationExists(ctd);
+            return allEnumsDefinedAlready.EqualEnumDeclarationExists(ctd);
         }
 
         private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
