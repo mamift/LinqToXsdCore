@@ -235,19 +235,31 @@ namespace Xml.Schema.Linq.CodeGen
 
             enumTypeDecl.UserData[nameof(ClrTypeReference)] = typeRef;
 
-            if (!EqualEnumTypeDeclarationExists(enumTypeDecl)) {
+            if (!EquivalentEnumTypeDeclarationExists(enumTypeDecl)) {
                 typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
             }
         }
 
-        private bool EqualEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
+        private IEnumerable<CodeTypeDeclaration> GetAllEnumsDefinedAlready()
         {
             var enumsUnderNamespace = codeNamespace.DescendentTypeScopedEnumDeclarations();
             var enumsInOtherTypesUnderNamespace = codeNamespace.NamespaceScopedEnumDeclarations();
             var enumsInCurrentType = typeBuilder.TypeDeclaration.Members.OfType<CodeTypeDeclaration>().Where(c => c.IsEnum);
-            var allEnumsDefinedAlready = enumsUnderNamespace.Union(enumsInCurrentType).Union(enumsInOtherTypesUnderNamespace);
+            return enumsUnderNamespace.Union(enumsInCurrentType).Union(enumsInOtherTypesUnderNamespace);
+        }
+
+        private bool EqualEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
+        {
+            var allEnumsDefinedAlready = GetAllEnumsDefinedAlready();
 
             return allEnumsDefinedAlready.EqualEnumDeclarationExists(ctd);
+        }
+
+        private bool EquivalentEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
+        {
+            var allEnumsDefinedAlready = GetAllEnumsDefinedAlready();
+
+            return allEnumsDefinedAlready.EquivalentEnumDeclarationExists(ctd);
         }
 
         private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
