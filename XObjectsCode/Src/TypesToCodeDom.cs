@@ -81,14 +81,14 @@ namespace Xml.Schema.Linq.CodeGen
                     if (stInfo != null)
                     {
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
-                            var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings);
+                            var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
                             codeNamespace.Types.Add(enumType);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
-                            if (enumsInOtherTypes.EquivalentEnumDeclarationExists(enumType)) {
+                            if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
                                 var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
                                 var duplicateEnum = typeWithDuplicateEnum.Members.OfType<CodeTypeDeclaration>()
-                                    .First(c => c.IsEquivalentEnumDeclaration(enumType));
+                                    .First(c => c.IsEqualEnumDeclaration(enumType));
                                 typeWithDuplicateEnum.Members.Remove(duplicateEnum);
                             }
                         }
@@ -235,7 +235,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             enumTypeDecl.UserData[nameof(ClrTypeReference)] = typeRef;
 
-            if (!EquivalentEnumTypeDeclarationExists(enumTypeDecl)) {
+            if (!EqualEnumTypeDeclarationExists(enumTypeDecl)) {
                 typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
             }
         }

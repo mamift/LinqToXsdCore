@@ -11,7 +11,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             //return typeName == other.typeName && typeNs == other.typeNs && clrName == other.clrName &&
             //       clrFullTypeName == other.clrFullTypeName && typeCodeString == other.typeCodeString;
-            return Name == other.Name && ClrFullTypeName == other.ClrFullTypeName;
+            return Name == other.Name && Namespace == other.Namespace;
         }
 
         public override bool Equals(object obj)
@@ -32,7 +32,7 @@ namespace Xml.Schema.Linq.CodeGen
                 //hashCode = (hashCode * 397) ^ (typeCodeString != null ? typeCodeString.GetHashCode() : 0);
 
                 var hashCode = (Name != null ? Name.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (ClrFullTypeName != null ? ClrFullTypeName.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Namespace != null ? Namespace.GetHashCode() : 0);
                 return hashCode;
             }
         }

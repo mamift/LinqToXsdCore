@@ -8,7 +8,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return clrtypeName == other.clrtypeName && clrFullTypeName == other.clrFullTypeName;
+            return clrtypeName == other.clrtypeName && clrtypeNs == other.clrtypeNs;
         }
 
         public override bool Equals(object obj)
@@ -23,7 +23,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             unchecked {
                 return ((clrtypeName != null ? clrtypeName.GetHashCode() : 0) * 397) ^
-                       (clrFullTypeName != null ? clrFullTypeName.GetHashCode() : 0);
+                       (clrtypeNs != null ? clrtypeNs.GetHashCode() : 0);
             }
         }
 
