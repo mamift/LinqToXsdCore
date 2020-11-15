@@ -1685,6 +1685,23 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum ReferenceType {
+            
+            AVG,
+            
+            COUNT,
+            
+            MAX,
+            
+            MIN,
+            
+            SUM,
+            
+            STDEV,
+            
+            VAR,
+        }
     }
     
     public enum ReferenceType {
@@ -4872,6 +4889,13 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
         }
+        
+        public enum ErrorHandling {
+            
+            Return,
+            
+            Continue,
+        }
     }
     
     public enum ErrorHandling {
@@ -5043,6 +5067,15 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum UpdateMethod {
+            
+            Delete,
+            
+            New,
+            
+            Update,
+        }
     }
     
     /// <summary>
@@ -5158,6 +5191,11 @@ namespace Microsoft.Schemas.SharePoint {
             Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
             transitions.Add(1, new Transitions(new SingleTransition(new WildCard("##any", "http://schemas.microsoft.com/sharepoint/"), 2)));
             validationStates = new FSM(1, new Set<int>(2), transitions);
+        }
+        
+        public enum RequestParameter {
+            
+            Request,
         }
     }
     
@@ -7580,6 +7618,13 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum TrueFalseMixed {
+            
+            True,
+            
+            False,
+        }
     }
     
     /// <summary>
@@ -8575,6 +8620,11 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum CounterType {
+            
+            View,
         }
     }
     
@@ -10589,6 +10639,11 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum PermissionState {
+            
+            required,
+        }
     }
     
     public enum PermissionState {
@@ -11575,6 +11630,15 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum CommandTypeType {
+            
+            General,
+            
+            OptionSelection,
+            
+            IgnoredByMenu,
         }
     }
     
@@ -13248,6 +13312,27 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
         }
+        
+        public enum ContextualColorType {
+            
+            None,
+            
+            DarkBlue,
+            
+            LightBlue,
+            
+            Teal,
+            
+            Orange,
+            
+            Green,
+            
+            Magenta,
+            
+            Yellow,
+            
+            Purple,
+        }
     }
     
     /// <summary>
@@ -13431,6 +13516,27 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum DisplayModeType {
+            
+            Default,
+            
+            Small,
+            
+            Medium,
+            
+            Large,
+            
+            Text,
+            
+            Menu,
+            
+            Menu16,
+            
+            Menu32,
+            
+            Thin,
         }
     }
     
@@ -15382,6 +15488,33 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        public enum ElementDimensionsType {
+            
+            Size16by16,
+            
+            Size32by32,
+            
+            Size48by48,
+            
+            Size64by48,
+            
+            Size72by96,
+            
+            Size96by72,
+            
+            Size96by96,
+            
+            Size128by128,
+            
+            Size190by30,
+            
+            Size190by40,
+            
+            Size190by50,
+            
+            Size190by60,
         }
     }
     
@@ -19451,6 +19584,17 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum SectionTypeType {
+            
+            Divider,
+            
+            OneRow,
+            
+            TwoRow,
+            
+            ThreeRow,
+        }
     }
     
     /// <summary>
@@ -21308,6 +21452,13 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        public enum SectionAlignmentType {
+            
+            Top,
+            
+            Middle,
         }
     }
     
@@ -26237,6 +26388,19 @@ namespace Microsoft.Schemas.SharePoint {
             return ContentModelEntity.Default;
         }
         
+        public enum appliesToTypes {
+            
+            none,
+            
+            list,
+            
+            doclib,
+            
+            all,
+            
+            displayonly,
+        }
+        
         public enum CreatedTaskFormTypeEnum {
             
             DataCollectTask,
@@ -29865,6 +30029,64 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum ListItemMenuType {
+            
+            Required,
+            
+            Allowed,
+            
+            Prohibited,
+        }
+        
+        public enum DisplayFormat {
+            
+            DateOnly,
+            
+            DateTime,
+            
+            TimeOnly,
+            
+            EventList,
+            
+            ISO8601,
+            
+            MonthDayOnly,
+            
+            MonthYearOnly,
+            
+            ISO8601Basic,
+            
+            ISO8601Gregorian,
+            
+            ISO8601BasicDateOnly,
+            
+            Dropdown,
+            
+            RadioButtons,
+            
+            Hyperlink,
+            
+            Image,
+            
+            TRUE,
+            
+            FALSE,
+        }
+        
+        public enum IMEMode {
+            
+            inactive,
+        }
+        
+        public enum DeleteBehaviorType {
+            
+            None,
+            
+            Cascade,
+            
+            Restrict,
+        }
     }
     
     /// <summary>
@@ -30875,6 +31097,22 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum ToolbarPosition {
+            
+            After,
+        }
+        
+        public enum ToolbarType {
+            
+            Standard,
+            
+            FreeForm,
+            
+            RelatedTasks,
+            
+            Freeform,
         }
     }
     
@@ -31984,6 +32222,13 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum ViewRegistrationType {
+            
+            List,
+            
+            ContentType,
         }
     }
     
@@ -35215,6 +35460,18 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum FileGhostType {
+            
+            Ghostable,
+            
+            GhostableInLibrary,
+        }
+        
+        public enum FileLevelType {
+            
+            Draft,
+        }
     }
     
     public enum FileGhostType {
@@ -35785,6 +36042,25 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        public enum ViewPartType {
+            
+            HTML,
+            
+            Chart,
+            
+            CHART,
+            
+            Pivot,
+            
+            PIVOT,
+            
+            GANTT,
+            
+            GRID,
+            
+            CALENDAR,
         }
     }
     
@@ -39172,6 +39448,17 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum FeatureScope {
+            
+            Farm,
+            
+            WebApplication,
+            
+            Site,
+            
+            Web,
+        }
     }
     
     public sealed class FeatureVersion {
@@ -41206,6 +41493,20 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum DeploymentServerTypeAttr {
+            
+            ApplicationServer,
+            
+            WebFrontEnd,
+        }
+        
+        public enum ResetWebServerModeOnUpgradeAttr {
+            
+            Recycle,
+            
+            StartStop,
         }
     }
     
@@ -43469,6 +43770,26 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum RequiredAdminType {
+            
+            Delegated,
+            
+            Farm,
+            
+            Machine,
+        }
+        
+        public enum CustomActionRegistrationType {
+            
+            List,
+            
+            ContentType,
+            
+            FileType,
+            
+            ProgId,
         }
     }
     
@@ -45792,6 +46113,65 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
         }
+        
+        public enum RenderPatternType {
+            
+            Boolean,
+            
+            Choice,
+            
+            Counter,
+            
+            Currency,
+            
+            DateTime,
+            
+            Integer,
+            
+            Lookup,
+            
+            Note,
+            
+            Number,
+            
+            Text,
+            
+            Threading,
+            
+            URL,
+        }
+        
+        public enum RenderPatternName {
+            
+            DisplayBidiPattern,
+            
+            DisplayPattern,
+            
+            EditBidiPattern,
+            
+            EditPattern,
+            
+            HeaderBidiPattern,
+            
+            HeaderPattern,
+            
+            NewBidiPattern,
+            
+            NewPattern,
+            
+            PreviewDisplayPattern,
+            
+            PreviewNewPattern,
+            
+            PreviewEditPattern,
+        }
+        
+        public enum FieldControlImplementationType {
+            
+            Caml,
+            
+            Control,
+        }
     }
     
     public partial class SubFieldTypeDefinition : XTypedElement, IXMetaData {
@@ -46069,6 +46449,13 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum SolutionDeploymentTargetType {
+            
+            GlobalAssemblyCache,
+            
+            WebApplication,
         }
     }
     
@@ -46846,6 +47233,11 @@ namespace Microsoft.Schemas.SharePoint {
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
         }
+        
+        public enum PermssionSetClassAttr {
+            
+            NamedPermissionSet,
+        }
     }
     
     public enum PermssionSetClassAttr {
@@ -47204,6 +47596,64 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum ItemEventScope {
+            
+            Web,
+            
+            List,
+            
+            ContentType,
+        }
+        
+        public enum ItemEventType {
+            
+            ItemAdding,
+            
+            ItemAdded,
+            
+            ItemUpdating,
+            
+            ItemUpdated,
+            
+            ItemDeleting,
+            
+            ItemDeleted,
+            
+            ItemCheckingIn,
+            
+            ItemCheckedIn,
+            
+            ItemCheckingOut,
+            
+            ItemUncheckingIn,
+            
+            ItemUncheckingOut,
+            
+            ItemMoving,
+            
+            ItemMoved,
+            
+            ItemFileUpdating,
+            
+            ItemFileUpdated,
+            
+            ItemFileRenaming,
+            
+            ItemFileRenamed,
+            
+            ItemFileReceiving,
+            
+            ItemFileReceived,
+            
+            ItemAttachmentAdding,
+            
+            ItemAttachmentAdded,
+            
+            ItemAttachmentDeleting,
+            
+            ItemAttachmentDeleted,
         }
     }
     
@@ -50172,6 +50622,13 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        public enum EventReceiverScope {
+            
+            Site,
+            
+            Web,
         }
     }
     
@@ -54082,6 +54539,17 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        public enum PropertyBagParentTypeDefinition {
+            
+            Web,
+            
+            Folder,
+            
+            ListItem,
+            
+            File,
         }
     }
     
