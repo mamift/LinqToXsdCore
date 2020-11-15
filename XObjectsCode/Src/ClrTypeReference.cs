@@ -8,8 +8,10 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return typeName == other.typeName && typeNs == other.typeNs && clrName == other.clrName &&
-                   clrFullTypeName == other.clrFullTypeName && typeCodeString == other.typeCodeString;
+
+            //return typeName == other.typeName && typeNs == other.typeNs && clrName == other.clrName &&
+            //       clrFullTypeName == other.clrFullTypeName && typeCodeString == other.typeCodeString;
+            return Name == other.Name && ClrFullTypeName == other.ClrFullTypeName;
         }
 
         public override bool Equals(object obj)
@@ -23,11 +25,14 @@ namespace Xml.Schema.Linq.CodeGen
         public override int GetHashCode()
         {
             unchecked {
-                var hashCode = (typeName != null ? typeName.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (typeNs != null ? typeNs.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (clrName != null ? clrName.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (clrFullTypeName != null ? clrFullTypeName.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (typeCodeString != null ? typeCodeString.GetHashCode() : 0);
+                //var hashCode = (typeName != null ? typeName.GetHashCode() : 0);
+                //hashCode = (hashCode * 397) ^ (typeNs != null ? typeNs.GetHashCode() : 0);
+                //hashCode = (hashCode * 397) ^ (clrName != null ? clrName.GetHashCode() : 0);
+                //hashCode = (hashCode * 397) ^ (clrFullTypeName != null ? clrFullTypeName.GetHashCode() : 0);
+                //hashCode = (hashCode * 397) ^ (typeCodeString != null ? typeCodeString.GetHashCode() : 0);
+
+                var hashCode = (Name != null ? Name.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (ClrFullTypeName != null ? ClrFullTypeName.GetHashCode() : 0);
                 return hashCode;
             }
         }
