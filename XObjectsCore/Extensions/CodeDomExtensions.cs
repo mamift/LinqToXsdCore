@@ -157,8 +157,8 @@ namespace Xml.Schema.Linq.Extensions
         /// is compared for their name and value) and also their namespace and type declaration as stored in the 
         /// <see cref="CodeObject.UserData"/> property.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The current one.</param>
+        /// <param name="y">The other one.</param>
         /// <returns></returns>
         public static bool IsEqualEnumDeclaration(this CodeTypeDeclaration x, CodeTypeDeclaration y)
         {

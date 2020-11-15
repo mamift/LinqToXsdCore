@@ -138,7 +138,7 @@ namespace XObjects
         }
 
         /// <summary>
-        /// Using reflection, retrieves the value for any property
+        /// Using reflection, retrieves the value for any property that is named 'Name'.
         /// </summary>
         /// <param name="object"></param>
         /// <returns></returns>
