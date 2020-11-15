@@ -163,25 +163,51 @@ namespace Xml.Schema.Linq.Extensions
         public static bool IsEqualEnumDeclaration(this CodeTypeDeclaration x, CodeTypeDeclaration y)
         {
             var isEquivalentEnumDeclaration = x.IsEquivalentEnumDeclaration(y);
-            bool isEqualEnumDeclaration = false;
+            bool isEqualEnumDeclarationByClrTypeRefs = false;
+            bool isEqualEnumDeclarationByClrTypeInfos = false;
 
-            var xUserData = (from de in x.UserData.Cast<DictionaryEntry>()
-                            select de.ToKeyValuePair<string, ClrTypeReference>()).ToList();
-            var yUserData = (from de in y.UserData.Cast<DictionaryEntry>()
-                            select de.ToKeyValuePair<string, ClrTypeReference>()).ToList();
+            var xUserDataClrTypeRefs = (from de in x.UserData.Cast<DictionaryEntry>()
+                where de.Key.ToString() == nameof(ClrTypeReference)
+                select de.ToKeyValuePair<string, ClrTypeReference>()).ToList();
+            var yUserDataClrTypeRefs = (from de in y.UserData.Cast<DictionaryEntry>()
+                where de.Key.ToString() == nameof(ClrTypeReference)
+                select de.ToKeyValuePair<string, ClrTypeReference>()).ToList();
 
-            if (!xUserData.Any() && !yUserData.Any()) {
+            var xUserDataClrTypeInfos = (from de in x.UserData.Cast<DictionaryEntry>()
+                where de.Key.ToString() == nameof(ClrTypeInfo)
+                select de.ToKeyValuePair<string, ClrTypeInfo>()).ToList();
+            var yUserDataClrTypeInfos = (from de in y.UserData.Cast<DictionaryEntry>()
+                where de.Key.ToString() == nameof(ClrTypeInfo)
+                select de.ToKeyValuePair<string, ClrTypeInfo>()).ToList();
+
+            if (!xUserDataClrTypeRefs.Any() && !yUserDataClrTypeRefs.Any() &&
+                !xUserDataClrTypeInfos.Any() && !yUserDataClrTypeInfos.Any()) {
                 return isEquivalentEnumDeclaration;
             }
 
-            var xData = xUserData.FirstOrDefault();
-            var yData = yUserData.FirstOrDefault();
+            if (xUserDataClrTypeRefs.Any() || yUserDataClrTypeRefs.Any()) {
+                var xDataTypeRef = xUserDataClrTypeRefs.FirstOrDefault();
+                var yDataTypeRef = yUserDataClrTypeRefs.FirstOrDefault();
 
-            if (xData.Value != default && yData.Value != default) {
-                isEqualEnumDeclaration = xData.Value == yData.Value;
+                if (xDataTypeRef.Value != default && yDataTypeRef.Value != default) {
+                    isEqualEnumDeclarationByClrTypeRefs = xDataTypeRef.Value == yDataTypeRef.Value;
+                }
+
+                return isEqualEnumDeclarationByClrTypeRefs && isEquivalentEnumDeclaration;
             }
 
-            return isEqualEnumDeclaration && isEquivalentEnumDeclaration;
+            if (xUserDataClrTypeInfos.Any() || yUserDataClrTypeInfos.Any()) {
+                var xDataTypeInfo = xUserDataClrTypeInfos.FirstOrDefault();
+                var yDataTypeInfo = yUserDataClrTypeInfos.FirstOrDefault();
+
+                if (xDataTypeInfo.Value != default && yDataTypeInfo.Value != default) {
+                    isEqualEnumDeclarationByClrTypeInfos = xDataTypeInfo.Value == yDataTypeInfo.Value;
+                }
+
+                return isEqualEnumDeclarationByClrTypeInfos && isEquivalentEnumDeclaration;
+            }
+
+            return isEquivalentEnumDeclaration;
         }
     }
 }
