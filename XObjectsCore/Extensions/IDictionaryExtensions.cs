@@ -32,7 +32,9 @@ namespace Xml.Schema.Linq.Extensions
         /// <returns></returns>
         public static KeyValuePair<TKey, TValue> ToKeyValuePair<TKey, TValue>(this DictionaryEntry dictionaryEntry)
         {
-            return new KeyValuePair<TKey, TValue>((TKey) dictionaryEntry.Key, (TValue) dictionaryEntry.Value);
+            var castedKey = (TKey) dictionaryEntry.Key;
+            var castedValue = (TValue) dictionaryEntry.Value;
+            return new KeyValuePair<TKey, TValue>(castedKey, castedValue);
         }
     }
 }
