@@ -389,7 +389,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         internal static CodeTypeDeclaration CreateEnumType(EnumSimpleTypeInfo typeInfo,
-            LinqToXsdSettings settings)
+            LinqToXsdSettings settings, ClrTypeInfo clrTypeInfo = null)
         {
             string typeName = typeInfo.clrtypeName;
 
@@ -400,6 +400,9 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet));
             }
+
+            if (clrTypeInfo != null)
+                enumTypeDecl.UserData[nameof(ClrTypeInfo)] = clrTypeInfo;
 
             ApplyAnnotations(enumTypeDecl, typeInfo);
 
