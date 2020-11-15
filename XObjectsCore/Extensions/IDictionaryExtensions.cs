@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Xml.Schema.Linq.Extensions
@@ -20,6 +21,18 @@ namespace Xml.Schema.Linq.Extensions
             if (a.Values.Count != b.Values.Count) return false;
 
             return a.Keys.All(k => b.ContainsKey(k) && object.Equals(b[k], a[k]));
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="KeyValuePair{TKey,TValue}"/> based on the current <see cref="DictionaryEntry"/>.
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dictionaryEntry"></param>
+        /// <returns></returns>
+        public static KeyValuePair<TKey, TValue> ToKeyValuePair<TKey, TValue>(this DictionaryEntry dictionaryEntry)
+        {
+            return new KeyValuePair<TKey, TValue>((TKey) dictionaryEntry.Key, (TValue) dictionaryEntry.Value);
         }
     }
 }

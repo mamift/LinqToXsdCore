@@ -1,10 +1,12 @@
 ﻿using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.CSharp;
+using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq.Extensions
 {
@@ -27,19 +29,38 @@ namespace Xml.Schema.Linq.Extensions
         }
 
         /// <summary>
-        /// Determines if an enum <see cref="CodeTypeDeclaration"/> already exists in the current sequence.
+        /// Determines if an enum equivalent <see cref="CodeTypeDeclaration"/> already exists in the current sequence.
         /// <para>Checks the <see cref="CodeTypeDeclaration.Members"/> as well.</para>
         /// </summary>
         /// <param name="possibleEnums"></param>
         /// <param name="enumDeclaration"></param>
         /// <returns></returns>
-        public static bool EnumDeclarationExists(this IEnumerable<CodeTypeDeclaration> possibleEnums, CodeTypeDeclaration enumDeclaration)
+        public static bool EquivalentEnumDeclarationExists(this IEnumerable<CodeTypeDeclaration> possibleEnums, CodeTypeDeclaration enumDeclaration)
         {
             if (enumDeclaration == null) throw new ArgumentNullException(nameof(enumDeclaration));
             if (!enumDeclaration.IsEnum) return false;
 
             var existingEnumExists = (from dec in possibleEnums
                 where dec.IsEquivalentEnumDeclaration(enumDeclaration)
+                select dec);
+
+            return existingEnumExists.Any();
+        }
+
+        /// <summary>
+        /// Determines if an equal enum <see cref="CodeTypeDeclaration"/> already exists in the current sequence.
+        /// <para>Checks the <see cref="CodeTypeDeclaration.Members"/> as well.</para>
+        /// </summary>
+        /// <param name="possibleEnums"></param>
+        /// <param name="enumDeclaration"></param>
+        /// <returns></returns>
+        public static bool EqualEnumDeclarationExists(this IEnumerable<CodeTypeDeclaration> possibleEnums, CodeTypeDeclaration enumDeclaration)
+        {
+            if (enumDeclaration == null) throw new ArgumentNullException(nameof(enumDeclaration));
+            if (!enumDeclaration.IsEnum) return false;
+
+            var existingEnumExists = (from dec in possibleEnums
+                where dec.IsEqualEnumDeclaration(enumDeclaration)
                 select dec);
 
             return existingEnumExists.Any();
@@ -122,9 +143,45 @@ namespace Xml.Schema.Linq.Extensions
             if (x == null || y == null) return false;
             if (!x.IsEnum || !y.IsEnum) return false;
 
-            return x.Name.Equals(y.Name) && x.IsEnum == y.IsEnum && x.Members.Count == y.Members.Count &&
+            return x.Name.Equals(y.Name) &&
+                   x.IsEnum == y.IsEnum &&
+                   x.Members.Count == y.Members.Count &&
                    x.Members.OfType<CodeMemberField>()
-                       .SequenceEqual(y.Members.OfType<CodeMemberField>(), CodeMemberFieldEqualityComparer.Default);
+                       .SequenceEqual(y.Members.OfType<CodeMemberField>(),
+                           CodeMemberFieldEqualityComparer.Default);
+        }
+
+        /// <summary>
+        /// Determines if two <see cref="CodeTypeDeclaration"/> (where the <see cref="CodeTypeDeclaration.IsEnum"/> is true)
+        /// are the same in terms of their name and <see cref="CodeTypeDeclaration.Members"/> (whereby each <see cref="CodeMemberField"/>
+        /// is compared for their name and value) and also their namespace and type declaration as stored in the 
+        /// <see cref="CodeObject.UserData"/> property.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool IsEqualEnumDeclaration(this CodeTypeDeclaration x, CodeTypeDeclaration y)
+        {
+            var isEquivalentEnumDeclaration = x.IsEquivalentEnumDeclaration(y);
+            bool isEqualEnumDeclaration = false;
+
+            var xUserData = (from de in x.UserData.Cast<DictionaryEntry>()
+                            select de.ToKeyValuePair<string, ClrTypeReference>()).ToList();
+            var yUserData = (from de in y.UserData.Cast<DictionaryEntry>()
+                            select de.ToKeyValuePair<string, ClrTypeReference>()).ToList();
+
+            if (!xUserData.Any() && !yUserData.Any()) {
+                return isEquivalentEnumDeclaration;
+            }
+
+            var xData = xUserData.FirstOrDefault();
+            var yData = yUserData.FirstOrDefault();
+
+            if (xData.Value != default && yData.Value != default) {
+                isEqualEnumDeclaration = xData.Value == yData.Value;
+            }
+
+            return isEqualEnumDeclaration && isEquivalentEnumDeclaration;
         }
     }
 }
