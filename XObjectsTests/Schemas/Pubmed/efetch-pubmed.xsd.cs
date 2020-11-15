@@ -2491,6 +2491,13 @@ namespace PubMed.Eutils {
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
         }
+        
+        public enum CompleteYNEnum {
+            
+            Y,
+            
+            N,
+        }
     }
     
     /// <summary>
@@ -3127,6 +3134,13 @@ namespace PubMed.Eutils {
             
             pii,
         }
+        
+        public enum ValidYNEnum {
+            
+            Y,
+            
+            N,
+        }
     }
     
     /// <summary>
@@ -3573,6 +3587,13 @@ namespace PubMed.Eutils {
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
         }
+        
+        public enum CompleteYNEnum {
+            
+            Y,
+            
+            N,
+        }
     }
     
     /// <summary>
@@ -3958,6 +3979,13 @@ namespace PubMed.Eutils {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        public enum ValidYNEnum {
+            
+            Y,
+            
+            N,
         }
     }
     
@@ -4416,6 +4444,13 @@ namespace PubMed.Eutils {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum MajorTopicYNEnum {
+            
+            Y,
+            
+            N,
         }
     }
     
@@ -7235,6 +7270,13 @@ namespace PubMed.Eutils {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum MajorTopicYNEnum {
+            
+            Y,
+            
+            N,
         }
     }
     
