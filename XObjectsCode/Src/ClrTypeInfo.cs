@@ -45,7 +45,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal abstract class ClrTypeInfo
+    internal abstract partial class ClrTypeInfo
     {
         //Names
         internal string clrtypeName;
