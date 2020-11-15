@@ -461,7 +461,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal class ClrTypeReference
+    internal partial class ClrTypeReference
     {
         string typeName;
         string typeNs;

@@ -40,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrPropertyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrSimpleTypeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrTypeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ClrTypeReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\CodeDomHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\CompiledFacets.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Constants.cs" />
