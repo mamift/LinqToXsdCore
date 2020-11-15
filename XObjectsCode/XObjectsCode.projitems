@@ -41,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrSimpleTypeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrTypeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrTypeInfo.Equality.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ICommonTypeInfoBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ClrTypeReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\CodeDomHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\CompiledFacets.cs" />

@@ -2,7 +2,7 @@
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    internal partial class ClrTypeReference : IEquatable<ClrTypeReference>
+    internal partial class ClrTypeReference : IEquatable<ClrTypeReference>, ICommonTypeInfoBase
     {
         public bool Equals(ClrTypeReference other)
         {
@@ -46,5 +46,9 @@ namespace Xml.Schema.Linq.CodeGen
         {
             return !Equals(left, right);
         }
+
+        public string CommonTypeName => Name;
+
+        public string CommonTypeNamespace => Namespace;
     }
 }
