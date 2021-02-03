@@ -236,15 +236,6 @@ namespace Xml.Schema.Linq.CodeGen
             return property;
         }
 
-        public static CodeMemberProperty CreateSchemaNameProperty(string schemaName, string schemaNs,
-            MemberAttributes attributes)
-        {
-            CodeMemberProperty property = CreateInterfaceImplProperty(Constants.SchemaName, Constants.IXMetaData,
-                new CodeTypeReference(Constants.XNameType), attributes);
-            property.GetStatements.Add(new CodeMethodReturnStatement(XNameGetExpression(schemaName, schemaNs)));
-            return property;
-        }
-
         public static CodeMemberProperty CreateTypeOriginProperty(SchemaOrigin typeOrigin,
             MemberAttributes visibility)
         {
