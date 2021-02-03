@@ -784,7 +784,7 @@ namespace Xml.Schema.Linq.CodeGen
                 //Do not add repeating properties to the LocalElementDictionary of type
                 propertyDictionaryAddStatements.Add(CodeDomHelper.CreateMethodCallFromField(
                     Constants.LocalElementDictionaryField, "Add",
-                    CodeDomHelper.XNameGetExpression(propertyInfo.SchemaName, propertyInfo.PropertyNs),
+                    propertyInfo.GetXName(),
                     CodeDomHelper.Typeof(propertyInfo.ClrTypeName)));
             }
         }

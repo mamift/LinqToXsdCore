@@ -94,6 +94,7 @@ namespace Xml.Schema.Linq.CodeGen
         MakeUnion,
         MakeDefaultValueField,
         MakeFixedValueField,
+        MakeXName,
     }
 
     internal enum ContentType
