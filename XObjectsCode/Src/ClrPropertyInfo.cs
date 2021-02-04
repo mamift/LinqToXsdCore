@@ -1349,7 +1349,7 @@ namespace Xml.Schema.Linq.CodeGen
         private void CreateXNameField(CodeTypeDeclaration typeDecl)
         {
             // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
-            var field = new CodeMemberField("readonly string", NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeXName))
+            var field = new CodeMemberField("readonly System.Xml.Linq.XName", NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeXName))
             {
                 Attributes = MemberAttributes.Private | MemberAttributes.Static,
                 InitExpression = CodeDomHelper.XNameGetExpression(schemaName, propertyNs),

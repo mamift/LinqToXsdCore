@@ -256,7 +256,7 @@ namespace Xml.Schema.Linq.CodeGen
         public CodeMemberProperty CreateSchemaNameProperty(string schemaName, string schemaNs, MemberAttributes attributes)
         {
             // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
-            var field = new CodeMemberField("readonly string", "xName")
+            var field = new CodeMemberField("readonly System.Xml.Linq.XName", "xName")
             {
                 Attributes = MemberAttributes.Private | MemberAttributes.Static,
                 InitExpression = CodeDomHelper.XNameGetExpression(schemaName, schemaNs),
