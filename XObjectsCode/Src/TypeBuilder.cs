@@ -253,12 +253,28 @@ namespace Xml.Schema.Linq.CodeGen
             //Do nothing, this will inherit the LocalElementDictionary from XTypedElement which returns empty dict and Content which returns null
         }
 
+        public CodeMemberProperty CreateSchemaNameProperty(string schemaName, string schemaNs, MemberAttributes attributes)
+        {
+            // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
+            var field = new CodeMemberField("readonly string", "xName")
+            {
+                Attributes = MemberAttributes.Private | MemberAttributes.Static,
+                InitExpression = CodeDomHelper.XNameGetExpression(schemaName, schemaNs),
+            };
+            decl.Members.Add(field);
+
+            CodeMemberProperty property = CodeDomHelper.CreateInterfaceImplProperty(Constants.SchemaName, Constants.IXMetaData,
+                new CodeTypeReference(Constants.XNameType), attributes);
+            property.GetStatements.Add(new CodeMethodReturnStatement(new CodeFieldReferenceExpression(null, "xName")));
+            return property;
+        }
+
         private void ImplementIXMetaData()
         {
             string interfaceName = Constants.IXMetaData;
 
             CodeMemberProperty schemaNameProperty =
-                CodeDomHelper.CreateSchemaNameProperty(clrTypeInfo.schemaName, clrTypeInfo.schemaNs, DefaultVisibility.ToMemberAttribute());
+                CreateSchemaNameProperty(clrTypeInfo.schemaName, clrTypeInfo.schemaNs, DefaultVisibility.ToMemberAttribute());
 
             ImplementCommonIXMetaData();
             if (clrTypeInfo.HasElementWildCard) ImplementFSMMetaData();
@@ -784,7 +800,7 @@ namespace Xml.Schema.Linq.CodeGen
                 //Do not add repeating properties to the LocalElementDictionary of type
                 propertyDictionaryAddStatements.Add(CodeDomHelper.CreateMethodCallFromField(
                     Constants.LocalElementDictionaryField, "Add",
-                    CodeDomHelper.XNameGetExpression(propertyInfo.SchemaName, propertyInfo.PropertyNs),
+                    propertyInfo.GetXName(),
                     CodeDomHelper.Typeof(propertyInfo.ClrTypeName)));
             }
         }

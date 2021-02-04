@@ -75,6 +75,9 @@ namespace Xml.Schema.Linq.CodeGen
 
                 case NameOptions.MakeDefaultValueField:
                     return clrName + "DefaultValue";
+
+                case NameOptions.MakeXName:
+                    return clrName + "XName";
             }
 
             return clrName;
