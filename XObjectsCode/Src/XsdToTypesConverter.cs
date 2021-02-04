@@ -1031,8 +1031,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=4106
-            ClrTypeReference typeRef =
-                BuildTypeReference(schemaType, qName, isAnonymous, true);
+            ClrTypeReference typeRef = BuildTypeReference(schemaType, qName, isAnonymous, true);
             if (isInlineEnum && isAnonymous) {
                 typeRef.Name += "Enum";
                 if (typeRef.ClrFullTypeName.IsNullOrEmpty()) {

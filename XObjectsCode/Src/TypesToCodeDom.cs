@@ -134,7 +134,7 @@ namespace Xml.Schema.Linq.CodeGen
             //Build type using TypeBuilder
             typeBuilder = GetTypeBuilder();
             typeBuilder.CreateTypeDeclaration(typeInfo);
-            ProcessProperties(typeInfo.Content, typeInfo.Annotations);
+            ProcessProperties(typeInfo);
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
             typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
             typeBuilder.ApplyAnnotations(typeInfo);
@@ -179,9 +179,10 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private void ProcessProperties(IEnumerable<ContentInfo> properties, List<ClrAnnotation> annotations)
+        private void ProcessProperties(ClrContentTypeInfo typeInfo)
         {
-            foreach (ContentInfo child in properties)
+            List<ClrAnnotation> annotations = typeInfo.Annotations;
+            foreach (ContentInfo child in typeInfo.Content)
             {
                 //Child can either be a property directly for attributes or a grouping for content model,
                 if (child.ContentType == ContentType.Property)
