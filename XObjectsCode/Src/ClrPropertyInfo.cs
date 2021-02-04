@@ -170,6 +170,11 @@ namespace Xml.Schema.Linq.CodeGen
         {
             TypeBuilder.ApplyAnnotations(propDecl, this, typeAnnotations);
         }
+
+        internal virtual CodeExpression GetXName()
+        {
+            return CodeDomHelper.XNameGetExpression(SchemaName, PropertyNs);
+        }
     }
 
     internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
@@ -357,7 +362,7 @@ namespace Xml.Schema.Linq.CodeGen
         PropertyFlags propertyFlags;
         SchemaOrigin propertyOrigin;
 
-        CodeMethodInvokeExpression xNameGetExpression;
+        CodeExpression xNameExpression;
         string parentTypeFullName;
         string clrTypeName;
         string clrNamespace;
@@ -371,7 +376,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.contentType = ContentType.Property;
             this.propertyName = propertyName;
             this.propertyNs = propertyNs;
-            this.schemaName = schemaName;
+            this.schemaName = schemaName;            
             this.hasSet = true;
             this.returnType = null;
             this.defaultValueType = null;
@@ -387,7 +392,7 @@ namespace Xml.Schema.Linq.CodeGen
                 this.propertyFlags |= PropertyFlags.IsNullable;
             }
 
-            XNameGetExpression();
+            this.xNameExpression = new CodeFieldReferenceExpression(null, NameGenerator.ChangeClrName(propertyName, NameOptions.MakeXName));
         }
 
         internal void Reset()
@@ -703,6 +708,7 @@ namespace Xml.Schema.Linq.CodeGen
                 return null;
             }
 
+            CreateXNameField(parentTypeDecl);
             CreateFixedDefaultValue(parentTypeDecl);
             CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(ReturnType, hasSet, visibility.ToMemberAttribute());
             clrProperty.Name = propertyName;
@@ -762,7 +768,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 contentModelExpression.Parameters.Add(
                     new CodeObjectCreateExpression(Constants.NamedContentModelEntity,
-                        xNameGetExpression));
+                        xNameExpression));
             }
         }
 
@@ -817,13 +823,13 @@ namespace Xml.Schema.Linq.CodeGen
                     return new CodeVariableDeclarationStatement(
                         "XElement",
                         "x",
-                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "GetElement", xNameGetExpression));
+                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "GetElement", xNameExpression));
 
                 case SchemaOrigin.Attribute:
                     return new CodeVariableDeclarationStatement(
                         "XAttribute",
                         "x",
-                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "Attribute", xNameGetExpression));
+                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "Attribute", xNameExpression));
 
                 case SchemaOrigin.Text:
                     return new CodeVariableDeclarationStatement(
@@ -881,7 +887,7 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeDomHelper.SetValue(),
                         new CodePrimitiveExpression(this.propertyName),
                         CodeDomHelper.This(),
-                        xNameGetExpression,
+                        xNameExpression,
                         GetSimpleTypeClassExpression());
                 }
                 else
@@ -901,7 +907,7 @@ namespace Xml.Schema.Linq.CodeGen
                     var setValue = CodeDomHelper.SetValue();
                     CodeExpression valueExpr = IsEnum ? CodeDomHelper.CreateMethodCall(setValue, "ToString") as CodeExpression : setValue;
                     methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
-                        xNameGetExpression,
+                        xNameExpression,
                         valueExpr,
                         new CodePrimitiveExpression(PropertyName),
                         GetSimpleTypeClassExpression());
@@ -921,7 +927,7 @@ namespace Xml.Schema.Linq.CodeGen
                     var setValue = CodeDomHelper.SetValue();
                     CodeExpression valueExpr = IsEnum ? CodeDomHelper.CreateMethodCall(setValue, "ToString") as CodeExpression : setValue;
                     methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
-                        xNameGetExpression,
+                        xNameExpression,
                         valueExpr
                     );
                     if (!IsRef && typeRef.IsSimpleType)
@@ -1302,7 +1308,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
             else
             {
-                listParameters[paramIndex++] = xNameGetExpression;
+                listParameters[paramIndex++] = xNameExpression;
             }
 
             if (fixedDefaultValue != null)
@@ -1340,12 +1346,20 @@ namespace Xml.Schema.Linq.CodeGen
                 this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
         }
 
-        private void XNameGetExpression()
+        private void CreateXNameField(CodeTypeDeclaration typeDecl)
         {
-            CodeExpression xNameExp = new CodePrimitiveExpression(schemaName);
-            CodeExpression xNsExp;
-            xNsExp = new CodePrimitiveExpression(propertyNs);
-            this.xNameGetExpression = CodeDomHelper.XNameGetExpression(xNameExp, xNsExp);
+            // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
+            var field = new CodeMemberField("readonly string", NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeXName))
+            {
+                Attributes = MemberAttributes.Private | MemberAttributes.Static,
+                InitExpression = CodeDomHelper.XNameGetExpression(schemaName, propertyNs),
+            };
+            typeDecl.Members.Add(field);
+        }
+
+        internal override CodeExpression GetXName()
+        {
+            return xNameExpression;
         }
 
         internal void SetFixedDefaultValue(ClrWrapperTypeInfo typeInfo)
