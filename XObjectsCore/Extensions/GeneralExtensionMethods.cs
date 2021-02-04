@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Schema;
+using Xml.Fxt;
 
 namespace Xml.Schema.Linq.Extensions
 {
@@ -131,6 +133,52 @@ namespace Xml.Schema.Linq.Extensions
             catch {
                 return default(TValue);
             }
+        }
+
+        /// <summary>
+        /// Extracts all global/top-level schema items in the current <see cref="XmlSchemaSet"/> to a single instance of an
+        /// <see cref="XmlSchema"/>.
+        /// </summary>
+        /// <param name="set"></param>
+        /// <returns></returns>
+        public static XmlSchema ExtractGlobalItemsToSingleFileSchema(this XmlSchemaSet set)
+        {
+            if (set == null) throw new ArgumentNullException(nameof(set));
+            if (!set.IsCompiled)
+                throw new Exception($"{nameof(ExtractGlobalItemsToSingleFileSchema)}() only works on compiled schema sets");
+
+            var newSchema = new XmlSchema();
+
+            foreach (DictionaryEntry de in set.GlobalElements) {
+                var globalElement = (XmlSchemaObject) de.Value;
+                newSchema.Items.Add(globalElement);
+            }
+
+            foreach (DictionaryEntry de in set.GlobalTypes) {
+                XmlSchemaType globalType = (XmlSchemaType) de.Value;
+                newSchema.Items.Add(globalType);
+            }
+
+            foreach (DictionaryEntry de in set.GlobalAttributes) {
+                XmlSchemaAttribute globalAttr = (XmlSchemaAttribute) de.Value;
+                newSchema.Items.Add(globalAttr);
+            }
+
+            return newSchema;
+        }
+
+        /// <summary>
+        /// Returns the current schema as an XML string.
+        /// </summary>
+        /// <param name="schema"></param>
+        /// <returns></returns>
+        public static string ToXmlString(this XmlSchema schema)
+        {
+            var writer = new StringWriter();
+
+            schema.Write(writer);
+
+            return writer.ToString();
         }
     }
 }

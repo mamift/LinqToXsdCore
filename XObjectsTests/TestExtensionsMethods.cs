@@ -1,15 +1,19 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using NUnit.Framework;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
     /// <summary>
-    /// Extension methods use specifically in unit tests.
+    /// Extension methods used specifically in unit tests.
     /// </summary>
     public static class TestExtensionsMethods
     {
@@ -93,6 +97,40 @@ namespace Xml.Schema.Linq.Tests
             ccu.Namespaces.Add(codeNamespace);
 
             return ccu.ToStringWriter();
+        }
+
+        /// <summary>
+        /// Returns all the current <paramref name="nodes"/> as a fully formatted string.
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <returns></returns>
+        public static string ToFullString(this IEnumerable<SyntaxNode> nodes)
+        {
+            var sb = new StringBuilder();
+
+            foreach (var node in nodes) {
+                sb.Append(node.ToFullString());
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Dumps debug strings to the <see cref="TestContext.WorkDirectory"/>.
+        /// </summary>
+        /// <param name="tc"></param>
+        /// <param name="caller"></param>
+        /// <param name="debugStrings"></param>
+        public static void DumpDebugOutputToFile(this TestContext tc, [CallerMemberName] string caller = null, params string[] debugStrings)
+        {
+            if (caller.IsEmpty()) throw new ArgumentNullException(nameof(caller));
+
+            for (var i = 0; i < debugStrings.Length; i++) {
+                var str = debugStrings[i];
+
+                var outputPath = Path.Join(tc.WorkDirectory, caller + "_debug" + (i+1) + ".log");
+                File.WriteAllText(outputPath, str);
+            }
         }
     }
 }

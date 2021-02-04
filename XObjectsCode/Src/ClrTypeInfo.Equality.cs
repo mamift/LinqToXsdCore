@@ -4,7 +4,6 @@ namespace Xml.Schema.Linq.CodeGen
 {
     internal abstract partial class ClrTypeInfo : IEquatable<ClrTypeInfo>, ICommonTypeInfoBase
     {
-        
         public bool Equals(ClrTypeInfo other)
         {
             if (ReferenceEquals(null, other)) return false;

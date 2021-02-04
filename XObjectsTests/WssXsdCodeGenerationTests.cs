@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Xml.Schema;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
 using Xml.Schema.Linq.CodeGen;
+using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
     public class WssXsdCodeGenerationTests
     {
-        private SyntaxTree Tree { get; set; }
+        public SyntaxTree Tree { get; private set; }
 
-        private List<ClassDeclarationSyntax> GeneratedTypes { get; set; }
+        public List<ClassDeclarationSyntax> GeneratedTypes { get; private set; }
+
+        public XmlSchemaSet XmlSchemaSet { get; private set; }
 
         [SetUp]
         public void GenerateCode()
@@ -23,7 +28,7 @@ namespace Xml.Schema.Linq.Tests
             const string wssXsdFilePath = @"Schemas\SharePoint2010\wss.xsd";
             var wssXsdFileInfo = new FileInfo(wssXsdFilePath);
             Tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo);
-
+            XmlSchemaSet = Utilities.CompileXmlSchemaSet(wssXsdFileInfo);
             GeneratedTypes = Tree
                              .GetNamespaceRoot()
                              .DescendantNodes()
@@ -124,6 +129,11 @@ namespace Xml.Schema.Linq.Tests
         public void ClassesWithInlineEnumsGenerationTest()
         {
             var typesWithEnumsDefined = GeneratedTypes.Where(t => t.Members.OfType<EnumDeclarationSyntax>().Any()).ToList();
+
+            var codeGenOutput = typesWithEnumsDefined.ToFullString();
+            var compiledXsd = XmlSchemaSet.ExtractGlobalItemsToSingleFileSchema().ToXmlString();
+            
+            TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new[] { codeGenOutput, compiledXsd });
 
             Assert.IsNotEmpty(typesWithEnumsDefined);
             Assert.IsTrue(typesWithEnumsDefined.Count() == 3);

@@ -51,14 +51,14 @@ namespace Xml.Schema.Linq.Tests
         }
 
         /// <summary>
-        /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
-        /// the generated code.
+        /// Creates an <see cref="XmlSchemaSet"/> from the given <see cref="FileInfo"/> <paramref name="xsdFile"/>.
         /// </summary>
         /// <param name="xsdFile"></param>
         /// <returns></returns>
-        public static CSharpSyntaxTree GenerateSyntaxTree(FileInfo xsdFile)
+        public static XmlSchemaSet CompileXmlSchemaSet(FileInfo xsdFile)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
+            if (!xsdFile.Extension.EndsWith("xsd")) throw new InvalidOperationException("Must be invoked on an XSD file!");
 
             var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
             var directoryInfo = new DirectoryInfo(folderWithAdditionalXsdFiles);
@@ -74,8 +74,21 @@ namespace Xml.Schema.Linq.Tests
                 DtdProcessing = DtdProcessing.Ignore,
                 CloseInput = true
             };
-            var atomXsdSchemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
-                                            .ToXmlSchemaSet(xmlPreloadedResolver);
+            var xmlSchemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
+                .ToXmlSchemaSet(xmlPreloadedResolver);
+
+            return xmlSchemaSet;
+        }
+
+        /// <summary>
+        /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
+        /// the generated code.
+        /// </summary>
+        /// <param name="xsdFile"></param>
+        /// <returns></returns>
+        public static CSharpSyntaxTree GenerateSyntaxTree(FileInfo xsdFile)
+        {
+            var atomXsdSchemaSet = CompileXmlSchemaSet(xsdFile);
 
             var sourceText = GenerateSourceText(atomXsdSchemaSet, xsdFile.FullName);
             using var writer = new StreamWriter(xsdFile.FullName + ".cs");

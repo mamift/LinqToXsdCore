@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Xml.Schema.Linq.Extensions
 {
@@ -10,6 +10,7 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsEmpty(this string theString) => string.IsNullOrWhiteSpace(theString);
         
         /// <summary>
@@ -18,6 +19,7 @@ namespace Xml.Schema.Linq.Extensions
         /// <remarks>Because I hate using <c>!</c></remarks>
         /// <param name="theString"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNotEmpty(this string theString) => !string.IsNullOrWhiteSpace(theString);
         
         /// <summary>
@@ -25,6 +27,7 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNullOrEmpty(this string theString) => string.IsNullOrEmpty(theString);
 
         /// <summary>
@@ -32,6 +35,7 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNotNullOrEmpty(this string theString) => !string.IsNullOrEmpty(theString);
 
         /// <summary>
@@ -72,6 +76,7 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <param name="theString"></param>
         /// <param name="appendage"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string AppendIfNotPresent(this string theString, string appendage) 
             => !theString.EndsWith(appendage) ? theString + appendage : theString;
 
@@ -81,6 +86,7 @@ namespace Xml.Schema.Linq.Extensions
         /// <param name="theString"></param>
         /// <param name="exception"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Except(this string theString, string exception) 
             => theString.Replace(exception, string.Empty);
     }

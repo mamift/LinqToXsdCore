@@ -3,6 +3,8 @@
 using System.Xml.Schema;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -131,11 +133,18 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
+    [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     internal class EnumSimpleTypeInfo : ClrSimpleTypeInfo
     {
         internal EnumSimpleTypeInfo(XmlSchemaSimpleType innerType)
             : base(innerType)
         {
+        }
+
+        private string GetDebuggerDisplay()
+        {
+            return $"Name = {clrtypeName}, " +
+                   $"Members = {RestrictionFacets.Enumeration.Cast<string>().ToDelimitedString(',')}";
         }
     }
 

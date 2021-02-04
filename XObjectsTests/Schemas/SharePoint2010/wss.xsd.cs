@@ -30074,11 +30074,6 @@ namespace Microsoft.Schemas.SharePoint {
             FALSE,
         }
         
-        public enum IMEMode {
-            
-            inactive,
-        }
-        
         public enum DeleteBehaviorType {
             
             None,
