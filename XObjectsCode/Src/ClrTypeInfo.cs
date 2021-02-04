@@ -500,7 +500,7 @@ namespace Xml.Schema.Linq.CodeGen
 
                 if (st.IsEnum())
                 {
-                    typeRefFlags |= ClrTypeRefFlags.IsEnum;
+                    typeRefFlags |= ClrTypeRefFlags.IsEnum | ClrTypeRefFlags.IsValueType;
                 }
 
                 XmlSchemaDatatype datatype = st.Datatype;
