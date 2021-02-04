@@ -143,7 +143,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         private string GetDebuggerDisplay()
         {
-            return $"Name = {clrtypeName}, " +
+            return $"EnumSimpleTypeInfo, Name = {clrtypeName}, " +
                    $"Members = {RestrictionFacets.Enumeration.Cast<string>().ToDelimitedString(',')}";
         }
     }

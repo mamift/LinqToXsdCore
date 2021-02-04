@@ -3,7 +3,7 @@ using System.Diagnostics;
 namespace Xml.Schema.Linq
 {
     [DebuggerTypeProxy(typeof(XListDebugVisualizer))]
-    [DebuggerDisplay("Count = {((ICountAndCopy)((object)this)).Count}")]
+    [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     public abstract class XListVisualizable
     {
         internal class XListDebugVisualizer
@@ -25,6 +25,11 @@ namespace Xml.Schema.Linq
                     return tArray;
                 }
             }
+        }
+
+        private string GetDebuggerDisplay()
+        {
+            return $"Count = {((ICountAndCopy)((object)this)).Count})";
         }
     }
 }

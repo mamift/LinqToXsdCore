@@ -45,6 +45,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
+    [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     internal abstract partial class ClrTypeInfo
     {
         //Names
@@ -315,6 +316,11 @@ namespace Xml.Schema.Linq.CodeGen
         internal virtual FSM CreateFSM(StateNameSource stateNames)
         {
             throw new InvalidOperationException();
+        }
+
+        private string GetDebuggerDisplay()
+        {
+            return $"ClrTypeInfo, QName = {CommonTypeNamespace}.{CommonTypeName}";
         }
     }
 
