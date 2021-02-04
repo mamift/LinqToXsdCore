@@ -218,31 +218,30 @@ namespace Xml.Schema.Linq.CodeGen
 
         internal void TypeToType(XmlSchemaType st)
         {
-            XmlSchemaSimpleType simpleType = st as XmlSchemaSimpleType;
-            if (simpleType != null)
+            if (st is XmlSchemaSimpleType simpleType)
             {
                 this.AddSimpleType(simpleType.QualifiedName, simpleType);
             }
             else
             {
-                XmlSchemaComplexType ct = st as XmlSchemaComplexType;
-                if (ct != null && ct.TypeCode != XmlTypeCode.Item)
+                if (st is XmlSchemaComplexType ct && ct.TypeCode != XmlTypeCode.Item)
                 {
                     SymbolEntry symbol = symbolTable.AddType(ct.QualifiedName, ct);
                     string xsdNamespace = ct.QualifiedName.Namespace;
 
                     localSymbolTable.Init(symbol.identifierName);
 
-                    ClrContentTypeInfo typeInfo = new ClrContentTypeInfo();
-                    typeInfo.IsAbstract = ct.IsAbstract;
-                    typeInfo.IsSealed = ct.IsFinal();
-                    typeInfo.clrtypeName = symbol.identifierName;
-                    typeInfo.clrtypeNs = symbol.clrNamespace;
-                    typeInfo.schemaName = symbol.symbolName;
-                    typeInfo.schemaNs = xsdNamespace;
+                    var typeInfo = new ClrContentTypeInfo {
+                        IsAbstract = ct.IsAbstract,
+                        IsSealed = ct.IsFinal(),
+                        clrtypeName = symbol.identifierName,
+                        clrtypeNs = symbol.clrNamespace,
+                        schemaName = symbol.symbolName,
+                        schemaNs = xsdNamespace,
+                        typeOrigin = SchemaOrigin.Fragment,
+                        baseType = BaseType(ct)
+                    };
 
-                    typeInfo.typeOrigin = SchemaOrigin.Fragment;
-                    typeInfo.baseType = BaseType(ct);
                     BuildProperties(null, ct, typeInfo);
                     BuildNestedTypes(typeInfo);
                     BuildAnnotationInformation(typeInfo, ct);
