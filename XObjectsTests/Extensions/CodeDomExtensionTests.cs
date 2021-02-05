@@ -110,5 +110,17 @@ namespace Xml.Schema.Linq.Tests.Extensions
             var isEquivalent = webField.IsEquivalent(webField2);
             Assert.IsTrue(isEquivalent);
         }
+
+        [Test]
+        public void CodeTypeRefIsDeepEqualTest()
+        {
+            var ref1 = new CodeTypeReference(typeof(string));
+            var ref2 = new CodeTypeReference(typeof(int));
+
+            var diffs = CodeDomExtensions.DefaultCodeTypeReferenceComparer.CalculateDifferences(ref1, ref2);
+            
+            Assert.IsNotEmpty(diffs);
+            Assert.IsFalse(CodeDomExtensions.DefaultCodeTypeReferenceComparer.Compare(ref1, ref2));
+        }
     }
 }

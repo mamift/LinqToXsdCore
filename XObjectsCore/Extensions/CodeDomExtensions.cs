@@ -6,12 +6,27 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.CSharp;
+using ObjectsComparer;
 using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq.Extensions
 {
     public static class CodeDomExtensions
     {
+        public static readonly ComparisonSettings DefaultComparisonSettings = new ComparisonSettings() {
+            EmptyAndNullEnumerablesEqual = true,
+            RecursiveComparison = true,
+        };
+
+        public static readonly ObjectsComparer.Comparer<CodeTypeReference> DefaultCodeTypeReferenceComparer = 
+            new ObjectsComparer.Comparer<CodeTypeReference>(DefaultComparisonSettings);
+
+        public static readonly ObjectsComparer.Comparer<CodeTypeDeclaration> DefaultCodeTypeDeclarationComparer = 
+            new ObjectsComparer.Comparer<CodeTypeDeclaration>(DefaultComparisonSettings);
+
+        public static readonly ObjectsComparer.Comparer<CodeMemberField> DefaultCodeMemberFieldComparer = 
+            new ObjectsComparer.Comparer<CodeMemberField>(DefaultComparisonSettings);
+
         /// <summary>
         /// Generates code string from the current <see cref="CodeCompileUnit"/>.
         /// </summary>
@@ -61,6 +76,18 @@ namespace Xml.Schema.Linq.Extensions
 
             var existingEnumExists = (from dec in possibleEnums
                 where dec.IsEqualEnumDeclaration(enumDeclaration)
+                select dec);
+
+            return existingEnumExists.Any();
+        }
+
+        public static bool DeepEqualEnumDeclarationExists(this IEnumerable<CodeTypeDeclaration> possibleEnums, CodeTypeDeclaration enumDeclaration)
+        {
+            if (enumDeclaration == null) throw new ArgumentNullException(nameof(enumDeclaration));
+            if (!enumDeclaration.IsEnum) return false;
+
+            var existingEnumExists = (from dec in possibleEnums
+                where dec.IsDeepEqual(enumDeclaration)
                 select dec);
 
             return existingEnumExists.Any();
@@ -125,8 +152,23 @@ namespace Xml.Schema.Linq.Extensions
             if (x == null && y == null) return true;
             if (x == null || y == null) return false;
             
-            return x.Name.Equals(y.Name) && x.Attributes == y.Attributes &&
-                   (x.Type?.BaseType?.Equals(y.Type?.BaseType) ?? false);
+            return x.Name.Equals(y.Name) && x.Attributes == y.Attributes && x.Type.IsDeepEqual(y.Type);
+        }
+
+        public static bool IsDeepEqual(this CodeMemberField x, CodeMemberField y)
+        {
+            if (x == null && y == null) return true;
+            if (x == null || y == null) return false;
+
+            return DefaultCodeMemberFieldComparer.Compare(x, y);
+        }
+
+        public static bool IsDeepEqual(this CodeTypeReference x, CodeTypeReference y)
+        {
+            if (x == null && y == null) return true;
+            if (x == null || y == null) return false;
+
+            return DefaultCodeTypeReferenceComparer.Compare(x, y);
         }
 
         /// <summary>
@@ -146,9 +188,8 @@ namespace Xml.Schema.Linq.Extensions
             return x.Name.Equals(y.Name) &&
                    x.IsEnum == y.IsEnum &&
                    x.Members.Count == y.Members.Count &&
-                   x.Members.OfType<CodeMemberField>()
-                       .SequenceEqual(y.Members.OfType<CodeMemberField>(),
-                           CodeMemberFieldEqualityComparer.Default);
+                   x.Members.OfType<CodeMemberField>().SequenceEqual(y.Members.OfType<CodeMemberField>(), 
+                       CodeMemberFieldEqualityComparer.Default);
         }
 
         /// <summary>
@@ -208,6 +249,18 @@ namespace Xml.Schema.Linq.Extensions
             }
 
             return isEquivalentEnumDeclaration;
+        }
+
+        public static bool IsDeepEqual(this CodeTypeDeclaration x, CodeTypeDeclaration y)
+        {
+            if (x == null && y == null) return true;
+            if (x == null || y == null) return false;
+
+            var diffs = DefaultCodeTypeDeclarationComparer.CalculateDifferences(x, y).ToList();
+
+            var noDiffs = (!diffs.Any());
+
+            return DefaultCodeTypeDeclarationComparer.Compare(x, y);
         }
     }
 }

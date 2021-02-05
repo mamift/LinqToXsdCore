@@ -253,7 +253,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             var allEnumsDefinedAlready = GetAllEnumsDefinedAlready();
 
-            return allEnumsDefinedAlready.EqualEnumDeclarationExists(ctd);
+            return allEnumsDefinedAlready.DeepEqualEnumDeclarationExists(ctd);
         }
 
         private bool EquivalentEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
