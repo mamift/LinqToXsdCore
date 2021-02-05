@@ -127,7 +127,7 @@ namespace Xml.Schema.Linq.Tests
         {
             if (caller.IsEmpty()) throw new ArgumentNullException(nameof(caller));
 
-            var existingFiles = Directory.GetFiles(tc.WorkDirectory, "*_debug*.log").Select(p => new FileInfo(p));
+            var existingFiles = Directory.GetFiles(tc.WorkDirectory, $"{caller}_debug*.log").Select(p => new FileInfo(p));
 
             var largestNumber = existingFiles.Select(f => Regex.Replace(f.Name, "[^0-9]+", string.Empty))
                 .Select(n => n.ParseInt()).Max();
