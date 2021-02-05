@@ -77,27 +77,29 @@ namespace Xml.Schema.Linq.CodeGen
                 else
                 {
                     codeNamespace = GetCodeNamespace(type.clrtypeNs);
-                    ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
-                    if (stInfo != null)
+                    if (type is ClrSimpleTypeInfo stInfo)
                     {
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
-                            var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
+                            enumsCreated++;
+                            CodeTypeDeclaration enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
                             codeNamespace.Types.Add(enumType);
-                            var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
+                            List<CodeTypeDeclaration> enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
                             if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
-                                var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
+                                CodeTypeDeclaration typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
                                 var duplicateEnum = typeWithDuplicateEnum.Members.OfType<CodeTypeDeclaration>()
                                     .First(c => c.IsEqualEnumDeclaration(enumType));
                                 typeWithDuplicateEnum.Members.Remove(duplicateEnum);
                             }
                         }
-                        codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
+                        else {
+                            codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
+                        }
                     }
                     else
                     {
-                        CodeTypeDeclaration
-                            decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
+                        //Sets current codeNamespace
+                        CodeTypeDeclaration decl = ProcessType(type as ClrContentTypeInfo, null, true);
                         codeNamespace.Types.Add(decl);
 
                         if (type.IsRootElement)
