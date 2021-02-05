@@ -142,7 +142,10 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void GenerateInlineDeclaredEnumsTest()
         {
-            var inlineDeclaredEnums = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>()).ToList();
+            var inlineDeclaredEnums = GeneratedTypes.SelectMany(t => 
+                t.DescendantNodes().OfType<EnumDeclarationSyntax>().Distinct()).ToList();
+
+            TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new [] { Tree.ToString() });
 
             Assert.IsNotEmpty(inlineDeclaredEnums);
             Assert.IsTrue(inlineDeclaredEnums.Count == 4);
