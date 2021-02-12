@@ -8,6 +8,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f2ff2bb9-602f-49fc-9242-a414e2769803")]
+// [assembly: Guid("56081eab-e14d-40d8-8d96-0e27e83fc5e1")]
 [assembly: InternalsVisibleTo("XObjectsTests")]
-[assembly: InternalsVisibleTo("XObjectsCode")]

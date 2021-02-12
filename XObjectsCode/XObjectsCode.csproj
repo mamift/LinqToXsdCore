@@ -1,5 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
@@ -16,11 +16,8 @@
     <Copyright>Copyright (C) 2008-2019 Microsoft Corporation, github.com/mamift</Copyright>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\XObjectsCore.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <None Remove="XObjectsCore.xml" />
-  </ItemGroup>
+    <PackageReference Include="System.CodeDom" Version="4.5.0" />
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
+  </ItemGroup>  
 </Project>
