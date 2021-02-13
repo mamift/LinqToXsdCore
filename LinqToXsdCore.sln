@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XObjectsCode", "XObjectsCode\XObjectsCode.csproj", "{34AC3718-D2DC-48AB-BECC-F00A87E910C2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCore", "XObjectsCore\XObjectsCore.csproj", "{71210419-4EA9-442B-ACA2-4FCD647929E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqToXsd", "LinqToXsd\LinqToXsd.csproj", "{39BF4375-E14A-4779-8D9D-90C39E1C5BBB}"
@@ -16,20 +14,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RELEASENOTES.md = RELEASENOTES.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XObjectsCodeGen", "XObjectsCode\XObjectsCodeGen.csproj", "{26B49F5C-4459-4B14-B25B-057469144039}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		XObjectsCode\XObjectsCode.projitems*{34ac3718-d2dc-48ab-becc-f00a87e910c2}*SharedItemsImports = 13
-		XObjectsCode\XObjectsCode.projitems*{71210419-4ea9-442b-aca2-4fcd647929e3}*SharedItemsImports = 5
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34AC3718-D2DC-48AB-BECC-F00A87E910C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34AC3718-D2DC-48AB-BECC-F00A87E910C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34AC3718-D2DC-48AB-BECC-F00A87E910C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34AC3718-D2DC-48AB-BECC-F00A87E910C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71210419-4EA9-442B-ACA2-4FCD647929E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,6 +34,10 @@ Global
 		{5BA935F4-E5A4-4679-8F55-3E875C797C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BA935F4-E5A4-4679-8F55-3E875C797C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BA935F4-E5A4-4679-8F55-3E875C797C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B49F5C-4459-4B14-B25B-057469144039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B49F5C-4459-4B14-B25B-057469144039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B49F5C-4459-4B14-B25B-057469144039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B49F5C-4459-4B14-B25B-057469144039}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

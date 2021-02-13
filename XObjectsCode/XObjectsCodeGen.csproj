@@ -2,6 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
     <Version>3.1.0</Version>
     <Company>Microsoft Corporation</Company>
@@ -15,9 +17,8 @@
     <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
     <Copyright>Copyright (C) 2008-2019 Microsoft Corporation, github.com/mamift</Copyright>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="System.CodeDom" Version="4.5.0" />
+    <PackageReference Include="System.CodeDom" Version="5.0.0" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
-  </ItemGroup>  
+  </ItemGroup>
 </Project>

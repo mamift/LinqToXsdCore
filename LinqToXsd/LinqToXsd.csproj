@@ -38,8 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
-    <ProjectReference Include="..\XObjectsCode\XObjectsCode.csproj" />
   </ItemGroup>
 
   <ItemGroup>

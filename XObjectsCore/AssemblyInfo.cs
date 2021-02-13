@@ -10,4 +10,4 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("f2ff2bb9-602f-49fc-9242-a414e2769803")]
 [assembly: InternalsVisibleTo("XObjectsTests")]
-[assembly: InternalsVisibleTo("XObjectsCode")]
+[assembly: InternalsVisibleTo("XObjectsCodeGen")]
