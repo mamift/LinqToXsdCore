@@ -843,17 +843,16 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private CodeMethodInvokeExpression SetValueMethodCall()
-        {
-            CodeMethodInvokeExpression methodCall = null;
+        private void AddSetValueMethodCall(CodeStatementCollection setStatements)
+        {            
             string setMethodName = "Set";
             if (!IsRef && IsSchemaList)
             {
-                setMethodName = string.Concat(setMethodName, "List");
+                setMethodName = "SetList";
             }
             else if (IsUnion)
             {
-                setMethodName = string.Concat(setMethodName, "Union");
+                setMethodName = "SetUnion";
             }
 
             bool validation = Validation;
@@ -861,16 +860,16 @@ namespace Xml.Schema.Linq.CodeGen
             switch (propertyOrigin)
             {
                 case SchemaOrigin.Element:
-                    setMethodName = string.Concat(setMethodName, "Element");
+                    setMethodName += "Element";
                     break;
 
                 case SchemaOrigin.Attribute:
                     validation = false;
-                    setMethodName = string.Concat(setMethodName, "Attribute");
+                    setMethodName += "Attribute";
                     break;
 
                 case SchemaOrigin.Text:
-                    setMethodName = string.Concat(setMethodName, "Value");
+                    setMethodName += "Value";
                     xNameParm = false;
                     break;
 
@@ -883,30 +882,40 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (xNameParm)
                 {
-                    methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
-                        CodeDomHelper.SetValue(),
-                        new CodePrimitiveExpression(this.propertyName),
-                        CodeDomHelper.This(),
-                        xNameExpression,
-                        GetSimpleTypeClassExpression());
+                    setStatements.Add(
+                        CodeDomHelper.CreateMethodCall(
+                            CodeDomHelper.This(), 
+                            setMethodName,
+                            CodeDomHelper.SetValue(),
+                            new CodePrimitiveExpression(this.propertyName),
+                            CodeDomHelper.This(),
+                            xNameExpression,
+                            GetSimpleTypeClassExpression())
+                    );
                 }
                 else
                 {
-                    methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
-                        CodeDomHelper.SetValue(),
-                        new CodePrimitiveExpression(this.propertyName),
-                        CodeDomHelper.This(),
-                        GetSimpleTypeClassExpression());
+                    setStatements.Add(
+                        CodeDomHelper.CreateMethodCall(
+                            CodeDomHelper.This(), 
+                            setMethodName,
+                            CodeDomHelper.SetValue(),
+                            new CodePrimitiveExpression(this.propertyName),
+                            CodeDomHelper.This(),
+                            GetSimpleTypeClassExpression())
+                    );
                 }
             }
             else if (validation)
             {
-                setMethodName = string.Concat(setMethodName, "WithValidation");
+                var valueExpr = new CodeSnippetExpression(IsEnum ? "value.ToString()" : "value");
+                CodeMethodInvokeExpression setWithValidation;
                 if (xNameParm)
                 {
                     var setValue = CodeDomHelper.SetValue();
-                    CodeExpression valueExpr = IsEnum ? CodeDomHelper.CreateMethodCall(setValue, "ToString") as CodeExpression : setValue;
-                    methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
+                    setWithValidation = CodeDomHelper.CreateMethodCall(
+                        CodeDomHelper.This(), 
+                        setMethodName + "WithValidation",
                         xNameExpression,
                         valueExpr,
                         new CodePrimitiveExpression(PropertyName),
@@ -914,36 +923,61 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else
                 {
-                    methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
-                        CodeDomHelper.SetValue(),
+                    setWithValidation = CodeDomHelper.CreateMethodCall(
+                        CodeDomHelper.This(), 
+                        setMethodName + "WithValidation",
+                        valueExpr,
                         new CodePrimitiveExpression(PropertyName),
                         GetSimpleTypeClassExpression());
+                }
+
+                // Skip validation when the set value is null. Also enum.ToString above would fail.
+                // (Setting an optional element to null actually removes it from DOM.)
+                if (IsNullable)
+                {
+                    setStatements.Add(new CodeConditionStatement(
+                        new CodeSnippetExpression("value == null"),
+                        new[] { new CodeExpressionStatement(CreatePlainSetCall(setMethodName, "null", xNameParm)) },
+                        new[] { new CodeExpressionStatement(setWithValidation) }
+                    ));
+                }
+                else
+                {
+                    setStatements.Add(setWithValidation);
                 }
             }
             else
             {
-                if (xNameParm)
-                {
-                    var setValue = CodeDomHelper.SetValue();
-                    CodeExpression valueExpr = IsEnum ? CodeDomHelper.CreateMethodCall(setValue, "ToString") as CodeExpression : setValue;
-                    methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
-                        xNameExpression,
-                        valueExpr
-                    );
-                    if (!IsRef && typeRef.IsSimpleType)
-                    {
-                        methodCall.Parameters.Add(GetSchemaDatatypeExpression());
-                    }
-                }
-                else
-                {
-                    methodCall = CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), setMethodName,
-                        CodeDomHelper.SetValue(),
-                        GetSchemaDatatypeExpression());
-                }
+                var valueExpr = !IsEnum ? "value" : IsNullable ? "value?.ToString()" : "value.ToString()";
+                setStatements.Add(CreatePlainSetCall(setMethodName, valueExpr, xNameParm));
             }
+        }
 
-            return methodCall;
+        private CodeExpression CreatePlainSetCall(string setMethodName, string valueExpr, bool xNameParm)
+        {
+            if (xNameParm)
+            {
+                var methodCall = CodeDomHelper.CreateMethodCall(
+                    CodeDomHelper.This(), 
+                    setMethodName,
+                    xNameExpression,
+                    new CodeSnippetExpression(valueExpr)
+                );
+                if (!IsRef && typeRef.IsSimpleType)
+                {
+                    methodCall.Parameters.Add(GetSchemaDatatypeExpression());
+                }
+                return methodCall;
+            }
+            else
+            {
+                return CodeDomHelper.CreateMethodCall(
+                    CodeDomHelper.This(), 
+                    setMethodName,
+                    new CodeSnippetExpression(valueExpr),
+                    GetSchemaDatatypeExpression()
+                );
+            }
         }
 
         private void AddListGetStatements(CodeStatementCollection getStatements, CodeTypeReference listType,
@@ -1186,7 +1220,7 @@ namespace Xml.Schema.Linq.CodeGen
         private void AddSetStatements(CodeStatementCollection setStatements)
         {
             AddFixedValueChecking(setStatements);
-            setStatements.Add(SetValueMethodCall());
+            AddSetValueMethodCall(setStatements);
         }
 
         private void AddSubstGetStatements(CodeStatementCollection getStatements)
