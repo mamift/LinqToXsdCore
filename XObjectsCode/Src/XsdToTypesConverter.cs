@@ -859,7 +859,7 @@ namespace Xml.Schema.Linq.CodeGen
             Debug.Assert(schemaType.GetContentType() == XmlSchemaContentType.TextOnly);
 
             ClrPropertyInfo textProperty = new ClrPropertyInfo(Constants.SInnerTypePropertyName, string.Empty,
-                Constants.SInnerTypePropertyName, Occurs.One);
+                Constants.SInnerTypePropertyName, Occurs.One, configSettings);
 
             textProperty.Origin = SchemaOrigin.Text;
             ClrTypeReference typeRef = null;
@@ -928,7 +928,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             Debug.Assert(schemaType != null);
             ClrPropertyInfo textProperty = new ClrPropertyInfo(Constants.SInnerTypePropertyName, string.Empty,
-                Constants.SInnerTypePropertyName, Occurs.One);
+                Constants.SInnerTypePropertyName, Occurs.One, configSettings);
             textProperty.Origin = SchemaOrigin.Text;
 
             bool anonymous = schemaType.QualifiedName.IsEmpty;
@@ -987,7 +987,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             ClrPropertyInfo propertyInfo =
-                new ClrPropertyInfo(identifierName, schemaNs, schemaName, GetOccurence(elem));
+                new ClrPropertyInfo(identifierName, schemaNs, schemaName, GetOccurence(elem), configSettings);
             propertyInfo.Origin = SchemaOrigin.Element;
             propertyInfo.FromBaseType = fromBaseType;
             propertyInfo.TypeReference = typeRef;
@@ -1013,7 +1013,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             string propertyName = localSymbolTable.AddAttribute(attribute);
             Occurs attrPropertyOccurs = attribute.Use == XmlSchemaUse.Required ? Occurs.One : Occurs.ZeroOrOne;
-            ClrPropertyInfo propertyInfo = new ClrPropertyInfo(propertyName, schemaNs, schemaName, attrPropertyOccurs);
+            ClrPropertyInfo propertyInfo = new ClrPropertyInfo(propertyName, schemaNs, schemaName, attrPropertyOccurs, configSettings);
             propertyInfo.Origin = SchemaOrigin.Attribute;
             propertyInfo.FromBaseType = fromBaseType;
             propertyInfo.IsNew = isNew;

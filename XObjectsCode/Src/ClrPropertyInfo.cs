@@ -358,6 +358,8 @@ namespace Xml.Schema.Linq.CodeGen
 
     internal partial class ClrPropertyInfo : ClrBasePropertyInfo
     {
+        bool nullableReferences;
+
         ClrTypeReference typeRef;
         PropertyFlags propertyFlags;
         SchemaOrigin propertyOrigin;
@@ -371,8 +373,9 @@ namespace Xml.Schema.Linq.CodeGen
 
         ArrayList substitutionMembers;
 
-        internal ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema)
+        internal ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
+            this.nullableReferences = settings.NullableReferences;
             this.contentType = ContentType.Property;
             this.propertyName = propertyName;
             this.propertyNs = propertyNs;
@@ -631,7 +634,6 @@ namespace Xml.Schema.Linq.CodeGen
 
         private XCodeTypeReference CreateReturnType(string typeName)
         {
-            XCodeTypeReference returnType;
             string fullTypeName = typeName;
             if (typeRef.IsLocalType && !typeRef.IsSimpleType)
             {
@@ -641,18 +643,15 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (IsList || !IsRef && IsSchemaList)
             {
-                returnType = CreateListReturnType(fullTypeName);
+                return CreateListReturnType(fullTypeName);
             }
-            else if (!IsRef && typeRef.IsValueType && IsNullable)
-            {
-                returnType = new XCodeTypeReference("System.Nullable", new CodeTypeReference(fullTypeName));
+
+            if (!IsRef && IsNullable && (nullableReferences || typeRef.IsValueType))
+            {                
+                return new XCodeTypeReference(fullTypeName + "?");
             }
-            else
-            {
-                returnType = new XCodeTypeReference(typeName);
-                returnType.fullTypeName = fullTypeName;
-            }
-            return returnType;
+            
+            return new XCodeTypeReference(typeName) { fullTypeName = fullTypeName };            
         }
 
         private XCodeTypeReference CreateListReturnType(string fullTypeName)
@@ -730,6 +729,11 @@ namespace Xml.Schema.Linq.CodeGen
                 if (hasSet)
                 {
                     AddListSetStatements(clrProperty.SetStatements, listType, listName);
+                }
+
+                if (nullableReferences)
+                {
+                    clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
                 }
             }
             else
@@ -1385,9 +1389,14 @@ namespace Xml.Schema.Linq.CodeGen
             // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
             var field = new CodeMemberField("readonly System.Xml.Linq.XName", NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeXName))
             {
-                Attributes = MemberAttributes.Private | MemberAttributes.Static,
+                Attributes = MemberAttributes.Assembly | MemberAttributes.Static | (IsNew ? MemberAttributes.New : 0),
                 InitExpression = CodeDomHelper.XNameGetExpression(schemaName, propertyNs),
+                CustomAttributes = {
+                    new CodeAttributeDeclaration("DebuggerBrowsable", new CodeAttributeArgument(new CodeSnippetExpression("DebuggerBrowsableState.Never"))),
+                    new CodeAttributeDeclaration("EditorBrowsable", new CodeAttributeArgument(new CodeSnippetExpression("EditorBrowsableState.Never"))),
+                },
             };
+            
             typeDecl.Members.Add(field);
         }
 
