@@ -186,7 +186,10 @@ namespace Xml.Schema.Linq.Tests
             var namespaceScopedEnums = root.DescendantNodes().OfType<EnumDeclarationSyntax>().ToList();
 
             Assert.IsNotEmpty(namespaceScopedEnums);
-            Assert.IsTrue(namespaceScopedEnums.Count == 46);
+            const int expected = 46;
+            var actual = namespaceScopedEnums.Count;
+            var isExpected = actual == expected;
+            if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
         }
 
         /// <summary>

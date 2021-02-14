@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
@@ -12,6 +13,11 @@ namespace Xml.Schema.Linq.Tests
 {
     public static class Utilities
     {
+        public static string WarningMessage(object expected, object actual, [CallerMemberName] string caller = "")
+        {
+            return caller + "() failed; expected " + expected + ", got " + actual;
+        }
+
         /// <summary>
         /// Used specifically for unit testing, invokes the
         /// <see cref="XObjectsCoreGenerator.Generate(IEnumerable{string},LinqToXsdSettings)"/>

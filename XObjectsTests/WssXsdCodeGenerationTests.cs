@@ -13,6 +13,8 @@ namespace Xml.Schema.Linq.Tests
 {
     public class WssXsdCodeGenerationTests
     {
+        private List<ClassDeclarationSyntax> TypesThatInheritFromXTypedElement { get; set; }
+
         private SyntaxTree Tree { get; set; }
 
         private List<ClassDeclarationSyntax> GeneratedTypes { get; set; }
@@ -28,6 +30,11 @@ namespace Xml.Schema.Linq.Tests
                              .GetNamespaceRoot()
                              .DescendantNodes()
                              .OfType<ClassDeclarationSyntax>().ToList();
+            
+            TypesThatInheritFromXTypedElement = GeneratedTypes
+                .Where(cd =>
+                    cd.BaseList?.ToFullString().Contains(nameof(XTypedElement)) ??
+                    false).ToList();
         }
 
         [Test]
@@ -59,46 +66,43 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void TypesThatInheritFromXTypedElementTest()
         {
-            var typesThatInheritFromXTypedElement = GeneratedTypes
-                                                    .Where(cd =>
-                                                        cd.BaseList?.ToFullString().Contains(nameof(XTypedElement)) ??
-                                                        false).ToList();
+            Assert.IsNotEmpty(TypesThatInheritFromXTypedElement);
+            Assert.IsTrue(TypesThatInheritFromXTypedElement.Count == 279);
 
-            Assert.IsNotEmpty(typesThatInheritFromXTypedElement);
-            Assert.IsTrue(typesThatInheritFromXTypedElement.Count == 279);
-
-            var typesWithGeneratedProperties = (from cds in typesThatInheritFromXTypedElement
-                                                where cds.Members.OfType<PropertyDeclarationSyntax>().Any(pds =>
-                                                    pds.Modifiers.Any(m => m.ToFullString().Contains("virtual")))
+            var typesWithGeneratedProperties = (from cds in TypesThatInheritFromXTypedElement
+                                                where
+                                                    (from pds in cds.Members.OfType<PropertyDeclarationSyntax>()
+                                                     where pds.Modifiers.Any(m => m.ToFullString().Contains("virtual"))
+                                                     select pds).Any()
                                                 select cds).ToList();
-
             Assert.IsNotEmpty(typesWithGeneratedProperties);
             Assert.IsTrue(typesWithGeneratedProperties.Count == 275);
 
             var typesWithoutGeneratedProperties =
-                typesThatInheritFromXTypedElement.Except(typesWithGeneratedProperties).ToList();
-
+                TypesThatInheritFromXTypedElement.Except(typesWithGeneratedProperties).ToList();
             Assert.IsNotEmpty(typesWithoutGeneratedProperties);
             Assert.IsTrue(typesWithoutGeneratedProperties.Count == 4);
+        }
 
-            var members = typesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
-
-            Assert.IsTrue(members.Count == 5084);
+        [Test]
+        public void TypesThatInheritFromXTypedElementTestAndTheirMembers()
+        {
+            var members = TypesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
+            var actual = members.Count;
+            const int expected = 5084;
+            if (actual != expected) Assert.Warn(Utilities.WarningMessage(expected, actual));
 
             var propertyMembers = members.OfType<PropertyDeclarationSyntax>().ToList();
-
             Assert.IsTrue(propertyMembers.Count == 2939);
 
             var virtualPropertyMembers = propertyMembers
                 .Where(p => p.Modifiers.Any(m => m.ToFullString().Contains("virtual")))
                 .ToList();
-
             Assert.IsNotEmpty(virtualPropertyMembers);
             Assert.IsTrue(virtualPropertyMembers.Count == 1923);
 
             var typesWhoseMembersAreVirtual =
                 virtualPropertyMembers.Select(vpm => vpm.Parent as ClassDeclarationSyntax).Distinct().ToList();
-
             Assert.IsNotEmpty(typesWhoseMembersAreVirtual);
             Assert.IsTrue(typesWhoseMembersAreVirtual.Count == 275);
         }
@@ -126,7 +130,11 @@ namespace Xml.Schema.Linq.Tests
             var typesWithEnumsDefined = GeneratedTypes.Where(t => t.Members.OfType<EnumDeclarationSyntax>().Any()).ToList();
 
             Assert.IsNotEmpty(typesWithEnumsDefined);
-            Assert.IsTrue(typesWithEnumsDefined.Count() == 3);
+            var expected = 3;
+            var actual = typesWithEnumsDefined.Count;
+            var isExpected = actual == expected;
+            
+            if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
         }
 
         [Test]
@@ -135,7 +143,11 @@ namespace Xml.Schema.Linq.Tests
             var inlineDeclaredEnums = GeneratedTypes.SelectMany(t => t.Members.OfType<EnumDeclarationSyntax>()).ToList();
 
             Assert.IsNotEmpty(inlineDeclaredEnums);
-            Assert.IsTrue(inlineDeclaredEnums.Count == 4);
+            const int expected = 4;
+            var actual = inlineDeclaredEnums.Count;
+            var isExpected = actual == expected;
+            if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
+            else Assert.Pass();
         }
 
         [Test]
@@ -163,7 +175,6 @@ namespace Xml.Schema.Linq.Tests
                 .ToList();
 
             Assert.IsTrue(membersGroupedByParentId.Count() == 2);
-
             Assert.IsTrue(membersGroupedByParentId.First().Count() == 33);
             Assert.IsTrue(membersGroupedByParentId.Last().Count() == 20);
         }
