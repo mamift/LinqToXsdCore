@@ -948,7 +948,8 @@ namespace Xml.Schema.Linq.CodeGen
             }
             else
             {
-                setStatements.Add(CreatePlainSetCall(setMethodName, IsEnum ? "value.ToString()" : "value", xNameParm));
+                var valueExpr = !IsEnum ? "value" : IsNullable ? "value?.ToString()" : "value.ToString()";
+                setStatements.Add(CreatePlainSetCall(setMethodName, valueExpr, xNameParm));
             }
         }
 
