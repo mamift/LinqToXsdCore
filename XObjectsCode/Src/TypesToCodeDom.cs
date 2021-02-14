@@ -715,7 +715,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (typedValPropertyInfo == null)
             {
                 typedValPropertyInfo = new ClrPropertyInfo(Constants.SInnerTypePropertyName, string.Empty,
-                    Constants.SInnerTypePropertyName, Occurs.One);
+                    Constants.SInnerTypePropertyName, Occurs.One, settings);
                 typedValPropertyInfo.Origin = SchemaOrigin.Text;
             }
             else

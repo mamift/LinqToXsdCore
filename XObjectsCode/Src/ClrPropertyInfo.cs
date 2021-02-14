@@ -358,6 +358,8 @@ namespace Xml.Schema.Linq.CodeGen
 
     internal partial class ClrPropertyInfo : ClrBasePropertyInfo
     {
+        bool nullableReferences;
+
         ClrTypeReference typeRef;
         PropertyFlags propertyFlags;
         SchemaOrigin propertyOrigin;
@@ -371,8 +373,9 @@ namespace Xml.Schema.Linq.CodeGen
 
         ArrayList substitutionMembers;
 
-        internal ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema)
+        internal ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
+            this.nullableReferences = settings.NullableReferences;
             this.contentType = ContentType.Property;
             this.propertyName = propertyName;
             this.propertyNs = propertyNs;
@@ -631,7 +634,6 @@ namespace Xml.Schema.Linq.CodeGen
 
         private XCodeTypeReference CreateReturnType(string typeName)
         {
-            XCodeTypeReference returnType;
             string fullTypeName = typeName;
             if (typeRef.IsLocalType && !typeRef.IsSimpleType)
             {
@@ -641,18 +643,15 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (IsList || !IsRef && IsSchemaList)
             {
-                returnType = CreateListReturnType(fullTypeName);
+                return CreateListReturnType(fullTypeName);
             }
-            else if (!IsRef && typeRef.IsValueType && IsNullable)
-            {
-                returnType = new XCodeTypeReference("System.Nullable", new CodeTypeReference(fullTypeName));
+
+            if (!IsRef && IsNullable && (nullableReferences || typeRef.IsValueType))
+            {                
+                return new XCodeTypeReference(fullTypeName + "?");
             }
-            else
-            {
-                returnType = new XCodeTypeReference(typeName);
-                returnType.fullTypeName = fullTypeName;
-            }
-            return returnType;
+            
+            return new XCodeTypeReference(typeName) { fullTypeName = fullTypeName };            
         }
 
         private XCodeTypeReference CreateListReturnType(string fullTypeName)
