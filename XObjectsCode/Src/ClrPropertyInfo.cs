@@ -730,6 +730,11 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     AddListSetStatements(clrProperty.SetStatements, listType, listName);
                 }
+
+                if (nullableReferences)
+                {
+                    clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
+                }
             }
             else
             {
