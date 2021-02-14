@@ -633,6 +633,7 @@ namespace Xml.Schema.Linq.CodeGen
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
+            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.IO"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Linq"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Diagnostics"));
