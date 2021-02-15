@@ -17,6 +17,9 @@
     <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
     <Copyright>Copyright (C) 2019 "github.com/mamift" &amp; Microsoft Corporation (2008-2011)</Copyright>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\XObjectsCodeGen.xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.CodeDom" Version="5.0.0" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
