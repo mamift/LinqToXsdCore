@@ -13,7 +13,7 @@
     <Description>The XObjects library ported to .NET standard that supports code generation for LinqToXsdCore and also avails an API for generated code and projects that use said generated code. Use this library in shipping apps + libraries; use LinqToXsdCore to generate code. Original Authors: Microsoft Corporation.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
-    <Copyright>Copyright (C) 2019 "github.com/mamift" &amp; Microsoft Corporation (2008-2011)</Copyright>
+    <Copyright>Copyright (C) 2019 Muhammad Miftah, GitHub Contributors &amp; Microsoft Corporation (2008-2011)</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
