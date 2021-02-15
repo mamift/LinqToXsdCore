@@ -23,8 +23,4 @@
   <ItemGroup>
     <None Remove="XObjectsCore.xml" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.CodeDom" Version="5.0.0" />
-  </ItemGroup>
 </Project>
