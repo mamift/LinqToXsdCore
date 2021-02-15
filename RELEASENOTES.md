@@ -1,5 +1,17 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.2.0, XObjectsCore 3.2.0 and XObjectsCodeGen 3.2.0
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.2.0
+* https://www.nuget.org/packages/XObjectsCore/3.2.0
+	* XObjectsCore has now had all the code generation facilities split into a separate library: XObjectsCodeGen. This change now means that generated code no longer needs to depend on System.CodeDom when it is used in shipping apps or libraries.
+	* Fixes an error that occurs when attempting to pass null to a property that had validation logic in the property setter (see [GitHub PR28](https://github.com/mamift/LinqToXsdCore/pull/28)).
+* https://www.nuget.org/packages/XObjectsCodeGen/3.2.0
+	* The number of `XName` instantiations in generated code is now greatly reduced (see [GitHub PR23](https://github.com/mamift/LinqToXsdCore/pull/23)).
+	* Now includes an option for null-annotating generated code (see [GitHub PR29](https://github.com/mamift/LinqToXsdCore/pull/29)).	
+	* Enums in generated code are now properly generated as CLR value types (see [GitHub 21](https://github.com/mamift/LinqToXsdCore/pull/21)).
+	* Updated to fix ambiguous types where an element is a base type and a derrived type is used (see [GitHub 16](https://github.com/mamift/LinqToXsdCore/pull/16)).
+
 ## LinqToXsdCore 3.1.0 and XObjectsCore 3.1.0
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.1.0
