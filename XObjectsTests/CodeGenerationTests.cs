@@ -258,8 +258,9 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(actualAllFieldAttributeNamesCount == expectedAllFieldAttributeNamesCount);
 
             const string debuggerBrowsableName = "DebuggerBrowsable";
-            var allNamesAreTheSame = allPropAttributeNames.Concat(allFieldAttributeNames)
-                .All(s => s == debuggerBrowsableName);
+            const string editorBrowsableName = "EditorBrowsable";
+            List<string> propAndFieldAttrNames = allPropAttributeNames.Concat(allFieldAttributeNames).Distinct().ToList();
+            var allNamesAreTheSame = propAndFieldAttrNames.All(s => s == debuggerBrowsableName || s == editorBrowsableName);
 
             Assert.IsTrue(allNamesAreTheSame);
         }
