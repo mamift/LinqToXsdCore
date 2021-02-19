@@ -183,7 +183,7 @@ namespace Xml.Schema.Linq
 
         protected void SetListValue(object value, XmlSchemaDatatype datatype)
         {
-            string strValue = ListSimpleTypeValidator.ToString(value);
+            string strValue = ListFormatter.ToString(value);
             XElement element = this.GetUntyped();
             element.Value = strValue;
         }
@@ -213,7 +213,7 @@ namespace Xml.Schema.Linq
             object value,
             XmlSchemaDatatype datatype)
         {
-            SetElement(name, ListSimpleTypeValidator.ToString(value), datatype);
+            SetElement(name, ListFormatter.ToString(value), datatype);
         }
 
         protected void SetListAttributeWithValidation(XName name,
@@ -241,7 +241,7 @@ namespace Xml.Schema.Linq
             object value,
             XmlSchemaDatatype datatype)
         {
-            SetAttribute(name, ListSimpleTypeValidator.ToString(value), datatype);
+            SetAttribute(name, ListFormatter.ToString(value), datatype);
         }
     }
 }

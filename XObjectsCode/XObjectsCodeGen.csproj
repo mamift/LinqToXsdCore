@@ -1,7 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
     <Version>3.2.0</Version>
     <Company>None</Company>
@@ -10,17 +12,16 @@
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mamift/LinqToXsdCore</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mamift/LinqToXsdCore</RepositoryUrl>
-    <Description>The XObjects library ported to .NET standard that supports code generation for LinqToXsdCore and also avails an API for generated code and projects that use said generated code. Use this library in shipping apps + libraries; use LinqToXsdCore to generate code. Original Authors: Microsoft Corporation.</Description>
+    <Description>The XObjectsCodeGen provides code generation facilities, and is consumed by the LinqToXsdCore command line tool; use the LinqToXsdCore to generate code, and link to the XObjectsCore nuget package to consume the generated code in your shipping app or library. Original Authors: Microsoft Corporation.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
     <Copyright>Copyright (C) 2019 Muhammad Miftah, GitHub Contributors &amp; Microsoft Corporation (2008-2011)</Copyright>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\XObjectsCore.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\XObjectsCodeGen.xml</DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
-    <None Remove="XObjectsCore.xml" />
+    <PackageReference Include="System.CodeDom" Version="5.0.0" />
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
   </ItemGroup>
 </Project>

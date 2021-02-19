@@ -408,24 +408,6 @@ namespace Xml.Schema.Linq
 
             return e;
         }
-
-        internal static string ToString(object value)
-        {
-            Debug.Assert(value is IEnumerable);
-            IEnumerable list = (IEnumerable) value;
-            StringBuilder bldr = new StringBuilder();
-
-            foreach (object o in list)
-            {
-                // Separate values by single space character
-                if (bldr.Length != 0)
-                    bldr.Append(' ');
-
-                bldr.Append(o.ToString());
-            }
-
-            return bldr.ToString();
-        }
     }
 
     public class UnionSimpleTypeValidator : SimpleTypeValidator

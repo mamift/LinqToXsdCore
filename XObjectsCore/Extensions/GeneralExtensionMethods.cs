@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Schema;
-using Xml.Fxt;
 
 namespace Xml.Schema.Linq.Extensions
 {
