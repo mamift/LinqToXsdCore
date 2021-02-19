@@ -80,7 +80,6 @@ namespace Xml.Schema.Linq.CodeGen
                     if (type is ClrSimpleTypeInfo stInfo)
                     {
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
-                            enumsCreated++;
                             CodeTypeDeclaration enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
                             codeNamespace.Types.Add(enumType);
                             List<CodeTypeDeclaration> enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
@@ -636,6 +635,7 @@ namespace Xml.Schema.Linq.CodeGen
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
+            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.IO"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Linq"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Diagnostics"));
@@ -717,7 +717,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (typedValPropertyInfo == null)
             {
                 typedValPropertyInfo = new ClrPropertyInfo(Constants.SInnerTypePropertyName, string.Empty,
-                    Constants.SInnerTypePropertyName, Occurs.One);
+                    Constants.SInnerTypePropertyName, Occurs.One, settings);
                 typedValPropertyInfo.Origin = SchemaOrigin.Text;
             }
             else

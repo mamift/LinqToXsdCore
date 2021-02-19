@@ -4,11 +4,11 @@ using System;
 
 namespace Xml.Schema.Linq
 {
-    class XmlConvertExt
+    internal class XmlConvertExt
     {
-        internal static char[] crt = new char[] {'\n', '\r', '\t'};
+        static char[] crt = new char[] {'\n', '\r', '\t'};
 
-        internal static Exception VerifyNormalizedString(string str)
+        public static Exception VerifyNormalizedString(string str)
         {
             if (str.IndexOfAny(crt) != -1)
             {
@@ -18,9 +18,9 @@ namespace Xml.Schema.Linq
             return null;
         }
 
-        internal static readonly char[] WhitespaceChars = new char[] {' ', '\t', '\n', '\r'};
+        static readonly char[] WhitespaceChars = new char[] {' ', '\t', '\n', '\r'};
 
-        internal static Exception TryToUri(string s, out Uri result)
+        public static Exception TryToUri(string s, out Uri result)
         {
             result = null;
 
@@ -43,7 +43,7 @@ namespace Xml.Schema.Linq
             return null;
         }
 
-        internal static Uri ToUri(string s)
+        public static Uri ToUri(string s)
         {
             if (s != null && s.Length > 0)
             {
@@ -66,13 +66,13 @@ namespace Xml.Schema.Linq
 
 
         // Trim a string using XML whitespace characters
-        internal static string TrimString(string value)
+        public static string TrimString(string value)
         {
             return value.Trim(WhitespaceChars);
         }
 
         // Split a string into a whitespace-separated list of tokens
-        internal static string[] SplitString(string value)
+        public static string[] SplitString(string value)
         {
             return value.Split(WhitespaceChars, StringSplitOptions.RemoveEmptyEntries);
         }

@@ -102,7 +102,7 @@ namespace Xml.Schema.Linq.Tests
             var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Schemas"));
             var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
                 // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
-                .Where(f => !f.FullName.Contains("Microsoft.Build.")) 
+                .Where(f => !f.FullName.Contains("Microsoft.Build."))
                 .Select(f => f.FullName).ToArray();
 
             var allProcessableXsds = FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(allXsds)
@@ -161,13 +161,13 @@ namespace Xml.Schema.Linq.Tests
                 .OfType<PredefinedTypeSyntax>());
             var getterVoidTypeDefinitionReferences =
                 getterTypeDefinitionReferences.Where(tdefr => tdefr.Keyword.Text == "void");
-            
+
             var setterExpressionSyntaxStatements = setterStatements.OfType<ExpressionStatementSyntax>();
             var setterTypeDefinitionReferences = setterExpressionSyntaxStatements.SelectMany(s => s.DescendantNodes())
                 .OfType<PredefinedTypeSyntax>();
             var setterVoidTypeDefinitionReferences =
                 setterTypeDefinitionReferences.Where(tdefr => tdefr.Keyword.Text == "void");
-            
+
             Assert.IsEmpty(setterVoidTypeDefinitionReferences);
             Assert.IsEmpty(getterVoidTypeDefinitionReferences);
         }
@@ -186,7 +186,10 @@ namespace Xml.Schema.Linq.Tests
             var namespaceScopedEnums = root.DescendantNodes().OfType<EnumDeclarationSyntax>().ToList();
 
             Assert.IsNotEmpty(namespaceScopedEnums);
-            Assert.IsTrue(namespaceScopedEnums.Count == 46);
+            const int expected = 46;
+            var actual = namespaceScopedEnums.Count;
+            var isExpected = actual == expected;
+            if (!isExpected) Assert.Warn(Utilities.WarningMessage(expected, actual));
         }
 
         /// <summary>
@@ -197,7 +200,7 @@ namespace Xml.Schema.Linq.Tests
         {
             var atomXsdFileInfo = new FileInfo(AtomXsdFilePath);
             CSharpSyntaxTree tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo);
-            
+
             TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new []{ tree.ToString() });
 
             NamespaceDeclarationSyntax root = tree.GetNamespaceRoot();
@@ -221,13 +224,15 @@ namespace Xml.Schema.Linq.Tests
             var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo);
             var root = tree.GetNamespaceRoot();
 
+            TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new [] { root.ToFullString() });
+
             var allProperties = root.DescendantNodes().OfType<PropertyDeclarationSyntax>().ToList();
             var allFields = root.DescendantNodes().OfType<FieldDeclarationSyntax>().ToList();
 
             var allFieldsWithAttrs = (from field in allFields
                                       where field.AttributeLists.Select(al => al.Attributes).Any()
                                       select field).ToList();
-            
+
             var allPropertiesWithAttrs = (from p in allProperties
                                           where p.AttributeLists.Select(al => al.Attributes).Any()
                                           select p).ToList();
@@ -240,16 +245,22 @@ namespace Xml.Schema.Linq.Tests
 
             var allPropAttributeNames = allPropsAttributes.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
             var allFieldAttributeNames = allFieldAttributes.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
-            
+
             Assert.IsNotEmpty(allPropAttributeNames);
             Assert.IsNotEmpty(allFieldAttributeNames);
 
-            Assert.IsTrue(allPropAttributeNames.Count == 52);
-            Assert.IsTrue(allFieldAttributeNames.Count == 58);
+            const int expectedAllPropAttributeNamesCount = 52;
+            var actualAllPropAttributeNamesCount = allPropAttributeNames.Count;
+            Assert.IsTrue(actualAllPropAttributeNamesCount == expectedAllPropAttributeNamesCount);
 
-            var debuggerBrowsableName = nameof(DebuggerBrowsableAttribute).Replace(nameof(Attribute), string.Empty);
-            var allNamesAreTheSame = allPropAttributeNames.Concat(allFieldAttributeNames)
-                .All(s => s == debuggerBrowsableName);
+            const int expectedAllFieldAttributeNamesCount = 234;
+            var actualAllFieldAttributeNamesCount = allFieldAttributeNames.Count;
+            Assert.IsTrue(actualAllFieldAttributeNamesCount == expectedAllFieldAttributeNamesCount);
+
+            const string debuggerBrowsableName = "DebuggerBrowsable";
+            const string editorBrowsableName = "EditorBrowsable";
+            List<string> propAndFieldAttrNames = allPropAttributeNames.Concat(allFieldAttributeNames).Distinct().ToList();
+            var allNamesAreTheSame = propAndFieldAttrNames.All(s => s == debuggerBrowsableName || s == editorBrowsableName);
 
             Assert.IsTrue(allNamesAreTheSame);
         }

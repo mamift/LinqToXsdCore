@@ -155,7 +155,7 @@ namespace XObjects
             if (!(possibleNameValue is string)) 
                 throw new NotSupportedException("Bad type!");
 
-            return Convert.ToString(possibleNameValue);
+            return Convert.ToString(possibleNameValue);     
         }
     }
 }

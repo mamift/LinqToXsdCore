@@ -83,12 +83,12 @@ namespace Xml.Schema.Linq
             switch (containerType)
             {
                 case ContainerType.Element:
-                    containerElement.Value = ListSimpleTypeValidator.ToString(this.items);
+                    containerElement.Value = ListFormatter.ToString(this.items);
                     return;
                 case ContainerType.Attribute:
                     XAttribute attr = containerElement.Attribute(itemXName);
                     Debug.Assert(attr != null);
-                    attr.Value = ListSimpleTypeValidator.ToString(this.items);
+                    attr.Value = ListFormatter.ToString(this.items);
                     return;
             }
         }

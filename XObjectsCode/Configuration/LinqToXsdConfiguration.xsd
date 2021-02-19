@@ -9,6 +9,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="linq:Namespaces"/>
+        <xs:element ref="linq:NullableReferences" minOccurs="0"/>
         <xs:element ref="linq:Validation" minOccurs="0"/>
         <xs:element ref="linq:Transformation" minOccurs="0"/>
       </xs:sequence>
@@ -51,6 +52,11 @@
         </xs:simpleType>
       </xs:attribute>
     </xs:complexType>
+  </xs:element>
+  <xs:element name="NullableReferences" type="xs:boolean" default="0">
+    <xs:annotation>
+      <xs:documentation>Generates C# 8 nullable references.</xs:documentation>
+    </xs:annotation>
   </xs:element>
   <xs:element name="Validation">
     <xs:annotation>

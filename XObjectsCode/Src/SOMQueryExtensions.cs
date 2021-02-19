@@ -174,20 +174,6 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        public static XmlSchemaWhiteSpace GetBuiltInWSFacet(this XmlSchemaDatatype dt)
-        {
-            if (dt.TypeCode == XmlTypeCode.NormalizedString)
-            {
-                return XmlSchemaWhiteSpace.Replace;
-            }
-            else if (dt.TypeCode == XmlTypeCode.String)
-            {
-                return XmlSchemaWhiteSpace.Preserve;
-            }
-            else
-                return XmlSchemaWhiteSpace.Collapse;
-        }
-
         public static XmlSchemaSimpleType GetBaseSimpleType(this XmlSchemaComplexType type)
         {
             XmlSchemaType baseType = type.BaseXmlSchemaType;

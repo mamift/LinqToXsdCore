@@ -51,6 +51,8 @@ namespace Xml.Schema.Linq
             var namespacesElement = rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs));
             GenerateNamespaceMapping(namespacesElement);
             GenerateNamespaceVisibilityMapping(namespacesElement);
+            XElement nullableSettings = rootElement.Element(XName.Get("NullableReferences", Constants.TypedXLinqNs));
+            NullableReferences = nullableSettings?.Value == "true";
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
             XElement validationSettings = rootElement.Element(XName.Get("Validation", Constants.TypedXLinqNs));
             if (validationSettings != null)
@@ -89,6 +91,8 @@ namespace Xml.Schema.Linq
             get { return enableServiceReference; }
             set { enableServiceReference = value; }
         }
+
+        public bool NullableReferences { get; set; }
 
         private void GenerateNamespaceMapping(XElement namespaces)
         {

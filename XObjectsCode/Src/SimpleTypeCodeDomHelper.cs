@@ -276,7 +276,7 @@ namespace Xml.Schema.Linq.CodeGen
             switch (typeDef.Variety)
             {
                 case XmlSchemaDatatypeVariety.List:
-                    string str = ListSimpleTypeValidator.ToString(value);
+                    string str = ListFormatter.ToString(value);
                     collection.Add(new CodePrimitiveExpression(str));
                     break;
 

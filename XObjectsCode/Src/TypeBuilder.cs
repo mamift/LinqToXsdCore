@@ -11,7 +11,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
-using System.Linq;
 
 namespace Xml.Schema.Linq.CodeGen
 {

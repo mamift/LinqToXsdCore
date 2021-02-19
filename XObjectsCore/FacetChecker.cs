@@ -1252,7 +1252,7 @@ namespace Xml.Schema.Linq
 
         internal override bool MatchEnumeration(object value, ArrayList enumeration, XmlSchemaDatatype datatype)
         {
-            string strValue = ListSimpleTypeValidator.ToString(value);
+            string strValue = ListFormatter.ToString(value);
             foreach (object correctArray in enumeration)
             {
                 if (strValue.Equals(correctArray))
