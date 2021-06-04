@@ -36,6 +36,9 @@
     <None Update="Schemas\AbstractTypeTest\abstracttest.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Schemas\AspNetSiteMaps\example.sitemap">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Schemas\Atom\atom.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -99,6 +102,10 @@
     <None Update="Schemas\XSD\xml.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Schemas\AspNetSiteMaps\" />
   </ItemGroup>
 
 </Project>
