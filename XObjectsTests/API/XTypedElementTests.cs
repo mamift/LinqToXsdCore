@@ -10,6 +10,7 @@ using NUnit.Framework;
 using W3C;
 using W3C.XSD;
 using XObjectsTests.Schemas.AbstractTest;
+using XObjectsTests.Schemas.AspNetSiteMaps;
 
 namespace Xml.Schema.Linq.Tests.API
 {
@@ -141,6 +142,18 @@ namespace Xml.Schema.Linq.Tests.API
             
             Assert.IsTrue(XNode.DeepEquals(XElement.Parse(expectedXml), XElement.Parse(actualXml)),
                 String.Format("{0} \n does not equal \n{1}", actualXml, expectedXml));
+        }
+
+        [Test]
+        public void TestAncestors()
+        {
+            var example = siteMap.Load(@"Schemas\AspNetSiteMaps\example.sitemap");
+
+            List<siteMapNodeType> children = example.Query.Descendants<siteMapNodeType>().ToList();
+
+            List<siteMapType> ancestors = children.SelectMany(c => c.Query.Ancestors<siteMapType>()).Distinct().ToList();
+
+            Assert.True(ancestors.Count == 1);
         }
     }
 }
