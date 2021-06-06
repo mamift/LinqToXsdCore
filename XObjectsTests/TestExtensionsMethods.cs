@@ -39,7 +39,11 @@ namespace Xml.Schema.Linq.Tests
                 : new DirectoryInfo(destination);
 
             // Get the files in the directory and copy them to the new location.
-            foreach (var file in dir.GetFiles()) {
+            FileInfo[] filesInDir = (from file in dir.GetFiles() 
+                                     where !file.Extension.Contains("dll") || !file.Extension.Contains("exe") || !file.Extension.Contains("json") || 
+                                           !file.Extension.Contains("pdb") || !file.Extension.Contains("log")
+                                     select file).ToArray();
+            foreach (var file in filesInDir) {
                 var tempPath = Path.Combine(destination, file.Name);
                 file.CopyTo(tempPath, overwrite);
             }
@@ -48,7 +52,7 @@ namespace Xml.Schema.Linq.Tests
             if (!copySubDirs) return theNewDir;
             foreach (var subDir in dirs) {
                 var tempPath = Path.Combine(destination, subDir.Name);
-                var _ = subDir.Copy(tempPath, copySubDirs, overwrite);
+                var _ = subDir.Copy(tempPath, copySubDirs: copySubDirs, overwrite: overwrite);
             }
 
             return theNewDir;

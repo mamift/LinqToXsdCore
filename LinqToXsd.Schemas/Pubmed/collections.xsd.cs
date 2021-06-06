@@ -339,10 +339,10 @@ namespace PubMed.MyCollections {
         /// Regular expression: (Title, URL, Description, Details, ShortDetails?, Resource, Type, Identifiers, EntrezUID, Properties)
         /// </para>
         /// </summary>
-        public virtual void Type {
+        public virtual object Type {
             get {
                 XElement x = this.GetElement(TypeXName);
-                return ((void)(x));
+                return ((object)(x));
             }
             set {
                 this.SetElement(TypeXName, value.ToString());

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XObjectsTests.Schemas.Atom {
+namespace AtomSyndication {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -71,10 +71,10 @@ namespace XObjectsTests.Schemas.Atom {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual XObjectsTests.Schemas.Atom.textType.typeEnum type {
+        public virtual AtomSyndication.textType.typeEnum type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("type", ""));
-                return ((XObjectsTests.Schemas.Atom.textType.typeEnum)(Enum.Parse(typeof(XObjectsTests.Schemas.Atom.textType.typeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((AtomSyndication.textType.typeEnum)(Enum.Parse(typeof(AtomSyndication.textType.typeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(System.Xml.Linq.XName.Get("type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -3921,30 +3921,30 @@ namespace XObjectsTests.Schemas.Atom {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("textType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.textType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("personType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.personType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("feedType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.feedType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("entryType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.entryType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("contentType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.contentType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("categoryType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.categoryType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("generatorType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.generatorType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("iconType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.iconType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("idType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.idType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("linkType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.linkType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("logoType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.logoType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("sourceType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.sourceType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("uriType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.uriType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("dateTimeType", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.dateTimeType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("textType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.textType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("personType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.personType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("feedType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.feedType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("entryType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.entryType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("contentType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.contentType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("categoryType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.categoryType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("generatorType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.generatorType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("iconType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.iconType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("idType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.idType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("linkType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.linkType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("logoType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.logoType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("sourceType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.sourceType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("uriType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.uriType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("dateTimeType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.dateTimeType));
         }
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("feed", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.feed));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom"), typeof(global::XObjectsTests.Schemas.Atom.entry));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("feed", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.feed));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.entry));
         }
         
         private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.Atom.feed), typeof(global::XObjectsTests.Schemas.Atom.feedType));
-            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.Atom.entry), typeof(global::XObjectsTests.Schemas.Atom.entryType));
+            wrapperDictionary.Add(typeof(AtomSyndication.feed), typeof(global::AtomSyndication.feedType));
+            wrapperDictionary.Add(typeof(AtomSyndication.entry), typeof(global::AtomSyndication.entryType));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -4101,19 +4101,19 @@ namespace XObjectsTests.Schemas.Atom {
         private XTypedElement rootObject;
         
 
-		public global::XObjectsTests.Schemas.Atom.feed feed {  get {return rootObject as global::XObjectsTests.Schemas.Atom.feed; } }
+		public global::AtomSyndication.feed feed {  get {return rootObject as global::AtomSyndication.feed; } }
 
-		public global::XObjectsTests.Schemas.Atom.entry entry {  get {return rootObject as global::XObjectsTests.Schemas.Atom.entry; } }
+		public global::AtomSyndication.entry entry {  get {return rootObject as global::AtomSyndication.entry; } }
         
         private XRoot() {
         }
         
-        public XRoot(global::XObjectsTests.Schemas.Atom.feed root) {
+        public XRoot(global::AtomSyndication.feed root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
-        public XRoot(global::XObjectsTests.Schemas.Atom.entry root) {
+        public XRoot(global::AtomSyndication.entry root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }

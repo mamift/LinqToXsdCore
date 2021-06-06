@@ -4,13 +4,11 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using System.Xml.Serialization;
+using LinqToXsd.Schemas.AbstractTypeTest;
+using Microsoft.Schemas.AspNetSiteMaps;
 using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
-using W3C;
 using W3C.XSD;
-using XObjectsTests.Schemas.AbstractTest;
-using XObjectsTests.Schemas.AspNetSiteMaps;
 
 namespace Xml.Schema.Linq.Tests.API
 {
@@ -115,7 +113,7 @@ namespace Xml.Schema.Linq.Tests.API
         [Test]
         public void TestXsiTypeAddedToAmbiguousElementNames()
         {
-            var o = new XObjectsTests.Schemas.AbstractTest.Action
+            var o = new LinqToXsd.Schemas.AbstractTypeTest.Action
             {
                 ActionInfo = new Record
                 {
@@ -145,15 +143,33 @@ namespace Xml.Schema.Linq.Tests.API
         }
 
         [Test]
-        public void TestAncestors()
+        public void TestAncestorIsRootElement()
         {
-            var example = siteMap.Load(@"Schemas\AspNetSiteMaps\example.sitemap");
+            var example = siteMap.Load(@"AspNetSiteMaps\example.sitemap");
 
             List<siteMapNodeType> children = example.Query.Descendants<siteMapNodeType>().ToList();
 
             List<siteMapType> ancestors = children.SelectMany(c => c.Query.Ancestors<siteMapType>()).Distinct().ToList();
 
             Assert.True(ancestors.Count == 1);
+        }
+
+        [Test]
+        public void TestAncestorOfRecursiveChild()
+        {
+            var example = siteMap.Load(@"AspNetSiteMaps\example.sitemap");
+
+            List<siteMapNodeType> children = example.Query.Descendants<siteMapNodeType>().ToList();
+
+            var childOfSiteMapNode = children.FirstOrDefault(c => c.Query.Ancestors<siteMapNodeType>().Any());
+
+            Assert.IsNotNull(childOfSiteMapNode);
+
+            var ancestor = childOfSiteMapNode.Query.Ancestors<siteMapNodeType>().FirstOrDefault();
+
+            Assert.IsNotNull(ancestor);
+
+            Assert.True(ancestor.url.ToString().EndsWith("ChoosePacks.aspx"));
         }
     }
 }

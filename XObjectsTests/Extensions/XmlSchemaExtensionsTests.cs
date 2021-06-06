@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Xml.Schema;
 using MoreLinq;
 using NUnit.Framework;
-using Xml.Fxt;
 using XObjects;
 
 namespace Xml.Schema.Linq.Tests.Extensions
@@ -12,7 +10,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
     [TestFixture]
     public class XmlSchemaExtensionsTests
     {
-        private string xsdFilePathPubmed = @"Schemas\Pubmed\efetch-pubmed.xsd";
+        private string xsdFilePathPubmed = @"Pubmed\efetch-pubmed.xsd";
 
         [Test]
         public void TestGetClosestNamedParent1()

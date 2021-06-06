@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -22,7 +21,7 @@ namespace Xml.Schema.Linq.Tests
         [SetUp]
         public void GenerateCode()
         {
-            const string wssXsdFilePath = @"Schemas\SharePoint2010\wss.xsd";
+            const string wssXsdFilePath = @"SharePoint2010\wss.xsd";
             var wssXsdFileInfo = new FileInfo(wssXsdFilePath);
             Tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo);
 

@@ -32,7 +32,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void TestThatConfigHasDefaultNamespaceMappingForXsdWithNoTargetNamespace()
         {
-            var rssSchema = XDocument.Load(@".\Schemas\Rss\rss-2_0.xsd");
+            var rssSchema = XDocument.Load(@"Rss\rss-2_0.xsd");
             var loaded = Configuration.LoadForSchema(rssSchema);
 
             var namespaceEl = loaded.Namespaces.Namespace.First();

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XObjectsTests.Schemas.AspNetSiteMaps {
+namespace Microsoft.Schemas.AspNetSiteMaps {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -606,16 +606,16 @@ namespace XObjectsTests.Schemas.AspNetSiteMaps {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("siteMapNodeType", "http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"), typeof(global::XObjectsTests.Schemas.AspNetSiteMaps.siteMapNodeType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("siteMapType", "http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"), typeof(global::XObjectsTests.Schemas.AspNetSiteMaps.siteMapType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("siteMapNodeType", "http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"), typeof(global::Microsoft.Schemas.AspNetSiteMaps.siteMapNodeType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("siteMapType", "http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"), typeof(global::Microsoft.Schemas.AspNetSiteMaps.siteMapType));
         }
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("siteMap", "http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"), typeof(global::XObjectsTests.Schemas.AspNetSiteMaps.siteMap));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("siteMap", "http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"), typeof(global::Microsoft.Schemas.AspNetSiteMaps.siteMap));
         }
         
         private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.AspNetSiteMaps.siteMap), typeof(global::XObjectsTests.Schemas.AspNetSiteMaps.siteMapType));
+            wrapperDictionary.Add(typeof(Microsoft.Schemas.AspNetSiteMaps.siteMap), typeof(global::Microsoft.Schemas.AspNetSiteMaps.siteMapType));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -765,12 +765,12 @@ namespace XObjectsTests.Schemas.AspNetSiteMaps {
         private XTypedElement rootObject;
         
 
-		public global::XObjectsTests.Schemas.AspNetSiteMaps.siteMap siteMap {  get {return rootObject as global::XObjectsTests.Schemas.AspNetSiteMaps.siteMap; } }
+		public global::Microsoft.Schemas.AspNetSiteMaps.siteMap siteMap {  get {return rootObject as global::Microsoft.Schemas.AspNetSiteMaps.siteMap; } }
         
         private XRoot() {
         }
         
-        public XRoot(global::XObjectsTests.Schemas.AspNetSiteMaps.siteMap root) {
+        public XRoot(global::Microsoft.Schemas.AspNetSiteMaps.siteMap root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }

@@ -7,7 +7,7 @@ namespace Xml.Schema.Linq.Tests
 {
     public class CommandLineInterfaceTests
     {
-        private static readonly DirectoryInfo SchemasFolder = new DirectoryInfo(@".\Schemas");
+        private static readonly DirectoryInfo SchemasFolder = new DirectoryInfo(@".");
         private static string SchemasCopy
         {
             get
@@ -59,7 +59,7 @@ namespace Xml.Schema.Linq.Tests
             configFiles = _copyOfSchemasFolder.GetFiles("*.config", SearchOption.AllDirectories);
 
             Assert.IsTrue(configFiles.Any());
-            Assert.IsTrue(configFiles.Length == 9);
+            Assert.IsTrue(configFiles.Length > 9); // new config files may get added
         }
 
         /// <summary>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XObjectsTests.Schemas.Opml {
+namespace Opml {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -304,7 +304,7 @@ namespace XObjectsTests.Schemas.Opml {
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElementWithValidation(System.Xml.Linq.XName.Get("dateCreated", ""), value, "dateCreated", global::XObjectsTests.Schemas.Opml.RFC822Date.TypeDefinition);
+                this.SetElementWithValidation(System.Xml.Linq.XName.Get("dateCreated", ""), value, "dateCreated", global::Opml.RFC822Date.TypeDefinition);
             }
         }
         
@@ -322,7 +322,7 @@ namespace XObjectsTests.Schemas.Opml {
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElementWithValidation(System.Xml.Linq.XName.Get("dateModified", ""), value, "dateModified", global::XObjectsTests.Schemas.Opml.RFC822Date.TypeDefinition);
+                this.SetElementWithValidation(System.Xml.Linq.XName.Get("dateModified", ""), value, "dateModified", global::Opml.RFC822Date.TypeDefinition);
             }
         }
         
@@ -358,7 +358,7 @@ namespace XObjectsTests.Schemas.Opml {
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElementWithValidation(System.Xml.Linq.XName.Get("ownerEmail", ""), value, "ownerEmail", global::XObjectsTests.Schemas.Opml.EmailAddress.TypeDefinition);
+                this.SetElementWithValidation(System.Xml.Linq.XName.Get("ownerEmail", ""), value, "ownerEmail", global::Opml.EmailAddress.TypeDefinition);
             }
         }
         
@@ -814,10 +814,10 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual object language {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("language", ""));
-                return XTypedServices.ParseUnionValue(x, global::XObjectsTests.Schemas.Opml.Language.TypeDefinition);
+                return XTypedServices.ParseUnionValue(x, global::Opml.Language.TypeDefinition);
             }
             set {
-                this.SetUnionAttribute(value, "language", this, System.Xml.Linq.XName.Get("language", ""), global::XObjectsTests.Schemas.Opml.Language.TypeDefinition);
+                this.SetUnionAttribute(value, "language", this, System.Xml.Linq.XName.Get("language", ""), global::Opml.Language.TypeDefinition);
             }
         }
         
@@ -903,7 +903,7 @@ namespace XObjectsTests.Schemas.Opml {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language), null),
-                    XObjectsTests.Schemas.Opml.UnknownValidator.TypeDefinition});
+                    global::Opml.UnknownValidator.TypeDefinition});
         
         private Language() {
         }
@@ -1146,18 +1146,18 @@ namespace XObjectsTests.Schemas.Opml {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("OPML", ""), typeof(global::XObjectsTests.Schemas.Opml.OPML));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Body", ""), typeof(global::XObjectsTests.Schemas.Opml.Body));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Head", ""), typeof(global::XObjectsTests.Schemas.Opml.Head));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Outline", ""), typeof(global::XObjectsTests.Schemas.Opml.Outline));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("OPML", ""), typeof(global::Opml.OPML));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Body", ""), typeof(global::Opml.Body));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Head", ""), typeof(global::Opml.Head));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Outline", ""), typeof(global::Opml.Outline));
         }
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("opml", ""), typeof(global::XObjectsTests.Schemas.Opml.opml));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("opml", ""), typeof(global::Opml.opml));
         }
         
         private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.Opml.opml), typeof(global::XObjectsTests.Schemas.Opml.OPML));
+            wrapperDictionary.Add(typeof(global::Opml.opml), typeof(global::Opml.OPML));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -1307,12 +1307,12 @@ namespace XObjectsTests.Schemas.Opml {
         private XTypedElement rootObject;
         
 
-		public global::XObjectsTests.Schemas.Opml.opml opml {  get {return rootObject as global::XObjectsTests.Schemas.Opml.opml; } }
+		public global::Opml.opml opml {  get {return rootObject as global::Opml.opml; } }
         
         private XRoot() {
         }
         
-        public XRoot(global::XObjectsTests.Schemas.Opml.opml root) {
+        public XRoot(global::Opml.opml root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
