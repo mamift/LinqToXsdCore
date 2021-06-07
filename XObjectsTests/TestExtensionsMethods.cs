@@ -44,6 +44,8 @@ namespace Xml.Schema.Linq.Tests
                 ? Directory.CreateDirectory(destination)
                 : new DirectoryInfo(destination);
 
+            dir.Refresh();
+            
             // Get the files in the directory and copy them to the new location.
             FileInfo[] filesInDir = (from file in dir.GetFiles("*", SearchOption.AllDirectories) 
                                      let filteredMatch = fileExtensionFilters.Any(filter => file.Extension.EndsWith(filter))
