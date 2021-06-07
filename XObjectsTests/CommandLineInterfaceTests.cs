@@ -20,8 +20,10 @@ namespace Xml.Schema.Linq.Tests
 
         public static void CopySchemasFolder()
         {
-            DeleteSchemasFolder();
-            _copyOfSchemasFolder = CurrentFolder.Copy(GetSchemasCopy(), overwrite: true, copySubDirs: false);
+            CurrentFolder.Refresh();
+            var fileExtFilters = new []{ "dll", "exe", "json", "pdb", "log" };
+            _copyOfSchemasFolder = CurrentFolder.Copy(GetSchemasCopy(), overwrite: true, copySubDirs: false, 
+                fileExtensionFilters: fileExtFilters);
             _copyOfSchemasFolder.DeleteFilesInside("*.config"); // delete any config files
             _copyOfSchemasFolder.DeleteFilesInside("*.cs"); // and delete any generated code
         }
