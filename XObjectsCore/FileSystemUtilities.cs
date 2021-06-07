@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
 
-namespace LinqToXsd
+namespace Xml.Schema.Linq
 {
     public static class FileSystemUtilities
     {
@@ -28,6 +27,9 @@ namespace LinqToXsd
             if (sequenceOfFileAndOrFolderPaths == null) throw new ArgumentNullException(nameof(sequenceOfFileAndOrFolderPaths));
 
             var enumeratedFileAndOrFolderPaths = sequenceOfFileAndOrFolderPaths.ToList();
+
+            if (!enumeratedFileAndOrFolderPaths.Any())
+                throw new InvalidOperationException("There are no file or folder paths present in the enumerable!");
 
             var dirs = enumeratedFileAndOrFolderPaths.Where(sf => File.GetAttributes(sf).HasFlag(FileAttributes.Directory)).ToArray();
             var files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(Path.GetFullPath).ToList();

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using CommandLine;
+using Xml.Schema.Linq;
 using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
