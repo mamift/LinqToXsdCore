@@ -159,17 +159,21 @@ namespace Xml.Schema.Linq.Tests.API
         {
             var example = siteMap.Load(@"AspNetSiteMaps\example.sitemap");
 
-            List<siteMapNodeType> children = example.Query.Descendants<siteMapNodeType>().ToList();
+            List<siteMapNodeType> descendents = example.Query.Descendants<siteMapNodeType>().ToList();
 
-            var childOfSiteMapNode = children.FirstOrDefault(c => c.Query.Ancestors<siteMapNodeType>().Any());
+            var theDescendentThatIsAChildOfASiteMapNode = descendents.FirstOrDefault(d => d.url.ToString() == "~/Restaurant/ChooseMainPack.aspx");
 
-            Assert.IsNotNull(childOfSiteMapNode);
+            Assert.IsNotNull(theDescendentThatIsAChildOfASiteMapNode);
+            
+            var childrenOfSiteMapNode = descendents.Where(c => c.Query.Ancestors<siteMapNodeType>().Any()).ToList();
 
-            var ancestor = childOfSiteMapNode.Query.Ancestors<siteMapNodeType>().FirstOrDefault();
+            Assert.Contains(theDescendentThatIsAChildOfASiteMapNode, childrenOfSiteMapNode);
+
+            var ancestor = theDescendentThatIsAChildOfASiteMapNode.Query.Ancestors<siteMapNodeType>().FirstOrDefault();
 
             Assert.IsNotNull(ancestor);
 
-            Assert.True(ancestor.url.ToString().EndsWith("ChoosePacks.aspx"));
+            Assert.True(ancestor.url.ToString() == "~/Restaurant/ChoosePacks.aspx");
         }
     }
 }
