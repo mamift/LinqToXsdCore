@@ -39,9 +39,9 @@ namespace Xml.Schema.Linq.Tests
                 : new DirectoryInfo(destination);
 
             // Get the files in the directory and copy them to the new location.
-            FileInfo[] filesInDir = (from file in dir.GetFiles() 
-                                     where !file.Extension.Contains("dll") || !file.Extension.Contains("exe") || !file.Extension.Contains("json") || 
-                                           !file.Extension.Contains("pdb") || !file.Extension.Contains("log")
+            FileInfo[] filesInDir = (from file in dir.GetFiles("*", SearchOption.AllDirectories) 
+                                     where !file.Extension.EndsWith("dll") && !file.Extension.EndsWith("exe") && !file.Extension.EndsWith("json") && 
+                                           !file.Extension.EndsWith("pdb") && !file.Extension.EndsWith("log")
                                      select file).ToArray();
             foreach (var file in filesInDir) {
                 var tempPath = Path.Combine(destination, file.Name);

@@ -7,23 +7,21 @@ namespace Xml.Schema.Linq.Tests
 {
     public class CommandLineInterfaceTests
     {
-        private static readonly DirectoryInfo SchemasFolder = new DirectoryInfo(@".");
-        private static string SchemasCopy
+        private static readonly DirectoryInfo CurrentFolder = new DirectoryInfo(@".");
+        
+        private static string GetSchemasCopy()
         {
-            get
-            {
-                var tempFolderName = Guid.NewGuid().ToString("N");
-                SetupAndCleanup.Guids.Add(tempFolderName);
-                return tempFolderName;
-            }
+            var tempFolderName = "schemas_" + Guid.NewGuid().ToString("N");
+            SetupAndCleanup.Guids.Add(tempFolderName);
+            return tempFolderName;
         }
 
-        private static DirectoryInfo _copyOfSchemasFolder = new DirectoryInfo(SchemasCopy);
+        private static DirectoryInfo _copyOfSchemasFolder = new DirectoryInfo(GetSchemasCopy());
 
         public static void CopySchemasFolder()
         {
             DeleteSchemasFolder();
-            _copyOfSchemasFolder = SchemasFolder.Copy(SchemasCopy, overwrite: true);
+            _copyOfSchemasFolder = CurrentFolder.Copy(GetSchemasCopy(), overwrite: true, copySubDirs: false);
             _copyOfSchemasFolder.DeleteFilesInside("*.config"); // delete any config files
             _copyOfSchemasFolder.DeleteFilesInside("*.cs"); // and delete any generated code
         }
