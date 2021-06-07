@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
-using LinqToXsd;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -93,7 +92,8 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
         {
-            var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Schemas"));
+            var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "."));
+            if (!dir.Exists) throw new InvalidOperationException($"Directory {dir.FullName} doesn't exist!");
             var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
                 // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
                 .Where(f => !f.FullName.Contains("Microsoft.Build."))
