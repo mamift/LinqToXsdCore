@@ -59,7 +59,7 @@ namespace Xml.Schema.Linq.Tests
             configFiles = _copyOfSchemasFolder.GetFiles("*.config", SearchOption.AllDirectories);
 
             Assert.IsTrue(configFiles.Any());
-            Assert.IsTrue(configFiles.Length > 9); // new config files may get added
+            Assert.IsTrue(configFiles.Length >= 9); // new config files may get added
         }
 
         /// <summary>
