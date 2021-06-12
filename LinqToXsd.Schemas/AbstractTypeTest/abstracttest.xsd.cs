@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XObjectsTests.Schemas.AbstractTest {
+namespace LinqToXsd.Schemas.AbstractTypeTest {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -236,7 +236,7 @@ namespace XObjectsTests.Schemas.AbstractTest {
         }
     }
     
-    public partial class UpdateCommand : global::XObjectsTests.Schemas.AbstractTest.BaseCommand, IXMetaData {
+    public partial class UpdateCommand : global::LinqToXsd.Schemas.AbstractTypeTest.BaseCommand, IXMetaData {
         
 		public static explicit operator UpdateCommand(XElement xe) { return XTypedServices.ToXTypedElement<UpdateCommand>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -288,7 +288,7 @@ namespace XObjectsTests.Schemas.AbstractTest {
         }
     }
     
-    public partial class Record : global::XObjectsTests.Schemas.AbstractTest.BaseInfo, IXMetaData {
+    public partial class Record : global::LinqToXsd.Schemas.AbstractTypeTest.BaseInfo, IXMetaData {
         
 		public static explicit operator Record(XElement xe) { return XTypedServices.ToXTypedElement<Record>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -397,14 +397,14 @@ namespace XObjectsTests.Schemas.AbstractTest {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseInfo", "http://example.org/AbstractTest"), typeof(global::XObjectsTests.Schemas.AbstractTest.BaseInfo));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseCommand", "http://example.org/AbstractTest"), typeof(global::XObjectsTests.Schemas.AbstractTest.BaseCommand));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("UpdateCommand", "http://example.org/AbstractTest"), typeof(global::XObjectsTests.Schemas.AbstractTest.UpdateCommand));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Record", "http://example.org/AbstractTest"), typeof(global::XObjectsTests.Schemas.AbstractTest.Record));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseInfo", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.BaseInfo));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseCommand", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.BaseCommand));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("UpdateCommand", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.UpdateCommand));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Record", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.Record));
         }
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Action", "http://example.org/AbstractTest"), typeof(global::XObjectsTests.Schemas.AbstractTest.Action));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Action", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.Action));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -554,12 +554,12 @@ namespace XObjectsTests.Schemas.AbstractTest {
         private XTypedElement rootObject;
         
 
-		public global::XObjectsTests.Schemas.AbstractTest.Action Action {  get {return rootObject as global::XObjectsTests.Schemas.AbstractTest.Action; } }
+		public global::LinqToXsd.Schemas.AbstractTypeTest.Action Action {  get {return rootObject as global::LinqToXsd.Schemas.AbstractTypeTest.Action; } }
         
         private XRoot() {
         }
         
-        public XRoot(global::XObjectsTests.Schemas.AbstractTest.Action root) {
+        public XRoot(global::LinqToXsd.Schemas.AbstractTypeTest.Action root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }

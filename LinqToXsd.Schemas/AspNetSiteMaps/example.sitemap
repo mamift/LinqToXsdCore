@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode url="~/Restaurant/ChoosePacks.aspx" title="Packs" description="Choose meal packs">
+    <siteMapNode url="~/Restaurant/ChooseMainPack.aspx" title="Packs" />
+  </siteMapNode>
+  <siteMapNode url="~/Restaurant/MenuPreferences.aspx" title="Menu Preference" description="Select your menu preference"> </siteMapNode>
+  <siteMapNode url="~/Restaurant/ConfirmItems.aspx" title="Meals" description="Choose your meals"> </siteMapNode>
+  <siteMapNode url="~/Restaurant/ConfirmOrder.aspx" title="Confirm" description="Confirm your order"> </siteMapNode>
+</siteMap>

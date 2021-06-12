@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
 
-namespace Xml.Schema.Linq.Tests.Schemas
+namespace Xml.Schema.Linq.Tests
 {
     /// <summary>
     /// Tests the use of generated code emitted from 'wss.xsd'.

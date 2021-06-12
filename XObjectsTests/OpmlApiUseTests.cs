@@ -1,8 +1,7 @@
-﻿using System;
-using NUnit.Framework;
-using XObjectsTests.Schemas.Opml;
+﻿using NUnit.Framework;
+using Opml;
 
-namespace Xml.Schema.Linq.Tests.Schemas.Opml
+namespace Xml.Schema.Linq.Tests
 {
     [TestFixture]
     public class OpmlApiUseTests

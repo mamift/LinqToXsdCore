@@ -15,7 +15,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Schemas\ISO20022\before-pain.002.001.03.xsd.cs" />
+    <Compile Remove="Schemas\**" />
+    <EmbeddedResource Remove="Schemas\**" />
+    <None Remove="Schemas\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,78 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
     <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" />
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Schemas\AbstractTypeTest\abstracttest.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Atom\atom.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Atom\atom.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Atom\xml2001.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\MSBuild\Microsoft.Build.Commontypes.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\MSBuild\Microsoft.Build.Core.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\MSBuild\Microsoft.Build.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Opml\opml2.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Opml\opml2.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Pubmed\efetch-pubmed.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Rss\rss-2_0.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\SharePoint2010\CamlQuery.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\SharePoint2010\CamlView.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\SharePoint2010\CoreDefinitions.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\SharePoint2010\cui.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\SharePoint2010\WorkflowActions.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\SharePoint2010\wss.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\SharePoint2010\wss.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\Toy schemas\Simple doc.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\XSD\W3C XMLSchema v1.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\XSD\W3C XMLSchema v1.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Schemas\XSD\xml.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

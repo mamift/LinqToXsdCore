@@ -126,6 +126,7 @@ namespace Xml.Schema.Linq.Extensions
         /// <returns></returns>
         public static TValue ValueForKey<TKey, TValue>(this IDictionary<TKey, TValue> tsDictionary, TKey key)
         {
+            if (tsDictionary.Count == 0) return default(TValue);
             try {
                 return tsDictionary[key];
             }

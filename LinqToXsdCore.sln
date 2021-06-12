@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RELEASENOTES.md = RELEASENOTES.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XObjectsCodeGen", "XObjectsCode\XObjectsCodeGen.csproj", "{26B49F5C-4459-4B14-B25B-057469144039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCodeGen", "XObjectsCode\XObjectsCodeGen.csproj", "{26B49F5C-4459-4B14-B25B-057469144039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToXsd.Schemas", "LinqToXsd.Schemas\LinqToXsd.Schemas.csproj", "{4796DCB8-6C80-487B-9A58-09B96EEE2908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{26B49F5C-4459-4B14-B25B-057469144039}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26B49F5C-4459-4B14-B25B-057469144039}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26B49F5C-4459-4B14-B25B-057469144039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4796DCB8-6C80-487B-9A58-09B96EEE2908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4796DCB8-6C80-487B-9A58-09B96EEE2908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4796DCB8-6C80-487B-9A58-09B96EEE2908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4796DCB8-6C80-487B-9A58-09B96EEE2908}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

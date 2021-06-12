@@ -7,23 +7,23 @@ namespace Xml.Schema.Linq.Tests
 {
     public class CommandLineInterfaceTests
     {
-        private static readonly DirectoryInfo SchemasFolder = new DirectoryInfo(@".\Schemas");
-        private static string SchemasCopy
+        private static readonly DirectoryInfo CurrentFolder = new DirectoryInfo(@".");
+        
+        private static string GetSchemasCopy()
         {
-            get
-            {
-                var tempFolderName = Guid.NewGuid().ToString("N");
-                SetupAndCleanup.Guids.Add(tempFolderName);
-                return tempFolderName;
-            }
+            var tempFolderName = "schemas_" + Guid.NewGuid().ToString("N");
+            SetupAndCleanup.Guids.Add(tempFolderName);
+            return tempFolderName;
         }
 
-        private static DirectoryInfo _copyOfSchemasFolder = new DirectoryInfo(SchemasCopy);
+        private static DirectoryInfo _copyOfSchemasFolder = new DirectoryInfo(GetSchemasCopy());
 
         public static void CopySchemasFolder()
         {
-            DeleteSchemasFolder();
-            _copyOfSchemasFolder = SchemasFolder.Copy(SchemasCopy, overwrite: true);
+            CurrentFolder.Refresh();
+            var fileExtFilters = new []{ "dll", "exe", "json", "pdb", "log" };
+            _copyOfSchemasFolder = CurrentFolder.Copy(GetSchemasCopy(), overwrite: true, copySubDirs: false, 
+                fileExtensionFilters: fileExtFilters);
             _copyOfSchemasFolder.DeleteFilesInside("*.config"); // delete any config files
             _copyOfSchemasFolder.DeleteFilesInside("*.cs"); // and delete any generated code
         }
@@ -59,7 +59,7 @@ namespace Xml.Schema.Linq.Tests
             configFiles = _copyOfSchemasFolder.GetFiles("*.config", SearchOption.AllDirectories);
 
             Assert.IsTrue(configFiles.Any());
-            Assert.IsTrue(configFiles.Length == 9);
+            Assert.IsTrue(configFiles.Length >= 9); // new config files may get added
         }
 
         /// <summary>

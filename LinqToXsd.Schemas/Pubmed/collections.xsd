@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  targetNamespace="https://www.ncbi.nlm.nih.gov/myncbi/collections/"
+  xmlns="https://www.ncbi.nlm.nih.gov/myncbi/collections/">
+  <xs:element name="DocumentSummarySet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="DocumentSummary"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentSummary" type="DocumentSummaryType"> </xs:element>
+  <xs:element name="Item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Title"/>
+        <xs:element ref="URL"/>
+        <xs:element ref="Description"/>
+        <xs:element ref="Details"/>
+        <xs:element minOccurs="0" ref="ShortDetails"/>
+        <xs:element ref="Resource"/>
+        <xs:element ref="Type"/>
+        <xs:element ref="Identifiers"/>
+        <xs:element ref="EntrezUID"/>
+        <xs:element ref="Properties"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Title" type="xs:string"/>
+  <xs:element name="URL" type="xs:string"/>
+  <xs:element name="Description" type="xs:string"/>
+  <xs:element name="Details" type="xs:string"/>
+  <xs:element name="ShortDetails" type="xs:string"/>
+  <xs:element name="Resource" type="xs:NCName"/>
+  <xs:element name="Type">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="citation"/>
+        <xs:enumeration value="article"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Identifiers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Identifier"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Identifier">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EntrezUID">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="db" use="required" type="xs:NCName"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Properties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Property"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Property">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentSummaryType">
+    <xs:sequence>
+      <xs:element ref="Item"/>
+    </xs:sequence>
+    <xs:attribute name="id" use="required" type="xs:integer"/>
+    <xs:attribute name="resource" use="required" type="xs:NCName"/>
+  </xs:complexType>
+</xs:schema>

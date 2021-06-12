@@ -4,12 +4,11 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using System.Xml.Serialization;
+using LinqToXsd.Schemas.AbstractTypeTest;
+using Microsoft.Schemas.AspNetSiteMaps;
 using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
-using W3C;
 using W3C.XSD;
-using XObjectsTests.Schemas.AbstractTest;
 
 namespace Xml.Schema.Linq.Tests.API
 {
@@ -114,7 +113,7 @@ namespace Xml.Schema.Linq.Tests.API
         [Test]
         public void TestXsiTypeAddedToAmbiguousElementNames()
         {
-            var o = new XObjectsTests.Schemas.AbstractTest.Action
+            var o = new LinqToXsd.Schemas.AbstractTypeTest.Action
             {
                 ActionInfo = new Record
                 {
@@ -141,6 +140,40 @@ namespace Xml.Schema.Linq.Tests.API
             
             Assert.IsTrue(XNode.DeepEquals(XElement.Parse(expectedXml), XElement.Parse(actualXml)),
                 String.Format("{0} \n does not equal \n{1}", actualXml, expectedXml));
+        }
+
+        [Test]
+        public void TestAncestorIsRootElement()
+        {
+            var example = siteMap.Load(@"AspNetSiteMaps\example.sitemap");
+
+            List<siteMapNodeType> children = example.Query.Descendants<siteMapNodeType>().ToList();
+
+            List<siteMapType> ancestors = children.SelectMany(c => c.Query.Ancestors<siteMapType>()).Distinct().ToList();
+
+            Assert.True(ancestors.Count == 1);
+        }
+
+        [Test]
+        public void TestAncestorOfRecursiveChild()
+        {
+            var example = siteMap.Load(@"AspNetSiteMaps\example.sitemap");
+
+            List<siteMapNodeType> descendents = example.Query.Descendants<siteMapNodeType>().ToList();
+
+            var theDescendentThatIsAChildOfASiteMapNode = descendents.FirstOrDefault(d => d.url.ToString() == "~/Restaurant/ChooseMainPack.aspx");
+
+            Assert.IsNotNull(theDescendentThatIsAChildOfASiteMapNode);
+            
+            var childrenOfSiteMapNode = descendents.Where(c => c.Query.Ancestors<siteMapNodeType>().Any()).ToList();
+
+            Assert.Contains(theDescendentThatIsAChildOfASiteMapNode, childrenOfSiteMapNode);
+
+            var ancestor = theDescendentThatIsAChildOfASiteMapNode.Query.Ancestors<siteMapNodeType>().FirstOrDefault();
+
+            Assert.IsNotNull(ancestor);
+
+            Assert.True(ancestor.url.ToString() == "~/Restaurant/ChoosePacks.aspx");
         }
     }
 }

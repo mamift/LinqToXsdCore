@@ -1,14 +1,14 @@
 ﻿using System.IO;
 using NUnit.Framework;
 
-namespace Xml.Schema.Linq.Tests.Schemas.Pubmed
+namespace Xml.Schema.Linq.Tests
 {
     public class PubmedCodeGenerationTests
     {
         [Test]
         public void TestEfetchPubmedSchemaCodeGenerates()
         {
-            const string efetchPubmedXsd = @"Schemas\Pubmed\efetch-pubmed.xsd";
+            const string efetchPubmedXsd = @"Pubmed\efetch-pubmed.xsd";
             var efetchPubmedXsdFile = new FileInfo(efetchPubmedXsd);
 
             Assert.DoesNotThrow(() => {

@@ -9,7 +9,7 @@ namespace Xml.Schema.Linq.Tests.API
         public void TestXListEnumerateTest()
         {
             Assert.DoesNotThrow(() => {
-                var schema = W3C.XSD.schema.Load(@"Schemas\\XSD\\W3C XMLSchema v1.xsd");
+                var schema = W3C.XSD.schema.Load(@"XSD\\W3C XMLSchema v1.xsd");
                 Assert.IsNotNull(schema);
                 var elementsList = schema.element.ToList();
                 Assert.IsNotEmpty(elementsList);

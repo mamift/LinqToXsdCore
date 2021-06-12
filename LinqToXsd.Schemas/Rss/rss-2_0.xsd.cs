@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DefaultNamespace {
+namespace Rss {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -1999,7 +1999,7 @@ namespace DefaultNamespace {
                 return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
             }
             set {
-                this.SetElementWithValidation(System.Xml.Linq.XName.Get("width", ""), value, "width", global::DefaultNamespace.ImageWidth.TypeDefinition);
+                this.SetElementWithValidation(System.Xml.Linq.XName.Get("width", ""), value, "width", global::Rss.ImageWidth.TypeDefinition);
             }
         }
         
@@ -2023,7 +2023,7 @@ namespace DefaultNamespace {
                 return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
             }
             set {
-                this.SetElementWithValidation(System.Xml.Linq.XName.Get("height", ""), value, "height", global::DefaultNamespace.ImageHeight.TypeDefinition);
+                this.SetElementWithValidation(System.Xml.Linq.XName.Get("height", ""), value, "height", global::Rss.ImageHeight.TypeDefinition);
             }
         }
         
@@ -2734,21 +2734,21 @@ namespace DefaultNamespace {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("RssItem", ""), typeof(global::DefaultNamespace.RssItem));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("RssChannel", ""), typeof(global::DefaultNamespace.RssChannel));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("SkipHoursList", ""), typeof(global::DefaultNamespace.SkipHoursList));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("SkipDaysList", ""), typeof(global::DefaultNamespace.SkipDaysList));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Category", ""), typeof(global::DefaultNamespace.Category));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Image", ""), typeof(global::DefaultNamespace.Image));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Cloud", ""), typeof(global::DefaultNamespace.Cloud));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("TextInput", ""), typeof(global::DefaultNamespace.TextInput));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Source", ""), typeof(global::DefaultNamespace.Source));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Enclosure", ""), typeof(global::DefaultNamespace.Enclosure));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Guid", ""), typeof(global::DefaultNamespace.Guid));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("RssItem", ""), typeof(global::Rss.RssItem));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("RssChannel", ""), typeof(global::Rss.RssChannel));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("SkipHoursList", ""), typeof(global::Rss.SkipHoursList));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("SkipDaysList", ""), typeof(global::Rss.SkipDaysList));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Category", ""), typeof(global::Rss.Category));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Image", ""), typeof(global::Rss.Image));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Cloud", ""), typeof(global::Rss.Cloud));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("TextInput", ""), typeof(global::Rss.TextInput));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Source", ""), typeof(global::Rss.Source));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Enclosure", ""), typeof(global::Rss.Enclosure));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Guid", ""), typeof(global::Rss.Guid));
         }
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("rss", ""), typeof(global::DefaultNamespace.rss));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("rss", ""), typeof(global::Rss.rss));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -2892,12 +2892,12 @@ namespace DefaultNamespace {
         private XTypedElement rootObject;
         
 
-		public global::DefaultNamespace.rss rss {  get {return rootObject as global::DefaultNamespace.rss; } }
+		public global::Rss.rss rss {  get {return rootObject as global::Rss.rss; } }
         
         private XRoot() {
         }
         
-        public XRoot(global::DefaultNamespace.rss root) {
+        public XRoot(global::Rss.rss root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }

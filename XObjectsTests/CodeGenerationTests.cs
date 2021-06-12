@@ -1,22 +1,15 @@
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Xml;
-using System.Xml.Resolvers;
-using LinqToXsd;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Text;
-using MoreLinq;
 using NUnit.Framework;
 using Xml.Schema.Linq.Extensions;
-using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq.Tests
 {
@@ -24,12 +17,12 @@ namespace Xml.Schema.Linq.Tests
 
     public class CodeGenerationTests
     {
-        private const string AtomXsdFilePath = @"Schemas\Atom\atom.xsd";
+        private const string AtomXsdFilePath = @"Atom\atom.xsd";
 
         [Test]
         public void NamespaceCodeGenerationConventionTest()
         {
-            const string simpleDocXsdFilepath = @"Schemas\Toy schemas\Simple doc.xsd";
+            const string simpleDocXsdFilepath = @"Toy schemas\Simple doc.xsd";
             var simpleDocXsd = XmlReader.Create(simpleDocXsdFilepath).ToXmlSchema();
 
             var sourceText = Utilities.GenerateSourceText(simpleDocXsdFilepath);
@@ -54,7 +47,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void AtomNoVoidTypeOfExpressionsInLinqToXsdTypeManagerBuildWrapperDictionaryMethodTest()
         {
-            const string atomDir = @"Schemas\Atom";
+            const string atomDir = @"Atom";
             var atomXsdFolder = Path.Combine(Environment.CurrentDirectory, atomDir);
             var atomRssXsdFile = $"{atomXsdFolder}\\atom.xsd";
             var atomRssXsdFileInfo = new FileInfo(atomRssXsdFile);
@@ -99,7 +92,8 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
         {
-            var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Schemas"));
+            var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "."));
+            if (!dir.Exists) throw new InvalidOperationException($"Directory {dir.FullName} doesn't exist!");
             var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
                 // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
                 .Where(f => !f.FullName.Contains("Microsoft.Build."))
@@ -135,7 +129,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void NoVoidTypeDefReferencesInAnyStatementsInClrPropertiesTest()
         {
-            const string xsdSchema = @"Schemas\XSD\W3C XMLSchema v1.xsd";
+            const string xsdSchema = @"XSD\W3C XMLSchema v1.xsd";
             var xsdCode = Utilities.GenerateSyntaxTree(new FileInfo(xsdSchema));
 
             var allClasses = xsdCode.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>();
@@ -178,7 +172,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void EnumAtNamespaceLevelGenerationTest()
         {
-            const string wssXsdFilePath = @"Schemas\SharePoint2010\wss.xsd";
+            const string wssXsdFilePath = @"SharePoint2010\wss.xsd";
             var wssXsdFileInfo = new FileInfo(wssXsdFilePath);
             var tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo);
             var root = tree.GetNamespaceRoot();
