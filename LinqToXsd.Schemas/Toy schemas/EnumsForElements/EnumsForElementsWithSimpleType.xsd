@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="childOfRefType" type="childSType1"/>
+                <xs:element name="childInlineType">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="InlineEnum1"/>
+                            <xs:enumeration value="InlineEnum2"/>
+                            <xs:enumeration value="InlineEnum3"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="childSType1">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Enum1"/>
+            <xs:enumeration value="Enum2"/>
+            <xs:enumeration value="Enum3"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -63,7 +63,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.schemas = schemas;
             if (schemaErrorCount > 0)
             {
-                Console.WriteLine("Schema cannot be compiled. Class generation aborted");
+                throw new LinqToXsdException("Schema cannot be compiled. Class generation aborted");
                 return null;
             }
 
@@ -72,9 +72,9 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 Xml.Fxt.FxtLinq2XsdInterpreter.Run(schemas, configSettings.trafo);
             }
-            catch (Xml.Fxt.FxtException)
+            catch (Xml.Fxt.FxtException fxtException)
             {
-                Console.WriteLine("Schema cannot be transformed. Class generation aborted");
+                throw new LinqToXsdException("Schema cannot be transformed. Class generation aborted");
                 return null;
             }
 
