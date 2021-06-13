@@ -149,9 +149,17 @@ namespace Xml.Schema.Linq.Tests.API
 
             List<siteMapNodeType> children = example.Query.Descendants<siteMapNodeType>().ToList();
 
-            List<siteMapType> ancestors = children.SelectMany(c => c.Query.Ancestors<siteMapType>()).Distinct().ToList();
+            Assert.IsTrue(children.Count == 5);
 
-            Assert.True(ancestors.Count == 1);
+            var ancestors = children.SelectMany(c => c.Query.Ancestors<siteMapType>()).ToList();
+
+            Assert.IsTrue(ancestors.Count == 5);
+
+            List<siteMapType> ancestor = ancestors.Distinct().ToList();
+
+            Assert.True(ancestor.Count == 1);
+
+            Assert.AreEqual(ancestor.First(), example.Content);
         }
 
         [Test]
