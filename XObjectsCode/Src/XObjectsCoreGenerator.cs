@@ -136,6 +136,30 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
+        /// Creates the <see cref="CodeNamespace"/>s from a given <see cref="XmlSchemaSet"/>.
+        /// </summary>
+        /// <param name="schemaSet"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
+        public static CodeCompileUnit GenerateCodeNamespaces(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        {
+            if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
+            var xsdConverter = new XsdToTypesConverter(settings);
+            var mapping = xsdConverter.GenerateMapping(schemaSet);
+
+            var codeGenerator = new CodeDomTypesGenerator(settings);
+            var ccu = new CodeCompileUnit();
+            var namespaces = codeGenerator.GenerateTypes(mapping);
+            foreach(var codeNs in namespaces) 
+                ccu.Namespaces.Add(codeNs);
+
+            return ccu;
+        }
+
+        /// <summary>
         /// Generates code by searching for an accompanying configuration file, whereby each configuration file is named the same as the XSD file, but with an
         /// .config extension (i.e. schemaFileName.xsd.config). Will skip over XSDs that have no accompanying .config file.
         /// </summary>
