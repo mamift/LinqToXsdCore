@@ -152,10 +152,10 @@
     <None Update="SharePoint2010\wss.xsd.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Toy schemas\EnumsForAttributes\EnumsForAttributes.config">
+    <None Update="Toy schemas\EnumsForAttributes\EnumsForAttributesWithComplexType.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Toy schemas\EnumsForAttributes\EnumsForAttributes.xsd">
+    <None Update="Toy schemas\EnumsForAttributes\EnumsForAttributesWithComplexType.xsd.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Toy schemas\EnumsForElements\EnumsForElementsWithComplexType.xsd">
