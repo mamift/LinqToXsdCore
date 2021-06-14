@@ -1,12 +1,15 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
@@ -103,6 +106,29 @@ namespace Xml.Schema.Linq.Tests
             var tree = CSharpSyntaxTree.ParseText(sourceText, CSharpParseOptions.Default);
 
             return tree as CSharpSyntaxTree;
+        }
+
+        public static ClrMappingInfo GenerateMapping(FileInfo xsd, LinqToXsdSettings settings = null)
+        {
+            var schemaForEnumsWithComplexType = CompileXmlSchemaSet(xsd);
+            var linqToXsdSettings = settings ?? XObjectsCoreGenerator.LoadLinqToXsdSettings($"{xsd.FullName}.config");
+
+            var xsdConverter = new XsdToTypesConverter(linqToXsdSettings);
+            var mapping = xsdConverter.GenerateMapping(schemaForEnumsWithComplexType);
+
+            return mapping;
+        }
+
+        public static List<CodeNamespace> GenerateTypes(FileInfo xsd, LinqToXsdSettings settings = null)
+        {
+            var linqToXsdSettings = settings ?? XObjectsCoreGenerator.LoadLinqToXsdSettings($"{xsd.FullName}.config");
+            var mapping = GenerateMapping(xsd, linqToXsdSettings);
+
+            var codeGenerator = new CodeDomTypesGenerator(linqToXsdSettings);
+
+            var namespaces = codeGenerator.GenerateTypes(mapping).ToList();
+
+            return namespaces;
         }
     }
 }
