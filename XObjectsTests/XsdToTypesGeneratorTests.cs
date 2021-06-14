@@ -125,7 +125,7 @@ namespace Xml.Schema.Linq.Tests
             var userTypes = theNamespace.Types.Cast<CodeTypeDeclaration>().Take(theNamespace.Types.Count - 3)
                 .Concat(allEnumTypes).ToList();
 
-            Assert.IsTrue(userTypes.Count == 7);
+            Assert.IsTrue(userTypes.Count == 6);
 
             var source = Utilities.GenerateSourceText(xsd.FullName);
 
