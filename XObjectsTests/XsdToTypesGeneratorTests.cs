@@ -28,6 +28,35 @@ namespace Xml.Schema.Linq.Tests
         }
 
         [Test]
+        public void TestMappingsGeneratedForEnumsForAttributesWithComplexType()
+        {
+            var xsd = ToySchemaFiles.First(f => f.Name == "EnumsForAttributesWithComplexType.xsd");
+            var mapping = Utilities.GenerateMapping(xsd);
+
+            Assert.IsTrue(mapping.NameMappings.Count == 5);
+            Assert.IsTrue(mapping.Types.Count == 5);
+        }
+
+        [Test]
+        public void TestInnerTypeMappingsForEnumsForAttributesWithComplexType()
+        {
+            var xsd = ToySchemaFiles.First(f => f.Name == "EnumsForAttributesWithComplexType.xsd");
+            var mapping = Utilities.GenerateMapping(xsd);
+
+            Assert.IsTrue(mapping.NameMappings.Count == 5);
+            Assert.IsTrue(mapping.Types.Count == 5);
+
+            var wrapperElementTypes = mapping.Types.Where(t => t.CommonTypeName.StartsWith("Element") && t.IsWrapper).ToList();
+            var complexTypes = mapping.Types.Where(t => t.CommonTypeName.StartsWith("Element") && !t.IsWrapper).ToList();
+
+            Assert.IsTrue(wrapperElementTypes.Count == 2);
+            Assert.IsTrue(complexTypes.Count == 2);
+
+            Assert.IsTrue(wrapperElementTypes.All(et => et is ClrWrapperTypeInfo));
+            Assert.IsTrue(complexTypes.All(ct => ct is ClrContentTypeInfo));
+        }
+
+        [Test]
         public void TestWrapperTypeMappingsGeneratedForEnumsForElementsWithComplexType()
         {
             var xsd = ToySchemaFiles.First(f => f.Name == "EnumsForElementsWithComplexType.xsd");
@@ -68,6 +97,35 @@ namespace Xml.Schema.Linq.Tests
                 .Concat(allEnumTypes).ToList();
 
             Assert.IsTrue(userTypes.Count == 5);
+
+            var source = Utilities.GenerateSourceText(xsd.FullName);
+
+            var csCode = new FileInfo(xsd.FullName + ".cs");
+            using StreamWriter streamWriter = csCode.CreateText();
+            source.Write(streamWriter);
+
+            csCode.Refresh();
+        }
+
+        [Test]
+        public void TestClrTypesGeneratedForEnumsForAttributesWithComplexTypes()
+        {
+            var xsd = ToySchemaFiles.First(f => f.Name == "EnumsForAttributesWithComplexType.xsd");
+
+            var namespaces = Utilities.GenerateTypes(xsd);
+            Assert.IsTrue(namespaces.Count == 1);
+
+            var theNamespace = namespaces.First();
+            Assert.IsTrue(theNamespace.Types.Count == 8);
+
+            var allEnumTypes = theNamespace.DescendentTypeScopedEnumDeclarations();
+
+            Assert.IsTrue(allEnumTypes.Count > 0);
+
+            var userTypes = theNamespace.Types.Cast<CodeTypeDeclaration>().Take(theNamespace.Types.Count - 3)
+                .Concat(allEnumTypes).ToList();
+
+            Assert.IsTrue(userTypes.Count == 7);
 
             var source = Utilities.GenerateSourceText(xsd.FullName);
 
