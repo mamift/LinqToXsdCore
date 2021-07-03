@@ -4,7 +4,7 @@
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.2.1
 * https://www.nuget.org/packages/XObjectsCodeGen/3.2.1
-	* Disabled checking for duplicate enum type declaration when creating a nested enum type for a property on a generated class.
+	* Disabled checking for duplicate enum type declaration when creating a nested enum type for a property on a generated class (partially resolves [GitHub Issue 31](https://github.com/mamift/LinqToXsdCore/issues/31)).
 
 ## LinqToXsdCore 3.2.0, XObjectsCore 3.2.0 and XObjectsCodeGen 3.2.0
 Nuget packages:
