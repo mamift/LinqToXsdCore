@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## LinqToXsdCore 3.2.1 and XObjectsCodeGen 3.2.1 (no changes to XObjectsCore)
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.2.1
+* https://www.nuget.org/packages/XObjectsCodeGen/3.2.1
+	* Disabled checking for duplicate enum type declaration when creating a nested enum type for a property on a generated class.
+
 ## LinqToXsdCore 3.2.0, XObjectsCore 3.2.0 and XObjectsCodeGen 3.2.0
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.2.0

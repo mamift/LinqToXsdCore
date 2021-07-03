@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
-    <Version>3.2.0</Version>
+    <Version>3.2.1</Version>
     <Company>None</Company>
     <Authors>https://github.com/mamift</Authors>
     <PackageLicense>https://licenses.nuget.org/MS-PL</PackageLicense>
