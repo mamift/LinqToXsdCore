@@ -23,10 +23,14 @@ namespace Xml.Schema.Linq {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Namespaces, NullableReferences?, Validation?, Transformation?)
+    /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
     /// </para>
     /// </summary>
     internal partial class Configuration : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName CodeGenerationXName = System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -56,12 +60,12 @@ namespace Xml.Schema.Linq {
         
         static Configuration() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(NamespacesXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(ValidationXName), new NamedContentModelEntity(TransformationXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CodeGenerationXName), new NamedContentModelEntity(NamespacesXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(ValidationXName), new NamedContentModelEntity(TransformationXName));
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal Configuration() {
@@ -72,7 +76,25 @@ namespace Xml.Schema.Linq {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// </para>
+        /// </summary>
+        internal virtual CodeGeneration CodeGeneration {
+            get {
+                XElement x = this.GetElement(CodeGenerationXName);
+                return ((CodeGeneration)(x));
+            }
+            set {
+                this.SetElement(CodeGenerationXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual Namespaces Namespaces {
@@ -90,7 +112,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual NullableReferences NullableReferences {
@@ -111,7 +133,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual Validation Validation {
@@ -129,7 +151,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual Transformation Transformation {
@@ -199,10 +221,128 @@ namespace Xml.Schema.Linq {
         }
         
         private static void BuildElementDictionary() {
+            localElementDictionary.Add(CodeGenerationXName, typeof(CodeGeneration));
             localElementDictionary.Add(NamespacesXName, typeof(Namespaces));
             localElementDictionary.Add(NullableReferencesXName, typeof(NullableReferences));
             localElementDictionary.Add(ValidationXName, typeof(Validation));
             localElementDictionary.Add(TransformationXName, typeof(Transformation));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (SplitCodeFiles)
+    /// </para>
+    /// </summary>
+    internal partial class CodeGeneration : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName SplitCodeFilesXName = System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator CodeGeneration(XElement xe) { return XTypedServices.ToXTypedElement<CodeGeneration>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static CodeGeneration() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SplitCodeFilesXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal CodeGeneration() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal virtual SplitCodeFiles SplitCodeFiles {
+            get {
+                XElement x = this.GetElement(SplitCodeFilesXName);
+                return ((SplitCodeFiles)(x));
+            }
+            set {
+                this.SetElement(SplitCodeFilesXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        internal void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
+        
+        internal void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        internal void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        internal static CodeGeneration Load(string xmlFile) {
+            return XTypedServices.Load<CodeGeneration>(xmlFile);
+        }
+        
+        internal static CodeGeneration Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<CodeGeneration>(xmlFile);
+        }
+        
+        internal static CodeGeneration Parse(string xml) {
+            return XTypedServices.Parse<CodeGeneration>(xml);
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CodeGeneration>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SplitCodeFilesXName, typeof(SplitCodeFiles));
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
@@ -790,6 +930,74 @@ namespace Xml.Schema.Linq {
         }
     }
     
+    internal partial class SplitCodeFiles : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ByXName = System.Xml.Linq.XName.Get("By", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq");
+        
+		public static explicit operator SplitCodeFiles(XElement xe) { return XTypedServices.ToXTypedElement<SplitCodeFiles>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        internal SplitCodeFiles() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        internal virtual Xml.Schema.Linq.SplitCodeFiles.ByEnum? By {
+            get {
+                XAttribute x = this.Attribute(ByXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((Xml.Schema.Linq.SplitCodeFiles.ByEnum)(Enum.Parse(typeof(Xml.Schema.Linq.SplitCodeFiles.ByEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+            }
+            set {
+                this.SetAttribute(ByXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SplitCodeFiles>(this);
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        public enum ByEnum {
+            
+            Class,
+            
+            Namespace,
+        }
+    }
+    
     internal partial class NullableReferences : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -954,6 +1162,8 @@ namespace Xml.Schema.Linq {
     
     internal class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
+        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static XmlSchemaSet schemaSet;
@@ -962,6 +1172,7 @@ namespace Xml.Schema.Linq {
         private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
         
         static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
             BuildElementDictionary();
         }
         
@@ -983,7 +1194,7 @@ namespace Xml.Schema.Linq {
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
             get {
-                return XTypedServices.EmptyDictionary;
+                return typeDictionary;
             }
         }
         
@@ -1005,8 +1216,13 @@ namespace Xml.Schema.Linq {
             }
         }
         
+        private static void BuildTypeDictionary() {
+            typeDictionary.Add(System.Xml.Linq.XName.Get("SplitCodeFiles", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.SplitCodeFiles));
+        }
+        
         private static void BuildElementDictionary() {
             elementDictionary.Add(System.Xml.Linq.XName.Get("Configuration", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Configuration));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("CodeGeneration", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.CodeGeneration));
             elementDictionary.Add(System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Namespaces));
             elementDictionary.Add(System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Namespace));
             elementDictionary.Add(System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Validation));
@@ -1036,6 +1252,8 @@ namespace Xml.Schema.Linq {
 
 		internal Configuration Configuration {  get {return rootObject as Configuration; } }
 
+		internal CodeGeneration CodeGeneration {  get {return rootObject as CodeGeneration; } }
+
 		internal Namespaces Namespaces {  get {return rootObject as Namespaces; } }
 
 		internal Namespace Namespace {  get {return rootObject as Namespace; } }
@@ -1054,6 +1272,11 @@ namespace Xml.Schema.Linq {
         }
         
         internal XRootNamespace(Configuration root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        internal XRootNamespace(CodeGeneration root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
@@ -1214,6 +1437,8 @@ namespace Xml.Schema.Linq {
 
 		internal global::Xml.Schema.Linq.Configuration Configuration {  get {return rootObject as global::Xml.Schema.Linq.Configuration; } }
 
+		internal global::Xml.Schema.Linq.CodeGeneration CodeGeneration {  get {return rootObject as global::Xml.Schema.Linq.CodeGeneration; } }
+
 		internal global::Xml.Schema.Linq.Namespaces Namespaces {  get {return rootObject as global::Xml.Schema.Linq.Namespaces; } }
 
 		internal global::Xml.Schema.Linq.Namespace Namespace {  get {return rootObject as global::Xml.Schema.Linq.Namespace; } }
@@ -1232,6 +1457,11 @@ namespace Xml.Schema.Linq {
         }
         
         internal XRoot(global::Xml.Schema.Linq.Configuration root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        internal XRoot(global::Xml.Schema.Linq.CodeGeneration root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }

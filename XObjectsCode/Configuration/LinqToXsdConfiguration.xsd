@@ -8,10 +8,33 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
+        <xs:element ref="linq:CodeGeneration"/>
         <xs:element ref="linq:Namespaces"/>
         <xs:element ref="linq:NullableReferences" minOccurs="0"/>
         <xs:element ref="linq:Validation" minOccurs="0"/>
         <xs:element ref="linq:Transformation" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CodeGeneration">
+    <xs:complexType>
+      <xs:sequence maxOccurs="1">
+        <xs:element name="SplitCodeFiles">
+          <xs:complexType>
+            <xs:attribute name="By">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Class">
+                    <xs:annotation><xs:documentation>Split the generated code into individual files by class.</xs:documentation></xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="Namespace">
+                    <xs:annotation><xs:documentation>Split the generated code into individual files by namespace.</xs:documentation></xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
