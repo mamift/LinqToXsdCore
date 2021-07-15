@@ -59,6 +59,30 @@ namespace Xml.Schema.Linq.Extensions
             }
         }
 
+        /// <summary>
+        /// Creates individual <see cref="StringWriter"/>s for each <see cref="CodeNamespace"/>
+        /// in the <paramref name="current"/> <see cref="CodeCompileUnit"/>.
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="csharpProvider">Optional <see cref="CSharpCodeProvider"/>, otherwise this method instantiates its own.</param>
+        /// <param name="codeGeneratorOptions">Optional <see cref="CodeGeneratorOptions"/>, otherwise this method instantiates its own.</param>
+        /// <returns></returns>
+        public static IEnumerable<StringWriter> ToNamespaceStringWriters(this CodeCompileUnit current, CSharpCodeProvider csharpProvider = null, 
+            CodeGeneratorOptions codeGeneratorOptions = null)
+        {
+            if (csharpProvider == null) csharpProvider = new CSharpCodeProvider();
+            if (codeGeneratorOptions == null) codeGeneratorOptions = new CodeGeneratorOptions() {
+                VerbatimOrder = true
+            };
+
+            foreach (CodeNamespace ns in current.Namespaces.Cast<CodeNamespace>()) {
+                var classStrWriter = new StringWriter();
+                csharpProvider.GenerateCodeFromNamespace(ns, classStrWriter, codeGeneratorOptions);
+
+                yield return classStrWriter;
+            }
+        }
+
         public static CodeNamespace ShallowClone(this CodeNamespace current) => new CodeNamespace(current.Name);
 
         /// <summary>
