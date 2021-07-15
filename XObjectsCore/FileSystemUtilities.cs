@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Resolvers;
+using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq
@@ -77,6 +80,37 @@ namespace Xml.Schema.Linq
             }
 
             return resolvedSchemaFiles;
+        }
+
+        /// <summary>
+        /// Assuming that other XSDs exist in the same directory as the given <paramref name="fileName"/>, this will pre-load those
+        /// additional XSDs into an <see cref="XmlPreloadedResolver"/> and use them if they are referenced by the file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>Returns a compiled <see cref="XmlSchemaSet"/></returns>
+        public static XmlSchemaSet PreLoadXmlSchemas(string fileName)
+        {
+            if (fileName.IsEmpty()) throw new ArgumentNullException(nameof(fileName));
+
+            var xsdFile = new FileInfo(fileName);
+            var directoryInfo = new DirectoryInfo(Path.GetDirectoryName(fileName));
+            FileInfo[] additionalXsds = directoryInfo.GetFiles("*.xsd");
+
+            var xmlPreloadedResolver = new XmlPreloadedResolver();
+
+            foreach (FileInfo xsd in additionalXsds) {
+                xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}"), File.OpenRead(xsd.FullName));
+            }
+
+            var xmlReaderSettings = new XmlReaderSettings() {
+                DtdProcessing = DtdProcessing.Ignore,
+                CloseInput = true
+            };
+            
+            XmlSchemaSet xmlSchemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
+                .ToXmlSchemaSet(xmlPreloadedResolver);
+
+            return xmlSchemaSet;
         }
     }
 }
