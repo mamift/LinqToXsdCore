@@ -1,4 +1,10 @@
-﻿using System.CodeDom;
+﻿using System;
+using System.CodeDom;
+using System.IO;
+using System.Linq;
+using System.Xml;
+using System.Xml.Resolvers;
+using System.Xml.Schema;
 using NUnit.Framework;
 using Xml.Schema.Linq.Extensions;
 
@@ -68,6 +74,31 @@ namespace Xml.Schema.Linq.Tests.Extensions
             var isEquivalent = enumOne.IsEquivalentEnumDeclaration(enumTwo);
 
             Assert.IsFalse(isEquivalent);
+        }
+
+        [Test]
+        public void ToClassStringWritersTest()
+        {
+            var xmlSpecXsd = @"XMLSpec\xmlspec.xsd";
+            var xmlSpecXsdConfigFile = @"XMLSpec\xmlspec.xsd.config";
+            var xmlSpecXsdConfig = Configuration.Load(xmlSpecXsdConfigFile);
+            var xmlSpecSchemaSet = FileSystemUtilities.PreLoadXmlSchemas(xmlSpecXsd);
+
+            Assert.IsNotNull(xmlSpecSchemaSet);
+            Assert.IsTrue(xmlSpecSchemaSet.IsCompiled);
+
+            var ccu = XObjectsCoreGenerator.GenerateCodeCompileUnit(xmlSpecSchemaSet,
+                xmlSpecXsdConfig.ToLinqToXsdSettings());
+
+            var classStringWriters = ccu.ToClassStringWriters().ToList();
+
+            Assert.IsNotEmpty(classStringWriters);
+
+            foreach (var one in classStringWriters) {
+                var classString = one.ToString();
+
+                Assert.IsNotEmpty(classString);
+            }
         }
     }
 }
