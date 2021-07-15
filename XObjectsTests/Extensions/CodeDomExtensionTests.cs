@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
+using LinqToXsd.Schemas;
 using NUnit.Framework;
 using Xml.Schema.Linq.Extensions;
 
@@ -80,41 +81,26 @@ namespace Xml.Schema.Linq.Tests.Extensions
         [Test]
         public void ToClassStringWritersTest()
         {
-            var xmlSpecXsd = @"XMLSpec\xmlspec.xsd";
-            var xmlSpecXsdConfigFile = @"XMLSpec\xmlspec.xsd.config";
-            var xmlSpecXsdConfig = Configuration.Load(xmlSpecXsdConfigFile);
-            XmlSchemaSet xmlSpecSchemaSet = FileSystemUtilities.PreLoadXmlSchemas(xmlSpecXsd);
-
-            Assert.IsNotNull(xmlSpecSchemaSet);
-            Assert.IsTrue(xmlSpecSchemaSet.IsCompiled);
-
-            CodeCompileUnit ccu = XObjectsCoreGenerator.GenerateCodeCompileUnit(xmlSpecSchemaSet,
-                xmlSpecXsdConfig.ToLinqToXsdSettings());
+            CodeCompileUnit ccu = XObjectsCoreGenerator.GenerateCodeCompileUnit(Shared.XmlSpecSchemaSet.Value,
+                Shared.XmlSpecLinqToXsdSettings.Value);
 
             List<StringWriter> classStringWriters = ccu.ToClassStringWriters().ToList();
 
             Assert.IsNotEmpty(classStringWriters);
 
             foreach (var classWriter in classStringWriters) {
-                var classString = classWriter.ToString();
+                var classCode = classWriter.ToString();
 
-                Assert.IsNotEmpty(classString);
+                Assert.IsNotEmpty(classCode);
             }
         }
 
         [Test]
         public void ToNamespaceStringWritersTest()
         {
-            var xmlSpecXsd = @"XMLSpec\xmlspec.xsd";
-            var xmlSpecXsdConfigFile = @"XMLSpec\xmlspec.xsd.config";
-            var xmlSpecXsdConfig = Configuration.Load(xmlSpecXsdConfigFile);
-            XmlSchemaSet xmlSpecSchemaSet = FileSystemUtilities.PreLoadXmlSchemas(xmlSpecXsd);
-
-            Assert.IsNotNull(xmlSpecSchemaSet);
-            Assert.IsTrue(xmlSpecSchemaSet.IsCompiled);
-
-            CodeCompileUnit ccu = XObjectsCoreGenerator.GenerateCodeCompileUnit(xmlSpecSchemaSet,
-                xmlSpecXsdConfig.ToLinqToXsdSettings());
+            CodeCompileUnit ccu =
+                XObjectsCoreGenerator.GenerateCodeCompileUnit(Shared.XmlSpecSchemaSet.Value,
+                    Shared.XmlSpecLinqToXsdSettings.Value);
 
             List<StringWriter> classStringWriters = ccu.ToNamespaceStringWriters().ToList();
 
@@ -122,9 +108,9 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsTrue(classStringWriters.Count == 1);
 
             foreach (var namespaceWriter in classStringWriters) {
-                var classString = namespaceWriter.ToString();
+                var namespaceCode = namespaceWriter.ToString();
 
-                Assert.IsNotEmpty(classString);
+                Assert.IsNotEmpty(namespaceCode);
             }
         }
     }
