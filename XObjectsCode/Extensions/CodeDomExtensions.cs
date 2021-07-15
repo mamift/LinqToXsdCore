@@ -27,6 +27,39 @@ namespace Xml.Schema.Linq.Extensions
 
             return stringWriter;
         }
+        
+        /// <summary>
+        /// Creates individual <see cref="StringWriter"/>s for each <see cref="CodeTypeDeclaration"/> in each
+        /// <see cref="CodeNamespace"/> in the <paramref name="current"/> <see cref="CodeCompileUnit"/>.
+        /// </summary>
+        /// <param name="current"></param>
+        /// <returns></returns>
+        public static IEnumerable<StringWriter> ToClassStringWriters(this CodeCompileUnit current)
+        {
+            var provider = new CSharpCodeProvider();
+            var codeGeneratorOptions = new CodeGeneratorOptions() {
+                VerbatimOrder = true
+            };
+
+            foreach (CodeNamespace ns in current.Namespaces.Cast<CodeNamespace>()) {
+                var imports = ns.Imports.Cast<CodeNamespaceImport>().ToArray();
+                var comments = ns.Comments.Cast<CodeCommentStatement>().ToArray();
+                foreach (CodeTypeDeclaration type in ns.Types) {
+                    var classStrWriter = new StringWriter();
+
+                    var nsCopy = ns.ShallowClone();
+                    nsCopy.Comments.AddRange(comments);
+                    nsCopy.Imports.AddRange(imports);
+                    nsCopy.Types.Add(type);
+
+                    provider.GenerateCodeFromNamespace(nsCopy, classStrWriter, codeGeneratorOptions);
+
+                    yield return classStrWriter;
+                }
+            }
+        }
+
+        public static CodeNamespace ShallowClone(this CodeNamespace current) => new CodeNamespace(current.Name);
 
         /// <summary>
         /// Determines if an enum equivalent <see cref="CodeTypeDeclaration"/> already exists in the current sequence.
