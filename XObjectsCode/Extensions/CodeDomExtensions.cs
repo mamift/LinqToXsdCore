@@ -27,17 +27,20 @@ namespace Xml.Schema.Linq.Extensions
 
             return stringWriter;
         }
-        
+
         /// <summary>
         /// Creates individual <see cref="StringWriter"/>s for each <see cref="CodeTypeDeclaration"/> in each
         /// <see cref="CodeNamespace"/> in the <paramref name="current"/> <see cref="CodeCompileUnit"/>.
         /// </summary>
         /// <param name="current"></param>
+        /// <param name="csharpProvider">Optional <see cref="CSharpCodeProvider"/>, otherwise this method instantiates its own.</param>
+        /// <param name="codeGeneratorOptions">Optional <see cref="CodeGeneratorOptions"/>, otherwise this method instantiates its own.</param>
         /// <returns></returns>
-        public static IEnumerable<StringWriter> ToClassStringWriters(this CodeCompileUnit current)
+        public static IEnumerable<StringWriter> ToClassStringWriters(this CodeCompileUnit current, CSharpCodeProvider csharpProvider = null, 
+            CodeGeneratorOptions codeGeneratorOptions = null)
         {
-            var provider = new CSharpCodeProvider();
-            var codeGeneratorOptions = new CodeGeneratorOptions() {
+            if (csharpProvider == null) csharpProvider = new CSharpCodeProvider();
+            if (codeGeneratorOptions == null) codeGeneratorOptions = new CodeGeneratorOptions() {
                 VerbatimOrder = true
             };
 
@@ -52,7 +55,7 @@ namespace Xml.Schema.Linq.Extensions
                     nsCopy.Imports.AddRange(imports);
                     nsCopy.Types.Add(type);
 
-                    provider.GenerateCodeFromNamespace(nsCopy, classStrWriter, codeGeneratorOptions);
+                    csharpProvider.GenerateCodeFromNamespace(nsCopy, classStrWriter, codeGeneratorOptions);
 
                     yield return classStrWriter;
                 }
