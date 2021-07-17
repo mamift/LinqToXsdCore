@@ -93,7 +93,9 @@ namespace Xml.Schema.Linq
             if (fileName.IsEmpty()) throw new ArgumentNullException(nameof(fileName));
 
             var xsdFile = new FileInfo(fileName);
-            var directoryInfo = new DirectoryInfo(Path.GetDirectoryName(fileName));
+            var possibleDirectoryName = xsdFile.DirectoryName;
+
+            var directoryInfo = new DirectoryInfo(possibleDirectoryName);
             FileInfo[] additionalXsds = directoryInfo.GetFiles("*.xsd");
 
             var xmlPreloadedResolver = new XmlPreloadedResolver();
