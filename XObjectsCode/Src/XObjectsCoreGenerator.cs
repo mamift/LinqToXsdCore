@@ -40,7 +40,7 @@ namespace Xml.Schema.Linq
         public static Dictionary<string, TextWriter> Generate(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings)
         {
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
-            
+
             var textWriters = xsdFilePaths.Select(file => Generate(file, settings));
 
             return textWriters.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
@@ -52,10 +52,10 @@ namespace Xml.Schema.Linq
         /// <param name="xsdFilePaths"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static Dictionary<string, List<TextWriter>> GenerateMultipleTextWriters(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings)
+        public static Dictionary<string, List<(string, StringWriter)>> GenerateMultipleTextWriters(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings)
         {
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
-            
+
             var textWriters = xsdFilePaths.Select(file => GenerateForSplitCodeGen(file, settings));
 
             return textWriters.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
@@ -77,7 +77,7 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
-        /// Generates code using a given <see cref="xsdFilePath"/> for a single file, and an optional <see cref="LinqToXsdSettings"/> instance. 
+        /// Generates code using a given <see cref="xsdFilePath"/> for a single file, and an optional <see cref="LinqToXsdSettings"/> instance.
         /// </summary>
         /// <param name="xsdFilePath"></param>
         /// <param name="settings">If null, uses default or </param>
@@ -103,13 +103,13 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
-        /// Generates code using a given <see cref="xsdFilePath"/> for a single file, and an optional <see cref="LinqToXsdSettings"/> instance. 
+        /// Generates code using a given <see cref="xsdFilePath"/> for a single file, and an optional <see cref="LinqToXsdSettings"/> instance.
         /// </summary>
         /// <param name="xsdFilePath"></param>
         /// <param name="settings">If null, uses default or </param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static KeyValuePair<string, List<TextWriter>> GenerateForSplitCodeGen(string xsdFilePath, LinqToXsdSettings settings = null)
+        public static KeyValuePair<string, List<(string, StringWriter)>> GenerateForSplitCodeGen(string xsdFilePath, LinqToXsdSettings settings = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
@@ -122,42 +122,43 @@ namespace Xml.Schema.Linq
             using (xmlReader) {
                 var schemaSet = xmlReader.ToXmlSchemaSet();
 
-                var codeWriters = GenerateMultipleTextWriters(schemaSet, settings);
+                var codeWriters = GenerateMultipleTextWriters(schemaSet, settings).ToList();
 
-                return new KeyValuePair<string, List<TextWriter>>(xsdFilePath, codeWriters.ToList());
+                return new KeyValuePair<string, List<(string, StringWriter)>>(xsdFilePath, codeWriters);
             }
         }
 
         /// <summary>
-        /// Generates code using a given <see cref="xsdFilePaths"/> for a single file, and an optional <see cref="LinqToXsdSettings"/> instance. 
+        /// Generates code using a given <see cref="xsdFilePaths"/> for a single file, and an optional <see cref="LinqToXsdSettings"/> instance.
         /// </summary>
         /// <param name="xsdFilePaths"></param>
         /// <param name="settings">If null, uses default or </param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePaths"/> is <see langword="null"/></exception>
-        public static Dictionary<string, List<TextWriter>> GenerateForSplitCodeGen(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings = null)
+        public static Dictionary<string, List<(string, TextWriter)>> GenerateForSplitCodeGen(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings = null)
         {
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
             if (settings == null) settings = new LinqToXsdSettings();
 
-            var xmlReaders = xsdFilePaths.Select(p => 
+            var xmlReaders = xsdFilePaths.Select(p =>
                 new KeyValuePair<string, XmlReader>(p, XmlReader.Create(p, new XmlReaderSettings {
                     DtdProcessing = DtdProcessing.Parse,
                     CloseInput = true
                 }))
             );
 
-            var writers = new Dictionary<string, List<TextWriter>>();
+            var writers = new Dictionary<string, List<(string, TextWriter)>>();
 
             foreach (var kvp in xmlReaders) {
                 var xmlReader = kvp.Value;
                 using (xmlReader) {
                     var schemaSet = xmlReader.ToXmlSchemaSet();
 
-                    var codeWriters = GenerateMultipleTextWriters(schemaSet, settings);
-                    
-                    writers.Add(kvp.Key, codeWriters.ToList());
-                }    
+                    List<(string, StringWriter)> codeWriters = GenerateMultipleTextWriters(schemaSet, settings).ToList();
+
+                    List<(string, TextWriter)> valueTuples = new List<(string, TextWriter)>();
+                    writers.Add(kvp.Key, valueTuples);
+                }
             }
 
             return writers;
@@ -175,12 +176,12 @@ namespace Xml.Schema.Linq
         {
             var ccu = GenerateCodeCompileUnit(schemaSet, settings);
             var writer = ccu.ToStringWriter();
-            
+
             if (settings.NullableReferences) {
-                writer.InsertFilePragma(Strings.NnullableEnableAnnotations);                
+                writer.InsertFilePragma(Strings.NnullableEnableAnnotations);
             }
 
-            return writer;            
+            return writer;
         }
 
         /// <summary>
@@ -191,12 +192,12 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<TextWriter> GenerateMultipleTextWriters(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string, StringWriter)> GenerateMultipleTextWriters(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
             var ccu = GenerateCodeCompileUnit(schemaSet, settings);
-            var writers = ccu.ToNamespaceStringWriters(settings);
+            var writers = ccu.ToMultipleStringWriters(settings);
 
-            return writers;            
+            return writers;
         }
 
         /// <summary>
@@ -217,7 +218,7 @@ namespace Xml.Schema.Linq
             var codeGenerator = new CodeDomTypesGenerator(settings);
             var ccu = new CodeCompileUnit();
             var namespaces = codeGenerator.GenerateTypes(mapping);
-            foreach(var codeNs in namespaces) 
+            foreach(var codeNs in namespaces)
                 ccu.Namespaces.Add(codeNs);
 
             return ccu;

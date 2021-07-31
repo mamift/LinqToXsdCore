@@ -79,7 +79,8 @@ namespace LinqToXsd
             /// </summary>
             /// <param name="options"></param>
             /// <param name="textWriters"></param>
-            internal static void HandleWriteOutputForMultipleTextWriters(GenerateOptions options, Dictionary<string, List<TextWriter>> textWriters)
+            internal static void HandleWriteOutputForMultipleTextWriters(GenerateOptions options, Dictionary<string, List<(string,
+                TextWriter)>> textWriters)
             {
                 foreach (var schemaTextWriterPair in textWriters) {
                     var outputFile = schemaTextWriterPair.Key;

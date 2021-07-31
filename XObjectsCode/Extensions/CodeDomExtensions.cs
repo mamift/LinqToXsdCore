@@ -95,7 +95,7 @@ namespace Xml.Schema.Linq.Extensions
         /// <param name="csharpProvider">Optional <see cref="CSharpCodeProvider"/>, otherwise this method instantiates its own.</param>
         /// <param name="codeGeneratorOptions">Optional <see cref="CodeGeneratorOptions"/>, otherwise this method instantiates its own.</param>
         /// <returns></returns>
-        public static IEnumerable<(string, StringWriter)> ToNamespaceStringWriters(this CodeCompileUnit current, LinqToXsdSettings settings,
+        public static IEnumerable<(string, StringWriter)> ToMultipleStringWriters(this CodeCompileUnit current, LinqToXsdSettings settings,
             CSharpCodeProvider csharpProvider = null, CodeGeneratorOptions codeGeneratorOptions = null)
         {
             IEnumerable<(string, StringWriter)> stringWriters;

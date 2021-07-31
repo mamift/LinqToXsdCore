@@ -165,7 +165,7 @@ namespace LinqToXsd
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
             
             if (settings.SplitCodeGenByClasses || settings.SplitCodeGenByNamespaces) {
-                var multTextWriters = XObjectsCoreGenerator.GenerateForSplitCodeGen(generateOptions.SchemaFiles, settings);
+                Dictionary<string, List<(string, TextWriter)>> multTextWriters = XObjectsCoreGenerator.GenerateForSplitCodeGen(generateOptions.SchemaFiles, settings);
 
                 GenerateCodeDispatcher.HandleWriteOutputForMultipleTextWriters(generateOptions, multTextWriters);
             }
