@@ -150,16 +150,10 @@ namespace LinqToXsd
         /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
-            var settingsFromFile = generateOptions.GetConfigInstance(ProgressReporter);
+            LinqToXsdSettings settingsFromFile = generateOptions.GetConfigInstance(ProgressReporter);
             var settings = settingsFromFile ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
             if (settingsFromFile != null)
                 PrintLn("Configuration file(s) loaded...".Gray());
-
-            settings.EnableServiceReference = generateOptions.EnableServiceReference;
-
-            var textWriters = generateOptions.AutoConfig
-                ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles)
-                : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
 
             if (generateOptions.Output.IsEmpty()) {
                 PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
@@ -167,11 +161,25 @@ namespace LinqToXsd
             }
 
             var hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
-            // merge the output into a single file
-            if (hasCsExt)
-                GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);
-            else
-                GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions, textWriters);
+
+            settings.EnableServiceReference = generateOptions.EnableServiceReference;
+            
+            if (settings.SplitCodeGenByClasses || settings.SplitCodeGenByNamespaces) {
+                var multTextWriters = XObjectsCoreGenerator.GenerateForSplitCodeGen(generateOptions.SchemaFiles, settings);
+
+                GenerateCodeDispatcher.HandleWriteOutputForMultipleTextWriters(generateOptions, multTextWriters);
+            }
+            else {
+                Dictionary<string, TextWriter>  textWriters = generateOptions.AutoConfig
+                    ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles)
+                    : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
+                
+                // merge the output into a single file
+                if (hasCsExt)
+                    GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);
+                else
+                    GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions, textWriters);
+            }
         }
     }
 }

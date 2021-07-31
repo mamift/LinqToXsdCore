@@ -95,7 +95,7 @@ namespace Xml.Schema.Linq
         /// <param name="directory"></param>
         /// <param name="progress"></param>
         /// <returns><c>null</c> if not configs are present in the <paramref name="directory"/>.</returns>
-        public static LinqToXsdSettings Load(DirectoryInfo directory, IProgress<string> progress = null)
+        public static LinqToXsdSettings LoadMultipleAsOne(DirectoryInfo directory, IProgress<string> progress = null)
         {
             var configFiles = directory.EnumerateFiles("*", SearchOption.AllDirectories)
                                        .Where(f => f.Extension.EndsWith(".xml") || f.Extension.EndsWith(".config"))

@@ -86,6 +86,34 @@ namespace Xml.Schema.Linq.Extensions
             }
         }
 
+        /// <summary>
+        /// Creates individual <see cref="StringWriter"/>s for each <see cref="CodeNamespace"/>
+        /// in the <paramref name="current"/> <see cref="CodeCompileUnit"/>.
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="settings"></param>
+        /// <param name="csharpProvider">Optional <see cref="CSharpCodeProvider"/>, otherwise this method instantiates its own.</param>
+        /// <param name="codeGeneratorOptions">Optional <see cref="CodeGeneratorOptions"/>, otherwise this method instantiates its own.</param>
+        /// <returns></returns>
+        public static IEnumerable<StringWriter> ToNamespaceStringWriters(this CodeCompileUnit current, LinqToXsdSettings settings,
+            CSharpCodeProvider csharpProvider = null, CodeGeneratorOptions codeGeneratorOptions = null)
+        {
+            IEnumerable<StringWriter> stringWriters;
+            if (settings.SplitCodeGenByNamespaces) {
+                stringWriters = current.ToNamespaceStringWriters(csharpProvider, codeGeneratorOptions);
+            }
+            else {
+                stringWriters = current.ToClassStringWriters(csharpProvider, codeGeneratorOptions);
+            }
+
+            foreach (var writer in stringWriters) {
+                if (settings.NullableReferences) {
+                    writer.InsertFilePragma(Strings.NnullableEnableAnnotations);
+                }
+                yield return writer;
+            }
+        }
+
         public static CodeNamespace ShallowClone(this CodeNamespace current) => new CodeNamespace(current.Name);
 
         /// <summary>

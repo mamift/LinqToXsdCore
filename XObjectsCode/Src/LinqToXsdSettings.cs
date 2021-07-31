@@ -18,8 +18,6 @@ namespace Xml.Schema.Linq
         private Dictionary<string, string> namespaceMapping;
         public Dictionary<string, GeneratedTypesVisibility> NamespaceTypesVisibilityMap { get; } = new Dictionary<string, GeneratedTypesVisibility>();
         internal XElement trafo;
-        private bool verifyRequired = false;
-        private bool enableServiceReference = false;
         private readonly bool NameMangler2;
         
         public LinqToXsdSettings(bool nameMangler2 = false)
@@ -51,15 +49,30 @@ namespace Xml.Schema.Linq
             var namespacesElement = rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs));
             GenerateNamespaceMapping(namespacesElement);
             GenerateNamespaceVisibilityMapping(namespacesElement);
+            GenerateCodeGenMapping(rootElement.Element(XName.Get(nameof(CodeGeneration))));
             XElement nullableSettings = rootElement.Element(XName.Get("NullableReferences", Constants.TypedXLinqNs));
             NullableReferences = nullableSettings?.Value == "true";
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
             XElement validationSettings = rootElement.Element(XName.Get("Validation", Constants.TypedXLinqNs));
             if (validationSettings != null)
             {
-                verifyRequired =
+                VerifyRequired =
                     (string)validationSettings.Element(XName.Get("VerifyRequired", Constants.TypedXLinqNs)) == "true";
             }
+        }
+
+        private void GenerateCodeGenMapping(XElement codeGenElement)
+        {
+            if (codeGenElement == null) return;
+            var splitCodeFilesElement = codeGenElement.Element(XName.Get(nameof(SplitCodeFiles)));
+            if (splitCodeFilesElement == null) return;
+            var byAttr = splitCodeFilesElement.Attribute(XName.Get(nameof(SplitCodeFiles.By)));
+
+            if (byAttr?.Value == "Class") SplitCodeGenByClasses = true;
+            if (byAttr?.Value == "Namespace") SplitCodeGenByClasses = true;
+
+            if (SplitCodeGenByClasses && SplitCodeGenByNamespaces)
+                throw new LinqToXsdException("You cannot split generated code files by both namespaces and classes!");
         }
 
         public string GetClrNamespace(string xmlNamespace)
@@ -81,18 +94,15 @@ namespace Xml.Schema.Linq
             return clrNamespace;
         }
 
-        public bool VerifyRequired
-        {
-            get { return verifyRequired; }
-        }
+        public bool VerifyRequired { get; private set; } = false;
 
-        public bool EnableServiceReference
-        {
-            get { return enableServiceReference; }
-            set { enableServiceReference = value; }
-        }
+        public bool EnableServiceReference { get; set; } = false;
 
         public bool NullableReferences { get; set; }
+
+        public bool SplitCodeGenByNamespaces { get; set; }
+        
+        public bool SplitCodeGenByClasses { get; set; }
 
         private void GenerateNamespaceMapping(XElement namespaces)
         {

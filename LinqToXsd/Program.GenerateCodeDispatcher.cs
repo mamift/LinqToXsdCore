@@ -73,6 +73,30 @@ namespace LinqToXsd
                     foreach (var kvp in textWriters) fileWriter.Write(kvp.Value);
                 }
             }
+
+            /// <summary>
+            /// Writes generated code to a single output file.
+            /// </summary>
+            /// <param name="options"></param>
+            /// <param name="textWriters"></param>
+            internal static void HandleWriteOutputForMultipleTextWriters(GenerateOptions options, Dictionary<string, List<TextWriter>> textWriters)
+            {
+                foreach (var schemaTextWriterPair in textWriters) {
+                    var outputFile = schemaTextWriterPair.Key;
+                    // add .cs extension to filename if it doesn't have it already.
+                    var target = outputFile.EndsWith(".cs") ? outputFile : $"{outputFile}.cs";
+                
+                    PrintLn($"{textWriters.Keys.ToDelimitedString(k => $"'{Path.GetFileName(k)}'").Yellow()}");
+                    PrintLn($"\toutput to \n{target}");
+
+                    using (FileStream fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite))
+                    using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8)) {
+                        foreach (var writer in schemaTextWriterPair.Value) {
+                            fileWriter.Write(writer);
+                        }
+                    }
+                }
+            }
         }
     }
 }

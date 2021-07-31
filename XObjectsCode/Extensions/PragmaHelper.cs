@@ -3,8 +3,15 @@ using System.Text;
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    static class PragmaHelper
+    public static class PragmaHelper
     {
+        /// <summary>
+        /// HACK: CodeDom doesn't allow us to add #pragmas.
+        /// In &lt;auto-generated&gt; code, CS mandates a "#nullable enable" pragma.
+        /// So we add the pragma inside the generated text directly
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="pragma"></param>
         public static void InsertFilePragma(this StringWriter writer, string pragma)
         {
             var builder = writer.GetStringBuilder();
