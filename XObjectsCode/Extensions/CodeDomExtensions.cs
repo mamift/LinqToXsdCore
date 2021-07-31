@@ -36,7 +36,7 @@ namespace Xml.Schema.Linq.Extensions
         /// <param name="csharpProvider">Optional <see cref="CSharpCodeProvider"/>, otherwise this method instantiates its own.</param>
         /// <param name="codeGeneratorOptions">Optional <see cref="CodeGeneratorOptions"/>, otherwise this method instantiates its own.</param>
         /// <returns></returns>
-        public static IEnumerable<StringWriter> ToClassStringWriters(this CodeCompileUnit current, CSharpCodeProvider csharpProvider = null, 
+        public static IEnumerable<(string, StringWriter)> ToClassStringWriters(this CodeCompileUnit current, CSharpCodeProvider csharpProvider = null, 
             CodeGeneratorOptions codeGeneratorOptions = null)
         {
             if (csharpProvider == null) csharpProvider = new CSharpCodeProvider();
@@ -57,7 +57,7 @@ namespace Xml.Schema.Linq.Extensions
 
                     csharpProvider.GenerateCodeFromNamespace(nsCopy, classStrWriter, codeGeneratorOptions);
 
-                    yield return classStrWriter;
+                    yield return ($"{ns.Name}.{type.Name}", classStrWriter);
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace Xml.Schema.Linq.Extensions
         /// <param name="csharpProvider">Optional <see cref="CSharpCodeProvider"/>, otherwise this method instantiates its own.</param>
         /// <param name="codeGeneratorOptions">Optional <see cref="CodeGeneratorOptions"/>, otherwise this method instantiates its own.</param>
         /// <returns></returns>
-        public static IEnumerable<StringWriter> ToNamespaceStringWriters(this CodeCompileUnit current, CSharpCodeProvider csharpProvider = null, 
+        public static IEnumerable<(string, StringWriter)> ToNamespaceStringWriters(this CodeCompileUnit current, CSharpCodeProvider csharpProvider = null, 
             CodeGeneratorOptions codeGeneratorOptions = null)
         {
             if (csharpProvider == null) csharpProvider = new CSharpCodeProvider();
@@ -82,7 +82,7 @@ namespace Xml.Schema.Linq.Extensions
                 var classStrWriter = new StringWriter();
                 csharpProvider.GenerateCodeFromNamespace(ns, classStrWriter, codeGeneratorOptions);
 
-                yield return classStrWriter;
+                yield return (ns.Name, classStrWriter);
             }
         }
 
@@ -95,10 +95,10 @@ namespace Xml.Schema.Linq.Extensions
         /// <param name="csharpProvider">Optional <see cref="CSharpCodeProvider"/>, otherwise this method instantiates its own.</param>
         /// <param name="codeGeneratorOptions">Optional <see cref="CodeGeneratorOptions"/>, otherwise this method instantiates its own.</param>
         /// <returns></returns>
-        public static IEnumerable<StringWriter> ToNamespaceStringWriters(this CodeCompileUnit current, LinqToXsdSettings settings,
+        public static IEnumerable<(string, StringWriter)> ToNamespaceStringWriters(this CodeCompileUnit current, LinqToXsdSettings settings,
             CSharpCodeProvider csharpProvider = null, CodeGeneratorOptions codeGeneratorOptions = null)
         {
-            IEnumerable<StringWriter> stringWriters;
+            IEnumerable<(string, StringWriter)> stringWriters;
             if (settings.SplitCodeGenByNamespaces) {
                 stringWriters = current.ToNamespaceStringWriters(csharpProvider, codeGeneratorOptions);
             }
@@ -106,11 +106,11 @@ namespace Xml.Schema.Linq.Extensions
                 stringWriters = current.ToClassStringWriters(csharpProvider, codeGeneratorOptions);
             }
 
-            foreach (var writer in stringWriters) {
+            foreach (var (namespaceName, writer) in stringWriters) {
                 if (settings.NullableReferences) {
                     writer.InsertFilePragma(Strings.NnullableEnableAnnotations);
                 }
-                yield return writer;
+                yield return (namespaceName, writer);
             }
         }
 
