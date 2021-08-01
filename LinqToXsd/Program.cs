@@ -164,21 +164,15 @@ namespace LinqToXsd
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
             
-            if (settings.SplitCodeGenByClasses || settings.SplitCodeGenByNamespaces) {
-                Dictionary<string, List<(string, TextWriter)>> multTextWriters = XObjectsCoreGenerator.GenerateForSplitCodeGen(generateOptions.SchemaFiles, settings);
-
-                GenerateCodeDispatcher.HandleWriteOutputForMultipleTextWriters(generateOptions, multTextWriters);
-            }
-            else {
-                Dictionary<string, TextWriter>  textWriters = generateOptions.AutoConfig
-                    ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles)
-                    : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
-                
-                // merge the output into a single file
-                if (hasCsExt)
-                    GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);
-                else
-                    GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions, textWriters);
+            Dictionary<string, List<(string, StringWriter)>>  textWriters = generateOptions.AutoConfig
+                ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles)
+                : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
+            
+            // merge the output into a single file
+            if (hasCsExt) {
+                GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);
+            } else {
+                GenerateCodeDispatcher.HandleWriteOutputToMultipleFiles(generateOptions, textWriters);
             }
         }
     }

@@ -9,6 +9,7 @@ using Microsoft.Schemas.AspNetSiteMaps;
 using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
 using W3C.XSD;
+using schema = W3C.XSD.schema;
 
 namespace Xml.Schema.Linq.Tests.API
 {

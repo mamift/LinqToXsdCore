@@ -63,9 +63,9 @@ namespace Xml.Schema.Linq {
         /// <summary>
         ///   Looks up a localized string similar to #nullable enable annotations.
         /// </summary>
-        internal static string NnullableEnableAnnotations {
+        internal static string NullableEnableAnnotationsPragma {
             get {
-                return ResourceManager.GetString("NnullableEnableAnnotations", resourceCulture);
+                return ResourceManager.GetString("NullableEnableAnnotationsPragma", resourceCulture);
             }
         }
     }

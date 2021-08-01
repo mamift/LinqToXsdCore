@@ -17,15 +17,17 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <param name="ccu"></param>
         /// <returns></returns>
-        public static StringWriter ToStringWriter(this CodeCompileUnit ccu)
+        public static (string, StringWriter) ToStringWriter(this CodeCompileUnit ccu)
         {
             var stringWriter = new StringWriter();
 
             var provider = new CSharpCodeProvider();
             var codeGeneratorOptions = new CodeGeneratorOptions();
             provider.GenerateCodeFromCompileUnit(ccu, stringWriter, codeGeneratorOptions);
+            var delimitedNamespaceList = ccu.Namespaces.Cast<CodeNamespace>().Select(n => n.Name)
+                .ToDelimitedString(',');
 
-            return stringWriter;
+            return (delimitedNamespaceList, stringWriter);
         }
 
         /// <summary>
@@ -107,8 +109,8 @@ namespace Xml.Schema.Linq.Extensions
             }
 
             foreach (var (namespaceName, writer) in stringWriters) {
-                if (settings.NullableReferences) {
-                    writer.InsertFilePragma(Strings.NnullableEnableAnnotations);
+                if (settings.InsertNullableReferencesPragma) {
+                    writer.InsertFilePragma(Strings.NullableEnableAnnotationsPragma);
                 }
                 yield return (namespaceName, writer);
             }

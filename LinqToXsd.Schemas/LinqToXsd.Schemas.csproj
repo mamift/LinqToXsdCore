@@ -5,8 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="XSDWorkingCode\**" />
+    <EmbeddedResource Remove="XSDWorkingCode\**" />
+    <None Remove="XSDWorkingCode\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="XSDWorkingCode.zip" />
   </ItemGroup>
 
   <ItemGroup>

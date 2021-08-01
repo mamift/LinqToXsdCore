@@ -49,9 +49,9 @@ namespace Xml.Schema.Linq
             var namespacesElement = rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs));
             GenerateNamespaceMapping(namespacesElement);
             GenerateNamespaceVisibilityMapping(namespacesElement);
-            GenerateCodeGenMapping(rootElement.Element(XName.Get(nameof(CodeGeneration))));
+            GenerateCodeGenMapping(rootElement.Element(XName.Get(nameof(CodeGeneration), Constants.TypedXLinqNs)));
             XElement nullableSettings = rootElement.Element(XName.Get("NullableReferences", Constants.TypedXLinqNs));
-            NullableReferences = nullableSettings?.Value == "true";
+            InsertNullableReferencesPragma = nullableSettings?.Value == "true";
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
             XElement validationSettings = rootElement.Element(XName.Get("Validation", Constants.TypedXLinqNs));
             if (validationSettings != null)
@@ -64,7 +64,7 @@ namespace Xml.Schema.Linq
         private void GenerateCodeGenMapping(XElement codeGenElement)
         {
             if (codeGenElement == null) return;
-            var splitCodeFilesElement = codeGenElement.Element(XName.Get(nameof(SplitCodeFiles)));
+            var splitCodeFilesElement = codeGenElement.Element(XName.Get(nameof(SplitCodeFiles), Constants.TypedXLinqNs));
             if (splitCodeFilesElement == null) return;
             var byAttr = splitCodeFilesElement.Attribute(XName.Get(nameof(SplitCodeFiles.By)));
 
@@ -98,7 +98,7 @@ namespace Xml.Schema.Linq
 
         public bool EnableServiceReference { get; set; } = false;
 
-        public bool NullableReferences { get; set; }
+        public bool InsertNullableReferencesPragma { get; set; }
 
         public bool SplitCodeGenByNamespaces { get; set; }
         

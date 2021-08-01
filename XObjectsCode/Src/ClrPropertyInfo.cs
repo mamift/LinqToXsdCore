@@ -375,7 +375,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         internal ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
-            this.nullableReferences = settings.NullableReferences;
+            this.nullableReferences = settings.InsertNullableReferencesPragma;
             this.contentType = ContentType.Property;
             this.propertyName = propertyName;
             this.propertyNs = propertyNs;

@@ -84,13 +84,15 @@ namespace Xml.Schema.Linq.Tests.Extensions
             CodeCompileUnit ccu = XObjectsCoreGenerator.GenerateCodeCompileUnit(Shared.XmlSpecSchemaSet.Value,
                 Shared.XmlSpecLinqToXsdSettings.Value);
 
-            List<StringWriter> classStringWriters = ccu.ToClassStringWriters().ToList();
+            List<(string, StringWriter)> classStringWriters = ccu.ToClassStringWriters().ToList();
 
             Assert.IsNotEmpty(classStringWriters);
 
-            foreach (var classWriter in classStringWriters) {
-                var classCode = classWriter.ToString();
+            foreach (var (fqClassName, writer) in classStringWriters) {
+                var classCode = writer.ToString();
 
+                var className = fqClassName.Split('.').Last();
+                Assert.IsTrue(classCode.Contains(className));
                 Assert.IsNotEmpty(classCode);
             }
         }
@@ -102,14 +104,15 @@ namespace Xml.Schema.Linq.Tests.Extensions
                 XObjectsCoreGenerator.GenerateCodeCompileUnit(Shared.XmlSpecSchemaSet.Value,
                     Shared.XmlSpecLinqToXsdSettings.Value);
 
-            List<StringWriter> classStringWriters = ccu.ToNamespaceStringWriters().ToList();
+            List<(string, StringWriter)> namespaceStringWriters = ccu.ToNamespaceStringWriters().ToList();
 
-            Assert.IsNotEmpty(classStringWriters);
-            Assert.IsTrue(classStringWriters.Count == 1);
+            Assert.IsNotEmpty(namespaceStringWriters);
+            Assert.IsTrue(namespaceStringWriters.Count == 1);
 
-            foreach (var namespaceWriter in classStringWriters) {
-                var namespaceCode = namespaceWriter.ToString();
+            foreach (var (nsName, writer) in namespaceStringWriters) {
+                var namespaceCode = writer.ToString();
 
+                Assert.IsTrue(namespaceCode.Contains(nsName));
                 Assert.IsNotEmpty(namespaceCode);
             }
         }
