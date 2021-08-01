@@ -26,6 +26,10 @@ namespace Xml.Schema.Linq
                                                  "Only 'public' and 'internal' are acceptable values. Unrecognised values default to 'public'.");
             var moreNamespacesComment = new XComment("Add more of your own XML Schema-to-CLR namespace mapping elements here");
 
+            var codeGenEl = $"<{nameof(Linq.CodeGeneration)} /> element entirely. Removing";
+            var codeGenComment = new XComment($"To disable splitting code generation by namespace or class, remove or comment out the {codeGenEl}. " +
+                                              $"Removing the {codeGenEl} element will cause the output code to write to a single .CS file per unrelated XSD file.");
+
             var descendants = doc.Descendants().ToList();
 
             var namespacesElement = descendants.FirstOrDefault(d => d.Name.LocalName == nameof(Linq.Namespaces));
@@ -33,6 +37,9 @@ namespace Xml.Schema.Linq
 
             var firstNamespaceElement = descendants.FirstOrDefault(d => d.Name.LocalName == nameof(Namespace));
             firstNamespaceElement?.AddBeforeSelf(visibilityComment);
+
+            var firstCodeGenElement = descendants.FirstOrDefault(d => d.Name.LocalName == nameof(Linq.CodeGeneration));
+            firstCodeGenElement?.AddBeforeSelf(codeGenComment);
 
             return doc;
         }
@@ -143,7 +150,7 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public static Configuration GetBlankConfigurationInstance()
         {
-            return new Configuration {
+            var blank = new Configuration {
                 Namespaces = new Namespaces {
                     Namespace = new List<Namespace>()
                 },
@@ -161,6 +168,7 @@ namespace Xml.Schema.Linq
                     }
                 }
             };
+            return blank;
         }
 
         /// <summary>

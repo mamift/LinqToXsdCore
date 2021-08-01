@@ -55,8 +55,7 @@ namespace Xml.Schema.Linq
                         var config = schemaConfigs.ElementAt(i);
                         var outputConfig = xsdKvp.Key.AppendIfNotPresent(".config");
                         progress?.Report($"Saving {outputConfig}");
-                        var withHelpfulComments = config.AddHelpfulComments();
-                        withHelpfulComments.Save(outputConfig);
+                        config.Save(outputConfig);
                     }
                     return;
                 }
@@ -78,6 +77,8 @@ namespace Xml.Schema.Linq
                 var loadedForXsd = Configuration.LoadForSchema(XDocument.Load(pair.Value));
                 return theEgConfig.MergeNamespaces(loadedForXsd);
             });
+
+            mergedOutput.AddHelpfulComments();
 
             // use a generic filename if multiple inputs were given
             var outputFileName = inputFiles.Length > 1 ? "LinqToXsdConfig.config" : inputFiles.First();
