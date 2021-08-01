@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Alba.CsConsoleFormat.Fluent;
 using Xml.Schema.Linq.Extensions;
@@ -21,31 +22,42 @@ namespace LinqToXsd
             {
                 var possibleOutputFolder = options.Output;
 
-                PrintLn($"Outputting {textWriters.Count} files...".Gray());
-                foreach (var schemaWriters in textWriters) {
-                    var outputFilename = Path.GetFileName($"{schemaWriters.Key}.cs");
+                PrintLn($"Outputting code for {textWriters.Count} XSD file(s)...".Gray());
+                foreach (var currentSchemaWriters in textWriters) {
+                    var outputFilename = Path.GetFileName($"{currentSchemaWriters.Key}.cs");
                     string outputFilePath;
 
                     if (possibleOutputFolder == "-1")
-                        outputFilePath = Path.Combine(Path.GetDirectoryName(schemaWriters.Key), outputFilename);
+                        outputFilePath = Path.Combine(Path.GetDirectoryName(currentSchemaWriters.Key), outputFilename);
                     else if (possibleOutputFolder.IsNotEmpty())
                         outputFilePath = Path.Combine(possibleOutputFolder, outputFilename);
                     else
                         outputFilePath = Path.GetFullPath(outputFilename);
 
-                    var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
+                    var outputDir = Path.GetDirectoryName(outputFilePath);
 
-                    if (!Directory.Exists(fullPathOfContainingDir)) {
-                        PrintLn($"Creating directory: {fullPathOfContainingDir}".Yellow());
-                        Directory.CreateDirectory(fullPathOfContainingDir);
+                    if (!Directory.Exists(outputDir)) {
+                        PrintLn($"Creating directory: {outputDir}".Yellow());
+                        Directory.CreateDirectory(outputDir);
                     }
+                    
+                    var schemaCodeWriters = currentSchemaWriters.Value;
 
-                    PrintLn($"{schemaWriters.Key} => {outputFilePath}".Gray());
-
-                    using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
-                    using (var fileWriter = new StreamWriter(outputFileStream)) {
-                        foreach (var writer in schemaWriters.Value) {
-                            fileWriter.Write(writer.Item2);
+                    if (schemaCodeWriters.Count > 1) {
+                        PrintLn($"Outputing {schemaCodeWriters.Count} C# code files...".Gray());
+                        foreach (var (id, codeWriter) in schemaCodeWriters) {
+                            var specificOutputFilePath = Path.Combine(outputDir, id.AppendIfNotPresent(".cs"));
+                            using (var outputFileStream = File.Open(specificOutputFilePath, FileMode.Create, FileAccess.ReadWrite))
+                            using (var fileWriter = new StreamWriter(outputFileStream)) {
+                                fileWriter.Write(codeWriter);
+                            }
+                        }
+                    }
+                    else {
+                        PrintLn($"Outputing to {outputFilePath}...".Gray());
+                        using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
+                        using (var fileWriter = new StreamWriter(outputFileStream)) {
+                            fileWriter.Write(schemaCodeWriters.Single().Item2);
                         }
                     }
                 }

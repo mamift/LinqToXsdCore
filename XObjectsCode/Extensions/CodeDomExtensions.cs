@@ -100,7 +100,7 @@ namespace Xml.Schema.Linq.Extensions
         public static IEnumerable<(string, StringWriter)> ToMultipleStringWriters(this CodeCompileUnit current, LinqToXsdSettings settings,
             CSharpCodeProvider csharpProvider = null, CodeGeneratorOptions codeGeneratorOptions = null)
         {
-            IEnumerable<(string, StringWriter)> stringWriters;
+            IEnumerable<(string, StringWriter)> stringWriters = null;
             if (settings.SplitCodeGenByNamespaces) {
                 stringWriters = current.ToNamespaceStringWriters(csharpProvider, codeGeneratorOptions);
             }

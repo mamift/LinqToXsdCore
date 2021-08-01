@@ -69,7 +69,7 @@ namespace Xml.Schema.Linq
             var byAttr = splitCodeFilesElement.Attribute(XName.Get(nameof(SplitCodeFiles.By)));
 
             if (byAttr?.Value == "Class") SplitCodeGenByClasses = true;
-            if (byAttr?.Value == "Namespace") SplitCodeGenByClasses = true;
+            if (byAttr?.Value == "Namespace") SplitCodeGenByNamespaces = true;
 
             if (SplitCodeGenByClasses && SplitCodeGenByNamespaces)
                 throw new LinqToXsdException("You cannot split generated code files by both namespaces and classes!");
