@@ -172,6 +172,19 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
+        /// Returns a blank <see cref="Configuration"/> instance with only the minimal elements present.
+        /// </summary>
+        /// <returns></returns>
+        public static Configuration GetMinimalBlankConfigurationInstance()
+        {
+            return new Configuration {
+                Namespaces = new Namespaces {
+                    Namespace = new List<Namespace>()
+                },
+            };
+        }
+
+        /// <summary>
         /// Returns an example <see cref="Configuration"/> instance with one <see cref="Namespace"/> element present.
         /// </summary>
         /// <returns></returns>

@@ -29,10 +29,14 @@ namespace Xml.Schema.Linq.Tests
         public static SourceText GenerateSourceText(string xsdFileName)
         {
             var possibleSettingsFile = $"{xsdFileName}.config";
+            var configExists = File.Exists(possibleSettingsFile);
 
-            KeyValuePair<string, List<(string, StringWriter)>> code = File.Exists(possibleSettingsFile)
-                ? XObjectsCoreGenerator.Generate(xsdFileName, possibleSettingsFile)
-                : XObjectsCoreGenerator.Generate(xsdFileName, default(string));
+            Configuration configuration = configExists ?
+                Configuration.Load(possibleSettingsFile) :
+                Configuration.GetMinimalBlankConfigurationInstance();
+
+            KeyValuePair<string, List<(string, StringWriter)>> code =
+                XObjectsCoreGenerator.Generate(xsdFileName, configuration.ToLinqToXsdSettings());
 
             if (code.Value.Count > 1)
                 throw new NotSupportedException("Only a single string writer is supported currently.");
@@ -54,7 +58,8 @@ namespace Xml.Schema.Linq.Tests
 
             Configuration config = File.Exists(possibleSettingsFile)
                 ? Configuration.Load(possibleSettingsFile)
-                : Configuration.GetBlankConfigurationInstance();
+                : Configuration.GetMinimalBlankConfigurationInstance();
+
             var settings = config.ToLinqToXsdSettings();
 
             List<(string, StringWriter)> code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
