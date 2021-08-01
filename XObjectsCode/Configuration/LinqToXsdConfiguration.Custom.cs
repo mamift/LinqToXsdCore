@@ -26,7 +26,7 @@ namespace Xml.Schema.Linq
                                                  "Only 'public' and 'internal' are acceptable values. Unrecognised values default to 'public'.");
             var moreNamespacesComment = new XComment("Add more of your own XML Schema-to-CLR namespace mapping elements here");
 
-            var codeGenEl = $"<{nameof(Linq.CodeGeneration)} /> element entirely. Removing";
+            var codeGenEl = $"<{nameof(Linq.CodeGeneration)} />";
             var codeGenComment = new XComment($"To disable splitting code generation by namespace or class, remove or comment out the {codeGenEl}. " +
                                               $"Removing the {codeGenEl} element will cause the output code to write to a single .CS file per unrelated XSD file.");
 
