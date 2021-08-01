@@ -29,6 +29,7 @@ namespace Xml.Schema.Linq.Tests
         public static SourceText GenerateSourceText(string xsdFileName)
         {
             var possibleSettingsFile = $"{xsdFileName}.config";
+
             KeyValuePair<string, List<(string, StringWriter)>> code = File.Exists(possibleSettingsFile)
                 ? XObjectsCoreGenerator.Generate(xsdFileName, possibleSettingsFile)
                 : XObjectsCoreGenerator.Generate(xsdFileName, default(string));
@@ -50,14 +51,18 @@ namespace Xml.Schema.Linq.Tests
         public static SourceText GenerateSourceText(XmlSchemaSet xmlSchemaSet, string xsdFileName)
         {
             var possibleSettingsFile = $"{xsdFileName}.config";
+
             Configuration config = File.Exists(possibleSettingsFile)
                 ? Configuration.Load(possibleSettingsFile)
                 : Configuration.GetBlankConfigurationInstance();
             var settings = config.ToLinqToXsdSettings();
 
-            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
+            List<(string, StringWriter)> code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
 
-            return SourceText.From(code.ToString());
+            if (code.Count > 1) 
+                throw new NotSupportedException("Only a single string writer is supported currently.");
+
+            return SourceText.From(code.Single().Item2.ToString());
         }
 
         /// <summary>
@@ -73,6 +78,7 @@ namespace Xml.Schema.Linq.Tests
             var atomXsdSchemaSet = FileSystemUtilities.PreLoadXmlSchemas(xsdFile.FullName);
 
             var sourceText = GenerateSourceText(atomXsdSchemaSet, xsdFile.FullName);
+            
             using var writer = new StreamWriter(xsdFile.FullName + ".cs");
             sourceText.Write(writer);
 
