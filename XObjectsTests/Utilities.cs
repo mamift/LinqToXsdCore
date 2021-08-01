@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Resolvers;
@@ -28,11 +29,14 @@ namespace Xml.Schema.Linq.Tests
         public static SourceText GenerateSourceText(string xsdFileName)
         {
             var possibleSettingsFile = $"{xsdFileName}.config";
-            KeyValuePair<string, TextWriter> code = File.Exists(possibleSettingsFile)
+            KeyValuePair<string, List<(string, StringWriter)>> code = File.Exists(possibleSettingsFile)
                 ? XObjectsCoreGenerator.Generate(xsdFileName, possibleSettingsFile)
                 : XObjectsCoreGenerator.Generate(xsdFileName, default(string));
 
-            return SourceText.From(code.Value.ToString());
+            if (code.Value.Count > 1)
+                throw new NotSupportedException("Only a single string writer is supported currently.");
+            
+            return SourceText.From(code.Value.Single().Item2.ToString());
         }
 
         /// <summary>

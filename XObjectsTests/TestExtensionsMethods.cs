@@ -100,7 +100,7 @@ namespace Xml.Schema.Linq.Tests
         /// <param name="codeObject"></param>
         /// <param name="namespaceName"></param>
         /// <returns></returns>
-        public static TextWriter ToTextWriter(this CodeTypeDeclaration codeObject, string namespaceName = null)
+        public static (string, TextWriter) ToTextWriter(this CodeTypeDeclaration codeObject, string namespaceName = null)
         {
             if (namespaceName == null) namespaceName = "DefaultCodeNamespace";
 
