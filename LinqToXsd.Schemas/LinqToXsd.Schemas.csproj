@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="XSDWorkingCode\**" />
-    <EmbeddedResource Remove="XSDWorkingCode\**" />
-    <None Remove="XSDWorkingCode\**" />
+    <Compile Remove="_temp\**" />
+    <EmbeddedResource Remove="_temp\**" />
+    <None Remove="_temp\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,6 +7,7 @@
 *.userosscache
 *.sln.docstates
 *.zip
+LinqToXsd.Schemas/_temp/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
