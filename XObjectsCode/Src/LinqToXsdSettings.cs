@@ -16,16 +16,19 @@ namespace Xml.Schema.Linq
     public class LinqToXsdSettings
     {
         private Dictionary<string, string> namespaceMapping;
-        public Dictionary<string, GeneratedTypesVisibility> NamespaceTypesVisibilityMap { get; } = new Dictionary<string, GeneratedTypesVisibility>();
+
+        public Dictionary<string, GeneratedTypesVisibility> NamespaceTypesVisibilityMap { get; } =
+            new Dictionary<string, GeneratedTypesVisibility>();
+
         internal XElement trafo;
         private readonly bool NameMangler2;
-        
+
         public LinqToXsdSettings(bool nameMangler2 = false)
         {
             this.NameMangler2 = nameMangler2;
             namespaceMapping = new Dictionary<string, string>();
         }
-        
+
         public LinqToXsdSettings(string filePath, bool nameMangler2 = false)
         {
             this.NameMangler2 = nameMangler2;
@@ -37,7 +40,7 @@ namespace Xml.Schema.Linq
         {
             if (string.IsNullOrEmpty(configFile))
                 throw new ArgumentException("Argument configFile should be non-null and non-empty.");
-            
+
             Load(XDocument.Load(configFile));
         }
 
@@ -54,10 +57,9 @@ namespace Xml.Schema.Linq
             InsertNullableReferencesPragma = nullableSettings?.Value == "true";
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
             XElement validationSettings = rootElement.Element(XName.Get("Validation", Constants.TypedXLinqNs));
-            if (validationSettings != null)
-            {
+            if (validationSettings != null) {
                 VerifyRequired =
-                    (string)validationSettings.Element(XName.Get("VerifyRequired", Constants.TypedXLinqNs)) == "true";
+                    (string) validationSettings.Element(XName.Get("VerifyRequired", Constants.TypedXLinqNs)) == "true";
             }
         }
 
@@ -78,13 +80,11 @@ namespace Xml.Schema.Linq
         public string GetClrNamespace(string xmlNamespace)
         {
             string clrNamespace = string.Empty;
-            if (xmlNamespace == null)
-            {
+            if (xmlNamespace == null) {
                 return clrNamespace;
             }
 
-            if (namespaceMapping.TryGetValue(xmlNamespace, out clrNamespace))
-            {
+            if (namespaceMapping.TryGetValue(xmlNamespace, out clrNamespace)) {
                 return clrNamespace;
             }
 
@@ -101,15 +101,14 @@ namespace Xml.Schema.Linq
         public bool InsertNullableReferencesPragma { get; set; }
 
         public bool SplitCodeGenByNamespaces { get; set; }
-        
+
         public bool SplitCodeGenByClasses { get; set; }
 
         private void GenerateNamespaceMapping(XElement namespaces)
         {
             if (namespaces == null)
                 return;
-            foreach (XElement ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs)))
-            {
+            foreach (XElement ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs))) {
                 namespaceMapping.Add((string) ns.Attribute(XName.Get("Schema")),
                     (string) ns.Attribute(XName.Get("Clr")));
             }
@@ -121,9 +120,9 @@ namespace Xml.Schema.Linq
             foreach (var ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs))) {
                 var clrNs = (string) ns.Attribute(XName.Get("Clr"));
                 var visibilityValue = (string) ns.Attribute(XName.Get("DefaultVisibility"));
-                var visibility = visibilityValue == "internal"
-                    ? GeneratedTypesVisibility.Internal
-                    : GeneratedTypesVisibility.Public;
+                var visibility = visibilityValue == "internal" ?
+                    GeneratedTypesVisibility.Internal :
+                    GeneratedTypesVisibility.Public;
 
                 NamespaceTypesVisibilityMap.Add(clrNs, visibility);
             }
