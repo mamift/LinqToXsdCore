@@ -87,12 +87,26 @@ namespace Xml.Schema.Linq
         /// additional XSDs into an <see cref="XmlPreloadedResolver"/> and use them if they are referenced by the file.
         /// </summary>
         /// <param name="fileName"></param>
+        /// <param name="xmlReaderSettings">Optional <see cref="XmlReaderSettings"/></param>
         /// <returns>Returns a compiled <see cref="XmlSchemaSet"/></returns>
-        public static XmlSchemaSet PreLoadXmlSchemas(string fileName)
+        public static XmlSchemaSet PreLoadXmlSchemas(string fileName, XmlReaderSettings xmlReaderSettings = null)
         {
             if (fileName.IsEmpty()) throw new ArgumentNullException(nameof(fileName));
 
             var xsdFile = new FileInfo(fileName);
+
+            return PreLoadXmlSchemas(xsdFile, xmlReaderSettings);
+        }
+
+        /// <summary>
+        /// Assuming that other XSDs exist in the same directory as the given <paramref name="xsdFile"/>, this will pre-load those
+        /// additional XSDs into an <see cref="XmlPreloadedResolver"/> and use them if they are referenced by the file.
+        /// </summary>
+        /// <param name="xsdFile"></param>
+        /// <param name="xmlReaderSettings">Optional <see cref="XmlReaderSettings"/></param>
+        /// <returns>Returns a compiled <see cref="XmlSchemaSet"/></returns>
+        public static XmlSchemaSet PreLoadXmlSchemas(FileInfo xsdFile, XmlReaderSettings xmlReaderSettings = null)
+        {
             var possibleDirectoryName = xsdFile.DirectoryName;
 
             var directoryInfo = new DirectoryInfo(possibleDirectoryName);
@@ -100,14 +114,16 @@ namespace Xml.Schema.Linq
 
             var xmlPreloadedResolver = new XmlPreloadedResolver();
 
-            foreach (FileInfo xsd in additionalXsds) {
+            foreach (var xsd in additionalXsds) {
                 xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}"), File.OpenRead(xsd.FullName));
             }
 
-            var xmlReaderSettings = new XmlReaderSettings() {
-                DtdProcessing = DtdProcessing.Ignore,
-                CloseInput = true
-            };
+            if (xmlReaderSettings == null) {
+                xmlReaderSettings = new XmlReaderSettings() {
+                    DtdProcessing = DtdProcessing.Ignore,
+                    CloseInput = true
+                };
+            }
             
             XmlSchemaSet xmlSchemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
                 .ToXmlSchemaSet(xmlPreloadedResolver);

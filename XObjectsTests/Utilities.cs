@@ -70,22 +70,7 @@ namespace Xml.Schema.Linq.Tests
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
 
-            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
-            var directoryInfo = new DirectoryInfo(folderWithAdditionalXsdFiles);
-            var additionalXsds = directoryInfo.GetFiles("*.xsd");
-
-            var xmlPreloadedResolver = new XmlPreloadedResolver();
-
-            foreach (var xsd in additionalXsds) {
-                xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}"), File.OpenRead(xsd.FullName));
-            }
-
-            var xmlReaderSettings = new XmlReaderSettings() {
-                DtdProcessing = DtdProcessing.Ignore,
-                CloseInput = true
-            };
-            var atomXsdSchemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
-                                            .ToXmlSchemaSet(xmlPreloadedResolver);
+            var atomXsdSchemaSet = FileSystemUtilities.PreLoadXmlSchemas(xsdFile.FullName);
 
             var sourceText = GenerateSourceText(atomXsdSchemaSet, xsdFile.FullName);
             using var writer = new StreamWriter(xsdFile.FullName + ".cs");
