@@ -21,7 +21,7 @@
     <DocumentationFile>bin\Release\XObjectsCodeGen.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.CodeDom" Version="5.0.0" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
   </ItemGroup>
 </Project>
