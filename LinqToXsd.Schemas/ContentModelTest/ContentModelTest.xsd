@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RestrictionTest"
+    targetNamespace="http://linqtoxsd.schemas.org/ContentModelTest.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://linqtoxsd.schemas.org/ContentModelTest.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:complexType name="BaseType" abstract="true">
+		<xs:sequence>
+			<xs:element name="Foo" type="xs:string" />
+			<xs:element name="Bar" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RestrictionType">
+		<xs:complexContent>
+			<xs:restriction base="BaseType">
+				<xs:sequence>
+					<xs:element name="Foo" type="xs:string" />
+					<xs:element name="Bar" type="xs:string" />
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EmptyExtensionType">
+		<xs:complexContent>
+      <xs:extension base="BaseType" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Restriction" type="RestrictionType" />
+	<xs:element name="EmptyExtension" type="EmptyExtensionType" />
+</xs:schema>

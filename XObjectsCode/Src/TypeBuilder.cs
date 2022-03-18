@@ -893,8 +893,17 @@ namespace Xml.Schema.Linq.CodeGen
             }
             else
             {
-                //No element children per schema, Return Default content model
-                getContentModelMethod = DefaultContentModel();
+                //No element children per schema
+                if (this.clrTypeInfo.IsDerived)
+                {
+                    //Probably derived by restriction, use base content model
+                    return;
+                }
+                else
+                {
+                    //Return Default content model
+                    getContentModelMethod = DefaultContentModel();
+                }
             }
 
             decl.Members.Add(getContentModelMethod);
