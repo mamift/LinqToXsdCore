@@ -26,6 +26,23 @@
       <xs:extension base="BaseType" />
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="Restriction" type="RestrictionType" />
+  <xs:complexType name="ComplexGroupingType">
+    <xs:sequence>
+      <xs:choice minOccurs="0">
+        <xs:element name="Foo" type="xs:string">
+        </xs:element>
+        <xs:element name="Bar" type="xs:string">
+        </xs:element>
+      </xs:choice>
+      <xs:element name="Tic" type="xs:string">
+      </xs:element>
+      <xs:element name="Tac" type="xs:string" maxOccurs="unbounded">
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required">
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="Restriction" type="RestrictionType" />
 	<xs:element name="EmptyExtension" type="EmptyExtensionType" />
 </xs:schema>

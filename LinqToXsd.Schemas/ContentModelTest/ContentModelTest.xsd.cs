@@ -240,6 +240,208 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         }
     }
     
+    /// <summary>
+    /// <para>
+    /// Regular expression: ((Foo | Bar)?, Tic, Tac+)
+    /// </para>
+    /// </summary>
+    public partial class ComplexGroupingType : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> TacField;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName IDXName = System.Xml.Linq.XName.Get("ID", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ComplexGroupingType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator ComplexGroupingType(XElement xe) { return XTypedServices.ToXTypedElement<ComplexGroupingType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static ComplexGroupingType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(FooXName), new NamedContentModelEntity(BarXName)), new NamedContentModelEntity(TicXName), new NamedContentModelEntity(TacXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: ((Foo | Bar)?, Tic, Tac+)
+        /// </para>
+        /// </summary>
+        public ComplexGroupingType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: ((Foo | Bar)?, Tic, Tac+)
+        /// </para>
+        /// </summary>
+        public virtual string Foo {
+            get {
+                XElement x = this.GetElement(FooXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(FooXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, choice
+        /// </para>
+        /// <para>
+        /// Setter: Appends
+        /// </para>
+        /// <para>
+        /// Regular expression: ((Foo | Bar)?, Tic, Tac+)
+        /// </para>
+        /// </summary>
+        public virtual string Bar {
+            get {
+                XElement x = this.GetElement(BarXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(BarXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: ((Foo | Bar)?, Tic, Tac+)
+        /// </para>
+        /// </summary>
+        public virtual string Tic {
+            get {
+                XElement x = this.GetElement(TicXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(TicXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: ((Foo | Bar)?, Tic, Tac+)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> Tac {
+            get {
+                if ((this.TacField == null)) {
+                    this.TacField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, TacXName);
+                }
+                return this.TacField;
+            }
+            set {
+                if ((value == null)) {
+                    this.TacField = null;
+                }
+                else {
+                    if ((this.TacField == null)) {
+                        this.TacField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, TacXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.TacField, value);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual string ID {
+            get {
+                XAttribute x = this.Attribute(IDXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetAttribute(IDXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ComplexGroupingType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FooXName, typeof(string));
+            localElementDictionary.Add(BarXName, typeof(string));
+            localElementDictionary.Add(TicXName, typeof(string));
+            localElementDictionary.Add(TacXName, typeof(string));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
     public partial class Restriction : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -513,6 +715,7 @@ namespace LinqToXsd.Schemas.ContentModelTest {
             typeDictionary.Add(System.Xml.Linq.XName.Get("BaseType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.BaseType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("RestrictionType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.RestrictionType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("EmptyExtensionType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.EmptyExtensionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ComplexGroupingType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.ComplexGroupingType));
         }
         
         private static void BuildElementDictionary() {

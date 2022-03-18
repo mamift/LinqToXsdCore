@@ -306,7 +306,9 @@ namespace Xml.Schema.Linq.CodeGen
                 else
                 {
                     Debug.Assert(child.ContentType == ContentType.Grouping);
+                    typeBuilder.StartGrouping(child as GroupingInfo);
                     ProcessComplexGroupProperties(child as GroupingInfo, annotations);
+                    typeBuilder.EndGrouping();
                 }
             }
         }

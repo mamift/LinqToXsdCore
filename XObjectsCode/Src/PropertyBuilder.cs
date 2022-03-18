@@ -50,19 +50,9 @@ namespace Xml.Schema.Linq.CodeGen
                     return new DefaultPropertyBuilder(decl, declItems, visibility);
 
                 case ContentModelType.Sequence:
-                    if (groupingInfo.IsComplex)
-                    {
-                        return new DefaultPropertyBuilder(decl, declItems, visibility);
-                    }
-
                     return new SequencePropertyBuilder(groupingInfo, decl, declItems, visibility);
 
                 case ContentModelType.Choice:
-                    if (groupingInfo.IsComplex)
-                    {
-                        return new DefaultPropertyBuilder(decl, declItems, visibility);
-                    }
-
                     return new ChoicePropertyBuilder(groupingInfo, decl, declItems, visibility);
 
                 default:
