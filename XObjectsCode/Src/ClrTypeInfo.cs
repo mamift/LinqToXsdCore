@@ -833,6 +833,34 @@ namespace Xml.Schema.Linq.CodeGen
 
             lastChild = content;
         }
+
+        internal string OccurenceString
+        {
+            get
+            {
+                if (this.IsStar)
+                {
+                    return "*";
+                }
+                else if (this.IsPlus)
+                {
+                    return "+";
+                }
+                else if (this.IsQMark)
+                {
+                    return "?";
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.Children.Any() ? $"{{ {string.Join(", ", this.Children.Select(x => x.ToString()))} }}{this.OccurenceString}" : string.Empty;
+        }
     }
 
     internal partial class GroupingInfo : ContentInfo

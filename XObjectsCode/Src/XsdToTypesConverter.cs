@@ -602,7 +602,7 @@ namespace Xml.Schema.Linq.CodeGen
 
                             propertyInfo = BuildProperty(elem, fromBaseType);
                             regEx.Append(propertyInfo.PropertyName);
-                            AppendOccurenceToRegex(propertyInfo, regEx);
+                            regEx.Append(propertyInfo.OccurenceString);
                             //Add to parent
                             if (currentGroupingInfo == null)
                             {
@@ -714,8 +714,8 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     if (currentGroupBase != null)
                     {
-                        regEx.Append(")");
-                        AppendOccurenceToRegex(currentGroupingInfo, regEx);
+                        regEx.Append(')');
+                        regEx.Append(currentGroupingInfo.OccurenceString);
                     }
 
                     if (particleStack.Count > 0)
@@ -779,22 +779,6 @@ namespace Xml.Schema.Linq.CodeGen
             else
             {
                 propertyNameTypeTable.Add(propertyName, propertyInfo);
-            }
-        }
-
-        private void AppendOccurenceToRegex(ContentInfo contentInfo, StringBuilder regEx)
-        {
-            if (contentInfo.IsStar)
-            {
-                regEx.Append("*");
-            }
-            else if (contentInfo.IsPlus)
-            {
-                regEx.Append("+");
-            }
-            else if (contentInfo.IsQMark)
-            {
-                regEx.Append("?");
             }
         }
 
