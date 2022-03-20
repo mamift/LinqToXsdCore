@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
@@ -15,95 +16,151 @@ namespace Xml.Schema.Linq
         {
             elementPositions = new Dictionary<XName, NamedContentModelEntity>();
 
-            foreach (ContentModelEntity cmEntity in items)
+            foreach (var item in items)
             {
-                NamedContentModelEntity named = cmEntity as NamedContentModelEntity;
-                if (named != null)
+                item.ParentContentModel = this;
+
+                if (item is NamedContentModelEntity named)
                 {
-                    if (!elementPositions.ContainsKey(named.Name))
+                    UpdateElementPosition(named, true);
+                }
+                else if (item is SchemaAwareContentModelEntity group)
+                {
+                    //cmEntity is choice or sequence
+                    foreach (NamedContentModelEntity namedItem in group.ElementPositions.Values)
                     {
-                        //Pick the first position for a repeating name
-                        named.ElementPosition = last++;
-                        named.ParentContentModel = this;
-                        elementPositions.Add(named.Name, named);
-                        //Add subst members to the same position as head if this a substitution head
-                        CheckSubstitutionGroup(named);
+                        UpdateElementPosition(namedItem, false);
                     }
                 }
                 else
                 {
-                    //cmEntity is choice or sequence
-                    SchemaAwareContentModelEntity scmEntity = cmEntity as SchemaAwareContentModelEntity;
-                    Debug.Assert(scmEntity != null);
-                    foreach (NamedContentModelEntity childEntity in scmEntity.ElementPositions.Values)
+                    throw new NotImplementedException();
+                }
+            }
+
+            void UpdateElementPosition(NamedContentModelEntity entity, bool checkSubstitutionGroup)
+            {
+                if (!elementPositions.ContainsKey(entity.Name))
+                {
+                    //Pick the first position for a repeating name
+                    entity.ElementPosition = last++;
+                    elementPositions.Add(entity.Name, entity);
+                    //Add subst members to the same position as head if this a substitution head
+                    if (checkSubstitutionGroup)
                     {
-                        if (!elementPositions.ContainsKey(childEntity.Name))
+                        CheckSubstitutionGroup(entity);
+                    }
+                }
+            }
+            void CheckSubstitutionGroup(NamedContentModelEntity entity)
+            {
+                if (entity is SubstitutedContentModelEntity substEntity)
+                {
+                    foreach (XName name in substEntity.Members)
+                    {
+                        //Add Subst members to the lookup table
+                        if (!elementPositions.ContainsKey(name))
                         {
-                            childEntity.ElementPosition = last++; //Update position w.r.t parent
-                            elementPositions.Add(childEntity.Name, childEntity);
+                            elementPositions.Add(name, entity);
                         }
                     }
                 }
             }
+
         }
 
-        private void CheckSubstitutionGroup(NamedContentModelEntity named)
+        internal IEnumerable<SchemaAwareContentModelEntity> GetSelfAndAncestorsUntil(SchemaAwareContentModelEntity ancestor)
         {
-            SubstitutedContentModelEntity substEntity = named as SubstitutedContentModelEntity;
-            if (substEntity != null)
+            yield return this;
+            foreach (var thisAncestor in this.Ancestors)
             {
-                foreach (XName name in substEntity.Members)
+                if (thisAncestor == ancestor)
                 {
-                    //Add Subst members to the lookup table
-                    if (!elementPositions.ContainsKey(name))
-                    {
-                        elementPositions.Add(name, named);
-                    }
+                    break;
+                }
+                else
+                {
+                    yield return thisAncestor;
                 }
             }
+        }
+
+        /// <summary>
+        /// Notify ancestors that an element has been added to this <see cref="SchemaAwareContentModelEntity"/>.<br/>
+        /// Let the <see cref="ChoiceContentModelEntity"/> class a chance to remove other elements.
+        /// </summary>
+        /// <param name="owner">The owner of the added element.</param>
+        /// <param name="element">The added element.</param>
+        /// <param name="parentElement">The parent of the added element.</param>
+        internal virtual void OnElementAdded(SchemaAwareContentModelEntity owner, XElement element, XElement parentElement)
+        {
+            if (this.ParentContentModel != null)
+            {
+                this.ParentContentModel.OnElementAdded(owner, element, parentElement);
+            }
+        }
+
+        private SchemaAwareContentModelEntity Root
+        {
+            get
+            {
+                if (this.ParentContentModel == null)
+                {
+                    return this;
+                }
+                return this.Ancestors.Last();
+            }
+        }
+
+        internal bool Contains(XElement element)
+        {
+            var namedContentModel = this.GetNamedEntity(element.Name);
+            return namedContentModel?.Ancestors.Any(cm => cm == this) ?? false;
         }
 
         internal XElement FindElementPosition(NamedContentModelEntity namedEntity, XElement parentElement,
             bool addToExisting, out EditAction editAction)
         {
             Debug.Assert(namedEntity != null);
-            editAction = EditAction.None;
             int newElementPos = namedEntity.ElementPosition;
             XElement lastElement = GetLastElement(parentElement);
             if (lastElement != null)
             {
                 //Optimization to check last first
-                int lastElementPos = GetNamedEntity(lastElement.Name).ElementPosition;
-                if (newElementPos == lastElementPos)
+                var cmLast = GetNamedEntity(lastElement.Name);
+                if (cmLast != null)
                 {
-                    if (addToExisting)
+                    int lastElementPos = cmLast.ElementPosition;
+                    if (newElementPos == lastElementPos)
                     {
+                        if (addToExisting)
+                        {
+                            editAction = EditAction.Append;
+                        }
+                        else
+                        {
+                            editAction = EditAction.Update;
+                        }
+
+                        return lastElement;
+                    }
+
+                    if (newElementPos > lastElementPos)
+                    {
+                        //We need to add the new element at the end
                         editAction = EditAction.Append;
+                        return lastElement;
                     }
-                    else
-                    {
-                        editAction = EditAction.Update;
-                    }
-
-                    return lastElement;
-                }
-
-                if (newElementPos > lastElementPos)
-                {
-                    //We need to add the new element at the end
-                    editAction = EditAction.Append;
-                    return lastElement;
                 }
             }
 
-            int instanceElementPos = -1;
             XElement instanceElem = null;
             IEnumerator<XElement> enumerator = parentElement.Elements().GetEnumerator();
 
             while (enumerator.MoveNext())
             {
                 instanceElem = enumerator.Current;
-                instanceElementPos = GetElementPosition(instanceElem.Name);
+                int instanceElementPos = GetElementPosition(instanceElem.Name);
                 if (instanceElementPos == newElementPos)
                 {
                     if (!addToExisting)
@@ -133,7 +190,7 @@ namespace Xml.Schema.Linq
             return lastElement;
         }
 
-        internal void AddValueInPosition(XName name, XElement parentElement, bool addToExisting, object value,
+        internal XElement AddValueInPosition(XName name, XElement parentElement, bool addToExisting, object value,
             XmlSchemaDatatype datatype)
         {
             NamedContentModelEntity namedEntity = GetNamedEntity(name);
@@ -146,11 +203,13 @@ namespace Xml.Schema.Linq
             EditAction editAction = EditAction.None;
             XElement elementMarker = FindElementPosition(namedEntity, parentElement, addToExisting, out editAction);
             Debug.Assert(datatype != null); //Simple typed value add or set
+            XElement element = elementMarker;
 
             switch (editAction)
             {
                 case EditAction.Append:
-                    parentElement.Add(new XElement(name, XTypedServices.GetXmlString(value, datatype, parentElement)));
+                    element = new XElement(name, XTypedServices.GetXmlString(value, datatype, parentElement));
+                    parentElement.Add(element);
                     break;
 
                 case EditAction.Update:
@@ -160,16 +219,17 @@ namespace Xml.Schema.Linq
 
                 case EditAction.AddBefore:
                     Debug.Assert(elementMarker != null);
-                    elementMarker.AddBeforeSelf(new XElement(name,
-                        XTypedServices.GetXmlString(value, datatype, elementMarker)));
+                    element = new XElement(name, XTypedServices.GetXmlString(value, datatype, elementMarker));
+                    elementMarker.AddBeforeSelf(element);
                     break;
 
                 default:
                     throw new InvalidOperationException();
             }
+            return element;
         }
 
-        internal void AddElementInPosition(XName name, XElement parentElement, bool addToExisting, XTypedElement xObj, Type elementBaseType)
+        internal XElement AddElementInPosition(XName name, XElement parentElement, bool addToExisting, XTypedElement xObj, Type elementBaseType)
         {
             NamedContentModelEntity namedEntity = GetNamedEntity(name);
             if (namedEntity == null)
@@ -201,19 +261,20 @@ namespace Xml.Schema.Linq
                     elementMarker.AddBeforeSelf(newElement);
                     break;
             }
+            return newElement;
         }
 
-        public override void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
+        public override XElement AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
             XmlSchemaDatatype datatype, Type elementBaseType)
         {
             Debug.Assert(value != null);
             if (datatype != null)
             {
-                AddValueInPosition(name, parentElement, addToExisting, value, datatype);
+                return this.Root.AddValueInPosition(name, parentElement, addToExisting, value, datatype);
             }
             else
             {
-                AddElementInPosition(name, parentElement, addToExisting, value as XTypedElement, elementBaseType);
+                return this.Root.AddElementInPosition(name, parentElement, addToExisting, value as XTypedElement, elementBaseType);
             }
         }
 

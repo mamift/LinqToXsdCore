@@ -222,7 +222,7 @@ namespace Xml.Schema.Linq
             {
                 IXMetaData schemaMetaData = this as IXMetaData; //Get parent's content model
                 Debug.Assert(schemaMetaData != null);
-                ContentModelEntity cm = schemaMetaData.GetContentModel();
+                ContentModelEntity cm = GetParentContentModel(this as IXMetaData, name);
 
                 if (elementBaseType == null)
                 {
@@ -234,6 +234,22 @@ namespace Xml.Schema.Linq
 
 
                 cm.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
+            }
+
+            ContentModelEntity GetParentContentModel(IXMetaData schemaMetaData, XName xname)
+            {
+                Debug.Assert(schemaMetaData != null);
+                ContentModelEntity cmRoot = schemaMetaData.GetContentModel();
+                if (cmRoot is SchemaAwareContentModelEntity cmGroup)
+                {
+                    var cmNamed  = cmGroup.GetNamedEntity(xname);
+                    var cmParent = cmNamed.ParentContentModel;
+                    return cmParent;
+                }
+                else
+                {
+                    return cmRoot;
+                }
             }
         }
 

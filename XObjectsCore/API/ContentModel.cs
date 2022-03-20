@@ -4,6 +4,7 @@ using System;
 using System.Xml.Linq;
 using System.Diagnostics;
 using System.Xml.Schema;
+using System.Collections.Generic;
 
 namespace Xml.Schema.Linq
 {
@@ -11,36 +12,64 @@ namespace Xml.Schema.Linq
     {
         public static readonly ContentModelEntity Default = new OrderUnawareContentModelEntity();
 
-        public virtual void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
+        SchemaAwareContentModelEntity parentContentModel;
+
+        internal SchemaAwareContentModelEntity ParentContentModel
+        {
+            get { return this.parentContentModel; }
+            set { this.parentContentModel = value; }
+        }
+
+        internal IEnumerable<SchemaAwareContentModelEntity> Ancestors
+        {
+            get
+            {
+                var ancestor = this.ParentContentModel;
+                while (ancestor != null)
+                {
+                    yield return ancestor;
+                    ancestor = ancestor.ParentContentModel;
+                }
+            }
+        }
+
+        public void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
             XmlSchemaDatatype datatype)
         {
             AddElementToParent(name, value, parentElement, addToExisting, datatype, value?.GetType());
         }
 
-        public virtual void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
+        public virtual XElement AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
             XmlSchemaDatatype datatype, Type elementBaseType)
         {
             Debug.Assert(value != null);
             if (addToExisting)
             {
-                parentElement.Add(GetNewElement(name, value, datatype, parentElement, elementBaseType));
+                var newElement = GetNewElement(name, value, datatype, parentElement, elementBaseType);
+                parentElement.Add(newElement);
+                return newElement;
             }
             else
             {
-                XElement existingElement = parentElement.Element(name);
+                var existingElement = parentElement.Element(name);
                 if (existingElement == null)
                 {
-                    parentElement.Add(GetNewElement(name, value, datatype, parentElement, elementBaseType));
+                    var newElement = GetNewElement(name, value, datatype, parentElement, elementBaseType);
+                    parentElement.Add(newElement);
+                    return newElement;
                 }
                 else if (datatype != null)
                 {
                     //Update simple type value
                     existingElement.Value = XTypedServices.GetXmlString(value, datatype, existingElement);
+                    return existingElement;
                 }
                 else
                 {
-                    existingElement.AddBeforeSelf(XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType));
+                    var element = XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType);
+                    existingElement.AddBeforeSelf(element);
                     existingElement.Remove();
+                    return element;
                 }
             }
         }
