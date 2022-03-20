@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 
+using LinqToXsd.Schemas.ContentModelTest;
+
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,7 +12,7 @@ using NUnit.Framework;
 
 namespace Xml.Schema.Linq.Tests
 {
-    public class ContentModelTests
+    public class ContentModelCodeGenTests
     {
         private SyntaxTree Tree { get; set; }
 
@@ -43,7 +45,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void T2_ContentModelShouldBeGeneratedForComplexGrouping()
         {
-            var type   = GeneratedTypes.Single(type => type.Identifier.Text == "ComplexGroupingType");
+            var type   = GeneratedTypes.Single(type => type.Identifier.Text == "SequenceWithChoiceType");
             var field  = type.Members.OfType<FieldDeclarationSyntax>().SingleOrDefault(field => field.Declaration.Variables.SingleOrDefault()?.Identifier.Text == "contentModel");
             var method = type.Members.OfType<MethodDeclarationSyntax>().SingleOrDefault(meth => meth.Identifier.Text == "GetContentModel");
             var ctor   = type.Members.OfType<ConstructorDeclarationSyntax>().SingleOrDefault(ctor => ctor.Modifiers.SingleOrDefault().IsKind(SyntaxKind.StaticKeyword));
