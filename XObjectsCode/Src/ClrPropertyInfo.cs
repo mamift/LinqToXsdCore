@@ -175,6 +175,8 @@ namespace Xml.Schema.Linq.CodeGen
         {
             return CodeDomHelper.XNameGetExpression(SchemaName, PropertyNs);
         }
+
+        public override string ToString() => this.propertyName;
     }
 
     internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo

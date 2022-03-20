@@ -699,6 +699,8 @@ namespace Xml.Schema.Linq.CodeGen
             servicesTypeDecl.Members.Add(singletonProperty);
             return servicesTypeDecl;
         }
+
+        public override string ToString() => $"{nameof(TypeBuilder)} ({this.clrTypeInfo})";
     }
 
 
@@ -843,6 +845,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        public override string ToString() => $"{nameof(XTypedElementBuilder)} ({this.clrTypeInfo})";
 
         protected override void ImplementCommonIXMetaData()
         {

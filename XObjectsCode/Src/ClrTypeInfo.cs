@@ -316,6 +316,8 @@ namespace Xml.Schema.Linq.CodeGen
         {
             throw new InvalidOperationException();
         }
+
+        public override string ToString() => this.clrtypeName;
     }
 
 
@@ -390,6 +392,11 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return null;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} {{ {string.Join(", ", this.Content.Select(x => x.ToString()))} }}";
         }
     }
 
@@ -974,5 +981,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             get { return contentModelType; }
         }
+
+        public override string ToString() => $"{this.contentModelType} {base.ToString()}";
     }
 }

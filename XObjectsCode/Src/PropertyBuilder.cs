@@ -98,6 +98,11 @@ namespace Xml.Schema.Linq.CodeGen
             if (!declItems.hasElementWildCards) property.AddToContentModel(contentModelExpression);
         }
 
+        public override string ToString()
+        {
+            return $"{nameof(ContentModelPropertyBuilder)} ({this.grouping})";
+        }
+
         private void AddToContentModel()
         {
             contentModelExpression = CreateContentModelExpression();
