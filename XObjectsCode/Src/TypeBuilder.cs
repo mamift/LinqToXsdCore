@@ -783,7 +783,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void StartGrouping(GroupingInfo groupingInfo)
         {
             InitializeTables();
-            propertyBuilder = TypePropertyBuilder.Create(groupingInfo, decl, declItemsInfo, DefaultVisibility);
+            propertyBuilder = TypePropertyBuilder.Create(propertyBuilder as ContentModelPropertyBuilder, groupingInfo, decl, declItemsInfo, DefaultVisibility);
             propertyBuilder.StartCodeGen(); //Start the group's code gen, like setting up functional const etc
             propertyBuilderStack.Push(propertyBuilder);
         }
