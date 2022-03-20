@@ -30,7 +30,7 @@ namespace Xml.Schema.Linq
         private void RemoveChoices(XElement keep, XElement parentElement)
         {
             var candidates = parentElement.Elements().Where(elem => this.Contains(elem));
-            var toRemove   = candidates.Where(elem => elem != keep);
+            var toRemove   = candidates.Where(elem => elem != keep).ToArray();
             foreach (var element in toRemove)
             {
                 element.Remove();
@@ -42,7 +42,7 @@ namespace Xml.Schema.Linq
             var owners     = elementOwner.GetSelfAndAncestorsUntil(this).ToArray();
             var candidates = parentElement.Elements().Where(elem => this.Contains(elem));
             var toKeep     = parentElement.Elements().Where(elem => owners.Any(owner => owner.Contains(elem)));
-            var toRemove   = candidates.Except(toKeep);
+            var toRemove   = candidates.Except(toKeep).ToArray();
             foreach (var element in toRemove)
             {
                 element.Remove();
