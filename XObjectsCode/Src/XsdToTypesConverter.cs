@@ -530,18 +530,19 @@ namespace Xml.Schema.Linq.CodeGen
                 isInNestedGroup);
         }
 
-        struct ParticleData
+        private struct ParticleData
         {
-            internal XmlSchemaGroupBase currentGroupBase;
-            internal GroupingInfo currentGroupingInfo;
-            internal int currentIndex;
-
-            public ParticleData(XmlSchemaGroupBase groupBase, GroupingInfo gInfo, int index)
+            public ParticleData(XmlSchemaGroupBase groupBase, GroupingInfo groupInfo, int index)
             {
-                currentGroupBase = groupBase;
-                currentGroupingInfo = gInfo;
-                currentIndex = index;
+                GroupBase    = groupBase;
+                GroupingInfo = groupInfo;
+                Index        = index;
             }
+            public XmlSchemaGroupBase   GroupBase    { get; }
+            public GroupingInfo         GroupingInfo { get; }
+            public int                  Index        { get; }
+
+            public override string      ToString() => $"{this.GroupingInfo}, {this.Index}";
         }
 
         private void TraverseParticle(XmlSchemaParticle particle, XmlSchemaComplexType baseType,
@@ -565,15 +566,14 @@ namespace Xml.Schema.Linq.CodeGen
                 propertyNameTypeTable.Clear();
             }
 
+            StringBuilder     regEx        = new StringBuilder();
             XmlSchemaParticle baseParticle = baseType.ContentTypeParticle;
-            ParticleData particleData;
-            GroupingInfo parentGroupInfo = null;
-            StringBuilder regEx = new StringBuilder();
+            ParticleData      particleData;
+            GroupingInfo      parentGroupInfo;
 
-            XmlSchemaGroupBase currentGroupBase = null;
-            GroupingInfo currentGroupingInfo = null;
-
-            int currentIndex = 0;
+            XmlSchemaGroupBase currentGroupBase    = null;
+            GroupingInfo       currentGroupingInfo = null;
+            int                currentIndex        = 0;
 
             while (true)
             {
@@ -586,7 +586,6 @@ namespace Xml.Schema.Linq.CodeGen
                         case ParticleType.Element:
                         {
                             XmlSchemaElement elem = particle as XmlSchemaElement;
-                            ClrPropertyInfo propertyInfo = null;
                             bool fromBaseType = false;
                             if (derivationMethod == XmlSchemaDerivationMethod.Extension && typeInfo.IsDerived)
                             {
@@ -600,7 +599,7 @@ namespace Xml.Schema.Linq.CodeGen
                                 }
                             }
 
-                            propertyInfo = BuildProperty(elem, fromBaseType);
+                            ClrPropertyInfo propertyInfo = BuildProperty(elem, fromBaseType);
                             regEx.Append(propertyInfo.PropertyName);
                             regEx.Append(propertyInfo.OccurenceString);
                             //Add to parent
@@ -677,7 +676,6 @@ namespace Xml.Schema.Linq.CodeGen
                             if (parentGroupInfo == null)
                             {
                                 typeInfo.AddMember(currentGroupingInfo);
-                                parentGroupInfo = currentGroupingInfo; //Assign first time
                             }
                             else
                             {
@@ -724,13 +722,13 @@ namespace Xml.Schema.Linq.CodeGen
                         bool childGroupHasRepeatingGroups = currentGroupingInfo.HasRepeatingGroups;
 
                         particleData = particleStack.Pop();
-                        currentGroupBase = particleData.currentGroupBase;
-                        currentGroupingInfo = particleData.currentGroupingInfo;
+                        currentGroupBase = particleData.GroupBase;
+                        currentGroupingInfo = particleData.GroupingInfo;
 
                         currentGroupingInfo.HasRecurrentElements = childGroupHasRecurringElements;
                         currentGroupingInfo.HasRepeatingGroups = childGroupHasRepeatingGroups;
 
-                        currentIndex = particleData.currentIndex;
+                        currentIndex = particleData.Index;
                         if (currentIndex < currentGroupBase.Items.Count)
                         {
                             particle = (XmlSchemaParticle) currentGroupBase.Items[currentIndex++];
