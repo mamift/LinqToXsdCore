@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-using LinqToXsd.Schemas.ContentModelTest;
+using LinqToXsd.Schemas.Test.ContentModelTypes;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;

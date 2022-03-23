@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LinqToXsd.Schemas.ContentModelTest {
+namespace LinqToXsd.Schemas.Test.ContentModelTypes {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -30,13 +30,13 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -133,9 +133,9 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         }
     }
     
-    public partial class RestrictionType : global::LinqToXsd.Schemas.ContentModelTest.BaseType, IXMetaData {
+    public partial class RestrictionType : global::LinqToXsd.Schemas.Test.ContentModelTypes.BaseType, IXMetaData {
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RestrictionType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RestrictionType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
 		public static explicit operator RestrictionType(XElement xe) { return XTypedServices.ToXTypedElement<RestrictionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -173,9 +173,9 @@ namespace LinqToXsd.Schemas.ContentModelTest {
     /// Regular expression: (Foo, Bar)
     /// </para>
     /// </summary>
-    public partial class EmptyExtensionType : global::LinqToXsd.Schemas.ContentModelTest.BaseType, IXMetaData {
+    public partial class EmptyExtensionType : global::LinqToXsd.Schemas.Test.ContentModelTypes.BaseType, IXMetaData {
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EmptyExtensionType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EmptyExtensionType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -249,17 +249,17 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SimpleChoiceType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SimpleChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -388,25 +388,25 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TacXName = System.Xml.Linq.XName.Get("Tac", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly System.Xml.Linq.XName IDXName = System.Xml.Linq.XName.Get("ID", "");
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SequenceWithChoiceType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SequenceWithChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -575,17 +575,17 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChoiceWithSequemceType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChoiceWithSequemceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -720,29 +720,29 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FozXName = System.Xml.Linq.XName.Get("Foz", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName FozXName = System.Xml.Linq.XName.Get("Foz", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BazXName = System.Xml.Linq.XName.Get("Baz", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName BazXName = System.Xml.Linq.XName.Get("Baz", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DeepChoiceTreeType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DeepChoiceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -943,29 +943,29 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName FooXName = System.Xml.Linq.XName.Get("Foo", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName BarXName = System.Xml.Linq.XName.Get("Bar", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TocXName = System.Xml.Linq.XName.Get("Toc", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FozXName = System.Xml.Linq.XName.Get("Foz", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName FozXName = System.Xml.Linq.XName.Get("Foz", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BazXName = System.Xml.Linq.XName.Get("Baz", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName BazXName = System.Xml.Linq.XName.Get("Baz", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        internal static readonly System.Xml.Linq.XName TicXName = System.Xml.Linq.XName.Get("Tic", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DeepSequenceTreeType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DeepSequenceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -1211,14 +1211,14 @@ namespace LinqToXsd.Schemas.ContentModelTest {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.BaseType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("RestrictionType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.RestrictionType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("EmptyExtensionType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.EmptyExtensionType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("SimpleChoiceType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.SimpleChoiceType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("SequenceWithChoiceType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.SequenceWithChoiceType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceWithSequemceType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.ChoiceWithSequemceType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("DeepChoiceTreeType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.DeepChoiceTreeType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("DeepSequenceTreeType", "http://linqtoxsd.schemas.org/ContentModelTest.xsd"), typeof(global::LinqToXsd.Schemas.ContentModelTest.DeepSequenceTreeType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.BaseType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("RestrictionType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.RestrictionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("EmptyExtensionType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.EmptyExtensionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("SimpleChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.SimpleChoiceType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("SequenceWithChoiceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.SequenceWithChoiceType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ChoiceWithSequemceType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.ChoiceWithSequemceType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("DeepChoiceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.DeepChoiceTreeType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("DeepSequenceTreeType", "http://linqtoxsd.schemas.org/test/content-model-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.ContentModelTypes.DeepSequenceTreeType));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {

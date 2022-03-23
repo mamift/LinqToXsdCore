@@ -2,8 +2,6 @@
 using System.IO;
 using System.Linq;
 
-using LinqToXsd.Schemas.ContentModelTest;
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;

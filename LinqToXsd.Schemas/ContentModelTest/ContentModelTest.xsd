@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="RestrictionTest"
-    targetNamespace="http://linqtoxsd.schemas.org/ContentModelTest.xsd"
-    elementFormDefault="qualified"
-    xmlns="http://linqtoxsd.schemas.org/ContentModelTest.xsd"
+<xs:schema
+    targetNamespace="http://linqtoxsd.schemas.org/test/content-model-types.xsd"
+    xmlns="http://linqtoxsd.schemas.org/test/content-model-types.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
 >
 	<xs:complexType name="BaseType" abstract="true">
 		<xs:sequence>
