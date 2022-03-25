@@ -4,11 +4,21 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!-- Avoid being overrun by warnings -->
+  <PropertyGroup>
+    <!--
+    CS0108: ... hides inherited member ... Use the new keyword if hiding was intended.
+    CS0114: ... hides inherited member ... To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
+    CS1591: Missing XML comment for publicly visible type or member ...
+    -->
+    <NoWarn>$(NoWarn);108;114;1591</NoWarn>
+  </PropertyGroup>
+
+  <!--<ItemGroup>
     <Compile Remove="_temp\**" />
     <EmbeddedResource Remove="_temp\**" />
     <None Remove="_temp\**" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <Compile Remove="Pubmed\collections.xsd.cs" />

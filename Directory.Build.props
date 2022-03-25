@@ -1,0 +1,42 @@
+<Project>
+  <Import Project="Version.props" />
+
+  <!-- Build and design defaults -->
+  <PropertyGroup>
+    <CoreTargetFramework>netcoreapp3.1</CoreTargetFramework>
+    <RootNamespace>Xml.Schema.Linq</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Package defaults -->
+  <PropertyGroup>
+    <Copyright>Copyright (C) 2019-2022 Muhammad Miftah, GitHub Contributors &amp; Microsoft Corporation (2008-2011)</Copyright>
+    <Authors>https://github.com/mamift</Authors>
+    <Company>Microsoft Corporation</Company>
+    <RepositoryUrl>https://github.com/mamift/LinqToXsdCore</RepositoryUrl>
+
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <PackageProjectUrl>https://github.com/mamift/LinqToXsdCore</PackageProjectUrl>
+    <PackageLicense>https://licenses.nuget.org/MS-PL</PackageLicense>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+    <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
+    <PackageOutputPath>$(MSBuildProjectDirectory)\nupkg</PackageOutputPath>
+  </PropertyGroup>
+  
+  <!-- Disable XML comment warnings -->
+  <PropertyGroup>
+    <!--
+    CS1574: XML comment has cref attribute 'xsdFilePath' that could not be resolved
+    CS1591: Missing XML comment for publicly visible type or member ...
+    CS1734: XML comment on ... has a paramref tag for ..., but there is no parameter by that name
+    -->
+    <NoWarn>$(NoWarn)1574;1591;1734</NoWarn>
+  </PropertyGroup>
+
+  <!-- Pack exisiting README file -->
+  <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\README.md')">
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)\README.md')">
+      <None Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath=""/>
+  </ItemGroup>
+</Project>

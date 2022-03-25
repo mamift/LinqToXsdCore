@@ -1,24 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-
+    <TargetFramework>$(CoreTargetFramework)</TargetFramework>
+    <RootNamespace>$(RootNamespace).Tests</RootNamespace>
     <IsPackable>false</IsPackable>
-
-    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
-
-    <RootNamespace>Xml.Schema.Linq.Tests</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Schemas\**" />
-    <EmbeddedResource Remove="Schemas\**" />
-    <None Remove="Schemas\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" />

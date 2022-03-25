@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <!-- Disable nuget package generation in debug mode -->
+    <GeneratePackageOnBuild Condition ="'$(Configuration)' == 'Debug'">false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <!-- Hide nuget package outputs from solution explorer -->
+  <ItemGroup>
+    <None Remove="nupkg\**" />
+    <Compile Remove="nupkg\**" />
+    <EmbeddedResource Remove="nupkg\**" />
+  </ItemGroup>
+</Project>
