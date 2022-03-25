@@ -306,7 +306,7 @@ namespace Xml.Schema.Linq.CodeGen
             foreach (AnonymousType at in anonymousTypes)
             {
                 ClrTypeReference typeReference = at.typeRefence;
-                string typeIdentifier = getSymbol(at.identifier, Constants.LocalTypeSuffix);
+                string typeIdentifier = getSymbol(at.identifier, at.typeRefence.LocalSuffix);
                 symbolToQName.Add(typeIdentifier.ToUpper(CultureInfo.InvariantCulture), XmlQualifiedName.Empty);
                 typeReference.Name = typeIdentifier;
                 at.identifier = typeIdentifier;
