@@ -75,10 +75,14 @@ namespace Microsoft.Schemas.AspNetSiteMaps {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator siteMapNodeType(XElement xe) { return XTypedServices.ToXTypedElement<siteMapNodeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static siteMapNodeType() {
             BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(siteMapNodeXName));
         }
         
         /// <summary>
@@ -276,7 +280,7 @@ namespace Microsoft.Schemas.AspNetSiteMaps {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     

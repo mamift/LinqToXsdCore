@@ -180,10 +180,6 @@ namespace W3C.XQueryX {
         public new static anyElementTest Parse(string xml) {
             return ((anyElementTest)(XTypedServices.ToXTypedElement(XElement.Parse(xml), LinqToXsdTypeManager.Instance)));
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public partial class kindTest : global::W3C.XQueryX.itemType, IXMetaData {
@@ -230,10 +226,6 @@ namespace W3C.XQueryX {
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<kindTest>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -733,10 +725,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator exprOrPlaceholderList(XElement xe) { return XTypedServices.ToXTypedElement<exprOrPlaceholderList>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static exprOrPlaceholderList() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("expr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("constantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("integerConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("decimalConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("doubleConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("varRef", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("contextItemExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("extensionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("simpleMapExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("functionCallExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("constructorFunctionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("sequenceExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("rangeSequenceExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("operatorExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arithmeticOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("addOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("subtractOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("multiplyOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("divOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("idivOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("modOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryMinusOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryPlusOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConcatenateOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("comparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("valueComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("eqOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("neOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("gtOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("geOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("ltOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("leOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("generalComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("equalOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("notEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("lessThanOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("lessThanOrEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("greaterThanOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("greaterThanOrEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("isOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orderComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeBeforeOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeAfterOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("logicalOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("andOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("setOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unionOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("intersectOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("exceptOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("flworExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("ifThenElseExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("quantifiedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("switchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("typeswitchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("tryCatchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("instanceOfExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("treatExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("castableExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("castExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arrowExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("validateExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("elementConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedElementConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedAttributeConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedDocumentConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedTextConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedCommentConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedNamespaceConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedPIConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unorderedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orderedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("namedFunctionRef", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("inlineFunctionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("dynamicFunctionInvocationExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("mapConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arrayConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryLookup", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("pathExpr", "http://www.w3.org/2005/XQueryX")), new NamedContentModelEntity(argumentPlaceholderXName)));
         }
         
         /// <summary>
@@ -854,7 +850,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -1287,10 +1283,6 @@ namespace W3C.XQueryX {
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<integerConstantExprType>(this);
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public partial class decimalConstantExprType : global::W3C.XQueryX.constantExprType, IXMetaData {
@@ -1325,10 +1317,6 @@ namespace W3C.XQueryX {
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<decimalConstantExprType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -1365,10 +1353,6 @@ namespace W3C.XQueryX {
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<doubleConstantExprType>(this);
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public partial class stringConstantExprType : global::W3C.XQueryX.constantExprType, IXMetaData {
@@ -1403,10 +1387,6 @@ namespace W3C.XQueryX {
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<stringConstantExprType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -1535,10 +1515,6 @@ namespace W3C.XQueryX {
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<contextItemExprType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -1818,10 +1794,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator simpleMapExprType(XElement xe) { return XTypedServices.ToXTypedElement<simpleMapExprType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static simpleMapExprType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(pathExprXName));
         }
         
         /// <summary>
@@ -1899,7 +1879,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -2394,10 +2374,6 @@ namespace W3C.XQueryX {
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<operatorExprType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -2897,10 +2873,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator sequenceTypeType(XElement xe) { return XTypedServices.ToXTypedElement<sequenceTypeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static sequenceTypeType() {
             BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(voidSequenceTypeXName), new SequenceContentModelEntity(new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("itemType", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("atomicType", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("contextItemType", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyItemType", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("schemaAttributeTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("attributeTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyElementTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("schemaElementTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("elementTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("documentTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("piTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("kindTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("textTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("commentTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("namespaceTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyKindTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyFunctionTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("typedFunctionTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("parenthesizedItemType", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyMapTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("typedMapTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyArrayTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("typedArrayTest", "http://www.w3.org/2005/XQueryX")), new NamedContentModelEntity(occurrenceIndicatorXName)));
         }
         
         /// <summary>
@@ -3018,7 +2998,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -3041,10 +3021,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator sequenceTypeUnionType(XElement xe) { return XTypedServices.ToXTypedElement<sequenceTypeUnionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static sequenceTypeUnionType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(sequenceTypeXName));
         }
         
         /// <summary>
@@ -3122,7 +3106,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -3577,10 +3561,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator letClauseItemType(XElement xe) { return XTypedServices.ToXTypedElement<letClauseItemType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static letClauseItemType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(typedVariableBindingXName), new NamedContentModelEntity(forLetClauseItemExtensionsXName)), new NamedContentModelEntity(forLetClauseItemExtensionsXName)), new NamedContentModelEntity(letExprXName));
         }
         
         /// <summary>
@@ -3702,7 +3690,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -4790,10 +4778,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator groupByClauseType(XElement xe) { return XTypedServices.ToXTypedElement<groupByClauseType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static groupByClauseType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(groupingSpecXName));
         }
         
         /// <summary>
@@ -4871,7 +4863,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -5209,13 +5201,13 @@ namespace W3C.XQueryX {
         /// Regular expression: (orderingKind?, emptyOrderingMode?, collation?)
         /// </para>
         /// </summary>
-        public virtual orderingKind? orderingKind {
+        public virtual W3C.XQueryX.orderingKind? orderingKind {
             get {
                 XElement x = this.GetElement(orderingKindXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((orderingKind)(Enum.Parse(typeof(orderingKind), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                return ((W3C.XQueryX.orderingKind)(Enum.Parse(typeof(W3C.XQueryX.orderingKind), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
                 if (value == null) {
@@ -5623,10 +5615,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator flworExprType(XElement xe) { return XTypedServices.ToXTypedElement<flworExprType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static flworExprType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(forClauseXName), new NamedContentModelEntity(letClauseXName), new NamedContentModelEntity(windowClauseXName)), new ChoiceContentModelEntity(new NamedContentModelEntity(forClauseXName), new NamedContentModelEntity(letClauseXName), new NamedContentModelEntity(windowClauseXName), new NamedContentModelEntity(countClauseXName), new NamedContentModelEntity(whereClauseXName), new NamedContentModelEntity(groupByClauseXName), new NamedContentModelEntity(orderByClauseXName)), new NamedContentModelEntity(returnClauseXName));
         }
         
         /// <summary>
@@ -5930,7 +5926,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -6260,10 +6256,10 @@ namespace W3C.XQueryX {
         /// Regular expression: (quantifier, quantifiedExprInClause+, predicateExpr)
         /// </para>
         /// </summary>
-        public virtual quantifier quantifier {
+        public virtual W3C.XQueryX.quantifier quantifier {
             get {
                 XElement x = this.GetElement(quantifierXName);
-                return ((quantifier)(Enum.Parse(typeof(quantifier), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((W3C.XQueryX.quantifier)(Enum.Parse(typeof(W3C.XQueryX.quantifier), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
             }
             set {
                 this.SetElementWithValidation(quantifierXName, value.ToString(), "quantifier", global::W3C.XQueryX.quantifierValidator.TypeDefinition);
@@ -6767,10 +6763,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator typeswitchExprCaseClauseType(XElement xe) { return XTypedServices.ToXTypedElement<typeswitchExprCaseClauseType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static typeswitchExprCaseClauseType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(variableBindingXName), new ChoiceContentModelEntity(new NamedContentModelEntity(sequenceTypeXName), new NamedContentModelEntity(sequenceTypeUnionXName)), new NamedContentModelEntity(resultExprXName));
         }
         
         /// <summary>
@@ -6899,7 +6899,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -7446,10 +7446,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator catchErrorListType(XElement xe) { return XTypedServices.ToXTypedElement<catchErrorListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static catchErrorListType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(nameTestXName), new NamedContentModelEntity(WildcardXName)));
         }
         
         /// <summary>
@@ -7564,7 +7568,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -8069,10 +8073,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator arrowExprType(XElement xe) { return XTypedServices.ToXTypedElement<arrowExprType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static arrowExprType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(argExprXName), new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(EQNameXName), new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("expr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("constantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("integerConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("decimalConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("doubleConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("varRef", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("contextItemExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("extensionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("simpleMapExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("functionCallExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("constructorFunctionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("sequenceExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("rangeSequenceExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("operatorExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arithmeticOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("addOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("subtractOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("multiplyOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("divOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("idivOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("modOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryMinusOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryPlusOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConcatenateOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("comparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("valueComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("eqOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("neOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("gtOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("geOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("ltOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("leOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("generalComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("equalOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("notEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("lessThanOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("lessThanOrEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("greaterThanOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("greaterThanOrEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("isOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orderComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeBeforeOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeAfterOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("logicalOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("andOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("setOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unionOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("intersectOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("exceptOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("flworExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("ifThenElseExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("quantifiedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("switchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("typeswitchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("tryCatchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("instanceOfExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("treatExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("castableExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("castExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arrowExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("validateExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("elementConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedElementConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedAttributeConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedDocumentConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedTextConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedCommentConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedNamespaceConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedPIConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unorderedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orderedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("namedFunctionRef", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("inlineFunctionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("dynamicFunctionInvocationExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("mapConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arrayConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryLookup", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("pathExpr", "http://www.w3.org/2005/XQueryX"))), new NamedContentModelEntity(argumentsXName)));
         }
         
         /// <summary>
@@ -8243,7 +8251,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -8289,10 +8297,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator validateExprType(XElement xe) { return XTypedServices.ToXTypedElement<validateExprType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static validateExprType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(validationModeXName), new NamedContentModelEntity(typeNameXName)), new NamedContentModelEntity(argExprXName));
         }
         
         /// <summary>
@@ -8314,13 +8326,13 @@ namespace W3C.XQueryX {
         /// Regular expression: ((validationMode? | typeName?), argExpr)
         /// </para>
         /// </summary>
-        public virtual validationMode? validationMode {
+        public virtual W3C.XQueryX.validationMode? validationMode {
             get {
                 XElement x = this.GetElement(validationModeXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((validationMode)(Enum.Parse(typeof(validationMode), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((W3C.XQueryX.validationMode)(Enum.Parse(typeof(W3C.XQueryX.validationMode), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
             }
             set {
                 if (value == null) {
@@ -8410,7 +8422,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -8438,10 +8450,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator attributeConstructor(XElement xe) { return XTypedServices.ToXTypedElement<attributeConstructor>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static attributeConstructor() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(attributeNameXName), new ChoiceContentModelEntity(new NamedContentModelEntity(attributeValueExprXName), new NamedContentModelEntity(attributeValueXName)));
         }
         
         /// <summary>
@@ -8551,7 +8567,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -8697,10 +8713,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator attributeListType(XElement xe) { return XTypedServices.ToXTypedElement<attributeListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static attributeListType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(attributeConstructorXName), new NamedContentModelEntity(namespaceDeclarationXName)));
         }
         
         /// <summary>
@@ -8815,7 +8835,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -8982,10 +9002,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator computedElementConstructorType(XElement xe) { return XTypedServices.ToXTypedElement<computedElementConstructorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static computedElementConstructorType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(tagNameXName), new NamedContentModelEntity(tagNameExprXName)), new NamedContentModelEntity(contentExprXName));
         }
         
         /// <summary>
@@ -9095,7 +9119,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -9123,10 +9147,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator computedAttributeConstructorType(XElement xe) { return XTypedServices.ToXTypedElement<computedAttributeConstructorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static computedAttributeConstructorType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(tagNameXName), new NamedContentModelEntity(tagNameExprXName)), new NamedContentModelEntity(valueExprXName));
         }
         
         /// <summary>
@@ -9236,7 +9264,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -9543,10 +9571,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator computedNamespaceConstructorType(XElement xe) { return XTypedServices.ToXTypedElement<computedNamespaceConstructorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static computedNamespaceConstructorType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(prefixXName), new NamedContentModelEntity(prefixExprXName)), new NamedContentModelEntity(URIExprXName));
         }
         
         /// <summary>
@@ -9656,7 +9688,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -9684,10 +9716,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator computedPIConstructorType(XElement xe) { return XTypedServices.ToXTypedElement<computedPIConstructorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static computedPIConstructorType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(piTargetXName), new NamedContentModelEntity(piTargetExprXName)), new NamedContentModelEntity(piValueExprXName));
         }
         
         /// <summary>
@@ -9797,7 +9833,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -10518,10 +10554,14 @@ namespace W3C.XQueryX {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
             
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            private static ContentModelEntity contentModel;
+            
 		public static explicit operator functionItemLocalType(XElement xe) { return XTypedServices.ToXTypedElement<functionItemLocalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
             
             static functionItemLocalType() {
                 BuildElementDictionary();
+                contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("constantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("integerConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("decimalConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("doubleConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstantExpr", "http://www.w3.org/2005/XQueryX")), new NamedContentModelEntity(varRefXName), new NamedContentModelEntity(contextItemExprXName), new NamedContentModelEntity(functionCallExprXName), new NamedContentModelEntity(sequenceExprXName), new NamedContentModelEntity(elementConstructorXName), new NamedContentModelEntity(computedElementConstructorXName), new NamedContentModelEntity(computedAttributeConstructorXName), new NamedContentModelEntity(computedDocumentConstructorXName), new NamedContentModelEntity(computedTextConstructorXName), new NamedContentModelEntity(computedCommentConstructorXName), new NamedContentModelEntity(computedNamespaceConstructorXName), new NamedContentModelEntity(computedPIConstructorXName), new NamedContentModelEntity(orderedExprXName), new NamedContentModelEntity(unorderedExprXName), new NamedContentModelEntity(namedFunctionRefXName), new NamedContentModelEntity(inlineFunctionExprXName), new NamedContentModelEntity(dynamicFunctionInvocationExprXName), new NamedContentModelEntity(mapConstructorXName), new NamedContentModelEntity(arrayConstructorXName), new NamedContentModelEntity(stringConstructorXName), new NamedContentModelEntity(unaryLookupXName)));
             }
             
             /// <summary>
@@ -11055,7 +11095,7 @@ namespace W3C.XQueryX {
             }
             
             ContentModelEntity IXMetaData.GetContentModel() {
-                return ContentModelEntity.Default;
+                return contentModel;
             }
         }
     }
@@ -11427,10 +11467,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator squareArrayType(XElement xe) { return XTypedServices.ToXTypedElement<squareArrayType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static squareArrayType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(arrayElemXName));
         }
         
         /// <summary>
@@ -11508,7 +11552,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -11631,10 +11675,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator stringConstructorType(XElement xe) { return XTypedServices.ToXTypedElement<stringConstructorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static stringConstructorType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(stringConstructorCharsXName), new NamedContentModelEntity(stringConstructorInterpolationXName)));
         }
         
         /// <summary>
@@ -11749,7 +11797,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -11907,10 +11955,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator WildcardType(XElement xe) { return XTypedServices.ToXTypedElement<WildcardType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static WildcardType() {
             BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(starXName), new NamedContentModelEntity(NCNameXName)), new SequenceContentModelEntity(new NamedContentModelEntity(NCNameXName), new NamedContentModelEntity(starXName)), new SequenceContentModelEntity(new NamedContentModelEntity(uriXName), new NamedContentModelEntity(starXName)));
         }
         
         /// <summary>
@@ -12047,7 +12099,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -12191,10 +12243,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator elementTestType(XElement xe) { return XTypedServices.ToXTypedElement<elementTestType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static elementTestType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(elementNameXName), new SequenceContentModelEntity(new NamedContentModelEntity(typeNameXName), new NamedContentModelEntity(nillableXName)));
         }
         
         /// <summary>
@@ -12304,7 +12360,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -13196,10 +13252,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator lookupType(XElement xe) { return XTypedServices.ToXTypedElement<lookupType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static lookupType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(NCNameXName), new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("expr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("constantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("integerConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("decimalConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("doubleConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("varRef", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("contextItemExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("extensionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("simpleMapExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("functionCallExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("constructorFunctionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("sequenceExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("rangeSequenceExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("operatorExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arithmeticOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("addOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("subtractOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("multiplyOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("divOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("idivOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("modOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryMinusOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryPlusOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConcatenateOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("comparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("valueComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("eqOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("neOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("gtOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("geOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("ltOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("leOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("generalComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("equalOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("notEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("lessThanOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("lessThanOrEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("greaterThanOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("greaterThanOrEqualOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("isOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orderComparisonOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeBeforeOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("nodeAfterOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("logicalOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("andOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("setOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unionOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("intersectOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("exceptOp", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("flworExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("ifThenElseExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("quantifiedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("switchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("typeswitchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("tryCatchExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("instanceOfExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("treatExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("castableExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("castExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arrowExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("validateExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("elementConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedElementConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedAttributeConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedDocumentConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedTextConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedCommentConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedNamespaceConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("computedPIConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unorderedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("orderedExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("namedFunctionRef", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("inlineFunctionExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("dynamicFunctionInvocationExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("mapConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("arrayConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstructor", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("unaryLookup", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("pathExpr", "http://www.w3.org/2005/XQueryX")), new NamedContentModelEntity(starXName)));
         }
         
         /// <summary>
@@ -13315,7 +13375,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -13393,10 +13453,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator stepExprType(XElement xe) { return XTypedServices.ToXTypedElement<stepExprType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static stepExprType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(xpathAxisXName), new ChoiceContentModelEntity(new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("kindTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("schemaAttributeTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("attributeTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyElementTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("schemaElementTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("elementTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("documentTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("piTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("textTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("commentTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("namespaceTest", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("anyKindTest", "http://www.w3.org/2005/XQueryX")), new NamedContentModelEntity(nameTestXName), new NamedContentModelEntity(WildcardXName)), new NamedContentModelEntity(predicatesXName)), new SequenceContentModelEntity(new NamedContentModelEntity(filterExprXName), new ChoiceContentModelEntity(new NamedContentModelEntity(predicatesXName), new ChoiceContentModelEntity(new NamedContentModelEntity(predicateXName), new NamedContentModelEntity(lookupXName))))));
         }
         
         /// <summary>
@@ -13658,7 +13722,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
         
         /// <summary>
@@ -13761,10 +13825,14 @@ namespace W3C.XQueryX {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
             
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            private static ContentModelEntity contentModel;
+            
 		public static explicit operator filterExprLocalType(XElement xe) { return XTypedServices.ToXTypedElement<filterExprLocalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
             
             static filterExprLocalType() {
                 BuildElementDictionary();
+                contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("constantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("integerConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("decimalConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("doubleConstantExpr", "http://www.w3.org/2005/XQueryX"), System.Xml.Linq.XName.Get("stringConstantExpr", "http://www.w3.org/2005/XQueryX")), new NamedContentModelEntity(varRefXName), new NamedContentModelEntity(contextItemExprXName), new NamedContentModelEntity(functionCallExprXName), new NamedContentModelEntity(sequenceExprXName), new NamedContentModelEntity(elementConstructorXName), new NamedContentModelEntity(computedElementConstructorXName), new NamedContentModelEntity(computedAttributeConstructorXName), new NamedContentModelEntity(computedDocumentConstructorXName), new NamedContentModelEntity(computedTextConstructorXName), new NamedContentModelEntity(computedCommentConstructorXName), new NamedContentModelEntity(computedNamespaceConstructorXName), new NamedContentModelEntity(computedPIConstructorXName), new NamedContentModelEntity(orderedExprXName), new NamedContentModelEntity(unorderedExprXName), new NamedContentModelEntity(namedFunctionRefXName), new NamedContentModelEntity(inlineFunctionExprXName), new NamedContentModelEntity(dynamicFunctionInvocationExprXName), new NamedContentModelEntity(mapConstructorXName), new NamedContentModelEntity(arrayConstructorXName), new NamedContentModelEntity(stringConstructorXName), new NamedContentModelEntity(unaryLookupXName)));
             }
             
             /// <summary>
@@ -14298,7 +14366,7 @@ namespace W3C.XQueryX {
             }
             
             ContentModelEntity IXMetaData.GetContentModel() {
-                return ContentModelEntity.Default;
+                return contentModel;
             }
         }
         
@@ -14422,10 +14490,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator pathExprType(XElement xe) { return XTypedServices.ToXTypedElement<pathExprType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static pathExprType() {
             BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(rootExprXName), new NamedContentModelEntity(stepExprXName)), new NamedContentModelEntity(stepExprXName));
         }
         
         /// <summary>
@@ -14528,7 +14600,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -14556,10 +14628,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator moduleType(XElement xe) { return XTypedServices.ToXTypedElement<moduleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static moduleType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(versionDeclXName), new ChoiceContentModelEntity(new NamedContentModelEntity(mainModuleXName), new NamedContentModelEntity(libraryModuleXName)));
         }
         
         /// <summary>
@@ -14669,7 +14745,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -14928,10 +15004,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator versionDeclType(XElement xe) { return XTypedServices.ToXTypedElement<versionDeclType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static versionDeclType() {
             BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(versionXName), new NamedContentModelEntity(encodingXName)), new NamedContentModelEntity(encodingXName));
         }
         
         /// <summary>
@@ -15034,7 +15114,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -15446,10 +15526,10 @@ namespace W3C.XQueryX {
         /// Regular expression: (defaultNamespaceCategory, uri)
         /// </para>
         /// </summary>
-        public virtual defaultNamespaceCategory defaultNamespaceCategory {
+        public virtual W3C.XQueryX.defaultNamespaceCategory defaultNamespaceCategory {
             get {
                 XElement x = this.GetElement(defaultNamespaceCategoryXName);
-                return ((defaultNamespaceCategory)(Enum.Parse(typeof(defaultNamespaceCategory), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((W3C.XQueryX.defaultNamespaceCategory)(Enum.Parse(typeof(W3C.XQueryX.defaultNamespaceCategory), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
             }
             set {
                 this.SetElementWithValidation(defaultNamespaceCategoryXName, value.ToString(), "defaultNamespaceCategory", global::W3C.XQueryX.defaultNamespaceCategoryValidator.TypeDefinition);
@@ -15930,10 +16010,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator schemaImportType(XElement xe) { return XTypedServices.ToXTypedElement<schemaImportType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static schemaImportType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(namespacePrefixXName), new NamedContentModelEntity(defaultElementNamespaceXName)), new NamedContentModelEntity(targetNamespaceXName), new NamedContentModelEntity(targetLocationXName));
         }
         
         /// <summary>
@@ -16074,7 +16158,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -16256,10 +16340,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator contextItemDeclType(XElement xe) { return XTypedServices.ToXTypedElement<contextItemDeclType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static contextItemDeclType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(contextItemTypeXName), new ChoiceContentModelEntity(new NamedContentModelEntity(varValueXName), new NamedContentModelEntity(externalXName)));
         }
         
         /// <summary>
@@ -16369,7 +16457,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
         
         /// <summary>
@@ -16617,10 +16705,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator varDeclType(XElement xe) { return XTypedServices.ToXTypedElement<varDeclType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static varDeclType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(annotationXName), new NamedContentModelEntity(varNameXName), new NamedContentModelEntity(typeDeclarationXName), new ChoiceContentModelEntity(new NamedContentModelEntity(varValueXName), new NamedContentModelEntity(externalXName)));
         }
         
         /// <summary>
@@ -16780,7 +16872,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
         
         /// <summary>
@@ -17032,10 +17124,14 @@ namespace W3C.XQueryX {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
 		public static explicit operator functionDeclType(XElement xe) { return XTypedServices.ToXTypedElement<functionDeclType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         static functionDeclType() {
             BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(annotationXName), new NamedContentModelEntity(functionNameXName), new NamedContentModelEntity(paramListXName), new NamedContentModelEntity(typeDeclarationXName), new ChoiceContentModelEntity(new NamedContentModelEntity(functionBodyXName), new NamedContentModelEntity(externalDefinitionXName)));
         }
         
         /// <summary>
@@ -17214,7 +17310,7 @@ namespace W3C.XQueryX {
         }
         
         ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+            return contentModel;
         }
     }
     
@@ -27009,7 +27105,7 @@ namespace W3C.XQueryX {
         /// Regular expression: (orderingKind?, emptyOrderingMode?, collation?)
         /// </para>
         /// </summary>
-        public virtual orderingKind? orderingKind {
+        public virtual W3C.XQueryX.orderingKind? orderingKind {
             get {
                 return this.ContentField.orderingKind;
             }
@@ -28109,7 +28205,7 @@ namespace W3C.XQueryX {
         /// Regular expression: (quantifier, quantifiedExprInClause+, predicateExpr)
         /// </para>
         /// </summary>
-        public virtual quantifier quantifier {
+        public virtual W3C.XQueryX.quantifier quantifier {
             get {
                 return this.ContentField.quantifier;
             }
@@ -30242,7 +30338,7 @@ namespace W3C.XQueryX {
         /// Regular expression: ((validationMode? | typeName?), argExpr)
         /// </para>
         /// </summary>
-        public virtual validationMode? validationMode {
+        public virtual W3C.XQueryX.validationMode? validationMode {
             get {
                 return this.ContentField.validationMode;
             }
@@ -37621,7 +37717,7 @@ namespace W3C.XQueryX {
         /// Regular expression: (defaultNamespaceCategory, uri)
         /// </para>
         /// </summary>
-        public virtual defaultNamespaceCategory defaultNamespaceCategory {
+        public virtual W3C.XQueryX.defaultNamespaceCategory defaultNamespaceCategory {
             get {
                 return this.ContentField.defaultNamespaceCategory;
             }

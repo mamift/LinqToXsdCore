@@ -13,7 +13,14 @@
   <ItemGroup>
     <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
+    <Compile Remove="SimpleSchemaElement\SimpleSchema.xsd.cs" />
+    <Compile Remove="SimpleSchema\SimpleSchema.xsd.cs" />
     <Compile Remove="XQueryX\XQueryX.xsd.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SimpleSchemaElement\SimpleSchema.xsd.cs" />
+    <None Include="SimpleSchema\SimpleSchema.xsd.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +54,19 @@
     </None>
     <None Update="ContentModelTest\ContentModelTest.xsd.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EnumsTest\EnumsTest.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EnumsTest\EnumsTest.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DupEnum\DupEnumTest.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DupEnum\DupEnumTest.xsd.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="MSBuild\Microsoft.Build.Commontypes.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
