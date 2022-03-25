@@ -88,6 +88,7 @@ namespace Xml.Schema.Linq.CodeGen
         //Prefixes/Suffixes for name handling
         public const string TypeSuffix = "Type";
         public const string LocalTypeSuffix = "LocalType";
+        public const string LocalEnumSuffix = "Enum";
         public const string LocalElementConflictSuffix = "";
         public const string LocalAttributeConflictSuffix = "";
 
