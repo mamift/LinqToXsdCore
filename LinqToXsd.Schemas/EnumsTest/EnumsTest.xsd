@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://linqtoxsd.schemas.org/test/enums-test.xsd"
+    xmlns="http://linqtoxsd.schemas.org/test/enums-test.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+>
+
+  <xs:element name="Element1" type="GlobalEnumElementType" />
+  <xs:element name="Element2" type="GlobalEnumAttributeType" />
+  <xs:element name="Element3" type="NestedEnumElementType" />
+  <xs:element name="Element4" type="NestedEnumAttributeType" />
+  <xs:element name="Element5" type="NestedDerivedEnumAttributeType" />
+
+  <xs:simpleType name="LanguageCodeEnum">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="en"/>
+      <xs:enumeration value="fr"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="GlobalEnumElementType">
+    <xs:sequence>
+      <xs:element name="Language" type="LanguageCodeEnum" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GlobalEnumAttributeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="language" type="LanguageCodeEnum"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="NestedEnumElementType" >
+    <xs:sequence>
+      <xs:element name="Language">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN" >
+            <xs:enumeration value="en"/>
+            <xs:enumeration value="fr"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NestedEnumAttributeType" >
+    <xs:attribute name="language">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN" >
+          <xs:enumeration value="en"/>
+          <xs:enumeration value="fr"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="NestedDerivedEnumAttributeType" >
+    <xs:complexContent>
+      <xs:extension base="NestedEnumAttributeType">
+        <xs:attribute name="additionalLanguage">
+          <xs:simpleType>
+            <xs:restriction base="xs:NMTOKEN" >
+              <xs:enumeration value="de"/>
+              <xs:enumeration value="it"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
