@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
+
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
+
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
@@ -57,11 +61,13 @@ namespace Xml.Schema.Linq.Tests
         }
 
         /// <summary>
+        /// Generates C# code from a given <paramref name="xsdFilePath"/> and then returns the <see cref="CSharpSyntaxTree"/> of
+        /// </summary>
+        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFilePath) => GenerateSyntaxTree(new FileInfo(xsdFilePath));
+        /// <summary>
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        /// <param name="xsdFile"></param>
-        /// <returns></returns>
         public static CSharpSyntaxTree GenerateSyntaxTree(FileInfo xsdFile)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
@@ -91,5 +97,72 @@ namespace Xml.Schema.Linq.Tests
 
             return tree as CSharpSyntaxTree;
         }
+
+        /// <summary>
+        /// Compile a syntax tree and returns the number of syntax and compilation diagnostics
+        /// </summary>
+        /// <param name="tree"></param>
+        /// <returns>The number of syntax and compilation diagnostics. Zero means success.</returns>
+        /// <remarks>
+        /// Can be used in unit tests like this:<code><![CDATA[
+        ///    var diags = Utilities.GetSyntaxAndCompilationDiagnostics(syntaxTree);
+        ///    Assert.AreEqual(0, diags.Length);
+        /// ]]></code></remarks>
+        public static Diagnostic[] GetSyntaxAndCompilationDiagnostics(SyntaxTree tree) => GetSyntaxAndCompilationDiagnostics(tree, out _, out _);
+        /// <summary>
+        /// Compile a syntax tree and returns syntax and compilation diagnostics
+        /// </summary>
+        /// <param name="tree">The syntax tree to compile.</param>
+        /// <param name="syntaxDiagnostics">Syntax diagnostics.</param>
+        /// <param name="compilationDiagnostics">Compilation diagnostics.</param>
+        /// <returns>The number of syntax and compilation diagnostics. Zero means success.</returns>
+        /// <remarks>
+        /// Can be used in unit tests like this:<code><![CDATA[
+        ///    var diags = Utilities.GetSyntaxAndCompilationDiagnostics(syntaxTree);
+        ///    Assert.AreEqual(0, diags.Length);
+        /// ]]></code></remarks>
+        public static Diagnostic[] GetSyntaxAndCompilationDiagnostics(SyntaxTree tree, out Diagnostic[] syntaxDiagnostics, out Diagnostic[] compilationDiagnostics)
+        {
+            syntaxDiagnostics = tree.GetDiagnostics().ToArray();
+
+            var compilation = Compilation.Value.AddSyntaxTrees(tree);
+            compilationDiagnostics = compilation.GetDiagnostics().Where(diag => !DiagnosticAccepted(diag)).ToArray();
+
+            return syntaxDiagnostics.Concat(compilationDiagnostics).ToArray();
+
+            // Consider compilation as success for following warnings
+            static bool DiagnosticAccepted(Diagnostic diagnostic)
+            {
+                return diagnostic.Id == "CS8019"; // warning CS8019: Unnecessary using directive.
+            }
+        }
+
+        private static readonly Lazy<CSharpCompilation> Compilation = new(() =>
+        {
+            var options = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
+            var references = GetReferencePaths();
+            return CSharpCompilation.Create(Guid.NewGuid().ToString("N"), options: options)
+                .AddReferences(references.Select(path => MetadataReference.CreateFromFile(path)));
+
+            static IEnumerable<string> GetReferencePaths()
+            {
+                // do not reference LinqToXsd.Schemas.dll as this assembly already contains the types we are currently compiling.
+                var excludedFileNames = new string[] { "LinqToXsd.Schemas.dll" };
+
+                var referencePaths = ((string)AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES")!)
+                    .Split(Path.PathSeparator)
+                    .Where(path => !excludedFileNames.Contains(Path.GetFileName(path)))
+                    .OrderBy(_ => _)
+                    .ToArray();
+
+                return GetRuntimeReferences(referencePaths);
+
+                static IEnumerable<string> GetRuntimeReferences(params string[] fileNames)
+                {
+                    var runtimeDirectory = System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
+                    return fileNames.Select(fileName => Path.Combine(runtimeDirectory, fileName));
+                }
+            }
+        });
     }
 }
