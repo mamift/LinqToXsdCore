@@ -187,7 +187,7 @@ namespace Xml.Schema.Linq.Tests
         }
 
         /// <summary>
-        /// Tests that all invocations of <see cref="System.Xml.Linq.XName.Get"/> are fully qualified.
+        /// Tests that all invocations of <see cref="System.Xml.Linq.XName.Get(string)"/> are fully qualified.
         /// </summary>
         [Test]
         public void TestXNameGetInvocationsAreFullyQualified()

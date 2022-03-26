@@ -9,10 +9,6 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(MSBuildProjectName).xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="System.CodeDom" Version="6.0.0" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />

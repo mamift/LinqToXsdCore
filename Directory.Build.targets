@@ -1,13 +1,33 @@
-<Project>
+<Project InitialTargets="TraceDirectoryBuild">
+
+  <!-- Documentation -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DocumentationFile>$(OutputPath)$(MSBuildProjectName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- Disable nuget package generation in debug mode -->
   <PropertyGroup>
-    <!-- Disable nuget package generation in debug mode -->
     <GeneratePackageOnBuild Condition ="'$(Configuration)' == 'Debug'">false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- Hide nuget package outputs from solution explorer -->
   <ItemGroup>
     <None Remove="nupkg\**" />
-    <Compile Remove="nupkg\**" />
-    <EmbeddedResource Remove="nupkg\**" />
   </ItemGroup>
+
+  <!--
+  To enable tracing, define TraceMSBuild like this:
+
+     dotnet build ... -p:TraceMSBuild=true
+  -->
+  <Target Name="TraceDirectoryBuild" Condition="'$(TraceMSBuild)' == 'true'">
+    <Message Importance="high" Text="Directory.Build.targets [$(MSBuildProjectFile)]" />
+    <Message Importance="high" Text="-----------------------" />
+    <Message Importance="high" Text="TargetFramework        = $(TargetFramework)" />
+    <Message Importance="high" Text="PackageId              = $(PackageId)" />
+    <Message Importance="high" Text="OutputPath             = $(OutputPath)" />
+    <Message Importance="high" Text="PackageOutputPath      = $(PackageOutputPath)" />
+    <Message Importance="high" Text="GeneratePackageOnBuild = $(GeneratePackageOnBuild)" />
+    <Message Importance="high" Text=" " />
+  </Target>
 </Project>

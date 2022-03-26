@@ -3,7 +3,7 @@
 
   <!-- Build and design defaults -->
   <PropertyGroup>
-    <CoreTargetFramework>netcoreapp3.1</CoreTargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
   </PropertyGroup>
 
@@ -25,11 +25,12 @@
   <!-- Disable XML comment warnings -->
   <PropertyGroup>
     <!--
+    CS1570: XML comment has badly formed XML - 'End tag 'para' does not match the start tag 'schema'.'
     CS1574: XML comment has cref attribute 'xsdFilePath' that could not be resolved
     CS1591: Missing XML comment for publicly visible type or member ...
     CS1734: XML comment on ... has a paramref tag for ..., but there is no parameter by that name
     -->
-    <NoWarn>$(NoWarn)1574;1591;1734</NoWarn>
+    <NoWarn>$(NoWarn)1570;1574;1591;1734</NoWarn>
   </PropertyGroup>
 
   <!-- Pack exisiting README file -->
