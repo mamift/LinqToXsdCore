@@ -3,7 +3,7 @@
 
   <!-- Build and design defaults -->
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6</TargetFramework>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
   </PropertyGroup>
 
@@ -40,4 +40,11 @@
   <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)\README.md')">
       <None Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
+
+  <!-- Compiler -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
 </Project>
