@@ -12,21 +12,21 @@ namespace Xml.Schema.Linq.Tests
 {
     public class ContentModelCodeGenTests
     {
-        private SyntaxTree Tree { get; set; }
-
+        private SyntaxTree                   Tree           { get; set; }
         private List<ClassDeclarationSyntax> GeneratedTypes { get; set; }
 
         [SetUp]
         public void GenerateCode()
         {
-            const string xsdFilePath = @"ContentModelTest\ContentModelTest.xsd";
-            var xsdFileInfo = new FileInfo(xsdFilePath);
-            Tree = Utilities.GenerateSyntaxTree(xsdFileInfo);
+            const string XsdFilePath = @"ContentModelTest\ContentModelTest.xsd";
 
-            GeneratedTypes = Tree
-                             .GetNamespaceRoot()
-                             .DescendantNodes()
-                             .OfType<ClassDeclarationSyntax>().ToList();
+            this.Tree = Utilities.GenerateSyntaxTree(XsdFilePath);
+
+            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(this.Tree);
+            Assert.AreEqual(0, diags.Length);
+
+            var nodes = this.Tree.GetNamespaceRoot().DescendantNodes();
+            this.GeneratedTypes = nodes.OfType<ClassDeclarationSyntax>().ToList();
         }
 
         [Test]

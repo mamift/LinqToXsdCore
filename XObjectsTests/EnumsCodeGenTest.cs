@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 
-using LinqToXsd.Schemas.Test.ContentModelTypes;
 using LinqToXsd.Schemas.Test.EnumsTypes;
 
 using Microsoft.CodeAnalysis;
@@ -16,19 +15,22 @@ namespace Xml.Schema.Linq.Tests
     public class EnumsCodeGenTest
     {
         const string EnumTypesNamespace = "LinqToXsd.Schemas.Test.EnumsTypes";
-        private SyntaxTree Tree { get; set; }
 
+        private SyntaxTree                   Tree           { get; set; }
         private List<ClassDeclarationSyntax> GeneratedTypes { get; set; }
         private List<EnumDeclarationSyntax>  GeneratedEnums { get; set; }
 
         [SetUp]
         public void GenerateCode()
         {
-            const string xsdFilePath = @"EnumsTest\EnumsTest.xsd";
-            var xsdFileInfo = new FileInfo(xsdFilePath);
-            this.Tree = Utilities.GenerateSyntaxTree(xsdFileInfo);
-            var nodes = this.Tree.GetNamespaceRoot().DescendantNodes();
+            const string XsdFilePath = @"EnumsTest\EnumsTest.xsd";
 
+            this.Tree = Utilities.GenerateSyntaxTree(XsdFilePath);
+
+            var diags = Utilities.GetSyntaxAndCompilationDiagnostics(this.Tree);
+            Assert.AreEqual(0, diags.Length);
+
+            var nodes = this.Tree.GetNamespaceRoot().DescendantNodes();
             this.GeneratedTypes = nodes.OfType<ClassDeclarationSyntax>().ToList();
             this.GeneratedEnums = nodes.OfType<EnumDeclarationSyntax>().ToList();
         }
