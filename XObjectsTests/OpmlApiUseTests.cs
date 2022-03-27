@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
-using Opml;
+
+using XObjectsTests.Schemas.Opml;
 
 namespace Xml.Schema.Linq.Tests
 {

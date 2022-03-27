@@ -8,14 +8,13 @@ namespace Xml.Schema.Linq
     {
         internal XName name;
         int elementPosition = -1;
-        SchemaAwareContentModelEntity parentContentModel;
 
         public NamedContentModelEntity(XName name)
         {
             this.name = name;
         }
 
-        public override void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
+        public override XElement AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
             XmlSchemaDatatype datatype, Type elementBaseType)
         {
             throw new InvalidOperationException();
@@ -30,12 +29,6 @@ namespace Xml.Schema.Linq
         {
             get { return elementPosition; }
             set { elementPosition = value; }
-        }
-
-        internal SchemaAwareContentModelEntity ParentContentModel
-        {
-            get { return this.parentContentModel; }
-            set { this.parentContentModel = value; }
         }
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.Schemas.Developer.MsBuild;
+
 using NUnit.Framework;
 
 namespace Xml.Schema.Linq.Tests

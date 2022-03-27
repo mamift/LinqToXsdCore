@@ -316,6 +316,8 @@ namespace Xml.Schema.Linq.CodeGen
         {
             throw new InvalidOperationException();
         }
+
+        public override string ToString() => this.clrtypeName;
     }
 
 
@@ -390,6 +392,11 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return null;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} {{ {string.Join(", ", this.Content.Select(x => x.ToString()))} }}";
         }
     }
 
@@ -658,6 +665,8 @@ namespace Xml.Schema.Linq.CodeGen
             get { return schemaObject; }
         }
 
+        internal string LocalSuffix => this.IsEnum ? Constants.LocalEnumSuffix : Constants.LocalTypeSuffix;
+
         internal string GetSimpleTypeClrTypeDefName(string parentTypeClrNs,
             Dictionary<XmlSchemaObject, string> nameMappings)
         {
@@ -704,16 +713,7 @@ namespace Xml.Schema.Linq.CodeGen
             refTypeName = null;
             if (IsNamedComplexType || IsTypeRef)
             {
-                string identifier = null;
-                if (nameMappings.TryGetValue(schemaObject, out identifier))
-                {
-                    clrTypeName = identifier;
-                }
-                else
-                {
-                    clrTypeName = typeName;
-                }
-
+                clrTypeName = nameMappings.TryGetValue(schemaObject, out string identifier) ? identifier : typeName;
                 refTypeName = clrTypeName;
                 if (typeNs != string.Empty && (typeNs != parentTypeClrNs || nameMappings.Values.Where(v => v == clrTypeName).Skip(1).Any()))
                 {
@@ -731,34 +731,41 @@ namespace Xml.Schema.Linq.CodeGen
                 Debug.Assert(IsSimpleType);
                 XmlSchemaSimpleType st = schemaObject as XmlSchemaSimpleType;
                 Debug.Assert(st != null);
-                if (IsSchemaList)
-                    clrTypeName = st.GetListItemType().Datatype.ValueType.ToString();
-                else
-                    clrTypeName = st.Datatype.ValueType.ToString();
+                clrTypeName = IsSchemaList
+                    ? st.GetListItemType().Datatype.ValueType.ToString()
+                    : st.Datatype.ValueType.ToString();
             }
 
             return clrTypeName;
         }
 
-        internal void UpdateClrFullTypeName(ClrPropertyInfo property, string @namespace)
+        internal string UpdateClrFullEnumTypeName(ClrPropertyInfo property, string currentTypeScope, string currentNamespaceScope)
         {
-            if (@namespace == null) throw new ArgumentNullException(nameof(@namespace));
+            Debug.Assert(this.IsEnum);
 
-            if (IsEnum) {
-                var theClrNamespace = this.Namespace.IsNullOrEmpty() ? @namespace : this.Namespace;
-                // when the current namespace and property CLR namespace is null, just use the CLR type name
-                if (this.Namespace.IsNullOrEmpty() && property.ClrNamespace.IsNullOrEmpty()) {
-                    if (theClrNamespace.IsNullOrEmpty()) {
-                        this.clrFullTypeName = this.clrName;
-                        return;
-                    }
+            var theClrNamespace = EnsureNamespace();
+            var noNamespaceDefined = this.Namespace.IsNullOrEmpty() && property.ClrNamespace.IsNullOrEmpty() && theClrNamespace.IsNullOrEmpty();
+            if (noNamespaceDefined)
+            {
+                this.clrFullTypeName = this.clrName;
+            }
+            else if (this.clrFullTypeName.IsEmpty())
+            {
+                //If the enum type is local (nested), use its parent type scope
+                this.clrFullTypeName = property.TypeReference.IsLocalType
+                    ? $"{currentTypeScope}.{this.ClrName ?? this.Name}"
+                    : $"{theClrNamespace}.{this.ClrName ?? this.Name}";
+            }
+            return this.clrFullTypeName;
+
+            string EnsureNamespace()
+            {
+                if (this.Namespace.IsNullOrEmpty())
+                {
+                    if (currentNamespaceScope == null) throw new ArgumentNullException(nameof(currentNamespaceScope));
+                    return currentNamespaceScope;
                 }
-
-                if (this.clrFullTypeName.IsNotEmpty()) return;
-
-                this.clrFullTypeName = theClrNamespace == property.ClrNamespace ? 
-                    this.ClrName : 
-                    theClrNamespace + "." + (this.ClrName ?? this.Name); // if ClrName is null, use the Name
+                return this.Namespace;
             }
         }
     }
@@ -832,6 +839,34 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             lastChild = content;
+        }
+
+        internal string OccurenceString
+        {
+            get
+            {
+                if (this.IsStar)
+                {
+                    return "*";
+                }
+                else if (this.IsPlus)
+                {
+                    return "+";
+                }
+                else if (this.IsQMark)
+                {
+                    return "?";
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.Children.Any() ? $"{{ {string.Join(", ", this.Children.Select(x => x.ToString()))} }}{this.OccurenceString}" : string.Empty;
         }
     }
 
@@ -946,5 +981,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             get { return contentModelType; }
         }
+
+        public override string ToString() => $"{this.contentModelType} {base.ToString()}";
     }
 }

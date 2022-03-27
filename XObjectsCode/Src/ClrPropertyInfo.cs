@@ -1,12 +1,13 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
-using System.Xml.Schema;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.CodeDom;
 using System.Globalization;
+using System.Xml.Schema;
+
 using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
@@ -161,6 +162,7 @@ namespace Xml.Schema.Linq.CodeGen
             get { return annotations; }
         }
 
+        internal bool ShouldGenerate => !IsDuplicate && (!FromBaseType || IsNew);
 
         internal abstract CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public);
         internal abstract void AddToContentModel(CodeObjectCreateExpression contentModelExpression);
@@ -175,6 +177,8 @@ namespace Xml.Schema.Linq.CodeGen
         {
             return CodeDomHelper.XNameGetExpression(SchemaName, PropertyNs);
         }
+
+        public override string ToString() => this.propertyName;
     }
 
     internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
@@ -668,19 +672,33 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal void UpdateTypeReference(string clrFullTypeName, string currentNamespace,
-            Dictionary<XmlSchemaObject, string> nameMappings)
+        internal void UpdateTypeReference(
+            string currentTypeScope,
+            string currentNamespaceScope,
+            Dictionary<XmlSchemaObject, string> nameMappings,
+            Action<ClrTypeReference> createNestedEnumType)
         {
-            string refTypeName = null;
-            this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespace, nameMappings, out refTypeName);
-            if (Validation || IsUnion)
+            var typeRef = this.TypeReference;
+            if (typeRef.IsEnum)
             {
-                this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespace, nameMappings);
+                if (string.IsNullOrEmpty(typeRef.Name))
+                {
+                    typeRef.Name = $"{this.PropertyName.ToUpperFirstInvariant()}{Constants.LocalEnumSuffix}";
+                }
+                if (ShouldGenerate && typeRef.IsLocalType && createNestedEnumType != null)
+                {
+                    createNestedEnumType(typeRef);
+                }
             }
 
-            typeRef.UpdateClrFullTypeName(this, currentNamespace);
+            this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, out string _);
 
-            this.parentTypeFullName = clrFullTypeName;
+            if (Validation || IsUnion)
+            {
+                this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespaceScope, nameMappings);
+            }
+
+            this.parentTypeFullName = typeRef.IsEnum ? typeRef.UpdateClrFullEnumTypeName(this, currentTypeScope, currentNamespaceScope) : currentTypeScope;
         }
 
         internal void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
@@ -702,7 +720,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
-            if (IsDuplicate || (FromBaseType && !IsNew))
+            if (!ShouldGenerate)
             {
                 return null;
             }

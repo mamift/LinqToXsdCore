@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
@@ -12,38 +12,40 @@ namespace Xml.Schema.Linq
 
         internal override ContentModelType ContentModelType => ContentModelType.Choice;
 
-        public override void AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
+        public override XElement AddElementToParent(XName name, object value, XElement parentElement, bool addToExisting,
             XmlSchemaDatatype datatype, Type elementBaseType)
         {
-            base.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
-            CheckChoiceBranches(name, parentElement);
+            var element = base.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
+            this.RemoveChoices(element, parentElement);
+            base.OnElementAdded(this, element, parentElement);
+            return element;
         }
 
-        private void CheckChoiceBranches(XName currentBranch, XElement parentElement)
+        internal override void OnElementAdded(SchemaAwareContentModelEntity owner, XElement element, XElement parentElement)
         {
-            var elementsToRemove = new List<XElement>();
-            NamedContentModelEntity otherBranch = null;
-            foreach (XElement instanceElement in parentElement.Elements())
-            {
-                if (instanceElement.Name == currentBranch)
-                {
-                    //This is the element we set just now
-                    continue;
-                }
+            this.RemoveChoices(owner, parentElement);
+            base.OnElementAdded(this, element, parentElement);
+        }
 
-                otherBranch = GetNamedEntity(instanceElement.Name);
-                if (otherBranch != null)
-                {
-                    //It is a branch of choice
-                    Debug.Assert(otherBranch.ParentContentModel ==
-                                 this); //Currently this should be invoked only for flat choices
-                    elementsToRemove.Add(instanceElement);
-                }
+        private void RemoveChoices(XElement keep, XElement parentElement)
+        {
+            var candidates = parentElement.Elements().Where(elem => this.Contains(elem));
+            var toRemove   = candidates.Where(elem => elem != keep).ToArray();
+            foreach (var element in toRemove)
+            {
+                element.Remove();
             }
+        }
 
-            foreach (XElement elementToRemove in elementsToRemove)
+        private void RemoveChoices(SchemaAwareContentModelEntity elementOwner, XElement parentElement)
+        {
+            var owners     = elementOwner.GetSelfAndAncestorsUntil(this).ToArray();
+            var candidates = parentElement.Elements().Where(elem => this.Contains(elem));
+            var toKeep     = parentElement.Elements().Where(elem => owners.Any(owner => owner.Contains(elem)));
+            var toRemove   = candidates.Except(toKeep).ToArray();
+            foreach (var element in toRemove)
             {
-                elementToRemove.Remove();
+                element.Remove();
             }
         }
     }

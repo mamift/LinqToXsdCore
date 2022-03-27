@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29911.84
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCore", "XObjectsCore\XObjectsCore.csproj", "{71210419-4EA9-442B-ACA2-4FCD647929E3}"
 EndProject
@@ -11,12 +11,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsTests", "XObjectsTe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E2B0371-0473-46A8-B096-ADF655B9D526}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		_config.yml = _config.yml
+		azure-pipelines.yml = azure-pipelines.yml
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
 		RELEASENOTES.md = RELEASENOTES.md
+		Version.props = Version.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCodeGen", "XObjectsCode\XObjectsCodeGen.csproj", "{26B49F5C-4459-4B14-B25B-057469144039}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToXsd.Schemas", "LinqToXsd.Schemas\LinqToXsd.Schemas.csproj", "{4796DCB8-6C80-487B-9A58-09B96EEE2908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqToXsd.Schemas", "LinqToXsd.Schemas\LinqToXsd.Schemas.csproj", "{4796DCB8-6C80-487B-9A58-09B96EEE2908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

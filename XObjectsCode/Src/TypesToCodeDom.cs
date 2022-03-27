@@ -187,18 +187,7 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-
-                    var typeRef = propertyInfo.TypeReference;
-                    if (typeRef.IsEnum)
-                    {
-                        if (string.IsNullOrEmpty(typeRef.Name)) {
-                            typeRef.Name = $"{propertyInfo.PropertyName}s";
-                        }
-
-                        CreateNestedEnumType(typeRef);
-                    }
-
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings);
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
                     typeBuilder.CreateAttributeProperty(child as ClrPropertyInfo, null);
                 }
                 else
@@ -270,7 +259,7 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings);
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
                     typeBuilder.CreateProperty(propertyInfo, annotations);
                 }
                 else if (child.ContentType == ContentType.WildCardProperty)
@@ -295,7 +284,7 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings);
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
                     typeBuilder.CreateProperty(propertyInfo, annotations);
                 }
                 else if (child.ContentType == ContentType.WildCardProperty)
@@ -306,7 +295,9 @@ namespace Xml.Schema.Linq.CodeGen
                 else
                 {
                     Debug.Assert(child.ContentType == ContentType.Grouping);
+                    typeBuilder.StartGrouping(child as GroupingInfo);
                     ProcessComplexGroupProperties(child as GroupingInfo, annotations);
+                    typeBuilder.EndGrouping();
                 }
             }
         }
@@ -729,7 +720,7 @@ namespace Xml.Schema.Linq.CodeGen
                 typedValPropertyInfo.IsNew = true;
             }
 
-            typedValPropertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings);
+            typedValPropertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
             return typedValPropertyInfo;
         }
 
@@ -740,8 +731,7 @@ namespace Xml.Schema.Linq.CodeGen
                 return codeNamespace;
             }
 
-            CodeNamespace currentCodeNamespace = null;
-            if (!codeNamespacesTable.TryGetValue(clrNamespace, out currentCodeNamespace))
+            if (!codeNamespacesTable.TryGetValue(clrNamespace, out CodeNamespace currentCodeNamespace))
             {
                 currentCodeNamespace = new CodeNamespace(clrNamespace);
                 AddDefaultImports(currentCodeNamespace);

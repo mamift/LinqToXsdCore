@@ -4,16 +4,27 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="_temp\**" />
-    <EmbeddedResource Remove="_temp\**" />
-    <None Remove="_temp\**" />
-  </ItemGroup>
+  <!-- Avoid being overrun by warnings -->
+  <PropertyGroup>
+    <!--
+    CS0108: ... hides inherited member ... Use the new keyword if hiding was intended.
+    CS0114: ... hides inherited member ... To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
+    CS1591: Missing XML comment for publicly visible type or member ...
+    -->
+    <NoWarn>$(NoWarn);108;114;1591</NoWarn>
+  </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
+    <Compile Remove="SimpleSchemaElement\SimpleSchema.xsd.cs" />
+    <Compile Remove="SimpleSchema\SimpleSchema.xsd.cs" />
     <Compile Remove="XQueryX\XQueryX.xsd.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SimpleSchemaElement\SimpleSchema.xsd.cs" />
+    <None Include="SimpleSchema\SimpleSchema.xsd.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +56,22 @@
     <None Update="Atom\xml2001.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="ContentModelTest\ContentModelTest.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EnumsTest\EnumsTest.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EnumsTest\EnumsTest.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DupEnum\DupEnumTest.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DupEnum\DupEnumTest.xsd.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="MSBuild\Microsoft.Build.Commontypes.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -64,6 +91,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Pubmed\efetch-pubmed.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ContentModelTest\ContentModelTest.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Rss\rss-2_0.xsd">

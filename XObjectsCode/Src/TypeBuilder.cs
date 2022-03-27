@@ -699,6 +699,8 @@ namespace Xml.Schema.Linq.CodeGen
             servicesTypeDecl.Members.Add(singletonProperty);
             return servicesTypeDecl;
         }
+
+        public override string ToString() => $"{nameof(TypeBuilder)} ({this.clrTypeInfo})";
     }
 
 
@@ -781,7 +783,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void StartGrouping(GroupingInfo groupingInfo)
         {
             InitializeTables();
-            propertyBuilder = TypePropertyBuilder.Create(groupingInfo, decl, declItemsInfo, DefaultVisibility);
+            propertyBuilder = TypePropertyBuilder.Create(propertyBuilder as ContentModelPropertyBuilder, groupingInfo, decl, declItemsInfo, DefaultVisibility);
             propertyBuilder.StartCodeGen(); //Start the group's code gen, like setting up functional const etc
             propertyBuilderStack.Push(propertyBuilder);
         }
@@ -843,6 +845,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        public override string ToString() => $"{nameof(XTypedElementBuilder)} ({this.clrTypeInfo})";
 
         protected override void ImplementCommonIXMetaData()
         {
@@ -893,8 +896,17 @@ namespace Xml.Schema.Linq.CodeGen
             }
             else
             {
-                //No element children per schema, Return Default content model
-                getContentModelMethod = DefaultContentModel();
+                //No element children per schema
+                if (this.clrTypeInfo.IsDerived)
+                {
+                    //Probably derived by restriction, use base content model
+                    return;
+                }
+                else
+                {
+                    //Return Default content model
+                    getContentModelMethod = DefaultContentModel();
+                }
             }
 
             decl.Members.Add(getContentModelMethod);

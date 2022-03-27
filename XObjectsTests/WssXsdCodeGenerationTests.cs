@@ -88,7 +88,7 @@ namespace Xml.Schema.Linq.Tests
         {
             var members = TypesThatInheritFromXTypedElement.SelectMany(cds => cds.Members).ToList();
             var actual = members.Count;
-            const int expected = 5084;
+            const int expected = 7184;
             if (actual != expected) Assert.Warn(Utilities.WarningMessage(expected, actual));
 
             var propertyMembers = members.OfType<PropertyDeclarationSyntax>().ToList();

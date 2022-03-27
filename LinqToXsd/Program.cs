@@ -25,7 +25,7 @@ namespace LinqToXsd
             {
                 try {
                     var thereIsBuffer = Console.BufferHeight > 0 | Console.BufferWidth > 0;
-                    return (Console.Title.Length > 0 || Console.WindowHeight > 0) && thereIsBuffer && Environment.UserInteractive;
+                    return (Console.WindowHeight > 0) && thereIsBuffer && Environment.UserInteractive;
                 } catch {
                     return false;
                 }
