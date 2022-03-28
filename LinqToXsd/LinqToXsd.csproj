@@ -11,6 +11,7 @@
     <ToolCommandName>$(MSBuildProjectName)</ToolCommandName>
     <PackAsTool>true</PackAsTool>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
