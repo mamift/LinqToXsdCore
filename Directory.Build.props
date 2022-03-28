@@ -9,7 +9,7 @@
 
   <!-- Package defaults -->
   <PropertyGroup>
-    <Copyright>Copyright (C) 2019-2022 Muhammad Miftah, GitHub Contributors &amp; Microsoft Corporation (2008-2011)</Copyright>
+    <Copyright>Copyright (C) Muhammad Miftah, GitHub Contributors (2019-2022) &amp; Microsoft Corporation (2008-2011)</Copyright>
     <Authors>https://github.com/mamift</Authors>
     <Company>Microsoft Corporation</Company>
     <RepositoryUrl>https://github.com/mamift/LinqToXsdCore</RepositoryUrl>
