@@ -17,14 +17,7 @@
   <ItemGroup>
     <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
-    <Compile Remove="SimpleSchemaElement\SimpleSchema.xsd.cs" />
-    <Compile Remove="SimpleSchema\SimpleSchema.xsd.cs" />
     <Compile Remove="XQueryX\XQueryX.xsd.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="SimpleSchemaElement\SimpleSchema.xsd.cs" />
-    <None Include="SimpleSchema\SimpleSchema.xsd.cs" />
   </ItemGroup>
 
   <ItemGroup>
