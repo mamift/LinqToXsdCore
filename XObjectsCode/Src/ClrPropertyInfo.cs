@@ -691,7 +691,7 @@ namespace Xml.Schema.Linq.CodeGen
                 }
             }
 
-            this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, out string _);
+            this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, out string refTypeName);
 
             if (Validation || IsUnion)
             {
@@ -1174,6 +1174,11 @@ namespace Xml.Schema.Linq.CodeGen
                     else
                     {
                         parseMethodName = Constants.ParseValue;
+                        if (IsEnum) {
+                            if (TypeReference.SchemaObject is XmlSchemaSimpleType simpleSchemaType) {
+                                parseType = new CodeTypeReference(simpleSchemaType.Datatype.ValueType);
+                            }
+                        }
                     }
 
                     returnExp = CodeDomHelper.CreateGenericMethodCall(

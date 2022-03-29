@@ -731,9 +731,23 @@ namespace Xml.Schema.Linq.CodeGen
                 Debug.Assert(IsSimpleType);
                 XmlSchemaSimpleType st = schemaObject as XmlSchemaSimpleType;
                 Debug.Assert(st != null);
-                clrTypeName = IsSchemaList
-                    ? st.GetListItemType().Datatype.ValueType.ToString()
-                    : st.Datatype.ValueType.ToString();
+                if (IsSchemaList)
+                {
+                    clrTypeName = st.GetListItemType().Datatype.ValueType.ToString();
+                }
+                else {
+                    clrTypeName = st.Datatype.ValueType.ToString();
+
+                    if (IsEnum) {
+                        KeyValuePair<XmlSchemaObject, string> possibleNameMappedClrType =
+                            nameMappings.FirstOrDefault(d => d.Value.Contains(typeName) && d.Key is XmlSchemaSimpleType);
+
+                        if (!possibleNameMappedClrType.Equals(default(KeyValuePair<XmlSchemaObject, string>)) &&
+                            possibleNameMappedClrType.Value.IsNotNullOrEmpty()) {
+                            clrTypeName = possibleNameMappedClrType.Value;
+                        }
+                    }
+                }
             }
 
             return clrTypeName;
