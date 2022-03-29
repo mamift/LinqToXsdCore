@@ -1031,12 +1031,20 @@ namespace Xml.Schema.Linq.CodeGen
 
             constructor.Parameters.Add(new CodeParameterDeclarationExpression(returnType, parameterName));
 
-            constructor.Statements.Add(
-                new CodeAssignStatement(
-                    new CodePropertyReferenceExpression(
-                        CodeDomHelper.This(),
-                        Constants.SInnerTypePropertyName),
-                    new CodeVariableReferenceExpression(parameterName)));
+            var thisTypedValuePropRef = new CodePropertyReferenceExpression(CodeDomHelper.This(), Constants.SInnerTypePropertyName);
+            var thisConstructorParamRef = new CodeVariableReferenceExpression(parameterName);
+            var codeAssignStatement = new CodeAssignStatement(thisTypedValuePropRef, thisConstructorParamRef);
+
+            if (clrTypeInfo is ClrWrapperTypeInfo wrapperTypeInfo) {
+                if (wrapperTypeInfo.InnerType.IsEnum && !wrapperTypeInfo.InnerType.IsEquivalentTypeReference(returnType)) {
+                    var castAsInnerTypeEnum =
+                        CodeDomHelper.CreateParseEnumCall(wrapperTypeInfo.InnerType.ClrFullTypeName, thisConstructorParamRef);
+
+                    codeAssignStatement = new CodeAssignStatement(thisTypedValuePropRef, castAsInnerTypeEnum);
+                }
+            }
+
+            constructor.Statements.Add(codeAssignStatement);
 
             ApplyAnnotations(constructor, annotations, null);
             decl.Members.Add(constructor);

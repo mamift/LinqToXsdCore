@@ -13,6 +13,28 @@ namespace Xml.Schema.Linq.Extensions
     public static class CodeDomExtensions
     {
         /// <summary>
+        /// Compares that the current <see cref="ClrTypeReference"/> is equivalent to the given CodeDOM <see cref="CodeTypeReference"/>.
+        /// <para>This methods assumes that the <paramref name="codeTypeReference"/> has the namespace in the <see cref="CodeTypeReference.BaseType"/>.</para>
+        /// </summary>
+        /// <param name="clrTypeReference"></param>
+        /// <param name="codeTypeReference"></param>
+        /// <returns></returns>
+        internal static bool IsEquivalentTypeReference(this ClrTypeReference clrTypeReference, CodeTypeReference codeTypeReference)
+        {
+            if (codeTypeReference.BaseType.Contains('.')) {
+                string[] baseTypeSplit = codeTypeReference.BaseType.Split('.');
+                var typeNameFromNs = baseTypeSplit.LastOrDefault();
+                var codeTypeRefNs = string.Join(".", baseTypeSplit.Take(baseTypeSplit.Length - 1));
+
+                bool typeNameSame = string.Equals(typeNameFromNs, clrTypeReference.ClrName);
+                bool nsNameSame = string.Equals(codeTypeRefNs, clrTypeReference.Namespace);
+                return typeNameSame && nsNameSame;
+            }
+
+            return string.Equals(clrTypeReference.ClrFullTypeName, codeTypeReference.BaseType);
+        }
+
+        /// <summary>
         /// Generates code string from the current <see cref="CodeCompileUnit"/>.
         /// </summary>
         /// <param name="ccu"></param>
