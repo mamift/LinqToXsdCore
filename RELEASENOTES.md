@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.3.1
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.3.0
+	* This update only applies to the LinqToXsd global `dotnet` tool; it re-enables .NET Core 3.1 as a runtime target, and also adds .NET 5, alongside .NET 6 that was added in 3.3.0.
+	* PDB debug information is now embedded inside the shipping assemblies.
+
 ## Version 3.3.0
 
 Nuget packages:
