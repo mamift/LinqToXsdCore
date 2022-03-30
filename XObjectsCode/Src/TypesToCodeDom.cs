@@ -701,27 +701,27 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         private ClrPropertyInfo InitializeTypedValuePropertyInfo(ClrTypeInfo typeInfo,
-            ClrPropertyInfo typedValPropertyInfo, ClrTypeReference innerType)
+            ClrPropertyInfo existingTypedValPropertyInfo, ClrTypeReference innerType)
         {
-            if (typedValPropertyInfo == null)
+            if (existingTypedValPropertyInfo == null)
             {
-                typedValPropertyInfo = new ClrPropertyInfo(Constants.SInnerTypePropertyName, string.Empty,
+                existingTypedValPropertyInfo = new ClrPropertyInfo(Constants.SInnerTypePropertyName, string.Empty,
                     Constants.SInnerTypePropertyName, Occurs.One, settings);
-                typedValPropertyInfo.Origin = SchemaOrigin.Text;
+                existingTypedValPropertyInfo.Origin = SchemaOrigin.Text;
             }
             else
             {
-                typedValPropertyInfo.Reset();
+                existingTypedValPropertyInfo.Reset();
             }
 
-            typedValPropertyInfo.TypeReference = innerType;
+            existingTypedValPropertyInfo.TypeReference = innerType;
             if (typeInfo.IsSubstitutionMember())
             {
-                typedValPropertyInfo.IsNew = true;
+                existingTypedValPropertyInfo.IsNew = true;
             }
 
-            typedValPropertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-            return typedValPropertyInfo;
+            existingTypedValPropertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+            return existingTypedValPropertyInfo;
         }
 
         private CodeNamespace GetCodeNamespace(string clrNamespace)

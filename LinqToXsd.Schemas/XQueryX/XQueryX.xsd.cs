@@ -37149,7 +37149,7 @@ namespace W3C.XQueryX {
         }
         
         public boundarySpaceDecl(string content) {
-            this.TypedValue = content;
+            this.TypedValue = ((W3C.XQueryX.boundarySpaceDeclType)(Enum.Parse(typeof(W3C.XQueryX.boundarySpaceDeclType), content)));
         }
         
         public virtual W3C.XQueryX.boundarySpaceDeclType TypedValue {
@@ -37356,7 +37356,7 @@ namespace W3C.XQueryX {
         }
         
         public constructionDecl(string content) {
-            this.TypedValue = content;
+            this.TypedValue = ((W3C.XQueryX.constructionDeclType)(Enum.Parse(typeof(W3C.XQueryX.constructionDeclType), content)));
         }
         
         public virtual W3C.XQueryX.constructionDeclType TypedValue {
@@ -37425,7 +37425,7 @@ namespace W3C.XQueryX {
         }
         
         public orderingModeDecl(string content) {
-            this.TypedValue = content;
+            this.TypedValue = ((W3C.XQueryX.orderingModeDeclType)(Enum.Parse(typeof(W3C.XQueryX.orderingModeDeclType), content)));
         }
         
         public virtual W3C.XQueryX.orderingModeDeclType TypedValue {

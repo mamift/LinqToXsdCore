@@ -17,7 +17,6 @@
   <ItemGroup>
     <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
-    <Compile Remove="XQueryX\XQueryX.xsd.cs" />
   </ItemGroup>
 
   <ItemGroup>

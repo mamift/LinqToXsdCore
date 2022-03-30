@@ -4,6 +4,7 @@
     <TargetFrameworks>net6;net5;netcoreapp3.1</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <Description>A command line tool that facilitates generating code from an XSD; also generates configuration files to control code generation. Do not include this nuget package as a dependency in shipping applications or libraries; use the code it generates in a shipping library or app and include a dependency on the XObjectsCore nuget package. Can be installed via 'dotnet tool install LinqToXsdCore --global', and then invoked via 'linqtoxsd'. Original Authors: Microsoft Corporation.</Description>
+    <PackageReadmeFile>RELEASENOTES.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- This is for use as a global dotnet tool -->
@@ -14,6 +15,10 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\RELEASENOTES.md" Link="RELEASENOTES.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Alba.CsConsoleFormat.ColorfulConsole" Version="1.0.0" />
