@@ -8,6 +8,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
+    <Version>3.3.0</Version>
   </PropertyGroup>
 
 </Project>
