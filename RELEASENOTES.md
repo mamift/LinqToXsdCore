@@ -3,9 +3,7 @@
 ## Version 3.3.2
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.3.2
-	* This update only applies to the LinqToXsd global `dotnet` tool; it fixes a bug whereby a non-functional class constructor was being generated for classes for XSD elements, whose schema types are simple types, and said simple types are defined as enum restrictions on string types (like `NMToken` or `xs:string`). The constructor now converts from a given string value to the inner enum type.
-
-The functional constructor being generated in code will now parse the string value and convert it to it's proper inner enum type (stored in the TypedValue property).
+	* This update only applies to the LinqToXsd global `dotnet` tool; it fixes a bug whereby a non-functional class constructor was being generated for classes for XSD elements, whose schema types are simple types, and said simple types are defined as enum restrictions on string types (like `NMToken` or `xs:string`). The constructor now converts from a given string value to the inner enum type. The functional constructor being generated in code will now parse the string value and convert it to it's proper inner enum type (stored in the TypedValue property).
 
 ## Version 3.3.1
 Nuget packages:
