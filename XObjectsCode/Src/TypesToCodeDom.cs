@@ -41,14 +41,10 @@ namespace Xml.Schema.Linq.CodeGen
 
         public CodeDomTypesGenerator(LinqToXsdSettings settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException("Argument setttings should not be null.");
-            }
-
-            this.settings = settings;
+            this.settings = settings ?? throw new ArgumentNullException("Argument setttings should not be null.");
             codeNamespacesTable = new Dictionary<string, CodeNamespace>();
             xroots = new Dictionary<CodeNamespace, List<CodeTypeDeclaration>>();
+            wrapperRootElements = new List<ClrWrapperTypeInfo>();
             typeDictionaryAddStatements = new CodeStatementCollection();
             elementDictionaryAddStatements = new CodeStatementCollection();
             wrapperDictionaryAddStatements = new CodeStatementCollection();
@@ -62,7 +58,6 @@ namespace Xml.Schema.Linq.CodeGen
             Debug.Assert(nameMappings != null);
             foreach (ClrTypeInfo type in binding.Types) {
                 if (type.IsWrapper) {
-                    if (wrapperRootElements == null) wrapperRootElements = new List<ClrWrapperTypeInfo>();
                     wrapperRootElements.Add(type as ClrWrapperTypeInfo);
                 } else {
                     codeNamespace = GetCodeNamespace(type.clrtypeNs);
