@@ -62,8 +62,7 @@ namespace Xml.Schema.Linq.CodeGen
                 } else {
                     codeNamespace = GetCodeNamespace(type.clrtypeNs);
                     ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
-                    if (stInfo != null)
-                    {
+                    if (stInfo != null) {
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
                             var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
                             codeNamespace.Types.Add(enumType);
@@ -78,16 +77,13 @@ namespace Xml.Schema.Linq.CodeGen
                         }
                         codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     } else {
-                        CodeTypeDeclaration
-                            decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
+                        CodeTypeDeclaration decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
                         codeNamespace.Types.Add(decl);
 
-                        if (type.IsRootElement)
-                        {
+                        if (type.IsRootElement) {
                             List<CodeTypeDeclaration> types;
 
-                            if (!xroots.TryGetValue(codeNamespace, out types))
-                            {
+                            if (!xroots.TryGetValue(codeNamespace, out types)) {
                                 types = new List<CodeTypeDeclaration>();
                                 xroots.Add(codeNamespace, types);
                             }
