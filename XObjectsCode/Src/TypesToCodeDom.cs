@@ -56,26 +56,15 @@ namespace Xml.Schema.Linq.CodeGen
 
         public IEnumerable<CodeNamespace> GenerateTypes(ClrMappingInfo binding)
         {
-            if (binding == null)
-            {
-                throw new ArgumentException("binding");
-            }
+            if (binding == null) throw new ArgumentException("binding");
 
             nameMappings = binding.NameMappings;
             Debug.Assert(nameMappings != null);
-            foreach (ClrTypeInfo type in binding.Types)
-            {
-                if (type.IsWrapper)
-                {
-                    if (wrapperRootElements == null)
-                    {
-                        wrapperRootElements = new List<ClrWrapperTypeInfo>();
-                    }
-
+            foreach (ClrTypeInfo type in binding.Types) {
+                if (type.IsWrapper) {
+                    if (wrapperRootElements == null) wrapperRootElements = new List<ClrWrapperTypeInfo>();
                     wrapperRootElements.Add(type as ClrWrapperTypeInfo);
-                }
-                else
-                {
+                } else {
                     codeNamespace = GetCodeNamespace(type.clrtypeNs);
                     ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
                     if (stInfo != null)
@@ -93,9 +82,7 @@ namespace Xml.Schema.Linq.CodeGen
                             }
                         }
                         codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
-                    }
-                    else
-                    {
+                    } else {
                         CodeTypeDeclaration
                             decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
                         codeNamespace.Types.Add(decl);
