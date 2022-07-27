@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xs:element name="documentation" id="documentation">
+        <xs:annotation>
+            <xs:documentation source="http://www.w3.org/TR/xmlschema-1/#element-documentation"/>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:any processContents="lax"/>
+            </xs:sequence>
+            <xs:attribute name="source" type="xs:anyURI"/>
+            <xs:attribute ref="xml:lang"/>
+            <xs:anyAttribute namespace="##other" processContents="lax"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

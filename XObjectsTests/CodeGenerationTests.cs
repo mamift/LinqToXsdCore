@@ -15,9 +15,9 @@ namespace Xml.Schema.Linq.Tests
 {
     using SF = SyntaxFactory;
 
-    public class CodeGenerationTests
+    public partial class CodeGenerationTests
     {
-        private const string AtomXsdFilePath = @"Atom\atom.xsd";
+        public const string AtomXsdFilePath = @"Atom\atom.xsd";
 
         [Test]
         public void NamespaceCodeGenerationConventionTest()

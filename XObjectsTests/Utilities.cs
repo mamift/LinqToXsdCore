@@ -27,6 +27,21 @@ namespace Xml.Schema.Linq.Tests
         /// <see cref="XObjectsCoreGenerator.Generate(IEnumerable{string},LinqToXsdSettings)"/>
         /// method for generating C# code.
         /// </summary>
+        /// <param name="xmlSchemaSet"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        public static SourceText GenerateSourceText(XmlSchemaSet xmlSchemaSet, LinqToXsdSettings settings)
+        {
+            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
+
+            return SourceText.From(code.ToString()!);
+        }
+
+        /// <summary>
+        /// Used specifically for unit testing, invokes the
+        /// <see cref="XObjectsCoreGenerator.Generate(IEnumerable{string},LinqToXsdSettings)"/>
+        /// method for generating C# code.
+        /// </summary>
         /// <param name="xsdFileName"></param>
         /// <returns></returns>
         public static SourceText GenerateSourceText(string xsdFileName)
