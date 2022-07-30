@@ -997,9 +997,18 @@ namespace Xml.Schema.Linq.CodeGen
             XmlQualifiedName schemaTypeName = schemaType.QualifiedName;
             string schemaName = attribute.QualifiedName.Name;
             string schemaNs = attribute.QualifiedName.Namespace;
-            string clrNs = attribute.FormResolved() == XmlSchemaForm.Qualified
-                ? configSettings.GetClrNamespace(schemaNs)
-                : string.Empty;
+            string clrNs;
+            if (attribute.FormResolved() == XmlSchemaForm.Qualified) {
+                clrNs = configSettings.GetClrNamespace(schemaNs);
+            } else {
+                // if it has a schema namespace, use it anyway regardless of form
+                if (!string.IsNullOrWhiteSpace(schemaNs)) {
+                    clrNs = configSettings.GetClrNamespace(schemaNs);
+                } else {
+                    clrNs = string.Empty;
+                }
+            }
+                
 
             SchemaOrigin typeRefOrigin = SchemaOrigin.Fragment;
             bool isTypeRef = false;
@@ -1080,7 +1089,15 @@ namespace Xml.Schema.Linq.CodeGen
 
             return property;
         }
-
+        
+        /// <summary>
+        /// TODO: bug here!!1 with xml:lang
+        /// </summary>
+        /// <param name="schemaObject"></param>
+        /// <param name="typeQName"></param>
+        /// <param name="anonymousType"></param>
+        /// <param name="setVariety"></param>
+        /// <returns></returns>
         private ClrTypeReference BuildTypeReference(XmlSchemaObject schemaObject, XmlQualifiedName typeQName,
             bool anonymousType, bool setVariety)
         {

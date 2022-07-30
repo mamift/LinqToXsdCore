@@ -21,7 +21,7 @@ using W3C.Xml1998;
 using Xml.Schema.Linq;
 
 
-namespace XmlLangTest {
+
 /// <summary>
 /// <para>
 /// Regular expression: (any)*
@@ -90,10 +90,10 @@ public partial class documentation : XTypedElement, IXMetaData {
     public virtual object lang {
         get {
             XAttribute x = this.Attribute(langXName);
-            return XTypedServices.ParseUnionValue(x, W3C.Xml1998.lang.TypeDefinition);
+            return XTypedServices.ParseUnionValue(x, lang.TypeDefinition);
         }
         set {
-            this.SetUnionAttribute(value, "lang", this, langXName, W3C.Xml1998.lang.TypeDefinition);
+            this.SetUnionAttribute(value, "lang", this, langXName, lang.TypeDefinition);
         }
     }
     
@@ -211,7 +211,7 @@ public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
     }
     
     private static void BuildElementDictionary() {
-        elementDictionary.Add(System.Xml.Linq.XName.Get("documentation", ""), typeof(global::XmlLangTest.documentation));
+        elementDictionary.Add(System.Xml.Linq.XName.Get("documentation", ""), typeof(global::documentation));
     }
     
     protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -479,7 +479,6 @@ public partial class XRoot {
     public virtual void Save(string fileName, SaveOptions options) {
         doc.Save(fileName, options);
     }
-}
 }
 namespace W3C.Xml1998 {
     using System;

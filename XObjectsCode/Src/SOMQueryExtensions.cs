@@ -302,7 +302,7 @@ namespace Xml.Schema.Linq.CodeGen
             XmlSchemaForm form = elem.Form;
             if (form == XmlSchemaForm.None)
             {
-                XmlSchema parentSchema = GetParentSchema(elem);
+                XmlSchema parentSchema = elem.GetParentSchema();
                 return parentSchema.ElementFormDefault;
             }
 
@@ -314,23 +314,59 @@ namespace Xml.Schema.Linq.CodeGen
             XmlSchemaForm form = attribute.Form;
             if (form == XmlSchemaForm.None)
             {
-                XmlSchema parentSchema = GetParentSchema(attribute);
+                XmlSchema parentSchema = attribute.GetParentSchema();
                 return parentSchema.AttributeFormDefault;
             }
 
             return form;
         }
 
-        public static XmlSchema GetParentSchema(XmlSchemaObject currentSchemaObject)
+        public static XmlSchema GetParentSchema(this XmlSchemaObject currentSchemaObject)
         {
-            XmlSchema parentSchema = null;
-            while (parentSchema == null && currentSchemaObject != null)
+            if (currentSchemaObject == null) throw new ArgumentNullException(nameof(currentSchemaObject));
+
+            XmlSchema parentOfDataType = null;
+            XmlSchemaObject theEnteringSchemaObject = currentSchemaObject;
+            if (theEnteringSchemaObject is XmlSchemaAttribute attr) {
+                parentOfDataType = attr.GetParentSchemaOfDataType();
+            }
+            
+            XmlSchema parentSchemaOfObject = null;
+            while (parentSchemaOfObject == null && currentSchemaObject != null)
             {
                 currentSchemaObject = currentSchemaObject.Parent;
-                parentSchema = currentSchemaObject as XmlSchema;
+                parentSchemaOfObject = currentSchemaObject as XmlSchema;
             }
 
-            return parentSchema;
+            if (parentOfDataType != null && parentOfDataType != parentSchemaOfObject) {
+                return parentOfDataType;
+            }
+
+            return parentSchemaOfObject;
+        }
+        
+        public static XmlSchema GetParentSchemaOfDataType(this XmlSchemaAttribute currentSchemaAttribute)
+        {
+            if (currentSchemaAttribute == null) throw new ArgumentNullException(nameof(currentSchemaAttribute));
+
+            XmlSchemaObject currentSchemaTypeObj = currentSchemaAttribute.AttributeSchemaType;
+            XmlSchema parentSchemaOfObject = null;
+            while (parentSchemaOfObject == null && currentSchemaTypeObj != null)
+            {
+                currentSchemaTypeObj = currentSchemaTypeObj.Parent;
+                parentSchemaOfObject = currentSchemaTypeObj as XmlSchema;
+            }
+
+            if (parentSchemaOfObject == null) {
+                currentSchemaTypeObj = currentSchemaAttribute.SchemaType;
+                while (parentSchemaOfObject == null && currentSchemaTypeObj != null)
+                {
+                    currentSchemaTypeObj = currentSchemaTypeObj.Parent;
+                    parentSchemaOfObject = currentSchemaTypeObj as XmlSchema;
+                }
+            }
+
+            return parentSchemaOfObject;
         }
 
         //XmlSchemaParticle helpers
