@@ -1005,7 +1005,7 @@ namespace Xml.Schema.Linq.CodeGen
                 if (!string.IsNullOrWhiteSpace(schemaNs)) {
                     clrNs = configSettings.GetClrNamespace(schemaNs);
                 } else {
-                    clrNs = string.Empty;
+                    clrNs = default(string);
                 }
             }
             
@@ -1014,8 +1014,13 @@ namespace Xml.Schema.Linq.CodeGen
             //Anonymous types have a non null XmlSchemaAttribute.SchemaType value
             bool isAnonymous = attribute.SchemaType != null;
 
-            // if the schemaTypeName is empty, then use the attribute QName
-            var theQualifiedName = schemaTypeName.IsEmptyOrWhitespace() ? attribute.QualifiedName : schemaTypeName;
+            // if the schemaTypeName is empty, but the attribute type has a generated CLR class/type then use the attribute QName
+            XmlQualifiedName theQualifiedName;
+            if (schemaTypeName.IsEmptyOrWhitespace() && this.localSymbolTable.DoesSymbolToQnameExist(identifierName))
+                theQualifiedName = attribute.QualifiedName;
+            else
+                theQualifiedName = schemaTypeName;
+            
             ClrTypeReference typeRef = BuildTypeReference(schemaObject: schemaType,
                 typeQName: theQualifiedName,
                 anonymousType: isAnonymous,

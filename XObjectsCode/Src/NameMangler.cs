@@ -239,6 +239,20 @@ namespace Xml.Schema.Linq.CodeGen
             Init(type.QualifiedName.Name);
         }
 
+        public bool DoesQnameToSymbolExist(string name)
+        {
+            name = name.ToUpperInvariant();
+
+            return qNameToSymbol.ContainsKey(name);
+        }
+        
+        public bool DoesSymbolToQnameExist(string name)
+        {
+            name = name.ToUpperInvariant();
+
+            return symbolToQName.ContainsKey(name);
+        }
+
         public void Init(string className)
         {
             if (anonymousTypes == null)
