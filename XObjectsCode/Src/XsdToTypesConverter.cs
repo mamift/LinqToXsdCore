@@ -1008,15 +1008,18 @@ namespace Xml.Schema.Linq.CodeGen
                     clrNs = string.Empty;
                 }
             }
-                
-
+            
             SchemaOrigin typeRefOrigin = SchemaOrigin.Fragment;
             bool isTypeRef = false;
             //Anonymous types have a non null XmlSchemaAttribute.SchemaType value
             bool isAnonymous = attribute.SchemaType != null;
-            XmlSchemaObject schemaObject = schemaType;
 
-            ClrTypeReference typeRef = BuildTypeReference(schemaObject, schemaTypeName, isAnonymous, true);
+            // if the schemaTypeName is empty, then use the attribute QName
+            var theQualifiedName = schemaTypeName.IsEmptyOrWhitespace() ? attribute.QualifiedName : schemaTypeName;
+            ClrTypeReference typeRef = BuildTypeReference(schemaObject: schemaType,
+                typeQName: theQualifiedName,
+                anonymousType: isAnonymous,
+                setVariety: true);
             typeRef.Origin = typeRefOrigin;
             typeRef.IsTypeRef = isTypeRef;
 

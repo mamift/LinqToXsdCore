@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Xml;
 using System.Xml.Schema;
 using Xml.Schema.Linq.CodeGen;
+using Xml.Schema.Linq.Extensions;
 
 namespace XObjects
 {
     public static class XmlSchemaExtensions
     {
+        public static bool IsEmptyOrWhitespace(this XmlQualifiedName qualifiedName)
+        {
+            return qualifiedName.IsEmpty || (qualifiedName.Name.IsEmpty() && qualifiedName.Namespace.IsEmpty());
+        }
+        
         public static bool IsInlineDefinedEnum(this XmlSchemaAttribute attribute)
         {
             if (!attribute.AttributeSchemaType.IsEnum()) return false;

@@ -16,29 +16,21 @@ namespace Xml.Schema.Linq.Tests
 {
     public partial class CodeGenerationTests
     {
-        public const string XmlXsdFilePath = @"SchemaLibs\Xml\xml.xsd";
-        public const string XmlLangTestXsdFilePath = @"SchemaLibs\Xml\xml_langTest.xsd";
+        public const string XmlXsdFilePath = @"C:\Users\mmiftah\source\Tests\LinqToXsdCoreDiffs\XML\xml.xsd";
+        public const string XmlLangTestXsdFilePath = @"C:\Users\mmiftah\source\Tests\LinqToXsdCoreDiffs\XML\xmlTest.xsd";
 
         [Test]
         public void XmlLangTestCodeGeneration()
         {
-            var documentationType = typeof(global::XmlLangTest.documentation);
-            var assembly = documentationType.Assembly;
+            var xmlXsdFile = new FileInfo(XmlXsdFilePath);
+            var xmlTestXsdFile = new FileInfo(XmlLangTestXsdFilePath);
+            
+            var sourceText = Utilities.GenerateSourceText(XmlLangTestXsdFilePath);
 
-            var xsdResourceNames = assembly.GetManifestResourceNames().Where(f => Path.GetExtension(f).EndsWith("xsd"));
-            var configResourceNames = assembly.GetManifestResourceNames().Where(f => Path.GetExtension(f).EndsWith("config"));
+            var tree = CSharpSyntaxTree.ParseText(sourceText);
+            var namespaceNode = tree.GetNamespaceRoot();
 
-            foreach (var resourceName in xsdResourceNames) {
-                var sr = assembly.GetManifestResourceStream(resourceName);
-
-                var simpleDocXsd = XmlReader.Create(sr).ToXmlSchemaSet();
-                var sourceText = Utilities.GenerateSourceText(simpleDocXsd, new LinqToXsdSettings(nameMangler2: false));
-
-                var tree = CSharpSyntaxTree.ParseText(sourceText);
-                var namespaceNode = tree.GetNamespaceRoot();
-
-                Assert.IsNotNull(namespaceNode);
-            }
+            Assert.IsNotNull(namespaceNode);
         }
     }
 }

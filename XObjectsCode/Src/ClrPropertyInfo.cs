@@ -399,7 +399,8 @@ namespace Xml.Schema.Linq.CodeGen
                 this.propertyFlags |= PropertyFlags.IsNullable;
             }
 
-            this.xNameExpression = new CodeFieldReferenceExpression(null, NameGenerator.ChangeClrName(propertyName, NameOptions.MakeXName));
+            var changedClrName = NameGenerator.ChangeClrName(propertyName, NameOptions.MakeXName);
+            this.xNameExpression = new CodeFieldReferenceExpression(null, changedClrName);
         }
 
         internal void Reset()
