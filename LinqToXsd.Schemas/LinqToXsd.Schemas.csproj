@@ -17,6 +17,15 @@
     <Compile Remove="_temp\**" />
     <EmbeddedResource Remove="_temp\**" />
     <None Remove="_temp\**" />
+    <None Update="XML\xml.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="XML\xml.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="XML\xmlTest.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

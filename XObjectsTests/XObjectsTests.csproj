@@ -27,7 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
     <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" />
-    <ProjectReference Include="..\SchemaLibs\Xml\Xml.csproj" />
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
   </ItemGroup>
