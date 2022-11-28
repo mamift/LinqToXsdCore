@@ -8,9 +8,9 @@ using System.CodeDom;
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    internal partial class GroupingInfo
+    public partial class GroupingInfo
     {
-        internal override FSM MakeFSM(StateNameSource stateNames)
+        public override FSM MakeFSM(StateNameSource stateNames)
         {
             FSM fsm = null;
             switch (this.contentModelType)
@@ -94,9 +94,9 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal partial class ClrPropertyInfo : ClrBasePropertyInfo
+    public partial class ClrPropertyInfo : ClrBasePropertyInfo
     {
-        internal override FSM MakeFSM(StateNameSource stateNames)
+        public override FSM MakeFSM(StateNameSource stateNames)
         {
             //Create a simple fsm with (0,(schemaName,1),{1})
             Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
@@ -121,9 +121,9 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
+    public partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
     {
-        internal override FSM MakeFSM(StateNameSource stateNames)
+        public override FSM MakeFSM(StateNameSource stateNames)
         {
             Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
             int start = stateNames.Next();
@@ -136,24 +136,24 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal class StateNameSource
+    public class StateNameSource
     {
         private int nextName = 1;
 
-        internal int Next()
+        public int Next()
         {
             return nextName++;
         }
 
-        internal void Reset()
+        public void Reset()
         {
             nextName = 1;
         }
     }
 
-    internal class FSMCodeDomHelper
+    public class FSMCodeDomHelper
     {
-        internal static void CreateFSMStmt(FSM fsm, CodeStatementCollection stmts)
+        public static void CreateFSMStmt(FSM fsm, CodeStatementCollection stmts)
         {
             //First create: Dictionary<int, Transitions> transitions = new Dictionary<int,Transitions>();
             //Then create: transitions.Add(0, new Transitions(...));
@@ -181,7 +181,7 @@ namespace Xml.Schema.Linq.CodeGen
                     new CodeVariableReferenceExpression(Constants.TransitionsVar))));
         }
 
-        internal static void AddTransitions(FSM fsm, int state, CodeStatementCollection stmts, Set<int> visited)
+        public static void AddTransitions(FSM fsm, int state, CodeStatementCollection stmts, Set<int> visited)
         {
             if (visited.Contains(state)) return;
             else visited.Add(state);
@@ -193,7 +193,7 @@ namespace Xml.Schema.Linq.CodeGen
             CreateAddTransitionStmts(fsm, stmts, state, currTrans, visited);
         }
 
-        internal static void CreateAddTransitionStmts(FSM fsm,
+        public static void CreateAddTransitionStmts(FSM fsm,
             CodeStatementCollection stmts,
             int state,
             Transitions currTrans,
@@ -231,7 +231,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        internal static CodeExpression CreateSingleTransitionExpr(CodeExpression labelExpr, int nextState)
+        public static CodeExpression CreateSingleTransitionExpr(CodeExpression labelExpr, int nextState)
         {
             return new CodeObjectCreateExpression(
                 Constants.SingleTrans,
@@ -239,7 +239,7 @@ namespace Xml.Schema.Linq.CodeGen
                 new CodePrimitiveExpression(nextState));
         }
 
-        internal static CodeExpression CreateXNameExpr(XName name)
+        public static CodeExpression CreateXNameExpr(XName name)
         {
             return CodeDomHelper.CreateMethodCall(new CodeTypeReferenceExpression(Constants.XNameType),
                 "Get",
@@ -250,7 +250,7 @@ namespace Xml.Schema.Linq.CodeGen
                 });
         }
 
-        internal static CodeExpression CreateWildCardExpr(WildCard any)
+        public static CodeExpression CreateWildCardExpr(WildCard any)
         {
             return new CodeObjectCreateExpression(
                 Constants.WildCard,
@@ -262,7 +262,7 @@ namespace Xml.Schema.Linq.CodeGen
             );
         }
 
-        internal static CodeObjectCreateExpression CreateSetCreateExpression(Set<int> set)
+        public static CodeObjectCreateExpression CreateSetCreateExpression(Set<int> set)
         {
             CodeObjectCreateExpression createSet =
                 new CodeObjectCreateExpression(

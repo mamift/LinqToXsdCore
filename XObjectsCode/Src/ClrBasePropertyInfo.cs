@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Xml.Schema.Linq.CodeGen;
 
-internal abstract class ClrBasePropertyInfo : ContentInfo
+public abstract class ClrBasePropertyInfo : ContentInfo
 {
     protected string propertyName;
     protected string schemaName;
@@ -28,130 +28,130 @@ internal abstract class ClrBasePropertyInfo : ContentInfo
         annotations = new List<ClrAnnotation>();
     }
 
-    internal string PropertyName
+    public string PropertyName
     {
         get { return propertyName; }
         set { propertyName = value; }
     }
 
-    internal string SchemaName
+    public string SchemaName
     {
         get { return schemaName; }
         set { schemaName = value; }
     }
 
-    internal string PropertyNs
+    public string PropertyNs
     {
         get { return propertyNs; }
         set { propertyNs = value; }
     }
 
-    internal virtual bool IsList
+    public virtual bool IsList
     {
         get { return false; }
         set { throw new InvalidOperationException(); }
     }
 
-    internal bool HasSet
+    public bool HasSet
     {
         get { return hasSet; }
         set { hasSet = value; }
     }
 
-    internal virtual bool FromBaseType
+    public virtual bool FromBaseType
     {
         get { return false; }
         set { throw new InvalidOperationException(); }
     }
 
-    internal virtual bool IsNew
+    public virtual bool IsNew
     {
         get { return false; }
         set { throw new InvalidOperationException(); }
     }
 
-    internal virtual bool IsDuplicate
+    public virtual bool IsDuplicate
     {
         get { return false; }
         set { throw new InvalidOperationException(); }
     }
 
-    internal virtual bool IsNullable
+    public virtual bool IsNullable
     {
         get { return false; }
         set { throw new InvalidOperationException(); }
     }
 
-    internal virtual bool VerifyRequired
+    public virtual bool VerifyRequired
     {
         get { return false; }
         set { throw new InvalidOperationException(); }
     }
 
-    internal virtual XCodeTypeReference ReturnType
+    public virtual XCodeTypeReference ReturnType
     {
         get { return returnType; }
         set { returnType = value; }
     }
 
-    internal virtual XCodeTypeReference DefaultValueType
+    public virtual XCodeTypeReference DefaultValueType
     {
         get { return defaultValueType; }
         set { defaultValueType = value; }
     }
 
-    internal virtual string ClrTypeName
+    public virtual string ClrTypeName
     {
         get { return null; }
     }
 
-    internal bool IsVirtual
+    public bool IsVirtual
     {
         get { return this.isVirtual; }
         set { this.isVirtual = value; }
     }
 
-    internal bool IsOverride
+    public bool IsOverride
     {
         get { return this.isOverride; }
         set { this.isOverride = value; }
     }
 
-    internal virtual bool IsUnion
+    public virtual bool IsUnion
     {
         get { throw new InvalidOperationException(); }
         set { throw new InvalidOperationException(); }
     }
 
-    internal virtual bool IsEnum
+    public virtual bool IsEnum
     {
         get { throw new InvalidOperationException(); }
         set { throw new InvalidOperationException(); }
     }
 
-    internal virtual bool IsSchemaList
+    public virtual bool IsSchemaList
     {
         get { throw new InvalidOperationException(); }
         set { throw new InvalidOperationException(); }
     }
 
-    internal List<ClrAnnotation> Annotations
+    public List<ClrAnnotation> Annotations
     {
         get { return annotations; }
     }
 
-    internal bool ShouldGenerate => !IsDuplicate && (!FromBaseType || IsNew);
+    public bool ShouldGenerate => !IsDuplicate && (!FromBaseType || IsNew);
 
-    internal abstract CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public);
-    internal abstract void AddToContentModel(CodeObjectCreateExpression contentModelExpression);
-    internal abstract void AddToConstructor(CodeConstructor functionalConstructor);
+    public abstract CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public);
+    public abstract void AddToContentModel(CodeObjectCreateExpression contentModelExpression);
+    public abstract void AddToConstructor(CodeConstructor functionalConstructor);
 
-    internal virtual void ApplyAnnotations(CodeMemberProperty propDecl, List<ClrAnnotation> typeAnnotations)
+    public virtual void ApplyAnnotations(CodeMemberProperty propDecl, List<ClrAnnotation> typeAnnotations)
     {
         TypeBuilder.ApplyAnnotations(propDecl, this, typeAnnotations);
     }
 
-    internal virtual CodeExpression GetXName()
+    public virtual CodeExpression GetXName()
     {
         return CodeDomHelper.XNameGetExpression(SchemaName, PropertyNs);
     }

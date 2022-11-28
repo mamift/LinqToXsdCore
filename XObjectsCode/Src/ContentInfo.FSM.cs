@@ -4,15 +4,15 @@ using System.Diagnostics;
 
 namespace Xml.Schema.Linq.CodeGen;
 
-internal abstract partial class ContentInfo
+public abstract partial class ContentInfo
 {
     //Code for generating FSM
-    internal virtual FSM MakeFSM(StateNameSource stateNames)
+    public virtual FSM MakeFSM(StateNameSource stateNames)
     {
         throw new InvalidOperationException();
     }
 
-    internal FSM ImplementFSMCardinality(FSM origFsm, StateNameSource stateNames)
+    public FSM ImplementFSMCardinality(FSM origFsm, StateNameSource stateNames)
     {
         //Based on the occurence, add *,+, or ? semantics
         Debug.Assert(origFsm != null);

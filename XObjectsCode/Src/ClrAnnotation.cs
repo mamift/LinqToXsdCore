@@ -2,9 +2,9 @@
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    internal class ClrAnnotation
+    public class ClrAnnotation
     {
-        internal string Section;
-        internal string Text;
+        public string Section;
+        public string Text;
     }
 }

@@ -51,7 +51,7 @@ namespace Xml.Schema.Linq
         FractionDigits = 0x0800,
     }
 
-    internal enum EditAction
+    public enum EditAction
     {
         None,
         AddBefore,
@@ -74,7 +74,7 @@ namespace Xml.Schema.Linq.CodeGen
         GroupRef //Pre-compiled
     }
 
-    internal enum Occurs
+    public enum Occurs
     {
         One = 1,
         ZeroOrOne = 2,
@@ -82,7 +82,7 @@ namespace Xml.Schema.Linq.CodeGen
         OneOrMore = 4,
     }
 
-    internal enum NameOptions
+    public enum NameOptions
     {
         None,
         MakeCollection,
@@ -97,7 +97,7 @@ namespace Xml.Schema.Linq.CodeGen
         MakeXName,
     }
 
-    internal enum ContentType
+    public enum ContentType
     {
         WildCardProperty,
         Property,
@@ -105,7 +105,7 @@ namespace Xml.Schema.Linq.CodeGen
     }
 
     [Flags]
-    internal enum GroupingFlags
+    public enum GroupingFlags
     {
         None = 0x0000,
         Nested = 0x0001,
@@ -117,7 +117,7 @@ namespace Xml.Schema.Linq.CodeGen
     }
 
     [Flags]
-    internal enum ClrTypeRefFlags
+    public enum ClrTypeRefFlags
     {
         None = 0x00,
         IsValueType = 0x01,
@@ -132,7 +132,7 @@ namespace Xml.Schema.Linq.CodeGen
     }
 
     [Flags]
-    internal enum ClrTypeFlags
+    public enum ClrTypeFlags
     {
         None = 0x00,
         IsAbstract = 0x01,
@@ -147,7 +147,7 @@ namespace Xml.Schema.Linq.CodeGen
     }
 
     [Flags]
-    internal enum PropertyFlags
+    public enum PropertyFlags
     {
         None = 0x00,
         FromBaseType = 0x01,

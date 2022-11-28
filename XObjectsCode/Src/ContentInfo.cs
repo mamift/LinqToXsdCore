@@ -3,46 +3,46 @@ using System.Linq;
 
 namespace Xml.Schema.Linq.CodeGen;
 
-internal abstract partial class ContentInfo
+public abstract partial class ContentInfo
 {
-    internal ContentInfo lastChild;
-    internal ContentInfo nextSibling;
+    public ContentInfo lastChild;
+    public ContentInfo nextSibling;
     protected ContentType contentType;
     protected Occurs occursInSchema; //The original occurence information in the XML schema
 
-    internal Occurs OccursInSchema
+    public Occurs OccursInSchema
     {
         get { return occursInSchema; }
     }
 
-    internal bool IsOptional
+    public bool IsOptional
     {
         get { return IsQMark || IsStar; }
     }
 
-    internal bool IsStar
+    public bool IsStar
     {
         get { return this.occursInSchema == Occurs.ZeroOrMore; }
     }
 
-    internal bool IsPlus
+    public bool IsPlus
     {
         get { return this.occursInSchema == Occurs.OneOrMore; }
     }
 
-    internal bool IsQMark
+    public bool IsQMark
     {
         get { return this.occursInSchema == Occurs.ZeroOrOne; }
     }
 
 
-    internal ContentType ContentType
+    public ContentType ContentType
     {
         get { return contentType; }
     }
 
 
-    internal IEnumerable<ContentInfo> Children
+    public IEnumerable<ContentInfo> Children
     {
         get
         {
@@ -59,7 +59,7 @@ internal abstract partial class ContentInfo
         }
     }
 
-    internal void AddChild(ContentInfo content)
+    public void AddChild(ContentInfo content)
     {
         if (lastChild == null)
         {
@@ -74,7 +74,7 @@ internal abstract partial class ContentInfo
         lastChild = content;
     }
 
-    internal string OccurenceString
+    public string OccurenceString
     {
         get
         {

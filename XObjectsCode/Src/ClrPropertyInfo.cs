@@ -11,7 +11,7 @@ using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    internal partial class ClrPropertyInfo : ClrBasePropertyInfo
+    public partial class ClrPropertyInfo : ClrBasePropertyInfo
     {
         bool nullableReferences;
 
@@ -28,7 +28,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         ArrayList substitutionMembers;
 
-        internal ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
+        public ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
             this.nullableReferences = settings.NullableReferences;
             this.contentType = ContentType.Property;
@@ -53,7 +53,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.xNameExpression = new CodeFieldReferenceExpression(null, NameGenerator.ChangeClrName(propertyName, NameOptions.MakeXName));
         }
 
-        internal void Reset()
+        public void Reset()
         {
             this.returnType = null;
             this.clrTypeName = null;
@@ -62,9 +62,9 @@ namespace Xml.Schema.Linq.CodeGen
             this.propertyFlags = PropertyFlags.None;
         }
 
-        internal Type unionDefaultType;
+        public Type unionDefaultType;
 
-        internal string FixedValue
+        public string FixedValue
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal string DefaultValue
+        public string DefaultValue
         {
             get
             {
@@ -98,46 +98,46 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsRef
+        public bool IsRef
         {
             get { return typeRef.IsTypeRef; }
         }
 
-        internal ClrTypeReference TypeReference
+        public ClrTypeReference TypeReference
         {
             get { return typeRef; }
             set { typeRef = value; }
         }
 
-        internal ArrayList SubstitutionMembers
+        public ArrayList SubstitutionMembers
         {
             get { return substitutionMembers; }
             set { substitutionMembers = value; }
         }
 
-        internal bool IsSubstitutionHead
+        public bool IsSubstitutionHead
         {
             get { return substitutionMembers != null; }
         }
 
-        internal SchemaOrigin Origin
+        public SchemaOrigin Origin
         {
             get { return propertyOrigin; }
             set { propertyOrigin = value; }
         }
 
-        internal override string ClrTypeName
+        public override string ClrTypeName
         {
             get { return clrTypeName; }
         }
 
-        internal string ClrNamespace
+        public string ClrNamespace
         {
             get { return clrNamespace; }
             set { clrNamespace = value; }
         }
 
-        internal override bool IsList
+        public override bool IsList
         {
             //This is for repeating elements, not schema list
             get { return (propertyFlags & PropertyFlags.IsList) != 0; }
@@ -154,7 +154,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsNullable
+        public override bool IsNullable
         {
             get { return (propertyFlags & PropertyFlags.IsNullable) != 0 && fixedDefaultValue == null; }
             set
@@ -170,27 +170,27 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsSchemaList
+        public override bool IsSchemaList
         {
             get { return this.typeRef.IsSchemaList; }
         }
 
-        internal override bool IsUnion
+        public override bool IsUnion
         {
             get { return this.typeRef.IsUnion; }
         }
 
-        internal override bool IsEnum
+        public override bool IsEnum
         {
             get { return this.typeRef.IsEnum; }
         }
 
-        internal bool Validation
+        public bool Validation
         {
             get { return this.typeRef.Validate && !IsRef; }
         }
 
-        internal override bool FromBaseType
+        public override bool FromBaseType
         {
             get { return (propertyFlags & PropertyFlags.FromBaseType) != 0; }
             set
@@ -206,7 +206,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsDuplicate
+        public override bool IsDuplicate
         {
             get { return (propertyFlags & PropertyFlags.IsDuplicate) != 0; }
             set
@@ -222,7 +222,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsNew
+        public override bool IsNew
         {
             get { return (propertyFlags & PropertyFlags.IsNew) != 0; }
             set
@@ -238,7 +238,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool VerifyRequired
+        public override bool VerifyRequired
         {
             get { return (propertyFlags & PropertyFlags.VerifyRequired) != 0; }
             set
@@ -254,7 +254,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override XCodeTypeReference ReturnType
+        public override XCodeTypeReference ReturnType
         {
             get
             {
@@ -275,7 +275,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override XCodeTypeReference DefaultValueType
+        public override XCodeTypeReference DefaultValueType
         {
             get
             {
@@ -323,7 +323,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal void UpdateTypeReference(
+        public void UpdateTypeReference(
             string currentTypeScope,
             string currentNamespaceScope,
             Dictionary<XmlSchemaObject, string> nameMappings,
@@ -352,7 +352,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.parentTypeFullName = typeRef.IsEnum ? typeRef.UpdateClrFullEnumTypeName(this, currentTypeScope, currentNamespaceScope) : currentTypeScope;
         }
 
-        internal void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
+        public void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
         {
             if (isVirtual)
             {
@@ -368,7 +368,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
+        public override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             if (!ShouldGenerate)
@@ -419,7 +419,7 @@ namespace Xml.Schema.Linq.CodeGen
             return clrProperty;
         }
 
-        internal override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
+        public override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
         {
             Debug.Assert(contentModelExpression != null && propertyOrigin == SchemaOrigin.Element);
             if (this.IsSubstitutionHead)
@@ -445,7 +445,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override void AddToConstructor(CodeConstructor functionalConstructor)
+        public override void AddToConstructor(CodeConstructor functionalConstructor)
         {
             if (IsList)
             {
@@ -1074,12 +1074,12 @@ namespace Xml.Schema.Linq.CodeGen
             typeDecl.Members.Add(field);
         }
 
-        internal override CodeExpression GetXName()
+        public override CodeExpression GetXName()
         {
             return xNameExpression;
         }
 
-        internal void SetFixedDefaultValue(ClrWrapperTypeInfo typeInfo)
+        public void SetFixedDefaultValue(ClrWrapperTypeInfo typeInfo)
         {
             this.FixedValue = typeInfo.FixedValue;
             this.DefaultValue = typeInfo.DefaultValue;
@@ -1146,7 +1146,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal virtual void InsertDefaultFixedValueInDefaultCtor(CodeConstructor ctor)
+        public virtual void InsertDefaultFixedValueInDefaultCtor(CodeConstructor ctor)
         {
             if (this.FixedValue != null)
             {

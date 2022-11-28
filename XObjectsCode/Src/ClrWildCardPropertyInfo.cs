@@ -5,7 +5,7 @@ using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen;
 
-internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
+public partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
 {
     string namespaces;
     string targetNamespace;
@@ -19,22 +19,22 @@ internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
     }
 
 
-    internal string Namespaces
+    public string Namespaces
     {
         get { return namespaces; }
     }
 
-    internal string TargetNamespace
+    public string TargetNamespace
     {
         get { return targetNamespace; }
     }
 
-    internal override XCodeTypeReference ReturnType
+    public override XCodeTypeReference ReturnType
     {
         get { return new XCodeTypeReference("IEnumerable", new CodeTypeReference(Constants.XElement)); }
     }
 
-    internal ClrWildCardPropertyInfo(string ns, string targetNs, bool addToType, Occurs schemaOccurs)
+    public ClrWildCardPropertyInfo(string ns, string targetNs, bool addToType, Occurs schemaOccurs)
     {
         namespaces = ns;
         targetNamespace = targetNs;
@@ -43,7 +43,7 @@ internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
         this.occursInSchema = schemaOccurs;
     }
 
-    internal override CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations,
+    public override CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations,
         GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
     {
         if (!addToTypeDef) return null;
@@ -60,7 +60,7 @@ internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
         return property;
     }
 
-    internal void AddGetStatements(CodeStatementCollection getStatements)
+    public void AddGetStatements(CodeStatementCollection getStatements)
     {
         getStatements.Add(
             new CodeMethodReturnStatement(CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "GetWildCards",
@@ -68,12 +68,12 @@ internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
         );
     }
 
-    internal override void AddToConstructor(CodeConstructor functionalConstructor)
+    public override void AddToConstructor(CodeConstructor functionalConstructor)
     {
         throw new InvalidOperationException();
     }
 
-    internal override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
+    public override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
     {
         throw new InvalidOperationException();
     }

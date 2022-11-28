@@ -2,7 +2,7 @@ using System.CodeDom;
 
 namespace Xml.Schema.Linq.CodeGen;
 
-internal class XCodeTypeReference : CodeTypeReference
+public class XCodeTypeReference : CodeTypeReference
 {
     public string fullTypeName;
 
