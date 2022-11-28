@@ -7,7 +7,7 @@ using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.CodeGen;
 
-internal partial class ClrTypeReference
+public partial class ClrTypeReference
 {
     string typeName;
     string typeNs;
@@ -19,7 +19,7 @@ internal partial class ClrTypeReference
     ClrTypeRefFlags typeRefFlags;
     SchemaOrigin typeRefOrigin;
 
-    internal ClrTypeReference(string name, string ns, XmlSchemaObject schemaObject, bool anonymousType,
+    public ClrTypeReference(string name, string ns, XmlSchemaObject schemaObject, bool anonymousType,
         bool setVariety)
     {
         this.typeName = name;
@@ -88,13 +88,13 @@ internal partial class ClrTypeReference
         }
     }
 
-    internal SchemaOrigin Origin
+    public SchemaOrigin Origin
     {
         get { return typeRefOrigin; }
         set { typeRefOrigin = value; }
     }
 
-    internal string Name
+    public string Name
     {
         get { return typeName; }
         set
@@ -118,27 +118,27 @@ internal partial class ClrTypeReference
         get { return clrFullTypeName; }
     }
 
-    internal string TypeCodeString
+    public string TypeCodeString
     {
         get { return typeCodeString; }
     }
 
-    internal bool IsValueType
+    public bool IsValueType
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsValueType) != 0; }
     }
 
-    internal bool IsLocalType
+    public bool IsLocalType
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsLocalType) != 0; }
     }
 
-    internal bool IsSimpleType
+    public bool IsSimpleType
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsSimpleType) != 0; }
     }
 
-    internal bool Validate
+    public bool Validate
     {
         get { return (typeRefFlags & ClrTypeRefFlags.Validate) != 0; }
         set
@@ -154,7 +154,7 @@ internal partial class ClrTypeReference
         }
     }
 
-    internal bool IsTypeRef
+    public bool IsTypeRef
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsElementRef) != 0; }
         set
@@ -170,27 +170,27 @@ internal partial class ClrTypeReference
         }
     }
 
-    internal bool IsSchemaList
+    public bool IsSchemaList
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsSchemaList) != 0; }
     }
 
-    internal bool IsUnion
+    public bool IsUnion
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsUnion) != 0; }
     }
 
-    internal bool IsEnum
+    public bool IsEnum
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsEnum) != 0; }
     }
 
-    internal bool IsAnyType
+    public bool IsAnyType
     {
         get { return (typeRefFlags & ClrTypeRefFlags.IsAnyType) != 0; }
     }
 
-    internal bool IsNamedComplexType
+    public bool IsNamedComplexType
     {
         get
         {
@@ -199,14 +199,14 @@ internal partial class ClrTypeReference
         }
     }
 
-    internal XmlSchemaObject SchemaObject
+    public XmlSchemaObject SchemaObject
     {
         get { return schemaObject; }
     }
 
-    internal string LocalSuffix => this.IsEnum ? Constants.LocalEnumSuffix : Constants.LocalTypeSuffix;
+    public string LocalSuffix => this.IsEnum ? Constants.LocalEnumSuffix : Constants.LocalTypeSuffix;
 
-    internal string GetSimpleTypeClrTypeDefName(string parentTypeClrNs,
+    public string GetSimpleTypeClrTypeDefName(string parentTypeClrNs,
         Dictionary<XmlSchemaObject, string> nameMappings)
     {
         Debug.Assert(this.IsSimpleType);
@@ -245,7 +245,7 @@ internal partial class ClrTypeReference
         return clrTypeName;
     }
 
-    internal string GetClrFullTypeName(string parentTypeClrNs, Dictionary<XmlSchemaObject, string> nameMappings,
+    public string GetClrFullTypeName(string parentTypeClrNs, Dictionary<XmlSchemaObject, string> nameMappings,
         out string refTypeName)
     {
         string clrTypeName = null;
