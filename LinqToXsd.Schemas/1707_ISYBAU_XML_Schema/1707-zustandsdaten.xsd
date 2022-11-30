@@ -1,0 +1,1216 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Mit XMLSpy v2015 rel. 4 sp1 (x64) (http://www.altova.com) von Daniel (Institut für technisch-wissenschaftliche Hydrologie GmbH) bearbeitet -->
+<xsd:schema xmlns="http://www.bfr-abwasser.de" xmlns:isy="http://www.bfr-abwasser.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bfr-abwasser.de" elementFormDefault="qualified">
+	<xsd:include schemaLocation="./1707-referenzlisten.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="de">ISYBAU-Austauschformat Datenbereich Zustandsdaten</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="ZustandsdatenType">
+		<xsd:sequence>
+			<xsd:element name="Kennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="5"/>
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Beschreibung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auftraege">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Auftrag" type="AuftragType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="InspizierteAbwassertechnischeAnlage" type="InspizierteAbwassertechnischeAnlageType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:unique name="KZustandKey">
+					<xsd:selector xpath="isy:OptischeInspektion/isy:Knoten/isy:Inspektionsdaten/isy:KZustand"/>
+					<xsd:field xpath="isy:Index"/>
+				</xsd:unique>
+				<xsd:unique name="RZustandKey">
+					<xsd:selector xpath="isy:OptischeInspektion/isy:Rohrleitung/isy:Inspektionsdaten/isy:RZustand"/>
+					<xsd:field xpath="isy:Index"/>
+				</xsd:unique>
+			</xsd:element>
+			<xsd:element name="Filme" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Film" type="FilmType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InspizierteAbwassertechnischeAnlageType">
+		<xsd:sequence>
+			<xsd:element name="Objektbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Anlagentyp" type="AnlagentypType"/>
+			<xsd:element name="Lage" type="OrtLageType" minOccurs="0"/>
+			<xsd:element name="OptischeInspektion" type="OptischeInspektionType" minOccurs="0"/>
+			<xsd:element name="Dichtheitspruefungen" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Pruefung" type="DichtheitType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RohrType">
+		<xsd:sequence>
+			<xsd:element name="Rohrleitungstyp" type="RohrleitungstypType"/>
+			<xsd:element name="Inspektionsrichtung" type="InspektionsrichtungType"/>
+			<xsd:element name="BezugspunktLage" type="BezugspunktLageType" minOccurs="0"/>
+			<xsd:element name="Inspektionslaenge" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Inspektionsart" type="InspektionsartType" minOccurs="0"/>
+			<xsd:element name="ArtVideoreferenz" type="ArtVideoreferenzType" minOccurs="0"/>
+			<xsd:element name="RGrunddaten" type="RGrunddatenType" minOccurs="0"/>
+			<xsd:element name="Inspektionsdaten" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="RZustand" type="RZustandType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Bewertung" type="BewertungType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KnotenType">
+		<xsd:sequence>
+			<xsd:element name="BezugspunktVertikal" type="VertikalerBezugspunktType" minOccurs="0"/>
+			<xsd:element name="BezugspunktHorizontal" type="HorizontalerBezugspunktType" minOccurs="0"/>
+			<xsd:element name="ArtVideoreferenz" type="ArtVideoreferenzType" minOccurs="0"/>
+			<xsd:element name="KGrunddaten" type="KGrunddatenType" minOccurs="0"/>
+			<xsd:element name="Inspektionsdaten" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="KZustand" type="KZustandType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Bewertung" type="BewertungType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BauwerkeType">
+		<xsd:sequence>
+			<xsd:element name="Bauwerktyp" type="BauwerkstypType"/>
+			<xsd:element name="Inspektionsdaten" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="BZustand" type="BZustandType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ArtVideoreferenz" type="ArtVideoreferenzType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragType">
+		<xsd:sequence>
+			<xsd:element name="Auftragsbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="60"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auftragsnummer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auftragskennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auftragsdatum" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Auftragsart" type="AuftragsartType"/>
+			<xsd:element name="Inspektionsort" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Inspektionszweck" type="InspektionszweckType" minOccurs="0"/>
+			<xsd:element name="Kodiersystem" type="KodiersystemType" minOccurs="0"/>
+			<xsd:element name="Auftragnehmer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="60"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Systemname" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Version" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="InspektionsdatumEnde" type="xsd:date" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DokumentenType">
+		<xsd:sequence>
+			<xsd:element name="Dokumentname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dateiname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dokumentquelle">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrtLageType">
+		<xsd:sequence>
+			<xsd:element name="Strassenschluessel" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Strassenname" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ortsteilschluessel" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ortsteilname" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OptischeInspektionType">
+		<xsd:sequence>
+			<xsd:element name="Auftragskennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Inspektionsdatum" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Inspektionsverfahren" type="InspektionsverfahrenType" minOccurs="0"/>
+			<xsd:element name="NameUntersucher" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Uhrzeit" type="xsd:time" minOccurs="0"/>
+			<xsd:element name="Wetter" type="WetterType" minOccurs="0"/>
+			<xsd:element name="Temperatur" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Reinigung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:boolean"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Wasserhaltung" type="WasserhaltungType" minOccurs="0"/>
+			<xsd:element name="VideoSpeichermedium" type="VideoSpeichermediumType" minOccurs="0"/>
+			<xsd:element name="Videoablagereferenz" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Bemerkung" type="xsd:token" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="Rohrleitung" type="RohrType"/>
+				<xsd:element name="Knoten" type="KnotenType"/>
+				<xsd:element name="Bauwerk" type="BauwerkeType"/>
+			</xsd:choice>
+			<xsd:element name="Dokumente" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Dokument" type="DokumentenType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DichtheitType">
+		<xsd:sequence>
+			<xsd:element name="Auftragskennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Pruefgrund" type="PruefgrundType"/>
+			<xsd:element name="Pruefvorschrift" type="PruefvorschriftType"/>
+			<xsd:element name="Pruefdatum" type="xsd:date"/>
+			<xsd:element name="Geraetefuehrer">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Pruefverfahren" type="PruefverfahrenType"/>
+			<xsd:element name="Pruefumfang" type="PruefumfangType"/>
+			<xsd:element name="Pruefergebnis" type="xsd:boolean"/>
+			<xsd:element name="PruefProtokolle" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Dokument" type="DokumentenType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Prueflaenge" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="DeltaP" type="PruefDeltaPType"/>
+				<xsd:element name="DeltaV" type="PruefDeltaVType"/>
+			</xsd:choice>
+			<xsd:element name="PruefObjekte" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="PruefObjekt" type="PruefObjektType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RGrunddatenType">
+		<xsd:sequence>
+			<xsd:element name="KnotenZulauf">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KnotenZulaufTyp" type="KnotentypType"/>
+			<xsd:element name="KnotenAblauf">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KnotenAblaufTyp" type="KnotentypType"/>
+			<xsd:element name="HerkunftProfilmasse" type="HerkunftProfilType" minOccurs="0"/>
+			<xsd:element name="Profilhoehe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Profilbreite" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Profilart" type="ProfilartType" minOccurs="0"/>
+			<xsd:element name="HerkunftMaterial" type="HerkunftType" minOccurs="0"/>
+			<xsd:element name="Material" type="MaterialType" minOccurs="0"/>
+			<xsd:element name="Innenschutz" type="InnenschutzType" minOccurs="0"/>
+			<xsd:element name="Regeleinzelrohrlaenge" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ArtAuskleidung" type="ArtAuskleidungType" minOccurs="0"/>
+			<xsd:element name="Kanalart" type="EntwaesserungsartType" minOccurs="0"/>
+			<xsd:element name="Anschlussdaten" type="AnschlussType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KGrunddatenType">
+		<xsd:sequence>
+			<xsd:element name="Innenschutz" type="InnenschutzType" minOccurs="0"/>
+			<xsd:element name="ArtAuskleidung" type="ArtAuskleidungType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AnschlussType">
+		<xsd:sequence>
+			<xsd:element name="Objektbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kantentyp" type="KantentypType"/>
+			<xsd:element name="Entfernung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AnschlussArt" type="AnschlussartType" minOccurs="0"/>
+			<xsd:element name="Fixierung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RZustandType">
+		<xsd:sequence>
+			<xsd:element name="Index" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Station">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="Timecode">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="8"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Frame">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="10"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Videozaehler">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="5"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Parameter">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string"/>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="InspektionsKode">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Charakterisierung1" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Charakterisierung2" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Verbindung" type="xsd:boolean" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Quantifizierung1Numerisch" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="6"/>
+							<xsd:fractionDigits value="2"/>
+							<xsd:maxExclusive value="10000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Quantifizierung1Text" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="30"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Quantifizierung2Numerisch" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="6"/>
+							<xsd:fractionDigits value="2"/>
+							<xsd:maxExclusive value="10000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Quantifizierung2Text" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="30"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="Streckenschaden" type="StreckenschadenType" minOccurs="0"/>
+			<xsd:element name="StreckenschadenLfdNr" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="99"/>
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="PositionVon" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="PositionBis" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="GrundAbbruch" type="GrundAbbruchType" minOccurs="0"/>
+			<xsd:element name="BezeichnungSanierung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="BAKZustandSanierung" type="BAKZustandSanierungType" minOccurs="0"/>
+				<xsd:element name="BALZustandSanierung" type="BALZustandSanierungType" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="QZustandSanierung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="RVerfahrenSanierung" type="RVerfahrenSanierungType" minOccurs="0"/>
+			<xsd:element name="Fotodatei" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FotoSpeichermedium" type="FotoSpeichermediumType" minOccurs="0"/>
+			<xsd:element name="Fotonummer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Klassifizierung" type="KlassifizierungType" minOccurs="0"/>
+			<xsd:element name="Gruppe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="99"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="BDBZustandLeitung" type="BDBZustandLeitungType" minOccurs="0"/>
+			<xsd:element name="BCAMaterial" type="MaterialType" minOccurs="0"/>
+			<xsd:element name="BDEZulaufDrainage" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KZustandType">
+		<xsd:sequence>
+			<xsd:element name="Index" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VertikaleLage" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Timecode" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="8"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Frame" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="10"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Videozaehler" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="5"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Parameter" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string"/>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="InspektionsKode">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Charakterisierung1" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Charakterisierung2" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Verbindung" type="xsd:boolean" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Quantifizierung1Numerisch" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="6"/>
+							<xsd:fractionDigits value="2"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Quantifizierung1Text" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="30"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Quantifizierung2Numerisch" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="6"/>
+							<xsd:fractionDigits value="2"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Quantifizierung2Text" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="30"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="Streckenschaden" type="StreckenschadenType" minOccurs="0"/>
+			<xsd:element name="StreckenschadenLfdNr" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="99"/>
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schachtbereich" type="SchachtbereichType" minOccurs="0"/>
+			<xsd:element name="PositionVon" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="PositionBis" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="BezeichnungSanierung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="DAKZustandSanierung" type="DAKZustandSanierungType" minOccurs="0"/>
+				<xsd:element name="DALZustandSanierung" type="DALZustandSanierungType" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="QZustandSanierung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KVerfahrenSanierung" type="KVerfahrenSanierungType" minOccurs="0"/>
+			<xsd:element name="Fotodatei" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FotoSpeichermedium" type="FotoSpeichermediumType" minOccurs="0"/>
+			<xsd:element name="Fotonummer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Klassifizierung" type="KlassifizierungType" minOccurs="0"/>
+			<xsd:element name="Gruppe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="99"/>
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DDEZulaufDrainage" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BZustandType">
+		<xsd:sequence>
+			<xsd:element name="Zustandsbeschreibung" type="xsd:token"/>
+			<xsd:element name="BezeichnungSanierung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Fotodatei" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FotoSpeichermedium" type="FotoSpeichermediumType" minOccurs="0"/>
+			<xsd:element name="Fotonummer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Timecode" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="8"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Frame" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="10"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Videozaehler" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:integer">
+							<xsd:totalDigits value="5"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Parameter" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string"/>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KlassifizierungType">
+		<xsd:sequence>
+			<xsd:element name="Dichtheit" type="KDichtheitType" minOccurs="0"/>
+			<xsd:element name="Standsicherheit" type="KStandsicherheitType" minOccurs="0"/>
+			<xsd:element name="Betriebssicherheit" type="KBetriebssicherheitType" minOccurs="0"/>
+			<xsd:element name="MaxSZeAuto" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="MaxSKeAuto" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KDichtheitType">
+		<xsd:sequence>
+			<xsd:element name="SKDvAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SKDvManu" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SZDvAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SZDeAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SKDeAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KStandsicherheitType">
+		<xsd:sequence>
+			<xsd:element name="SKSvAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SKSvManu" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SZSvAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SZSeAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SKSeAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KBetriebssicherheitType">
+		<xsd:sequence>
+			<xsd:element name="SKBvAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SKBvManu" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SZBvAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SZBeAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SKBeAuto">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BewertungType">
+		<xsd:sequence>
+			<xsd:element name="Bewertungsverfahren" type="BewertungsverfahrenType" minOccurs="0"/>
+			<xsd:element name="Bewertungsdatum" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="MassgebenderSchaden" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="MassgebendeQuantifizierung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ZahlVorlaeufig" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Zusatzpunkte" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ZahlEndgueltig" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KlasseAutomatisch" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KlasseManuell" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PruefDeltaPType">
+		<xsd:sequence>
+			<xsd:element name="zulDeltaP">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="vorhDeltaP">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PruefDeltaVType">
+		<xsd:sequence>
+			<xsd:element name="zulDeltaV">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="vorhDeltaV">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PruefObjektType">
+		<xsd:sequence>
+			<xsd:element name="Objektbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Typ" type="AnlagentypType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ********** Filme ********** -->
+	<xsd:complexType name="FilmType">
+		<xsd:sequence>
+			<xsd:element name="Filmname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auftragskennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Filmpfad" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FilmpfadIstAbsolut" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="Videoablagereferenz">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Frame" type="FrameType" minOccurs="0"/>
+			<xsd:element name="Offsets" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Offset" type="OffsetType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Datendateien" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Datendatei" minOccurs="0" maxOccurs="unbounded">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="255"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FilmObjekte">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="FilmObjekt" type="FilmObjektType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FrameType">
+		<xsd:sequence>
+			<xsd:element name="fps">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Start">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ende">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OffsetType">
+		<xsd:sequence>
+			<xsd:element name="TcFrameNr">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="MPEGFrameNr">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FilmObjektType">
+		<xsd:sequence>
+			<xsd:element name="Objektbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Typ" type="AnlagentypType"/>
+			<xsd:element name="Inspektionsrichtung" type="InspektionsrichtungType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

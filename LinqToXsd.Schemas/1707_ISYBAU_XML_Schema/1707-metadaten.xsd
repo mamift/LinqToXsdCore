@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.bfr-abwasser.de" xmlns:isy="http://www.bfr-abwasser.de" targetNamespace="http://www.bfr-abwasser.de" elementFormDefault="qualified">
+	<xsd:include schemaLocation="./1707-stammdaten.xsd"/>
+	<xsd:include schemaLocation="./1707-zustandsdaten.xsd"/>
+	<xsd:include schemaLocation="./1707-referenzlisten.xsd"/>
+	<xsd:include schemaLocation="./1707-hydraulikdaten.xsd"/>
+	<xsd:include schemaLocation="./1707-betriebsdaten.xsd"/>
+	<xsd:include schemaLocation="./1707-praesentationsdaten.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="de">ISYBAU-Austauschformat Datenbereich Metadaten</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="Identifikation">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Version" type="xsd:gYearMonth"/>
+				<xsd:element name="Admindaten" type="AdmindatenType">
+					<xsd:key name="OrdnungseinheitenKey">
+						<xsd:selector xpath="isy:Ordnungseinheiten/isy:Ordnungseinheit"/>
+						<xsd:field xpath="isy:KennungOrdnungseinheit"/>
+					</xsd:key>
+				</xsd:element>
+				<xsd:element name="Datenkollektive" type="DatenkollektiveType">
+					<xsd:key name="MKollektivKey">
+						<xsd:selector xpath="isy:Kennungen/isy:Kollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:key>
+					<xsd:unique name="SKollektivKey">
+						<xsd:selector xpath="isy:Stammdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:unique>
+					<xsd:keyref name="SKollektivRef" refer="MKollektivKey">
+						<xsd:selector xpath="isy:Stammdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:keyref>
+					<xsd:unique name="ZKollektivKey">
+						<xsd:selector xpath="isy:Zustandsdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:unique>
+					<xsd:keyref name="ZKollektivRef" refer="MKollektivKey">
+						<xsd:selector xpath="isy:Zustandsdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:keyref>
+					<xsd:unique name="HKollektivKey">
+						<xsd:selector xpath="isy:Hydraulikdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:unique>
+					<xsd:keyref name="HKollektivRef" refer="MKollektivKey">
+						<xsd:selector xpath="isy:Hydraulikdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:keyref>
+					<xsd:unique name="BKollektivKey">
+						<xsd:selector xpath="isy:Betriebsdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:unique>
+					<xsd:keyref name="BKollektivRef" refer="MKollektivKey">
+						<xsd:selector xpath="isy:Betriebsdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:keyref>
+					<xsd:unique name="PKollektivKey">
+						<xsd:selector xpath="isy:Praesentationsdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:unique>
+					<xsd:keyref name="PKollektivRef" refer="MKollektivKey">
+						<xsd:selector xpath="isy:Praesentationsdatenkollektiv"/>
+						<xsd:field xpath="isy:Kennung"/>
+					</xsd:keyref>
+					<xsd:unique name="UmfeldKey">
+						<xsd:selector xpath="isy:Stammdatenkollektiv/isy:Umfelder/isy:Umfeld"/>
+						<xsd:field xpath="isy:Bezeichnung"/>
+					</xsd:unique>
+					<xsd:keyref name="SUmfeldRef" refer="UmfeldKey">
+						<xsd:selector xpath="isy:Stammdatenkollektiv/isy:AbwassertechnischeAnlage/isy:Knoten/isy:Bauwerk/isy:Versickerungsanlage"/>
+						<xsd:field xpath="isy:Umfeld"/>
+					</xsd:keyref>
+					<xsd:keyref name="BoUmfeldRef" refer="UmfeldKey">
+						<xsd:selector xpath="isy:Betriebsdatenkollektiv/isy:Beobachtungen/isy:Boden/isy:Bodenkennwerte"/>
+						<xsd:field xpath="isy:Umfeld"/>
+					</xsd:keyref>
+					<xsd:keyref name="GwUmfeldRef" refer="UmfeldKey">
+						<xsd:selector xpath="isy:Betriebsdatenkollektiv/isy:Beobachtungen/isy:Grundwasser/isy:GWMessstelle"/>
+						<xsd:field xpath="isy:Umfeld"/>
+					</xsd:keyref>
+					<xsd:keyref name="HStammKollektivRef" refer="MKollektivKey">
+						<xsd:selector xpath="isy:Hydraulikdatenkollektiv/isy:Rechennetz"/>
+						<xsd:field xpath="isy:Stammdatenkennung"/>
+					</xsd:keyref>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="AdmindatenType">
+		<xsd:sequence>
+			<xsd:element name="Verwaltung" type="VerwaltungType" minOccurs="0"/>
+			<xsd:element name="Geometrie" type="AllgGeometrieType" minOccurs="0"/>
+			<xsd:element name="Dokumente" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Dokument" type="MDokumentType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Ordnungseinheiten" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Ordnungseinheit" type="OrdnungseinheitType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MDokumentType">
+		<xsd:sequence>
+			<xsd:element name="Dokumentname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dateiname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dokumentquelle">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LiegenschaftType">
+		<xsd:sequence>
+			<xsd:element name="Liegenschaftsnummer">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Objektnummer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Liegenschaftsstrasse" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="LiegenschaftsPLZ" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="5"/>
+						<xsd:maxLength value="5"/>
+						<xsd:pattern value="\p{N}{5}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Liegenschaftsort" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Liegenschaftsnutzung" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WirtschaftseinheitType">
+		<xsd:sequence>
+			<xsd:element name="WENummerDetail" type="WENummerDetailType"/>
+			<xsd:element name="WENummer">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerwaltungType">
+		<xsd:sequence>
+			<xsd:element name="Zustaendigkeit" type="ZustaendigkeitType" minOccurs="0"/>
+			<xsd:element name="DienststelleVerwaltend" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DienststelleHausverwaltend" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DienststelleBauaufsicht" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DienststelleBaudurchfuehrung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NummerDienststelleBaudurchfuehrung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Zustaendigkeitsbereich" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Aktenzeichen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="15"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Abwasserbeseitigungspflicht" type="AbwasserbeseitigungspflichtType" minOccurs="0"/>
+			<xsd:element name="Wasserbehoerde" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AblaufEinleitungsgenehmigung" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AllgGeometrieType">
+		<xsd:sequence>
+			<xsd:element name="CRSHoehe">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DatenkollektiveType">
+		<xsd:sequence>
+			<xsd:element name="Datenstatus" type="DatenstatusType"/>
+			<xsd:element name="Erstellungsdatum" type="xsd:date"/>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Kennungen">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Kollektiv" type="KollektivType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Stammdatenkollektiv" type="StammdatenType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:key name="SObjektKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Objektart"/>
+				</xsd:key>
+				<xsd:key name="SAuftragKey">
+					<xsd:selector xpath="isy:Auftraege/isy:Auftrag"/>
+					<xsd:field xpath="isy:Auftragskennung"/>
+				</xsd:key>
+				<xsd:unique name="SAuftragBezKey">
+					<xsd:selector xpath="isy:Auftraege/isy:Auftrag"/>
+					<xsd:field xpath="isy:Auftragsbezeichnung"/>
+				</xsd:unique>
+				<xsd:keyref name="SAuftragRef" refer="SAuftragKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage/isy:Sanierung/isy:Massnahme"/>
+					<xsd:field xpath="isy:Auftragskennung"/>
+				</xsd:keyref>
+				<xsd:unique name="SKanteKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Kante/isy:KantenTyp"/>
+				</xsd:unique>
+				<xsd:unique name="SKnotenKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Knoten/isy:KnotenTyp"/>
+				</xsd:unique>
+				<xsd:keyref name="AnschlussHaltungKey" refer="SKanteKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage/isy:Kante/isy:Haltung/isy:Anschlussdaten"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Kantentyp"/>
+				</xsd:keyref>
+				<xsd:keyref name="AnschlussLeitungKey" refer="SKanteKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage/isy:Kante/isy:Leitung/isy:Anschlussdaten"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Kantentyp"/>
+				</xsd:keyref>
+				<xsd:keyref name="AnschlussAnschlusspunktKey" refer="SKanteKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage/isy:Knoten/isy:Anschlusspunkt/isy:Anschlussdaten"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Kantentyp"/>
+				</xsd:keyref>
+				<xsd:keyref name="ZulaufKnotenKey" refer="SKnotenKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage"/>
+					<xsd:field xpath="isy:Kante/isy:KnotenZulauf"/>
+					<xsd:field xpath="isy:Kante/isy:KnotenZulaufTyp"/>
+				</xsd:keyref>
+				<xsd:keyref name="AblaufKnotenKey" refer="SKnotenKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage"/>
+					<xsd:field xpath="isy:Kante/isy:KnotenAblauf"/>
+					<xsd:field xpath="isy:Kante/isy:KnotenAblaufTyp"/>
+				</xsd:keyref>
+				<xsd:keyref name="UebergeordneteAnlageKey" refer="SObjektKey">
+					<xsd:selector xpath="isy:AbwassertechnischeAnlage/isy:UebergeordneteAbwassertechnischeAnlage"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Objektart"/>
+				</xsd:keyref>
+			</xsd:element>
+			<xsd:element name="Zustandsdatenkollektiv" type="ZustandsdatenType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:unique name="ZObjektKey">
+					<xsd:selector xpath="isy:InspizierteAbwassertechnischeAnlage"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Anlagentyp"/>
+					<xsd:field xpath="isy:OptischeInspektion/isy:Rohrleitung/isy:Inspektionsrichtung"/>
+				</xsd:unique>
+				<xsd:keyref name="ZObjektRef" refer="ZObjektKey">
+					<xsd:selector xpath="isy:Filme/isy:Film/isy:FilmObjekte/isy:FilmObjekt"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:Typ"/>
+					<xsd:field xpath="isy:Inspektionsrichtung"/>
+				</xsd:keyref>
+				<xsd:unique name="FObjektKey">
+					<xsd:selector xpath="isy:Filme/isy:Film"/>
+					<xsd:field xpath="isy:Filmname"/>
+				</xsd:unique>
+				<xsd:key name="UAuftragKey">
+					<xsd:selector xpath="isy:Auftraege/isy:Auftrag"/>
+					<xsd:field xpath="isy:Auftragskennung"/>
+				</xsd:key>
+				<xsd:unique name="UAuftragBezKey">
+					<xsd:selector xpath="isy:Auftraege/isy:Auftrag"/>
+					<xsd:field xpath="isy:Auftragsbezeichnung"/>
+				</xsd:unique>
+				<xsd:keyref name="IAuftragRef" refer="UAuftragKey">
+					<xsd:selector xpath="isy:InspizierteAbwassertechnischeAnlage/isy:OptischeInspektion"/>
+					<xsd:field xpath="isy:Auftragskennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="DAuftragRef" refer="UAuftragKey">
+					<xsd:selector xpath="isy:InspizierteAbwassertechnischeAnlage/isy:Dichtheitspruefungen/isy:Pruefung"/>
+					<xsd:field xpath="isy:Auftragskennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="FAuftragRef" refer="UAuftragKey">
+					<xsd:selector xpath="isy:Filme/isy:Film"/>
+					<xsd:field xpath="isy:Auftragskennung"/>
+				</xsd:keyref>
+			</xsd:element>
+			<xsd:element name="Hydraulikdatenkollektiv" type="HydraulikdatenType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:unique name="HVerfahrenKey">
+					<xsd:selector xpath="isy:Verfahrensvorgaben/isy:Verfahren"/>
+					<xsd:field xpath="isy:Verfahrenskennung"/>
+				</xsd:unique>
+				<xsd:unique name="HRechennetzObjektKey">
+					<xsd:selector xpath="isy:Rechennetz/isy:HydraulikObjekte/isy:HydraulikObjekt"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:HydObjektTyp"/>
+				</xsd:unique>
+				<xsd:unique name="HGebietKey">
+					<xsd:selector xpath="isy:Gebiete/isy:Gebiet"/>
+					<xsd:field xpath="isy:Gebietskennung"/>
+				</xsd:unique>
+				<xsd:unique name="HFlaechenIDKey">
+					<xsd:selector xpath="isy:Flaechen/isy:Flaeche"/>
+					<xsd:field xpath="isy:Flaechennummer"/>
+				</xsd:unique>
+				<xsd:unique name="HFlaecheKey">
+					<xsd:selector xpath="isy:Flaechen/isy:Flaeche"/>
+					<xsd:field xpath="isy:Flaechenbezeichnung"/>
+				</xsd:unique>
+				<xsd:unique name="HNiederschlagKey">
+					<xsd:selector xpath="isy:Systembelastungen/isy:Niederschlaege/isy:Niederschlag"/>
+					<xsd:field xpath="isy:Niederschlagkennung"/>
+				</xsd:unique>
+				<xsd:unique name="HTrwKey">
+					<xsd:selector xpath="isy:Systembelastungen/isy:Trockenwetterabflussspenden/isy:Trockenwetterabflussspende"/>
+					<xsd:field xpath="isy:Trockenwetterkennung"/>
+				</xsd:unique>
+				<xsd:unique name="HEinleiterKey">
+					<xsd:selector xpath="isy:Systembelastungen/isy:Einleiterkollektive/isy:Einleiterkollektiv"/>
+					<xsd:field xpath="isy:Einleiterkollektivkennung"/>
+				</xsd:unique>
+				<xsd:unique name="HBerechnungKey">
+					<xsd:selector xpath="isy:Berechnungen/isy:Berechnung/isy:BerechnungInfo"/>
+					<xsd:field xpath="isy:Rechenlaufkennung"/>
+				</xsd:unique>
+				<xsd:keyref name="HFlaecheGebietRef" refer="HGebietKey">
+					<xsd:selector xpath="isy:Flaechen/isy:Flaeche"/>
+					<xsd:field xpath="isy:Gebietskennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="HFlaecheRef" refer="HFlaechenIDKey">
+					<xsd:selector xpath="isy:Flaechen/isy:Flaeche/isy:Flaechenobjekt"/>
+					<xsd:field xpath="isy:Flaechennummer"/>
+				</xsd:keyref>
+				<xsd:keyref name="HFlaecheObjektRef" refer="HRechennetzObjektKey">
+					<xsd:selector xpath="isy:Flaechen/isy:Flaeche/isy:HydraulikObjekt"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:HydObjektTyp"/>
+				</xsd:keyref>
+				<xsd:keyref name="HEinzeleinleiterObjektRef" refer="HRechennetzObjektKey">
+					<xsd:selector xpath="isy:Systembelastungen/isy:Einleiterkollektive/isy:Einleiterkollektiv/isy:ListeEinzeleinleiter/isy:Einzeleinleiter/isy:HydraulikObjekt"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+					<xsd:field xpath="isy:HydObjektTyp"/>
+				</xsd:keyref>
+				<xsd:keyref name="HVerfahrenRef" refer="HVerfahrenKey">
+					<xsd:selector xpath="isy:Berechnungen/isy:Berechnung/isy:BerechnungInfo"/>
+					<xsd:field xpath="isy:Verfahrenskennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="HEinleiterRef" refer="HEinleiterKey">
+					<xsd:selector xpath="isy:Berechnungen/isy:Berechnung/isy:BerechnungInfo"/>
+					<xsd:field xpath="isy:Einleiterkollektivkennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="HTrwRef" refer="HTrwKey">
+					<xsd:selector xpath="isy:Gebiete/isy:Gebiet"/>
+					<xsd:field xpath="isy:Trockenwetterkennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="HNiederschlag1Ref" refer="HNiederschlagKey">
+					<xsd:selector xpath="isy:Berechnungen/isy:Berechnung/isy:BerechnungInfo/isy:Niederschlagsbelastung/isy:GleichmaessigeUeberregnung"/>
+					<xsd:field xpath="isy:Niederschlagkennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="HNiederschlag2Ref" refer="HNiederschlagKey">
+					<xsd:selector xpath="isy:Berechnungen/isy:Berechnung/isy:BerechnungInfo/isy:Niederschlagsbelastung/isy:UngleichmaessigeUeberregnung/isy:FlaechenNiederschlag"/>
+					<xsd:field xpath="isy:Niederschlagkennung"/>
+				</xsd:keyref>
+				<xsd:keyref name="HFlaeche2Ref" refer="HFlaechenIDKey">
+					<xsd:selector xpath="isy:Berechnungen/isy:Berechnung/isy:BerechnungInfo/isy:Niederschlagsbelastung/isy:UngleichmaessigeUeberregnung/isy:FlaechenNiederschlag"/>
+					<xsd:field xpath="isy:Flaechennummer"/>
+				</xsd:keyref>
+			</xsd:element>
+			<xsd:element name="Betriebsdatenkollektiv" type="BetriebsdatenType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Praesentationsdatenkollektiv" type="PraesentationsdatenType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:key name="PObjektKey">
+					<xsd:selector xpath="isy:Praesentationsobjekt"/>
+					<xsd:field xpath="isy:Objektbezeichnung"/>
+				</xsd:key>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KollektivType">
+		<xsd:sequence>
+			<xsd:element name="Kennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kollektivart" type="KollektivartType"/>
+			<xsd:element name="Kollektiveigenschaft">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="Stammdaten" type="StammType"/>
+						<xsd:element name="Zustandsdaten" type="ZustandType"/>
+						<xsd:element name="Hydraulikdaten" type="HydraulikType"/>
+						<xsd:element name="Betriebsdaten" type="BetriebType"/>
+						<xsd:element name="Praesentationsdaten" type="PraesentationType"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Regelwerk" type="RegelwerkType"/>
+			<xsd:element name="Bearbeitungsstand" type="xsd:date"/>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StammType">
+		<xsd:sequence>
+			<xsd:element name="Stammdatentyp">
+				<xsd:simpleType>
+					<xsd:restriction base="StammdatentypType"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Bautechnik" type="xsd:boolean"/>
+			<xsd:element name="Geometrie" type="xsd:boolean"/>
+			<xsd:element name="Sanierung" type="xsd:boolean"/>
+			<xsd:element name="Umfeld" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PraesentationType">
+		<xsd:sequence>
+			<xsd:element name="Praesentationsdatentyp">
+				<xsd:simpleType>
+					<xsd:restriction base="PraesentationsdatentypType"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Thema" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ZustandType">
+		<xsd:sequence>
+			<xsd:element name="Inspektion" type="xsd:boolean"/>
+			<xsd:element name="Dichtheit" type="xsd:boolean"/>
+			<xsd:element name="Film" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydraulikType">
+		<xsd:sequence>
+			<xsd:element name="Verfahren" type="xsd:boolean"/>
+			<xsd:element name="Rechennetz" type="xsd:boolean"/>
+			<xsd:element name="Gebiet" type="xsd:boolean"/>
+			<xsd:element name="Flaechen" type="xsd:boolean"/>
+			<xsd:element name="Belastung" type="xsd:boolean"/>
+			<xsd:element name="Berechnung" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BetriebType">
+		<xsd:sequence>
+			<xsd:element name="Beobachtung" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrdnungseinheitType">
+		<xsd:sequence>
+			<xsd:element name="KennungOrdnungseinheit">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TypOrdnungseinheit" type="TypOrdnungseinheitType"/>
+			<xsd:element name="Bezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Liegenschaft" type="LiegenschaftType"/>
+				<xsd:element name="Wirtschaftseinheit" type="WirtschaftseinheitType"/>
+			</xsd:choice>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

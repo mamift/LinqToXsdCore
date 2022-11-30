@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Mit XMLSpy v2015 rel. 4 sp1 (x64) (http://www.altova.com) von Daniel (Institut für technisch-wissenschaftliche Hydrologie GmbH) bearbeitet -->
+<xsd:schema xmlns="http://www.bfr-abwasser.de" xmlns:isy="http://www.bfr-abwasser.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bfr-abwasser.de" elementFormDefault="qualified">
+	<xsd:include schemaLocation="./1707-referenzlisten.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="de">ISYBAU-Austauschformat Datenbereich Betriebsdaten</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="BetriebsdatenType">
+		<xsd:sequence>
+			<xsd:element name="Kennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="5"/>
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Beschreibung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Beobachtungen" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Grundwasser" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="GWMessstelle" type="GWMessstelleType" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Boden" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Bodenkennwerte" type="BodenkennwerteType" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DokumenteType">
+		<xsd:sequence>
+			<xsd:element name="Dokumentname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dateiname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dokumentquelle">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GWMessstelleType">
+		<xsd:sequence>
+			<xsd:element name="Bezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Erlaeuterung" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Erstellungsdatum" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Umfeld">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Bodenkennwerte" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Standort" type="StandortType" minOccurs="0"/>
+			<xsd:element name="NwPeilrohr" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HoeheROK" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Filterbeginn" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Filterende" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Endteufe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Zyklus" type="BeobachtungszyklusGWType" minOccurs="0"/>
+			<xsd:element name="Messungen" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Messung" type="MessungType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Dokumente" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Dokument" type="DokumenteType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MessungType">
+		<xsd:sequence>
+			<xsd:element name="Ablesedatum" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Messwert">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BodenkennwerteType">
+		<xsd:sequence>
+			<xsd:element name="Bezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Erlaeuterung" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Umfeld">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Standort" type="StandortType" minOccurs="0"/>
+			<xsd:element name="ArtUntersuchung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="UntersuchungBodenType"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="GWFlurabstand" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="massgBodenart" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="massgKfWert" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="Bodenschichten" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Bodenschicht" type="BodenschichtType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Dokumente" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Dokument" type="DokumenteType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BodenschichtType">
+		<xsd:sequence>
+			<xsd:element name="obereSchichtgrenze" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="untereSchichtgrenze" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Bodenart" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KfWert" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="Bestimmungsmethode" type="BestimmungkfType" minOccurs="0"/>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StandortType">
+		<xsd:sequence>
+			<xsd:element name="Rechtswert">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Hochwert">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="10"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HoeheGOK">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Lagegenauigkeitsstufe">
+				<xsd:simpleType>
+					<xsd:restriction base="LagestufeType"/>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
