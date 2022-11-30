@@ -11,3 +11,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("f2ff2bb9-602f-49fc-9242-a414e2769803")]
 [assembly: InternalsVisibleTo("XObjectsTests")]
 [assembly: InternalsVisibleTo("XObjectsCodeGen")]
+[assembly: InternalsVisibleTo("LinqToXsd")]

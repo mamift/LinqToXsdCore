@@ -2,7 +2,7 @@
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    internal abstract partial class ClrTypeInfo : IEquatable<ClrTypeInfo>
+    public abstract partial class ClrTypeInfo : IEquatable<ClrTypeInfo>
     {
         public bool Equals(ClrTypeInfo other)
         {
