@@ -2,7 +2,7 @@
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    internal partial class ClrTypeReference : IEquatable<ClrTypeReference>
+    public partial class ClrTypeReference : IEquatable<ClrTypeReference>
     {
         public bool Equals(ClrTypeReference other)
         {

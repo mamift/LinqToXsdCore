@@ -17,7 +17,7 @@ namespace Xml.Schema.Linq.CodeGen
         List<ClrTypeInfo> types;
         Dictionary<XmlSchemaObject, string> nameMappings;
 
-        internal List<ClrTypeInfo> Types
+        public List<ClrTypeInfo> Types
         {
             get
             {
@@ -30,7 +30,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal Dictionary<XmlSchemaObject, string> NameMappings
+        public Dictionary<XmlSchemaObject, string> NameMappings
         {
             get
             {
@@ -45,26 +45,26 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal abstract partial class ClrTypeInfo
+    public abstract partial class ClrTypeInfo
     {
         //Names
-        internal string clrtypeName;
-        internal string clrtypeNs;
-        internal string schemaName;
-        internal string schemaNs;
-        internal string clrFullTypeName;
+        public string clrtypeName;
+        public string clrtypeNs;
+        public string schemaName;
+        public string schemaNs;
+        public string clrFullTypeName;
 
-        internal string contentModelRegEx;
+        public string contentModelRegEx;
 
-        internal XmlSchemaObject baseType;
-        internal string baseTypeClrName;
-        internal string baseTypeClrNs;
+        public XmlSchemaObject baseType;
+        public string baseTypeClrName;
+        public string baseTypeClrNs;
 
-        internal ClrTypeInfo Parent { get; set; }
+        public ClrTypeInfo Parent { get; set; }
 
         //Type properties 
         protected ClrTypeFlags clrTypeFlags;
-        internal SchemaOrigin typeOrigin;
+        public SchemaOrigin typeOrigin;
 
         //Intellisense type information
         protected List<ClrAnnotation> annotations;
@@ -82,7 +82,7 @@ namespace Xml.Schema.Linq.CodeGen
         /// </summary>
         /// <param name="includeNs">Optionally set to true to include the namespace.</param>
         /// <returns></returns>
-        internal string GetNestedTypeScopedResolutionString(bool includeNs = true)
+        public string GetNestedTypeScopedResolutionString(bool includeNs = true)
         {
             var scopeSb = includeNs ? new StringBuilder(this.clrtypeNs) : new StringBuilder();
 
@@ -124,12 +124,12 @@ namespace Xml.Schema.Linq.CodeGen
             annotations = new List<ClrAnnotation>();
         }
 
-        internal bool IsDerived
+        public bool IsDerived
         {
             get { return baseType != null; }
         }
 
-        internal XmlQualifiedName BaseTypeName
+        public XmlQualifiedName BaseTypeName
         {
             get
             {
@@ -151,7 +151,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsAbstract
+        public bool IsAbstract
         {
             get { return (clrTypeFlags & ClrTypeFlags.IsAbstract) != 0; }
             set
@@ -167,7 +167,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsSealed
+        public bool IsSealed
         {
             get { return (clrTypeFlags & ClrTypeFlags.IsSealed) != 0; }
             set
@@ -183,7 +183,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsRoot
+        public bool IsRoot
         {
             get { return (clrTypeFlags & ClrTypeFlags.IsRoot) != 0; }
             set
@@ -199,7 +199,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsNested
+        public bool IsNested
         {
             get { return (clrTypeFlags & ClrTypeFlags.IsNested) != 0; }
             set
@@ -215,7 +215,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool InlineBaseType
+        public bool InlineBaseType
         {
             get { return (clrTypeFlags & ClrTypeFlags.InlineBaseType) != 0; }
             set
@@ -231,7 +231,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsSubstitutionHead
+        public bool IsSubstitutionHead
         {
             get { return (clrTypeFlags & ClrTypeFlags.IsSubstitutionHead) != 0; }
             set
@@ -247,7 +247,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool HasElementWildCard
+        public bool HasElementWildCard
         {
             get { return (clrTypeFlags & ClrTypeFlags.HasElementWildCard) != 0; }
             set
@@ -263,13 +263,13 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsRootElement
+        public bool IsRootElement
         {
             get { return typeOrigin == SchemaOrigin.Element; }
         }
 
 
-        internal bool IsSubstitutionMember()
+        public bool IsSubstitutionMember()
         {
             //types whose origin is element, If they have a base type its from being a member of a subst group
             if (typeOrigin == SchemaOrigin.Element && baseType != null && !IsHeadAnyType())
@@ -281,23 +281,23 @@ namespace Xml.Schema.Linq.CodeGen
             return false;
         }
 
-        internal virtual bool IsWrapper
+        public virtual bool IsWrapper
         {
             get { return false; }
         }
 
-        internal virtual bool HasBaseContentType
+        public virtual bool HasBaseContentType
         {
             //For wrappers that are substitutionGroup members, if the type is the same as that of the head, this property returns true
             get { return false; }
         }
 
-        internal List<ClrAnnotation> Annotations
+        public List<ClrAnnotation> Annotations
         {
             get { return annotations; }
         }
 
-        internal string ContentModelRegEx
+        public string ContentModelRegEx
         {
             get { return contentModelRegEx; }
 
@@ -312,7 +312,7 @@ namespace Xml.Schema.Linq.CodeGen
             return headElem.ElementSchemaType.TypeCode == XmlTypeCode.Item;
         }
 
-        internal virtual FSM CreateFSM(StateNameSource stateNames)
+        public virtual FSM CreateFSM(StateNameSource stateNames)
         {
             throw new InvalidOperationException();
         }
@@ -321,19 +321,19 @@ namespace Xml.Schema.Linq.CodeGen
     }
 
 
-    internal class ClrContentTypeInfo : ClrTypeInfo
+    public class ClrContentTypeInfo : ClrTypeInfo
     {
         //Group/Properties
-        internal ContentInfo lastTypeMember;
+        public ContentInfo lastTypeMember;
 
         //Nested types
-        internal List<ClrTypeInfo> nestedTypes;
+        public List<ClrTypeInfo> nestedTypes;
 
-        internal ClrContentTypeInfo()
+        public ClrContentTypeInfo()
         {
         }
 
-        internal IEnumerable<ContentInfo> Content
+        public IEnumerable<ContentInfo> Content
         {
             get
             {
@@ -350,7 +350,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal void AddMember(ContentInfo member)
+        public void AddMember(ContentInfo member)
         {
             if (lastTypeMember == null)
             {
@@ -365,7 +365,7 @@ namespace Xml.Schema.Linq.CodeGen
             lastTypeMember = member;
         }
 
-        internal List<ClrTypeInfo> NestedTypes
+        public List<ClrTypeInfo> NestedTypes
         {
             get
             {
@@ -378,7 +378,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override FSM CreateFSM(StateNameSource stateNames)
+        public override FSM CreateFSM(StateNameSource stateNames)
         {
             //Should have only one top-level grouping content info
             foreach (ContentInfo content in Content)
@@ -401,38 +401,38 @@ namespace Xml.Schema.Linq.CodeGen
     }
 
 
-    internal class ClrWrapperTypeInfo : ClrTypeInfo
+    public class ClrWrapperTypeInfo : ClrTypeInfo
     {
         ClrTypeReference innerType;
-        internal string fixedDefaultValue;
+        public string fixedDefaultValue;
         bool hasBaseContentType;
 
-        internal ClrWrapperTypeInfo()
+        public ClrWrapperTypeInfo()
         {
         }
 
-        internal ClrWrapperTypeInfo(bool hasBaseContentType)
+        public ClrWrapperTypeInfo(bool hasBaseContentType)
         {
             this.hasBaseContentType = hasBaseContentType;
         }
 
-        internal override bool IsWrapper
+        public override bool IsWrapper
         {
             get { return true; }
         }
 
-        internal override bool HasBaseContentType
+        public override bool HasBaseContentType
         {
             get { return hasBaseContentType; }
         }
 
-        internal ClrTypeReference InnerType
+        public ClrTypeReference InnerType
         {
             get { return innerType; }
             set { innerType = value; }
         }
 
-        internal string FixedValue
+        public string FixedValue
         {
             get
             {
@@ -450,7 +450,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        internal string DefaultValue
+        public string DefaultValue
         {
             get
             {
@@ -468,414 +468,12 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal partial class ClrTypeReference
-    {
-        string typeName;
-        string typeNs;
-        string clrName;
-        string clrFullTypeName;
-
-        string typeCodeString;
-        XmlSchemaObject schemaObject;
-        ClrTypeRefFlags typeRefFlags;
-        SchemaOrigin typeRefOrigin;
-
-        internal ClrTypeReference(string name, string ns, XmlSchemaObject schemaObject, bool anonymousType,
-            bool setVariety)
-        {
-            this.typeName = name;
-            this.typeNs = ns;
-            this.schemaObject = schemaObject;
-
-            XmlSchemaType schemaType = schemaObject as XmlSchemaType;
-            if (schemaType == null)
-            {
-                XmlSchemaElement elem = schemaObject as XmlSchemaElement;
-                typeRefFlags |= ClrTypeRefFlags.IsElementRef;
-                schemaType = elem.ElementSchemaType;
-            }
-
-            Debug.Assert(schemaType != null);
-
-            XmlSchemaSimpleType st = schemaType as XmlSchemaSimpleType;
-            if (st != null)
-            {
-                if (st.HasFacetRestrictions() || st.IsOrHasUnion())
-                {
-                    typeRefFlags |= ClrTypeRefFlags.Validate;
-                }
-
-                if (st.IsEnum())
-                {
-                    typeRefFlags |= ClrTypeRefFlags.IsEnum | ClrTypeRefFlags.IsValueType;
-                }
-
-                XmlSchemaDatatype datatype = st.Datatype;
-                if (setVariety)
-                {
-                    SetVariety(datatype);
-                }
-
-                typeRefFlags |= ClrTypeRefFlags.IsSimpleType;
-                typeCodeString = datatype.TypeCodeString();
-                if (datatype.ValueType.IsValueType)
-                {
-                    typeRefFlags |= ClrTypeRefFlags.IsValueType;
-                }
-            }
-            else if (schemaType.TypeCode == XmlTypeCode.Item)
-            {
-                typeRefFlags |= ClrTypeRefFlags.IsAnyType;
-            }
-
-            if (anonymousType)
-            {
-                typeRefFlags |= ClrTypeRefFlags.IsLocalType;
-            }
-
-            this.typeRefOrigin = SchemaOrigin.Fragment;
-        }
-
-        private void SetVariety(XmlSchemaDatatype datatype)
-        {
-            XmlSchemaDatatypeVariety variety = datatype.Variety;
-            if (variety == XmlSchemaDatatypeVariety.List)
-            {
-                typeRefFlags |= ClrTypeRefFlags.IsSchemaList;
-            }
-            else if (variety == XmlSchemaDatatypeVariety.Union)
-            {
-                typeRefFlags |= ClrTypeRefFlags.IsUnion;
-            }
-        }
-
-        internal SchemaOrigin Origin
-        {
-            get { return typeRefOrigin; }
-            set { typeRefOrigin = value; }
-        }
-
-        internal string Name
-        {
-            get { return typeName; }
-            set
-            {
-                typeName = value; //needed to fixup typename of anonymous types 
-            }
-        }
-
-        internal string ClrName
-        {
-            get { return clrName; }
-        }
-
-        internal string Namespace
-        {
-            get { return typeNs; }
-        }
-
-        internal string ClrFullTypeName
-        {
-            get { return clrFullTypeName; }
-        }
-
-        internal string TypeCodeString
-        {
-            get { return typeCodeString; }
-        }
-
-        internal bool IsValueType
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsValueType) != 0; }
-        }
-
-        internal bool IsLocalType
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsLocalType) != 0; }
-        }
-
-        internal bool IsSimpleType
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsSimpleType) != 0; }
-        }
-
-        internal bool Validate
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.Validate) != 0; }
-            set
-            {
-                if (value)
-                {
-                    typeRefFlags |= ClrTypeRefFlags.Validate;
-                }
-                else
-                {
-                    typeRefFlags &= ~ClrTypeRefFlags.Validate;
-                }
-            }
-        }
-
-        internal bool IsTypeRef
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsElementRef) != 0; }
-            set
-            {
-                if (value)
-                {
-                    typeRefFlags |= ClrTypeRefFlags.IsElementRef;
-                }
-                else
-                {
-                    typeRefFlags &= ~ClrTypeRefFlags.IsElementRef;
-                }
-            }
-        }
-
-        internal bool IsSchemaList
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsSchemaList) != 0; }
-        }
-
-        internal bool IsUnion
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsUnion) != 0; }
-        }
-
-        internal bool IsEnum
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsEnum) != 0; }
-        }
-
-        internal bool IsAnyType
-        {
-            get { return (typeRefFlags & ClrTypeRefFlags.IsAnyType) != 0; }
-        }
-
-        internal bool IsNamedComplexType
-        {
-            get
-            {
-                return (typeRefFlags & ClrTypeRefFlags.IsSimpleType) == 0 &&
-                       (typeRefFlags & ClrTypeRefFlags.IsAnyType) == 0;
-            }
-        }
-
-        internal XmlSchemaObject SchemaObject
-        {
-            get { return schemaObject; }
-        }
-
-        internal string LocalSuffix => this.IsEnum ? Constants.LocalEnumSuffix : Constants.LocalTypeSuffix;
-
-        internal string GetSimpleTypeClrTypeDefName(string parentTypeClrNs,
-            Dictionary<XmlSchemaObject, string> nameMappings)
-        {
-            Debug.Assert(this.IsSimpleType);
-            string clrTypeName = null;
-            XmlSchemaObject key = schemaObject;
-            if (IsTypeRef)
-            {
-                //schema object is element
-                key = ((XmlSchemaElement) schemaObject).ElementSchemaType as XmlSchemaSimpleType;
-                Debug.Assert(key != null);
-            }
-
-            string identifier = null;
-            if (nameMappings.TryGetValue(key, out identifier))
-            {
-                clrTypeName = identifier;
-            }
-            else
-            {
-                clrTypeName = typeName;
-            }
-
-            this.clrName = clrTypeName;
-
-            if (IsEnum && !string.IsNullOrEmpty(clrTypeName))
-            {
-                clrTypeName += Constants.EnumValidator;
-            }
-
-            if (typeNs != string.Empty && !IsLocalType)
-            {
-                //Namespace of the property's type is different than the namespace of the enclosing CLR Type
-                clrTypeName = "global::" + typeNs + "." + clrTypeName;
-            }
-
-            return clrTypeName;
-        }
-
-        internal string GetClrFullTypeName(string parentTypeClrNs, Dictionary<XmlSchemaObject, string> nameMappings,
-            out string refTypeName)
-        {
-            string clrTypeName = null;
-            refTypeName = null;
-            if (IsNamedComplexType || IsTypeRef)
-            {
-                clrTypeName = nameMappings.TryGetValue(schemaObject, out string identifier) ? identifier : typeName;
-                refTypeName = clrTypeName;
-                if (typeNs != string.Empty && (typeNs != parentTypeClrNs || nameMappings.Values.Where(v => v == clrTypeName).Skip(1).Any()))
-                {
-                    //Keep the full type name to avoid conflicts when we have types with the same name in different namespaces.
-                    clrTypeName = typeNs + "." + clrTypeName;
-                }
-            }
-            else if (IsAnyType)
-            {
-                clrTypeName = Constants.XTypedElement;
-            }
-            else
-            {
-                //its a simple type - get default xsd -> clr mapping
-                Debug.Assert(IsSimpleType);
-                XmlSchemaSimpleType st = schemaObject as XmlSchemaSimpleType;
-                Debug.Assert(st != null);
-                clrTypeName = IsSchemaList
-                    ? st.GetListItemType().Datatype.ValueType.ToString()
-                    : st.Datatype.ValueType.ToString();
-            }
-
-            return clrTypeName;
-        }
-
-        internal string UpdateClrFullEnumTypeName(ClrPropertyInfo property, string currentTypeScope, string currentNamespaceScope)
-        {
-            Debug.Assert(this.IsEnum);
-
-            var theClrNamespace = EnsureNamespace();
-            var noNamespaceDefined = this.Namespace.IsNullOrEmpty() && property.ClrNamespace.IsNullOrEmpty() && theClrNamespace.IsNullOrEmpty();
-            if (noNamespaceDefined)
-            {
-                this.clrFullTypeName = this.clrName;
-            }
-            else if (this.clrFullTypeName.IsEmpty())
-            {
-                //If the enum type is local (nested), use its parent type scope
-                this.clrFullTypeName = property.TypeReference.IsLocalType
-                    ? $"{currentTypeScope}.{this.ClrName ?? this.Name}"
-                    : $"{theClrNamespace}.{this.ClrName ?? this.Name}";
-            }
-            return this.clrFullTypeName;
-
-            string EnsureNamespace()
-            {
-                if (this.Namespace.IsNullOrEmpty())
-                {
-                    if (currentNamespaceScope == null) throw new ArgumentNullException(nameof(currentNamespaceScope));
-                    return currentNamespaceScope;
-                }
-                return this.Namespace;
-            }
-        }
-    }
-
-    internal abstract partial class ContentInfo
-    {
-        internal ContentInfo lastChild;
-        internal ContentInfo nextSibling;
-        protected ContentType contentType;
-        protected Occurs occursInSchema; //The original occurence information in the XML schema
-
-        internal Occurs OccursInSchema
-        {
-            get { return occursInSchema; }
-        }
-
-        internal bool IsOptional
-        {
-            get { return IsQMark || IsStar; }
-        }
-
-        internal bool IsStar
-        {
-            get { return this.occursInSchema == Occurs.ZeroOrMore; }
-        }
-
-        internal bool IsPlus
-        {
-            get { return this.occursInSchema == Occurs.OneOrMore; }
-        }
-
-        internal bool IsQMark
-        {
-            get { return this.occursInSchema == Occurs.ZeroOrOne; }
-        }
-
-
-        internal ContentType ContentType
-        {
-            get { return contentType; }
-        }
-
-
-        internal IEnumerable<ContentInfo> Children
-        {
-            get
-            {
-                ContentInfo current = lastChild;
-                while (current != null)
-                {
-                    current = current.nextSibling;
-                    yield return current;
-                    if (current == lastChild)
-                    {
-                        yield break;
-                    }
-                }
-            }
-        }
-
-        internal void AddChild(ContentInfo content)
-        {
-            if (lastChild == null)
-            {
-                content.nextSibling = content;
-            }
-            else
-            {
-                content.nextSibling = lastChild.nextSibling;
-                lastChild.nextSibling = content;
-            }
-
-            lastChild = content;
-        }
-
-        internal string OccurenceString
-        {
-            get
-            {
-                if (this.IsStar)
-                {
-                    return "*";
-                }
-                else if (this.IsPlus)
-                {
-                    return "+";
-                }
-                else if (this.IsQMark)
-                {
-                    return "?";
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
-        public override string ToString()
-        {
-            return this.Children.Any() ? $"{{ {string.Join(", ", this.Children.Select(x => x.ToString()))} }}{this.OccurenceString}" : string.Empty;
-        }
-    }
-
-    internal partial class GroupingInfo : ContentInfo
+    public partial class GroupingInfo : ContentInfo
     {
         ContentModelType contentModelType;
         GroupingFlags groupingFlags;
 
-        internal GroupingInfo(ContentModelType cmType, Occurs occursInSchema)
+        public GroupingInfo(ContentModelType cmType, Occurs occursInSchema)
         {
             this.contentModelType = cmType;
             this.occursInSchema = occursInSchema;
@@ -886,7 +484,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsRepeating
+        public bool IsRepeating
         {
             get { return (groupingFlags & GroupingFlags.Repeating) != 0; }
             set
@@ -902,7 +500,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool HasChildGroups
+        public bool HasChildGroups
         {
             get { return (groupingFlags & GroupingFlags.HasChildGroups) != 0; }
             set
@@ -918,7 +516,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool HasRepeatingGroups
+        public bool HasRepeatingGroups
         {
             get { return (groupingFlags & GroupingFlags.HasRepeatingGroups) != 0; }
             set
@@ -934,7 +532,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsNested
+        public bool IsNested
         {
             get { return (groupingFlags & GroupingFlags.Nested) != 0; }
             set
@@ -950,7 +548,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool HasRecurrentElements
+        public bool HasRecurrentElements
         {
             get { return (groupingFlags & GroupingFlags.HasRecurrentElements) != 0; }
             set
@@ -966,7 +564,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsComplex
+        public bool IsComplex
         {
             get
             {
@@ -977,7 +575,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal ContentModelType ContentModelType
+        public ContentModelType ContentModelType
         {
             get { return contentModelType; }
         }

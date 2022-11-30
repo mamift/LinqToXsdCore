@@ -7,18 +7,18 @@ using System.Diagnostics;
 namespace Xml.Schema.Linq.CodeGen
 {
     //Special casing types with valid data type
-    internal abstract class ClrSimpleTypeInfo : ClrTypeInfo
+    public abstract class ClrSimpleTypeInfo : ClrTypeInfo
     {
         XmlSchemaType innerType;
         XmlSchemaDatatypeVariety variety;
 
-        internal ClrSimpleTypeInfo(XmlSchemaType innerType)
+        public ClrSimpleTypeInfo(XmlSchemaType innerType)
         {
             this.innerType = innerType;
             this.variety = innerType.Datatype.Variety;
         }
 
-        internal CompiledFacets RestrictionFacets
+        public CompiledFacets RestrictionFacets
         {
             get { return GetFacets(innerType); }
         }
@@ -38,13 +38,13 @@ namespace Xml.Schema.Linq.CodeGen
             get { return variety; }
         }
 
-        internal XmlSchemaType InnerType
+        public XmlSchemaType InnerType
         {
             get { return innerType; }
             set { innerType = value; }
         }
 
-        internal bool IsGlobal
+        public bool IsGlobal
         {
             get
             {
@@ -71,7 +71,7 @@ namespace Xml.Schema.Linq.CodeGen
             return compiledFacets;
         }
 
-        internal static ClrSimpleTypeInfo CreateSimpleTypeInfo(XmlSchemaType type)
+        public static ClrSimpleTypeInfo CreateSimpleTypeInfo(XmlSchemaType type)
         {
             ClrSimpleTypeInfo typeInfo = null;
 
@@ -101,7 +101,7 @@ namespace Xml.Schema.Linq.CodeGen
             return typeInfo;
         }
 
-        internal void UpdateClrTypeName(Dictionary<XmlSchemaObject, string> nameMappings,
+        public void UpdateClrTypeName(Dictionary<XmlSchemaObject, string> nameMappings,
             LinqToXsdSettings settings)
         {
             string identifier = null;
@@ -123,27 +123,27 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal class AtomicSimpleTypeInfo : ClrSimpleTypeInfo
+    public class AtomicSimpleTypeInfo : ClrSimpleTypeInfo
     {
-        internal AtomicSimpleTypeInfo(XmlSchemaType innerType)
+        public AtomicSimpleTypeInfo(XmlSchemaType innerType)
             : base(innerType)
         {
         }
     }
 
-    internal class EnumSimpleTypeInfo : ClrSimpleTypeInfo
+    public class EnumSimpleTypeInfo : ClrSimpleTypeInfo
     {
-        internal EnumSimpleTypeInfo(XmlSchemaSimpleType innerType)
+        public EnumSimpleTypeInfo(XmlSchemaSimpleType innerType)
             : base(innerType)
         {
         }
     }
 
-    internal class ListSimpleTypeInfo : ClrSimpleTypeInfo
+    public class ListSimpleTypeInfo : ClrSimpleTypeInfo
     {
         ClrSimpleTypeInfo itemType;
 
-        internal ListSimpleTypeInfo(XmlSchemaType innerType) : base(innerType)
+        public ListSimpleTypeInfo(XmlSchemaType innerType) : base(innerType)
         {
         }
 
@@ -169,11 +169,11 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal class UnionSimpleTypeInfo : ClrSimpleTypeInfo
+    public class UnionSimpleTypeInfo : ClrSimpleTypeInfo
     {
         ClrSimpleTypeInfo[] memberTypes;
 
-        internal UnionSimpleTypeInfo(XmlSchemaType innerType) : base(innerType)
+        public UnionSimpleTypeInfo(XmlSchemaType innerType) : base(innerType)
         {
         }
 

@@ -8,7 +8,7 @@ using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq
 {
-    internal class CompiledFacets
+    public class CompiledFacets
     {
         RestrictionFlags flags;
 

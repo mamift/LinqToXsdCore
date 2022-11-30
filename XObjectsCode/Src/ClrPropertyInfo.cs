@@ -5,362 +5,13 @@ using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.Xml.Schema;
 
 using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    internal class XCodeTypeReference : CodeTypeReference
-    {
-        public string fullTypeName;
-
-        public XCodeTypeReference(string typeName) : base(typeName)
-        {
-        }
-
-        public XCodeTypeReference(string typeName, params CodeTypeReference[] typeArguments) : base(typeName,
-            typeArguments)
-        {
-        }
-    }
-
-    internal abstract class ClrBasePropertyInfo : ContentInfo
-    {
-        protected string propertyName;
-        protected string schemaName;
-        protected string propertyNs;
-
-        protected bool hasSet;
-        protected XCodeTypeReference returnType;
-        protected XCodeTypeReference defaultValueType;
-        protected bool isVirtual;
-        protected bool isOverride;
-
-        //Intellisense type information
-        protected List<ClrAnnotation> annotations;
-
-        public ClrBasePropertyInfo()
-        {
-            this.IsVirtual = false;
-            this.isOverride = false;
-            this.returnType = null;
-            this.defaultValueType = null;
-            annotations = new List<ClrAnnotation>();
-        }
-
-        internal string PropertyName
-        {
-            get { return propertyName; }
-            set { propertyName = value; }
-        }
-
-        internal string SchemaName
-        {
-            get { return schemaName; }
-            set { schemaName = value; }
-        }
-
-        internal string PropertyNs
-        {
-            get { return propertyNs; }
-            set { propertyNs = value; }
-        }
-
-        internal virtual bool IsList
-        {
-            get { return false; }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal bool HasSet
-        {
-            get { return hasSet; }
-            set { hasSet = value; }
-        }
-
-        internal virtual bool FromBaseType
-        {
-            get { return false; }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal virtual bool IsNew
-        {
-            get { return false; }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal virtual bool IsDuplicate
-        {
-            get { return false; }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal virtual bool IsNullable
-        {
-            get { return false; }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal virtual bool VerifyRequired
-        {
-            get { return false; }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal virtual XCodeTypeReference ReturnType
-        {
-            get { return returnType; }
-            set { returnType = value; }
-        }
-
-        internal virtual XCodeTypeReference DefaultValueType
-        {
-            get { return defaultValueType; }
-            set { defaultValueType = value; }
-        }
-
-        internal virtual string ClrTypeName
-        {
-            get { return null; }
-        }
-
-        internal bool IsVirtual
-        {
-            get { return this.isVirtual; }
-            set { this.isVirtual = value; }
-        }
-
-        internal bool IsOverride
-        {
-            get { return this.isOverride; }
-            set { this.isOverride = value; }
-        }
-
-        internal virtual bool IsUnion
-        {
-            get { throw new InvalidOperationException(); }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal virtual bool IsEnum
-        {
-            get { throw new InvalidOperationException(); }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal virtual bool IsSchemaList
-        {
-            get { throw new InvalidOperationException(); }
-            set { throw new InvalidOperationException(); }
-        }
-
-        internal List<ClrAnnotation> Annotations
-        {
-            get { return annotations; }
-        }
-
-        internal bool ShouldGenerate => !IsDuplicate && (!FromBaseType || IsNew);
-
-        internal abstract CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public);
-        internal abstract void AddToContentModel(CodeObjectCreateExpression contentModelExpression);
-        internal abstract void AddToConstructor(CodeConstructor functionalConstructor);
-
-        internal virtual void ApplyAnnotations(CodeMemberProperty propDecl, List<ClrAnnotation> typeAnnotations)
-        {
-            TypeBuilder.ApplyAnnotations(propDecl, this, typeAnnotations);
-        }
-
-        internal virtual CodeExpression GetXName()
-        {
-            return CodeDomHelper.XNameGetExpression(SchemaName, PropertyNs);
-        }
-
-        public override string ToString() => this.propertyName;
-    }
-
-    internal partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
-    {
-        string namespaces;
-        string targetNamespace;
-
-        bool addToTypeDef;
-
-        public bool AddToTypeDef
-        {
-            get { return addToTypeDef; }
-            set { addToTypeDef = value; }
-        }
-
-
-        internal string Namespaces
-        {
-            get { return namespaces; }
-        }
-
-        internal string TargetNamespace
-        {
-            get { return targetNamespace; }
-        }
-
-        internal override XCodeTypeReference ReturnType
-        {
-            get { return new XCodeTypeReference("IEnumerable", new CodeTypeReference(Constants.XElement)); }
-        }
-
-        internal ClrWildCardPropertyInfo(string ns, string targetNs, bool addToType, Occurs schemaOccurs)
-        {
-            namespaces = ns;
-            targetNamespace = targetNs;
-            this.contentType = ContentType.WildCardProperty;
-            this.addToTypeDef = addToType;
-            this.occursInSchema = schemaOccurs;
-        }
-
-        internal override CodeMemberProperty AddToType(CodeTypeDeclaration decl, List<ClrAnnotation> annotations,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            if (!addToTypeDef) return null;
-
-            CodeMemberProperty property = CodeDomHelper.CreateProperty(ReturnType, false, visibility.ToMemberAttribute());
-            property.Name = PropertyName;
-            //property.Attributes = (property.Attributes & ~MemberAttributes.AccessMask) | visibility.ToMemberAttribute();
-
-            AddGetStatements(property.GetStatements);
-
-            ApplyAnnotations(property, annotations);
-
-            decl.Members.Add(property);
-            return property;
-        }
-
-        internal void AddGetStatements(CodeStatementCollection getStatements)
-        {
-            getStatements.Add(
-                new CodeMethodReturnStatement(CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "GetWildCards",
-                    CodeDomHelper.CreateFieldReference(Constants.WildCard, "DefaultWildCard")))
-            );
-        }
-
-        internal override void AddToConstructor(CodeConstructor functionalConstructor)
-        {
-            throw new InvalidOperationException();
-        }
-
-        internal override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
-        {
-            throw new InvalidOperationException();
-        }
-    }
-
-    internal class ClrWrappingPropertyInfo : ClrBasePropertyInfo
-    {
-        string wrappedFieldName;
-        const int propertySuffixIndex = 1;
-        MemberAttributes wrappedPropertyAttributes;
-        CodeCommentStatementCollection codeCommentStatementCollection;
-
-        public ClrWrappingPropertyInfo()
-        {
-            this.contentType = ContentType.Property;
-        }
-
-        public void Init(CodeMemberProperty property)
-        {
-            propertyName = property.Name;
-            returnType = (XCodeTypeReference) property.Type;
-            if (returnType.fullTypeName != null && returnType.fullTypeName != returnType.BaseType)
-            {
-                returnType = new XCodeTypeReference(returnType.fullTypeName);
-            }
-
-            hasSet = property.HasSet;
-            wrappedPropertyAttributes = property.Attributes;
-
-            codeCommentStatementCollection = property.Comments;
-        }
-
-        internal string WrappedFieldName
-        {
-            get { return wrappedFieldName; }
-            set { wrappedFieldName = value; }
-        }
-
-        internal override CodeMemberProperty AddToType(CodeTypeDeclaration typeDecl, List<ClrAnnotation> annotations, 
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            CodeMemberProperty wrapperProperty = CodeDomHelper.CreateProperty(this.returnType, this.hasSet, visibility.ToMemberAttribute());
-            wrapperProperty.Name = CheckPropertyName(typeDecl.Name);
-            wrapperProperty.Attributes = this.wrappedPropertyAttributes;
-
-            AddGetStatements(wrapperProperty.GetStatements);
-
-            if (this.hasSet)
-            {
-                AddSetStatements(wrapperProperty.SetStatements);
-            }
-
-            ApplyAnnotations(wrapperProperty, annotations);
-
-            typeDecl.Members.Add(wrapperProperty);
-            return wrapperProperty;
-        }
-
-        private string CheckPropertyName(string className)
-        {
-            if (this.propertyName.Equals(className))
-            {
-                //This can happen as property names are checked against the wrapped complex type name and not against the global element name
-                return this.propertyName + propertySuffixIndex.ToString(CultureInfo.InvariantCulture.NumberFormat);
-            }
-
-            return this.propertyName;
-        }
-
-        private void AddGetStatements(CodeStatementCollection getStatements)
-        {
-            getStatements.Add(new CodeMethodReturnStatement
-            (new CodePropertyReferenceExpression(
-                new CodeFieldReferenceExpression(
-                    new CodeThisReferenceExpression(),
-                    this.wrappedFieldName),
-                this.propertyName)));
-        }
-
-        private void AddSetStatements(CodeStatementCollection setStatements)
-        {
-            setStatements.Add(new CodeAssignStatement(
-                new CodePropertyReferenceExpression(
-                    new CodeFieldReferenceExpression(
-                        new CodeThisReferenceExpression(),
-                        this.wrappedFieldName),
-                    this.propertyName),
-                CodeDomHelper.SetValue()));
-        }
-
-        internal override void AddToConstructor(CodeConstructor functionalConstructor)
-        {
-            //Do nothing for now
-            //If wrapped property has setter, then add it to func const
-        }
-
-        internal override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
-        {
-            throw new InvalidOperationException();
-        }
-
-        internal override void ApplyAnnotations(CodeMemberProperty propDecl, List<ClrAnnotation> annotations)
-        {
-            foreach (CodeCommentStatement comm in codeCommentStatementCollection)
-            {
-                propDecl.Comments.Add(new CodeCommentStatement(comm.Comment.Text, comm.Comment.DocComment));
-            }
-        }
-    }
-
-    internal partial class ClrPropertyInfo : ClrBasePropertyInfo
+    public partial class ClrPropertyInfo : ClrBasePropertyInfo
     {
         bool nullableReferences;
 
@@ -377,7 +28,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         ArrayList substitutionMembers;
 
-        internal ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
+        public ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
             this.nullableReferences = settings.NullableReferences;
             this.contentType = ContentType.Property;
@@ -402,7 +53,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.xNameExpression = new CodeFieldReferenceExpression(null, NameGenerator.ChangeClrName(propertyName, NameOptions.MakeXName));
         }
 
-        internal void Reset()
+        public void Reset()
         {
             this.returnType = null;
             this.clrTypeName = null;
@@ -411,9 +62,9 @@ namespace Xml.Schema.Linq.CodeGen
             this.propertyFlags = PropertyFlags.None;
         }
 
-        internal Type unionDefaultType;
+        public Type unionDefaultType;
 
-        internal string FixedValue
+        public string FixedValue
         {
             get
             {
@@ -430,7 +81,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal string DefaultValue
+        public string DefaultValue
         {
             get
             {
@@ -447,46 +98,46 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal bool IsRef
+        public bool IsRef
         {
             get { return typeRef.IsTypeRef; }
         }
 
-        internal ClrTypeReference TypeReference
+        public ClrTypeReference TypeReference
         {
             get { return typeRef; }
             set { typeRef = value; }
         }
 
-        internal ArrayList SubstitutionMembers
+        public ArrayList SubstitutionMembers
         {
             get { return substitutionMembers; }
             set { substitutionMembers = value; }
         }
 
-        internal bool IsSubstitutionHead
+        public bool IsSubstitutionHead
         {
             get { return substitutionMembers != null; }
         }
 
-        internal SchemaOrigin Origin
+        public SchemaOrigin Origin
         {
             get { return propertyOrigin; }
             set { propertyOrigin = value; }
         }
 
-        internal override string ClrTypeName
+        public override string ClrTypeName
         {
             get { return clrTypeName; }
         }
 
-        internal string ClrNamespace
+        public string ClrNamespace
         {
             get { return clrNamespace; }
             set { clrNamespace = value; }
         }
 
-        internal override bool IsList
+        public override bool IsList
         {
             //This is for repeating elements, not schema list
             get { return (propertyFlags & PropertyFlags.IsList) != 0; }
@@ -503,7 +154,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsNullable
+        public override bool IsNullable
         {
             get { return (propertyFlags & PropertyFlags.IsNullable) != 0 && fixedDefaultValue == null; }
             set
@@ -519,27 +170,27 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsSchemaList
+        public override bool IsSchemaList
         {
             get { return this.typeRef.IsSchemaList; }
         }
 
-        internal override bool IsUnion
+        public override bool IsUnion
         {
             get { return this.typeRef.IsUnion; }
         }
 
-        internal override bool IsEnum
+        public override bool IsEnum
         {
             get { return this.typeRef.IsEnum; }
         }
 
-        internal bool Validation
+        public bool Validation
         {
             get { return this.typeRef.Validate && !IsRef; }
         }
 
-        internal override bool FromBaseType
+        public override bool FromBaseType
         {
             get { return (propertyFlags & PropertyFlags.FromBaseType) != 0; }
             set
@@ -555,7 +206,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsDuplicate
+        public override bool IsDuplicate
         {
             get { return (propertyFlags & PropertyFlags.IsDuplicate) != 0; }
             set
@@ -571,7 +222,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool IsNew
+        public override bool IsNew
         {
             get { return (propertyFlags & PropertyFlags.IsNew) != 0; }
             set
@@ -587,7 +238,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override bool VerifyRequired
+        public override bool VerifyRequired
         {
             get { return (propertyFlags & PropertyFlags.VerifyRequired) != 0; }
             set
@@ -603,7 +254,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override XCodeTypeReference ReturnType
+        public override XCodeTypeReference ReturnType
         {
             get
             {
@@ -624,7 +275,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override XCodeTypeReference DefaultValueType
+        public override XCodeTypeReference DefaultValueType
         {
             get
             {
@@ -672,7 +323,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal void UpdateTypeReference(
+        public void UpdateTypeReference(
             string currentTypeScope,
             string currentNamespaceScope,
             Dictionary<XmlSchemaObject, string> nameMappings,
@@ -701,7 +352,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.parentTypeFullName = typeRef.IsEnum ? typeRef.UpdateClrFullEnumTypeName(this, currentTypeScope, currentNamespaceScope) : currentTypeScope;
         }
 
-        internal void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
+        public void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
         {
             if (isVirtual)
             {
@@ -717,7 +368,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
+        public override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             if (!ShouldGenerate)
@@ -768,7 +419,7 @@ namespace Xml.Schema.Linq.CodeGen
             return clrProperty;
         }
 
-        internal override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
+        public override void AddToContentModel(CodeObjectCreateExpression contentModelExpression)
         {
             Debug.Assert(contentModelExpression != null && propertyOrigin == SchemaOrigin.Element);
             if (this.IsSubstitutionHead)
@@ -794,7 +445,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal override void AddToConstructor(CodeConstructor functionalConstructor)
+        public override void AddToConstructor(CodeConstructor functionalConstructor)
         {
             if (IsList)
             {
@@ -1423,12 +1074,12 @@ namespace Xml.Schema.Linq.CodeGen
             typeDecl.Members.Add(field);
         }
 
-        internal override CodeExpression GetXName()
+        public override CodeExpression GetXName()
         {
             return xNameExpression;
         }
 
-        internal void SetFixedDefaultValue(ClrWrapperTypeInfo typeInfo)
+        public void SetFixedDefaultValue(ClrWrapperTypeInfo typeInfo)
         {
             this.FixedValue = typeInfo.FixedValue;
             this.DefaultValue = typeInfo.DefaultValue;
@@ -1495,7 +1146,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal virtual void InsertDefaultFixedValueInDefaultCtor(CodeConstructor ctor)
+        public virtual void InsertDefaultFixedValueInDefaultCtor(CodeConstructor ctor)
         {
             if (this.FixedValue != null)
             {
