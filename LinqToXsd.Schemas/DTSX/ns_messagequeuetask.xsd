@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:MessageQueueTask=
+    "www.microsoft.com/sqlserver/dts/tasks/messagequeuetask"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace=
+    "www.microsoft.com/sqlserver/dts/tasks/messagequeuetask"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified"                     
+    xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+    >
+    
+    <xs:import namespace="www.microsoft.com/SqlServer/Dts"
+        schemaLocation="./DTSX.xsd"  />
+    
+    <xs:element name="MessageQueueTaskData"  
+        type="MessageQueueTask:MessageQueueTaskType"/>
+    
+    <xs:complexType name="MessageQueueTaskType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="CurrentPackageID" type="DTS:uuid"/>
+        <xs:attribute name="TaskDescription" type="xs:string"/>
+        <xs:attribute name="DataFileOverWritable">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="False"/>
+                    <xs:enumeration value="True"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="DTSMessageLineageID" type="xs:string"/>
+        <xs:attribute name="DTSMessagePackageID" type="xs:string"/>
+        <xs:attribute name="DTSMessageVersionID" type="xs:string"/>
+        <xs:attribute name="ErrorIfMessageTimeOut">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="False"/>
+                    <xs:enumeration value="True"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="QueuePath" type="xs:string"/>
+        <xs:attribute name="ReceiveMessageTimeOut" type="xs:int"/>
+        <xs:attribute name="ReceiveMessageType"
+            type="MessageQueueTask:MSMQMessageTypeEnum"/>
+        <xs:attribute name="RemoveFromQueue">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="False"/>
+                    <xs:enumeration value="True"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="SaveDataFileName" type="xs:string"/>
+        <xs:attribute name="StringCompareType" 
+            type="MessageQueueTask:MSMQStringCompareTypeEnum"/>
+        <xs:attribute name="StringCompareValue" type="xs:string"/>
+        <xs:attribute name="StringMessageToVariableName" type="xs:string"/>
+        <xs:attribute name="ReceiveVariableMessage" type="xs:string"/>
+        <xs:attribute name="TaskType" 
+            type="MessageQueueTask:MSMQTaskTypeEnum"/>
+        <xs:attribute name="UseEncryption">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="False"/>
+                    <xs:enumeration value="True"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="EncryptionAlgorithm" 
+            type="MessageQueueTask:MSMQEncryptionAlgorithmEnum"/>
+        <xs:attribute name="Use2000Format">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="False"/>
+                    <xs:enumeration value="True"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="DataFileName" type="xs:string"/>
+        <xs:attribute name="StringMessage" type="xs:string"/>
+        <xs:attribute name="VariableMessage" type="xs:string"/>
+        <xs:attribute name="MessageType" 
+            type="MessageQueueTask:MSMQMessageTypeEnum"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="MSMQStringCompareTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DTSMQStringMessageCompare_Contains"/>
+            <xs:enumeration value="DTSMQStringMessageCompare_Exact"/>
+            <xs:enumeration value="DTSMQStringMessageCompare_IgnoreCase"/>
+            <xs:enumeration value="DTSMQStringMessageCompare_None"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="MSMQTaskTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DTSMQType_Receiver"/>
+            <xs:enumeration value="DTSMQType_Sender"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="MSMQMessageTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DTSMQMessagType_StringMessageToVariable"/>
+            <xs:enumeration value="DTSMQMessageType_DataFile"/>
+            <xs:enumeration value="DTSMQMessageType_String"/>
+            <xs:enumeration value="DTSMQMessageType_Variables"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="MSMQEncryptionAlgorithmEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Rc2"/>
+            <xs:enumeration value="Rc4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+</xs:schema>

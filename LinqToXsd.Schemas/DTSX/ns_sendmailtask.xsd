@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+    xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace=
+    "www.microsoft.com/sqlserver/dts/tasks/sendmailtask"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified"                      
+    xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+    >
+    
+    <xs:import namespace="www.microsoft.com/SqlServer/Dts"
+        schemaLocation="./DTSX.xsd"  />
+    
+    
+    <xs:element name="SendMailTaskData"  
+        type="SendMailTask:SendMailTaskType"/>
+    
+    <xs:complexType name="SendMailTaskType">
+        <xs:sequence>
+            <xs:element name="Attachments" minOccurs="0"
+                type="SendMailTask:AttachmentsElementType"/>
+        </xs:sequence>
+        <xs:attribute name="SMTPServer" type="DTS:uuid"/>
+        <xs:attribute name="From" type="xs:string"/>
+        <xs:attribute name="To" type="xs:string"/>
+        <xs:attribute name="CC" type="xs:string"/>
+        <xs:attribute name="BCC" type="xs:string"/>
+        <xs:attribute name="Subject" type="xs:string"/>
+        <xs:attribute name="Priority" 
+            type="SendMailTask:SendMailPriorityEnum"/>
+        <xs:attribute name="MessageSourceType"
+            type="DTS:SourceTypeEnum"/>
+        <xs:attribute name="MessageSource" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="SendMailPriorityEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="High"/>
+            <xs:enumeration value="Low"/>
+            <xs:enumeration value="Normal"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="AttachmentsElementType">
+        <xs:sequence/>
+        <xs:attribute name="FileName" type="xs:string"/>
+    </xs:complexType>
+    
+</xs:schema>
+

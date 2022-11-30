@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:BulkInsertTask=
+    "www.microsoft.com/sqlserver/dts/tasks/bulkinserttask"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace=
+    "www.microsoft.com/sqlserver/dts/tasks/bulkinserttask"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+    
+    <xs:element name="BulkInsertTaskData" 
+        type="BulkInsertTask:BulkInsertTaskDataType"/>
+    
+    <xs:complexType name="BulkInsertTaskDataType">
+        <xs:sequence/>
+        <xs:attribute name="BatchSize" type="BulkInsertTask:CodePageType"/>
+        <xs:attribute name="CheckConstraints">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="CodePage" type="xs:string"/>
+        <xs:attribute name="SourceConnectionName" type="xs:string"/>
+        <xs:attribute name="DestinationConnectionName" type="xs:string"/>
+        <xs:attribute name="DataFileType" 
+            type="BulkInsertTask:DataFileTypeEnum"/>
+        <xs:attribute name="DestinationTableName" type="xs:string"/>
+        <xs:attribute name="FirstRow" type="xs:int"/>
+        <xs:attribute name="LastRow" type="xs:int"/>
+        <xs:attribute name="UseFormatFile">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="FormatFile" type="xs:string"/>
+        <xs:attribute name="SortedData" type="xs:string"/>
+        <xs:attribute name="TableLock">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="KeepIdentity">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="KeepNulls">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="FieldTerminator" 
+            type="BulkInsertTask:BulkInsertTaskTerminatorEnum"/>
+        <xs:attribute name="RowTerminator" 
+            type="BulkInsertTask:BulkInsertTaskTerminatorEnum"/>
+        <xs:attribute name="FireTriggers">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="MaximumErrors" type="xs:int"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="DataFileTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DTSBulkInsert_DataFileType_Char"/>
+            <xs:enumeration value="DTSBulkInsert_DataFileType_Native"/>
+            <xs:enumeration value="DTSBulkInsert_DataFileType_WideChar"/>
+            <xs:enumeration value="DTSBulkInsert_DataFileType_WideNative"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="CodePageType">
+        <xs:union memberTypes="xs:int">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ACP"/>
+                    <xs:enumeration value="OEM"/>
+                    <xs:enumeration value="RAW"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+    
+    <xs:simpleType name="BulkInsertTaskTerminatorEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="{CR}{LF}"/>
+            <xs:enumeration value="{CR}"/>
+            <xs:enumeration value="{LF}"/>
+            <xs:enumeration value="Semicolon {;}"/>
+            <xs:enumeration value="Comma {,}"/>
+            <xs:enumeration value="Tab"/>
+            <xs:enumeration value="Vertical Bar {|}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
