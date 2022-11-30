@@ -15,9 +15,23 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public static Namespace New(string schemaUri, string clrNamespace, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
+            Uri possibleSchemaUriInstance;
+
+            if (schemaUri.IsEmpty()) {
+                possibleSchemaUriInstance = null;
+            }
+            else {
+                if (Uri.IsWellFormedUriString(schemaUri, UriKind.Absolute)) {
+                    possibleSchemaUriInstance = new Uri(schemaUri);
+                }
+                else {
+                    possibleSchemaUriInstance = new Uri("urn:" + schemaUri);
+                }
+            }
+            
             return new Namespace {
                 DefaultVisibility = visibility.ToKeyword(),
-                Schema = schemaUri.IsEmpty() ? null : new Uri(schemaUri),
+                Schema = possibleSchemaUriInstance,
                 Clr = clrNamespace
             };
         }
