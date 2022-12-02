@@ -25,7 +25,7 @@ namespace Xml.Schema.Linq
                     possibleSchemaUriInstance = new Uri(schemaUri);
                 }
                 else {
-                    possibleSchemaUriInstance = new Uri("urn:" + schemaUri);
+                    possibleSchemaUriInstance = new Uri("urn:" + schemaUri, UriKind.Absolute);
                 }
             }
             
