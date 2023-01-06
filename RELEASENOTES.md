@@ -1,5 +1,10 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.3.3
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.3.3
+	* Fixes an issue with the `NullableReferences` element not appearing in generated config files.
+
 ## Version 3.3.2
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.3.2
