@@ -3,6 +3,7 @@
     targetNamespace="urn:test:namespace1" xmlns="urn:test:namespace1"
     xmlns:ns2="urn:test:namespace2">
     <xs:import namespace="urn:test:namespace2" schemaLocation="TestNs2.xsd"/>
+    <xs:include schemaLocation="TestNs3ToBeIncluded.xsd"/>
     <xs:element name="TestElement1" type="TElement1"/>
     <xs:complexType name="TElement1">
         <xs:simpleContent>
@@ -13,6 +14,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="TestElement1"/>
+                <xs:element ref="ItsNotRight"/>
                 <xs:element ref="ns2:TestElement2"/>
             </xs:sequence>
         </xs:complexType>

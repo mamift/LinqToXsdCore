@@ -25,7 +25,124 @@ namespace urn.test.namespace1 {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (TestElement1, TestElement2)
+    /// Regular expression: (ButItsOk)
+    /// </para>
+    /// </summary>
+    public partial class ItsNotRight : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ButItsOkXName = System.Xml.Linq.XName.Get("ButItsOk", "urn:test:namespace1");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator ItsNotRight(XElement xe) { return XTypedServices.ToXTypedElement<ItsNotRight>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static ItsNotRight() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ButItsOkXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (ButItsOk)
+        /// </para>
+        /// </summary>
+        public ItsNotRight() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (ButItsOk)
+        /// </para>
+        /// </summary>
+        public virtual XTypedElement ButItsOk {
+            get {
+                XElement x = this.GetElement(ButItsOkXName);
+                return ((XTypedElement)(x));
+            }
+            set {
+                this.SetElement(ButItsOkXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
+        
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static ItsNotRight Load(string xmlFile) {
+            return XTypedServices.Load<ItsNotRight>(xmlFile);
+        }
+        
+        public static ItsNotRight Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<ItsNotRight>(xmlFile);
+        }
+        
+        public static ItsNotRight Parse(string xml) {
+            return XTypedServices.Parse<ItsNotRight>(xml);
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ItsNotRight>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ButItsOkXName, typeof(XTypedElement));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
     /// </para>
     /// </summary>
     public partial class Combined : XTypedElement, IXMetaData {
@@ -33,6 +150,10 @@ namespace urn.test.namespace1 {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly System.Xml.Linq.XName TestElement1XName = System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ItsNotRightXName = System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -50,12 +171,12 @@ namespace urn.test.namespace1 {
         
         static Combined() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TestElement1XName), new NamedContentModelEntity(TestElement2XName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TestElement1XName), new NamedContentModelEntity(ItsNotRightXName), new NamedContentModelEntity(TestElement2XName));
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (TestElement1, TestElement2)
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
         /// </para>
         /// </summary>
         public Combined() {
@@ -66,7 +187,7 @@ namespace urn.test.namespace1 {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (TestElement1, TestElement2)
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
         /// </para>
         /// </summary>
         public virtual TestElement1 TestElement1 {
@@ -84,7 +205,25 @@ namespace urn.test.namespace1 {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (TestElement1, TestElement2)
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
+        /// </para>
+        /// </summary>
+        public virtual ItsNotRight ItsNotRight {
+            get {
+                XElement x = this.GetElement(ItsNotRightXName);
+                return ((ItsNotRight)(x));
+            }
+            set {
+                this.SetElement(ItsNotRightXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
         /// </para>
         /// </summary>
         public virtual urn.test.namespace2.TestElement2 TestElement2 {
@@ -155,6 +294,7 @@ namespace urn.test.namespace1 {
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(TestElement1XName, typeof(TestElement1));
+            localElementDictionary.Add(ItsNotRightXName, typeof(ItsNotRight));
             localElementDictionary.Add(TestElement2XName, typeof(urn.test.namespace2.TestElement2));
         }
         
@@ -395,6 +535,7 @@ namespace urn.test.namespace1 {
         }
         
         private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1"), typeof(global::urn.test.namespace1.ItsNotRight));
             elementDictionary.Add(System.Xml.Linq.XName.Get("Combined", "urn:test:namespace1"), typeof(global::urn.test.namespace1.Combined));
             elementDictionary.Add(System.Xml.Linq.XName.Get("TestElement2", "urn:test:namespace2"), typeof(global::urn.test.namespace2.TestElement2));
             elementDictionary.Add(System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1"), typeof(global::urn.test.namespace1.TestElement1));
@@ -409,7 +550,7 @@ namespace urn.test.namespace1 {
         }
         
         public static System.Type GetRootType() {
-            return elementDictionary[System.Xml.Linq.XName.Get("Combined", "urn:test:namespace1")];
+            return elementDictionary[System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1")];
         }
     }
     
@@ -422,11 +563,18 @@ namespace urn.test.namespace1 {
         private XTypedElement rootObject;
         
 
+		public ItsNotRight ItsNotRight {  get {return rootObject as ItsNotRight; } }
+
 		public Combined Combined {  get {return rootObject as Combined; } }
 
 		public TestElement1 TestElement1 {  get {return rootObject as TestElement1; } }
         
         private XRootNamespace() {
+        }
+        
+        public XRootNamespace(ItsNotRight root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
         }
         
         public XRootNamespace(Combined root) {
@@ -558,6 +706,8 @@ namespace urn.test.namespace1 {
         private XTypedElement rootObject;
         
 
+		public global::urn.test.namespace1.ItsNotRight ItsNotRight {  get {return rootObject as global::urn.test.namespace1.ItsNotRight; } }
+
 		public global::urn.test.namespace1.Combined Combined {  get {return rootObject as global::urn.test.namespace1.Combined; } }
 
 		public global::urn.test.namespace1.TestElement1 TestElement1 {  get {return rootObject as global::urn.test.namespace1.TestElement1; } }
@@ -565,6 +715,11 @@ namespace urn.test.namespace1 {
 		public global::urn.test.namespace2.TestElement2 TestElement2 {  get {return rootObject as global::urn.test.namespace2.TestElement2; } }
         
         private XRoot() {
+        }
+        
+        public XRoot(global::urn.test.namespace1.ItsNotRight root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
         }
         
         public XRoot(global::urn.test.namespace1.Combined root) {
