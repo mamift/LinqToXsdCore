@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ActiveXScriptTask=
+    "www.microsoft.com/sqlserver/dts/tasks/activexscripttask"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace=
+    "www.microsoft.com/sqlserver/dts/tasks/activexscripttask"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified"                     
+    >
+    
+    <xs:element name="ActiveXScriptTaskData"  
+        type="ActiveXScriptTask:ActiveXScriptTaskDataType"/>
+    
+    <xs:complexType name="ActiveXScriptTaskDataType">
+        <xs:sequence/>
+        <xs:attribute name="ScriptingLanguage" 
+            type="ActiveXScriptTask:ScriptingLanguageEnum"/>
+        <xs:attribute name="ScriptText" type="xs:string"/>
+        <xs:attribute name="EntryMethod" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="ScriptingLanguageEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VBScript"/>
+            <xs:enumeration value="JScript.Compact"/>
+            <xs:enumeration value="JScript"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>

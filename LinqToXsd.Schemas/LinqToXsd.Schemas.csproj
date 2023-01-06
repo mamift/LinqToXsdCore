@@ -20,8 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="LandXML\v1.2\LandXML-1.2.xsd.cs" />
     <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LandXML\v1.2\LandXML-1.2.xsd.cs" />
   </ItemGroup>
 
   <ItemGroup>

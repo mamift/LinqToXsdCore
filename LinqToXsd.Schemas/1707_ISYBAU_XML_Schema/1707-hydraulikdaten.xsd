@@ -1,0 +1,2624 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Mit XMLSpy v2015 rel. 4 sp1 (x64) (http://www.altova.com) von Daniel (Institut für technisch-wissenschaftliche Hydrologie GmbH) bearbeitet -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.bfr-abwasser.de" xmlns:isy="http://www.bfr-abwasser.de" targetNamespace="http://www.bfr-abwasser.de" elementFormDefault="qualified">
+	<xsd:include schemaLocation="./1707-referenzlisten.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="de">ISYBAU-Austauschformat Datenbereich Hydraulikdaten</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="HydraulikdatenType">
+		<xsd:sequence>
+			<xsd:element name="Kennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="5"/>
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Beschreibung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Verfahrensvorgaben" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Verfahren" type="Verfahrentype" maxOccurs="unbounded">
+							<xsd:unique name="HZielgroesseKey">
+								<xsd:selector xpath="isy:Zielgroessen/isy:Zielgroesse"/>
+								<xsd:field xpath="isy:Zielgroessenkennung"/>
+							</xsd:unique>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Rechennetz" type="RechennetzType" minOccurs="0"/>
+			<xsd:element name="Gebiete" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Gebiet" type="GebietType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Flaechen" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Flaeche" type="FlaecheType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Systembelastungen" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Niederschlaege" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Niederschlag" type="NiederschlagType" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Trockenwetterabflussspenden" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Trockenwetterabflussspende" type="TrockenwetterType" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Einleiterkollektive" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Einleiterkollektiv" type="Einleiterkollektiv" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Berechnungen" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Berechnung" type="BerechnungType" maxOccurs="unbounded">
+							<xsd:unique name="HHBerechnungObjektKey">
+								<xsd:selector xpath="isy:HydraulikObjekt"/>
+								<xsd:field xpath="isy:Objektbezeichnung"/>
+								<xsd:field xpath="isy:HydObjektTyp"/>
+							</xsd:unique>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RechennetzType">
+		<xsd:sequence>
+			<xsd:element name="Stammdatenkennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HydraulikObjekte">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="HydraulikObjekt" type="HydraulikObjektType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydraulikObjektType">
+		<xsd:sequence>
+			<xsd:element name="Objektbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HydObjektTyp" type="HydraulikObjektTypType"/>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="Haltung" type="HydHaltungLeitungType" minOccurs="0"/>
+				<xsd:element name="Leitung" type="HydHaltungLeitungType" minOccurs="0"/>
+				<xsd:element name="Gerinne" type="HydGerinneType" minOccurs="0"/>
+				<xsd:element name="Pumpe" type="HydPumpeType" minOccurs="0"/>
+				<xsd:element name="Wehr" type="HydWehrType" minOccurs="0"/>
+				<xsd:element name="Schieber" type="HydSchieberType" minOccurs="0"/>
+				<xsd:element name="Schacht" type="HydSchachtType" minOccurs="0"/>
+				<xsd:element name="Speicherbauwerk" type="HydSpeicherbauwerkType" minOccurs="0"/>
+				<xsd:element name="GrundSeitenAuslass" type="HydGSAuslassType" minOccurs="0"/>
+				<xsd:element name="FreierAuslass" type="HydFreiAuslassType" minOccurs="0"/>
+				<xsd:element name="Drossel" type="HydDrosselType" minOccurs="0"/>
+				<xsd:element name="Regler" type="isy:HydReglerType" minOccurs="0"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GebietType">
+		<xsd:sequence>
+			<xsd:element name="Gebietskennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Gebietsname" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="Einwohnerwerte" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="6"/>
+							<xsd:fractionDigits value="2"/>
+							<xsd:maxExclusive value="10000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Einwohnerdichte" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="5"/>
+							<xsd:fractionDigits value="2"/>
+							<xsd:maxExclusive value="1000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="Trockenwetterkennung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FlaecheType">
+		<xsd:sequence>
+			<xsd:element name="Flaechennummer">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Flaechenbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Flaechenart" type="FlaechenartType" minOccurs="0"/>
+			<xsd:element name="Flaecheneigenschaft" type="FlaecheneigenschaftType" minOccurs="0"/>
+			<xsd:element name="Flaechenfunktion" type="FlaechenfunktionType" minOccurs="0"/>
+			<xsd:element name="Flaechennutzung" type="FlaechennutzungType" minOccurs="0"/>
+			<xsd:element name="Materialzusatz" type="MaterialzusatzType" minOccurs="0"/>
+			<xsd:element name="Verschmutzungsklasse" type="VerschmutzungsklasseType" minOccurs="0"/>
+			<xsd:element name="Flaechengroesse">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="4"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Neigungsklasse" type="NeigungsklasseType" minOccurs="0"/>
+			<xsd:element name="Abflussbeiwert" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Gebietskennung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Flaechengeometrie" type="FlaechengeometrieType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="HydraulikObjekt" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Objektbezeichnung">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="30"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="HydObjektTyp" type="HydraulikObjektTypType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Flaechenobjekt" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Flaechennummer">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:integer">
+										<xsd:totalDigits value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Hauptflaeche" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Flaechennummer">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:integer">
+										<xsd:totalDigits value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="Schwerpunktlaufzeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Rauigkeitsansatz" type="RauigkeitsansatzType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="RauigkeitsbeiwertKb" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="7"/>
+							<xsd:fractionDigits value="4"/>
+							<xsd:maxExclusive value="1000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="RauigkeitsbeiwertKst" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="4"/>
+							<xsd:fractionDigits value="1"/>
+							<xsd:maxExclusive value="1000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FlaechengeometrieType">
+		<xsd:sequence>
+			<xsd:element name="Polygon" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Kante" type="FlKanteType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Knoten" type="FlPunktType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FlKanteType">
+		<xsd:sequence>
+			<xsd:element name="Start" type="FlPunktType"/>
+			<xsd:element name="Ende" type="FlPunktType"/>
+			<xsd:element name="Mitte" type="FlPunktType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FlPunktType">
+		<xsd:sequence>
+			<xsd:element name="Rechtswert">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Hochwert">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="10"/>
+						<xsd:fractionDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Punkthoehe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydHaltungLeitungType">
+		<xsd:sequence>
+			<xsd:element name="Rauigkeitsansatz" type="RauigkeitsansatzType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="RauigkeitsbeiwertKb" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="7"/>
+							<xsd:fractionDigits value="4"/>
+							<xsd:maxExclusive value="1000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="RauigkeitsbeiwertKst" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="4"/>
+							<xsd:fractionDigits value="1"/>
+							<xsd:maxExclusive value="1000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="Berechnungslaenge" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VerlustansatzA110" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="VerlustmethodeA110" type="VerlustmethodeA110Type" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydGerinneType">
+		<xsd:sequence>
+			<xsd:element name="Rauigkeitsbeiwert1" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Rauigkeitsbeiwert2" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydPumpeType">
+		<xsd:sequence>
+			<xsd:element name="PumpenTyp" type="PumpentypType" minOccurs="0"/>
+			<xsd:element name="Steuerschacht" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ArtModellierung" type="ArtModellierungType" minOccurs="0"/>
+			<xsd:element name="SchachtZulauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtAblauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Anfangsvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Gesamtvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Sohlhoehe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="MitKennlinie" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Werte" type="PumpenKennlinieType" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="OhneKennlinie" type="PumpenstufenType" minOccurs="0"/>
+				<xsd:element name="Schaltstufen" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Werte" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Leistungsstufe">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:maxExclusive value="100"/>
+													<xsd:totalDigits value="5"/>
+													<xsd:fractionDigits value="3"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Schaltpunktsteigend">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:totalDigits value="9"/>
+													<xsd:fractionDigits value="3"/>
+													<xsd:maxExclusive value="1000000"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Schaltpunktfallend">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:totalDigits value="9"/>
+													<xsd:fractionDigits value="3"/>
+													<xsd:maxExclusive value="1000000"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Wasserstandsdifferenz" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Werte" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Leistungsstufe">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:totalDigits value="5"/>
+													<xsd:fractionDigits value="3"/>
+													<xsd:maxExclusive value="100"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Wasserstandsdifferenz">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:totalDigits value="5"/>
+													<xsd:fractionDigits value="3"/>
+													<xsd:maxExclusive value="100"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PumpenKennlinieType">
+		<xsd:sequence>
+			<xsd:element name="Leistungsstufe">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schaltstufe">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="9"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PumpenstufenType">
+		<xsd:sequence>
+			<xsd:element name="Leistungsstufen">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Stufe1">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="5"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Stufe2">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="5"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Stufe3" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="5"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Stufe4" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="5"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Stufe5" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="5"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Schaltpunkte">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Schaltpunkt1-2">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Schaltpunkt2-3" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Schaltpunkt3-4" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Schaltpunkt4-5" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Schaltpunkt5-4" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Schaltpunkt4-3" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Schaltpunkt3-2" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Schaltpunkt2-1">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:totalDigits value="11"/>
+									<xsd:fractionDigits value="3"/>
+									<xsd:maxExclusive value="100000000"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydWehrType">
+		<xsd:sequence>
+			<xsd:element name="WehrTyp" type="HydWehrtypType" minOccurs="0"/>
+			<xsd:element name="ArtModellierung" type="ArtModellierungType" minOccurs="0"/>
+			<xsd:element name="SchachtZulauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtAblauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="LaengeWehrschwelle" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schwellenhoehe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kammerhoehe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberfallbeiwert" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Randbedingung" type="RandbedingungType" minOccurs="0"/>
+			<xsd:element name="konstanterWasserstand" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydSchieberType">
+		<xsd:sequence>
+			<xsd:element name="SchieberTyp" type="SchiebertypType" minOccurs="0"/>
+			<xsd:element name="ArtModellierung" type="ArtModellierungType" minOccurs="0"/>
+			<xsd:element name="SchachtZulauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtAblauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schieberbreite" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schiebernulllage" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maximaleHubhoehe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Verlustbeiwert" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schieberanfang" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schieberverfahrgeschwindigkeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:fractionDigits value="2"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:maxExclusive value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydSchachtType">
+		<xsd:sequence>
+			<xsd:element name="DruckdichterDeckel" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydSpeicherbauwerkType">
+		<xsd:sequence>
+			<xsd:element name="SpeicherbauwerkTyp" type="SpeicherbauwerkTypType" minOccurs="0"/>
+			<xsd:element name="Anfangsvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Volumenkennlinie" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Werte" type="VolumenkennlinieType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Drosselkennlinie" minOccurs="0" maxOccurs="2">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Werte" type="DrosselkennlinieType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Drosselabfluss" type="DrosselabflussType" minOccurs="0" maxOccurs="2"/>
+			<xsd:element name="Versickerungskennlinie" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Werte" type="VersickerungskennlinieType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="KfWertBoeschung" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="KfWertSohle" type="xsd:double" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VolumenkennlinieType">
+		<xsd:sequence>
+			<xsd:element name="Wasserstand">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Volumen">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DrosselkennlinieType">
+		<xsd:sequence>
+			<xsd:element name="Wasserstand">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Drosselabfluss">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="100000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DrosselabflussType">
+		<xsd:sequence>
+			<xsd:element name="HoeheRohrsohle" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="Abflusskonstant" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="6"/>
+							<xsd:fractionDigits value="1"/>
+							<xsd:maxExclusive value="100000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Abflussvariabel" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Drosseldurchmesser" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="6"/>
+										<xsd:fractionDigits value="1"/>
+										<xsd:maxExclusive value="100000"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="Drosselbeiwert" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="4"/>
+										<xsd:fractionDigits value="3"/>
+										<xsd:maxExclusive value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VersickerungskennlinieType">
+		<xsd:sequence>
+			<xsd:element name="Wasserstand">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Oberflaeche">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydGSAuslassType">
+		<xsd:sequence>
+			<xsd:element name="GSAuslassTyp" type="GSAuslasstypType" minOccurs="0"/>
+			<xsd:element name="ArtModellierung" type="ArtModellierungType" minOccurs="0"/>
+			<xsd:element name="SchachtZulauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtAblauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Querschnittsflaeche" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auslassbeiwert" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AbstandSohle" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydFreiAuslassType">
+		<xsd:sequence>
+			<xsd:element name="FreiAuslasstyp" type="FreiAuslasstypType" minOccurs="0"/>
+			<xsd:element name="Randbedingung" type="RandbedingungType" minOccurs="0"/>
+			<xsd:element name="konstanterWasserstand" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydDrosselType">
+		<xsd:sequence>
+			<xsd:element name="DrosselTyp" type="DrosseltypType" minOccurs="0"/>
+			<xsd:element name="ArtModellierung" type="ArtModellierungType" minOccurs="0"/>
+			<xsd:element name="SchachtZulauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtAblauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AbstandSohle" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ArtEinstauhoehe" type="ArtEinstauhoeheType" minOccurs="0"/>
+			<xsd:element name="Rueckschlagklappe" type="xsd:boolean" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Funktional" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Exponent">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="4"/>
+										<xsd:fractionDigits value="2"/>
+										<xsd:maxExclusive value="100"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="Koeffizient">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="6"/>
+										<xsd:fractionDigits value="3"/>
+										<xsd:maxExclusive value="1000"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Tabellarisch" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Werte" type="DrosselkennlinieType" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HydReglerType">
+		<xsd:sequence>
+			<xsd:element name="ReglerTyp" type="ReglertypType" minOccurs="0"/>
+			<xsd:element name="ArtModellierung" type="ArtModellierungType" minOccurs="0"/>
+			<xsd:element name="SchachtZulauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtAblauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="HRegler" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="maxWasserstandUnten" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:maxExclusive value="10000"/>
+										<xsd:totalDigits value="7"/>
+										<xsd:fractionDigits value="3"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="Aenderungsmass" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="4"/>
+										<xsd:fractionDigits value="2"/>
+										<xsd:maxExclusive value="100"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="QRegler" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="maxDurchfluss" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="6"/>
+										<xsd:fractionDigits value="3"/>
+										<xsd:maxExclusive value="1000"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="maxDurchflussUmkehr" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:maxExclusive value="1000"/>
+										<xsd:totalDigits value="6"/>
+										<xsd:fractionDigits value="3"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="Aenderungsmass" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:maxExclusive value="1000"/>
+										<xsd:totalDigits value="6"/>
+										<xsd:fractionDigits value="3"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Verfahrentype">
+		<xsd:sequence>
+			<xsd:element name="Verfahrenskennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Verfahrensbezeichnung" type="VerfahrensartType"/>
+			<xsd:element name="Verfahrensbeschreibung" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Zielgroessen">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Zielgroesse" type="ZielgroesseType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ZielgroesseType">
+		<xsd:sequence>
+			<xsd:element name="Zielgroessenkennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HydObjektTyp" type="HydraulikObjektTypType"/>
+			<xsd:element name="ArtZielgroesse" type="ArtZielgroesseType"/>
+			<xsd:element name="EinheitZielgroesse" type="EinheitZielgroesseType"/>
+			<xsd:element name="WertZielgroesse">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="9"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BerechnungType">
+		<xsd:sequence>
+			<xsd:element name="BerechnungInfo" type="BerechnungInfoType"/>
+			<xsd:element name="HydraulikObjekt" type="BerechnungObjektType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BerechnungInfoType">
+		<xsd:sequence>
+			<xsd:element name="Rechenlaufkennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ArtErgebnisse" type="ArtErgebnisseType" minOccurs="0"/>
+			<xsd:element name="Sachbearbeiter" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DatumBerechnung" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Berechnungsmodell" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Berechnungsverfahrenallgemein" type="BerechnungsverfahrenallgemeinType" minOccurs="0"/>
+			<xsd:element name="Berechnungsverfahren" type="BerechnungsverfahrenType" minOccurs="0"/>
+			<xsd:element name="ArtHaeufigkeit" type="RegenUeberstauhaeufigkeitType" minOccurs="0"/>
+			<xsd:element name="Verfahrenskennung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Einleiterkollektivkennung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Niederschlagsbelastung" minOccurs="0">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="GleichmaessigeUeberregnung" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Niederschlagkennung">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="4"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="UngleichmaessigeUeberregnung" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="FlaechenNiederschlag" type="UeberregnungType" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Simulationsdauer" type="SimulationType" minOccurs="0"/>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Seriensimulation" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Zeitraum">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:integer">
+									<xsd:totalDigits value="3"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Gruppe">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:integer">
+									<xsd:totalDigits value="3"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="zulUeberstauniveau" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:maxExclusive value="1000"/>
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="BezugUberstauniveau" type="BezugUeberstauniveauType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UeberregnungType">
+		<xsd:sequence>
+			<xsd:element name="Flaechennummer">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Niederschlagkennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SimulationType">
+		<xsd:sequence>
+			<xsd:element name="Jahre" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Tage" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Stunden" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Minuten" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BerechnungObjektType">
+		<xsd:sequence>
+			<xsd:element name="Objektbezeichnung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HydObjektTyp" type="HydraulikObjektTypType"/>
+			<xsd:element name="Zielgroessenkennung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="Haltung" type="ErgHaltungType" minOccurs="0"/>
+				<xsd:element name="Leitung" type="ErgLeitungType" minOccurs="0"/>
+				<xsd:element name="Gerinne" type="ErgGerinneType" minOccurs="0"/>
+				<xsd:element name="Pumpe" type="ErgPumpeType" minOccurs="0"/>
+				<xsd:element name="Wehr" type="ErgWehrType" minOccurs="0"/>
+				<xsd:element name="Schieber" type="ErgSchieberType" minOccurs="0"/>
+				<xsd:element name="Schacht" type="ErgSchachtType" minOccurs="0"/>
+				<xsd:element name="Speicherbauwerk" type="ErgSpeicherbauwerkType" minOccurs="0"/>
+				<xsd:element name="GrundSeitenAuslass" type="ErgGSAuslassType" minOccurs="0"/>
+				<xsd:element name="FreierAuslass" type="ErgFreiAuslassType" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="Dokumente" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Dokument" type="HDokumenteType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgHaltungType">
+		<xsd:sequence>
+			<xsd:element name="Vollfuellleistung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Vollfuellgeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Trockenwetterabfluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Trockenwettergeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:fractionDigits value="2"/>
+						<xsd:totalDigits value="4"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TwWasserstandOben" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TwWasserstandUnten" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxAbfluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxGeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxWasserstandOben" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxWasserstandUnten" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auslastungsgrad" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auslastungskennziffer" type="AuslastungskennzifferType" minOccurs="0"/>
+			<xsd:element name="HaltungsklasseAuto" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HaltungsklasseManuell" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgLeitungType">
+		<xsd:sequence>
+			<xsd:element name="Vollfuellleistung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Vollfuellgeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Trockenwetterabfluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Trockenwettergeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TwWasserstandOben" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TwWasserstandUnten" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxAbfluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxGeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxWasserstandOben" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxWasserstandUnten" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auslastungsgrad" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgGerinneType">
+		<xsd:sequence>
+			<xsd:element name="Vollfuellleistung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Vollfuellgeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Trockenwetterabfluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Trockenwettergeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TwWasserstandOben" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TwWasserstandUnten" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxAbfluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxGeschw" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxWasserstandOben" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxWasserstandUnten" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auslastungsgrad" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgPumpeType">
+		<xsd:sequence>
+			<xsd:element name="Qtrocken" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Qmax" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Pumpvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="9"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Pumpenlaufzeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgWehrType">
+		<xsd:sequence>
+			<xsd:element name="maxUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="9"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgSchieberType">
+		<xsd:sequence>
+			<xsd:element name="Qmax" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Volumenschieber" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="9"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgSchachtType">
+		<xsd:sequence>
+			<xsd:element name="maxWasserstand" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Auslastungskennziffer" type="AuslastungskennzifferType" minOccurs="0"/>
+			<xsd:element name="Ueberstauhaeufigkeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberstaumenge" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberstaudauer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="8"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberflutungshaeufigkeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberflutungsmenge" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtklasseAuto" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SchachtklasseManuell" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgSpeicherbauwerkType">
+		<xsd:sequence>
+			<xsd:element name="Speicherbauwerktyp" type="SpeicherbauwerkTypType"/>
+			<xsd:choice>
+				<xsd:element name="Regenrueckhaltebecken" type="ErgRRBType" minOccurs="0"/>
+				<xsd:element name="Regenueberlaufbecken" type="ErgRUEBType" minOccurs="0"/>
+				<xsd:element name="Bodenfilterbecken" type="ErgBFBType" minOccurs="0"/>
+				<xsd:element name="Versickerungsanlage" type="ErgVAType" minOccurs="0"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgRRBType">
+		<xsd:sequence>
+			<xsd:element name="maxUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="8"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AnzahlUeberlaeufe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KalendertageUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufdauer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufhaeufigkeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgRUEBType">
+		<xsd:sequence>
+			<xsd:element name="maxUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="8"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AnzahlUeberlaeufe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KalendertageUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufdauer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Entlastungsrate" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgBFBType">
+		<xsd:sequence>
+			<xsd:element name="maxUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="8"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AnzahlUeberlaeufe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KalendertageUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Uberlaufdauer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Stapelhoehe" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="hydraulWirkungsgrad" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgVAType">
+		<xsd:sequence>
+			<xsd:element name="maxUeberlauf" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="8"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufhaeufigkeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ueberlaufvolumen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="maxEinstaudauer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgGSAuslassType">
+		<xsd:sequence>
+			<xsd:element name="maxQAuslass" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VolumenAuslass" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErgFreiAuslassType">
+		<xsd:sequence>
+			<xsd:element name="maxQAuslass" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="7"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VolumenAuslass" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="11"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100000000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HaeufigkeitAuslass" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NiederschlagType">
+		<xsd:sequence>
+			<xsd:element name="Niederschlagkennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="ArtBelastung" type="ArtBelastungType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="Blockregen" type="BlockregenType" minOccurs="0"/>
+				<xsd:element name="Modellregen" type="ModellregenType" minOccurs="0"/>
+				<xsd:element name="Naturregen" type="NaturregenType" minOccurs="0"/>
+				<xsd:element name="Niederschlagskontinuum" type="KontinuumType" minOccurs="0"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BlockregenType">
+		<xsd:sequence>
+			<xsd:element name="SummeBlockregen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DauerBlockregen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Haeufigkeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ModellregenType">
+		<xsd:sequence>
+			<xsd:element name="ArtModellregen" type="ModellregentypType" minOccurs="0"/>
+			<xsd:element name="SummeModellregen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DauerModellregen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Haeufigkeit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="6"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NaturregenType">
+		<xsd:sequence>
+			<xsd:element name="SummeNaturregen" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Stationsnummer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Stationsbezeichnung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:token">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Beginn" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Ende" type="xsd:date" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KontinuumType">
+		<xsd:sequence>
+			<xsd:element name="ArtKontinuum" type="ArtKontinuumType" minOccurs="0"/>
+			<xsd:element name="Niederschlagssumme" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="10000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Stationsnummer" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Stationsbezeichnung" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:token">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Beginn" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="Ende" type="xsd:date" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TrockenwetterType">
+		<xsd:sequence>
+			<xsd:element name="Trockenwetterkennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="Wasserverbrauch" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TagesspitzeX" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="2"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="qrt24" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="5"/>
+						<xsd:fractionDigits value="3"/>
+						<xsd:maxExclusive value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="SpezFremdwasseranfall" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="5"/>
+							<xsd:fractionDigits value="3"/>
+							<xsd:maxExclusive value="100"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Fremdwasseranteil" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:decimal">
+							<xsd:totalDigits value="6"/>
+							<xsd:fractionDigits value="2"/>
+							<xsd:maxExclusive value="10000"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Einleiterkollektiv">
+		<xsd:sequence>
+			<xsd:element name="Einleiterkollektivkennung">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ListeEinzeleinleiter">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Einzeleinleiter" type="EinzeleinleiterType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EinzeleinleiterType">
+		<xsd:sequence>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+			<xsd:element name="HydraulikObjekt">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Objektbezeichnung">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="30"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="HydObjektTyp" type="HydraulikObjektTypType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="RegenwasserZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Trockenwetter" type="TrwEinleiterType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TrwEinleiterType">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="TrwPauschal" type="TrwPauschalType" minOccurs="0"/>
+				<xsd:element name="TrwEinzelwerte" type="TrwEinzelwerteType" minOccurs="0"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TrwPauschalType">
+		<xsd:sequence>
+			<xsd:element name="TrockenwetterZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TWzTagesspitzeX" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="24"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:fractionDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TrwEinzelwerteType">
+		<xsd:sequence>
+			<xsd:element name="Qrt24FremdwasserZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FremdwasserZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Schmutzwasser" type="SwEinleiterType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SwEinleiterType">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="SwPauschal" type="SwPauschalType" minOccurs="0"/>
+				<xsd:element name="SwEinzelwerte" type="SwEinzelwerteType" minOccurs="0"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SwPauschalType">
+		<xsd:sequence>
+			<xsd:element name="SchmutzwasserZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SWzTagesspitzeX" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="24"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:fractionDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SwEinzelwerteType">
+		<xsd:sequence>
+			<xsd:element name="HaeuslicherZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HzTagesspitzeX" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="24"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:fractionDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="GewerblicherZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="GzTagesspitzeX" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:fractionDigits value="3"/>
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="24"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="IndustriellerZufluss" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:totalDigits value="4"/>
+						<xsd:fractionDigits value="1"/>
+						<xsd:maxExclusive value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="IzTagesspitzeX" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="24"/>
+						<xsd:totalDigits value="3"/>
+						<xsd:fractionDigits value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HDokumenteType">
+		<xsd:sequence>
+			<xsd:element name="Dokumentname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dateiname">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Dokumentquelle">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Kommentar" type="xsd:token" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

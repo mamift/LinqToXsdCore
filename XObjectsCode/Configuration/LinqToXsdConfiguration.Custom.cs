@@ -147,6 +147,7 @@ namespace Xml.Schema.Linq
                 Namespaces = new Namespaces {
                     Namespace = new List<Namespace>()
                 },
+                NullableReferences = new NullableReferences(false),
                 Transformation = new Transformation {
                     Deanonymize = new Deanonymize {
                         strict = false

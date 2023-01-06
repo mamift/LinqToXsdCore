@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:Exec80PackageTask=
+    "www.microsoft.com/sqlserver/dts/tasks/exec80packagetask"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace=
+    "www.microsoft.com/sqlserver/dts/tasks/exec80packagetask"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified"
+    xmlns:DTS="www.microsoft.com/SqlServer/Dts"                      
+    >
+    <xs:import namespace="www.microsoft.com/SqlServer/Dts"
+        schemaLocation="./DTSX.xsd"  />
+    
+    
+    <xs:element name="Exec80PackageTaskData"  
+        type="Exec80PackageTask:Exec80PackageTaskType"/>
+    
+    <xs:complexType name="Exec80PackageTaskType">
+        <xs:sequence>
+            <xs:element name="DTS2000Package" type="xs:base64Binary"
+                minOccurs="0" form="unqualified"/>
+        </xs:sequence>
+        <xs:attribute name="Location" 
+            type="Exec80PackageTask:Exec80PackageTaskLocationEnum"/>
+        <xs:attribute name="PackageName" type="xs:string"/>
+        <xs:attribute name="PackageID" type="xs:string"/>
+        <xs:attribute name="PackageVersionGUID" type="xs:string"/>
+        <xs:attribute name="SQLServer" type="xs:string"/>
+        <xs:attribute name="SQLUsername" type="xs:string"/>
+        <xs:attribute name="WindowsAuthentication">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="Filename" type="xs:string"/>
+        <xs:attribute name="InnerGlobalVariables" type="xs:string"/>
+        <xs:attribute name="OuterGlobalVariables" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="Exec80PackageTaskLocationEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SqlServer"/>
+            <xs:enumeration value="EmbeddedInTask"/>
+            <xs:enumeration value="StorageFile"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>

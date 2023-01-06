@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <xs:schema xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="www.microsoft.com/sqlserver/dts/tasks/sqltask"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified"
+            xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+            >
+  
+   <xs:import namespace="www.microsoft.com/SqlServer/Dts"
+        schemaLocation="./DTSX.xsd"  />
+  
+   <xs:element name="SqlTaskData" 
+               type="SQLTask:SqlTaskDataType"/>
+  
+   <xs:complexType name="SqlTaskDataType">
+     <xs:sequence>
+       <xs:element name="SelectedDatabases"
+                   type="SQLTask:SelectedDatabasesType"
+                   minOccurs="0" maxOccurs="unbounded"/>
+       <xs:element name="OperatorNotifyList"
+                   type="SQLTask:OperatorNotifyListType"
+                   minOccurs="0" maxOccurs="unbounded"/>
+       <xs:element name="ParameterBinding" 
+                   type="SQLTask:SqlTaskParameterBindingType" 
+                   minOccurs="0" maxOccurs="unbounded"/>
+       <xs:element name="ResultBinding"
+                   type="SQLTask:SqlTaskResultBindingType"
+                   minOccurs="0" maxOccurs="1"/>
+       <xs:element name="BackupDestinationList"
+                   type="SQLTask:BackupDestinationListType"
+                   minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:BackupTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:CheckIntegrityTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:AgentJobTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:HistoryCleanupTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceFileCleanupTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:NotifyOperatorTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:RebuildIndexTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:ReorganizeIndexTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:ShrinkDBTaskAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:UpdateStatisticsTaskAttributeGroup"/>
+     <xs:attribute name="RemoveOlderThan" type="xs:int"/>
+     <xs:attribute name="TimeUnitsType"
+                   type="SQLTask:SqlTaskTimeUnitsTypeEnum"/>
+     <xs:attribute name="DatabaseSelectionType"
+                 type="SQLTask:SqlTaskDatabaseSelectionTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:simpleType name="SqlResultTypeEnum">
+     <xs:restriction base="xs:string">
+       <xs:enumeration value="ResultSetType_None"/>
+       <xs:enumeration value="ResultSetType_Rowset"/>
+       <xs:enumeration value="ResultSetType_SingleRow"/>
+       <xs:enumeration value="ResultSetType_XML"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:complexType name="SelectedDatabasesType">
+     <xs:sequence/>
+     <xs:attribute name="DatabaseName" type="xs:string"/>
+   </xs:complexType>
+  
+   <xs:complexType name="OperatorNotifyListType">
+     <xs:sequence/>
+     <xs:attribute name="OperatorNotify" type="xs:string"/>
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskParameterBindingType">
+     <xs:sequence/>
+     <xs:attribute name="ParameterName" type="xs:string"/>
+     <xs:attribute name="DtsVariableName" type="xs:string"/>
+     <xs:attribute name="ParameterDirection" 
+                   type="SQLTask:ParameterDirectionEnum"/>
+     <xs:attribute name="DataType" type="DTS:DtsDataTypeEnum"/>
+     <xs:attribute name="ParameterSize" type="xs:int"/>
+   </xs:complexType>
+  
+   <xs:simpleType name="ParameterDirectionEnum">
+     <xs:restriction base="xs:string">
+       <xs:enumeration value="Input"/>
+       <xs:enumeration value="Output"/>
+       <xs:enumeration value="ReturnValue"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:complexType name="SqlTaskResultBindingType">
+     <xs:sequence/>
+     <xs:attribute name="ResultName" type="xs:string"/>
+     <xs:attribute name="DtsVariableName" type="xs:string"/>
+   </xs:complexType>
+  
+   <xs:complexType name="BackupDestinationListType">
+     <xs:sequence/>
+     <xs:attribute name="BackupDestinationLocation" 
+                   type="xs:string"/>
+   </xs:complexType>
+  
+   <!--Attribute Groups-->
+  
+   
+   <xs:attributeGroup name="SqlTaskBaseAttributeGroup">
+     <xs:attribute name="Connection" type="DTS:uuid"/>
+     <xs:attribute name="TimeOut" type="xs:int"/>
+     <xs:attribute name="IsStoredProc">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="BypassPrepare">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="SqlStmtSourceType"
+                   type="DTS:SourceTypeEnum"/>
+     <xs:attribute name="SqlStatementSource"
+                   type="xs:string"/>
+     <xs:attribute name="CodePage" type="xs:int"/>
+     <xs:attribute name="ResultType"
+                   type="SQLTask:SqlResultTypeEnum"/>
+   </xs:attributeGroup>
+  
+   <xs:attributeGroup name="MaintenanceTaskBaseAttributeGroup">
+     <xs:attribute name="ServerVersion" type="xs:int"/>
+     <xs:attribute name="ExtendedLogging">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="LocalConnectionForLogging" type="xs:string"/>
+     <xs:attribute name="TaskName" type="xs:string"/>
+     <xs:attribute name="IgnoreDatabasesInNotOnlineState">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:attributeGroup name="BackupTaskAttributeGroup">
+     <xs:attribute name="BackupAction" type="SQLTask:BackupActionEnum"/>
+     <xs:attribute name="BackupIsIncremental">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="BackupFileGroupsFiles" type="xs:string"/>
+     <xs:attribute name="BackupDeviceType" 
+                   type="SQLTask:BackupDeviceTypeEnum"/>
+     <xs:attribute name="BackupPhisycalDestinationType" 
+                   type="SQLTask:BackupPhisycalDestinationTypeEnum"/>
+     <xs:attribute name="BackupDestinationType" 
+                   type="SQLTask:DestinationTypeEnum"/>
+     <xs:attribute name="BackupDestinationAutoFolderPath" 
+                   type="xs:string"/>
+     <xs:attribute name="BackupActionForExistingBackups" 
+                   type="SQLTask:BackupActionForExistingBackupsEnum"/>
+     <xs:attribute name="BackupCreateSubFolder">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="BackupFileExtension" type="xs:string"/>
+     <xs:attribute name="BackupVerifyIntegrity">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="ExpireDate" type="xs:dateTime"/>
+     <xs:attribute name="RetainDays" type="xs:int"/>
+     <xs:attribute name="InDays">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="UseExpiration">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="BackupCompressionAction" 
+                   type="SQLTask:BackupCompressionActionEnum"/>
+     <xs:attribute name="BackupTailLog">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:simpleType name="BackupActionEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="0"/>
+       <xs:maxInclusive value="2"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:simpleType name="BackupDeviceTypeEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="0"/>
+       <xs:maxInclusive value="4"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:simpleType name="BackupPhisycalDestinationTypeEnum">
+     <xs:restriction base="xs:int">
+       <!--QQQ Need Enum-->
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:simpleType name="DestinationTypeEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="0"/>
+       <xs:maxInclusive value="1"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:simpleType name="BackupActionForExistingBackupsEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="0"/>
+       <xs:maxInclusive value="1"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:simpleType name="BackupCompressionActionEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="0"/>
+       <xs:maxInclusive value="2"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:attributeGroup name="CheckIntegrityTaskAttributeGroup">
+     <xs:attribute name="IncludeIndexes">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:simpleType name="SqlTaskDatabaseSelectionTypeEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="1"/>
+       <xs:maxInclusive value="4"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:attributeGroup name="AgentJobTaskAttributeGroup">
+     <xs:attribute name="AgentJobID" type="xs:string"/>
+   </xs:attributeGroup>
+  
+   <xs:attributeGroup name="HistoryCleanupTaskAttributeGroup">
+     <xs:attribute name="RemoveBackupRestoreHistory">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="RemoveAgentHistory">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="RemoveDbMaintHistory">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:simpleType name="SqlTaskTimeUnitsTypeEnum">
+     <xs:restriction base="xs:int">
+       <xs:enumeration value="0"/>
+       <xs:enumeration value="1"/>
+       <xs:enumeration value="2"/>
+       <xs:enumeration value="3"/>
+       <xs:enumeration value="5"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:attributeGroup name="MaintenanceFileCleanupTaskAttributeGroup">
+     <xs:attribute name="FileTypeSelected" type="xs:string"/>
+     <xs:attribute name="FilePath" type="xs:string"/>
+     <xs:attribute name="FolderPath" type="xs:string"/>
+     <xs:attribute name="CleanSubFolders">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="FileExtension" type="xs:string"/>
+     <xs:attribute name="AgeBased">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="DeleteSpecificFile">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:simpleType name="SqlTaskFileTypeSelectedEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="0"/>
+       <xs:maxInclusive value="1"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:attributeGroup name="NotifyOperatorTaskAttributeGroup">
+     <xs:attribute name="Message" type="xs:string"/>
+     <xs:attribute name="Profile" type="xs:string"/>
+     <xs:attribute name="Subject" type="xs:string"/>
+   </xs:attributeGroup>
+  
+   <xs:attributeGroup name="RebuildIndexTaskAttributeGroup">
+     <xs:attribute name="UseOriginalAmount">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="Percentage" type="xs:int"/>
+     <xs:attribute name="Sort">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+     <xs:attribute name="KeepOnline">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:attributeGroup name="ReorganizeIndexTaskAttributeGroup">
+     <xs:attribute name="CompactLargeObjects">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:attributeGroup name="ShrinkDBTaskAttributeGroup">
+     <xs:attribute name="DatabaseSizeLimit" type="xs:int"/>
+     <xs:attribute name="DatabasePercentLimit" type="xs:int"/>
+     <xs:attribute name="DatabaseReturnFreeSpace">
+       <xs:simpleType>
+         <xs:restriction base="xs:string">
+           <xs:enumeration value="True"/>
+           <xs:enumeration value="False"/>
+         </xs:restriction>
+       </xs:simpleType>
+     </xs:attribute>
+   </xs:attributeGroup>
+  
+   <xs:attributeGroup name="UpdateStatisticsTaskAttributeGroup">
+     <xs:attribute name="UpdateStatisticsType"
+                   type="SQLTask:SqlTaskUpdateStatisticsTypeEnum"/>
+     <xs:attribute name="UpdateScanType"
+                   type="SQLTask:SqlTaskUpdateScanTypeEnum"/>
+     <xs:attribute name="UpdateSampleValue" type="xs:int"/>
+   </xs:attributeGroup>
+  
+   <xs:simpleType name="SqlTaskUpdateStatisticsTypeEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="0"/>
+       <xs:maxInclusive value="2"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <xs:simpleType name="SqlTaskUpdateScanTypeEnum">
+     <xs:restriction base="xs:int">
+       <xs:minInclusive value="2"/>
+       <xs:maxInclusive value="3"/>
+     </xs:restriction>
+   </xs:simpleType>
+  
+   <!--The following complex types are not accessed by the formal XSD.
+   They are used for copy/paste into section 2.6.4.x to document behavior
+   of specific ExecutableType types-->
+  
+   <xs:complexType name="SqlTaskDataElementSqlTaskType">
+     <xs:sequence/>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskDataElementBackupTaskType">
+     <xs:sequence>
+       <xs:element name="SelectedDatabases"
+             type="SQLTask:SelectedDatabasesType"
+             minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:BackupTaskAttributeGroup"/>
+     <!--Need to ck elements and other attr for backup task-->
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskDataElementCheckIntegrityTaskType">
+     <xs:sequence>
+       <xs:element name="SelectedDatabases"
+             type="SQLTask:SelectedDatabasesType"
+             minOccurs="0" maxOccurs="unbounded"/>
+       <xs:element name="BackupDestinationList"
+                   type="SQLTask:BackupDestinationListType"
+                   minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:CheckIntegrityTaskAttributeGroup"/>
+     <xs:attribute name="DatabaseSelectionType"
+                   type="SQLTask:SqlTaskDatabaseSelectionTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskDataElementAgentJobTaskType">
+     <xs:sequence/>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:AgentJobTaskAttributeGroup"/>
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskDataElementHistoryCleanupTaskType">
+     <xs:sequence/>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:HistoryCleanupTaskAttributeGroup"/>
+     <xs:attribute name="RemoveOlderThan" type="xs:int"/>
+     <xs:attribute name="TimeUnitsType"
+                   type="SQLTask:SqlTaskTimeUnitsTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:complexType
+     name="SqlTaskDataElementMaintenanceFileCleanupTaskType">
+     <xs:sequence/>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceFileCleanupTaskAttributeGroup"/>
+     <xs:attribute name="RemoveOlderThan" type="xs:int"/>
+     <xs:attribute name="TimeUnitsType"
+                   type="SQLTask:SqlTaskTimeUnitsTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskDataElementNotifyOperatorTaskType">
+     <xs:sequence>
+       <xs:element name="OperatorNotifyList"
+                   type="SQLTask:OperatorNotifyListType"
+                   minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:NotifyOperatorTaskAttributeGroup"/>
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskDataElementRebuildIndexTaskType">
+     <xs:sequence>
+       <xs:element name="SelectedDatabases"
+             type="SQLTask:SelectedDatabasesType"
+             minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:RebuildIndexTaskAttributeGroup"/>
+     <xs:attribute name="DatabaseSelectionType"
+                   type="SQLTask:SqlTaskDatabaseSelectionTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:complexType
+     name="SqlTaskDataElementReorganizeIndexTaskType">
+     <xs:sequence>
+       <xs:element name="SelectedDatabases"
+             type="SQLTask:SelectedDatabasesType"
+             minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:ReorganizeIndexTaskAttributeGroup"/>
+     <xs:attribute name="DatabaseSelectionType"
+                   type="SQLTask:SqlTaskDatabaseSelectionTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:complexType 
+     name="SqlTaskDataElementShrinkDatabaseTaskType">
+     <xs:sequence>
+       <xs:element name="SelectedDatabases"
+             type="SQLTask:SelectedDatabasesType"
+             minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:ShrinkDBTaskAttributeGroup"/>
+     <xs:attribute name="DatabaseSelectionType"
+                   type="SQLTask:SqlTaskDatabaseSelectionTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:complexType
+     name="SqlTaskDataElementUpdateStatisticsTaskType">
+     <xs:sequence>
+       <xs:element name="SelectedDatabases"
+             type="SQLTask:SelectedDatabasesType"
+             minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:UpdateStatisticsTaskAttributeGroup"/>
+     <xs:attribute name="DatabaseSelectionType"
+                   type="SQLTask:SqlTaskDatabaseSelectionTypeEnum"/>
+   </xs:complexType>
+  
+   <xs:complexType name="SqlTaskDataElementTSQLExecuteTaskType">
+     <xs:sequence/>
+     <xs:attributeGroup
+       ref="SQLTask:SqlTaskBaseAttributeGroup"/>
+     <xs:attributeGroup
+       ref="SQLTask:MaintenanceTaskBaseAttributeGroup"/>
+   </xs:complexType>
+  
+ </xs:schema>

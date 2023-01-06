@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:WSTask=
+    "www.microsoft.com/sqlserver/dts/tasks/webservicetask"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace=
+    "www.microsoft.com/sqlserver/dts/tasks/webservicetask"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified"                
+    >
+    
+    <xs:element name="WebServiceTaskData"  
+        type="WSTask:WSTaskDataType"/>
+    
+    <xs:complexType name="WSTaskDataType">
+        <xs:sequence>
+            <xs:element name="MethodInfo" 
+                type="WSTask:WebServiceTaskDataMethodInfoType"/>
+        </xs:sequence>
+        <xs:attribute name="ConnectionName" type="xs:string"/>
+        <xs:attribute name="Service" type="xs:string"/>
+        <xs:attribute name="WSDLFile" type="xs:string"/>
+        <xs:attribute name="OverwriteWSDLFile">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="True"/>
+                    <xs:enumeration value="False"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="OutputType" 
+            type="WSTask:WebServiceTaskDataOutputTypeEnum"/>
+        <xs:attribute name="OutputLocation" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:complexType name="WebServiceTaskDataMethodInfoType">
+        <xs:sequence>
+            <xs:element name="Documentation" type="xs:string"
+                minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ParamInfo" 
+                type="WSTask:WebServiceTaskDataParamInfoType"
+                maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="MethodName" type="xs:string"/>
+        <xs:attribute name="MessageName" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:complexType name="WebServiceTaskDataParamInfoType">
+        <xs:sequence>
+            <xs:element name="VariableValue" type="xs:string" 
+                minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PrimitiveValue" type="xs:anySimpleType" 
+                minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string"/>
+        <xs:attribute name="Datatype" type="xs:string"/>
+        <xs:attribute name="ParamType" type="WSTask:ParamTypeEnum"/>
+        <xs:attribute name="SeqNumber" type="xs:int"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="WebServiceTaskDataOutputTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="File"/>
+            <xs:enumeration value="Variable"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ParamTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Variable"/>
+            <xs:enumeration value="Primitive"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>
