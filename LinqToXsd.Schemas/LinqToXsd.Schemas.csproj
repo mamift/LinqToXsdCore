@@ -22,6 +22,7 @@
   <ItemGroup>
     <Compile Remove="AIXM\aixm-5.1.1\AIXM_Features.xsd.cs" />
     <Compile Remove="LandXML\v1.2\LandXML-1.2.xsd.cs" />
+    <Compile Remove="NIEM\xsd\niem-core.xsd.cs" />
     <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
   </ItemGroup>
@@ -29,6 +30,7 @@
   <ItemGroup>
     <None Include="AIXM\aixm-5.1.1\AIXM_Features.xsd.cs" />
     <None Include="LandXML\v1.2\LandXML-1.2.xsd.cs" />
+    <None Include="NIEM\xsd\niem-core.xsd.cs" />
   </ItemGroup>
 
   <ItemGroup>
