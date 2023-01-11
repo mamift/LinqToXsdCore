@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+********************************************************************************
+
+OFMX XML 0.1.0 - open flightmaps exchange format
+
+This is a fork of AIXM 4.5 to accomodate extensions and backports for
+open flightmaps.
+
+AIXM: copyright (c) 2006, EUROCONTROL (BSD license)
+OFMX: copyright (c) 2018, open flightmaps (BSD license)
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+* Neither the name of EUROCONTROL, open flightmaps nor the names of its
+  contributors  may be used to endorse or promote products derived from this
+  software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+********************************************************************************
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation>Version: 0.1.0</xsd:documentation>
+  </xsd:annotation>
+  <xsd:include schemaLocation="OFMX-Features.xsd"/>
+  <xsd:attributeGroup name="Changes"/>
+  <xsd:element name="OFMX-Snapshot">
+    <xsd:complexType>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="Aas" type="AirspaceAssociationType"/>
+        <xsd:element name="Abd" type="AirspaceBorderType"/>
+        <xsd:element name="Acr" type="AirspaceCorridorType"/>
+        <xsd:element name="Adg" type="AirspaceDerivedGeometryType"/>
+        <xsd:element name="Aga" type="GroundServiceAddressType"/>
+        <xsd:element name="Agl" type="AeronauticalGroundLightType"/>
+        <xsd:element name="Aha" type="AerodromeHeliportAddressType"/>
+        <xsd:element name="Ahc" type="AerodromeHeliportCollocationType"/>
+        <xsd:element name="Aho" type="AerodromeHeliportObstacleType"/>
+        <xsd:element name="Ahp" type="AerodromeHeliportType"/>
+        <xsd:element name="Ahs" type="GroundServiceType"/>
+        <xsd:element name="Ahu" type="AerodromeHeliportUsageType"/>
+        <xsd:element name="Ain" type="NavaidAngularReferenceType"/>
+        <xsd:element name="Als" type="ApronLightingSystemType"/>
+        <xsd:element name="Ana" type="AerodromeHeliportNavaidType"/>
+        <xsd:element name="Apg" type="ApronGeometryType"/>
+        <xsd:element name="Apn" type="ApronType"/>
+        <xsd:element name="Ase" type="AirspaceType"/>
+        <xsd:element name="Din" type="NavaidDistanceIndicationType"/>
+        <xsd:element name="Dli" type="DmeUsageLimitationType"/>
+        <xsd:element name="Dme" type="DmeType"/>
+        <xsd:element name="Dpn" type="DesignatedPointType"/>
+        <xsd:element name="Fao" type="FatoOldType">
+          <xsd:annotation>
+            <xsd:appinfo>DEPRECATED-4.5</xsd:appinfo>
+            <xsd:documentation>[Deprecated]</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="Fto" type="FatoType"/>
+        <xsd:element name="Fcp" type="FatoCentreLinePositionType"/>
+        <xsd:element name="Fda" type="FatoDirectionApproachLightingType"/>
+        <xsd:element name="Fdd" type="FatoDirectionDeclaredDistanceType"/>
+        <xsd:element name="Fdn" type="FatoDirectionType"/>
+        <xsd:element name="Fdo" type="FatoDirectionObstacleType"/>
+        <xsd:element name="Fds" type="FatoDirectionStarType"/>
+        <xsd:element name="Fls" type="FatoLightingSystemType"/>
+        <xsd:element name="Fpa" type="FatoProtectionAreaType"/>
+        <xsd:element name="Fpg" type="FatoProtectionAreaGeometryType"/>
+        <xsd:element name="Fqy" type="FrequencyType"/>
+        <xsd:element name="Ful" type="FuelType"/>
+        <xsd:element name="Gbr" type="GeographicalBorderType"/>
+        <xsd:element name="Gsd" type="GateStandType"/>
+        <xsd:element name="Hpe" type="HoldingProcedureType"/>
+        <xsd:element name="Iap" type="InstrumentApproachType"/>
+        <xsd:element name="Ils" type="IlsType"/>
+        <xsd:element name="Iue" type="InstrumentApproachUsageConditionType"/>
+        <xsd:element name="Mgp" type="MsaGroupType"/>
+        <xsd:element name="Mkr" type="MkrType"/>
+        <xsd:element name="Mls" type="MlsType"/>
+        <xsd:element name="Ndb" type="NdbType"/>
+        <xsd:element name="Nli" type="NdbUsageLimitationType"/>
+        <xsd:element name="Nsc" type="CheckpointType"/>
+        <xsd:element name="Ntg" type="NitrogenType"/>
+        <xsd:element name="Oaa" type="OrganisationAuthorityAddressType"/>
+        <xsd:element name="Oae" type="AirspaceObstacleType"/>
+        <xsd:element name="Oas" type="OrganisationAuthorityAssociationType"/>
+        <xsd:element name="Ogr" type="ObstacleGroupType"/>
+        <xsd:element name="Obs" type="ObstacleType"/>
+        <xsd:element name="Ofa" type="AirspaceAuthorityType"/>
+        <xsd:element name="Oil" type="OilType"/>
+        <xsd:element name="Org" type="OrganisationAuthorityType"/>
+        <xsd:element name="Oxg" type="OxygenType"/>
+        <xsd:element name="Pfy" type="PassengerFacilityType"/>
+        <xsd:element name="Plb" type="CruisingLevelsTableType"/>
+        <xsd:element name="Plc" type="CruisingLevelsColumnType"/>
+        <xsd:element name="Rcp" type="RunwayCentreLinePositionType"/>
+        <xsd:element name="Rda" type="RunwayDirectionApproachLightingSystemType"/>
+        <xsd:element name="Rdd" type="RunwayDirectionDeclaredDistanceType"/>
+        <xsd:element name="Rdn" type="RunwayDirectionType"/>
+        <xsd:element name="Rdo" type="RunwayDirectionObstacleType"/>
+        <xsd:element name="Rds" type="RunwayDirectionStarType"/>
+        <xsd:element name="Rls" type="RunwayDirectionLightingSystemType"/>
+        <xsd:element name="Rpa" type="RunwayProtectionAreaType"/>
+        <xsd:element name="Rpg" type="RunwayProtectionAreaGeometryType"/>
+        <xsd:element name="Rsg" type="RouteSegmentType"/>
+        <xsd:element name="Rsu" type="RouteSegmentUsageType"/>
+        <xsd:element name="Rte" type="EnrouteRouteType"/>
+        <xsd:element name="Rwy" type="RunwayType"/>
+        <xsd:element name="Sae" type="AirspaceServiceType"/>
+        <xsd:element name="Sah" type="AerodromeHeliportServiceType"/>
+        <xsd:element name="Ser" type="ServiceType"/>
+        <xsd:element name="Shp" type="HoldingProcedureServiceType"/>
+        <xsd:element name="Sia" type="StarType"/>
+        <xsd:element name="Sid" type="SidType"/>
+        <xsd:element name="Sip" type="InstrumentApproachServiceType"/>
+        <xsd:element name="Sns" type="SpecialNavigationSystemStationType"/>
+        <xsd:element name="Sny" type="SpecialNavigationSystemType"/>
+        <xsd:element name="Spa" type="SignificantPointAirspaceType"/>
+        <xsd:element name="Spd" type="SpecialDateType"/>
+        <xsd:element name="Srs" type="RouteSegmentServiceType"/>
+        <xsd:element name="Ssd" type="SidServiceType"/>
+        <xsd:element name="Sse" type="StarUsageType"/>
+        <xsd:element name="Ssr" type="StarServiceType"/>
+        <xsd:element name="Sue" type="SidUsageType"/>
+        <xsd:element name="Swy" type="StopwayType"/>
+        <xsd:element name="Tcn" type="TacanType"/>
+        <xsd:element name="Tcp" type="TaxiwayCentreLinePositionType"/>
+        <xsd:element name="Tfr" type="TrafficFlowRestrictionType"/>
+        <xsd:element name="Thp" type="TaxiwayHoldingPositionType"/>
+        <xsd:element name="Tla" type="TlofType"/>
+        <xsd:element name="Tlg" type="TlofGeometryType"/>
+        <xsd:element name="Tli" type="TacanUsageLimitationType"/>
+        <xsd:element name="Tls" type="TlofLightingSystemType"/>
+        <xsd:element name="Tly" type="TaxiwayLightingSystemType"/>
+        <xsd:element name="Tsa" type="TlofSafeAreaType"/>
+        <xsd:element name="Tsg" type="TlofSafeAreaGeometryType"/>
+        <xsd:element name="Twy" type="TaxiwayType"/>
+        <xsd:element name="Uac" type="UnitAssociationType"/>
+        <xsd:element name="Uas" type="UnitContactAddressType"/>
+        <xsd:element name="Uni" type="UnitType"/>
+        <xsd:element name="Vli" type="VorUsageLimitationType"/>
+        <xsd:element name="Vor" type="VorType"/>
+        <xsd:element name="Lbm" type="LabelMarkerType"/>
+        <xsd:element name="Aac" type="AirspaceAssocType">
+          <xsd:annotation>
+            <xsd:appinfo>DEPRECATED-4.0</xsd:appinfo>
+            <xsd:documentation>[Deprecated]</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="Dln" type="DmeLimitationType">
+          <xsd:annotation>
+            <xsd:appinfo>DEPRECATED-4.0</xsd:appinfo>
+            <xsd:documentation>[Deprecated]</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="Nln" type="NdbLimitationType">
+          <xsd:annotation>
+            <xsd:appinfo>DEPRECATED-4.0</xsd:appinfo>
+            <xsd:documentation>[Deprecated]</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="Tln" type="TacanLimitationType">
+          <xsd:annotation>
+            <xsd:appinfo>DEPRECATED-4.0</xsd:appinfo>
+            <xsd:documentation>[Deprecated]</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="Vln" type="VorLimitationType">
+          <xsd:annotation>
+            <xsd:appinfo>DEPRECATED-4.0</xsd:appinfo>
+            <xsd:documentation>[Deprecated]</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+      <xsd:attribute name="version" type="xsd:string" use="required">
+        <xsd:annotation>
+          <xsd:documentation>The version of the OFMX-Snapshot.xsd schema to which the message conforms</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="origin" type="xsd:string" use="required">
+        <xsd:annotation>
+          <xsd:documentation>The originator (source) of the message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="namespace" type="uuid" use="required">
+        <xsd:annotation>
+          <xsd:documentation>The originator (source) namespace of the message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="regions" type="listRegions">
+        <xsd:annotation>
+          <xsd:documentation>Regions used throughout this document</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="created" type="dateTimeZulu" use="required">
+        <xsd:annotation>
+          <xsd:documentation>The date and time when the message was created</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="effective" type="dateTimeZulu" use="required">
+        <xsd:annotation>
+          <xsd:documentation>The beginning date and time used as criteria to select valid versions included in the message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="expiration" type="dateTimeZulu">
+        <xsd:annotation>
+          <xsd:documentation>The optional end date and time used as criteria to select valid versions included in the message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
