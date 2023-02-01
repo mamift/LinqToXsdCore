@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PositionTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="PositionTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>These are values that are descriptive in classifying a position or a position opportunity or "offering". They are not precise classes useful internally to drive pay, benefits, or HR compliance. Enumerated values are: DirectHire, Temporary, TemporaryToHire, ContractToHire, Contract, Internship, Externship, Apprenticeship, Seasonal, Student, and Volunteer. Consider that "Temporary" and "DirectHire" are not parallel concepts, but are still commonly used in classifying jobs within advertising.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="DirectHire">
+        <xsd:annotation>
+          <xsd:documentation>Direct Hire</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Temporary">
+        <xsd:annotation>
+          <xsd:documentation>Temporary</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TemporaryToHire">
+        <xsd:annotation>
+          <xsd:documentation>Temporary To Hire</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ContractToHire">
+        <xsd:annotation>
+          <xsd:documentation>Contract To Hire</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Contract">
+        <xsd:annotation>
+          <xsd:documentation>Contract</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Internship">
+        <xsd:annotation>
+          <xsd:documentation>Internship</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Externship">
+        <xsd:annotation>
+          <xsd:documentation>Externship</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Apprenticeship">
+        <xsd:annotation>
+          <xsd:documentation>Apprenticeship</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Seasonal">
+        <xsd:annotation>
+          <xsd:documentation>Seasonal</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Student">
+        <xsd:annotation>
+          <xsd:documentation>Student</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Volunteer">
+        <xsd:annotation>
+          <xsd:documentation>Volunteer</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="PositionTypeCode" type="hropen:PositionTypeCodeList" />
+</xsd:schema>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="WorkLocationCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="WorkLocationCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A set of codes classifying the work location.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="DistributionCenter">
+        <xsd:annotation>
+          <xsd:documentation>Distribution Center</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HotelProperty">
+        <xsd:annotation>
+          <xsd:documentation>Hotel Property</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Headquarters">
+        <xsd:annotation>
+          <xsd:documentation>Headquarters</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Plant">
+        <xsd:annotation>
+          <xsd:documentation>Plant</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RetailStore">
+        <xsd:annotation>
+          <xsd:documentation>Retail Store</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OffshoreOilRig">
+        <xsd:annotation>
+          <xsd:documentation>Offshore Oil Rig</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Warehouse">
+        <xsd:annotation>
+          <xsd:documentation>Warehouse</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SharedServiceCenter">
+        <xsd:annotation>
+          <xsd:documentation>Shared Service Center</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CenterOfExcellence">
+        <xsd:annotation>
+          <xsd:documentation>Center Of Excellence</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="WorkLocationCode" type="hropen:WorkLocationCodeList" />
+</xsd:schema>

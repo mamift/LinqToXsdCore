@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CompetencyWeightType",
+    "description": "A number expressing the relative importance of a particular component (e.g., a position competency) among sibling components. Weights are most frequently expressed a percentage (where the weights assigned to individual sibling competencies would total 100 percent when totaled), but they may be expressed using another numeric scale.",
+    "type": "object",
+    "properties": {
+        "value": {
+            "description": "Value for the weightType.",
+            "type": "number"
+        },
+        "schemeId": {
+            "description": "An identifier used to distinguish the relevant scoring scheme to which the weight belongs.",
+            "type": "string"
+        },
+        "schemeName": {
+            "description": "A name for scheme in which the score is expressed.",
+            "type": "string"
+        },
+        "interval": {
+            "description": "The stop points between minimum and maximum.",
+            "type": "number"
+        },
+        "maximumScore": {
+            "description": "Highest score in the weight range.",
+            "type": "number"
+        },
+        "minimumScore": {
+            "description": "Lowest score in the weight range.",
+            "type": "number"
+        }
+    }
+}

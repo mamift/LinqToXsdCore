@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PayRateIntervalCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="PayRateIntervalCodeList">
+    <xsd:annotation>
+      <xsd:documentation>An interval of time or other basis used to express a rate of pay, remuneration, or deduction. OED: Interval, n.  2. a. The space of time intervening between two points of time; any intervening time. TwoWeek24 applies when there are 24 deductions within the year and TwoWeek26 applies when there are 26 deductions within the year.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Hour">
+        <xsd:annotation>
+          <xsd:documentation>Hour</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Day">
+        <xsd:annotation>
+          <xsd:documentation>Day</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Week">
+        <xsd:annotation>
+          <xsd:documentation>Week</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoWeek24">
+        <xsd:annotation>
+          <xsd:documentation>Two Week 24</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoWeek26">
+        <xsd:annotation>
+          <xsd:documentation>Two Week 26</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoWeeks">
+        <xsd:annotation>
+          <xsd:documentation>Two Weeks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FourWeeks">
+        <xsd:annotation>
+          <xsd:documentation>Four Weeks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HalfMonth">
+        <xsd:annotation>
+          <xsd:documentation>Half Month</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Month">
+        <xsd:annotation>
+          <xsd:documentation>Month</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoMonths">
+        <xsd:annotation>
+          <xsd:documentation>Two Months</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Quarter">
+        <xsd:annotation>
+          <xsd:documentation>Quarter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SeasonalTerm">
+        <xsd:annotation>
+          <xsd:documentation>Seasonal Term</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HalfYear">
+        <xsd:annotation>
+          <xsd:documentation>Half Year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Year">
+        <xsd:annotation>
+          <xsd:documentation>Year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="QuarterToDate">
+        <xsd:annotation>
+          <xsd:documentation>Quarter To Date</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="YearToDate">
+        <xsd:annotation>
+          <xsd:documentation>Year To Date</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Once">
+        <xsd:annotation>
+          <xsd:documentation>Once</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="PayRateIntervalCode" type="hropen:PayRateIntervalCodeList" />
+</xsd:schema>

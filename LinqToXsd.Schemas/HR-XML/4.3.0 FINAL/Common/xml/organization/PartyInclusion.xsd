@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PartyInclusion" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="PartyType.xsd" />
+  <xsd:complexType name="PartyInclusion">
+    <xsd:annotation>
+      <xsd:documentation>Supplier/Customer/Requester/etc. information for an entity.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="party">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="supplier" type="hropen:PartyType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="customer" type="hropen:PartyType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="requester" type="hropen:PartyType" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PartyInclusion" type="hropen:PartyInclusion" />
+</xsd:schema>

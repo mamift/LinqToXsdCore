@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="EstablishmentActivityType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/TextType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../base/PercentType.xsd" />
+  <xsd:complexType name="EstablishmentActivityType">
+    <xsd:annotation>
+      <xsd:documentation>The business activities conducted at the establishment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="activityCode">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The code defining the activity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CodeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>A description of the establishment activities.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentage" type="hropen:PercentType">
+        <xsd:annotation>
+          <xsd:documentation>The percentage the entity spends on the activity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="EstablishmentActivity" type="hropen:EstablishmentActivityType" />
+</xsd:schema>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="EmployerEstablishmentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="OrganizationReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="EstablishmentActivityType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../base/StatusType.xsd" />
+  <xsd:complexType name="EmployerEstablishmentType">
+    <xsd:annotation>
+      <xsd:documentation>Information to identify and reference a specific establishment within an organization.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="responsibilityCode" type="hropen:ResponsibilityCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The level or the responsibility at which the organization operates.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType">
+        <xsd:annotation>
+          <xsd:documentation>The methods of communication by which the organization can be contacted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="taxIdentifiers">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A government assigned identifier to distinguish the establishment. This may be assigned by a country, state, province, etc. </xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="industryIdentifiers">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The types of industry to which the establishment belongs. The Industry identifiers could be referenced to a standard taxonomy (such as NAICS) or a custom taxonomy.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="businessFunction">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Describe the business functions performed at the location, e.g., administrative, warehouse, retail, professional services, information technology, engineering, R&amp;D, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CodeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="establishmentActivity">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the business activities conducted at the establishment, listed by approximate percentage of revenue or sales associated with each activity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EstablishmentActivityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="tradeName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Trade name of the establishment or doing-business-as (DBA).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusHistory">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Specifies the current status of the establishment, e.g. sold, temporarily closed, permanently closed, merged, acquired, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:StatusType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="EmployerEstablishment" type="hropen:EmployerEstablishmentType" />
+</xsd:schema>

@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CommunicationType",
+    "description": "Allows capture of information about a variety of communication channels (telephone, email, fax, messaging, address, etc.).",
+    "type": "object",
+    "properties": {
+        "address": { "$ref": "AddressTypeArray.json#" },
+        "phone": { "$ref": "PhoneTypeArray.json#" },
+        "email": { "$ref": "EmailTypeArray.json#" },
+        "web": { "$ref": "WebTypeArray.json#" }
+    },
+    "minProperties": 1
+}

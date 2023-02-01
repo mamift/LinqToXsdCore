@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ParameterType",
+    "description": "Generic parameter type (key/value) used to further qualify the search and/or result behavior.",
+    "type": "object",
+    "properties": {
+        "key": {
+            "type": "string"
+        },
+        "value": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "key",
+        "value"
+    ]
+}

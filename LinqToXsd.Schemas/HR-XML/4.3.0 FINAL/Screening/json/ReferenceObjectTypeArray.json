@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "version": "4.3.0",
+    "title": "ReferenceObjectTypeArray",
+    "description": "Array of referenceObjects, such as a billing code, job code, division, etc. Values that are assigned and meaningful to an ATS. This should not include Id of the order, which would be handled in NounType Id",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "referenceObjectName": { "type": "string" },
+            "referenceObjectValue": { "type": "string" }
+        }
+    }
+}

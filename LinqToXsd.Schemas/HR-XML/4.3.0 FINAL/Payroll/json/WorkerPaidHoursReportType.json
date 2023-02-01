@@ -1,0 +1,129 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "WorkerPaidHoursType",
+	"description": "The hours a worker was paid for time off or actual time worked.",
+	"definitions": {
+		"PaidForWorkInPayPeriodType": {
+			"title": "PaidForWorkInPayPeriodType",
+			"description": "Details on if the worker was paid in a particular month.",
+			"type": "object",
+			"properties": {
+				"includedDayOfMonth": {
+					"description": "Specifies pay period that includes this day, i.e The person worked during this pay period that includes the 12th.",
+					"$ref": "../../common/json/base/DayOfMonthType.json#"
+				},
+				"reportedMonth": {
+					"description": "The reported month.",
+					"$ref": "../../common/json/base/MonthType.json#"
+				},
+				"paidForWorkIndicator": {
+					"description": "Indicate if worker was paid in PayPeriodMonthDay and ReportedYearMonth.",
+					"$ref": "../../common/json/base/IndicatorType.json#"
+				}
+			}
+		},
+		"WorkedHoursType": {
+			"title": "WorkedHoursType",
+			"description": "Specifies the hours worked for a specific pay type. For example, 8 hours of holiday pay.",
+			"type": "object",
+			"properties": {
+				"workedPayTypeCode": {
+					"description": "Type of compensation, e.g. holiday, overtime, shift differential, etc.",
+					"$ref": "../../common/json/codelist/PayTypeCodeList.json#"
+				},
+				"description": {
+					"description": "A short phrase further describing the pay type.",
+					"type": "string"
+                },
+				"workedHours": {
+					"description": "Number of hours worked for a specific pay type.",
+					"$ref": "../../common/json/base/NumberType.json#"
+				}
+			}
+		},
+		"TimeOffHoursType": {
+			"title": "TimeOffHoursType",
+			"description": "The hours a worker took off. For example, 8 hours of vacation pay.",
+			"type": "object",
+			"properties": {
+				"timeOffTypeCode": {
+					"description": "The type of hours a worker took off, such as bereavement, jury duty, vacation, etc.",
+					"$ref": "../../common/json/codelist/TimeOffTypeCodeList.json#"
+				},
+				"description": {
+					"description": "A short phrase further describing the pay type.",
+					"type": "string"
+                },
+				"timeOffHours": {
+					"description": "Number of hours a worker took off.",
+					"$ref": "../../common/json/base/NumberType.json#"
+				}
+			}
+		}
+	},
+	"allOf": [
+		{
+			"$ref": "../../common/json/base/NounType.json#"
+		}
+	],
+	"properties": {
+		"workerId": {
+			"description": "Provides a unique identifier to a specific worker (an employer specific identifier).",
+			"$ref": "../../common/json/base/IdentifierType.json#"
+		},
+		"reportingTimePeriod": {
+			"description": "Defines the period of the hours paid and worked. 'As of date' would use the validTo date.",
+			"$ref": "../../common/json/base/EffectiveTimePeriodType.json#"
+		},
+		"totalPaidHours": {
+			"description": "The total number of hours for which a worker received pay. Includes all actual work hours and hours of employer-paid leave that were used.",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"totalWorkedHours": {
+			"description": "The total number of hours a worker was engaged in a paid work activity, including regular and premium hours (overtime, shift differential), rest periods and stand-by time. Includes work hours for which compensatory time off was earned. Does not include any employer-paid leave time used.",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"totalPremiumWorkedHours": {
+			"description": "The number of premium hours a worker actually worked, including stand-by time, for which a premium rate of compensation was paid. Includes overtime and hours for which shift differentials were paid such as night, holiday or weekend work. Includes hours for which compensatory time off was earned, if more than one hour of CTO was earned for each hour of actual work. Does not include any hours used of employer-paid leave time.",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"totalPaidTimeOffHours": {
+			"description": "The total number of hours of employer-paid time used by a worker for any type of absence from work including vacation, sickness, bereavement, maternity, family care, jury duty, education, meals, military duty, administrative time off, sabbatical, or other personal leave. Includes hours of compensatory time off (CTO) when used. ",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"totalHolidayPaidTimeOffHours": {
+			"description": "When the employer offers such benefit as a separate accrued leave, the number of hours a worker was paid by the employer for absence from work on days of special religious, cultural, social, or patriotic significance, on which work and business ordinarily cease. Includes public and floating holiday paid leave.",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"workedWeeks": {
+			"description": "The number of weeks during which the worker earned, at a minimum, an amount of remuneration specified by the state based on time worked and paid leave taken.",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"paidForWorkInPayPeriod": {
+			"description": "Details on if the worker was paid in a particular month.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/PaidForWorkInPayPeriodType"
+			}
+		},
+		"regularWorkedHours": {
+			"description": "The number of hours a worker was engaged in a regular paid work activity.",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"premiumWorkedHours": {
+			"description": "The number of hours a worker was engaged in a premium paid work activity, including premium hours (overtime, shift differential), rest periods and stand-by time. Includes work hours for which compensatory time off was earned. Does not include any employer-paid leave time used.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/WorkedHoursType"
+			}
+		},
+		"paidTimeOffHours": {
+			"description": "The number of hours of employer-paid time used by a worker for any type of absence from work including vacation, sickness, bereavement, maternity, family care, jury duty, education, meals, military duty, administrative time off, sabbatical, or other personal leave. Includes hours of compensatory time off (CTO) when used. ",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/TimeOffHoursType"
+			}
+		}
+	}
+}

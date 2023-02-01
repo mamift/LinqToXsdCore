@@ -1,0 +1,84 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "WorkerType",
+	"description": "Worker is a Person Role and is defined as someone who performs labor for an organization. Worker is an abstraction for other more specific work-related roles, for example, Employee and Contractor. (ADP)",
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "../base/NounType.json#"
+		}
+	],
+	"properties": {
+		"workerId": {
+			"description": "Provides a unique identifier to a specific worker (an employer specific identifier).",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"person": {
+			"description": "Information about the person, e.g. name, birthdate, legal ids, marital status, etc.",
+			"$ref": "../person/PersonLegalType.json#"
+		},
+		"establishmentIds": {
+			"description": "Identifiers of the related establishments.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/IdentifierType.json#"
+			}
+		},
+		"workAssignments": {
+			"description": "The assignments for the worker. An assignment may override the position and/or job information.",
+			"type": "array",
+			"items": {
+				"$ref": "WorkAssignmentType.json#"
+			}
+		},
+		"primaryWorkLocation": {
+			"description": "The primary address where the work is performed.",
+			"$ref": "../communication/AddressType.json#"
+		},
+		"workerTypeCode": {
+			"description": "The relationship of the worker to the organization. Options are Employee, Vendor Employee, Independent Contractor, Volunteer.",
+			"$ref": "../codelist/ResourceRelationshipCodeList.json#"
+		},
+		"workRelationshipStatus": {
+			"description": "The date and status of the worker in relation to the assignment.",
+			"$ref": "WorkRelationshipStatusType.json#"
+		},
+		"wageHourLawCoverageIndicator": {
+			"description": "This determines if a person is covered by wage hour laws. In the US, a person would be considered non-exempt if the indicator is true (they are covered under the law).",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"laborBargainingUnitIndicator": {
+			"description": "Indicates if the person is part of a labor bargaining unit, such as a union.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"unemploymentCompensationCoverageIndicator": {
+			"description": "An indicator of whether the employee is covered by some type of unemployment insurance.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"workerCompensationCoverageIndicator": {
+			"description": "An indicator of whether the employee is covered by some type of worker compensation insurance.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"officerIndicator": {
+			"description": "Indicates whether the worker is classified as an officer.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"stockOwnerIndicator": {
+			"description": "Indicates whether the worker is a stock owner.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"stockOwnerPercentage": {
+			"description": "The percentage of stock ownership.",
+			"$ref": "../base/PercentType.json#"
+		},
+		"workerLifeCyle": {
+			"description": "Contains a collection of information about a period of employment, including hire, leaves of absence, and termination.",
+			"$ref": "WorkLifeCycleType.json#"
+		},
+		"payCycleIntervalCode": {
+			"description": "How often the pay cycle occurs or how often a person is paid, e.g., weekly, biweekly, etc.",
+			"$ref": "../codelist/PayCycleIntervalCodeList.json#"
+		}
+	}
+}

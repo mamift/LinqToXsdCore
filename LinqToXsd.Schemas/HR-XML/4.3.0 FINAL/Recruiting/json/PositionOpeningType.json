@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PositionOpeningType",
+    "description": "A job or position opening that is at an organization.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "statusCode": {
+            "description": "Status of position opening; typical values: Active, Closed, Incomplete.",
+            "$ref": "codelist/RecruitingDocumentStatusCodeList.json#"
+        },
+        "approvalStatusCode": {
+            "description": "Status of the approval process for a position opening; typical values: InReview, Approved, NotApproved.",
+            "$ref": "codelist/ApprovalStatusCodeList.json#"
+        },
+        "approvalMessage": {
+            "description": "Detailed information on the approval process, or reason for the approval status.",
+            "type": "string"
+        },
+        "approvalProcessHistory": {
+            "description": "Information about the approval process history.",
+            "$ref": "../../common/json/process/ProcessHistoryType.json#"
+        },
+        "postingRequester": {
+            "description": "Information about the party placing or communicating the position posting. The party requesting the posting or advertising service.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "../../common/json/organization/PartyType.json#" }
+            ],
+            "properties": {
+                "roleCode": {
+                    "description": "The role of the party or person making the position posting.",
+                    "$ref": "codelist/PostingRequesterRoleCodeList.json#"
+                }
+            }
+        },
+        "positionProfiles": {
+            "description": "The profile(s) of the position opening. A single position opening could have multiple position profiles for different purposes, including language, branding, or distribution channels or rules.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "allOf": [
+                    { "$ref": "PositionProfileType.json#" }
+                ]
+            }
+        }
+    }
+}

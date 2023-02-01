@@ -1,0 +1,36 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "ContactPointType",
+  "description" : "Contact point—for example, for information about a job opening or interview.",
+  "type" : "object",
+  "properties" : {
+    "contactType" : {
+      "description" : "Specification of the type of contact point. Note(s): Use a value selected from a controlled vocabulary of contact types.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    },
+    "descriptions" : {
+      "description" : "A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "email" : {
+      "description" : "Email address of an organization or person.",
+      "type" : "string"
+    },
+    "faxNumber" : {
+      "description" : "Fax number of an organization or person.",
+      "type" : "string"
+    },
+    "name" : {
+      "description" : "The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.",
+      "type" : "string"
+    },
+    "telephone" : {
+      "description" : "The telephone number of an organization or person.",
+      "type" : "string"
+    }
+  }
+}

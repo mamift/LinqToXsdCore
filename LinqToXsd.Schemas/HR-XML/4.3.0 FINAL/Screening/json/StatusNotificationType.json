@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "version": "4.3.0",
+    "title": "StatusNotificationType",
+    "description": "A Screening order notification.",
+    "type": "object",
+    "properties": {
+        "orderId": {
+            "description": "Typically used for a reference ID provided by the Consumer Reporting Agency (CRA) specific to the order itself. Can often be used as a lookup value in the CRA's client portal.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "statusMessage": {
+            "description": "Overall status of order.  Typically would be reflective of a value like Pending, Complete, etc. Specific to each Consumer Reporting Agency (CRA).",
+            "type": "string"
+        },
+        "reportLink": {
+            "description": "A link to the background screening report.",
+            "type": "string",
+            "format": "uri"
+        }
+    }
+}

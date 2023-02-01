@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CompetencyType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="PositionCompetencyType.xsd" />
+  <xsd:include schemaLocation="SpecifiedCompetencyType.xsd" />
+  <xsd:include schemaLocation="PersonCompetencyType.xsd" />
+  <xsd:complexType name="CompetencyType">
+    <xsd:annotation>
+      <xsd:documentation>Represents competency types in HR Open Standards.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="personCompetency" type="hropen:PersonCompetencyType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionCompetency" type="hropen:PositionCompetencyType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="specifiedCompetency" type="hropen:SpecifiedCompetencyType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Competency" type="hropen:CompetencyType" />
+</xsd:schema>

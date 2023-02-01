@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CoverageType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="../../common/xml/organization/OrganizationReferenceType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/pay/RemunerationOrDeductionType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+    <xsd:complexType name="CoverageType">
+        <xsd:annotation>
+            <xsd:documentation>Describes the coverage details such as plan and group id, and the organization carrying the plan.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="electedPlanId" type="hropen:IdentifierType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="groupNumberId" type="hropen:IdentifierType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="carrierOrganization" type="hropen:OrganizationReferenceType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="deductionInstructions">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>Instructions for benefits deductions.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RemunerationOrDeductionType" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="Coverage" type="hropen:CoverageType" />
+</xsd:schema>

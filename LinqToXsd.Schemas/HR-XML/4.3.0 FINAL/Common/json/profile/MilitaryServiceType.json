@@ -1,0 +1,70 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "MilitaryServiceType",
+    "description": "History of military service. Service or employment in a military branch.",
+    "allOf": [
+        { "$ref": "BaseHistoryType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "countryCode": {
+            "description": "The country to which this military service was performed.",
+            "$ref": "../codelist/CountryCodeList.json#"
+        },
+        "serviceNumber": {
+            "description": "The military service number or identifier of the person as defined by the country, branch, and/or division.",
+            "type": "string"
+        },
+        "branch": {
+            "description": "The military office or department in which the person served; e.g. army, navy.",
+            "type": "string"
+        },
+        "division": {
+            "description": "The military division as defined in the military branch and country. It could be a portion of an army or fleet, consisting of a definite number of troops or vessels, under one commanding officer; also applied to a definite portion of a squadron or battalion.",
+            "type": "string"
+        },
+        "startingRank": {
+            "description": "The rank which the person held in the military service at the beginning of the service period.",
+            "type": "string"
+        },
+        "endingRank": {
+            "description": "The rank which the person held at the end of the military service period.",
+            "type": "string"
+        },
+        "currentRankIndicator": {
+            "description": "An indicator that the rank is currently held as part of active service. Do not use this indicator if the person is no longer holding this rank.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "campaigns": {
+            "description": "A list of campaigns to which the person was involved during the service period.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "expertises": {
+            "description": "A list of expertise that the person developed during the service period.",
+            "type": "array",
+            "items": { "$ref": "../competency/SpecifiedCompetencyType.json#" }
+        },
+        "honors": {
+            "description": "A list of honors that the person received during the service period.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "disciplinaryActions": {
+            "description": "A list of disciplinary actions taken during the service period.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "dischargeStatus": {
+            "description": "If this is not a currently held service, the discharge status for the service period. E.g. honorable, dishonorable, general.",
+            "type": "string"
+        },
+        "dischargeDate": {
+            "description": "If this is not a currently held service, the date of discharge.",
+            "$ref": "../base/DateType.json#"
+        },
+        "comments": {
+            "type": "array",
+            "description": "Additional comments about the military service history.",
+            "items": { "$ref": "../base/CommentType.json#" }
+        }
+    }
+}

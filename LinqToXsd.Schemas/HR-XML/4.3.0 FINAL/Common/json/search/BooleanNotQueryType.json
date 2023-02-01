@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "BooleanNotQueryType",
+    "description": "Type to implement a 'boolean NOT' query.",
+    "type": "object",
+    "properties": {
+        "booleanNot": {
+            "$ref": "AllQueryType.json#"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonBaseType",
+    "description": "Represents common data about a person.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "PersonReferenceType.json#" }
+    ],
+    "properties": {
+        "legalId": {
+            "description": "The legal identifier of a person. The issuer is most likely a country or state.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "previousLegalId": {
+            "description": "The previous legal identifier of a person. The issuer is most likely a country or state.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "birthDate": {
+            "description": "The birth date of a person.",
+            "$ref": "../base/DateType.json#"
+        },
+        "gender": {
+            "description": "The gender of a person.",
+            "$ref": "../codelist/GenderCodeList.json#"
+        },
+        "citizenship": {
+            "description": "The citizenships that a person holds. This is a legal citizenship in a country (as opposed to nationality which may or may not be a country).",
+            "type": "array",
+            "items": { "$ref": "../codelist/CountryCodeList.json#" }
+        },
+        "residenceCountry": {
+            "description": "The country (or countries) where a person currently resides.",
+            "type": "array",
+            "items": { "$ref": "../codelist/CountryCodeList.json#" }
+        },
+        "militaryStatus": {
+            "description": "The military status of a person.",
+            "type": "string"
+        },
+        "ethnicity": {
+            "description": "The ethnicity (or ethnicities) of a person. A country may define which of these terms (race, nationality, ethnicity) be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their ethnicity.",
+            "$ref": "../base/StringTypeArray.json#"
+        }
+    }
+}

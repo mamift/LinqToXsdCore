@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="LeafQueryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="TermsQueryType.xsd" />
+  <xsd:include schemaLocation="GeoPolygonQueryType.xsd" />
+  <xsd:include schemaLocation="FulltextQueryType.xsd" />
+  <xsd:include schemaLocation="RangeQueryType.xsd" />
+  <xsd:include schemaLocation="GeoDistanceQueryType.xsd" />
+  <xsd:complexType name="LeafQueryType">
+    <xsd:annotation>
+      <xsd:documentation>Set of all leaf query types, i.e. without any substructure, which look for a particular value in a particular field, such as the fulltext match, terms, geo distance, or range queries.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rangeNumber">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the property to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="lessThan">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Value used for a 'less-than' condition.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:decimal" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="lessThanOrEqualTo">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Value used for a 'less-than-or-equal-to' condition.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:decimal" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="equalTo">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Value used for an 'equal-to' condition.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:decimal" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="greaterThanOrEqualTo">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Value used for a 'greater-than-or-equal-to' condition.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:decimal" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="greaterThan">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Value used for a 'greater-than' condition.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:decimal" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="unitCode" type="hropen:CodeType">
+              <xsd:annotation>
+                <xsd:documentation>Optional unit code to specify the numerical values.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rangeDateTime">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the property to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="lessThan" type="hropen:FormattedDateTimeType">
+              <xsd:annotation>
+                <xsd:documentation>Value used for a 'less-than' condition.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="lessThanOrEqualTo" type="hropen:FormattedDateTimeType">
+              <xsd:annotation>
+                <xsd:documentation>Value used for a 'less-than-or-equal-to' condition.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="equalTo" type="hropen:FormattedDateTimeType">
+              <xsd:annotation>
+                <xsd:documentation>Value used for an 'equal-to' condition.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="greaterThanOrEqualTo" type="hropen:FormattedDateTimeType">
+              <xsd:annotation>
+                <xsd:documentation>Value used for a 'greater-than-or-equal-to' condition.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="greaterThan" type="hropen:FormattedDateTimeType">
+              <xsd:annotation>
+                <xsd:documentation>Value used for a 'greater-than' condition.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="terms">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the property to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="values">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Terms to be searched.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="1" maxOccurs="unbounded" name="item">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="matchMode">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Mode for matching - to fulfill the condition: 'allOf': all search values have to be found, 'anyOf': at least one search value has to be found, 'oneOf': exactly one search value has to be found, 'noneOf': none search value is found.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="allOf" />
+                  <xsd:enumeration value="anyOf" />
+                  <xsd:enumeration value="oneOf" />
+                  <xsd:enumeration value="noneOf" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fulltext">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPaths">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the properties to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="1" maxOccurs="unbounded" name="item">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="values">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Fulltext search string(s).</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="1" maxOccurs="unbounded" name="item">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="options" type="hropen:ParameterTypeArray">
+              <xsd:annotation>
+                <xsd:documentation>Further parameters to specify the behavior of the fulltext search.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="geoDistance">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the property to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="geoPoint" type="hropen:GeoType">
+              <xsd:annotation>
+                <xsd:documentation>Requested center (geo point) for the distance calculation.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="distance">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Requested distance condition.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:all>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="lessThan">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="lessThanOrEqualTo">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="equalTo">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="greaterThanOrEqualTo">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="greaterThan">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="unitCode" type="hropen:CodeType" />
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="geoPolygon">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the property to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="geoPolygon" type="hropen:GeoPolygonType">
+              <xsd:annotation>
+                <xsd:documentation>The geographical polygon of geographical points. In order to fulfill the query/criterion, the location geo points must fall inside the polygon.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="LeafQuery" type="hropen:LeafQueryType" />
+</xsd:schema>

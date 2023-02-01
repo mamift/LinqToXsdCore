@@ -1,0 +1,212 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "DeploymentType",
+    "description": "Contains a collection of information about the work of a human resource within an employment or work context. Deployment details include information about a resource's job, position, work schedule, assignment entry reason, as well as information identifying the organization and/or organizational sub-units associated with the deployment.",
+    "definitions": {
+        "WorkerAssignmentSourceType": {
+            "description": "Defines the source of the worker and related assignment. For example, the source might be expatriate with the home country in Germany but the person is working in Belgium.",
+            "type": "object",
+            "properties": {
+                "sourceCode": {
+                    "description": "Describes the worker relationship to their native country; e.g. Domestic, Inpatriate, Expatriate, Local National, Third Country National",
+                    "$ref": "../codelist/WorkerAssignmentSourceCodeList.json#"
+                },
+                "homeCountry": {
+                    "description": "The native country of the person.",
+                    "$ref": "../codelist/CountryCodeList.json#"
+                },
+                "hostCountry": {
+                    "description": "The country where the person is working.",
+                    "$ref": "../codelist/CountryCodeList.json#"
+                }
+            }
+        },
+        "SpecialClassificationType": {
+            "description": "A special classification of the Employee e.g. a VIP, Owner, Highly Compensated, Stock Owner, Executive, Officer, etc.",
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "A code indicating the special classification.",
+                    "$ref": "../base/CodeType.json#"
+                },
+                "indicator": {
+                    "description": "An indicator of the special classification.",
+                    "$ref": "../base/IndicatorType.json#"
+                },
+                "percentage": {
+                    "description": "The percentage of a person's allocation that is considered the special classification.",
+                    "$ref": "../base/PercentType.json#"
+                }
+            }
+        },
+        "EmployeeReportingCodeType": {
+            "description": "Employee Reporting Code Type Information.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Type of Reporting Code Example, Division, Location, Class",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Reporting Code",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "deploymentId": {
+            "description": "Provides a unique identifier to a specific deployment. This may be used when a person has multiple deployments within an organization. For example, a coach and math teacher at a school.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "workerAssignmentSource": {
+            "description": "Defines the source of the worker and related assignment.",
+            "$ref": "#/definitions/WorkerAssignmentSourceType"
+        },
+        "workLocation": {
+            "description": "The location of the workers assignment.",
+            "$ref": "../organization/WorkLocationType.json#"
+        },
+        "communication": {
+            "description": "Contact information, such as phone, address, etc. for the organization.",
+            "$ref": "../communication/CommunicationType.json#"
+        },
+        "resourceRelationshipCode": {
+            "description": "Describes the relationship between the employer and worker, e.g. Employee, Vendor Employee.",
+            "$ref": "../codelist/ResourceRelationshipCodeList.json#"
+        },
+        "organizationIds": {
+            "type": "array",
+            "items": {
+                "$ref": "../base/IdentifierType.json#"
+            }
+        },
+        "job": {
+            "description": "Represents the specific job (position) at an organization and related identifiers and classifications.",
+            "$ref": "../work/JobType.json#"
+        },
+        "position": {
+            "description": "Defines a position and related identifiers.",
+            "$ref": "../work/PositionType.json#"
+        },
+        "scheduledHours": {
+            "description": "Do Not Use. This property will be removed in the next major release. Please use ScheduleHours property instead.",
+            "$ref": "../base/RateType.json#"
+        },
+        "scheduleHours": {
+            "description": "The hours a person is scheduled to work.",
+            "$ref": "../base/QuantityType.json#"
+        },
+        "workSchedule": {
+            "description": "The schedule a person is planned to work.",
+            "$ref": "../work/ScheduleType.json#"
+        },
+        "assignmentReasonCode": {
+            "description": "The reason a person is assigned to the position, e.g. Hire, Transfer, Promotion, etc.",
+            "$ref": "../codelist/AssignmentReasonCodeList.json#"
+        },
+        "fullTimeEquivalentRatio": {
+            "description": "The number of total hours worked divided by the maximum number of compensable hours in a full-time schedule as defined by law.",
+            "$ref": "../base/RatioType.json#"
+        },
+        "effectivePeriod": {
+            "description": "The period the deployment is effective.",
+            "$ref": "../base/EffectiveTimePeriodType.json#"
+        },
+        "employeeReportingCode": {
+            "description": "Deprecated. Do Not Use. Use the employeeReportingCodes array instead.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "employeeReportingCodes": {
+            "description": "Allows further classification of the employee using employer or program-specific codes and controlled vocabularies. This information may be collected to use for return reporting back to the employer.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/EmployeeReportingCodeType"
+            }
+        },
+        "securityTag": {
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "specialClassifications": {
+            "description": "A special classification of the Employee.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/SpecialClassificationType"
+            }
+        },
+        "specialProvisions": {
+            "description": "Any special provisions for the Employee.",
+            "type": "string"
+        },
+        "wageHourLawCoverageCountryCode": {
+            "description": "The country the wage hour laws pertain to.",
+            "$ref": "../codelist/CountryCodeList.json#"
+        },
+        "wageHourLawCoverageIndicator": {
+            "description": "This determines if a person is covered by wage hour laws. In the US, a person would be considered non-exempt if the indicator is true (they are covered under the law).",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "laborBargainingUnitIndicator": {
+            "description": "Indicates if the person is part of a labor bargaining unit, such as a union.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "laborBargainingUnitCode": {
+            "description": "Code of the labor bargaining unit; e.g. Unison.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "laborBargainingUnitMemberId": {
+            "description": "The person's id within the labor bargaining unit.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "newHireProbationaryIndicator": {
+            "description": "Indicates if the person is a new hire.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "newHireProbationaryDuration": {
+            "description": "The length of the probation for the new hire; e.g. Hire is on probation for three months from start date.",
+            "$ref": "../base/DurationType.json#"
+        },
+        "organization": {
+            "description": "The organization the person is working for.",
+            "$ref": "../organization/OrganizationType.json#"
+        },
+        "license": {
+            "description": "Deprecated. Do Not Use. Use the licenses array instead.",
+            "$ref": "../profile/LicenseType.json#"
+        },
+        "licenses": {
+            "description": "Any licenses the person carries for the related position.",
+            "type": "array",
+            "items": {
+                "$ref": "../profile/LicenseType.json#"
+            }
+        },
+        "certification": {
+            "description": "Deprecated. Do Not Use. Use the certifications array instead.",
+            "$ref": "../profile/CertificationType.json#"
+        },
+        "certifications": {
+            "description": "Any certifications the person carries for the related position.",
+            "type": "array",
+            "items": {
+                "$ref": "../profile/CertificationType.json#"
+            }
+        },
+	"statusCode": {
+          "enum": [
+                        "Active",
+                        "Inactive"
+                    ]
+        },
+	"statusEffectiveDate": {
+        	"description": "The status effective date of this deployment.",
+                "$ref": "../base/DateType.json#"
+        },
+	"intervalCode": {
+		"description": "The frequency at which an earning is 'earned'. E.g. how often the worker is paid the associated earning.",
+			"$ref": "../codelist/PayRateIntervalCodeList.json#"
+	}
+    }
+}

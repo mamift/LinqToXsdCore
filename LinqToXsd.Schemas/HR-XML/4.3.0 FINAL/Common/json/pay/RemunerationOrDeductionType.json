@@ -1,0 +1,140 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "RemunerationOrDeductionType",
+	"description": "Instruction for benefits and other deductions.",
+	"type": "object",
+	"properties": {
+		"validFrom": {
+			"description": "Valid from/to dates for one time deductions are the dates when the deduction was incurred, not when it was to be deducted. For recurring deductions, the valid from/to dates are the processing dates.",
+			"$ref": "../base/DateTimeType.json#"
+		},
+		"validTo": {
+			"description": "Valid from/to dates for one time deductions are the dates when the deduction was incurred, not when it was to be deducted. For recurring deductions, the valid from/to dates are the processing dates.",
+			"$ref": "../base/DateTimeType.json#"
+		},
+		"id": {
+			"description": "The identifier of the deduction.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"deploymentId": {
+			"description": "Provides a unique identifier to a specific deployment. This may be used when a person has multiple deployments within an organization. For example, a coach and math teacher at a school.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"statusCode": {
+			"description": "The action to be performed, Default is Create. Create - Add a new entry, Update is to add the current values to any existing values.",
+			"$ref": "../codelist/ActionCodeList.json#"
+		},
+		"intervalCode": {
+			"description": "The frequency at which an earning is 'earned'. E.g. how often the worker is paid the associated earning.",
+			"$ref": "../codelist/PayRateIntervalCodeList.json#"
+		},
+		"oneTimeIndicator": {
+			"description": "True for a one time deduction and False for a recurring deduction.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"totalTransactions": {
+			"description": "The total number of deductions within the transaction.",
+			"type": "number"
+		},
+		"sequence": {
+			"description": "The order of this deduction within the deductions of this transaction.",
+			"type": "number"
+		},
+		"typeCode": {
+			"description": "The type of payment or deduction. E.g. salary, overtime, benefit, court order, garnishment, etc. This provides for a grouping of similar items, e.g. there may be many different Pension Deductions each with its own ID but they all have a Type of Pensions.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"subTypeCode": {
+			"description": "The category within the deduction type. E.g. for garnishments this could be creditor, child support, etc. For benefits, this could be medical, car, voluntary insurance.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"referenceId": {
+			"description": "The third party reference for the deduction. I.e. court order number, union membership number, etc.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"requestedAmount": {
+			"description": "The amount to be deducted, if available.",
+			"$ref": "../base/AmountType.json#"
+		},
+		"requestedPercentage": {
+			"description": "The percent to be withheld. For example, an elected 3% retirement deduction.",
+			"$ref": "../base/PercentType.json#"
+		},
+		"basis": {
+			"description": "Used in conjunction with the requestedPercentage to calculate the remuneration or deduction amount in cases where the basisAmount is not known to the receiving system.",
+			"type": "array",
+			"items": {
+				"description": "Basis Item",
+				"type": "object",
+				"properties": {
+					"basisId": {
+						"description": "An identifier for the basis instance.",
+						"$ref": "../base/IdentifierType.json#"
+					},
+					"basisAmount": {
+						"description": "The monetary amount on which the remuneration or deduction amount is calculated.",
+						"$ref": "../base/AmountType.json#"
+					}
+				}
+			}
+		},
+		"requestedRate": {
+			"description": "The rate to be used for the number of units being processed, if available.",
+			"$ref": "../base/AmountType.json#"
+		},
+		"requestedUnitType": {
+			"description": "The Type of the Units, for example, Hours, Days, Pieces made, etc.",
+			"$ref": "../codelist/UnitCodeList.json#"
+		},
+		"requestedUnits": {
+			"description": "The number of units to be processed.",
+			"type": "number"
+		},
+		"actualAmount": {
+			"description": "The amount actually deducted after processing payroll.",
+			"$ref": "../base/AmountType.json#"
+		},
+		"actualPaymentDate": {
+			"description": "The date on which the actual amount was taken after processing payroll.",
+			"$ref": "../base/DateTimeType.json#"
+		},
+		"originalBalanceAmount": {
+			"description": "The total amount to be withheld over the life of this deduction.",
+			"$ref": "../base/AmountType.json#"
+		},
+		"remainingBalanceAmount": {
+			"description": "The current amount of the deduction after processing payroll.",
+			"$ref": "../base/AmountType.json#"
+		},
+		"receivingParty": {
+			"description": "Information about the person or organization receiving the payment.",
+			"type": "object",
+			"properties": {
+				"personName": {
+					"description": "The name of the person receiving the payment.",
+					"$ref": "../person/PersonNameType.json#"
+				},
+				"personCommunication": {
+					"description": "The phone, address, and/or email of the person receiving the payment.",
+					"$ref": "../communication/CommunicationType.json#"
+				},
+				"organizationName": {
+					"description": "The name of the organization receiving payment.",
+					"type": "string"
+				},
+				"paymentMethod": {
+					"$ref": "PaymentMethodType.json#"
+				}
+			}
+		},
+		"employerAmount": {
+			"description": "The amount the employer contributes to the deduction type. For example, $10 for certification dues.",
+			"$ref": "../base/AmountType.json#"
+		},
+		"employerPercentage": {
+			"description": "The percent the employer contributes to the deduction type. For example 4% for retirement.",
+			"$ref": "../base/PercentType.json#"
+		}
+	}
+}

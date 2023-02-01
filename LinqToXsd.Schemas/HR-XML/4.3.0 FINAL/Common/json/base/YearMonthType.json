@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "YearMonthType",
+    "description": "A single year and month, in the format YYYY-MM",
+    "type": "string",
+    "hropenFormat": "yearMonth",
+    "pattern": "^([12]\\d{3}-(0[1-9]|1[0-2]))$"
+}

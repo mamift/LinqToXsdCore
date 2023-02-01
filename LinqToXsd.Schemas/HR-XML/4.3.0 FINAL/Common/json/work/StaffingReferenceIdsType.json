@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "StaffingReferenceIdsType",
+    "description": "A collection of identifiers related to a staffing assignment of a resource.",
+    "type": "object",
+    "properties": {
+        "assignmentId": {
+            "description": "An identifier for a particular engagement or assignment of a staffing resource.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "orderId": {
+            "description": "Uniquely distinguishes the order.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "requestForQuotationId": {
+            "description": "Used to specify a reference to a StaffingRFQ document.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "resourceId": { "$ref": "../base/IdentifierType.json#" },
+        "quoteId": {
+            "description": "Used to specify a reference to a StaffingQuote document.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "actionId": {
+            "description": "Used to specify a reference to a StaffingAction document.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "masterOrderId": {
+            "description": "Reference to a master order or project. Used to associate multiple orders.",
+            "$ref": "../base/IdentifierType.json#"
+        }
+    }
+}

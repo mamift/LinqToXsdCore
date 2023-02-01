@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PhoneTypeArray" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="CommunicationItemInclusion.xsd" />
+    <xsd:include schemaLocation="PhoneType.xsd" />
+    <xsd:complexType name="PhoneTypeArray">
+        <xsd:annotation>
+            <xsd:documentation>Array of phone information details.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                <xsd:complexType>
+                    <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countryDialingCode" type="hropen:CodeType">
+                            <xsd:annotation>
+                                <xsd:documentation>The country dialing code for a communication number.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="areaDialingCode" type="hropen:CodeType">
+                            <xsd:annotation>
+                                <xsd:documentation>The area dialing code for a communication number.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="dialNumber">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>The communication number, not including country dialing or area dialing codes.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:string" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="phoneExtension">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>The extension of the associated communication number.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:string" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="access">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>The text that permits access to the electronic network of the associated communication number such as telephone network, for example 9, *70.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:string" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="formattedNumber">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>Specifies details of an actual formatted number</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:string" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="name">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>Provide description for particular communication item</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:string" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="useCode" type="hropen:CodeType">
+                            <xsd:annotation>
+                                <xsd:documentation>Code identifying the usage of the contact point e.g. business, private, etc.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="preference">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>Provide priority for given communication item</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:integer" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="availablePeriod" type="hropen:DateTimePeriodType" />
+                    </xsd:all>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PhoneArray" type="hropen:PhoneTypeArray" />
+</xsd:schema>

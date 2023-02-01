@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="MessageType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/TextType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AttachmentType.xsd" />
+  <xsd:complexType name="FieldType">
+    <xsd:annotation>
+      <xsd:documentation>A field.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="path">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Indicates JSON Pointer value such as /foo/bar. Although this is a string, HR Open requires a json-pointer format. Do not use JSON Pointer URI fragments such as #/foo/bar</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>The message text.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="MessageType">
+    <xsd:annotation>
+      <xsd:documentation>Represents a message.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="orderId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier of the ScreeningVendorOrder to which this message pertains. Uniquely identifies a ScreeningVendorOrder within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="message" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>The message text.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fields">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of fields that need attention.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:FieldType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>List of documents associated with this message</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Message" type="hropen:MessageType" />
+</xsd:schema>

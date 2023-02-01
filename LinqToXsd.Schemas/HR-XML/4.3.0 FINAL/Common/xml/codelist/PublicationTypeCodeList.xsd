@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PublicationTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="PublicationTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Publication type code list.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Book">
+        <xsd:annotation>
+          <xsd:documentation>Book</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Paper">
+        <xsd:annotation>
+          <xsd:documentation>Paper</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Article">
+        <xsd:annotation>
+          <xsd:documentation>Article</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Conference">
+        <xsd:annotation>
+          <xsd:documentation>Conference</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Thesis">
+        <xsd:annotation>
+          <xsd:documentation>Thesis</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="WhitePaper">
+        <xsd:annotation>
+          <xsd:documentation>White Paper</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Report">
+        <xsd:annotation>
+          <xsd:documentation>Report</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TechnicalDocumentation">
+        <xsd:annotation>
+          <xsd:documentation>Technical Documentation</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Study">
+        <xsd:annotation>
+          <xsd:documentation>Study</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Manual">
+        <xsd:annotation>
+          <xsd:documentation>Manual</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ResearchPaper">
+        <xsd:annotation>
+          <xsd:documentation>Research Paper</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OtherPublication">
+        <xsd:annotation>
+          <xsd:documentation>Other Publication</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="PublicationTypeCode" type="hropen:PublicationTypeCodeList" />
+</xsd:schema>

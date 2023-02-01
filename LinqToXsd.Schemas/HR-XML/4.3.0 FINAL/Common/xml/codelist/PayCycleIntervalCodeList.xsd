@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PayCycleIntervalCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="PayCycleIntervalCodeList">
+    <xsd:annotation>
+      <xsd:documentation>PayCycleInterval specifies how often the pay cycle occurs or, in other words, how often a person is paid, e.g., weekly, biweekly, etc. This is a different concept than an interval used in expressing a rate of pay.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Day">
+        <xsd:annotation>
+          <xsd:documentation>Day</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Week">
+        <xsd:annotation>
+          <xsd:documentation>Week</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoWeeks">
+        <xsd:annotation>
+          <xsd:documentation>Two Weeks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HalfMonth">
+        <xsd:annotation>
+          <xsd:documentation>Half Month</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Month">
+        <xsd:annotation>
+          <xsd:documentation>Month</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoMonths">
+        <xsd:annotation>
+          <xsd:documentation>Two Months</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MonthWeek">
+        <xsd:annotation>
+          <xsd:documentation>Month-Week</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MonthWeek2">
+        <xsd:annotation>
+          <xsd:documentation>Month-Week 2</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MonthWeek3">
+        <xsd:annotation>
+          <xsd:documentation>Month-Week 3</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MonthWeek4">
+        <xsd:annotation>
+          <xsd:documentation>Month-Week 4</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MonthWeek5">
+        <xsd:annotation>
+          <xsd:documentation>Month-Week 5</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MonthWeekLast">
+        <xsd:annotation>
+          <xsd:documentation>Month-Week-Last</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Quarter">
+        <xsd:annotation>
+          <xsd:documentation>Quarter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HalfYear">
+        <xsd:annotation>
+          <xsd:documentation>Half Year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Year">
+        <xsd:annotation>
+          <xsd:documentation>Year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="PayCycleIntervalCode" type="hropen:PayCycleIntervalCodeList" />
+</xsd:schema>

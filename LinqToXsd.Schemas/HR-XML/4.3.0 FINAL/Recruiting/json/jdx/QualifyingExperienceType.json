@@ -1,0 +1,70 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "QualifyingExperienceType",
+  "description" : "Entity describing verifiable work, education or training experience supporting a person's qualification to perform the tasks and responsibilities of a position. Note(s): A QualifyingExperience that results in the award of some form of credential should use the Credential class to describe that award.",
+  "type" : "object",
+  "properties" : {
+    "descriptions" : {
+      "description" : "A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "duration" : {
+      "description" : "Duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.",
+      "type" : "string"
+    },
+    "educationLevels" : {
+      "description" : "Word or phrase identifying the location of the person in terms of his or her progression through an education or training context; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of education levels such as HR Open Standards IscedCodeList.json.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "evidence" : {
+      "description" : "Referenced artifact or performance confirming or supporting an assertion.",
+      "type" : "string",
+      "format" : "uri"
+    },
+    "evidenceCategory" : {
+      "description" : "The type of referenced artifact, exam or performance confirming or supporting an assertion; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of evidence types.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    },
+    "experienceCategories" : {
+      "description" : "Category of experience needed for the position or Occupation; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of experience types including, but not limited to, \"Education Experience\", \"Training Experience\", \"Work Experience\", \"Apprenticeship\", and \"Traineeship\".",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "inLanguage" : {
+      "description" : "The language of the content of the job posting.",
+      "$ref" : "../../../common/json/base/LocalizationInclusion.json#"
+    },
+    "levelCode" : {
+      "description" : "Level of experience required; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of experience level types such as the HR Open CareerLevelCodeList.json.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    },
+    "occupationCategories" : {
+      "description" : "Category of the relevant occupation of the job used in the country of employment; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of occupation categories such as the Standard Occupational Classification (SOC).",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "program" : {
+      "description" : "Educational program of study.",
+      "type" : "string"
+    },
+    "programConcentration" : {
+      "description" : "Focused plan of study within a college or university degree such as a concentration in Aerospace Engineering within an Engineering degree.",
+      "type" : "string"
+    },
+    "provider" : {
+      "description" : "Agent that provides, publishes, owns or otherwise has the authority to make the resource being described available.",
+      "$ref" : "JDXOrganizationType.json#"
+    }
+  }
+}

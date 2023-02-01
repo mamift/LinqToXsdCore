@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AffiliatedOrganizationTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="AffiliatedOrganizationTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values used to describe the type of association or affiliated organization.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Professional">
+        <xsd:annotation>
+          <xsd:documentation>Professional</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Social">
+        <xsd:annotation>
+          <xsd:documentation>Social</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Community">
+        <xsd:annotation>
+          <xsd:documentation>Community</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Non-profit">
+        <xsd:annotation>
+          <xsd:documentation>Non-profit</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Religious">
+        <xsd:annotation>
+          <xsd:documentation>Religious</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Political">
+        <xsd:annotation>
+          <xsd:documentation>Political</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="AffiliatedOrganizationTypeCode" type="hropen:AffiliatedOrganizationTypeCodeList" />
+</xsd:schema>

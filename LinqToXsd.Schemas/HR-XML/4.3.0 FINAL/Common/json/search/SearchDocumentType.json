@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "SearchDocumentType",
+    "description": "A general search type.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../base/NounType.json#" }
+    ],
+    "properties": {
+        "searchQuery": {
+            "$ref": "SearchQueryType.json#"
+        },
+        "searchResult": {
+            "$ref": "SearchResultType.json#"
+        }
+    }
+}

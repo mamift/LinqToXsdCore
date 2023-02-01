@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "WorkLocationCodeList",
+    "description": "A set of codes classifying the work location.",
+    "enum": [
+        "DistributionCenter",
+        "HotelProperty",
+        "Headquarters",
+        "Plant",
+        "RetailStore",
+        "OffshoreOilRig",
+        "Warehouse", 
+        "SharedServiceCenter",
+        "CenterOfExcellence"
+    ],
+    "enumNames": [
+        "Distribution Center",
+        "Hotel Property",
+        "Headquarters",
+        "Plant",
+        "Retail Store",
+        "Offshore Oil Rig",
+        "Warehouse", 
+        "Shared Service Center",
+        "Center Of Excellence"
+    ]
+}

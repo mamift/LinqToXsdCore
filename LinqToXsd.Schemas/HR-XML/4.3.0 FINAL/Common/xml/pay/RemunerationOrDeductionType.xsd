@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RemunerationOrDeductionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="../base/CodeType.xsd" />
+    <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+    <xsd:include schemaLocation="../person/PersonNameType.xsd" />
+    <xsd:include schemaLocation="../codelist/ActionCodeList.xsd" />
+    <xsd:include schemaLocation="../base/DateTimeType.xsd" />
+    <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+    <xsd:include schemaLocation="../base/PercentType.xsd" />
+    <xsd:include schemaLocation="../base/AmountType.xsd" />
+    <xsd:include schemaLocation="PaymentMethodType.xsd" />
+    <xsd:include schemaLocation="../codelist/UnitCodeList.xsd" />
+    <xsd:include schemaLocation="../communication/CommunicationType.xsd" />
+    <xsd:include schemaLocation="../codelist/PayRateIntervalCodeList.xsd" />
+    <xsd:complexType name="RemunerationOrDeductionType">
+        <xsd:annotation>
+            <xsd:documentation>Instruction for benefits and other deductions.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType">
+                <xsd:annotation>
+                    <xsd:documentation>Valid from/to dates for one time deductions are the dates when the deduction was incurred, not when it was to be deducted. For recurring deductions, the valid from/to dates are the processing dates.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType">
+                <xsd:annotation>
+                    <xsd:documentation>Valid from/to dates for one time deductions are the dates when the deduction was incurred, not when it was to be deducted. For recurring deductions, the valid from/to dates are the processing dates.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+                <xsd:annotation>
+                    <xsd:documentation>The identifier of the deduction.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="deploymentId" type="hropen:IdentifierType">
+                <xsd:annotation>
+                    <xsd:documentation>Provides a unique identifier to a specific deployment. This may be used when a person has multiple deployments within an organization. For example, a coach and math teacher at a school.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:ActionCodeList">
+                <xsd:annotation>
+                    <xsd:documentation>The action to be performed, Default is Create. Create - Add a new entry, Update is to add the current values to any existing values.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="intervalCode" type="hropen:PayRateIntervalCodeList">
+                <xsd:annotation>
+                    <xsd:documentation>The frequency at which an earning is 'earned'. E.g. how often the worker is paid the associated earning.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="oneTimeIndicator" type="hropen:IndicatorType">
+                <xsd:annotation>
+                    <xsd:documentation>True for a one time deduction and False for a recurring deduction.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="totalTransactions">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The total number of deductions within the transaction.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:decimal" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="sequence">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The order of this deduction within the deductions of this transaction.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:decimal" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:CodeType">
+                <xsd:annotation>
+                    <xsd:documentation>The type of payment or deduction. E.g. salary, overtime, benefit, court order, garnishment, etc. This provides for a grouping of similar items, e.g. there may be many different Pension Deductions each with its own ID but they all have a Type of Pensions.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="subTypeCode" type="hropen:CodeType">
+                <xsd:annotation>
+                    <xsd:documentation>The category within the deduction type. E.g. for garnishments this could be creditor, child support, etc. For benefits, this could be medical, car, voluntary insurance.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="referenceId" type="hropen:IdentifierType">
+                <xsd:annotation>
+                    <xsd:documentation>The third party reference for the deduction. I.e. court order number, union membership number, etc.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="requestedAmount" type="hropen:AmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The amount to be deducted, if available.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="requestedPercentage" type="hropen:PercentType">
+                <xsd:annotation>
+                    <xsd:documentation>The percent to be withheld. For example, an elected 3% retirement deduction.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="basis">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>Used in conjunction with the requestedPercentage to calculate the remuneration or deduction amount in cases where the basisAmount is not known to the receiving system.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                            <xsd:complexType>
+                                <xsd:annotation>
+                                    <xsd:documentation>Basis Item</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:all>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="basisId" type="hropen:IdentifierType">
+                                        <xsd:annotation>
+                                            <xsd:documentation>An identifier for the basis instance.</xsd:documentation>
+                                        </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="basisAmount" type="hropen:AmountType">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The monetary amount on which the remuneration or deduction amount is calculated.</xsd:documentation>
+                                        </xsd:annotation>
+                                    </xsd:element>
+                                </xsd:all>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="requestedRate" type="hropen:AmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The rate to be used for the number of units being processed, if available.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="requestedUnitType" type="hropen:UnitCodeList">
+                <xsd:annotation>
+                    <xsd:documentation>The Type of the Units, for example, Hours, Days, Pieces made, etc.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="requestedUnits">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The number of units to be processed.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:decimal" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="actualAmount" type="hropen:AmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The amount actually deducted after processing payroll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="actualPaymentDate" type="hropen:DateTimeType">
+                <xsd:annotation>
+                    <xsd:documentation>The date on which the actual amount was taken after processing payroll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="originalBalanceAmount" type="hropen:AmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The total amount to be withheld over the life of this deduction.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="remainingBalanceAmount" type="hropen:AmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The current amount of the deduction after processing payroll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="receivingParty">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>Information about the person or organization receiving the payment.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="personName" type="hropen:PersonNameType">
+                            <xsd:annotation>
+                                <xsd:documentation>The name of the person receiving the payment.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="personCommunication" type="hropen:CommunicationType">
+                            <xsd:annotation>
+                                <xsd:documentation>The phone, address, and/or email of the person receiving the payment.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="organizationName">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>The name of the organization receiving payment.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:string" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="paymentMethod" type="hropen:PaymentMethodType" />
+                    </xsd:all>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="employerAmount" type="hropen:AmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The amount the employer contributes to the deduction type. For example, $10 for certification dues.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="employerPercentage" type="hropen:PercentType">
+                <xsd:annotation>
+                    <xsd:documentation>The percent the employer contributes to the deduction type. For example 4% for retirement.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="RemunerationOrDeduction" type="hropen:RemunerationOrDeductionType" />
+</xsd:schema>

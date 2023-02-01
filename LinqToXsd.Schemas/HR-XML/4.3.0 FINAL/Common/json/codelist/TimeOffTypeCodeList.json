@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "TimeOffTypeCodeList",
+	"description": "Specifies type of absence from work. Includes compensatory time off (CTO) when used.",
+	"enum": [
+		"Administrative",
+		"Bereavement",
+		"Compensatory",
+		"Consolidated",
+		"Education",
+		"Family",
+		"PublicHoliday",
+		"FloatingHoliday",
+		"InLieuOfNotice",
+		"JuryDuty",
+		"MilitaryDuty",
+		"Sick",
+		"Vacation",
+		"OtherPersonal"
+	]
+}

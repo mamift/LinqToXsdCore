@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RefereeType",
+    "description": "A person who may be referred to for information or guidance on the character or other qualities of someone e.g. an applicant for employment or for an academic or other award.",
+    "type": "object",
+    "properties": {
+        "refereeId": {
+            "description": "An identifier for the Referee.",
+            "$ref": "../base/IdentifierType.json#" 
+        },
+        "personName": { 
+            "description": "The name of the Referee.",
+            "$ref": "../person/PersonNameType.json#" 
+        },
+        "positionTitle": { 
+            "description": "The job title of the Referee.",
+            "type": "string" 
+        },
+        "organizationName": { 
+            "description": "The associated company or organization of the Referee.",
+            "type": "string" 
+        },
+        "communication": { 
+            "description": "The communication to be used to reach the Referee.",
+            "$ref": "../communication/CommunicationType.json#" 
+        },
+        "yearsKnown": { 
+            "description": "The number of years to which the Referee has been known to the person.",
+            "type": "number" 
+        },
+        "relationship": { 
+            "description": "The relationship of the Referee to the person.",
+            "$ref": "../codelist/RelationshipTypeCodeList.json#" 
+        },
+        "attachmentReferences": {
+            "description": "A reference to an attachment related to the Referee and the person.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        },
+        "comments": {
+            "description": "Comments related to the Referee and the person.",
+            "type": "array",
+            "items": { "$ref": "../base/CommentType.json#" }
+        }
+    },
+    "required": [ "personName" ]
+}

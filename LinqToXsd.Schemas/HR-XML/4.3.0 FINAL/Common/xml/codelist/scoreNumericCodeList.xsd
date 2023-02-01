@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ScoreNumericCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="ScoreNumericCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A set of enumerations describing the numeric type of scoring scheme.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Percentile">
+        <xsd:annotation>
+          <xsd:documentation>Percentile</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RawScore">
+        <xsd:annotation>
+          <xsd:documentation>RawScore</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Stanine">
+        <xsd:annotation>
+          <xsd:documentation>Stanine</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Sten">
+        <xsd:annotation>
+          <xsd:documentation>Sten</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="T-score">
+        <xsd:annotation>
+          <xsd:documentation>T-score</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Z-score">
+        <xsd:annotation>
+          <xsd:documentation>Z-score</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="IntelligenceQuotient">
+        <xsd:annotation>
+          <xsd:documentation>IntelligenceQuotient</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Scaled">
+        <xsd:annotation>
+          <xsd:documentation>Scaled</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NormalCurve">
+        <xsd:annotation>
+          <xsd:documentation>NormalCurve</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GPA">
+        <xsd:annotation>
+          <xsd:documentation>GPA</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ScoreNumericCode" type="hropen:ScoreNumericCodeList" />
+</xsd:schema>

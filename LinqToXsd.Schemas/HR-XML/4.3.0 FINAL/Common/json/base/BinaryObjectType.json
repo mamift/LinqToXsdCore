@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "BinaryObjectType",
+    "description": "A binary object is a sequence of binary digits (bits) to represent a file. It is recommended to use base64 encoding.",
+    "type": "object",
+    "properties": {
+        "value": { "type": "string" },
+        "encoding": {
+            "enum": [
+                "7bit",
+                "8bit",
+                "binary",
+                "quoted-printable",
+                "base64",
+                "ietf-token",
+                "x-token"
+            ]
+        },
+        "mimeType": { "type": "string" },
+        "filename": { "type": "string" }
+    },
+    "required": [ "value" ]
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RewardType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/NameType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/PayRateIntervalCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/PercentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NumberType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DateType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/PayTypeCodeList.xsd" />
+  <xsd:complexType name="RewardType">
+    <xsd:annotation>
+      <xsd:documentation>Details of the compensation reward</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="rewardCode" type="hropen:PayTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code that describes the type of remuneration being paid</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectiveDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date that this piece of remuneration started</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="eligibleIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Is the Employee eligible for this reward or not</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="clientProvidedValue">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="name" type="hropen:NameType">
+              <xsd:annotation>
+                <xsd:documentation>Total Reward name.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="valueAmount" type="hropen:AmountType">
+              <xsd:annotation>
+                <xsd:documentation>Total Reward amount (including any additional payments)</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="valuePercent" type="hropen:PercentType">
+              <xsd:annotation>
+                <xsd:documentation>Reward as a percentage of (applicable) Base in case reward is in percentage</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="rateIntervalCode" type="hropen:PayRateIntervalCodeList">
+              <xsd:annotation>
+                <xsd:documentation>Frequency of reward payments</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="numberOfAdditionalPayments" type="hropen:NumberType">
+              <xsd:annotation>
+                <xsd:documentation>Additional number of months/weeks included in the Annual pay</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="taxableIndicator" type="hropen:IndicatorType">
+              <xsd:annotation>
+                <xsd:documentation>An indicator which describes if this remuneration is taxable</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cashIndicator" type="hropen:IndicatorType">
+              <xsd:annotation>
+                <xsd:documentation>An indicator of whether this remuneration is paid in cash</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="fixedIndicator" type="hropen:IndicatorType">
+              <xsd:annotation>
+                <xsd:documentation>An indicator of whether this remuneration is fixed, if not then it is variable</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="clientProvidedTarget">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="targetAmount" type="hropen:AmountType">
+              <xsd:annotation>
+                <xsd:documentation>The value that is expected to be awarded for this remuneration award</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="targetPercent" type="hropen:PercentType">
+              <xsd:annotation>
+                <xsd:documentation>The percent of a basis expected to be awarded for this remuneration award</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="basisOfTarget" type="hropen:PayTypeCodeList">
+              <xsd:annotation>
+                <xsd:documentation>Basis of Target e.g., Base Pay, Base Pay plus Mandatory Bonus, etc</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Reward" type="hropen:RewardType" />
+</xsd:schema>

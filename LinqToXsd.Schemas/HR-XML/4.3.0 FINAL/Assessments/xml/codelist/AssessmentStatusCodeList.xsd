@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AssessmentStatusCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="AssessmentStatusCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A set of codes indicating the status of an assessment The name of the assessment status.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="OrderAcknowledged" />
+      <xsd:enumeration value="TestPendingScheduling" />
+      <xsd:enumeration value="TestScheduled" />
+      <xsd:enumeration value="CompletedTestPendingScoring" />
+      <xsd:enumeration value="ScoredTestPendingReview" />
+      <xsd:enumeration value="SubjectDeclinedTest" />
+      <xsd:enumeration value="OrderComplete" />
+      <xsd:enumeration value="OrderInProgress" />
+      <xsd:enumeration value="OrderCancelled" />
+      <xsd:enumeration value="OrderExpired" />
+      <xsd:enumeration value="OrderReviewRequired" />
+      <xsd:enumeration value="Deferred" />
+      <xsd:enumeration value="Error" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="AssessmentStatusCode" type="hropen:AssessmentStatusCodeList" />
+</xsd:schema>

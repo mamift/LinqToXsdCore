@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ResponsibleInclusion",
+    "description": "The people who are submitters and/or approvers information for an entity.",
+    "type": "object",
+    "properties": {
+        "submitters": {
+            "type": "array",
+            "items": { "$ref": "ResponsibleType.json#" }
+        },
+        "approvers": {
+            "type": "array",
+            "items": { "$ref": "ResponsibleType.json#" }
+        }
+    }
+}

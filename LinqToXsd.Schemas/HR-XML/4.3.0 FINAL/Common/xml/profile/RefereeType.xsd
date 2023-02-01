@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RefereeType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/RelationshipTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/CommentType.xsd" />
+  <xsd:include schemaLocation="../person/PersonNameType.xsd" />
+  <xsd:include schemaLocation="../communication/CommunicationType.xsd" />
+  <xsd:complexType name="RefereeType">
+    <xsd:annotation>
+      <xsd:documentation>A person who may be referred to for information or guidance on the character or other qualities of someone e.g. an applicant for employment or for an academic or other award.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="refereeId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier for the Referee.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="personName" type="hropen:PersonNameType">
+        <xsd:annotation>
+          <xsd:documentation>The name of the Referee.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionTitle">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The job title of the Referee.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organizationName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The associated company or organization of the Referee.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType">
+        <xsd:annotation>
+          <xsd:documentation>The communication to be used to reach the Referee.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="yearsKnown">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The number of years to which the Referee has been known to the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="relationship" type="hropen:RelationshipTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The relationship of the Referee to the person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A reference to an attachment related to the Referee and the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Comments related to the Referee and the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Referee" type="hropen:RefereeType" />
+</xsd:schema>

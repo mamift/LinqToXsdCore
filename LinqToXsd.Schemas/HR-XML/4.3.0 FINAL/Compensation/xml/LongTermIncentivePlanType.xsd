@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="LongTermIncentivePlanType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/DateType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NumberType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NameType.xsd" />
+  <xsd:complexType name="LongTermIncentivePlanType">
+    <xsd:annotation>
+      <xsd:documentation>Details of long term incentive plans</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="planId" type="hropen:NameType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="planType">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A set of codes classifying the compensation stock grant types.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Non-Qualified Option" />
+            <xsd:enumeration value="Qualified Option" />
+            <xsd:enumeration value="Restricted Stock / RSUs" />
+            <xsd:enumeration value="Performance-Based Stock" />
+            <xsd:enumeration value="Unconditional Stock" />
+            <xsd:enumeration value="Phantom Stock / SARs" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="eligibleIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Is the Employee eligible for this reward or not</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="grantType">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A set of codes classifying the compensation stock grant types.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Performance" />
+            <xsd:enumeration value="Annual" />
+            <xsd:enumeration value="Signon" />
+            <xsd:enumeration value="Retention" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="grantFrequency" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>Expected frequency of the grant of reward in years</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="grantDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date a grant is awarded to a recipient</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="grantPrice" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The price of the stock unit that is granted to the recipient</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="unitsGrantedQuantity" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>The quantity or number of units granted to the recipient</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="vestingSchedule">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Values that classify the various vesting schedules</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Gradual" />
+            <xsd:enumeration value="Cliff" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="vestingPeriod" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>A representation of the time periods by which the grant is deemed vested and available to the recipient</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="accountingValue" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>A representation of the valuation of the stock based award that is granted to the recipient</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="LongTermIncentivePlan" type="hropen:LongTermIncentivePlanType" />
+</xsd:schema>

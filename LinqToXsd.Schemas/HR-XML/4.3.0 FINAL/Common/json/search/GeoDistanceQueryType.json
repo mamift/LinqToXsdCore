@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "GeoDistanceQueryType",
+    "description": "Type for geo distance queries - radial distance around center geo point.",
+    "type": "object",
+    "properties": {
+        "geoDistance": {
+            "type": "object",
+            "properties": {
+                "propertyPath": {
+                    "description": "Path of the property to which the condition applies.",
+                    "type": "string"
+                },
+                "geoPoint": {
+                    "description": "Requested center (geo point) for the distance calculation.",
+                    "$ref": "../base/GeoType.json#"
+                },
+                "distance": {
+                    "description": "Requested distance condition.",
+                    "type": "object",
+                    "properties": {
+                        "lessThan": {
+                            "type": "number"
+                        },
+                        "lessThanOrEqualTo": {
+                            "type": "number"
+                        },
+                        "equalTo": {
+                            "type": "number"
+                        },
+                        "greaterThanOrEqualTo": {
+                            "type": "number"
+                        },
+                        "greaterThan": {
+                            "type": "number"
+                        },
+                        "unitCode": {
+                            "$ref": "../base/CodeType.json#"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "geoPoint",
+                "distance"
+            ]
+        }
+    }
+}

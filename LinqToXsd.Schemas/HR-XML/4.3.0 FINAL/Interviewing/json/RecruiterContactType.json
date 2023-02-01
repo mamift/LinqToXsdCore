@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RecruiterContactType",
+    "description": "The contact information for a recruiter managing the position.",
+    "allOf": [
+        { "$ref": "../../common/json/base/EntityType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "recruiterName": {
+            "description": "The recruiter's name.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "../../common/json/person/PersonNameType.json#" }
+            ],
+            "required": [ "formattedName" ]
+        },
+        "recruiterContact": {
+            "description": "The phone number, email or other communication method for contacting the requesting recruiter.",
+            "$ref": "../../common/json/communication/CommunicationType.json#"
+        }
+    }
+}

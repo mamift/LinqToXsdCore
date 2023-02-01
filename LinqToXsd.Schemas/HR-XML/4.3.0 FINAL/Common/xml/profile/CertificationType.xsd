@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CertificationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/EffectiveTimePeriodType.xsd" />
+  <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:include schemaLocation="../organization/OrganizationType.xsd" />
+  <xsd:complexType name="CertificationType">
+    <xsd:annotation>
+      <xsd:documentation>A document or confirmation certifying the status or acquirements of the bearer, or his fulfillment of conditions which authorize him to act or practise in a specified way; hence, often equal to a certificate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier to the certificate as defined by the issuing authority.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The common name of the certificate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="type" type="hropen:EntityType">
+        <xsd:annotation>
+          <xsd:documentation>The type of the certificate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="status">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The status of the certificate. While this is an open string, common status include active, expired, pending, suspended.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectiveTimePeriod" type="hropen:EffectiveTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The time period for which the certificate is valid and considered active.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issued" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The most recent issue date of the certificate. This might be of relevance if it differs from the start date of the valid time period or is a renewal of a previous certificate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="firstIssued" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The original issue date of the certificate. Often this is useful when the certificates need to be renewed often, and it is important to know how long the certificate has been held.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issuingAuthority" type="hropen:OrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>The organization that issued the certificate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>References to attachments in the message that provide evidence of the issue or the validity of the license.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Certification" type="hropen:CertificationType" />
+</xsd:schema>

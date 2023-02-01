@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "QuantityType",
+    "description": "A quantity is a counted number of non-monetary units, possibly including fractions.",
+    "type": "object",
+    "properties": {
+        "value": { 
+            "description": "The number of quantity.",
+            "type": "number" 
+        },
+        "unitCode": { 
+            "description": "The unit of quantity.",
+            "$ref": "../codelist/UnitCodeList.json#" 
+        }
+    },
+    "required": [ "value" ]
+}

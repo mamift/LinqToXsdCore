@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="BooleanQueryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="BooleanNotQueryType.xsd" />
+  <xsd:include schemaLocation="BooleanOrQueryType.xsd" />
+  <xsd:include schemaLocation="BooleanAndQueryType.xsd" />
+  <xsd:complexType name="BooleanQueryType">
+    <xsd:annotation>
+      <xsd:documentation>Set of all boolean query types.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="booleanAnd">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="2" maxOccurs="unbounded" name="item" type="hropen:AllQueryType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="booleanOr">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="2" maxOccurs="unbounded" name="item" type="hropen:AllQueryType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="booleanNot" type="hropen:AllQueryType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="BooleanQuery" type="hropen:BooleanQueryType" />
+</xsd:schema>

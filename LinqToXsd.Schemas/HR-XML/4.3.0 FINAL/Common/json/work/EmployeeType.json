@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EmployeeType",
+    "description": "This entire schema has been deprecated. The data has been added to Common/Deployment.  The information about a person and their relationship as an employee.",
+    "definitions": {
+        "SpecialClassificationTypeArray": {
+            "description": "A special classification of the Employee e.g. a VIP, Owner, Highly Compensated, Stock Owner, Executive, Officer, etc.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "description": "A code indicating the special classification.",
+                        "$ref": "../base/CodeType.json#"
+                    },
+                    "indicator": {
+                        "description": "An indicator of the special classification.",
+                        "$ref": "../base/IndicatorType.json#"
+                    },
+                    "percentage": {
+                        "description": "The percentage of a person's allocation that is considered the special classification.",
+                        "$ref": "../base/PercentType.json#"
+                    }
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "../person/PersonBaseType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "securityTag": { "$ref": "../base/IdentifierType.json#" },
+        "positionTypeCode": {
+            "description": "Deprecated. Do Not Use. Use the PositionTypeCode in PositionType or Deployment/PositionType instead.",
+            "$ref": "../codelist/PositionTypeCodeList.json#"
+        },
+        "laborBargainingUnitMemberIndicator": {
+            "description": "Deprecated. Do Not Use. Use the LaborBargainingUnitIndicator in DeploymentType instead.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "specialClassifications": { "$ref": "#/definitions/SpecialClassificationTypeArray" },
+        "specialProvisions": { "type": "string" },
+        "reportingCode": {
+            "description": "Deprecated. Do Not Use. Use the EmployeeReportingCode in DeploymentType instead.",
+            "type": "string"
+        }
+    }
+}

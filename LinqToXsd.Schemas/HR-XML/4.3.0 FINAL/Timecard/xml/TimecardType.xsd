@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="TimecardType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/GeoType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DurationType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/PayCycleIntervalCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/ActionCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/SpecifiedPersonType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/QuantityType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CommentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/EntityType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/organization/PartyInclusion.xsd" />
+  <xsd:include schemaLocation="../../common/xml/pay/PayRateType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/work/StaffingReferenceIdsType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/ResponsibleInclusion.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/BinaryObjectType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/work/ResourceClassificationInclusion.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/PeriodType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:complexType name="TimeWorkedRoundingType">
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="cycleCode" type="hropen:PayCycleIntervalCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="ruleCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="unitCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:simpleType name="StateCodeType">
+    <xsd:annotation>
+      <xsd:documentation>A set of codes classifying the state of a TimeCard.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Raw" />
+      <xsd:enumeration value="Processed" />
+      <xsd:enumeration value="Submitted" />
+      <xsd:enumeration value="Rejected" />
+      <xsd:enumeration value="Approved" />
+      <xsd:enumeration value="Final" />
+      <xsd:enumeration value="Open" />
+      <xsd:enumeration value="Adjusted" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ItemTypeCodeType">
+    <xsd:annotation>
+      <xsd:documentation>Identifies common types of time/work classification</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Regular" />
+      <xsd:enumeration value="Illness" />
+      <xsd:enumeration value="Vacation" />
+      <xsd:enumeration value="SpecialLeave" />
+      <xsd:enumeration value="Holiday" />
+      <xsd:enumeration value="Break" />
+      <xsd:enumeration value="ClockAction" />
+      <xsd:enumeration value="Training" />
+      <xsd:enumeration value="Unscheduled" />
+      <xsd:enumeration value="Compensation" />
+      <xsd:enumeration value="Overtime" />
+      <xsd:enumeration value="Travel" />
+      <xsd:enumeration value="Pickup" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="ItemBase">
+    <xsd:annotation>
+      <xsd:documentation>Common properties used on TimeCardItem and PieceOfWork/Allowance/Expense/Balance</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submitters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:ActionCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="billable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comment" type="hropen:CommentType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="QuantityAmount">
+    <xsd:choice minOccurs="1" maxOccurs="1">
+      <xsd:element name="quantity" type="hropen:QuantityType" />
+      <xsd:element name="amount" type="hropen:AmountType" />
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="PieceWorkType">
+    <xsd:annotation>
+      <xsd:documentation>Contains information relating to renumeration based on count of items produced or serviced.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:ActionCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="billable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comment" type="hropen:CommentType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submitters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="quantity" type="hropen:QuantityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="payRates">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PayRateType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ExpenseType">
+    <xsd:annotation>
+      <xsd:documentation>This allows for the reporting of expenses for reimbursement or payment. TimeCard is not designed as an all-purpose expense-reporting format, but rather is designed to accommodate the type of expenses that are reported and reimbursed in the context of staffing assignments.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:ActionCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="billable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comment" type="hropen:CommentType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submitters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="amount" type="hropen:AmountType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AllowanceType">
+    <xsd:annotation>
+      <xsd:documentation>Allows for the reporting of allowances that may be associated with the particular time worked. For example, some workers may be due per diems to cover expenses incurred during an assignment or may receive allowances to cover the cost of items such as uniforms.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:ActionCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="billable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comment" type="hropen:CommentType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submitters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payRates">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PayRateType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="BalanceType">
+    <xsd:annotation>
+      <xsd:documentation>Allows for the reporting of direct balance values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:ActionCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="billable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comment" type="hropen:CommentType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submitters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="quantity" type="hropen:QuantityType"  />   
+      <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType"  />   
+      
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TimeCardItemType">
+    <xsd:annotation>
+      <xsd:documentation>Contains data on a period of work, time event, expense, or allowance that is being reported within a time card.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:ActionCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="billable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payable">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comment" type="hropen:CommentType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submitters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="managerName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="supervisorName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contactName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="department" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="location" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="costCenter" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="job" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="account" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="project" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="shift" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalOrderNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalReqNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="referenceNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="purchaseOrderNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="purchaseOrderLineItem">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="costAllocation" type="hropen:CostAllocationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="workAllocation" type="hropen:WorkAllocationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:ItemTypeCodeType" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="period" type="hropen:PeriodType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="timeTotal" type="hropen:DurationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="expenseDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="entryDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="entryChangeDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="payRates">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PayRateType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assignmentIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="pieceWork">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PieceWorkType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="allowances">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AllowanceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="expenses">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ExpenseType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="balances">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:BalanceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="geo" type="hropen:GeoType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachment" type="hropen:BinaryObjectType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TimecardType">
+    <xsd:annotation>
+      <xsd:documentation>A record of time worked; associated expenses to be reimbursed; and/or allowances associated with the engagement.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submitters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ResponsibleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="party">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="supplier" type="hropen:PartyType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="customer" type="hropen:PartyType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="requester" type="hropen:PartyType" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="managerName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="supervisorName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contactName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="department" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="location" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="costCenter" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="job" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="account" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="project" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="shift" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalOrderNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalReqNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="referenceNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="purchaseOrderNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="purchaseOrderLineItem">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="costAllocation" type="hropen:CostAllocationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="workAllocation" type="hropen:WorkAllocationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:SpecifiedPersonType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="period" type="hropen:PeriodType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="payRates">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PayRateType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="stateCode" type="hropen:StateCodeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="staffingIds" type="hropen:StaffingReferenceIdsType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="items">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:TimeCardItemType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="geo" type="hropen:GeoType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Timecard" type="hropen:TimecardType" />
+</xsd:schema>

@@ -1,0 +1,62 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "MatchType",
+	"description": "Survey details to match jobs across organization",
+	"type": "object",
+	"properties": {
+		"surveyJobCode": {
+			"description": "The code which represents the survey job",
+			"$ref": "../../common/json/base/CodeType.json#"
+		},
+		"surveyJobTitle": {
+			"description": "The title of the survey job",
+			"type": "string"
+		},
+		"surveyJobDescription": {
+			"description": "A description of the survey job",
+			"type": "string"
+		},
+		"matchPercent": {
+			"description": "A score provided by the person matching the employer job to the survey job for applicability: with 0% meaning no applicability and 100% meaning exact match",
+			"$ref": "../../common/json/base/PercentType.json#"
+		},
+		"surveyJobCodeLevel": {
+			"description": "Code classifying the survey job code levels e.g., 1, 2, 3, 4",
+			"type": "object",
+			"properties": {
+				"title": {
+					"description": "A title that describes the level of a survey job",
+					"type": "string"
+				},
+				"description": {
+					"description": "A description of the level of a survey job",
+					"type": "string"
+				},
+				"code": {
+					"description": "A code representing the level of a survey job",
+					"type": "string"
+				}
+			}
+		},
+		"surveyJobCodeSpeciality": {
+			"description": "Code classifying the survey job code specialities e.g., 'Exec Comp', 'Cash Comp', 'Sales Comp', etc.",
+			"type": "object",
+			"properties": {
+				"title": {
+					"description": "A title representing the specialization of a survey job",
+					"type": "string"
+				},
+				"description": {
+					"description": "A description of the specialization of a survey job",
+					"type": "string"
+				},
+				"code": {
+					"description": "A code representing the specialization of a survey job",
+					"type": "string"
+				}
+			}
+		}
+	},
+	"required": ["surveyJobCode"]
+}

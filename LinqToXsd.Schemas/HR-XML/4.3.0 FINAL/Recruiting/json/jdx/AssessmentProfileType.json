@@ -1,0 +1,37 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "AssessmentProfileType",
+  "description" : "Entity that describes the key characteristics of an assessment administered to candidates for a job.",
+  "type" : "object",
+  "properties" : {
+    "areaAssessed" : {
+      "description" : "Description of the area or domain to be assessed.",
+      "type" : "string"
+    },
+    "assessmentExample" : {
+      "description" : "Resource describing an example assessment.",
+      "type" : "string",
+      "format" : "uri"
+    },
+    "assessmentMethod" : {
+      "description" : "Type of method used to conduct an assessment; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of assessment method types such as the AssessmentMethod vocabulary.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    },
+    "conceptKeyword" : {
+      "description" : "Word or phrase used to refine and describe significant aspects of the entity.",
+      "type" : "string"
+    },
+    "descriptions" : {
+      "description" : "A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "evidenceCategory" : {
+      "description" : "The type of referenced artifact, exam or performance confirming or supporting an assertion; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of evidence types.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    }
+  }
+}

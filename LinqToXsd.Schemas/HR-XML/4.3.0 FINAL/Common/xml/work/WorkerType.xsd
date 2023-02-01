@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.x" id="WorkerType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="WorkLifeCycleType.xsd" />
+  <xsd:include schemaLocation="../person/PersonLegalType.xsd" />
+  <xsd:include schemaLocation="../communication/AddressType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../codelist/ResourceRelationshipCodeList.xsd" />
+  <xsd:include schemaLocation="WorkAssignmentType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/PercentType.xsd" />
+  <xsd:include schemaLocation="WorkRelationshipStatusType.xsd" />
+  <xsd:include schemaLocation="../base/NounType.xsd" />
+  <xsd:include schemaLocation="../codelist/PayCycleIntervalCodeList.xsd" />
+  <xsd:complexType name="WorkerType">
+    <xsd:annotation>
+      <xsd:documentation>Worker is a Person Role and is defined as someone who performs labor for an organization. Worker is an abstraction for other more specific work-related roles, for example, Employee and Contractor. (ADP)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workerId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides a unique identifier to a specific worker (an employer specific identifier).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:PersonLegalType">
+        <xsd:annotation>
+          <xsd:documentation>Information about the person, e.g. name, birthdate, legal ids, marital status, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="establishmentIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Identifiers of the related establishments.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workAssignments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The assignments for the worker. An assignment may override the position and/or job information.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WorkAssignmentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="primaryWorkLocation" type="hropen:AddressType">
+        <xsd:annotation>
+          <xsd:documentation>The primary address where the work is performed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workerTypeCode" type="hropen:ResourceRelationshipCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The relationship of the worker to the organization. Options are Employee, Vendor Employee, Independent Contractor, Volunteer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workRelationshipStatus" type="hropen:WorkRelationshipStatusType">
+        <xsd:annotation>
+          <xsd:documentation>The date and status of the worker in relation to the assignment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="wageHourLawCoverageIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>This determines if a person is covered by wage hour laws. In the US, a person would be considered non-exempt if the indicator is true (they are covered under the law).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="laborBargainingUnitIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if the person is part of a labor bargaining unit, such as a union.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="unemploymentCompensationCoverageIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator of whether the employee is covered by some type of unemployment insurance.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workerCompensationCoverageIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator of whether the employee is covered by some type of worker compensation insurance.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="officerIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether the worker is classified as an officer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="stockOwnerIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether the worker is a stock owner.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="stockOwnerPercentage" type="hropen:PercentType">
+        <xsd:annotation>
+          <xsd:documentation>The percentage of stock ownership.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workerLifeCyle" type="hropen:WorkLifeCycleType">
+        <xsd:annotation>
+          <xsd:documentation>Contains a collection of information about a period of employment, including hire, leaves of absence, and termination.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payCycleIntervalCode" type="hropen:PayCycleIntervalCodeList">
+        <xsd:annotation>
+          <xsd:documentation>How often the pay cycle occurs or how often a person is paid, e.g., weekly, biweekly, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Worker" type="hropen:WorkerType" />
+</xsd:schema>

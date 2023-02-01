@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ResponseMessageBaseInclusion",
+    "description": "A response to a request to process a list of items.",
+    "type": "object",
+    "properties": {
+        "messageId": {
+            "description": "An identifier for the instance of the response message.",
+            "$ref": "../base/IdentifierType.json"
+        },
+        "messageDateTime": {
+            "description": "The date & time that the response message instance was created.",
+            "$ref": "../base/DateTimeType.json"
+        },
+        "requestId": {
+            "description": "The identifier for the request to which a confirm message is related. In the asynchronous processing case, this identifier may be used to refer to the processing job that is servicing a request.",
+            "$ref": "../base/IdentifierType.json"
+        },
+        "requestProcessingStatusCode": {
+            "description": "The processing status code for the request.",
+            "enum": [
+                "Received",
+                "Validated",
+                "Started",
+                "Completed"
+            ]
+        }
+    }
+}

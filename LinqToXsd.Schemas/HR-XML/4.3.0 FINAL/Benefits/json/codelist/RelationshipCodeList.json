@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RelationshipCodeList",
+    "description": "Contains information to describe the dependent, including the relationship between the primary insured and dependent.",
+    "enum": [
+				"AdoptedChild",
+				"Child",
+				"Brother",
+				"Sister",
+				"Mother",
+				"Father",
+				"Spouse",
+				"Exspouse",
+				"Grandmother",
+				"Grandfather",
+				"Grandson",
+				"Granddaughter",
+				"LifePartner",
+	    			"ChildOfDomesticPartner"
+			]
+}

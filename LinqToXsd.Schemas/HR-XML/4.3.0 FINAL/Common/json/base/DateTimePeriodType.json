@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "DateTimePeriodType",
+    "description": "Single period between date/times. Both start and end are required.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "DateTimeOpenEndPeriodType.json#" }
+    ],
+    "required": [ "end" ]
+}

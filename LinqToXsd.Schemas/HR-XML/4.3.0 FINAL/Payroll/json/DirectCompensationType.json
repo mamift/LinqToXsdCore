@@ -1,0 +1,98 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "DirectCompensationType",
+	"description": "The monetary compensation paid to a worker.",
+	"definitions": {
+		"WorkedCompensationAmountType": {
+			"title": "WorkedCompensationAmountType",
+			"description": "Type and monetary value for time worked.",
+			"type": "object",
+			"properties": {
+				"workedPayTypeCode": {
+					"description": "Type of compensation, e.g. holiday, overtime, shift differential, etc.",
+					"$ref": "../../common/json/codelist/PayTypeCodeList.json#"
+				},
+				"description": {
+					"description": "A short phrase further describing the pay type.",
+					"type": "string"
+                },
+				"workedPayAmount": {
+					"description": "The monetary value paid to the worker.",
+					"$ref": "../../common/json/base/AmountType.json#"
+				}
+			}
+		},
+		"TimeOffCompensationAmountType": {
+			"title": "TimeOffCompensationAmountType",
+			"description": "Type and monetary value of the time off.",
+			"type": "object",
+			"properties": {
+				"timeOffPayType": {
+					"description": "Type of compensation, e.g. bereavement, jury duty, sick, etc.",
+					"$ref": "../../common/json/codelist/TimeOffTypeCodeList.json#"
+				},
+				"description": {
+					"description": "A short phrase further describing the time off type.",
+					"type": "string"
+                },
+				"timeOffPayAmount": {
+					"description": "The monetary value paid to the worker.",
+					"$ref": "../../common/json/base/AmountType.json#"
+				}
+			}
+		}
+	},
+	"type": "object",
+	"properties": {
+		"salaryAmount": {
+			"description": "The agreed upon fixed or set monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services, that was not based on hours worked or production level. Salary is commonly paid in fixed intervals, for example, monthly payments of one-twelfth of the annual salary.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalHourlyWageAmount": {
+			"description": "The total monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services based on hourly rates of pay and the number of hours worked. Includes pay for both regular hours (straight-time) and premium hours (overtime, shift differentials) worked.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalPremiumHourlyWageAmount": {
+			"description": "The total monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid to a worker based on a premium hourly rate of pay and the number of premium hours worked. ",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalPaidTimeoffAmount": {
+			"description": "The total monetary amount the employer paid to a worker for any type of absence from work including vacation, sickness, bereavement, maternity, family care, jury duty, education, military duty, administrative time off, sabbatical, or other personal leave. Includes compensatory time off (CTO) when used.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalHolidayPaidTimeOffAmount": {
+			"description": "The total monetary amount a worker was paid for absence from work on days of special religious, cultural, social, or patriotic significance, on which work and business ordinarily cease.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalOtherCompensationAmount": {
+			"description": "The total monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid to a worker other than salary, hourly wages, and paid leave. Includes, but is not limited to bonuses, commissions, lump-sum, residuals, severance, tips, and incentive, piecework, production-based payments, and buy back of accrued leave. ",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"regularHourlyWagesAmount": {
+			"description": "The monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services.",
+			"$ref": "#/definitions/WorkedCompensationAmountType"
+		},
+		"premiumHourlyWagesAmount": {
+			"description": "The monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/WorkedCompensationAmountType"
+			}
+		},
+		"paidTimeOffAmount": {
+			"description": "The monetary amount the employer paid to a worker for any type of absence from work including vacation, sickness, bereavement, maternity, family care, jury duty, education, military duty, administrative time off, sabbatical, or other personal leave. Includes compensatory time off (CTO) when used.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/TimeOffCompensationAmountType"
+			}
+		},
+		"otherCompensationAmount": {
+			"description": "The monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid to a worker other than salary, hourly wages, and paid leave. Includes, but is not limited to bonuses, commissions, lump-sum, residuals, severance, tips, and incentive, piecework, production-based payments, and buy back of accrued leave. ",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/WorkedCompensationAmountType"
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="BenefitsType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="EnrollmentType.xsd" />
+  <xsd:include schemaLocation="CensusType.xsd" />
+  <xsd:include schemaLocation="PlanSetupType.xsd" />
+  <xsd:complexType name="BenefitsType">
+    <xsd:annotation>
+      <xsd:documentation>Represents the Benefits Specification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="census" type="hropen:CensusType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="enrollment" type="hropen:EnrollmentType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="planSetup" type="hropen:PlanSetupType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Benefits" type="hropen:BenefitsType" />
+</xsd:schema>

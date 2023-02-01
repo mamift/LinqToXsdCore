@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "GeoPolygonType",
+    "description": "A geographical polygon - consisting of an ordered set of geographical points. A minimum of 4 points is required. The first and the last position should be identical to be a valid polygon.",
+    "type": "array",
+    "items": { "$ref": "../base/GeoType.json#" },
+    "minItems": 4
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="RecruitingType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="CandidateType.xsd" />
+  <xsd:include schemaLocation="PositionOpeningType.xsd" />
+  <xsd:complexType name="RecruitingType">
+    <xsd:annotation>
+      <xsd:documentation>Represents the Recruiting Specification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="candidate" type="hropen:CandidateType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionOpening" type="hropen:PositionOpeningType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Recruiting" type="hropen:RecruitingType" />
+</xsd:schema>

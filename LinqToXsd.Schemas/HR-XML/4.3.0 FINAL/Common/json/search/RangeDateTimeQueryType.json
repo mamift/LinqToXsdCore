@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RangeDateTimeQueryType",
+    "description": "Range query type based on date and time data.",
+    "type": "object",
+    "properties": {
+        "rangeDateTime": {
+            "type": "object",
+            "properties": {
+                "propertyPath": {
+                    "description": "Path of the property to which the condition applies.",
+                    "type": "string"
+                },
+                "lessThan": {
+                    "description": "Value used for a 'less-than' condition.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                },
+                "lessThanOrEqualTo": {
+                    "description": "Value used for a 'less-than-or-equal-to' condition.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                },
+                "equalTo": {
+                    "description": "Value used for an 'equal-to' condition.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                },
+                "greaterThanOrEqualTo": {
+                    "description": "Value used for a 'greater-than-or-equal-to' condition.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                },
+                "greaterThan": {
+                    "description": "Value used for a 'greater-than' condition.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                }
+            }
+        }
+    }
+}

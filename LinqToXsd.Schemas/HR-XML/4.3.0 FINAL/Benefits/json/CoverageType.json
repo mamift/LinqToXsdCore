@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CoverageType",
+    "description": "Describes the coverage details such as plan and group id, and the organization carrying the plan.",
+    "type": "object",
+    "properties": {
+        "id": { "$ref": "../../common/json/base/IdentifierType.json#" },
+        "electedPlanId": { "$ref": "../../common/json/base/IdentifierType.json#" },
+        "groupNumberId": { "$ref": "../../common/json/base/IdentifierType.json#" },
+        "carrierOrganization": { "$ref": "../../common/json/organization/OrganizationReferenceType.json#" },
+        "deductionInstructions": {
+            "description": "Instructions for benefits deductions.",
+            "type": "array",
+            "items": {
+                "$ref": "../../common/json/pay/RemunerationOrDeductionType.json#" 
+            }
+        }
+    }
+}

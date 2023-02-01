@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PublicationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/LanguageCodeList.xsd" />
+  <xsd:include schemaLocation="../base/YearType.xsd" />
+  <xsd:include schemaLocation="../codelist/PublicationTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../communication/LocationType.xsd" />
+  <xsd:include schemaLocation="../base/CommentType.xsd" />
+  <xsd:include schemaLocation="EventType.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:complexType name="PublicationType">
+    <xsd:annotation>
+      <xsd:documentation>Basic type that contains all properties common to publication, which could be print or electronic.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier of the publication.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="type" type="hropen:PublicationTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Type of publication, such as a book or article.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="date" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date that the publication was published.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="title">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The title of the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="abstract">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A summary or abstract of the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contributors">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of contributors to the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="name">
+                    <xsd:simpleType>
+                      <xsd:annotation>
+                        <xsd:documentation>The name of the contributor.</xsd:documentation>
+                      </xsd:annotation>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="role">
+                    <xsd:simpleType>
+                      <xsd:annotation>
+                        <xsd:documentation>The role of the contributor.</xsd:documentation>
+                      </xsd:annotation>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="copyrights">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of copyright holders and year when the copyright was issued.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="owner">
+                    <xsd:simpleType>
+                      <xsd:annotation>
+                        <xsd:documentation>The owner(s) of the copyright.</xsd:documentation>
+                      </xsd:annotation>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="year" type="hropen:YearType">
+                    <xsd:annotation>
+                      <xsd:documentation>The year when the copyright was issued to the owner.</xsd:documentation>
+                    </xsd:annotation>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A reference to an attachment related to the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="languageCode" type="hropen:LanguageCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The language of the publication.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Comments related to the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="journal">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The journal where the publication was published.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issn">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The ISSN (International Standard Serial Number) issued for the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="volume">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The volume of the publication if the publication is part of a series.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The issue of the publication if the publication is part of a series.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="pages">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The pages related to the publication if the published material is only part of a larger work.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="edition">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The edition or version number of the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="chapters">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The chapters related to the publication if the published material is only part of a larger work.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="isbn">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The ISBN representing the publication. ISBN is an International Standard Book Number, which is typically 13 digits.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="publisher">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The publisher of the publication.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="publisherLocation" type="hropen:LocationType">
+        <xsd:annotation>
+          <xsd:documentation>The location of the publisher of the publication.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="event" type="hropen:EventType">
+        <xsd:annotation>
+          <xsd:documentation>The event that is related to a publication (i.e. a book launch or a conference).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Publication" type="hropen:PublicationType" />
+</xsd:schema>

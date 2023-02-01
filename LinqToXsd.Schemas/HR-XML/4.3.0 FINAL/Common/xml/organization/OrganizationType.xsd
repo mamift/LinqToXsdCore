@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="OrganizationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../base/AmountType.xsd" />
+  <xsd:include schemaLocation="EstablishmentActivityType.xsd" />
+  <xsd:include schemaLocation="../person/SpecifiedPersonType.xsd" />
+  <xsd:include schemaLocation="OrganizationReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/NumberType.xsd" />
+  <xsd:include schemaLocation="../base/StatusType.xsd" />
+  <xsd:include schemaLocation="../base/TextType.xsd" />
+  <xsd:simpleType name="GeographicResponsibilityCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that classify the geographic level at which the organization operates.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Global" />
+      <xsd:enumeration value="National" />
+      <xsd:enumeration value="Regional" />
+      <xsd:enumeration value="Local" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OwnershipTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that classify the ownership of the organization.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Public" />
+      <xsd:enumeration value="Private" />
+      <xsd:enumeration value="NonProfit" />
+      <xsd:enumeration value="Government" />
+      <xsd:enumeration value="Joint Venture" />
+      <xsd:enumeration value="Mutual" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="OrganizationType">
+    <xsd:annotation>
+      <xsd:documentation>Information to identify and reference a specific organization.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="responsibilityCode" type="hropen:ResponsibilityCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The level or the responsibility at which the organization operates.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType">
+        <xsd:annotation>
+          <xsd:documentation>The methods of communication by which the organization can be contacted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="taxId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A government assigned identifier to distinguish an organization. This typically is a country-level tax code. For example, Federal Employer Identification Number (FEIN) in the USA.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="formerTaxId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The former government assigned identifier to distinguish organization. This typically is a country-level tax code. For example, Federal Employer Identification Number (FEIN) in the USA.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="legalId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier of the organization for legal purposes. This could be a company, state, or other kind of identifier. For example, Data Universal Numbering System, abbreviated as DUNS.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="industryCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Deprecated. Use IndustryIdentifiers instead.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CodeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="industryIdentifiers">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The types of industry to which the organization belongs. The Industry identifiers could be referenced to a standard taxonomy (such as NAICS) or a custom taxonomy.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="headCount" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>The number of employees in the organization. Depending on the organization, this could include full-time, part-time and contractors.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="revenue" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The amount of revenue of the organization, typically from the most recent fiscal year.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>A description or quick summary of the organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="geographicResponsibilityCode" type="hropen:GeographicResponsibilityCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code that classifies the geographic level at which the organization operates.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ownershipType" type="hropen:OwnershipTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code that classifies the ownership of the organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organizationActivity">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the business activities conducted at the organization, listed by approximate percentage of revenue or sales associated with each activity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EstablishmentActivityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="stockSymbol" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The stock symbol for the organization. The stock exchange symbol should also be included. Example: NYSE:XOM representing Exxon Mobile on the New York Stock Exchange.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workEnvironmentCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code to represent the working environment of the organization. E.g., Office, Workshop, Factory, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contacts">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Specific people at the organization who are contacts.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SpecifiedPersonType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="tradeName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Trade name of the organizationor doing-business-as (DBA).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusHistory">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A history of the organization statuses; e.g the date and code. e.g. sold, temporarily closed, permanently closed, merged, acquired, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:StatusType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="domainName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The internet domain to help identify the organization and a reference to find additional information.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="parentCompanyTaxId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The tax ID of the parent company if this company is a wholly owned subsidiary of another company.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="parentCompanyName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The legal name of the parent company if this company is a wholly owned subsidiary of another company.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Organization" type="hropen:OrganizationType" />
+</xsd:schema>

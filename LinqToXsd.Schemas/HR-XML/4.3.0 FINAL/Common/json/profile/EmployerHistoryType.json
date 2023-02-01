@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EmployerHistoryType",
+    "description": "The prior and current details of a person's employment, work, or relevant experience such as might be reported within a professional profile, CV, resume, employment application, or similar document. Details of a particular tenure of employment or work with an organization.",
+    "definitions": {
+        "PositionHistoryType": {
+            "title": "PositionHistoryType",
+            "description": "The details about a persons tenure within position.",
+            "allOf": [
+                { "$ref": "BaseHistoryType.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "The title that the person held for this position.",
+                    "type": "string"
+                },
+                "resourceRelationshipCode": {
+                    "description": "The relationship of the person to the organization - an employee or an employee of another company (contract or temporary staffing).",
+                    "$ref": "../codelist/ResourceRelationshipCodeList.json#"
+                },
+                "organization": {
+                    "description": "The department, sub-company, office, or other sub-organization to which the person was employed.",
+                    "$ref": "../organization/OrganizationType.json#"
+                },
+                "location": {
+                    "description": "The location of the position to which the person was employed.",
+                    "$ref": "../communication/LocationType.json#"
+                },
+                "jobCategories": {
+                    "description": "The job categories under which the position is classified. These may be international, national, industry, or company categories as defined by the entity owner.",
+                    "type": "array",
+                    "items": { "$ref": "../base/EntityType.json#" }
+                },
+                "jobLevels": {
+                    "description": "The job levels under which this position is classified. These may be international, national, industry or company levels as defined by the entity owner.",
+                    "type": "array",
+                    "items": { "$ref": "../base/EntityType.json#" }
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "BaseHistoryType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "organization": {
+            "description": "The specific organization to which the person held positions or performed work.",
+            "$ref": "../organization/OrganizationType.json#"
+        },
+        "positionHistories": {
+            "description": "The set of positions that the person held at the organization.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/PositionHistoryType" }
+        }
+    }
+}

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="DeploymentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/RateType.xsd" />
+  <xsd:include schemaLocation="../base/QuantityType.xsd" />
+  <xsd:include schemaLocation="../profile/LicenseType.xsd" />
+  <xsd:include schemaLocation="../base/RatioType.xsd" />
+  <xsd:include schemaLocation="../codelist/ResourceRelationshipCodeList.xsd" />
+  <xsd:include schemaLocation="../profile/CertificationType.xsd" />
+  <xsd:include schemaLocation="../base/PercentType.xsd" />
+  <xsd:include schemaLocation="../organization/OrganizationType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/DurationType.xsd" />
+  <xsd:include schemaLocation="../organization/WorkLocationType.xsd" />
+  <xsd:include schemaLocation="ScheduleType.xsd" />
+  <xsd:include schemaLocation="../codelist/AssignmentReasonCodeList.xsd" />
+  <xsd:include schemaLocation="../codelist/CountryCodeList.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="JobType.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:include schemaLocation="../base/EffectiveTimePeriodType.xsd" />
+  <xsd:include schemaLocation="../communication/CommunicationType.xsd" />
+  <xsd:include schemaLocation="../codelist/WorkerAssignmentSourceCodeList.xsd" />
+  <xsd:include schemaLocation="../codelist/PayRateIntervalCodeList.xsd" />
+  <xsd:include schemaLocation="PositionType.xsd" />
+  <xsd:complexType name="WorkerAssignmentSourceType">
+    <xsd:annotation>
+      <xsd:documentation>Defines the source of the worker and related assignment. For example, the source might be expatriate with the home country in Germany but the person is working in Belgium.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="sourceCode" type="hropen:WorkerAssignmentSourceCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Describes the worker relationship to their native country; e.g. Domestic, Inpatriate, Expatriate, Local National, Third Country National</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="homeCountry" type="hropen:CountryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The native country of the person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="hostCountry" type="hropen:CountryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The country where the person is working.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="SpecialClassificationType">
+    <xsd:annotation>
+      <xsd:documentation>A special classification of the Employee e.g. a VIP, Owner, Highly Compensated, Stock Owner, Executive, Officer, etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code indicating the special classification.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="indicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator of the special classification.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentage" type="hropen:PercentType">
+        <xsd:annotation>
+          <xsd:documentation>The percentage of a person's allocation that is considered the special classification.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="EmployeeReportingCodeType">
+    <xsd:annotation>
+      <xsd:documentation>Employee Reporting Code Type Information.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="type">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Type of Reporting Code Example, Division, Location, Class</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Reporting Code</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DeploymentType">
+    <xsd:annotation>
+      <xsd:documentation>Contains a collection of information about the work of a human resource within an employment or work context. Deployment details include information about a resource's job, position, work schedule, assignment entry reason, as well as information identifying the organization and/or organizational sub-units associated with the deployment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="deploymentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides a unique identifier to a specific deployment. This may be used when a person has multiple deployments within an organization. For example, a coach and math teacher at a school.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workerAssignmentSource" type="hropen:WorkerAssignmentSourceType">
+        <xsd:annotation>
+          <xsd:documentation>Defines the source of the worker and related assignment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workLocation" type="hropen:WorkLocationType">
+        <xsd:annotation>
+          <xsd:documentation>The location of the workers assignment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType">
+        <xsd:annotation>
+          <xsd:documentation>Contact information, such as phone, address, etc. for the organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="resourceRelationshipCode" type="hropen:ResourceRelationshipCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Describes the relationship between the employer and worker, e.g. Employee, Vendor Employee.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organizationIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="job" type="hropen:JobType">
+        <xsd:annotation>
+          <xsd:documentation>Represents the specific job (position) at an organization and related identifiers and classifications.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="position" type="hropen:PositionType">
+        <xsd:annotation>
+          <xsd:documentation>Defines a position and related identifiers.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scheduledHours" type="hropen:RateType">
+        <xsd:annotation>
+          <xsd:documentation>Do Not Use. This property will be removed in the next major release. Please use ScheduleHours property instead.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scheduleHours" type="hropen:QuantityType">
+        <xsd:annotation>
+          <xsd:documentation>The hours a person is scheduled to work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workSchedule" type="hropen:ScheduleType">
+        <xsd:annotation>
+          <xsd:documentation>The schedule a person is planned to work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assignmentReasonCode" type="hropen:AssignmentReasonCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The reason a person is assigned to the position, e.g. Hire, Transfer, Promotion, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fullTimeEquivalentRatio" type="hropen:RatioType">
+        <xsd:annotation>
+          <xsd:documentation>The number of total hours worked divided by the maximum number of compensable hours in a full-time schedule as defined by law.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectivePeriod" type="hropen:EffectiveTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The period the deployment is effective.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employeeReportingCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Deprecated. Do Not Use. Use the employeeReportingCodes array instead.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employeeReportingCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Allows further classification of the employee using employer or program-specific codes and controlled vocabularies. This information may be collected to use for return reporting back to the employer.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EmployeeReportingCodeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="securityTag" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="specialClassifications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A special classification of the Employee.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SpecialClassificationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="specialProvisions">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Any special provisions for the Employee.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="wageHourLawCoverageCountryCode" type="hropen:CountryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The country the wage hour laws pertain to.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="wageHourLawCoverageIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>This determines if a person is covered by wage hour laws. In the US, a person would be considered non-exempt if the indicator is true (they are covered under the law).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="laborBargainingUnitIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if the person is part of a labor bargaining unit, such as a union.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="laborBargainingUnitCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Code of the labor bargaining unit; e.g. Unison.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="laborBargainingUnitMemberId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The person's id within the labor bargaining unit.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="newHireProbationaryIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if the person is a new hire.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="newHireProbationaryDuration" type="hropen:DurationType">
+        <xsd:annotation>
+          <xsd:documentation>The length of the probation for the new hire; e.g. Hire is on probation for three months from start date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>The organization the person is working for.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="license" type="hropen:LicenseType">
+        <xsd:annotation>
+          <xsd:documentation>Deprecated. Do Not Use. Use the licenses array instead.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="licenses">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Any licenses the person carries for the related position.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:LicenseType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="certification" type="hropen:CertificationType">
+        <xsd:annotation>
+          <xsd:documentation>Deprecated. Do Not Use. Use the certifications array instead.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="certifications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Any certifications the person carries for the related position.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CertificationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Active" />
+            <xsd:enumeration value="Inactive" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusEffectiveDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The status effective date of this deployment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="intervalCode" type="hropen:PayRateIntervalCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The frequency at which an earning is 'earned'. E.g. how often the worker is paid the associated earning.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Deployment" type="hropen:DeploymentType" />
+</xsd:schema>

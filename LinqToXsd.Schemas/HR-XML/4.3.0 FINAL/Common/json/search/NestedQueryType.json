@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "NestedQueryType",
+    "description": "Type to implement nested queries.",
+    "type": "object",
+    "properties": {
+        "nested": {
+            "type": "object",
+            "properties": {
+                "commonPropertyPath": {
+                    "description": "Common property path that refers to the nested structure instance.",
+                    "type": "string"
+                },
+                "query": {
+                    "description": "Actual query conditions.",
+                    "$ref": "AllQueryType.json#"
+                }
+            },
+            "required": [
+                "query"
+            ]
+        }
+    }
+}

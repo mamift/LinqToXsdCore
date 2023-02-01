@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RemunerationRangeType",
+    "description": "The minimum and maximum range of work compensation.",
+    "type": "object",
+    "properties": {
+        "typeCode": {
+            "description": "The type of remuneration (e.g. BasePay, Bonus).",
+            "$ref": "../codelist/PayTypeCodeList.json#"
+        },
+        "referenceAmount": {
+            "description": "A reference to an associated monetary amount. A monetary quantity. An attribute is available to express the currency in which the amount is expressed.",
+            "$ref": "../base/AmountType.json#"
+        },
+        "minimumAmount": {
+            "description": "The minimum amount a person is willing to accept or an organization is willing to pay for a position.",
+            "$ref": "../base/AmountType.json#"
+        },
+        "maximumAmount": {
+            "description": "The maximum amount a person is willing to accept or an organization is willing to pay for a position.",
+            "$ref": "../base/AmountType.json#"
+        },
+        "intervalCode": {
+            "description": "An interval of time or other basis used to express a rate of pay or remuneration.",
+            "$ref": "../codelist/PayRateIntervalCodeList.json#"
+        }
+    }
+}

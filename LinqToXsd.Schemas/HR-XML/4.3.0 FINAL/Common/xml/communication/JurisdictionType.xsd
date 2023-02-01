@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="JurisdictionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/CountryCodeList.xsd" />
+  <xsd:include schemaLocation="../communication/AddressComponentType.xsd" />
+  <xsd:complexType name="JurisdictionType">
+    <xsd:annotation>
+      <xsd:documentation>Defines a geographical area and associated legal or cultural context.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="countryCode" type="hropen:CountryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Two letter ISO Country code.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="city">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>City for the jurisdiction.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Subdivision for the jurisdiction, e.g. Province, State, County, Parish.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Jurisdiction" type="hropen:JurisdictionType" />
+</xsd:schema>

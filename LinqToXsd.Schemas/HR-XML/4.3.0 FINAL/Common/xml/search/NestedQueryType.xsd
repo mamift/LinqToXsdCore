@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="NestedQueryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AllQueryType.xsd" />
+  <xsd:complexType name="NestedQueryType">
+    <xsd:annotation>
+      <xsd:documentation>Type to implement nested queries.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="nested">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="commonPropertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Common property path that refers to the nested structure instance.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="query" type="hropen:AllQueryType">
+              <xsd:annotation>
+                <xsd:documentation>Actual query conditions.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="NestedQuery" type="hropen:NestedQueryType" />
+</xsd:schema>

@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EducationDegreeGrantedStatusCodeList",
+    "description": "Values that classify the education degree granted status.",
+    "enum": [
+        "Granted",
+        "InProgress",
+        "Postponed",
+        "NotGranted"
+    ],
+    "enumNames": [
+        "Granted",
+        "In Progress",
+        "Postponed",
+        "Not Granted"
+    ]
+}

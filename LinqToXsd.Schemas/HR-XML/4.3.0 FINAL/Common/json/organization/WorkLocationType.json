@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "WorkLocationType",
+    "description": "Work location schema.",
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],    
+    "type": "object",
+    "properties": {
+        "typeCode": { 
+            "description" : "A code classifying the work location type e.g., Distribution center, Headquarters, Plant, etc.",
+            "$ref": "../base/CodeType.json#" 
+        },
+        "virtualWorkerIndicator": { "$ref": "../base/IndicatorType.json#" },
+        "fieldRemoteWorkerIndicator": { "$ref": "../base/IndicatorType.json#" },
+        "address": { "$ref": "../communication/AddressType.json#" },
+        "description": { "$ref": "../base/TextType.json#" }
+    }
+}

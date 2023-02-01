@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="JobType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/QuantityType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:complexType name="JobType">
+    <xsd:annotation>
+      <xsd:documentation>A job serves as a template for more specifically defined positions and assignments in a company, in part, to provide equitable opportunity for similar work done across disparate business units inside and outside the organization</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The id of the job.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="title">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The title of a job.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the job category code. Examples include Officials And Managers, Professionals, Technicians, Sales, Official And Clerical, Craft Worker Skilled, Operative Semi-Skilled, Laborers Unskilled, Service Workers, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobFunction" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the job function e.g., HR, Finance, Marketing, Sales, Product Development, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="planCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Identifies a specific salary structure or program used either throughout, or in specific segments of, an enterprise.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="gradeCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Defines the salary range or band that a job falls within, based on the formal structure. Formal pay structures are less common today than in the past, but remain common in certain sectors, such as in public-sector employment and in employment covered by collective bargaining agreements.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="stepCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Pinpoints a job's specific level or point within a salary range or band.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="managerIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Specifies if the job is at the management level.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="managerLevel">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>If this is a manager level job, this describes the type of management level, ie. Supervisor, First Line, Senior Officer, CEO, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="wageHourLawCoverageIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>This determines if a person is covered by wage hour laws. In the US, a person would be considered non-exempt if the indicator is true (they are covered under the law).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="standardHours" type="hropen:QuantityType">
+        <xsd:annotation>
+          <xsd:documentation>The typical hours required for this job. For example, 40 hour per week or 2080 hours per year.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="occupationId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Classifies workers into occupational categories for the purpose of collecting, calculating, or disseminating data.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobResponsibilities">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Describes the tasks and responsibilities of a job.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredEducationAndExperience">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Describes the required education and experience of a job.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredCompetencyIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Identifiers for the essential knowledge, skills, and abilities required to perform the job at the organization.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The description of a job.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Job" type="hropen:JobType" />
+</xsd:schema>

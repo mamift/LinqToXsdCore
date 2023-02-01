@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "LifeCoverageStatusCodeList",
+    "description": "Life Coverage Status Code List.",
+    "enum": [
+			"Member is active",
+            "Premium waived due to disability"
+    ]
+}

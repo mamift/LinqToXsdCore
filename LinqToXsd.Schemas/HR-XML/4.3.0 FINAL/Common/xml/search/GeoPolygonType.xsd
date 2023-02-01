@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="GeoPolygonType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/GeoType.xsd" />
+  <xsd:complexType name="GeoPolygonType">
+    <xsd:annotation>
+      <xsd:documentation>A geographical polygon - consisting of an ordered set of geographical points. A minimum of 4 points is required. The first and the last position should be identical to be a valid polygon.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="4" maxOccurs="unbounded" name="item" type="hropen:GeoType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GeoPolygon" type="hropen:GeoPolygonType" />
+</xsd:schema>

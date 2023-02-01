@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PositionQuestionsType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/EntityType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CommentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/communication/WebType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NumberType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DurationType.xsd" />
+  <xsd:complexType name="QuestionType">
+    <xsd:annotation>
+      <xsd:documentation>Includes the questions to be asked during an interview.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="questionText">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="mediaURL" type="hropen:WebType">
+        <xsd:annotation>
+          <xsd:documentation>The media URL if the question if the question is to be presented in some form of media.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="responseType">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>video, audio, essay, multiple-choice, multiple-select, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="responsePrepTimeSeconds" type="hropen:DurationType">
+        <xsd:annotation>
+          <xsd:documentation>How long after question presentation before the candidate must start answering the question.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maxResponseTimeSeconds" type="hropen:DurationType">
+        <xsd:annotation>
+          <xsd:documentation>How long does the user have to answer the question once presented to them.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maxResponseLength" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>What is the maximum length of the response? Units will be a number representing the number of seconds or characters.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rerecordCount" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>Can the user rerecord their answer and if so, how many times? If not present option left to the interviewing system.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="questionContext">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The context for the question. Typically used with a group of questions related to a scenario.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reviewType">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>If reviewers can review by question, what type of review (text, multiple choice, multiple select).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="responseChoice">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>If multiple choice or multiple select, the collection of possible responses.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ChoiceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reviewChoice">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>xxx.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ChoiceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rankingChoice">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>xxx.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ChoiceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ChoiceType">
+    <xsd:annotation>
+      <xsd:documentation>Provides a choice for the response or review.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="text">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The score for the selection if provided automated scoring for multiple-select or multiple-choice answers</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The score for the selection if provided automated scoring for multiple-select or multiple-choice answers.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PositionQuestionsType">
+    <xsd:annotation>
+      <xsd:documentation>The collection of questions for each interview type in which a candidate may participate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewFormatType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The type of interview (asynchronous video, asynchronous audio, live video, live audio, in-person).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="questions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The collection of questions for a specific interview type.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QuestionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="defaultRerecordCount" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>The number of times an answer may be rerecorded.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Additional information in support of position questions, such as a URL to interviewing system.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PositionQuestions" type="hropen:PositionQuestionsType" />
+</xsd:schema>

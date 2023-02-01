@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ShiftCompensationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/PercentType.xsd" />
+    <xsd:complexType name="ShiftCompensationType">
+        <xsd:annotation>
+            <xsd:documentation>Details of Shift Compensation</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="type" type="hropen:CodeType">
+                <xsd:annotation>
+                    <xsd:documentation>A code that classifies ShiftCompensationType e.g., 'Base Pay','Variable Pay', 'Commission','Bonus','Short Term Incentive','Shift Pay','OnCall','Hazard','Allowance'</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="differential">
+                <xsd:complexType>
+                    <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="flatPremiumAmount" type="hropen:AmountType">
+                            <xsd:annotation>
+                                <xsd:documentation>A fixed amount paid based on working a shift</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="hourlyBaseRatePercent" type="hropen:PercentType">
+                            <xsd:annotation>
+                                <xsd:documentation>An amount paid based on the number of hours worked during a shift</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="bonusSupplement" type="hropen:AmountType">
+                            <xsd:annotation>
+                                <xsd:documentation>An additional amount paid based in the form of a bonus for working a shift</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:all>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="ShiftCompensation" type="hropen:ShiftCompensationType" />
+</xsd:schema>

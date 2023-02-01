@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CandidateRelationshipCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="CandidateRelationshipCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that classify the relationship of a candidate to a (potential) employer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Applicant" />
+      <xsd:enumeration value="Employee" />
+      <xsd:enumeration value="Intern" />
+      <xsd:enumeration value="Alumnus" />
+      <xsd:enumeration value="Contractor" />
+      <xsd:enumeration value="VendorEmployee" />
+      <xsd:enumeration value="RelatedCompanyEmployee" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="CandidateRelationshipCode" type="hropen:CandidateRelationshipCodeList" />
+</xsd:schema>

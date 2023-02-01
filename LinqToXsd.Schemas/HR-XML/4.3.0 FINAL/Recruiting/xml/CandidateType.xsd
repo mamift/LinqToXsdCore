@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="CandidateType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="TravelType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/PersonLegalInclusion.xsd" />
+  <xsd:include schemaLocation="../../common/xml/communication/CommunicationType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/pay/RemunerationPackageType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/communication/AddressType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/PersonBaseType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DurationType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/MeasureType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/PositionTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/CareerLevelCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/process/ProcessHistoryType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/LanguageCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/work/WorkLifeCycleType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/EntityType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/PersonPhysicalInclusion.xsd" />
+  <xsd:include schemaLocation="../../common/xml/work/ScheduleType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/PositionScheduleTypeCodeList.xsd" />
+  <xsd:include schemaLocation="RelocationType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="RemoteWorkType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/organization/OrganizationType.xsd" />
+  <xsd:include schemaLocation="codelist/CandidateRelationshipCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/profile/PersonProfileInclusion.xsd" />
+  <xsd:complexType name="CandidatePersonType">
+    <xsd:annotation>
+      <xsd:documentation>A collection of demographic and personal data about a candidate - a person being considered for, or who has otherwise been associated with, a position opening or resource requirement.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="legalId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The legal identifier of a person. The issuer is most likely a country or state.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="previousLegalId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The previous legal identifier of a person. The issuer is most likely a country or state.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="birthDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The birth date of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="gender" type="hropen:GenderCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The gender of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="citizenship">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The citizenships that a person holds. This is a legal citizenship in a country (as opposed to nationality which may or may not be a country).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CountryCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="residenceCountry">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The country (or countries) where a person currently resides.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CountryCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="militaryStatus">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The military status of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ethnicity" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>The ethnicity (or ethnicities) of a person. A country may define which of these terms (race, nationality, ethnicity) be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their ethnicity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="name" type="hropen:PersonNameType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="primaryLanguage" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="height" type="hropen:MeasureType">
+        <xsd:annotation>
+          <xsd:documentation>The height of the person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="weight" type="hropen:MeasureType">
+        <xsd:annotation>
+          <xsd:documentation>The weight of the person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disability" type="hropen:DisabilityType">
+        <xsd:annotation>
+          <xsd:documentation>A type of disability that a person has.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="tobaccoUserIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator that a person is a tobacco user.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="hairColor">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The color of the hair of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="eyeColor">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The color of the eyes of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="identifyingMarks" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of identifying marks of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="age">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The age of a person (in years).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="bloodType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The blood type of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="passportId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>DEPRECATED - Use Legal Documents Property</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fatherName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The surname of the father of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="motherName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The surname of the mother of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="race">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The identified race(s) of the person. A country may define which of these terms (race, nationality, ethnicity) will be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their race.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="birthPlace">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The birth place of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="deathDate" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>If the person is deceased, the legal date that the person died.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="nationality">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The nationality (or nationalities) of the person. A country may define which of these terms (race, nationality, ethnicity) be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their nationality.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maritalStatus">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The marital status of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maritalStatusDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date for the marital status of the person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="visa">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>DEPRECATED - Use Legal Documents Property</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="religion">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The religions of the person of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="studentType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The type of student (if the person is a student). Typically used to indicate 'full-time' or 'part-time' status.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="studentIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator as to whether the individual currently is enrolled as a student within a specific class of educational institution. This is component is attributed with effective dating.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="studentStatus" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The status of the student (if the person is a student). Typically used to indicate special states such as 'Suspended'.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="legalDocuments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Legal Documents.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:LegalDocumentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employmentPermits">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The permissions of a person to work (within an administrative unit).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EmploymentPermitType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CandidateProfileType">
+    <xsd:annotation>
+      <xsd:documentation>Contains structured information about a candidate, including information about their past experiences (Work History, Education History, etc.). This information can be used for evaluation or submission of candidacy for a position opening or resource requirement.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="profileName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name given to the profile.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="languageCode" type="hropen:LanguageCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The primary language of the content of the profile.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="education">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The education history of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EducationAttendanceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employment">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The employment history of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EmployerHistoryType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="militaryService">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The military history of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:MilitaryServiceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="licenses">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The licenses that the person holds.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:LicenseType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="certifications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The certifications that the person holds.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CertificationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="patents">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The patents with which the person is involved.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PatentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="publications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The publications with which the person is involved.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PublicationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="qualifications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The competencies of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PersonCompetencyType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="affiliations">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The organizations with which the person is affiliated.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:OrganizationAffiliationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="securityCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The security credentials that the person holds.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CertificationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="references">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The references of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RefereeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachments or online references related to the person's profile.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="profileId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The primary identifier of the candidate profile. This should be the identifier assigned by the owner of the data.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>An array of other identifiers for the candidate profile. These may be identifiers assigned by other trading partners or third party systems.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="personAvailability" type="hropen:PersonAvailabilityType">
+        <xsd:annotation>
+          <xsd:documentation>The availability of this profile to be considered for work assignments.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="processingInformation">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Instructions to a third party on how this profile should be processed.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="distributionGuidelines" type="hropen:DistributionGuidelinesType">
+        <xsd:annotation>
+          <xsd:documentation>Instructions to a third party on how this profile should be distributed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="associatedPositionOpenings">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The positions in which this candidate is associated. This could be due to application or source activities.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AssociatedPositionOpeningType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="objective">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The objective of the candidate in finding appropriate employment. A brief statement on career and position goals.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="executiveSummary">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A concise section describing the experience of the candidate, or an introduction to the candidate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employerPreferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of information about a candidate's preferences in an ideal employer or company.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EmployerPreferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionPreferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of information about a candidate's preferences in an ideal position or role.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PositionPreferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="candidateRelationships">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of information about a candidate's relationship to the (potential) employer.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CandidateRelationshipType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="candidateSources">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of information about a candidate's sources.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CandidateSourceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="applicationProcessHistory" type="hropen:ProcessHistoryType">
+        <xsd:annotation>
+          <xsd:documentation>Information about the application process history.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workLifeCycles">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Information to specify details on the recruiting life cycle. For example, application date, hire date, rejection date including rejection reason, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WorkLifeCycleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PersonAvailabilityType">
+    <xsd:annotation>
+      <xsd:documentation>Details about when a person is available for work engagements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="availabilityDates">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AvailabilityDatesType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="noticePeriodMeasure" type="hropen:MeasureType">
+        <xsd:annotation>
+          <xsd:documentation>The notice period that is required.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="immediateStartIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator that the person could start immediately.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AvailabilityDatesType">
+    <xsd:annotation>
+      <xsd:documentation>The dates of availability for work engagements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="startDateTime" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="endDateTime" type="hropen:FormattedDateTimeType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DistributionGuidelinesType">
+    <xsd:annotation>
+      <xsd:documentation>The rules for dispersing information contained in the object to a person or organization.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="doNotRedistributeIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator to not redistribute this to other third parties.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="distributeTo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:DistributeToType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="doNotDistributeTo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:DoNotDistributeToType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DistributionType">
+    <xsd:annotation>
+      <xsd:documentation>The person or organization to which objects should (not) be distributed, and the related effective dates.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="startDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="endDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="duration" type="hropen:DurationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DistributeToType">
+    <xsd:annotation>
+      <xsd:documentation>The person or organization to which the objects should be delivered, and the effective dates of this distribution.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="startDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="endDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="duration" type="hropen:DurationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DoNotDistributeToType">
+    <xsd:annotation>
+      <xsd:documentation>The person or organization to which the objects should not be delivered (excluded), including the effective dates to this exclusion.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="startDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="endDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="duration" type="hropen:DurationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AssociatedPositionOpeningType">
+    <xsd:annotation>
+      <xsd:documentation>Contains details answering the questions: 1. What, if any, are the position openings with which is the candidate associated? 2. How did the candidate become associated with those positions? The positionOpeningId, positionTitle, and positionUri components address the first question. The candidateAppliedIndicator addresses the second question. All elements are optional. In general, a candidate becomes associated with a position by applying to be considered for the position or by having been sourced and matched to the opening through some manner of automated and/or human-initiated recruiting or research process.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionOpeningId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier to a related position opening (related to recruiting for a job).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="staffingOrderId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier to a related staffing order (related to filling a position from a staffing organization).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionTitle">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A short phrase describing the position as it would be listed on a business card or in a company directory. OED: An appellation attaching to a position in virtue of rank, function or office.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionUri">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A Uniform Resource Identifier to the associated position opening. This is often a web page or HTTP URL.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="candidateAppliedIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator that the candidate applied to this associated position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="dispositionStatus" type="hropen:DispositionStatusType">
+        <xsd:annotation>
+          <xsd:documentation>The current disposition status of the candidate to the associated position opening.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DispositionStatusType">
+    <xsd:annotation>
+      <xsd:documentation>Contains the related disposition or status of a candidate related to a specific position opening.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the disposition status.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The code of the disposition status.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the disposition status.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reasonCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A reason code representing the reason for the disposition change.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reasonDescription">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the reason for the status code change. Typically used for the rejection reason or hire reason.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="date" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date of the disposition change.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="EmployerPreferenceType">
+    <xsd:annotation>
+      <xsd:documentation>Contains a collection of information about a candidate's preferences in an ideal employer or company.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organizationNames" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of organization names which are preferred to the candidate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organizationTypes" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of organization types (such as public, non-profit) which are preferred to the candidate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="industryCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of industry codes which are preferred to the candidate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="headcountRange">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A measure of size of a company based on the number of employees (headcount). This range is inclusive of the minimum and maximum number.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="minimum">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="maximum">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:decimal" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of text descriptions of the candidate preferences for an employer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PositionPreferenceType">
+    <xsd:annotation>
+      <xsd:documentation>Contains a collection of information about a candidate's preferences in an ideal position or role.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="locations">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of locations which are preferred to the candidate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PreferredLocationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobCategories">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of job categories which are preferred to the candidate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EntityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionTitles" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of position titles which are preferred to the candidate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionOfferingTypeCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>These are values that are descriptive in classifying a position within advertising or communications of a position opportunity or offering. Note that these classifications are useful within advertising, but they are not precise classes useful internally to drive pay, benefits, and HR compliance. This is an enumerated list.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PositionTypeCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionScheduleTypeCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Values that classify the working schedule of a position offered or a position sought. Essentially, whether a position offered or sought is full-time or part-time or has provision for flexible scheduling. Intended to classify schedule position preferences of a candidate or conversely employer preferences or requirements related to candidates with respect to an advertised position. Used in the context of matching candidates to positions. This is an enumerated list.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PositionScheduleTypeCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="shiftSchedules">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>In detail specification of shift schedules.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ScheduleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="shiftDescriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of shifts which are preferred to the candidate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="remoteWork" type="hropen:RemoteWorkType">
+        <xsd:annotation>
+          <xsd:documentation>The preference for remote work requirement.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="careerLevelCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of career levels which are preferred to the candidate. This describes the experience level, management level, or other levels of measuring a career.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CareerLevelCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobGradeCode" type="hropen:EntityType">
+        <xsd:annotation>
+          <xsd:documentation>A job grade code for the position. This would be defined by a company, union, or industry.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="offeredRemunerationPackage" type="hropen:RemunerationPackageType">
+        <xsd:annotation>
+          <xsd:documentation>The preference for remuneration (including salary or hourly rate, benefits) for a position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="travel" type="hropen:TravelType">
+        <xsd:annotation>
+          <xsd:documentation>Information regarding travel preferences of a person seeking a job.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="relocation" type="hropen:RelocationType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if a candidate would consider moving to a new city or location for a suitable position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workingLanguageCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A code classifying the language or languages used within the workplace or associated with work. This is intended to communicate general information about the language(s) used within the work environment or correspondingly general information about a candidate's specific language preferences. This component might be offered as descriptive 'pre-qualification' information on a position announcement. It might appear within the context of a Candidate Profile as a general statement of a candidate's general language capabilities or preferences. WorkingLanguageCode is not intended as a statement of language proficiency or specific requirement relating to language proficiency. Specific information regarding language proficiency should be covered either within PersonCompetency or PositionCompetency as may be appropriate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:LanguageCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PreferredLocationType">
+    <xsd:annotation>
+      <xsd:documentation>Contains a collection of information about a candidate's preferences in the location of a position.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maximumCommuteDuration" type="hropen:MeasureType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="maximumCommuteDistance" type="hropen:MeasureType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="referenceLocation" type="hropen:AddressType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CandidateRelationshipType">
+    <xsd:annotation>
+      <xsd:documentation>Information about the relationship of a candidate to the (potential) employer of his/her candidacy.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="candidateRelationshipId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier for the relationship of a candidate to a (potential) employer, e.g. current or former employee number.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="internalCandidateIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator to classify the candidate as internal to the (potential) employer. This could be a current employee, current intern, or current contractor.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="candidateRelationshipCode" type="hropen:CandidateRelationshipCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the relationship of a candidate to a (potential) employer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="otherCandidateRelationshipCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Further information characterizing the relationship of a candidate to a (potential) employer. Mostly vendor or employer specific.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CandidateSourceType">
+    <xsd:annotation>
+      <xsd:documentation>Information about the source of a candidate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="type">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Information on the type of source.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="order">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Information on the order of source.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CandidateType">
+    <xsd:annotation>
+      <xsd:documentation>A person who is requesting consideration or is being considered for a current or future position at a company.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="uri">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A URI (uniform resource identifier) to more information on the candidate on the internet. This could include a public profile URL, an online resume, or a person website.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="distributionGuidelines" type="hropen:DistributionGuidelinesType">
+        <xsd:annotation>
+          <xsd:documentation>Instructions on how this candidate should be distributed to third parties.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:CandidatePersonType">
+        <xsd:annotation>
+          <xsd:documentation>Information to identify the person, including name, communication, demographic details and other identifiers.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="profiles">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Information on the profiles of a candidate. A typical candidate will have one profile, but additional profiles can be included in difference languages, presentations, or industry focus.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CandidateProfileType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Candidate" type="hropen:CandidateType" />
+</xsd:schema>

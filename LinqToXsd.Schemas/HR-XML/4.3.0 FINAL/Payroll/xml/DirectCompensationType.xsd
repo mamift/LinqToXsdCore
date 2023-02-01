@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="DirectCompensationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/PayTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/TimeOffTypeCodeList.xsd" />
+  <xsd:complexType name="WorkedCompensationAmountType">
+    <xsd:annotation>
+      <xsd:documentation>Type and monetary value for time worked.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workedPayTypeCode" type="hropen:PayTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Type of compensation, e.g. holiday, overtime, shift differential, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A short phrase further describing the pay type.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workedPayAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The monetary value paid to the worker.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TimeOffCompensationAmountType">
+    <xsd:annotation>
+      <xsd:documentation>Type and monetary value of the time off.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="timeOffPayType" type="hropen:TimeOffTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Type of compensation, e.g. bereavement, jury duty, sick, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A short phrase further describing the time off type.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="timeOffPayAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The monetary value paid to the worker.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DirectCompensationType">
+    <xsd:annotation>
+      <xsd:documentation>The monetary compensation paid to a worker.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="salaryAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The agreed upon fixed or set monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services, that was not based on hours worked or production level. Salary is commonly paid in fixed intervals, for example, monthly payments of one-twelfth of the annual salary.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalHourlyWageAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services based on hourly rates of pay and the number of hours worked. Includes pay for both regular hours (straight-time) and premium hours (overtime, shift differentials) worked.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalPremiumHourlyWageAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid to a worker based on a premium hourly rate of pay and the number of premium hours worked. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalPaidTimeoffAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary amount the employer paid to a worker for any type of absence from work including vacation, sickness, bereavement, maternity, family care, jury duty, education, military duty, administrative time off, sabbatical, or other personal leave. Includes compensatory time off (CTO) when used.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalHolidayPaidTimeOffAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary amount a worker was paid for absence from work on days of special religious, cultural, social, or patriotic significance, on which work and business ordinarily cease.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalOtherCompensationAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid to a worker other than salary, hourly wages, and paid leave. Includes, but is not limited to bonuses, commissions, lump-sum, residuals, severance, tips, and incentive, piecework, production-based payments, and buy back of accrued leave. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="regularHourlyWagesAmount" type="hropen:WorkedCompensationAmountType">
+        <xsd:annotation>
+          <xsd:documentation>The monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="premiumHourlyWagesAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid by the employer to a worker for her or his services.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WorkedCompensationAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="paidTimeOffAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary amount the employer paid to a worker for any type of absence from work including vacation, sickness, bereavement, maternity, family care, jury duty, education, military duty, administrative time off, sabbatical, or other personal leave. Includes compensatory time off (CTO) when used.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:TimeOffCompensationAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="otherCompensationAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary amount of cash or cash-equivalent (currency, coin, check, or direct deposit) compensation paid to a worker other than salary, hourly wages, and paid leave. Includes, but is not limited to bonuses, commissions, lump-sum, residuals, severance, tips, and incentive, piecework, production-based payments, and buy back of accrued leave. </xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WorkedCompensationAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="DirectCompensation" type="hropen:DirectCompensationType" />
+</xsd:schema>

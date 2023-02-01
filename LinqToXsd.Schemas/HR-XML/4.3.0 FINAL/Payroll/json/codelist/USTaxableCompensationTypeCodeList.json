@@ -1,0 +1,18 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "USTaxableCompensationTypeCodeList",
+	"description": "Specifies the data reported in the U.S. Department of the Treasury, Internal Revenue Service Form W-2.",
+	"enum": [
+		"WagesTaxableCompensation",
+		"SocialSecurityTaxableCompensation",
+		"MedicareTaxableCompensation",
+		"SocialSecurityTipsTaxableCompensation",
+		"StateTaxableCompensation",
+		"StateDisabilityInsuranceTaxableCompensation",
+		"StateUnemploymentInsuranceTaxableCompensation",
+		"LocalTaxableCompensation",
+		"OtherProgramTaxableCompensation",
+		"TotalWagesPaidOutOfStateCompensation"
+	]
+}

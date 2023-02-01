@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="CatalogType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/codelist/AgencyRoleCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/organization/PartyInclusion.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/competency/SpecifiedCompetencyType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/LanguageCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/communication/JurisdictionType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DurationType.xsd" />
+  <xsd:include schemaLocation="codelist/AssessmentTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/EffectiveTimePeriodType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/CareerLevelCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="codelist/ServiceAvailabilityCodeList.xsd" />
+  <xsd:complexType name="AdditionalAmountType">
+    <xsd:annotation>
+      <xsd:documentation>Part of assessment package costs.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The value of the amount.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="currency" type="hropen:CurrencyCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The currency of the amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>Type code for an additional amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AdditionalItemType">
+    <xsd:annotation>
+      <xsd:documentation>Structure to define additional items between trading partners.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="sequence">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Order for the additional item to be displayed</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Name of the additional item.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:CodeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="content">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the additional item.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AssessmentAdministrationType">
+    <xsd:annotation>
+      <xsd:documentation>Provides details for the administration of an assessment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="proctoredAssessmentIndicator">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="timeEnforcedIndicator">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="testDuration" type="hropen:DurationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="schedulingRequiredIndicator">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AssessmentApplicabilityType">
+    <xsd:annotation>
+      <xsd:documentation>Provides details for the applicability of an assessment test.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="applicableRegions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A set of information broadly describing the region(s) where the assessment is applicable or available.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:JurisdictionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assessmentTypeCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>An array of assessment type codes for the test package.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AssessmentTypeCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assessedCompetencies">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>An array of assessment competencies for the test package.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SpecifiedCompetencyType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobCategoryCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>An array of job category codes for the test package.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CodeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="careerLevelCode" type="hropen:CareerLevelCodeList" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AssessmentFulfillmentType">
+    <xsd:annotation>
+      <xsd:documentation>A set of information describing options and characteristics relating to the way an assessment result is provided. For example, the language or available languages of the assessment report; the period for which the result is recognized as valid or reliable, the name or identity of the scoring profile used in calculating the result; etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectivePeriod" type="hropen:EffectiveTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The period for which the result is recognized as valid or reliable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scoreProfileNames" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Name or identity of the scoring profile used in calculating the result.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reportLanguageCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Available languages for the assessment report.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:LanguageCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="IdSetType">
+    <xsd:annotation>
+      <xsd:documentation>Identification Set</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="id">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="agencyRole" type="hropen:AgencyRoleCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="identifierAttributeGroup">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AssessmentPackageType">
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="packageId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>This is the 'Package ID' used to order a set of assessment services.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ids">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>This is the 'Package ID' that would be used to order a set of assessment services.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name or terse descriptive label by which the package is referred.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>An array of descriptions for the package.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="parentGroupIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A reference from a child package to one or more associated parent entity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="packageTypeCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Associated type codes.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CodeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="partyReportingIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A repeating ID set used to pass along identifiers that are used for reporting, filtering, accounting, cost center identification, and similar purposes</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdSetType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="serviceAvailabilityCode" type="hropen:ServiceAvailabilityCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Indicates availability of the package.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="packageCost">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Contains availible costs associated with the package.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="baseAmount" type="hropen:AmountType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="additionalAmounts">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Additional item costs</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AdditionalAmountType" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="additionalItems">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Additional items that are part of the package cost.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AdditionalItemType" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="totalAmount" type="hropen:AmountType">
+              <xsd:annotation>
+                <xsd:documentation>Includes baseAmount and additionalAmounts.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="administration" type="hropen:AssessmentAdministrationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="applicability" type="hropen:AssessmentApplicabilityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="fulfillment" type="hropen:AssessmentFulfillmentType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CatalogType">
+    <xsd:annotation>
+      <xsd:documentation>Represents an Assessments Catalog for HR Open Standards.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="party">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="supplier" type="hropen:PartyType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="customer" type="hropen:PartyType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="requester" type="hropen:PartyType" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentSequence">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="packages">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AssessmentPackageType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Catalog" type="hropen:CatalogType" />
+</xsd:schema>

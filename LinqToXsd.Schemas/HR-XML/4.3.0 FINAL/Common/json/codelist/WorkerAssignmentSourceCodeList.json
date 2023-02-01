@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "WorkerAssignmentSourceCodeList",
+    "description": "Values that classify the various worker assignment source codes.",
+    "enum": [
+        "Domestic",
+        "Inpatriate",
+        "Expatriate",
+        "LocalNational",
+        "ThirdCountryNational"
+    ],
+    "enumNames": [
+        "Domestic",
+        "Inpatriate",
+        "Expatriate",
+        "Local National",
+        "Third-Country National"
+    ]
+}

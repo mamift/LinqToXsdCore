@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="USTaxableCompensationTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="USTaxableCompensationTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Specifies the data reported in the U.S. Department of the Treasury, Internal Revenue Service Form W-2.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="WagesTaxableCompensation" />
+      <xsd:enumeration value="SocialSecurityTaxableCompensation" />
+      <xsd:enumeration value="MedicareTaxableCompensation" />
+      <xsd:enumeration value="SocialSecurityTipsTaxableCompensation" />
+      <xsd:enumeration value="StateTaxableCompensation" />
+      <xsd:enumeration value="StateDisabilityInsuranceTaxableCompensation" />
+      <xsd:enumeration value="StateUnemploymentInsuranceTaxableCompensation" />
+      <xsd:enumeration value="LocalTaxableCompensation" />
+      <xsd:enumeration value="OtherProgramTaxableCompensation" />
+      <xsd:enumeration value="TotalWagesPaidOutOfStateCompensation" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="USTaxableCompensationTypeCode" type="hropen:USTaxableCompensationTypeCodeList" />
+</xsd:schema>

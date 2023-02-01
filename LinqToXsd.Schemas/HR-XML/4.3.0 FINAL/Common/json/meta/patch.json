@@ -1,0 +1,87 @@
+{
+    "title": "JSON Patch",
+    "description": "A JSON Schema describing a JSON Patch",
+    "type": "object",
+    "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "source": {
+            "description": "Source schema to be modified",
+            "type": "string",
+            "format": "uri"
+        },
+        "patch": {
+            "description": "List of patch operations to perform",
+            "type": "array",
+            "items": { "$ref": "#/definitions/operation" }
+        }
+    },
+    "required": [
+        "schema",
+        "patch"
+    ],
+    "definitions": {
+        "operation": {
+            "type": "object",
+            "properties": {
+                "path": { "$ref": "#/definitions/jsonPointer" }
+            },
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "op": {
+                            "description": "The operation to perform.",
+                            "type": "string",
+                            "enum": [
+                                "add",
+                                "replace",
+                                "test"
+                            ]
+                        },
+                        "value": {
+                            "description": "The value to add, replace or test."
+                        }
+                    },
+                    "required": [ "value" ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "op": {
+                            "description": "The operation to perform.",
+                            "type": "string",
+                            "enum": [
+                                "remove"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "op": {
+                            "description": "The operation to perform.",
+                            "type": "string",
+                            "enum": [
+                                "move",
+                                "copy"
+                            ]
+                        },
+                        "from": { "$ref": "#/definitions/jsonPointer" }
+                    },
+                    "required": [ "from" ]
+                }
+            ],
+            "required": [
+                "op",
+                "path"
+            ]
+        },
+        "jsonPointer": {
+            "description": "A JSON Pointer path.",
+            "type": "string",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+        }
+    }
+}

@@ -1,0 +1,520 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PositionProfileType",
+    "description": "A profile of a job or position opening that is available at an organization.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "#/definitions/BasePositionProfileType" },
+        { "$ref": "../../common/json/base/LocalizationInclusion.json#" }
+    ],
+    "properties": {
+        "profileName": {
+            "description": "The name given to the profile. Often used in systems where multiple versions of a PositionProfile may be managed.",
+            "type": "string"
+        },
+        "positionPeriod": {
+            "description": "The start and end date for the position.",
+            "type": "object",
+            "properties": {
+                "start": {
+                    "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+                },
+                "end": {
+                    "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "immediateStartIndicator": {
+            "description": "An indicator as to whether a position is available for an immediate start.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "positionScheduleTypeCodes": {
+            "description": "Describes a position's general schedule (e.g. full-time, part-time).",
+            "type": "array",
+            "items": { "$ref": "../../common/json/codelist/PositionScheduleTypeCodeList.json#" }
+        },
+        "workingPeriods": {
+            "description": "Describes the working periods of the position.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/WorkingPeriodType" }
+        },
+        "shiftSchedules": {
+            "description": "The detailed specifications of shift schedules.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/work/ScheduleType.json#" }
+        },
+        "shiftDescription": {
+            "description": "General description of any shift work or shift schedule.",
+            "type": "string"
+        },
+        "remoteWork": {
+            "description": "The preference or requirement for remote work.",
+            "$ref": "./RemoteWorkType.json#"
+        },
+        "offeredRemunerationPackage": {
+            "description": "The salary or compensation, as well as benefits on offer for the position.",
+            "$ref": "../../common/json/pay/RemunerationPackageType.json#"
+        },
+        "positionClassification": {
+            "description": "The classification of the position (which may apply to specific countries).",
+            "$ref": "#/definitions/PositionClassificationType"
+        },
+        "relocation": {
+            "description": "Indicates if a hiring company would consider to support the relocation of a new employee for a position.",
+            "$ref": "RelocationType.json#"
+        },
+        "attachments": {
+            "description": "Attachments related to the position profile.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/base/AttachmentType.json#" }
+        }
+    },
+    "definitions": {
+        "BasePositionProfileType": {
+            "title": "BasePositionProfileType",
+            "description": "The core information about a job or position opening.",
+            "type": "object",
+            "properties": {
+                "profileId": {
+                    "description": "The primary identifier of the position profile, typically from the system of record.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "alternateIds": {
+                    "description": "An array of other identifiers for the position profile, typically for related, secondary, or other systems.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/IdentifierType.json#" }
+                },
+                "positionId": {
+                    "description": "The identifier for the position that maybe be used externally in an advertisement.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "positionTitle": {
+                    "description": "A short phrase describing the position as it would be listed on a business card or in a company directory. OED: An appellation attaching to a position in virtue of rank, function or office.",
+                    "type": "string"
+                },
+                "positionUri": {
+                    "description": "URI to detailed resources about the position. This can be used as another type of identifier.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "postingInstructions": {
+                    "description": "Instructions related to the position being posted to a third party site.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "allOf": [
+                            { "$ref": "#/definitions/PostingInstructionType" }
+                        ]
+                    }
+                },
+                "positionLocation": {
+                    "description": "The location or locations of a position.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "allOf": [
+                            { "$ref": "../../common/json/communication/LocationType.json#" }
+                        ],
+                        "properties": {
+                            "name": {
+                                "description": "The name of a location.",
+                                "type": "string"
+                            },
+                            "referenceLocation": {
+                                "description": "This is a summary description of the physical location of the position. This is intended to be matched against a candidate's preference for work location.",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "positionOrganizations": {
+                    "description": "The organization which has the position. Can contain multiple organizations, e.g. with different responsibility codes.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "allOf": [
+                            { "$ref": "../../common/json/organization/OrganizationType.json#" }
+                        ]
+                    }
+                },
+                "positionOpenQuantity": {
+                    "description": "The position quantity currently available to be filled. This is intended as a finer-grained expression of the total number of positions to be filled. For example, there may be 50 positions to fill, but only 10 immediately available to be filled.",
+                    "type": "integer"
+                },
+                "jobCategories": {
+                    "description": "A code classifying the type or category of job. This may be used for occupational classification of the job. JobCategory usually would be repeatable so that a single job could be classified across multiple dimensions. JobCategory could be used to classify the job in terms of industry, but note that an explicit IndustryCode is available in the organization which might be a more appropriate place for use.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../../common/json/base/EntityType.json#"
+                    }
+                },
+                "careerLevels": {
+                    "description": "A code classifying the level of a candidate based on career experience. This may vary by jurisdiction or systems, e.g. Student, Entry Level, Recent Graduate, Mid-Career, Manager, Experienced Non-Manager, Senior Executive, etc.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../../common/json/base/EntityType.json#"
+                    }
+                },
+                "positionOfferingTypes": {
+                    "description": "These are values that are descriptive in classifying a position within advertising or communications of a position opportunity or \"offering\". Note that these classifications are useful within advertising, but they are not precise classes useful internally to drive pay, benefits, and HR compliance. Enumerated values are: DirectHire, Temporary, TemporaryToHire, ContractToHire, Contract, Internship, Externship, Apprenticeship, Seasonal, Student and Volunteer. Consider that \"Temporary\" and \"DirectHire\" are not parallel concepts, but are still commonly used in classifying jobs within advertising.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/codelist/PositionTypeCodeList.json#" }
+                },
+                "positionQualifications": {
+                    "description": "The qualifications that are required for a position.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PositionQualificationType"
+                    }
+                },
+                "positionFormattedDescriptions": {
+                    "description": "The descriptions for the position profile. The descriptions may support HTML or other markup, and may be in logical sections.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "descriptionId": {
+                                "description": "An identifier for the description (section).",
+                                "$ref": "../../common/json/base/IdentifierType.json#"
+                            },
+                            "title": {
+                                "description": "The title for the description (section).",
+                                "type": "string"
+                            },
+                            "content": {
+                                "description": "The content of the description (section).",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "travel": {
+                    "description": "Information regarding travel preferences.",
+                    "$ref": "TravelType.json#"
+                },
+                "workingLanguages": {
+                    "description": "Information on the work languages used for the job or position opening.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "code": {
+                                "$ref": "../../common/json/codelist/LanguageCodeList.json#"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "PostingInstructionType": {
+            "title": "PostingInstructionType",
+            "description": "A collection of information about where and how a posting should be communicated. A posting channel usually would be a job board or other advertising medium.",
+            "type": "object",
+            "properties": {
+                "channelId": {
+                    "description": "Identifies a job board or media channel associated with a job posting.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "start": {
+                    "description": "The start date of the posting.",
+                    "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+                },
+                "end": {
+                    "description": "The end date of the posting.",
+                    "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+                },
+                "templateId": {
+                    "description": "Identifies a template to apply in processing a job posting order.",
+                    "type": "string"
+                },
+                "brandingId": {
+                    "description": "Identifies branding to be applied in processing a job posting order.",
+                    "type": "string"
+                },
+                "postingOptionCodes": {
+                    "description": "Used to communicate a choice among options available with respect to the posting. For example, some job boards and advertising venues may offer \"bolding\" or other options relating to the display or distribution of the posting.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../../common/json/base/CodeType.json#"
+                    }
+                },
+                "applicationMethods": {
+                    "type": "array",
+                    "items": {
+                        "description": "Describes the way in which a candidate might apply for the position.",
+                        "type": "object",
+                        "allOf": [
+                            { "$ref": "#/definitions/ApplicationMethodType" }
+                        ]
+                    }
+                },
+                "positionUri": {
+                    "description": "URI to detailed resources about the position or job advertisement for this posting instruction. The URI may contain publication specific information which may vary by channel.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        },
+        "ApplicationMethodType": {
+            "title": "ApplicationMethodType",
+            "description": "Instructions on how to apply for the position.",
+            "type": "object",
+            "properties": {
+                "instructions": {
+                    "description": "Instructions to help guide a candidate when they are applying for the position opening.",
+                    "type": "string"
+                },
+                "personContact": {
+                    "description": "The person to contact regarding this position.",
+                    "$ref": "../../common/json/person/SpecifiedPersonType.json#"
+                },
+                "applicationUri": {
+                    "description": "Application link used to apply for the position. This would typically be a URI to a career site job, to an application web form, or an upload page.",
+                    "$ref": "../../common/json/communication/WebType.json#"
+                },
+                "applicationEmail": {
+                    "description": "Email address to which the candidate can apply to the job or position opening.",
+                    "$ref": "../../common/json/communication/EmailType.json#"
+                },
+                "applicationSms": {
+                    "description": "Phone number to apply for the job or position opening by SMS message.",
+                    "type": "object",
+                    "allOf": [
+                        { "$ref": "../../common/json/communication/PhoneType.json#" }
+                    ],
+                    "properties": {
+                        "containedText": {
+                            "description": "Text that must be used by the candidate in the SMS message to indicate the intent to apply for a specific position.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "applicationPhone": {
+                    "description": "Information to apply by a phone based service or direct phone number.",
+                    "$ref": "../../common/json/communication/PhoneType.json#"
+                },
+                "inPersonApplication": {
+                    "type": "object",
+                    "properties": {
+                        "address": {
+                            "description": "The address of where to go to apply for the job or position opening in person.",
+                            "$ref": "../../common/json/communication/AddressType.json#"
+                        },
+                        "travelDirections": {
+                            "description": "Instructions for traveling to the location for an in person application.",
+                            "type": "string"
+                        },
+                        "mapLink": {
+                            "description": "A URI to a map or detailed instructions to do an in person application.",
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "additionalInstructions": {
+                            "description": "Additional instructions on how to apply for the job or position opening in person.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "applicationCloseDate": {
+                    "type": "object",
+                    "properties": {
+                        "end": {
+                            "description": "The date after which applications will not be accepted.",
+                            "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+                        },
+                        "typeCode":  {
+                            "description": "The type of application close date, such as an Internal Close Date or External Close Date.",
+                            "$ref": "../../common/json/base/CodeType.json#"
+                        }
+                    }
+                }
+            }
+        },
+        "PositionQualificationType": {
+            "type": "object",
+            "properties": {
+                "qualificationSummary": {
+                    "description": "A summary of the qualifications needed for the position.",
+                    "type": "string"
+                },
+                "positionCompetencies": {
+                    "description": "A list of the competencies required or desired for the position. Used for competency-based recruiting systems for matching.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../../common/json/competency/PositionCompetencyType.json#"
+                    }
+                },
+                "educationRequirement": {
+                    "description": "The educational requirements for the position.",
+                    "$ref": "#/definitions/EducationRequirementType"
+                },
+                "experienceSummary": {
+                    "description": "The detailed summary of the experience required for the position in terms of category, measure, and level.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExperienceCategoryType"
+                    }
+                },
+                "licences": {
+                    "description": "The required licenses for the position.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                }
+            }
+        },
+        "EducationRequirementType": {
+            "type": "object",
+            "properties": {
+                "educationLevelCode": {
+                    "description": "The level of education required for the position. This is used to transmit a system-specific or local variable. Use iscedEducationLevelCode where possible.",
+                    "type": "string"
+                },
+                "iscedEducationLevelCode": {
+                    "description": "ISCED: International Standard Classification of Education - is the standard classification of the education level of this requirement.",
+                    "$ref": "../../common/json/codelist/IscedCodeList.json#"
+                },
+                "degreeTypeCode": {
+                    "description": "The type of degree required for the position.",
+                    "type": "string"
+                },
+                "programs": {
+                    "description": "The education programs required for a position.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "programConcentrations": {
+                    "description": "The areas for the focus of study specific areas required for the position.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "institutions": {
+                    "description": "The requirement or specific institutions to be considered for the position.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "descriptions": {
+                    "description": "Descriptions of the educational requirements for the position.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                }
+            }
+        },
+        "ExperienceCategoryType": {
+            "type": "object",
+            "properties": {
+                "categoryCode": {
+                    "description": "A code to represent the category of required experience.",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "measure": {
+                    "description": "A measure of the experience required for the position.",
+                    "$ref": "../../common/json/base/MeasureType.json#"
+                },
+                "levelCode": {
+                    "description": "The level required for the category of required experience.",
+                    "type": "string"
+                },
+                "descriptions": {
+                    "description": "Description of required experience.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                }
+            }
+        },
+        "PositionClassificationType": {
+            "type": "object",
+            "properties": {
+                "USPositionClassification": {
+                    "description": "These are USA-specific position classification items.",
+                    "$ref": "#/definitions/USPositionClassificationType"
+                },
+                "DEPositionClassification": {
+                    "description": "These are Germany-specific position classification items.",
+                    "$ref": "#/definitions/DEPositionClassificationType"
+                },
+                "extendedPositionClassifications": {
+                    "description": "These are other country specific position classification items.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExtendedPositionClassificationType"
+                    }
+                }
+            }
+        },
+        "USPositionClassificationType": {
+            "type": "object",
+            "properties": {
+                "exemptIndicator": {
+                    "description": "An indicator of position's coverage under applicable wage-hour law. For example, the U.S. Fair Labor Standards Act (FLSA) and implementing regulations. Enumerated values are: exempt and non-exempt. NOTE: In the U.S., while it is common to classify a position as exempt or non-exempt, actual coverage under the law usually is determined on the basis of an employee's actual performance or engagement within a workweek and not on whether an employee is assigned to or associated with a position that an employer has classified as \"exempt\" or \"nonexempt\".",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "EEOCJobCategoryCodes": {
+                    "description": "A code classifying the primary method of payment for the associated position or employment. This classifies the method by which remuneration for a position is provided or calculated. Typical values are 'OfficialsAndManagers', 'Professionals', 'Technicians', 'Sales', 'OfficialAndClerical', 'CraftWorkersSkilled', 'OperativeSemi-Skilled', 'LaborersUnskilled', 'ServiceWorkers'.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../../common/json/base/CodeType.json#"
+                    }
+                },
+                "affirmativeActionPlanJobGroupIds": {
+                    "description": "Identifiers for specific qualifying affirmitive action plan groups.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../../common/json/base/IdentifierType.json#"
+                    }
+                }
+            }
+        },
+        "DEPositionClassificationType": {
+            "type": "object",
+            "properties": {
+                "BKZClassification": {
+                    "description": "Berufskennziffer (BKZ) is a German occupational classification system.",
+                    "$ref": "../../common/json/base/EntityType.json#"
+                },
+                "DEEducationAuthorizationIndicator": {
+                    "description": "A German education authorization indicator.",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "disabilityLevelCode": {
+                    "description": "A value from an external code list classifying the level of disability. A simple example code list: 1 - need for another persons assistance with daily life tasks; 2 - inability to perform one or more sensory or physical functions; 3 - experiencing difficulties in multiple sensory or physical functions; 4 - experiencing difficulty in just one function; and 5 - no limitations in functioning.",
+                    "$ref": "../../common/json/work/DisabilityType.json#/definitions/DisabilityLevelCodeList"
+                }
+            }
+        },
+        "ExtendedPositionClassificationType": {
+            "type": "object",
+            "properties": {
+                "countryCode": {
+                    "description": "The country to which the specific position classification applies.",
+                    "$ref": "../../common/json/codelist/CountryCodeList.json#"
+                },
+                "name": {
+                    "description": "The name of the specific position classification.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The value of the specific position classification.",
+                    "type": "string"
+                }
+            }
+        },
+        "WorkingPeriodType": {
+            "type": "object",
+            "properties": {
+                "workDuration": {
+                    "description": "The amount of time to work, e.g. 40 hours, 4 days.",
+                    "$ref": "../../common/json/base/MeasureType.json#"
+                },
+                "baseDuration": {
+                    "description": "The related base time interval, e.g. 1 week, 1 month.",
+                    "$ref": "../../common/json/base/MeasureType.json#"
+                },
+                "descriptions": {
+                    "description": "Descriptions of the working period.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                }
+            }
+        }
+    }
+}

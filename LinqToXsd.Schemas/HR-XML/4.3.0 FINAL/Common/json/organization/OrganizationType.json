@@ -1,0 +1,130 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "OrganizationType",
+	"description": "Information to identify and reference a specific organization.",
+	"definitions": {
+		"GeographicResponsibilityCodeList": {
+			"title": "GeographicResponsibilityCodeList",
+			"description": "Values that classify the geographic level at which the organization operates.",
+			"enum": [
+				"Global",
+				"National",
+				"Regional",
+				"Local"
+			]
+		},
+		"OwnershipTypeCodeList": {
+			"title": "OwnershipTypeCodeList",
+			"description": "Values that classify the ownership of the organization.",
+			"enum": [
+				"Public",
+				"Private",
+				"NonProfit",
+				"Government",
+				"Joint Venture",
+				"Mutual"
+			]
+		}
+	},
+	"allOf": [
+		{
+			"$ref": "OrganizationReferenceType.json#"
+		}
+	],
+	"type": "object",
+	"properties": {
+		"taxId": {
+			"description": "A government assigned identifier to distinguish an organization. This typically is a country-level tax code. For example, Federal Employer Identification Number (FEIN) in the USA.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"formerTaxId": {
+			"description": "The former government assigned identifier to distinguish organization. This typically is a country-level tax code. For example, Federal Employer Identification Number (FEIN) in the USA.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"legalId": {
+			"description": "An identifier of the organization for legal purposes. This could be a company, state, or other kind of identifier. For example, Data Universal Numbering System, abbreviated as DUNS.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"industryCodes": {
+			"description": "Deprecated. Use IndustryIdentifiers instead.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/CodeType.json#"
+			}
+		},
+		"industryIdentifiers": {
+			"description": "The types of industry to which the organization belongs. The Industry identifiers could be referenced to a standard taxonomy (such as NAICS) or a custom taxonomy.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/IdentifierType.json#"
+			}
+		},
+		"headCount": {
+			"description": "The number of employees in the organization. Depending on the organization, this could include full-time, part-time and contractors.",
+			"$ref": "../base/NumberType.json#"
+		},
+		"revenue": {
+			"description": "The amount of revenue of the organization, typically from the most recent fiscal year.",
+			"$ref": "../base/AmountType.json#"
+		},
+		"description": {
+			"description": "A description or quick summary of the organization.",
+			"$ref": "../base/TextType.json#"
+		},
+		"geographicResponsibilityCode": {
+			"description": "A code that classifies the geographic level at which the organization operates.",
+			"$ref": "#/definitions/GeographicResponsibilityCodeList"
+		},
+		"ownershipType": {
+			"description": "A code that classifies the ownership of the organization.",
+			"$ref": "#/definitions/OwnershipTypeCodeList"
+		},
+		"organizationActivity": {
+			"description": "A description of the business activities conducted at the organization, listed by approximate percentage of revenue or sales associated with each activity.",
+			"type": "array",
+			"items": {
+				"$ref": "EstablishmentActivityType.json#"
+			}
+		},
+		"stockSymbol": {
+			"description": "The stock symbol for the organization. The stock exchange symbol should also be included. Example: NYSE:XOM representing Exxon Mobile on the New York Stock Exchange.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"workEnvironmentCode": {
+			"description": "A code to represent the working environment of the organization. E.g., Office, Workshop, Factory, etc.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"contacts": {
+			"description": "Specific people at the organization who are contacts.",
+			"type": "array",
+			"items": {
+				"$ref": "../person/SpecifiedPersonType.json#"
+			}
+		},
+		"tradeName": {
+			"description": "Trade name of the organizationor doing-business-as (DBA).",
+			"type": "string"
+		},
+		"statusHistory": {
+			"description": "A history of the organization statuses; e.g the date and code. e.g. sold, temporarily closed, permanently closed, merged, acquired, etc.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/StatusType.json#"
+			}
+		},
+		"domainName": {
+			"description": "The internet domain to help identify the organization and a reference to find additional information.",
+			"type": "string",
+			"format": "uri"
+		},
+		"parentCompanyTaxId": {
+			"description": "The tax ID of the parent company if this company is a wholly owned subsidiary of another company.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"parentCompanyName": {
+			"description": "The legal name of the parent company if this company is a wholly owned subsidiary of another company.",
+			"type": "string"
+		}
+	}
+}

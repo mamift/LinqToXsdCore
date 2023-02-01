@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "TravelType",
+    "description": "Information regarding travel - preferences or necessities.",
+    "type": "object",
+    "properties": {
+        "willingToTravelIndicator": {
+            "description": "Indicates that a person is willing to travel within the capacity of his or her position.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "percentage": {
+            "description": "The percentage of time required (or willing) to travel for a position. For example, a person needs (or is willing) to travel 25% of his or her regularly scheduled hours.",
+            "$ref": "../../common/json/base/PercentType.json#"
+        },
+        "descriptions": {
+            "description": "Text describing any special travel preferences or considerations.",
+            "$ref": "../../common/json/base/StringTypeArray.json#"
+        }
+    }
+}

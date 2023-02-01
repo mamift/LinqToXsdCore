@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CandidateRelationshipCodeList",
+    "description": "Values that classify the relationship of a candidate to a (potential) employer.",
+    "enum": [
+        "Applicant",
+        "Employee",
+        "Intern",
+        "Alumnus",
+        "Contractor",
+        "VendorEmployee",
+        "RelatedCompanyEmployee"
+    ]
+}

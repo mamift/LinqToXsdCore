@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RangeNumberQueryType",
+    "description": "Range query type based on numerical data.",
+    "type": "object",
+    "properties": {
+        "rangeNumber": {
+            "type": "object",
+            "properties": {
+                "propertyPath": {
+                    "description": "Path of the property to which the condition applies.",
+                    "type": "string"
+                },
+                "lessThan": {
+                    "description": "Value used for a 'less-than' condition.",
+                    "type": "number"
+                },
+                "lessThanOrEqualTo": {
+                    "description": "Value used for a 'less-than-or-equal-to' condition.",
+                    "type": "number"
+                },
+                "equalTo": {
+                    "description": "Value used for an 'equal-to' condition.",
+                    "type": "number"
+                },
+                "greaterThanOrEqualTo": {
+                    "description": "Value used for a 'greater-than-or-equal-to' condition.",
+                    "type": "number"
+                },
+                "greaterThan": {
+                    "description": "Value used for a 'greater-than' condition.",
+                    "type": "number"
+                },
+                "unitCode": {
+                    "description": "Optional unit code to specify the numerical values.",
+                    "$ref": "../base/CodeType.json#"
+                }
+            }
+        }
+    }
+}

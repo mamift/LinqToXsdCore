@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AssignmentReasonCodeList",
+    "description": "Assignment reason code list.",
+    "enum": [
+        "Acquisition",
+        "Demotion",
+        "Hire",
+        "Lateral",
+        "Promotion",
+        "Transfer",
+        "Re-hire",
+        "Retirement",
+        "Leave",
+        "Termination"
+    ]
+}

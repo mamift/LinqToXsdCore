@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RateType",
+    "description": "Used to represent the numerical quotient resulting from a comparison of two independent things such as a quantity measured with respect to another measured quantity.",
+    "type": "object",
+    "properties": {
+        "value": { 
+            "description": "The value of the rate.",
+            "type": "number" 
+        },
+        "multiplier": { 
+            "description": "The multiplier of the value.",
+            "type": "number" 
+        },
+        "unitCode": { 
+            "description": "The unit code of the value.",
+            "$ref": "../codelist/UnitCodeList.json#" 
+        },
+        "currencyCode": { 
+            "description": "The currency code of the value.",
+            "$ref": "../codelist/CurrencyCodeList.json#" 
+        },
+        "baseMultiplier": { 
+            "description": "The base multiplier of the value.",
+            "type": "number" 
+        },
+        "baseUnitCode": { 
+            "description": "The base unit code of the value.",
+            "$ref": "../codelist/UnitCodeList.json#" 
+        },
+        "baseCurrencyCode": { 
+            "description": "The base currency code of the value.",
+            "$ref": "../codelist/CurrencyCodeList.json#" 
+        }
+    },
+    "required": [ "value" ]
+}

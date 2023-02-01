@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WorkRelationshipStatusType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:include schemaLocation="../base/TextType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:simpleType name="WorkRelationshipStatusCodeList">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Pending" />
+      <xsd:enumeration value="Active" />
+      <xsd:enumeration value="Inactive" />
+      <xsd:enumeration value="Terminated" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="WorkRelationshipStatusType">
+    <xsd:annotation>
+      <xsd:documentation>The status of the worker in relation to the assignment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="separatedIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the worker has been separated from the organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="declinedToProvideIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the employer has declined to provide a status.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode" type="hropen:WorkRelationshipStatusCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The status of the worker in relation to the assignment. Values are Pending, Active, Inactive, Terminated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date on which the worker's status changed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>A description of the status.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reasonCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The employer's reason for the work relationship status. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="WorkRelationshipStatus" type="hropen:WorkRelationshipStatusType" />
+</xsd:schema>

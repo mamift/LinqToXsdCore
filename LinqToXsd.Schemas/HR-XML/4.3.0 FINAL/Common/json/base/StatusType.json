@@ -1,0 +1,25 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "StatusType",
+	"description": "Provide a status for an entity.",
+	"type": "object",
+	"properties": {
+		"statusCode": {
+			"description": "The status of the entity.",
+			"$ref": "CodeType.json#"
+		},
+		"statusDate": {
+			"description": "The date on which the status changed.",
+			"$ref": "DateType.json#"
+		},
+		"description": {
+			"description": "A description of the status.",
+			"$ref": "TextType.json#"
+		},
+		"reasonCode": {
+			"description": "The reason for the status. ",
+			"$ref": "CodeType.json#"
+		}
+	}
+}

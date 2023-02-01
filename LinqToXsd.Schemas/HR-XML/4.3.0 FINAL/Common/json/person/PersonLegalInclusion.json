@@ -1,0 +1,81 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonLegalInclusion",
+    "description": "A collection of demographic and personal data about a person.",
+    "type": "object",
+    "properties": {
+        "passportId": {
+            "description": "DEPRECATED - Use Legal Documents Property",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "fatherName": {
+            "description": "The surname of the father of the person.",
+            "type": "string"
+        },
+        "motherName": {
+            "description": "The surname of the mother of the person.",
+            "type": "string"
+        },
+        "race": {
+            "description": "The identified race(s) of the person. A country may define which of these terms (race, nationality, ethnicity) will be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their race.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "birthPlace": {
+            "description": "The birth place of the person.",
+            "type": "string"
+        },
+        "deathDate": {
+            "description": "If the person is deceased, the legal date that the person died.",
+            "$ref": "../base/DateTimeType.json#"
+        },
+        "nationality": {
+            "description": "The nationality (or nationalities) of the person. A country may define which of these terms (race, nationality, ethnicity) be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their nationality.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "maritalStatus": {
+            "description": "The marital status of the person.",
+            "type": "string"
+        },
+        "maritalStatusDate": {
+            "description": "The date for the marital status of the person.",
+            "$ref": "../base/DateType.json#"
+        },
+        "visa": {
+            "description": "DEPRECATED - Use Legal Documents Property",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "religion": {
+            "description": "The religions of the person of the person.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "studentType": {
+            "description": "The type of student (if the person is a student). Typically used to indicate 'full-time' or 'part-time' status.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "studentIndicator": {
+            "description": "An indicator as to whether the individual currently is enrolled as a student within a specific class of educational institution. This is component is attributed with effective dating.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "studentStatus": {
+            "description": "The status of the student (if the person is a student). Typically used to indicate special states such as 'Suspended'.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "legalDocuments": {
+            "description": "Legal Documents.",
+            "type": "array",
+            "items": {
+                "$ref": "LegalDocumentType.json"
+            }
+        },
+        "employmentPermits": {
+            "description": "The permissions of a person to work (within an administrative unit).",
+            "type": "array",
+            "items": { "$ref": "../work/EmploymentPermitType.json#" }
+        }
+    }
+}

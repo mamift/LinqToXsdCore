@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonPhysicalType",
+    "description": "A schema that represents a person along with their physical data.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "PersonBaseType.json#" },
+        { "$ref": "PersonPhysicalInclusion.json#" }
+    ]
+}

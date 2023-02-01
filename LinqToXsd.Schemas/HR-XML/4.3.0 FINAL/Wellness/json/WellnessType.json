@@ -1,0 +1,173 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "WellnessType",
+    "description": "A set of recorded activity information related to an individual. The main purpose is to allow employees to set and reach employee wellness goals within their employment organization.",
+    "definitions": {
+        "WellnessRequestSummaryType": {
+            "title": "WellnessRequestSummaryType",
+            "description": "A summary of a wellness report related to the request.",
+            "type": "object",
+            "properties": {
+                "cycleCode": {
+                    "description": "The cycle to which the wellness is related. e.g. Day, Week, Month, Year",
+                    "$ref": "../../common/json/codelist/PayCycleIntervalCodeList.json#"
+                },
+                "episodeCode": {
+                    "description": "The period under which the activity is measured. e.g. daily, weekly, monthly.",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "unitCode": {
+                    "description": "The unit of wellness being measured. e.g. steps, strokes, cycles.",
+                    "$ref": "#/definitions/WellnessMeasureCodeList"
+                },
+                "categoryCode": {
+                    "description": "A wellness category being measured. e.g. walking, swimming, running, biking.",
+                    "$ref": "#/definitions/WellnessActivityCategoryCodeList"
+                }
+            }
+        },
+        "WellnessActivityCategoryCodeList": {
+            "title": "WellnessActivityCategoryCodeList",
+            "description": "A set of codes classifying activities related to wellness.",
+            "enum": [
+                "Walking",
+                "Swimming",
+                "Running",
+                "Biking"
+            ]
+        },
+        "WellnessMeasureCodeList": {
+            "title": "WellnessMeasureCodeList",
+            "description": "Units for wellness activity measures",
+            "enum": [
+                "Steps",
+                "Strokes",
+                "Cycles"
+            ]
+        },
+        "WellnessSummaryActivityType": {
+            "title": "WellnessSummaryActivityType",
+            "description": "The summary of activity related to wellness",
+            "type": "object",
+            "properties": {
+                "categoryCode": {
+                    "description": "The wellness code being evaluated. e.g. walking, swimming, running, biking.",
+                    "$ref": "#/definitions/WellnessActivityCategoryCodeList"
+                },
+                "totalRoutine": {
+                    "description": "The total measure of routine/normal activity.",
+                    "type": "integer"
+                },
+                "totalModerate": {
+                    "description": "The total measure of moderate activity.",
+                    "type": "integer"
+                },
+                "totalIntense": {
+                    "description": "The total measure of intense activity.",
+                    "type": "integer"
+                },
+                "units": {
+                    "description": "The unit of wellness being measured. e.g. steps, strokes, cycles.",
+                    "$ref": "#/definitions/WellnessMeasureCodeList"
+                },
+                "period": {
+                    "description": "The period of the recorded activity.",
+                    "$ref": "../../common/json/base/DateTimePeriodType.json#"
+                }
+            }
+        },
+        "DeviceType": {
+            "title": "DeviceType",
+            "description": "A type to identify the device being used in a wellness program.",
+            "type": "object",
+            "properties": {
+                "vendor": {
+                    "description": "The vendor of the device.",
+                    "type": "string"
+                },
+                "device": {
+                    "description": "The specific device (identifier or serial number).",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the device.",
+                    "type": "string"
+                }
+            }
+        },
+        "WellnessActivityType": {
+            "title": "WellnessActivityType",
+            "description": "The record of an activity related to wellness.",
+            "type": "object",
+            "properties": {
+                "periodType": {
+                    "enum": [
+                        "Daily",
+                        "Weekly",
+                        "Monthly"
+                    ]
+                },
+                "id": {
+                    "description": "Identifier for the wellness activity.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "lastAcquisitionTime": {
+                    "description": "The date/time of the last aquisition of data for the wellness activity.",
+                    "$ref": "../../common/json/base/DateTimeType.json#"
+                },
+                "period": {
+                    "description": "The period to which the measured activity was recorded.",
+                    "$ref": "../../common/json/base/DateTimePeriodType.json#"
+                },
+                "utcOffset": {
+                    "description": "The number of hours offset of the recorded activity to UTC.",
+                    "type": "integer"
+                },
+                "categoryCode": {
+                    "description": "A wellness category being measured. e.g. walking, swimming, running, biking.",
+                    "$ref": "#/definitions/WellnessActivityCategoryCodeList"
+                },
+                "units": {
+                    "description": "The unit of wellness being measured. e.g. steps, strokes, cycles.",
+                    "$ref": "#/definitions/WellnessMeasureCodeList"
+                },
+                "intensity": {
+                    "enum": [
+                        "Low",
+                        "Medium",
+                        "High"
+                    ]
+                },
+                "value": {
+                    "description": "The value of wellness being measured.",
+                    "type": "integer"
+                },
+                "source": {
+                    "description": "The device from which the measured value was recorded.",
+                    "$ref": "#/definitions/DeviceType"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "requestSummary": {
+            "description": "A summary of a wellness report related to the request.",
+            "$ref": "#/definitions/WellnessRequestSummaryType"
+        },
+        "activitySummaries": {
+            "description": "An array of wellness activity summaries.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/WellnessSummaryActivityType" }
+        },
+        "activities": {
+            "description": "An array of wellness activities.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/WellnessActivityType" }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ScheduledHoursCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="ScheduledHoursCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that classify the various scheduled hours types.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Week">
+        <xsd:annotation>
+          <xsd:documentation>Week</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoWeeks">
+        <xsd:annotation>
+          <xsd:documentation>Two Weeks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FourWeeks">
+        <xsd:annotation>
+          <xsd:documentation>Four Weeks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HalfMonth">
+        <xsd:annotation>
+          <xsd:documentation>Half Month</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Month">
+        <xsd:annotation>
+          <xsd:documentation>Month</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwoMonths">
+        <xsd:annotation>
+          <xsd:documentation>Two Months</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Quarter">
+        <xsd:annotation>
+          <xsd:documentation>Quarter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SeasonalTerm">
+        <xsd:annotation>
+          <xsd:documentation>Seasonal Term</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HalfYear">
+        <xsd:annotation>
+          <xsd:documentation>Half Year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Year">
+        <xsd:annotation>
+          <xsd:documentation>Year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Shift">
+        <xsd:annotation>
+          <xsd:documentation>Shift</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ScheduledHoursCode" type="hropen:ScheduledHoursCodeList" />
+</xsd:schema>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WorkLocationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../communication/AddressType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:include schemaLocation="../base/TextType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:complexType name="WorkLocationType">
+    <xsd:annotation>
+      <xsd:documentation>Work location schema.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the work location type e.g., Distribution center, Headquarters, Plant, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="virtualWorkerIndicator" type="hropen:IndicatorType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="fieldRemoteWorkerIndicator" type="hropen:IndicatorType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="address" type="hropen:AddressType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="description" type="hropen:TextType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="WorkLocation" type="hropen:WorkLocationType" />
+</xsd:schema>

@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "SpecifiedCompetencyType",
+    "description": "A specified competency is a reference to a particular competency at a specified level of proficiency.",
+    "type": "object",
+    "properties": {
+        "competencyIds": {
+            "description": "Array of competency identifiers.",
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "name": {
+            "description": "Competency name.",
+            "type": "string"
+        },
+        "proficiencyLevel": { "$ref": "../evaluation/BaseScoreType.json#" }
+    }
+}

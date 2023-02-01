@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CodeType",
+    "description": "A code is a character string of letters, numbers, special characters (except escape sequences), and symbols. It represents a definitive value, a method, or a property description in an abbreviated or language-independent form that is part of a finite list of allowed values. Use this schema when there is a defined list of values but the owner is unknown or private, the values may not be referenced, or there is no validation possible.",
+    "type": "string"
+}

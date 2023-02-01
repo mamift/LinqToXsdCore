@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AgencyRoleCodeList",
+    "description": "A code classifying the role of an entity or the role with which that entity is associated.",
+    "enum": [
+        "Customer",
+        "Supplier",
+        "Requester"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AddressComponentType",
+    "description": "Holds address extension components.",
+    "type": "object",
+    "properties": {
+        "type": {
+            "description": "Specify purpose of this extension (province, secondary line, house number, etc).",
+            "type": "string"
+        },
+        "value": {
+            "description": "Actual component value.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "value"
+    ]
+}

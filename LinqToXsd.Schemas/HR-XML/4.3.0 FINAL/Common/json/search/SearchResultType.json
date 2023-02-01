@@ -1,0 +1,101 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "SearchResultType",
+    "description": "The actual search result (set/list).",
+    "type": "object",
+    "properties": {
+        "count": {
+            "description": "Number of items in this result set.",
+            "type": "integer"
+        },
+        "countAll": {
+            "description": "Number of all items that match the search criteria.",
+            "type": "integer"
+        },
+        "executionCode": {
+            "description": "A result code from the execution of the search.",
+            "type": "string"
+        },
+        "executionTime": {
+            "description": "Execution duration of the search.",
+            "$ref": "../base/MeasureType.json#"
+        },
+        "items": {
+            "description": "Search result items (of this set).",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/SearchResultItemType"
+            }
+        }
+    },
+    "definitions": {
+        "SearchResultItemType": {
+            "title": "SearchResultItemType",
+            "description": "Search result item.",
+            "type": "object",
+            "properties": {
+                "matchedObjectId": {
+                    "description": "Identifier of the matched object/item.",
+                    "$ref": "../base/IdentifierType.json#"
+                },
+                "matchedObjectDescriptors": {
+                    "description": "Descriptors of the matched object/item. Remark: usually correspond to the requested descriptors as given in the search query.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "ReferencedPropertyValueType.json#"
+                    }
+                },
+                "relevanceRank": {
+                    "description": "Rank according to relevance of the search.",
+                    "type": "integer"
+                },
+                "relevanceScore": {
+                    "description": "Relevance score - usually in numerical values from 0.0 (no overestimation) to 1.0 (full overestimation with search criteria).",
+                    "type": "number"
+                },
+                "relevanceScoreIsRequiredMissedIndicator": {
+                    "description": "Relevance score indicator that at least one required criterion is missed in the item. Remark: Only needed if such search results are forced to be considered.",
+                    "$ref": "../base/IndicatorType.json#"
+                },
+                "relevanceScoreDetails": {
+                    "description": "Details about the score or evaluation of the item to help explain its relevance to the search criteria.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RelevanceScoreDetailsItemType"
+                    }
+                }
+            }
+        },
+        "RelevanceScoreDetailsItemType": {
+            "title": "RelevanceScoreDetailsItemType",
+            "description": "Detailed information about the relevance score evaluation.",
+            "type": "object",
+            "properties": {
+                "searchCriterion": {
+                    "description": "Related search criterion data.",
+                    "$ref": "SearchCriterionType.json#"
+                },
+                "searchCriterionReference": {
+                    "description": "Reference to related search criterion. Remark: refers to 'searchCriterion.id.value'.",
+                    "type": "string"
+                },
+                "fulfillmentScore": {
+                    "description": "Fulfillment score - usually in values from 0.0 (no relevance or fulfillment) to 1.0 (full relevance or complete fulfillment with search criterion).",
+                    "type": "number"
+                },
+                "fulfillmentScoreIsRequiredMissedIndicator": {
+                    "description": "Fulfillment score indicator that a required criterion is missed.",
+                    "$ref": "../base/IndicatorType.json#"
+                },
+                "fulfillmentData": {
+                    "description": "Further information about fulfillment evaluation for this criterion.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "ReferencedPropertyValueType.json#"
+                    }
+                }
+            }
+        }
+    }
+}

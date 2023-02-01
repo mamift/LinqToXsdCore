@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="PropertyValueType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="PropertyValueType">
+    <xsd:annotation>
+      <xsd:documentation>Property-value pair, e.g. representing a feature of an entity. Note(s): Use PropertyValue sparingly! Always use a specific property from a known namespace when they serve your purpose. Using PropertyValue as a substitute for such properties will not trigger the same linked data function as the predicate of an RDF triple as will a more specific property.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="propertyID">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>URL indicating the type of the property and pointing to an external vocabulary.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Value of the quantitative value or property value node.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PropertyValue" type="hropen:PropertyValueType" />
+</xsd:schema>

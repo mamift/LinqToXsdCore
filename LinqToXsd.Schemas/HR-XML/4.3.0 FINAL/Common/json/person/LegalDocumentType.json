@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "LegalDocumentType",
+    "description": "Identifying information for a legal document, e.g. Passport, Visa, etc.",
+    "type": "object",
+    "allOf": [{
+        "description": "The identifier of the legal document, e.g. Passport number, Visa number.",
+        "$ref": "../base/IdentifierType.json#"
+    }],
+    "properties": {
+        "documentType": {
+            "description": "The type of document, e.g. Passport, Visa, National Registration Card.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "issuingAuthority": {
+            "description": "The name of the organization that issued the document. E.g. American Consulate, UK Passport Authority.",
+            "type": "string" 
+        },
+        "issueDate": {
+            "description": "The date the document was issued.",
+            "$ref": "../base/DateType.json#"
+        },
+        "expirationDate": {
+            "description": "The date the document expires.",
+            "$ref": "../base/DateType.json#"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PartyType",
+    "description": "A collection of information about the party who is the supplier/customer/requester of the associated entity.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],
+    "properties": {
+        "legalId": {
+            "description": "A government assigned identifier to distinguish the party (organization, person, or legal entity) to a transaction.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "taxId": {
+            "description": "An identifier assigned by a government tax authority to distinguish the party (organization, person, or legal entity) to a transaction.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "communication": { 
+            "description": "The methods of communication by which the party can be contacted.",
+            "$ref": "../communication/CommunicationType.json#" 
+        },
+        "personContacts": {
+            "description": "Specific people at the party who are contacts.",
+            "type": "array",
+            "items": { "$ref": "../person/SpecifiedPersonType.json#" }
+        }
+    },
+    "required": [ "id" ]
+}

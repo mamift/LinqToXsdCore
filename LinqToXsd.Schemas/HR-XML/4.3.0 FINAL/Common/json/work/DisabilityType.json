@@ -1,0 +1,96 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "DisabilityType",
+    "description": "Describes a disability associated with a specified person. Want of ability to discharge a function. Incapacity in the eye of the law.",
+    "definitions": {
+        "DisabilityLevelCodeList": {
+            "title": "DisabilityLevelCodeList",
+            "description": "A value classifying the level of disability.",
+            "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "enumNames": [
+                "need for another person's assistance with daily life tasks",
+                "inability to perform one or more sensory or physical functions",
+                "experiencing difficulties in multiple sensory or physical functions",
+                "experiencing difficulty in just one function",
+                "no limitations in functioning"
+            ]
+        },
+        "DisabilitySummaryType": {
+            "title": "DisabilitySummaryType",
+            "description": "Describes a disability associated with a specified person. Want of ability to discharge a function. Incapacity in the eye of the law.",
+            "type": "object",
+            "properties": {
+                "disabilityId": {
+                    "description": "An identifier of the persons disability recognition, e.g. the number of the persons 'severely handicapped pass'.",
+                    "$ref": "../base/IdentifierType.json#"
+                },
+                "disabilityLevelCode": {
+                    "description": "A value classifying the level of disability.",
+                    "$ref": "#/definitions/DisabilityLevelCodeList"
+                },
+                "percentage": {
+                    "description": "The amount of disability as a percentage of impairment. This should be defined by a medical board based on standards.",
+                    "$ref": "../base/PercentType.json#"
+                },
+                "disabilityType": {
+                    "description": "A value from an external code list classifying the type of disability. Examples: 1. DisabilityConditionType as defined by PESC.org; 2. U.S. Office of Special Education Programs (OSEP) Primary and Secondary Disability Codes; 3. 'Total', 'Partial', and 'Residual' as broad classifications of disability in certain contexts (Acord.org).",
+                    "$ref": "../base/EntityType.json#"
+                },
+                "disabilityDate": {
+                    "description": "The date on which an injury occurred or which is otherwise associated as the start of a period of disability.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                },
+                "disabilityCertifiedDate": {
+                    "description": "The date on which a person's disabled status is verified by a doctor or medical professional.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                },
+                "recoveryDate": {
+                    "description": "The date on which a person is determined to have recovered from an injury or disability.",
+                    "$ref": "../base/FormattedDateTimeType.json#"
+                },
+                "accommodationTypeCode": {
+                    "description": "A code identifying a type of assistance or technology required to accommodate a disability. This is a value from an external code list.",
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "comment": {
+                    "description": "Additional comments on the disability.",
+                    "$ref": "../base/CommentType.json#"
+                },
+                "effectiveDate": {
+                    "description": "Effective date of the defined disability.",
+                    "$ref": "../base/EffectiveTimePeriodType.json#"
+                },
+                "attachments": {
+                    "description": "Attachments supporting the disability summary.",
+                    "type": "array",
+                    "items": { "$ref": "../base/AttachmentType.json#" }
+                },
+                "attachmentReferences": {
+                    "description": "Attachment references supporting the disability summary.",
+                    "type": "array",
+                    "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+                }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "indicator": { 
+            "description": "An indicator of a disability associated with a specified person.",
+            "$ref": "../base/IndicatorType.json#" 
+        },
+        "summary": {
+            "description": "A summary of a disability associated with a specified person.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/DisabilitySummaryType" }
+        }
+    }
+}

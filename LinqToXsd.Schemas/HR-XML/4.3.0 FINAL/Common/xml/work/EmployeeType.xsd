@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="EmployeeType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../person/PersonBaseType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/PercentType.xsd" />
+  <xsd:include schemaLocation="../codelist/PositionTypeCodeList.xsd" />
+  <xsd:complexType name="SpecialClassificationTypeArray">
+    <xsd:annotation>
+      <xsd:documentation>A special classification of the Employee e.g. a VIP, Owner, Highly Compensated, Stock Owner, Executive, Officer, etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+              <xsd:annotation>
+                <xsd:documentation>A code indicating the special classification.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="indicator" type="hropen:IndicatorType">
+              <xsd:annotation>
+                <xsd:documentation>An indicator of the special classification.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="percentage" type="hropen:PercentType">
+              <xsd:annotation>
+                <xsd:documentation>The percentage of a person's allocation that is considered the special classification.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EmployeeType">
+    <xsd:annotation>
+      <xsd:documentation>This entire schema has been deprecated. The data has been added to Common/Deployment.  The information about a person and their relationship as an employee.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="legalId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The legal identifier of a person. The issuer is most likely a country or state.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="previousLegalId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The previous legal identifier of a person. The issuer is most likely a country or state.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="birthDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The birth date of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="gender" type="hropen:GenderCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The gender of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="citizenship">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The citizenships that a person holds. This is a legal citizenship in a country (as opposed to nationality which may or may not be a country).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CountryCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="residenceCountry">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The country (or countries) where a person currently resides.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CountryCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="militaryStatus">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The military status of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ethnicity" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>The ethnicity (or ethnicities) of a person. A country may define which of these terms (race, nationality, ethnicity) be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their ethnicity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="name" type="hropen:PersonNameType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="primaryLanguage" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="securityTag" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionTypeCode" type="hropen:PositionTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Deprecated. Do Not Use. Use the PositionTypeCode in PositionType or Deployment/PositionType instead.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="laborBargainingUnitMemberIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Deprecated. Do Not Use. Use the LaborBargainingUnitIndicator in DeploymentType instead.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="specialClassifications" type="hropen:SpecialClassificationTypeArray" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="specialProvisions">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reportingCode">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Deprecated. Do Not Use. Use the EmployeeReportingCode in DeploymentType instead.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Employee" type="hropen:EmployeeType" />
+</xsd:schema>

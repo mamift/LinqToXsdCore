@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AssessmentTypeCodeList",
+    "description": "A set of codes broadly classifying the type of assessment or the principal target of what is assessed.",
+    "enum": [
+        "Knowledge",
+        "Skill",
+        "Ability",
+        "Psychometric",
+        "CertificationOrLicense"
+    ]
+}

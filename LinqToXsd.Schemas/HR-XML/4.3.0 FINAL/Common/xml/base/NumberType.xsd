@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="NumberType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="NumberType">
+    <xsd:annotation>
+      <xsd:documentation>A mathematical number that is assigned or is determined by calculation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:decimal" />
+  </xsd:simpleType>
+  <xsd:element name="Number" type="hropen:NumberType" />
+</xsd:schema>

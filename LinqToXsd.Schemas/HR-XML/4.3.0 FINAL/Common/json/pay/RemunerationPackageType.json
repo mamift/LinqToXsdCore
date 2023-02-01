@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RemunerationPackageType",
+    "description": "Terms offered or agreed regarding remuneration for a position. May include pay as well as benefits in-kind.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../base/EffectiveTimePeriodType.json#" }
+    ],
+    "properties": {
+        "id": { "$ref": "../base/EntityType.json#" },
+        "basisCode": {
+            "description": "A code classifying the primary method of payment for the associated position or employment. This classifies the method by which remuneration for a position is provided or calculated.",
+            "$ref": "../codelist/RemunerationBasisCodeList.json#"
+        },
+        "ranges": {
+            "type": "array",
+            "items": { "$ref": "RemunerationRangeType.json#" }
+        },
+        "benefitsSummary": {
+            "description": "A summary of the offered benefits.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "descriptions": { "$ref": "../base/StringTypeArray.json#" }
+    }
+}

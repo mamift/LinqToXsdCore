@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ScreeningType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="StatusNotificationType.xsd" />
+  <xsd:include schemaLocation="CatalogALaCarteType.xsd" />
+  <xsd:include schemaLocation="ScreeningReportType.xsd" />
+  <xsd:include schemaLocation="OrderType.xsd" />
+  <xsd:include schemaLocation="SubjectType.xsd" />
+  <xsd:include schemaLocation="CatalogPackageType.xsd" />
+  <xsd:complexType name="ScreeningType">
+    <xsd:annotation>
+      <xsd:documentation>Represents the Screening Specification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="catalogALaCarte" type="hropen:CatalogALaCarteType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="catalogPackage" type="hropen:CatalogPackageType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="order" type="hropen:OrderType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusNotification" type="hropen:StatusNotificationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="subject" type="hropen:SubjectType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="report" type="hropen:ScreeningReportType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Screening" type="hropen:ScreeningType" />
+</xsd:schema>

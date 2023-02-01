@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonNameTypeArray",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "allOf": [
+            { "$ref": "PersonNameType.json#" }
+        ],
+        "properties": {
+            "nameType": { "type": "string" }
+        },
+        "required": [ "nameType" ]
+    }
+}

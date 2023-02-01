@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="RateBasedCoverageType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/person/PersonBaseType.xsd" />
+  <xsd:include schemaLocation="codelist/LifeCoverageStatusCodeList.xsd" />
+  <xsd:include schemaLocation="codelist/CoverageEntityCodeList.xsd" />
+  <xsd:include schemaLocation="CoverageType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NumberType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/PercentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="codelist/RateBasedProductSubTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/EffectiveTimePeriodType.xsd" />
+  <xsd:include schemaLocation="codelist/CoverageLevelTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="codelist/RateBasedProductCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="codelist/FamilyRelationshipCodeList.xsd" />
+  <xsd:complexType name="CoverageLevelType">
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="multiplier" type="hropen:NumberType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:CoverageLevelTypeCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="volumeAmount" type="hropen:AmountType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="QuestionAnswerType">
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="questionSetId" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="question">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="answer">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="BeneficiaryType">
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="legalId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The legal identifier of a person. The issuer is most likely a country or state.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="previousLegalId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The previous legal identifier of a person. The issuer is most likely a country or state.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="birthDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The birth date of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="gender" type="hropen:GenderCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The gender of a person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="citizenship">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The citizenships that a person holds. This is a legal citizenship in a country (as opposed to nationality which may or may not be a country).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CountryCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="residenceCountry">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The country (or countries) where a person currently resides.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CountryCodeList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="militaryStatus">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The military status of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ethnicity" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>The ethnicity (or ethnicities) of a person. A country may define which of these terms (race, nationality, ethnicity) be used and how they are defined. One or more properties may be used by a country. A predefined country list allows a person to specify their ethnicity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="name" type="hropen:PersonNameType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="communication" type="hropen:CommunicationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="primaryLanguage" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="designationSequence" type="hropen:PercentType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="familyRelationshipCode" type="hropen:FamilyRelationshipCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="inheritanceAmount" type="hropen:AmountType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="RateBasedCoverageType">
+    <xsd:annotation>
+      <xsd:documentation>Specifies details for rate-based coverage (typically voluntary benefits offered by an employer), such as type and dates of coverage. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="electedPlanId" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="groupNumberId" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="carrierOrganization" type="hropen:OrganizationReferenceType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="deductionInstructions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Instructions for benefits deductions.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RemunerationOrDeductionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rateBasedProductCode" type="hropen:RateBasedProductCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="productTypeCode" type="hropen:RateBasedProductSubTypeCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="coverageEntityCode" type="hropen:CoverageEntityCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="eligibilityRegionCode" type="hropen:CodeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectivePeriod" type="hropen:EffectiveTimePeriodType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="lateEntranceIndicator" type="hropen:IndicatorType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="approvedCoverageLevel" type="hropen:CoverageLevelType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="requestedCoverageLevel" type="hropen:CoverageLevelType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="questionAnswerPair">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QuestionAnswerType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="eoiOnFileWithEmployerIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if the Evidence of Insurability document is on file with the employer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="eoiRequiredIndictator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if the Evidence of Insurability document is required.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="beneficiary">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:BeneficiaryType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="lifeCoverageStatus" type="hropen:LifeCoverageStatusCodeList" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="RateBasedCoverage" type="hropen:RateBasedCoverageType" />
+</xsd:schema>

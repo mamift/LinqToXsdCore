@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PhoneTypeArray",
+    "description": "Array of phone information details.",
+    "type": "array",
+    "items": {
+        "allOf": [
+            { "$ref": "PhoneType.json#" },
+            { "$ref": "CommunicationItemInclusion.json#" }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonPhysicalInclusion",
+    "description": "Person physical information.",
+    "type": "object",
+    "properties": {
+        "height": {
+            "description": "The height of the person.",
+            "$ref": "../base/MeasureType.json#"
+        },
+        "weight": {
+            "description": "The weight of the person.",
+            "$ref": "../base/MeasureType.json#"
+        },
+        "disability": {
+            "description": "A type of disability that a person has.",
+            "$ref": "../work/DisabilityType.json#"
+        },
+        "tobaccoUserIndicator": {
+            "description": "An indicator that a person is a tobacco user.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "hairColor": {
+            "description": "The color of the hair of a person.",
+            "type": "string"
+        },
+        "eyeColor": {
+            "description": "The color of the eyes of a person.",
+            "type": "string"
+        },
+        "identifyingMarks": {
+            "description": "A list of identifying marks of a person.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "age": {
+            "description": "The age of a person (in years).",
+            "type": "integer"
+        },
+        "bloodType": {
+            "description": "The blood type of a person.",
+            "$ref": "../base/CodeType.json#"
+        }
+    }
+}

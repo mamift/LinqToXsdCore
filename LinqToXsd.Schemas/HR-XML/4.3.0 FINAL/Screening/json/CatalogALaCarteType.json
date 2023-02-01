@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "version": "4.3.0",
+    "title": "CatalogALaCarteType",
+    "description": "A list of all available ALaCarte items.",
+    "type": "object",
+    "definitions": {
+        "ALaCarteItemType": {
+            "title": "ALaCarteItemType",
+            "description": "An aLaCarte screen.",
+            "type": "object",
+            "properties": {
+                "screeningCode": {
+                    "description": "The code corresponding to a screening type (e.g. MVR, Criminal, Civil, Credit, DrugTesting, Fingerprinting, Education, Employment).",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "category": {
+                    "description": "The category that this screening type falls in.",
+                    "$ref": "../../common/json/base/TextType.json#"
+                },
+                "screeningDescription": {
+                    "description": "The description screening type.",
+                    "$ref": "../../common/json/base/TextType.json#"
+                }
+            },
+            "required": ["screeningCode"]
+        }
+    },
+    "properties": {
+        "screenings": {
+            "description": "An array of aLaCarte Screens.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/ALaCarteItemType" }
+        }
+    }
+}

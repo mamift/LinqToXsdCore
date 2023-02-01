@@ -1,0 +1,32 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "AnnotatedDefinedTermType",
+  "description" : "Word, name, acronym, phrase, defined in a controlled value space (e.g., taxonomy, glossary, dictionary, tag list, and other forms of enumeration). Note(s): Used in the context of JDX to assign terms from occupation, industry and instructional program classifications, skills and abilities, and abstract concepts to JDX entities. Through the class' relationship with the ScaledAnnotation class, terms can be conditioned through applications of scales for attributes such as importance and frequency.",
+  "type" : "object",
+  "properties" : {
+    "annotation" : {
+      "description" : "Entity providing qualifying notations including application of scales and other weights to concepts and competencies.",
+      "$ref" : "ScaleAnnotationType.json#"
+    },
+    "descriptions" : {
+      "description" : "A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "inDefinedTermSet" : {
+      "description" : "A defined term set that contains this term.",
+      "$ref" : "DefinedTermSetType.json#"
+    },
+    "name" : {
+      "description" : "The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.",
+      "type" : "string"
+    },
+    "termCode" : {
+      "description" : "A code that identifies this DefinedTerm within a DefinedTermSet.",
+      "type" : "string"
+    }
+  }
+}

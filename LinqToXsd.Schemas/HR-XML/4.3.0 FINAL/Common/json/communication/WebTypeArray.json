@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "WebTypeArray",
+    "description": "Array of web information details.",
+    "type": "array",
+    "items": {
+        "allOf": [
+            { "$ref": "WebType.json#" },
+            { "$ref": "CommunicationItemInclusion.json#" }
+        ]
+    }
+}

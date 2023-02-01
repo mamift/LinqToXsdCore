@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="PositionTermTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="PositionTermTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>The term of the work agreement or position. Options are Fixed, Permanent, Casual, Seasonal.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Fixed">
+        <xsd:annotation>
+          <xsd:documentation>Ends on a specified date or when a particular event occurs.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Permanent">
+        <xsd:annotation>
+          <xsd:documentation>Has the full set of employment rights and responsibilities. This may be full or part time.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Temporary">
+        <xsd:annotation>
+          <xsd:documentation>Used for unpredictable workloads, project work, seasonal peaks, and other limited-term needs, such as a leave of absence.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Seasonal">
+        <xsd:annotation>
+          <xsd:documentation>A type of fixed-term employment where the employment agreement says that the work will finish at the end of the season.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="PositionTermTypeCode" type="hropen:PositionTermTypeCodeList" />
+</xsd:schema>

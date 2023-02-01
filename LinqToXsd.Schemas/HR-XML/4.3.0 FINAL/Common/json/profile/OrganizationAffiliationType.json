@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "OrganizationAffiliationType",
+    "description": "Contains information about a person's affiliation with a trade, professional, or similar organization or group formed around a common purpose or cause.",
+    "type": "object",
+    "properties": {
+        "organization": { 
+            "description": "The specific organization to which the person is affiliated.",
+            "$ref": "../organization/OrganizationType.json#" 
+        },
+        "affiliationTypeCode": {
+            "description": "The type of association or organization with which a person is affiliated. In most contexts, this would be an organizational affiliation other than that with an employer. Typically, would be an affiliation with an association, trade organization, or union.",
+            "$ref": "../codelist/AffiliatedOrganizationTypeCodeList.json#"
+        },
+        "memberId": { 
+            "description": "The membership identifier of the person at the affiliated organization.",
+            "$ref": "../base/IdentifierType.json#" 
+        },
+        "role": { 
+            "description": "The role of the person at the affiliated organization.",
+            "type": "string" 
+        },
+        "startDate": { 
+            "description": "The start date of the person at the affiliated organization.",
+            "$ref": "../base/DateType.json#" 
+        },
+        "endDate": { 
+            "description": "The end date of the person at the affiliated organization.",
+            "$ref": "../base/DateType.json#" 
+        },
+        "descriptions": { 
+            "description": "Other descriptions of the affiliated organization.",
+            "$ref": "../base/StringTypeArray.json#" 
+        },
+        "attachmentReferences": {
+            "description": "Related attachment references for the affiliated organization.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        }
+    }
+}

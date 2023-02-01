@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PositionCompetencyType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="CompetencyEvidenceType.xsd" />
+  <xsd:include schemaLocation="CompetencyWeightType.xsd" />
+  <xsd:include schemaLocation="CompetencyDimensionType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../evaluation/BaseScoreType.xsd" />
+  <xsd:complexType name="RelatedCompetencyType">
+    <xsd:annotation>
+      <xsd:documentation></xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier for a competency definition.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A human readable, descriptive name for the given competency.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyRelationshipCodes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CodeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PositionCompetencyType">
+    <xsd:annotation>
+      <xsd:documentation>A qualified position competency has a specified required and/or desired level of proficiency and has an explicit or implicit level of importance (weight) among sibling competencies associated with a position.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A unique identifier for a competency definition.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="taxonomyIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The identifier for categorization of competencies in an HR context.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A human readable, descriptive name for the given competency.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="weight" type="hropen:CompetencyWeightType">
+        <xsd:annotation>
+          <xsd:documentation>A number expressing the relative importance of a particular component (e.g., a position competency) among sibling components. Weights are most frequently expressed a percentage (where the weights assigned to individual sibling competencies would total 100 percent when totaled), but they may be expressed using another numeric scale.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredProficiencyLevel" type="hropen:BaseScoreType">
+        <xsd:annotation>
+          <xsd:documentation>A minimum level of proficiency for a competency  associated with a position, role, course, or other item. The proficiency level is expressed as a score, a point scale, or a mark among range of values.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="desiredProficiencyLevel" type="hropen:BaseScoreType">
+        <xsd:annotation>
+          <xsd:documentation>DefinitionText&gt;An optimum or ideal level of proficiency for a competency with respect to an associated position, role, course, or other item. The proficiency level is expressed as a score, a point scale, or a mark among range of values.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="proficiencyAcquistionDifficulty" type="hropen:BaseScoreType">
+        <xsd:annotation>
+          <xsd:documentation>A rating or score representing the difficulty of the particular competency to acquire.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyClassificationCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code that categorizes a competency according to a classification system. This classification system usually would be set within a source competency model or taxonomy.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyDimension" type="hropen:CompetencyDimensionType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="relatedCompetencies">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation></xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RelatedCompetencyType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyEvidenceRequirement" type="hropen:CompetencyEvidenceType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PositionCompetency" type="hropen:PositionCompetencyType" />
+</xsd:schema>

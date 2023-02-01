@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ResponsibleType",
+    "description": "A collection of information about the person who is the submitter/approver of the associated document.",
+    "type": "object",
+    "properties": {
+        "code": { "type": "string" },
+        "person": {
+            "description": "Contains information identifying the person who has the role of submitter/approver.",
+            "$ref": "../person/SpecifiedPersonType.json#"
+        },
+        "datetime": {
+            "description": "The date the related document, report, or related entity was communicated to a receiving or approving entity.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "comment": { "$ref": "../base/CommentType.json#" }
+    }
+}

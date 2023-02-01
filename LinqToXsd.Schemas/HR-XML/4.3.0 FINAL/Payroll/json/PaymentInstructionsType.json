@@ -1,0 +1,47 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "PaymentInstructionsType",
+	"description": "The instructions for payment.",
+	"type": "object",
+	"definitions": {
+		"PaymentDistributionType": {
+			"description": "Describes how to distribute the payment among the accounts.",
+			"type": "object",
+			"properties": {
+				"amount": {
+					"description": "The amount of the payment.  This is only relevant for the secondary account in the event of a partial distribution.",
+					"$ref": "../../common/json/base/AmountType.json#"
+				},
+				"percentage": {
+					"description": "The percentage of the payment. This is only relevant for the secondary account in the event of a partial distribution.",
+					"$ref": "../../common/json/base/PercentType.json#"
+				},
+				"remainingBalanceIndicator": {
+					"description": "Specifies if the remaining amount should be applied to this account.",
+					"$ref": "../../common/json/base/IndicatorType.json#"
+				}
+			}
+		}
+	},
+	"properties": {
+		"id": {
+			"description": "Identifies the payment instruction when there is more than one payment instruction.",
+			"$ref": "../../common/json/base/IdentifierType.json#"
+		},
+		"sequence": {
+			"description": "Specifies in what order are the payments processed in the secondary accounts until the remainder is paid into the main account.",
+			"type": "number"
+		},
+		"deploymentId": {
+			"description": "Provides a unique identifier to a specific deployment. This may be used when a person has multiple deployments within an organization. For example, a coach and math teacher at a school.",
+			"$ref": "../../common/json/base/IdentifierType.json#"
+		},
+		"paymentMethod": {
+			"$ref": "../../common/json/pay/PaymentMethodType.json#"
+		},
+		"paymentDistribution": {
+			"$ref": "#/definitions/PaymentDistributionType"
+		}
+	}
+}

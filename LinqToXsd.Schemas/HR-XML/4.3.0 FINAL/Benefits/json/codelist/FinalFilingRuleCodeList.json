@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "FinalFilingRuleCodeList",
+    "description": "A code classifying the participant's employment status associated with the final filing rule.",
+    "enum": [
+           "Active",
+           "Terminated"
+    ]
+}

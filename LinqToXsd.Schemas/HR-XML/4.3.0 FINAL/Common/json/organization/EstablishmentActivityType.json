@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "EstablishmentActivityType",
+	"description": "The business activities conducted at the establishment.",
+	"type": "object",
+	"properties": {
+		"activityCode": {
+			"description": "The code defining the activity.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/CodeType.json#"
+			}
+		},
+		"description": {
+			"description": "A description of the establishment activities.",
+			"$ref": "../base/TextType.json#"
+		},
+		"percentage": {
+			"description": "The percentage the entity spends on the activity.",
+			"$ref": "../base/PercentType.json#"
+		}
+	}
+}

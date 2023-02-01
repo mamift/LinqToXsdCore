@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EnrollmentType",
+    "description": "The data involved in initial creation and maintenance of employee benefit changes.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "person": {
+            "description": "Information to identify the person, including name, communication, demographic details and other identifiers.",
+            "$ref": "SubscriberPersonType.json#"
+        },
+        "employee": {
+            "description": "Deprecated. Use Common/Deployment instead.",
+            "$ref": "../../common/json/work/EmployeeType.json#"
+        },
+        "employment": {
+            "description": "Deprecated. Use common/WorkLifeCycle instead.",
+            "$ref": "EmploymentType.json#"
+        },
+        "employeeWorkLifeCycle": {
+            "description": "Information to specify details on the employee life cycle. For example, Hire Date, Leave Expected Return Date, etc.",
+            "$ref": "../../common/json/work/WorkLifeCycleType.json#"
+        },
+        "deployment": {
+            "description": "Information about an employee's deployment.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/work/DeploymentType.json#" }
+        },
+        "rateBasedCoverage": {
+            "description": "Information on the rate based coverages of a person.",
+            "type": "array",
+            "items": { "$ref": "RateBasedCoverageType.json#" }
+        },
+        "dependents": {
+            "description": "Information on the dependents of a person.",
+            "type": "array",
+            "items": { "$ref": "DependentType.json#" }
+        },
+        "accountBasedCoverage": {
+			"description": "coverage type for election based coverage - e.g., FSA, Retirement/Savings",
+			"type": "array",
+			"items": {
+				"$ref": "AccountBasedCoverageType.json#"
+			}
+	}
+    }
+}

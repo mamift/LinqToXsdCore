@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PatentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../codelist/PatentStatusCodeList.xsd" />
+  <xsd:include schemaLocation="../organization/OrganizationType.xsd" />
+  <xsd:complexType name="PatentType">
+    <xsd:annotation>
+      <xsd:documentation>Basic type that contains all properties common to represent a patent.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ids">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="title">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The patent title as registered with the government organization.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="inventorNames" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>The list of inventors who are registered on the patent.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assigneeNames" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>The list of assignees who are registered on the patent.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issuingAuthority" type="hropen:OrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>The agency under which the patent is registered.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="status" type="hropen:PatentStatusCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The current status of the patent. Statuses include filed, pending, issued.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>References to the patent.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Patent" type="hropen:PatentType" />
+</xsd:schema>

@@ -1,0 +1,73 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "IndirectCompensationType",
+	"description": "The monetary value of compensation paid by the employer for a worker's voluntary and non-voluntary non-cash fringe benefits.",
+	"definitions": {
+		"VoluntaryBenefitAmountType": {
+			"title": "VoluntaryBenefitAmountType",
+			"description": "The type and amount of voluntary benefit compensation.",
+			"type": "object",
+			"properties": {
+				"typeCode": {
+					"description": "Types of voluntary benefits such as insurance, retirement or savings.",
+					"$ref": "codelist/VoluntaryBenefitTypeCodeList.json#"
+				},
+				"description": {
+					"description": "A short phrase further describing the benefit type.",
+					"type": "string"
+                },
+				"amount": {
+					"description": "The monetary value of the voluntary benefit.",
+					"$ref": "../../common/json/base/AmountType.json#"
+				}
+			}
+		},
+		"NonVoluntaryBenefitAmountType": {
+			"title": "NonVoluntaryBenefitAmountType",
+			"description": "Describes the type and amount of benefits paid by the employer.",
+			"type": "object",
+			"properties": {
+				"typeCode": {
+					"description": "Types of non-voluntary benefits. In the US, this would include social security, medicare, unemployment and workers compensation.",
+					"$ref": "codelist/USBenefitTypeCodeList.json#"
+				},
+				"description": {
+					"description": "A short phrase further describing the benefit type.",
+					"type": "string"
+                },
+				"amount": {
+					"description": "The monetary value of the non-voluntary benefit.",
+					"$ref": "../../common/json/base/AmountType.json#"
+				}
+			}
+		}
+	},
+	"type": "object",
+	"properties": {
+		"totalVoluntaryBenefitAmount": {
+			"description": "Total monetary value of employer-paid contributions for discretionary fringe benefits provided to the worker, including insurance, retirement, and savings.",
+			"type": "object",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalNonVoluntaryBenefitAmount": {
+			"description": "The total monetary value of compensation paid by the employer for a worker's legally required non-cash benefits. In the US, this would include employer contributions to Social Security, Medicare, FUTA, state Unemployment Insurance, Workers’ Compensation, and any other government-mandated benefits.",
+			"type": "object",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"voluntaryBenefitAmount": {
+			"description": "The monetary value of employer-paid contributions for discretionary fringe benefits provided to the worker, including insurance, retirement, and savings.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/VoluntaryBenefitAmountType"
+			}
+		},
+		"nonVoluntaryBenefitAmount": {
+			"description": "The monetary value of compensation paid by the employer for workers’s legally required non-cash fringe benefits, including employer contributions to Social Security, Medicare, FUTA, state Unemployment Insurance, Workers’ Compensation, and any other state-mandated benefits. ",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/NonVoluntaryBenefitAmountType"
+			}
+		}
+	}
+}

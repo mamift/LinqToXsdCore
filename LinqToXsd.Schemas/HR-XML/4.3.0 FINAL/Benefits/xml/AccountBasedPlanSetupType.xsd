@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AccountBasedPlanSetupType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="codelist/EmployerContributionCodeList.xsd" />
+  <xsd:complexType name="EmployerContributionType">
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contributionType" type="hropen:EmployerContributionCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="contributionAmount" type="hropen:AmountType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="AccountBasedPlanSetupType">
+    <xsd:annotation>
+      <xsd:documentation>Account Based Plan set up type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumContribution" type="hropen:AmountType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="maximumContribution" type="hropen:AmountType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="employerContributionType" type="hropen:EmployerContributionType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="AccountBasedPlanSetup" type="hropen:AccountBasedPlanSetupType" />
+</xsd:schema>

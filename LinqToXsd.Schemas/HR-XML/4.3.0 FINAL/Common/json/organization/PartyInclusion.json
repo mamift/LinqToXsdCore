@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PartyInclusion",
+    "description": "Supplier/Customer/Requester/etc. information for an entity.",
+    "type": "object",
+    "properties": {
+        "party": {
+            "type": "object",
+            "properties": {
+                "supplier": { "$ref": "PartyType.json#" },
+                "customer": { "$ref": "PartyType.json#" },
+                "requester": { "$ref": "PartyType.json#" }
+            },
+            "minProperties": 1,
+            "additionalProperties": { "$ref": "PartyType.json#" }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonProfileType",
+    "description": "Represents person along with profile data.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../person/PersonBaseType.json#" },
+        { "$ref": "PersonProfileInclusion.json#" }
+    ]
+}

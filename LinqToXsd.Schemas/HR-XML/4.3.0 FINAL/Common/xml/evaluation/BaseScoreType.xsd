@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="BaseScoreType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="ScoreTextType.xsd" />
+  <xsd:include schemaLocation="ScoreNumericType.xsd" />
+  <xsd:complexType name="BaseScoreType">
+    <xsd:annotation>
+      <xsd:documentation>Type object to contain either numeric or text scores.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scoresNumeric">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Numeric scores for a test.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ScoreNumericType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scoresText">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Text scores for a test.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ScoreTextType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="BaseScore" type="hropen:BaseScoreType" />
+</xsd:schema>

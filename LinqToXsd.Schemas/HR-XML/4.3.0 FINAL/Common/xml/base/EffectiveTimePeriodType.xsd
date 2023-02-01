@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="EffectiveTimePeriodType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="DateTimeType.xsd" />
+  <xsd:complexType name="EffectiveTimePeriodType">
+    <xsd:annotation>
+      <xsd:documentation>A time period in which an associated object is effective.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="EffectiveTimePeriod" type="hropen:EffectiveTimePeriodType" />
+</xsd:schema>

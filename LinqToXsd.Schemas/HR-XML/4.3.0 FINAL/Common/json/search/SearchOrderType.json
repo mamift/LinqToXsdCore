@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "SearchOrderType": {
+        "title": "SearchOrderType",
+        "description": "Specifying order information of search results.",
+        "type": "object",
+        "properties": {
+            "criterion": {
+                "$ref": "OrderCriterionType.json#"
+            },
+            "direction": {
+                "enum": [
+                    "Asc",
+                    "Desc"
+                ]
+            },
+            "sequence": {
+                "type": "integer"
+            }
+        },
+        "required": [
+            "criterion"
+        ]
+    }
+}

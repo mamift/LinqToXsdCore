@@ -1,0 +1,86 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "SalarySurveyReportType",
+	"description": "A salary survey report.",
+    "allOf": [{
+        "$ref": "../../common/json/base/NounType.json#"
+    }],
+    "type": "object",
+    "definitions": {
+        "ResultType": {
+            "description": "Results set from a survey publisher based on inputs from participants.",
+            "type": "object",
+            "properties": {
+                "rewardCode": {
+                    "description": "ie. base salary, incentive, bonus",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "dimensionType": {
+                    "description": "Primary data cut. e.g All Data, Industry, Geography, Specialty, Subset, Employer Size, etc.",
+                    "type": "string"
+                },
+                "dimensionSubType": {
+                    "description": "Secondary data cut. e.g Incumbent Filter.",
+                    "type": "string"
+                },
+                "dimensionName": {
+                    "description": "Name of industry, Geography, Specialty, Subset, Employer Size, etc.",
+                    "type": "string"
+                },
+                "statisticName": {
+                    "description": "Statistics done on each set of data. e.g. 25th percentile",
+                    "type": "string"
+                },
+                "statisticAmount": {
+                    "description": "The resulting amount of the statistic for the reward of this job",
+                    "$ref": "../../common/json/base/AmountType.json#"
+                },
+                "statisticPercent": {
+                    "description": "The resulting percent of the statistic for the reward of this job",
+                    "$ref": "../../common/json/base/PercentType.json#"
+                },
+                "numberOfOrganizations": {
+                    "description": "The number of organizations that have reported data for this job",
+                    "$ref": "../../common/json/base/NumberType.json#"
+                },
+                "numberOfEmployees": {
+                    "description": "The number of employees that have reported data for this job",
+                    "$ref": "../../common/json/base/NumberType.json#"
+                }
+            }
+        }
+    },
+	"properties": {
+		"match": { "$ref": "MatchType.json#" },
+		"source": { 
+            "description": "The origins of the survey result",
+            "type": "object",
+            "properties": {
+                "publicationCompany": {
+                    "description": "Which company has published this survey result",
+                    "type": "string"
+                },
+                "publicationName": {
+                    "description": "What is the name of the survey being published for this survey result",
+                    "type": "string"
+                },
+                "publicationDate": {
+                    "description": "What is the date this survey was published for this survey result",
+                    "$ref": "../../common/json/base/DateType.json#"
+                },
+                "publicationNotes": {
+                    "description": "Any additional notes for this survey publication",
+                    "type": "string"
+                }
+            }
+        },
+		"results": {
+			"description": "Code classifying the survey job code levels e.g., 1, 2, 3, 4",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/ResultType"
+            }
+		}
+	}
+}

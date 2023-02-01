@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonCompetencyType",
+    "description": "A specified person competency is a competency within the context of a personal record (profile, appraisal, assessment) assessed or asserted at specified level of proficiency.",
+    "type": "object",
+    "properties": {
+        "competencyIds": {
+            "description": "A unique identifier for a competency definition.",
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "taxonomyIds": {
+            "description": "The identifier for categorization of competencies in an HR context.",
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "competencyName": {
+            "description": "A human readable, descriptive name for the given competency.",
+            "type": "string"
+        },
+        "description": {
+            "description": "Brief description of the named competency.",
+            "type": "string"
+        },
+        "proficiencyLevel": {
+            "description": "A minimum level of proficiency for a competency associated with a position, role, course, or other item. The proficiency level is expressed as a score, a point scale, or a mark among range of values.",
+            "$ref": "../evaluation/BaseScoreType.json#"
+        },
+        "lastUsedDate": { "$ref": "../base/FormattedDateTimeType.json#" },
+        "experienceMeasure": {
+            "description": "The duration of experience associated with the given entity. For example, this may be experience asserted or claimed by a candidate as evidence of a competency. Or it may be the assertion of a competency evidence policy or requirement for the duration of experience associated with a position or role.",
+            "$ref": "../base/MeasureType.json#"
+        },
+        "interestLevel": {
+            "description": "A rating of a person's interest associated with a competency.",
+            "$ref": "../evaluation/BaseScoreType.json#"
+        },
+        "competencyDimensions": {
+            "type": "array",
+            "items": { "$ref": "CompetencyDimensionType.json#" }
+        },
+        "competencyEvidence": { "$ref": "CompetencyEvidenceType.json#" },
+        "attachmentReferences": {
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        }
+    }
+}

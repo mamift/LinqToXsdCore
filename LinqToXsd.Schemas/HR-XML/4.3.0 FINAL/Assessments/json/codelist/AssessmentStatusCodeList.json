@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AssessmentStatusCodeList",
+    "description": "A set of codes indicating the status of an assessment The name of the assessment status.",
+    "enum": [
+        "OrderAcknowledged",
+        "TestPendingScheduling",
+        "TestScheduled",
+        "CompletedTestPendingScoring",
+        "ScoredTestPendingReview",
+        "SubjectDeclinedTest",
+        "OrderComplete",
+        "OrderInProgress",
+        "OrderCancelled",
+        "OrderExpired",
+        "OrderReviewRequired",
+        "Deferred",
+        "Error"
+    ]
+}

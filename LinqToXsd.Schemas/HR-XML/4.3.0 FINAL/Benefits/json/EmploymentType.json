@@ -1,0 +1,74 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EmploymentType",
+    "description": "This data type has been deprecated.  WorkLifeCycleType will be used instead. Describes the work life cycle of a person, i.e details for leave of absence, termination or retirement. ",
+    "definitions": {
+        "BenefitsHireType": {
+            "type": "object",
+            "properties": {
+                "typeCode": {
+                    "enum": [
+                        "NewHire",
+                        "Rehire",
+                        "Acquisition",
+                        "Transfer"
+                    ]
+                },
+                "date": { "$ref": "../../common/json/base/DateType.json#" },
+                "firstWorkDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "expectedFirstWorkDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "originalDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "adjustedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "cancelDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        },
+        "BenefitsLeaveType": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "enum": [
+                        "Active",
+                        "Inactive"
+                    ]
+                },
+                "remunerationCode": {
+                    "enum": [
+                        "Paid",
+                        "Unpaid"
+                    ]
+                },
+                "reasonCode": { "$ref": "../../common/json/base/CodeType.json#" },
+                "startDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastWorkedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastPaidDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "scheduledWorkReturnDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "workReturnDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        },
+        "BenefitsTerminationType": {
+            "type": "object",
+            "properties": {
+                "reasonCode": { "$ref": "../../common/json/base/CodeType.json#" },
+                "date": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastWorkedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastPaidDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        },
+        "BenefitsRetirementType": {
+            "type": "object",
+            "properties": {
+                "intendedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "firstDayDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "hire": { "$ref": "#/definitions/BenefitsHireType" },
+        "leave": { "$ref": "#/definitions/BenefitsLeaveType" },
+        "termination": { "$ref": "#/definitions/BenefitsTerminationType" },
+        "retirement": { "$ref": "#/definitions/BenefitsRetirementType" }
+    }
+}
+

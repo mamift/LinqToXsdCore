@@ -1,0 +1,185 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "OrderType",
+	"description": "Represents an Assessments Order for HR Open Standards.",
+	"definitions": {
+		"AssessmentAccessType": {
+			"title": "AssessmentAccessType",
+			"description": "This is a set of information used to provide the assessment subject access to a test that has been ordered.",
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "../../common/json/base/EffectiveTimePeriodType.json#"
+				}
+			],
+			"properties": {
+				"id": {
+					"description": "Identifier for an assessment access type.",
+					"$ref": "../../common/json/base/IdentifierType.json#"
+				},
+				"assessmentCommunication": {
+					"description": "Communication types to communicate with an assessment subject for a test or to schedule an assessment time and place to take the test.",
+					"$ref": "../../common/json/communication/CommunicationType.json#"
+				},
+				"descriptions": {
+					"$ref": "../../common/json/base/StringTypeArray.json#"
+				}
+			}
+		},
+		"AssessmentPackagesType": {
+			"title": "AssessmentPackagesType",
+			"description": "Array of packages used in staged assessments.",
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "../../common/json/base/NounType.json#"
+				},
+				{
+					"$ref": "../../common/json/organization/PartyInclusion.json#"
+				}
+			],
+			"properties": {
+				"packageId": {
+					"description": "Identifier to associate with the assessment.",
+					"$ref": "../../common/json/base/IdentifierType.json#"
+				},
+				"conditions": {
+					"description": "Specifies conditions for progressing through multiple assessment orders",
+					"$ref": "#/definitions/Conditions"
+				},
+				"sendAssessmentResultsToURL": {
+					"description": "Specifies the URL to direct the candidate to after the assessment is complete.",
+					"$ref": "RedirectUrlType.json#"
+				},
+				"descriptions": {
+					"$ref": "../../common/json/base/StringTypeArray.json#"
+				}
+			}
+		},
+		"Conditions": {
+			"title": "Conditions",
+			"description": "Conditions used in progression of an object/event/person",
+			"type": "array",
+			"properties": {
+				"type": {
+					"description": "The time the condition should be processed in relation to each item in the array.",
+					"enum": [
+						"pre",
+						"post"
+					],
+					"enumNames": [
+						"Pre Event",
+						"Post Event"
+					]
+				},
+				"key": {
+					"description": "JSONPath of the property to which the condition applies.",
+					"type": "string"
+				},
+				"operator": {
+					"description": "The operator value to initiate a comparison of the key value (JSONPath) to the supplied value",
+					"type": "string",
+					"oneOf": [
+						{
+							"$ref": "../../common/json/search/TermsQueryType.json#"
+						},
+						{
+							"$ref": "../../common/json/search/RangeNumberQueryType.json#"
+						}
+					]
+				},
+				"value": {
+					"description": "The value to compare with using the operator against the value in the key",
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "../../common/json/base/NounType.json#"
+		},
+		{
+			"$ref": "../../common/json/organization/PartyInclusion.json#"
+		}
+	],
+	"properties": {
+		"documentSequence": {
+			"type": "integer"
+		},
+		"packageId": {
+			"description": "Identifier to associate with the assessment.",
+			"$ref": "../../common/json/base/IdentifierType.json#"
+		},
+		"comparisonGroupIds": {
+			"description": "Indicates the applicable group for comparing assessment or appraisal results.",
+			"type": "array",
+			"items": {
+				"$ref": "../../common/json/base/IdentifierType.json#"
+			}
+		},
+		"assessmentRequesterName": {
+			"description": "The individual that makes the request.",
+			"type": "string"
+		},
+		"subject": {
+			"description": "The person who will be the subject of the assessment.",
+			"$ref": "AssessmentSubjectType.json#"
+		},
+		"assessmentLanguageCodes": {
+			"description": "The language in which the assessment is required.",
+			"type": "array",
+			"items": {
+				"$ref": "../../common/json/codelist/LanguageCodeList.json#"
+			}
+		},
+		"assessmentResultLanguageCodes": {
+			"description": "The language in which the assessment results are required.",
+			"type": "array",
+			"items": {
+				"$ref": "../../common/json/codelist/LanguageCodeList.json#"
+			}
+		},
+		"assessmentAccess": {
+			"description": "This is a set of information used to provide the assessment subject access to a test that has been ordered.",
+			"$ref": "#/definitions/AssessmentAccessType"
+		},
+		"testLocationId": {
+			"description": "An identifier for the location of a testing site or test center where a test was taken. If a test center does not have an identifier, then the name will be used as the identifier in the value property.",
+			"$ref": "../../common/json/base/IdentifierType.json#"
+		},
+		"assessmentAccessURL": {
+			"description": "The URL that the Requestor will re-direct the candidate to in order to complete the assessment.",
+			"$ref": "RedirectUrlType.json#"
+		},
+		"onCompletionURL": {
+			"description": "Specifies the URL to direct the candidate to after the assessment is complete.",
+			"$ref": "RedirectUrlType.json#"
+		},
+		"sendAssessmentResultsToURL": {
+			"description": "Specifies the URL to direct the candidate to after the assessment is complete.",
+			"$ref": "RedirectUrlType.json#"
+		},
+		"invitationByPartyCode": {
+			"description": "Specifies who will send the invitation to the candidate.  Options are the Customer or the Supplier.",
+			"$ref": "codelist/InvitationPartyCodeList.json#"
+		},
+		"code": {
+			"description": "Specifies an optional field to be used by parties for communication of an additional piece of data such as accounting code, billing identifier, department identifier, or location information.",
+			"$ref": "../../common/json/base/CodeType.json#"
+		},
+		"assessmentStatus": {
+			"description": "Code indicating the status of an assessment.",
+			"$ref": "codelist/AssessmentStatusCodeList.json#"
+		},
+		"packages": {
+			"description": "Array of packages used in staged assessments.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/AssessmentPackagesType"
+			}
+		}
+	}
+}

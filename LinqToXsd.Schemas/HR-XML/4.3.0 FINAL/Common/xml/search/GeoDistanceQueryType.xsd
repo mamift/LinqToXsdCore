@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="GeoDistanceQueryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/GeoType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:complexType name="GeoDistanceQueryType">
+    <xsd:annotation>
+      <xsd:documentation>Type for geo distance queries - radial distance around center geo point.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="geoDistance">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the property to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="geoPoint" type="hropen:GeoType">
+              <xsd:annotation>
+                <xsd:documentation>Requested center (geo point) for the distance calculation.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="distance">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Requested distance condition.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:all>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="lessThan">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="lessThanOrEqualTo">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="equalTo">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="greaterThanOrEqualTo">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="greaterThan">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="unitCode" type="hropen:CodeType" />
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="GeoDistanceQuery" type="hropen:GeoDistanceQueryType" />
+</xsd:schema>

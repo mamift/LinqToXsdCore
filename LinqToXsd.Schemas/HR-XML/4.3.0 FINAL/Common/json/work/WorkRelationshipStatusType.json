@@ -1,0 +1,44 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "WorkRelationshipStatusType",
+	"description": "The status of the worker in relation to the assignment.",
+	"definitions": {
+		"WorkRelationshipStatusCodeList": {
+			"title": "WorkRelationshipStatusCodeList",
+			"enum": [
+				"Pending",
+				"Active",
+				"Inactive",
+				"Terminated"
+			]
+		}
+	},
+	"type": "object",
+	"properties": {
+		"separatedIndicator": {
+			"description": "Indicates the worker has been separated from the organization.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"declinedToProvideIndicator": {
+			"description": "Indicates the employer has declined to provide a status.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"statusCode": {
+			"description": "The status of the worker in relation to the assignment. Values are Pending, Active, Inactive, Terminated.",
+			"$ref": "#/definitions/WorkRelationshipStatusCodeList"
+		},
+		"statusDate": {
+			"description": "The date on which the worker's status changed.",
+			"$ref": "../base/DateType.json#"
+		},
+		"description": {
+			"description": "A description of the status.",
+			"$ref": "../base/TextType.json#"
+		},
+		"reasonCode": {
+			"description": "The employer's reason for the work relationship status. ",
+			"$ref": "../base/CodeType.json#"
+		}
+	}
+}

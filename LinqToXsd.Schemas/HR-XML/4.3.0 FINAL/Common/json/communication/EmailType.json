@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EmailType",
+    "type": "object",
+    "properties": {
+        "address": {
+            "description": "Actual email address",
+            "type": "string",
+            "format": "email"
+        }
+    },
+    "required": [ "address" ]
+}

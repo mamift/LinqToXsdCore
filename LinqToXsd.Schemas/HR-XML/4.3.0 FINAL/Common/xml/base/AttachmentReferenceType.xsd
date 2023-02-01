@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AttachmentReferenceType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="IdentifierType.xsd" />
+  <xsd:include schemaLocation="StringTypeArray.xsd" />
+  <xsd:complexType name="AttachmentReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>A reference to an attachment that is within the current context of the document, or an external reference.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reference" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier or reference to a document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="uri">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>An internal reference (typically a JSON pointer reference).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Descriptions of the attachment reference.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="AttachmentReference" type="hropen:AttachmentReferenceType" />
+</xsd:schema>

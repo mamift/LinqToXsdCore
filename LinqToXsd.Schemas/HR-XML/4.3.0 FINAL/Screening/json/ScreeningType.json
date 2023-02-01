@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "version": "4.3.0",
+    "title": "ScreeningType",
+    "description": "Represents the Screening Specification.",
+    "type": "object",
+    "properties": {
+        "catalogALaCarte": { "$ref": "CatalogALaCarteType.json#" },
+        "catalogPackage": { "$ref": "CatalogPackageType.json#" },
+        "order": { "$ref": "OrderType.json#" },
+        "statusNotification": { "$ref": "StatusNotificationType.json#"},
+        "subject": { "$ref": "SubjectType.json#" },
+        "report": { "$ref": "ScreeningReportType.json#" }
+    }
+}

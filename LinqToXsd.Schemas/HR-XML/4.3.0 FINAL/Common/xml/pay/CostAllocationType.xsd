@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CostAllocationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/PercentType.xsd" />
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:complexType name="CostAllocationType">
+    <xsd:annotation>
+      <xsd:documentation>Contains percentage table per identifier of an account, department, or other entity to which an item should be allocated.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="1" maxOccurs="1" name="percentage" type="hropen:PercentType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="department" type="hropen:EntityType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="location" type="hropen:EntityType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="costCenter" type="hropen:EntityType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="job" type="hropen:EntityType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="account" type="hropen:EntityType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="project" type="hropen:EntityType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="shift" type="hropen:EntityType" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CostAllocation" type="hropen:CostAllocationType" />
+</xsd:schema>

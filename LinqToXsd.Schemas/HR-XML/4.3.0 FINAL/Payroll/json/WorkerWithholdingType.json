@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "WorkerWithholdingType",
+	"description": "Amounts withheld from the worker including taxes, premiums, insurance, other withholdings.",
+	"type": "object",
+	"properties": {
+		"totalTaxWithholdingAmount": {
+			"description": "The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to taxes.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalInsurancePremiumsWithholdingAmount": {
+			"description": "The total monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to insurance premiums.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalRetirementWithholdingAmount": {
+			"description": "The total monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to retirement.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalOtherWithholdingAmount": {
+			"description": "The total of all other monetary amounts withheld by the employer from the worker's pay for other than taxes, insurance and retirement.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"taxWithholdingAmount": {
+			"description": "The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to taxes.",
+			"type": "array",
+			"items": {
+				"$ref": "WithholdingAmountType.json#"
+			}
+		},
+		"insurancePremiumsWithholdingAmount": {
+			"description": "The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to insurance premiums.",
+			"type": "array",
+			"items": {
+				"$ref": "WithholdingAmountType.json#"
+			}
+		},
+		"retirementWithholdingAmount": {
+			"description": "The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to retirement.",
+			"type": "array",
+			"items": {
+				"$ref": "WithholdingAmountType.json#"
+			}
+		},
+		"otherWithholdingAmount": {
+			"description": "The monetary amount withheld by the employer from the worker's pay for other than taxes, insurance, and retirement.",
+			"type": "array",
+			"items": {
+				"$ref": "WithholdingAmountType.json#"
+			}
+		}
+	}
+}

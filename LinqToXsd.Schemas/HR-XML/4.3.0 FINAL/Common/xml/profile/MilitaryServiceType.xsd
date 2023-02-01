@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="MilitaryServiceType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/CountryCodeList.xsd" />
+  <xsd:include schemaLocation="../competency/SpecifiedCompetencyType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../base/CommentType.xsd" />
+  <xsd:include schemaLocation="BaseHistoryType.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:complexType name="MilitaryServiceType">
+    <xsd:annotation>
+      <xsd:documentation>History of military service. Service or employment in a military branch.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The identifier for the history.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="start" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The start date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="end" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The end date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="current" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicator that the person's history entry is currently active (i.e. if education, still at the school. If work history, still working at the organization)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachment references supporting the history entry.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Additional details or descriptions about the history entry.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="countryCode" type="hropen:CountryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The country to which this military service was performed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="serviceNumber">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The military service number or identifier of the person as defined by the country, branch, and/or division.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="branch">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The military office or department in which the person served; e.g. army, navy.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="division">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The military division as defined in the military branch and country. It could be a portion of an army or fleet, consisting of a definite number of troops or vessels, under one commanding officer; also applied to a definite portion of a squadron or battalion.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="startingRank">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The rank which the person held in the military service at the beginning of the service period.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="endingRank">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The rank which the person held at the end of the military service period.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="currentRankIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator that the rank is currently held as part of active service. Do not use this indicator if the person is no longer holding this rank.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="campaigns" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of campaigns to which the person was involved during the service period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="expertises">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of expertise that the person developed during the service period.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SpecifiedCompetencyType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="honors" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of honors that the person received during the service period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disciplinaryActions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A list of disciplinary actions taken during the service period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="dischargeStatus">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>If this is not a currently held service, the discharge status for the service period. E.g. honorable, dishonorable, general.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="dischargeDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>If this is not a currently held service, the date of discharge.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Additional comments about the military service history.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="MilitaryService" type="hropen:MilitaryServiceType" />
+</xsd:schema>

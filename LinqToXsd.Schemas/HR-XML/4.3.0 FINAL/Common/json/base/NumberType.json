@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "NumberType",
+    "description": "A mathematical number that is assigned or is determined by calculation.",
+    "type": "number"
+}

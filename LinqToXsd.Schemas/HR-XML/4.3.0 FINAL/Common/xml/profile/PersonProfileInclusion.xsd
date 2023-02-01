@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PersonProfileInclusion" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/LanguageCodeList.xsd" />
+  <xsd:include schemaLocation="OrganizationAffiliationType.xsd" />
+  <xsd:include schemaLocation="PublicationType.xsd" />
+  <xsd:include schemaLocation="MilitaryServiceType.xsd" />
+  <xsd:include schemaLocation="EmployerHistoryType.xsd" />
+  <xsd:include schemaLocation="CertificationType.xsd" />
+  <xsd:include schemaLocation="../competency/PersonCompetencyType.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentType.xsd" />
+  <xsd:include schemaLocation="RefereeType.xsd" />
+  <xsd:include schemaLocation="LicenseType.xsd" />
+  <xsd:include schemaLocation="PatentType.xsd" />
+  <xsd:include schemaLocation="EducationAttendanceType.xsd" />
+  <xsd:complexType name="PersonProfileInclusion">
+    <xsd:annotation>
+      <xsd:documentation>Personal profile.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="profileName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name given to the profile.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="languageCode" type="hropen:LanguageCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The primary language of the content of the profile.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="education">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The education history of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EducationAttendanceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employment">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The employment history of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EmployerHistoryType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="militaryService">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The military history of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:MilitaryServiceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="licenses">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The licenses that the person holds.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:LicenseType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="certifications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The certifications that the person holds.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CertificationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="patents">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The patents with which the person is involved.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PatentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="publications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The publications with which the person is involved.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PublicationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="qualifications">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The competencies of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PersonCompetencyType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="affiliations">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The organizations with which the person is affiliated.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:OrganizationAffiliationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="securityCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The security credentials that the person holds.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CertificationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="references">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The references of the person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RefereeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachments or online references related to the person's profile.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PersonProfileInclusion" type="hropen:PersonProfileInclusion" />
+</xsd:schema>

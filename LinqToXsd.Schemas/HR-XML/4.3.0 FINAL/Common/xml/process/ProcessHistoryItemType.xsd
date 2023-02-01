@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ProcessHistoryItemType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="../base/CodeType.xsd" />
+    <xsd:include schemaLocation="../base/AttachmentType.xsd" />
+    <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+    <xsd:include schemaLocation="../person/SpecifiedPersonType.xsd" />
+    <xsd:include schemaLocation="../organization/OrganizationReferenceType.xsd" />
+    <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+    <xsd:include schemaLocation="../base/FormattedDateTimeType.xsd" />
+    <xsd:complexType name="ProcessActionType">
+        <xsd:annotation>
+            <xsd:documentation>The type of action, process, or step that was executed.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="name">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The name of the executed action, process, or step.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+                <xsd:annotation>
+                    <xsd:documentation>The code of the executed action, process, or step.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="description">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>Description of the executed action, process, or step.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string" />
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="ProcessStatusType">
+        <xsd:annotation>
+            <xsd:documentation>A type defining the status of the underlying item.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="name">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The name of the status of the underlying item.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+                <xsd:annotation>
+                    <xsd:documentation>The code of the status of the underlying item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="description">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>Description of the status of the underlying item.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string" />
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="ProcessPartyType">
+        <xsd:annotation>
+            <xsd:documentation>A type defining the party, which may be a person or organization or both.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:SpecifiedPersonType">
+                <xsd:annotation>
+                    <xsd:documentation>Contains information to identify a person associated with the interaction or entity.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationReferenceType">
+                <xsd:annotation>
+                    <xsd:documentation>Basic information to reference a specific organization.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="ProcessHistoryItemType">
+        <xsd:annotation>
+            <xsd:documentation>Describes a single workflow process history step or item.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+                <xsd:annotation>
+                    <xsd:documentation>The identifier for the history item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="actionDate" type="hropen:FormattedDateTimeType">
+                <xsd:annotation>
+                    <xsd:documentation>The date and time that the action was executed or the event occurred or the step was completed.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="action" type="hropen:ProcessActionType">
+                <xsd:annotation>
+                    <xsd:documentation>The executed action that occurred on the step or item by the primary parties. This action may or may not involve a status change of the underlying process. E.g. reviewed application, sent for approval, approved (which might then change status as well).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="status" type="hropen:ProcessStatusType">
+                <xsd:annotation>
+                    <xsd:documentation>The current status of the underlying entity/process. For example, if it is an application process, the status would represent the current state of the candidate to the position opening. E.g. applied, interviewed, offered, hired.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="previousStatus" type="hropen:ProcessStatusType">
+                <xsd:annotation>
+                    <xsd:documentation>The previous status of the underlying entity/process - relevant in a status change process. Use status only if the whole history is maintained - previousStatus may not be needed.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="primaryParties">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>The parties executing the action. For example, the company, the hiring manager, the HR manager, etc.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ProcessPartyType" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="associatedParties">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>The parties additionally involved in the executed action. For example, the recruiting team or a set of people involved in an interview step. They are not the ones making the decision, but may be influencers or need to be informed.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ProcessPartyType" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="attachments">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>Attachments related to the history item.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentType" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+                <xsd:annotation>
+                    <xsd:documentation>Additional details or descriptions about the history item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="ProcessHistoryItem" type="hropen:ProcessHistoryItemType" />
+</xsd:schema>

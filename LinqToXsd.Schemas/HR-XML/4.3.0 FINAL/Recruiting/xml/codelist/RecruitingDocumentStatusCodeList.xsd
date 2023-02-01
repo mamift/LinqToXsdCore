@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RecruitingDocumentStatusCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="RecruitingDocumentStatusCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that describe the disposition of a position opening document.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Active" />
+      <xsd:enumeration value="Closed" />
+      <xsd:enumeration value="Incomplete" />
+      <xsd:enumeration value="OnHold" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="RecruitingDocumentStatusCode" type="hropen:RecruitingDocumentStatusCodeList" />
+</xsd:schema>

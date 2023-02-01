@@ -1,0 +1,76 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "JobType",
+	"description": "A job serves as a template for more specifically defined positions and assignments in a company, in part, to provide equitable opportunity for similar work done across disparate business units inside and outside the organization",
+	"type": "object",
+	"properties": {
+		"id": {
+			"description": "The id of the job.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"title": {
+			"description": "The title of a job.",
+			"type": "string"
+		},
+		"categoryCode": {
+			"description": "A code classifying the job category code. Examples include Officials And Managers, Professionals, Technicians, Sales, Official And Clerical, Craft Worker Skilled, Operative Semi-Skilled, Laborers Unskilled, Service Workers, etc.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"jobFunction": {
+			"description": "A code classifying the job function e.g., HR, Finance, Marketing, Sales, Product Development, etc.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"planCode": {
+			"description": "Identifies a specific salary structure or program used either throughout, or in specific segments of, an enterprise.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"gradeCode": {
+			"description": "Defines the salary range or band that a job falls within, based on the formal structure. Formal pay structures are less common today than in the past, but remain common in certain sectors, such as in public-sector employment and in employment covered by collective bargaining agreements.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"stepCode": {
+			"description": "Pinpoints a job's specific level or point within a salary range or band.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"managerIndicator": {
+			"description": "Specifies if the job is at the management level.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"managerLevel": {
+			"description": "If this is a manager level job, this describes the type of management level, ie. Supervisor, First Line, Senior Officer, CEO, etc.",
+			"type": "string"
+		},
+		"wageHourLawCoverageIndicator": {
+			"description": "This determines if a person is covered by wage hour laws. In the US, a person would be considered non-exempt if the indicator is true (they are covered under the law).",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"standardHours": {
+			"description": "The typical hours required for this job. For example, 40 hour per week or 2080 hours per year.",
+			"$ref": "../base/QuantityType.json#"
+		},
+		"occupationId": {
+			"description": "Classifies workers into occupational categories for the purpose of collecting, calculating, or disseminating data.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"jobResponsibilities": {
+			"description": "Describes the tasks and responsibilities of a job.",
+			"type": "string"
+		},
+		"requiredEducationAndExperience": {
+			"description": "Describes the required education and experience of a job.",
+			"type": "string"
+		},
+		"requiredCompetencyIds": {
+			"description": "Identifiers for the essential knowledge, skills, and abilities required to perform the job at the organization.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/IdentifierType.json#"
+			}
+		},
+		"description": {
+			"description": "The description of a job.",
+			"type": "string"
+		}
+	}
+}

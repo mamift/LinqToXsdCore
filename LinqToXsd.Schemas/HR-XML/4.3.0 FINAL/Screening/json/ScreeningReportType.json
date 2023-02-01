@@ -1,0 +1,111 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "version": "4.3.0",
+    "title": "ScreeningReportType",
+    "description": "A Screening report.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "definitions": {
+        "ServiceReportType": {
+            "title": "ServiceReportType",
+            "description": "The type of service or search type requested in the overall order.",
+            "type": "object",
+            "properties": {
+                "serviceId": {
+                    "description": "Typically used for a reference ID provided by the Consumer Reporting Agency (CRA) specific to the service itself.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "serviceOrderDate": {
+                    "description": "Order date and time when service was requested.",
+                    "$ref": "../../common/json/base/DateTimeType.json#"
+                },
+                "serviceCompletedDate": {
+                    "description": "Completed date and time when service was completed.",
+                    "$ref": "../../common/json/base/DateTimeType.json#"
+                },
+                "serviceCode": {
+                    "description": "Code used for service type.  Specific to each Consumer Reporting Agency (CRA).",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "serviceName": {
+                    "description": "Service Name used for service type.  Specific to each Consumer Reporting Agency (CRA).",
+                    "type": "string"
+                },
+                "statusMessage": {
+                    "description": "Overall status of service.  Typically would be reflective of a value like Pending, Complete, etc. Specific to each Consumer Reporting Agency (CRA).",
+                    "type": "string"
+                },
+                "flaggedIndicator": {
+                    "description": "Typically a true or false value indicating whether or not the service is flagged.  For example, a value of 'true' may indicate flagged information was found. Specific to each Consumer Reporting Agency (CRA).",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "result": {
+                    "description": "Overall result of service.  Typically would be reflective of a value like Record Found, No Record Found, etc. Specific to each Consumer Reporting Agency (CRA).",
+                    "type": "string"
+                },
+                "comments": {
+                    "description": "Any additional comments or ETAs tied to service. Specific to each Consumer Reporting Agency (CRA).",
+                    "type": "array",
+                    "items": {
+                        "$ref": "../../common/json/base/CommentType.json"
+                    }
+                },
+                "attachmentPointers": {
+                    "description": "This points to the an attachment in attachments array.",
+                    "type": "array",
+                    "items": {
+                        "description": "Indicates JSON Pointer value such as /foo/bar. Although this is a string, HR Open requires a json-pointer format. Do not use JSON Pointer URI fragments such as #/foo/bar",
+                        "type": "string"
+                    }
+                }
+            },
+            "required": ["serviceId"]
+        }
+    },
+    "properties": {
+        "packageCode": {
+            "description": "The code corresponding to a screening package.",
+            "$ref": "../../common/json/base/CodeType.json#"
+        },
+        "orderId": {
+            "description": "Typically used for a reference ID provided by the Consumer Reporting Agency (CRA) specific to the order itself. Can often be used as a lookup value in the CRA's client portal.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "subjectId": {
+            "description": "Reference ID tied to the subject (consumer) being screened.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "orderedDate": {
+            "description": "Date and time when order was successfully submitted.",
+            "$ref": "../../common/json/base/DateTimeType.json#"
+        },        
+        "completedDate": {
+            "description": "Completed date and time when overall order was completed.",
+            "$ref": "../../common/json/base/DateTimeType.json#"
+        },
+        "overallEvaluation": {
+            "description": "Reflects overall evaluation of order for organizations using a CRA for scoring purposes.  Often reflects values like Pass, Needs Review, etc.",
+            "type": "string"
+        },
+        "screeningResults": {
+            "description": "A collection of separate service results. For example, Education Verification, Employment Verification, MVR, Criminal Checks, etc.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/ServiceReportType"
+            }
+        },
+        "statusMessage": {
+            "description": "Overall status of order.  Typically would be reflective of a value like Pending, Complete, etc. Specific to each Consumer Reporting Agency (CRA).",
+            "type": "string"
+        },        
+        "attachments": {
+            "description": "This points to the attachments array",
+            "type": "array",
+            "items": {
+                "$ref": "../../common/json/base/AttachmentType.json"
+            }
+        }
+    }
+}

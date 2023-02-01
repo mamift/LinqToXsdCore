@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RelationshipTypeCodeList",
+    "description": "Values used to describe the type of relationship of a reference.",
+    "enum": [
+        "Personal",
+        "Professional"
+    ]
+}

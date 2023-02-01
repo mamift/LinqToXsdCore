@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.x" id="WorkAssignmentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../communication/AddressType.xsd" />
+  <xsd:include schemaLocation="../codelist/PayCycleIntervalCodeList.xsd" />
+  <xsd:include schemaLocation="../codelist/PositionTermTypeCodeList.xsd" />
+  <xsd:include schemaLocation="AssignmentLifeCycleType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/TextType.xsd" />
+  <xsd:complexType name="WorkAssignmentType">
+    <xsd:annotation>
+      <xsd:documentation>WorkAssignment may associate a Job and/or Position with a Worker.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier of the assignment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>Describes the assignment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assignmentTermTypeCode" type="hropen:PositionTermTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The code of the assignment term. Values include Fixed, Permanent, Casual, Seasonal.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assignmentLifeCyle" type="hropen:AssignmentLifeCycleType">
+        <xsd:annotation>
+          <xsd:documentation>Contains a collection of dates related to the assignment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assignmentLocation" type="hropen:AddressType">
+        <xsd:annotation>
+          <xsd:documentation>The location of the assignment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Indentifier of the specific job at an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Indentifier of the specific position at an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payCycleCode" type="hropen:PayCycleIntervalCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Describes how often the payee is paid. Pay Frequency - The period of time covered by the employee's regular pay checks. (EER WG, HR-Open Data Element Requirements) (xmi_attribute)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="WorkAssignment" type="hropen:WorkAssignmentType" />
+</xsd:schema>

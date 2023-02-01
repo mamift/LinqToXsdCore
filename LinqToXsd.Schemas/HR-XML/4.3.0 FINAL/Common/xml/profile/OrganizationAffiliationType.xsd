@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="OrganizationAffiliationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../organization/OrganizationType.xsd" />
+  <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../codelist/AffiliatedOrganizationTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:complexType name="OrganizationAffiliationType">
+    <xsd:annotation>
+      <xsd:documentation>Contains information about a person's affiliation with a trade, professional, or similar organization or group formed around a common purpose or cause.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>The specific organization to which the person is affiliated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="affiliationTypeCode" type="hropen:AffiliatedOrganizationTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The type of association or organization with which a person is affiliated. In most contexts, this would be an organizational affiliation other than that with an employer. Typically, would be an affiliation with an association, trade organization, or union.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="memberId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The membership identifier of the person at the affiliated organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="role">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The role of the person at the affiliated organization.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="startDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The start date of the person at the affiliated organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="endDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The end date of the person at the affiliated organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Other descriptions of the affiliated organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Related attachment references for the affiliated organization.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="OrganizationAffiliation" type="hropen:OrganizationAffiliationType" />
+</xsd:schema>

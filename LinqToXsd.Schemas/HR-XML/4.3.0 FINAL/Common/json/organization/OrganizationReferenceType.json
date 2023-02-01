@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "OrganizationReferenceType",
+    "description": "Basic information to reference a specific organization.",
+    "definitions": {
+        "ResponsibilityCodeList": {
+            "title": "ResponsibilityCodeList",
+            "description": "Values that classify the level or the responsibility at which the organization operates.",
+            "enum": [
+                "Unit",
+                "Department",
+                "Division",
+                "Parent",
+                "Group",
+                "Plant",
+                "Subsidiary",
+                "Joint Venture",
+                "Branch",
+                "Holding Affiliate"
+            ]
+        }
+    },
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "responsibilityCode": { 
+            "description": "The level or the responsibility at which the organization operates.",
+            "$ref": "#/definitions/ResponsibilityCodeList" 
+        },
+        "communication": { 
+            "description": "The methods of communication by which the organization can be contacted.",
+            "$ref": "../communication/CommunicationType.json#" 
+        }
+    }
+}

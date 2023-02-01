@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AffiliatedOrganizationTypeCodeList",
+    "description": "Values used to describe the type of association or affiliated organization.",
+    "enum": [
+        "Professional",
+        "Social",
+        "Community",
+        "Non-profit",
+        "Religious",
+        "Political"
+    ],
+    "enumNames": [
+        "Professional",
+        "Social",
+        "Community",
+        "Non-profit",
+        "Religious",
+        "Political"
+    ]
+}

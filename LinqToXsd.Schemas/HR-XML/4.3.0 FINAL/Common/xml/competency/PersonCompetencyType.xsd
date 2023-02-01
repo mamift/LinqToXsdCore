@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="PersonCompetencyType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/MeasureType.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="CompetencyEvidenceType.xsd" />
+  <xsd:include schemaLocation="CompetencyDimensionType.xsd" />
+  <xsd:include schemaLocation="../base/FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../evaluation/BaseScoreType.xsd" />
+  <xsd:complexType name="PersonCompetencyType">
+    <xsd:annotation>
+      <xsd:documentation>A specified person competency is a competency within the context of a personal record (profile, appraisal, assessment) assessed or asserted at specified level of proficiency.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A unique identifier for a competency definition.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="taxonomyIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The identifier for categorization of competencies in an HR context.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A human readable, descriptive name for the given competency.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Brief description of the named competency.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="proficiencyLevel" type="hropen:BaseScoreType">
+        <xsd:annotation>
+          <xsd:documentation>A minimum level of proficiency for a competency associated with a position, role, course, or other item. The proficiency level is expressed as a score, a point scale, or a mark among range of values.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="lastUsedDate" type="hropen:FormattedDateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="experienceMeasure" type="hropen:MeasureType">
+        <xsd:annotation>
+          <xsd:documentation>The duration of experience associated with the given entity. For example, this may be experience asserted or claimed by a candidate as evidence of a competency. Or it may be the assertion of a competency evidence policy or requirement for the duration of experience associated with a position or role.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interestLevel" type="hropen:BaseScoreType">
+        <xsd:annotation>
+          <xsd:documentation>A rating of a person's interest associated with a competency.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyDimensions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CompetencyDimensionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencyEvidence" type="hropen:CompetencyEvidenceType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PersonCompetency" type="hropen:PersonCompetencyType" />
+</xsd:schema>

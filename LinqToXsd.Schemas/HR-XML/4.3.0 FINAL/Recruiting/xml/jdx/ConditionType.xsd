@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="ConditionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="CredentialType.xsd" />
+  <xsd:include schemaLocation="QualifyingExperienceType.xsd" />
+  <xsd:complexType name="ConditionType">
+    <xsd:annotation>
+      <xsd:documentation>Entity providing the means to make logical asserions that combine resources that in aggregate fulfill education, experience and credential requirements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternativeCondition" type="hropen:ConditionType">
+        <xsd:annotation>
+          <xsd:documentation>Resource referenced provides the means to make logical asserions about alternative conditions.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternativeCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an alternative credential fulfilling requirements for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternativeEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an alternative education or training fulfilling requirements for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternativeExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an alternative experience fulfilling requirements for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="equivalentCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an equivalent credential for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="equivalentEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of equivalent education or training for the position or occupation. Note(s): An educational experience without award of a credential should be recorded with a range of QualifyingExperience. An educational experience with award of a credential should be recoded with a range of Credential, not QualifyingExperience.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="equivalentExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of equivalent experience for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the minimum experience needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the minimum credential needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the minimum education needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredCondition" type="hropen:ConditionType">
+        <xsd:annotation>
+          <xsd:documentation>Resource referenced provides the means to make logical asserions about alternative conditions.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the preferred credential needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the preferred education or training needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the preferred experience needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredConditions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Resource referenced provides the means to make logical assertions that combine resources that in aggregate fulfill education, experience and credential requirements.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ConditionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the required credential needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the required education or training needed for the position or occupation. Note(s): Specific credential requirements should use requiredCredential.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the required experience needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Condition" type="hropen:ConditionType" />
+</xsd:schema>

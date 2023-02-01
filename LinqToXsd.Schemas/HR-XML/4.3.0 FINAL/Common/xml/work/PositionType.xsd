@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="PositionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../codelist/RemunerationBasisCodeList.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../codelist/PositionTermTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../codelist/PositionScheduleTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../codelist/PositionTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:simpleType name="PositionStatusCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A value defining the status of the position.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Approved">
+        <xsd:annotation>
+          <xsd:documentation>Authorized to hire for the position</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Active">
+        <xsd:annotation>
+          <xsd:documentation>Currently filling an open position</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Filled">
+        <xsd:annotation>
+          <xsd:documentation>The position is filled</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Frozen">
+        <xsd:annotation>
+          <xsd:documentation>Vacant but not currently being filled</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Cancelled">
+        <xsd:annotation>
+          <xsd:documentation>Position is no longer valid</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="PositionType">
+    <xsd:annotation>
+      <xsd:documentation>A type that defines a position type and related identifiers.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier for a position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="title">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The title of a position.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="remunerationBasisCode" type="hropen:RemunerationBasisCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the primary method by which remuneration for a position is provided or calculated. Examples include Hourly, Salaried, Salaried plus Commission, Commission Only, Salaried plus Bonus, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionScheduleType" type="hropen:PositionScheduleTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The type of position schedule. Values include FullTime, PartTime, SharedTime and FlexTime. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionTypeCode" type="hropen:PositionTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Deprecated for the Employee Earnings specifications in 4.3 release. Use PositionTermType instead. Other domains will review in future releases. The code of the position type. Values include DirectHire, Temporary, Contract, Internship, Seasonal, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionTermTypeCode" type="hropen:PositionTermTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The code of the term of the position. Values include Fixed, Permanent, Casual, Seasonal.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="permanentEligibleIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An arrangement where a worker is hired on a short-term contract on the condition that they may be hired for a permanent position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fillByContractorIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that this position should be filled by an independent or third party contractor.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fillByStudentIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that this position should be filled by a student.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fillByVolunteerIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that this position should be filled by a volunteer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionStatusCode" type="hropen:PositionStatusCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Defines the status of the position. Options may be Approved, Active,  Filled, Frozen, Cancelled.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionStatusDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date of the status.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifies the related job.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="careerLevelCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The code representing the career level.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Position" type="hropen:PositionType" />
+</xsd:schema>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="PostalAddressType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="PostalAddressType">
+    <xsd:annotation>
+      <xsd:documentation>Mailing address of an entity.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="addressCountry">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The relevant country of the resource. For example, USA.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="addressLocality">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The locality; e.g., Mountain View, London, Moscow.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="addressRegion">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The region; e.g., CA, TX. Note(s): The relevant state, province, territory or other subdivision of a nation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="postalCode">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Postal code; for example, 94043.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="streetAddress">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Street address; for example, "1600 Amphitheatre Pkwy".</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PostalAddress" type="hropen:PostalAddressType" />
+</xsd:schema>

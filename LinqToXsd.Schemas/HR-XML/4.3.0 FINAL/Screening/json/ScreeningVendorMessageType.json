@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema",
+	"version": "4.3.0",
+	"title": "MessageType",
+	"description": "Represents a message.",
+	"type": "object",
+	"definitions": {
+		"FieldType": {
+			"title": "FieldType",
+			"description": "A field.",
+			"type": "object",
+			"properties": {
+				"path": {
+					"description": "Indicates JSON Pointer value such as /foo/bar. Although this is a string, HR Open requires a json-pointer format. Do not use JSON Pointer URI fragments such as #/foo/bar",
+					"type": "string",
+					"format": "json-pointer"
+				},
+				"description": {
+					"description": "The message text.",
+					"$ref": "../../common/json/base/TextType.json#"
+				},
+				"value": {
+					"description": "Indicates the value the field should have.",
+					"type": ["null", "boolean", "object", "array", "number", "string"]
+				}
+			}
+		}
+	},
+	"properties": {
+		"orderId": {
+			"description": "Provides the Identifier of the ScreeningVendorOrder to which this message pertains. Uniquely identifies a ScreeningVendorOrder within an organization.",
+			"$ref": "../../common/json/base/IdentifierType.json#"
+		},
+		"message": {
+			"description": "The message text.",
+			"$ref": "../../common/json/base/TextType.json#"
+		},
+		"fields": {
+			"description": "A list of fields that need attention.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/FieldType"
+			}
+		},
+		"attachments": {
+			"description": "List of documents associated with this message",
+			"type": "array",
+			"items": {
+				"$ref": "../../common/json/base/AttachmentType.json"
+			}
+		}
+	}
+}

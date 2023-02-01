@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RangeQueryType",
+    "description": "Set of all range query types.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "RangeNumberQueryType.json#" },
+        { "$ref": "RangeDateTimeQueryType.json#" }
+    ]
+}

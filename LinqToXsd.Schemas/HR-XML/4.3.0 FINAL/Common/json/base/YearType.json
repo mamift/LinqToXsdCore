@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "YearType",
+    "description": "A single 4 digit year.",
+    "type": "string",
+    "hropenFormat": "year",
+    "pattern": "^([12]\\d{3})$"
+}

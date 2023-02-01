@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "WeightType",
+    "description": "Weight that describes the importance of the search criteria.",
+    "type": "object",
+    "properties": {
+        "value": {
+            "type": "number"
+        },
+        "maximumValue": {
+            "description": "Highest score in the weight range for the search criteria to be considered matched.",
+            "type": "number"
+        },
+        "minimumValue": {
+            "description": "Lowest score in the weight range for the search criteria to be considered matched.",
+            "type": "number"
+        },
+        "isRequired": {
+            "description": "The search criterion is required to be in the matching items.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "minimumScoreToFulfillRequired": {
+            "description": "Lowest score in order to fulfill a required criterion. Only relevant for cases of partial match, e.g. by affinities.",
+            "type": "number"
+        }
+    }
+}

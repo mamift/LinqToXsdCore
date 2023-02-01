@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "DateOpenEndPeriodType",
+    "description": "Single period between dates. The end date is optional and should be used in cases where the end of the period is unknown or uncertain.",
+    "type": "object",
+    "properties": {
+        "start": { "$ref": "DateType.json#" },
+        "end": { "$ref": "DateType.json#" }
+    },
+    "required": [ "start" ],
+    "additionalProperties": false
+}

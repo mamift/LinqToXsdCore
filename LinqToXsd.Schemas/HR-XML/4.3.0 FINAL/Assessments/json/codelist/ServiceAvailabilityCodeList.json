@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ServiceAvailabilityCodeList",
+    "description": "A set of codes classifying the availability of an assessment package.",
+    "enum": [
+        "Available",
+        "Unavailable",
+        "TemporarilyUnavailable"
+    ]
+}

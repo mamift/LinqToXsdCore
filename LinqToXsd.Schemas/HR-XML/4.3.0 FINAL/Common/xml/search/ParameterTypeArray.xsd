@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="ParameterTypeArray" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="ParameterType.xsd" />
+  <xsd:complexType name="ParameterTypeArray">
+    <xsd:annotation>
+      <xsd:documentation>Array of generic parameter type (key/value).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ParameterType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ParameterArray" type="hropen:ParameterTypeArray" />
+</xsd:schema>

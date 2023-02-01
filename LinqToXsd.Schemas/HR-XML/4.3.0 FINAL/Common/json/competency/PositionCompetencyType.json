@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PositionCompetencyType",
+    "description": "A qualified position competency has a specified required and/or desired level of proficiency and has an explicit or implicit level of importance (weight) among sibling competencies associated with a position.",
+    "definitions": {
+        "RelatedCompetencyType": {
+            "title": "RelatedCompetencyType",
+            "description": "",
+            "type": "object",
+            "properties": {
+                "competencyId": {
+                    "description": "A unique identifier for a competency definition.",
+                    "$ref": "../base/IdentifierType.json#"
+                },
+                "competencyName": {
+                    "description": "A human readable, descriptive name for the given competency.",
+                    "type": "string"
+                },
+                "competencyRelationshipCodes": {
+                    "type": "array",
+                    "items": { "$ref": "../base/CodeType.json#" }
+                }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "competencyIds": {
+            "description": "A unique identifier for a competency definition.",
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "taxonomyIds": {
+            "description": "The identifier for categorization of competencies in an HR context.",
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "competencyName": {
+            "description": "A human readable, descriptive name for the given competency.",
+            "type": "string"
+        },
+        "weight": {
+            "description": "A number expressing the relative importance of a particular component (e.g., a position competency) among sibling components. Weights are most frequently expressed a percentage (where the weights assigned to individual sibling competencies would total 100 percent when totaled), but they may be expressed using another numeric scale.",
+            "$ref": "CompetencyWeightType.json#"
+        },
+        "requiredProficiencyLevel": {
+            "description": "A minimum level of proficiency for a competency  associated with a position, role, course, or other item. The proficiency level is expressed as a score, a point scale, or a mark among range of values.",
+            "$ref": "../evaluation/BaseScoreType.json#"
+        },
+        "desiredProficiencyLevel": {
+            "description": "DefinitionText>An optimum or ideal level of proficiency for a competency with respect to an associated position, role, course, or other item. The proficiency level is expressed as a score, a point scale, or a mark among range of values.",
+            "$ref": "../evaluation/BaseScoreType.json#"
+        },
+        "proficiencyAcquistionDifficulty": {
+            "description": "A rating or score representing the difficulty of the particular competency to acquire.",
+            "$ref": "../evaluation/BaseScoreType.json#"
+        },
+        "competencyClassificationCode": {
+            "description": "A code that categorizes a competency according to a classification system. This classification system usually would be set within a source competency model or taxonomy.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "competencyDimension": {
+            "$ref": "CompetencyDimensionType.json#"
+        },
+        "relatedCompetencies": {
+            "description": "",
+            "type": "array",
+            "items": { "$ref": "#/definitions/RelatedCompetencyType" }
+        },
+        "competencyEvidenceRequirement": {
+            "$ref": "CompetencyEvidenceType.json#"
+        },
+        "attachmentReferences": {
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        }
+    }
+}

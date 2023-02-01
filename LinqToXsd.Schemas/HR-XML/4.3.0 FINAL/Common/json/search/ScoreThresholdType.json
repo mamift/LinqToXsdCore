@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ScoreThresholdType",
+    "description": "(Lower/upper) threshold of score.",
+    "type": "object",
+    "properties": {
+        "minimumThreshold": {
+            "description": "Lower/minimum threshold for score.",
+            "type": "number"
+        },
+        "maximumThreshold": {
+            "description": "Upper/maximum threshold for score.",
+            "type": "number"
+        }
+    },
+    "minProperties": 1
+}

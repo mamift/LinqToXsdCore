@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="YearType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:simpleType name="YearType">
+        <xsd:annotation>
+            <xsd:documentation>A single 4 digit year.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:gYear" />
+    </xsd:simpleType>
+    <xsd:element name="Year" type="hropen:YearType" />
+</xsd:schema>
