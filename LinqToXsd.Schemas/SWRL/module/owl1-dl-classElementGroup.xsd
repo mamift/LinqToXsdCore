@@ -1,0 +1,103 @@
+<!--
+"owl1-dl-classElementGroup.xsd"
+XML Schema Module for the XML Presentation Syntax of OWL 1.0 
+Copyright: 2002-2003 W3C (MIT, INRIA, Keio), All Rights Reserved.
+See http://www.w3.org/Consortium/Legal/.
+Revision: 2003/06/01 
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
+    targetNamespace="http://www.w3.org/2003/05/owl-xml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <xsd:annotation>
+    <xsd:documentation>
+      Class element group for OWL DL and OWL Full. 
+      EquivalentClasses is extended as equality among descriptions. 
+      SubClassOf, EnumeratedClasses, and DisjointClasses are added. 
+      This model group replaces "owl1-lite-classElementGroup.xsd" 
+      provided for OWL Lite. 
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:group name="classElements">   
+    <xsd:choice>
+      <!-- 'EquivalentClasses' is modified for OWL DL and Full --> 
+      <xsd:element ref="owlx:EquivalentClasses" />
+
+      <!-- The following three elements are added for OWL DL and Full --> 
+      <xsd:element ref="owlx:EnumeratedClass" />   
+      <xsd:element ref="owlx:SubClassOf" />
+      <xsd:element ref="owlx:DisjointClasses" />
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:element name="EquivalentClasses">
+    <xsd:annotation>
+      <xsd:documentation>
+        'EquivalentClasses' contains a non-empty list of descriptions. 
+        Note that only class IDs are allowed in OWL Lite. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType> 
+      <xsd:sequence minOccurs="2" maxOccurs="unbounded">
+        <xsd:group ref="owlx:description" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="SubClassOf">
+    <xsd:annotation>
+      <xsd:documentation>
+        SubClassOf element takes two descriptions as sub and super 
+        classes.  SubClassOf is available only for OWL DL and Full. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="sub" type="owlx:DescriptionType" 
+                     minOccurs="1" maxOccurs="1" />
+        <xsd:element name="super" type="owlx:DescriptionType" 
+                     minOccurs="1" maxOccurs="1" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="EnumeratedClass">
+    <xsd:annotation>
+      <xsd:documentation>
+        'EnumeratedClass' contains a list of individuals, 
+         and is available only for OWL DL and OWL Full. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="owlx:annotated"> 
+          <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Individual" 
+                         type="owlx:individualIDAttrType" /> 
+          </xsd:sequence>
+          <xsd:attribute name="name" type="owlx:ClassName" use="required" />
+          <xsd:attribute name="deprecated" type="xsd:boolean" /> 
+        </xsd:extension> 
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DisjointClasses">
+    <xsd:annotation>
+      <xsd:documentation>
+        'DisjointClasses' contains a non-empty list of descriptions, 
+        and is available only for OWL DL and Full. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType> 
+      <xsd:sequence minOccurs="2" maxOccurs="unbounded">
+        <xsd:group ref="owlx:description" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>
+

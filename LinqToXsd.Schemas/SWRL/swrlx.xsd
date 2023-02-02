@@ -1,0 +1,172 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml" 
+    xmlns:swrlx="http://www.w3.org/2003/11/swrlx" 
+    xmlns:ruleml="http://www.w3.org/2003/11/ruleml"
+    targetNamespace="http://www.w3.org/2003/11/swrlx"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <xsd:import namespace="http://www.w3.org/2003/05/owl-xml"
+              schemaLocation="owl1-dl.xsd" />
+
+  <xsd:import namespace="http://www.w3.org/2003/11/ruleml"
+              schemaLocation="ruleml.xsd" />
+
+  <xsd:annotation>
+    <xsd:documentation>
+      XML Schema driver for SWRL 0.6
+      The root element of SWRL documents for the XML
+      Concrete Syntax must be the Ontology element. 
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:element name="Ontology"> 
+    <xsd:annotation>
+      <xsd:documentation>
+        This is the root element of SWRL documents 
+        in the XML Concrete Syntax.  It extends owlx:Ontology
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType> 
+      <xsd:sequence>
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:choice>
+            <!-- Header elements --> 
+            <xsd:element ref="owlx:VersionInfo" />
+            <xsd:element ref="owlx:PriorVersion"  />
+            <xsd:element ref="owlx:BackwardCompatibleWith" />
+            <xsd:element ref="owlx:IncompatibleWith" />
+            <xsd:element ref="owlx:Imports" />
+            <xsd:element ref="owlx:Annotation" />
+
+            <!-- Class elements --> 
+            <xsd:element ref="owlx:Class" />
+            <xsd:group   ref="owlx:classElements" />
+  
+            <!-- Property elements --> 
+            <xsd:element ref="owlx:DatatypeProperty" />
+            <xsd:element ref="owlx:ObjectProperty" />
+            <xsd:element ref="owlx:SubPropertyOf" />
+            <xsd:element ref="owlx:EquivalentProperties" /> 
+   
+            <!-- Instances --> 
+            <xsd:element ref="owlx:Individual" />
+            <xsd:element ref="owlx:SameIndividual" />
+            <xsd:element ref="owlx:DifferentIndividuals" />
+
+            <!-- SWRL extensions -->
+            <xsd:element ref="ruleml:imp" />
+            <xsd:element ref="ruleml:var" />
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:sequence>
+      <xsd:attribute ref="owlx:name" />
+    </xsd:complexType>
+
+    <!-- XXX:  clone for rule names, etc. -->
+    <xsd:unique name="classNameUniqueness"> 
+      <xsd:annotation>
+        <xsd:documentation>
+          This constraint ensures that every class name is unique 
+          in a single OWL document. 
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:selector xpath="owlx:Class" /> 
+      <xsd:field xpath="@owlx:name" /> 
+    </xsd:unique>
+  </xsd:element>
+
+  <xsd:group name="atom">
+    <xsd:choice>
+      <xsd:element ref="swrlx:classAtom" />
+      <xsd:element ref="swrlx:datarangeAtom" />
+      <xsd:element ref="swrlx:individualPropertyAtom" />
+      <xsd:element ref="swrlx:datavaluedPropertyAtom" />
+      <xsd:element ref="swrlx:sameIndividualAtom" />
+      <xsd:element ref="swrlx:differentIndividualsAtom" />
+      <xsd:element ref="swrlx:builtinAtom" />
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:element name="classAtom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owlx:description" />
+        <xsd:group ref="swrlx:iObject" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="datarangeAtom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owlx:datarange" />
+        <xsd:group ref="swrlx:dObject" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="individualPropertyAtom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="swrlx:iObject" />
+        <xsd:group ref="swrlx:iObject" />
+      </xsd:sequence>
+      <xsd:attribute name="property" type="owlx:IndividualPropertyName" use="required" />
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="datavaluedPropertyAtom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="swrlx:iObject" />
+        <xsd:group ref="swrlx:dObject" />
+      </xsd:sequence>
+      <xsd:attribute name="property" type="owlx:DataPropertyName" use="required" />
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="sameIndividualAtom">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="2" maxOccurs="2">
+        <xsd:group ref="swrlx:iObject" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="differentIndividualsAtom">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="2" maxOccurs="2">
+        <xsd:group ref="swrlx:iObject" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="builtinAtom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="swrlx:dObject" minOccurs="1" maxOccurs="unbounded" />
+      </xsd:sequence>
+    <xsd:attribute name="builtin" type="swrlx:BuiltinName" use="required" />
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:group name="iObject">
+    <xsd:choice>
+      <xsd:element ref="owlx:Individual" />
+      <xsd:element ref="ruleml:var" />
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:group name="dObject">
+    <xsd:choice>
+      <xsd:element ref="owlx:DataValue" />
+      <xsd:element ref="ruleml:var" />
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:simpleType name="BuiltinName">
+    <xsd:restriction base="xsd:anyURI" />
+  </xsd:simpleType>
+
+</xsd:schema>
