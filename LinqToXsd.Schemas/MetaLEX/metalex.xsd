@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.metalex.eu/metalex/1.0" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:e="http://www.metalex.eu/metalex/1.0" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+
+
+
+        <xsd:simpleType name="CMtype"  >
+                <xsd:restriction base="xsd:string"/>
+        </xsd:simpleType>
+
+        <xsd:simpleType name="LNCMethod"  >
+                <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="individual" />
+                        <xsd:enumeration value="ordinal" />
+                        <xsd:enumeration value="positional" />
+                </xsd:restriction>
+        </xsd:simpleType>
+
+        <xsd:simpleType name="LNCScope"  >
+                <xsd:union>
+                        <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                        <xsd:enumeration value="root" />
+                                        <xsd:enumeration value="parent" />
+                                </xsd:restriction>
+                        </xsd:simpleType>
+                        <xsd:simpleType>
+                                <xsd:restriction base="xsd:string"/>
+                        </xsd:simpleType>
+                </xsd:union>
+        </xsd:simpleType>
+
+        <xsd:attributeGroup name="nameopt">
+                <xsd:attribute name="name" type="xsd:NMTOKEN"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="namereq">
+                <xsd:attribute name="name" type="xsd:NMTOKEN" use="required"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typeopt">
+                <xsd:attribute name="type" type="e:CMtype"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typereq">
+                <xsd:attribute name="type" type="e:CMtype" use="required"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typeroot">
+                <xsd:attribute name="type" type="e:CMtype" fixed="root" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typehcontainer">
+                <xsd:attribute name="type" type="e:CMtype" fixed="hcontainer" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typecontainer">
+                <xsd:attribute name="type" type="e:CMtype" fixed="container" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typeblock">
+                <xsd:attribute name="type" type="e:CMtype" fixed="block" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typeinline">
+                <xsd:attribute name="type" type="e:CMtype" fixed="inline" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typemilestone">
+                <xsd:attribute name="type" type="e:CMtype" fixed="milestone" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typemcontainer">
+                <xsd:attribute name="type" type="e:CMtype" fixed="mcontainer" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="typemeta">
+                <xsd:attribute name="type" type="e:CMtype" fixed="meta" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypeopt">
+                <xsd:attribute name="subtype" type="e:CMtype"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypeinclusion">
+                <xsd:attribute name="subtype" type="e:CMtype" default="inclusion" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypedate">
+                <xsd:attribute name="subtype" type="e:CMtype" default="date" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypecitation">
+                <xsd:attribute name="subtype" type="e:CMtype" default="citation" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypequotation">
+                <xsd:attribute name="subtype" type="e:CMtype" default="quotation" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypecitationRange">
+                <xsd:attribute name="subtype" type="e:CMtype" default="citationRange" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypecitationGroup">
+                <xsd:attribute name="subtype" type="e:CMtype" default="citationGroup" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypecitationSimple">
+                <xsd:attribute name="subtype" type="e:CMtype" default="citationSimple" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypequoteStructure">
+                <xsd:attribute name="subtype" type="e:CMtype" default="quoteStructure" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="subtypequoteText">
+                <xsd:attribute name="subtype" type="e:CMtype" default="quoteText" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="idopt">
+                <xsd:attribute name="id" type="xsd:NMTOKEN"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="idreq">
+                <xsd:attribute name="id" type="xsd:NMTOKEN" use="required"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="langopt">
+                <xsd:attribute ref="xml:lang" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="anyattr">
+                <xsd:anyAttribute namespace="##any" processContents="lax"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="LNCMethodatt">
+                <xsd:attribute name="LocalNamingConventionMethod" type="e:LNCMethod"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="singleton">
+                <xsd:attribute name="LocalNamingConventionMethod" type="e:LNCMethod" fixed="individual" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="ordinal">
+                <xsd:attribute name="LocalNamingConventionMethod" type="e:LNCMethod" fixed="ordinal" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="positional">
+                <xsd:attribute name="LocalNamingConventionMethod" type="e:LNCMethod" fixed="positional" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="LNCScopeatt">
+                <xsd:attribute name="LocalNamingConventionScope" type="e:LNCScope"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="global">
+                <xsd:attribute name="LocalNamingConventionScope" type="e:LNCScope" fixed="root" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="local">
+                <xsd:attribute name="LocalNamingConventionScope" type="e:LNCScope" fixed="parent" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="classatt">
+                <xsd:attribute name="class" type="xsd:NMTOKEN"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="styleatt">
+                <xsd:attribute name="style" type="xsd:string"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="dateatt">
+                <xsd:attribute name="date" type="xsd:date"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="hrefatt">
+                <xsd:attribute name="href" type="xsd:anyURI"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="citations">
+                <xsd:attribute name="href" type="xsd:anyURI"/>
+                <xsd:attribute name="upTo" type="xsd:anyURI"/>
+                <xsd:attribute name="exclude" type="xsd:anyURI"/>
+                <xsd:attribute name="excludeTo" type="xsd:anyURI"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="citationRange">
+                <xsd:attribute name="href" type="xsd:anyURI" use="required"/>
+                <xsd:attribute name="upTo" type="xsd:anyURI" use="required"/>
+                <xsd:attribute name="exclude" type="xsd:anyURI"/>
+                <xsd:attribute name="excludeTo" type="xsd:anyURI"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="citationGroup">
+                <xsd:attribute name="href" type="xsd:anyURI" fixed="" />
+                <xsd:attribute name="upTo" type="xsd:anyURI" fixed="" />
+                <xsd:attribute name="exclude" type="xsd:anyURI"/>
+                <xsd:attribute name="excludeTo" type="xsd:anyURI"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="citationSimple">
+                <xsd:attribute name="href" type="xsd:anyURI" use="required"/>
+                <xsd:attribute name="upTo" type="xsd:anyURI" fixed="" />
+                <xsd:attribute name="exclude" type="xsd:anyURI" fixed="" />
+                <xsd:attribute name="excludeTo" type="xsd:anyURI" fixed="" />
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="srcatt">
+                <xsd:attribute name="src" type="xsd:anyURI" use="required"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="appliestoatt">
+                <xsd:attribute name="appliesto" type="xsd:anyURI"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="valueatt">
+                <xsd:attribute name="value" type="xsd:string"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:attributeGroup name="showasatt">
+                <xsd:attribute name="showas" type="xsd:string"/>
+        </xsd:attributeGroup>
+
+
+        <xsd:complexType name="ContainerCM"  >
+                <xsd:choice minOccurs="1" maxOccurs="unbounded" >
+                        <xsd:element ref="e:absMcontainer" />
+                        <xsd:element ref="e:absContainer" />
+                        <xsd:element ref="e:absHcontainer" />
+                        <xsd:element ref="e:absBlock" />
+                </xsd:choice>
+        </xsd:complexType>
+
+        <xsd:complexType name="HcontainerCM"  >
+                <xsd:sequence >
+                        <xsd:element ref="e:absMcontainer" minOccurs="0" maxOccurs="1" />
+                        <xsd:element ref="e:absHtitle" minOccurs="1" maxOccurs="unbounded" />
+                        <xsd:choice minOccurs="1" maxOccurs="unbounded" >
+                                <xsd:element ref="e:absMcontainer" />
+                                <xsd:element ref="e:absHcontainer" />
+                                <xsd:element ref="e:absContainer" />
+                        </xsd:choice>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <xsd:complexType name="BlockInlineCM"  mixed="true">
+                <xsd:choice minOccurs="0" maxOccurs="unbounded" >
+                        <xsd:element ref="e:absInline" />
+                        <xsd:element ref="e:absMilestone" />
+                </xsd:choice>
+        </xsd:complexType>
+
+        <xsd:complexType name="McontainerCM"  >
+                <xsd:choice >
+                        <xsd:element ref="e:absMeta" minOccurs="1" maxOccurs="unbounded" />
+                        <xsd:element ref="e:absMcontainer" minOccurs="1" maxOccurs="unbounded" />
+                </xsd:choice>
+        </xsd:complexType>
+
+        <xsd:complexType name="urType" abstract="true" >
+                <xsd:complexContent>
+                        <xsd:extension base="xsd:anyType">
+                                <xsd:attributeGroup ref="e:nameopt"/>
+                                <xsd:attributeGroup ref="e:typeopt"/>
+                                <xsd:attributeGroup ref="e:langopt"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="urContentType" abstract="true" >
+                <xsd:complexContent>
+                        <xsd:extension base="e:urType">
+                                <xsd:attributeGroup ref="e:idreq"/>
+                                <xsd:attributeGroup ref="e:LNCMethodatt"/>
+                                <xsd:attributeGroup ref="e:LNCScopeatt"/>
+                                <xsd:attributeGroup ref="e:classatt"/>
+                                <xsd:attributeGroup ref="e:styleatt"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="urMetaType" abstract="true" >
+                <xsd:complexContent>
+                        <xsd:extension base="e:urType">
+                                <xsd:attributeGroup ref="e:idreq"/>
+                                <xsd:attributeGroup ref="e:LNCMethodatt"/>
+                                <xsd:attributeGroup ref="e:LNCScopeatt"/>
+                                <xsd:attributeGroup ref="e:hrefatt"/>
+                                <xsd:attributeGroup ref="e:appliestoatt"/>
+                                <xsd:attributeGroup ref="e:showasatt"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absContainerType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:urContentType">
+                                <xsd:choice minOccurs="1" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absMcontainer" />
+                                        <xsd:element ref="e:absContainer" />
+                                        <xsd:element ref="e:absHcontainer" />
+                                        <xsd:element ref="e:absBlock" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:typecontainer"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absHcontainerType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:urContentType">
+                                <xsd:sequence >
+                                        <xsd:element ref="e:absMcontainer" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="e:absHtitle" minOccurs="1" maxOccurs="unbounded" />
+                                        <xsd:choice minOccurs="1" maxOccurs="unbounded" >
+                                                <xsd:element ref="e:absMcontainer" />
+                                                <xsd:element ref="e:absHcontainer" />
+                                                <xsd:element ref="e:absContainer" />
+                                        </xsd:choice>
+                                </xsd:sequence>
+                                <xsd:attributeGroup ref="e:typehcontainer"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absBlockType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:restriction base="e:urContentType">
+                                <xsd:choice minOccurs="0" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absInline" />
+                                        <xsd:element ref="e:absMilestone" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:typeblock"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absInlineType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:restriction base="e:urContentType">
+                                <xsd:choice minOccurs="0" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absInline" />
+                                        <xsd:element ref="e:absMilestone" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:typeinline"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absMilestoneType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:urContentType">
+                                <xsd:attributeGroup ref="e:typemilestone"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absMcontainerType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:urType">
+                                <xsd:choice >
+                                        <xsd:element ref="e:absMeta" minOccurs="1" maxOccurs="unbounded" />
+                                        <xsd:element ref="e:absMcontainer" minOccurs="1" maxOccurs="unbounded" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:typemcontainer"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absMetaType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:urMetaType">
+                                <xsd:attributeGroup ref="e:typemeta"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absSourceType" abstract="true" mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absInlineType">
+                                <xsd:attributeGroup ref="e:subtypeinclusion"/>
+                                <xsd:attributeGroup ref="e:srcatt"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absDateType" abstract="true" mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absInlineType">
+                                <xsd:attributeGroup ref="e:subtypedate"/>
+                                <xsd:attributeGroup ref="e:dateatt"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absCitationType" abstract="true" mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absInlineType">
+                                <xsd:attributeGroup ref="e:citations"/>
+                                <xsd:attributeGroup ref="e:subtypecitation"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="absQuotationType" abstract="true" >
+                <xsd:complexContent>
+                        <xsd:extension base="e:urContentType">
+                                <xsd:attributeGroup ref="e:subtypequotation"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:element name="absRoot" abstract="true" type="e:absContainerType" />
+        <xsd:element name="absContainer" abstract="true" type="e:absContainerType" />
+        <xsd:element name="absHcontainer" abstract="true" type="e:absHcontainerType" />
+        <xsd:element name="absBlock" abstract="true" type="e:absBlockType" />
+        <xsd:element name="absHtitle" abstract="true" type="e:absBlockType" />
+        <xsd:element name="absInline" abstract="true" type="e:absInlineType" />
+        <xsd:element name="absMilestone" abstract="true" type="e:absMilestoneType" />
+        <xsd:element name="absMcontainer" abstract="true" type="e:absMcontainerType" />
+        <xsd:element name="absMeta" abstract="true" type="e:absMetaType" />
+        <xsd:complexType name="genRootType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absContainerType">
+                                <xsd:choice minOccurs="1" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absMcontainer" />
+                                        <xsd:element ref="e:absContainer" />
+                                        <xsd:element ref="e:absHcontainer" />
+                                        <xsd:element ref="e:absBlock" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="genContainerType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absContainerType">
+                                <xsd:choice minOccurs="1" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absMcontainer" />
+                                        <xsd:element ref="e:absContainer" />
+                                        <xsd:element ref="e:absHcontainer" />
+                                        <xsd:element ref="e:absBlock" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="genHcontainerType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absHcontainerType">
+                                <xsd:sequence >
+                                        <xsd:element ref="e:absMcontainer" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="e:absHtitle" minOccurs="1" maxOccurs="unbounded" />
+                                        <xsd:choice minOccurs="1" maxOccurs="unbounded" >
+                                                <xsd:element ref="e:absMcontainer" />
+                                                <xsd:element ref="e:absHcontainer" />
+                                                <xsd:element ref="e:absContainer" />
+                                        </xsd:choice>
+                                </xsd:sequence>
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="genBlockType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absBlockType">
+                                <xsd:choice minOccurs="0" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absInline" />
+                                        <xsd:element ref="e:absMilestone" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="genInlineType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absInlineType">
+                                <xsd:choice minOccurs="0" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absInline" />
+                                        <xsd:element ref="e:absMilestone" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="genMilestoneType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absMilestoneType">
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="genMcontainerType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absMcontainerType">
+                                <xsd:choice >
+                                        <xsd:element ref="e:absMeta" minOccurs="1" maxOccurs="unbounded" />
+                                        <xsd:element ref="e:absMcontainer" minOccurs="1" maxOccurs="unbounded" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="genMetaType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absMetaType">
+                                <xsd:attributeGroup ref="e:namereq"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:element name="root" substitutionGroup="e:absRoot" type="e:genRootType" />
+        <xsd:element name="container" substitutionGroup="e:absContainer" type="e:genContainerType" />
+        <xsd:element name="hcontainer" substitutionGroup="e:absHcontainer" type="e:genHcontainerType" />
+        <xsd:element name="block" substitutionGroup="e:absBlock" type="e:genBlockType" />
+        <xsd:element name="htitle" substitutionGroup="e:absHtitle" type="e:genBlockType" />
+        <xsd:element name="inline" substitutionGroup="e:absInline" type="e:genInlineType" />
+        <xsd:element name="milestone" substitutionGroup="e:absMilestone" type="e:genMilestoneType" />
+        <xsd:element name="mcontainer" substitutionGroup="e:absMcontainer" type="e:genMcontainerType" />
+        <xsd:element name="meta" substitutionGroup="e:absMeta" type="e:genMetaType" />
+        <xsd:complexType name="rootType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absContainerType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="containerType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absContainerType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="hcontainerType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absHcontainerType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="blockType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absBlockType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="inlineType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absInlineType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="milestoneType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absMilestoneType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="mcontainerType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absMcontainerType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="metaType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absMetaType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="sourceType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absSourceType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="dateType"  >
+                <xsd:complexContent>
+                        <xsd:extension base="e:absDateType">
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="citationRangeType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absInlineType">
+                                <xsd:attributeGroup ref="e:subtypecitationRange"/>
+                                <xsd:attributeGroup ref="e:citationRange"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="citationGroupType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absInlineType">
+                                <xsd:attributeGroup ref="e:subtypecitationGroup"/>
+                                <xsd:attributeGroup ref="e:citationGroup"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="citationSimpleType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:extension base="e:absInlineType">
+                                <xsd:attributeGroup ref="e:subtypecitationSimple"/>
+                                <xsd:attributeGroup ref="e:citationSimple"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="quoteStructureType"  >
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absQuotationType">
+                                <xsd:attributeGroup ref="e:subtypequoteStructure"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+        <xsd:complexType name="quoteTextType"  mixed="true">
+                <xsd:complexContent>
+                        <xsd:restriction base="e:absQuotationType">
+                                <xsd:choice minOccurs="0" maxOccurs="unbounded" >
+                                        <xsd:element ref="e:absInline" />
+                                        <xsd:element ref="e:absMilestone" />
+                                </xsd:choice>
+                                <xsd:attributeGroup ref="e:subtypequoteText"/>
+                                <xsd:attributeGroup ref="e:anyattr"/>
+                        </xsd:restriction>
+                </xsd:complexContent>
+        </xsd:complexType>
+
+</xsd:schema> 
