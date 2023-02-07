@@ -1,0 +1,694 @@
+<!--
+"owl1-lite-core.xsd"
+XML Schema Module for the XML Presentation Syntax of OWL 1.0
+Copyright: 2002-2003 W3C (MIT, INRIA, Keio), All Rights Reserved.
+See http://www.w3.org/Consortium/Legal/.
+Revision: 2003/06/01
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
+    targetNamespace="http://www.w3.org/2003/05/owl-xml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified"> 
+
+<xsd:annotation>
+  <xsd:documentation>
+    This module specifies a core part of the XML Schemas  
+    common to all the OWL sublanguages, and is included 
+    in every Schema driver. 
+  </xsd:documentation>
+</xsd:annotation>
+
+<xsd:import namespace="http://www.w3.org/XML/1998/namespace" 
+            schemaLocation="xml.xsd">
+  <!-- "http://www.w3.org/2001/xml.xsd" -->
+  <xsd:annotation>
+    <xsd:documentation>
+      Get access to the xml: attribute groups for xml:lang
+      as declared on 'Label' and 'Documentation' below 
+    </xsd:documentation>
+  </xsd:annotation>
+</xsd:import>
+
+<xsd:element name="Ontology"> 
+  <xsd:annotation>
+    <xsd:documentation>
+      This is the root element of OWL documents 
+      in the XML presentation syntax. 
+    </xsd:documentation>
+    <xsd:documentation>
+      'owlx:classElements' group is included from either 
+         + owl1-lite-classElementGroup.xsd [Lite] or 
+         + owl1-dl-classElementGroup.xsd [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType> 
+    <xsd:sequence>
+      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+        <xsd:choice>
+          <!-- Header elements --> 
+          <xsd:element ref="owlx:VersionInfo" />
+          <xsd:element ref="owlx:PriorVersion"  />
+          <xsd:element ref="owlx:BackwardCompatibleWith" />
+          <xsd:element ref="owlx:IncompatibleWith" />
+          <xsd:element ref="owlx:Imports" />
+          <xsd:element ref="owlx:Annotation" />
+
+          <!-- Class elements --> 
+          <xsd:element ref="owlx:Class" />
+          <xsd:group   ref="owlx:classElements" />
+  
+          <!-- Property elements --> 
+          <xsd:element ref="owlx:DatatypeProperty" />
+          <xsd:element ref="owlx:ObjectProperty" />
+          <xsd:element ref="owlx:SubPropertyOf" />
+          <xsd:element ref="owlx:EquivalentProperties" /> 
+   
+          <!-- Instances --> 
+          <xsd:element ref="owlx:Individual" />
+          <xsd:element ref="owlx:SameIndividual" />
+          <xsd:element ref="owlx:DifferentIndividuals" />
+        </xsd:choice>
+      </xsd:sequence>
+    </xsd:sequence>
+    <xsd:attribute ref="owlx:name" />
+  </xsd:complexType>
+
+  <xsd:unique name="classNameUniqueness"> 
+    <xsd:annotation>
+      <xsd:documentation>
+        This constraint ensures that every class name is unique 
+        in a single OWL document. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:selector xpath="owlx:Class" /> 
+    <xsd:field xpath="@owlx:name" /> 
+  </xsd:unique>
+</xsd:element> 
+
+<xsd:element name="VersionInfo" type="xsd:string" />
+
+<xsd:element name="PriorVersion" type="owlx:ontologyAttrType" />
+
+<xsd:element name="BackwardCompatibleWith" type="owlx:ontologyAttrType" />
+
+<xsd:element name="IncompatibleWith" type="owlx:ontologyAttrType" />
+
+<xsd:element name="Imports" type="owlx:ontologyAttrType" /> 
+
+<xsd:element name="Annotation">
+  <xsd:annotation>
+    <xsd:documentation>
+      Annotations allow arbitrary uninterpreted 
+      information to be added to ontologies. 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType> 
+    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      <xsd:choice>
+        <xsd:element ref="owlx:Label" /> 
+        <xsd:element ref="owlx:Documentation" /> 
+        <xsd:any namespace="##other" processContents="lax" />
+      </xsd:choice>
+    </xsd:sequence> 
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Label"> 
+  <xsd:complexType mixed="true"> 
+    <xsd:attribute ref="xml:lang" />
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Documentation">
+  <xsd:complexType mixed="true"> 
+    <xsd:attribute ref="xml:lang" />
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:complexType name="annotated">
+  <xsd:annotation>
+    <xsd:documentation>
+      This complex type is extended by all the elements 
+      that may have annotation.  Annotated type is used by: 
+        + Ontology/Individual [Lite/DL/Full]
+        + Ontology/Class [Lite/DL/Full]
+        + Ontology/DatatypeProperty [Lite/DL/Full]
+        + Ontology/ObjectProperty [Lite/DL/Full]
+        + classElements/EnumerationType(EnumeratedClass) [DL/Full] 
+      Note that 'Ontology' is not extended from 'annotated' 
+      complexType, but embeds 'Annotation' element.  
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence minOccurs="0" maxOccurs="1"> 
+    <xsd:element ref="owlx:Annotation" /> 
+  </xsd:sequence>
+</xsd:complexType>
+
+<xsd:attribute name="name" type="owlx:OntologyName" />
+
+
+<xsd:element name="Class">
+  <xsd:annotation>
+    <xsd:documentation>
+      'Class' contains a non-empty sequence of descriptions.  
+      Attributes provide a class name and the modality. 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType>
+    <xsd:complexContent>
+      <xsd:extension base="owlx:annotated"> 
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:group ref="owlx:description" />
+        </xsd:sequence>
+        <xsd:attribute name="name" type="owlx:ClassName" use="required" />
+        <xsd:attribute name="complete" type="xsd:boolean" use="required" /> 
+        <xsd:attribute name="deprecated" type="xsd:boolean" /> 
+      </xsd:extension> 
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:element>
+
+
+<xsd:annotation>
+  <xsd:documentation>
+    Property elements (DatatypeProperty, ObjectProperty) contain 
+    superProperty, domain, and range element along with 
+    characteristics of the property. 
+  </xsd:documentation>
+</xsd:annotation>
+
+<xsd:element name="DatatypeProperty"> 
+  <xsd:annotation>
+    <xsd:documentation>
+      'owlx:dataPropDomainRange' group is included from either 
+         + owl1-lite-dataDomainRangeGroup.xsd [Lite] or 
+         + owl1-dl-dataDomainRangeGroup.xsd [DL/Full] 
+    </xsd:documentation>
+    <xsd:documentation>
+      'owlx:dataPropInverseFuncAttr' attribute group is 
+      included from either 
+         + owl1-lite-dataPropInverseFuncAttr.xsd [Lite/DL] or 
+         + owl1-full-dataPropInverseFuncAttr.xsd [Full]
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType>
+    <xsd:complexContent>
+      <xsd:extension base="owlx:annotated"> 
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:choice>
+            <xsd:element name="superProperty">
+              <xsd:complexType>
+                <xsd:attribute name="name" type="owlx:DataPropertyName" 
+                               use="required"/>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:group ref="owlx:dataPropDomainRange" /> 
+          </xsd:choice>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="owlx:DataPropertyName" use="required" />
+        <xsd:attribute name="functional" type="xsd:boolean" /> 
+        <xsd:attributeGroup ref="owlx:dataPropInverseFuncAttr" /> 
+        <xsd:attribute name="deprecated" type="xsd:boolean" /> 
+      </xsd:extension> 
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:element> 
+
+
+<xsd:element name="ObjectProperty">
+  <xsd:annotation>
+    <xsd:documentation>
+      'owlx:objectPropDomainRange' group is included from either 
+         + owl1-lite-domainRangeGroup.xsd [Lite] or 
+         + owl1-dl-domainRangeGroup.xsd [DL/Full] 
+    </xsd:documentation>
+    <xsd:documentation>
+      'owlx:objectPropInverseFuncAttr' attribute group is 
+      included from either 
+         + owl1-lite-objectPropInverseFuncAttr.xsd [Lite] or 
+         + owl1-dl-objectPropInverseFuncAttr.xsd [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType>
+    <xsd:complexContent>
+      <xsd:extension base="owlx:annotated"> 
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:choice>
+            <xsd:element name="superProperty">
+              <xsd:complexType>
+                <xsd:attribute name="name" type="owlx:IndividualPropertyName" 
+                               use="required"/>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:group ref="owlx:objectPropDomainRange" /> 
+          </xsd:choice>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="owlx:IndividualPropertyName" 
+                       use="required" />
+        <xsd:attribute name="inverseOf"  type="owlx:IndividualPropertyName" />
+        <xsd:attribute name="transitive" type="xsd:boolean" />
+        <xsd:attribute name="symmetric"  type="xsd:boolean" />
+        <xsd:attribute name="functional" type="xsd:boolean" />
+        <xsd:attributeGroup ref="owlx:objectPropInverseFuncAttr" /> 
+        <xsd:attribute name="deprecated" type="xsd:boolean" /> 
+      </xsd:extension> 
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:element>
+
+
+<xsd:complexType name="DataRangeType">
+  <xsd:annotation>
+    <xsd:documentation>
+      Datatypes and sets of values can show up in data property ranges.  
+    </xsd:documentation>
+    <xsd:documentation>
+      Used by: 
+        + dataRestriction/allValuesFrom [DL/Full] 
+        + dataRestriction/someValuesFrom [DL/Full] 
+        + dataPropDomainRange/range [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+    <xsd:element name="OneOf" minOccurs="0" maxOccurs="1">
+      <xsd:complexType>
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:element ref="owlx:DataValue" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute name="datatype" type="owlx:DatatypeName" />
+</xsd:complexType>
+
+
+<xsd:element name="EquivalentProperties">
+  <xsd:complexType>
+    <xsd:annotation>
+      <xsd:documentation>
+        EquivalentProperties can take propertyIDs with the 
+        same property type (i.e., either DatatypeProperty 
+        or ObjectProperty). 
+      </xsd:documentation>
+      <xsd:documentation>
+        Used by: Ontology [Lite/DL/Full] 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="DatatypeProperty" type="owlx:PropertyIDType" 
+                   minOccurs="2" maxOccurs="unbounded" />
+      <xsd:element name="ObjectProperty" type="owlx:PropertyIDType" 
+                   minOccurs="2" maxOccurs="unbounded" />
+    </xsd:choice>
+  </xsd:complexType>
+</xsd:element>
+
+
+<xsd:element name="SubPropertyOf">
+  <xsd:annotation>
+    <xsd:documentation>
+      A subproperty statement is just two propertyIDs, sub and 
+      super, with the following restrictions (not expressed here)
+      if sub is a data property then super must be a data property
+      if sub is a simple property then super must be an individual 
+      property. There are other restrictions having to do with 
+      transitivity and cardinalites. 
+    </xsd:documentation>
+    <xsd:documentation>
+      Used by: Ontology [Lite/DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType>
+    <xsd:choice minOccurs="1" maxOccurs="1">
+      <xsd:element name="DatatypeProperty" type="owlx:PropertyIDType" />
+      <xsd:element name="ObjectProperty" type="owlx:PropertyIDType" />
+    </xsd:choice>
+    <xsd:attribute name="sub" type="owlx:PropertyName" use="required" />
+  </xsd:complexType>
+</xsd:element>
+
+
+<xsd:annotation>
+  <xsd:documentation>
+    'owlx:description' group is declared and included from either 
+      + owl1-lite-descriptionGroup.xsd [Lite] or 
+      + owl1-dl-descriptionGroup.xsd [DL/Full] 
+  </xsd:documentation>
+  <xsd:documentation>
+    'owlx:description' is used by: 
+      + Ontology/Class [Lite/DL/Full] 
+      + Ontology/Individual [Lite/DL/Full] 
+      + DescriptionType [DL/Full] 
+      + DescriptionsType [DL/Full] 
+      + classElements/EnumeratedClass [DL/Full] 
+      + classElements/DisjointClasses [DL/Full] 
+  </xsd:documentation>
+</xsd:annotation>
+
+
+<xsd:complexType name="DescriptionType">  
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by: 
+        + SubClassOf/sub [DL/Full]
+        + SubClassOf/super [DL/Full]
+        + description/ComplementOf [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:group ref="owlx:description" />
+</xsd:complexType>
+
+<xsd:complexType name="DescriptionsType"> 
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by: 
+        + DatatypeProperty/domain [DL/Full]
+        + ObjectProperty/domain [DL/Full]
+        + ObjectProperty/range [DL/Full]
+        + description/UnionOf [DL/Full]
+        + description/IntersectionOf [DL/Full]
+        + objectRestrictionType/allValuesFrom [DL/Full]
+        + objectRestrictionType/someValuesFrom [DL/Full]
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+    <xsd:group ref="owlx:description" />
+  </xsd:sequence>
+  <xsd:attribute name="class" type="owlx:ClassName" />
+</xsd:complexType>
+
+
+<xsd:annotation>
+  <xsd:documentation>
+    Both types of restrictions (DataRestriction and 
+    ObjectRestriction) have the property name as an attribute, 
+    an optional cardinality, zero or more ranges, zero or more 
+    required restrictions, and zero or more value restrictions. 
+    There is a side condition that restrictions on transitive 
+    properties and their sub-properties cannot have cardinality 
+    constraints. 
+  </xsd:documentation>
+</xsd:annotation>
+
+<xsd:element name="DataRestriction">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by 'description' [Lite/DL/Full] 
+    </xsd:documentation>
+    <xsd:documentation>
+      Model group 'owlx:dataRestriction' is included from either: 
+        + owl1-lite-restrictionGroup.xsd [Lite] or 
+        + owl1-dl-restrictionGroup.xsd [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType> 
+    <xsd:sequence> 
+      <xsd:group ref="owlx:dataRestriction" /> 
+    </xsd:sequence>
+    <xsd:attribute name="property" type="owlx:DataPropertyName" 
+                   use="required" />
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="ObjectRestriction">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by 'description' [Lite/DL/Full] 
+    </xsd:documentation>
+    <xsd:documentation>
+      Model group 'owlx:objectRestriction' is included from either: 
+        + owl1-lite-restrictionGroup.xsd [Lite] or 
+        + owl1-dl-restrictionGroup.xsd [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType> 
+    <xsd:sequence>  
+      <xsd:group ref="owlx:objectRestriction" /> 
+    </xsd:sequence>
+    <xsd:attribute name="property" type="owlx:IndividualPropertyName" 
+                   use="required" />
+  </xsd:complexType>
+</xsd:element>
+
+
+<xsd:annotation>
+  <xsd:documentation> 
+    'minCardinality', 'maxCardinality' and 'cardinality' 
+    elements are used by: 
+      + dataRestriction [Lite/DL/Full]
+      + ObjectRestriction [Lite/DL/Full] 
+  </xsd:documentation>
+</xsd:annotation>
+
+<xsd:element name="minCardinality" type="owlx:cardinalityValueAttrType" />
+<xsd:element name="maxCardinality" type="owlx:cardinalityValueAttrType" />
+<xsd:element name="cardinality"    type="owlx:cardinalityValueAttrType" />
+
+<xsd:complexType name="cardinalityValueAttrType">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by:  
+        maxCardinality [Lite/DL/Full] 
+        minCardinality [Lite/DL/Full] 
+        cardinality [Lite/DL/Full] 
+    </xsd:documentation>
+    <xsd:documentation>
+      A simple type 'owlx:CardinalityRangeType' is included 
+      from either: 
+         + owl1-lite-restrictionGroup.xsd [Lite] or 
+         + owl1-dl-restrictionGroup.xsd [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="value" type="owlx:CardinalityRangeType" 
+                 use="required" />
+</xsd:complexType>
+
+
+<xsd:element name="Individual">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by 'Ontology' [Lite/DL/Full] 
+    </xsd:documentation>
+    <xsd:documentation>
+      Facts about individuals have several types and 
+      property information, including nested facts.  
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType>
+    <xsd:complexContent>
+      <xsd:extension base="owlx:annotated"> 
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:choice>
+            <xsd:element name="type"> 
+              <xsd:complexType>
+                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                  <xsd:group ref="owlx:description" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="owlx:ClassName" />
+              </xsd:complexType>
+            </xsd:element> 
+            <xsd:element ref="owlx:DataPropertyValue" />
+            <xsd:element ref="owlx:ObjectPropertyValue" /> 
+          </xsd:choice>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="owlx:IndividualName" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:element>
+
+
+<xsd:element name="ObjectPropertyValue">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by 'Ontology/Individual' [Lite/DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType>
+    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      <xsd:element ref="owlx:Individual" /> 
+    </xsd:sequence>
+    <xsd:attribute name="property" type="owlx:IndividualPropertyName"
+                   use="required" />
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="DataPropertyValue">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by 'Ontology/Individual' [Lite/DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType> 
+    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      <xsd:element ref="owlx:DataValue" />
+    </xsd:sequence>
+    <xsd:attribute name="property" type="owlx:DataPropertyName"
+                   use="required" />
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="DataValue">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by: 
+        + Individual/DataPropertyValue [Lite/DL/Full] 
+        + DataRangeType/OneOf [DL/Full]
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType mixed="true"> 
+    <xsd:attribute name="datatype" type="owlx:DatatypeName" />
+  </xsd:complexType> 
+</xsd:element>
+
+
+<xsd:element name="SameIndividual">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by 'Ontology' [Lite/DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType>
+    <xsd:sequence minOccurs="2" maxOccurs="unbounded">
+      <xsd:element name="Individual" 
+                   type="owlx:individualIDAttrType" /> 
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element> 
+
+<xsd:element name="DifferentIndividuals"> 
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by 'Ontology' [Lite/DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType> 
+    <xsd:sequence minOccurs="2" maxOccurs="unbounded">
+      <xsd:element name="Individual" 
+                   type="owlx:individualIDAttrType" /> 
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element> 
+
+
+<xsd:annotation>
+  <xsd:documentation>
+    Finally, some utility types for the various kinds of names. 
+  </xsd:documentation>
+</xsd:annotation>
+
+<xsd:complexType name="ontologyAttrType">
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by:  
+        Ontology/PriorVersion [Lite/DL/Full] 
+        Ontology/BackwardCompatibleWith [Lite/DL/Full] 
+        Ontology/IncompatibleWith [Lite/DL/Full] 
+        Ontology/Imports [Lite/DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="ontology" type="owlx:OntologyName" use="required" /> 
+</xsd:complexType>
+
+<xsd:complexType name="datatypeAttrType"> 
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by:  
+        dataRestriction/allValuesFrom [only Lite] 
+        dataRestriction/someValuesFrom [only Lite] 
+        dataPropDomainRange/range [only Lite] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="datatype" type="owlx:DatatypeName" />
+</xsd:complexType>
+
+<xsd:complexType name="classAttrType"> 
+  <xsd:annotation>
+    <xsd:documentation>
+      Used by:  
+        objectRestriction/allValuesFrom [only Lite] 
+        objectRestriction/someValuesFrom [only Lite] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="class" type="owlx:ClassName" />
+</xsd:complexType> 
+
+
+<xsd:complexType name="individualIDAttrType"> 
+  <xsd:annotation>
+    <xsd:documentation>
+      This complex type is used for the definitions of 
+      'Individual' element that solely refers to individual 
+      ID and does not declare any individual construct. 
+      The element of individual reference must be declared as 
+      an element local to its parent element, in order to avoid 
+      the element name conflict with 'Ontology/Individual'.  
+    </xsd:documentation> 
+    <xsd:documentation>
+      Used by: 
+        + ontology/SameIndividual [Lite/DL/Full] 
+        + ontology/DifferentIndividuals [Lite/DL/Full] 
+        + classElements/EnumeratedClass [DL/Full] 
+        + description/OneOf [DL/Full] 
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="name" type="owlx:IndividualName" use="required" /> 
+  <xsd:attribute name="type" type="owlx:ClassName" />
+</xsd:complexType>
+
+
+<xsd:complexType name="ClassIDType">
+  <xsd:attribute name="name" type="owlx:ClassName" use="required" />
+</xsd:complexType>
+
+<xsd:complexType name="PropertyIDType">
+  <xsd:attribute name="name" type="owlx:PropertyName" use="required"/>
+</xsd:complexType>
+
+<xsd:simpleType name="OntologyName">
+  <xsd:restriction base="xsd:anyURI" />
+</xsd:simpleType>
+
+<xsd:simpleType name="ClassName">
+  <xsd:restriction base="xsd:anyURI" />
+</xsd:simpleType>
+
+<xsd:simpleType name="DatatypeName">
+  <xsd:restriction base="xsd:anyURI" />
+</xsd:simpleType>
+
+<xsd:simpleType name="PropertyName">
+  <xsd:restriction base="xsd:anyURI" />
+</xsd:simpleType>
+
+<xsd:simpleType name="DataPropertyName">
+  <xsd:restriction base="xsd:anyURI" />
+</xsd:simpleType>
+
+<xsd:simpleType name="IndividualPropertyName">
+  <xsd:restriction base="xsd:anyURI" />
+</xsd:simpleType>
+
+<xsd:simpleType name="IndividualName">
+  <xsd:restriction base="xsd:anyURI" />
+</xsd:simpleType>
+
+<xsd:group name="datarange"> <!-- see also owlx:DataRangeType -->
+  <xsd:choice>
+    <xsd:element name="Datatype">
+      <xsd:complexType>
+        <xsd:attribute name="name" type="owlx:DatatypeName" use="required" />
+      </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="OneOf">
+      <xsd:complexType>
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:element ref="owlx:DataValue" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:choice>
+</xsd:group>
+
+</xsd:schema>

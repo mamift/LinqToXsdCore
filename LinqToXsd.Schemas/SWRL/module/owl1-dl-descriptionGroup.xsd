@@ -1,0 +1,66 @@
+<!--
+"owl1-dl-descriptionGroup.xsd"
+XML Schema Module for the XML Presentation Syntax of OWL 1.0
+Copyright: 2002-2003 W3C (MIT, INRIA, Keio), All Rights Reserved.
+See http://www.w3.org/Consortium/Legal/.
+Revision: 2003/06/01 
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
+    targetNamespace="http://www.w3.org/2003/05/owl-xml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <xsd:annotation>
+    <xsd:documentation>
+      Description group for OWL DL and OWL Full. 
+      Elements for boolean combination of class expressions 
+      (UnionOf, IntersectionOf, ComplementOf), and an element 
+      for Class enumeration (OneOf) are added. 
+      This model group replaces "owl1-lite-descriptionGroup.xsd"  
+      provided for OWL Lite. 
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:group name="description">   
+    <xsd:annotation>
+      <xsd:documentation>
+        A description in OWL DL and Full includes either oneOf or 
+        a boolean combination of descriptions, in addition to  
+        a named class, datatype restriction and object restriction 
+        declared for OWL Lite. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="Class" type="owlx:ClassIDType"
+                   minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="owlx:DataRestriction" 
+                   minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="owlx:ObjectRestriction" 
+                   minOccurs="1" maxOccurs="1" /> 
+
+      <!-- An element for class enumeration is added --> 
+      <xsd:element name="OneOf" minOccurs="1" maxOccurs="1"> 
+        <xsd:complexType> 
+          <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Individual" 
+                         type="owlx:individualIDAttrType" /> 
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element> 
+
+      <!-- Elements for boolean combination are added --> 
+      <xsd:element name="UnionOf" type="owlx:DescriptionsType"
+                   minOccurs="1" maxOccurs="1" />
+      <xsd:element name="IntersectionOf" type="owlx:DescriptionsType"
+                   minOccurs="1" maxOccurs="1" />
+      <xsd:element name="ComplementOf" type="owlx:DescriptionType" 
+                   minOccurs="1" maxOccurs="1" />
+
+    </xsd:choice>
+  </xsd:group>
+
+</xsd:schema>
+
+
+

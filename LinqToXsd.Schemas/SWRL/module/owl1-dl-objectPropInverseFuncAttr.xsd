@@ -1,0 +1,30 @@
+<!--
+"owl1-dl-objectPropInverseFuncAttr.xsd"
+XML Schema Module for the XML Presentation Syntax of OWL 1.0
+Copyright: 2002-2003 W3C (MIT, INRIA, Keio), All Rights Reserved.
+See http://www.w3.org/Consortium/Legal/.
+Revision: 2003/06/01 
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
+    targetNamespace="http://www.w3.org/2003/05/owl-xml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <xsd:annotation>
+    <xsd:documentation>
+      'inverseFunctional' attribute of DataPropertyAxiomType 
+      is set to 'false' by default for OWL DL and OWL Full. 
+      The attribute is fixed as 'false' for OWL Lite in 
+      "owl1-lite-objectPropInverseFuncAttr.xsd". 
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:attributeGroup name="objectPropInverseFuncAttr"> 
+    <xsd:attribute name="inverseFunctional" type="xsd:boolean" />
+  </xsd:attributeGroup>
+
+</xsd:schema>
+
+
+
