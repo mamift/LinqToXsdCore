@@ -1,0 +1,573 @@
+<?xml version="1.0"?>
+<GelML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.psidev.info/gelml/1_1candidate ../Schema/GelML-v1_1candidate.xsd"
+ xmlns="http://www.psidev.info/gelml/1_1candidate"
+ id="GelID_528">
+    <Provider id="newid:Provider1">
+        <ContactRole Contact_ref="newid:Person115">
+            <role>
+                <cvParam accession="sep:00035" cvRef="SEP" name="principle investigator"/>
+            </role>
+        </ContactRole>
+    </Provider>
+
+    <cvList>
+        <cv URI="https://psidev.svn.sourceforge.net/svnroot/psidev/psi/sepcv/trunk/sep.obo"
+            fullName="sepCV" id="SEP" version="TO DO"/>
+        <cv URI="http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo"
+            fullName="Unit Ontology" id="UO"/>
+        <!--<cv id="PRIDE" fullName="PRIDE Controlled Vocabulary" URI="http://www.ebi.ac.uk/pride/help_resources/pride_obo_CV" version="1.0"/>-->
+    </cvList>
+
+    <GelMLMaterialCollection>
+        <GenericMaterial id="736" name="33 ugx3=99 ug, Cy2, Cy3, Cy5">
+            <cvParam accession="sep:00196" cvRef="SEP" name="sample description"
+                value="Sample preparation:  Protein extraction buffer composition: 30 mM Tris-HCl pH 8.5; 8 M Urea; 2 M Thiourea; 4% CHAPS. Volume of buffer used: 300 ul Homogenization procedure used (mechanical, sonication...): sonication (8x30 sec pulses, on ice) What precautions were taken to avoid proteolysis (if any)?: Lysis Buffer with 8 M Urea; 2 M Thiourea; 4% CHAPS.   Method used for purification and/or concentration of the sample: TCA-acetone precipitation Final volume of sample (microliters): 300 Quantitation method used: RC DC Protein Assay BIO RAD Protein concentration (mg/mL): 471 Total protein amount (micrograms): 141300"
+            />
+        </GenericMaterial>
+
+    </GelMLMaterialCollection>
+
+    <GelMLDataCollection>
+        <Image bitDepth="8" dimensionX="819" dimensionY="612" id="1430"
+            location="http://estrellapolar.cnb.csic.es/proteored/MIAPE/Ficheros/355/Gel1600PMT~(2).jpg"
+            name="Gel1">
+            <channel>
+                <AtomicValue>
+                    <PropertyValue unitAccession="UO:0000106" unitCvRef="UO" unitName="hertz"
+                        value="TO_DO"/>
+                </AtomicValue>
+            </channel>
+            <resolution>
+                <AtomicValue>
+                    <PropertyValue unitAccession="UO:0000243" unitCvRef="UO"
+                        unitName="pixels per millimeter" value="7.5"/>
+                </AtomicValue>
+            </resolution>
+        </Image>
+
+        <Image bitDepth="8" dimensionX="819" dimensionY="612" id="1431"
+            location="http://estrellapolar.cnb.csic.es/proteored/MIAPE/Ficheros/355/Gel2600PMT~(2).jpg"
+            name="Gel2">
+            <channel>
+                <AtomicValue>
+                    <PropertyValue unitAccession="UO:0000106" unitCvRef="UO" unitName="hertz"
+                        value="TO_DO"/>
+                </AtomicValue>
+            </channel>
+            <resolution>
+                <AtomicValue>
+                    <PropertyValue unitAccession="UO:0000243" unitCvRef="UO"
+                        unitName="pixels per millimeter" value="7.5"/>
+                </AtomicValue>
+            </resolution>
+        </Image>
+
+        <Image bitDepth="8" dimensionX="819" dimensionY="612" id="1432"
+            location="http://estrellapolar.cnb.csic.es/proteored/MIAPE/Ficheros/355/Gel3600PMT~(2).jpg"
+            name="Gel3">
+            <channel>
+                <AtomicValue>
+                    <PropertyValue unitAccession="UO:0000106" unitCvRef="UO" unitName="hertz"
+                        value="TO_DO"/>
+                </AtomicValue>
+            </channel>
+            <resolution>
+                <AtomicValue>
+                    <PropertyValue unitAccession="UO:0000243" unitCvRef="UO"
+                        unitName="pixels per millimeter" value="7.5"/>
+                </AtomicValue>
+            </resolution>
+        </Image>
+
+    </GelMLDataCollection>
+
+    <GelMLProtocolCollection>
+        <GenericEquipment id="461" name="Typhoon 9400 Variable Mode Imager. GE">
+            <make>
+                <userParam name="NOID"/>
+            </make>
+            <model>
+                <userParam name="9400"/>
+            </model>
+        </GenericEquipment>
+
+
+
+        <GenericProtocol id="429" name="EQUILIBRATION">
+            <protocolText>"REDUCTION AND ALKYLATION. 10 minutes each."</protocolText>
+
+        </GenericProtocol>
+
+
+        <SampleLoadingProtocol id="newid:SampleLoadingProtocol11">
+            <protocolText>"Loading buffer 2X"</protocolText>
+            <loadingBuffer>
+                <AddBufferAction SubstanceMixtureProtocol_ref="2488" id="newid:AddBufferAction12"/>
+            </loadingBuffer>
+        </SampleLoadingProtocol>
+
+
+        <Gel2DProtocol id="newid:Gel2DProtocol13">
+            <SampleLoadingAction SampleLoadingProtocol_ref="newid:SampleLoadingProtocol11"
+                id="newid:SampleLoadingAction14"/>
+            <FirstDimensionAction ElectrophoresisProtocol_ref="804"
+                id="newid:FirstDimensionAction15"/>
+            <SecondDimensionAction ElectrophoresisProtocol_ref="805"
+                id="newid:secondDimensionAction16"/>
+            <InterDimensionAction GenericProtocol_ref="429" id="newid:InterdimensionAction17"/>
+            <DetectionAction DetectionProtocol_ref="519" id="newid:DetectionAction18"/>
+            <DetectionAction DetectionProtocol_ref="520" id="newid:DetectionAction18"/>
+        </Gel2DProtocol>
+
+        <ElectrophoresisProtocol id="804" name="IEF Program">
+            <protocolText>"S1 Step-n-hold 30 V/h 3 hrs S2 Step-n-hold 60 V/h 6 hrs S3 Step-n-hold
+                120 V/h 1 hr S4 Step-n-hold 250 V/h 1 hr S5 Step-n-hold 500 V/h 1 hr S6 Step-n-hold
+                1000 V/h 0.30 h S7 Gradient 8000V/h 0.30 h S8 Step-n-hold 8000V/h 4,75 hrs = 42,142
+                Vts"</protocolText>
+
+        </ElectrophoresisProtocol>
+
+        <ElectrophoresisProtocol id="805" name="SDS-PAGE electrophoresis protocol">
+            <protocolText>"2 W/gel 30 min; 20 W/gel 3:30 hrs"</protocolText>
+            <AddBufferAction SubstanceMixtureProtocol_ref="2491" id="newid:AddBufferAction22"/>
+        </ElectrophoresisProtocol>
+
+
+        <SubstanceMixtureProtocol id="2488" mixtureName="Loading buffer 2X">
+            <SubstanceAction id="12889" substanceName="Urea">
+                <Concentration id="newid:AbsoluteConcentration25">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000062" unitCvRef="UO" unitName="molar"
+                            value="7"/>
+                    </AtomicValue>
+                </Concentration>
+                <Mass id="newid:AbsoluteMass26">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </Mass>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+                <AbsoluteVolume id="newid:AbsoluteVolume27">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </AbsoluteVolume>
+            </SubstanceAction>
+            <SubstanceAction id="12890" substanceName="Thiourea">
+                <Concentration id="newid:AbsoluteConcentration29">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000062" unitCvRef="UO" unitName="molar"
+                            value="2"/>
+                    </AtomicValue>
+                </Concentration>
+                <Mass id="newid:AbsoluteMass30">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </Mass>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+                <AbsoluteVolume id="newid:AbsoluteVolume31">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </AbsoluteVolume>
+            </SubstanceAction>
+            <SubstanceAction id="12891" substanceName="CHAPS">
+                <Concentration id="newid:AbsoluteConcentration33">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000187" unitCvRef="UO" unitName="percent"
+                            value="4"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+                <AbsoluteVolume id="newid:AbsoluteVolume35">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </AbsoluteVolume>
+            </SubstanceAction>
+            <SubstanceAction id="12892" substanceName="IPG ampholites 3-11 NL">
+                <Concentration id="newid:AbsoluteConcentration37">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000187" unitCvRef="UO" unitName="percent"
+                            value="1"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+                <AbsoluteVolume id="newid:AbsoluteVolume39">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </AbsoluteVolume>
+            </SubstanceAction>
+            <SubstanceAction id="12893" substanceName="DTT">
+                <Concentration id="newid:AbsoluteConcentration41">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000063" unitCvRef="UO"
+                            unitName="millimolar" value="20"/>
+                    </AtomicValue>
+                </Concentration>
+                <Mass id="newid:AbsoluteMass42">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </Mass>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12894" substanceName="trace Bromophenol blue">
+                <Concentration id="newid:AbsoluteConcentration45">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </Concentration>
+                <Mass id="newid:AbsoluteMass46">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </Mass>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+
+            <mixtureType>
+                <cvParam accession="sep:00122" cvRef="SEP" name="loading buffer"/>
+            </mixtureType>
+        </SubstanceMixtureProtocol>
+
+
+        <SubstanceMixtureProtocol id="2491" mixtureName="LOWER: SDS Electrophoresis Buffer 1x">
+            <SubstanceAction id="12908" substanceName="Tris Base">
+                <Concentration id="newid:AbsoluteConcentration50">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000063" unitCvRef="UO"
+                            unitName="millimolar" value="25"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12909" substanceName="Glycine">
+                <Concentration id="newid:AbsoluteConcentration54">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000063" unitCvRef="UO"
+                            unitName="millimolar" value="192"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12910" substanceName="SDS">
+                <Concentration id="newid:AbsoluteConcentration58">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000187" unitCvRef="UO" unitName="percent"
+                            value="0.1"/>
+                    </AtomicValue>
+                </Concentration>
+                <Mass id="newid:AbsoluteMass59">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </Mass>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+
+            <mixtureType>
+                <cvParam accession="sep:00121" cvRef="SEP" name="electrophoresis buffer"/>
+            </mixtureType>
+        </SubstanceMixtureProtocol>
+
+
+        <SubstanceMixtureProtocol id="2492" mixtureName="UPPER: SDS Electrophoresis Buffer 2x">
+            <SubstanceAction id="12911" substanceName="Tris Base">
+                <Concentration id="newid:AbsoluteConcentration63">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000063" unitCvRef="UO"
+                            unitName="millimolar" value="50"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+                <AbsoluteVolume id="newid:AbsoluteVolume65">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </AbsoluteVolume>
+            </SubstanceAction>
+            <SubstanceAction id="12912" substanceName="Glycine">
+                <Concentration id="newid:AbsoluteConcentration67">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000063" unitCvRef="UO"
+                            unitName="millimolar" value="384"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12913" substanceName="SDS">
+                <Concentration id="newid:AbsoluteConcentration71">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000187" unitCvRef="UO" unitName="percent"
+                            value="0.2"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+
+            <mixtureType>
+                <cvParam accession="sep:00121" cvRef="SEP" name="electrophoresis buffer"/>
+            </mixtureType>
+        </SubstanceMixtureProtocol>
+
+
+        <SubstanceMixtureProtocol id="2493" mixtureName="SDS Equilibration Buffer">
+            <SubstanceAction id="12914" substanceName="Tris-HCl">
+                <Concentration id="newid:AbsoluteConcentration76">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000063" unitCvRef="UO"
+                            unitName="millimolar" value="50"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="pH8.8"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12915" substanceName="Urea">
+                <Concentration id="newid:AbsoluteConcentration80">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000062" unitCvRef="UO" unitName="molar"
+                            value="6"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12916" substanceName="Glycerol">
+                <Concentration id="newid:AbsoluteConcentration84">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000187" unitCvRef="UO" unitName="percent"
+                            value="30"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12917" substanceName="SDS">
+                <Concentration id="newid:AbsoluteConcentration88">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="UO:0000187" unitCvRef="UO" unitName="percent"
+                            value="2"/>
+                    </AtomicValue>
+                </Concentration>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+            <SubstanceAction id="12918" substanceName="trace Bromophenol blue">
+                <Mass id="newid:AbsoluteMass93">
+                    <AtomicValue>
+                        <PropertyValue unitAccession="" unitCvRef="UO" unitName="" value="0"/>
+                    </AtomicValue>
+                </Mass>
+                <substanceCharacteristics>
+                    <userParam name="To complete"/>
+                </substanceCharacteristics>
+            </SubstanceAction>
+
+            <mixtureType>
+                <cvParam accession="sep:00198" cvRef="SEP" name="equilibration buffer"/>
+            </mixtureType>
+        </SubstanceMixtureProtocol>
+
+
+
+        <DetectionProtocol id="519">
+            <protocolText>"1 hour in 100 ml 10% Metanol: 7% Acetic Acid with
+                agitation"</protocolText>
+            <DetectionAgent>
+                <cvParam accession="sep:00114" cvRef="SEP" name="Coomassie blue"
+                    unitAccession="UO:0000098" unitCvRef="UO" unitName="milliliter" value="10"/>
+            </DetectionAgent>
+
+        </DetectionProtocol>
+
+        <DetectionProtocol id="520">
+            <protocolText>"Staining o/n at RT with agitation Wash two times with 10% Metanol:7%
+                Acetic Acid, 30 min/each, Two times with water milliQ, 10 min/each"</protocolText>
+            <DetectionAgent>
+                <cvParam accession="sep:00137" cvRef="SEP" name="SimplyBlue SafeStain"
+                    unitAccession="UO:0000098" unitCvRef="UO" unitName="milliliter" value="150"/>
+            </DetectionAgent>
+
+        </DetectionProtocol>
+
+
+        <ImageAcquisitionProtocol id="newid:ImageAcquisitionProtocol99">
+            <protocolText>"Protocolo: escanear..."</protocolText>
+            <equipment GenericEquipment_ref="461"/>
+
+            <AutoCalibration id="newid:Calibration100">
+                <BooleanValue value="0"/>
+            </AutoCalibration>
+        </ImageAcquisitionProtocol>
+
+    </GelMLProtocolCollection>
+
+    <Gel2DExperiment id="newid:Gel2DExperiment101">
+        <Gel2DApplication Gel2DProtocol_ref="newid:Gel2DProtocol13" id="newid:Gel2DApplication102">
+            <inputFirstDimension>
+                <Gel batchNumber="1" id="810" name="immobilized pH gradient gel"
+                    separationDimension="1">
+                    <ContactRole Contact_ref="newid:Organisation116">
+                        <role>
+                            <cvParam accession="sep:00189" cvRef="SEP" name="manufacturer"/>
+                        </role>
+                    </ContactRole>
+                    <gelType>
+                        <cvParam accession="sep:00130" cvRef="SEP"
+                            name="immobilized pH gradient gel"/>
+                    </gelType>
+                    <GelLane id="newid:GelLane104" laneNumber="1"/>
+                    <percentAcrylamide>
+                        <AtomicValue>
+                            <PropertyValue value="NOID"/>
+                        </AtomicValue>
+                    </percentAcrylamide>
+                    <AcrylamideToCrossLinker acrylamide="0" crossLinker="0">
+                        <crossLinkerType>
+                            <cvParam accession="sep:00190" cvRef="SEP" name="bisacrylamide"/>
+                        </crossLinkerType>
+                    </AcrylamideToCrossLinker>
+                    <Dimensions>
+                        <x unitAccession="UO:0000015" unitCvRef="UO" unitName="centimeter"
+                            value="24"/>
+                        <y unitAccession="UO:0000015" unitCvRef="UO" unitName="centimeter" value="0"/>
+                        <z unitAccession="UO:0000015" unitCvRef="UO" unitName="centimeter" value="0"
+                        />
+                    </Dimensions>
+                </Gel>
+            </inputFirstDimension>
+
+
+            <inputSecondDimension>
+                <Gel batchNumber="2" id="811" name="polyacrylamide gel" separationDimension="2">
+                    <gelType>
+                        <cvParam accession="sep:00129" cvRef="SEP" name="polyacrylamide gel"/>
+                    </gelType>
+                    <percentAcrylamide>
+                        <AtomicValue>
+                            <PropertyValue value="12.5%"/>
+                        </AtomicValue>
+                    </percentAcrylamide>
+                    <AcrylamideToCrossLinker acrylamide="30" crossLinker="0.8">
+                        <crossLinkerType>
+                            <cvParam accession="sep:00190" cvRef="SEP" name="bisacrylamide"/>
+                        </crossLinkerType>
+                    </AcrylamideToCrossLinker>
+                    <Dimensions>
+                        <x unitAccession="UO:0000015" unitCvRef="UO" unitName="centimeter"
+                            value="22"/>
+                        <y unitAccession="UO:0000015" unitCvRef="UO" unitName="centimeter"
+                            value="26"/>
+                        <z unitAccession="UO:0000015" unitCvRef="UO" unitName="centimeter"
+                            value="0.1"/>
+                    </Dimensions>
+                </Gel>
+            </inputSecondDimension>
+
+
+            <output>
+                <Gel2D id="newid:Gel2D106">
+                    <PHRange dimension="1">
+                        <Range>
+                            <lowerLimit>
+                                <PropertyValue unitAccession="UO:0000196" unitCvRef="UO"
+                                    unitName="pH" value="3"/>
+                            </lowerLimit>
+                            <upperLimit>
+                                <PropertyValue unitAccession="UO:0000196" unitCvRef="UO"
+                                    unitName="pH" value="10"/>
+                            </upperLimit>
+                        </Range>
+                    </PHRange>
+
+                    <MolWeightRange dimension="2">
+                        <Range>
+                            <lowerLimit>
+                                <PropertyValue unitAccession="UO:0000222" unitCvRef="UO"
+                                    unitName="kilodalton" value="14.4"/>
+                            </lowerLimit>
+                            <upperLimit>
+                                <PropertyValue unitAccession="UO:0000222" unitCvRef="UO"
+                                    unitName="kilodalton" value="97.4"/>
+                            </upperLimit>
+                        </Range>
+                    </MolWeightRange>
+
+                </Gel2D>
+            </output>
+
+            <ChildProtocolApplications>
+                <SampleLoadingApplication GelLane_ref="newid:GelLane104" Gel_ref="810"
+                    SampleLoadingProtocol_ref="newid:SampleLoadingProtocol11"
+                    id="newid:SampleLoadingApplication107">
+                    <InputSample>
+                        <GenericMaterialMeasurement Material_ref="736">
+                            <AtomicValue>
+                                <PropertyValue unitAccession="UO:0000101" unitCvRef="UO"
+                                    unitName="microliter" value="TO DO"/>
+                            </AtomicValue>
+                        </GenericMaterialMeasurement>
+                    </InputSample>
+                </SampleLoadingApplication>
+
+                <ElectrophoresisApplication ElectrophoresisProtocol_ref="804" Gel_ref="810"
+                    id="newid:GelElectrophoresisApplication108"/>
+
+                <ElectrophoresisApplication ElectrophoresisProtocol_ref="805" Gel_ref="811"
+                    id="newid:GelElectrophoresisApplication109"/>
+
+                <DirectDetection DetectionProtocol_ref="519" id="newid:DirectDetection110"/>
+
+                <DirectDetection DetectionProtocol_ref="520" id="newid:DirectDetection111"/>
+
+            </ChildProtocolApplications>
+        </Gel2DApplication>
+        <ImageAcquisitionApplication ImageAcquisitionProtocol_ref="newid:ImageAcquisitionProtocol99"
+            Image_ref="1430" Material_ref="newid:Gel2D106" id="newid:ImageAcqApplication112"/>
+
+        <ImageAcquisitionApplication ImageAcquisitionProtocol_ref="newid:ImageAcquisitionProtocol99"
+            Image_ref="1431" Material_ref="newid:Gel2D106" id="newid:ImageAcqApplication113"/>
+
+        <ImageAcquisitionApplication ImageAcquisitionProtocol_ref="newid:ImageAcquisitionProtocol99"
+            Image_ref="1432" Material_ref="newid:Gel2D106" id="newid:ImageAcqApplication114"/>
+
+    </Gel2DExperiment>
+
+    <AuditCollection>
+        <Person firstName="MIAPE:Name" id="newid:Person115" lastName="MIAPE:LastName"> </Person>
+        <Organization id="newid:Organisation116" name="MIAPE:Institution"> </Organization>
+    </AuditCollection>
+
+</GelML>
