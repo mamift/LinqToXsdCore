@@ -1,0 +1,108 @@
+<!--
+"owl1-dl-restrictionGroup.xsd"
+XML Schema Module for the XML Presentation Syntax of OWL 1.0
+Copyright: 2002-2003 W3C (MIT, INRIA, Keio), All Rights Reserved.
+See http://www.w3.org/Consortium/Legal/.
+Revision: 2003/06/01
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
+    targetNamespace="http://www.w3.org/2003/05/owl-xml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <xsd:annotation>
+    <xsd:documentation>
+      Restriction group for OWL DL and OWL Full. 
+      This model group replaces "owl1-lite-restrictionGroup.xsd" 
+      provided for OWL Lite. 
+    </xsd:documentation>
+    <xsd:documentation>
+      Restrictions for OWL DL and Full must have at least one 
+      component.   
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:group name="dataRestriction">   
+    <xsd:annotation>
+      <xsd:documentation>
+        Used by: 
+          + DataRestriction [DL/Full] (defined in "owl1-lite-core.xsd") 
+      </xsd:documentation>
+      <xsd:documentation>
+        Element types of 'allValuesFrom' and 'someValuesFrom' 
+        are extended to DataRangeType.  In addition, 'hasValue' 
+        element is added. 
+      </xsd:documentation>
+      <xsd:documentation>
+        A content type of 'hasValue' element (data literal) may be 
+        specified by using 'xsi:type' attribute, which is part 
+        of the XML Schema instance namespace.  A literal type can 
+        be either one of built-in non-list XML Schema datatypes. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:sequence minOccurs="1" maxOccurs="unbounded"> 
+        <xsd:choice>
+          <xsd:element ref="owlx:minCardinality" /> 
+          <xsd:element ref="owlx:maxCardinality" /> 
+          <xsd:element ref="owlx:cardinality" /> 
+          <xsd:element name="allValuesFrom" type="owlx:DataRangeType" />
+          <xsd:element name="someValuesFrom" type="owlx:DataRangeType" />
+          <!-- 'hasValue' restriction is added --> 
+          <xsd:element name="hasValue" type="xsd:anySimpleType" />
+        </xsd:choice>
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:group>
+
+  <xsd:group name="objectRestriction"> 
+    <xsd:annotation>
+      <xsd:documentation>
+        Used by: 
+          + ObjectRestriction [DL/Full] (defined in "owl1-lite-core.xsd") 
+      </xsd:documentation>
+      <xsd:documentation>
+        Element types of 'allValuesFrom' and 'someValuesFrom' 
+        are extended to DescriptionsType.  In addition, 
+        'hasValue' element is added. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:sequence minOccurs="1" maxOccurs="unbounded"> 
+        <xsd:choice>
+          <xsd:element ref="owlx:minCardinality" /> 
+          <xsd:element ref="owlx:maxCardinality" /> 
+          <xsd:element ref="owlx:cardinality" /> 
+          <xsd:element name="allValuesFrom" type="owlx:DescriptionsType" />
+          <xsd:element name="someValuesFrom" type="owlx:DescriptionsType" />
+          <!-- 'hasValue' restriction is added --> 
+          <xsd:element name="hasValue">
+            <xsd:complexType>
+              <xsd:attribute name="name" type="owlx:IndividualName" 
+                             use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:group>
+
+
+  <xsd:simpleType name="CardinalityRangeType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Used by: 
+          + cardinality [DL/Full] (defined in "owl1-lite-core.xsd") 
+      </xsd:documentation>
+      <xsd:documentation>
+        Cardinality value can be an arbitrary non-negative integer. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:nonNegativeInteger" /> 
+  </xsd:simpleType>
+
+</xsd:schema>
+
+
+

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+           jxb:version="2.1">
+    <xs:import namespace="http://libosinfo.org/xmlns/libvirt/domain/1.0" schemaLocation="libosinfo.xsd"/>
+    <xs:element name="domain">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element minOccurs="0" ref="uuid"/>
+                <!-- Why is this a choice? Check the example XMLs. -->
+                <!--<xs:choice maxOccurs="unbounded">-->
+                <xs:element ref="cpu"/>
+                <xs:element ref="currentMemory"/>
+                <xs:element ref="features"/>
+                <xs:element ref="memory"/>
+                <xs:element ref="metadata"/>
+                <xs:element ref="os"/>
+                <xs:element ref="resource"/>
+                <xs:element ref="vcpu"/>
+                <!--</xs:choice>-->
+                <xs:element ref="clock"/>
+                <xs:element ref="on_poweroff"/>
+                <xs:element ref="on_reboot"/>
+                <xs:element ref="on_crash"/>
+                <xs:element minOccurs="0" ref="pm"/>
+                <xs:element ref="devices"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="name" type="xs:NCName"/>
+    <xs:element name="uuid" type="xs:string"/>
+    <xs:element name="cpu">
+        <xs:complexType>
+            <xs:choice minOccurs="0">
+                <xs:element ref="model"/>
+                <xs:element ref="topology"/>
+            </xs:choice>
+            <xs:attribute name="check" type="xs:NCName"/>
+            <xs:attribute name="match" type="xs:NCName"/>
+            <xs:attribute name="migratable" type="xs:NCName"/>
+            <xs:attribute name="mode" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="topology">
+        <xs:complexType>
+            <xs:attribute name="cores" use="required" type="xs:integer"/>
+            <xs:attribute name="dies" use="required" type="xs:integer"/>
+            <xs:attribute name="sockets" use="required" type="xs:integer"/>
+            <xs:attribute name="threads" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="currentMemory">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="unit" use="required" type="xs:NCName"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="features">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="acpi"/>
+                <xs:element minOccurs="0" ref="gic"/>
+                <xs:element minOccurs="0" ref="apic"/>
+                <xs:element minOccurs="0" ref="pae"/>
+                <xs:element minOccurs="0" ref="hyperv"/>
+                <xs:element minOccurs="0" ref="kvm"/>
+                <xs:element minOccurs="0" ref="vmport"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="acpi">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="gic">
+        <xs:complexType>
+            <xs:attribute name="version" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="apic">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="pae">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="hyperv">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="relaxed"/>
+                <xs:element ref="vapic"/>
+                <xs:element ref="spinlocks"/>
+                <xs:element minOccurs="0" ref="vendor_id"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="relaxed">
+        <xs:complexType>
+            <xs:attribute name="state" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vapic">
+        <xs:complexType>
+            <xs:attribute name="state" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="spinlocks">
+        <xs:complexType>
+            <xs:attribute name="retries" use="required" type="xs:integer"/>
+            <xs:attribute name="state" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vendor_id">
+        <xs:complexType>
+            <xs:attribute name="state" use="required" type="xs:NCName"/>
+            <xs:attribute name="value" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="kvm">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="hidden"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="hidden">
+        <xs:complexType>
+            <xs:attribute name="state" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vmport">
+        <xs:complexType>
+            <xs:attribute name="state" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="memory">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="unit" use="required" type="xs:NCName"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="metadata">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="libosinfo:libosinfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="os">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="type"/>
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element ref="loader"/>
+                        <xs:element ref="nvram"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="kernel"/>
+                        <xs:element ref="initrd"/>
+                        <xs:element ref="cmdline"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:element minOccurs="0" ref="boot"/>
+                <xs:element minOccurs="0" ref="bootmenu"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="type">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:NCName">
+                    <xs:attribute name="arch" use="required" type="xs:NCName"/>
+                    <xs:attribute name="machine" use="required" type="xs:NCName"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="loader">
+        <xs:complexType mixed="true">
+            <xs:attribute name="readonly" use="required" type="xs:NCName"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="nvram" type="xs:string"/>
+    <xs:element name="kernel" type="xs:string"/>
+    <xs:element name="initrd" type="xs:string"/>
+    <xs:element name="cmdline" type="xs:string"/>
+    <xs:element name="bootmenu">
+        <xs:complexType>
+            <xs:attribute name="enable" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="resource">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="partition"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="partition" type="xs:string"/>
+    <xs:element name="vcpu">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="placement" type="xs:NCName"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="clock">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="timer"/>
+            </xs:sequence>
+            <xs:attribute name="offset" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="timer">
+        <xs:complexType>
+            <xs:attribute name="name" use="required" type="xs:NCName"/>
+            <xs:attribute name="present" type="xs:NCName"/>
+            <xs:attribute name="tickpolicy" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="on_poweroff" type="xs:NCName"/>
+    <xs:element name="on_reboot" type="xs:NCName"/>
+    <xs:element name="on_crash" type="xs:NCName"/>
+    <xs:element name="pm">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="suspend-to-mem"/>
+                <xs:element ref="suspend-to-disk"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="suspend-to-mem">
+        <xs:complexType>
+            <xs:attribute name="enabled" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="suspend-to-disk">
+        <xs:complexType>
+            <xs:attribute name="enabled" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="devices">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="emulator"/>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="serial"/>
+                    <xs:element ref="channel"/>
+                    <xs:element ref="console"/>
+                    <xs:element ref="controller"/>
+                    <xs:element ref="disk"/>
+                    <xs:element ref="graphics"/>
+                    <xs:element ref="hostdev"/>
+                    <xs:element ref="input"/>
+                    <xs:element ref="interface"/>
+                    <xs:element ref="memballoon"/>
+                    <xs:element ref="redirdev"/>
+                    <xs:element ref="rng"/>
+                    <xs:element ref="video"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="emulator" type="xs:string"/>
+    <xs:element name="channel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="target"/>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="console">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="target"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="controller">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="model"/>
+                <xs:element minOccurs="0" ref="target"/>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="index" type="xs:integer"/>
+            <xs:attribute name="model" type="xs:NCName">
+                <!-- rename property generated by JAXB (avoiding "Value" name conflict) -->
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="modelAttr"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ports" type="xs:integer"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="disk">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="driver"/>
+                <xs:element ref="source"/>
+                <xs:element ref="target"/>
+                <xs:element minOccurs="0" ref="readonly"/>
+                <xs:element minOccurs="0" name="serial" type="xs:string">
+                    <!-- rename class generated by JAXB (avoiding "Serial" name conflict) -->
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jxb:class name="diskSerial"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" ref="boot"/>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="device" use="required" type="xs:NCName"/>
+            <xs:attribute name="model" type="xs:NCName"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="readonly">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="graphics">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="listen"/>
+                <xs:element ref="image"/>
+            </xs:sequence>
+            <xs:attribute name="autoport" use="required" type="xs:NCName"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="listen">
+        <xs:complexType>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="image">
+        <xs:complexType>
+            <xs:attribute name="compression" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="hostdev">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="source"/>
+                <xs:element minOccurs="0" ref="boot"/>
+                <xs:element ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="managed" use="required" type="xs:NCName"/>
+            <xs:attribute name="mode" use="required" type="xs:NCName"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="input">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="bus" use="required" type="xs:NCName"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="interface">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="mac"/>
+                <xs:element ref="source"/>
+                <xs:element ref="model"/>
+                <xs:element minOccurs="0" ref="link"/>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mac">
+        <xs:complexType>
+            <xs:attribute name="address" use="required" type="xs:NMTOKEN"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="link">
+        <xs:complexType>
+            <xs:attribute name="state" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="memballoon">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="model" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="redirdev">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="bus" use="required" type="xs:NCName"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rng">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="backend"/>
+                <xs:choice>
+                    <xs:element ref="address"/>
+                    <xs:element ref="driver"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="model" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="backend">
+        <xs:complexType mixed="true">
+            <xs:attribute name="model" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="serial">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="target"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="video">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="model"/>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="boot">
+        <xs:complexType>
+            <xs:attribute name="dev" type="xs:NCName"/>
+            <xs:attribute name="order" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="model">
+        <xs:complexType mixed="true">
+            <xs:attribute name="fallback" type="xs:NCName"/>
+            <xs:attribute name="heads" type="xs:integer"/>
+            <xs:attribute name="name" type="xs:NCName"/>
+            <xs:attribute name="primary" type="xs:NCName"/>
+            <xs:attribute name="ram" type="xs:integer"/>
+            <xs:attribute name="type" type="xs:NCName"/>
+            <xs:attribute name="vgamem" type="xs:integer"/>
+            <xs:attribute name="vram" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="driver">
+        <xs:complexType>
+            <xs:attribute name="cache" type="xs:NCName"/>
+            <xs:attribute name="io" type="xs:NCName"/>
+            <xs:attribute name="model" type="xs:NCName"/>
+            <xs:attribute name="name" type="xs:NCName"/>
+            <xs:attribute name="type" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="source">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="bridge" type="xs:NCName"/>
+            <xs:attribute name="dev"/>
+            <xs:attribute name="file"/>
+            <xs:attribute name="network" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="target">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="model"/>
+            </xs:sequence>
+            <xs:attribute name="bus" type="xs:NCName"/>
+            <xs:attribute name="chassis" type="xs:integer"/>
+            <xs:attribute name="dev" type="xs:NCName"/>
+            <xs:attribute name="name" type="xs:NCName"/>
+            <xs:attribute name="port" type="xs:NMTOKEN"/>
+            <xs:attribute name="type" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="address">
+        <xs:complexType>
+            <xs:attribute name="bus" use="required" type="xs:NMTOKEN"/>
+            <xs:attribute name="controller" type="xs:integer"/>
+            <xs:attribute name="domain" type="xs:NMTOKEN"/>
+            <xs:attribute name="function" type="xs:NMTOKEN"/>
+            <xs:attribute name="multifunction" type="xs:NCName"/>
+            <xs:attribute name="port" type="xs:integer"/>
+            <xs:attribute name="slot" type="xs:NMTOKEN"/>
+            <xs:attribute name="target" type="xs:integer"/>
+            <xs:attribute name="type" type="xs:NCName"/>
+            <xs:attribute name="unit" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

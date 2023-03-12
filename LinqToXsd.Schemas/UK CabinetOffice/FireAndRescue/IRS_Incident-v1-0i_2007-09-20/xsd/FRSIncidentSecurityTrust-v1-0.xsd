@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wst="http://schemas.xmlsoap.org/ws/2005/02/trust" targetNamespace="http://schemas.xmlsoap.org/ws/2005/02/trust" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentSecurityTrust-v1-0">
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2006-05-11</Created>
+				</Date>
+				<Date>
+					<Modified>2007-02-18</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System security logon and logoff related message structures</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentSecurityTrust-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System security and logon related message structures</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="RequestTokenStructure">
+		<xs:annotation>
+			<xs:documentation>The structure to use when requesting a new security token, or cancelling an existing one. This provides for logon and logoff functionality.  The token recieved from a 'logon' operation represents a 'sessionID', and should then be used within the security header for all future requests.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>For a request token operation the 'CancelTarget' element is not required, and the 'RequestType' should have a value of 'http://schemas.xmlsoap.org/ws/2005/02/trust/Issue'.  For the cancel (logoff) operation, the 'RequestType' should be 'http://schemas.xmlsoap.org/ws/2005/02/trust/Cancel', and the 'CancelTarget' element should contain the token to cancel.</xs:documentation>
+			</xs:annotation>
+			<xs:element name="RequestType">
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI">
+						<xs:enumeration value="http://schemas.xmlsoap.org/ws/2005/02/trust/Issue"/>
+						<xs:enumeration value="http://schemas.xmlsoap.org/ws/2005/02/trust/Cancel"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CancelTarget" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Token">
+							<xs:annotation>
+								<xs:documentation>The Token returned from the IRS system.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:any namespace="##any" processContents="lax"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RequestTokenResponseStructure">
+		<xs:annotation>
+			<xs:documentation>The structure returned from a request security token message.  For a new token request this contains the actual token (or sessionID) that should be used for all future requests.  For a cancel request, this just confirms that the token was cancelled.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>For a new token request, the 'TokenType' field specifies the type of token returned, and the 'RequestedSecurityToken' element contains the token content.  For a cancel token operation, only the 'RequestedTokenCancelled' element will be present to confirm that the token was cancelled successfully.</xs:documentation>
+			</xs:annotation>
+			<xs:element name="TokenType" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="RequestedSecurityToken" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Token">
+							<xs:annotation>
+								<xs:documentation>The Token generated by the IRS system.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RequestedTokenCancelled" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by david sinfield (Parity Solutions) -->
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.fire.gov.uk/schemas/Efire" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.fire.gov.uk/schemas/Efire">
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.fire.gov.uk/schemas/Efire">
+			<s:element name="LogIn">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="LogInIn" type="tns:LogInIn"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="LogInIn">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="ApplicationId" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="LogInResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="LogInResult" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="EfireSoapHeader" type="tns:EfireSoapHeader"/>
+			<s:complexType name="EfireSoapHeader">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1" name="MajorVersion" type="s:int"/>
+					<s:element minOccurs="1" maxOccurs="1" name="MinorVersion" type="s:int"/>
+					<s:element minOccurs="0" maxOccurs="1" name="FRSId" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="SessionToken" type="s:string"/>
+					<s:element minOccurs="1" maxOccurs="1" name="MoreWaiting" type="s:boolean"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="LogOut">
+				<s:complexType/>
+			</s:element>
+			<s:element name="LogOutResponse">
+				<s:complexType/>
+			</s:element>
+			<s:element name="GetDocumentByType">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetDocumentByTypeIn" type="tns:GetDocumentByTypeIn"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="GetDocumentByTypeIn">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="DocumentType" type="tns:DocumentType"/>
+					<s:element minOccurs="0" maxOccurs="1" name="MaxDocuments" type="s:positiveInteger"/>
+				</s:sequence>
+			</s:complexType>
+			<s:simpleType name="DocumentType">
+				<s:restriction base="s:string">
+					<s:enumeration value="HomeVisit"/>
+					<s:enumeration value="SchoolVisit"/>
+					<s:enumeration value="CommunityEventVisit"/>
+					<s:enumeration value="FiresetterVisit"/>
+					<s:enumeration value="SAToolkit"/>
+					<s:enumeration value="PetroleumLicence"/>
+					<s:enumeration value="ExplosivesLicence"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:element name="GetDocumentByTypeResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetDocumentByTypeResult" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetDocumentByID">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetDocumentByIdIn" type="tns:GetDocumentByIdIn"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="GetDocumentByIdIn">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="GetDocumentByIDResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetDocumentByIDResult" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetList">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="doctype" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetListResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetListResult">
+							<s:complexType mixed="true">
+								<s:sequence>
+									<s:any/>
+								</s:sequence>
+							</s:complexType>
+						</s:element>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="AcknowledgeDocument">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="AcknowledgeDocumentIn" type="tns:AcknowledgeDocumentIn"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="AcknowledgeDocumentIn">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="AcknowledgeDocumentResponse">
+				<s:complexType/>
+			</s:element>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="LogInSoapIn">
+		<wsdl:part name="parameters" element="tns:LogIn"/>
+	</wsdl:message>
+	<wsdl:message name="LogInSoapOut">
+		<wsdl:part name="parameters" element="tns:LogInResponse"/>
+	</wsdl:message>
+	<wsdl:message name="LogInEfireSoapHeader">
+		<wsdl:part name="EfireSoapHeader" element="tns:EfireSoapHeader"/>
+	</wsdl:message>
+	<wsdl:message name="LogOutSoapIn">
+		<wsdl:part name="parameters" element="tns:LogOut"/>
+	</wsdl:message>
+	<wsdl:message name="LogOutSoapOut">
+		<wsdl:part name="parameters" element="tns:LogOutResponse"/>
+	</wsdl:message>
+	<wsdl:message name="LogOutEfireSoapHeader">
+		<wsdl:part name="EfireSoapHeader" element="tns:EfireSoapHeader"/>
+	</wsdl:message>
+	<wsdl:message name="GetDocumentByTypeSoapIn">
+		<wsdl:part name="parameters" element="tns:GetDocumentByType"/>
+	</wsdl:message>
+	<wsdl:message name="GetDocumentByTypeSoapOut">
+		<wsdl:part name="parameters" element="tns:GetDocumentByTypeResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetDocumentByTypeEfireSoapHeader">
+		<wsdl:part name="EfireSoapHeader" element="tns:EfireSoapHeader"/>
+	</wsdl:message>
+	<wsdl:message name="GetDocumentByIDSoapIn">
+		<wsdl:part name="parameters" element="tns:GetDocumentByID"/>
+	</wsdl:message>
+	<wsdl:message name="GetDocumentByIDSoapOut">
+		<wsdl:part name="parameters" element="tns:GetDocumentByIDResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetDocumentByIDEfireSoapHeader">
+		<wsdl:part name="EfireSoapHeader" element="tns:EfireSoapHeader"/>
+	</wsdl:message>
+	<wsdl:message name="GetListSoapIn">
+		<wsdl:part name="parameters" element="tns:GetList"/>
+	</wsdl:message>
+	<wsdl:message name="GetListSoapOut">
+		<wsdl:part name="parameters" element="tns:GetListResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetListEfireSoapHeader">
+		<wsdl:part name="EfireSoapHeader" element="tns:EfireSoapHeader"/>
+	</wsdl:message>
+	<wsdl:message name="AcknowledgeDocumentSoapIn">
+		<wsdl:part name="parameters" element="tns:AcknowledgeDocument"/>
+	</wsdl:message>
+	<wsdl:message name="AcknowledgeDocumentSoapOut">
+		<wsdl:part name="parameters" element="tns:AcknowledgeDocumentResponse"/>
+	</wsdl:message>
+	<wsdl:message name="AcknowledgeDocumentEfireSoapHeader">
+		<wsdl:part name="EfireSoapHeader" element="tns:EfireSoapHeader"/>
+	</wsdl:message>
+	<wsdl:portType name="OISYSSoap">
+		<wsdl:operation name="LogIn">
+			<wsdl:input message="tns:LogInSoapIn"/>
+			<wsdl:output message="tns:LogInSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="LogOut">
+			<wsdl:input message="tns:LogOutSoapIn"/>
+			<wsdl:output message="tns:LogOutSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetDocumentByType">
+			<wsdl:input message="tns:GetDocumentByTypeSoapIn"/>
+			<wsdl:output message="tns:GetDocumentByTypeSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="AcknowledgeDocument">
+			<wsdl:input message="tns:AcknowledgeDocumentSoapIn"/>
+			<wsdl:output message="tns:AcknowledgeDocumentSoapOut"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="OISYSSoap" type="tns:OISYSSoap">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="LogIn">
+			<soap:operation soapAction="http://www.fire.gov.uk/schemas/Efire/LogIn" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="tns:LogInEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+				<soap:header message="tns:LogInEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="LogOut">
+			<soap:operation soapAction="http://www.fire.gov.uk/schemas/Efire/LogOut" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="tns:LogOutEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+				<soap:header message="tns:LogOutEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetDocumentByType">
+			<soap:operation soapAction="http://www.fire.gov.uk/schemas/Efire/GetDocumentByType" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="tns:GetDocumentByTypeEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+				<soap:header message="tns:GetDocumentByTypeEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AcknowledgeDocument">
+			<soap:operation soapAction="http://www.fire.gov.uk/schemas/Efire/AcknowledgeDocument" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="tns:AcknowledgeDocumentEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+				<soap:header message="tns:AcknowledgeDocumentEfireSoapHeader" part="EfireSoapHeader" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="OISYS">
+		<documentation xmlns="http://schemas.xmlsoap.org/wsdl/"/>
+		<wsdl:port name="OISYSSoap" binding="tns:OISYSSoap">
+			<soap:address location="http://localhost/efire.OISYS.Web.Service/OISYS.asmx"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

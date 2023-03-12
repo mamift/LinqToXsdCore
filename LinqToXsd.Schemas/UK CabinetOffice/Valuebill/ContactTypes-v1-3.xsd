@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema for commonly used contact types -->
+<!--Changes 	
+     Changes 1.2 to 1.3
+             Given its own Namespace to overcome some parser problems when included in other files
+     Changes 1.1 to 1.2:
+		Metadata brought up to latest version of standard -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.3" id="ContactTypes-v1-3" xmlns="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/metadata/egms">
+				<Contributor>e-champions,Government Schema Group, IDeA</Contributor>
+				<Contributor Href="mailto:paul.spencer@boynings.co.uk">Paul Spencer, Boynings Consulting</Contributor>
+				<Creator Href="mailto:govtalk@cabinet-office.x.gsi.gov.uk">e-Government Unit, Cabinet Office, UK Government</Creator>
+				<Created>2001-12-19</Created>
+				<Modified>2002-01-30</Modified>
+				<Modified>2003-02-25</Modified>
+				<Description>Citizen Contact Types</Description>
+				<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+				<Identifier Href="http://www.govtalk.gov.uk/gdsc/schemas/ContactTypes-v1-3.xsd">ContactTypes-v1-3</Identifier>
+				<Language codeListID="ISO639-2">eng</Language>
+				<Publisher Href="mailto:govtalk@cabinet-office.x.gsi.gov.uk">e-Government Unit, Cabinet Office, UK Government</Publisher>
+				<ConformsTo>http://www.w3.org/2001/XMLSchema</ConformsTo>
+				<Copyright>Crown Copyright 2002,2003</Copyright>
+				<ProtectiveMarking>Unclassified</ProtectiveMarking>
+				<Status>approved</Status>
+				<StatusDescription>Approved by the GSG</StatusDescription>
+				<Version>1.3</Version>
+				<Category codeListID="GCL">People, communities and living</Category>
+				<Project>UK GovTalk</Project>
+				<Title>Citizen Contact Types 1.3</Title>
+				<Type>architectural</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<!-- start of TelephoneStructure type definition -->
+	<xsd:complexType name="TelephoneStructure">
+		<xsd:sequence>
+			<xsd:element name="TelNationalNumber" type="core:TelephoneNumberType"/>
+			<xsd:element name="TelExtensionNumber" type="core:TelephoneExtensionType" minOccurs="0"/>
+			<xsd:element name="TelCountryCode" type="core:TelCountryCodeType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="TelUse" type="core:WorkHomeType"/>
+		<xsd:attribute name="TelMobile" type="core:YesNoType"/>
+		<xsd:attribute name="TelPreferred" type="core:YesNoType"/>
+	</xsd:complexType>
+	<!-- end of TelephoneStructure type definition -->
+	<!-- start of FaxStructure type definition -->
+	<xsd:complexType name="FaxStructure">
+		<xsd:sequence>
+			<xsd:element name="FaxNationalNumber" type="core:TelephoneNumberType"/>
+			<xsd:element name="FaxExtensionNumber" type="core:TelephoneExtensionType" minOccurs="0"/>
+			<xsd:element name="FaxCountryCode" type="core:TelCountryCodeType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="FaxUse" type="core:WorkHomeType"/>
+		<xsd:attribute name="FaxMobile" type="core:YesNoType"/>
+		<xsd:attribute name="FaxPreferred" type="core:YesNoType"/>
+	</xsd:complexType>
+	<!-- end of FaxStructure type definition -->
+	<!-- start of EmailStructure type definition -->
+	<xsd:complexType name="EmailStructure">
+		<xsd:sequence>
+			<xsd:element name="EmailAddress" type="core:RestrictedStringType"/>
+		</xsd:sequence>
+		<xsd:attribute name="EmailUsage" type="core:WorkHomeType"/>
+		<xsd:attribute name="EmailPreferred" type="core:YesNoType"/>
+	</xsd:complexType>
+	<!-- end of EmailStructure type definition -->
+</xsd:schema>

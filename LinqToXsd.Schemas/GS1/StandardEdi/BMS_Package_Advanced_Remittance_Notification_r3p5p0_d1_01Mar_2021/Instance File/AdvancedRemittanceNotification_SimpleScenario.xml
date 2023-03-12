@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><advanced_remittance_notification:advancedRemittanceNotificationMessage xmlns:advanced_remittance_notification="urn:gs1:ecom:advanced_remittance_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:advanced_remittance_notification:xsd:3 ../Schemas/gs1/ecom/AdvancedRemittanceNotification.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <advancedRemittanceNotification>
+        <creationDateTime>2011-04-12T11:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <advancedRemittanceNotificationIdentification>
+            <entityIdentification>ARN51101</entityIdentification>
+            <contentOwner>
+                <gln>5412345000013</gln>
+            </contentOwner>
+        </advancedRemittanceNotificationIdentification>
+        <expectedPaymentDate>2005-04-15</expectedPaymentDate>
+        <isThereADiscrepancy>false</isThereADiscrepancy>
+        <receiptOfGoodsDate>2005-02-19</receiptOfGoodsDate>
+        <buyer>
+            <gln>5412345000013</gln>
+        </buyer>
+        <seller>
+            <gln>4098765000010</gln>
+        </seller>
+        <shipFrom>
+            <gln>4098765000997</gln>
+        </shipFrom>
+        <shipTo>
+            <gln>5412345000037</gln>
+        </shipTo>
+        <remitTo>
+            <gln>5678901234567</gln>
+			<financialInstitutionInformation>
+				<financialInstitutionName>HSBC</financialInstitutionName>
+				<financialAccount>
+					<financialAccountNumber>333666</financialAccountNumber>
+					<financialAccountNumberTypeCode>CHECKING_ACCOUNT</financialAccountNumberTypeCode>
+				</financialAccount>
+			</financialInstitutionInformation>
+        </remitTo>
+        <despatchAdvice>
+            <entityIdentification>DA349875</entityIdentification>
+            <creationDateTime>2011-04-10T10:00:00.000-05:00</creationDateTime>
+            <lineItemNumber>1</lineItemNumber>
+        </despatchAdvice>
+        <purchaseOrder>
+            <entityIdentification>PO3352</entityIdentification>
+            <creationDateTime>2011-03-11T11:00:00.000-05:00</creationDateTime>
+            <lineItemNumber>1</lineItemNumber>
+        </purchaseOrder>
+        <remittanceItemReceivedInformation>
+            <itemReceivedQuantity>48</itemReceivedQuantity>
+            <alignedPrice currencyCode="EUR">10</alignedPrice>
+            <transactionalTradeItem>
+                <gtin>40987650000223</gtin>
+            </transactionalTradeItem>
+        </remittanceItemReceivedInformation>
+    </advancedRemittanceNotification>
+</advanced_remittance_notification:advancedRemittanceNotificationMessage>

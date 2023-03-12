@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:shipment_request="urn:gs1:ecom:shipment_request:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:shipment_request:xsd:3" version="3.5">
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: May 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+	<xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+	<xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+	<xsd:element name="shipmentRequestMessage" type="shipment_request:ShipmentRequestMessageType"/>
+	<xsd:complexType name="DMEOrderPriorityCodeType">
+		<xsd:simpleContent>
+			<xsd:extension base="shared_common:GS1CodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="FreePickingFromPrelabelledStockKitInformationType">
+		<xsd:sequence>
+			<xsd:element name="investigationalProductIdentification" type="shared_common:GTINType"/>
+			<xsd:element name="kitLotNumber">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="kitInformation" type="shipment_request:KitInformationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KitInformationType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="minimumLifespanFromTimeOfShipment" type="shared_common:TimeMeasurementType"/>
+			<xsd:element name="quantity" type="shared_common:QuantityType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LabellingJustInTimeKitInformationType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="inGoingLotNumber">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="investigationalProductIdentification" type="shared_common:GTINType"/>
+			<xsd:element name="kitInformation" type="shipment_request:KitInformationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PickingFromExistingLabelledStockKitInformationType">
+		<xsd:sequence>
+			<xsd:element name="investigationalProductIdentification" type="shared_common:GTINType"/>
+			<xsd:element name="kitLotNumber">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="kitSerialNumber">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="kitInformation" type="shipment_request:KitInformationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PrecautionInformationType">
+		<xsd:sequence>
+			<xsd:element name="precaution">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="5000"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="precautionQualifierCode" type="shipment_request:PrecautionQualifierCodeType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PrecautionQualifierCodeType">
+		<xsd:simpleContent>
+			<xsd:extension base="shared_common:GS1CodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="ShipmentRequestMessageType">
+		<xsd:sequence>
+			<xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+			<xsd:element maxOccurs="10000" name="shipmentRequest" type="shipment_request:ShipmentRequestType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ShipmentRequestType">
+		<xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="dMEShipmentOrderReference">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="200"/>
+								<xsd:minLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="protocolIdentification">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20"/>
+								<xsd:minLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="protocolOwner" type="shared_common:GLNType"/>
+					<xsd:element minOccurs="0" name="requestDateTime" type="xsd:dateTime"/>
+					<xsd:element name="requestedDeliveryDateTime" type="xsd:dateTime"/>
+					<xsd:element minOccurs="0" name="shipmentRequestComments">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5000"/>
+								<xsd:minLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="shipmentRequestTypeCode" type="shipment_request:ShipmentRequestTypeCodeType"/>
+					<xsd:element name="shipmentRequestIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="temperatureInformation" type="shipment_request:TemperatureInformationType"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="precautionInformation" type="shipment_request:PrecautionInformationType"/>
+					<xsd:element name="sender" type="ecom_common:Ecom_PartyIdentificationType"/>
+					<xsd:element name="shipFrom" type="ecom_common:Ecom_PartyIdentificationType"/>
+					<xsd:element name="receiver" type="ecom_common:Ecom_PartyIdentificationType"/>
+					<xsd:element name="shipTo" type="ecom_common:Ecom_PartyIdentificationType"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="pickingFromExistingLabelledStockKitInformation" type="shipment_request:PickingFromExistingLabelledStockKitInformationType"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="freePickingFromPrelabelledStockKitInformation" type="shipment_request:FreePickingFromPrelabelledStockKitInformationType"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="labellingJustInTimeKitInformation" type="shipment_request:LabellingJustInTimeKitInformationType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ShipmentRequestTypeCodeType">
+		<xsd:simpleContent>
+			<xsd:extension base="shared_common:GS1CodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="TemperatureInformationType">
+		<xsd:sequence>
+			<xsd:element name="temperatureMaximum" type="shared_common:TemperatureMeasurementType"/>
+			<xsd:element name="temperatureMinimum" type="shared_common:TemperatureMeasurementType"/>
+			<xsd:element name="temperatureQualifierCode" type="shipment_request:TemperatureQualifierCodeType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TemperatureQualifierCodeType">
+		<xsd:simpleContent>
+			<xsd:extension base="shared_common:GS1CodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentValidation-v1-0">
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2006-05-12</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System validation/error details</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentValidation-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System validation/error details</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="ValidationErrorsStructure">
+		<xs:annotation>
+			<xs:documentation>The error details for a dataload record</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Errors" type="ErrorsStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Error Details</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ErrorsStructure">
+		<xs:annotation>
+			<xs:documentation>Errors for a Record</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Error" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The Error category, code number and description</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="Cat" type="ErrorCategoryType"/>
+							<xs:attribute name="Code" type="ErrorCodeType"/>
+							<xs:attribute name="Count" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:positiveInteger">
+										<xs:minInclusive value="1"/>
+										<xs:maxInclusive value="9999"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ErrorCategoryType">
+		<xs:annotation>
+			<xs:documentation>Error Category Code. F=Fatal, E=Error, W=Warning, I=Information</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="E"/>
+			<xs:enumeration value="W"/>
+			<xs:enumeration value="I"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErrorCodeType">
+		<xs:annotation>
+			<xs:documentation>Unique Error Code Number based on error file.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

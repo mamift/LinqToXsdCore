@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wst="http://schemas.xmlsoap.org/ws/2005/02/trust" targetNamespace="http://www.fire.gov.uk/schemas/Incident" name="FRSIncident-Services">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+			<!-- FRSIncidentMessagesEmpty-v1-0.xsd mirrors the FRSIncidentMessages-v1-0.xsd, but does not define full Message Structures. This avoids .NET wsdl.exe creating full data bindings when not required for Document-centric approach. --> 
+			<xsd:include schemaLocation="FRSIncidentMessagesEmpty-v1-0.xsd"/>
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+			<xsd:include schemaLocation="FRSIncidentSecurity-v1-0.xsd"/>
+			<xsd:element name="Security" type="SecurityStructure"/>
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/ws/2005/02/trust" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+			<xsd:include schemaLocation="FRSIncidentSecurityTrust-v1-0.xsd"/>
+			<xsd:element name="RequestSecurityToken" type="RequestTokenStructure"/>
+			<xsd:element name="RequestSecurityTokenResponse" type="RequestTokenResponseStructure"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="GetIncidentRequestMessage">
+		<wsdl:part name="GetIncidentRequestMessage" element="GetIncidentDetailsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetIncidentResponseMessage">
+		<wsdl:part name="GetIncidentResponseMessage" element="GetIncidentDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="SearchIncidentsRequestMessage">
+		<wsdl:part name="SearchIncidentsRequestMessage" element="SearchIncidentsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="SearchIncidentsResponseMessage">
+		<wsdl:part name="SearchIncidentsResponseMessage" element="SearchIncidentsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="InsertIncidentRequestMessage">
+		<wsdl:part name="InsertIncidentRequestMessage" element="InsertIncidentDetailsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="InsertIncidentResponseMessage">
+		<wsdl:part name="InsertIncidentResponseMessage" element="InsertIncidentDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="AmendIncidentRequestMessage">
+		<wsdl:part name="AmendIncidentRequestMessage" element="AmendIncidentDetailsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="AmendIncidentResponseMessage">
+		<wsdl:part name="AmendIncidentResponseMessage" element="AmendIncidentDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="FRS-Security">
+		<wsdl:part name="Security" element="wsse:Security"/>
+	</wsdl:message>
+	<wsdl:message name="SecurityTokenRequestMessage">
+		<wsdl:part name="SecurityTokenRequestMessage" element="wst:RequestSecurityToken"/>
+	</wsdl:message>
+	<wsdl:message name="SecurityTokenResponseMessage">
+		<wsdl:part name="SecurityTokenResponseMessage" element="wst:RequestSecurityTokenResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="EnquiryPort">
+		<wsdl:documentation>Enquiry Port</wsdl:documentation>
+		<wsdl:operation name="GetIncident">
+			<wsdl:documentation>Request an Incident from the FRSIncident system</wsdl:documentation>
+			<wsdl:input name="GetIncidentRequestMessage" message="GetIncidentRequestMessage"/>
+			<wsdl:output name="GetIncidentResponseMessage" message="GetIncidentResponseMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="SearchIncidents">
+			<wsdl:documentation>Search for one or more Incidents from the FRSIncident system</wsdl:documentation>
+			<wsdl:input name="SearchIncidentsRequestMessage" message="SearchIncidentsRequestMessage"/>
+			<wsdl:output name="SearchIncidentsResponseMessage" message="SearchIncidentsResponseMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="RegistrationPort">
+		<wsdl:documentation>Registration Port</wsdl:documentation>
+		<wsdl:operation name="InsertIncident">
+			<wsdl:documentation>Insert an Incident onto the FRSIncident system</wsdl:documentation>
+			<wsdl:input name="InsertIncidentRequestMessage" message="InsertIncidentRequestMessage"/>
+			<wsdl:output name="InsertIncidentResponseMessage" message="InsertIncidentResponseMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="AmendIncident">
+			<wsdl:documentation>Amend an Incident on the FRSIncident system</wsdl:documentation>
+			<wsdl:input name="AmendIncidentRequestMessage" message="AmendIncidentRequestMessage"/>
+			<wsdl:output name="AmendIncidentResponseMessage" message="AmendIncidentResponseMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="LogonPort">
+		<wsdl:documentation>Logon Port</wsdl:documentation>
+		<wsdl:operation name="SecurityRequest">
+			<wsdl:documentation>Security Request to the FRS Incident system</wsdl:documentation>
+			<wsdl:input name="SecurityRequestMessage" message="SecurityTokenRequestMessage"/>
+			<wsdl:output name="SecurityResponseMessage" message="SecurityTokenResponseMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="EnquiryBinding" type="EnquiryPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetIncident">
+			<soap:operation soapAction="GetIncident" style="document"/>
+			<wsdl:input name="GetIncidentRequestMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetIncidentResponseMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SearchIncidents">
+			<soap:operation soapAction="SearchIncidents" style="document"/>
+			<wsdl:input name="SearchIncidentsRequestMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="SearchIncidentsResponseMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="RegistrationBinding" type="RegistrationPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="InsertIncident">
+			<soap:operation soapAction="InsertIncident" style="document"/>
+			<wsdl:input name="InsertIncidentRequestMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="InsertIncidentResponseMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AmendIncident">
+			<soap:operation soapAction="AmendIncident" style="document"/>
+			<wsdl:input name="AmendIncidentRequestMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="AmendIncidentResponseMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="LogonBinding" type="LogonPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="SecurityRequest">
+			<soap:operation soapAction="SecurityRequest" style="document"/>
+			<wsdl:input name="SecurityRequestMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="SecurityResponseMessage">
+				<soap:body use="literal"/>
+				<soap:header message="FRS-Security" part="Security" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="FRSIncidentService">
+		<wsdl:port name="Logon" binding="LogonBinding">
+			<soap:address location="http://www.fire.gov.uk/FRSD/IRS/webservices/v1-0"/>
+		</wsdl:port>
+		<wsdl:port name="Enquiry" binding="EnquiryBinding">
+			<soap:address location="http://www.fire.gov.uk/FRSD/IRS/webservices/v1-0"/>
+		</wsdl:port>
+		<wsdl:port name="Registration" binding="RegistrationBinding">
+			<soap:address location="http://www.fire.gov.uk/FRSD/IRS/webservices/v1-0"/>
+		</wsdl:port>
+	</wsdl:service>
+	<!--	<wsdl:documentation>
+		<xs:annotation>
+			<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+				<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+					<Audience>e-service developers</Audience>
+					<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+					<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+					<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+					<Date>
+						<Created>2005-08-15</Created>
+					</Date>
+					<Date>
+						<Modified>2006-05-24</Modified>
+					</Date>
+					<Description>Fire and Rescue Statistics - Incident Collection System Flexible Web Service Descriptions. Temporary WSDL to handle Binding Framwork Issues.</Description>
+					<Format>
+						<MediaType>text/xml</MediaType>
+						<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+						<Description>XML schema, W3C Recommendation 2001</Description>
+					</Format>
+					<Identifier>FRSIncidentWebServices-v1-0</Identifier>
+					<Language>[ISO 639-2/B] ENG</Language>
+					<Publisher>HM Government</Publisher>
+					<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+					</Rights>
+					<Subject>
+						<Category>Response</Category>
+					</Subject>
+					<Subject>
+						<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+					</Subject>
+					<Title>Fire and Rescue Statistics - Incident Collection System Web Service Descriptions</Title>
+				</Metadata>
+			</xs:appinfo>
+		</xs:annotation> 
+	</wsdl:documentation> -->
+</wsdl:definitions>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" xmlns="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0a">
+	<xsd:annotation>
+		<xsd:documentation>Metadata according to e-GMS XML Schema Metadata v0.4</xsd:documentation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Contributor>Tessella Support Services plc  http://www.tessella.com</Contributor>
+				<Contributor>Public Reocd Office http://www.pro.gov.uk</Contributor>
+				<Date>
+					<Created>2002-12-12</Created>
+				</Date>
+				<Date>
+					<Modified>2003-03-06</Modified>
+				</Date>
+				<Description>Schema for Digital Archive Accession Recordset</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.govtalk.gov.uk/PRO/ARCv1.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Relation>
+					<Requires>GMSelement structure</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Manifestation structure</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Record structure</Requires>
+				</Relation>
+				<Relation>
+					<Requires>File structure</Requires>
+				</Relation>
+				<Rights>unclassified
+				       <Copyright>Crown copyright 2002</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Government, public records </Category>
+				</Subject>
+				<Subject>
+					<Project>Digital Archive</Project>
+				</Subject>
+				<Title>Accession metadata schema</Title>
+				<Type>metadata</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<!--				-->
+	<!-- Modification History -->
+	<!--    Date               	User	     		 Modification -->
+	<!--   =========== 	==========  	==================================== -->
+	<!--	12/12/2002     	EVAM	       	Created										-->
+	<!--	17/01/2003     	EVAM	 		Changed imported schemas to include schemas to remove namespace prefix -->
+	<!--	30/01/2003     	EVAM 			Added AccessionDirectories element and structure for Applet editing.             -->
+	<!--	10/02/2003     	EVAM			Added Associated attribute to RelPath.					-->
+	<!-- 	12/02/2003     	EVAM			Changed positiveInteger types to integer.    				-->
+	<!-- 	03/03/2003     	EVAM			Set File element to be optional							-->
+	<!--	04/03/2003     	EVAM			Changed namespace to http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession -->
+	<!--	06/03/2003 	  	EVAM    		Set attributes on AccessionItentifier to integer from positiveInteger         	-->
+	<!--	06/03/2003	    	EVAM			Added version element to Accession						-->
+	<!--																							-->
+	<xsd:include schemaLocation="ManifestationStructure.xsd"/>
+	<xsd:include schemaLocation="RecordStructure.xsd"/>
+	<xsd:include schemaLocation="FileStructure.xsd"/>
+	<xsd:include schemaLocation="GMSelement.xsd"/>
+	<!--Schema definition-->
+	<xsd:element name="Accession" type="AccessionStructure"/>
+	<!--Global types-->
+	<xsd:complexType name="AccessionStructure">
+		<xsd:sequence>
+			<xsd:element name="AccessionStatus" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="N"/>
+						<xsd:enumeration value="M"/>
+						<xsd:enumeration value="U"/>
+						<xsd:enumeration value="D"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AccessionIdentifier">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:positiveInteger">
+							<xsd:attribute name="NextManifestationID" type="xsd:integer" use="optional"/>
+							<xsd:attribute name="NextRecordID" type="xsd:integer" use="optional"/>
+							<xsd:attribute name="NextFileID" type="xsd:integer" use="optional"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="AccessionVersion" type="xsd:positiveInteger"/>
+			<xsd:element name="AccessionName" type="xsd:string"/>
+			<xsd:element name="AccessionDirectories" type="DirectoryStructure" minOccurs="0"/>
+			<xsd:element name="Metadata" type="MetadataStructure"/>
+			<xsd:element name="Manifestation" type="ManifestationStructure" maxOccurs="unbounded"/>
+			<xsd:element name="Record" type="RecordStructure" maxOccurs="unbounded"/>
+			<xsd:element name="File" type="FileStructure" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DirectoryStructure">
+		<xsd:sequence>
+			<xsd:element name="RootPath" type="xsd:string"/>
+			<xsd:element name="RelPath" type="RelPathType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RelPathType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="PathID" type="xsd:integer" use="required"/>
+				<xsd:attribute name="PathParent" type="xsd:integer" use="required"/>
+				<xsd:attribute name="Associated" type="xsd:integer" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

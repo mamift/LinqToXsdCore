@@ -1,0 +1,1841 @@
+<!-- =====================================================================
+     Akoma Ntoso main schema                                              
+
+     Release 30/03/2017 - Akoma Ntoso 3.0 
+				Complete version. 
+			
+     
+     technical supervision Fabio Vitali - University of Bologna
+     legal domain supervision Monica Palmirani - University of Bologna
+        
+     The present schema uses systematically XML design patterns as
+     described in http://www.xmlpatterns.com/
+     A few of them are explicitly mentioned, when their use or approach
+     was not felt clear or natural enough. Others are just used without
+     mentions.
+
+     TERMS AND CONDITIONS
+		 
+		 This schema is provided by OASIS, the Copyright Holder, under licence
+     cc-by 4.0, that can also be found at the URL 
+     https://creativecommons.org/licenses/by/4.0/legalcode
+
+     ===================================================================== -->
+
+<!TARGETNS       'http://docs.oasis-open.org/legaldocml/ns/akn/3.0'>
+<!TARGETNS  xml  'http://www.w3.org/XML/1998/namespace'>
+
+<!-- =====================================================================
+
+        Main element groups
+
+     ===================================================================== -->
+
+<!--- The group ANhier lists the elements that belong to the Akoma Ntoso legislative hierarchy -->
+<!ENTITY @@ ANhier          "(clause|section|part|paragraph|chapter|title|article|book|tome|division|list |point|indent|alinea|rule|subrule|proviso|subsection|subpart|subparagraph|subchapter|subtitle|subdivision|subclause|sublist|level|transitional)" >
+
+	
+<!--- The group ANcontainers lists the elements that are containers and are specific to the Akoma Ntoso debate vocabulary -->
+<!ENTITY @@ ANcontainers    "(speechGroup | speech | question | answer | other | scene | narrative | summary)" >
+
+	
+<!--- The group basicContainers lists the elements that are containers and are specific to vocabulary of preambles, prefaces, conclusions and coverPages -->
+<!ENTITY @@ basicContainers    "(longTitle | formula |container)" >
+<!--- The group preambleContainers lists the elements that are containers and are specific to the Akoma Ntoso preamble vocabulary -->
+<!ENTITY @@ preambleContainers    "(recitals | citations | formula |container)" >
+<!--- The group prefaceContainers lists the elements that are containers and are specific to the Akoma Ntoso preface vocabulary -->
+<!ENTITY @@ prefaceContainers    "(longTitle | formula | container )" >
+
+<!--- The group ANblock lists the elements that are blocks and are specific to the Akoma Ntoso vocabulary -->
+<!ENTITY @@ ANblock         "(blockList | blockContainer | tblock| toc)" >
+<!--- The group ANinline lists the elements that are inline and are specific to the Akoma Ntoso vocabulary -->
+<!ENTITY @@ ANinline        "(ref | mref | rref | mod | mmod | rmod| remark | recordedTime | vote | outcome  | ins | del | omissis | embeddedText | embeddedStructure | opinion | placeholder | fillIn | decoration)" >
+<!--- The group ANtitleInline lists the elements that are inline, are specific to the Akoma Ntoso vocabulary, and should only be used within the initial elements (preface, preamble and coverpage) -->
+<!ENTITY @@ ANtitleInline   "(docType | docTitle | docNumber | docProponent | docDate | legislature | session | shortTitle|docAuthority|docPurpose|docCommittee|docIntroducer|docStage|docStatus|docJurisdiction|docketNumber)" >
+
+
+<!--- The group ANheaderInline lists the elements that are inline, are specific to the Akoma Ntoso vocabulary, and should only be used within the header element -->
+<!ENTITY @@ ANheaderInline  "(courtType | neutralCitation | party | judge | lawyer | signature | argument)" >
+
+
+
+<!--- The group ANsemanticInline lists additional elements that are inline, and are specific to the Akoma Ntoso vocabulary -->
+<!ENTITY @@ ANsemanticInline   "(date| time | person| organization| concept| object| event| location| process| role| term| quantity| def | entity)" >
+
+<!--- The group ANmarker lists the elements that are markers and are specific to the Akoma Ntoso vocabulary -->
+<!ENTITY @@ ANmarker        "(noteRef |  eol | eop)" >
+
+
+<!--- The group ANsubFlow lists the elements that are subFlows and are specific to the Akoma Ntoso vocabulary -->
+<!ENTITY @@ ANsubFlow          "(authorialNote )" >
+
+	
+<!--- The group HTMLcontainers lists the elements that are containers and were inherited from the HTML vocabulary -->
+<!ENTITY @@ HTMLcontainers    "( div )" >
+<!--- The group HTMLblock lists the elements that are blocks and were inherited from the HTML vocabulary -->
+<!ENTITY @@ HTMLblock         "(ul|ol|table| p)" >
+<!--- The group HTMLinline lists the elements that are inline and were inherited from the HTML vocabulary -->
+<!ENTITY @@ HTMLinline        "(b | i | a | u | sub | sup  | abbr | span)" >
+	
+
+<!--- The group HTMLmarker lists the elements that are marker and were inherited from the HTML vocabulary -->
+<!ENTITY @@ HTMLmarker        "(img | br)" >
+
+
+	
+<!--- The group judgmentBlock lists the structures that should be found in a judgment -->
+<!ENTITY @@ judgmentBlock    "(introduction | background | arguments | remedies | motivation | decision)">
+
+	
+<!--- The group amendmentBlock lists the structures that should be found in an amendment  -->
+<!ENTITY @@ amendmentBlock    "(amendmentHeading | amendmentContent | amendmentReference | amendmentJustification)">
+<!--- The group amendmentInline lists the inline elements that should be found in the preface of an amendment  -->
+<!ENTITY @@ amendmentInline    "(affectedDocument | relatedDocument | change)">
+
+	
+<!--- The group speechSection lists the structures that should contain speeches -->
+<!ENTITY @@ speechSection     "(administrationOfOath|rollCall|prayers|oralStatements|writtenStatements|personalStatements|
+                                   ministerialStatements|resolutions|nationalInterest|declarationOfVote|communication|
+                                   petitions|papers|noticesOfMotion|questions|address|proceduralMotions|pointOfOrder| 
+                                   adjournment|debateSection)">                                   
+
+
+
+<!--- The group hierElements lists all the elements that are hierarchical -->
+<!ENTITY @@ hierElements      "(@@ANhier; |hcontainer)">
+
+<!--- The group containerElements lists all the elements that are containers -->
+<!ENTITY @@ containerElements "(@@speechSection; | @@HTMLcontainers; |container)">
+<!--- The group blockElements lists all the elements that are blocks -->
+<!ENTITY @@ blockElements     "(@@ANblock;      | @@HTMLblock;      | foreign |block)">
+<!--- The group inlineElements lists all the elements that are inline -->
+<!ENTITY @@ inlineElements    "(@@ANinline;     | @@HTMLinline;   | @@ANtitleInline;  | @@ANsemanticInline; |@@ANheaderInline; |@@amendmentInline; |inline     )">
+
+<!--- The group subFlowElements lists all the elements that are subFlows -->
+<!ENTITY @@ subFlowElements    "(@@ANsubFlow;  |subFlow)">
+
+<!--- The group markerElements lists all the elements that are markers -->
+<!ENTITY @@ markerElements    "(@@ANmarker;   |@@HTMLmarker;   |marker  )">
+
+<!--- The group inlineCM is the content model of blocks and inlines, and is composed of all the inlines and all the markers -->
+<!ENTITY @@ inlineCM          "(@@inlineElements; | @@markerElements; | @@subFlowElements;)">
+
+<!-- =====================================================================
+
+        Attribute groups
+
+     ===================================================================== -->
+     
+<!--- The attribute contains is used in the root of document types to indicate whether the document is original or modified wrt the orignal version -->
+<!ENTITY ## contains "contains #versionType; 'originalVersion' " >
+<!--- The attribute alternativeTo is used to specify, when the element contains an alternative version of some content, the eId of the main element which this element is an alternative copy of -->
+<!ENTITY ## alt         "alternativeTo         #eIdRef;        #IMPLIED" >
+<!--- The attribute name is used to give a name to all generic elements -->
+<!ENTITY ## name         "name         #STRING        #REQUIRED" >
+<!--- The attribute number is used to specify a number in the publication of the document -->
+<!ENTITY ## number       "number       #STRING        #IMPLIED" >
+<!--- The attribute source links to the agent (person, organization) providing the specific annotation or markup -->
+<!ENTITY ## source       "source       #agentRef;        #REQUIRED" >
+<!--- The attribute date is used to give a normalized value for a date according to the XSD syntax YYYY-MM-DD or a normalized value for a dateTime according to the XSD syntax YYYY-MM-DDThh:mm:ss(zzzz)  -->
+<!ENTITY ## date         "date         #DATE | #DATETIME         #REQUIRED" >
+<!--- The attribute time is used to give a normalized value for a time according to the XSD syntax HH:MM:SS -->
+<!ENTITY ## time         "time         #TIME | #DATETIME         #REQUIRED" >
+<!--- The attribute href is used to specify an internal or external destination for a reference, a citation, an access to the ontology or a hypertext link. In elements using this attribute definition the href attribute is required -->
+<!ENTITY ## link         "href         #ANYURI        #REQUIRED" >
+<!--- The attribute href is used to specify an internal or external destination for a reference, a citation, an access to the ontology or a hypertext link. In elements using this attribute definition the href attribute is optional -->
+<!ENTITY ## linkopt      "href         #ANYURI        #IMPLIED" >
+<!--- The attribute value is used to specify a value for metadata elements. In elements using this attribute definition the value attribute is required -->
+<!ENTITY ## value        "value        #STRING        #REQUIRED" >
+<!--- The attribute value is used to specify a value for metadata elements. In elements using this attribute definition the value attribute is optional -->
+<!ENTITY ## optvalue     "value        #STRING        #IMPLIED" >
+<!--- The attribute value is used here to specify a boolean value for metadata elements. In elements using this attribute definition the value attribute is required -->
+<!ENTITY ## booleanvalue     "value        #BOOLEAN        #REQUIRED" >
+
+
+<!--- The start and end attributes are used to specify events that mark the beginning and the end of a time interval. Both are references to eventRef elements in the lifecycle element -->
+<!ENTITY ## interval     "
+		start           #eventRefRef;        #IMPLIED
+    end             #eventRefRef;        #IMPLIED
+" >
+<!--- The duration attribute is used to specify a duration when either the start or the end event of a time interval is not known. -->
+<!ENTITY ## duration     "duration      #DURATION   #IMPLIED" >
+
+
+<!--- The attributes in speechAtts are used in speeches to identify agents and roles of speeches. In particular, attribute 'by' identifies the speaker, optional attribute 'as' identifies the role under which the speaker is speaking, optional attribute startTime specifies the absolute date and time where the individual speech item started, optional attribute endTime specifies the absolute date and time where the individual speech item ended, and  optional attribute to identifies the addressee of the speech. All of them are references to person or organization elements in the references section -->
+<!ENTITY ## speechAtts "##agent; 
+                           ##role;
+                           startTime    #DATETIME      #IMPLIED
+                           endTime      #DATETIME      #IMPLIED
+                           to           #agentRef;     #IMPLIED ">
+<!--- The attributes in voteAtts are used in votes to identify agents and choices in votes. In particular, attribute 'by' identifies the voter, optional attribute 'as' identifies the role under which the voter is acting, optional attribute 'choice' specifies the vote that was casted. -->
+<!ENTITY ## voteAtts   "##agent; 
+                           ##role;
+                           choice       #voteRef;        #IMPLIED ">
+<!--- The attribute frozen for the condition element specifies whether the condition is frozen or not in the time period of this expression. -->
+<!ENTITY ## frozen     "frozen #BOOLEAN #IMPLIED" >
+                           
+
+
+<!--- The attributes in lawyerAtts are used in the inline element lawyer to identify representation aspects of lawyers. In particular, attribute 'as' identifies his/her role, attribute 'for' identifies which party it represents, and attribute 'empoweredBy' identifies another lawyer, if any, this lawyer received the power delegation of power. -->
+<!ENTITY ## lawyerAtts   "##role; 
+                             for         #agentRef;    #IMPLIED 
+                             empoweredBy #agentRef;    #IMPLIED">
+
+
+<!--- The attribute normalized is used in the inline element quantity to provide a normalized value of the number, if appropriate. -->
+<!ENTITY ## normalizedAtt   "normalized  #STRING  #IMPLIED">
+
+                    
+<!--- The attribute for is used in modification elements to specify the element this is a modification of. -->
+<!ENTITY ## for "for #eIdRef; #IMPLIED">
+
+
+
+<!--- The mappingAtts attributes represent the reference to the permanent wId (attribute original) of a structure, and to the eId (attribute current) such structure had during the time interval included between an initial temporalGroup (attribute start) and a final temporalGroup (attribute end). --> 
+<!ENTITY ## mappingAtts " 
+    original        #wIdRef;        #IMPLIED
+    current         #eIdRef;        #IMPLIED
+    start           #eventRefRef;        #IMPLIED
+    end             #eventRefRef;        #IMPLIED
+">
+<!--- The attribute originating is used to identify whether the event is the one originating this expression -->
+<!ENTITY ## originating "originatingExpression #BOOLEAN #IMPLIED">
+
+<!--- The attribute outcome is used to identify the outcome of a step in a workflow. It is a reference to a TLCConcept element in the references section -->
+<!ENTITY ## outcome "outcome #conceptRef; #IMPLIED">
+
+
+		
+<!--- the attribute includedIn specifies the eId of the element of the references section identifying the document that this portion is a portion of.  -->
+<!ENTITY ## portionAtt   "includedIn #referenceRef; #REQUIRED">
+	
+
+<!--- the attribute level specifies the level of the toc element.  -->
+<!ENTITY ## level "level #INTEGER #REQUIRED" >
+	
+
+<!--- the attribute target specifies the target of the a element.  -->
+<!ENTITY ## target   "target    #STRING    #IMPLIED">
+
+<!--- these attributes specify the dimension of the image.  -->
+<!ENTITY ## imgAtts    "
+		width  #INTEGER      #IMPLIED
+    height #INTEGER      #IMPLIED
+">	
+
+
+<!--- these attributes specify the characteristics of the table.  -->
+<!ENTITY ## tableAtts    "
+    width       #INTEGER #IMPLIED
+    border      #INTEGER #IMPLIED
+    cellspacing #INTEGER #IMPLIED
+    cellpadding #INTEGER #IMPLIED
+">
+
+
+<!--- the attribute originalText contains the original text of a placeholder -->
+<!ENTITY ## originalText "originalText #STRING #IMPLIED" >
+<!--- the attribute width of the element fillIn specifies the width of the fillIn element. -->
+<!ENTITY ## fillInWidth  "width #STRING #IMPLIED" >
+
+	
+<!--- The attribute upTo is used in range-based elements to specify the eId of the ending element of the range. -->
+<!ENTITY ## upTo "upTo #eIdRef; #REQUIRED">
+<!ENTITY ## upToOpt "upTo #eIdRef; #IMPLIED">
+<!--- These attributes are used in range-based elements to specify the eId of the beginning and ending element of the range. -->
+<!ENTITY ## range "from #eIdRef; #REQUIRED ##upTo;">
+<!ENTITY ## rangeOpt "from #eIdRef; #REQUIRED ##upToOpt;">
+
+<!--- The attribute pos is used to identify the specific position of the reference (e.g., in source or destination) 
+with respect to the element being identified with the relative eId. -->
+<!ENTITY ## pos "pos #posType; #IMPLIED">
+
+<!--- This attribute specifies the human language in which the document the element refers to is expressed. Values are taken from the RFC 4646. -->
+<!ENTITY ## language     "language     #language; #REQUIRED">
+<!--- This attribute specifies the human language of the expression this is a translation of. Values are taken from the RFC 4646. -->
+<!ENTITY ## fromLanguage "fromLanguage #language; #REQUIRED">
+<!--- This attribute specifies the human language used as a pivot in the translation. Values are taken from the RFC 4646. -->
+<!ENTITY ## pivot        "pivot        #language; #IMPLIED">
+<!--- This attribute specifies whether the translation is authoritative or not -->
+<!ENTITY ## authoritative        "authoritative #BOOLEAN #IMPLIED">
+
+<!--- This attribute specifies the eId of the element in the references section detailing the dictionary used for the keyword. -->
+<!ENTITY ## dictionary        "dictionary  #referenceRef;  #REQUIRED">
+
+
+<!-- =====================================================================
+
+        Attribute groups: attribute "type"
+
+     ===================================================================== -->
+<!--- The type attribute is used in various element to identify a type without restrictions as to its values. -->
+<!ENTITY ## type   "type  CDATA #IMPLIED">
+
+
+<!---  This is the list of allowed values for the type attribute of the eventRef element -->
+<!ENTITY #  eventType     "#STRING(generation|amendment|repeal)" >
+<!ENTITY ## eventType     "type   #eventType; #IMPLIED">
+
+
+
+<!--- This is the list of allowed values for the type attribute of the opinion element  -->
+<!ENTITY #  opinionType   "#STRING(dissenting|agreeing|null)">
+<!ENTITY ## opinionType   "##agent; type  #opinionType; #IMPLIED">
+
+<!--- This is the list of allowed values for the type attribute of the result element  -->
+<!ENTITY #  resultType  "#STRING(deny|dismiss|uphold|revert|replaceOrder|remit|decide|approve)">
+<!ENTITY ## resultType    "type  #resultType; #REQUIRED" >
+
+
+
+<!--- This is the list of allowed values for the restriction type attribute   -->
+<!ENTITY #  restrictionType    "#STRING(jurisdiction)" >
+<!ENTITY ## restrictionType    "type #restrictionType; #REQUIRED" >
+
+
+
+<!--- This is the list of allowed values for the type attribute of the remark element for the specification of editorial remarks (e.g., applauses, laughters, etc.) especially within debate records  -->
+<!ENTITY # remarkType     "#STRING(sceneDescription|phenomenon|caption|translation)">
+<!ENTITY ## remarkType   "type #remarkType; #IMPLIED" >
+
+<!--- This is the list of allowed values for the type attribute of the recordedTime element for the specification of an explicit mention of a time (e.g., in a debate) -->
+<!ENTITY # timeType       "#STRING(startEvent|endEvent)">
+<!ENTITY ## recordedTimeType   "type #timeType; #IMPLIED">
+
+	
+
+<!--- The simple type TextualMods lists all the types of textual modifications as values for the type attribute of the textualMod element. -->
+<!ENTITY # TextualMods         "#STRING(repeal|substitution|insertion|replacement|renumbering|split|join)" >
+<!ENTITY ## textualModType            "type #TextualMods; #REQUIRED" >
+
+<!--- The simple type MeaningMods lists all the types of modifications in meaning as values for the type attribute of the meaningMod element. -->
+<!ENTITY # MeaningMods         "#STRING(variation|termModification|authenticInterpretation)" >
+<!ENTITY ## meaningModType            "type #MeaningMods; #REQUIRED" >
+
+<!--- The simple type ScopeMods lists all the types of modifications in scope as values for the type attribute of the scopeMod element. -->
+<!ENTITY # ScopeMods           "#STRING(exceptionOfScope|extensionOfScope)" >
+<!ENTITY ## scopeModType              "type #ScopeMods; #REQUIRED" >
+
+<!--- The simple type ForceMods lists all the types of modifications in force as values for the type attribute of the forceMod element. -->
+<!ENTITY # ForceMods           "#STRING(entryIntoForce|endOfEnactment|postponementOfEntryIntoForce|
+prorogationOfForce|reEnactment|unconstitutionality)" >
+<!ENTITY ## forceModType              "type #ForceMods; #REQUIRED" >
+
+<!--- The simple type EfficacyMods lists all the types of modifications in efficacy as values for the type attribute of the efficacyMod element. -->
+<!ENTITY # EfficacyMods        "#STRING(entryIntoEfficacy|endOfEfficacy|inapplication|retroactivity|extraefficacy| postponementOfEfficacy|prorogationOfEfficacy)" >
+<!ENTITY ## efficacyModType           "type #EfficacyMods; #REQUIRED" >
+
+<!--- The simple type LegalSystemMods lists all the types of modifications in the legal system as values for the type attribute of the LegalSystemMod element. -->
+<!ENTITY # LegalSystemMods     "#STRING(staticReference|implementation|ratification|application| legislativeDelegation|deregulation|conversion|expiration|
+reiteration|remaking|republication|coordination)" >
+<!ENTITY ## legalSystemModType        "type #LegalSystemMods; #REQUIRED" >
+
+
+<!--- These attributes are used in metadata to propose visible representations of the metadata itself. Both a full visualization (attribute showAs) and an abbreviated one (attribute shortForm) can be specified -->
+<!ENTITY ## show      "showAs       #STRING        #REQUIRED  
+                          shortForm    #STRING        #IMPLIED">
+<!ENTITY ## showopt   "showAs       #STRING        #IMPLIED  
+                          shortForm    #STRING        #IMPLIED">
+<!--- These attributes are used in manifestation-level references to specify external manifestation-level resources to be loaded in place. The src attribute holds the manifestation-level IRI of the resource, while the alt attribute holds the text to be displayed in case the loading of the external resource is not possible for any reason. -->
+<!ENTITY ## src         "src       #manifestationURI;       #REQUIRED  
+                            alt       #STRING                  #IMPLIED">
+<!--- The period attribute is used in versioned content and metadata elements to indicate a time interval in which they were in force, in efficacy, or in any other type of interval as specified in the corresponding temporalGroup.  -->
+<!ENTITY ## period "     period    #temporalGroupRef;       #IMPLIED" >
+
+<!--- These attributes are those already defined in attribute list "period", plus the attribute status, that allows to specify the status of the piece of text it wraps.  -->
+<!ENTITY ## enactment "
+    ##period;
+    status     #statusType;  #IMPLIED
+">
+<!--- These attributes are used by notes, both authorial and editorial. The marker is the string to be used as a marker of the note, the placement is the position where the note should be placed, and placementBase is the eId of the element respect to which the note should be placed near.  -->
+<!ENTITY ## notes "
+		                      marker         #STRING         #IMPLIED
+                          placement      #placementType; #IMPLIED	
+                          placementBase  #eIdRef;        #IMPLIED	
+">
+
+<!--- These attributes are used in the analysis to allow manifestation editors to specify whether the analysis is complete and/or ignored in the text -->
+<!ENTITY ## modifiers "
+    exclusion  #BOOLEAN #IMPLIED
+    incomplete #BOOLEAN #IMPLIED
+">
+<!--- The attribute role is used to identify the role of an individual mentioned in the text. It is a reference to a TLCRole element in the references section -->
+<!ENTITY ## role "as #roleRef; #IMPLIED ">
+<!--- The attribute by is used to identify the agent of an action. It is a reference to a TLCPerson or TLCOrganization element in the references section -->
+<!ENTITY ## agent "by #agentRef; #REQUIRED ">
+
+<!--- The attributes startQuote and endQuote are used in quotedText, quotedStructure, embeddedText and embeddedStructure to specify the start and quote character delimiting the quoted or embedded part. If the characters are the same, one can use only startQuote. Attribute inlineQuote is used for marking the character showing continuation of a quote e.g. at the beginning of each page or at the beginning of each line of the quote -->
+<!ENTITY ## quote "
+	startQuote #STRING #IMPLIED 
+	endQuote #STRING #IMPLIED
+	inlineQuote #STRING #IMPLIED
+">
+	
+
+<!--- These attributes are used to specify that table cells span more than one row or one column, exactly as in HTML -->
+<!ENTITY ## cellattrs    "rowspan      #INTEGER     '1'
+                             colspan      #INTEGER     '1'  ">
+
+	
+<!--- These attributes are used to specify class, style and title of the element, exactly as in HTML -->
+<!ENTITY ## HTMLattrs    "class        #STRING      #IMPLIED    
+                             style        #STRING      #IMPLIED
+                             title        #STRING      #IMPLIED">
+<!--- This attribute list are used to specify the fact that any attribute can be specified for this element if it belongs to a different namespace. -->
+<!ENTITY ## core    "xxxdirtyTrick        #STRING      #IMPLIED">
+<!--- These attributes identify the element in an absolute manner. In elements using this attribute definition the eId attribute is required whenever the Akoma Ntoso naming Convention is used. The wId is used to mark the identifier that the structure used to have in the original version, and is only needed when a renumbering occurred. -->
+<!ENTITY ## idreq        "eId   #noWhiteSpace;           #IMPLIED
+                             wId   #noWhiteSpace;           #IMPLIED 
+                             GUID  #noWhiteSpace;           #IMPLIED">
+<!--- These attributes identify the element in an absolute manner. In elements using this attribute definition the eId attribute is optional. The wId is used to mark the identifier that the structure used to have in the original version, and is only needed when a renumbering occurred. -->
+<!ENTITY ## idopt        "eId   #noWhiteSpace;           #IMPLIED
+                             wId   #noWhiteSpace;           #IMPLIED 
+                             GUID  #noWhiteSpace;           #IMPLIED">
+
+<!--- This attribute creates a connection between the element and an element of the Akoma Ntoso ontology to which it refers. In elements using this attribute definition the refersTo attribute is required -->
+<!ENTITY ## refersreq    "refersTo           (#referenceRef;+)         #REQUIRED" >
+<!--- This attribute creates a connection between the element and an element of the Akoma Ntoso ontology to which it refers. In elements using this attribute definition the refersTo attribute is optional -->
+<!ENTITY ## refers       "refersTo           (#referenceRef;+)         #IMPLIED" >
+<!--- These attribute specify the human language in which the content of the element is expressed as well as the rules for whitespace management in the element. Values for xml:lang are taken from the RFC 4646. Both xml:lang and xml:space are reserved attributes of the XML language, and cannot be used for any other purpose than these ones.  -->
+<!ENTITY ## xmllang   "
+                   xml:lang           #language;         #IMPLIED
+                   xml:space          (default|preserve) #IMPLIED
+                   xml:id             #ID                #IMPLIED
+                   " >
+
+<!--- This is the list of the core attributes that all elements in the content part of the document must have. In elements using this attribute definition the refersTo attribute is optional but the eId attribute is required -->
+<!ENTITY ## corereq      "##core; ##HTMLattrs; ##enactment; ##idreq; ##refers; ##xmllang; ##alt;" >
+<!--- This is the list of the core attributes that all elements in the content part of the document must have. In elements using this attribute definition both the refersTo attribute and the eId attribute are required -->
+<!ENTITY ## corereqreq   "##core; ##HTMLattrs; ##enactment; ##idreq; ##refersreq; ##xmllang; ##alt;" >
+<!--- This is the list of the core attributes that all elements in the content part of the document must have. In elements using this attribute definition both the refersTo attribute and the eId attribute are optional -->
+<!ENTITY ## coreopt      "##core; ##HTMLattrs; ##enactment; ##idopt; ##refers; ##xmllang; ##alt;" >
+
+<!-- =====================================================================
+
+        Simple types (data values)
+
+     ===================================================================== -->
+<!--- These values are those of ids such as eId, wId and GUID as a collection of any printable character except whitespaces.  -->
+<!ENTITY # noWhiteSpace     "#STRING/[^\s]+/" >
+<!--- These values are references to existing eIds only, i.e., given an existing eId of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # eIdRef           "#ANYURI" >
+<!--- These values are references to existing wIds only, i.e., given an existing wId of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # wIdRef           "#ANYURI" >
+<!--- These values are references to existing roles (i.e., TLCRole) only, i.e., given an existing eId of a role of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # roleRef          "#ANYURI" >
+<!--- These values are references to existing agents (i.e., TLCPerson or TLCOrganization) only, i.e., given an existing eId of an agent of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # agentRef         "#ANYURI" >
+<!--- These values are references to existing concepts (i.e., TLCConcept) only, i.e., given an existing eId of a concept of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # conceptRef       "#ANYURI" >
+<!--- These values are references to existing References elements only, i.e., given an existing eId of an element of the References section of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # referenceRef     "#ANYURI" >
+<!--- These values are references to existing votes (i.e., quorum or count) only, i.e., given an existing eId of a vote element of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # voteRef          "#ANYURI" >
+<!--- These values are references to existing event references (i.e., eventRef) only, i.e., given an existing eId of an eventRef of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # eventRefRef      "#ANYURI" >
+<!--- These values are references to existing temporal groups only, i.e., given an existing eId of a temporal group of the form XYZ, the value is necessarily #XYZ -->
+<!ENTITY # temporalGroupRef        "#ANYURI" >
+<!--- These values are references of a manifestation-Level document only -->
+<!ENTITY # manifestationURI "#ANYURI" >
+
+<!--- This type specifies the human language in which the document the element refers to is expressed. Values are taken from the RFC 4646.  -->
+<!ENTITY # language         "#STRING" >
+<!--- This is the list of allowed values for the contains attribute   -->
+<!ENTITY # versionType      "#STRING(originalVersion|singleVersion|multipleVersions)" >
+<!--- This is the list of allowed values for the placement attribute of notes  -->
+<!ENTITY # placementType    "#STRING(side|left|right|bottom|inline)" >
+
+<!--- This is the list of allowed values for the status attribute. This is the list of possible reasons for a dscrepancy between the manifestation as it should be (e.g., a faithful representation of the content of an expression), and the manifestation as it actually is. Values should be interpreted as follows: 
+- removed: the content of the element is present in the markup (manifestation) but is not present in the real content of the document (expression level) because it has been definitely removed (either ex tunc, as in annullments, or ex nunc, as in abrogations). 
+- temporarily removed: the content of the element is present in the markup (manifestation) but is not present in the real content of the document (expression level) because it has been temporarily removed (e.g., for a temporary suspension or limitation of efficacy). 
+- translated: the content of the element is present in the markup (manifestation) in a different form than in the real content of the document (expression level) because it has been translated into a different language (e.g., to match the rest of the document or because of other editorial decisions). 
+- editorial: the content of the element is present in the markup (manifestation) but is not present in the real content of the document (expression level) because it has been inserted as an editorial process when creating the XML markup.
+- edited: the content of the element is different in the markup (manifestation) than in the real content of the document (expression level) because it has been amended (e.g., to remove scurrilous or offensive remarks). 
+- verbatim: the content of the element is present in the markup (manifestation) is EXACTLY as it was in the real content of the document (expression level) because usual silent fixes and edits were NOT performed (e.g. to punctuation, grammatical errors or other usually non-debatable problems). 
+- incomplete: the content of the element or the value of a required attribute is NOT present in the markup (manifestation), although it should, because the missing data is not known at the moment, but in the future it might become known. This is especially appropriate for documents in drafting phase (e.g., the publication date of the act while drafting the bill)
+- unknown: the content of the element or the value of a required attribute is NOT present in the markup (manifestation), although it should, because the author of the manifestation does not know it.
+- undefined: the content of the element or the value of a required attribute is NOT present in the markup (manifestation), because the information is not defined in the original document, or it doesn't exist in some legal tradition (e.g. an anonymous speech cannot specify the attribute by, or some publications do not record the numbering of the items, etc.)
+- ignored: the content of the element or the value of a required attribute is NOT present in the markup (manifestation) because the information exists but the author of the manifestation is not interested in reporting it (e.g., omitted parts of the document due to editorial reasons, etc.) -->
+<!ENTITY # statusType     "#STRING(removed | temporarilyRemoved | translated | editorial | edited | verbatim | incomplete | unknown | undefined | ignored)">
+
+
+<!--- This is the list of possible positions of the text being analyzed by the element in the analysis section -->
+<!ENTITY # posType  "#STRING(start|before|inside|after|end|unspecified)">
+
+	
+<!-- =====================================================================
+
+        Complex types (markup structures)
+
+     ===================================================================== -->
+
+<!--- The complex type basehierarchy is not used by any element, but is derived by other types to contain the basic structure of hierarchical elements   -->
+<!ENTITY @ basehierarchy     "(num? | heading? | subheading?)*" >
+
+<!--- The complex type hierarchy is used by most or all the hierarchical elements of act-like documents. -->
+<!ENTITY @ hierarchy         "@basehierarchy;, ((intro?, (componentRef |  @@hierElements; | crossHeading)*, wrapUp?) | content)"            "##corereq;">
+
+<!--- The complex type althierarchy is used by most or all the hierarchical elements of documents that are not act-like. -->
+<!ENTITY @ althierarchy      "@basehierarchy;, (@@containerElements;  | componentRef |  @@ANcontainers; | @@blockElements;)*" "##corereq;">
+<!--- the complex type blocksreq defines the content model and attributes shared by all containers. Here the eId attribute is required -->
+<!ENTITY @ blocksreq         "(@@blockElements;)*" "##corereq;">
+<!--- the complex type blocksopt defines the content model and attributes shared by all containers. Here the eId attribute is optional -->
+<!ENTITY @ blocksopt         "(@@blockElements;)*" "##coreopt;">
+<!--- the complex type inline defines the content model and attributes shared by all blocks and inlines. Here the eId attribute is optional -->
+<!ENTITY @ inline            "(#PCDATA | @@inlineCM;)*" "##coreopt;">
+<!--- the complex type inlinereq defines the content model and attributes shared by all blocks and inlines. Here the eId attribute is required -->
+<!ENTITY @ inlinereq         "(#PCDATA | @@inlineCM;)*" "##corereq;">
+<!--- the complex type inlinereq defines the content model and attributes shared by all blocks and inlines. Here the eId attribute is required and also the refersTo is required -->
+<!ENTITY @ inlinereqreq      "(#PCDATA | @@inlineCM;)*" "##corereqreq;">
+
+<!--- the complex type markerreq defines the content model and attributes shared by all marker elements. Here the eId attribute is required -->
+<!ENTITY @ markerreq         "" "##corereq;">
+<!--- the complex type markeropt defines the content model and attributes shared by all marker elements. Here the eId attribute is optional -->
+<!ENTITY @ markeropt         "" "##coreopt;">
+<!--- the complex type metareq defines the content model and attributes shared by all metadata elements. Here the eId attribute is required -->
+<!ENTITY @ metareq           "" "##core; ##idreq;">
+<!--- the complex type metaopt defines the content model and attributes shared by all metadata elements. Here the eId attribute is optional -->
+<!ENTITY @ metaopt           "" "##core; ##idopt;">
+
+<!--- the complex type maincontent is used by container elements that can contain basically any other Akoma Ntoso structure -->
+<!ENTITY @ maincontent       "(componentRef |  @@hierElements; | @@blockElements; | @@containerElements; )+" "##coreopt;" >
+
+	
+<!--- the complex type speechType defines the content model and attributes shared by all speech elements. Here the eId attribute is optional -->
+<!ENTITY @ speechType        "@basehierarchy;, (from?, (@@blockElements;)+)" "##coreopt; ##speechAtts;" >
+
+
+<!--- The complex type itemType is similar to a hierarchical element, but is isolated and does not belong to a full hierarchy. -->
+<!ENTITY @ itemType          "@basehierarchy;, (@@blockElements;)+"             "##corereq;">
+<!--- the complex type referenceType defines the empty content model and the list of attributes for metadata elements in the references section -->
+<!ENTITY @ referenceType     ""                            "##core; ##idreq; ##link; ##show;" >
+<!--- the complex type srcType defines the empty content model and the list of attributes for manifestation-level references to external resources -->
+<!ENTITY @ srcType     ""                            "##core; ##idopt; ##src; ##show;" >
+<!--- the complex type linkType defines the empty content model and the list of attributes for Work- or Expression-level references to external resources -->
+<!ENTITY @ linkType     ""                            "##core; ##idreq; ##link; ##show;" >
+<!--- the complex type anyOtherType defines an open content model for elements that may use elements from other namespaces. -->
+<!ENTITY @ anyOtherType      "ANY{##other}"                "##core; ##idopt; ##linkopt;" >                 
+
+<!--- the complex type docContainerType defines a shared content model for elements that contain whole documents, namely attachment, collectionItem, component. -->
+<!ENTITY @ docContainerType      "@basehierarchy;, (@@documentType; | interstitial | toc | documentRef)"                "##corereq;" > 
+
+
+<!-- =====================================================================
+
+        Root element
+        Comment: One generic root element contains all document elements
+        Pattern: Universal Root 
+        Reference: http://www.xmlpatterns.com/UniversalRootMain.shtml
+
+     ===================================================================== -->
+
+<!--- the type documentType lists all the document types that are managed by Akoma Ntoso -->
+	<!ENTITY @@ documentType      "(	
+						
+							
+								amendmentList | 
+								officialGazette | 							
+								documentCollection |
+							 
+						
+						
+							act | 
+							bill | 							
+						
+						
+							debateReport | 
+							debate | 														
+						 
+						statement |
+						amendment |
+						judgment |
+						portion | doc)">
+
+  
+
+<!-- =====================================================================
+
+        Document elements
+        Comment: All document elements share just two content models
+        Pattern: Consistent Element Set
+        Reference: http://www.xmlpatterns.com/ConsistentElementSetMain.shtml
+
+     ===================================================================== -->
+
+<!--- the complex type akomaNtosoType is the type for the root element in Akoma Ntoso. -->
+<!ENTITY @ akomaNtosoType    '((@@documentType;) , components?)' >
+<!--- the element akomaNtoso is the root element of all document types in Akoma Ntoso. It follows the pattern Universal Root (http://www.xmlpatterns.com/UniversalRootMain.shtml) -->
+<!ROOT     akomaNtoso        @akomaNtosoType; >
+
+	
+<!--- the type openStructure specifies the overall content model of all the document types that do not have a specific and peculiar structure -->
+<!ENTITY @ openStructure     "(meta, 
+                                 coverPage?,
+                                 preface?,
+                                 preamble?, 
+                                 mainBody, 
+                                 conclusions?, 
+                                 attachments?
+                                 , components?)" 
+                                 "##name; ##contains;">
+
+<!--- Element doc is used for describing the structure and content of any other document that is not included in the list of document explicitly managed by Akoma Ntoso -->
+<!ELEMENT doc           @openStructure; >
+<!ATTLIST doc           xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+<!--- the element mainBody is the container of the main part of all other document types -->
+<!ELEMENT mainBody     @maincontent; >
+
+
+<!--- Element statement is used for describing the structure and content of an official document of a body that may or may not be normative in structure (e.g., statements, resolutions, etc.). -->
+<!ELEMENT statement  @openStructure; >
+<!ATTLIST statement  xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+
+
+	
+<!--- The element components is a container of all components referred to in the main part of the document -->
+<!ELEMENT components (component)+ >
+<!ATTLIST components ##idreq; >
+
+<!--- The element component is a container of a subdocument specified in a composite document -->
+<!ELEMENT component @docContainerType; >
+	
+	
+<!--- the type collectionStructure specifies the overall content model of the document types that are collections of other documents -->
+<!ENTITY @ collectionStructure "(meta, 
+                                   coverPage?,
+                                   preface?,
+                                   preamble?, 
+                                   collectionBody, 
+                                   conclusions?, 
+                                   attachments?
+                                   , components?)" 
+                                 "##name; ##contains;">
+
+
+<!--- Element amendmentList is used for describing the structure and content of a collection of amendments -->
+<!ELEMENT amendmentList           @collectionStructure; >
+<!ATTLIST amendmentList           xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+
+
+<!--- Element officialGazette is used for describing the structure and content of an issue of an official gazette -->
+<!ELEMENT officialGazette           @collectionStructure; >
+<!ATTLIST officialGazette           xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+
+<!--- Element documentCollection is used for describing the structure and content of a collection of other documents chosen and combined for any reason whatsoever -->
+<!ELEMENT documentCollection           @collectionStructure; >
+<!ATTLIST documentCollection           xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+<!--- the type collectionBodyType specifies a content model of a container of a list of other documents (e.g, acts, bills, amendments, etc.) possibly  interspersed with interstitial elements with content that does not form an individual document -->
+<!ENTITY @ collectionBodyType  "(component+)" "##coreopt;">
+<!--- the element collectionBody is the container of a list of other documents (e.g, acts, bills, amendments, etc.) possibly  interspersed with interstitial elements with content that does not form an individual document -->
+<!ELEMENT collectionBody       @collectionBodyType; >
+
+	
+
+
+
+		
+<!--- the type portionStructure specifies the overall content model of the document type that is a portion of another document -->
+<!ENTITY @ portionStructure   "(meta, portionBody)"  "##portionAtt;">
+
+<!--- Element portion is used for describing the structure and content of an independent portion of a document -->
+<!ELEMENT portion           @portionStructure; >
+<!ATTLIST portion           xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+<!--- the type portionBodyType specifies a content model of a container of a portion of another document -->
+<!ENTITY @ portionBodyType  "(@@containerElements; | @@hierElements;  | @@ANcontainers; | recitals | recital | citations | citation | longTitle | formula | coverPage | preface | preamble )" "##coreopt;" >
+<!--- the element portionBody is the container of a portion of another document -->
+<!ELEMENT portionBody       @portionBodyType; >
+
+
+
+<!--- the type hierarchicalStructure specifies the overall content model of the document types that are hierarchical in nature, especially acts and bills -->
+<!ENTITY @ hierarchicalStructure "(meta, 
+                                     coverPage?,
+                                     preface?,
+                                     preamble?, 
+                                     body, 
+                                     conclusions?, 
+                                     attachments?
+                                     , components?)" 
+                                   "##name; ##contains;">
+
+<!--- Element act is used for describing the structure and content of an act -->
+<!ELEMENT act           @hierarchicalStructure; >
+<!ATTLIST act					 xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+
+<!--- Element bill is used for describing the structure and content of a bill -->
+<!ELEMENT bill          @hierarchicalStructure; >
+<!ATTLIST bill					 xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+	
+	
+<!--- the type bodyType specifies a content model of the main hierarchy of a hierarchical document (e.g, an act or a bill) -->
+<!ENTITY @ bodyType  "(componentRef |  @@hierElements;)+" "##coreopt;" >	
+<!--- the element body is the container of the main hierarchy of a hierarchical document (e.g, an act or a bill) -->
+<!ELEMENT body            @bodyType; >
+
+
+
+<!--- the type debateStructure specifies the overall content model of the document types that describe debates -->
+<!ENTITY @ debateStructure     "(meta, 
+                                   coverPage?,
+                                   preface?,
+                                   debateBody, 
+                                   conclusions?, 
+                                   attachments?
+                                   , components?)" 
+                                 "##name; ##contains;">
+
+
+<!--- Element debateReport is used for describing the structure and content of a report -->
+<!ELEMENT debateReport        @openStructure; >
+<!ATTLIST debateReport        xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+
+<!--- Element debate is used for describing the structure and content of a debate record -->
+<!ELEMENT debate  @debateStructure; >
+<!ATTLIST debate  xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+
+<!--- the type debateBodyType specifies a content model of the main hierarchy of a debate -->
+<!ENTITY @ debateBodyType  "(@@speechSection;)+" "##coreopt;" >	
+<!--- the element debateBody is the container of the main hierarchy of a debate -->
+<!ELEMENT debateBody        @debateBodyType;   >
+
+
+
+<!--- the type judgmentStructure specifies the overall content model of the document types that describe judgments -->
+<!ENTITY @ judgmentStructure  "(meta, 
+                                   coverPage?,
+                                   header,
+                                   judgmentBody, 
+                                   conclusions?, 
+                                   attachments?
+                                   , components?)" 
+                                 "##name; ##contains;">
+
+<!--- Element judgment is used for describing the structure and content of a judgment -->
+<!ELEMENT judgment     @judgmentStructure; >
+<!ATTLIST judgment     xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+<!--- the type judgmentBodyType specifies a content model of the main hierarchy of a judgment document -->
+<!ENTITY @ judgmentBodyType  "(@@judgmentBlock;)+" "##coreopt;" >	
+<!--- the element judgmentBody is the container of the main hierarchy of a judgment document -->
+<!ELEMENT judgmentBody   @judgmentBodyType; >
+
+	
+
+<!--- the type amendmentStructure specifies the overall content model of the document types that describe amendments -->
+<!ENTITY @ amendmentStructure  "(meta, 
+                                   coverPage?,
+                                   preface?,
+                                   amendmentBody, 
+                                   conclusions?, 
+                                   attachments?
+                                   , components?)" 
+                                 "##name; ##contains;">
+
+<!--- Element amendment is used for describing the structure and content of an amendment -->
+<!ELEMENT amendment     @amendmentStructure; >
+<!ATTLIST amendment     xxxUnicityConstraintDirtyTrick        #STRING      #IMPLIED>
+
+<!--- the type amendmentBodyType specifies a content model of the main hierarchy of a amendment document -->
+<!ENTITY @ amendmentBodyType  "(@@amendmentBlock;)+" "##coreopt;" >	
+<!--- the element amendmentBody is the container of the main hierarchy of a amendment document -->
+<!ELEMENT amendmentBody   @amendmentBodyType; >
+
+	
+	
+	
+<!ENTITY @ recitalHierarchy         "@basehierarchy;, (intro?, (componentRef |  recital)+, wrapUp?)"            "##corereq;">
+
+<!--- the element recitals is the section of the preamble that contains recitals -->
+<!ELEMENT recitals    @recitalHierarchy; >
+<!--- the element recital is the individual element of the preface that is called recital -->
+<!ELEMENT recital    @itemType; >
+
+<!ENTITY @ citationHierarchy         "@basehierarchy;, (intro?, (componentRef |  citation)+, wrapUp?)"            "##corereq;">
+
+<!--- the element citations is the section of the preamble that contains citations -->
+<!ELEMENT citations    @citationHierarchy; >
+
+<!--- the element citation is the individual element of the preface that is called citation -->
+<!ELEMENT citation    @itemType; >
+<!--- the element longTitle is the section of the preface or coverPage that is called long title -->
+<!ELEMENT longTitle    @blocksreq; >
+<!--- the element formula is a section of the preface or preamble that contains a formulaic expression that is systematically or frequently present in a preface or a preamble and has e precise legal meaning (e.g. an enacting formula). Use the refersTo attribute for the specification of the actual type of formula. -->
+<!ELEMENT formula    @blocksreq; >
+<!ATTLIST formula    ##name; >
+
+
+
+
+		
+<!--- the complex type basicopt defines the content model and attributes used by basic containers such as coverPage and conclusions. Here the eId attribute is optional -->
+<!ENTITY @ basicopt         "(@@blockElements; | @@basicContainers; )+" "##coreopt;">
+<!--- the element coverPage is used as a container of the text that acts as a cover page -->
+<!ELEMENT coverPage    @basicopt; >
+<!--- the complex type preambleopt defines the content model and attributes used by preambles. Here the eId attribute is optional -->
+<!ENTITY @ preambleopt         "(@@blockElements; | @@preambleContainers; )+" "##coreopt;">
+<!--- the element preamble is used as a container of the text that opens the main body of the document as a preamble -->
+<!ELEMENT preamble    @preambleopt; >
+<!--- the complex type prefaceopt defines the content model and attributes used by preface. Here the eId attribute is optional -->
+<!ENTITY @ prefaceopt         "(@@blockElements; | @@prefaceContainers; )+" "##coreopt;">
+<!--- the element preface is used as a container of all prefacing material (e.g. headers, formulas, etc.) -->
+<!ELEMENT preface     @prefaceopt; >
+<!--- the element conclusion is used as a container of all concluding material (e.g. dates, signatures, formulas, etc.) -->
+<!ELEMENT conclusions @basicopt; >
+<!--- the element header is used as a container of all prefacing material of judgments (e.g. headers, formulas, etc.) -->
+<!ELEMENT header      @blocksopt; >
+<!--- the element attachments is used as a container of individual attachment elements -->
+<!ELEMENT attachments (attachment)+ >
+<!--- the element attachment is used as a container of individual attachment elements -->
+<!ELEMENT attachment @docContainerType; >
+<!--- the element interstitial is used as a container of text elements and blocks that are placed for any reason between individual documents in a collection of documents -->
+<!ELEMENT interstitial  @blocksreq; >
+
+<!--- the element componentRef is a reference to a separate manifestation-level resource that holds the content of the component of the document not physically placed at the position specified. Actual resources can either be external (e.g. in the package or even in a different position) or internal (within the components element) -->
+<!ELEMENT componentRef  @srcType; >
+<!--- the element documentRef is a reference to a separate work- or expression-level resource that should be placed in this position. Actual resources are external (e.g. in the package or even in a different position) and are (an expression or any expression of) a separate Work. -->
+<!ELEMENT documentRef  @linkType; >
+
+
+
+<!-- =====================================================================
+
+        Elements for hierarchical documents
+
+===================================================================== -->
+	
+<!--- this element is a hierarchical container called "clause" either explicitly or due to the local tradition -->
+<!ELEMENT clause        @hierarchy; >
+<!--- this element is a hierarchical container called "section" either explicitly or due to the local tradition -->
+<!ELEMENT section       @hierarchy; >        
+<!--- this element is a hierarchical container called "part" either explicitly or due to the local tradition -->
+<!ELEMENT part          @hierarchy; >
+<!--- this element is a hierarchical container called "paragraph" either explicitly or due to the local tradition -->
+<!ELEMENT paragraph     @hierarchy; >
+<!--- this element is a hierarchical container called "chapter" either explicitly or due to the local tradition -->
+<!ELEMENT chapter       @hierarchy; >
+<!--- this element is a hierarchical container called "title" either explicitly or due to the local tradition -->
+<!ELEMENT title         @hierarchy; >
+
+<!--- this element is a hierarchical container called "book" either explicitly or due to the local tradition -->
+<!ELEMENT book          @hierarchy; >
+<!--- this element is a hierarchical container called "tome" either explicitly or due to the local tradition -->
+<!ELEMENT tome          @hierarchy; >
+<!--- this element is a hierarchical container called "article" either explicitly or due to the local tradition -->
+<!ELEMENT article       @hierarchy; >
+<!--- this element is a hierarchical container called "division" either explicitly or due to the local tradition -->
+<!ELEMENT division      @hierarchy; >
+<!--- this element is a hierarchical container called "list" either explicitly or due to the local tradition -->
+<!ELEMENT list          @hierarchy; >
+
+
+<!--- this element is a hierarchical container called "point" either explicitly or due to the local tradition -->
+<!ELEMENT point    @hierarchy; >
+<!--- this element is a hierarchical container called "indent" either explicitly or due to the local tradition -->
+<!ELEMENT indent    @hierarchy; >
+<!--- this element is a hierarchical container called "alinea" either explicitly or due to the local tradition -->
+<!ELEMENT alinea    @hierarchy; >
+<!--- this element is a hierarchical container called "rule" either explicitly or due to the local tradition -->
+<!ELEMENT rule      @hierarchy; >
+<!--- this element is a hierarchical container called "subrule" either explicitly or due to the local tradition -->
+<!ELEMENT subrule   @hierarchy; >
+<!--- this element is a hierarchical container called "proviso" either explicitly or due to the local tradition -->
+<!ELEMENT proviso   @hierarchy; >
+
+
+<!--- this element is a hierarchical container called "subsection" either explicitly or due to the local tradition -->
+<!ELEMENT subsection    @hierarchy; >
+<!--- this element is a hierarchical container called "subpart" either explicitly or due to the local tradition -->
+<!ELEMENT subpart       @hierarchy; >
+<!--- this element is a hierarchical container called "subparagraph" either explicitly or due to the local tradition -->
+<!ELEMENT subparagraph  @hierarchy; >
+<!--- this element is a hierarchical container called "subchapter" either explicitly or due to the local tradition -->
+<!ELEMENT subchapter    @hierarchy; >
+<!--- this element is a hierarchical container called "subtitle" either explicitly or due to the local tradition -->
+<!ELEMENT subtitle      @hierarchy; >
+<!--- this element is a hierarchical container called "subdivision" either explicitly or due to the local tradition -->
+<!ELEMENT subdivision      @hierarchy; >
+<!--- this element is a hierarchical container called "subclause" either explicitly or due to the local tradition -->
+<!ELEMENT subclause     @hierarchy; >
+<!--- this element is a hierarchical container called "sublist" either explicitly or due to the local tradition -->
+<!ELEMENT sublist       @hierarchy; >
+<!--- this element is a hierarchical container called "level" either explicitly or due to the local tradition -->
+<!ELEMENT level         @hierarchy; >
+
+
+<!--- this element is a hierarchical container called "transitional" either explicitly or due to the local tradition -->
+<!ELEMENT transitional    @hierarchy; >
+	
+<!--- the element content is the final container in a hierarchy, and is where the blocks of text of the content of the structure are finally specified  -->
+<!ELEMENT content       @blocksreq; >
+
+
+
+
+<!--- the element num is a heading element in a hierarchy that contains a number or any other ordered mechanism to identify the structure. -->
+<!ELEMENT num           @inline; >
+<!--- the element heading is a heading element in a hierarchy that contains a title or any other textual content to describe the structure. -->
+<!ELEMENT heading       @inlinereq; >
+<!--- the element subheading is a heading element in a hierarchy that contains a subtitle or any other textual content to further describe the structure. -->
+<!ELEMENT subheading    @inlinereq; >
+<!--- the element crossHeading is a heading element that is placed side by side with hierarchical containers . -->
+<!ELEMENT crossHeading    @inlinereq; >
+<!--- the element intro is a heading element in a hierarchy that contains paragraphs introducing one or more lower hierarchical elements. -->
+<!ELEMENT intro    @blocksreq; >
+<!--- the element wrapUp is a concluding element in a hierarchy that contains paragraphs wrapping up the preceding lower hierarchical elements. -->
+<!ELEMENT wrapUp    @blocksreq; >
+
+	
+
+
+<!-- =====================================================================
+
+        Elements for debates documents
+
+     ===================================================================== -->
+
+<!--- this element is a structural container for parts of a debates that contain the administration of an oath -->
+<!ELEMENT administrationOfOath  @althierarchy; >
+
+<!--- this element is a structural container for parts of a debates that contain a roll call of individuals -->
+<!ELEMENT rollCall  @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain prayers -->
+<!ELEMENT prayers  @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain oral statements by participants -->
+<!ELEMENT oralStatements  @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain written statements by participants -->
+<!ELEMENT writtenStatements  @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain written statements by participants -->
+<!ELEMENT personalStatements  @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain written statements by participants -->
+<!ELEMENT ministerialStatements  @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain resolutions -->
+<!ELEMENT resolutions  @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain resolutions -->
+<!ELEMENT nationalInterest  @althierarchy; >
+
+<!--- this element is a structural container for parts of a debates that are relevant to the declaration of votes -->
+<!ELEMENT declarationOfVote     @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain communications from the house -->
+<!ELEMENT communication         @althierarchy; >
+<!--- this element is a structural container for parts of a debates that are relevant to petitions -->
+<!ELEMENT petitions             @althierarchy; >
+<!--- this element is a structural container for parts of a debates that are relevant to the display of papers -->
+<!ELEMENT papers                @althierarchy; >
+<!--- this element is a structural container for parts of a debates that are relevant to the notices of motions -->
+<!ELEMENT noticesOfMotion       @althierarchy; >
+<!--- this element is a structural container for parts of a debates that are relevant to questions -->
+<!ELEMENT questions             @althierarchy; >
+<!--- this element is a structural container for parts of a debates that are relevant to addresses -->
+<!ELEMENT address               @althierarchy; >
+<!--- this element is a structural container for parts of a debates that are relevant to procedural motions -->
+<!ELEMENT proceduralMotions     @althierarchy; >
+<!--- this element is a structural container for parts of a debates that are relevant to points of order -->
+<!ELEMENT pointOfOrder          @althierarchy; >
+<!--- this element is a structural container for parts of a debates that contain adjournment notices -->
+<!ELEMENT adjournment  @althierarchy; >
+
+
+<!--- this element is a generic structural container for all other parts of a debates that are not explicitly supported with a named element -->
+<!ELEMENT debateSection           @althierarchy; >
+<!ATTLIST debateSection           ##name; >
+
+
+
+<!--- the element speechGroup is a container of speech elements. This element is meant to pooint out, in a complex sequence of individual speech elements, the main contributor, i.e., the individual speech who was introducedand expected and that is causing the complex sequence that follows. Attributes by, as and to are those of the main speech. -->
+<!ELEMENT speechGroup         @althierarchy; >
+<!ATTLIST speechGroup         ##speechAtts; >
+<!--- the element speech is a container of a single speech utterance in a debate. Dialogs between speakers need a speech element each -->
+<!ELEMENT speech              @speechType; >
+<!--- the element question is a container of a single official question as proposed by an MP to a person holding an official position -->
+<!ELEMENT question            @speechType; >
+<!--- the element answer is a container of a single official answer to a question -->
+<!ELEMENT answer              @speechType; >
+<!--- the element other is a container of parts of a debate that are not speeches, nor scene comments (e.g., lists of papers, etc.) -->
+<!ELEMENT other               @blocksreq; >
+<!--- the element scene is a container of descriptions of the scene elements happening in a given moment during a debate (e.g., applauses) -->
+<!ELEMENT scene               @inline; >
+<!--- the element narrative is a block element in a debate to mark description in the third person of events taking place in the meeting, e.g. "Mr X. takes the Chair" -->
+<!ELEMENT narrative               @inline; >
+<!--- the element summary is a block element in a debate to mark summaries of speeches that are individually not interesting (e.g.: "Question put and agreed to") -->
+<!ELEMENT summary               @inline; >
+<!--- the element from is a heading element in a debate that contains the name or role or a reference to the person doing the speech -->
+<!ELEMENT from          @inline; >
+
+<!--- the element vote is an inline that wraps either the name of the voter (when organized by choice) or the vote (when organized by name) in a voting report. -->
+<!ELEMENT vote               @inline; >
+<!ATTLIST vote 							##voteAtts; >
+<!--- the element outcome is an inline that wraps the outcome of a vote -->
+<!ELEMENT outcome               @inline; >
+
+
+
+
+
+<!--- this element is a structural container for the section of a judgment containing introductory material -->
+<!ELEMENT introduction        @maincontent; >
+<!--- this element is a structural container for the section of a judgment containing the background  -->
+<!ELEMENT background          @maincontent; >
+<!--- this element is a structural container for the section of a judgment containing the arguments  -->
+<!ELEMENT arguments          @maincontent; >
+<!--- this element is a structural container for the section of a judgment containing the remedies  -->
+<!ELEMENT remedies          @maincontent; >
+<!--- this element is a structural container for the section of a judgment containing the motivation  -->
+<!ELEMENT motivation          @maincontent; >
+<!--- this element is a structural container for the section of a judgment containing the decision -->
+<!ELEMENT decision            @maincontent; >
+
+
+
+<!--- the element affectedDocument is an inline element within preamble to identify the document that this amendment affects -->
+<!ELEMENT affectedDocument        @inline; >
+<!ATTLIST affectedDocument        ##link; >
+<!--- the element relatedDocument is an inline element to identify the document for which this document is a report of -->
+<!ELEMENT relatedDocument        @inline; >
+<!ATTLIST relatedDocument        ##link; >
+<!--- the element change is an inline element that identifies the changes expressed in the two columns of an amendment document -->
+<!ELEMENT change                  @inline; >
+
+<!--- this element is a structural container for the section of an amendment containing the heading -->
+<!ELEMENT amendmentHeading        @blocksopt; >
+<!--- this element is a structural container for the section of an amendment containing the actual amendment text  -->
+<!ELEMENT amendmentContent          @blocksopt; >
+<!--- this element is a structural container for the section of an amendment containing the reference  -->
+<!ELEMENT amendmentReference          @blocksopt; >
+<!--- this element is a structural container for the section of an amendment containing the justification -->
+<!ELEMENT amendmentJustification            @blocksopt; >
+
+	
+<!-- =====================================================================
+    
+    AN block elements
+    Comment: the only AN-specific block are the table of content (TOC), 
+    a structure containing toc items related to the various subparts of the 
+    main document, the list item and the titled block
+    
+    ===================================================================== -->
+
+<!--- the blockContainerType is the type of element blockContainer -->
+<!ENTITY @ blockContainerType      "@basehierarchy;, (intro?, (componentRef |  @@blockElements; | crossHeading)+, wrapUp?)"            "##corereq;" >
+<!--- the element blockContainer is used as a container of many individual block elements in a block context -->
+<!ELEMENT blockContainer           @blockContainerType; >
+
+
+<!--- the blockListType is the type of element blockList -->
+<!ENTITY  @ blockListType          "(listIntroduction?, item+, listWrapUp?)" "##corereq;" >
+<!--- the element blockList is used as in a block context as a container of many individual item elements to be treated as in a list -->
+<!ELEMENT blockList                @blockListType; >
+<!--- The element item is a container belonging to a blockList -->
+<!ELEMENT item                @itemType; >
+<!--- the element listIntroduction is an optional element of blockList before any item of the list itself.  -->
+<!ELEMENT listIntroduction   @inline; >
+<!--- the element listWrapUp is an optional element of blockList after all items of the list itself.  -->
+<!ELEMENT listWrapUp @inline; >
+
+
+<!--- The element tblock (titled block) is used to specify a container for blocks introduced by heading elements, similarly to a hierarchical structure -->
+<!ELEMENT tblock              @itemType; >
+
+
+	
+<!--- the element toc (Table of Content) is used as a container of many individual toc items -->
+<!ELEMENT toc       (tocItem)+ >
+<!ATTLIST toc       ##corereq; >
+
+<!--- the element tocItem is a component of the table of content and contains header information about sections or parts of the rest of the document -->
+<!ELEMENT tocItem   @inline; >
+<!ATTLIST tocItem   ##link; ##level; >
+
+	
+   
+   
+<!-- =====================================================================
+
+        AN inline elements
+        Comment: AN-specific inline elements are connected to the 
+        identification of elements that are corresponding to an inline 
+        legal structure, regardless of their position in the document.
+
+     ===================================================================== -->
+
+<!--- the element docType is an inline element within preface to identify the string used by the document for its own type -->
+<!ELEMENT docType      @inline; >
+<!--- the element docTitle is an inline element within preface to identify the string used by the document for its own title -->
+<!ELEMENT docTitle     @inline; >
+<!--- the element docNumber is an inline element within preface to identify the string used by the document for its own number -->
+<!ELEMENT docNumber    @inline; >
+<!--- the element docProponent is an inline element within preface to identify the string used by the document for its proponent -->
+<!ELEMENT docProponent @inline; >
+<!ATTLIST docProponent ##role; >
+
+<!--- the element docDate is an inline element within preface to identify the string used by the document for its own date(s). Documents with multiple dates may use multiple docDate elements. -->
+<!ELEMENT docDate      @inline; >
+<!ATTLIST docDate      ##date; >
+
+<!--- the element legislature is an inline element within preface to identify the string used by the document for the legislature relative to the document. Use #refersTo to a TLCEvent to refer to the event of the specific legislature. -->
+<!ELEMENT legislature      @inline; >
+<!ATTLIST legislature      ##optvalue; >
+<!--- the element session is an inline element within preface to identify the string used by the document for the session of the legislature relative to the document. Use #refersTo to a TLCEvent to refer to the event of the specific session. -->
+<!ELEMENT session      @inline; >
+<!ATTLIST session   ##optvalue; >
+<!--- the element shortTitle is an inline element within preface to identify the string used by the document for the short title of the document. -->
+<!ELEMENT shortTitle      @inline; >
+
+
+<!--- the element docAuthority is an inline element within preface to identify the string used by the document detailing the Auhtority to which the document was submitted -->
+<!ELEMENT docAuthority   @inline; >
+<!--- the element docPurpose is an inline element within preface to identify the string used by the document detailing its own purpose -->
+<!ELEMENT docPurpose   @inline; >
+<!--- the element docCommittee is an inline element within preface to identify the string used by the document detailing the committee within which the document originated -->
+<!ELEMENT docCommittee   @inline; >
+<!ATTLIST docCommittee   ##optvalue; >
+
+<!--- the element docIntroducer is an inline element within preface to identify the string used by the document detailing the individual introducing of the document -->
+<!ELEMENT docIntroducer   @inline; >
+<!--- the element docStage is an inline element within preface to identify the string used by the document detailing the stage in which the document sits -->
+<!ELEMENT docStage   @inline; >
+<!--- the element docStatus is an inline element within preface to identify the string used by the document detailing the status of the document -->
+<!ELEMENT docStatus   @inline; >
+<!--- the element docJurisdiction is an inline element within preface to identify the string used by the document detailing the jurisdiction of the document -->
+<!ELEMENT docJurisdiction   @inline; >
+<!--- the element docketNumber is an inline element within preface to identify the string used by the document for the number of the docket, case, file, etc which the document belongs to -->
+<!ELEMENT docketNumber    @inline; >
+
+	
+
+<!--- the element courtType is an inline element within judgments to identify the string used by the document for the type of the court doing the judgment -->
+<!ELEMENT courtType          @inline; >
+<!--- the element neutralCitation is an inline element within judgments to identify the string declared by the document as being the neutral citation for the judgment -->
+<!ELEMENT neutralCitation    @inline; >
+<!--- the element party is an inline element within judgments to identify where the document defines one of the parties -->
+<!ELEMENT party              @inlinereqreq; >
+<!ATTLIST party              ##role; >
+<!--- the element judge is an inline element within judgments to identify where the document defines one of the judges, and his/her role -->
+<!ELEMENT judge              @inlinereqreq; >
+<!ATTLIST judge              ##role; >
+<!--- the element lawyer is an inline element within judgments to identify where the document defines one of the lawyers, his/her role, which party it represents, and the other lawyer, if any, this lawyer received the power delegation of power in some role -->
+<!ELEMENT lawyer             @inlinereqreq; >
+<!ATTLIST lawyer             ##lawyerAtts; >
+<!--- the element opinion is an inline element to identify where the document defines the opinion of an actor  -->
+<!ELEMENT opinion            @inline; >
+<!ATTLIST opinion            ##opinionType; >
+
+<!--- the element argument is an inline element within judgments for classifying the arguments in the motivation part of the judgment -->
+<!ELEMENT argument            @inline; >
+
+
+
+
+<!--- the element signature is an inline element within conclusions to identify where the document defines one of the signatures -->
+<!ELEMENT signature          @inline; >
+
+
+<!--- the element date is an inline element to identify a date expressed in the text and to propose a normalized representation in the date attribute. -->
+<!ELEMENT date               @inline; >
+<!ATTLIST date               ##date; >
+<!--- the element time is an inline element to identify a time expressed in the text and to propose a normalized representation in the time attribute. -->
+<!ELEMENT time               @inline; >
+<!ATTLIST time               ##time; >
+<!--- the element entity is a generic inline element to identify a text fragment introducing or referring to a concept in the ontology -->
+<!ELEMENT entity             @inlinereqreq; >
+<!ATTLIST entity             ##name; >
+<!--- the element person is an inline element to identify a text fragment introducing or referring to a person in the ontology. Attribute as allows to specify a TLCrole the person is holding in the context of the document's mention -->
+<!ELEMENT person             @inlinereqreq; >
+<!ATTLIST person					    ##role; >
+<!--- The element organization is an inline element to identify a text fragment introducing or referring to an organization in the ontology -->
+<!ELEMENT organization  @inlinereqreq; >
+<!--- The element concept is is an inline element to identify a text fragment introducing or referring to a concept in the ontology -->
+<!ELEMENT concept       @inlinereqreq; >
+<!--- The element object is is an inline element to identify a text fragment introducing or referring to an object in the ontology -->
+<!ELEMENT object        @inlinereqreq; >
+<!--- The element event is an inline element to identify a text fragment introducing or referring to an event in the ontology -->
+<!ELEMENT event         @inlinereqreq; >
+<!--- The element location is an inline element to identify a text fragment introducing or referring to a location in the ontology -->
+<!ELEMENT location         @inlinereqreq; >
+<!--- The element process is an inline element to identify a text fragment introducing or referring to a process in the ontology -->
+<!ELEMENT process       @inlinereqreq; >
+<!--- The element role is an inline element to identify a text fragment introducing or referring to a role in the ontology -->
+<!ELEMENT role          @inlinereqreq; >
+<!--- The element term is an inline element to identify a text fragment introducing or referring to a term in the ontology -->
+<!ELEMENT term          @inlinereqreq; >
+<!--- The element quantity is an inline element to identify a text fragment introducing or referring to a quantity. This could be a dimensionless number, or a number referring to a length, weight, duration, etc. or even a sum of money. The attribute normalized contains the value normalized in a number, if appropriate. -->
+<!ELEMENT quantity          @inlinereqreq; >
+<!ATTLIST quantity					##normalizedAtt; >
+
+<!--- the element def is an inline element used for the definition of a term used in the rest of the document-->
+<!ELEMENT def          @inline; >
+
+
+
+<!--- the element ref is an inline element containing a legal reference  -->
+<!ELEMENT ref          @inlinereq; >
+<!ATTLIST ref          ##link; >
+
+
+<!--- the element mref is an inline element containing multiple references (each in turn represented by a ref element) -->
+<!ELEMENT mref         @inline; >
+<!--- the element rref is an inline element containing a range of references between the IRI specified in the from attribute and the one specified in the upTo attribute. -->
+<!ELEMENT rref         @inlinereq; >
+<!ATTLIST rref         ##range; >
+
+	
+                       
+<!--- the complex type modType specifies the content that is allowed within mod, mmod and rmod elements, i.e. it adds quotedText and quotedStructure to the normal list of inline elements. Attribute for is used to point to the eId of the corresponding ref element. -->
+<!ENTITY @ modType  "(#PCDATA | @@inlineCM; | quotedText | quotedStructure)*" "##corereq; ##for;" >
+<!--- the element mod is an inline element containing the specification of a modification on another document -->
+<!ELEMENT mod   @modType;>
+<!--- the element mmod is an inline element containing multiple specifications of modifications on another document -->
+<!ELEMENT mmod  @modType;>
+<!--- the element rmod is an inline element containing the specification of a range of modifications on another document -->
+<!ELEMENT rmod  @modType;>
+<!ATTLIST rmod  ##range; >
+
+<!--- the element quotedText is an inline element containing a small string that is used either as the text being replaced, or the replacement, or the positioning at which some modification should take place. Attribute quote is used to specify the quote character used in the original; no quote attribute implies that the quote is left in the text; quote="" implies that there is no quote character. Attribute for is used to point to the eId of the corresponding ref element. -->
+<!ELEMENT quotedText       @inline; >
+<!ATTLIST quotedText       ##quote;  ##for;>
+
+
+
+<!--- the element remark is an inline element for the specification of editorial remarks (e.g., applauses, laughters, etc.) especially within debate records -->
+<!ELEMENT remark       @inline; >
+<!ATTLIST remark       ##remarkType; >
+<!--- the element recordedTime is an inline element for the specification of an explicit mention of a time (e.g., in a debate) -->
+<!ELEMENT recordedTime   @inline; >
+<!ATTLIST recordedTime   ##recordedTimeType;  ##time; >
+
+
+
+<!--- the element ins is an inline element for the specification of editorial insertions -->
+<!ELEMENT ins          @inline; >
+<!--- the element del is an inline element for the specification of editorial deletions -->
+<!ELEMENT del          @inline; >
+<!--- the element omissis is an inline element for the specification of a text that substitutes a textual omission (e.g., dots, spaces, the word "omissis", etc.  -->
+<!ELEMENT omissis      @inline; >
+
+
+<!--- the element placeholder is an inline element containing the text of a computable expression (e.g., '30 days after the publication of this act') that can be replaced editorially with an actual value -->
+<!ELEMENT placeholder  @inline; >
+<!ATTLIST placeholder ##originalText; >
+<!--- the element fillIn is an inline element shown as a dotted line or any other typoaphical characteristics to represent a fill-in element in a printed form, that is as ane example of an actual form. It is NOT meant to be used for form elements as in HTML, i.e. as a way to collect input from the reader and deliver to some server-side process. -->
+<!ELEMENT fillIn  @inline; >
+<!ATTLIST fillIn  ##fillInWidth; >
+<!--- the element decoration is an inline element to represent a decorative aspect that is present in the orignal text and that is meant as additional information to the text (e.g., the annotation 'new' on the side of a freshly inserted structure. -->
+<!ELEMENT decoration  @inline; >
+
+	
+<!-- =====================================================================
+
+        AN marker elements
+        Comment: AN-specific marker elements are connected to the 
+        identification of locations within the legal structure, anywhere where 
+        there is text. 
+        
+     ===================================================================== -->
+
+
+<!--- the element noteRef is a reference to a editorial note placed in the notes metadata section -->
+<!ELEMENT noteRef      @markeropt; >
+<!ATTLIST noteRef      ##notes; ##link;>
+
+
+<!--- the complex type eolType is shared by eol and eop elements as being able to specify a hyphen character and a position within the next word in which the break can happen, and the number if any, associated to the page or line at issue -->
+<!ENTITY @ eolType  "@markeropt;" "##number; breakAt #INTEGER #IMPLIED breakWith #STRING #IMPLIED">
+<!--- the element eol (end of line) is a marker for where in the original text the line breaks. If the line breaks within a word, place the element BEFORE the word and place the number of characters before the break in the attribute breakAt. One can also specify, if relevant, the hyphen or other character used to signal
+the break of a word at the end of the line with the attribute breakWith. -->
+<!ELEMENT eol   @eolType; >
+<!--- the element eop (end of page) is a marker for where in the original text the page breaks. Do NOT use a eol element, too. If the page breaks within a word, place the element BEFORE the word and place the number of characters before the break in the attribute breakAt. One can also specify, if relevant, the hyphen or other character used to signal the break of a word at the end of the page with the attribute breakWith. -->
+<!ELEMENT eop   @eolType; >
+
+	
+<!-- =====================================================================
+
+        AN subFlow elements
+        Comment: AN-specific subFlow elements are connected to the 
+        identification of structural elements that contain full structures 
+        within a text content, but are not of textual nature.
+
+     ===================================================================== -->
+
+<!--- the type subFlowStructure specifies the overall content model of the elements that are subFlows -->
+<!ENTITY @ subFlowStructure "(
+              @@documentType; | (
+							@@blockElements; | 
+							@@containerElements; 
+	            | tr | th | td
+							| @@hierElements; | content
+							| @@ANcontainers; 
+							| formula | recitals | citations | longTitle | recital | citation
+							| componentRef | documentRef
+							|	intro | wrapUp | heading | subheading | num  )+)" "##corereq; ">
+
+
+<!--- the element quotedStructure is a subFlow element containing a full structure proposed as an insertion or a replacement. Attribute quote is used to specify the quote character used in the original; no quote attribute implies that the quote is left in the text; quote="" implies that there is no quote character. Attribute for is used in a mmod or rmod to point to the eId of the corresponding ref element. -->
+<!ELEMENT quotedStructure   @subFlowStructure;>
+<!ATTLIST quotedStructure  ##quote; ##for; >
+
+
+
+
+<!--- the element embeddedText is an inline element containing a string used as an extract from another document. Attribute quote is used to specify the quote character used in the original; no quote attribute implies that the quote is left in the text; quote="" implies that there is no quote character.  -->
+<!ELEMENT embeddedText        @inline; >
+<!ATTLIST embeddedText        ##quote; ##linkopt; >
+<!--- the element embeddedStructure is a subFlow element containing a full structure used as an extract from another document or position. Attribute quote is used to specify the quote character used in the original; no quote attribute implies that the quote is left in the text; quote="" implies that there is no quote character. -->
+<!ELEMENT embeddedStructure   @subFlowStructure;>
+<!ATTLIST embeddedStructure   ##quote; ##linkopt; >
+
+
+
+
+<!--- the element authorialNote is a subFlow element containing an authorial (non-editorial) note in the main flow of the text. -->
+<!ELEMENT authorialNote   @subFlowStructure;>
+<!ATTLIST authorialNote   ##notes;>
+
+<!--- the element subFlow is a generic element for a subFlow.  -->
+<!ELEMENT subFlow    @subFlowStructure;>
+<!ATTLIST subFlow    ##name; >
+
+
+
+
+<!--- the element foreign is a generic container for elements not belonging to the Akoma Ntoso namespace (e.g., mathematical formulas). It is a block element and thus can be placed in a container.  -->
+<!ELEMENT foreign    @anyOtherType; >
+
+	
+
+<!-- =====================================================================
+
+        Generic elements 
+        Comment: All elements in this schema fall under one of five
+        content models: hierarchical container, container, block, inline 
+        and mark. Besides named elements, the schema also provides for a 
+        generic element for each of them, that can be used for markup that 
+        fits the content models but can be specified by a precise name that 
+        is not used in this schema. The 'name' attribute must be used for 
+        naming the element. 
+        It is also a characteristic of this schema that all named elements 
+        are equivalent, and can be substituted to, the corresponding generic 
+        element with their name as the value of the name attribute. Thus, by 
+        definition, <p> = <block name="p">, <part> = <hcontainer name="part">, 
+        <act> = <container name="act">, etc.
+        Pattern: Generic Document + Role Attribute
+        Reference: http://www.xmlpatterns.com/GenericDocumentMain.shtml + 
+                   http://www.xmlpatterns.com/RoleAttributeMain.shtml
+
+     ===================================================================== -->
+
+
+<!--- the element hcontainer is a generic element for a hierarchical container. It can be placed in a hierarchy instead of any of the other hierarchical containers. The attribute name is required and gives a name to the element.  -->
+<!ELEMENT hcontainer @hierarchy; >
+<!ATTLIST hcontainer ##name; >
+
+<!--- the complex type containerType is the content model for the generic element for a container. It can be placed in a container instead of any of the other containers. The attribute name is required and gives a name to the element. -->
+<!ENTITY @ containerType  "(@@blockElements; | container)+" "##corereq; ##name;">
+
+<!--- the element container is a generic element for a container.  -->
+<!ELEMENT container  @containerType; >
+
+<!--- the element block is a generic element for a block. It can be placed in a container instead of any of the other blocks. The attribute name is required and gives a name to the element. -->
+<!ELEMENT block      @inline; >
+<!ATTLIST block      ##name; >
+<!--- the element inline is a generic element for an inline. It can be placed inside a block instead of any of the other inlines. The attribute name is required and gives a name to the element. -->
+<!ELEMENT inline     @inline; >
+<!ATTLIST inline     ##name; >
+<!--- the element marker is a generic element for a marker. It can be placed in a block instead of any of the other markers. The attribute name is required and gives a name to the element. -->
+<!ELEMENT marker     @markerreq; >
+<!ATTLIST marker     ##name; >
+
+
+	
+<!-- =====================================================================
+
+        HTML elements
+        Comment: Many elements are drawn directly from HTML 4.0
+        Pattern: Reuse Document Types (partial)
+        Reference: http://www.xmlpatterns.com/ReuseDocumentTypesMain.shtml
+
+     ===================================================================== -->
+
+
+<!--- The element div is an HTML element, but is NOT used in Akoma Ntoso as in HTML. Instead of being used as a generic block, Akoma Ntoso uses div as a generic container (as in common practice) -->
+<!ELEMENT div  @blocksreq; >
+<!--- The element p is an HTML element and is used in Akoma Ntoso as in HTML, for the generic paragraph of text (a block) -->
+<!ELEMENT p    @inline; >
+<!--- The element span is an HTML element and is used in Akoma Ntoso as in HTML, for the generic inline -->
+<!ELEMENT span @inline; >
+<!--- The element br is an HTML element and is used in Akoma Ntoso as in HTML, for the breaking of a line -->
+<!ELEMENT br @markeropt; >
+
+
+<!--- The element b is an HTML element and is used in Akoma Ntoso as in HTML, for the bold style (an inline) -->
+<!ELEMENT b    @inline; >
+<!--- The element i is an HTML element and is used in Akoma Ntoso as in HTML, for the italic style (an inline) -->
+<!ELEMENT i    @inline; >
+<!--- The element u is an HTML element and is used in Akoma Ntoso as in HTML, for the underline style (an inline) -->
+<!ELEMENT u    @inline; >
+<!--- The element sup is an HTML element and is used in Akoma Ntoso as in HTML, for the superscript style (an inline) -->
+<!ELEMENT sup    @inline; >
+<!--- The element sub is an HTML element and is used in Akoma Ntoso as in HTML, for the subscript style (an inline) -->
+<!ELEMENT sub    @inline; >
+<!--- The element abbr is an HTML element and is used in Akoma Ntoso as in HTML, for the specification of an abbreviation or an acronym (an inline). As in HTML, use attribute title to specify the full expansion of the abbreviation or acronym. -->
+<!ELEMENT abbr    @inline; >
+<!--- The element a is an HTML element and is used in Akoma Ntoso as in HTML, for the generic link to a web resource (NOT to an Akoma Ntoso document: use ref for that). It is an inline. -->
+<!ELEMENT a    @inline; >
+<!ATTLIST a
+    ##link;
+    ##target;
+>
+
+<!--- The element img is an HTML element and is used in Akoma Ntoso as in HTML, for including an image. It is a marker. -->
+<!ELEMENT img @markeropt;>
+<!ATTLIST img
+    ##src;
+    ##imgAtts;
+>
+
+<!--- the complex type listItems specifies the content model of elements ul and ol, and specifies just a sequence of list items (elements li). -->
+<!ENTITY @ listItems "(li+)" "##corereq;">
+<!--- The element ul is an HTML element and is used in Akoma Ntoso as in HTML, for an unordered list of list item (elements li) -->
+<!ELEMENT ul   @listItems; >
+<!--- The element ol is an HTML element and is used in Akoma Ntoso as in HTML, for an ordered list of list item (elements li) -->
+<!ELEMENT ol   @listItems; >
+<!--- The element li is an HTML element and is used in Akoma Ntoso as in HTML, for the generic list item (not a pattern) -->
+<!ELEMENT li   (#PCDATA | @@inlineCM; | ul | ol | p)* >
+<!ATTLIST li   ##optvalue;  ##coreopt;>
+
+
+
+<!--- The element table is an HTML element and is used in Akoma Ntoso as in HTML, for a table of rows and columns of data -->
+<!ELEMENT table (caption?, tr+)>
+<!ATTLIST table ##corereq; ##tableAtts; >
+
+<!--- The element caption is an HTML element and is used in Akoma Ntoso as in HTML, for the caption of a table (a block) -->
+<!ELEMENT caption    @inline; >
+
+<!--- The element tr is an HTML element and is used in Akoma Ntoso as in HTML, for a row of cells of a table -->
+<!ELEMENT tr (th | td)+>
+<!ATTLIST tr
+    ##coreopt;
+>
+<!--- The element th is an HTML element and is used in Akoma Ntoso as in HTML, for a header cell of a table -->
+<!ELEMENT th @blocksopt;>
+<!ATTLIST th  ##cellattrs; >
+
+<!--- The element td is an HTML element and is used in Akoma Ntoso as in HTML, for a data cell of a table -->
+<!ELEMENT td @blocksopt;>
+<!ATTLIST td  ##cellattrs; >
+
+
+<!-- =====================================================================
+
+        Metadata elements for all documents
+
+     ===================================================================== -->
+<!--- The element meta is the overall container of all metadata elements. It contains all specific metadata containers. -->
+<!ELEMENT meta             (identification, publication?, classification*, lifecycle*, workflow*, 
+                            analysis*,  temporalData*, references*, notes* , proprietary*, presentation*) >
+
+
+<!--- The element identification is the metadata container of identifying information of the document according to the FRBR hierarchy -->
+<!ELEMENT identification   (FRBRWork, FRBRExpression, FRBRManifestation, FRBRItem?) >
+<!ATTLIST identification   ##source; >
+
+<!--- The complexType coreProperties lists the identifying properties available at any of the FRBR hierarchy levels. -->
+<!ENTITY @ coreProperties   "(FRBRthis, FRBRuri+, FRBRalias*, FRBRdate+, FRBRauthor+ , componentInfo?, preservation?)" >
+<!--- The group workProperties lists the properties that are characteristics of the FRBR Work level. -->
+<!ENTITY @@ workProperties   "(FRBRcountry, FRBRsubtype?, FRBRnumber*, FRBRname*, FRBRprescriptive?, FRBRauthoritative?)" >
+<!--- The group exprProperties lists the properties that are characteristics of the FRBR Expression level. -->
+<!ENTITY @@ exprProperties   "(FRBRversionNumber?, FRBRauthoritative?, FRBRmasterExpression?, FRBRlanguage+, FRBRtranslation*)" >
+<!--- The group manifProperties lists the properties that are characteristics of the FRBR Manifestation level. -->
+<!ENTITY @@ manifProperties   "(FRBRportion?, FRBRformat?)" >
+
+<!--- The element FRBRWork is the metadata container of identifying properties related to the Work level according to the FRBR hierarchy -->
+<!ELEMENT FRBRWork             (@coreProperties;, (@@workProperties;)) >
+<!--- The element FRBRExpression is the metadata container of identifying properties related to the Expression level according to the FRBR hierarchy -->
+<!ELEMENT FRBRExpression       (@coreProperties;, (@@exprProperties;)) >
+<!--- The element FRBRManifestation is the metadata container of identifying properties related to the Manifestation level according to the FRBR hierarchy -->
+<!ELEMENT FRBRManifestation    (@coreProperties;, (@@manifProperties;)) >
+<!--- The element FRBRItem is the metadata container of identifying properties related to the Item level according to the FRBR hierarchy. -->
+<!ELEMENT FRBRItem             @coreProperties; >
+
+<!--- The type valueType specifies a value attribute to FRBR elements. -->
+<!ENTITY @ valueType   "@metaopt;" "##value; ##refers; ##showopt;" >
+<!--- The type booleanValueType specifies a boolean value attribute to FRBR elements. -->
+<!ENTITY @ booleanValueType   "@metaopt;" "##booleanvalue;" >
+<!--- The element FRBRthis is the metadata property containing the IRI of the specific component of the document -->
+<!ELEMENT FRBRthis             @valueType;>
+<!--- The element FRBRuri is the metadata property containing the IRI of the whole document. -->
+<!ELEMENT FRBRuri              @valueType;>
+<!--- The element FRBRalias is the metadata property containing additional well-known names of the document in the respective level of the FRBR hierarchy -->
+<!ELEMENT FRBRalias            @valueType; >
+<!ATTLIST FRBRalias            ##name; >
+
+<!--- The element FRBRdate is the metadata property containing a relevant date of the document in the respective level of the FRBR hierarchy. Attribute name specifies which actual date is contained here. -->
+<!ELEMENT FRBRdate             @metaopt;>
+<!ATTLIST FRBRdate             ##date; ##name; >
+<!--- The element FRBRauthor is the metadata property containing a relevant author of the document in the respective level of the FRBR hierarchy. Attribute as specifies the role of the author. -->
+<!ELEMENT FRBRauthor           @metaopt;>
+<!ATTLIST FRBRauthor           ##link; 
+                              ##role; >
+<!--- The element FRBRlanguage is the metadata property containing a RFC4646 (three-letter code) of the main human language used in the content of this expression -->
+<!ELEMENT FRBRlanguage            @metaopt;>
+<!ATTLIST FRBRlanguage            ##language; >
+
+<!--- The element FRBRtranslation is the metadata property specifying the source of which this expression is a translation of. -->
+<!ELEMENT FRBRtranslation      @metaopt;>
+<!ATTLIST FRBRtranslation      ##link;
+                                  ##fromLanguage;
+                                  ##authoritative;
+                                  ##pivot;
+                                  ##agent; >
+
+<!--- The element FRBRsubtype is the metadata property containing a string for the specific subtype of the document to be used in the work-level IRI of this document -->
+<!ELEMENT FRBRsubtype            @valueType;>
+<!--- The element FRBRcountry is the metadata property containing a ISO 3166-1 Alpha-2 code for the country or jurisdiction to be used in the work-level IRI of this document-->
+<!ELEMENT FRBRcountry            @valueType;>
+<!--- The element FRBRnumber is the metadata property containing a string or number for the number to be used in the work-level IRI of this document -->
+<!ELEMENT FRBRnumber             @valueType;>
+<!--- The element FRBRname is the metadata property containing a string for the title to be used in the work-level IRI of this document -->
+<!ELEMENT FRBRname               @valueType;>
+<!--- The element FRBRportion is the metadata property containing the eId of the portion contained in a manifestation-level portion. If the portion contains an interval of elements, the range attributes specifies the first and last one. -->
+<!ELEMENT FRBRportion             @metaopt;>
+<!ATTLIST FRBRportion             ##refers; ##showopt; ##rangeOpt; >
+
+<!--- The element FRBRformat is the metadata property containing the Internet Media Type specification for the data format to be used in the manifestation-level IRI of this document.  -->
+<!ELEMENT FRBRformat             @valueType;>
+<!--- The element FRBRprescriptive is the metadata property containing a boolean value to determine whether the document contains prescriptive text (i.e., text that is or might become prescriptive, such as an act or a bill) or not (such as, for instance, a non-normative resolution from an assembly. -->
+<!ELEMENT FRBRprescriptive       @booleanValueType;>
+<!--- The element FRBRversionNumber is the metadata property containing the value of the version number if appropriate to identify the specific expression here contained. It allows an arbitrary string. -->
+<!ELEMENT FRBRversionNumber      @valueType;>
+<!--- The element FRBRauthoritative is the metadata property containing a boolean value to determine whether the document contains authoritative text (i.e., content that is the official, authoritative product of an official workflow from an entity that is entrusted with generating an official, authoriative version of the document. -->
+<!ELEMENT FRBRauthoritative      @booleanValueType;>
+<!--- The element FRBRmasterExpression is the metadata property identifying the master expression, i.e., the expression whose ids are used as permanent ids in the wId attributes. An expression without the FRBRmasterExpression element is considered a master expression itself, i.e., the first version, or the most important version, of a document expressed in the only language, or in the most important language. Any other situation (subsequent versions, or language variants, or content variants) must have the FRBRmasterExpression element pointing to the URI of the master expression. If the FRBRmasterEpression is specified, but without a href pointing to the masterExpression, it is assumed that NO master expression exist in reality, but an UR-Expression exist, whose ids are used in this expression as wIds.  -->
+<!ELEMENT FRBRmasterExpression  @linkType;>
+
+
+<!--- The element components is the metadata property containing a list of component elements in the respective level of the FRBR hierarchy. -->
+<!ELEMENT componentInfo          (componentData)* >
+<!--- The element component is the metadata property specifying a component of the document in the respective level of the FRBR hierarchy. Component elements can conytain other components. -->
+<!ELEMENT componentData           (componentData)* >
+<!ATTLIST componentData           ##core; ##idreq; ##name; ##link; ##show;>  
+<!--- The element preservation is the metadata property containing an arbitrary list of elements detailing the preservation actions taken for the document is the respective level of the FRBR hierarchy.. -->
+<!ELEMENT preservation        @anyOtherType; >
+
+
+
+
+
+<!--- The element publication is the metadata container specifying an official publication event for the FRBR expression of the document. -->
+<!ELEMENT publication      @metaopt; >
+<!ATTLIST publication      ##date; ##show; ##name; ##number; ##refers; >
+
+<!--- The element classification is the metadata container of a list of keywords associated to the FRBR expression of the document. -->
+<!ELEMENT classification   (keyword+)>
+<!ATTLIST classification   ##source; >
+
+<!--- The element keyword is a metadata element specifying a keyword  associated to the FRBR expression of the document. Attribute dictionary (required) specifies the thesaurus out of which the keyword has been taken. Attribute href points to the fragment of text this keyword is associated to. Keywords without href attribute refer to the content as a whole. -->
+<!ELEMENT keyword @metaopt;>
+<!ATTLIST keyword 
+						##linkopt; 
+            ##value;
+            ##show;
+            ##refers; 
+            ##dictionary; >
+
+
+<!--- The element lifecycle is a metadata container of the events associated to the FRBR expression of the document. -->
+<!ELEMENT lifecycle (eventRef+)>
+<!ATTLIST lifecycle ##source; >
+<!--- The element eventRef is a metadata element specifying facts about an event that had an effect on the document. For each event, a date, a type and a document that generated the event must be referenced.  -->
+<!ELEMENT eventRef @anyOtherType;>
+<!ATTLIST eventRef 
+    ##date;
+    ##source;
+    ##refers;
+    ##eventType;
+    ##originating;
+>
+
+<!--- The element workflow is a metadata container of the steps associated to the workflow of the document. -->
+<!ELEMENT workflow   (step+)>
+<!ATTLIST workflow   ##source; >
+<!--- The element step is a metadata element specifying facts about a workflow step occurred to the document. For each event, a date, a type, an agent (and the corresponding role) that generated the action must be referenced. The outcome, too, can be specified. -->
+<!ELEMENT step     @anyOtherType;>
+<!ATTLIST step
+    ##date;
+    ##agent;
+    ##role;
+    ##refers;
+    ##outcome;
+>
+
+
+
+<!--- The element analysis is a metadata container of all the analytical considerations on the document. Currently we deal with the analysis of modifcation events, of judgments and of votes in parliamentary documents -->
+<!ELEMENT analysis              (activeModifications?, passiveModifications?, 
+restrictions?, judicial?,  parliamentary?,  
+	mappings?, otherReferences*, otherAnalysis*) >
+<!ATTLIST analysis              ##source; >
+
+
+<!--- The complex type Amendments is a list of all the amendment elements that can be used on a document analysis -->
+<!ENTITY @ Amendments          "(textualMod | meaningMod | scopeMod | forceMod | efficacyMod | legalSystemMod)+" >
+<!--- The complex type modificationType lists all the properties associated to modification elements. -->
+<!ENTITY @ modificationType    "(source+, destination+, force?, efficacy?, application?, duration?, condition?)" 
+                               "##core; ##idreq; ##enactment; ##modifiers; ##refers;" >
+                                 
+<!--- The element activeModifications is a metadata container of the active modifications generated by the document. -->
+<!ELEMENT activeModifications   @Amendments; >
+<!--- The element passiveModifications is a metadata container of the passive modifications affecting the document. -->
+<!ELEMENT passiveModifications  @Amendments; >
+<!--- The element textualMod is a metadata element specifying an (active or passive) textual modification for the document. -->
+<!ELEMENT textualMod            (@modificationType;, (previous?, old*, new*)) > 
+<!ATTLIST textualMod            ##textualModType;>
+<!--- The element meaningMod is a metadata element specifying an (active or passive) modification in meaning for the document. -->
+<!ELEMENT meaningMod            (@modificationType;, (domain?)) > 
+<!ATTLIST meaningMod            ##meaningModType; >
+<!--- The element scopeMod is a metadata element specifying an (active or passive) modification in scope for the document. -->
+<!ELEMENT scopeMod              (@modificationType;, (domain?)) > 
+<!ATTLIST scopeMod              ##scopeModType; >
+<!--- The element forceMod is a metadata element specifying an (active or passive) modification in force for the document. -->
+<!ELEMENT forceMod              @modificationType; > 
+<!ATTLIST forceMod              ##forceModType; >
+<!--- The element efficacyMod is a metadata element specifying an (active or passive) modification in efficacy for the document. -->
+<!ELEMENT efficacyMod           @modificationType; > 
+<!ATTLIST efficacyMod           ##efficacyModType; >
+<!--- The element legalSystemMod is a metadata element specifying an (active or passive) modification in the legal system for the document. -->
+<!ELEMENT legalSystemMod        @modificationType; > 
+<!ATTLIST legalSystemMod        ##legalSystemModType; >
+
+
+
+<!--- The complex type judicialArguments is a list of all the judicial analysis elements that can be used on the analysis of a judgment -->
+<!ENTITY @ judicialArguments          "(result, (supports | isAnalogTo | applies | extends | restricts | derogates | contrasts | overrules | dissentsFrom | putsInQuestion | distinguishes)+)" >
+<!--- The complex type judicialArgumentType lists all the properties associated to judicial elements. -->
+<!ENTITY @ judicialArgumentType       "(source+, destination+, condition?)" 
+                               "##core; ##idreq; ##enactment; ##modifiers; ##refers;" >
+
+<!--- The element judicial is a metadata container of the analysis of the judicial arguments of a judgment. -->
+<!ELEMENT judicial   @judicialArguments; >
+<!--- The element result is a metadata element specifying the overall result of the judgment. -->
+<!ELEMENT result   @anyOtherType; >
+<!ATTLIST result   ##resultType; >
+
+<!--- The element supports is a metadata element specifying a reference to a source supported by the argument being described. -->
+<!ELEMENT supports  @judicialArgumentType; >
+<!--- The element isAnalogTo is a metadata element specifying a reference to a source analog to the argument being described. -->
+<!ELEMENT isAnalogTo  @judicialArgumentType; >
+<!--- The element applies is a metadata element specifying a reference to a source applyed by the argument being described. -->
+<!ELEMENT applies  @judicialArgumentType; >
+<!--- The element extends is a metadata element specifying a reference to a source extended by the argument being described. -->
+<!ELEMENT extends  @judicialArgumentType; >
+<!--- The element restricts is a metadata element specifying a reference to a source restricted by the argument being described. -->
+<!ELEMENT restricts  @judicialArgumentType; >
+<!--- The element derogates is a metadata element specifying a reference to a source derogated by the argument being described. -->
+<!ELEMENT derogates  @judicialArgumentType; >
+<!--- The element contrasts is a metadata element specifying a reference to a source contrasted by the argument being described. -->
+<!ELEMENT contrasts  @judicialArgumentType; >
+<!--- The element overrules is a metadata element specifying a reference to a source overruled by the argument being described. -->
+<!ELEMENT overrules  @judicialArgumentType; >
+<!--- The element dissentsFrom is a metadata element specifying a reference to a source dissented from the argument being described. -->
+<!ELEMENT dissentsFrom  @judicialArgumentType; >
+<!--- The element putsInQuestions is a metadata element specifying a reference to a source questioned by the argument being described. -->
+<!ELEMENT putsInQuestion  @judicialArgumentType; >
+<!--- The element distinguishes is a metadata element specifying a reference to a source being distinguished by the argument being described. -->
+<!ELEMENT distinguishes  @judicialArgumentType; > 
+
+
+
+<!--- The element restrictions is a metadata container of the elements for the determination of specification of jurisdictions and other types of restrictions. -->
+<!ELEMENT restrictions   (restriction)+ >
+<!ATTLIST restrictions 	##source; >
+
+<!--- The element restriction specifies information about a restriction (such as a jurisdiction specification) by pointing to a specific legislative, geographic or temporal events through the refersTo attribute -->
+<!ELEMENT restriction  	@anyOtherType; >
+<!ATTLIST restriction		##refers; ##restrictionType; >
+
+
+	
+<!--- The complex type parliamentaryAnalysis is a list of all the parliamentary analysis elements that can be used on the analysis of a debate -->
+<!ENTITY @ parliamentaryAnalysis          "(quorumVerification | voting | recount)+" >
+<!--- The element parliamentary is a metadata container of the analysis of the events of a debate. -->
+<!ELEMENT parliamentary   @parliamentaryAnalysis; >
+
+<!--- The complex type parliamentaryAnalysisType lists all the properties associated to elements in the parliamentary analysis. -->
+<!ENTITY @ parliamentaryAnalysisType       "(quorum | count)+" 
+                               "##core; ##idreq; ##outcome; ##refers; ##linkopt; " >
+<!--- The element quorumVerification is a metadata container containing information about an event of quorum verification happened within a debate. -->
+<!ELEMENT quorumVerification  @parliamentaryAnalysisType; >
+<!--- The element voting is a metadata container containing information about an event of a vote happened within a debate. -->
+<!ELEMENT voting   @parliamentaryAnalysisType; >
+<!--- The element recount is a metadata container containing information about an event of a recount happened within a debate. -->
+<!ELEMENT recount   @parliamentaryAnalysisType; >
+
+<!--- The complex type countType lists all the properties associated to elements of parliamentary count. -->
+<!ENTITY @ countType       "ANY{##other}" 
+                              "##core; ##idreq; ##value; ##refers; ##linkopt; " >
+<!--- The element quorum is a metadata container containing the value of a quorum in a vote or a quorum verification. -->
+<!ELEMENT quorum  @countType; >
+<!--- The element count is a metadata container containing the value of a count in a vote or a quorum verification. -->
+<!ELEMENT count  @countType; >
+
+
+	
+<!--- The element mappings is a metadata container of the elements for the mapping of ids in case of renumbering or differences between this expression and the master expression. -->
+<!ELEMENT mappings   (mapping)+ >
+<!ATTLIST mappings 	##source; >
+
+<!--- The element mapping contains a reference to the permanent wId (attribute original) of a structure, and to the eId (attribute current) such structure had during the time interval included between an initial temporalGroup and a final temporalGroup. This is useful for tracking the evolving ids of documents frequently renumbered (e,g., bills). Every single element whose wId does not match its eId needs to be represented here. --> 
+<!ELEMENT mapping  @metareq; >
+<!ATTLIST mapping  ##mappingAtts; >
+
+<!--- The element otherReferences is a metadata container of legal references to other documents that for any reason cannot be placed in the body of the document. This is mainly meant for implicit references that are expressed as metadata or for alternative uris of normal references. -->
+<!ELEMENT otherReferences (implicitReference | alternativeReference)+ >
+<!ATTLIST otherReferences 	##source; >
+
+<!--- The element implicitReference contains a legal reference to a document that is not explicitly mentioned in the content of the document. --> 
+<!ELEMENT implicitReference  @anyOtherType; >
+<!ATTLIST implicitReference 	
+                           for         #eIdRef;        #IMPLIED
+                           ##refers; 
+                           ##showopt;
+>
+
+<!--- The element alternativeReference contains an alternative reference (e.g., using a different namespace) for a legal reference. --> 
+<!ELEMENT alternativeReference   @anyOtherType; >
+<!ATTLIST alternativeReference 
+                           for         #eIdRef;        #IMPLIED
+                           ##refers; 
+                           ##showopt;
+>
+
+
+<!--- The element otherAnalysis is a metadata container of any additional metadata analysis element that does not belong to the specific categories provided before. Anything can be placed in this element.. -->
+<!ELEMENT otherAnalysis @anyOtherType; >
+<!ATTLIST otherAnalysis ##source; >
+
+<!--- the complex type argumentType defines the empty content model and the list of attributes for metadata elements in the analysis section -->
+<!ENTITY @ argumentType      "@anyOtherType;"               "##pos; ##modifiers; ##upToOpt; " >
+<!--- the complex type periodType defines the empty content model and the list of attributes for metadata elements in the analysis section using periods -->
+<!ENTITY @ periodType        "@anyOtherType;"               "##period;" >                 
+
+<!--- The element source is a metadata element specifying the IRI of the source of the modification. -->
+<!ELEMENT source           @argumentType;>
+<!--- The element destination is a metadata element specifying the IRI of the destination of the modification. -->
+<!ELEMENT destination      @argumentType;>
+<!--- The element force is a metadata element specifying the period of the force modification. -->
+<!ELEMENT force            @periodType; >
+<!--- The element efficacy is a metadata element specifying the period of the efficacy modification. -->
+<!ELEMENT efficacy         @periodType; >
+<!--- The element application is a metadata element specifying the period of the application modification. -->
+<!ELEMENT application      @periodType; >
+<!--- The element duration is a metadata element specifying the period of the duration modification. -->
+<!ELEMENT duration         @periodType; >
+<!--- The element condition is a metadata element specifying an open set of conditions on the modification (non managed by Akoma Ntoso). -->
+<!ELEMENT condition        @anyOtherType; >
+<!ATTLIST condition        ##frozen; >
+<!--- The element previous is a metadata element referring to the element (rather than the text) of the modification in the previous version of the document. This is especially useful when renumbering occurs, so as to specify the eId of the instance that was modified in the previous version. Attribute href points to the eId of the element being modified in the old version, using a full expression-level URI. -->
+<!ELEMENT previous         @anyOtherType; >
+<!--- The element old is a metadata element containing (in some non-managed form) the old text of the modification. Attribute href points to the eId of the element new it is being substituted by. -->
+<!ELEMENT old              @anyOtherType; >
+<!--- The element new is a metadata element containing (in some non-managed form) the new text of the modification. Attribute href points to the eId of the element old it is substituting. -->
+<!ELEMENT new              @anyOtherType; >
+
+<!--- The element domain is a metadata element containing (in some non-managed form) the domain to which the modification applies. -->
+<!ELEMENT domain           @anyOtherType; >
+
+	
+
+
+<!--- The element temporalData is a metadata container of all the temporal groups that cntain temporal information about any aspect of the document. In particular, versioned fragments of the text are assigned to temporal groups via the period attribute for the specification of in force or efficacy intervals, or any other type of temporal specification. -->
+<!ELEMENT temporalData  (temporalGroup+) >
+<!ATTLIST temporalData     ##source; >
+
+<!--- The element temporalGroup contains a list of time Intervals that need to be applied together to an element of the document that is associated to time information. Each temporal group can contain any number of time interval associated via the refersTo to a different time-specific concept. --> 
+<!ELEMENT temporalGroup  (timeInterval+) >
+<!ATTLIST temporalGroup  ##core; ##idreq; >
+
+<!--- The element timeInterval contains all the data needed to identify a specific time interval. It is built either with two dates or with a date and a duration (exactly two of the 'start', 'end' and 'duration' attributes can be specified). Values of the 'start' and 'end' attributes are NOT dates, but references to event elements in the corresponding metadata section. The refers attribute is a reference to a temporal concept belonging to the Akoma Ntoso ontology and specified in the references section -->
+<!ELEMENT timeInterval  @metaopt; >
+<!ATTLIST   timeInterval     
+		##interval; 
+    ##duration;
+		##refersreq; 
+>
+
+<!--- The group docrefs is a list of types of legal references to documents. -->
+<!ENTITY @@ docRefs        "(original|passiveRef|activeRef|jurisprudence|hasAttachment|attachmentOf)" >
+<!--- The group TLCs is a list of types of Top Level classes of the Akoma Ntoso ontology. -->
+<!ENTITY @@ TLCs           "(TLCPerson|TLCOrganization|TLCConcept|TLCObject|TLCEvent|TLCLocation|TLCProcess|TLCRole|TLCTerm|TLCReference)" >
+<!--- The complex type refItems is a list of types of references used in the references section. -->
+<!ENTITY @ refItems       "(@@docRefs;|@@TLCs;)+" "##source;">
+
+<!--- The element references is a metadata container of all the references to entities external to the document mentioned in the document. They include references to legal documents of any form,a s well as references to people, organizations, events, roles, concepts, and anything else is managed by the Akoma Ntoso ontology. -->
+<!ELEMENT references     @refItems;>
+
+<!--- The element original is a metadata reference to the Akoma Ntoso IRI of the original version of this document (i.e., the first expression) -->
+<!ELEMENT original         @referenceType; >
+<!--- The element passiveRef is a metadata reference to the Akoma Ntoso IRI of a document providing modifications on this document (i.e., a passive references) -->
+<!ELEMENT passiveRef       @referenceType; >
+<!--- The element activeRef is a metadata reference to the Akoma Ntoso IRI of a document that is modified by this document (i.e., an active references) -->
+<!ELEMENT activeRef        @referenceType; >
+<!--- The element jurisprudence is a metadata reference to the Akoma Ntoso IRI of a document providing jurisprudence on this document -->
+<!ELEMENT jurisprudence    @referenceType; >
+<!--- The element hasAttachment is a metadata reference to the Akoma Ntoso IRI of an attachment of this document -->
+<!ELEMENT hasAttachment    @referenceType; >
+<!ATTLIST hasAttachment    ##type; >
+<!--- The element attachmentOf is a metadata reference to the Akoma Ntoso IRI of a document of which this document is an attachment -->
+<!ELEMENT attachmentOf     @referenceType; >
+<!ATTLIST attachmentOf     ##type; >
+
+<!--- The element TLCPerson is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Person -->
+<!ELEMENT TLCPerson        @referenceType; >
+<!--- The element TLCOrganization is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Organization -->
+<!ELEMENT TLCOrganization  @referenceType; >
+<!--- The element TLCConcept is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Concept -->
+<!ELEMENT TLCConcept       @referenceType; >
+<!--- The element TLCObject is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Object -->
+<!ELEMENT TLCObject        @referenceType; >
+<!--- The element TLCEvent is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Event -->
+<!ELEMENT TLCEvent         @referenceType; >
+<!--- The element TLCLocation is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Location -->
+<!ELEMENT TLCLocation         @referenceType; >
+<!--- The element TLCProcess is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Process -->
+<!ELEMENT TLCProcess       @referenceType; >
+<!--- The element TLCRole is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Role -->
+<!ELEMENT TLCRole          @referenceType; >
+<!--- The element TLCTerm is a metadata reference to the Akoma Ntoso IRI of an ontology instance of the class Term -->
+<!ELEMENT TLCTerm          @referenceType; >
+<!--- The element TLCreference is a generic metadata reference to the Akoma Ntoso IRI of an ontology instance of a class specified through the name attribute -->
+<!ELEMENT TLCReference     @referenceType; >
+<!ATTLIST TLCReference     ##name; >
+
+<!--- The element notes is a metadata container of all the note elements used as footnotes and endnotes in the document. -->
+<!ELEMENT notes        (note)+>
+<!ATTLIST notes        ##source; ##xmllang; >
+<!--- The element note is a metadata element containing the text of the footnote and endnote specified. -->
+<!ELEMENT note         @subFlowStructure;>
+<!ATTLIST note         ##notes;>
+
+
+
+<!--- The element proprietary is a metadata container of any additional metadata property that does not belong to the Akoma Ntoso properties. Anything can be placed in this element. -->
+<!ELEMENT proprietary @anyOtherType; >
+<!ATTLIST proprietary ##source; >
+<!--- The element presentation is a metadata container of any presentation specification for the visual rendering of Akoam Ntoso elements. Anything can be placed in this element. -->
+<!ELEMENT presentation @anyOtherType; >
+<!ATTLIST presentation ##source; >
+
+<!-- =====================================================================
+
+        End of Schema
+
+     ===================================================================== -->
+ 

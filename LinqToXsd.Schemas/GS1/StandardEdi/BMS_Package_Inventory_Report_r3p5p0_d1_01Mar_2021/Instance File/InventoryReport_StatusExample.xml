@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><inventory_report:inventoryReportMessage xmlns:inventory_report="urn:gs1:ecom:inventory_report:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:inventory_report:xsd:3 ../Schemas/gs1/ecom/InventoryReport.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <inventoryReport>
+        <creationDateTime>2005-02-09T11:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <inventoryReportIdentification>
+            <entityIdentification>IS25001</entityIdentification>
+            <contentOwner>
+                <gln>9999999000010</gln>
+            </contentOwner>
+        </inventoryReportIdentification>
+        <inventoryReportTypeCode>INVENTORY_STATUS</inventoryReportTypeCode>
+        <structureTypeCode>LOCATION_BY_ITEM</structureTypeCode>
+        <inventoryReportToParty>
+            <gln>7777777000009</gln>
+        </inventoryReportToParty>
+        <inventoryReportingParty>
+            <gln>9999999000010</gln>
+        </inventoryReportingParty>
+		<reportingPeriod>
+			<beginDate>2005-02-09</beginDate>
+			<beginTime>08:00:00</beginTime>
+		</reportingPeriod>
+        <inventoryItemLocationInformation>
+            <inventoryLocation>
+                <gln>9999999000027</gln>
+            </inventoryLocation>
+            <transactionalTradeItem>
+                <gtin>01111111111116</gtin>
+            </transactionalTradeItem>
+            <inventoryStatusLineItem>
+                <lineItemNumber>1</lineItemNumber>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>AVAILABLE_FOR_SALE</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="CARTONS">15</quantityOfUnits>
+                </inventoryStatusQuantitySpecification>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>EXPIRED</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="CARTONS">10</quantityOfUnits>
+                </inventoryStatusQuantitySpecification>
+            </inventoryStatusLineItem>
+        </inventoryItemLocationInformation>
+        <inventoryItemLocationInformation>
+            <inventoryLocation>
+                <gln>9999999000027</gln>
+            </inventoryLocation>
+            <transactionalTradeItem>
+                <gtin>02222222222222</gtin>
+            </transactionalTradeItem>
+            <inventoryStatusLineItem>
+                <lineItemNumber>2</lineItemNumber>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>ON_HAND</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="PCS">50</quantityOfUnits>
+                    <transactionalItemData>
+                        <productionDate>2004-11-24</productionDate>
+                    </transactionalItemData>
+                    <transactionalItemData>
+                        <productionDate>2004-11-17</productionDate>
+                    </transactionalItemData>
+                </inventoryStatusQuantitySpecification>
+            </inventoryStatusLineItem>
+        </inventoryItemLocationInformation>
+        <inventoryItemLocationInformation>
+            <inventoryLocation>
+                <gln>9999999000027</gln>
+            </inventoryLocation>
+            <transactionalTradeItem>
+                <gtin>03333333333338</gtin>
+            </transactionalTradeItem>
+            <inventoryStatusLineItem>
+                <lineItemNumber>3</lineItemNumber>
+                <inventoryDateTime>2005-02-09T00:00:00.000-05:00</inventoryDateTime>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>ON_HOLD</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="PCS">300</quantityOfUnits>
+                </inventoryStatusQuantitySpecification>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>DAMAGED</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="PCS">25</quantityOfUnits>
+                </inventoryStatusQuantitySpecification>
+            </inventoryStatusLineItem>
+        </inventoryItemLocationInformation>
+        <inventoryItemLocationInformation>
+            <inventoryLocation>
+                <gln>9999999000034</gln>
+            </inventoryLocation>
+            <transactionalTradeItem>
+                <gtin>03333333333338</gtin>
+            </transactionalTradeItem>
+            <inventoryStatusLineItem>
+                <lineItemNumber>4</lineItemNumber>
+                <logisticUnitIdentification>
+                    <sscc>388888880000000083</sscc>
+                </logisticUnitIdentification>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>AVAILABLE_FOR_SALE</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="PCS">25</quantityOfUnits>
+                </inventoryStatusQuantitySpecification>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>EXPIRED</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="PCS">55</quantityOfUnits>
+                </inventoryStatusQuantitySpecification>
+            </inventoryStatusLineItem>
+            <inventoryStatusLineItem>
+                <lineItemNumber>5</lineItemNumber>
+                <logisticUnitIdentification>
+                    <sscc>388888880000000113</sscc>
+                </logisticUnitIdentification>
+                <inventoryStatusQuantitySpecification>
+                    <inventoryStatusType>AVAILABLE_FOR_SALE</inventoryStatusType>
+                    <quantityOfUnits measurementUnitCode="PCS">80</quantityOfUnits>
+                </inventoryStatusQuantitySpecification>
+            </inventoryStatusLineItem>
+        </inventoryItemLocationInformation>
+    </inventoryReport>
+</inventory_report:inventoryReportMessage>

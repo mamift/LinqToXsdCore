@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	targetNamespace="http://www.planningportal.gov.uk/schema/ProposalWebservice"
+	xmlns="http://www.planningportal.gov.uk/schema/ProposalWebservice"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	version="2.0"
+	elementFormDefault="qualified">
+
+	<xsd:complexType name="WebserviceRequest">
+		<xsd:annotation>
+			<xsd:documentation>
+				The type describes a generic web service request document. At present it simply
+				specifies that all web service requests must supply a version number. This is
+				required in order to allow the provision of backward compatability for a time
+				whenever the webservice is upgraded
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="version" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[0-9]+\.[0-9]+"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="getProposalListType">
+		<xsd:annotation>
+			<xsd:documentation>
+				This type describes a request for a list of all Proposals that have been
+				submitted to the specified LPA and have not yet been identified as having been
+				received.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="WebserviceRequest">
+				<xsd:sequence>
+					<xsd:element name="lpaCode" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="getProposalType">
+		<xsd:annotation>
+			<xsd:documentation>
+				This type describes a request for a specific Proposal that has been submitted to
+				the Portal.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="WebserviceRequest">
+				<xsd:sequence>
+					<xsd:element name="proposalRef" type="xsd:int">
+						<xsd:annotation>
+							<xsd:documentation>
+								The proposal reference number as supplied by the getProposalList operation
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="lpaCode" type="xsd:string"/>
+					<xsd:element name="requestId" type="xsd:integer">
+						<xsd:annotation>
+							<xsd:documentation>
+								A unique request id for this request. Used as a security measure to help to
+								prevent replay attacks. The web service will only respond with a proposal
+								once per requestId.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="signature" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								The Base64 encoded value of an MD5 digest of the result of the following string concatenation:
+								proposalRef + lpaCode + requestId.
+								The private key used to perform the digest is supplied by the
+								portal and is unique to each LPA. This provides a simple (although not unbreakable)
+								method of confirming the identity of message sender.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="getProposalBCType">
+		<xsd:annotation>
+			<xsd:documentation>
+				This type describes a request for a specific Proposal by a Building Controls Portal.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="WebserviceRequest">
+				<xsd:sequence>
+					<xsd:element name="proposalRef" type="xsd:int">
+						<xsd:annotation>
+							<xsd:documentation>
+								The proposal reference number as supplied by the getProposalList operation
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="lpaCode" type="xsd:string"/>
+					<xsd:element name="requestId" type="xsd:integer">
+						<xsd:annotation>
+							<xsd:documentation>
+								A unique request id for this request. Used as a security measure to help to
+								prevent replay attacks. The web service will only respond with a proposal
+								once per requestId.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="BCPRef" type="xsd:int"/>
+					<xsd:element name="PractitionerCode" type="xsd:int"/>
+					<xsd:element name="signature" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								The Base64 encoded value of an MD5 digest of the result of the following string concatenation:
+								proposalRef + lpaCode + requestId.
+								The private key used to perform the digest is supplied by the
+								portal and is unique to each LPA. This provides a simple (although not unbreakable)
+								method of confirming the identity of message sender.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+
+	<xsd:complexType name="setProposalReceivedType">
+		<xsd:annotation>
+			<xsd:documentation>
+				This type describes a request to mark the specified Proposal as having been
+				received. The Proposal will no longer appear in the ProposalList generated as a
+				result of the GetProposalList request. However it will still remain available using
+				the GetProposal request until it is deleted from the Portal. The Portal reserves
+				the right to delete Proposals 60 days after they have been submitted by the user.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="WebserviceRequest">
+				<xsd:sequence>
+					<xsd:element name="proposalRef" type="xsd:int">
+						<xsd:annotation>
+							<xsd:documentation>
+								The proposal reference number as supplied by the getProposalList operation
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="lpaCode" type="xsd:string"/>
+					<xsd:element name="requestId" type="xsd:integer">
+						<xsd:annotation>
+							<xsd:documentation>
+								A unique request id for this request. Used as a security measure to help to
+								prevent replay attacks. The web service will only respond with a proposal
+								once per requestId.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="signature" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								The Base64 encoded value of an MD5 digest of the result of the following string concatenation:
+								proposalRef + lpaCode + requestId.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:simpleType name="ResultType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A simple result message used to indicate whether or not a request has been
+				successfully processed. In the case of ProposalReceivedResult, fail will be returned
+				if the specfied Proposal cannot be found or if there is any other error during the
+				processing of the requst.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="success"/>
+			<xsd:enumeration value="fail"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:element name="getProposalList" type="getProposalListType"/>
+
+	<xsd:element name="getProposal" type="getProposalType"/>
+	<xsd:element name="getProposalBC" type="getProposalBCType"/>
+
+	<xsd:element name="setProposalReceived" type="setProposalReceivedType"/>
+
+
+	<!-- used to determine the result of a webservice transaction -->
+	<xsd:element name="ProposalReceivedResult" type="ResultType"/>
+</xsd:schema>

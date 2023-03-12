@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com) -->
+<tnsa:LHA_DATA xmlns:tns="http://www.therentservice.gov.uk/schema/Common_ed.xsd" xmlns:tnsa="http://www.therentservice.gov.uk/schema/DataShare.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.therentservice.gov.uk/schema/DataShare.xsd C:\ElectronicInterface\EDeliver\v1.1\DataShare.xsd">
+  <tnsa:Manifest>
+    <tns:SenderRecipient>
+      <tns:LACode>string</tns:LACode>
+    </tns:SenderRecipient>
+    <tns:Timestamp>
+      <tns:CompilationDate>1981-08-11</tns:CompilationDate>
+      <tns:CompilationTime>14:06:43.76</tns:CompilationTime>
+    </tns:Timestamp>
+  </tnsa:Manifest>
+  <tnsa:LhaCaseData>
+    <tnsa:Status>Award</tnsa:Status>
+    <tnsa:Address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:Address>
+    <tnsa:TenancyStartDate>2013-03-06</tnsa:TenancyStartDate>
+    <tnsa:EntitlementStartDate>1993-12-27</tnsa:EntitlementStartDate>
+    <tnsa:ContractualRent>
+      <tns:AmountPerPeriod TimePeriod="Per Calendar Month">-3708.085094196054907</tns:AmountPerPeriod>
+    </tnsa:ContractualRent>
+    <tnsa:Accommodation>
+      <tnsa:Bed_Rooms>3413</tnsa:Bed_Rooms>
+      <tnsa:Living_Rooms>4268</tnsa:Living_Rooms>
+      <tnsa:Shared_Kitchen>Yes</tnsa:Shared_Kitchen>
+      <tnsa:Shared_Bathroom>No</tnsa:Shared_Bathroom>
+      <tnsa:Shared_Toilet>NA</tnsa:Shared_Toilet>
+      <tnsa:Shared_LR>Yes</tnsa:Shared_LR>
+    </tnsa:Accommodation>
+    <tnsa:LA_CASE_REF>string</tnsa:LA_CASE_REF>
+  </tnsa:LhaCaseData>
+  <tnsa:LhaCaseData>
+    <tnsa:Status>Claim</tnsa:Status>
+    <tnsa:Address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:Address>
+    <tnsa:TenancyStartDate>2000-05-28</tnsa:TenancyStartDate>
+    <tnsa:EntitlementStartDate>1989-10-06</tnsa:EntitlementStartDate>
+    <tnsa:EntitlementEndDate>2009-01-19</tnsa:EntitlementEndDate>
+    <tnsa:ContractualRent>
+      <tns:AmountPerPeriod TimePeriod="Per Lunar Month" WeeksSpreadOver="-3026.545094196054907">-3674.545094196054907</tns:AmountPerPeriod>
+    </tnsa:ContractualRent>
+    <tnsa:Accommodation>
+      <tnsa:Bed_Rooms>9577</tnsa:Bed_Rooms>
+      <tnsa:Living_Rooms>-9340</tnsa:Living_Rooms>
+      <tnsa:Shared_Kitchen>NA</tnsa:Shared_Kitchen>
+      <tnsa:Shared_Bathroom>NA</tnsa:Shared_Bathroom>
+      <tnsa:Shared_Toilet>No</tnsa:Shared_Toilet>
+      <tnsa:Shared_LR>NA</tnsa:Shared_LR>
+    </tnsa:Accommodation>
+  </tnsa:LhaCaseData>
+</tnsa:LHA_DATA>

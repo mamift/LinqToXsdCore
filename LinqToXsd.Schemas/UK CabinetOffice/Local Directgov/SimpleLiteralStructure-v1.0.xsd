@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Nicolas Cochard (Porism Limited) -->
+<xs:schema xmlns:core="http://www.govtalk.gov.uk/core" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esd.org.uk/standards" targetNamespace="http://www.esd.org.uk/standards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="SimpleItemReferenceType-v1.0">
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Creator>esd-toolkit http://www.esd-toolkit.org</Creator>
+				<Date>
+					<Created>2005-05-13</Created>
+				</Date>
+				<Description>Complex Type reference to the controlled lists.</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>SimpleItemReferenceType-v1.0</Identifier>
+				<Language>eng</Language>
+				<Publisher>Porism Limited http://www.porism.com</Publisher>
+				<Rights>
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Title>Complex Type reference to the controlled lists.</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:complexType name="SimpleLiteralStructure">
+		<xs:annotation>
+			<xs:documentation>Complex type for a metadata element.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="core:PopulatedStringType"/>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

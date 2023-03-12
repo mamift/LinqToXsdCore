@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" xmlns:transport_status_common="urn:gs1:ecom:transport_status_common:xsd:3" xmlns:transport_status_notification="urn:gs1:ecom:transport_status_notification:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:transport_status_notification:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:transport_status_common:xsd:3" schemaLocation="TransportStatusCommon.xsd"/>
+    <xsd:element name="transportStatusNotificationMessage" type="transport_status_notification:TransportStatusNotificationMessageType"/>
+    <xsd:complexType name="TransportStatusNotificationConsignmentType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:Ecom_ConsignmentIdentificationType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="parentConsignment" type="ecom_common:Ecom_ConsignmentIdentificationType"/>
+                    <xsd:element name="cargoTypeCode" type="ecom_common:CargoTypeCodeType"/>
+                    <xsd:element minOccurs="0" name="cargoTypeDescription" type="shared_common:Description70Type"/>
+                    <xsd:element minOccurs="0" name="consignor" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="consignee" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="includedShipment" type="ecom_common:Ecom_ShipmentIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="includedTransportEquipment" type="ecom_common:TransportEquipmentType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="includedLogisticUnit" type="ecom_common:Ecom_LogisticUnitIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportReference" type="ecom_common:TransportReferenceType"/>
+                    <xsd:element maxOccurs="unbounded" name="transportStatus" type="ecom_common:TransportStatusType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationTransportMovement" type="transport_status_notification:TransportStatusNotificationTransportMovementType"/>
+                    <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TransportStatusNotificationLogisticUnitType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:Ecom_LogisticUnitIdentificationType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="shipper" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="receiver" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="relatedConsignment" type="ecom_common:Ecom_ConsignmentIdentificationType"/>
+                    <xsd:element minOccurs="0" name="reassignedConsignment" type="ecom_common:Ecom_ConsignmentIdentificationType"/>
+                    <xsd:element minOccurs="0" name="relatedShipment" type="ecom_common:Ecom_ShipmentIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" name="transportStatus" type="ecom_common:TransportStatusType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationTransportMovement" type="transport_status_notification:TransportStatusNotificationTransportMovementType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TransportStatusNotificationMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="transportStatusNotification" type="transport_status_notification:TransportStatusNotificationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TransportStatusNotificationShipmentType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:Ecom_ShipmentIdentificationType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="parentShipmentReference" type="ecom_common:Ecom_ShipmentIdentificationType"/>
+                    <xsd:element minOccurs="0" name="shipper" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="receiver" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportReference" type="ecom_common:TransportReferenceType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="includedLogisticUnits" type="ecom_common:Ecom_LogisticUnitIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" name="transportStatus" type="ecom_common:TransportStatusType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationTransportMovement" type="transport_status_notification:TransportStatusNotificationTransportMovementType"/>
+                    <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TransportStatusNotificationTransportEquipmentType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:TransportEquipmentType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="transportEquipmentOwner" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element maxOccurs="unbounded" name="transportStatus" type="ecom_common:TransportStatusType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationTransportMovement" type="transport_status_notification:TransportStatusNotificationTransportMovementType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportTrackingLogEvent" type="ecom_common:TransportTrackingLogEventType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TransportStatusNotificationTransportMeansType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:TransportMeansType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="transportMeansOwner" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element maxOccurs="unbounded" name="transportStatus" type="ecom_common:TransportStatusType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationTransportMovement" type="transport_status_notification:TransportStatusNotificationTransportMovementType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportTrackingLogEvent" type="ecom_common:TransportTrackingLogEventType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TransportStatusNotificationTransportMovementType">
+        <xsd:sequence>
+            <xsd:element name="sequenceNumber" type="xsd:positiveInteger"/>
+            <xsd:element name="transportModeTypeCode" type="ecom_common:TransportModeCodeType"/>
+            <xsd:element minOccurs="0" name="routeIdentifier" type="shared_common:IdentifierType"/>
+            <xsd:element minOccurs="0" name="carrier" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="transportStatusResponsibleParty" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="plannedDeparture" type="ecom_common:LogisticEventType"/>
+            <xsd:element minOccurs="0" name="plannedArrival" type="ecom_common:LogisticEventType"/>
+            <xsd:element minOccurs="0" name="actualDeparture" type="ecom_common:LogisticEventType"/>
+            <xsd:element minOccurs="0" name="actualArrival" type="ecom_common:LogisticEventType"/>
+            <xsd:element minOccurs="0" name="actualLoading" type="ecom_common:LogisticEventType"/>
+            <xsd:element minOccurs="0" name="actualUnloading" type="ecom_common:LogisticEventType"/>
+            <xsd:element minOccurs="0" name="recipientSignOff" type="ecom_common:LogisticEventType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="plannedWaypoint" type="ecom_common:LogisticEventType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="actualWaypoint" type="ecom_common:LogisticEventType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="associatedPerson" type="ecom_common:PersonType"/>
+            <xsd:element minOccurs="0" name="relatedTransportMeans" type="ecom_common:TransportMeansType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="relatedTransportEquipment" type="ecom_common:TransportEquipmentType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TransportStatusNotificationType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="transportStatusNotificationIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="transportStatusInformationCode" type="transport_status_common:TransportStatusInformationEnumerationType"/>
+                    <xsd:element name="transportStatusObjectCode" type="transport_status_common:TransportStatusObjectEnumerationType"/>
+                    <xsd:element name="transportStatusRequestor" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="transportStatusProvider" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="transportStatusRequest" type="ecom_common:Ecom_DocumentReferenceType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationConsignment" type="transport_status_notification:TransportStatusNotificationConsignmentType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationShipment" type="transport_status_notification:TransportStatusNotificationShipmentType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationLogisticUnit" type="transport_status_notification:TransportStatusNotificationLogisticUnitType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationTransportMeans" type="transport_status_notification:TransportStatusNotificationTransportMeansType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportStatusNotificationTransportEquipment" type="transport_status_notification:TransportStatusNotificationTransportEquipmentType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:inventory_report="urn:gs1:ecom:inventory_report:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:inventory_report:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="inventoryReportMessage" type="inventory_report:InventoryReportMessageType"/>
+    <xsd:complexType name="InventoryActivityLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="parentLineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="logisticUnitIdentification" type="ecom_common:Ecom_LogisticUnitIdentificationType"/>
+            <xsd:element minOccurs="0" name="inventorySubLocation" type="ecom_common:InventorySubLocationType"/>
+            <xsd:element minOccurs="0" name="reportingPeriod" type="shared_common:DateTimeRangeType"/>
+            <xsd:element maxOccurs="unbounded" name="inventoryActivityQuantitySpecification" type="inventory_report:InventoryActivityQuantitySpecificationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InventoryActivityQuantitySpecificationType">
+        <xsd:sequence>
+            <xsd:element name="inventoryActivityTypeCode" type="ecom_common:InventoryActivityTypeCodeType"/>
+            <xsd:element name="quantityOfUnits" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="inventoryMovementTypeCode" type="ecom_common:InventoryMovementTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="transactionalItemData" type="ecom_common:TransactionalItemDataType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="transactionalReference" type="ecom_common:TransactionalReferenceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InventoryItemLocationInformationType">
+        <xsd:sequence>
+            <xsd:element name="inventoryLocation" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element name="transactionalTradeItem" type="ecom_common:TransactionalTradeItemType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="inventoryActivityLineItem" type="inventory_report:InventoryActivityLineItemType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="inventoryStatusLineItem" type="inventory_report:InventoryStatusLineItemType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InventoryReportMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="inventoryReport" type="inventory_report:InventoryReportType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InventoryReportType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="inventoryReportIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="inventoryReportTypeCode" type="inventory_report:InventoryReportTypeEnumerationType"/>
+                    <xsd:element name="structureTypeCode" type="ecom_common:StructureTypeCodeType"/>
+                    <xsd:element name="inventoryReportToParty" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="inventoryReportingParty" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="reportingPeriod" type="shared_common:DateTimeRangeType"/>
+                    <xsd:element maxOccurs="unbounded" name="inventoryItemLocationInformation" type="inventory_report:InventoryItemLocationInformationType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="InventoryStatusLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="inventoryDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="parentLineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="firstInFirstOutDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="handlingUnitType" type="ecom_common:PackageTypeCodeType"/>
+            <xsd:element minOccurs="0" name="inventoryUnitCost" type="shared_common:AmountType"/>
+            <xsd:element minOccurs="0" name="logisticUnitIdentification" type="ecom_common:Ecom_LogisticUnitIdentificationType"/>
+            <xsd:element minOccurs="0" name="inventorySubLocation" type="ecom_common:InventorySubLocationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="logisticUnitHierarchy" type="ecom_common:LogisticUnitsType"/>
+            <xsd:element minOccurs="0" name="returnableAssetIdentification" type="ecom_common:Ecom_ReturnableAssetIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="structuredNote" type="ecom_common:StructuredNoteType"/>
+            <xsd:element minOccurs="0" name="inventoryStatusOwner" type="ecom_common:Ecom_PartyIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" name="inventoryStatusQuantitySpecification" type="ecom_common:InventoryStatusQuantitySpecificationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="InventoryReportTypeEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="INVENTORY_ACTIVITY"/>
+            <xsd:enumeration value="INVENTORY_STATUS"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

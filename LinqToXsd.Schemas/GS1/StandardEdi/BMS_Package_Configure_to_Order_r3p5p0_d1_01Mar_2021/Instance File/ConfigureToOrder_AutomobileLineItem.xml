@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><configure_to_order:configureToOrderMessage xmlns:configure_to_order="urn:gs1:ecom:configure_to_order:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:configure_to_order:xsd:3 ../Schemas/gs1/ecom/ConfigureToOrder.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <configureToOrder>
+        <creationDateTime>2007-07-04T11:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <orderIdentification>
+            <entityIdentification>CTO4444</entityIdentification>
+        </orderIdentification>
+        <orderTypeCode>220</orderTypeCode>
+        <isApplicationReceiptAcknowledgementRequired>false</isApplicationReceiptAcknowledgementRequired>
+        <isOrderFreeOfExciseTaxDuty>false</isOrderFreeOfExciseTaxDuty>
+        <buyer>
+        	<gln>5412345000013</gln>
+        </buyer>
+        <seller>
+        	<gln>0005280048346</gln>
+        </seller>
+        <orderLogisticalInformation>
+        	<shipFrom>
+        		<gln>0005280048346</gln>
+        	</shipFrom>
+        	<shipTo>
+        		<gln>5412345000037</gln>
+        	</shipTo>
+        	<inventoryLocation>
+        		<gln>0005280048346</gln>
+        	</inventoryLocation>
+        </orderLogisticalInformation>
+        <configureToOrderLineItem>
+            <lineItemNumber>1</lineItemNumber>
+            <requestedQuantity>1</requestedQuantity>
+            <netPrice currencyCode="EUR">25000</netPrice>
+            <baseItemUnitPrice currencyCode="EUR">20000</baseItemUnitPrice>
+            <transactionalTradeItem>
+                <gtin>84365183905453</gtin>
+                <tradeItemQuantity>1</tradeItemQuantity>                
+            </transactionalTradeItem>
+            <configureToOption>
+                <optionValue>786876</optionValue>
+                <requestedOptionQuantity>1</requestedOptionQuantity>
+                <optionUnitPrice currencyCode="EUR">2000</optionUnitPrice>
+                <optionTradeItemIdentification>
+                    <gtin>00514141006604</gtin>
+                    <additionalTradeItemIdentification additionalTradeItemIdentificationTypeCode="SELLER_ASSIGNED">88098L</additionalTradeItemIdentification>
+                </optionTradeItemIdentification>
+                <subConfigureToOption>
+                    <optionValue>True</optionValue>
+                    <subOptionTradeItemIdentification>
+                        <gtin>00333141006601</gtin>
+                        <additionalTradeItemIdentification additionalTradeItemIdentificationTypeCode="SELLER_ASSIGNED">9098905</additionalTradeItemIdentification>
+                    </subOptionTradeItemIdentification>
+                </subConfigureToOption>                
+            </configureToOption>
+            <configureToOption>
+                <optionValue>8797</optionValue>
+                <requestedOptionQuantity>1</requestedOptionQuantity>
+                <optionUnitPrice currencyCode="EUR">3000</optionUnitPrice>
+                <optionTradeItemIdentification>
+                    <gtin>00333333006600</gtin>
+                    <additionalTradeItemIdentification additionalTradeItemIdentificationTypeCode="SELLER_ASSIGNED">20295L12</additionalTradeItemIdentification>
+                </optionTradeItemIdentification>
+                <subConfigureToOption>
+                    <optionValue>Perlized</optionValue>
+                    <subOptionTradeItemIdentification>
+                        <gtin>00848141006600</gtin>
+                        <additionalTradeItemIdentification additionalTradeItemIdentificationTypeCode="SELLER_ASSIGNED">84365183905422</additionalTradeItemIdentification>
+                    </subOptionTradeItemIdentification>
+                </subConfigureToOption>
+            </configureToOption>
+        </configureToOrderLineItem>
+    </configureToOrder>
+</configure_to_order:configureToOrderMessage>

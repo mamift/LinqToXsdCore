@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2006</yrYrPub>
+			<sAuthor1>rak</sAuthor1>
+			<sAuthor2>par</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Rakshit, S. K.</sAuthor>
+		<sAuthor>Parida, S. C.</sAuthor>
+		<sAuthor>Dash, S.</sAuthor>
+		<sAuthor>Singh, Z.[Ziley]</sAuthor>
+		<sAuthor>Venugopal, V.</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2006</yrPubYr>
+		<dateCit>2010-05-13</dateCit>
+		<sTitle>Thermodynamics of BaNd2Fe2O7(s) and BaNdFeO4(s) in the system Ba Nd Fe O</sTitle>
+		<sKeyword>Quaternary oxides</sKeyword>
+		<sKeyword>Thermodynamic properties</sKeyword>
+		<sKeyword>Heat capacity</sKeyword>
+		<sKeyword>Solid-state electrochemical cell</sKeyword>
+		<sKeyword>Differential scanning calorimetry</sKeyword>
+		<sVol>443</sVol>
+		<sPage>98-104</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>calcium oxide</sCommonName>
+		<sFormulaMolec>CaO</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>BaNd2Fe2O7</sCommonName>
+		<sFormulaMolec>BaFe2Nd2O7</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>98</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>BaNdFeO4</sCommonName>
+		<sFormulaMolec>BaFeNdO4</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>98</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>barium fluoride (BaF2)</sCommonName>
+		<sFormulaMolec>BaF2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>calcium fluoride</sCommonName>
+		<sFormulaMolec>CaF2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>NdFeO3</sCommonName>
+		<sFormulaMolec>FeNdO3</sFormulaMolec>
+	</Compound>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<nElectronNumber>2</nElectronNumber>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>5/13/2010</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Potential difference of an electrochemical cell, V</ePropName>
+						<eMethodName>Potential difference of an electrochemical cell</eMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<eStandardState>Pure compound</eStandardState>
+		</Property>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101.325</nConstraintValue>
+			<nConstrDigits>6</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>861</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.0213</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>995</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.0725</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<nElectronNumber>2</nElectronNumber>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>5/13/2010</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar Gibbs energy of reaction, kJ/mol</ePropName>
+						<eMethodName>Potential difference of an electrochemical cell</eMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<eStandardState>Pure compound</eStandardState>
+		</Property>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101.325</nConstraintValue>
+			<nConstrDigits>6</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>861</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>4.17</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>995</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>14.03</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

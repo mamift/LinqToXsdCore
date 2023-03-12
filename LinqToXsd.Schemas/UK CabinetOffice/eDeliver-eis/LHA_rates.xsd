@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com)-->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Andrew Harding (The Rent Service) -->
+<xsd:schema xmlns:rep="http://www.therentservice.gov.uk/schema/LHA_rates.xsd" xmlns:cmn="http://www.therentservice.gov.uk/schema/Common_ed.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.therentservice.gov.uk/schema/LHA_rates.xsd" version="edeliver_v1-0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="Common_ed.xsd" namespace="http://www.therentservice.gov.uk/schema/Common_ed.xsd" />
+  <xsd:annotation>
+    <xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>The Rent Service (helpdesk@therentservice.gov.uk)</Creator>
+				<Date>
+					<Created>2007-07-04</Created>
+				</Date>
+				<Description>Schema for distributing LHA rates</Description>
+				<Identifier>LHA_rates.xsd-edeliver_v1-1</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>The Rent Service, 5 Welbeck Street, London, W1G 9YQ</Publisher>
+				<Subject>
+					<Category>People, communities and living</Category>
+					<Keyword>Housing Benefit</Keyword>
+					<Keyword>Rent Service</Keyword>
+					<Keyword>Local Housing Allowance</Keyword>
+				</Subject>
+				<Title>Local Housing Allowance Rates</Title>
+			</Metadata>
+		</xsd:appinfo>
+  </xsd:annotation>
+  <xsd:element name="LHARATES">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Manifest" type="cmn:Manifest">
+          <xsd:annotation>
+            <xsd:documentation>Manifest Details</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:sequence maxOccurs="unbounded">
+          <xsd:element name="BRMA_ID">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="BRMA_name" type="cmn:AddressLineType" />
+          <xsd:element name="Cat_A_W">
+            <xsd:annotation>
+              <xsd:documentation>Room with shared facs</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:decimal" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="Cat_B_W" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>1 Bedroom</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_C_W" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>2 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_D_W" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>3 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_E_W" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>4 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_F_W" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>5 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Cat_G_W" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>NonStatutory - 6 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_A_M">
+            <xsd:annotation>
+              <xsd:documentation>Room with shared facs</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:decimal" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="Cat_B_M" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>1 Bedroom</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_C_M" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>2 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_D_M" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>3 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_E_M" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>4 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Cat_F_M" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>5 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Cat_G_M" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation>NonStatutory - 6 Bedrooms</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ValidFrom" type="cmn:DateType" />
+          <xsd:element name="ValidTo" type="cmn:DateType" />
+        </xsd:sequence>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

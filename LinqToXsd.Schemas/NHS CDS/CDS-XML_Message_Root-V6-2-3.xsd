@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.nhsia.nhs.uk/DataStandards/XMLschema/CDS/ns" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcq="http://purl.org/dc/terms/" xmlns:gms="http://www.govtalk.gov.uk/CM/gms" targetNamespace="http://www.nhsia.nhs.uk/DataStandards/XMLschema/CDS/ns" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6-2" id="CDS-XML_Message-V6-1-1-2010-12-10">
+	<xs:include schemaLocation="CDS-XML_Standard_Data_Elements-V6-2-3.xsd"/>
+	<xs:include schemaLocation="CDS-XML_Standard_Data_Structures-V6-2-3.xsd"/>
+	<xs:include schemaLocation="CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd"/>
+	<xs:element name="CDS-XMLInterchange" id="CommissioningDataSetInterchange">
+		<xs:annotation>
+			<xs:appinfo>
+				<dc:owner>NHS Model and Dictionary Service - DMDS</dc:owner>
+				<dc:contact>http://www.connectingforhealth.nhs.uk/systemsandservices/data/datamodeldictionary/index_html</dc:contact>
+				<dc:contact>DMDS Help Desk at datastandards.net</dc:contact>
+				<dc:date>
+					<dcq:created>2003-05-27</dcq:created>
+				</dc:date>
+				<dc:date>
+					<dcq:modified>2010-12-10</dcq:modified>
+				</dc:date>
+				<dc:format>text</dc:format>
+				<dc:format>
+					<dc:medium>http://www.w3.org/2001/XMLSchema</dc:medium>
+				</dc:format>
+				<dc:format>
+					<dc:medium>XML Schema (.xsd) file, W3C Recommendation 2001</dc:medium>
+				</dc:format>
+				<dc:identifier>CDS-XML Message</dc:identifier>
+				<dc:language>en</dc:language>
+				<dc:publisher>NHS Data Model and Dictionary Service</dc:publisher>
+				<dc:rights>
+					<dcq:copyright>Crown Copyright 2010</dcq:copyright>
+					<gms:SecurityClassification>Unclassified</gms:SecurityClassification>
+				</dc:rights>
+				<dc:title>CDS-XML Message Schema</dc:title>
+			</xs:appinfo>
+			<xs:documentation>V6-1: CDS-XML Schema Root uses Attribute to enforce SchemaVersion and SchemaDate</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="CDSInterchange_Structure">
+					<xs:attribute name="SchemaVersion" type="xs:NMTOKEN" use="required" fixed="6-2-3">
+						<xs:annotation>
+							<xs:documentation>Enforce Version Number</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="SchemaDate" type="xs:date" use="required" fixed="2012-05-11">
+						<xs:annotation>
+							<xs:documentation>Enforce Schema Date</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

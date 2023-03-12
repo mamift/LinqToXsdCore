@@ -1,0 +1,1232 @@
+<ControlledList ItemName="MobilisationIncidentType" ListName="Fire and Rescue Statistics - Incident Type List" VersionDate="2007-03-16" HomeLocation="" LatestVersionLocation="" Version="1.0" xsi:schemaLocation="http://www.esd.org.uk/standards http://www.esd.org.uk/standards/xmlschemas/taxonomy-v3.0.xsd" xmlns="http://www.esd.org.uk/standards" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fire="http://www.fire.gov.uk/schemas" xmlns:mos="urn:schemas-microsoft-com:office:spreadsheet">
+	<Metadata>
+		<Audience>e-service developers</Audience>
+		<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+		<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+		<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+		<Date>2007-03-16</Date>
+		<Date.Created>2005-08-15</Date.Created>
+		<Date.Modified>2007-03-16</Date.Modified>
+		<Description>Fire and Rescue Statistics - Incident Recording System (IRS) Taxonomy/Hierarch File for Mobilisation Incident Types</Description>
+		<Format>text/xml</Format>
+		<Format.Medium>http://www.w3.org/2001/XMLSchema XML schema, W3C Recommendation 2001</Format.Medium>
+		<Identifier>FRSIncident-MobilisationTypeTaxonomy-v1-0</Identifier>
+		<Language>[ISO 639-2/B] ENG</Language>
+		<Publisher>HM Government</Publisher>
+		<Relation.Requires>taxonomy-v3-0</Relation.Requires>
+		<Rights>Unclassified</Rights>
+		<Rights.Copyright>Crown Copyright 2007</Rights.Copyright>
+		<Subject.Category>Response</Subject.Category>
+		<Subject.Project>Fire and Rescue Statistics - Incident Recording System</Subject.Project>
+		<Title>Fire and Rescue Statistics - Incident Recording System Taxonomy/Hierarch File for Mobilisation Incident Types</Title>
+	</Metadata>
+	<Item Preferred="true" LastUpdatedInVersion="1.0" AddedInVersion="1.0" Obsolete="false" ConceptId="0" Id="0">
+		<Name>Incident Type</Name>
+		<ScopeNotes>Base item for all incident types</ScopeNotes>
+	</Item>
+	<Item Id="1000" ConceptId="1000" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Alarms</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+	<Item Id="1" ConceptId="1" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>AFA</Name>
+		<ScopeNotes>Incidents involving automatic fire detection systems</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>A</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1000" ConceptId="1000">Alarms</BroaderItem>
+	</Item>
+	<Item Id="2" ConceptId="2" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Gas alarms</Name>
+		<ScopeNotes>Any incident where the RCC is called to a fixed installation gas alarm. Domestic, commercial, industrial </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>A</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1000" ConceptId="1000">Alarms</BroaderItem>
+	</Item>
+	<Item Id="3" ConceptId="3" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Smoke alarm</Name>
+		<ScopeNotes>Any report of a domestic smoke alarm operating. From a Member of the public or a monitoring station</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>A</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1000" ConceptId="1000">Alarms</BroaderItem>
+	</Item>
+	<Item Id="4" ConceptId="4" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Intruder alarm at FRS property</Name>
+		<ScopeNotes>Activiation of these alarms will be indicated through the RCC Systems. RCC will mobilise staff to investigate.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>A</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>no</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1000" ConceptId="1000">Alarms</BroaderItem>
+	</Item>
+	<Item Id="5" ConceptId="5" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire alarm at FRS property</Name>
+		<ScopeNotes>Activiation of these alarms will be indicated through the RCC Systems. RCC will mobilise staff to investigate.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>A</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1000" ConceptId="1000">Alarms</BroaderItem>
+	</Item>
+	<Item Id="1010" ConceptId="1010" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Explosion</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+	<Item Id="20" ConceptId="20" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Explosion</Name>
+		<ScopeNotes> Report of an explosion at a domestic or industrial premises. Not including deliberate bomb attacks </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>E</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Explosion</BroaderItem>
+	</Item>
+	<Item Id="21" ConceptId="21" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Vehicle LPG fuelled</Name>
+		<ScopeNotes>Fires in vehicles fuelled by Liquid Petroleum Gas.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>E</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Explosion</BroaderItem>
+	</Item>
+	<Item Id="1020" ConceptId="1020" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+	<Item Id="30" ConceptId="30" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Abandoned call</Name>
+		<ScopeNotes>Any occasion where a call is made to an RCC where the call terminates prematurely and the information is incomplete</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>no</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="31" ConceptId="31" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft large</Name>
+		<ScopeNotes>Large fixed wing commercial or private aircraft excluding military</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>S</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="32" ConceptId="32" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft light</Name>
+		<ScopeNotes>Fixed wing recreational/crop spraying/small private aircraft. Including - microlite and  helicopters</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="33" ConceptId="33" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft military</Name>
+		<ScopeNotes>Incidents involving military aircraft. In flight or grounded</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="34" ConceptId="34" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Barn</Name>
+		<ScopeNotes>Incidents involving agricultural storage premises other than silos. May contain livestock/straw/ hay/agrochems and farm machinery</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="35" ConceptId="35" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Boat</Name>
+		<ScopeNotes>Fires involving recreational water borne craft. Barges, yachts, fishing boats</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="36" ConceptId="36" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Building</Name>
+		<ScopeNotes>Any permanent or semi permanent built structure and attached/adjoining outbuildings</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="37" ConceptId="37" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Building thatched </Name>
+		<ScopeNotes>Fire involving any building with a thatched roof</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="38" ConceptId="38" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Caravan / camping</Name>
+		<ScopeNotes>Includes static caravans / tents, non permanent accommodation structures</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="39" ConceptId="39" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Chimney</Name>
+		<ScopeNotes>Domestic property chimney fires. Not commercial/industrial or thatch properties</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="40" ConceptId="40" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Chimney thatch</Name>
+		<ScopeNotes>Chimney fire in any property with a thatch roof</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="41" ConceptId="41" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cylinder acetylene </Name>
+		<ScopeNotes>Any incident specifically involving acetylene cylinder/s. Fire, Leak, Damaged</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="42" ConceptId="42" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cylinder other</Name>
+		<ScopeNotes>Fires/leakages of gas cylinders.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="43" ConceptId="43" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Derelict property</Name>
+		<ScopeNotes>Any property that is abandoned, officially uninhabited, awaiting demolition or in dangerous or unsafe condition</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="44" ConceptId="44" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Electrical installations</Name>
+		<ScopeNotes>Fires involving non-domestic electrical installations and associated equipment</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="45" ConceptId="45" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire </Name>
+		<ScopeNotes>Report of fire, where the nature of the fire cannot be specified by the caller. Too far away, unsure of location, in the distance  </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="46" ConceptId="46" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire in the open - large</Name>
+		<ScopeNotes>A fire in the open that covers a large area or involves large quantities of combustible materials.Scrapyards, large open areas, standing crops, woodland </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="47" ConceptId="47" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire in the open - small</Name>
+		<ScopeNotes>A fire in the open that covers a small area or involves small quantities of combustible materials. Rubbish/bins, single tree, bushes, grass</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>4</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="48" ConceptId="48" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire now out</Name>
+		<ScopeNotes>Any incident where a reported fire is now believed to be out.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="49" ConceptId="49" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Late fire call</Name>
+		<ScopeNotes>Incidents which involve a call to the Fire and Rescue Service where it is stated by the caller that the incident is believed to have concluded in excess of one hour prior to the time of call. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="50" ConceptId="50" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Persons </Name>
+		<ScopeNotes>Incidents involving a person or persons believed to be physically at risk from fire ie trapped by or in pysical contact with the fire. Such incidents may involve persons trapped within a building, vehicle enclosure etc.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="51" ConceptId="51" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Persons on fire</Name>
+		<ScopeNotes>Incidents involving an individual or individuals physically involved in fire including any part of the body and/or clothing worn by the victim/s.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="52" ConceptId="52" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Post box</Name>
+		<ScopeNotes>Fires involving the contents and or structure of freestanding post boxes, excluding those attached to or incorporated within a building.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>4</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="53" ConceptId="53" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railway embankment</Name>
+		<ScopeNotes>Any fire in the open (large or small) occuring on property owned by the railways. Including lineside fires, embankments, sidings, verges and track </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="54" ConceptId="54" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railway train goods</Name>
+		<ScopeNotes>A railway incident involving fire in a goods/ mixed goods/tanker rolling stock</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="55" ConceptId="55" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railway train passenger</Name>
+		<ScopeNotes>A railway incident involving a fire in a passenger train</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="56" ConceptId="56" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Road furniture</Name>
+		<ScopeNotes>Fires involving all types of roadside furniture.   </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>4</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="57" ConceptId="57" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Ship</Name>
+		<ScopeNotes>Any fire on a seagoing vessel, in any compartment or part of the ship including any cargo</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="58" ConceptId="58" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Smoke in the open</Name>
+		<ScopeNotes>Report of smoke of from a source that is not immediately identifiable</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="59" ConceptId="59" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Vehicle large</Name>
+		<ScopeNotes>Any large road vehicle involved in fire</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="60" ConceptId="60" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Vehicle small</Name>
+		<ScopeNotes>Fire involving any small vehicle. Car, small van, motorcycle, light plant vehicle, </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="61" ConceptId="61" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Below ground fire</Name>
+		<ScopeNotes>A subterranean fire not readily accessible from ground level. Cable ductings,mines,underground transport systems. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Fire</BroaderItem>
+	</Item>
+	<Item Id="1030" ConceptId="1030" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Humanitarian or Assistance</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+	<Item Id="80" ConceptId="80" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Advice given</Name>
+		<ScopeNotes>Any incident where no F&amp;RS attendance is required. But appropriate advice is given to the caller. Burst pipe, other services</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="81" ConceptId="81" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft landing</Name>
+		<ScopeNotes>Standing by at non emergency landing situation.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="82" ConceptId="82" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Assist other agency</Name>
+		<ScopeNotes>Requests to assist other agencies with non-emergency events. Lifting heavy casualties, swilling away, body recovery</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="83" ConceptId="83" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Boat stability</Name>
+		<ScopeNotes>Incidents where boats require assistance in danger of sinking</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="84" ConceptId="84" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Co responder</Name>
+		<ScopeNotes>The mobilisation of trained fire crews to provide emergency medical assistance to members of the public, </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="85" ConceptId="85" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Dangerous structure</Name>
+		<ScopeNotes>Incident involving any structure which presents a hazard due to its unsafe condition. Collapse, falling debris, damage to property</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="86" ConceptId="86" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire safety issue</Name>
+		<ScopeNotes>The provision of immediate advice or referral of the issue to a specialist fire safety officer or department. Including Fire Safety complaints</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="87" ConceptId="87" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Flooding</Name>
+		<ScopeNotes>Incidents involving all types of flooding including: All building types, flash flooding, flooding in open ground, farm land, highways,  vehicles etc.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="88" ConceptId="88" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Inform other agency</Name>
+		<ScopeNotes>Forwarding information received at the RCC to appropriate external agencies </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>no</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="89" ConceptId="89" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Persons collapsed</Name>
+		<ScopeNotes>Incidents involving a person or persons who have become incapacitated and are unable to walk or move unaided including persons that are either concious or unconcious.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="90" ConceptId="90" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Persons locked out</Name>
+		<ScopeNotes>Incidents involving persons who are unable to gain unassisted entry into a room, building, vehicle or other such enclosure where urgent entry is essential to ensure the health,safety and welfare of themselves and/or others. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="91" ConceptId="91" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>RTC</Name>
+		<ScopeNotes>Incidents involving  road traffic collisions' where no persons are involved. F&amp;RS attends for safety purposes only</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>4</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="92" ConceptId="92" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Supply water</Name>
+		<ScopeNotes>Requests to assist with the supply of bulk water</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="93" ConceptId="93" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Swill away</Name>
+		<ScopeNotes>Any request from recognised authorities to assist with the removal by washing away low or non hazard substances from a public place</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HA</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Humanitarian or Assistance</BroaderItem>
+	</Item>
+	<Item Id="1040" ConceptId="1040" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hazardous Material</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+	<Item Id="100" ConceptId="100" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Gas involved</Name>
+		<ScopeNotes>Incidents involving all  types of gas leak from mains or fixed installations excludingcylinder supplies. Such incidents would include domestic and commercial Gas, Carbon Monoxide, Ammonia, Methane etc </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="101" ConceptId="101" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Haz mat minor</Name>
+		<ScopeNotes>Incidents involving low hazard substances with little or no potential to escalate and with only the potential to cause minimal risk to life or property. eg leaks from domestic fridges,unknown substances in garden sheds etc.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="102" ConceptId="102" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Oil pollution</Name>
+		<ScopeNotes>Incidents involving the spillage, leakage or contamination of oil products including mineral and synthetic oils. Such incidents may involve the requirement for decontamination, containment or absorbtion.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="103" ConceptId="103" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Pipeline</Name>
+		<ScopeNotes>Incidents involving above ground or subteranean pipelines including fractures,leaks,explosions. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="104" ConceptId="104" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Radiation involved</Name>
+		<ScopeNotes>Any incident involving the accidental or deliberate release of a radioactive source or substance includes Incidents involving Irradiated Nuclear Fuel ie Plutonioum or high level Radioactive Waste (not CCBRN)</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="105" ConceptId="105" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Unidentified smell</Name>
+		<ScopeNotes>Any report of an unidentified smell causing concern or having an adverse effect on people in an area </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="106" ConceptId="106" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Vehicle leaking fuel</Name>
+		<ScopeNotes>Any report of a fuel spillage originating from a vehicle, not RTC.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>4</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="107" ConceptId="107" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Haz mat major</Name>
+		<ScopeNotes>Incidents involving confirmed high hazard substances which have the potential to escalate and/or cause significant risk to life or property. Such substances may include chemical, Biological, Radiological or Nuclear. Not including CCBRN.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>HM</fire:GenericType>
+				<fire:Category>E</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Hazardous Material</BroaderItem>
+	</Item>
+	<Item Id="1050" ConceptId="1050" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescues</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+	<Item Id="120" ConceptId="120" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft accident large</Name>
+		<ScopeNotes>Large fixed wing commercial or private aircraft excluding military</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>S</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="121" ConceptId="121" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft accident light</Name>
+		<ScopeNotes>Fixed wing recreational/crop spraying/small private aircraft. Including - microlights and  helicopters</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="122" ConceptId="122" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft in distress</Name>
+		<ScopeNotes>Calls originating from airport authorities, indicating aircraft reporting in flight problems</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>S</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="123" ConceptId="123" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Animal rescue large</Name>
+		<ScopeNotes>Animals suffering physical entrapment, beyond the lifting capabilities of one person or requiring specialist equipment </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="124" ConceptId="124" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Animal rescue small</Name>
+		<ScopeNotes>Animals suffering physical entrapment, within the lifting capabilities of one person not requiring specialist equipment </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="125" ConceptId="125" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Boat rescue</Name>
+		<ScopeNotes>Assisting people in distress on boats. Evacuation</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="126" ConceptId="126" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Building collapse</Name>
+		<ScopeNotes>Collapse of any permanent or semi permanent built structure and attached/adjoining outbuildings</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="127" ConceptId="127" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Evacuation of persons</Name>
+		<ScopeNotes>Incident involving assisting with the evacuation of people from a place of imminent danger to a place of safety.  </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="128" ConceptId="128" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Lift persons shut in</Name>
+		<ScopeNotes>Incidents involving persons stuck within the confines of a lift car due to mechanical failure or physical restriction ie persons are unable to make their own way out unassisted.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>4</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="129" ConceptId="129" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Persons locked in</Name>
+		<ScopeNotes>Incidents involving persons secured within the confines of a room, building, vehicle or other such enclosure and are unable to make their own way out unassisted and where urgent exit is essential to ensure the health,safety and welfare of themselves and/o</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>4</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="130" ConceptId="130" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Persons trapped</Name>
+		<ScopeNotes>Incidents involving a person or persons physically trapped by objects, structures, machinery or their physical location, such as a cliff face etc, and are unable to release themselves to a place of safety without urgent assistance. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="131" ConceptId="131" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railway accident</Name>
+		<ScopeNotes>The rescue and evacuation assitance of people involved in rail accidents, breakdowns, collisions, derailments, suicides.  </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="132" ConceptId="132" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from confined space</Name>
+		<ScopeNotes>Assisting at or facilitating rescue of persons from confined spaces and or underground   </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="133" ConceptId="133" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from entrapment</Name>
+		<ScopeNotes>The release of persons from which they are physically trapped and unable to free themselves.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="134" ConceptId="134" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from height</Name>
+		<ScopeNotes>The release of persons physically trapped and/or unable to free themselves at height. Includes any person at any location in an elevated position </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="135" ConceptId="135" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from mud</Name>
+		<ScopeNotes>Release of persons physically trapped and unable to free themselves from mud, earth, quicksand, slurry</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="136" ConceptId="136" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from water</Name>
+		<ScopeNotes>The rescue of persons from or adjacent to water, both static and flowing or ice. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="137" ConceptId="137" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>RTC persons trapped (large vehicles)</Name>
+		<ScopeNotes>Incidents involving the rescue of persons from road traffic collisions' where large or heavy goods vehicles are involved. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="138" ConceptId="138" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>RTC persons trapped (small vehicles)</Name>
+		<ScopeNotes>Incidents involving the rescue of persons from road traffic collisions' not involving large or heavy goods vehicles</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>1</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="139" ConceptId="139" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Ship sinking</Name>
+		<ScopeNotes>Any assistance or professional advice that can be given to vessels in distress.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>P</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="140" ConceptId="140" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Suicide attempt</Name>
+		<ScopeNotes>Standing by and assisting other agencies as required at suicide threat incidents. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="141" ConceptId="141" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>UKFRSSART</Name>
+		<ScopeNotes>Incident in which the UK FRS Search and Rescue Team is requested to be sent abroad</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>R</fire:GenericType>
+				<fire:Category>L</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>no</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Rescues</BroaderItem>
+	</Item>
+	<Item Id="1060" ConceptId="1060" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Civil Disturbance / Unlawful Act</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+	<Item Id="160" ConceptId="160" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bomb confirmed</Name>
+		<ScopeNotes>Incidents where the threat of an explosive device has been confirmed</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>CD</fire:GenericType>
+				<fire:Category>S</fire:Category>
+				<fire:Priority>2</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Civil Disturbance / Unlawful Act</BroaderItem>
+	</Item>
+	<Item Id="161" ConceptId="161" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bomb suspected</Name>
+		<ScopeNotes>Responding as requested to incidents where there is a credible threat of terrorist explosive devices</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>CD</fire:GenericType>
+				<fire:Category>S</fire:Category>
+				<fire:Priority>3</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Civil Disturbance / Unlawful Act</BroaderItem>
+	</Item>
+	<Item Id="162" ConceptId="162" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Civil disturbance</Name>
+		<ScopeNotes>Incidents where there is large scale civil unrest. </ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>CD</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Civil Disturbance / Unlawful Act</BroaderItem>
+	</Item>
+	<Item Id="163" ConceptId="163" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Call challenged pp - public pay phone</Name>
+		<ScopeNotes>Any occasion where a report of an incident is received by a RCC which is believed to have been made with malicious intent or with intent to cause a nuisance and where it is considered that no legitimate incident exists.From a public Pay phone.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>CD</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>no</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Civil Disturbance / Unlawful Act</BroaderItem>
+	</Item>
+	<Item Id="164" ConceptId="164" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Call challenged mp - mobile phone</Name>
+		<ScopeNotes>Any occasion where a report of an incident is received by a RCC which is believed to have been made with malicious intent or with intent to cause a nuisance and where it is considered that no legitimate incident exists.From a mobile.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>CD</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>no</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Civil Disturbance / Unlawful Act</BroaderItem>
+	</Item>
+	<Item Id="165" ConceptId="165" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Call challenged ps - public subscriber line</Name>
+		<ScopeNotes>Any occasion where a report of an incident is received by a RCC which is believed to have been made with malicious intent or with intent to cause a nuisance and where it is considered that no legitimate incident exists.From a mobile.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>CD</fire:GenericType>
+				<fire:Category>M</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>no</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Civil Disturbance / Unlawful Act</BroaderItem>
+	</Item>
+	<Item Id="9999" ConceptId="9999" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Not Known</Name>
+		<ScopeNotes>A command and control system can't identify a code as it only possesses a Description.</ScopeNotes>
+		<Attributes>
+			<fire:IncidentTypeDetails>
+				<fire:GenericType>F</fire:GenericType>
+				<fire:Category>S</fire:Category>
+				<fire:Priority>5</fire:Priority>
+				<fire:ForNationalStatisticsUse>yes</fire:ForNationalStatisticsUse>
+			</fire:IncidentTypeDetails>
+		</Attributes>
+		<BroaderItem Id="0" ConceptId="0" Default="true">Incident Type</BroaderItem>
+	</Item>
+</ControlledList>

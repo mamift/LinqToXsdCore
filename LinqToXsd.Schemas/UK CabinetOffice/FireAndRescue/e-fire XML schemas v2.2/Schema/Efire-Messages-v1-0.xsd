@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Simon Phillips (Parity Solutions Ltd Wimbledon Bridge House) -->
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by david sinfield (customarchery) -->
+<xsd:schema xmlns:NameSpace1="http://www.govtalk.gov.uk/CM/gms-xs" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas/Efire" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:cst="http://www.govtalk.gov.uk/core" xmlns:ft="http://www.govtalk.gov.uk/financial/GDSCFinancialTypes" xmlns:erms="http://www.govtalk.gov.uk/CM/gms" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-Messages-v1-0">
+	<xsd:include schemaLocation="Efire-Visit-v1-0.xsd"/>
+	<xsd:include schemaLocation="Efire-PetroleumLicence-v1-0.xsd"/>
+	<xsd:include schemaLocation="Efire-ExplosivesLicence-v1-0.xsd"/>
+	<xsd:include schemaLocation="Efire-SAToolkit-v1-0.xsd"/>
+	<xsd:include schemaLocation="Efire-SoapHeader-v1-0.xsd"/>
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(mailto:d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group, ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-10-17</Modified>
+				</Date>
+				<Description>Efire Portal Message payloads</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-Messages-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>Efire-Visit-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-PetroleumLicence-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-ExplosivesLicence-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-SAToolkit-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-SoapHeader-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Safety/Fire</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>Efire Portal Message payloads</Title>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:element name="EfireDocument" type="EfireDocumentStructure">
+		<xsd:annotation>
+			<xsd:documentation>Message structure for OISYS web service. Returns one or more document</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="EfireDocumentList">
+		<xsd:annotation>
+			<xsd:documentation>Message structure for OISYS web service. Returns list of document</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Rows" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="RowItem" type="xs:string" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="RowCount"/>
+				<xsd:element name="ColumnCount"/>
+				<xsd:element name="ColumnHeadings" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:attribute name="ColumnName" type="xs:int" use="required"/>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="DocumentType" type="DocumentType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="EfireSoapHeader" type="EfireSoapHeaderStructure">
+		<xsd:annotation>
+			<xsd:documentation>The SOAP header</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="EfireDocumentStructure">
+		<xsd:annotation>
+			<xsd:documentation>Structure enclosing all efire forms. Only one of the form will contain data at any point of time.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="Visit" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="BaseVisitStructure">
+							<xsd:choice>
+								<xsd:element name="HomeVisitDetails">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="ConsentProvidedByOccupier" type="cst:YesNoType"/>
+											<xsd:element name="RelationshipToOccupier" type="ShortPopulatedStringType">
+												<xsd:annotation>
+													<xsd:documentation>Defines the relationship of the Contact to the Occupier when a Visit is being organised.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="CommunityEventDetails">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="DateOfEvent" type="cst:DateType" minOccurs="0"/>
+											<xsd:element name="TimeOfEvent" type="xs:time" minOccurs="0"/>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="SchoolVisitDetails">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="SchoolName" type="ShortPopulatedStringType">
+												<xsd:annotation>
+													<xsd:documentation>Element to store Name of the School or College.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="KeyStage" type="ShortPopulatedStringType">
+												<xsd:annotation>
+													<xsd:documentation>Defines the Key Stage of the Class or Group e.g. Foundation, 1, 2 and so on. </xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="NumberOfChildren">
+												<xsd:annotation>
+													<xsd:documentation>Number of children involved.</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:nonNegativeInteger">
+														<xsd:minInclusive value="1"/>
+														<xsd:maxInclusive value="9999"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="FiresetterVisitDetails">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="IsParentOrGuardian" type="cst:YesNoType"/>
+											<xsd:element name="ConsentProvidedByOccupier" type="cst:YesNoType"/>
+											<xsd:element name="RelationshipToOccupier" type="ShortPopulatedStringType">
+												<xsd:annotation>
+													<xsd:documentation>Defines the relationship of the Contact to the Occupier when a Visit is being organised.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="NumberOfChildren">
+												<xsd:annotation>
+													<xsd:documentation>Number of children involved.</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:nonNegativeInteger">
+														<xsd:minInclusive value="1"/>
+														<xsd:maxInclusive value="99"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="ChildrenAgeRangeFrom">
+												<xsd:annotation>
+													<xsd:documentation>Number of children involved.</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:nonNegativeInteger">
+														<xsd:minInclusive value="1"/>
+														<xsd:maxInclusive value="99"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="ChildrenAgeRangeTo" minOccurs="0">
+												<xsd:annotation>
+													<xsd:documentation>Number of children involved.</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:nonNegativeInteger">
+														<xsd:minInclusive value="1"/>
+														<xsd:maxInclusive value="99"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:choice>
+							<xsd:attribute name="DocumentId" type="DocumentIdType" use="required"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="PetroleumLicence" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="PetroleumLicenceStructure">
+							<xsd:attribute name="DocumentId" type="DocumentIdType" use="required"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ExplosivesLicence" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="ExplosivesLicenceStructure">
+							<xsd:attribute name="DocumentId" type="DocumentIdType" use="required"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SAToolkit" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="SAToolkitStructure">
+							<xsd:attribute name="DocumentId" type="DocumentIdType" use="required"/>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:simpleType name="FRSApplicationType">
+		<xsd:annotation>
+			<xsd:documentation>A string type for FRS application</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="ShortPopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="PasswordType">
+		<xsd:annotation>
+			<xsd:documentation>A string type for password</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="ShortPopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="SessionKeyType">
+		<xsd:annotation>
+			<xsd:documentation> A string type for storing session key</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="ShortPopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:element name="LogInIn">
+		<xsd:annotation>
+			<xsd:documentation>Incoming Parameters for LogIn Method</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ApplicationId" type="FRSApplicationType"/>
+				<xsd:element name="Password" type="PasswordType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="LogInResponse">
+		<xsd:annotation>
+			<xsd:documentation>Session key type</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="LogInResult" type="SessionKeyType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="LogOutIn">
+		<xsd:annotation>
+			<xsd:documentation>Empty element with no parameters</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="LogOutResponse">
+		<xsd:annotation>
+			<xsd:documentation>Empty element with no parameters</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="GetListIn" type="DocumentType">
+		<xsd:annotation>
+			<xsd:documentation>Incoming parameter for GetListMethod</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="GetDocumentByIdIn">
+		<xsd:annotation>
+			<xsd:documentation>Incoming Parameters for GetDocumentById Method</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DocumentId" type="DocumentIdType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDocumentByTypeIn">
+		<xsd:annotation>
+			<xsd:documentation>Incoming Parameters for GetDocumentType Method</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DocumentType" type="DocumentType"/>
+				<xsd:element name="MaxDocuments" type="xs:positiveInteger"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AcknowledgeDocumentIn">
+		<xsd:annotation>
+			<xsd:documentation>Incoming Parameters for AcknowledgeDocument Method</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DocumentId" type="DocumentIdType" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AcknowledgeDocumentResponse">
+		<xsd:annotation>
+			<xsd:documentation>Empty element with no parameters</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="LogIn">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for the incoming soap body for the Login request </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="LogInIn"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDocumentById">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for the incoming soap body for the GetDocumentById request </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="GetDocumentByIdIn"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDocumentByType">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for the incoming soap body for the Get DocumentByType request </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="GetDocumentByTypeIn"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="LogOut">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for the incoming soap body for the Logout request </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="LogOutIn"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AcknowledgeDocument">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for the incoming soap body for the AcknowledgeDocument request </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="AcknowledgeDocumentIn"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetList">
+		<xsd:annotation>
+			<xsd:documentation>The return structure fo the call to GetList</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="GetListIn"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDocumentByIdResponse">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for response to GetDocumentByID</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="GetDocumentByIdResult">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="EfireDocument"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDocumentByTypeResponse">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for response to GetDocumentByType</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="GetDocumentByTypeResult">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="EfireDocument"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetListResponse">
+		<xsd:annotation>
+			<xsd:documentation>Wrapper for response to GetList</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="GetListResult">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="EfireDocumentList"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

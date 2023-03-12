@@ -1,0 +1,1729 @@
+<ControlledList ItemName="Special Service Type" ListName="Fire Incident Special Service Types List" VersionDate="2005-10-26" HomeLocation="" LatestVersionLocation="" Version="1.0" xsi:schemaLocation="http://www.esd.org.uk/standards http://www.esd.org.uk/standards/xmlschemas/taxonomy-v3.0.xsd" xmlns="http://www.esd.org.uk/standards" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fire="http://www.fire.gov.uk/schemas" xmlns:mos="urn:schemas-microsoft-com:office:spreadsheet">
+	<Metadata>
+		<Audience>e-service developers</Audience>
+		<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+		<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+		<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+		<Date>2007-03-16</Date>
+		<Date.Created>2005-08-15</Date.Created>
+		<Date.Modified>2007-03-16</Date.Modified>
+		<Description>Fire and Rescue Statistics - Incident Collection System taxonomy file defining the Incident Special Service Types.</Description>
+		<Format>XML schema Instance, W3C Recommendation 2001</Format>
+		<Identifier>FRSIncident-SpecialServiceTaxonomy-v1-0</Identifier>
+		<Language>[ISO 639-2/B] ENG</Language>
+		<Publisher>HM Government</Publisher>
+		<Relation.Requires>taxonomy-v3-0</Relation.Requires>
+		<Rights.Copyright>Crown Copyright 2007</Rights.Copyright>
+		<Subject.Category>Response</Subject.Category>
+		<Subject.Project>Fire and Rescue Statistics - Incident Collection System</Subject.Project>
+		<Title>Fire and Rescue Statistics - Incident Collection System taxonomy for the Incident Special Service Types</Title>
+	</Metadata>
+	<Item Preferred="true" LastUpdatedInVersion="1.0" AddedInVersion="1.0" Obsolete="false" ConceptId="0" Id="0">
+		<Name>Special Service</Name>
+		<ScopeNotes>Base item for all special service types</ScopeNotes>
+	</Item>
+	<Item Id="1010" ConceptId="1010" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>RTC</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="1" ConceptId="1" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Extrication of person/s</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>yes</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">RTC</BroaderItem>
+	</Item>
+	<Item Id="2" ConceptId="2" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Make vehicle safe</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>yes</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">RTC</BroaderItem>
+	</Item>
+	<Item Id="3" ConceptId="3" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Wash down road</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>yes</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">RTC</BroaderItem>
+	</Item>
+	<Item Id="4" ConceptId="4" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Advice only</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>yes</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">RTC</BroaderItem>
+	</Item>
+	<Item Id="5" ConceptId="5" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Stand by - no action </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>yes</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">RTC</BroaderItem>
+	</Item>
+	<Item Id="6" ConceptId="6" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>yes</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">RTC</BroaderItem>
+	</Item>
+	<Item Id="1020" ConceptId="1020" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other Transport incident</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="10" ConceptId="10" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Extrication of person/s</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Other Transport incident</BroaderItem>
+	</Item>
+	<Item Id="11" ConceptId="11" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Release of person/s</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Other Transport incident</BroaderItem>
+	</Item>
+	<Item Id="12" ConceptId="12" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Make vehicle safe</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Other Transport incident</BroaderItem>
+	</Item>
+	<Item Id="13" ConceptId="13" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Advice only</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Other Transport incident</BroaderItem>
+	</Item>
+	<Item Id="14" ConceptId="14" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Stand by - no action </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Other Transport incident</BroaderItem>
+	</Item>
+	<Item Id="15" ConceptId="15" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1020" ConceptId="1020">Other Transport incident</BroaderItem>
+	</Item>
+	<Item Id="1030" ConceptId="1030" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Flooding</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="20" ConceptId="20" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Evacuation</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Flooding</BroaderItem>
+	</Item>
+	<Item Id="21" ConceptId="21" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Pumping out</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Flooding</BroaderItem>
+	</Item>
+	<Item Id="22" ConceptId="22" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Advice only</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Flooding</BroaderItem>
+	</Item>
+	<Item Id="23" ConceptId="23" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Stand by - no action </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Flooding</BroaderItem>
+	</Item>
+	<Item Id="24" ConceptId="24" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1030" ConceptId="1030">Flooding</BroaderItem>
+	</Item>
+	<Item Id="1040" ConceptId="1040" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue or evacuation from water</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="2040" ConceptId="2040" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person in water or at immediate risk of entering water</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1040" ConceptId="1040">Rescue or evacuation from water</BroaderItem>
+	</Item>
+	<Item Id="30" ConceptId="30" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person in river, canal or other waterway</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="31" ConceptId="31" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person in lake, sea or estuary</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="32" ConceptId="32" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person fallen through ice or at risk of doing so</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="33" ConceptId="33" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person in indoor or outdoor pool</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="34" ConceptId="34" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person stranded on beach or cliff with rising or full tide, river side/ravine or other waterway embankment where could fall into waterway </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="35" ConceptId="35" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name> Person in sinking or otherwise unsound vessel </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="36" ConceptId="36" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name> Person in industrial or other manmade water feature, eg sewage plant, industrial effluent pool</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="37" ConceptId="37" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person in or on top of vehicle that is surrounded by moving or rising water greater than (2) foot deep</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="38" ConceptId="38" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person in or on top of building that is surrounded by moving or rising water that will exceed head height or cause structural collapse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="39" ConceptId="39" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person assisted from mobile home (e.g. caravan) surrounded by moving or rising water greater than (2) foot deep</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="40" ConceptId="40" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Person in water or at immediate risk of entering water</BroaderItem>
+	</Item>
+	<Item Id="2050" ConceptId="2050" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person not in water or at imminent risk of entering water (NB water not flowing)</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1040" ConceptId="1040">Rescue or evacuation from water</BroaderItem>
+	</Item>
+	<Item Id="50" ConceptId="50" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person assisted from dwelling surrounded by water</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Person not in water or at imminent risk of entering water (NB water not flowing)</BroaderItem>
+	</Item>
+	<Item Id="51" ConceptId="51" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Person assisted through or across public highway covered by water</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Person not in water or at imminent risk of entering water (NB water not flowing)</BroaderItem>
+	</Item>
+	<Item Id="52" ConceptId="52" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Person not in water or at imminent risk of entering water (NB water not flowing)</BroaderItem>
+	</Item>
+	<Item Id="1050" ConceptId="1050" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other rescue/release of persons</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="60" ConceptId="60" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Trapped in or under machinery or other object</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="61" ConceptId="61" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>trapped in collapsed structure</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="62" ConceptId="62" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>from mud</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="63" ConceptId="63" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Confined space with a noxious, toxic or oxygen deficient atmosphere</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="64" ConceptId="64" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Confined space - atmosphere not noxious</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="65" ConceptId="65" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>from height</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="66" ConceptId="66" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>from below ground</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="67" ConceptId="67" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1050" ConceptId="1050">Other rescue/release of persons</BroaderItem>
+	</Item>
+	<Item Id="1060" ConceptId="1060" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Animal assistance incidents</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="2110" ConceptId="2110" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from height</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1060" ConceptId="1060">Animal assistance incidents</BroaderItem>
+	</Item>
+	<Item Id="70" ConceptId="70" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Farm animal, e.g. Horse or cow</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2110" ConceptId="2110">Rescue from height</BroaderItem>
+	</Item>
+	<Item Id="71" ConceptId="71" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cat, dog or other domestic pet</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2110" ConceptId="2110">Rescue from height</BroaderItem>
+	</Item>
+	<Item Id="72" ConceptId="72" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bird</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2110" ConceptId="2110">Rescue from height</BroaderItem>
+	</Item>
+	<Item Id="73" ConceptId="73" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2110" ConceptId="2110">Rescue from height</BroaderItem>
+	</Item>
+	<Item Id="2120" ConceptId="2120" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from below ground</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1060" ConceptId="1060">Animal assistance incidents</BroaderItem>
+	</Item>
+	<Item Id="80" ConceptId="80" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Farm animal, e.g. Horse or cow</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2120" ConceptId="2120">Rescue from below ground</BroaderItem>
+	</Item>
+	<Item Id="81" ConceptId="81" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cat, dog or other domestic pet</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2120" ConceptId="2120">Rescue from below ground</BroaderItem>
+	</Item>
+	<Item Id="82" ConceptId="82" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bird</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2120" ConceptId="2120">Rescue from below ground</BroaderItem>
+	</Item>
+	<Item Id="83" ConceptId="83" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2120" ConceptId="2120">Rescue from below ground</BroaderItem>
+	</Item>
+	<Item Id="2130" ConceptId="2130" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rescue from water</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1060" ConceptId="1060">Animal assistance incidents</BroaderItem>
+	</Item>
+	<Item Id="90" ConceptId="90" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Farm animal, e.g. Horse or cow</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2130" ConceptId="2130">Rescue from water</BroaderItem>
+	</Item>
+	<Item Id="91" ConceptId="91" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cat, dog or other domestic pet</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2130" ConceptId="2130">Rescue from water</BroaderItem>
+	</Item>
+	<Item Id="92" ConceptId="92" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bird</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2130" ConceptId="2130">Rescue from water</BroaderItem>
+	</Item>
+	<Item Id="93" ConceptId="93" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2130" ConceptId="2130">Rescue from water</BroaderItem>
+	</Item>
+	<Item Id="100" ConceptId="100" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Lift heavy animal</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Animal assistance incidents</BroaderItem>
+	</Item>
+	<Item Id="101" ConceptId="101" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1060" ConceptId="1060">Animal assistance incidents</BroaderItem>
+	</Item>
+	<Item Id="1070" ConceptId="1070" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hazardous Materials incident</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="2210" ConceptId="2210" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 1: Explosives </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="110" ConceptId="110" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2210" ConceptId="2210">Class 1: Explosives </BroaderItem>
+	</Item>
+	<Item Id="111" ConceptId="111" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2210" ConceptId="2210">Class 1: Explosives </BroaderItem>
+	</Item>
+	<Item Id="2220" ConceptId="2220" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 2: Compressed Gases </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="120" ConceptId="120" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2220" ConceptId="2220">Class 2: Compressed Gases </BroaderItem>
+	</Item>
+	<Item Id="121" ConceptId="121" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2220" ConceptId="2220">Class 2: Compressed Gases </BroaderItem>
+	</Item>
+	<Item Id="2230" ConceptId="2230" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 3: Flammable Liquids </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="130" ConceptId="130" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2230" ConceptId="2230">Class 3: Flammable Liquids </BroaderItem>
+	</Item>
+	<Item Id="131" ConceptId="131" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2230" ConceptId="2230">Class 3: Flammable Liquids </BroaderItem>
+	</Item>
+	<Item Id="2240" ConceptId="2240" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 4: Flammables </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="140" ConceptId="140" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2240" ConceptId="2240">Class 4: Flammables </BroaderItem>
+	</Item>
+	<Item Id="141" ConceptId="141" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2240" ConceptId="2240">Class 4: Flammables </BroaderItem>
+	</Item>
+	<Item Id="2250" ConceptId="2250" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 5: Oxidizing Materials </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="150" ConceptId="150" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2250" ConceptId="2250">Class 5: Oxidizing Materials </BroaderItem>
+	</Item>
+	<Item Id="151" ConceptId="151" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2250" ConceptId="2250">Class 5: Oxidizing Materials </BroaderItem>
+	</Item>
+	<Item Id="2260" ConceptId="2260" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 6: Toxic Materials </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="160" ConceptId="160" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2260" ConceptId="2260">Class 6: Toxic Materials </BroaderItem>
+	</Item>
+	<Item Id="161" ConceptId="161" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2260" ConceptId="2260">Class 6: Toxic Materials </BroaderItem>
+	</Item>
+	<Item Id="2270" ConceptId="2270" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 7: Radioactive Materials </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="170" ConceptId="170" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2270" ConceptId="2270">Class 7: Radioactive Materials </BroaderItem>
+	</Item>
+	<Item Id="171" ConceptId="171" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2270" ConceptId="2270">Class 7: Radioactive Materials </BroaderItem>
+	</Item>
+	<Item Id="2280" ConceptId="2280" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 8: Corrosive Materials </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="180" ConceptId="180" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2280" ConceptId="2280">Class 8: Corrosive Materials </BroaderItem>
+	</Item>
+	<Item Id="181" ConceptId="181" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2280" ConceptId="2280">Class 8: Corrosive Materials </BroaderItem>
+	</Item>
+	<Item Id="2290" ConceptId="2290" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Class 9: Miscellaneous Dangerous Goods</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="190" ConceptId="190" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2290" ConceptId="2290">Class 9: Miscellaneous Dangerous Goods</BroaderItem>
+	</Item>
+	<Item Id="191" ConceptId="191" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2290" ConceptId="2290">Class 9: Miscellaneous Dangerous Goods</BroaderItem>
+	</Item>
+	<Item Id="2300" ConceptId="2300" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Combination of substances</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="200" ConceptId="200" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2300" ConceptId="2300">Combination of substances</BroaderItem>
+	</Item>
+	<Item Id="201" ConceptId="201" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2300" ConceptId="2300">Combination of substances</BroaderItem>
+	</Item>
+	<Item Id="2310" ConceptId="2310" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Unknown</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1070" ConceptId="1070">Hazardous Materials incident</BroaderItem>
+	</Item>
+	<Item Id="210" ConceptId="210" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Environmental containment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2310" ConceptId="2310">Unknown</BroaderItem>
+	</Item>
+	<Item Id="211" ConceptId="211" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No containment required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2310" ConceptId="2310">Unknown</BroaderItem>
+	</Item>
+	<Item Id="1080" ConceptId="1080" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Spills and Leaks (not RTC)</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="220" ConceptId="220" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Swill away non-hazardous substances</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1080" ConceptId="1080">Spills and Leaks (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="221" ConceptId="221" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Vehicle leaking fuel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1080" ConceptId="1080">Spills and Leaks (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="222" ConceptId="222" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1080" ConceptId="1080">Spills and Leaks (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="1090" ConceptId="1090" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Making Safe (not RTC)</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="230" ConceptId="230" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Stabilise or otherwise make safe unsafe structure </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1090" ConceptId="1090">Making Safe (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="231" ConceptId="231" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cordon off hole  e.g. Hole in road, Hole in pedestrian area</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1090" ConceptId="1090">Making Safe (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="232" ConceptId="232" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Remove object / obstruction from pedestrian area</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1090" ConceptId="1090">Making Safe (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="233" ConceptId="233" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Remove object / obstruction from highway</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1090" ConceptId="1090">Making Safe (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="234" ConceptId="234" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Removal/retrieval of dead body</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1090" ConceptId="1090">Making Safe (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="235" ConceptId="235" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Removal/retrieval of other object</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1090" ConceptId="1090">Making Safe (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="236" ConceptId="236" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1090" ConceptId="1090">Making Safe (not RTC)</BroaderItem>
+	</Item>
+	<Item Id="1100" ConceptId="1100" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Lift Release</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="240" ConceptId="240" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To child</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1100" ConceptId="1100">Lift Release</BroaderItem>
+	</Item>
+	<Item Id="241" ConceptId="241" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To medical case</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1100" ConceptId="1100">Lift Release</BroaderItem>
+	</Item>
+	<Item Id="242" ConceptId="242" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To person in distress</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1100" ConceptId="1100">Lift Release</BroaderItem>
+	</Item>
+	<Item Id="243" ConceptId="243" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To able bodied person not in distress</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1100" ConceptId="1100">Lift Release</BroaderItem>
+	</Item>
+	<Item Id="244" ConceptId="244" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No persons involved</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1100" ConceptId="1100">Lift Release</BroaderItem>
+	</Item>
+	<Item Id="1110" ConceptId="1110" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Effecting entry/exit </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="250" ConceptId="250" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To child</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1110" ConceptId="1110">Effecting entry/exit </BroaderItem>
+	</Item>
+	<Item Id="251" ConceptId="251" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To medical case</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1110" ConceptId="1110">Effecting entry/exit </BroaderItem>
+	</Item>
+	<Item Id="252" ConceptId="252" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To person in distress</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1110" ConceptId="1110">Effecting entry/exit </BroaderItem>
+	</Item>
+	<Item Id="253" ConceptId="253" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>To able bodied person not in distress</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1110" ConceptId="1110">Effecting entry/exit </BroaderItem>
+	</Item>
+	<Item Id="254" ConceptId="254" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No persons involved</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1110" ConceptId="1110">Effecting entry/exit </BroaderItem>
+	</Item>
+	<Item Id="1120" ConceptId="1120" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Removal of objects from people</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="260" ConceptId="260" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Ring removal</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1120" ConceptId="1120">Removal of objects from people</BroaderItem>
+	</Item>
+	<Item Id="261" ConceptId="261" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Handcuffs</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1120" ConceptId="1120">Removal of objects from people</BroaderItem>
+	</Item>
+	<Item Id="262" ConceptId="262" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other objects, e.g. railings (not impaled)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1120" ConceptId="1120">Removal of objects from people</BroaderItem>
+	</Item>
+	<Item Id="263" ConceptId="263" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Impaled</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1120" ConceptId="1120">Removal of objects from people</BroaderItem>
+	</Item>
+	<Item Id="264" ConceptId="264" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other, involving injury </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1120" ConceptId="1120">Removal of objects from people</BroaderItem>
+	</Item>
+	<Item Id="1130" ConceptId="1130" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Suicide/attempts</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="270" ConceptId="270" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Threat of/attempted  suicide</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1130" ConceptId="1130">Suicide/attempts</BroaderItem>
+	</Item>
+	<Item Id="271" ConceptId="271" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Suicide</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1130" ConceptId="1130">Suicide/attempts</BroaderItem>
+	</Item>
+	<Item Id="1140" ConceptId="1140" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Medical Incident - Co-responder/First responder</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="280" ConceptId="280" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Lift person</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="281" ConceptId="281" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Breathing difficulties / impairment / Respiratory arrest</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="282" ConceptId="282" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Chest Pain / Cardiac Arrest / Heart condition</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="283" ConceptId="283" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Unconscious, fitting or unresponsive</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="284" ConceptId="284" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Choking</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="285" ConceptId="285" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Collapse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="286" ConceptId="286" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Shock / Anaphylactic shock</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="287" ConceptId="287" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1140" ConceptId="1140">Medical Incident - Co-responder/First responder</BroaderItem>
+	</Item>
+	<Item Id="1150" ConceptId="1150" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Evacuation (no fire)</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="290" ConceptId="290" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Gas Leak</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1150" ConceptId="1150">Evacuation (no fire)</BroaderItem>
+	</Item>
+	<Item Id="291" ConceptId="291" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Unexploded bomb (not terrorist)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1150" ConceptId="1150">Evacuation (no fire)</BroaderItem>
+	</Item>
+	<Item Id="292" ConceptId="292" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Terrorist threat</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1150" ConceptId="1150">Evacuation (no fire)</BroaderItem>
+	</Item>
+	<Item Id="293" ConceptId="293" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Explosion (no fire)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1150" ConceptId="1150">Evacuation (no fire)</BroaderItem>
+	</Item>
+	<Item Id="294" ConceptId="294" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Acetylene cylinders</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1150" ConceptId="1150">Evacuation (no fire)</BroaderItem>
+	</Item>
+	<Item Id="295" ConceptId="295" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other reasons</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>yes</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1150" ConceptId="1150">Evacuation (no fire)</BroaderItem>
+	</Item>
+	<Item Id="1160" ConceptId="1160" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Water provision</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="300" ConceptId="300" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Filling pool</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1160" ConceptId="1160">Water provision</BroaderItem>
+	</Item>
+	<Item Id="301" ConceptId="301" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1160" ConceptId="1160">Water provision</BroaderItem>
+	</Item>
+	<Item Id="1170" ConceptId="1170" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Assist other agencies</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="310" ConceptId="310" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Civil Disturbance</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1170" ConceptId="1170">Assist other agencies</BroaderItem>
+	</Item>
+	<Item Id="311" ConceptId="311" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other assistance to police/ambulance</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1170" ConceptId="1170">Assist other agencies</BroaderItem>
+	</Item>
+	<Item Id="312" ConceptId="312" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Assistance to other agencies</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1170" ConceptId="1170">Assist other agencies</BroaderItem>
+	</Item>
+	<Item Id="1180" ConceptId="1180" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Advice Only</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="320" ConceptId="320" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire safety advice</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1180" ConceptId="1180">Advice Only</BroaderItem>
+	</Item>
+	<Item Id="321" ConceptId="321" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other advice</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1180" ConceptId="1180">Advice Only</BroaderItem>
+	</Item>
+	<Item Id="1190" ConceptId="1190" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Stand By</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="332" ConceptId="332" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>At known fire</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1190" ConceptId="1190">Stand By</BroaderItem>
+	</Item>
+	<Item Id="330" ConceptId="330" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft landing</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1190" ConceptId="1190">Stand By</BroaderItem>
+	</Item>
+	<Item Id="331" ConceptId="331" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other stand by</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>yes</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1190" ConceptId="1190">Stand By</BroaderItem>
+	</Item>
+	<Item Id="1200" ConceptId="1200" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>No action (not false alarm)</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Special Service</BroaderItem>
+	</Item>
+	<Item Id="340" ConceptId="340" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Service not required</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:SpecialServiceTypeDetails>
+				<fire:Other>no</fire:Other>
+				<fire:IsRTC>no</fire:IsRTC>
+				<fire:IsHazMat>no</fire:IsHazMat>
+			</fire:SpecialServiceTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1200" ConceptId="1200">No action (not false alarm)</BroaderItem>
+	</Item>
+</ControlledList>

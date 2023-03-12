@@ -1,0 +1,318 @@
+<ItemMappings xsi:schemaLocation="http://www.esd.org.uk/standards http://www.esd.org.uk/standards/xmlschemas/mapping-v3.0.xsd" HomeLocation="" LatestVersionLocation="" Version="1.0" FromResource="FRSIncident-MobilisationTypeTaxonomy-v1-0.xml" ToResource="FRSIncident-PropertyTypeTaxonomy-v1-0.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.esd.org.uk/standards">
+	<Metadata>
+		<Audience>e-service developers</Audience>
+		<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+		<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+		<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+		<Date>2007-03-16</Date>
+		<Date.Created>2005-08-15</Date.Created>
+		<Date.Modified>2007-06-15</Date.Modified>
+		<Description>Fire and Rescue Statistics - Incident Collection System taxonomy file defining the Mappings for Mobilise Incident Types to Property Types.</Description>
+		<Format>XML schema Instance, W3C Recommendation 2001</Format>
+		<Identifier>FRSIncident-PropertyMapping-v1-0</Identifier>
+		<Language>[ISO 639-2/B] ENG</Language>
+		<Publisher>HM Government</Publisher>
+		<Relation.Requires>FRSIncidentTypeTaxonomy-v1-0.xml</Relation.Requires>
+		<Relation.Requires>FRSPropertyTypeTaxonomy-v1-0.xml</Relation.Requires>
+		<Rights.Copyright>Crown Copyright 2007</Rights.Copyright>
+		<Subject.Category>Response</Subject.Category>
+		<Subject.Project>Fire and Rescue Statistics - Incident Collection System</Subject.Project>
+		<Title>Fire and Rescue Statistics - Incident Collection System taxonomy mappings for Mobilise Incident Types to Property Types</Title>
+	</Metadata>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="1" ConceptId="1">AFA</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="2" ConceptId="2">GAS ALARMS</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="3" ConceptId="3">SMOKE ALARM</Item>
+		</From>
+		<To>
+			<Item Id="2000" ConceptId="2000">Dwelling</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="5" ConceptId="5">FIRE ALARM AT FRS PROPERTY</Item>
+		</From>
+		<To>
+			<Item Id="285" ConceptId="285">Fire Station</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="20" ConceptId="20">EXPLOSION</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="21" ConceptId="21">VEHICLE LPG FUELLED</Item>
+		</From>
+		<To>
+			<Item Id="1010" ConceptId="1010">Road Vehicle</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="31" ConceptId="31">AIRCRAFT LARGE</Item>
+		</From>
+		<To>
+			<Item Id="2040" ConceptId="2040">Aircraft</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="32" ConceptId="32">AIRCRAFT LIGHT</Item>
+		</From>
+		<To>
+			<Item Id="371" ConceptId="371">Light aircraft</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="33" ConceptId="33">AIRCRAFT MILITARY</Item>
+		</From>
+		<To>
+			<Item Id="374" ConceptId="374">Military plane</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="34" ConceptId="34">BARN</Item>
+		</From>
+		<To>
+			<Item Id="310" ConceptId="310">Barn</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="35" ConceptId="35">BOAT</Item>
+		</From>
+		<To>
+			<Item Id="2050" ConceptId="2050">Boat</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="36" ConceptId="36">BUILDING</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="37" ConceptId="37">BUILDING THATCHED</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="38" ConceptId="38">CARAVAN / CAMPING</Item>
+		</From>
+		<To>
+			<Item Id="2000" ConceptId="2000">Dwelling</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="39" ConceptId="39">CHIMNEY</Item>
+		</From>
+		<To>
+			<Item Id="2000" ConceptId="2000">Dwelling</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="40" ConceptId="40">CHIMNEY THATCHED</Item>
+		</From>
+		<To>
+			<Item Id="2000" ConceptId="2000">Dwelling</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="41" ConceptId="41">CYLINDER ACETYLENE</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="42" ConceptId="42">CYLINDER OTHER</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="43" ConceptId="43">DERELICT PROPERTY</Item>
+		</From>
+		<To>
+			<Item Id="1000" ConceptId="1000">Building</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="44" ConceptId="44">ELECTRICAL INSTALLATIONS</Item>
+		</From>
+		<To>
+			<Item Id="2020" ConceptId="2020">Non Residential</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="45" ConceptId="45">FIRE</Item>
+		</From>
+		<To>
+			<Item Id="0" ConceptId="0">Property</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="46" ConceptId="46">FIRE IN THE OPEN - LARGE</Item>
+		</From>
+		<To>
+			<Item Id="1030" ConceptId="1030">Outdoor</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="47" ConceptId="47">FIRE IN THE OPEN - SMALL</Item>
+		</From>
+		<To>
+			<Item Id="1030" ConceptId="1030">Outdoor</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="48" ConceptId="48">FIRE NOW OUT</Item>
+		</From>
+		<To>
+			<Item Id="0" ConceptId="0">Property</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="49" ConceptId="49">LATE FIRE CALL</Item>
+		</From>
+		<To>
+			<Item Id="0" ConceptId="0">Property</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="50" ConceptId="50">PERSONS</Item>
+		</From>
+		<To>
+			<Item Id="0" ConceptId="0">Property</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="51" ConceptId="51">PERSONS ON FIRE</Item>
+		</From>
+		<To>
+			<Item Id="0" ConceptId="0">Property</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="52" ConceptId="52">POST BOX</Item>
+		</From>
+		<To>
+			<Item Id="412" ConceptId="412">Post box</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="53" ConceptId="53">RAILWAY EMBANKMENT</Item>
+		</From>
+		<To>
+			<Item Id="1030" ConceptId="1030">Outdoor</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="54" ConceptId="54">RAILWAY TRAIN GOODS</Item>
+		</From>
+		<To>
+			<Item Id="361" ConceptId="361">Freight Train</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="55" ConceptId="55">RAILWAY TRAIN PASSENGER</Item>
+		</From>
+		<To>
+			<Item Id="360" ConceptId="360">Passenger Train</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="56" ConceptId="56">ROAD FURNITURE</Item>
+		</From>
+		<To>
+			<Item Id="422" ConceptId="422">Roadside Furniture</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="57" ConceptId="57">SHIP</Item>
+		</From>
+		<To>
+			<Item Id="2050" ConceptId="2050">Boat</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="58" ConceptId="58">SMOKE IN THE OPEN</Item>
+		</From>
+		<To>
+			<Item Id="1030" ConceptId="1030">Outdoor</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="59" ConceptId="59">VEHICLE LARGE</Item>
+		</From>
+		<To>
+			<Item Id="1010" ConceptId="1010">Road Vehicle</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="60" ConceptId="60">VEHICLE SMALL</Item>
+		</From>
+		<To>
+			<Item Id="1010" ConceptId="1010">Road Vehicle</Item>
+		</To>
+	</ItemMapping>
+	<ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+		<From>
+			<Item Id="61" ConceptId="61">BELOW GROUND FIRE</Item>
+		</From>
+		<To>
+			<Item Id="0" ConceptId="0">Property</Item>
+		</To>
+	</ItemMapping>
+</ItemMappings>

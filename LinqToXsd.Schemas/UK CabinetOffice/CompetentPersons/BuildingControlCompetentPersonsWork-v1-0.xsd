@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Colin Robert Mackenzie (Electronic Media Consultants Ltd) -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/licensing/BuildingControlCompetentPersonsWork-200407" xmlns="http://www.govtalk.gov.uk/licensing/BuildingControlCompetentPersonsWork-200407" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="BuildingControlCompetentPersonsWork">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Developed by Colin Mackenzie, Electronic Media Consultants Ltd (mailto:colin@elecmc.com), http://www.elecmc.com</Contributor>
+				<Contributor>John Neal, Building Control Manager for Rushcliffe Borough Council, Advisor To The District Surveyors Association (mailto:plbcjn@rushcliffe.gov.uk)</Contributor>
+				<Contributor>Steve Evans, Building Consultancy Manager, Wychavon District Council (mailto:steve.evans@wychavon.gov.uk)</Contributor>
+				<Contributor>Competent Persons Forum</Contributor>
+				<Coverage>
+					<Temporal>
+						<BeginningDate>2004-11-01</BeginningDate>
+					</Temporal>
+				</Coverage>
+				<Creator>Office Of The Deputy Prime Minister</Creator>
+				<Date>
+					<Created>2004-11-01</Created>
+				</Date>
+				<Date>
+					<Valid>
+						<BeginningDate>2004-11-01</BeginningDate>
+					</Valid>
+				</Date>
+				<Description>Schema for the exchange of information between a "Competent Persons Scheme" and the relevant Local Authority. The information describes building work carried-out by a builder who is registered with a  "Competent Persons Scheme" (and therefore does not need to supply Building Control at the Local Auhtority with the information directly). From the 1st January 2005, all organisations running these Competent Persons Schemes will be required to notify the relevant Local Authority each time a project is carried out under the scheme. Note that the scope of this schema covers the transfer only of the information required by the Local Authority and NOT any other information/messages required by the individual schemes themselves.</Description>
+				<Disposal>
+					<Review>2005-11-01</Review>
+				</Disposal>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.govtalk.gov.uk/licensing/BuildingControlCompetentPersonsWork-200407}BuildingControlCompetentPersonsWork</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Relation>
+					<Requires>{http://www.govtalk.gov.uk/people/AddressAndPersonalDetails}AddressTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>{http://www.govtalk.gov.uk/core}CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>BuildingRecordSet</ProvidesDefinitionOf>
+					<ProvidesDefinitionOf>BuildingRecordErrorSetResponse</ProvidesDefinitionOf>
+				</Relation>
+				<Rights>unclassified
+					<Copyright>Crown copyright 2004</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Business and industry:Business practice and regulation</Category>
+				</Subject>
+				<Subject>
+					<Project>Office Of The Deputy Prime Minister - "Competent Persons Scheme".</Project>
+				</Subject>
+				<Title>Building Control Competent Persons Work Schema</Title>
+				<Type>message</Type>
+			</Metadata>
+		</xsd:appinfo>
+		<xsd:documentation>The original data requirements were established by representatives of the District Surveyors Association based on ODPM requirments for Local Authorities to store this data. The requirments were then reviewed by representatives of the Local Authorities, suppliers of Building Control systems to the Local Authorities and the schemes themselves (via the Competent Persons Forum and its technical representative).</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v1-3.xsd"/>
+	<xsd:element name="BuildingRecordSet">
+		<xsd:annotation>
+			<xsd:documentation>Information required by Local Authorities on work performed under a "Competent Persons Scheme" supplied by a scheme to the Local Authority. It is expected that this sinformation will be transferred weekly (although the schema allows individual records to be sent). Each file would contain records from one scheme to one authority sent via a "push" mechanism (initially as an email attachment).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref="SchemeAndLAGroup"/>
+				<xsd:element name="SchemeErrorResponseEmailAddress" type="core:EmailAddressType">
+					<xsd:annotation>
+						<xsd:documentation>This contains the scheme's email address that any errors found by the Local Authority should be returned to.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="BuildingRecord" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>This contains the detail of an individual piece of work performed under a scheme.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:group ref="SchemeUniqueRecordGroup"/>
+							<xsd:element name="CompetentPerson">
+								<xsd:annotation>
+									<xsd:documentation>Information on the person that did the work (the person registered under the scheme). Currently restricted to the person identifier rather than any details like contact details, business address, company number?</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="PersonRegistrationIdentifier" type="PersonRegistrationIdentifierType">
+											<xsd:annotation>
+												<xsd:documentation>The scheme registration number of the Competent Person responsible</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="InstallerRegisteredName" type="InstallerRegisteredNameType">
+											<xsd:annotation>
+												<xsd:documentation>The name of the installer that performed the work (as registered with the scheme). Could be name of person or name of company.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="WorkPerformed">
+								<xsd:annotation>
+									<xsd:documentation>Information on the work performed by the person registered under the scheme).</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="PropertyInformation">
+											<xsd:annotation>
+												<xsd:documentation>Information on the property where the work was carried out.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="PropertyLocation">
+														<xsd:annotation>
+															<xsd:documentation>Information on the location of the property</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="PropertyAddress" type="apd:UKAddressStructure">
+																	<xsd:annotation>
+																		<xsd:documentation>The full address of where the work is carried out. Initially schemes will provide the information using the 5 line address structure but it is hoped that eventually they will have access to a Gazetteer and will then switch to use the BS7666 structure.</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="LocationDescription" type="core:PopulatedStringType" minOccurs="0">
+																	<xsd:annotation>
+																		<xsd:documentation>An optional additional description that may be supplied to help identify exactly where the work was carried out where an address cannot be used for the particular property (e.g. if the work is on a new building which does not yet have an address on a farm then the  SiteAddress would be that of the farm and this element).</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="TypeOfProperty" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Is the property commercial, non-commercial or both. Optional as this is for future use.</xsd:documentation>
+														</xsd:annotation>
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:enumeration value="Commercial"/>
+																<xsd:enumeration value="Non-commercial"/>
+																<xsd:enumeration value="Commercial and Non-commercial"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="DateWorkCommenced" type="xsd:date" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Date the work started, not currently required but may be necessary in future</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="DateWorkCompleted" type="xsd:date">
+											<xsd:annotation>
+												<xsd:documentation>Date works are complete (the completion of the work triggers the record to be sent)</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="DescriptionOfWorkItem" type="DescriptionOfWorkType" maxOccurs="unbounded">
+											<xsd:annotation>
+												<xsd:documentation>A brief description of an item of work performed (e.g. 2 windows). Each competent person scheme should attempt to standardise a list of descriptions pertanent to that scheme.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="BuildingRecordErrorSetResponse">
+		<xsd:annotation>
+			<xsd:documentation>This provides a response that may be created by the Local Authority systems if problems occur with the records sent. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref="SchemeAndLAGroup"/>
+				<xsd:element name="BuildingRecordError" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>This provides a response that may be created by the Local Authority systems if problems occur with the records sent. </xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:group ref="SchemeUniqueRecordGroup"/>
+							<xsd:element name="ErrorDescriptionList">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ErrorDescription" type="core:PopulatedStringType" maxOccurs="unbounded">
+											<xsd:annotation>
+												<xsd:documentation>A textual description of an error found.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:group name="SchemeAndLAGroup">
+		<xsd:sequence>
+			<xsd:element name="SchemeName" type="SchemeNameType">
+				<xsd:annotation>
+					<xsd:documentation>The name of the Competent Person Scheme  (e.g. FENSA, OFTEC, HEATAS, NICEIC etc.).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LocalAuthorityCode" type="ONSAuthorityCodeType">
+				<xsd:annotation>
+					<xsd:documentation>The Office of National Statistics code for the Local Authority. While each authority should only receive records that apply to their area, this provides a double check to make sure that the records apply to them. Note that this is sent once only per record set.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:simpleType name="SchemeNameType">
+		<xsd:annotation>
+			<xsd:documentation>The type used for the name of the Competent Person Scheme  (e.g. FENSA, OFTEC, HEATAS, NICEIC etc.). As this scheme name list will expand and change over a short period, we will not enumerate the list to avoid having to upgrading the schema each time.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:PopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:group name="SchemeUniqueRecordGroup">
+		<xsd:sequence>
+			<xsd:element name="SchemeUniqueRecordIdentifier" type="SchemeUniqueRecordIdentifierType">
+				<xsd:annotation>
+					<xsd:documentation>A unique record identifier for this work in case there is an enquiry about the work that needs to be referred back to the scheme.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:simpleType name="SchemeUniqueRecordIdentifierType">
+		<xsd:restriction base="core:PopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonRegistrationIdentifierType">
+		<xsd:restriction base="core:PopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="DescriptionOfWorkType">
+		<xsd:annotation>
+			<xsd:documentation>Type for description of the works. Each competent person scheme should attempt to standardise a list of descriptions pertanent to that scheme, however it would be desirable to establish a cross-scheme Government list over time</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:PopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="InstallerRegisteredNameType">
+		<xsd:annotation>
+			<xsd:documentation>As the schemes do not differentiate between individuals or businesses (most "comptetent persons" are businesses) we cannot ask them to supply a choice of a string or a PDT personstructure.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:PopulatedStringType"/>
+	</xsd:simpleType>
+	<!--  a choice allowing 2 digits for counties two digits and two letters or even A-K for a region -->
+	<xsd:simpleType name="ONSAuthorityCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([A-Z])|([0-9]{2})|([0-9]{2}[A-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

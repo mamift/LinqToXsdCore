@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.govtalk.gov.uk/gateway/digitalmail" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:dms="http://www.govtalk.gov.uk/gateway/digitalmail" 
+			elementFormDefault="qualified" 
+			attributeFormDefault="unqualified" 
+			version="1"
+			id="DigitalMail-ServiceMailPoints">
+			
+	<xs:include schemaLocation="digitalmail_core-v1.xsd"/>
+	
+	<xs:element name="ServiceMailPoints">
+		<xs:annotation>
+			<xs:documentation>Defines the return value from the GetMyServicesMailPoints method</xs:documentation>
+			<xs:appinfo>gateway, administration, mail, message, email, secure, mailbox</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Service" type="dms:ServiceSummaryType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="ServiceSummaryType">
+		<xs:sequence>
+			<xs:element name="ServiceName" type="dms:ServiceNameType"/>
+			<xs:element name="ServiceDescription" type="dms:StringField150Type"/>
+			<xs:element name="MailPoints">
+				<xs:complexType>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="MailPoint" type="dms:MailPointSummaryType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="MailPointSummaryType">
+		<xs:sequence>
+			<xs:element name="MailPointName" type="dms:MailPointNameType"/>
+			<xs:element name="MailPointDescription" type="dms:StringField100Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- **********************************************************************************************************************
+
+DESCRIPTION:
+
+The GERC schema supports transfer of Engineering Record Information.
+
+UPDATE RECORD:
+
+Version		0.1 - 0.6
+Date		2002-??-??
+Applied By	John Douglas (Wythall Information Systems)
+Comment		Creation and initial development.
+
+Version		0.7 - 0.8c
+Date		2002-??-??
+Applied By	CDMA10: Rowan Edwards
+Comment		Development in line with DMG and User comments.
+
+Version		0.8e
+Date		2002-09-20
+Applied By	CDMA10: Rowan Edwards
+Comment		Move types into MODunclassified Namespace.
+
+Version		0.8e
+Date		2002-10-04	
+Applied By	CDMA10: Rowan Edwards
+Comment		Achieve validity according to XML Spy.
+
+*********************************************************************************************************************** -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.8f">
+
+	<xs:include schemaLocation="http://25.9.5.12/Namespce/MODunclassified.xsd"/>
+
+<!-- Start of Element definitions ************************************************************************************* -->
+	<xs:element name="GERC" type="MODXMLschemaStructure">
+		<xs:annotation>
+			<xs:documentation>The engineering record of a COMPONENT.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+<!-- End of Element definitions *************************************************************************************** -->
+</xs:schema>
+

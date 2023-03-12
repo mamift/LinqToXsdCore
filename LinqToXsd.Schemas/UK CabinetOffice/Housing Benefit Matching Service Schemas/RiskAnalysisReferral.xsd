@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Jon Wright (Comino Plc) -->
+<xsd:schema targetNamespace="http://www.comino.com/CominoXML" xmlns:egif4="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:egif3="http://www.govtalk.gov.uk/people/bs7666" xmlns:egif2="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:egif1="http://www.govtalk.gov.uk/core" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.comino.com/CominoXML" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="RiskAnalysisReferral">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Creator>Jonathan Wright (mailto:jonathan.wright@comino.com)</Creator>
+				<Date>
+					<Created>2004-07-20</Created>
+				</Date>
+				<Description>Schema for the electronic transfer of DWP (Dept of Work and Pensions) Benefit Claim Risk Analysis Information</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>RiskAnalysisReferral</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>Comino PLC, Vanguard House, Leeds, West Yorks, LS11 5DD</Publisher>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<IsPartOf>AddressTypes-v1-3</IsPartOf>
+				</Relation>
+				<Relation>
+					<IsPartOf>BS7666-v1-3</IsPartOf>
+				</Relation>
+				<Relation>
+					<IsPartOf>ContactTypes-v1-3</IsPartOf>
+				</Relation>
+				<Relation>
+					<IsPartOf>CitizenIdentificationTypes-v1-3</IsPartOf>
+				</Relation>
+				<Relation>
+					<IsPartOf>PersonDescriptiveTypes-v1-0</IsPartOf>
+				</Relation>
+				<Relation>
+					<IsPartOf>PersonalDetailsTypes-v1-3</IsPartOf>
+				</Relation>
+				<Subject>
+					<Category>Housing Benefit Administration</Category>
+				</Subject>
+				<Subject>
+					<Project>UK GovTalk</Project>
+				</Subject>
+				<Title>DWP Risk Analysis Information</Title>
+				<Type>Local Government Services</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="ContactTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="CitizenIdentificationTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="PersonalDetailsTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/PersonDescriptives" schemaLocation="PersonDescriptiveTypes-v1-0.xsd"/>
+	<xsd:include schemaLocation="RiskReferralCommon.xsd"/>
+	<xsd:element name="ClaimRiskDataStructure">
+		<xsd:annotation>
+			<xsd:documentation>Benefit Claim Risk Analysis Data</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:sequence maxOccurs="unbounded">
+					<xsd:element name="ClaimData" type="ClaimDataStructure">
+						<xsd:annotation>
+							<xsd:documentation>Risk Analysis Details</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:sequence>
+			<xsd:attribute name="SchemaVersion" type="egif1:RestrictedStringType" use="required" fixed="1.0"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

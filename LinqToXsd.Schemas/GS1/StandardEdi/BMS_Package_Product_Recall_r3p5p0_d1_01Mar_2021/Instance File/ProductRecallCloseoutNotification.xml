@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><product_recall_closeout_notification:productRecallCloseoutNotificationMessage xmlns:product_recall_closeout_notification="urn:gs1:ecom:product_recall_closeout_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:product_recall_closeout_notification:xsd:3 ../Schemas/gs1/ecom/ProductRecallCloseoutNotification.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <productRecallCloseoutNotification>
+        <creationDateTime>2011-09-20T16:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <documentActionCode>ADD</documentActionCode>
+        <documentStructureVersion>3.0</documentStructureVersion>
+        <originalPRNIdentification>0857674002331</originalPRNIdentification>
+        <pRCNIdentification>0857674002447</pRCNIdentification>
+        <pRCNStatusCode>CLOSED</pRCNStatusCode>
+        <originalPRNIssueDateTime>2011-08-20T16:00:00.000-05:00</originalPRNIssueDateTime>
+        <pRNTitle languageCode="en">Pink Product Recall</pRNTitle>
+        <productRecallInitiator>
+            <gln>0857674002003</gln>
+            <contact>
+                <contactTypeCode>PRODUCT_RECALL_CONTACT</contactTypeCode>
+                <personName>Casey Crow</personName>
+                <jobTitle>Director Process Control</jobTitle>
+                <communicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>333-123-4444</communicationValue>
+                </communicationChannel>
+                <communicationChannel>
+                    <communicationChannelCode>EMAIL</communicationChannelCode>
+                    <communicationValue>sgarcia@org1.org</communicationValue>
+                </communicationChannel>
+                <afterHoursCommunicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>333-123-4445</communicationValue>
+                </afterHoursCommunicationChannel>
+            </contact>
+        </productRecallInitiator>
+        <productRecallImpactedRecipient>
+            <additionalPartyIdentification additionalPartyIdentificationTypeCode="BUYER_ASSIGNED_IDENTIFIER_FOR_A_PARTY">7777777</additionalPartyIdentification>
+            <address>
+                <city>Town USA</city>
+                <postalCode>56324</postalCode>
+                <state>LA</state>
+                <streetAddressOne>999 Main Street</streetAddressOne>
+            </address>
+            <contact>
+                <personName>Athena Gilbert</personName>
+                <jobTitle>Vice President Operations</jobTitle>
+                <communicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>777-123-4444</communicationValue>
+                </communicationChannel>
+            </contact>
+        </productRecallImpactedRecipient>
+        <productRecallMarketDetail>
+            <additionalTargetMarketForRegulatoryUse languageCode="en">School</additionalTargetMarketForRegulatoryUse>
+            <productRecallPotentialTargetMarket languageCode="en">South East United States</productRecallPotentialTargetMarket>
+            <productRecallPotentialTargetMarket languageCode="en">LA, GA, FL, SC</productRecallPotentialTargetMarket>
+            <sectorDescription languageCode="en">Consumer Packaged Goods</sectorDescription>
+        </productRecallMarketDetail>
+        <productRecallCloseoutNotificationTradeItem>
+            <tradeItemName>Pink Product</tradeItemName>
+            <tradeItemIdentification>
+                <gtin>00857674002010</gtin>
+            </tradeItemIdentification>
+        </productRecallCloseoutNotificationTradeItem>
+    </productRecallCloseoutNotification>
+</product_recall_closeout_notification:productRecallCloseoutNotificationMessage>

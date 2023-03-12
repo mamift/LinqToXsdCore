@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:egms="http://www.esd.org.uk/standards/egms/3.0/egms-schema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esd.org.uk/standards" targetNamespace="http://www.esd.org.uk/standards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="LocalDirectgovSimplifiedMetadataStructure-v1.0">
+	<xs:import namespace="http://purl.org/dc/terms/" schemaLocation="dcterms-v1.1.xsd"/>
+	<xs:import namespace="http://www.esd.org.uk/standards/egms/3.0/egms-schema#" schemaLocation="egms-v1.0.xsd"/>
+	<xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="dc-v1.0.xsd"/>
+	<xs:include schemaLocation="MetadataElement-v1.0.xsd"/>
+	<xs:complexType name="LocalDirectgovSimplifiedMetadataStructure">
+		<xs:annotation>
+			<xs:documentation>Complex type for the metadata of the all file.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="dcterms:audience" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dcterms:created"/>
+			<xs:element ref="dc:creator" minOccurs="0"/>
+			<xs:element ref="dc:description" minOccurs="0"/>
+			<xs:element ref="dc:language" minOccurs="0"/>
+			<xs:element ref="dc:publisher"/>
+			<xs:element ref="egms:rightsCopyright" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dc:source" minOccurs="0"/>
+			<xs:element ref="dcterms:spatial" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="egms:status" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dc:subject" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dc:title" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

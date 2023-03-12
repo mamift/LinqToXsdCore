@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:artwork_content_common="urn:gs1:ecom:artwork_content_common:xsd:3" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:gs1_xhtml="urn:gs1:ext:xhtml:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:artwork_content_common:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:ext:xhtml:xsd:3" schemaLocation="../ext/XHTML.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:complexType name="ArtworkContentCopyElementType">
+        <xsd:sequence>
+            <xsd:element name="copyElementTypeCode" type="artwork_content_common:CopyElementTypeCodeType"/>
+            <xsd:element name="instanceSequence" type="xsd:positiveInteger"/>
+            <xsd:element name="localeSequence" type="xsd:nonNegativeInteger"/>
+            <xsd:element name="isContentApproved" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element name="forPlacementOnly" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="optionSequence" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="prioritySequence" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="expectedNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="actualNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+            <xsd:element name="textContent" type="gs1_xhtml:XHTMLType"/>
+            <xsd:element minOccurs="0" name="sourceReference" type="ecom_common:SourceReferenceType"/>
+            <xsd:element minOccurs="0" name="artworkContentResponseStatus" type="artwork_content_common:ArtworkContentResponseStatusType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentDataCarrierDetailType">
+        <xsd:sequence>
+            <xsd:element name="dataCarrierContent">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="isContentApproved" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element name="forPlacementOnly" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="applicationIdentifier">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="isHumanReadableInterpretationRequired" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="addOnSymbolContent">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="symbolComponentCode" type="ecom_common:SymbolComponentCodeType"/>
+            <xsd:element minOccurs="0" name="sequenceNumber" type="xsd:positiveInteger"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentDataCarrierElementType">
+        <xsd:sequence>
+            <xsd:element name="dataCarrierElementTypeCode" type="artwork_content_common:DataCarrierElementTypeCodeType"/>
+            <xsd:element name="instanceSequence" type="xsd:positiveInteger"/>
+            <xsd:element name="localeSequence" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="expectedNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="actualNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+            <xsd:element minOccurs="0" name="sourceReference" type="ecom_common:SourceReferenceType"/>
+            <xsd:element minOccurs="0" name="artworkContentResponseStatus" type="artwork_content_common:ArtworkContentResponseStatusType"/>
+            <xsd:element maxOccurs="unbounded" name="artworkContentDataCarrierDetail" type="artwork_content_common:ArtworkContentDataCarrierDetailType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentGraphicElementType">
+        <xsd:sequence>
+            <xsd:element name="graphicElementTypeCode" type="artwork_content_common:GraphicElementTypeCodeType"/>
+            <xsd:element name="instanceSequence" type="xsd:positiveInteger"/>
+            <xsd:element name="localeSequence" type="xsd:positiveInteger"/>
+            <xsd:element name="isContentApproved" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element name="forPlacementOnly" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="graphicElementDescription" type="shared_common:Description200Type"/>
+            <xsd:element minOccurs="0" name="optionSequence" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="prioritySequence" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="expectedNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="actualNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+            <xsd:element minOccurs="0" name="sourceReference" type="ecom_common:SourceReferenceType"/>
+            <xsd:element minOccurs="0" name="graphicElementReference" type="ecom_common:SourceReferenceType"/>
+            <xsd:element minOccurs="0" name="artworkContentResponseStatus" type="artwork_content_common:ArtworkContentResponseStatusType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentLocaleType">
+        <xsd:sequence>
+            <xsd:element name="localeSequence" type="xsd:positiveInteger"/>
+            <xsd:element name="localeIdentifier">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5"/>
+                        <xsd:minLength value="5"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentPieceOfArtType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="versionIdentifier">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="versionDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="pieceOfArtDescription" type="shared_common:Description200Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="pieceOfArtGroupingIdentifier">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="packagingComponentDescription" type="shared_common:Description80Type"/>
+            <xsd:element name="pieceOfArtIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+            <xsd:element minOccurs="0" name="artworkTemplate" type="ecom_common:SourceReferenceType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="associatedTradeItem" type="ecom_common:Ecom_TradeItemIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" name="artworkContentLocale" type="artwork_content_common:ArtworkContentLocaleType"/>
+            <xsd:element minOccurs="0" name="artworkContentTechnicalDrawing" type="artwork_content_common:ArtworkContentTechnicalDrawingType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentCopyElement" type="artwork_content_common:ArtworkContentCopyElementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentStructuredCopyElement" type="artwork_content_common:ArtworkContentStructuredCopyElementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentGraphicElement" type="artwork_content_common:ArtworkContentGraphicElementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentDataCarrierElement" type="artwork_content_common:ArtworkContentDataCarrierElementType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentResponseStatusType">
+        <xsd:sequence>
+            <xsd:element name="changedByRecipient" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="changeReason" type="shared_common:Description80Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentStructuredCopyElementType">
+        <xsd:sequence>
+            <xsd:element name="structuredCopyElementTypeCode" type="artwork_content_common:StructuredCopyElementTypeCodeType"/>
+            <xsd:element name="instanceSequence" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="expectedNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="actualNumberOfOccurrences" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+            <xsd:element minOccurs="0" name="structuredCopyElementTemplate" type="ecom_common:SourceReferenceType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentCopyElement" type="artwork_content_common:ArtworkContentCopyElementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentDataCarrierElement" type="artwork_content_common:ArtworkContentDataCarrierElementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentGraphicElement" type="artwork_content_common:ArtworkContentGraphicElementType"/>
+            <xsd:element minOccurs="0" name="artworkContentResponseStatus" type="artwork_content_common:ArtworkContentResponseStatusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="artworkContentStructuredCopyElement" type="artwork_content_common:ArtworkContentStructuredCopyElementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArtworkContentTechnicalDrawingType">
+        <xsd:sequence>
+            <xsd:element name="isTechnicalDrawingApproved" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="technicalDrawingDescription" type="shared_common:Description200Type"/>
+            <xsd:element minOccurs="0" name="sourceReference" type="ecom_common:SourceReferenceType"/>
+            <xsd:element minOccurs="0" name="technicalDrawing" type="ecom_common:SourceReferenceType"/>
+            <xsd:element minOccurs="0" name="artworkContentResponseStatus" type="artwork_content_common:ArtworkContentResponseStatusType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CopyElementTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:String80Type">
+                <xsd:attribute name="codeListAgencyCode">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListName">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListURI" type="xsd:string"/>
+                <xsd:attribute name="codeListVersion">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="35"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DataCarrierElementTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:String80Type">
+                <xsd:attribute name="codeListAgencyCode">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListName">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListURI" type="xsd:string"/>
+                <xsd:attribute name="codeListVersion">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="35"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="GraphicElementTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:String80Type">
+                <xsd:attribute name="codeListAgencyCode">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListName">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListURI" type="xsd:string"/>
+                <xsd:attribute name="codeListVersion">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="35"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="StructuredCopyElementTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:String80Type">
+                <xsd:attribute name="codeListAgencyCode">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListName">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListURI" type="xsd:string"/>
+                <xsd:attribute name="codeListVersion">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="35"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

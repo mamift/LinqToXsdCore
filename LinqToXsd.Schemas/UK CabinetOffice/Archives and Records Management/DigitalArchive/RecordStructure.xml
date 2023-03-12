@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Mark Evans (Tessella Support Services) -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" xmlns="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0a">
+	<xsd:annotation>
+		<xsd:documentation>Metadata according to e-GMS XML Schema Metadata v0.4</xsd:documentation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Contributor>Tessella Support Services plc  http://www.tessella.com</Contributor>
+				<Contributor>Public Reocd Office http://www.pro.gov.uk</Contributor>
+				<Date>
+					<Created>2002-12-16</Created>
+				</Date>
+				<Date>
+					<Modified>2003-03-06</Modified>
+				</Date>
+				<Description>Schema for Digital Archive Record structure</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.govtalk.gov.uk/PRO/ARCv1.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Relation>
+					<Requires>GMSElement</Requires>
+				</Relation>
+				<Rights>unclassified
+				<Copyright>Crown copyright 2002</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Government, public records </Category>
+				</Subject>
+				<Subject>
+					<Project>Digital Archive</Project>
+				</Subject>
+				<Title>Record metadata schema</Title>
+				<Type>metadata</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<!--																			-->
+	<!-- Modification History 														-->
+	<!--    Date               User	              Modification 								-->
+	<!--   =========== ==========  ==================================== -->
+	<!--   16/12/2002     EVAM	       Created										-->
+	<!--   14/01/2003     EVAM		Removal of file into a seperate structure -->
+	<!--   15/01/2003     EVAM		Re-arranged pre metadata elements. Added Status element -->
+	<!--	  17/01/2003    EVAM	 	Changed imported schemas to include schemas to remove namespace prefix -->
+	<!--    03/02/2003   EVAM		Renamed element RecordRoles to RecordRole, and made maxOccurs unbounded-->
+	<!--    04/02/2003   EVAM		Addition of RecordName Element			-->
+	<!--	  12/02/2003    EVAM		Changed positiveInteger types to integer  -->
+	<!--   04/03/2003    EVAM		Changed namespace to http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession -->
+	<!--   06/03/2003    EVAM		Made record role optional as open records do not require a role -->
+	<!--																		-->
+	<xsd:include schemaLocation="GMSelement.xsd"/>
+	<!-- Record Structure -->
+	<xsd:complexType name="RecordStructure">
+		<xsd:sequence>
+			<xsd:element name="RecordStatus" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="N"/>
+						<xsd:enumeration value="M"/>
+						<xsd:enumeration value="U"/>
+						<xsd:enumeration value="D"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="RecordIdentifier" type="xsd:integer"/>
+			<xsd:element name="RecordName" type="xsd:string"/>
+			<xsd:element name="RecordParent" type="xsd:integer"/>
+			<xsd:element name="RecordRole" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Metadata" type="MetadataStructure"/>
+			<xsd:element name="AssociatedFile" type="xsd:integer" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--Schema definition-->
+	<xsd:element name="RecordList">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Record" type="RecordStructure" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

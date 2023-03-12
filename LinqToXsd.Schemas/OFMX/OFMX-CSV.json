@@ -1,0 +1,12 @@
+{
+  "dialect": {
+    "csvddfVersion": 1.2,
+    "header": true,
+    "caseSensitiveHeader": true,
+    "delimiter": ",",
+    "quoteChar": "\"",
+    "doubleQuote": true,
+    "lineTerminator": "\r\n",
+    "skipInitialSpace": false
+  }
+}

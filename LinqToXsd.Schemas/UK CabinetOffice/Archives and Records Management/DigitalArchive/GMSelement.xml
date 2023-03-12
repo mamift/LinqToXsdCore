@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" 
+                      xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                      xmlns="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" 
+                      elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0a">
+	<xsd:annotation>
+		<xsd:documentation>Metadata according to e-GMS XML Schema Metadata v0.4</xsd:documentation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Contributor>Tessella Support Services plc  http://www.tessella.com</Contributor>
+				<Contributor>Public Reocd Office http://www.pro.gov.uk</Contributor>
+				<Date>
+					<Created>2002-12-12</Created>
+				</Date>
+				<Date>
+					<Modified>2003-03-04</Modified>
+				</Date>
+				<Description>Schema for Digital Archive Metadata element</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.govtalk.gov.uk/PRO/ARCv1.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Rights>unclassified
+				<Copyright>Crown copyright 2002</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Government, public records </Category>
+				</Subject>
+				<Subject>
+					<Project>Digital Archive</Project>
+				</Subject>
+				<Title>metadata element schema</Title>
+				<Type>metadata</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<!--																			-->
+	<!-- Modification History 														-->
+	<!--    Date               User	              Modification 								-->
+	<!--   =========== ==========  ==================================== -->
+	<!--   16/12/2002     EVAM	       Created										-->
+	<!--   17/01/2003     EVAM   		Added Identifier and Parent attributes for hierarchical metadata in applet-->
+	<!--   31/01/2003     EVAM		Added LookupID attribute for use in applet selection lists -->
+	<!--   12/02/2003	    EVAM		Changed positiveInteger types to integer. Updated enumerations       -->
+	<!--	 17/02/2003     EVAM		Added Virus check qualifiers to list 			-->
+	<!--   03/03/2003	    EVAM		Changed Lookup ID attribute to type string  	-->
+       <!--  04/03/2003     EVAM		Modified namespace to http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession --> 
+	<!--	 																		-->
+	<!--Schema definition-->
+	<!--GMSelemenType-->
+	<xsd:complexType name="GMSelementType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="Name" use="required">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Accessibility"/>
+							<xsd:enumeration value="Audience"/>
+							<xsd:enumeration value="Contributor"/>
+							<xsd:enumeration value="Coverage"/>
+							<xsd:enumeration value="Creator"/>
+							<xsd:enumeration value="Date"/>
+							<xsd:enumeration value="Description"/>
+							<xsd:enumeration value="Disposal"/>
+							<xsd:enumeration value="Format"/>
+							<xsd:enumeration value="Identifier"/>
+							<xsd:enumeration value="Language"/>
+							<xsd:enumeration value="Location"/>
+							<xsd:enumeration value="Preservation"/>
+							<xsd:enumeration value="Publisher"/>
+							<xsd:enumeration value="Relation"/>
+							<xsd:enumeration value="Rights"/>
+							<xsd:enumeration value="Source"/>
+							<xsd:enumeration value="Status"/>
+							<xsd:enumeration value="Subject"/>
+							<xsd:enumeration value="Title"/>
+							<xsd:enumeration value="Type"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="Qualifier" use="optional">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Acquired"/>
+							<xsd:enumeration value="Available"/>
+							<xsd:enumeration value="Declared"/>
+							<xsd:enumeration value="Environment"/>
+							<xsd:enumeration value="Environment.FileFormat"/>
+							<xsd:enumeration value="Environment.Software"/>
+							<xsd:enumeration value="Extent"/>
+							<xsd:enumeration value="Fixity"/>
+							<xsd:enumeration value="Hardware"/>
+							<xsd:enumeration value="History"/>
+							<xsd:enumeration value="History.Custodial"/>
+							<xsd:enumeration value="History.Event"/>
+							<xsd:enumeration value="Issued"/>
+							<xsd:enumeration value="Medium"/>
+							<xsd:enumeration value="Migration"/>
+							<xsd:enumeration value="OperatingSystem"/>
+							<xsd:enumeration value="Procedure"/>
+							<xsd:enumeration value="Procedure.Accession"/>
+							<xsd:enumeration value="Procedure.Manifestation"/>
+							<xsd:enumeration value="Properties"/>
+							<xsd:enumeration value="Spatial"/>
+							<xsd:enumeration value="Temporal"/>
+							<xsd:enumeration value="Temporal.BeginningDate"/>
+							<xsd:enumeration value="Temporal.EndDate"/>
+							<xsd:enumeration value="Temporal.StartDateOfCapture"/>
+							<xsd:enumeration value="Temporal.EndDateOfCapture"/>
+							<xsd:enumeration value="Temporal.Spatial"/>
+							<xsd:enumeration value="Temporal.Medium"/>
+							<xsd:enumeration value="Temporal.TableOfContents"/>
+							<xsd:enumeration value="Temporal.Aquired"/>
+							<xsd:enumeration value="Temporal.Action"/>
+							<xsd:enumeration value="Temporal.Conditions"/>
+							<xsd:enumeration value="Temporal.AutoRemoveDate"/>
+							<xsd:enumeration value="Temporal.AlternativeTitle"/>
+							<xsd:enumeration value="VirusCheck"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="LocalName" type="xsd:string" use="required"/>
+				<xsd:attribute name="Identifier" type="xsd:integer" use="optional"/>
+				<xsd:attribute name="Parent" type="xsd:integer" use="optional"/>
+				<xsd:attribute name="LookupID" type="xsd:string" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!--Metadata structure-->
+	<xsd:complexType name="MetadataStructure">
+		<xsd:sequence>
+			<xsd:element name="GMSelement" type="GMSelementType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

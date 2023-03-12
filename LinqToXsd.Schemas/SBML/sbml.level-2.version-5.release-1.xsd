@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.sbml.org/sbml/level2/version5"
+    xmlns="http://www.sbml.org/sbml/level2/version5" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="$ $Id: sbml.xsd 22408 2015-08-04 00:00:36Z mhucka $ $">
+    <xsd:import namespace="http://www.w3.org/1998/Math/MathML"
+        schemaLocation="http://www.w3.org/Math/XMLSchema/mathml2/mathml2.xsd"/>
+    <xsd:annotation>
+        <xsd:documentation>
+ * Filename   : sbml.xsd
+ * Description: XML Schema for SBML Level 2 Version 5.
+ * Author(s)  : Michael Hucka, Sarah Keating
+ * Revision   : $Id: sbml.xsd 22408 2015-08-04 00:00:36Z mhucka $
+ * $HeadURL: svn+ssh://mhucka@svn.code.sf.net/p/sbml/code/trunk/specifications/sbml-level-2/version-5/schema/sbml.xsd $
+ * 
+ * Copyright 2007-2015 California Institute of Technology.
+ * Copyright 2003-2006 California Institute of Technology, the Japan Science
+ * and Technology Corporation, and the University of Hertfordshire.
+ * 
+ * This software is licensed according to the terms described in the file
+ * named "LICENSE.txt" included with this distribution and available
+ * online at http://sbml.org/xml-schemas/LICENSE.txt
+        </xsd:documentation>
+    </xsd:annotation>
+    <!--The definition of new primitive types follows.-->
+    <xsd:simpleType name="SId">
+        <xsd:annotation>
+            <xsd:documentation>The type SId is used throughout SBML as the
+            type of the 'id' attributes on model elements.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="UnitSId">
+        <xsd:annotation>
+            <xsd:documentation>The type UnitSId is used to refer to units.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="SId"/>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="SId">
+                    <xsd:enumeration value="ampere"/>
+                    <xsd:enumeration value="becquerel"/>
+                    <xsd:enumeration value="candela"/>
+                    <xsd:enumeration value="coulomb"/>
+                    <xsd:enumeration value="dimensionless"/>
+                    <xsd:enumeration value="farad"/>
+                    <xsd:enumeration value="gram"/>
+                    <xsd:enumeration value="gray"/>
+                    <xsd:enumeration value="henry"/>
+                    <xsd:enumeration value="hertz"/>
+                    <xsd:enumeration value="item"/>
+                    <xsd:enumeration value="joule"/>
+                    <xsd:enumeration value="katal"/>
+                    <xsd:enumeration value="kelvin"/>
+                    <xsd:enumeration value="kilogram"/>
+                    <xsd:enumeration value="litre"/>
+                    <xsd:enumeration value="lumen"/>
+                    <xsd:enumeration value="lux"/>
+                    <xsd:enumeration value="metre"/>
+                    <xsd:enumeration value="mole"/>
+                    <xsd:enumeration value="newton"/>
+                    <xsd:enumeration value="ohm"/>
+                    <xsd:enumeration value="pascal"/>
+                    <xsd:enumeration value="radian"/>
+                    <xsd:enumeration value="second"/>
+                    <xsd:enumeration value="siemens"/>
+                    <xsd:enumeration value="sievert"/>
+                    <xsd:enumeration value="steradian"/>
+                    <xsd:enumeration value="tesla"/>
+                    <xsd:enumeration value="volt"/>
+                    <xsd:enumeration value="watt"/>
+                    <xsd:enumeration value="weber"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="SId">
+                    <xsd:enumeration value="substance"/>
+                    <xsd:enumeration value="volume"/>
+                    <xsd:enumeration value="area"/>
+                    <xsd:enumeration value="length"/>
+                    <xsd:enumeration value="time"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:simpleType name="SBOTerm">
+        <xsd:annotation>
+            <xsd:documentation>The data type for sboTerm attribute values.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(SBO:)([0-9]{7})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--The definition of SBase follows.-->
+    <xsd:complexType name="SBase" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>The SBase type is the base type of all main
+            components in SBML.  It supports attaching metadata, notes and
+            annotations to components.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="notes" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:any namespace="http://www.w3.org/1999/xhtml" processContents="skip"
+                            minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="annotation" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="metaid" type="xsd:ID" use="optional"/>
+        <xsd:attribute name="sboTerm" type="SBOTerm" use="optional"/>
+    </xsd:complexType>
+    <!--The definition of main SBML classes follows.-->
+    <xsd:complexType name="FunctionDefinition">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="SId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Unit">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:attribute name="kind" type="UnitSId" use="required"/>
+                <xsd:attribute name="exponent" type="xsd:int" default="1"/>
+                <xsd:attribute name="scale" type="xsd:int" default="0"/>
+                <xsd:attribute name="multiplier" type="xsd:double" default="1"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfUnits">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="unit" type="Unit" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="UnitDefinition">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="listOfUnits" type="ListOfUnits"/>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="UnitSId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="CompartmentType">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:attribute name="id" type="SId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="SpeciesType">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:attribute name="id" type="SId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Compartment">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:attribute name="id" type="SId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                <xsd:attribute name="compartmentType" type="SId" use="optional"/>
+                <xsd:attribute name="spatialDimensions" use="optional" default="3">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:int">
+                            <xsd:minInclusive value="0"/>
+                            <xsd:maxInclusive value="3"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="size" type="xsd:double" use="optional"/>
+                <xsd:attribute name="units" type="UnitSId" use="optional"/>
+                <xsd:attribute name="outside" type="SId" use="optional"/>
+                <xsd:attribute name="constant" type="xsd:boolean" use="optional" default="true"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Species">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:attribute name="id" type="SId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                <xsd:attribute name="speciesType" type="SId" use="optional"/>
+                <xsd:attribute name="compartment" type="SId" use="required"/>
+                <xsd:attribute name="initialAmount" type="xsd:double" use="optional"/>
+                <xsd:attribute name="initialConcentration" type="xsd:double" use="optional"/>
+                <xsd:attribute name="substanceUnits" type="UnitSId" use="optional"/>
+                <xsd:attribute name="hasOnlySubstanceUnits" type="xsd:boolean" use="optional"
+                    default="false"/>
+                <xsd:attribute name="boundaryCondition" type="xsd:boolean" use="optional"
+                    default="false"/>
+                <xsd:attribute name="charge" type="xsd:int" use="optional"/>
+                <xsd:attribute name="constant" type="xsd:boolean" use="optional" default="false"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Parameter">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:attribute name="id" type="SId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                <xsd:attribute name="value" type="xsd:double" use="optional"/>
+                <xsd:attribute name="units" type="UnitSId" use="optional"/>
+                <xsd:attribute name="constant" type="xsd:boolean" use="optional" default="true"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfParameters">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="parameter" type="Parameter" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="InitialAssignment">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                </xsd:sequence>
+                <xsd:attribute name="symbol" type="SId" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Rule" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="AlgebraicRule">
+        <xsd:complexContent>
+            <xsd:extension base="Rule"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="AssignmentRule">
+        <xsd:complexContent>
+            <xsd:extension base="Rule">
+                <xsd:attribute name="variable" type="SId" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="RateRule">
+        <xsd:complexContent>
+            <xsd:extension base="Rule">
+                <xsd:attribute name="variable" type="SId" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Constraint">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                    <xsd:element name="message" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:any namespace="http://www.w3.org/1999/xhtml"
+                                    processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="KineticLaw">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                    <xsd:element name="listOfParameters" type="ListOfParameters" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="SimpleSpeciesReference" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:attribute name="id" type="SId" use="optional"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                <xsd:attribute name="species" type="SId" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ModifierSpeciesReference">
+        <xsd:complexContent>
+            <xsd:extension base="SimpleSpeciesReference"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfModifierSpeciesReferences">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="modifierSpeciesReference" type="ModifierSpeciesReference"
+                        maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="StoichiometryMath">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="SpeciesReference">
+        <xsd:complexContent>
+            <xsd:extension base="SimpleSpeciesReference">
+                <xsd:sequence>
+                    <xsd:element name="stoichiometryMath" type="StoichiometryMath" minOccurs="0"/>
+                </xsd:sequence>
+                <xsd:attribute name="stoichiometry" type="xsd:double" use="optional" default="1"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfSpeciesReferences">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="speciesReference" type="SpeciesReference"
+                        maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Reaction">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="listOfReactants" type="ListOfSpeciesReferences" minOccurs="0"/>
+                    <xsd:element name="listOfProducts" type="ListOfSpeciesReferences" minOccurs="0"/>
+                    <xsd:element name="listOfModifiers" type="ListOfModifierSpeciesReferences"
+                        minOccurs="0"/>
+                    <xsd:element name="kineticLaw" type="KineticLaw" minOccurs="0"/>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="SId" use="required"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                <xsd:attribute name="reversible" type="xsd:boolean" use="optional" default="true"/>
+                <xsd:attribute name="fast" type="xsd:boolean" use="optional" default="false"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="EventAssignment">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                </xsd:sequence>
+                <xsd:attribute name="variable" type="SId" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfEventAssignments">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="eventAssignment" type="EventAssignment" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Trigger">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Delay">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element ref="mml:math"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Event">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="trigger" type="Trigger"/>
+                    <xsd:element name="delay" type="Delay" minOccurs="0"/>
+                    <xsd:element name="listOfEventAssignments" type="ListOfEventAssignments"/>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="SId" use="optional"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                <xsd:attribute name="useValuesFromTriggerTime" type="xsd:boolean" use="optional"
+                    default="true"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Model">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="listOfFunctionDefinitions" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="functionDefinition"
+                                            type="FunctionDefinition" maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfUnitDefinitions" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="unitDefinition" type="UnitDefinition"
+                                            maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfCompartmentTypes" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="compartmentType" type="CompartmentType"
+                                            maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfSpeciesTypes" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="speciesType" type="SpeciesType"
+                                            maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfCompartments" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="compartment" type="Compartment"
+                                            maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfSpecies" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="species" type="Species"
+                                            maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfParameters" type="ListOfParameters" minOccurs="0"/>
+                    <xsd:element name="listOfInitialAssignments" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="initialAssignment"
+                                            type="InitialAssignment" maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfRules" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:choice maxOccurs="unbounded">
+                                        <xsd:element name="algebraicRule" type="AlgebraicRule"
+                                            minOccurs="0"/>
+                                        <xsd:element name="assignmentRule" type="AssignmentRule"
+                                            minOccurs="0"/>
+                                        <xsd:element name="rateRule" type="RateRule" minOccurs="0"/>
+                                    </xsd:choice>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfConstraints" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="constraint" type="Constraint"
+                                            maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfReactions" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="reaction" type="Reaction"
+                                            maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="listOfEvents" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:complexContent>
+                                <xsd:extension base="SBase">
+                                    <xsd:sequence>
+                                        <xsd:element name="event" type="Event" maxOccurs="unbounded"
+                                        />
+                                    </xsd:sequence>
+                                </xsd:extension>
+                            </xsd:complexContent>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="SId" use="optional"/>
+                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- The following is the type definition for the top-level element in an SBML document.-->
+    <xsd:complexType name="Sbml">
+        <xsd:complexContent>
+            <xsd:extension base="SBase">
+                <xsd:sequence>
+                    <xsd:element name="model" type="Model"/>
+                </xsd:sequence>
+                <xsd:attribute name="level" type="xsd:positiveInteger" use="required" fixed="2"/>
+                <xsd:attribute name="version" type="xsd:positiveInteger" use="required" fixed="5"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!--The following is the (only) top-level element allowed in an SBML document.-->
+    <xsd:element name="sbml" type="Sbml"/>
+    <!--The end.-->
+</xsd:schema>

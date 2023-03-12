@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp1 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentFalseAlarm-v1-0">
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-03-01</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System false alarm details structure</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentFalseAlarm-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FireTypes-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System false alarm details structure</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="FalseAlarmStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the information that is only needed for a False Alarm Incident</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FalseAlarmReason">
+				<xs:annotation>
+					<xs:documentation>3.4 - What was the reason or cause of this false alarm.  This stores the appropriate ID value as taken from the False Alarm taxonomy file.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="fire:TaxonomyIDType">
+							<xs:attribute name="Other" type="fire:StringRestrictedMixedType" use="optional">
+								<xs:annotation>
+									<xs:documentation>Defines the attributes that should be added to any enumeration list where there is an 'other' option available.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

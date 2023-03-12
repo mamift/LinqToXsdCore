@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentSecurity-v1-0">
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-02-18</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System security related Soap Header message structures. </Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentSecurity-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System security logon and logoff related message structures</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="SecurityStructure">
+		<xs:annotation>
+			<xs:documentation>The structure of the security element that should be placed within the SOAP header when making any requests.  For an initial request new security token (logon) operation, the username token should be used.  For all other requests, the security token (returned from the logon operation) should be used instead.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="UsernameToken">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Username" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>The MIS Username allocated by the IRS help desk team.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Password">
+							<xs:annotation>
+								<xs:documentation>The MIS Usernames Password setup for the IRS system.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="Type" type="xs:anyURI" use="optional"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SecurityToken">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Token">
+							<xs:annotation>
+								<xs:documentation>The Token returned from the IRS system.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:any namespace="##any" minOccurs="0" maxOccurs="unbounded"/> 
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

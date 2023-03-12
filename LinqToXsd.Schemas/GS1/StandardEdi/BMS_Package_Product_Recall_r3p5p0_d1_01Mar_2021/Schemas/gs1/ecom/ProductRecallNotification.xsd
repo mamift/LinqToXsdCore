@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:product_recall_common="urn:gs1:ecom:product_recall_common:xsd:3" xmlns:product_recall_notification="urn:gs1:ecom:product_recall_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:product_recall_notification:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:product_recall_common:xsd:3" schemaLocation="ProductRecallCommon.xsd"/>
+    <xsd:element name="productRecallNotificationMessage" type="product_recall_notification:ProductRecallNotificationMessageType"/>
+    <xsd:complexType name="ProductRecallNotificationDistributionDetailsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="isTraceableItemExported" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="isTraceableItemSoldViaDistributorship" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallDistributionArea" type="product_recall_common:ProductRecallDistributionAreaType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallNotificationDistributorDetail" type="product_recall_notification:ProductRecallNotificationDistributorDetailType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationDistributorDetailType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="hasDistributorBeenNotified" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="productRecallParty" type="product_recall_common:ProductRecallPartyType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="sourceReference" type="ecom_common:SourceReferenceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationExportDetailType">
+        <xsd:sequence>
+            <xsd:element name="exportCountry" type="shared_common:CountryCodeType"/>
+            <xsd:element minOccurs="0" name="totalExportedQuantity" type="shared_common:QuantityType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationHandlingInstructionsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="isSpecialHandlingInstructionsRequiredForRecalledTraceableItem" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="specialHandlingInstructions" type="ecom_common:HandlingInstructionType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="storeSpecialHandlingInstructions" type="ecom_common:HandlingInstructionType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="warehouseSpecialHandlingInstructions" type="ecom_common:HandlingInstructionType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="inTransitSpecialHandlingInstructions" type="ecom_common:HandlingInstructionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationManufacturingDetailsType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="countryOfOrigin" type="shared_common:CountryCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="manufacturingLocation" type="product_recall_common:ProductRecallPartyType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="productRecallNotification" type="product_recall_notification:ProductRecallNotificationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationPublicRelationsInstructionsType">
+        <xsd:sequence>
+            <xsd:element name="pressReleaseDateTime" type="xsd:dateTime"/>
+            <xsd:element name="pressReleaseTemplate">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="productRecallPublicWebsiteURL">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="anyReportedInjuriesOrIllnessFromRecalledTraceableItem" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="consumerInstructions" type="shared_common:Description1000Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="detectionMethod" type="shared_common:Description80Type"/>
+            <xsd:element minOccurs="0" name="doSafetyStandardsAgencyHaveAuthorityToUseRecalledTraceableItemImage" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="printAdvertisementDateTime" type="xsd:dateTime"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="reportedInjuries" type="shared_common:Description80Type"/>
+            <xsd:element minOccurs="0" name="shouldSafetyStandardsAgencyDraftPressReleaseOnYourBehalf" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="testResults" type="shared_common:Description80Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="consumerContact" type="shared_common:CommunicationChannelType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="pressRelease" type="ecom_common:SourceReferenceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationRecipientDetailType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="totalShippedQuantity" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="productRecallParty" type="product_recall_common:ProductRecallPartyType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationReimbursementInstructionsType">
+        <xsd:sequence>
+            <xsd:element name="productRecallReimbursementReason" type="product_recall_common:ProductRecallReimbursementReasonCodeType"/>
+            <xsd:element maxOccurs="unbounded" name="reimbursementProofInstruction" type="shared_common:Description80Type"/>
+            <xsd:element minOccurs="0" name="areTaxesIncludedInSalesPrice" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="reimbursementAdditionalInformation" type="shared_common:Description80Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationTraceableItemType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="countryOfOrigin" type="shared_common:CountryCodeType"/>
+            <xsd:element minOccurs="0" name="totalQuantityAffected" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="totalQuantityUnderManufacturersControl" type="shared_common:QuantityType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallTrackingKey" type="product_recall_common:ProductRecallTrackingKeyType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="logisticUnitIdentification" type="ecom_common:Ecom_LogisticUnitIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallNotificationRecipientDetail" type="product_recall_notification:ProductRecallNotificationRecipientDetailType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallNotificationExportDetail" type="product_recall_notification:ProductRecallNotificationExportDetailType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationTradeItemType">
+        <xsd:sequence>
+            <xsd:element name="tradeItemName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="tradeItemUnitDescriptorCode" type="ecom_common:TradeItemUnitDescriptorCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalPRNTradeItemInformation" type="shared_common:Description80Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemClassificationCode" type="shared_common:AdditionalTradeItemClassificationCodeType"/>
+            <xsd:element minOccurs="0" name="brandName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="dataCarrierTypeCode" type="ecom_common:DataCarrierTypeCodeType"/>
+            <xsd:element minOccurs="0" name="gpcCategoryCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d{8}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcCategoryName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="105"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="numberOfConsumerUnitsPerItem" type="shared_common:QuantityType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemSize" type="shared_common:MeasurementType"/>
+            <xsd:element name="tradeItemIdentification" type="ecom_common:Ecom_TradeItemIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemImage" type="ecom_common:SourceReferenceType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="relatedFile" type="ecom_common:SourceReferenceType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallNotificationTraceableItem" type="product_recall_notification:ProductRecallNotificationTraceableItemType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallPackagingDetail" type="product_recall_notification:ProductRecallPackagingDetailType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallNotificationType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="originalPRNIdentification" type="ecom_common:GDTIType"/>
+                    <xsd:element name="pRNIdentification" type="ecom_common:GDTIType"/>
+                    <xsd:element name="pRNStatusCode" type="product_recall_common:ProductRecallNotificationStatusEnumerationType"/>
+                    <xsd:element maxOccurs="unbounded" name="pRNTitle" type="shared_common:Description80Type"/>
+                    <xsd:element name="pRNVersionStatusCode" type="product_recall_notification:ProductRecallNotificationVersionStatusEnumerationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="associatedPRNIdentification" type="ecom_common:GDTIType"/>
+                    <xsd:element minOccurs="0" name="incidentRiskLevelCode" type="product_recall_common:ProductRecallIncidentRiskLevelCodeType"/>
+                    <xsd:element minOccurs="0" name="isPRNIssuingOrganisationTheBrandOwner" type="shared_common:NonBinaryLogicEnumerationType"/>
+                    <xsd:element minOccurs="0" name="isPRNIssuingOrganisationThePrimaryRecallOrganisation" type="shared_common:NonBinaryLogicEnumerationType"/>
+                    <xsd:element minOccurs="0" name="lastUpdatedPRNDateTime" type="xsd:dateTime"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="pRNUpdateReason" type="shared_common:Description80Type"/>
+                    <xsd:element minOccurs="0" name="subsequentPRNIdentification" type="ecom_common:GDTIType"/>
+                    <xsd:element minOccurs="0" name="totalNumberOfAttachments" type="xsd:positiveInteger"/>
+                    <xsd:element minOccurs="0" name="updatedBy">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="80"/>
+                                <xsd:minLength value="1"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="productRecallInitiator" type="product_recall_common:ProductRecallPartyType"/>
+                    <xsd:element maxOccurs="unbounded" name="productRecallImpactedRecipient" type="product_recall_common:ProductRecallPartyType"/>
+                    <xsd:element maxOccurs="unbounded" name="productRecallReason" type="product_recall_notification:ProductRecallReasonType"/>
+                    <xsd:element minOccurs="0" name="productRecallMarketDetail" type="product_recall_common:ProductRecallMarketDetailType"/>
+                    <xsd:element minOccurs="0" name="productRecallNotificationDistributionDetails" type="product_recall_notification:ProductRecallNotificationDistributionDetailsType"/>
+                    <xsd:element minOccurs="0" name="productRecallNotificationPublicRelationsInstructions" type="product_recall_notification:ProductRecallNotificationPublicRelationsInstructionsType"/>
+                    <xsd:element minOccurs="0" name="productRecallNotificationHandlingInstructions" type="product_recall_notification:ProductRecallNotificationHandlingInstructionsType"/>
+                    <xsd:element minOccurs="0" name="productRecallNotificationReimbursementInstructions" type="product_recall_notification:ProductRecallNotificationReimbursementInstructionsType"/>
+                    <xsd:element minOccurs="0" name="productRecallSafetyStandardAgency" type="product_recall_notification:ProductRecallSafetyStandardAgencyType"/>
+                    <xsd:element maxOccurs="unbounded" name="productRecallNotificationTradeItem" type="product_recall_notification:ProductRecallNotificationTradeItemType"/>
+                    <xsd:element minOccurs="0" name="productRecallNotificationManufacturingDetails" type="product_recall_notification:ProductRecallNotificationManufacturingDetailsType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallPackagingDetailType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="packageTypeCode" type="ecom_common:PackageTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" name="packagingMaterialCode" type="ecom_common:MaterialTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallReasonType">
+        <xsd:sequence>
+            <xsd:element name="productRecallReasonCode" type="product_recall_common:ProductRecallReasonCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallReasonDescription" type="shared_common:Description80Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="explanationForProductRecall" type="shared_common:Description80Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRecallSafetyStandardAgencyType">
+        <xsd:sequence>
+            <xsd:element name="isItRequiredToNotifyYourRecallJurisdictionSafetyStandardsAgency" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element name="isProductRecallVoluntary" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="isTraceableItemAReportableFood" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="regulatorySafetyAgencyReferenceIdentification">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ProductRecallNotificationVersionStatusEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="INITIAL"/>
+            <xsd:enumeration value="UPDATE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esd.org.uk/standards" targetNamespace="http://www.esd.org.uk/standards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="LocalDirectgovSimplifiedAgencyStructure-v1.0">
+	<xs:complexType name="LocalDirectgovSimplifiedAgencyStructure">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="SNAC">
+					<xs:annotation>
+						<xs:documentation>Reference from the ONS SNAC 2006 list</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="esdAgencyID">
+					<xs:annotation>
+						<xs:documentation>esd-toolkit Agency ID</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="ContactUsURL" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contact Us page for the organisation which will be used if a web page has not been entered for a service</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AgencySites" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Domain or domains used by the organisation</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PrimaryURL">
+							<xs:annotation>
+								<xs:documentation>Main domain for the organisation</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:anyURI">
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="OtherURL" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Other domain used by the organisation (one per element). These will be used to validate any domains used for web pages by the organisation, which are not in their primary domain</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:anyURI">
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The name of the organisation</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

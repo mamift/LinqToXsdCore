@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><cash_count_statistics_report:cashCountStatisticReportMessage xmlns:cash_count_statistics_report="urn:gs1:ecom:cash_count_statistics_report:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:cash_count_statistics_report:xsd:3 ../Schemas/gs1/ecom/CashCountStatisticReport.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <cashCountStatisticReport>
+        <creationDateTime>2017-07-17T09:30:47.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <documentActionCode>ADD</documentActionCode>
+        <documentStructureVersion>3.3</documentStructureVersion>
+        <cashCountStatisticReportIdentification>
+            <entityIdentification>10885</entityIdentification>
+            <contentOwner>
+                <gln>1111111111116</gln>
+            </contentOwner>
+        </cashCountStatisticReportIdentification>
+        <cashCountStatisticsType>REJECT_STATISTICS</cashCountStatisticsType>
+        <reportPeriod>
+            <beginDate>2017-06-01</beginDate>
+            <beginTime>09:00:47</beginTime>
+            <endDate>2017-06-30</endDate>
+            <endTime>23:30:47</endTime>
+        </reportPeriod>
+        <processingStation>
+            <gln>1111111111185</gln>
+            <locationOfProcessingStation>
+                <gln>1111111111994</gln>
+            </locationOfProcessingStation>
+            <serialNumber>458gdfgy77K</serialNumber>
+            <configurationMode>R_CDIL1</configurationMode>
+            <operationMode>ONLINE-COUNTING</operationMode>
+        </processingStation>
+        <generalStatisticInformation>
+            <statisticMeasurementType>PRIORITIZED SCHEME</statisticMeasurementType>
+            <statisticMeasurementValue>6650</statisticMeasurementValue>
+        </generalStatisticInformation>
+        <runtimeInformation>
+            <totalAvailabilityPercentage>78.5</totalAvailabilityPercentage>
+            <totalRuntime>P1DT15H10M3S</totalRuntime>
+            <runtimeDetails>
+                <runtimeType>Power-up</runtimeType>
+                <runtimeValue>P1DT12H18M12S</runtimeValue>
+            </runtimeDetails>
+        </runtimeInformation>
+        <depositUnitIdentification>
+            <headerCardIdentification>0</headerCardIdentification>
+            <headerCardType>NO_HEADER_CARD</headerCardType>
+            <additionalDepositUnitIdentification>
+                <additionalDepositUnitIdentifier>400000100000123452</additionalDepositUnitIdentifier>
+                <additionalDepositUnitIdentificationType>SSCC</additionalDepositUnitIdentificationType>
+            </additionalDepositUnitIdentification>
+            <cashOwner>
+                <gln>9999999999994</gln>
+            </cashOwner>
+        </depositUnitIdentification>
+        <cashCountStatisticReportLineItem>
+            <lineItemNumber>1</lineItemNumber>
+            <cashArticleIdentification>04107001000742</cashArticleIdentification>
+            <fitnessLevel>SINGLER_TRANSPORT</fitnessLevel>
+            <totalQuantityProcessed measurementUnitCode="H87">133</totalQuantityProcessed>
+            <rejectionDetails>
+                <proportionalQuantityRejected>1.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">32</totalQuantityRejected>
+                <rejectionReason>CLOSE_FEED</rejectionReason>
+            </rejectionDetails>
+            <rejectionDetails>
+                <proportionalQuantityRejected>1.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">74</totalQuantityRejected>
+                <rejectionReason>ASYNCHRONOUS</rejectionReason>
+            </rejectionDetails>
+            <rejectionDetails>
+                <proportionalQuantityRejected>0.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">10</totalQuantityRejected>
+                <rejectionReason>JAM</rejectionReason>
+            </rejectionDetails>
+            <rejectionDetails>
+                <proportionalQuantityRejected>0.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">17</totalQuantityRejected>
+                <rejectionReason>TOO_LONG</rejectionReason>
+            </rejectionDetails>
+        </cashCountStatisticReportLineItem>
+        <cashCountStatisticReportLineItem>
+            <lineItemNumber>2</lineItemNumber>
+            <cashArticleIdentification>04107001000919</cashArticleIdentification>
+            <fitnessLevel>SENSOR</fitnessLevel>
+            <totalQuantityProcessed measurementUnitCode="H87">2486</totalQuantityProcessed>
+            <rejectionDetails>
+                <proportionalQuantityRejected>6.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">338</totalQuantityRejected>
+                <rejectionReason>R_HIGHRUN</rejectionReason>
+            </rejectionDetails>
+            <rejectionDetails>
+                <proportionalQuantityRejected>2.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">85</totalQuantityRejected>
+                <rejectionReason>R_SKEWRUN</rejectionReason>
+            </rejectionDetails>
+            <rejectionDetails>
+                <proportionalQuantityRejected>1.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">64</totalQuantityRejected>
+                <rejectionReason>R_CDIL1</rejectionReason>
+            </rejectionDetails>
+            <rejectionDetails>
+                <proportionalQuantityRejected>0.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">4</totalQuantityRejected>
+                <rejectionReason>R_CDIL2</rejectionReason>
+            </rejectionDetails>
+            <rejectionDetails>
+                <proportionalQuantityRejected>0.0</proportionalQuantityRejected>
+                <totalQuantityRejected measurementUnitCode="H87">9</totalQuantityRejected>
+                <rejectionReason>R_DENOMINATION</rejectionReason>
+            </rejectionDetails>
+        </cashCountStatisticReportLineItem>
+    </cashCountStatisticReport>
+</cash_count_statistics_report:cashCountStatisticReportMessage>

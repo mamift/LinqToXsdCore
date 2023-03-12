@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project XSL_DestFileExt="">
+	<Folder FolderName="base" ExtStr="xsd">
+		<File FilePath=".\base\basicTypes.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\coordinateOperations.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\coordinateReferenceSystems.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\coordinateSystems.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\coverage.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\dataQuality.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\datums.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\defaultStyle.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\dictionary.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\direction.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\dynamicFeature.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\feature.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\geometryAggregates.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\geometryBasic0d1d.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\geometryBasic2d.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\geometryComplexes.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\geometryPrimitives.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\gml.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\gmlBase.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\grids.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\measures.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\observation.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\referenceSystems.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\temporal.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\temporalReferenceSystems.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\temporalTopology.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\topology.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\units.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\base\valueObjects.xsd" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="smil">
+		<File FilePath=".\smil\smil20-language.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\smil\smil20.xsd" HomeFolder="Yes"/>
+		<File FilePath=".\smil\xml-mod.xsd" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="xlink">
+		<File FilePath=".\xlink\xlinks.xsd" HomeFolder="Yes"/>
+	</Folder>
+</Project>

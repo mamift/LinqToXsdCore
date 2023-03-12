@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GelML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.psidev.info/gelml/1_1candidate ../Schema/GelML-v1_1candidate.xsd"
+ xmlns="http://www.psidev.info/gelml/1_1candidate"
+ id="ex006:GelML:001">
+
+    <cvList>
+        <cv fullName="sepCV" URI="https://psidev.svn.sourceforge.net/svnroot/psidev/psi/sepcv/trunk/sep.obo" id="sepCV" version="TO DO" />
+        <cv id="UO" fullName="Unit Ontology" URI="http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo"/>
+    </cvList>
+    
+    
+    <GelMLMaterialCollection>        
+        <GenericMaterial id="Material:SDS" name="SDS">
+            <cvParam cvRef="sepCV" accession="sep:00196" name="sample description" value="linear distribution of SDS: 8-16"/>
+        </GenericMaterial>
+        
+        <GenericMaterial id="ex01:GenericMaterial1"/>
+    </GelMLMaterialCollection>
+    
+    <GelMLDataCollection>
+        <Image location="uri.to.image" id="ex001:Image1" name="[optional image name]" bitDepth="16" dimensionX="3215" dimensionY="3530">
+            <channel>
+                <AtomicValue>
+                    <PropertyValue value="450" unitName="hertz" unitAccession="UO:0000106" unitCvRef="UO"/>
+                </AtomicValue>
+            </channel>
+            <resolution>
+                <AtomicValue>
+                    <PropertyValue value="600" unitAccession="UO:0000240" unitName="dots per inch" unitCvRef="UO"/>
+                </AtomicValue>     
+            </resolution>
+        </Image>      
+        
+    </GelMLDataCollection>
+    
+    
+    <GelMLProtocolCollection>
+        
+        <GenericEquipment
+            name="PowerLook 1120 Professional Scanner with UTA-1100 Transparency Adapter"
+            id="ex002:GenericEquipment2">
+            <make>
+                <userParam name="UMAX"/>
+            </make>
+            <model>
+                <userParam name="PowerLook"/>
+            </model>
+            <GenericParameter id="GP1" name="[Name of scanner parameter]">
+                <AtomicValue>
+                    <PropertyValue value="[Enter default parameter value here]"/>
+                </AtomicValue>
+            </GenericParameter>
+        </GenericEquipment>	
+        
+        <GenericEquipment id="ex002:GenericEquipment0" name="[Electrophoresis equipment name]">
+            <make>
+                <userParam name="[make]"/>
+            </make>
+            <model>
+                <userParam name="[model]"/>
+            </model>
+        </GenericEquipment>
+        
+        <GenericEquipment id="ex001:GenericEquipment1" name="[Equilibration equipment name]">
+            <make>
+                <userParam name="[make]"/>
+            </make>
+            <model>
+                <userParam name="[model]"/>
+            </model>
+        </GenericEquipment>
+        
+        <GenericProtocol id="ex001:GenericProtocol1" name="[Equilibration process name]">
+            <protocolText>[Protocol description here and buffers in here]</protocolText>
+            <equipment GenericEquipment_ref="ex001:GenericEquipment1"/>
+        </GenericProtocol>
+        
+        <SampleLoadingProtocol id="ex01:SampleLoadProtocol1">
+            <protocolText>[Protocol text in here]</protocolText>
+            <loadingBuffer>
+                <AddBufferAction SubstanceMixtureProtocol_ref="ex001:SubMixProtocol1" id="ex001:AddBufferAction1"/>
+            </loadingBuffer>  
+        </SampleLoadingProtocol>        
+        
+        <Gel2DProtocol id="ex06:Gel2DProtocol1">
+            
+            <SampleLoadingAction SampleLoadingProtocol_ref="ex01:SampleLoadProtocol1" id="SLA1"/>            
+            <FirstDimensionAction ElectrophoresisProtocol_ref="ex002:ElectrophoresisProtocol0" id="FDA1"/>            
+            <SecondDimensionAction ElectrophoresisProtocol_ref="ex002:ElectrophoresisProtocol1" id="FDA2"/>
+            <InterDimensionAction GenericProtocol_ref="ex001:GenericProtocol1" id="IDA1"/>
+        </Gel2DProtocol>               
+        
+        <ElectrophoresisProtocol name="Isoelectric focusing"
+            id="ex002:ElectrophoresisProtocol0">            
+            <protocolText>[Protocol text in here]</protocolText>            
+            <electrophoresisEquipment GenericEquipment_ref="ex002:GenericEquipment0"/>            
+
+        </ElectrophoresisProtocol>
+        
+        
+        <ElectrophoresisProtocol name="2D electrophoresis"
+            id="ex002:ElectrophoresisProtocol1">
+            
+            <protocolText>[Protocol text in here]</protocolText>            
+            <electrophoresisEquipment GenericEquipment_ref="ex002:GenericEquipment0"/>            
+            
+        </ElectrophoresisProtocol>
+        
+        <SubstanceMixtureProtocol id="ex001:SubMixProtocol1" name="[Loading buffer name]">
+            <SubstanceAction id="ex001:SubstanceAction1" substanceName="[constituent 1]">
+                <AbsoluteVolume id="ex001:AbVol1">
+                    <AtomicValue>
+                        <PropertyValue value="45" unitCvRef="UO" unitAccession="UO:0000101" unitName="microliter"/>
+                    </AtomicValue>             
+                    
+                </AbsoluteVolume>
+            </SubstanceAction>           
+        </SubstanceMixtureProtocol>
+        
+        <SubstanceMixtureProtocol id="ex001SubstanceMixtureProtocol5" name="[Equilibration buffer name]">
+            <SubstanceAction id="SubAct1" substanceName="[Constituent Name]"/>
+        </SubstanceMixtureProtocol>
+               
+        
+        <SubstanceMixtureProtocol id="SubMixture3" name="[Detection buffer/reagents name]">
+            <SubstanceAction id="SBA3_1" substanceName="[sub name]"/>
+        </SubstanceMixtureProtocol>
+        
+        
+        <DetectionProtocol id="ex01:DetectProtocol1">
+            <protocolText>[Protocol text in here]</protocolText>            
+            <DetectionAgent>
+                <cvParam cvRef="sepCV" accession="sep:00114" name="Coomassie blue" value="0.067" unitName="volume per unit volume" unitAccession="UO:0000205" unitCvRef="UO" />
+            </DetectionAgent>
+        </DetectionProtocol>         
+                
+        <DetectionProtocol id="ex001:detectProt01">
+            <protocolText>Protein transfer to PVDF membrane – immunoblotting followed by detection of fluorescent antibody</protocolText>
+
+            <DetectionAgent>
+                <userParam name="fluorescent antibody" value="25"  unitCvRef="UO" unitAccession="UO:0000101" unitName="microliter"/>
+            </DetectionAgent>
+            <AddBufferAction SubstanceMixtureProtocol_ref="SubMixture3" id="ABA1"/>  
+        </DetectionProtocol>        
+        
+        <ImageAcquisitionProtocol id="ex001:ImageAcqProtocol1">
+            <protocolText>[Enter protocol text in here]</protocolText>
+            <equipment GenericEquipment_ref="ex002:GenericEquipment2"/>
+            <AutoCalibration id="ex001:AutoCalib1">
+                <BooleanValue value="true"/>
+            </AutoCalibration>  
+        </ImageAcquisitionProtocol>        
+        
+        
+    </GelMLProtocolCollection>
+    
+    <Gel2DExperiment id="">  
+        <Gel2DApplication Gel2DProtocol_ref="ex06:Gel2DProtocol1" id="ex06:Gel2DApp1">            
+            <inputFirstDimension>
+                <Gel id="ex001:Gel1" name="[e.g. IPG strip name]" batchNumber="[batchNumber]">                    
+                    <gelType>
+                        <cvParam cvRef="sepCV" accession="sep:00130" name="immobilized pH gradient gel" />
+                    </gelType>
+                    
+                    <percentAcrylamide>
+                        <AtomicValue>
+                            <PropertyValue value="12.5"/>
+                        </AtomicValue>                 
+                    </percentAcrylamide>
+                    <AcrylamideToCrossLinker acrylamide="37.5" crossLinker="1">
+                        <crossLinkerType>
+                            <cvParam cvRef="sepCV" accession="sep:00190" name="bisacrylamide"/>
+                        </crossLinkerType>
+                    </AcrylamideToCrossLinker>                
+
+                    <Dimensions>
+                        <x value="240" unitName="millimeter" unitAccession="UO:0000016" unitCvRef="UO"/>
+                        <y value="200" unitName="millimeter" unitAccession="UO:0000016" unitCvRef="UO"/>
+                        <z value="5" unitName="millimeter" unitAccession="UO:0000016" unitCvRef="UO"/>
+                    </Dimensions>
+                </Gel>
+            </inputFirstDimension>
+            <inputSecondDimension>
+                <Gel id="ex01:Gel2" name="second dimension slab gel">
+                    <gelType>
+                        <cvParam cvRef="sepCV" accession="sep:00129" name="polyacrylamide gel" />
+                    </gelType>
+                    <GelLane laneNumber="1" id="ex01:GelLane1"/>
+                    <GelLane laneNumber="2" id="ex01:GelLane2"/>      
+                    <percentAcrylamide>
+                        <AtomicValue>
+                            <PropertyValue value="12.5"/>
+                        </AtomicValue>                 
+                    </percentAcrylamide>
+                    <AcrylamideToCrossLinker acrylamide="37.5" crossLinker="1">
+                        <crossLinkerType>
+                            <cvParam cvRef="sepCV" accession="sep:00190" name="bisacrylamide"/>
+                        </crossLinkerType>
+                    </AcrylamideToCrossLinker>               
+                    <otherGelConstituents GenericMaterial_ref="Material:SDS"/>
+                    
+                </Gel>
+            </inputSecondDimension>
+            <output>
+                <Gel2D id="ex06:Gel2D:1">
+                    <PHRange dimension="1">
+                        <Range>
+                            <lowerLimit>
+                                <PropertyValue value="4"/>
+                            </lowerLimit>
+                            <upperLimit>
+                                <PropertyValue value="7"/>
+                            </upperLimit>
+                        </Range>
+                    </PHRange>
+                </Gel2D> 
+            </output>
+            <ChildProtocolApplications>
+                <SampleLoadingApplication SampleLoadingProtocol_ref="ex01:SampleLoadProtocol1" Gel_ref="ex001:Gel1" id="ex01:SLoadApp1" GelLane_ref="ex01:GelLane1">
+                    <InputSample>
+                        <GenericMaterialMeasurement Material_ref="ex01:GenericMaterial1">
+                                <AtomicValue>
+                                    <PropertyValue value="50" unitCvRef="UO" unitAccession="UO:0000101" unitName="microliter"/>
+                                </AtomicValue>                                
+                            </GenericMaterialMeasurement>                            
+                    </InputSample>
+                </SampleLoadingApplication>
+                
+                <ElectrophoresisApplication ElectrophoresisProtocol_ref="ex002:ElectrophoresisProtocol0" Gel_ref="ex001:Gel1" id="EApp1"/>
+                <ElectrophoresisApplication ElectrophoresisProtocol_ref="ex002:ElectrophoresisProtocol1" Gel_ref="ex01:Gel2" id="EApp2"/>
+                <!--  
+                <DirectDetection DetectionProtocol_ref="ex01:DetectProtocol1" id="ex01:DirectDetection1"/>	
+                -->
+                <IndirectDetection DetectionProtocol_ref="ex001:detectProt01"  id="ex001IndirectDetect01">        
+                    <TransferMedium id="ex001:transMed01" name="PVDF membrane">
+                        <userParam name="[can enter additional properties as CV terms or user params"/>
+                    </TransferMedium>  
+                    <DetectionMedium id="ex001:detectMedium1" name="[Name of detection medium e.g. photographic film"/>                        
+                </IndirectDetection>                  
+            </ChildProtocolApplications>            
+        </Gel2DApplication> 
+        
+        <ImageAcquisitionApplication Image_ref="ex001:Image1" Material_ref="ex001:detectMedium1" ImageAcquisitionProtocol_ref="ex001:ImageAcqProtocol1" id="ex001:ImageAcqApp1"/>
+        
+        
+    </Gel2DExperiment>
+    
+    
+    <AuditCollection>
+        <Person id="ex001:Contact2" firstName="Andy" lastName="Jones"/>
+    </AuditCollection>
+</GelML>

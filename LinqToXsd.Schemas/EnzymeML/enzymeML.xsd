@@ -1,0 +1,183 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+    targetNamespace="http://sbml.org/enzymeml/version1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="references">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:string" name="doi"/>
+                <xs:element type="xs:string" name="url"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="protein">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:string" name="sequence"/>
+                <xs:element type="xs:string" name="organism"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="reactant">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="inchi">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute type="xs:string" name="inchi" use="optional"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="smiles">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute type="xs:string" name="smiles" use="optional"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="data">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="listOfFormats">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="format">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="column" maxOccurs="unbounded"
+                                            minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute type="xs:string" name="type"
+                                                  use="optional"/>
+                                                  <xs:attribute type="xs:string" name="unit"
+                                                  use="optional"/>
+                                                  <xs:attribute type="xs:byte" name="index"
+                                                  use="optional"/>
+                                                  <xs:attribute type="xs:string" name="replica"
+                                                  use="optional"/>
+                                                  <xs:attribute type="xs:string" name="species"
+                                                  use="optional"/>
+                                                  <xs:attribute type="xs:string" name="initConcID"
+                                                  use="optional"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="listOfFiles">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="file">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:string" name="file"/>
+                                            <xs:attribute type="xs:string" name="format"/>
+                                            <xs:attribute type="xs:string" name="id"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="listOfMeasurements">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="measurement">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:string" name="file"/>
+                                            <xs:attribute type="xs:string" name="id"/>
+                                            <xs:attribute type="xs:string" name="name"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="reaction">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="conditions">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="temperature">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:float" name="value"/>
+                                            <xs:attribute type="xs:string" name="unit"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ph">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:float" name="value"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="replicas">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="replica" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:string" name="measurement"
+                                                use="optional"/>
+                                            <xs:attribute type="xs:string" name="replica"
+                                                use="optional"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="initConcs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="initConc" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute type="xs:string" name="id" use="optional"/>
+                                <xs:attribute type="xs:float" name="value" use="optional"/>
+                                <xs:attribute type="xs:string" name="unit" use="optional"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

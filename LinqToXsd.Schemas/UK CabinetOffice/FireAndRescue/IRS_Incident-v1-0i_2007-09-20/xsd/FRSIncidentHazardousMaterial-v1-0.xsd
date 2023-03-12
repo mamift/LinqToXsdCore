@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp1 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentHazardousChemical-v1-0">
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-03-01</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System hazardous chemical details structure</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentHazardousChemical-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System hazardous chemical details structure</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="HazardousMaterialStructure">
+		<xs:annotation>
+			<xs:documentation>Defines all the details that are required about a hazardous material that has been involved in an incident</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="UNNumber" type="UNNumberType">
+				<xs:annotation>
+					<xs:documentation>5.19 - The UN Number for the hazardous material - 4 digit number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActionCode" type="EACType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>5.20 - The Emergency Action Code that applies to the material - 2 to 3 characters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdentificationNumber" type="HINType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>5.21 - The Hazard Identification Number of the material - 1 to 4 characters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="UNNumberType">
+		<xs:annotation>
+			<xs:documentation>Defines the acceptable format for a UN hazardous chemical number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="4"/>
+			<xs:pattern value="[0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EACType">
+		<xs:annotation>
+			<xs:documentation>Defines the acceptable format for an Emergency Action Code value</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="3"/>
+			<xs:pattern value="[1-4][P-Z]E?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HINType">
+		<xs:annotation>
+			<xs:documentation>Defines the acceptable format of a Hazard Identification Number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+			<xs:pattern value="[1-9X][1-9]{0,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommonUNnumberListType">
+		<xs:annotation>
+			<xs:documentation>The most common substances encountered in incidents.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="4"/>
+			<xs:maxLength value="4"/>
+			<xs:enumeration value="1001">
+				<xs:annotation>
+					<xs:documentation>Acetylene</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1005">
+				<xs:annotation>
+					<xs:documentation>Ammonia</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1017">
+				<xs:annotation>
+					<xs:documentation>Chlorine</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1202">
+				<xs:annotation>
+					<xs:documentation>Diesel fuel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1789">
+				<xs:annotation>
+					<xs:documentation>Hydrochloric acid</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1223">
+				<xs:annotation>
+					<xs:documentation>Kerosene</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1075">
+				<xs:annotation>
+					<xs:documentation>LPG</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2031">
+				<xs:annotation>
+					<xs:documentation>Nitric acid</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1072">
+				<xs:annotation>
+					<xs:documentation>Oxygen, compressed</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1073">
+				<xs:annotation>
+					<xs:documentation>Oxygen, refrigerated liquid</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1203">
+				<xs:annotation>
+					<xs:documentation>Petrol</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1823">
+				<xs:annotation>
+					<xs:documentation>Sodium hydroxide solid</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1824">
+				<xs:annotation>
+					<xs:documentation>Sodium hydroxide solution</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1830">
+				<xs:annotation>
+					<xs:documentation>Sulphuric acid (over 51%)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2796">
+				<xs:annotation>
+					<xs:documentation>Sulphuric acid (51% or less)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

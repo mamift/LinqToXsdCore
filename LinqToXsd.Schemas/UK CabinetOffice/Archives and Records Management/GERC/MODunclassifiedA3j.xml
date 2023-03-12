@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by Simon Caudwell (CDMA 12) -->
+<!-- **********************************************************************************************************************
+
+DESCRIPTION:
+
+The MOD Unclassified schema contains all the Unclassified Type definitions used in UK MOD.
+
+UPDATE RECORD:
+
+Amendment	0
+Date		2002-09-20
+Applied By	CDMA10: Rowan Edwards
+Comment		Creation.
+
+Amendment	1
+Date		2002-10-04
+Applied By	CDMA10: Rowan Edwards
+Comment		Achieve validity according to XML Spy.
+
+Amendment 2
+Date		2002-10-11
+Applied by	CDMA8: P. Wrenn
+Comment		Update definitions, incorporate Dublin Core and achieve validity according to XML Spy.
+
+Amendment 3a
+Date		2002-10-25
+Applied by	CDMA8: P. Wrenn
+Comment	Update definitions in line with Review Decisions. Include full list of Special Markings.
+
+Amendment 3b
+Date		2002-11-08
+Applied by	CDMA8: P. Wrenn
+Comment	Update definitions in line DLO input. Replaced Non Codified Item Identification number with Domestic Item Number.
+
+Amendment 3c
+Date		2002-11-12
+Applied by	CDMA8: P. Wrenn
+Comment	Update definitions in line DLO input. Replaced Component Structure with Component Detail. Amended documentation.
+			ECN and Engineering Event Class changed from C255 to C25.
+				
+Amendment 3d
+Date		2002-11-13
+Applied by	CDMA8: P. Wrenn
+Comment	Update definitions with disallowing derivation of: final="#all". Added documentation comments on schema names.
+
+Amendment 3e
+Date		2002-11-13
+Applied by	CDMA8: P. Wrenn
+Comment		Update definitions in line with Review Decisions.
+
+Amendment 3f
+Date		2002-11-14
+Applied by	CDMA8: P. Wrenn
+Comment		Update definitions in line with Review Decisions.
+
+Amendment 3g
+Date		2002-11-15
+Applied by	CDMA8: P. Wrenn
+Comment	Update definitions in line with Review Decisions.
+
+Amendment 3h
+Date		2002-11-15
+Applied by	CDMA8: P. Wrenn
+Comment	Update definitions in line with Review Decisions.
+				
+Amendment 3i
+Date		2002-11-19
+Applied by	CDMA8: P. Wrenn
+Comment	Corrected fault on Transport Flags. Added " type="TransportFlagsType" minOccurs.
+
+Amendment 3j
+Date		2002-11-20
+Applied by	CDMA8: P. Wrenn
+Comment	Corrected description on Component Detail and Domestic Reference Number Structure.
+
+
+************************************************************************************************************************* -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="Amendment 3">
+	<xs:element name="MODXMLschema" type="MODXMLschemaStructure"/>
+	<xs:annotation>
+		<xs:documentation>The format for XML Schema used within the MOD.</xs:documentation>
+	</xs:annotation>
+	<!-- Start of Approved Global Complex type definitions ********************************************************** -->
+	<xs:complexType name="Component" final="#all">
+		<xs:annotation>
+			<xs:documentation>A part or combination of parts, having a specific function, which can be installed and replaced only as an entity.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ItemOfProduction" type="ItemOfProductionStructure"/>
+			<xs:element name="MODXMLschema" type="SerialNumberType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentDetail" final="#all">
+		<xs:annotation>
+			<xs:documentation>A structure containing details about a COMPONENT.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Mass" type="MassType"/>
+			<xs:element name="ConsumedLife" type="ConsumedLifeStructure"/>
+			<xs:element name="EngineeringChangeLevel" type="EngineeringChangeLevelStructure"/>
+			<xs:element name="EngineeringEvent" type="EngineeringEventStructure"/>
+			<xs:element name="Comment" type="CommentType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConsumedLifeStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>That part of the expected life of a COMPONENT which has currently been consumed.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ConsumedUnits" type="ConsumedUnitsType"/>
+			<xs:element name="LMU" type="LMUtype"/>
+			<xs:element name="PenaltyFactor" type="PenaltyFactorType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DomesticReferenceNumberStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>A combination of DOMESTIC MANAGEMENT CODE (DMC) and DOMESTIC ITEM NUMBER (DIN) used to identify a NON CODIFIED ITEM OF MATERIEL. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DomesticManagementCode" type="DomesticManagementCodeType"/>
+			<xs:element name="DomesticItemNumber" type="DomesticItemNumberType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EngineeringChangeLevelStructure">
+		<xs:annotation>
+			<xs:documentation>The Modification State of an ITEM OF PRODUCTION. This is the revision number of a change.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ECN" type="ECNtype"/>
+			<xs:element name="Description" type="DescriptionType"/>
+			<xs:element name="Date" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EngineeringEventStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>Anything which happens or comes to pass during an engineering activity, especially anything which triggers a process.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="JobCardNumber" type="JobCardNumberType"/>
+			<xs:element name="Date" type="xs:date"/>
+			<xs:element name="EngineeringEventClass" type="EngineeringEventClassType"/>
+			<xs:element name="EngineeringOrganisation" type="EngineeringOrganisationType"/>
+			<xs:element name="ConsumedLife" type="ConsumedLifeStructure"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GERCstructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>The engineering record of a COMPONENT.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Component" type="ComponentDetail"/>
+			<xs:element name="ParentAssembly" type="ParentAssemblyStructure" minOccurs="0"/>
+			<xs:element name="SubComponent" type="SubComponentStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ComponentDetail" type="ComponentDetail"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ItemOfProductionStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>Parts or objects grouped under the same manufacturer reference number, conforming to the same engineering drawings, specifications and inspection tests.	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ManufacturersReferenceSet" type="ManufacturersReferenceSetStructure"/>
+			<xs:element name="NATOstockNumber" type="NATOstockNumberStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DomesticReferenceNumber" type="DomesticReferenceNumberStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="DescriptionType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ManufacturersReferenceSetStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>The concatenation of the NCAGE CODE assigned to the Manufacturer of the item, and the MANUFACTURERS REFERENCE NUMBER.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NCAGEcode" type="NCAGEcodeType"/>
+			<xs:element name="ManufacturersReferenceNumber" type="ManufacturersReferenceNumberType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MODXMLbodyStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>The information, specific to the document, which follows the required MOD XML HEADER in every approved MOD XML Schema.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="GERC" type="GERCstructure" maxOccurs="unbounded"/>
+			<xs:element name="Dev" type="DevComplexStructure" maxOccurs="unbounded"/>
+			<!-- One element will be added to this choice for every MOD Approved Schema. -->
+			<!-- For Example 
+					<xs:element name="Example" type="ExampleStructure"/>
+			     End Example -->
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="MODXMLheaderStructure" final="#all">
+		<xs:sequence>
+			<xs:element name="Title" type="TitleType"/>
+			<xs:element name="Creator" type="CreatorType"/>
+			<xs:element name="SpecialMarkingInternationalDefenceOrganisation" type="SpecialMarkingInternationalDefenceOrganisationType" minOccurs="0"/>
+			<xs:element name="UKprotectiveMarking" type="UKprotectiveMarkingType" default="Unclassified"/>
+			<xs:element name="SpecialMarkingDescriptor" type="SpecialMarkingDescriptorType" minOccurs="0"/>
+			<xs:element name="SpecialMarkingNationalCaveat" type="SpecialMarkingNationalCaveatType" minOccurs="0"/>
+			<xs:element name="SpecialMarkingAdditionalMarking" type="SpecialMarkingAdditionalMarkingType" minOccurs="0"/>
+			<xs:element name="AcknowledgementRequestIndicator" type="AcknowledgementRequestIndicatorType" minOccurs="0"/>
+			<xs:element name="TransportFlags" type="TransportFlagsType" minOccurs="0"/>
+			<xs:element name="DigitalSignature" type="DigitalSignatureType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MODXMLschemaStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>The uniform structure required by MOD in every approved MOD XML Schema.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MODXMLheader" type="MODXMLheaderStructure">
+				<xs:annotation>
+					<xs:documentation>The uniform heading Information required by MOD in every approved MOD XML Schema.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MODXMLbody" type="MODXMLbodyStructure">
+				<xs:annotation>
+					<xs:documentation>The information, specific to the document, which follows the required MOD XML HEADER in every approved MOD XML Schema.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NATOitemIdentificationNumberStructure">
+		<xs:annotation>
+			<xs:documentation>A number assigned by a country to each approved item identification under the NATO Codification System (NCS). It consists of the two digit code for National Codification Bureau (NCB) followed by a seven digit non-significant number. 
+	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NationalCodificationBureauCode" type="NationalCodificationBureauCodeType"/>
+			<xs:element name="ItemIdentificationNumber" type="ItemIdentificationNumberType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NATOstockNumberStructure">
+		<xs:annotation>
+			<xs:documentation>A NATO Stock Number (NSN) is an IDENTIFIER of 13 digits in length, composed of a 4 digit NATO SUPPLY CLASSIFICATION CODE and a 9 digit NATO ITEM IDENTIFICATION NUMBER (NIIN). </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NATOsupplyClassificationCode" type="NATOsupplyClassificationCodeStructure"/>
+			<xs:element name="NATOitemIdentificationNumber" type="NATOitemIdentificationNumberStructure"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NATOsupplyClassificationCodeStructure">
+		<xs:annotation>
+			<xs:documentation>A four position CODE which identifies the supply classification of an ITEM OF SUPPLY identified under the NATO Codification System, an ITEM OF PRODUCTION and/or a homogeneous area of commodities in respect to their physical or performance characteristics. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NATOsupplyGroup" type="NATOsupplyGroupType"/>
+			<xs:element name="NATOsupplyGroupClassification" type="NATOsupplyGroupClassificationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParentAssemblyStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>The ASSEMBLY of which the current COMPONENT forms part.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Component" type="ComponentDetail"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="SubComponentStructure" final="#all">
+		<xs:annotation>
+			<xs:documentation>A structure containing details about a COMPONENT.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Component" type="ComponentDetail"/>
+		</xs:all>
+	</xs:complexType>
+	<!-- End of Approved Global Complex type definitions ************************************************************ -->
+	<!-- Start of Approved Global Simple type definitions *********************************************************** -->
+	<xs:simpleType name="AcknowledgementRequestIndicatorType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="TransportFlagsType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommentType">
+		<xs:annotation>
+			<xs:documentation>A remark, opinion or explanatory note</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CreatorType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConsumedUnitsType">
+		<xs:annotation>
+			<xs:documentation>That amount of expected life of a COMPONENT which has currently been consumed.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="DescriptionType">
+		<xs:annotation>
+			<xs:documentation>An account of the content of the RESOURCE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="640"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DigitalSignatureType">
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+	<xs:simpleType name="DomesticManagementCodeType">
+		<xs:annotation>
+			<xs:documentation>A code allocated by Supply Managers to groups of ITEMS OF SUPPLY for Inventory Management purposes. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECNtype">
+		<xs:annotation>
+			<xs:documentation>The IDENTIFIER of an ENGINEERING CHANGE LEVEL. Originator's Comment: ECN is more widely recognised in the business than "Engineering Change Number".</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EngineeringEventClassType">
+		<xs:annotation>
+			<xs:documentation>A recognised type of ENGINEERING EVENT.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ItemIdentificationNumberType">
+		<xs:annotation>
+			<xs:documentation>A seven digit non-significant number to identify an item under the NATO Codification System (NCS). </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="7"/>
+			<xs:pattern value="[0-9]{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="JobCardNumberType">
+		<xs:annotation>
+			<xs:documentation>The number of the Job Card which relates to an engineering EVENT.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LMUtype">
+		<xs:annotation>
+			<xs:documentation>A UNIT OF MEASURE DESCRIPTION for CONSUMED UNITS. LMU is more widely recognised in the business than Life Measurment Unit. Def Stan 00-60 DED 238 				Measurement Base.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EngineeringOrganisationType">
+		<xs:annotation>
+			<xs:documentation>A place where engine spares get shipped to, and where the event of repair takes place.
+Originators Comment: Often an Organisation or Unit Name positioned at a postal location or GEOSPATIAL LOCATION.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ManufacturersReferenceNumberType">
+		<xs:annotation>
+			<xs:documentation>A Reference Number allocated to a product by its Manufacturer.  A MANUFACTURERS REFERENCE NUMBER is used to assist in the identification/description of an ITEM OF SUPPLY.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MassType">
+		<xs:annotation>
+			<xs:documentation>The quantity of matter in a body, measured by its resistance to change of motion. The quantity of matter in a body, measured by its resistance to change of motion. It is a matter of observation that a force applied to a body produces acceleration proportional to the force. The constant of proportionality is the mass of the body.
+Format Constraint: All MASS will be measured in kilograms. See ISO 1000:1992(E) - SI Units.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="NationalCodificationBureauCodeType">
+		<xs:annotation>
+			<xs:documentation>A 2 digit CODE identifying the National Codification Bureau which codified an ITEM OF SUPPLY. 		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NATOsupplyGroupType">
+		<xs:annotation>
+			<xs:documentation>A CODE that groups items of supply into broad categories of relative items for management purposes. 		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NATOsupplyGroupClassificationType">
+		<xs:annotation>
+			<xs:documentation>A CODE which subdivides the NATO SUPPLY GROUP into relative homogeneous areas of commodities, in respect of their physical or performance characteristics or the relationship of parts and accessories to the next higher assembly. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NCAGEcodeType">
+		<xs:annotation>
+			<xs:documentation>A CODE used to identify a NATO COMMERCIAL AND GOVERNMENT ENTITY. A complete list of organizations/functions eligible for NCAGE CODE assignment is in ACodP-1. NCAGE CODE was formerly known as the NATO Supply Code for Manufacturers (NSCM). 
+Apart from US NCAGE CODES there is one significant alpha character (normally the first, but can be the last) which indicates the National Codification Bureau (NCB) that assigned the NCAGE CODE.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DomesticItemNumberType">
+		<xs:annotation>
+			<xs:documentation>+A number allocated to a NON CODIFIED ITEM OF MATERIAL. 		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PenaltyFactorType">
+		<xs:annotation>
+			<xs:documentation>An additional factor that needs to be applied to the calculation of the effect of an event on CONSUMED LIFE, when this is considered to be greater than usual. Positive real number; eg. 1.75 or can be less than 1. i.e. 0.25. Max size 99.99. Illustration: Aircraft get more stressed in certain conditions. The penalty factor is therefore a value of operational loading.
+</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerialNumberType" final="restriction">
+		<xs:annotation>
+			<xs:documentation>A unique identifier for a single instantiation of a COMPONENT. Serial number is allocated by the manufacturer and its uniqueness will be referenced to that manufacturer.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SpecialMarkingAdditionalMarkingType">
+		<xs:annotation>
+			<xs:documentation>A SPECIAL MARKING which indicates the conditions of issue/release, origin or ownership of a DOCUMENT. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SpecialMarkingDescriptorType">
+		<xs:annotation>
+			<xs:documentation>A SPECIAL MARKING to show the nature of sensitive material, eg. MEDICAL, HONOURS, CONTRACTS, STAFF.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="APPOINTMENTS"/>
+			<xs:enumeration value="BUDGET"/>
+			<xs:enumeration value="COMMERCIAL"/>
+			<xs:enumeration value="CONTRACTS"/>
+			<xs:enumeration value="CONTROL"/>
+			<xs:enumeration value="DS"/>
+			<xs:enumeration value="EXAMINATION"/>
+			<xs:enumeration value="EXERCISES"/>
+			<xs:enumeration value="HONOURS"/>
+			<xs:enumeration value="INTELLIGENCE"/>
+			<xs:enumeration value="INVESTIGATION"/>
+			<xs:enumeration value="LOCSEN"/>
+			<xs:enumeration value="MANAGEMENT"/>
+			<xs:enumeration value="MEDICAL"/>
+			<xs:enumeration value="OPERATIONS"/>
+			<xs:enumeration value="PERSONAL"/>
+			<xs:enumeration value="POLICE"/>
+			<xs:enumeration value="POLICY"/>
+			<xs:enumeration value="REGULATORY"/>
+			<xs:enumeration value="STAFF"/>
+			<xs:enumeration value="VETTING"/>
+			<xs:enumeration value="VISITS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SpecialMarkingInternationalDefenceOrganisationType">
+		<xs:annotation>
+			<xs:documentation>A SPECIAL MARKING which, when applied to a DOCUMENT, signifies that the document is authorised for circulation on a "need to know" basis within INTERNATIONAL DEFENCE ORGANISATIONs.  IDOs include NACC, NATO, WEU and PfP. The special markings are subject to certain security procedures and regulations of these organisations. N.B. URL is applicable to CHOTS CSV8 users only, until RLI/CHOTS link is established.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NACC"/>
+			<xs:enumeration value="NATO"/>
+			<xs:enumeration value="PfP"/>
+			<xs:enumeration value="UN"/>
+			<xs:enumeration value="WEU"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SpecialMarkingNationalCaveatType">
+		<xs:annotation>
+			<xs:documentation>A SPECIAL MARKING used to provide additional protection to certain types of UK Classified material.  
+			eg: UK EYES ONLY and CANUKUS EYES ONLY. N.B. URL applicable to CHOTS CSV8 users only, until RLI/CHOTS link established.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UK EYES ALPHA"/>
+			<xs:enumeration value="UK EYES BRAVO"/>
+			<xs:enumeration value="UK EYES ONLY"/>
+			<xs:enumeration value="UK EYES DISCRETION"/>
+			<xs:enumeration value="UKUS EYES ONLY"/>
+			<xs:enumeration value="CANUKUS EYES ONLY"/>
+			<xs:enumeration value="CANAUSUKUS EYES ONLY"/>
+			<xs:enumeration value="CANAUSNZUK EYES ONLY"/>
+			<xs:enumeration value="CANAUSNZUKUS EYES ONLY"/>
+			<xs:enumeration value="AUSNZUKUS EYES ONLY"/>
+			<xs:enumeration value="AUSUKUS EYES ONLY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TitleType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UKprotectiveMarkingType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="COSMIC TOP SECRET"/>
+			<xs:enumeration value="FOCAL TOP SECRET"/>
+			<xs:enumeration value="TOP SECRET"/>
+			<xs:enumeration value="SECRET"/>
+			<xs:enumeration value="CONFIDENTIAL"/>
+			<xs:enumeration value="RESTRICTED"/>
+			<xs:enumeration value="UNCLASSIFIED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- End of Approved Global Simple type definitions ************************************************************* -->
+	<!-- Start of Development Global Complex type definitions ******************************************************* -->
+	<xs:complexType name="DevComplexStructure">
+		<xs:annotation>
+			<xs:documentation>
+An example of a complex type in development.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DevSimple" type="DevSimpleType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- End of Development Global Complex type definitions ********************************************************* -->
+	<!-- Start of Development Global Simple type definitions ******************************************************** -->
+	<xs:simpleType name="DevSimpleType">
+		<xs:annotation>
+			<xs:documentation>
+An example of a simple type in development.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- End of Development Global Simple type definitions ********************************************************** -->
+</xs:schema>

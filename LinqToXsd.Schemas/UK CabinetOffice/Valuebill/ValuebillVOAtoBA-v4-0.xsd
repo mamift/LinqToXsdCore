@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Changes 3.1c to 4.0 (Second maintenance release) 
+		Updated to use VBcore-v4-0 and VBcore-v4-0
+
+	Changes 3.1 to 3.1c (Second maintenance release - Initial Draft) 
+		Updated to use VBcodes-v3-1c and VBcore-v3-1c
+		Also updated to use v2-0 of AddressTypes and BS7666 schemas and PersonDescriptives schema
+		Metadata updated to eGMS-v3-0
+
+	Changes 3.0 to 3.1 (First maintenance release)
+		Updated to use VBcore-v3-1 and VBcodes-v3-1
+		Use of attribute RVstatus to confirm status of <RateableValue> and <PreviousRateableValue> elements
+			- (allowing for inserted, deleted, changed and reconstituted)
+		Duplicate import specifications for AddressTypes, BS7666 and CommonSimpleTypes schemas added as work-around for differing parsers
+
+	Final Project Version 3.0 issued (no change from 2.0c)
+
+	Changes 2.0a to 2.0c (no change at v-2-0b)
+		The following elements changed to optional:
+			<TransactionIdentityBA>
+			<TransactionIdentityVOA>
+			<BAreference>
+			<TotalRateableValue>
+		Updated to include version 2.0c of VbCore and VbCodes supporting schemas		
+
+	Changes 2.0 to 2.0a incorporating GovTalk consultation
+		Updated to include version 2.0a of VbCore and VbCodes supporting schemas
+		VbCodes schema now included indirectly via VBCore to avoid problem with inclusion of multiple schema with same NameSpace
+
+	Version 2.0 issued for pilot operation and GovTalk consultation
+	
+	Changes 1.1a to 1.1b incorporating VOA feedback on V 1.1a
+		Updated to refer to version 1.1b of VbCore and VbCodes 
+		Property Description structure updated
+		Element names for Ctax Case Type & Number changed to <ReportOrCase>
+
+	Version 1.1a incorporating changes agreed with VOA 30/04/04 -->
+<xsd:schema xmlns:core="http://www.govtalk.gov.uk/core" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.govtalk.gov.uk/LG/Valuebill" targetNamespace="http://www.govtalk.gov.uk/LG/Valuebill" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4-0" id="VbVOAtoBA">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/metadata/egms">
+				<Contributor Href="mailto:govtalk@cabinet-office.gsi.gov.uk">Technology Policy Team, e-Government Unit</Contributor>
+				<Contributor Href="mailto:valuebill@tuckwood.co.uk">Valuebill Project, Project Manager - Barry Tuckwood</Contributor>
+				<Creator Href="mailto:bay@egic.ltd.uk">Bruce Yeoman, EGiC</Creator>
+				<Created>2004-02-17</Created>
+				<Modified>2004-06-10</Modified>
+				<Modified>2004-12-12</Modified>
+				<Modified>2005-02-22</Modified>
+				<Modified>2006-01-24</Modified>
+				<Description>Schema for Valuation Office Agency Council Tax and Non-Domestic Rates List Updates</Description>
+				<Review>2006-04-01</Review>
+				<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+				<Identifier>VbVOAtoBA</Identifier>
+				<Identifier Href="http://www.govtalk.gov.uk/LG/Valuebill/ValuebillVOAtoBA-v4-0.xsd">ValuebillVOAtoBA-v4-0</Identifier>
+				<Language codeListID="ISO639-2">eng</Language>
+				<Publisher Href="mailto:valuebill@tuckwood.co.uk">Valuebill Project</Publisher>
+				<ConformsTo>http://www.w3.org/2001/XMLSchema</ConformsTo>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CouncilTaxUpdateStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxCaseStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NNDRcaseStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NNDRupdateStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">VOAupdateBodyStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">PreviousRateableValue</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">RateableValue</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">VOAupdateList</ProvidesDefinitionOf>
+				<HasPart>VBcore-v4-0.xsd</HasPart>
+				<HasPart>VBcodes-v4-0.xsd</HasPart>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/AddressTypes-v2-0.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/bs7666-v2-0.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/CommonSimpleTypes-v1-3.xsd</Requires>
+				<Copyright>Crown Copyright 2004, 2005</Copyright>
+				<ProtectiveMarking>Unclassified</ProtectiveMarking>
+				<Status>draft</Status>
+				<StatusDescription>Maintenance Release for Consultation</StatusDescription>
+				<Version>4-0</Version>
+				<Category codeListID="GCL">People, communities and living; Local Taxes</Category>
+				<Project>Valuebill National Project</Project>
+				<Title>Valuebill VOA Update List Schema for BA</Title>
+				<Type>message</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="VBcore-v4-0.xsd"/>
+	<!--<xsd:include schemaLocation="VBcodes-v3-1.xsd"/>-->
+	<xsd:annotation>
+		<xsd:documentation>Additional duplicated import specifications added to handle problems with differing interpretation by parsers</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v2-0.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v2-0.xsd"/>
+	<!--<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="PersonalDetailsTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="ContactTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="CitizenIdentificationTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/PersonDescriptives" schemaLocation="PersonDescriptiveTypes-v1-1.xsd"/>-->
+	<!-- start of Header & Trailer definition -->
+	<xsd:complexType name="UpdateListHeaderStructure">
+		<xsd:annotation>
+			<xsd:documentation>Indicates start of record transfer set and provides common information about creation and target Billing Authority for the record set</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BillingAuthority">
+				<xsd:annotation>
+					<xsd:documentation>This is the Billing Authority for which the update list has been prepared</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:maxLength value="60"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="BillingAuthorityIdentityCode" type="BAidentityNumberType">
+				<xsd:annotation>
+					<xsd:documentation>This is the DETR/ODPM supplied four digit code</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProcessDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>The date of processing of the updates</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EntryDateTime" type="xsd:dateTime">
+				<xsd:annotation>
+					<xsd:documentation>Date and time of release of the update list</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateListTrailerStructure">
+		<xsd:annotation>
+			<xsd:documentation>Indicates termination of the transfer record set with a time stamp and record count for audit and integrity checks</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RecordCount">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="EntryDateTime" type="xsd:dateTime"/>
+			<xsd:element name="TotalRateableValue" type="MonetaryStructure" minOccurs="0"/>
+			<xsd:element name="TotalNNDRupdateCount" type="xsd:integer"/>
+			<xsd:element name="TotalCtaxUpdateCount" type="xsd:integer"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of Header & Trailer definition -->
+	<xsd:element name="RateableValue">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="MonetaryStructure">
+					<xsd:attribute name="RVstatus" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="inserted"/>
+								<xsd:enumeration value="changed"/>
+								<xsd:enumeration value="unchanged"/>
+								<xsd:enumeration value="deleted"/>
+								<xsd:enumeration value="reconstituted"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PreviousRateableValue">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="MonetaryStructure">
+					<xsd:attribute name="RVstatus" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="deleted"/>
+								<xsd:enumeration value="changed"/>
+								<xsd:enumeration value="unchanged"/>
+								<xsd:enumeration value="reconstituted"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- start of record types-->
+	<xsd:complexType name="CouncilTaxUpdateStructure">
+		<xsd:annotation>
+			<xsd:documentation>Council Tax Update List Entry</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="CtaxCase" type="CtaxCaseStructure"/>
+			<xsd:element name="TaxListYear" type="ListYearType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>List Year is optional for Ctax since it is not used yet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="CtaxUpdate">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:choice>
+								<xsd:sequence>
+									<xsd:element name="CouncilTaxBand" type="BandType">
+										<xsd:annotation>
+											<xsd:documentation>New Council Tax Band</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="PreviousCtaxBand" type="BandType" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Council Tax Band prior to re-assessment</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:sequence>
+								<xsd:element name="PreviousCtaxBand" type="BandType">
+									<xsd:annotation>
+										<xsd:documentation>Council Tax Band prior to re-assessment</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:choice>
+							<xsd:element name="ListTypeOfUpdate">
+								<xsd:annotation>
+									<xsd:documentation>Type of Update to Ctax List</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ListUpdateCode" type="CtaxListUpdateTypeCodeStructure"/>
+										<xsd:element name="ListUpdateDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ReasonForAlteration" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Change code as in VOA Technical Circular 9th Edition </xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ReasonForAlterationCode" type="CtaxReasonForAlterationCodeStructure" minOccurs="0"/>
+										<xsd:element name="ReasonForAlterationDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="CommunityDescription" type="CommunityDescriptionStructure" minOccurs="0"/>
+							<xsd:element name="AppealSettlement" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="AppealSettlementCode" type="CtaxAppealSettlementTypeCodeStructure"/>
+										<xsd:element name="AppealSettlementDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="CompositeIndicator" type="OccupancyIndicatorType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Indicates whether singular or mixed (domestic/commercial) occupancy</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="PreviousCompositeIndicator" type="OccupancyIndicatorType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>And previous state of occupation</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="CourtDecisionIndicator" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="CourtDecisionCode" type="CtaxCourtDecisionIndicatorCodeStructure"/>
+										<xsd:element name="CourtDecisionDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="PreviousCourtDecisionIndicator" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="PreviousCourtDecisionCode" type="CtaxCourtDecisionIndicatorCodeStructure"/>
+										<xsd:element name="PreviousCourtDecisionDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="CtaxNoAction">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="NoActionCode" type="CtaxNoActionCodeStructure"/>
+							<xsd:element name="NoActionDescription" type="core:PopulatedStringType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NNDRupdateStructure">
+		<xsd:annotation>
+			<xsd:documentation>NNDR Update List Entry</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="NNDRcase" type="NNDRcaseStructure"/>
+			<xsd:element name="TaxListYear" type="ListYearType"/>
+			<xsd:element name="ListActionDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Date of Entry onto List or Date Action Originated</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="NNDRupdate">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:choice>
+								<xsd:sequence>
+									<xsd:element ref="RateableValue"/>
+									<xsd:element ref="PreviousRateableValue" minOccurs="0"/>
+								</xsd:sequence>
+								<xsd:element ref="PreviousRateableValue"/>
+							</xsd:choice>
+							<xsd:element name="PreviousEffectiveDate" type="xsd:date" minOccurs="0"/>
+							<xsd:element name="ListTypeOfUpdate">
+								<xsd:annotation>
+									<xsd:documentation>Type of Update to ND Rating List</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ListUpdateCode" type="NndrUpdateCodeStructure"/>
+										<xsd:element name="ListUpdateDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="CommunityDescription" type="CommunityDescriptionStructure" minOccurs="0"/>
+							<xsd:element name="ReasonForChange" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Change code as in VOA Technical Circular 9th Edition </xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ReasonForChangeCode" type="NndrReasonForChangeCodeStructure"/>
+										<xsd:element name="ReasonForChangeDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="PropertyDescription">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="PrimaryDescriptionCode" type="NndrPrimaryDescriptionCodeStructure"/>
+										<xsd:element name="SecondaryDescriptionCode" type="NndrSecondaryDescriptionCodeStructure" minOccurs="0"/>
+										<xsd:element name="PropertyDescriptionText" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="AppealSettlement" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="AppealSettlementCode" type="NndrSettlementTypeCodeStructure"/>
+										<xsd:element name="AppealSettlementDescription" type="core:PopulatedStringType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="PartiallyDomesticSignal" type="OccupancyIndicatorType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Indicates whether singular or mixed (domestic/commercial) occupancy</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="PreviousPartiallyDomesticSignal" type="OccupancyIndicatorType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>And previous state of occupation</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="SCATcode" type="SCATcodeType" minOccurs="0"/>
+							<xsd:element name="TransitionIndicator" type="TransitionIndicatorType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="NNDRnoChange">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:choice>
+								<xsd:element name="NNDRnoAction">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="NoAction">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="NoActionCode" type="NndrNoActionCodeStructure"/>
+														<xsd:element name="NoActionDescription" type="core:PopulatedStringType" minOccurs="0"/>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+											<xsd:element name="ReportReason">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="ReportReasonCode" type="NndrReasonForReportCodeStructure"/>
+														<xsd:element name="ReportReasonDescription" type="core:PopulatedStringType" minOccurs="0"/>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="InvalidProposal">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="InvalidReason">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="InvalidReasonCode" type="NndrInvalidReasonCodeStructure"/>
+														<xsd:element name="InvalidReasonDescription" type="core:PopulatedStringType" minOccurs="0"/>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+											<xsd:element name="InvalidClearance">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="InvalidClearanceCode" type="NndrInvalidClearanceCodeStructure"/>
+														<xsd:element name="InvalidClearanceDescription" type="core:PopulatedStringType" minOccurs="0"/>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="WithdrawlAndDismissal">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="GroundsForAppeal">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="GroundsForAppealCode">
+															<xsd:simpleType>
+																<xsd:restriction base="xsd:integer">
+																	<xsd:minInclusive value="1"/>
+																	<xsd:maxInclusive value="99"/>
+																</xsd:restriction>
+															</xsd:simpleType>
+														</xsd:element>
+														<xsd:element name="GroundsForAppealDescription" type="core:PopulatedStringType" minOccurs="0"/>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+											<xsd:element name="AppealSettlement">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="AppealSettlementCode" type="NndrSettlementTypeCodeStructure"/>
+														<xsd:element name="AppealSettlementDescription" type="core:PopulatedStringType" minOccurs="0"/>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:choice>
+							<xsd:element name="RateableValue" type="MonetaryStructure" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Rateable Value to be applied from effective date - or to be retained if no change.
+Optional since no change may result in no RV being applied</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CtaxCaseStructure">
+		<xsd:annotation>
+			<xsd:documentation>Case type and number for Council Tax</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ReportOrCaseTypeCode" type="CtaxReportOrCaseTypeCodeStructure"/>
+			<xsd:element name="ReportOrCaseNumber" type="VOAcaseNumberType">
+				<xsd:annotation>
+					<xsd:documentation>Case or Report number as assigned by VOA - This may need to be optional for NoAction updates</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CaseTypeDescription" type="core:PopulatedStringType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NNDRcaseStructure">
+		<xsd:annotation>
+			<xsd:documentation>Case type and number for NNDR</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="CaseTypeCode" type="NndrCaseTypeCodeStructure"/>
+			<xsd:element name="VOAcaseNumber" type="VOAcaseNumberType">
+				<xsd:annotation>
+					<xsd:documentation>Case number as assigned by VOA - this is mandatory</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CaseTypeDescription" type="core:PopulatedStringType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--end of record types-->
+	<xsd:complexType name="VOAupdateBodyStructure">
+		<xsd:sequence>
+			<xsd:element name="TransactionIdentityBA" type="TransactionIdentityType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>System supplied unique identifier of the initiating report where supplied by the BA</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TransactionIdentityVOA" type="TransactionIdentityType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>System supplied unique identifier of the VOA scedule entry</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EffectiveDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Date that the change in property use/occupation becomes effective. Note that effective date will not be present in the case of a list deletion resulting from a reconstitution where it will be determined by the BA</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BAidentityNumber" type="BAidentityNumberType">
+				<xsd:annotation>
+					<xsd:documentation>The four digit LA reference issued by DETR/ODPM which identifies the target BA</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BAreportNumber" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Report number of originating report from BA</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="BAreference" type="BAreferenceType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Where supplied by the BA </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PropertyAssessmentAddress" type="VOpropertyIdentificationStructure">
+				<xsd:annotation>
+					<xsd:documentation>The address which unambiguously identifies the property that is the subject of the update and appears on the List. This should be a structured BS7666 address and UPRN but in the interim stage a descriptive text address will also be accepted</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AddressChangedFlag" type="AddressChangedFlagType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Indicates whether the address received from the BA report has been changed by VOA processing</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TypeOfTax">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="CouncilTaxUpdate" type="CouncilTaxUpdateStructure">
+							<xsd:annotation>
+								<xsd:documentation>This is a Council Tax List Update</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="NonDomesticUpdate" type="NNDRupdateStructure">
+							<xsd:annotation>
+								<xsd:documentation>This is a Non-Domestic Rating List Update</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="VOAupdateList">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="VOAupdateListHeader" type="UpdateListHeaderStructure"/>
+				<xsd:element name="VOApropertyUpdates" type="VOAupdateBodyStructure" maxOccurs="unbounded"/>
+				<xsd:element name="VOAupdateListTrailer" type="UpdateListTrailerStructure"/>
+			</xsd:sequence>
+			<xsd:attribute name="SchemaId" type="xsd:string" use="required"/>
+			<xsd:attribute name="SchemaVersion" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

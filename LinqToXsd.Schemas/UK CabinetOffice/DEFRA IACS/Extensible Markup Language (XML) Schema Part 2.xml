@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema developed by Rupert Hollom, YellowStar Consultancy rupert@yellowstar.co.uk -->
+<xsd:schema targetNamespace="http://ITD1351WA/schemas/eforms" xmlns:eforms="http://ITD1351WA/schemas/eforms" xmlns:xsd="http://www.w3.org/1999/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.4" id="MAFF_core_types">
+	<!-- =================== -->
+	<!-- Common Simple Types -->
+	<!-- =================== -->
+	<xsd:simpleType name="iacsrefType" derivedBy="restriction" base="xsd:string">
+		<xsd:annotation>
+			<xsd:documentation>Pattern defines the standard layout for an IACS ref code</xsd:documentation>
+		</xsd:annotation>
+		<xsd:pattern value="[0-9]{2}-[0-9]{6}"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="YesNoType" base="xsd:integer">
+		<!-- 0 indicates No, 1 indicates Yes -->
+		<xsd:enumeration value="0"/>
+		<xsd:enumeration value="1"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="CPHnumType" derivedBy="restriction" base="xsd:string">
+		<xsd:annotation>
+			<xsd:documentation>Pattern defines the standard layout for a CPH number.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:pattern value="[0-9]{0,2}/[0-9]{3}/[0-9]{4}"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="VendorNumberType" derivedBy="restriction" base="xsd:string">
+		<xsd:pattern value="[0-9]{1,6}"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="AreaType" derivedBy="restriction" base="xsd:string">
+		<xsd:pattern value="[0-9]{1,6}(\.[0-9]{1,2})?"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="LongStringType" base="xsd:string">
+		<xsd:minLength value="0"/>
+		<xsd:maxLength value="255"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ExtraLongStringType" base="xsd:string">
+		<xsd:minLength value="0"/>
+		<xsd:maxLength value="4096"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="RestrictedNumericType" base="xsd:decimal">
+		<xsd:scale value="2"/>
+		<xsd:maxInclusive value="99999.99"/>
+		<xsd:minInclusive value="0.01"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="RestrictedIntegerType" base="xsd:integer">
+		<xsd:minInclusive value="0"/>
+		<xsd:maxInclusive value="255"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="PercentageType" base="xsd:decimal">
+		<xsd:scale value="2"/>
+		<xsd:maxInclusive value="99.99"/>
+		<xsd:minInclusive value="0.01"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="CLnumberType" derivedBy="restriction" base="xsd:string">
+		<xsd:pattern value="(CL)?[0-9]{4}"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="YieldRegionType" base="xsd:string">
+		<xsd:enumeration value="England"/>
+		<xsd:enumeration value="Wales LFA"/>
+		<xsd:enumeration value="Wales Non-LFA"/>
+		<xsd:enumeration value="Scotland LFA"/>
+		<xsd:enumeration value="Scotland Non-LFA"/>
+		<xsd:enumeration value="N. Ireland NFA"/>
+		<xsd:enumeration value="N. Ireland Non-LFA"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="CropGroupType" base="xsd:string">
+		<xsd:enumeration value="Cereals"/>
+		<xsd:enumeration value="Durum wheat supp"/>
+		<xsd:enumeration value="Linseed"/>
+		<xsd:enumeration value="Maize"/>
+		<xsd:enumeration value="Oilseeds"/>
+		<xsd:enumeration value="Protein"/>
+		<xsd:enumeration value="Sweetcorn"/>
+		<xsd:enumeration value="Compensated Setaside"/>
+		<xsd:enumeration value="Uncompensated Setaside (schemes)"/>
+		<xsd:enumeration value="Uncompensated Setaside (non-food)"/>
+	</xsd:simpleType>
+	<!-- Start of Standard GovTalk element definitions -->
+	<xsd:simpleType name="PopulatedStringType" base="xsd:string">
+		<xsd:minLength value="1"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="RestrictedStringType" base="xsd:string">
+		<!--		<xsd:pattern value="[A-Za-z0-9!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\&#093;^_`{|}~]*"/>-->
+		<xsd:pattern value="[A-Za-z0-9 !&quot;#$%&amp;'()*+,\-./:;&lt;=&gt;?@\[\&#093;^_`{|}~]*"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddressLineType" base="xsd:string">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="35"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddressTownType" base="xsd:string">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="25"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddressPostCodeUKtype" base="xsd:string">
+		<xsd:pattern value="[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][A-Z]{2}"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameTitleType" base="xsd:string">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="10"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameForenameType" base="xsd:string">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="35"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameSurnameType" base="xsd:string">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="30"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="EmailAddressType" base="xsd:string">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="254"/>
+		<xsd:pattern value="[0-9A-Za-z\.\-_]{1,127}@[0-9A-Za-z\.\-_]{1,127}"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="TelephoneNumberType" base="xsd:string">
+		<xsd:minLength value="6"/>
+		<xsd:maxLength value="18"/>
+		<xsd:pattern value="[0-9() +]{6,18}"/>
+	</xsd:simpleType>
+	<!-- End of Standard GovTalk element definitions -->
+</xsd:schema>

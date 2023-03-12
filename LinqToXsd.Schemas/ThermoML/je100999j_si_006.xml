@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>1982</yrYrPub>
+			<sAuthor1>wag</sAuthor1>
+			<sAuthor2>eva</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Wagman, D. D.</sAuthor>
+		<sAuthor>Evans, W. H.</sAuthor>
+		<sAuthor>Parker, V. B.[Vivian Barfield]</sAuthor>
+		<sAuthor>Schumm, P.</sAuthor>
+		<sAuthor>Halow, I.</sAuthor>
+		<sAuthor>Bailey, S. M.</sAuthor>
+		<sAuthor>Churney, K. L.[Kenneth L.]</sAuthor>
+		<sAuthor>Nuttall, R. L.</sAuthor>
+		<sPubName>J. Phys. Chem. Ref. Data</sPubName>
+		<yrPubYr>1982</yrPubYr>
+		<dateCit>2010-04-21</dateCit>
+		<sTitle>The NBS tables of chemical thermodynamic properties</sTitle>
+		<sVol>11</sVol>
+		<sPage>2-1</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>sulfate ion</sCommonName>
+		<sFormulaMolec>O4S</sFormulaMolec>
+		<ion>
+			<nCharge>-2</nCharge>
+		</ion>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>sulfur cation</sCommonName>
+		<sFormulaMolec>S</sFormulaMolec>
+		<ion>
+			<nCharge>1</nCharge>
+		</ion>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>oxygen</sCommonName>
+		<sFormulaMolec>O2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>sulfur</sCommonName>
+		<sFormulaMolec>S</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>electron</sCommonName>
+		<sFormulaMolec>e</sFormulaMolec>
+		<ion>
+			<nCharge>-1</nCharge>
+		</ion>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<sCommonName>hydrohen ion</sCommonName>
+		<sFormulaMolec>H</sFormulaMolec>
+		<ion>
+			<nCharge>1</nCharge>
+		</ion>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>8</nOrgNum>
+		</RegNum>
+		<sCommonName>hydrohen</sCommonName>
+		<sFormulaMolec>H2</sFormulaMolec>
+	</Compound>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>1</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+    </Component>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>TRC</sCompiler>
+    <sContributor>VVD</sContributor>
+    <dateDateAdded>4/22/2010</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <ExcessPartialApparentEnergyProp>
+            <ePropName>Standard state molar entropy, J/K/mol</ePropName>
+            <sMethodName>Other</sMethodName>
+          </ExcessPartialApparentEnergyProp>
+        </PropertyGroup>
+        <RegNum>
+          <nOrgNum>1</nOrgNum>
+        </RegNum>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Liquid</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <Solvent>
+        <RegNum>
+          <nOrgNum>3</nOrgNum>
+        </RegNum>
+      </Solvent>
+      <eStandardState>Infinite dilution solute</eStandardState>
+    </Property>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <Constraint>
+      <ConstraintID>
+        <ConstraintType>
+          <eTemperature>Temperature, K</eTemperature>
+        </ConstraintType>
+      </ConstraintID>
+      <nConstraintValue>298.15</nConstraintValue>
+      <nConstrDigits>5</nConstrDigits>
+    </Constraint>
+    <Constraint>
+      <ConstraintID>
+        <ConstraintType>
+          <ePressure>Pressure, kPa</ePressure>
+        </ConstraintType>
+      </ConstraintID>
+      <nConstraintValue>100</nConstraintValue>
+      <nConstrDigits>3</nConstrDigits>
+    </Constraint>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eComponentComposition>Molality, mol/kg</eComponentComposition>
+        </VariableType>
+        <RegNum>
+          <nOrgNum>1</nOrgNum>
+        </RegNum>
+      </VariableID>
+      <VarPhaseID>
+        <eVarPhase>Liquid</eVarPhase>
+      </VarPhaseID>
+      <Solvent>
+        <RegNum>
+          <nOrgNum>3</nOrgNum>
+        </RegNum>
+      </Solvent>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>1</nVarValue>
+        <nVarDigits>1</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>20.1</nPropValue>
+        <nPropDigits>3</nPropDigits>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>1</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+    </Component>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>TRC</sCompiler>
+    <sContributor>VVD</sContributor>
+    <dateDateAdded>4/22/2010</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <ExcessPartialApparentEnergyProp>
+            <ePropName>Standard state molar heat capacity, J/K/mol</ePropName>
+            <sMethodName>Other</sMethodName>
+          </ExcessPartialApparentEnergyProp>
+        </PropertyGroup>
+        <RegNum>
+          <nOrgNum>1</nOrgNum>
+        </RegNum>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Liquid</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <Solvent>
+        <RegNum>
+          <nOrgNum>3</nOrgNum>
+        </RegNum>
+      </Solvent>
+      <eStandardState>Infinite dilution solute</eStandardState>
+    </Property>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <Constraint>
+      <ConstraintID>
+        <ConstraintType>
+          <eTemperature>Temperature, K</eTemperature>
+        </ConstraintType>
+      </ConstraintID>
+      <nConstraintValue>298.15</nConstraintValue>
+      <nConstrDigits>5</nConstrDigits>
+    </Constraint>
+    <Constraint>
+      <ConstraintID>
+        <ConstraintType>
+          <ePressure>Pressure, kPa</ePressure>
+        </ConstraintType>
+      </ConstraintID>
+      <nConstraintValue>100</nConstraintValue>
+      <nConstrDigits>3</nConstrDigits>
+    </Constraint>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eComponentComposition>Molality, mol/kg</eComponentComposition>
+        </VariableType>
+        <RegNum>
+          <nOrgNum>1</nOrgNum>
+        </RegNum>
+      </VariableID>
+      <VarPhaseID>
+        <eVarPhase>Liquid</eVarPhase>
+      </VarPhaseID>
+      <Solvent>
+        <RegNum>
+          <nOrgNum>3</nOrgNum>
+        </RegNum>
+      </Solvent>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>1</nVarValue>
+        <nVarDigits>1</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>-293</nPropValue>
+        <nPropDigits>3</nPropDigits>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>TRC</sCompiler>
+		<sContributor>VVD</sContributor>
+		<dateDateAdded>4/21/2010</dateDateAdded>
+		<eReactionType>Formation of ion</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<CriticalEvaluation>
+							<SingleProp/>
+						</CriticalEvaluation>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>1</nTemperature-K>
+			<nTemperatureDigits>1</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>1276.133</nPropValue>
+				<nPropDigits>7</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Solution 1</ePhase>
+			<eCompositionRepresentation>Molality - amount of participant per mass of solvent, mol/kg</eCompositionRepresentation>
+			<nNumericalComposition>0</nNumericalComposition>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Solution 1</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>TRC</sCompiler>
+		<sContributor>VVD</sContributor>
+		<dateDateAdded>4/21/2010</dateDateAdded>
+		<eReactionType>Formation of ion</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<CriticalEvaluation>
+							<SingleProp/>
+						</CriticalEvaluation>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+				<ePhase>Solution 1</ePhase>
+			</Solvent>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-909.27</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Solution 1</ePhase>
+			<eCompositionRepresentation>Molality - amount of participant per mass of solvent, mol/kg</eCompositionRepresentation>
+			<nNumericalComposition>1</nNumericalComposition>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Solution 1</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>TRC</sCompiler>
+		<sContributor>VVD</sContributor>
+		<dateDateAdded>4/21/2010</dateDateAdded>
+		<eReactionType>Formation of ion</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar Gibbs energy of reaction, kJ/mol</ePropName>
+						<CriticalEvaluation>
+							<SingleProp/>
+						</CriticalEvaluation>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+				<ePhase>Solution 1</ePhase>
+			</Solvent>
+			<eStandardState>Infinite dilution solute</eStandardState>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-744.53</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

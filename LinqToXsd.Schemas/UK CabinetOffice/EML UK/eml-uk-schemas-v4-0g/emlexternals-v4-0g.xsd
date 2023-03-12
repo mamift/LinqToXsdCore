@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-externals">
+	<xs:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="apd-v1-3.xsd"/>
+	<xs:complexType name="MailingAddressStructure">
+		<xs:complexContent>
+			<xs:extension base="apd:InternationalAddressStructure"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StructuredAddressStructure">
+		<xs:complexContent>
+			<xs:extension base="bs7666:BSaddressStructure"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PersonNameStructure">
+		<xs:complexContent>
+			<xs:extension base="apd:CitizenNameStructure"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PersonNameType">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

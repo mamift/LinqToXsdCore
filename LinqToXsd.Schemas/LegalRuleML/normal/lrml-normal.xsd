@@ -1,0 +1,4383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     LegalRuleML Core Specification Version 1.0 
+     OASIS Standard
+     30 August 2021
+     Copyright (c) OASIS Open 2021. All Rights Reserved.
+     Source: https://docs.oasis-open.org/legalruleml/legalruleml-core-spec/v1.0/os/xsd-schema/
+     Latest stage of the specification: https://docs.oasis-open.org/legalruleml/legalruleml-core-spec/v1.0/legalruleml-core-spec-v1.0.html
+     TC IPR Statement: https://www.oasis-open.org/committees/legalruleml/ipr.php
+-->
+<xs:schema xmlns:lrml="http://docs.oasis-open.org/legalruleml/ns/v1.0/"
+           xmlns:ruleml="http://ruleml.org/spec"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://docs.oasis-open.org/legalruleml/ns/v1.0/">
+   <xs:import namespace="http://www.w3.org/XML/1998/namespace"
+              schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
+   <xs:import namespace="http://ruleml.org/spec" schemaLocation="ruleml.xsd"/>
+   <xs:element name="LegalRuleML" type="lrml:LegalRuleML.type.def">
+      <xs:annotation>
+         <xs:documentation>a formal representation of one or more LegalSources using the
+                LegalRuleML Specifications.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="LegalRuleML.type.def">
+      <xs:annotation>
+         <xs:documentation>type of the LegalRuleML element  </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalRuleMLDocument.main">
+            <xs:attributeGroup ref="lrml:LegalRuleMLDocument.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="LegalRuleMLDocument.attlist">
+      <xs:annotation>
+         <xs:documentation>attributes of the LegalRuleML element</xs:documentation>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attribute ref="xml:base"/>
+      <xs:attributeGroup ref="lrml:hasCreationDate.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="LegalRuleMLDocument.main">
+      <xs:sequence>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasComment.edge.choice"/>
+         <xs:sequence minOccurs="0">
+            <xs:group ref="lrml:hasPrefix.edge.choice"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+               <xs:group ref="lrml:hasPrefix.edge.choice"/>
+               <xs:group ref="lrml:hasComment.edge.choice"/>
+            </xs:choice>
+         </xs:sequence>
+         <xs:sequence minOccurs="0">
+            <xs:group ref="lrml:meta.edge.choice"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+               <xs:group ref="lrml:meta.edge.choice"/>
+               <xs:group ref="lrml:hasComment.edge.choice"/>
+            </xs:choice>
+         </xs:sequence>
+         <xs:sequence minOccurs="0">
+            <xs:group ref="lrml:hasAssociationCollection.edge.choice"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+               <xs:group ref="lrml:hasAssociationCollection.edge.choice"/>
+               <xs:group ref="lrml:hasComment.edge.choice"/>
+            </xs:choice>
+         </xs:sequence>
+         <xs:sequence minOccurs="0">
+            <xs:group ref="lrml:text.edge.choice"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+               <xs:group ref="lrml:text.edge.choice"/>
+               <xs:group ref="lrml:hasComment.edge.choice"/>
+            </xs:choice>
+         </xs:sequence>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:group name="meta.edge.choice">
+      <xs:choice>
+         <xs:group ref="lrml:hasLegalReferenceCollection.edge.choice"/>
+         <xs:group ref="lrml:hasLegalSourceCollection.edge.choice"/>
+         <xs:group ref="lrml:hasReferenceCollection.edge.choice"/>
+         <xs:group ref="lrml:hasSourceCollection.edge.choice"/>
+         <xs:group ref="lrml:hasTimeCollection.edge.choice"/>
+         <xs:group ref="lrml:hasTemporalCharacteristics.edge.choice"/>
+         <xs:group ref="lrml:hasAgentCollection.edge.choice"/>
+         <xs:group ref="lrml:hasFigureCollection.edge.choice"/>
+         <xs:group ref="lrml:hasRoleCollection.edge.choice"/>
+         <xs:group ref="lrml:hasAuthorityCollection.edge.choice"/>
+         <xs:group ref="lrml:hasJurisdictionCollection.edge.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="text.edge.choice">
+      <xs:choice>
+         <xs:group ref="lrml:hasAlternativeCollection.edge.choice"/>
+         <xs:group ref="lrml:hasContext.edge.choice"/>
+         <xs:group ref="lrml:hasStatementCollection.edge.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:complexType name="AgentCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AgentCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AgentCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Agents"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Agents" type="lrml:AgentCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is an Agent.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="AgentCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:AgentCollection.main">
+            <xs:attributeGroup ref="lrml:AgentCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="AgentCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Agent.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Agent"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Agent" type="lrml:Agent.type.def">
+      <xs:annotation>
+         <xs:documentation>an entity that acts or has the capability to act.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Agent.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Agent.main">
+            <xs:attributeGroup ref="lrml:Agent.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Agent.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:sameAs.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="FigureCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:FigureCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FigureCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Figures"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Figures" type="lrml:FigureCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Figure.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="FigureCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:FigureCollection.main">
+            <xs:attributeGroup ref="lrml:FigureCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="FigureCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Figure.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Figure"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Figure" type="lrml:Figure.type.def">
+      <xs:annotation>
+         <xs:documentation>an instantiation of a function by an Actor.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Figure.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Figure.main">
+            <xs:attributeGroup ref="lrml:Figure.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Figure.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Actor.Node.choice">
+      <xs:annotation>
+         <xs:documentation>Actor: an Agent or a Figure.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="lrml:Agent.Node.choice"/>
+         <xs:group ref="lrml:Figure.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:complexType name="RoleCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:RoleCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RoleCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Roles"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Roles" type="lrml:RoleCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Role.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="RoleCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:RoleCollection.main">
+            <xs:attributeGroup ref="lrml:RoleCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="RoleCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Role.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Role.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Role.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Role"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Role" type="lrml:Role.type.def">
+      <xs:annotation>
+         <xs:documentation>a function of or part played by an Actor relative to a LegalRuleML
+                expression.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Role.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Role.main">
+            <xs:attributeGroup ref="lrml:Role.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Role.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="AlternativeCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AlternativeCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AlternativeCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Alternatives"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Alternatives" type="lrml:AlternativeCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a mutually exclusive collection where every member is a LegalRuleML
+                rendering of one or more Legal Norms.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="AlternativeCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:AlternativeCollection.main">
+            <xs:attributeGroup ref="lrml:AlternativeCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="AlternativeCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="AssociationCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AssociationCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AssociationCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Associations"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Associations" type="lrml:AssociationCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is an Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="AssociationCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:AssociationCollection.main">
+            <xs:attributeGroup ref="lrml:AssociationCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="AssociationCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Association.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Association.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Association.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Association"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Association" type="lrml:Association.type.def">
+      <xs:annotation>
+         <xs:documentation>a partial description of the extension of some relations where each
+                non-target entity is paired with every target entity. </xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Association.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Association.main">
+            <xs:attributeGroup ref="lrml:Association.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Association.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="AuthorityCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AuthorityCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AuthorityCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Authorities"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Authorities" type="lrml:AuthorityCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is an Authority.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="AuthorityCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:AuthorityCollection.main">
+            <xs:attributeGroup ref="lrml:AuthorityCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="AuthorityCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Authority.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Authority.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Authority.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Authority"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Authority" type="lrml:Authority.type.def">
+      <xs:annotation>
+         <xs:documentation>a person or organization with the power to create, endorse, or enforce
+                Legal Norms.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Authority.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Authority.main">
+            <xs:attributeGroup ref="lrml:Authority.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Authority.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:sameAs.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="commonCollection.attlist">
+      <xs:annotation>
+         <xs:documentation>attribute group for LegalRuleML Collections</xs:documentation>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:memberType.attrib.choice"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="memberType.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="memberType" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation> the type or class of members of the
+                    collection.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:complexType name="Comment.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Comment.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Comment.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Comment"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Comment" type="lrml:Comment.type.def">
+      <xs:annotation>
+         <xs:documentation>a comment, which has with no semantic effect.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Comment.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Comment.main">
+            <xs:attributeGroup ref="lrml:Comment.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Comment.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Comment.main">
+      <xs:complexContent>
+         <xs:extension base="lrml:any.type.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Paraphrase.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Paraphrase.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Paraphrase.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Paraphrase"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Paraphrase" type="lrml:Paraphrase.type.def">
+      <xs:annotation>
+         <xs:documentation>a natural language rendering of a Legal  Rule or fragment of it that
+                is an alternative to its Legal Source(s).</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Paraphrase.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Paraphrase.main">
+            <xs:attributeGroup ref="lrml:Paraphrase.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Paraphrase.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Paraphrase.main">
+      <xs:complexContent>
+         <xs:extension base="lrml:any.type.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType mixed="true" name="any.type.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:anyElement.choice"/>
+   </xs:complexType>
+   <xs:attributeGroup name="commonLRMLNodeInit.attlist">
+      <xs:annotation>
+         <xs:documentation>common attribute group for LegalRuleML Nodes</xs:documentation>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:NodeLabel.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.opt.choice"/>
+      <xs:attributeGroup ref="lrml:type.lrml.attrib.choice"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="commonLRMLEdgeInit.attlist">
+      <xs:annotation>
+         <xs:documentation>common attribute group for LegalRuleML edges</xs:documentation>
+      </xs:annotation>
+      <xs:attribute ref="xml:id"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="iri.lrml.attrib.opt.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="iri" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>an IRI providing details regarding the parent Node
+                    Element.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="iri.lrml.attrib.choice">
+      <xs:attribute name="iri" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>an IRI providing details regarding the parent Node
+                    Element.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="type.lrml.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="type" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>the type or class of the parent Node Element.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:complexType name="Context.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Context.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Context.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Context"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Context" type="lrml:Context.type.def">
+      <xs:annotation>
+         <xs:documentation>an application of Associations to their target entities within a
+                Scope.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Context.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Context.main">
+            <xs:attributeGroup ref="lrml:Context.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Context.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:hasCreationDate.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:group name="QualificationFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:choice>
+            <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+            <xs:group ref="ruleml:And-node.choice"/>
+            <xs:group ref="ruleml:Or-node.choice"/>
+            <xs:group ref="ruleml:Negation-node.choice"/>
+            <xs:group ref="ruleml:Implication-node.choice"/>
+            <xs:group ref="ruleml:Forall-node.choice"/>
+            <xs:group ref="ruleml:Exists-node.choice"/>
+         </xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="Atom-node.choice">
+      <xs:choice>
+         <xs:group ref="lrml:Override.Node.choice"/>
+         <xs:element ref="ruleml:Atom"/>
+         <xs:group ref="ruleml:Interval_formula-node.choice"/>
+         <xs:group ref="ruleml:Spatial_formula-node.choice"/>
+         <xs:group ref="ruleml:interval_algebra_group.content"/>
+         <xs:group ref="ruleml:Time_formula.Node.def"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="Override.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Override"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Override" type="lrml:Override.type.def">
+      <xs:annotation>
+         <xs:documentation>an indication that a Legal Rule takes precedence over another Legal
+                Rule. The ordered pair of Legal Rules is an instance in a defeasible priority
+                relation.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Override.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Override.main">
+            <xs:attributeGroup ref="lrml:over.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:under.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:Override.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Override.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Override.main">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:attributeGroup name="over.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="over" type="lrml:keyref.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>the Legal Rule with higher priority.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="under.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="under" type="lrml:keyref.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>the Legal Rule with lower priority.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="strength.attrib.opt.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="strength" type="lrml:strength.datatype">
+         <xs:annotation>
+            <xs:documentation>the (defeasible) Strength of the Legal Rule.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:simpleType name="strength.datatype">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="StrictStrength"/>
+         <xs:enumeration value="defeasible"/>
+         <xs:enumeration value="defeater"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:group name="Strength.Node.choice">
+      <xs:annotation>
+         <xs:documentation>Strength: the quality of a Legal Rule to resist or not to resist a
+                rebuttal.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="lrml:DefeasibleStrength.Node.choice"/>
+         <xs:group ref="lrml:StrictStrength.Node.choice"/>
+         <xs:group ref="lrml:Defeater.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="DefeasibleStrength.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:DefeasibleStrength"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="DefeasibleStrength" type="lrml:DefeasibleStrength.type.def">
+      <xs:annotation>
+         <xs:documentation>an indication that, in the absence of information to the contrary,
+                where the premises of a Legal Rule hold, the conclusion of the Legal Rule
+                holds.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="DefeasibleStrength.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:DefeasibleStrength.main">
+            <xs:attributeGroup ref="lrml:DefeasibleStrength.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="DefeasibleStrength.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="DefeasibleStrength.main">
+      <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+   </xs:complexType>
+   <xs:group name="StrictStrength.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:StrictStrength"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="StrictStrength" type="lrml:StrictStrength.type.def">
+      <xs:annotation>
+         <xs:documentation>an indication that where the premises of a Legal Rule are
+                indisputable, the conclusion of the Legal Rule is indisputable.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="StrictStrength.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:StrictStrength.main">
+            <xs:attributeGroup ref="lrml:StrictStrength.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="StrictStrength.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="StrictStrength.main">
+      <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+   </xs:complexType>
+   <xs:group name="Defeater.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Defeater"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Defeater" type="lrml:Defeater.type.def">
+      <xs:annotation>
+         <xs:documentation>an indication that, in the absence of information to the contrary,
+                where the premises of a Legal Rule hold, the opposite of the conclusion of the Legal
+                Rule does not hold.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Defeater.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Defeater.main">
+            <xs:attributeGroup ref="lrml:Defeater.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Defeater.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Defeater.main">
+      <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+   </xs:complexType>
+   <xs:group name="Violation.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Violation"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Violation" type="lrml:Violation.type.def">
+      <xs:annotation>
+         <xs:documentation>an indication that an Obligation or Prohibition has been
+                violated.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Violation.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Violation.main">
+            <xs:attributeGroup ref="lrml:Violation.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Violation.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Violation.main">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:group name="Compliance.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Compliance"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Compliance" type="lrml:Compliance.type.def">
+      <xs:annotation>
+         <xs:documentation>an indication that an Obligation has been fulfilled or a Prohibition
+                has not been violated.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Compliance.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Compliance.main">
+            <xs:attributeGroup ref="lrml:Compliance.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Compliance.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Compliance.main">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:group name="DeonticRole.Node.choice">
+      <xs:annotation>
+         <xs:documentation>a role in a Deontic Specification.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="lrml:AuxiliaryParty.Node.choice"/>
+         <xs:group ref="lrml:Bearer.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="Bearer.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Bearer"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Bearer" type="lrml:Bearer.type.def">
+      <xs:annotation>
+         <xs:documentation>a role in a Deontic Specification to which the Deontic Specification
+                is primarily directed.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Bearer.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Bearer.main">
+            <xs:attributeGroup ref="lrml:Bearer.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Bearer.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Bearer.main">
+      <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+   </xs:complexType>
+   <xs:group name="AuxiliaryParty.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:AuxiliaryParty"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="AuxiliaryParty" type="lrml:AuxiliaryParty.type.def">
+      <xs:annotation>
+         <xs:documentation>a role in a Deontic Specification to which the Deontic Specification
+                is related, but not primarily directed.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="AuxiliaryParty.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:AuxiliaryParty.main">
+            <xs:attributeGroup ref="lrml:AuxiliaryParty.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="AuxiliaryParty.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="AuxiliaryParty.main">
+      <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+   </xs:complexType>
+   <xs:group name="Deontic.Node.choice">
+      <xs:annotation>
+         <xs:documentation>Deontic Specification: an indication of what states are legal or
+                illegal. Deontic Specifications include Obligation, Permission, Prohibition,
+                SuborderLIst, … or a Boolean combination of Deontic Specifications other than
+                SuborderLists (at any depth).</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:choice>
+            <xs:group ref="lrml:Obligation.Node.choice"/>
+            <xs:group ref="lrml:Permission.Node.choice"/>
+            <xs:group ref="lrml:Prohibition.Node.choice"/>
+            <xs:group ref="lrml:Right.Node.choice"/>
+            <xs:group ref="lrml:Violation.Node.choice"/>
+            <xs:group ref="lrml:Compliance.Node.choice"/>
+         </xs:choice>
+         <xs:group ref="lrml:Reparation.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="Obligation.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Obligation"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Obligation" type="lrml:Obligation.type.def">
+      <xs:annotation>
+         <xs:documentation>a Deontic Specification for a state, an act, or a course of action to
+                which a Bearer is legally bound, and if it is not achieved or performed results in a
+                Violation.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Obligation.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Obligation.main">
+            <xs:attributeGroup ref="lrml:Obligation.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Obligation.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="ruleml:Resource.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Permission.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Permission"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Permission" type="lrml:Permission.type.def">
+      <xs:annotation>
+         <xs:documentation>a Deontic Specification for a state, an act, or a course of action
+                where the Bearer has no Obligation or Prohibition to the contrary. A weak Permission
+                is the absence of the Obligation or Prohibition to the contrary; a strong Permission
+                is an exception or derogation of the Obligation or Prohibition to the
+                contrary.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Permission.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Permission.main">
+            <xs:attributeGroup ref="lrml:Permission.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Permission.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="ruleml:Resource.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Prohibition.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Prohibition"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Prohibition" type="lrml:Prohibition.type.def">
+      <xs:annotation>
+         <xs:documentation>a Deontic Specification for a state, an act, or a course of action to
+                which a Bearer is legally bound, and if it is achieved or performed results in a
+                Violation.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Prohibition.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Prohibition.main">
+            <xs:attributeGroup ref="lrml:Prohibition.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Prohibition.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Reparation.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Reparation"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Reparation" type="lrml:Reparation.type.def">
+      <xs:annotation>
+         <xs:documentation>an indication that a PenaltyStatement is linked with a
+                PrescriptiveStatement, meaning that a sanction may apply when the
+                PrescriptiveStatement entails a Deontic Specification, and there is a Violation of
+                the Deontic Specification.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Reparation.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Reparation.main">
+            <xs:attributeGroup ref="lrml:Reparation.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Reparation.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Right.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Right"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Right" type="lrml:Right.type.def">
+      <xs:annotation>
+         <xs:documentation>(see also Permission) a Deontic Specification that gives a Permission
+                to a party (the Bearer) and implies there are Obligations or Prohibitions on other
+                parties (the AuxiliaryParty) such that the Bearer can (eventually) exercise the
+                Right.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Right.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Right.main">
+            <xs:attributeGroup ref="lrml:Right.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Right.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="DeonticFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-fo-node.choice"/>
+         <xs:group ref="ruleml:Or-fo-node.choice"/>
+         <xs:group ref="ruleml:Negation-node.choice"/>
+         <xs:group ref="ruleml:Implication-fo-node.choice"/>
+         <xs:group ref="ruleml:Forall-fo-node.choice"/>
+         <xs:group ref="ruleml:Exists-fo-node.choice"/>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:complexType name="AndFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+         <xs:choice>
+            <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+            <xs:group ref="ruleml:And-node.choice"/>
+            <xs:group ref="ruleml:Or-node.choice"/>
+            <xs:group ref="ruleml:Negation-node.choice"/>
+            <xs:group ref="ruleml:NegationAsFailure-node.choice"/>
+            <xs:group ref="ruleml:Implication-fo-node.choice"/>
+            <xs:group ref="ruleml:Forall-fo-node.choice"/>
+            <xs:group ref="ruleml:Exists-fo-node.choice"/>
+         </xs:choice>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="OrFormula.choice">
+      <xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+         <xs:choice>
+            <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+            <xs:group ref="ruleml:And-node.choice"/>
+            <xs:group ref="ruleml:Or-node.choice"/>
+            <xs:group ref="ruleml:Negation-node.choice"/>
+            <xs:group ref="ruleml:NegationAsFailure-node.choice"/>
+            <xs:group ref="ruleml:Implication-fo-node.choice"/>
+            <xs:group ref="ruleml:Forall-fo-node.choice"/>
+            <xs:group ref="ruleml:Exists-fo-node.choice"/>
+         </xs:choice>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="NegFormula.choice">
+      <xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+         <xs:choice>
+            <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+            <xs:group ref="ruleml:And-fo-node.choice"/>
+            <xs:group ref="ruleml:Or-fo-node.choice"/>
+            <xs:group ref="ruleml:Negation-fo-node.choice"/>
+            <xs:group ref="ruleml:Implication-fo-node.choice"/>
+            <xs:group ref="ruleml:Forall-fo-node.choice"/>
+            <xs:group ref="ruleml:Exists-fo-node.choice"/>
+         </xs:choice>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="PremiseFormula.choice">
+      <xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+         <xs:choice>
+            <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+            <xs:group ref="ruleml:And-node.choice"/>
+            <xs:group ref="ruleml:Or-node.choice"/>
+            <xs:group ref="ruleml:Negation-node.choice"/>
+            <xs:group ref="ruleml:NegationAsFailure-node.choice"/>
+            <xs:group ref="ruleml:Implication-fo-node.choice"/>
+            <xs:group ref="ruleml:Forall-fo-node.choice"/>
+            <xs:group ref="ruleml:Exists-fo-node.choice"/>
+         </xs:choice>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="ConclusionFormula.choice">
+      <xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+         <xs:choice>
+            <xs:group ref="ruleml:Atom-head-node.choice"/>
+            <xs:group ref="ruleml:Equal-head-node.choice"/>
+            <xs:group ref="ruleml:And-head-node.choice"/>
+            <xs:group ref="ruleml:Or-head-node.choice"/>
+            <xs:group ref="ruleml:Negation-head-node.choice"/>
+            <xs:group ref="ruleml:Implication-head-node.choice"/>
+            <xs:group ref="ruleml:Forall-head-node.choice"/>
+            <xs:group ref="ruleml:Exists-head-node.choice"/>
+         </xs:choice>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="ExistsFormula.choice">
+      <xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+         <xs:choice>
+            <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+            <xs:group ref="ruleml:And-node.choice"/>
+            <xs:group ref="ruleml:Or-node.choice"/>
+            <xs:group ref="ruleml:Negation-node.choice"/>
+            <xs:group ref="ruleml:Implication-fo-node.choice"/>
+            <xs:group ref="ruleml:Forall-fo-node.choice"/>
+            <xs:group ref="ruleml:Exists-node.choice"/>
+         </xs:choice>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="ForallFormula.choice">
+      <xs:choice>
+         <xs:group ref="lrml:Deontic.Node.choice"/>
+         <xs:choice>
+            <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+            <xs:group ref="ruleml:And-fo-node.choice"/>
+            <xs:group ref="ruleml:Or-fo-node.choice"/>
+            <xs:group ref="ruleml:Negation-node.choice"/>
+            <xs:group ref="ruleml:Implication-node.choice"/>
+            <xs:group ref="ruleml:Forall-node.choice"/>
+            <xs:group ref="ruleml:Exists-fo-node.choice"/>
+         </xs:choice>
+         <xs:group ref="ruleml:Operation-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="JurisdictionCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:JurisdictionCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="JurisdictionCollection.Node.def">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Jurisdictions"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Jurisdictions" type="lrml:JurisdictionCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Jurisdication.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="JurisdictionCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:JurisdictionCollection.main">
+            <xs:attributeGroup ref="lrml:JurisdictionCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="JurisdictionCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Jurisdiction.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Jurisdiction.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Jurisdiction.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Jurisdiction"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Jurisdiction" type="lrml:Jurisdiction.type.def">
+      <xs:annotation>
+         <xs:documentation>a geographic area or subject-matter over which an Authority applies
+                its legal power.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Jurisdiction.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Jurisdiction.main">
+            <xs:attributeGroup ref="lrml:Jurisdiction.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Jurisdiction.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:sameAs.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="LegalSourceCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalSourceCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="LegalSourceCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:LegalSources"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="LegalSources" type="lrml:LegalSourceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a LegalSource.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="LegalSourceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalSourceCollection.main">
+            <xs:attributeGroup ref="lrml:SourceCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="SourceCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:SourceCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="SourceCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Sources"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Sources" type="lrml:SourceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Source.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="SourceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:SourceCollection.main">
+            <xs:attributeGroup ref="lrml:SourceCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="SourceCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="LegalSource.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalSource.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="LegalSource.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:LegalSource"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="LegalSource" type="lrml:LegalSource.type.def">
+      <xs:annotation>
+         <xs:documentation>a source of one or more Legal Norms formulated in any format and
+                endorsed by an Authority.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="LegalSource.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Source.main">
+            <xs:attributeGroup ref="lrml:Source.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Source.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Source.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Source.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Source"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Source" type="lrml:Source.type.def">
+      <xs:annotation>
+         <xs:documentation>a source of information formulated in any format.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Source.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Source.main">
+            <xs:attributeGroup ref="lrml:Source.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Source.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:sameAs.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="NodeLabel.attrib.choice">
+      <xs:attribute name="key" type="lrml:id.datatype">
+         <xs:annotation>
+            <xs:documentation>a Node Element label.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="NodeReference.attrib.opt.choice">
+      <xs:attribute name="keyref" type="lrml:keyref.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>a Node Element reference.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="NodeReference.attrib.choice">
+      <xs:attribute name="keyref" type="lrml:keyref.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>a Node Element reference.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:simpleType name="keyref.lrml.datatype">
+      <xs:annotation>
+         <xs:documentation>refinement of xsd:anyURI that is a same-document relative IRI
+                reference with fragment identifier that belongs to the xsd:NCName lexical
+                space</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:anyURI">
+         <xs:pattern value="#[\i-[:]][\c-[:]]*"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="iri.lrml.datatype">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:restriction base="lrml:curieOrIRI.datatype"/>
+   </xs:simpleType>
+   <xs:simpleType name="curieOrIRI.datatype">
+      <xs:annotation>
+         <xs:documentation>CURIE or IRI reference</xs:documentation>
+      </xs:annotation>
+      <xs:union memberTypes="lrml:curie.datatype xs:anyURI"/>
+   </xs:simpleType>
+   <xs:simpleType name="curieOrAbsIRI.datatype">
+      <xs:annotation>
+         <xs:documentation>CURIE or (absolute) IRI</xs:documentation>
+      </xs:annotation>
+      <xs:union memberTypes="lrml:curie.datatype lrml:absIRI.datatype"/>
+   </xs:simpleType>
+   <xs:simpleType name="absIRI.datatype">
+      <xs:annotation>
+         <xs:documentation>(absolute) IRI</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:anyURI">
+         <xs:pattern value="[\i-[:]][\c-[:]]+:.+"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="curie.datatype">
+      <xs:annotation>
+         <xs:documentation>CURIE</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:pattern value="(([\i-[:]][\c-[:]]*)?:)?(/[^\s/][^\s]*|[^\s/][^\s]*|[^\s]?)"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="ReferenceCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasReference.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="LegalReferenceCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasLegalReference.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:group name="commonCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasMemberType.edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="commonCollectionItem.main">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:hasType.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="LegalSourceCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:group ref="lrml:hasLegalSource.edge.choice"/>
+            <xs:group ref="lrml:hasLegalSourceCollection.edge.choice"/>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="SourceCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:group ref="lrml:hasSource.edge.choice"/>
+            <xs:group ref="lrml:hasSourceCollection.edge.choice"/>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Source.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="TimeCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:hasTime.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TemporalCharacteristicCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasTemporalCharacteristic.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TemporalCharacteristic.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:sequence>
+               <xs:group minOccurs="0" ref="lrml:forStatus.edge.choice"/>
+               <xs:group minOccurs="0" ref="lrml:hasStatusDevelopment.edge.choice"/>
+               <xs:group minOccurs="0" ref="lrml:atTime.edge.choice"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AgentCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:hasAgent.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Agent.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FigureCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasFigure.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Figure.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:sequence>
+               <xs:group maxOccurs="unbounded"
+                         minOccurs="0"
+                         ref="lrml:hasFunction.edge.choice"/>
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:hasActor.edge.choice"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RoleCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:hasRole.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Role.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:sequence>
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:filledBy.edge.choice"/>
+               <xs:group maxOccurs="unbounded"
+                         minOccurs="0"
+                         ref="lrml:forExpression.edge.choice"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AuthorityCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasAuthority.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Authority.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="JurisdictionCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasJurisdiction.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Jurisdiction.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AssociationCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasAssociation.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="AlternativeCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:group minOccurs="0" ref="lrml:fromLegalSources.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:hasAlternative.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Association.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:sequence>
+               <xs:choice maxOccurs="unbounded" minOccurs="0">
+                  <xs:group ref="lrml:appliesSource.edge.choice"/>
+                  <xs:group ref="lrml:appliesTemporalCharacteristics.edge.choice"/>
+                  <xs:group ref="lrml:appliesTemporalCharacteristic.edge.choice"/>
+                  <xs:group ref="lrml:appliesStrength.edge.choice"/>
+                  <xs:group ref="lrml:appliesModality.edge.choice"/>
+                  <xs:group ref="lrml:appliesAuthority.edge.choice"/>
+                  <xs:group ref="lrml:appliesJurisdiction.edge.choice"/>
+               </xs:choice>
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:toTarget.edge.choice"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Context.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:group ref="lrml:appliesSource.edge.choice"/>
+            <xs:group ref="lrml:appliesTemporalCharacteristics.edge.choice"/>
+            <xs:group ref="lrml:appliesTemporalCharacteristic.edge.choice"/>
+            <xs:group ref="lrml:appliesStrength.edge.choice"/>
+            <xs:group ref="lrml:appliesModality.edge.choice"/>
+            <xs:group ref="lrml:appliesAuthority.edge.choice"/>
+            <xs:group ref="lrml:appliesJurisdiction.edge.choice"/>
+         </xs:choice>
+         <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:group ref="lrml:appliesAssociationCollection.edge.choice"/>
+            <xs:group ref="lrml:appliesAssociation.edge.choice"/>
+         </xs:choice>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:appliesAlternativeCollection.edge.choice"/>
+         <xs:group maxOccurs="unbounded" minOccurs="0" ref="lrml:inScope.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="StatementCollection.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:commonCollection.main"/>
+         <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:group ref="lrml:hasQualification.edge.choice"/>
+            <xs:group ref="lrml:hasStatement.edge.choice"/>
+            <xs:group ref="lrml:hasStatementCollection.edge.choice"/>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ConstitutiveStatement.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:group minOccurs="0" ref="lrml:hasTemplate-Constitutive.edge.choice"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="PrescriptiveStatement.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:group minOccurs="0" ref="lrml:hasTemplate-Prescriptive.edge.choice"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FactualStatement.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:group minOccurs="0" ref="lrml:hasTemplate-Factual.edge.choice"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="OverrideStatement.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:group minOccurs="0" ref="lrml:hasTemplate-Override.edge.choice"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="PenaltyStatement.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:group minOccurs="0" ref="lrml:hasTemplate-Penalty.edge.choice"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ReparationStatement.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:group minOccurs="0" ref="lrml:hasTemplate-Reparation.edge.choice"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Obligation.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="ruleml:slotDeontic.edge.choice"/>
+         <xs:group minOccurs="0" ref="ruleml:formula_Deontic.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Permission.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="ruleml:slotDeontic.edge.choice"/>
+         <xs:group minOccurs="0" ref="ruleml:formula_Deontic.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Prefix.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+   </xs:complexType>
+   <xs:complexType name="Prohibition.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="ruleml:slotDeontic.edge.choice"/>
+         <xs:group minOccurs="0" ref="ruleml:formula_Deontic.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Reparation.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:appliesPenalty.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="lrml:toPrescriptiveStatement.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Right.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="ruleml:slotDeontic.edge.choice"/>
+         <xs:group minOccurs="0" ref="ruleml:formula_Deontic.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="SuborderList.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+         <xs:group minOccurs="0" ref="lrml:hasParaphrase.edge.choice"/>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="ruleml:formula_Suborder.edge.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:group name="ConstitutiveRule.main">
+      <xs:sequence>
+         <xs:sequence minOccurs="0">
+            <xs:group minOccurs="0" ref="ruleml:body_ConstitutiveRule.edge.choice"/>
+            <xs:group minOccurs="0" ref="ruleml:head_ConstitutiveRule.edge.choice"/>
+         </xs:sequence>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="Implies-const.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="ruleml:body_Implies-const.name.choice"/>
+         <xs:group ref="ruleml:head_Implies-const.name.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="And-const.main">
+      <xs:sequence>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="ruleml:formula_And-const-edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="Or-const.main">
+      <xs:sequence>
+         <xs:group maxOccurs="unbounded"
+                   minOccurs="0"
+                   ref="ruleml:formula_Or-const-edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="Equivalent-const.main">
+      <xs:sequence>
+         <xs:group ref="ruleml:torso-const-edge.choice"/>
+         <xs:group ref="ruleml:torso-const-edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="Forall-const.main">
+      <xs:sequence>
+         <xs:group ref="lrml:boundVariables.choice"/>
+         <xs:group ref="ruleml:formula_Forall-const-edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="Exists-const.main">
+      <xs:sequence>
+         <xs:group ref="lrml:boundVariables.choice"/>
+         <xs:group ref="ruleml:formula_Exists-const-edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="Neg-const.main">
+      <xs:sequence>
+         <xs:group ref="ruleml:strong-const-edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="PrescriptiveRule.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:sequence minOccurs="0">
+            <xs:group minOccurs="0" ref="ruleml:body_PrescriptiveRule.edge.choice"/>
+            <xs:group minOccurs="0" ref="ruleml:head_PrescriptiveRule.edge.choice"/>
+         </xs:sequence>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="Time.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:commonCollectionItem.main">
+            <xs:group minOccurs="0" ref="ruleml:argTimeData.edge.choice"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Prefix.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Prefix.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Prefix.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Prefix"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Prefix" type="lrml:Prefix.type.def">
+      <xs:annotation>
+         <xs:documentation>a non-empty prefix declaration in a LegalRuleML
+                document.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Prefix.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Prefix.main">
+            <xs:attributeGroup ref="lrml:pre.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:prerefID.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:Prefix.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Prefix.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="pre.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="pre">
+         <xs:annotation>
+            <xs:documentation>the (non-empty) prefix in a Prefix declaration, following CURIE
+                    conventions.</xs:documentation>
+         </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:pattern value="[\i-[:]][\c-[:]]*"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="prerefID.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:prerefID.attrib.def"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="prerefID.attrib.def">
+      <xs:attribute name="refID" type="lrml:prerefID.datatype" use="required">
+         <xs:annotation>
+            <xs:documentation>the external ID of the Reference or Prefix.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:simpleType name="prerefID.datatype">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[^:].*"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="LegalReferenceCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalReferenceCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="LegalReferenceCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:LegalReferences"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="LegalReferences" type="lrml:LegalReferenceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a
+                LegalReference.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="LegalReferenceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalReferenceCollection.main">
+            <xs:attributeGroup ref="lrml:ReferenceCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ReferenceCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ReferenceCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ReferenceCollection.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:References"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="References" type="lrml:ReferenceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Reference.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="ReferenceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:ReferenceCollection.main">
+            <xs:attributeGroup ref="lrml:ReferenceCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="ReferenceCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+      <xs:attributeGroup ref="lrml:refType.attrib.opt.choice"/>
+      <xs:attributeGroup ref="lrml:refIDSystemName.attrib.opt.choice"/>
+      <xs:attributeGroup ref="lrml:refIDSystemSource.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="LegalReference.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalReference.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="LegalReference.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:LegalReference"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="LegalReference" type="lrml:LegalReference.type.def">
+      <xs:annotation>
+         <xs:documentation>a pair consisting of an internal ID and an enriched non-IRI
+                identifier, where the non-IRI is paired with some additional information that is
+                sufficient to disambiguate the non-IRI to a unique LegalSource.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="LegalReference.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Reference.main">
+            <xs:attributeGroup ref="lrml:refersTo.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:refID.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:Reference.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Reference.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Reference.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Reference.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:Reference"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Reference" type="lrml:Reference.type.def">
+      <xs:annotation>
+         <xs:documentation>a pair consisting of an internal ID and an enriched non-IRI
+                identifier, where the non-IRI is paired with some additional information that is
+                sufficient to disambiguate the non-IRI to a unique Source.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Reference.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:Reference.main">
+            <xs:attributeGroup ref="lrml:refersTo.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:refID.attrib.choice"/>
+            <xs:attributeGroup ref="lrml:Reference.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="Reference.attlist">
+      <xs:attributeGroup ref="lrml:refType.attrib.opt.choice"/>
+      <xs:attributeGroup ref="lrml:refIDSystemName.attrib.opt.choice"/>
+      <xs:attributeGroup ref="lrml:refIDSystemSource.attrib.opt.choice"/>
+   </xs:attributeGroup>
+   <xs:complexType name="Reference.main">
+      <xs:group minOccurs="0" ref="lrml:hasComment.edge.choice"/>
+   </xs:complexType>
+   <xs:attributeGroup name="refType.attrib.opt.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="refType" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>the conceptual type of the Reference (or of references contained
+                    by the References collection).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="refIDSystemName.attrib.opt.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="refIDSystemName" type="xs:string">
+         <xs:annotation>
+            <xs:documentation>the name of the ID system of the Reference (or of References
+                    contained by the References collection).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="refIDSystemSource.attrib.opt.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="refIDSystemSource" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>the IRI source of the ID system of the Reference (or of References
+                    contained by the References collection). </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="refersTo.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="refersTo" type="lrml:id.datatype">
+         <xs:annotation>
+            <xs:documentation>the internal ID of the Reference.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="refID.attrib.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attribute name="refID" type="lrml:refID.datatype">
+         <xs:annotation>
+            <xs:documentation>the external ID of the Reference or Prefix.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:simpleType name="refID.datatype">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+   <xs:complexType name="ConstitutivePremiseFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-const-node.choice"/>
+         <xs:group ref="ruleml:Or-const-node.choice"/>
+         <xs:group ref="ruleml:Negation-const-node.choice"/>
+         <xs:group ref="ruleml:Implication-const-node.choice"/>
+         <xs:group ref="ruleml:Forall-const-node.choice"/>
+         <xs:group ref="ruleml:Exists-const-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:group name="ConstitutiveConclusionFormula.choice">
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Or-const-dis-node.choice"/>
+         <xs:group ref="ruleml:Negation-const-node.choice"/>
+         <xs:group ref="ruleml:Implication-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Forall-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Exists-const-fo-node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:complexType name="ConstitutiveAndFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-const-node.choice"/>
+         <xs:group ref="ruleml:Or-const-node.choice"/>
+         <xs:group ref="ruleml:Negation-const-node.choice"/>
+         <xs:group ref="ruleml:Implication-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Forall-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Exists-const-fo-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="ConstitutiveOrFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-const-node.choice"/>
+         <xs:group ref="ruleml:Or-const-node.choice"/>
+         <xs:group ref="ruleml:Negation-const-node.choice"/>
+         <xs:group ref="ruleml:Implication-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Forall-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Exists-const-fo-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="ConstitutiveNegFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Or-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Negation-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Implication-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Forall-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Exists-const-fo-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="ConstitutiveForallFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Or-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Negation-const-node.choice"/>
+         <xs:group ref="ruleml:Implication-const-node.choice"/>
+         <xs:group ref="ruleml:Forall-const-node.choice"/>
+         <xs:group ref="ruleml:Exists-const-fo-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="ConstitutiveExistsFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleFormula-node.choice"/>
+         <xs:group ref="ruleml:And-const-node.choice"/>
+         <xs:group ref="ruleml:Or-const-node.choice"/>
+         <xs:group ref="ruleml:Negation-const-node.choice"/>
+         <xs:group ref="ruleml:Implication-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Forall-const-fo-node.choice"/>
+         <xs:group ref="ruleml:Exists-const-node.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="PrescriptiveConclusionFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="lrml:SuborderList.Node.choice"/>
+         <xs:group ref="lrml:SuborderFormula.choice"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:group name="Atom.main">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:choice minOccurs="0">
+            <xs:sequence>
+               <xs:group ref="ruleml:operatorForAtoms-edge.choice"/>
+               <xs:group ref="ruleml:argumentsForAtoms.sequence"/>
+            </xs:sequence>
+            <xs:group ref="ruleml:argumentsForAtoms.sequence"/>
+         </xs:choice>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="Equal.main">
+      <xs:sequence>
+         <xs:sequence minOccurs="0">
+            <xs:group ref="ruleml:leftSide-edge.choice"/>
+            <xs:group ref="ruleml:rightSide-edge.choice"/>
+         </xs:sequence>
+      </xs:sequence>
+   </xs:group>
+   <xs:attributeGroup name="sameAs.attrib.opt.choice">
+      <xs:attribute name="sameAs" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>an IRI that denotes the same thing as the Node
+                    Element.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="Scope.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="lrml:StatementCollection.Node.choice"/>
+         <xs:group ref="lrml:Statement.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="StatementCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Statements"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="Statements" type="lrml:StatementCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Legal Statement or a
+                FactualStatement.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="StatementCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:StatementCollection.main">
+            <xs:attributeGroup ref="lrml:StatementCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="StatementCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="Statement.Node.choice">
+      <xs:choice>
+         <xs:group ref="lrml:LegalStatement.Node.choice"/>
+         <xs:group ref="lrml:FactualStatement.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="LegalStatement.Node.choice">
+      <xs:annotation>
+         <xs:documentation>Legal Statement : a LegalRuleML expression of a Legal Rule or a part
+                of a Legal Rule.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:group ref="lrml:ConstitutiveStatement.Node.choice"/>
+         <xs:group ref="lrml:PrescriptiveStatement.Node.choice"/>
+         <xs:group ref="lrml:OverrideStatement.Node.choice"/>
+         <xs:group ref="lrml:PenaltyStatement.Node.choice"/>
+         <xs:group ref="lrml:ReparationStatement.Node.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="ConstitutiveStatement.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:ConstitutiveStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="ConstitutiveStatement" type="lrml:ConstitutiveStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>a Legal Statement which defines concepts and does not prescribe
+                behaviours.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="ConstitutiveStatement.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutiveStatement.main">
+            <xs:attributeGroup ref="lrml:ConstitutiveStatement.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="ConstitutiveStatement.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="PrescriptiveStatement.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:PrescriptiveStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="PrescriptiveStatement" type="lrml:PrescriptiveStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>a Legal Statement which prescribes behaviours, e.g. with Permissions,
+                Obligations, or Prohibitions on states, actions, or courses of
+                actions.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="PrescriptiveStatement.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:PrescriptiveStatement.main">
+            <xs:attributeGroup ref="lrml:PrescriptiveStatement.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="PrescriptiveStatement.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="FactualStatement.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:FactualStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="FactualStatement" type="lrml:FactualStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>an expression of fact.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="FactualStatement.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:FactualStatement.main">
+            <xs:attributeGroup ref="lrml:FactualStatement.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="FactualStatement.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="OverrideStatement.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:OverrideStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="OverrideStatement" type="lrml:OverrideStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>a Legal Statement of an Override.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="OverrideStatement.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:OverrideStatement.main">
+            <xs:attributeGroup ref="lrml:OverrideStatement.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="OverrideStatement.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="PenaltyStatement.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:PenaltyStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="PenaltyStatement" type="lrml:PenaltyStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>a Legal Statement of a sanction (e.g. a punishment or a
+                correction).</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="PenaltyStatement.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:PenaltyStatement.main">
+            <xs:attributeGroup ref="lrml:PenaltyStatement.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="PenaltyStatement.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="ReparationStatement.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:ReparationStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="ReparationStatement" type="lrml:ReparationStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>a Legal Statement of a Reparation.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="ReparationStatement.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:ReparationStatement.main">
+            <xs:attributeGroup ref="lrml:ReparationStatement.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="ReparationStatement.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="ConstitutiveStatementFormula.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ruleml:ConstitutiveRule-node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="FactualStatementFormula.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:ConstitutiveConclusionFormula.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="OverrideStatementFormula.choice">
+      <xs:group ref="lrml:Override.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="PenaltyStatementFormula.choice">
+      <xs:complexContent>
+         <xs:extension base="lrml:PrescriptiveConclusionFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="PrescriptiveStatementFormula.choice">
+      <xs:complexContent>
+         <xs:extension base="ruleml:PrescriptiveRule-node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ReparationStatementFormula.choice">
+      <xs:group ref="lrml:Reparation.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="hasAgentCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AgentCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasAgent.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group ref="lrml:Agent.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="hasAlternativeCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AlternativeCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasAssociationCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AssociationCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasAssociation.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Association.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasAuthorityCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:AuthorityCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasAuthority.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Authority.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasContext.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Context.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasFigureCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:FigureCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasFigure.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group ref="lrml:Figure.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="hasJurisdictionCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:JurisdictionCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasJurisdiction.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Jurisdiction.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasLegalSourceCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalSourceCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasLegalSource.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalSource.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasSourceCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:SourceCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasSource.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Source.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasPrefix.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Prefix.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasLegalReferenceCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalReferenceCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasLegalReference.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:LegalReference.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasReferenceCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ReferenceCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasReference.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Reference.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasRoleCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:RoleCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasRole.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Role.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasStatementCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group ref="lrml:StatementCollection.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="hasStatement.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group ref="lrml:Statement.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="hasComment.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Comment.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasParaphrase.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:Paraphrase.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTemplate-Constitutive.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutiveStatementFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTemplate-Override.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:OverrideStatementFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTemplate-Penalty.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:PenaltyStatementFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTemplate-Prescriptive.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:PrescriptiveStatementFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTemplate-Reparation.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ReparationStatementFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTemporalCharacteristics.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:TemporalCharacteristicCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTemporalCharacteristic.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:TemporalCharacteristic.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTimeCollection.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:TimeCollection.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasTime.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ruleml:Time.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="formula_And-const.content">
+      <xs:annotation>
+         <xs:documentation>From RuleML</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutiveAndFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="formula_Deontic.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group ref="lrml:DeonticFormula.choice"/>
+   </xs:complexType>
+   <xs:complexType name="formula_Exists-const.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutiveExistsFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="formula_Forall-const.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutiveForallFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="formula_Or-const.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutiveOrFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="formula_Suborder.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group ref="lrml:SuborderFormula.choice"/>
+   </xs:complexType>
+   <xs:complexType name="strong-const.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutiveNegFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="torso-const.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group ref="lrml:ConstitutiveConclusionFormula.choice"/>
+   </xs:complexType>
+   <xs:complexType name="argTimeData.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ruleml:TimeData.Node.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="hasStrength.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group minOccurs="0" ref="lrml:Strength.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="appliesStrength.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group minOccurs="0" ref="lrml:Strength.Node.choice"/>
+   </xs:complexType>
+   <xs:complexType name="hasTemplate-Factual.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group minOccurs="0" ref="lrml:FactualStatementFormula.choice"/>
+   </xs:complexType>
+   <xs:complexType name="hasQualification.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:group minOccurs="0" ref="lrml:QualificationFormula.choice"/>
+   </xs:complexType>
+   <xs:complexType name="slotDeontic.content">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:group ref="lrml:DeonticRole.Node.choice"/>
+         <xs:group ref="lrml:AnyTerm.choice"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="body_Implies-const.content">
+      <xs:complexContent>
+         <xs:extension base="lrml:ConstitutivePremiseFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="head_Implies-const.content">
+      <xs:group ref="lrml:ConstitutiveConclusionFormula.choice"/>
+   </xs:complexType>
+   <xs:complexType name="body_ConstitutiveRule.content">
+      <xs:complexContent>
+         <xs:extension base="lrml:PremiseFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="head_ConstitutiveRule.content">
+      <xs:group ref="lrml:ConstitutiveConclusionFormula.choice"/>
+   </xs:complexType>
+   <xs:complexType name="body_PrescriptiveRule.content">
+      <xs:complexContent>
+         <xs:extension base="lrml:PremiseFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="head_PrescriptiveRule.content">
+      <xs:complexContent>
+         <xs:extension base="lrml:PrescriptiveConclusionFormula.choice"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="SuborderList.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:SuborderList"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="SuborderList" type="lrml:SuborderList.type.def">
+      <xs:annotation>
+         <xs:documentation>a Deontic Specification consisting of a sequence of Deontic
+                Specifications other than SuborderLists (at any depth).  When a SuborderList holds,
+                a Deontic Specification in the SuborderList holds if all Deontic Specifications that
+                precede it in the SuborderList have been violated.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="SuborderList.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:SuborderList.main">
+            <xs:attributeGroup ref="lrml:SuborderList.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="SuborderList.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:group name="SuborderFormula.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:DeonticFormula.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="TemporalCharacteristicCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:TemporalCharacteristicCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="TemporalCharacteristicCollection.Node.def">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:TemporalCharacteristics"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="TemporalCharacteristics"
+               type="lrml:TemporalCharacteristicCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Temporal
+                Characteristic.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="TemporalCharacteristicCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:TemporalCharacteristicCollection.main">
+            <xs:attributeGroup ref="lrml:TemporalCharacteristicCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="TemporalCharacteristicCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="TemporalCharacteristic.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:TemporalCharacteristic.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="TemporalCharacteristic.Node.def">
+      <xs:sequence>
+         <xs:element ref="lrml:TemporalCharacteristic"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="TemporalCharacteristic"
+               type="lrml:TemporalCharacteristic.type.def">
+      <xs:annotation>
+         <xs:documentation>a pair of Time with a qualification (consisting of a Legal Status and
+                a Status Development) that holds at the Time.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="TemporalCharacteristic.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:TemporalCharacteristic.main">
+            <xs:attributeGroup ref="lrml:TemporalCharacteristic.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="TemporalCharacteristic.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLNodeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:complexType name="TimeCollection.Node.choice">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:TimeCollection.Node.def"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="TimeCollection.Node.def">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element ref="lrml:Times"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="Times" type="lrml:TimeCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection where every member is a Time.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="TimeCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:TimeCollection.main">
+            <xs:attributeGroup ref="lrml:TimeCollection.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="TimeCollection.attlist">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:attributeGroup ref="lrml:commonCollection.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="hasCreationDate.attrib.opt.choice">
+      <xs:attribute name="hasCreationDate" type="lrml:iri.lrml.datatype">
+         <xs:annotation>
+            <xs:documentation>the creation date of the Context or LegalRuleML
+                    document.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="atTime.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:atTime"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="filledBy.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:filledBy"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasActor.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasActor"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasLegalSourceCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasLegalSources"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasLegalSource.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasLegalSource"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasSourceCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasSources"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasSource.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasSource"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasStrength.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasStrength"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemplate-Constitutive.edge.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:hasTemplate-Constitutive.edge.def"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemplate-Factual.edge.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:hasTemplate-Factual.edge.def"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemplate-Override.edge.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:hasTemplate-Override.edge.def"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemplate-Penalty.edge.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:hasTemplate-Penalty.edge.def"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemplate-Prescriptive.edge.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:hasTemplate-Prescriptive.edge.def"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemplate-Reparation.edge.choice">
+      <xs:sequence>
+         <xs:group ref="lrml:hasTemplate-Reparation.edge.def"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemporalCharacteristics.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasTemporalCharacteristics"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTemporalCharacteristic.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasTemporalCharacteristic"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="inScope.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:inScope"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAgentCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAgents"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAgent.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAgent"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAlternativeCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAlternatives"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAssociationCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAssociations"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAssociation.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAssociation"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAuthorityCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAuthorities"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAuthority.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAuthority"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasContext.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasContext"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasFigureCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasFigures"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasFigure.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasFigure"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasJurisdictionCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasJurisdictions"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasJurisdiction.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasJurisdiction"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasPrefix.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasPrefix"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasLegalReferenceCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasLegalReferences"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasLegalReference.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasLegalReference"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasReferenceCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasReferences"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasReference.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasReference"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasRoleCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasRoles"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasRole.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasRole"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasStatementCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasStatements"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasStatement.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTimeCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasTimes"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasTime.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasTime"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasQualification.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasQualification"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesAlternativeCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesAlternatives"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesAssociationCollection.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesAssociations"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesAssociation.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesAssociation"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesAuthority.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesAuthority"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesJurisdiction.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesJurisdiction"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesPenalty.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesPenalty"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesStrength.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesStrength"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesTemporalCharacteristics.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesTemporalCharacteristics"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesTemporalCharacteristic.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesTemporalCharacteristic"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="fromLegalSources.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:fromLegalSources"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesModality.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesModality"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="appliesSource.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:appliesSource"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="forExpression.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:forExpression"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="forStatus.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:forStatus"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasAlternative.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasAlternative"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasComment.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasComment"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasParaphrase.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasParaphrase"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasFunction.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasFunction"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasStatusDevelopment.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasStatusDevelopment"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasMemberType.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasMemberType"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="hasType.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:hasType"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="toPrescriptiveStatement.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:toPrescriptiveStatement"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="toTarget.edge.choice">
+      <xs:sequence>
+         <xs:element ref="lrml:toTarget"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="AnyTerm.choice">
+      <xs:choice>
+         <xs:group ref="ruleml:SimpleConstantTerm.choice"/>
+         <xs:group ref="ruleml:SimpleQuantifiableTerm.choice"/>
+         <xs:group ref="ruleml:CompoundTerm.choice"/>
+      </xs:choice>
+   </xs:group>
+   <xs:group name="boundVariables.choice">
+      <xs:sequence>
+         <xs:group maxOccurs="unbounded" ref="ruleml:declare-edge.choice"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:group name="anyElement.choice">
+      <xs:sequence>
+         <xs:group ref="ruleml:anyElement.def"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:simpleType name="id.datatype">
+      <xs:restriction base="xs:NCName"/>
+   </xs:simpleType>
+   <xs:attributeGroup name="appliesAlternativeCollection.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesAssociationCollection.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesAssociation.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesAuthority.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="hasActor.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="hasFunction.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesJurisdiction.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesPenalty.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesStrength.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesTemporalCharacteristics.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="appliesTemporalCharacteristic.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="fromLegalSources.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:attributeGroup name="reImplies.attlist">
+      <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      <xs:attributeGroup ref="ruleml:closure-att.choice"/>
+      <xs:attribute name="style" type="ruleml:style.value">
+         <xs:annotation>
+            <xs:documentation>@style: defines a reference to a semantic profile. See
+                    http://consumer.ruleml.org/1.02/glossary/#.40style</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="Implies.header">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="ruleml:TruthValuedConnective.header"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:attributeGroup name="reEquivalent.attlist">
+      <xs:attributeGroup ref="ruleml:closure-att.choice"/>
+      <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      <xs:attribute name="style" type="ruleml:style.value">
+         <xs:annotation>
+            <xs:documentation>@style: defines a reference to a semantic profile. See
+                    http://consumer.ruleml.org/1.02/glossary/#.40style</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="Equivalent.header">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="ruleml:TruthValuedConnective.header"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:attributeGroup name="reForall.attlist">
+      <xs:attributeGroup ref="ruleml:closure-att-fo.choice"/>
+      <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      <xs:attribute name="style" type="ruleml:style.value">
+         <xs:annotation>
+            <xs:documentation>@style: defines a reference to a semantic profile. See
+                    http://consumer.ruleml.org/1.02/glossary/#.40style</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="Forall.header">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="ruleml:TruthValuedConnective.header"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:attributeGroup name="reExists.attlist">
+      <xs:attributeGroup ref="ruleml:closure-att-fo.choice"/>
+      <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      <xs:attribute name="style" type="ruleml:style.value">
+         <xs:annotation>
+            <xs:documentation>@style: defines a reference to a semantic profile. See
+                    http://consumer.ruleml.org/1.02/glossary/#.40style</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="Exists.header">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="ruleml:TruthValuedConnective.header"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:attributeGroup name="reNeg.attlist">
+      <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      <xs:attributeGroup ref="ruleml:closure-att-fo.choice"/>
+      <xs:attribute name="style" type="ruleml:style.value">
+         <xs:annotation>
+            <xs:documentation>@style: defines a reference to a semantic profile. See
+                    http://consumer.ruleml.org/1.02/glossary/#.40style</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="Neg.header">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="ruleml:TruthValuedConnective.header"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:attributeGroup name="reOr.attlist">
+      <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      <xs:attributeGroup ref="ruleml:closure-att-fo.choice"/>
+      <xs:attribute name="style" type="ruleml:style.value">
+         <xs:annotation>
+            <xs:documentation>@style: defines a reference to a semantic profile. See
+                    http://consumer.ruleml.org/1.02/glossary/#.40style</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="Or.header">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="ruleml:TruthValuedConnective.header"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:attributeGroup name="reAnd.attlist">
+      <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      <xs:attributeGroup ref="ruleml:closure-att-fo.choice"/>
+      <xs:attribute name="style" type="ruleml:style.value">
+         <xs:annotation>
+            <xs:documentation>@style: defines a reference to a semantic profile. See
+                    http://consumer.ruleml.org/1.02/glossary/#.40style</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:group name="And.header">
+      <xs:sequence>
+         <xs:group minOccurs="0" ref="ruleml:TruthValuedConnective.header"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:element name="hasAgents" type="lrml:hasAgentCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Agents.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAgentCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasAgentCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasAgent" type="lrml:hasAgent.type.def">
+      <xs:annotation>
+         <xs:documentation>an Agent in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAgent.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasAgent.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasAlternatives" type="lrml:hasAlternativeCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Alternatives.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAlternativeCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasAlternativeCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasAssociations" type="lrml:hasAssociationCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Associations.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAssociationCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasAssociationCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasAssociation" type="lrml:hasAssociation.type.def">
+      <xs:annotation>
+         <xs:documentation>an Association in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAssociation.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasAssociation.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasAuthorities" type="lrml:hasAuthorityCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Authorities.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAuthorityCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasAuthorityCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasAuthority" type="lrml:hasAuthority.type.def">
+      <xs:annotation>
+         <xs:documentation>an Authority in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAuthority.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasAuthority.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasContext" type="lrml:hasContext.type.def">
+      <xs:annotation>
+         <xs:documentation>a Context described in the LegalRuleML document.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasContext.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasContext.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasFigures" type="lrml:hasFigureCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Figures.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasFigureCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasFigureCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasFigure" type="lrml:hasFigure.type.def">
+      <xs:annotation>
+         <xs:documentation>a Figure in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasFigure.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasFigure.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasJurisdictions" type="lrml:hasJurisdictionCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Jurisdictions.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasJurisdictionCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasJurisdictionCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasJurisdiction" type="lrml:hasJurisdiction.type.def">
+      <xs:annotation>
+         <xs:documentation>a Jurisdiction in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasJurisdiction.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasJurisdiction.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasLegalSources" type="lrml:hasLegalSourceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of LegalSources.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasLegalSourceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasLegalSourceCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasSources" type="lrml:hasSourceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Sources.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasSourceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasSourceCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasLegalSource" type="lrml:hasLegalSource.type.def">
+      <xs:annotation>
+         <xs:documentation>a LegalSource in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasLegalSource.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasLegalSource.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasSource" type="lrml:hasSource.type.def">
+      <xs:annotation>
+         <xs:documentation>a Source in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasSource.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasSource.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasPrefix" type="lrml:hasPrefix.type.def">
+      <xs:annotation>
+         <xs:documentation>a Prefix declared in the LegalRuleML document.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasPrefix.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasPrefix.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasLegalReferences"
+               type="lrml:hasLegalReferenceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of LegalReferences.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasLegalReferenceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasLegalReferenceCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasLegalReference" type="lrml:hasLegalReference.type.def">
+      <xs:annotation>
+         <xs:documentation>a LegalReference in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasLegalReference.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasLegalReference.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasReferences" type="lrml:hasReferenceCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of References.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasReferenceCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasReferenceCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasReference" type="lrml:hasReference.type.def">
+      <xs:annotation>
+         <xs:documentation>a Reference in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasReference.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasReference.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasRoles" type="lrml:hasRoleCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Roles.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasRoleCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasRoleCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasRole" type="lrml:hasRole.type.def">
+      <xs:annotation>
+         <xs:documentation>a Role in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasRole.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasRole.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasStatements" type="lrml:hasStatementCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Legal Statements.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasStatementCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasStatementCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasStatement" type="lrml:hasStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>a Legal Statement in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasStatement.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasStatement.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasComment" type="lrml:hasComment.type.def">
+      <xs:annotation>
+         <xs:documentation>a comment on the parent Node Element.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasComment.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasComment.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasParaphrase" type="lrml:hasParaphrase.type.def">
+      <xs:annotation>
+         <xs:documentation>a Paraphrase of the parent Node Element (e.g. a Legal
+                Rule).</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasParaphrase.type.def">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:hasParaphrase.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="hasTemplate-Constitutive.edge.def">
+      <xs:sequence>
+         <xs:element form="qualified"
+                     name="hasTemplate"
+                     type="lrml:hasTemplate-Constitutive.type.def">
+            <xs:annotation>
+               <xs:documentation>the template of a ConstitutiveStatement.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="hasTemplate-Constitutive.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemplate-Constitutive.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="hasTemplate-Override.edge.def">
+      <xs:sequence>
+         <xs:element form="qualified"
+                     name="hasTemplate"
+                     type="lrml:hasTemplate-Override.type.def">
+            <xs:annotation>
+               <xs:documentation>the template of a OverrideStatement.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="hasTemplate-Override.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemplate-Override.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="hasTemplate-Penalty.edge.def">
+      <xs:sequence>
+         <xs:element form="qualified"
+                     name="hasTemplate"
+                     type="lrml:hasTemplate-Penalty.type.def">
+            <xs:annotation>
+               <xs:documentation>the template of a PenaltyStatement.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="hasTemplate-Penalty.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemplate-Penalty.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="hasTemplate-Prescriptive.edge.def">
+      <xs:sequence>
+         <xs:element form="qualified"
+                     name="hasTemplate"
+                     type="lrml:hasTemplate-Prescriptive.type.def">
+            <xs:annotation>
+               <xs:documentation>the template of a PrescriptiveStatement.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="hasTemplate-Prescriptive.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemplate-Prescriptive.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="hasTemplate-Reparation.edge.def">
+      <xs:sequence>
+         <xs:element form="qualified"
+                     name="hasTemplate"
+                     type="lrml:hasTemplate-Reparation.type.def">
+            <xs:annotation>
+               <xs:documentation>the template of a ReparationStatement.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="hasTemplate-Reparation.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemplate-Reparation.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasTemporalCharacteristics"
+               type="lrml:hasTemporalCharacteristics.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of TemporalCharacteristics.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasTemporalCharacteristics.type.def">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemporalCharacteristics.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasTemporalCharacteristic"
+               type="lrml:hasTemporalCharacteristic.type.def">
+      <xs:annotation>
+         <xs:documentation>a TemporalCharacteristic in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasTemporalCharacteristic.type.def">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemporalCharacteristic.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasTimes" type="lrml:hasTimeCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Times.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasTimeCollection.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTimeCollection.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="hasTime" type="lrml:hasTime.type.def">
+      <xs:annotation>
+         <xs:documentation>a Time in the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasTime.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTime.content"/>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="appliesAssociations"
+               type="lrml:appliesAssociationCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Associations applied by the
+                Context.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesAssociationCollection.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesAssociationCollection.attlist"/>
+   </xs:complexType>
+   <xs:element name="appliesAssociation" type="lrml:appliesAssociation.type.def">
+      <xs:annotation>
+         <xs:documentation>an Association applied by the Context.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesAssociation.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesAssociation.attlist"/>
+   </xs:complexType>
+   <xs:element name="atTime" type="lrml:atTime.type.def">
+      <xs:annotation>
+         <xs:documentation>the Time of the qualification of a
+                TemporalCharacteristic.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="atTime.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:atTime.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="atTime.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="fromLegalSources" type="lrml:fromLegalSources.type.def">
+      <xs:annotation>
+         <xs:documentation>the LegalSources from which the Alternatives are
+                derived.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="fromLegalSources.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:fromLegalSources.attlist"/>
+   </xs:complexType>
+   <xs:element name="appliesAlternatives"
+               type="lrml:appliesAlternativeCollection.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of Alternatives applied by the
+                Context.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesAlternativeCollection.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesAlternativeCollection.attlist"/>
+   </xs:complexType>
+   <xs:element name="appliesAuthority" type="lrml:appliesAuthority.type.def">
+      <xs:annotation>
+         <xs:documentation>an Authority applied by the Context or Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesAuthority.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesAuthority.attlist"/>
+   </xs:complexType>
+   <xs:element name="appliesJurisdiction" type="lrml:appliesJurisdiction.type.def">
+      <xs:annotation>
+         <xs:documentation>a Jurisdiction applied by the Context or
+                Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesJurisdiction.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesJurisdiction.attlist"/>
+   </xs:complexType>
+   <xs:element name="appliesModality" type="lrml:appliesModality.type.def">
+      <xs:annotation>
+         <xs:documentation>the deontic mode that applies to a Deontic Specification in a Context
+                or Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesModality.type.def">
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesModality.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="appliesModality.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="appliesPenalty" type="lrml:appliesPenalty.type.def">
+      <xs:annotation>
+         <xs:documentation>the PenaltyStatement that is linked to a LegalRule in a
+                Reparation.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesPenalty.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesPenalty.attlist"/>
+   </xs:complexType>
+   <xs:element name="appliesSource" type="lrml:appliesSource.type.def">
+      <xs:annotation>
+         <xs:documentation>a LegalSource or Reference applied by the Context or
+                Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesSource.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesSource.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="appliesSource.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="appliesTemporalCharacteristics"
+               type="lrml:appliesTemporalCharacteristics.type.def">
+      <xs:annotation>
+         <xs:documentation>a collection of TemporalCharacteristics applied by the Context or
+                Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesTemporalCharacteristics.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesTemporalCharacteristics.attlist"/>
+   </xs:complexType>
+   <xs:element name="appliesTemporalCharacteristic"
+               type="lrml:appliesTemporalCharacteristic.type.def">
+      <xs:annotation>
+         <xs:documentation>a TemporalCharacteristic applied by the Context or
+                Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesTemporalCharacteristic.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:appliesTemporalCharacteristic.attlist"/>
+   </xs:complexType>
+   <xs:element name="forExpression" type="lrml:forExpression.type.def">
+      <xs:annotation>
+         <xs:documentation>a LegalRuleML expression for which the Role is responsible e.g., the
+                expression was created or endorsed by the role.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="forExpression.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:forExpression.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="forExpression.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="forStatus" type="lrml:forStatus.type.def">
+      <xs:annotation>
+         <xs:documentation>the Legal Status of the qualification in a
+                TemporalCharacteristic.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="forStatus.type.def">
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:forStatus.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="forStatus.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="hasAlternative" type="lrml:hasAlternative.type.def">
+      <xs:annotation>
+         <xs:documentation>a member of a collection of Alternatives.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasAlternative.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:hasAlternative.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="hasAlternative.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="hasFunction" type="lrml:hasFunction.type.def">
+      <xs:annotation>
+         <xs:documentation>the function of a Figure.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasFunction.type.def">
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:hasFunction.attlist"/>
+   </xs:complexType>
+   <xs:element name="hasStatusDevelopment" type="lrml:hasStatusDevelopment.type.def">
+      <xs:annotation>
+         <xs:documentation>the Status Development of the qualification in a
+                TemporalCharacteristic.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasStatusDevelopment.type.def">
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:hasStatusDevelopment.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="hasStatusDevelopment.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="hasMemberType" type="lrml:hasMemberType.type.def">
+      <xs:annotation>
+         <xs:documentation> the type or class of members of the collection.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasMemberType.type.def">
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:hasMemberType.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="hasMemberType.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="hasType" type="lrml:hasType.type.def">
+      <xs:annotation>
+         <xs:documentation> the type or class of the parent Node Element.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasType.type.def">
+      <xs:attributeGroup ref="lrml:iri.lrml.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:hasType.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="hasType.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="toTarget" type="lrml:toTarget.type.def">
+      <xs:annotation>
+         <xs:documentation>the target to which properties are applied by the
+                Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="toTarget.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:toTarget.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="toTarget.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="toPrescriptiveStatement"
+               type="lrml:toPrescriptiveStatement.type.def">
+      <xs:annotation>
+         <xs:documentation>the PrescriptiveStatement that is linked to a PenaltyStatement in a
+                Reparation.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="toPrescriptiveStatement.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:toPrescriptiveStatement.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="toPrescriptiveStatement.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="inScope" type="lrml:inScope.type.def">
+      <xs:annotation>
+         <xs:documentation>the Statement or (collection of) Statements that the Context is
+                applied to.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="inScope.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:inScope.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="inScope.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="filledBy" type="lrml:filledBy.type.def">
+      <xs:annotation>
+         <xs:documentation>an Actor that fills the Role.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="filledBy.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:filledBy.attlist"/>
+   </xs:complexType>
+   <xs:attributeGroup name="filledBy.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="hasActor" type="lrml:hasActor.type.def">
+      <xs:annotation>
+         <xs:documentation>an Actor that has the responsibility to fulfill the function of a
+                Figure.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasActor.type.def">
+      <xs:attributeGroup ref="lrml:NodeReference.attrib.choice"/>
+      <xs:attributeGroup ref="lrml:hasActor.attlist"/>
+   </xs:complexType>
+   <xs:element name="hasStrength" type="lrml:hasStrength.type.def">
+      <xs:annotation>
+         <xs:documentation>the (defeasible) Strength of the Legal Rule.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasStrength.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasStrength.content">
+            <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+            <xs:attributeGroup ref="lrml:hasStrength.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="hasStrength.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="appliesStrength" type="lrml:appliesStrength.type.def">
+      <xs:annotation>
+         <xs:documentation>a (defeasible) Strength applied by the Context or
+                Association.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="appliesStrength.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:appliesStrength.content">
+            <xs:attributeGroup ref="lrml:iri.lrml.attrib.opt.choice"/>
+            <xs:attributeGroup ref="lrml:appliesStrength.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:group name="hasTemplate-Factual.edge.def">
+      <xs:sequence>
+         <xs:element form="qualified"
+                     name="hasTemplate"
+                     type="lrml:hasTemplate-Factual.type.def">
+            <xs:annotation>
+               <xs:documentation>the template of a FactualStatement.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="hasTemplate-Factual.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasTemplate-Factual.content">
+            <xs:attributeGroup ref="lrml:NodeReference.attrib.opt.choice"/>
+            <xs:attributeGroup ref="lrml:hasTemplate-Factual.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="hasTemplate-Factual.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+   <xs:element name="hasQualification" type="lrml:hasQualification.type.def">
+      <xs:annotation>
+         <xs:documentation>a qualification (e.g. an Override) of the
+                Statements.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="hasQualification.type.def">
+      <xs:complexContent>
+         <xs:extension base="lrml:hasQualification.content">
+            <xs:attributeGroup ref="lrml:NodeReference.attrib.opt.choice"/>
+            <xs:attributeGroup ref="lrml:hasQualification.attlist"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:attributeGroup name="hasQualification.attlist">
+      <xs:attributeGroup ref="lrml:commonLRMLEdgeInit.attlist"/>
+   </xs:attributeGroup>
+</xs:schema>

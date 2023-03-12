@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema module simple Address and Personal Details (APD) specific types -->
+<!--	
+Changes 1.3 to 1.4
+	Corrects the definition of Unique Pupil Reference Number to include a checksum letter at the end.
+Changes 1.2 to 1.3:
+	Pattern added for ElectoralRollNumberType 
+	DrivingLicenceNumberType changed to DriverNumberType 
+	Added definition Unique Pupil Number
+Changes 1.1 to 1.2:
+	Metadata brought up to latest version of standard
+	Pattern added for DrivingLicenceNumberType -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4" id="CitizenIdentificationTypes-v1-4" xmlns="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/metadata/egms">
+				<Contributor>e-champions, Government Schema Group, IDeA</Contributor>
+				<Contributor Href="mailto:paul.spencer@boynings.co.uk">Paul Spencer, Boynings Consulting</Contributor>
+				<Contributor Href="mailto:adam.bailin@cabinet-office.x.gsi.gov.uk">Adam Bailin, e-Government Unit, Cabinet Office</Contributor>
+				<Creator Href="mailto:govtalk@cabinet-office.x.gsi.gov.uk">e-Government Unit, Cabinet Office, UK Government</Creator>
+				<Created>2001-12-19</Created>
+				<Modified>2002-01-30</Modified>
+				<Modified>2003-02-25</Modified>
+				<Modified>2003-07-07</Modified>
+				<Modified>2004-11-18</Modified>
+				<Description>Schema for the various identifiers assigned to the citizen by the public sector.</Description>
+				<Review>2005-11-18</Review>
+				<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+				<Identifier Href="http://www.govtalk.gov.uk/gdsc/schemas/CitizenIdentificationTypes-v1-4.xsd">CitizenIdentificationTypes-v1-4</Identifier>
+				<Language codeListID="ISO639-2">eng</Language>
+				<Publisher Href="mailto:govtalk@cabinet-office.x.gsi.gov.uk">e-Government Unit, Cabinet Office, UK Government</Publisher>
+				<ConformsTo>http://www.w3.org/2001/XMLSchema</ConformsTo>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails">DriverNumberType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails">NationalInsuranceNumberType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails">NHSnumberStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails">PassportNumber_NewType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails">PassportNumber_OldType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails">UniquePupilNumberType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails">UniqueTaxReferenceType</ProvidesDefinitionOf>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/CommonSimpleTypes-v1-3.xsd</Requires>
+				<Copyright>Crown Copyright 2002, 2003, 2004</Copyright>
+				<ProtectiveMarking>Unclassified</ProtectiveMarking>
+				<Status>draft</Status>
+				<StatusDescription>For approval by GSG</StatusDescription>
+				<Version>1.4</Version>
+				<Category codeListID="GCL">People, communities and living</Category>
+				<Project>UK GovTalk Government Data Standards Catalogue</Project>
+				<Title>Citizen Identification Types 1.4</Title>
+				<Type>architectural</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:simpleType name="NationalInsuranceNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-CEGHJ-NOPR-TW-Z]{2}[0-9]{6}[ABCD\s]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UniqueTaxReferenceType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassportNumber_OldType">
+		<xsd:restriction base="core:PopulatedStringType">
+			<xsd:pattern value="[A-Z,0-9]{1}[0-9]{4}[A-Z,0-9]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassportNumber_NewType">
+		<xsd:restriction base="xsd:int">
+			<xsd:pattern value="[0-9]{9}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DriverNumberType">
+		<xsd:restriction base="core:PopulatedStringType">
+			<xsd:pattern value="[A-Z,0-9]{5}[0-9][0,1,5,6][0-9]([0][1-9]|[1-2][0-9]|[3][0,1])[0-9][A-Z,0-9]{3}[A-Z]{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NHSnumberStructure">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="EWregNHSnumber" type="DigNHSnumberType"/>
+				<xsd:element name="SregNHSnumber" type="CharNHSnumberType"/>
+				<xsd:element name="NIregNHSnumber" type="CharNHSnumberType"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="DigNHSnumberType">
+		<xsd:restriction base="core:PopulatedStringType">
+			<xsd:pattern value="[0-9]{10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CharNHSnumberType">
+		<xsd:restriction base="core:PopulatedStringType">
+			<xsd:maxLength value="18"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ElectoralRollNumberType">
+		<xsd:restriction base="core:PopulatedStringType">
+			<xsd:pattern value="[A-Z]{2,3}[0-9]{1,4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UniquePupilNumberType">
+		<xsd:annotation>
+			<xsd:documentation>A unique pupil number (UPN) is allocated to each child in an English state school. It is an identifier for use in the educational context during a child's school career only and subject to Data Protection restrictions. It consists of an upper-case check letter followed by twelve numeric digits (for a permanent UPN) or eleven numeric digits plus a final alphabetical character (for a temporary UPN). The check letter at position 1 is found by calculating the modulo 23 sum of the digit position over the 12 numeric digits or the 11 numeric digits plus the final alphabetical character. The position of the first numeric digit in the calculation is 2. The resulting value is replaced by a letter of the alphabet following the rule: 0-A, 1-B, 2-C, ......... 22-Z (I, O and S are not used) The components of the twelve digit number are, from left to right: a government-allocated Local Education Authority number (three digits); a government allocated Establishment number (four digits); the last two digits of an academic year; three random digits, for a permanent UPN, or 2 random digits and an alphabetical character (excluding I, O and S) for a temporary UPN. For the purposes of the check letter calculation, for a temporary UPN the final alphabetical character is assigned the value equivalent as specified above (e.g. an “A” would be “0” (zero), a “B” would be “1” etc. The first two components may be checked for validity by an application but should not be considered to yield usable data. (See separate schemas for Local Authority and Establishment numbers.)</xsd:documentation>
+			<xsd:appinfo/>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-HJ-NP-RT-Z][0-9]{11}[0-9A-HJ-NP-RT-Z]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

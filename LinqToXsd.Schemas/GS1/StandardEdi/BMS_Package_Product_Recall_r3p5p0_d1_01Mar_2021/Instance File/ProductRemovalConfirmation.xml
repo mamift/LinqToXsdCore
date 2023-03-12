@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><product_removal_confirmation:productRemovalConfirmationMessage xmlns:product_removal_confirmation="urn:gs1:ecom:product_removal_confirmation:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:product_removal_confirmation:xsd:3 ../Schemas/gs1/ecom/ProductRemovalConfirmation.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <productRemovalConfirmation>
+        <creationDateTime>2011-08-20T16:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <documentActionCode>ADD</documentActionCode>
+        <documentStructureVersion>3.0</documentStructureVersion>
+        <originalPRNIdentification>0857674002331</originalPRNIdentification>
+        <pRCIdentification>0766907890129</pRCIdentification>
+        <pRCStatusCode>ISSUED</pRCStatusCode>
+        <pRNTitle languageCode="en">Pink Product Recall</pRNTitle>
+        <productRemovalConfirmationIssuer>
+            <gln>0766907000115</gln>
+            <contact>
+                <contactTypeCode>PRODUCT_RECALL_CONTACT</contactTypeCode>
+                <personName>Matthew Lee</personName>
+                <jobTitle>VP Product Safety</jobTitle>
+                <communicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>777-123-4444</communicationValue>
+                </communicationChannel>
+                <communicationChannel>
+                    <communicationChannelCode>EMAIL</communicationChannelCode>
+                    <communicationValue>matthewlee@organisation.org</communicationValue>
+                </communicationChannel>
+                <afterHoursCommunicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>777-123-4445</communicationValue>
+                </afterHoursCommunicationChannel>
+            </contact>
+        </productRemovalConfirmationIssuer>
+        <productRemovalConfirmationRecipient>
+            <gln>0857674002003</gln>
+            <contact>
+                <personName>Casey Crow</personName>
+                <jobTitle>Director Process Control</jobTitle>
+                <communicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>333-123-4444</communicationValue>
+                </communicationChannel>
+            </contact>
+        </productRemovalConfirmationRecipient>
+        <productRecallMarketDetail>
+            <additionalTargetMarketForRegulatoryUse languageCode="en">School</additionalTargetMarketForRegulatoryUse>
+            <productRecallPotentialTargetMarket languageCode="en">South East United States</productRecallPotentialTargetMarket>
+            <productRecallPotentialTargetMarket languageCode="en">LA, GA, FL, SC</productRecallPotentialTargetMarket>
+            <sectorDescription languageCode="en">Consumer Packaged Goods</sectorDescription>
+        </productRecallMarketDetail>
+        <productRemovalConfirmationTradeItem>
+            <dispositionDisclosure languageCode="en">Destroy in field.</dispositionDisclosure>
+            <tradeItemName>Pink Product</tradeItemName>
+            <tradeItemIdentification>
+                <gtin>00857674002010</gtin>
+            </tradeItemIdentification>
+            <productRemovalConfirmationTraceableItem>
+                <totalQuantityRemoved>33</totalQuantityRemoved>
+                <productRecallTrackingKey>
+                    <productTrackingKeyCode>SELL_BY_DATE</productTrackingKeyCode>
+                    <productTrackingKeyValue>2011-12-25</productTrackingKeyValue>
+                    <productTrackingKeyLocation>Bottom of bottle</productTrackingKeyLocation>
+                    <trackingKeyImage>
+                        <referenceURI>www.business.org</referenceURI>
+                    </trackingKeyImage>
+                </productRecallTrackingKey>
+            </productRemovalConfirmationTraceableItem>
+        </productRemovalConfirmationTradeItem>
+    </productRemovalConfirmation>
+</product_removal_confirmation:productRemovalConfirmationMessage>

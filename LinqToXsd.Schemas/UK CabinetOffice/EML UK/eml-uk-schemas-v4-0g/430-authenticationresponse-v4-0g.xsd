@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Paul Spencer (alphaXML Ltd.) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-430">
+	<xs:include schemaLocation="340-410-430-include-v4-0g.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="AuthenticationResponse"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="AuthenticationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Authenticated" type="YesNoType"/>
+				<xs:element name="Remark" type="MessagesStructure" minOccurs="0"/>
+				<xs:element name="Ballots" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Restrictions are:
+ Only one Ballot element
+ The xs:choice with ElectionRuleId and Voter cannot occur</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:restriction base="BallotsStructure">
+								<xs:sequence>
+									<xs:element ref="EventIdentifier"/>
+									<xs:element name="EventDescription" type="MessagesStructure" minOccurs="0"/>
+									<xs:element name="Ballot">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="ReportingUnitIdentifier" minOccurs="0"/>
+												<xs:choice>
+													<xs:element ref="BallotIdentifier"/>
+													<xs:sequence>
+														<xs:element name="Election" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element ref="ElectionIdentifier"/>
+																	<xs:element name="Description" type="MessagesStructure" minOccurs="0"/>
+																	<xs:element name="Contest">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element ref="ContestIdentifier"/>
+																				<xs:element name="Qualified" minOccurs="0">
+																					<xs:complexType>
+																						<xs:simpleContent>
+																							<xs:extension base="YesNoType">
+																								<xs:attribute name="Reason" type="xs:token" use="required"/>
+																							</xs:extension>
+																						</xs:simpleContent>
+																					</xs:complexType>
+																				</xs:element>
+																				<xs:element name="HowToVote" type="MessagesStructure" minOccurs="0"/>
+																				<xs:element name="Rotation" type="YesNoType" minOccurs="0"/>
+																				<xs:element ref="VotingMethod" minOccurs="0"/>
+																				<xs:element ref="MaxVotes" minOccurs="0"/>
+																				<xs:element ref="MinVotes" minOccurs="0"/>
+																				<xs:element name="MaxWriteIn" type="xs:nonNegativeInteger" minOccurs="0"/>
+																				<xs:element name="Blocked" minOccurs="0">
+																					<xs:complexType>
+																						<xs:simpleContent>
+																							<xs:extension base="YesNoType">
+																								<xs:attribute name="Reason" type="xs:token" use="optional"/>
+																								<xs:attribute name="Channel" type="VotingChannelType" use="optional"/>
+																							</xs:extension>
+																						</xs:simpleContent>
+																					</xs:complexType>
+																				</xs:element>
+																				<xs:element ref="BallotChoices"/>
+																				<xs:element name="Messages" type="MessagesStructure" minOccurs="0" maxOccurs="unbounded"/>
+																				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+																			</xs:sequence>
+																			<xs:attribute name="DisplayOrder" type="xs:positiveInteger" use="optional"/>
+																			<xs:attribute name="Completed" type="YesNoType" use="optional"/>
+																		</xs:complexType>
+																	</xs:element>
+																	<xs:element name="Messages" type="MessagesStructure" minOccurs="0" maxOccurs="unbounded"/>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element ref="BallotIdentifier" minOccurs="0"/>
+														<xs:choice minOccurs="0" maxOccurs="0">
+															<xs:element ref="ElectionRuleId"/>
+															<xs:element name="Voter" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:choice>
+																		<xs:sequence>
+																			<xs:element name="VoterIdentification">
+																				<xs:annotation>
+																					<xs:documentation>Restriction is to prohibit electoral address information, VToken and VTokenQualified</xs:documentation>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:restriction base="VoterIdentificationStructure">
+																							<xs:sequence>
+																								<xs:element ref="VoterName" minOccurs="0"/>
+																								<xs:element name="ElectoralAddress" type="StructuredAddressStructure" minOccurs="0" maxOccurs="0">
+																									<xs:annotation>
+																										<xs:documentation>This is the address that gives the voter the right to vote</xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																								<xs:element name="PreviousElectoralAddress" type="StructuredAddressStructure" minOccurs="0" maxOccurs="0"/>
+																								<xs:choice minOccurs="0" maxOccurs="0">
+																									<xs:element ref="VToken"/>
+																									<xs:element ref="VTokenQualified"/>
+																								</xs:choice>
+																								<xs:element name="Id" minOccurs="0" maxOccurs="unbounded">
+																									<xs:complexType>
+																										<xs:simpleContent>
+																											<xs:extension base="xs:token">
+																												<xs:attribute name="Type" type="xs:token" use="required"/>
+																											</xs:extension>
+																										</xs:simpleContent>
+																									</xs:complexType>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:restriction>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Contact" type="ContactDetailsStructure" minOccurs="0"/>
+																		</xs:sequence>
+																		<xs:element name="Contact" type="ContactDetailsStructure"/>
+																		<xs:element name="Proxy" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Restriction is to prohibit VToken and VTokenQualified</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:complexContent>
+																					<xs:restriction base="ProxyStructure">
+																						<xs:sequence>
+																							<xs:choice>
+																								<xs:element name="Position" type="xs:token"/>
+																								<xs:sequence>
+																									<xs:element name="Name" type="PersonNameStructure"/>
+																									<xs:element name="Position" type="xs:token" minOccurs="0"/>
+																								</xs:sequence>
+																							</xs:choice>
+																							<xs:element name="Address" type="MailingAddressStructure" minOccurs="0"/>
+																							<xs:element name="Qualification" type="xs:token" minOccurs="0"/>
+																							<xs:element name="Reason" type="xs:token" minOccurs="0"/>
+																							<xs:element name="Period" minOccurs="0">
+																								<xs:complexType>
+																									<xs:choice>
+																										<xs:element name="Dates">
+																											<xs:complexType>
+																												<xs:sequence>
+																													<xs:element name="Start" type="xs:date" minOccurs="0"/>
+																													<xs:element name="End" type="xs:date"/>
+																												</xs:sequence>
+																											</xs:complexType>
+																										</xs:element>
+																										<xs:element name="Event" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:sequence>
+																													<xs:element ref="EventIdentifier"/>
+																													<xs:element ref="ElectionIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+																												</xs:sequence>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:choice>
+																									<xs:attribute name="Type" use="optional">
+																										<xs:simpleType>
+																											<xs:restriction base="xs:token">
+																												<xs:enumeration value="event"/>
+																												<xs:enumeration value="period"/>
+																												<xs:enumeration value="permanent"/>
+																											</xs:restriction>
+																										</xs:simpleType>
+																									</xs:attribute>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="ProxyAgrees" type="YesNoType" minOccurs="0"/>
+																							<xs:element name="Channel" type="VotingChannelType" minOccurs="0" maxOccurs="unbounded"/>
+																							<xs:choice minOccurs="0" maxOccurs="0">
+																								<xs:element ref="VToken"/>
+																								<xs:element ref="VTokenQualified"/>
+																							</xs:choice>
+																							<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+																						</xs:sequence>
+																					</xs:restriction>
+																				</xs:complexContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:choice>
+																</xs:complexType>
+															</xs:element>
+														</xs:choice>
+													</xs:sequence>
+												</xs:choice>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Messages" type="MessagesStructure" minOccurs="0" maxOccurs="unbounded"/>
+									<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:restriction>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="AuditInformation" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

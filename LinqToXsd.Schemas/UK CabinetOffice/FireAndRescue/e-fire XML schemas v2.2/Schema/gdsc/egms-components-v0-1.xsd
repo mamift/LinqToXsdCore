@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<!-- This is a partial set of e-GMS refinements that covers the e-GMS profile for schemas with some additional refinements. It can be extended to cover other requirements -->
+<xs:schema 
+	targetNamespace="http://www.govtalk.gov.uk/metadata/egms" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	version="0.1" 
+	id="egms-components-xml" 
+	xmlns="http://www.govtalk.gov.uk/metadata/egms" 
+	xmlns:iso639="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" 
+	xmlns:gcl="http://www.govtalk.gov.uk/metadata/gcl" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/metadata/egms" xmlns:egms="http://www.govtalk.gov.uk/metadata/egms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.govtalk.gov.uk/metadata/egms egms-profile-schemas.xsd">
+				<Contributor Role="reviewer" Href="mailto:adam.bailin@cabinet-office.gsi.gov.uk">Adam Bailin</Contributor>
+				<Contributor Role="developer" Href="mailto:paul.spencer@boynings.co.uk">Paul Spencer</Contributor>
+				<Creator Href="mailto:info@boynings.co.uk">Boynings Consulting Ltd</Creator>
+				<Created>2004-12-16</Created>
+				<Modified>2004-12-16</Modified>
+				<Description>A partial set of e-GMS elements and refinements coded as an XML schema</Description>
+				<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+				<Identifier Href="http://www.govtalk.gov.uk/.../egms-components-v0-1.xsd">egms-components-xml</Identifier>
+				<Language>eng</Language>
+				<Publisher Href="mailto:govtalk@cabinet-office.gsi.gov.uk">Cabinet Office e-Government Unit</Publisher>
+				<ConformsTo>http://www.w3.org/2001/XMLSchema</ConformsTo>
+				<IsVersionOf>http://www.govtalk.gov.uk/documents/eGovMetadataStandard%2020040429.pdf</IsVersionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Contributor</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Creator</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Description</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Format</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Identifier</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Language</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Publisher</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Title</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Type</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Status</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Created</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Copyrighted</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Modified</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Valid</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ConformsTo</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">HasFormat</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">HasVersion</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">HasPart</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">IsPartOf</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">IsReplacedBy</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">IsVersionOf</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Requires</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Replaces</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Spatial</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Temporal</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Issued</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">NextVersionDue</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">UpdatingFrequency</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ActionType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Action</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">AuthorisedBy</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Comment</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Conditions</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">DisposalDate</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">LastReview</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ExportDestination</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Review</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ReviewDetails</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ReviewerDetails</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ScheduleId</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">TimePeriod</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">IsDefinedBy</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ProvidesDefinitionOf</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Copyright</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Custodian</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">PreviousProtectiveMarking</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ProtectiveMarking</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ProtectiveMarkingChnageDate</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ProtectiveMarkingExpiryDate</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ReleaseStatusType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ReleaseStatus</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">StatusDescription</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Version</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Category</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Keyword</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">ProcessIdentifier</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Programme</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Project</ProvidesDefinitionOf>
+				<Requires>http://www.govtalk.gov.uk/.../UBL-CodeList-LanguageIdentificationCode-1.0.xsd</Requires>
+				<Copyright>Crown Copyright 2004</Copyright>
+				<Status>draft</Status>
+				<StatusDescription>For review by ad hoc GSG metadata representation sub-committee</StatusDescription>
+				<Version>0.1</Version>
+				<Category codeListID="GCL" codeListAgencyName="Cabinet Office" codeListName="Government Category List" codeListVersionID="0.1" codeListURI="http://www.govtalk.gov.uk/schemasstandards/gcl.xsd" codeListSchemeURI="http://www.govtalk.gov.uk/metadata/gcl" languageID="en">Metadata</Category>
+				<Project>e-GMS</Project>
+				<Title>XML binding for e-GMS elements and refinements</Title>
+				<Type>architectural</Type>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" schemaLocation="UBL-CodeList-LanguageIdentificationCode-1.0.xsd"/>
+	<!-- ********************************* -->
+	<!-- General e-GMS components -->
+	<!-- ********************************* -->
+	<xs:attributeGroup name="RoleGroup">
+		<xs:attribute name="Role" type="xs:token"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="HrefGroup">
+		<xs:attribute name="Href" type="xs:anyURI"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="NamespaceGroup">
+		<xs:attribute name="Namespace" type="xs:anyURI"/>
+	</xs:attributeGroup>
+	<xs:attribute name="Refines" type="xs:NMTOKEN"/>
+	<xs:attributeGroup name="SchemeGroup">
+		<xs:attribute name="Scheme" type="xs:anyURI"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="UBLcodeGroup">
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="codeListID" type="xs:normalizedString" use="optional"/>
+		<xs:attribute name="codeListAgencyName" type="xs:string" use="optional"/>
+		<xs:attribute name="codeListName" type="xs:string" use="optional"/>
+		<xs:attribute name="codeListVersionID" type="xs:normalizedString" use="optional"/>
+		<xs:attribute name="codeListURI" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="codeListSchemeURI" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="languageID" type="xs:language" use="optional" fixed="en"/>
+	</xs:attributeGroup>
+	<xs:complexType name="PeriodStructure">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="Uom" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="days"/>
+							<xs:enumeration value="weeks"/>
+							<xs:enumeration value="months"/>
+							<xs:enumeration value="years"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PersonOrOrganisationType">
+		<xs:simpleContent>
+			<xs:extension base="xs:token">
+				<xs:attributeGroup ref="HrefGroup"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- sub-elements of temporal  and Valid-->
+	<xs:element name="EndDate" type="xs:date"/>
+	<xs:element name="StartDate">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--end of  sub-elements of temporal  and Valid-->
+	<!-- ******************** -->
+	<!-- The DC elements -->
+	<!-- ******************** -->
+	<xs:element name="Contributor">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attributeGroup ref="RoleGroup"/>
+					<xs:attributeGroup ref="HrefGroup"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Creator">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attributeGroup ref="HrefGroup"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Description" type="xs:string"/>
+	<xs:element name="Format">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attributeGroup ref="SchemeGroup"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Identifier">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attributeGroup ref="HrefGroup"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Language" type="iso639:LanguageIdentificationCodeType"/>
+	<xs:element name="Publisher" type="PersonOrOrganisationType"/>
+	<xs:element name="Title" type="xs:string"/>
+	<xs:element name="Type" type="xs:token"/>
+	<!-- ******************************** -->
+	<!-- Additional e-GMS elements -->
+	<!-- ******************************** -->
+	<xs:element name="Status">
+		<xs:simpleType>
+			<xs:restriction base="xs:token">
+				<xs:enumeration value="approved"/>
+				<xs:enumeration value="deprecated"/>
+				<xs:enumeration value="draft"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<!-- *********************** -->
+	<!-- The DC refinements -->
+	<!-- *********************** -->
+	<!-- refinements of Date -->
+	<xs:element name="Created">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Date"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Copyrighted">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Date"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Modified">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Date"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Valid">
+		<xs:annotation>
+			<xs:documentation>used</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="StartDate"/>
+					<xs:element ref="EndDate" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element ref="EndDate"/>
+			</xs:choice>
+			<xs:attribute ref="Refines" fixed="Date"/>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Date -->
+	<!--refinements of Relation-->
+	<xs:element name="ConformsTo">
+		<xs:annotation>
+			<xs:documentation>For the XML Schema profile, expect one instance to have a value of http://www.w3.org/2001/XMLSchema</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HasFormat">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HasVersion">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HasPart">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IsPartOf">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IsReplacedBy">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IsVersionOf">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Requires">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Replaces">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" use="optional" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Relation-->
+	<!--refinements of Coverage-->
+	<xs:element name="Spatial">
+		<xs:annotation>
+			<xs:documentation>The Scheme attribute allows use of languages such as GML to define the metadata value</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="Refines" fixed="Coverage"/>
+			<xs:attribute name="Scheme"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Temporal">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="StartDate"/>
+					<xs:element ref="EndDate" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element ref="EndDate"/>
+			</xs:choice>
+			<xs:attribute ref="Refines" fixed="Coverage"/>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Coverage-->
+	<!-- *********************************** -->
+	<!-- Additional e-GMS refinements -->
+	<!-- *********************************** -->
+	<!--refinements of Date -->
+	<xs:element name="Issued">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Date"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NextVersionDue">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Date"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdatingFrequency">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="PeriodStructure">
+					<xs:attribute ref="Refines" fixed="Date"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Date -->
+	<!--refinements of Disposal-->
+	<xs:simpleType name="ActionType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="archive"/>
+			<xs:enumeration value="deprecate"/>
+			<xs:enumeration value="remove"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Action">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ActionType">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AuthorisedBy">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="PersonOrOrganisationType">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Comment">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Conditions">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DisposalDate">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LastReview">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExportDestination">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attributeGroup ref="HrefGroup"/>
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Review">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReviewDetails">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReviewerDetails">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="PersonOrOrganisationType">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ScheduleId">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TimePeriod">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="PeriodStructure">
+					<xs:attribute ref="Refines" fixed="Disposal"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Disposal-->
+	<!--refinements of Relation-->
+	<xs:element name="IsDefinedBy">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:anyURI">
+					<xs:attribute ref="Refines" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProvidesDefinitionOf">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NMTOKEN">
+					<xs:attributeGroup ref="NamespaceGroup"/>
+					<xs:attribute ref="Refines" fixed="Relation"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Relation-->
+	<!--refinements of Rights-->
+	<xs:element name="Copyright">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="Refines" fixed="Rights"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Custodian">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="PersonOrOrganisationType">
+					<xs:attribute ref="Refines" fixed="Rights"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PreviousProtectiveMarking">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Rights"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProtectiveMarking">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Rights"/>
+					<xs:attributeGroup ref="SchemeGroup"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProtectiveMarkingChnageDate">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Rights"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProtectiveMarkingExpiryDate">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date">
+					<xs:attribute ref="Refines" fixed="Rights"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Rights-->
+	<!--refinements of Status-->
+	<xs:simpleType name="ReleaseStatusType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="deprecated"/>
+			<xs:enumeration value="draft"/>
+			<xs:enumeration value="release"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ReleaseStatus">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ReleaseStatusType">
+					<xs:attribute ref="Refines" fixed="Status"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StatusDescription">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="Refines" fixed="Status"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Version">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Status"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--refinements of Subject-->
+	<xs:element name="Category">
+		<xs:annotation>
+			<xs:documentation>Use either the UBL set of atributes (with xsi:type) or the Scheme attribute if a UBL-style list is not available</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Subject"/>
+					<xs:attributeGroup ref="SchemeGroup"/>
+					<xs:attributeGroup ref="UBLcodeGroup"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Keyword">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Subject"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProcessIdentifier">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Subject"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Programme">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Subject"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Project">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute ref="Refines" fixed="Subject"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--end of refinements of Subject-->
+</xs:schema>

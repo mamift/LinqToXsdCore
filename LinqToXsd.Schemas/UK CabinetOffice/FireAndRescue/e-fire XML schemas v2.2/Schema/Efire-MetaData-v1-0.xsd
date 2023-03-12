@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas/Efire" xmlns:erms="http://www.govtalk.gov.uk/CM/gms" xmlns:ns1="http://www.govtalk.gov.uk/metadata/egms" xmlns:ns2="http://www.govtalk.gov.uk/core" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-Metadata-v1-0">
+	<xs:include schemaLocation="Efire-Types-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/metadata/egms" schemaLocation="gdsc\egms-profile-schemas-v0-1.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="gdsc\CommonSimpleTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/CM/gms" schemaLocation="ERMSr2/ERMS-record-v2.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(mailto:d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group, ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-09-03</Modified>
+				</Date>
+				<Description>Efire metadata schema defining metadata for electronic records applied for each type of form received by the portal</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-Metadata-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>egms-profile-schemas-v0-1</Requires>
+				</Relation>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>ERMS-record-v2</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Safety/Fire</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>e-fire metadata schema used for Portal Forms</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="MetaDataStructure">
+		<xs:annotation>
+			<xs:documentation>Root type; Used in e-fire forms</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="erms:Metadata"/>
+			<xs:element name="Audience" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Element to store Audience details</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Coverage" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store coverage details as Spatial or temporal  format</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Spatial" maxOccurs="unbounded"/>
+						<xs:element name="Temporal" maxOccurs="unbounded"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

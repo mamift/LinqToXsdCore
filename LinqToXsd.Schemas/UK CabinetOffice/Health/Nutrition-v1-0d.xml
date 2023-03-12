@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 U (http://www.altova.com) by A Johns (Tinuviel Software) -->
+<xs:schema xmlns="www.tinuvielsoftware.com/namespace-1.0d" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gms="http://www.govtalk.gov.uk/CM/gms-xs" targetNamespace="www.tinuvielsoftware.com/namespace-1.0d" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1-0d" id="NUTRITION-001">
+	<xs:annotation>
+		<xs:appinfo>
+			<gms:Metadata>
+				<gms:Creator>Tinuviel Software
+           <gms:contact>Tony_Johns@tinuvielsoftware.com</gms:contact>
+				</gms:Creator>
+				<gms:Date>
+					<gms:Created>2006-02-05</gms:Created>
+				</gms:Date>
+				<gms:Date>
+					<gms:Modified>2007-01-11</gms:Modified>
+				</gms:Date>
+				<gms:SchemaVersion>1-0d</gms:SchemaVersion>
+				<gms:Documentation>Base type for nutrition data relating to individual foods or recipes</gms:Documentation>
+				<gms:Format>
+					<gms:MediaType>text/xml</gms:MediaType>
+					<gms:Syntax>http://www.w3.org/2001/XMLSchema</gms:Syntax>
+					<gms:Description>XML Schema, W3C Recommendation 2001</gms:Description>
+				</gms:Format>
+				<gms:Identifier>NUTRITION-001</gms:Identifier>
+				<gms:Publisher>To be added</gms:Publisher>
+				<gms:Relation>
+					<gms:ConformsTo>http://www.w3.org/2001/XMLSchema</gms:ConformsTo>
+				</gms:Relation>
+				<gms:Status>approved</gms:Status>
+				<gms:StatusDescription>In consultation</gms:StatusDescription>
+				<gms:Category>Health</gms:Category>
+				<gms:Title>Schema for nutritional content of foods</gms:Title>
+				<gms:Type>message</gms:Type>
+			</gms:Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Ingredients-Recipes">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Represents the nutrition data for a single Item (food or recipe) </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FullName" id="fname">
+								<xs:annotation>
+									<xs:documentation>Food name</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="69"/>
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Shortform" id="sfname">
+								<xs:annotation>
+									<xs:documentation>Short descriptor</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="69"/>
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="OriginOrg" id="Oorg">
+								<xs:annotation>
+									<xs:documentation>Originator organisation</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="69"/>
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="OriginCode" id="Ocode">
+								<xs:annotation>
+									<xs:documentation>Originator code/identifier</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="69"/>
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Notes" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Notes</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="300"/>
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FoodCode" type="xs:positiveInteger" id="code" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>HMSO food code</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="FoodGroup" default="X" id="fgroup">
+								<xs:annotation>
+									<xs:documentation>HMSO food group</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="3"/>
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:sequence>
+								<xs:annotation>
+									<xs:documentation>Portions Data</xs:documentation>
+								</xs:annotation>
+								<xs:element name="Portion" id="mp">
+									<xs:annotation>
+										<xs:documentation>Medium portion size in grams</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal">
+											<xs:totalDigits value="8"/>
+											<xs:fractionDigits value="0"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="PortionDescriptor" id="mdesc">
+									<xs:annotation>
+										<xs:documentation>Medium portion descriptor</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="69"/>
+											<xs:whiteSpace value="preserve"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="SmallPortion" id="sp" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Small portion size in grams</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal">
+											<xs:totalDigits value="8"/>
+											<xs:fractionDigits value="0"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="PortionDescriptor-S" id="sdesc" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Small portion descriptor</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="69"/>
+											<xs:whiteSpace value="preserve"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="LargePortion" id="lp" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Large portion size in grams</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal">
+											<xs:totalDigits value="8"/>
+											<xs:fractionDigits value="0"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="PortionDescriptor-L" id="ldesc" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Large portion descriptor</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="69"/>
+											<xs:whiteSpace value="preserve"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+							<xs:element name="Protein">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="protvalue">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ValueQualifier">
+											<xs:annotation>
+												<xs:documentation>Identify Trace and inQuantity</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="none"/>
+													<xs:enumeration value="Trace"/>
+													<xs:enumeration value="In-UnknownQuantity"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="grams">
+											<xs:annotation>
+												<xs:documentation>Enumerations identify the unit in which Value is measured</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="micrograms"/>
+													<xs:enumeration value="milligrams"/>
+													<xs:enumeration value="grams"/>
+													<xs:enumeration value="picograms"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="PROT" id="protfield">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TotalNitrogen">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="N2value">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ValueQualifier">
+											<xs:annotation>
+												<xs:documentation>Identify Trace and inQuantity</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="none"/>
+													<xs:enumeration value="Trace"/>
+													<xs:enumeration value="In-UnknownQuantity"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="grams">
+											<xs:annotation>
+												<xs:documentation>Enumerations identify the unit in which Value is measured</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="micrograms"/>
+													<xs:enumeration value="milligrams"/>
+													<xs:enumeration value="grams"/>
+													<xs:enumeration value="picograms"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="N2" id="N2field">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TotalFat">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="fatvalue">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ValueQualifier">
+											<xs:annotation>
+												<xs:documentation>Identify Trace and inQuantity</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="none"/>
+													<xs:enumeration value="Trace"/>
+													<xs:enumeration value="In-UnknownQuantity"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="grams">
+											<xs:annotation>
+												<xs:documentation>Enumerations identify the unit in which Value is measured</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="micrograms"/>
+													<xs:enumeration value="milligrams"/>
+													<xs:enumeration value="grams"/>
+													<xs:enumeration value="picograms"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="FAT" id="tfatfield">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Carbohydrate">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="CHOvalue">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ValueQualifier">
+											<xs:annotation>
+												<xs:documentation>Identify Trace and inQuantity</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="none"/>
+													<xs:enumeration value="Trace"/>
+													<xs:enumeration value="In-UnknownQuantity"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="grams">
+											<xs:annotation>
+												<xs:documentation>Enumerations identify the unit in which Value is measured</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="micrograms"/>
+													<xs:enumeration value="milligrams"/>
+													<xs:enumeration value="grams"/>
+													<xs:enumeration value="picograms"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="CHO" id="chofield">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Sugars" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Total sugars as monosaccharide equivalents</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="SUGvalue">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ValueQualifier">
+											<xs:annotation>
+												<xs:documentation>Identify Trace and inQuantity</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="none"/>
+													<xs:enumeration value="Trace"/>
+													<xs:enumeration value="In-UnknownQuantity"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="grams">
+											<xs:annotation>
+												<xs:documentation>Enumerations identify the unit in which Value is measured</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="micrograms"/>
+													<xs:enumeration value="milligrams"/>
+													<xs:enumeration value="grams"/>
+													<xs:enumeration value="picograms"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="SUG" id="SUGfield">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Starch" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Starch expressed as monosaccharide equivalents</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="STCHvalue">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="100"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ValueQualifier">
+											<xs:annotation>
+												<xs:documentation>Identify Trace and inQuantity</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="none"/>
+													<xs:enumeration value="Trace"/>
+													<xs:enumeration value="In-UnknownQuantity"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="grams">
+											<xs:annotation>
+												<xs:documentation>Enumerations identify the unit in which Value is measured</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="micrograms"/>
+													<xs:enumeration value="milligrams"/>
+													<xs:enumeration value="grams"/>
+													<xs:enumeration value="picograms"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="STCH" id="STCHfield">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="EnergyKcal">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="Enkcal">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="900"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="kilocalories">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="kilocalories"/>
+													<xs:enumeration value=""/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="KCAL" id="kcalfield">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="EnergyKj">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Value" default="0" id="Enkj">
+											<xs:annotation>
+												<xs:documentation>Amount in 100g</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:decimal">
+													<xs:totalDigits value="10"/>
+													<xs:fractionDigits value="3"/>
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="3700"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Measure" fixed="kilojoules">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="kilojoules"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FieldDescriptor" fixed="KJ" id="kjfield">
+											<xs:annotation>
+												<xs:documentation>Database field</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="12"/>
+													<xs:whiteSpace value="collapse"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Nutrient" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Data on other nutrients</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="NutrientsStructure"/>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="NutrientsStructure">
+		<xs:annotation>
+			<xs:documentation>Generalised structure for a nutrient</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="NutrientName"/>
+			<xs:element name="Value" default="0" id="nvalue">
+				<xs:annotation>
+					<xs:documentation>Amount in 100g</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="10"/>
+						<xs:fractionDigits value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ValueQualifier">
+				<xs:annotation>
+					<xs:documentation>Identify Trace and inQuantity</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="trace"/>
+						<xs:enumeration value="in-unknownquantity"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Measure">
+				<xs:annotation>
+					<xs:documentation>Enumerations identify the unit in which Value is measured</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="micrograms"/>
+						<xs:enumeration value="milligrams"/>
+						<xs:enumeration value="grams"/>
+						<xs:enumeration value="picograms"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FieldDescriptor" id="nfield" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Database field</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="12"/>
+						<xs:whiteSpace value="collapse"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element ref="EMS" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EMS">
+		<xs:annotation>
+			<xs:documentation>Energy content of nutrient</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EMSValue">
+					<xs:annotation>
+						<xs:documentation>Multiplier value</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:totalDigits value="6"/>
+							<xs:fractionDigits value="2"/>
+							<xs:minInclusive value="0"/>
+							<xs:maxInclusive value="38"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="EMSMeasure">
+					<xs:annotation>
+						<xs:documentation>Selection of energy multiplier measure</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="kcal/g"/>
+							<xs:enumeration value="kj/g"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NutrientName" id="nn1">
+		<xs:annotation>
+			<xs:documentation>Name of nutrient</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Name">
+					<xs:annotation>
+						<xs:documentation>English name</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="50"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Language" type="xs:language" fixed="en-GB"/>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="AltName">
+						<xs:annotation>
+							<xs:documentation>Nutrient name in other languages</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="AltLanguage" type="xs:language"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

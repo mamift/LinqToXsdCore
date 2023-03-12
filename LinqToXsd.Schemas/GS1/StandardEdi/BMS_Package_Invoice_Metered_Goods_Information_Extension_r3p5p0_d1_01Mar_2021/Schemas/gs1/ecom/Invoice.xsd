@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:invoice="urn:gs1:ecom:invoice:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:invoice:xsd:3" version="3.5">
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+	<xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+	<xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+	<xsd:element name="invoiceMessage" type="invoice:InvoiceMessageType"/>
+	<xsd:complexType name="InvoiceAllowanceChargeType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="allowanceCharge" type="ecom_common:AllowanceChargeType"/>
+			<xsd:element minOccurs="0" name="leviedDutyFeeTax" type="ecom_common:LeviedDutyFeeTaxType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InvoiceLineItemType">
+		<xsd:simpleContent>
+			<xsd:extension base="shared_common:GS1CodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="InvoiceLineItemInformationAfterTaxesType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="amountExclusiveAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="amountInclusiveAllowancesCharges" type="shared_common:AmountType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InvoiceMessageType">
+		<xsd:sequence>
+			<xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+			<xsd:element maxOccurs="10000" name="invoice" type="invoice:InvoiceType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InvoiceTotalsType">
+		<xsd:sequence>
+			<xsd:element name="totalInvoiceAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="baseAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="prepaidAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="prepaidAmountDate" type="xsd:date"/>
+			<xsd:element minOccurs="0" name="taxAccountingCurrency" type="shared_common:CurrencyCodeType"/>
+			<xsd:element minOccurs="0" name="totalAmountInvoiceAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalAmountLineAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalInvoiceAmountPayable" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="roundingAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalLineAmountExclusiveAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalLineAmountInclusiveAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalPaymentDiscountBasisAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalTaxAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalTaxBasisAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalVATAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalEconomicValue" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalGoodsValue" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalRetailValue" type="shared_common:AmountType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="taxSubtotal" type="ecom_common:LeviedDutyFeeTaxType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InvoiceType">
+		<xsd:sequence>
+			<xsd:element name="invoiceType" type="ecom_common:InvoiceTypeCodeType"/>
+			<xsd:element name="invoiceCurrencyCode" type="shared_common:CurrencyCodeType"/>
+			<xsd:element minOccurs="0" name="creditReasonCode" type="ecom_common:CreditReasonCodeType"/>
+			<xsd:element minOccurs="0" name="countryOfSupplyOfGoods" type="shared_common:CountryCodeType"/>
+			<xsd:element minOccurs="0" name="dutyFeeTaxExemptionReason">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+							<xsd:pattern value="\d{}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="paymentReference">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+							<xsd:pattern value="\d{}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="approvalChargingTaxReference">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value=""/>
+						<xsd:minLength value="Thereferencetoanapprovalforchargingtax"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="supplierAccountReceivable">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="70"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+			<xsd:element minOccurs="0" name="discountAgreementTerms" type="ecom_common:DiscountAgreementCodeType"/>
+			<xsd:element minOccurs="0" name="invoiceTypeDescription" type="shared_common:Description500Type"/>
+			<xsd:element minOccurs="0" name="isBuyerBasedInEu" type="xsd:boolean"/>
+			<xsd:element minOccurs="0" name="isFirstSellerBasedInEu" type="xsd:boolean"/>
+			<xsd:element minOccurs="0" name="actualDeliveryDate" type="shared_common:DateOptionalTimeType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="administrativeUnit" type="ecom_common:AdministrativeUnitType"/>
+			<xsd:element minOccurs="0" name="billTo" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="blanketOrder" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element name="buyer" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="consignee" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="contract" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="creditingPeriod" type="shared_common:DateTimeRangeType"/>
+			<xsd:element minOccurs="0" name="deliveryNote" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="deliveryTerms" type="ecom_common:DeliveryTermsType"/>
+			<xsd:element minOccurs="0" name="despatchAdvice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="despatchInformation" type="ecom_common:DespatchInformationType"/>
+			<xsd:element minOccurs="0" name="digitalSignature" type="ecom_common:DigitalSignatureType"/>
+			<xsd:element minOccurs="0" name="disputeNotice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="ecomDocument" type="ecom_common:EcomDocumentType"/>
+			<xsd:element minOccurs="0" name="endCustomerRelatedDetails" type="ecom_common:EndCustomerRelatedDetailsType"/>
+			<xsd:element minOccurs="0" name="inventoryLocation" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="inventoryReport" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="invoice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="invoiceAllowanceCharge" type="invoice:InvoiceAllowanceChargeType"/>
+			<xsd:element name="invoiceIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+			<xsd:element minOccurs="0" name="invoiceIssuer" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element maxOccurs="unbounded" name="invoiceLineItem" type="invoice:InvoiceLineItemType"/>
+			<xsd:element minOccurs="0" name="invoiceProcessingParty" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element name="invoiceTotals" type="invoice:InvoiceTotalsType"/>
+			<xsd:element minOccurs="0" name="invoicingPeriod" type="shared_common:DateTimeRangeType"/>
+			<xsd:element minOccurs="0" name="manifest" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="orderResponse" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="payee" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="payer" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="paymentTerms" type="ecom_common:PaymentTermsType"/>
+			<xsd:element minOccurs="0" name="pickupFrom" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="priceList" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="promotionalDeal" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="purchaseOrder" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="receivingAdvice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="remitTo" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="returnsNotice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="salesOrder" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="salesReport" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element name="seller" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="shipFrom" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="shipmentTransportationInformation" type="ecom_common:ShipmentTransportationInformationType"/>
+			<xsd:element minOccurs="0" name="shipTo" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="supplierAgentRepresentative" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="supplierCorporateOffice" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="taxCurrencyInformation" type="shared_common:CurrencyExchangeRateInformationType"/>
+			<xsd:element minOccurs="0" name="taxRepresentative" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="tradeAgreement" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="transactionalGenericRererence" type="invoice:TransactionalGenericRererenceType"/>
+			<xsd:element minOccurs="0" name="ultimateConsignee" type="ecom_common:TransactionalPartyType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SalesCommissionType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="salesCommissionPercentage" type="xsd:float"/>
+			<xsd:element minOccurs="0" name="salesCommissionBasisAmount" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="salesCommissionAmountin" type="shared_common:AmountType"/>
+			<xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+			<xsd:element name="invoicedQuantity" type="shared_common:QuantityType"/>
+			<xsd:element minOccurs="0" name="amountExclusiveAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="amountInclusiveAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="deliveredQuantity" type="shared_common:QuantityType"/>
+			<xsd:element minOccurs="0" name="creditLineIndicator">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="70"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="creditReason" type="ecom_common:CreditReasonCodeType"/>
+			<xsd:element minOccurs="0" name="excludedFromPaymentDiscountIndicator" type="xsd:boolean"/>
+			<xsd:element minOccurs="0" name="itemPriceBaseQuantity" type="shared_common:QuantityType"/>
+			<xsd:element minOccurs="0" name="itemPriceExclusiveAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="itemPriceInclusiveAllowancesCharges" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="marginSchemeInformation" type="ecom_common:MarginSchemeCodeType"/>
+			<xsd:element minOccurs="0" name="marginSchemeDescription" type="shared_common:Description200Type"/>
+			<xsd:element minOccurs="0" name="transferOfOwnershipDate" type="xsd:date"/>
+			<xsd:element minOccurs="0" name="additionalOrderLineInstruction" type="shared_common:Description1000Type"/>
+			<xsd:element minOccurs="0" name="parentLineItemNumber" type="xsd:positiveInteger"/>
+			<xsd:element minOccurs="0" name="owenrshipPriorToPayment" type="ecom_common:OwnershipTransferConditionCodeType"/>
+			<xsd:element minOccurs="0" name="currentPrice" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="contractPriceTemporarilyDiscounted" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="listPriceDiscounted" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="salesPriceToConsumer" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="currentListPriceDiscounted" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="legallyFixedRetailPrice" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="recommendedRetailPrice" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="retailPriceExcludingExcise" type="shared_common:AmountType"/>
+			<xsd:element minOccurs="0" name="totalOrderedQuantity" type="shared_common:QuantityType"/>
+			<xsd:element minOccurs="0" name="freeGoodsQuantity" type="shared_common:QuantityType"/>
+			<xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+			<xsd:element minOccurs="0" name="extension" type="shared_common:ExtensionType"/>
+			<xsd:element minOccurs="0" name="actualDeliveryDate" type="shared_common:DateOptionalTimeType"/>
+			<xsd:element minOccurs="0" name="address" type="shared_common:AddressType"/>
+			<xsd:element minOccurs="0" name="consignmentReference" type="ecom_common:ConsignmentReferenceType"/>
+			<xsd:element minOccurs="0" name="consumptionReport" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="contract" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="deliveryNote" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="deliveryTerms" type="ecom_common:DeliveryTermsType"/>
+			<xsd:element minOccurs="0" name="despatchAdvice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="despatchInformation" type="ecom_common:DespatchInformationType"/>
+			<xsd:element minOccurs="0" name="ecom_ReturnableAssetIdentification" type="ecom_common:Ecom_ReturnableAssetIdentificationType"/>
+			<xsd:element minOccurs="0" name="energyQuantity" type="ecom_common:EnergyQuantityCalculationConditionsType"/>
+			<xsd:element minOccurs="0" name="euUniqueID" type="ecom_common:EuUniqueIDType"/>
+			<xsd:element minOccurs="0" name="inventoryLocationFrom" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="inventoryLocationTo" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="invoice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="invoiceAllowanceCharge" type="invoice:InvoiceAllowanceChargeType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="invoiceLineItemContact" type="shared_common:ContactType"/>
+			<xsd:element minOccurs="0" name="invoiceLineItemInformationAfterTaxes" type="invoice:InvoiceLineItemInformationAfterTaxesType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="invoiceLineTaxInformation" type="ecom_common:LeviedDutyFeeTaxType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="logisticServiceReference" type="ecom_common:LogisticServiceReferenceType"/>
+			<xsd:element minOccurs="0" name="paymentMethod" type="ecom_common:PaymentMethodType"/>
+			<xsd:element minOccurs="0" name="promotionalDeal" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="purchaseConditions" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="purchaseOrder" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="receivingAdvice" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="salesOrder" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element minOccurs="0" name="servicetimePeriodLineLevel" type="shared_common:DateTimeRangeType"/>
+			<xsd:element minOccurs="0" name="shipFrom" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="shipmentReference" type="ecom_common:ShipmentReferenceType"/>
+			<xsd:element minOccurs="0" name="shipTo" type="ecom_common:TransactionalPartyType"/>
+			<xsd:element minOccurs="0" name="tradeAgreement" type="ecom_common:Ecom_DocumentReferenceType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemStatisticalClassification" type="ecom_common:TradeStatisticClassificationType"/>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="transactionalGenericRererence" type="invoice:TransactionalGenericRererenceType"/>
+			<xsd:element minOccurs="0" name="transactionalTradeItem" type="ecom_common:TransactionalTradeItemType"/>
+			<xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TransactionalGenericRererenceType">
+		<xsd:simpleContent>
+			<xsd:extension base="shared_common:GS1CodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

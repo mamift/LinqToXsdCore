@@ -1,0 +1,2226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+ <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.psidev.info/gelml/1_1candidate"
+  targetNamespace="http://www.psidev.info/gelml/1_1candidate"
+  elementFormDefault="qualified"
+  version="1.1-candidate"
+  xmlns:gelml="http://www.psidev.info/gelml/1_1candidate"
+  >
+
+  <xsd:include schemaLocation="FuGElightv1.0.0.xsd"/>
+
+ <xsd:complexType name="GelML.GelMLRoot.GelMLType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The root of the GelML document. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.IdentifiableType">
+    <xsd:sequence>
+     <xsd:element ref="Provider" minOccurs="0" maxOccurs="1"/>
+     <xsd:element name="cvList">
+      <xsd:annotation>
+       <xsd:documentation> The list of CVs used within the file</xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="cv" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="GelMLMaterialCollection" minOccurs="0" maxOccurs="1"/>
+     <xsd:element ref="GelMLDataCollection" minOccurs="0" maxOccurs="1"/>
+     <xsd:element ref="GelMLProtocolCollection" minOccurs="0" maxOccurs="1"/>
+     <xsd:element ref="GelExperiment" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="AuditCollection" minOccurs="0" maxOccurs="1"/>
+     <xsd:element ref="ReferenceableCollection" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.GelMLRoot.GelMLMaterialCollectionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Collection class for accessing all GenericMaterial instances used in GelML.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element ref="GenericMaterial" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.GelMLRoot.GelMLDataCollectionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Collection class for accessing all ExternalData instances in GelML.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element ref="ExternalData" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.GelMLRoot.Gel2DExperimentType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Gel2DExperiment captures the ProtocolApplications that should be reported for
+    2D gel electrophoresis in a GelML file. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.GelMLRoot.GelExperimentType">
+    <xsd:sequence>
+     <xsd:element ref="GelManufactureApplication" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="Gel2DApplication" minOccurs="1" maxOccurs="1"/>
+     <xsd:element ref="ImageAcquisitionApplication" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="ExcisionApplication" minOccurs="0" maxOccurs="unbounded"/> 
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.GelMLRoot.GelMLProtocolCollectionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Collection class for accessing all Software, Protocol and Equipment instances. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element ref="GenericEquipment" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="GenericSoftware" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="GenericProtocol" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="SampleLoadingProtocol" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="Gel2DProtocol" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="Gel1DProtocol" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="OtherGelProtocol" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="ElectrophoresisProtocol" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="SubstanceMixtureProtocol" minOccurs="0" maxOccurs="unbounded"/>  
+   <xsd:element ref="DetectionProtocol" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element ref="ImageAcquisitionProtocol" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.GelMLRoot.GelExperimentType" abstract="true">
+  <xsd:annotation>
+   <xsd:documentation> Abstract superclass representing the groups of ProtocolApplications that
+    should be represented in a valid GelML document. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.IdentifiableType">
+    <xsd:sequence>
+     <xsd:element name="electrophoresisType" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The experiment type definition, such as "2D-DIGE", "one-dimensional gel
+        electrophoresis", "two-dimensional gel electrophoresis" etc. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="cvParam"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="ContactRole" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation>The primary contact for this GelExperiment</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>  
+    </xsd:sequence>
+    <xsd:attribute name="date" type="xsd:date">
+     <xsd:annotation>
+      <xsd:documentation> The date the experiment was initiated on. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.GelMLRoot.Gel1DExperimentType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Gel1DExperiment captures the ProtocolApplications that should be reported for
+    1D gel electrophoresis in a GelML file. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.GelMLRoot.GelExperimentType">
+    <xsd:sequence>
+     <xsd:element ref="GelManufactureApplication" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="Gel1DApplication" minOccurs="1" maxOccurs="1"/>
+     <xsd:element ref="ImageAcquisitionApplication" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="ExcisionApplication" minOccurs="0" maxOccurs="unbounded"/>   
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.GelMLRoot.OtherGelExperimentType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> OtherGelExperiment captures the ProtocolApplications that should be reported
+    for a type of gel electrophoresis other than 1D or 2D in a GelML file. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.GelMLRoot.GelExperimentType">
+    <xsd:sequence>
+     <xsd:element ref="GelManufactureApplication" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="OtherGelApplication" minOccurs="1" maxOccurs="1"/>
+     <xsd:element ref="ImageAcquisitionApplication" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="ExcisionApplication" minOccurs="0" maxOccurs="unbounded"/>   
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.RelativeVolumeType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The volume of a substance relative to the medium in which it is in.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.SelectSubstance.VolumeParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.VolumeFunctionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> VolumeFunction represents a specification of a volume that changes, for
+    example, over time. The value provided for a VolumeFunction should use the ComplexValue
+    specification to represent the function. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.SelectSubstance.VolumeParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.AbsoluteVolumeType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An absolute volume parameter. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.SelectSubstance.VolumeParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.VolumeParameterType" abstract="true">
+  <xsd:annotation>
+   <xsd:documentation> Abstract superclass representing the different formats for representing the
+    volume of a substance. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.SubstanceActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An action representing the use of a substance within a protocol. The
+    substance can be named by free text or using the substanceType association. The attribute
+    actionText can be used to specify how the substance has been used within the protocol.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:sequence>
+     <xsd:element ref="Concentration" minOccurs="0" maxOccurs="1"/>
+     <xsd:element ref="Mass" minOccurs="0" maxOccurs="1"/>
+     <xsd:element name="substanceCharacteristics" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> The characteristics of the substance. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:group ref="ParamGroup" minOccurs="0" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="substanceType" minOccurs="0" maxOccurs="1" type="ParamType">
+      <xsd:annotation>
+       <xsd:documentation> The type of substance, if the substance name has not been given as free text
+        in the SubstanceAction. </xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element ref="VolumeParameter" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="substanceName" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation> The name of the substance given as free text. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="actionText" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation> A specification of the use of the substance within the parent protocol.
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.TemporalSubstanceActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The use of a substance within a protocol at a particular time point or for a
+    particular duration. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.SelectSubstance.SubstanceActionType">
+    <xsd:sequence>
+     <xsd:element ref="TimeParameter" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.SubstanceMixtureProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A Protocol representing the creation of a mixture of substances, for example
+    to be used for specifying the components of buffers, solutions etc. If the actionText attribute
+    of SubtanceAction is not used, the SubstanceMixtureProtocol represents only the components of
+    the mixture and not the processes applied to them. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>
+     <xsd:element ref="SubstanceAction" minOccurs="1" maxOccurs="unbounded"/>
+     <xsd:element name="mixtureType" minOccurs="0" maxOccurs="1" type="ParamType">
+      <xsd:annotation>
+       <xsd:documentation> The type of mixture e.g. buffer, solution, protein complex etc.
+       </xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="mixtureName" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation> The name of the mixture represented by this protocol. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.DurationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A duration parameter. Note: values for absolute or relative time can be
+    specified using the Parameter DefaultValue model. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.SelectSubstance.TimeParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.TimePointType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A single time point. Note: values for absolute or relative time can be
+    specified using the Parameter DefaultValue model. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.SelectSubstance.TimeParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.TimeParameterType" abstract="true">
+  <xsd:annotation>
+   <xsd:documentation> Abstract superclass representing Duration and TimePoints.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.ConcentrationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The Concentration of a substance. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SelectSubstance.MassType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The mass of a substance. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel2DProtocol.Gel2DType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Gel2D is the material produced from a Gel2DApplication representing the
+    combination of the two gel substrates and the proteins that have been separated.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Gel.ElectrophoresedGelType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel2DProtocol.Gel2DProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A protocol describing the procedure of 2D gel electrophoresis.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>
+     <xsd:element ref="SampleLoadingAction" minOccurs="1" maxOccurs="unbounded"/>
+     <xsd:element ref="FirstDimensionAction" minOccurs="1" maxOccurs="1"/>
+     <xsd:element ref="SecondDimensionAction" minOccurs="1" maxOccurs="1"/>
+     <xsd:element ref="InterDimensionAction" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="DetectionAction" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel2DProtocol.Gel2DApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Gel2DApplication is the application of a Gel2DProtocol. An instance of
+    Gel2DApplication should reference SampleLoadingApplication, ElectrophoresisApplication,
+    DetectionApplications and GenericProtocolApplication as its sub-steps, as defined by the
+    referenced Gel2DProtocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:sequence>     
+     <xsd:element name="inputFirstDimension" minOccurs="1" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> Reference to the Gel on which the first dimension separation is
+        performed. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="Gel" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="inputSecondDimension" minOccurs="1" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> Reference to the Gel on which the second dimension separation is
+        performed. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="Gel" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="output">
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="Gel2D" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>      
+     </xsd:element>
+     <xsd:element name="ChildProtocolApplications">
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="SampleLoadingApplication" maxOccurs="unbounded"/>
+        <xsd:element ref="ElectrophoresisApplication" minOccurs="2" maxOccurs="2"/>
+        <xsd:element ref="DetectionApplication" minOccurs="0" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>     
+    </xsd:sequence>
+    <xsd:attribute name="Gel2DProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The Gel2DProtocol that has been run. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Electrophoresis.ElectrophoresisApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An application of the referenced ElectrophoresisProtocol.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:attribute name="ElectrophoresisProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The ElectrophoresisProtocol that is applied. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="Gel_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The Gel on which Electrophoresis takes place. The referenced gels must be one of the gels
+        associated as inputs to Gel1DApplication, Gel2DApplication or OtherGelApplication. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Detection.DetectionApplicationType" abstract="true">
+  <xsd:annotation>
+   <xsd:documentation> Abstract superclass to represent applications of a DetectionProtocol. Its
+    subclasses DirectDetection and IndirectDetection capture the application of the procedure. If
+    two stainings are done, the destaining should be the first stage of the second staining process,
+    as represented in the DetectionProtocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:attribute name="DetectionProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The DetectionProtocol that has been run. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel2DProtocol.FirstDimensionActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An action to represent the order of the referenced ElectrophoresisProtocol,
+    with respect to other Actions performed within this parent protocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:attribute name="ElectrophoresisProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The ElectrophoresisProtocol performed in the first dimension. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel2DProtocol.SecondDimensionActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An action to represent the order of the referenced ElectrophoresisProtocol,
+    with respect to other Actions performed within this parent protocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:attribute name="ElectrophoresisProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The ElectrophoresisProtocol performed in the second dimension. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel2DProtocol.DetectionActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An action to represent the order of the referenced DetectionProtocol, with
+    respect to other Actions performed within this parent protocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:sequence>
+     <xsd:element name="dimension" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="DetectionProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The DetectionProtocol referenced from this Action. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel1DProtocol.Gel1DType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Gel1D is the material produced from a Gel1DApplication representing the
+    combination of the gel substrate with the proteins that have been separated. Gel1D should be
+    referenced by a DetectionApplication to describe any detection agents that have been applied.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Gel.ElectrophoresedGelType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel1DProtocol.Gel1DApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The application of a Gel1DProtocol. Gel1DApplication should reference (via
+    ActionApplication) SampleLoadingApplication, ElectrophoresisApplication and DetectionApplication
+    matching the structure of the referenced Gel1DProtocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:sequence>
+     <xsd:element name="inputGel" minOccurs="1" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The gel material on which this Gel1DProtocol acts. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="Gel" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="output">
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="Gel1D" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>      
+     </xsd:element>
+     <xsd:element name="ChildProtocolApplications">
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="SampleLoadingApplication" maxOccurs="unbounded"/>
+        <xsd:element ref="ElectrophoresisApplication"/>
+        <xsd:element ref="DetectionApplication" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>     
+    </xsd:sequence>
+    <xsd:attribute name="Gel1DProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The protocol used in this Gel1DProtocolApplication. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel1DProtocol.Gel1DProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A protocol describing the procedure of 1D gel electrophoresis.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>
+     <xsd:element ref="SampleLoadingAction" minOccurs="1" maxOccurs="unbounded"/>
+     <xsd:element ref="ElectrophoresisAction" minOccurs="1" maxOccurs="1"/>
+     <xsd:element ref="DetectionAction" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Detection.DetectionMediumType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The medium on which proteins are detected in processes such as
+    autoradiography (example photographic film). The type of material should be captured by the
+    inherited MaterialType association. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Material.MaterialType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Detection.DetectionProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The process by which proteins are to be detected on a gel, either by a direct
+    process e.g. staining or by an indirect process e.g. Western blot. The type of protocol should
+    be specified using the types association inherited from Protocol </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>
+     <xsd:element name="protocolText" type="xsd:string">
+      <xsd:annotation>
+       <xsd:documentation> The text of the detection protocol. </xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="DetectionAgent" maxOccurs="unbounded" type="ParamType"/>     
+     <xsd:element name="detectionEquipment" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> Any equipment used in the DetectionProtocol. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GenericEquipment_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="AddBufferAction" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Detection.DirectDetectionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> DirectDetection represents the application of a DetectionProtocol in which a
+    detection agent (stain or label) is applied directly to a gel. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Detection.DetectionApplicationType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Detection.IndirectDetectionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> IndirectDetection represents the application of a DetectionProtocol in which
+    a detection agent (stain or label) is applied to a TransferMedium (e.g. a membrane) following
+    proteins being transfered from a gel. Subsequently, the proteins may be detected on a
+    DetectionMedium, such as photographic film. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Detection.DetectionApplicationType">
+    <xsd:sequence>
+     <xsd:element ref="TransferMedium" minOccurs="1" maxOccurs="1"/>
+     <xsd:element ref="DetectionMedium" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Detection.TransferMediumType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The medium proteins are transfered to during Indirect detection of proteins,
+    such as the membrane in a Western blot. The type of material should be captured by the inherited
+    MaterialType association. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Material.MaterialType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Electrophoresis.ElectrophoresisActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A reference to the ElectrophoreisProtocol performed within the parent
+    protocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:attribute name="ElectrophoresisProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> A reference to the ElectrophoresisProtocol </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+  <xsd:complexType name="GelML.Electrophoresis.ElectrophoresisProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A protocol for capturing the details of electrophoresis. The running
+    conditions applied to the gel should be given in terms of voltages versus time/kilovolt hours,
+    (or appropriate measurements) and temperature. The voltage mode profile (eg. step and hold, or
+    gradient) should be given as ontology terms on ElectricalParameter. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>   
+     <xsd:element name="protocolText" type="xsd:string"/>
+     <xsd:element ref="AddBufferAction" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element name="electrophoresisEquipment" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> Any equipment used during electrophoresis, such as gel tanks or power
+        packs. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GenericEquipment_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Electrophoresis.TemperatureType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Temperature parameter. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Electrophoresis.AddBufferActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An action to represent the use of buffers in the Protocol by reference to a
+    SubstanceMixtureProtocol that represents the buffer and optionally the method of producing the
+    buffer. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:attribute name="SubstanceMixtureProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The specification of the buffer and its components. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.BoundaryChainType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A boundary chain is a notation for specifying an arbitrarily shaped location
+    on an image. A starting point is given (startXCoordinate and startYCoordinate) and a set of
+    directional steps. See chainCode documentation for this encoding. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Excision.FeatureLocationType">
+    <xsd:attribute name="startXCoordinate" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The x-coordinate of the starting position of the chain code.
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="startYCoordinate" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The y-coordinate of the starting position of the chain code.
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="chainCode" use="required" type="xsd:integer">
+     <xsd:annotation>
+      <xsd:documentation> A chain code denotes the shape of feature using directional steps of one
+       pixel, starting from the specified X and Y coordinates. Each step is encoded using the
+       following convention: 0 = E; 1 = NE; 2 = N; 3 = NW; 4 = W; 5 = SW; 6 = S; 7 = SE; See the
+       specification document for a diagram. In-house representations of GelML are free to use a
+       compression algorithm over the chain code, such as run length encoding, but for data exchange
+       the code should be uncompressed as shown in the example (since entire data files can be
+       compressed using Zip or Gz for data transfer). Note: In XML Schema, the chainCode is
+       represented as an xs:integer, which covers the infinite set of integers. Care should be taken
+       when mapping to other platforms, such as Java, i.e. this will not map to a Java Integer.
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.CircleType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Circle is for defining a circular location on an image. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Excision.FeatureLocationType">
+    <xsd:attribute name="pixelRadius" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> Radius of the Circle in pixels. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.ExcisedSampleType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A sample excised from a gel. These materials can be referenced by formats
+    modelling other techniques, such as mass spectrometry. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Material.MaterialType">
+    <xsd:attribute name="GelLocation_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> A reference to the location that this sample was excised from. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.ExcisionApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The Application of a protocol that describes the excision of locations on
+    gels. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:sequence>
+     <xsd:element name="inputImageLocations" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The set of locations on an image of a gel. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="LocationSet" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="ExcisedSample" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element name="inputGelLocations" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The set of locations on a gel as determined by, for instance, a robotic
+        spot picker at runtime. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="LocationSet" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="ElectrophoresedGel_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The ElectrophoresedGel from which locations are excised. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="GenericProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The Protocol applied for excision. Note that equipment and software used should be
+        provided using the associations from GenericProtocol to GenericEquipment and
+        GenericSoftware. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.FeatureLocationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Abstract superclass representing the different types of method that could be
+    used to identify a location. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="centroidX" type="xsd:int">
+   <xsd:annotation>
+    <xsd:documentation> The centroid position on the x-axis of the image. </xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="centroidY" type="xsd:int">
+   <xsd:annotation>
+    <xsd:documentation> The centroid position on the y-axis of the image. </xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.GelLocationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A single location on a gel. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.IdentifiableType">
+    <xsd:sequence>
+     <xsd:element ref="LocationMeasure" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="FeatureLocation" minOccurs="0" maxOccurs="1"/>
+     <xsd:element name="mappedLocation" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> This is for mapping a Location from one set to another, for example for
+        mapping a gel coordinate to an image coordinate for a robotic spot picker.
+       </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GelLocation_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.LocationMeasureType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A measured value, property or annotation about a GelLocation, such as
+    predicted MW or pI. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="evidence" minOccurs="0" maxOccurs="1" type="ParamType">
+    <xsd:annotation>
+     <xsd:documentation> The evidence for this measure, such as molecular weight markers, mass
+      spectrometry etc. </xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:group ref="MeasurementGroup"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.LocationSetType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> LocationSet represents a set of locations on a gel image.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Data.InternalDataType">
+    <xsd:sequence>
+     <xsd:element ref="GelLocation" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element name="locationEvidence" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The evidence or source file for this location set. The referenced file
+        should be in the GelInfoML format when it is finalised. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="ExternalData_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="setType" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The type of LocationSet e.g. ImageSet, GelSet. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="cvParam"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="GelLane_ref" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> A reference to the lane of a gel from which locations are being excised. A gel lane
+        should only be supplied if appropriate, e.g. if this is a Gel1D. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="Image_ref" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The image of a gel that these locations refer to. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.RectangleType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Rectangle is for defining a rectangular location on an image. The X/Y
+    coordinates correspond with the upper left corner of the rectangle. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Excision.FeatureLocationType">
+    <xsd:attribute name="xCoordinate" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The X-Coordinate of the upper left corner of the rectangle.
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="yCoordinate" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The Y-Coordinate of the upper left corner of the rectangle.
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="pixelXSize" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The size of the rectangle along the X axis. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="pixelYSize" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The size of the rectangle along the Y axis. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.BoundaryPointSetType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A set of boundary points defining a location on a gel. The BoundaryPoints are
+    inclusive i.e. each point defines the boundary and part of the location. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Excision.FeatureLocationType">
+    <xsd:sequence>
+     <xsd:element ref="Point" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Excision.PointType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A single boundary point used in a BoundaryPointSet. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="xCoordinate" use="required" type="xsd:int">
+   <xsd:annotation>
+    <xsd:documentation> x-coordinate of the boundary point. </xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="yCoordinate" use="required" type="xsd:int">
+   <xsd:annotation>
+    <xsd:documentation> y-coordinate of the boundary point. </xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.ElectrophoresedGelType" abstract="true">
+  <xsd:annotation>
+   <xsd:documentation> Abstract superclass for describing gels following electrophoresis.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Material.MaterialType">
+    <xsd:sequence>
+     <xsd:element name="gelLaneReference" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> A reference to the GelLanes defined as part of the Gel substrate that
+        this ElectrophoresedGel came from. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GelLane_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="SeparationRange" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.GelType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The gel matrix used in any dimension of an electrophoresis assay.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Material.MaterialType">
+    <xsd:sequence>
+     <xsd:element name="gelType" minOccurs="0" type="ParamType">
+      <xsd:annotation>
+       <xsd:documentation>The type of Gel using a term from a controlled vocabulary</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>     
+     <xsd:element ref="GelLane" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element name="componentGels" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The association can specify component gels, for example to represent a
+        stacking gel. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="Gel" minOccurs="1" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="percentAcrylamide" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The percentage acrylamide in the gel. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:group ref="MeasurementGroup"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="AcrylamideToCrossLinker" minOccurs="0" maxOccurs="1"/>
+     <xsd:element name="otherGelConstituents" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> Other constituents of the gel (not specified elsewhere) with
+        measurements, such as the concentration of SDS. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GenericMaterial_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="model" minOccurs="0" maxOccurs="1" type="ParamType">
+      <xsd:annotation>
+       <xsd:documentation> The model number of the gel. If no suitable CV of model numbers exist,
+        the model number is encoded as the term and as the termAccession. The OntologySource is the
+        URI of the company producing the gel. </xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element ref="Dimensions" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="separationDimension" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The dimension this gel separates in e.g. for 2D electrophoresis, one Gel
+       separationDimension = 1, other Gel separationDimension = 2. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="batchNumber" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation> The manufacturer's batch number for the gel. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.GelLaneType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A lane on a gel. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Material.MaterialType">
+    <xsd:attribute name="laneNumber" use="required" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The lane number with respect to the parent gel. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.GelManufactureApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The application of a protocol that defines how a gel was produced.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:sequence>
+     <xsd:element name="productGel" minOccurs="1" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The gel produced by the GelManufactureApplication. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="Gel_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="GenericMaterialMeasurement" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="GenericProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The protocol applied in the GelManufactureApplication. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.DimensionsType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The measurements must be in the form of the Cartesian Coordinate system
+    (x,y,z). According to the standard image orientation described in section 7.1.6 of the MIAPE
+    document x represents the distance from the anode (+) to the cathode (-). For example in an IPG
+    strip x = the strip length, for a standard slab gel, x = the width and z = the matrix depth. All
+    dimensions should be given in milimetres. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="x" type="FuGE.Common.Ontology.PropertyValue">
+    <xsd:annotation>
+     <xsd:documentation> The x axis represents the distance from the anode (+) to the cathode (-).
+     </xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="y" type="FuGE.Common.Ontology.PropertyValue">
+    <xsd:annotation>
+     <xsd:documentation> The y axis is the matrix length.
+     </xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="z" type="FuGE.Common.Ontology.PropertyValue">
+    <xsd:annotation>
+     <xsd:documentation> The z axis dimensions is the matrix depth.
+     </xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>  
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.SeparationRangeType" abstract="true">
+  <xsd:annotation>
+   <xsd:documentation> The separation range of the gel. This can use the RangeValue or ComplexValue
+    specification. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name = "Range" type="FuGE.Common.Measurement.RangeType"  minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="rangeType" minOccurs="0" maxOccurs="1">
+    <xsd:annotation>
+     <xsd:documentation> The type of separation range, e.g. logarithmic, linear etc.
+     </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element ref="cvParam"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute name="dimension" use="required" type="xsd:int">
+   <xsd:annotation>
+    <xsd:documentation> The dimension separation that the range refers to. </xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.PHRangeType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The estimated or known pH range of a gel that separates substances based on
+    their isoelectric point. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Gel.SeparationRangeType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.MolWeightRangeType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The estimated or known range of a gel that separates substances by their
+    molecular weight. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Gel.SeparationRangeType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.OtherGelRangeType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A gel range other than molecular weight or pH by which proteins are
+    separated. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Gel.SeparationRangeType">
+    <xsd:sequence>
+     <xsd:element name="separationType" minOccurs="1" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The type of separation performed i.e. the biophysical property that is
+        separated on. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="cvParam"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.Gel.AcrylamideToCrossLinkerType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> Describes the acrylamide:crosslinker ratio, where the crosslinker type is
+    given by an ontology term (e.g. bisacrylamide). The values stored in the attributes can be
+    represented as a simple ratio (e.g. 37.5:1) or as percentages out of 100 (97:3). If a monomer
+    other than acrylamide has been used, this object should not be used and the components should be
+    specified as additional substances. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="crossLinkerType" minOccurs="1" maxOccurs="1" type="ParamType">
+    <xsd:annotation>
+     <xsd:documentation> The name of the crosslinker used in the gel. </xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute name="acrylamide" use="required" type="xsd:float">
+   <xsd:annotation>
+    <xsd:documentation> The ratio of acrylamide (i.e. value =97 if ratio is 97:3)
+    </xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="crossLinker" use="required" type="xsd:float">
+   <xsd:annotation>
+    <xsd:documentation> The ratio of crosslinker (i.e. value =3 if ratio is 97:3)
+    </xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SampleLoading.SampleLoadingActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An action to represent the order of the referenced SampleLoadingProtocol,
+    with respect to other Actions performed within this parent protocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:attribute name="laneNumber" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> Optional lane number attribute for specifying the intended lane that this
+       protocol should be applied to. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="dimension" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The gel dimension that the referenced SampleLoadingProtocol refers to.
+       Note, this is not required in the context of Gel1DProtocol. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="SampleLoadingProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> A reference to the SampleLoadingProtocol. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SampleLoading.SampleLoadingApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An application of the SampleLoadingProtocol. SampleLoadingApplication defines
+    how a sample was loaded to a gel. To capture loading a first dimension gel onto a second
+    dimension gel, GenericMaterialMeasurement should reference the first dimension gel and
+    SampleLoadingApplication references the second dimension Gel (as LoadedGel).
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:sequence>
+     <xsd:element name="InputSample">
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="GenericMaterialMeasurement" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="SampleLoadingProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The SampleLoadingProtocol that has been applied. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="Gel_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The gel onto which the sample was loaded. The gel must be an instance of Gel referenced
+        from Gel1DApplication, Gel2DApplication or OtherGelApplication. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="GelLane_ref" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The lane on which the sample was loaded. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.SampleLoading.SampleLoadingProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A Protocol defining how samples are loaded onto a Gel or GelLanes.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>
+     <xsd:element name="protocolText" type="xsd:string">
+      <xsd:annotation>
+       <xsd:documentation> The details of the SampleLoadingProtocol as free text.
+       </xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="loadingBuffer" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The loading buffer of the sample. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>        
+        <xsd:element ref="AddBufferAction" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="GenericParameter" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element name="sampleLoadingEquipment" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> Any equipment used in the SampleLoadingProtocol. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GenericEquipment_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.OtherGelProtocol.InterDimensionActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The Action represent a reference to a Protocol for the stages that occur
+    between electrophoresis over particular dimensions and an ordering of the reference with respect
+    to other Actions performed within the parent Protocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:attribute name="preDimension" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The dimension that this procedure precedes. This attribute is not required
+       for within a Gel2DProtocol as it is assumed that this specifies a Protocol prior to dimension
+       2. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="GenericProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> A reference to the GenericProtocol performed between the dimensions specified. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.OtherGelProtocol.OtherGelType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> The Gel output from an OtherGelApplication representing the combination of
+    gel substrates and proteins separated. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="GelML.Gel.ElectrophoresedGelType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.OtherGelProtocol.OtherGelApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> OtherGelApplication is the application of an OtherGelProtocol. An instance of
+    OtherApplication should reference (via ActionApplication) SampleLoadingApplication,
+    ElectrophoresisApplication, DetectionApplication and GenericProtocolApplication as its
+    sub-steps, as defined by the referenced OtherGelProtocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:sequence>
+     <xsd:element name="inputGels" minOccurs="1" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The gels on which separations are performed. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="Gel" minOccurs="1" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="output">
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="OtherGel" minOccurs="1" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>      
+     </xsd:element>
+     <xsd:element name="ChildProtocolApplications">
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="SampleLoadingApplication" maxOccurs="unbounded"/>
+        <xsd:element ref="ElectrophoresisApplication"/>
+        <xsd:element ref="DetectionApplication" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>     
+    </xsd:sequence>
+    <xsd:attribute name="OtherGelProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The OtherGelProtocol that is applied. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.OtherGelProtocol.OtherGelProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A protocol for capturing experiments that cannot be represented by
+    Gel1DProtocol or Gel2DProtocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>
+     <xsd:element ref="SampleLoadingAction" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="DimensionAction" minOccurs="1" maxOccurs="unbounded"/>
+     <xsd:element ref="InterDimensionAction" minOccurs="0" maxOccurs="unbounded"/>
+     <xsd:element ref="DetectionAction" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.OtherGelProtocol.DimensionActionType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An action to represent the order of the referenced ElectrophoresisProtocol,
+    with respect to other Actions performed within this parent protocol. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ActionType">
+    <xsd:attribute name="dimension" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The dimension that the referenced electrophoresis protocol occurs in.
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="ElectrophoresisProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The ElectrophoresisProtocol performed in this dimension. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.ImageAcquisition.ImageType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A reference to an image file stored in an external location.
+   </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Bio.Data.ExternalDataType">
+    <xsd:sequence>
+     <xsd:element name="channel" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The channel or wavelength at which the image was scanned.
+       </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:group ref="MeasurementGroup"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="resolution" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> The value of the resolution of the Image. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:group ref="MeasurementGroup"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="bitDepth" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The image bit-depth e.g. 8 bit, 16 bit. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="dimensionX" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The x-axis dimension of the image in pixels. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="dimensionY" type="xsd:int">
+     <xsd:annotation>
+      <xsd:documentation> The y-axis dimension of the image in pixels. </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.ImageAcquisition.ImageAcquisitionApplicationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> An application of a protocol (GenericProtocol) describing the scanning of a
+    material to produce an Image. In this context it is expected that the Material would be an
+    ElectrophoresedGel, TransferMedium or DetectionMedium. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolApplicationType">
+    <xsd:attribute name="Image_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The Image produced from ImageAcquisitionApplication. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="Material_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The Input material to image acquisition. </p>
+       <p> In a 1D Gel experiment, if the gel is scanned after electrophoresis, this should
+        reference the Gel1D produced by Gel1DApplication. In a 2D Gel experiment, if the gel is
+        scanned after electrophoresis, this should reference the Gel2D produced by Gel2DApplication.
+        If an image is aquired of a TransferMedium or DetectionMedium, this should reference an
+        instance that is referenced by IndirectDetection as OutputTransferMedium or
+        OutputDetectionMedium. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="ImageAcquisitionProtocol_ref" use="required" type="xsd:string">
+     <xsd:annotation>
+      <xsd:documentation>
+       <p> The protocol describing this image acquisition procedure, such as scanning or
+        photography. </p>
+      </xsd:documentation>
+     </xsd:annotation>
+    </xsd:attribute>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.ImageAcquisition.ImageAcquisitionProtocolType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A protocol describing image acquisition. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ProtocolType">
+    <xsd:sequence>
+     <xsd:element name="protocolText" type="xsd:string">
+      <xsd:annotation>
+       <xsd:documentation> The details of the Protocol as free text.
+       </xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="equipment" minOccurs="1" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> The Equipment used for image acquisition. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GenericEquipment_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="software" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation>
+       <xsd:documentation> The software used for image acquisition. </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:attribute name="GenericSoftware_ref" use="required" type="xsd:string"/>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="Steps" minOccurs="0" maxOccurs="1">
+      <xsd:annotation>
+       <xsd:documentation> Descriptions of calibration performed during image acquisition.
+       </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element ref="GenericAction" minOccurs="1" maxOccurs="unbounded"/>
+       </xsd:sequence>
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="AutoCalibration" minOccurs="0" maxOccurs="1"/>
+     <xsd:element ref="GenericParameter" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="GelML.ImageAcquisition.AutoCalibrationType" abstract="false">
+  <xsd:annotation>
+   <xsd:documentation> A parameter to represent whether auto-calibration was performed. This should
+    use BooleanValue (subclass of Measurement). </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="FuGE.Common.Protocol.ParameterType"> </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ 
+ 
+ <xsd:element name="GelML" type="GelML.GelMLRoot.GelMLType" abstract="false">
+  
+  <!-- keys and key refs relative to the root GelML element -->
+  
+  <xsd:unique name="PK_PROV">
+   <xsd:selector xpath="./gelml:Provider/*"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_Materials">
+   <xsd:selector xpath="./gelml:GelMLMaterialCollection/*"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_Data">
+   <xsd:selector xpath="./gelml:GelMLDataCollection/*"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <!--  
+  <xsd:unique name="PK_Protocols">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/*"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  -->
+  
+  <xsd:unique name="PK_GenericProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:GenericProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_DetectionProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:DetectionProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_ImageAcquisitionProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:ImageAcquisitionProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_SubstanceMixtureProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:SubstanceMixtureProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_SampleLoadingProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:SampleLoadingProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_ElectrophoresisProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:ElectrophoresisProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_Gel2DProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:Gel2DProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_Gel1DProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:Gel1DProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_OtherGelProtocol">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:OtherGelProtocol"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_GenericEquipment">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:GenericEquipment"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_GenericSoftware">
+   <xsd:selector xpath="./gelml:GelMLProtocolCollection/gelml:GenericSoftware"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+
+  <xsd:unique name="PK_Gel2DExperiment">
+   <xsd:selector xpath="./gelml:Gel2DExperiment"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_Gel1DExperiment">
+   <xsd:selector xpath="./gelml:Gel1DExperiment"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_OtherGelExperiment">
+   <xsd:selector xpath="./gelml:OtherGelExperiment"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+
+  <xsd:unique name="PK_Audit">
+   <xsd:selector xpath="./gelml:AuditCollection/*"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+
+  <xsd:unique name="PK_Gel2D_Gel">   
+   <xsd:selector xpath="./gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:inputFirstDimension/*|./gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:inputSecondDimension/*"/>   
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_Gel1D_Gel">   
+   <xsd:selector xpath="./gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:inputGel/*"/>   
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_OtherGel_Gel">   
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:inputGels/*"/>   
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  
+  <xsd:unique name="PK_2DGelMaterials">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:output/gelml:Gel2D|gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection/gelml:TransferMedium|gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection/gelml:DetectionMedium"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique> 
+  
+  <xsd:unique name="PK_1DGelMaterials">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:output/gelml:Gel1D|gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection/gelml:TransferMedium|gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection/gelml:DetectionMedium"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_OtherGelMaterials">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:output/gelml:OtherGel|gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection/gelml:TransferMedium|gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection/gelml:DetectionMedium"/>
+   <xsd:field xpath="@id"/>
+  </xsd:unique> 
+  
+  
+  <xsd:unique name="PK_GelLocations">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:ExcisionApplication/*/*/gelml:GelLocation"></xsd:selector>
+   <xsd:field xpath="@id"></xsd:field>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_Gel1D_GelLocations">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:ExcisionApplication/gelml:inputGelLocations/gelml:LocationSet/gelml:GelLocation"></xsd:selector>
+   <xsd:field xpath="@id"></xsd:field>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_OtherGel_GelLocations">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:ExcisionApplication/gelml:inputGelLocations/gelml:LocationSet/gelml:GelLocation"></xsd:selector>
+   <xsd:field xpath="@id"></xsd:field>
+  </xsd:unique>
+  
+  
+  
+  <xsd:unique name="PK_GelLanes">
+   <xsd:selector xpath="./*/*/*/gelml:Gel/gelml:GelLane"></xsd:selector>
+   <xsd:field xpath="@id"></xsd:field>
+  </xsd:unique>
+  
+  <xsd:unique name="PK_CV">
+   <xsd:selector xpath="gelml:cvList/gelml:cv"></xsd:selector>
+   <xsd:field xpath="@id"></xsd:field>
+  </xsd:unique>
+  
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist1">
+   <xsd:selector xpath="*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist2">
+   <xsd:selector xpath="*/*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist3">
+   <xsd:selector xpath="*/*/*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist4">
+   <xsd:selector xpath="*/*/*/*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist5">
+   <xsd:selector xpath="*/*/*/*/*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist6">
+   <xsd:selector xpath="*/*/*/*/*/*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist7">
+   <xsd:selector xpath="*/*/*/*/*/*/*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_UnitCVlist8">
+   <xsd:selector xpath="*/*/*/*/*/*/*/*"/>
+   <xsd:field xpath="@unitCvRef"></xsd:field>
+  </xsd:keyref>
+  
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist1">
+   <xsd:selector xpath="*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist2">
+   <xsd:selector xpath="*/*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist3">
+   <xsd:selector xpath="*/*/*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist4">
+   <xsd:selector xpath="*/*/*/*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist5">
+   <xsd:selector xpath="*/*/*/*/*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist6">
+   <xsd:selector xpath="*/*/*/*/*/*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist7">
+   <xsd:selector xpath="*/*/*/*/*/*/*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_CV" name="FK_CVlist8">
+   <xsd:selector xpath="*/*/*/*/*/*/*/*"/>
+   <xsd:field xpath="@cvRef"></xsd:field>
+  </xsd:keyref>
+  
+  
+  
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_PROV">
+   <xsd:selector xpath="./gelml:Provider/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+    <xsd:keyref refer="gelml:PK_Materials" name="FK_COMPONENTS">
+   <xsd:selector xpath="./gelml:GelMLMaterialCollection/gelml:GenericMaterial/gelml:components"/>
+   <xsd:field xpath="@GenericMaterial_ref"></xsd:field>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_GenericEquipment" name="FK_elecEquip">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:ElectrophoresisProtocol/gelml:electrophoresisEquipment"/>
+   <xsd:field xpath="@GenericEquipment_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericEquipment" name="FK_sampleEquip">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:SampleLoadingProtocol/gelml:sampleLoadingEquipment"/>
+   <xsd:field xpath="@GenericEquipment_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericEquipment" name="FK_detectEquip">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:DetectionProtocol/gelml:detectionEquipment"/>
+   <xsd:field xpath="@GenericEquipment_ref"/>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_SubstanceMixtureProtocol" name="FK_AddBufferAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/*/gelml:AddBufferAction|gelml:GelMLProtocolCollection/*/*/gelml:AddBufferAction"/>
+   <xsd:field xpath="@SubstanceMixtureProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_SampleLoadingProtocol" name="FK_SampleLoadingAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:Gel2DProtocol/gelml:SampleLoadingAction"/>
+   <xsd:field xpath="@SampleLoadingProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_ElectrophoresisProtocol" name="FK_FirstDimensionAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:Gel2DProtocol/gelml:FirstDimensionAction"/>
+   <xsd:field xpath="@ElectrophoresisProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_ElectrophoresisProtocol" name="FK_SecondDimensionAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:Gel2DProtocol/gelml:SecondDimensionAction"/>
+   <xsd:field xpath="@ElectrophoresisProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericProtocol" name="FK_InterDimensionAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:Gel2DProtocol/gelml:InterDimensionAction"/>
+   <xsd:field xpath="@GenericProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_DetectionProtocol" name="FK_DetectionAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:Gel2DProtocol/gelml:DetectionAction"/>
+   <xsd:field xpath="@DetectionProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericSoftware" name="FK_Protocol2Software">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:GenericProtocol/gelml:software"/>
+   <xsd:field xpath="@GenericSoftware_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericEquipment" name="FK_Protocol2Equipment">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:GenericProtocol/gelml:equipment"/>
+   <xsd:field xpath="@GenericEquipment_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_GEL2DCONTACT">
+   <xsd:selector xpath="./gelml:Gel2DExperiment/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_GEL1DCONTACT">
+   <xsd:selector xpath="./gelml:Gel1DExperiment/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_OTHERCONTACT">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericProtocol" name="FK_OtherInterDimensionAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:OtherGelProtocol/gelml:InterDimensionAction"/>
+   <xsd:field xpath="@GenericProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_ElectrophoresisProtocol" name="FK_OtherDimensionAction">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:OtherGelProtocol/gelml:DimensionAction"/>
+   <xsd:field xpath="@ElectrophoresisProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_Gel2DProtocol" name="FK_Gel2DProtocol">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication"/>
+   <xsd:field xpath="@Gel2DProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_Gel1DProtocol" name="FK_Gel1DProtocol">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication"/>
+   <xsd:field xpath="@Gel1DProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_OtherGelProtocol" name="FK_OtherGelProtocol">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:OtherGelApplication"/>
+   <xsd:field xpath="@OtherGelProtocol_ref"/>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_GEL2D_1CONTACT">
+   <xsd:selector xpath="./gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:inputFirstDimension/gelml:Gel/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_GEL2D_2CONTACT">
+   <xsd:selector xpath="./gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:inputSecondDimension/gelml:Gel/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_Materials" name="FK_GELCONSTIT">
+   <xsd:selector xpath="./gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:inputFirstDimension/gelml:Gel/gelml:otherGelConstituents"/>
+   <xsd:field xpath="@GenericMaterial_ref"></xsd:field>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_SampleLoadingProtocol" name="FK_Gel2DSampleLoad">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication"/>
+   <xsd:field xpath="@SampleLoadingProtocol_ref"/>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_Gel2D_Gel" name="FK_Gel2DGelLoad">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication"/>
+   <xsd:field xpath="@Gel_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_Materials" name="FK_GEL2DINPUT">
+   <xsd:selector xpath="./gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication/gelml:InputSample/gelml:GenericMaterialMeasurement"/>
+   <xsd:field xpath="@Material_ref"></xsd:field>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_ElectrophoresisProtocol" name="FK_Gel2DElect">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:ElectrophoresisApplication"/>
+   <xsd:field xpath="@ElectrophoresisProtocol_ref"/>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_Gel2D_Gel" name="FK_Gel2DGelElect">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:ElectrophoresisApplication"/>
+   <xsd:field xpath="@Gel_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_DetectionProtocol" name="FK_Gel2DDDetect">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:DirectDetection"/>
+   <xsd:field xpath="@DetectionProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_DetectionProtocol" name="FK_Gel2DInDetect">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:Gel2DApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection"/>
+   <xsd:field xpath="@DetectionProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_Data" name="FK_Gel2DImage">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@Image_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericEquipment" name="FK_ImageProtocolEquipment">
+   <xsd:selector xpath="gelml:GelMLProtocolCollection/gelml:ImageAcquisitionProtocol/gelml:equipment"/>
+   <xsd:field xpath="@GenericEquipment_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_ImageAcquisitionProtocol" name="FK_Gel2DImageProtocol">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@ImageAcquisitionProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_2DGelMaterials" name="FK_Gel2DImageMaterial">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@Material_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_2DGelMaterials" name="FK_Gel2DExcised">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:ExcisionApplication"/>
+   <xsd:field xpath="@ElectrophoresedGel_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_GenericProtocol" name="FK_Gel2DExcisedProtocol">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:ExcisionApplication"/>
+   <xsd:field xpath="@GenericProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_GelLocations" name="FK_Gel2DExcisedSample">
+   <xsd:selector xpath="gelml:Gel2DExperiment/gelml:ExcisionApplication/gelml:ExcisedSample"/>
+   <xsd:field xpath="@GelLocation_ref"/>
+  </xsd:keyref> 
+  
+  <!-- Gel1D Key Refs -->
+  
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_GEL1D_1CONTACT">
+   <xsd:selector xpath="./gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:inputGel/gelml:Gel/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+
+  <xsd:keyref refer="gelml:PK_Materials" name="FK_GEL1DCONSTIT">
+   <xsd:selector xpath="./gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:inputGel/gelml:Gel/gelml:otherGelConstituents"/>
+   <xsd:field xpath="@GenericMaterial_ref"></xsd:field>
+  </xsd:keyref>  
+  
+  <xsd:keyref refer="gelml:PK_SampleLoadingProtocol" name="FK_Gel1DSampleLoad">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication"/>
+   <xsd:field xpath="@SampleLoadingProtocol_ref"/>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_Gel1D_Gel" name="FK_Gel1DGelLoad">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication"/>
+   <xsd:field xpath="@Gel_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_Materials" name="FK_GEL1DINPUT">
+   <xsd:selector xpath="./gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication/gelml:InputSample/gelml:GenericMaterialMeasurement"/>
+   <xsd:field xpath="@Material_ref"></xsd:field>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_ElectrophoresisProtocol" name="FK_Gel1DElect">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:ElectrophoresisApplication"/>
+   <xsd:field xpath="@ElectrophoresisProtocol_ref"/>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_Gel1D_Gel" name="FK_Gel1DGelElect">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:ElectrophoresisApplication"/>
+   <xsd:field xpath="@Gel_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_DetectionProtocol" name="FK_Gel1DDDetect">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:DirectDetection"/>
+   <xsd:field xpath="@DetectionProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_DetectionProtocol" name="FK_Gel1DInDetect">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:Gel1DApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection"/>
+   <xsd:field xpath="@DetectionProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_Data" name="FK_Gel1DImage">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@Image_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_ImageAcquisitionProtocol" name="FK_Gel1DImageProtocol">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@ImageAcquisitionProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_1DGelMaterials" name="FK_Gel1DImageMaterial">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@Material_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_1DGelMaterials" name="FK_Gel1DExcised">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:ExcisionApplication"/>
+   <xsd:field xpath="@ElectrophoresedGel_ref"></xsd:field>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_GenericProtocol" name="FK_Gel1DExcisedProtocol">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:ExcisionApplication"/>
+   <xsd:field xpath="@GenericProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_Gel1D_GelLocations" name="FK_Gel1DExcisedSample">
+   <xsd:selector xpath="gelml:Gel1DExperiment/gelml:ExcisionApplication/gelml:ExcisedSample"/>
+   <xsd:field xpath="@GelLocation_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_GelLanes" name="FK_GEL_LANES">
+   <xsd:selector xpath="./*/*/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication"/>
+   <xsd:field xpath="@GelLane_ref"></xsd:field>
+  </xsd:keyref>  
+  
+  <!-- OtherGelType key refs -->
+  
+  <xsd:keyref refer="gelml:PK_Audit" name="FK_OtherGEL_CONTACT">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:inputGels/gelml:Gel/gelml:ContactRole"></xsd:selector>
+   <xsd:field xpath="@Contact_ref"></xsd:field>
+  </xsd:keyref>
+
+  
+  <xsd:keyref refer="gelml:PK_Materials" name="FK_OtherGELCONSTIT">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:inputGels/gelml:Gel/gelml:otherGelConstituents"/>
+   <xsd:field xpath="@GenericMaterial_ref"></xsd:field>
+  </xsd:keyref>  
+  
+  <xsd:keyref refer="gelml:PK_SampleLoadingProtocol" name="FK_OtherGelSampleLoad">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication"/>
+   <xsd:field xpath="@SampleLoadingProtocol_ref"/>
+  </xsd:keyref>
+ 
+  
+  <xsd:keyref refer="gelml:PK_OtherGel_Gel" name="FK_OtherGelGelLoad">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication"/>
+   <xsd:field xpath="@Gel_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_Materials" name="FK_OtherGELINPUT">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:SampleLoadingApplication/gelml:InputSample/gelml:GenericMaterialMeasurement"/>
+   <xsd:field xpath="@Material_ref"></xsd:field>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_ElectrophoresisProtocol" name="FK_OtherGelElect">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:ElectrophoresisApplication"/>
+   <xsd:field xpath="@ElectrophoresisProtocol_ref"/>
+  </xsd:keyref>  
+  <xsd:keyref refer="gelml:PK_OtherGel_Gel" name="FK_OtherGel_GelElect">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:ElectrophoresisApplication"/>
+   <xsd:field xpath="@Gel_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_DetectionProtocol" name="FK_OtherGel_Detect">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:DirectDetection"/>
+   <xsd:field xpath="@DetectionProtocol_ref"/>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_DetectionProtocol" name="FK_OtherGel_InDetect">
+   <xsd:selector xpath="./gelml:OtherGelExperiment/gelml:OtherGelApplication/gelml:ChildProtocolApplications/gelml:IndirectDetection"/>
+   <xsd:field xpath="@DetectionProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_Data" name="FK_OtherGelImage">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@Image_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_ImageAcquisitionProtocol" name="FK_OtherGelImageProtocol">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@ImageAcquisitionProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_OtherGelMaterials" name="FK_OtherGelImageMaterial">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:ImageAcquisitionApplication"/>
+   <xsd:field xpath="@Material_ref"></xsd:field>
+  </xsd:keyref>
+  <xsd:keyref refer="gelml:PK_OtherGelMaterials" name="FK_OtherGelExcised">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:ExcisionApplication"/>
+   <xsd:field xpath="@ElectrophoresedGel_ref"></xsd:field>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_GenericProtocol" name="FK_OtherGelDExcisedProtocol">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:ExcisionApplication"/>
+   <xsd:field xpath="@GenericProtocol_ref"/>
+  </xsd:keyref> 
+  <xsd:keyref refer="gelml:PK_OtherGel_GelLocations" name="FK_OtherGelExcisedSample">
+   <xsd:selector xpath="gelml:OtherGelExperiment/gelml:ExcisionApplication/gelml:ExcisedSample"/>
+   <xsd:field xpath="@GelLocation_ref"/>
+  </xsd:keyref> 
+ 
+  
+  
+  
+  
+
+ </xsd:element>
+ <xsd:element name="GelMLMaterialCollection"  type="GelML.GelMLRoot.GelMLMaterialCollectionType" abstract="false"/>
+ <xsd:element name="GelMLDataCollection" type="GelML.GelMLRoot.GelMLDataCollectionType" abstract="false" />
+ <xsd:element name="Gel2DExperiment" type="GelML.GelMLRoot.Gel2DExperimentType"  abstract="false" substitutionGroup="GelExperiment"/>
+ <xsd:element name="GelMLProtocolCollection" type="GelML.GelMLRoot.GelMLProtocolCollectionType" abstract="false"/>
+ <xsd:element name="GelExperiment" type="GelML.GelMLRoot.GelExperimentType" abstract="true"/>
+ <xsd:element name="Gel1DExperiment" type="GelML.GelMLRoot.Gel1DExperimentType"  abstract="false" substitutionGroup="GelExperiment"/>
+ <xsd:element name="OtherGelExperiment" type="GelML.GelMLRoot.OtherGelExperimentType"  abstract="false" substitutionGroup="GelExperiment"/>
+ <xsd:element name="RelativeVolume" type="GelML.SelectSubstance.RelativeVolumeType" abstract="false" substitutionGroup="VolumeParameter"/>
+ <xsd:element name="VolumeFunction" type="GelML.SelectSubstance.VolumeFunctionType" abstract="false" substitutionGroup="VolumeParameter"/>
+ <xsd:element name="AbsoluteVolume" type="GelML.SelectSubstance.AbsoluteVolumeType"  abstract="false" substitutionGroup="VolumeParameter"/>
+ <xsd:element name="VolumeParameter" type="GelML.SelectSubstance.VolumeParameterType"  abstract="true"/>
+ <xsd:element name="SubstanceAction" type="GelML.SelectSubstance.SubstanceActionType"  abstract="false"/>
+ <xsd:element name="TemporalSubstanceAction"  type="GelML.SelectSubstance.TemporalSubstanceActionType" abstract="false" substitutionGroup="SubstanceAction"/>
+ <xsd:element name="SubstanceMixtureProtocol" type="GelML.SelectSubstance.SubstanceMixtureProtocolType" abstract="false"/>
+ <xsd:element name="Duration" type="GelML.SelectSubstance.DurationType" abstract="false" substitutionGroup="TimeParameter"/>
+ <xsd:element name="TimePoint" type="GelML.SelectSubstance.TimePointType" abstract="false" substitutionGroup="TimeParameter"/>
+ <xsd:element name="TimeParameter" type="GelML.SelectSubstance.TimeParameterType"  abstract="true"/>
+ <xsd:element name="Concentration" type="GelML.SelectSubstance.ConcentrationType" abstract="false"/>
+ <xsd:element name="Mass" type="GelML.SelectSubstance.MassType" abstract="false"/>
+ <xsd:element name="Gel2D" type="GelML.Gel2DProtocol.Gel2DType" abstract="false" substitutionGroup="ElectrophoresedGel"/>
+ <xsd:element name="Gel2DProtocol" type="GelML.Gel2DProtocol.Gel2DProtocolType" abstract="false"/>
+ <xsd:element name="Gel2DApplication" type="GelML.Gel2DProtocol.Gel2DApplicationType"  abstract="false"/>
+ <xsd:element name="FirstDimensionAction" type="GelML.Gel2DProtocol.FirstDimensionActionType" abstract="false"/>
+ <xsd:element name="SecondDimensionAction" type="GelML.Gel2DProtocol.SecondDimensionActionType" abstract="false"/>
+ <xsd:element name="DetectionAction" type="GelML.Gel2DProtocol.DetectionActionType" abstract="false"/>
+ <xsd:element name="Gel1D" type="GelML.Gel1DProtocol.Gel1DType" abstract="false" substitutionGroup="ElectrophoresedGel"/>
+ <xsd:element name="Gel1DApplication" type="GelML.Gel1DProtocol.Gel1DApplicationType" abstract="false"/>
+ <xsd:element name="Gel1DProtocol" type="GelML.Gel1DProtocol.Gel1DProtocolType" abstract="false"/>
+ <xsd:element name="ElectrophoresisApplication" type="GelML.Electrophoresis.ElectrophoresisApplicationType" abstract="false"/> 
+  <xsd:element name="DetectionMedium" type="GelML.Detection.DetectionMediumType" abstract="false"/>
+ <xsd:element name="DetectionProtocol" type="GelML.Detection.DetectionProtocolType" abstract="false"/>
+ <xsd:element name="DetectionApplication" type="GelML.Detection.DetectionApplicationType" abstract="true"/>
+ <xsd:element name="DirectDetection" type="GelML.Detection.DirectDetectionType" abstract="false" substitutionGroup="DetectionApplication"/>
+ <xsd:element name="IndirectDetection" type="GelML.Detection.IndirectDetectionType" abstract="false" substitutionGroup="DetectionApplication"/>
+ <xsd:element name="TransferMedium" type="GelML.Detection.TransferMediumType" abstract="false"/>
+ <xsd:element name="ElectrophoresisAction" type="GelML.Electrophoresis.ElectrophoresisActionType" abstract="false"/>
+ <xsd:element name="ElectrophoresisProtocol" type="GelML.Electrophoresis.ElectrophoresisProtocolType" abstract="false"/>
+ <xsd:element name="Temperature" type="GelML.Electrophoresis.TemperatureType" abstract="false"/>
+ <xsd:element name="AddBufferAction" type="GelML.Electrophoresis.AddBufferActionType" abstract="false"/>
+ <xsd:element name="BoundaryChain" type="GelML.Excision.BoundaryChainType" abstract="false" substitutionGroup="FeatureLocation"/>
+ <xsd:element name="Circle" type="GelML.Excision.CircleType" abstract="false" substitutionGroup="FeatureLocation"/>
+ <xsd:element name="ExcisedSample" type="GelML.Excision.ExcisedSampleType" abstract="false"/>
+ <xsd:element name="ExcisionApplication" type="GelML.Excision.ExcisionApplicationType" abstract="false"/>
+ <xsd:element name="FeatureLocation" type="GelML.Excision.FeatureLocationType" abstract="false"/>
+ <xsd:element name="GelLocation" type="GelML.Excision.GelLocationType" abstract="false"/>
+ <xsd:element name="LocationMeasure" type="GelML.Excision.LocationMeasureType" abstract="false"/>
+ <xsd:element name="LocationSet" type="GelML.Excision.LocationSetType" abstract="false"/>
+ <xsd:element name="Rectangle" type="GelML.Excision.RectangleType" abstract="false" substitutionGroup="FeatureLocation"/>
+ <xsd:element name="BoundaryPointSet" type="GelML.Excision.BoundaryPointSetType" abstract="false" substitutionGroup="FeatureLocation"/>
+ <xsd:element name="Point" type="GelML.Excision.PointType" abstract="false"/>
+ <xsd:element name="ElectrophoresedGel" type="GelML.Gel.ElectrophoresedGelType" abstract="true"/>
+ <xsd:element name="Gel" type="GelML.Gel.GelType" abstract="false"/>
+ <xsd:element name="GelLane" type="GelML.Gel.GelLaneType" abstract="false"/>
+ <xsd:element name="GelManufactureApplication" type="GelML.Gel.GelManufactureApplicationType" abstract="false"/>
+ <xsd:element name="Dimensions" type="GelML.Gel.DimensionsType" abstract="false"/>
+ <xsd:element name="SeparationRange" type="GelML.Gel.SeparationRangeType" abstract="true"/>
+ <xsd:element name="PHRange" type="GelML.Gel.PHRangeType" abstract="false" substitutionGroup="SeparationRange"/>
+ <xsd:element name="MolWeightRange" type="GelML.Gel.MolWeightRangeType" abstract="false" substitutionGroup="SeparationRange"/>
+ <xsd:element name="OtherGelRange" type="GelML.Gel.OtherGelRangeType" abstract="false" substitutionGroup="SeparationRange"/>
+ <xsd:element name="AcrylamideToCrossLinker" type="GelML.Gel.AcrylamideToCrossLinkerType" abstract="false"/>
+ <xsd:element name="SampleLoadingAction" type="GelML.SampleLoading.SampleLoadingActionType" abstract="false"/>
+ <xsd:element name="SampleLoadingApplication" type="GelML.SampleLoading.SampleLoadingApplicationType" abstract="false"/>
+ <xsd:element name="SampleLoadingProtocol" type="GelML.SampleLoading.SampleLoadingProtocolType" abstract="false"/>
+ <xsd:element name="InterDimensionAction" type="GelML.OtherGelProtocol.InterDimensionActionType" abstract="false"/>
+ <xsd:element name="OtherGel" type="GelML.OtherGelProtocol.OtherGelType" abstract="false" substitutionGroup="ElectrophoresedGel"/>
+ <xsd:element name="OtherGelApplication" type="GelML.OtherGelProtocol.OtherGelApplicationType" abstract="false"/>
+ <xsd:element name="OtherGelProtocol" type="GelML.OtherGelProtocol.OtherGelProtocolType" abstract="false"/>
+ <xsd:element name="DimensionAction" type="GelML.OtherGelProtocol.DimensionActionType" abstract="false"/>
+ <xsd:element name="Image" type="GelML.ImageAcquisition.ImageType" abstract="false" substitutionGroup="ExternalData"/>
+ <xsd:element name="ImageAcquisitionApplication" type="GelML.ImageAcquisition.ImageAcquisitionApplicationType" abstract="false"/>
+ <xsd:element name="ImageAcquisitionProtocol"  type="GelML.ImageAcquisition.ImageAcquisitionProtocolType" abstract="false"/>
+ <xsd:element name="AutoCalibration" type="GelML.ImageAcquisition.AutoCalibrationType" abstract="false"/> 
+ 
+ 
+ 
+ 
+</xsd:schema>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_trial_request_for_inventory_report:clinicalTrialRequestForInventoryReportMessage xmlns:clinical_trial_request_for_inventory_report="urn:gs1:ecom:clinical_trial_request_for_inventory_report:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:clinical_trial_request_for_inventory_report:xsd:3 ../Schemas/gs1/ecom/ClinicalTrialRequestForInventoryReport.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4.1</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <clinicalTrialRequestForInventoryReport>
+        <requestForInventoryReportIdentification>
+            <entityIdentification>10</entityIdentification>
+        </requestForInventoryReportIdentification>
+        <sender>
+            <gln>9520000000011</gln>
+        </sender>
+        <receiver>
+            <gln>9520000000127</gln>
+        </receiver>
+        <protocolID>PROT1</protocolID>
+        <protocolOwner>9520000000004</protocolOwner>
+        <inventoryReportRequestInformation>
+            <inventoryReportingPartyLocation>
+                <gln>9520000000028</gln>
+            </inventoryReportingPartyLocation>
+            <investigationalProductIdentification>9520000000530</investigationalProductIdentification>
+            <kitIdentification>95200000000280001</kitIdentification>
+            <kitType>PLACEBO</kitType>
+            <inventoryReportingDateTime>2020-08-22T00:00:00.000</inventoryReportingDateTime>
+        </inventoryReportRequestInformation>
+    </clinicalTrialRequestForInventoryReport>
+</clinical_trial_request_for_inventory_report:clinicalTrialRequestForInventoryReportMessage>

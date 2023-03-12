@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com)-->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by AJH (The Rent Service) -->
+<xsd:schema xmlns:rep="http://www.therentservice.gov.uk/schema/DataShare.xsd" xmlns:cmn="http://www.therentservice.gov.uk/schema/Common_ed.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.therentservice.gov.uk/schema/DataShare.xsd" version="edeliver_v1-0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="Common_ed.xsd" namespace="http://www.therentservice.gov.uk/schema/Common_ed.xsd" />
+  <xsd:annotation>
+    <xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>The Rent Service (helpdesk@therentservice.gov.uk)</Creator>
+				<Date>
+					<Created>2007-07-27</Created>
+				</Date>
+				<Description>Schema for submitting LHA claim/award data</Description>
+				<Identifier>datashare.xsd-edeliver_v1-1</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>The Rent Service, 5 Welbeck Street, London, W1G 9YQ</Publisher>
+				<Subject>
+					<Category>People, communities and living</Category>
+					<Keyword>Housing Benefit</Keyword>
+					<Keyword>Rent Service</Keyword>
+					<Keyword>Local Housing Allowance</Keyword>
+				</Subject>
+				<Title>LHA Data Sharing</Title>
+			</Metadata>
+		</xsd:appinfo>
+  </xsd:annotation>
+  <xsd:element name="LHA_DATA">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Manifest" type="cmn:Manifest" />
+        <xsd:element maxOccurs="unbounded" name="LhaCaseData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Status" type="rep:TypeLHAstatus" />
+              <xsd:element name="Address" type="cmn:Address" />
+              <xsd:element name="TenancyStartDate" type="xsd:date" />
+              <xsd:element name="EntitlementStartDate" type="xsd:date">
+                <xsd:annotation>
+                  <xsd:documentation>or RenewalDate</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="EntitlementEndDate" type="xsd:date" />
+              <xsd:element name="ContractualRent" type="cmn:AmountPerPeriod" />
+              <xsd:element name="Accommodation">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Bed_Rooms" type="xsd:int" />
+                    <xsd:element name="Living_Rooms" type="xsd:int" />
+                    <xsd:element name="Shared_Kitchen" type="rep:TypeLHAroom" />
+                    <xsd:element name="Shared_Bathroom" type="rep:TypeLHAroom" />
+                    <xsd:element name="Shared_Toilet" type="rep:TypeLHAroom" />
+                    <xsd:element name="Shared_LR" type="rep:TypeLHAroom" />
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="LA_CASE_REF">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="0" />
+                    <xsd:maxLength value="50" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="TypeLHAroom">
+    <xsd:annotation>
+      <xsd:documentation>Specifies Case Types</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Yes" />
+      <xsd:enumeration value="No" />
+      <xsd:enumeration value="NA" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TypeLHAstatus">
+    <xsd:annotation>
+      <xsd:documentation>Specifies Case Types</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Claim" />
+      <xsd:enumeration value="Award" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

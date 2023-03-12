@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Version 4.0 - Issued with Valuebill second maintenance release (no change from v3-1d)
+	Version 3.1d - Second draft to include additional elements and re-numbered to accord with current Valuebill revision
+	Version 0.1 - Initial Working Draft derived from the proposed LeGovCore schema to support v3-1c of the Valuebill schemas and to provide similar arcitectural support pending publication of the LeGovCore schema -->
+<xsd:schema xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:core="http://www.govtalk.gov.uk/core" xmlns="http://www.govtalk.gov.uk/LG/Valuebill" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.govtalk.gov.uk/LG/Valuebill" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4-0" id="VBcommon">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/metadata/egms">
+				<Contributor Href="mailto:govtalk@cabinet-office.gsi.gov.uk">Technology Policy Team, e-Government Unit</Contributor>
+				<Contributor Href="mailto:valuebill@tuckwood.co.uk">Valuebill Project, Project Manager - Barry Tuckwood</Contributor>
+				<Contributor Href="mailto:info@legsb.gov.uk">Local e-Government Standards Body</Contributor>
+				<Creator Href="mailto:bay@egic.ltd.uk">Bruce Yeoman, EGiC</Creator>
+				<Created>2006-01-23</Created>
+				<Modified>2006-01-24</Modified>
+				<Description>Schema to support generic core data types for Valuebill but based upon the Core schema for Local Government Applications - including use of supporting architectural schemas as promoted byLeGSB</Description>
+				<Review>2006-04-01</Review>
+				<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+				<Identifier>VBcommon</Identifier>
+				<Identifier Href="http://www.govtalk.gov.uk/LG/Valuebill/VBcommon-v4-0.xsd">VBcommon-v4-0</Identifier>
+				<Language codeListID="ISO639-2">eng</Language>
+				<Publisher Href="mailto:valuebill@tuckwood.co.uk">Valuebill Project</Publisher>
+				<ConformsTo>http://www.w3.org/2001/XMLSchema</ConformsTo>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">MonetaryStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">BandType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">LAidentityNumberType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">BAreferenceType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">AddressChangedFlagType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">VOApropertyReferenceType</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">ContactDetailsStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">OccupierContactStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">IdentificationDetailsStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">LApropertyIdentificationStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">BApropertyIdentificationStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">VOpropertyIdentificationStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">VOAdescriptiveAddressStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">TextAddressStructure</ProvidesDefinitionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NameStructure</ProvidesDefinitionOf>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/AddressTypes-v2-0.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/bs7666-v2-0.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/CommonSimpleTypes-v1-3.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/ContactTypes-v1-3.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/PersonDescriptiveTypes-v1-1.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/gdsc/schemas/CitizenIdentificationTypes-v1-4.xsd</Requires>
+				<Copyright>Crown Copyright 2002, 2003, 2004, 2005</Copyright>
+				<ProtectiveMarking>Unclassified</ProtectiveMarking>
+				<Status>draft</Status>
+				<StatusDescription>Maintenance Release for Consultation</StatusDescription>
+				<Version>4-0</Version>
+				<Category codeListID="GCL">People, communities and living; Local Taxes</Category>
+				<Project>Valuebill National Project</Project>
+				<Title>Valuebill Common Data Types</Title>
+				<Type>architectural</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<!--PersonalDetailsTypes schema superceded by PersonalDescriptiveTypes etc.
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="PersonalDetailsTypes-v1-3.xsd"/>-->
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v2-0.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="ContactTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="CitizenIdentificationTypes-v1-4.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/PersonDescriptives" schemaLocation="PersonDescriptiveTypes-v1-1.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v2-0.xsd"/>
+	<xsd:simpleType name="AmountType">
+		<xsd:annotation>
+			<xsd:documentation>Amount type as per GDSC</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:maxExclusive value="1000000000000"/>
+			<xsd:minExclusive value="-1000000000000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ISOcurrencyType">
+		<xsd:annotation>
+			<xsd:documentation>Subset of full currency code set - (GBP and Euro)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="GBP"/>
+			<xsd:enumeration value="EUR"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="MonetaryStructure">
+		<xsd:annotation>
+			<xsd:documentation>Monetary amount with optional currency code</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="AmountType">
+				<xsd:attribute name="Currency" type="ISOcurrencyType" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="BandType">
+		<xsd:annotation>
+			<xsd:documentation>Council Tax Band</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="A"/>
+			<xsd:enumeration value="B"/>
+			<xsd:enumeration value="C"/>
+			<xsd:enumeration value="D"/>
+			<xsd:enumeration value="E"/>
+			<xsd:enumeration value="F"/>
+			<xsd:enumeration value="G"/>
+			<xsd:enumeration value="H"/>
+			<xsd:enumeration value="I"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LAidentityNumberType">
+		<xsd:annotation>
+			<xsd:documentation>The four digit LA reference issued by DETR/ODPM</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="bs7666:CustodianCodeType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="BAreferenceType">
+		<xsd:annotation>
+			<xsd:documentation>The reference assigned to each dwelling/hereditament by the Billing Authority</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="25"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrganisationNameType">
+		<xsd:annotation>
+			<xsd:documentation>Organisation name as per GDSC</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddressChangedFlagType">
+		<xsd:annotation>
+			<xsd:documentation>Indicates whether the original address provided by the initial transaction has been changed by subsequent processing</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:YesNoType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="VOApropertyReferenceType">
+		<xsd:annotation>
+			<xsd:documentation>VOA unique database address reference</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="99999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ContactDetailsStructure">
+		<xsd:annotation>
+			<xsd:documentation>Telephone, Fax and Email contact details</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Telephone" type="apd:TelephoneStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Email" type="apd:EmailStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Fax" type="apd:FaxStructure" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OccupierContactStructure">
+		<xsd:annotation>
+			<xsd:documentation>Occupier contact details if available</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OccupierName" type="pdt:PersonNameStructure" minOccurs="0"/>
+			<xsd:element name="OrganisationName" type="OrganisationNameType" minOccurs="0"/>
+			<xsd:element name="ContactAddress" type="apd:UKPostalAddressStructure" minOccurs="0"/>
+			<xsd:element name="OccupierContactNos" type="ContactDetailsStructure" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="IdentificationDetailsStructure">
+		<xsd:annotation>
+			<xsd:documentation>Optional Identification details for inclusion where applicable</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="NationalInsuranceNumber" type="apd:NationalInsuranceNumberType" minOccurs="0"/>
+			<xsd:element name="UniqueTaxReference" type="apd:UniqueTaxReferenceType" minOccurs="0"/>
+			<xsd:element name="PassportNumber" minOccurs="0">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="PassportNumber_Old" type="apd:PassportNumber_OldType"/>
+						<xsd:element name="PassportNumber_New" type="apd:PassportNumber_NewType"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DriverNumber" type="apd:DriverNumberType" minOccurs="0"/>
+			<xsd:element name="NHSnumber" type="apd:NHSnumberStructure" minOccurs="0"/>
+			<xsd:element name="ElectoralRoleNumber" type="apd:ElectoralRollNumberType" minOccurs="0"/>
+			<xsd:element name="UniquePupilNumber" type="apd:UniquePupilNumberType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LApropertyIdentificationStructure">
+		<xsd:annotation>
+			<xsd:documentation>The address which unambiguously identifies the property which is the subject of the transaction. This should be a structured BS7666 address and UPRN but in the pilot stage a text address will also be accepted</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation>UPRN is an optional element at present but is likely to become mandatory in due course. This structure also supports recording of limited address information as a search string.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element ref="bs7666:BS7666Address"/>
+					<xsd:element name="PropertyGridCoords" type="bs7666:CoordinateStructure" minOccurs="0"/>
+					<xsd:element name="TextAddress" type="TextAddressStructure" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="TextAddress" type="TextAddressStructure"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BApropertyIdentificationStructure">
+		<xsd:annotation>
+			<xsd:documentation>An extension of the LApropertyIdentification to include a mandatory BAreference for use by Billing Authorities in local taxation applications</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="LApropertyIdentificationStructure">
+				<xsd:sequence>
+					<xsd:element name="BAreference" type="BAreferenceType">
+						<xsd:annotation>
+							<xsd:documentation>Existing or new BAreference must be provided for each property</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="VOpropertyIdentificationStructure">
+		<xsd:annotation>
+			<xsd:documentation>The address which unambiguously identifies the property that is the subject of the update and appears on the List. This should be a structured BS7666 address and UPRN but in the interim stage a descriptive text address will also be accepted</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber" minOccurs="0"/>
+			<xsd:element name="VOApropertyReference" type="VOApropertyReferenceType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element ref="bs7666:BS7666Address"/>
+					<xsd:element name="PropertyGridCoords" type="bs7666:CoordinateStructure" minOccurs="0"/>
+					<xsd:element name="DescriptiveAddress" type="VOAdescriptiveAddressStructure" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="DescriptiveAddress" type="VOAdescriptiveAddressStructure"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VOAdescriptiveAddressStructure">
+		<xsd:annotation>
+			<xsd:documentation>Multiline text address as held by VOA (with option for partial Postcode)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="VoDescriptivePropertyAddress">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="190"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoStreetDescriptor" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoLocality" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoPostTown" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoAdministrativeArea" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoPostcode" minOccurs="0">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="Full" type="bs7666:PostCodeType"/>
+						<xsd:element name="Partial">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:pattern value="[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9]?[A-Z]?[A-Z]?"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TextAddressStructure">
+		<xsd:annotation>
+			<xsd:documentation>Simple multiline address for interim use pending BS7666 compliance or where full structured address is not available.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AddressLine" minOccurs="2" maxOccurs="6">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Postcode" type="bs7666:PostCodeType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExtendedPostalAddressStructure">
+		<xsd:annotation>
+			<xsd:documentation>Multiline address based upon an extension of the UKpostalAddressStructure to handle additional text where the 5x35 format is insufficient</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Description" minOccurs="0" maxOccurs="2">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Line" type="apd:AddressLineType" minOccurs="2" maxOccurs="5"/>
+			<xsd:element name="Postcode" type="bs7666:PostCodeType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NameStructure">
+		<xsd:annotation>
+			<xsd:documentation>This structure uses the PDT PersonNameStructure but allows the Person Name to be entered as a simple text string where the PersonNameStructure cannot be used OR where limited information is recorded as a search string</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="PersonName" type="pdt:PersonNameStructure"/>
+			<xsd:sequence>
+				<xsd:element name="FlattenedName" type="pdt:PersonFullNameType"/>
+				<xsd:element name="PersonName" type="pdt:PersonNameStructure" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:choice>
+	</xsd:complexType>
+</xsd:schema>

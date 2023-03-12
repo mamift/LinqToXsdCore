@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cash_count_statistics_report="urn:gs1:ecom:cash_count_statistics_report:xsd:3" xmlns:cash_processing_machines_common="urn:gs1:ecom:cash_processing_machines_common:xsd:3" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:cash_count_statistics_report:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:cash_processing_machines_common:xsd:3" schemaLocation="CashProcessingMachinesCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="cashCountStatisticReportMessage" type="cash_count_statistics_report:CashCountStatisticReportMessageType"/>
+    <xsd:complexType name="CashCountStatisticReportLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element name="cashArticleIdentification" type="shared_common:GTINType"/>
+            <xsd:element minOccurs="0" name="fitnessLevel">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="totalQuantityProcessed" type="shared_common:QuantityType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="rejectionDetails" type="cash_count_statistics_report:RejectionDetailsType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="unfitDetails" type="cash_count_statistics_report:UnfitDetailsType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashCountStatisticReportMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="cashCountStatisticReport" type="cash_count_statistics_report:CashCountStatisticReportType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashCountStatisticReportType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="cashCountStatisticReportIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="cashCountStatisticsType" type="cash_processing_machines_common:CashCountStatisticsTypeCodeType"/>
+                    <xsd:element name="reportPeriod" type="shared_common:DateTimeRangeType"/>
+                    <xsd:element name="processingStation" type="cash_processing_machines_common:CashProcessingStationType"/>
+                    <xsd:element name="generalStatisticInformation" type="cash_count_statistics_report:GeneralStatisticInformationType"/>
+                    <xsd:element minOccurs="0" name="runtimeInformation" type="cash_count_statistics_report:RuntimeInformationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="depositUnitIdentification" type="cash_processing_machines_common:DepositUnitIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="cashCountStatisticReportLineItem" type="cash_count_statistics_report:CashCountStatisticReportLineItemType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="GeneralStatisticInformationType">
+        <xsd:sequence>
+            <xsd:element name="statisticMeasurementType" type="shared_common:CodeType"/>
+            <xsd:element name="statisticMeasurementValue" type="xsd:decimal"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RejectionDetailsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="proportionalQuantityRejected" type="xsd:decimal"/>
+            <xsd:element minOccurs="0" name="totalQuantityRejected" type="shared_common:QuantityType"/>
+            <xsd:element name="rejectionReason" type="shared_common:CodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RuntimeDetailsType">
+        <xsd:sequence>
+            <xsd:element name="runtimeType" type="shared_common:CodeType"/>
+            <xsd:element name="runtimeValue" type="xsd:duration"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RuntimeInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="totalAvailabilityPercentage" type="xsd:decimal"/>
+            <xsd:element minOccurs="0" name="totalRuntime" type="xsd:duration"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="runtimeDetails" type="cash_count_statistics_report:RuntimeDetailsType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="UnfitDetailsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="proportionalUnfitQuantity" type="xsd:decimal"/>
+            <xsd:element minOccurs="0" name="unfitQuantity" type="shared_common:QuantityType"/>
+            <xsd:element name="unfitReason" type="shared_common:CodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

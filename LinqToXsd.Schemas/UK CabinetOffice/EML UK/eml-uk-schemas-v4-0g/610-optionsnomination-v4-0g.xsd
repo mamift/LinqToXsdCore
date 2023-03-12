@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-610">
+	<xs:include schemaLocation="emlcore-v4-0g.xsd"/>
+	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="external/xlink.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="OptionsNomination"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="OptionsNomination">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EventIdentifier" minOccurs="0"/>
+				<xs:element ref="ElectionIdentifier" minOccurs="0"/>
+				<xs:element ref="ContestIdentifier" minOccurs="0"/>
+				<xs:element ref="Proposal"/>
+				<xs:element ref="Nominate"/>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Nominate">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Proposer" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ProposerStructure">
+								<xs:sequence>
+									<xs:element name="Sign" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="ds:Signature"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

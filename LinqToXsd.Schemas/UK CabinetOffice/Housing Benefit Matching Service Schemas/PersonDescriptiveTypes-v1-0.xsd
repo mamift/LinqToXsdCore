@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema module Financial Identifier types -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="PersonDescriptiveTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Paul Spencer, Boynings Consulting  (mailto:paul.spencer@boynings.co.uk)</Contributor>
+				<Contributor>Adrian Kent, Office e-Envoy</Contributor>
+				<Creator>Office of the e-Envoy (maito:govtalk@e-envoy.gsi.gov.uk </Creator>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>VerificationLevelType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonBirthDateStructure</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonDeathDateStructure</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonMaritalStatusStructure</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>GenderAtRegistrationType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>GenderCurrentType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonNameSuffixType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonRequestedNameType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonGivenNameType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonFamilyNameType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonInitialsType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonNameTitleType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PersonFullNameType</ProvidesDefinitionOf>
+				</Relation>
+				<Date>
+					<Created>2003-02-11</Created>
+				</Date>
+				<Date>
+					<Modified>2003-02-11</Modified>
+				</Date>
+				<Description>Person descriptive types for use within UK Government</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+				</Format>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Rights>unclassified
+					<Copyright>Crown copyright 2003</Copyright>
+				</Rights>
+				<Subject>
+					<Project>UK GovTalk Government Data Standards Catalogue</Project>
+				</Subject>
+				<Title>Person descriptive types</Title>
+				<Category>People, communities and living</Category>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:simpleType name="VerificationLevelType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:enumeration value="Level 0"/>
+			<xsd:enumeration value="Level 1"/>
+			<xsd:enumeration value="Level 2"/>
+			<xsd:enumeration value="Level 3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="PersonBirthDateStructure">
+		<xsd:sequence>
+			<xsd:element name="PersonBirthDate" type="core:DateType"/>
+			<xsd:element name="VerificationLevel" type="VerificationLevelType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PersonDeathDateStructure">
+		<xsd:sequence>
+			<xsd:element name="PersonDeathDate" type="core:DateType"/>
+			<xsd:element name="VerificationLevel" type="VerificationLevelType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Choice of types for marital Status -->
+	<xsd:complexType name="PersonMaritalStatusStructure">
+		<xsd:sequence>
+			<xsd:element name="MaritalStatus" type="core:MaritalStatusType"/>
+			<xsd:element name="VerificationLevel" type="VerificationLevelType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- OR.... -->
+	<xsd:complexType name="PersonMaritalStatus">
+		<xsd:simpleContent>
+			<xsd:extension base="core:MaritalStatusType">
+				<xsd:attribute name="VerificationLevel" type="VerificationLevelType"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="GenderAtRegistrationType">
+		<xsd:restriction base="xsd:byte">
+			<xsd:pattern value="1"/>
+			<xsd:pattern value="2"/>
+			<xsd:pattern value="9"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GenderCurrentType">
+		<xsd:restriction base="xsd:byte">
+			<xsd:pattern value="0"/>
+			<xsd:pattern value="1"/>
+			<xsd:pattern value="2"/>
+			<xsd:pattern value="9"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonNameSuffixType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonRequestedNameType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="70"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonGivenNameType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonFamilyNameType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonInitialsType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonNameTitleType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PersonFullNameType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="70"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

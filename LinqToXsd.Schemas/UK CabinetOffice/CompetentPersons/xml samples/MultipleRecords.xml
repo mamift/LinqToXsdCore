@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<BuildingRecordSet xsi:schemaLocation="http://www.govtalk.gov.uk/licensing/BuildingControlCompetentPersonsWork-200407 ../BuildingControlCompetentPersonsWork-v1-0.xsd" xmlns="http://www.govtalk.gov.uk/licensing/BuildingControlCompetentPersonsWork-200407" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SchemeName>FENSA</SchemeName>
+	<LocalAuthorityCode>16UH</LocalAuthorityCode>
+	<SchemeErrorResponseEmailAddress>dataerror@myscheme.net</SchemeErrorResponseEmailAddress>
+	<BuildingRecord>
+		<SchemeUniqueRecordIdentifier>12345as</SchemeUniqueRecordIdentifier>
+		<CompetentPerson>
+			<PersonRegistrationIdentifier>9a45gg</PersonRegistrationIdentifier>
+			<InstallerRegisteredName>JB Builders</InstallerRegisteredName>
+		</CompetentPerson>
+		<WorkPerformed>
+			<PropertyInformation>
+				<PropertyLocation>
+					<PropertyAddress>
+						<!-- and/or a 5 line address 
+						<apd:BS7666Address>
+							<bs7666:PAON>  17B</bs7666:PAON>
+							<bs7666:StreetDescription>The Street</bs7666:StreetDescription>
+							<bs7666:Town>Townname</bs7666:Town>
+							<bs7666:AdministrativeArea>Greater Area</bs7666:AdministrativeArea>
+							<bs7666:PostCode>B67 2DF</bs7666:PostCode>
+						</apd:BS7666Address>
+						-->
+						<apd:A_5LineAddress>
+							<apd:Line>17B The Street</apd:Line>
+							<apd:Line>Townname</apd:Line>
+							<apd:Line>Greater Area</apd:Line>
+							<apd:PostCode>B67 2DF</apd:PostCode>
+						</apd:A_5LineAddress>
+					</PropertyAddress>
+				</PropertyLocation>
+				<!-- TypeOfProperty is optional can be ommitted -->
+				<TypeOfProperty>Non-commercial</TypeOfProperty>
+			</PropertyInformation>
+			<!-- DateWorkCommenced is also optional -->
+			<DateWorkCommenced>2004-08-13</DateWorkCommenced>
+			<DateWorkCompleted>2004-08-13</DateWorkCompleted>
+			<DescriptionOfWorkItem>4 Windows</DescriptionOfWorkItem>
+			<DescriptionOfWorkItem>2 Doors</DescriptionOfWorkItem>
+		</WorkPerformed>
+	</BuildingRecord>
+	<BuildingRecord>
+		<SchemeUniqueRecordIdentifier>12345as</SchemeUniqueRecordIdentifier>
+		<CompetentPerson>
+			<PersonRegistrationIdentifier>9a45gg</PersonRegistrationIdentifier>
+			<InstallerRegisteredName>JB Builders</InstallerRegisteredName>
+		</CompetentPerson>
+		<WorkPerformed>
+			<PropertyInformation>
+				<PropertyLocation>
+					<PropertyAddress>
+						<!-- and/or a 5 line address 
+						<apd:BS7666Address>
+							<bs7666:PAON>  43 </bs7666:PAON>
+							<bs7666:StreetDescription>Road Street</bs7666:StreetDescription>
+							<bs7666:Locality>Borough</bs7666:Locality>
+						</apd:BS7666Address>
+						-->
+						<apd:A_5LineAddress>
+							<apd:Line>Road Street</apd:Line>
+							<apd:Line>Townname</apd:Line>
+							<apd:Line>Borough</apd:Line>
+						</apd:A_5LineAddress>
+					</PropertyAddress>
+					<LocationDescription>Plot 43, third area</LocationDescription>
+				</PropertyLocation>
+				<TypeOfProperty>Commercial</TypeOfProperty>
+			</PropertyInformation>
+			<DateWorkCommenced>2004-08-13</DateWorkCommenced>
+			<DateWorkCompleted>2004-08-13</DateWorkCompleted>
+			<DescriptionOfWorkItem>2 Windows</DescriptionOfWorkItem>
+			<DescriptionOfWorkItem>1 Door</DescriptionOfWorkItem>
+		</WorkPerformed>
+	</BuildingRecord>
+</BuildingRecordSet>

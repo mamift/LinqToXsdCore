@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/education/OfstedDirect" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1" id="OfstedDirect" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.govtalk.gov.uk/education/OfstedDirect" xmlns:person="http://www.govtalk.gov.uk/gdsc/schemas">
+<xsd:import namespace="http://www.govtalk.gov.uk/gdsc/schemas" schemaLocation="PersonDescriptiveTypes-v1-1.xsd"></xsd:import>
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>Teacher; Professionals</Audience>
+				<Coverage>
+					<Spatial>
+						<Location>England; GB; GBR 1</Location>
+					</Spatial>
+					<Temporal>
+						<BeginningDate>2004-11-01</BeginningDate>
+					</Temporal>
+				</Coverage>
+				<Creator>Ofsted Web Team, Strategic Communications Division, Ofsted (Office for Standards in Education) (mailto:webteam@ofsted.gov.uk), http://www.ofsted.gov.uk</Creator>
+				<Date>
+					<Created>2004-09-01</Created>
+				</Date>
+				<Description>Schema for Ofsted Direct - Ofsted's online newsletter for schools, http://www.ofsted.gov.uk/ofsteddirect/</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.govtalk.gov.uk/education/OfstedDirect}OfstedDirect</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>Ofsted (Office for Standards in Education), Alexandra House, 33 Kingsway, London WC2B 6SE, 020 7421 6800, webteam@ofsted.gov.uk</Publisher>
+				<Rights>unclassified
+					<Copyright>Crown copyright, http://www.hmso.gov.uk/faqs.htm#copyright</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Education and Skills: Schools: School performance and standards</Category>
+					<Keywords>School inspections; Ofsted; teaching</Keywords>
+				</Subject>
+				<Title>Ofsted Direct schema</Title>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:element name="Newsletter">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="NewsletterStructure">
+					<xsd:attribute name="SchemaVersion"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="NewsletterStructure">
+		<xsd:sequence>
+			<xsd:element name="Article" type="ArticleStructure"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ArticleStructure">
+		<xsd:sequence>
+			<xsd:element name="ArticleDatabaseIdentifier" type="xsd:string"/>
+			<xsd:element name="Headline" type="Str60Type"/>
+			<xsd:element name="SummaryHeadline" type="Str20Type"/>
+			<xsd:element name="ArticleBodyText" type="ArticleBodyTextStructure"/>
+			<xsd:element name="Picture" type="PictureStructure"/>
+			<xsd:element name="ArticleSummary" type="Str600Type"/>
+			<xsd:element name="PulloutQuote" type="QuoteStructure"/>
+			<xsd:element name="RelatedLink" type="RelatedLinkStructure" maxOccurs="unbounded"/>
+			<xsd:element name="Boxout" type="BoxoutStructure" maxOccurs="unbounded"/>
+			<xsd:element name="TypeOfArticle" type="SelectTypeOfArticleType"/>
+			<xsd:element name="Contributor" type="ContributorStructure"/>
+			<xsd:element name="DateCreated" type="xsd:dateTime"/>
+			<xsd:element name="DateModified" type="xsd:dateTime"/>
+			<xsd:element name="DatePublished" type="xsd:dateTime"/>
+			<xsd:element name="DateExpired" type="xsd:dateTime"/>
+			<xsd:element name="UniqueIdentifier" type="xsd:string"/>
+			<xsd:element name="NewsletterEdition" type="NewsletterEditionStructure"/>
+			<xsd:element name="EducationLevel" type="SelectEducationLevelType"/>
+			<xsd:element name="Subject" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="Str20Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str50Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str60Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="60"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str100Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str200Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str300Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="300"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str600Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="600"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str800Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="800"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Str1000Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EmailAddressType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9A-Za-z'\.\-_]{1,127}@[0-9A-Za-z'\.\-_]{1,127}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SelectLinkDomainType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="external"/>
+			<xsd:enumeration value="internal"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SelectTypeOfArticleType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="news"/>
+			<xsd:enumeration value="view from the top"/>
+			<xsd:enumeration value="an inspector calls"/>
+			<xsd:enumeration value="improving inspection"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SelectTermType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Autumn"/>
+			<xsd:enumeration value="Spring"/>
+			<xsd:enumeration value="Summer"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SelectAcademicYearType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="2003/04"/>
+			<xsd:enumeration value="2004/05"/>
+			<xsd:enumeration value="2005/06"/>
+			<xsd:enumeration value="2006/07"/>
+			<xsd:enumeration value="2007/08"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SelectEducationLevelType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Pre-school"/>
+			<xsd:enumeration value="Primary"/>
+			<xsd:enumeration value="Primary/Secondary"/>
+			<xsd:enumeration value="Secondary"/>
+			<xsd:enumeration value="Post-compulsory"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ArticleBodyTextStructure" mixed="true">
+		<xsd:complexContent mixed="true">
+			<xsd:restriction base="xsd:anyType">
+				<xsd:sequence>
+					<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PictureStructure">
+		<xsd:sequence>
+			<xsd:element name="PictureCaption" type="Str100Type" maxOccurs="unbounded"/>
+			<xsd:element name="PictureFilename" type="xsd:string" maxOccurs="unbounded"/>
+			<xsd:element name="PictureAltText" type="Str50Type" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuoteStructure">
+		<xsd:sequence>
+			<xsd:element name="ArticleQuote" type="Str100Type" maxOccurs="unbounded"/>
+			<xsd:element name="ArticleQuoterName" type="Str50Type" maxOccurs="unbounded"/>
+			<xsd:element name="ArticleQuoterRole" type="Str100Type" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RelatedLinkStructure">
+		<xsd:sequence>
+			<xsd:element name="Link" type="LinkStructure" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LinkStructure">
+		<xsd:sequence>
+			<xsd:element name="LinkTitle" type="Str50Type" maxOccurs="unbounded"/>
+			<xsd:element name="LinkText" type="Str100Type" maxOccurs="unbounded"/>
+			<xsd:element name="NewsletterURLLink" type="xsd:anyURI" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="LinkDomain" type="SelectLinkDomainType"/>
+	</xsd:complexType>
+	<xsd:complexType name="BoxoutStructure">
+		<xsd:sequence>
+			<xsd:element name="BoxoutHeadline" type="Str50Type" maxOccurs="unbounded"/>
+			<xsd:element name="BoxoutText" type="Str300Type" maxOccurs="unbounded"/>
+			<xsd:element name="NewsletterEmailLink" type="EmailAddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="NewsletterURLLink" type="xsd:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContributorStructure">
+		<xsd:sequence>
+			<xsd:element name="ContributorName" type="person:PersonNameStructure" maxOccurs="unbounded"/>
+			<xsd:element name="ContributorRole" type="xsd:string" maxOccurs="unbounded"/>
+			<xsd:element name="NewsletterEmailLink" type="EmailAddressType" maxOccurs="unbounded"/>
+			<xsd:element name="ContributorTeam" type="xsd:string" maxOccurs="unbounded"/>
+			<xsd:element name="ContributorOrganisation" type="xsd:string" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NewsletterEditionStructure">
+		<xsd:sequence>
+			<xsd:element name="NewsletterEditionNumber" type="xsd:string"/>
+			<xsd:element name="NewsletterEditionTerm" type="SelectTermType"/>
+			<xsd:element name="NewsletterEditionAcademicYear" type="SelectAcademicYearType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

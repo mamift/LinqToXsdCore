@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?><cash_packaging_report:cashPackagingReportMessage xmlns:cash_packaging_report="urn:gs1:ecom:cash_packaging_report:xsd:3" xmlns:gs1_xmldsig="urn:gs1:ext:xmldsig:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:cash_packaging_report:xsd:3 ../Schemas/gs1/ecom/CashPackagingReport.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <cashPackagingReport>
+        <creationDateTime>2014-04-24T09:30:10.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <documentActionCode>ADD</documentActionCode>
+        <documentStructureVersion>3.3</documentStructureVersion>
+        <cashPackagingReportIdentification>
+            <entityIdentification>7855000315</entityIdentification>
+            <contentOwner>
+                <gln>1111111111116</gln>
+            </contentOwner>
+        </cashPackagingReportIdentification>
+        <digitalSignature>
+   <Signature xmlns="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://www.w3.org/2000/09/xmldsig# ../Schemas/xmldsig/xmldsig-core-schema.xsd">
+      <SignedInfo>
+         <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+         <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+         <Reference URI="http://example.org">
+            <Transforms>
+               <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+            </Transforms>
+            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <DigestValue>K8M/lPbKnuMDsO0Uzuj75lQtzQI=</DigestValue>
+         </Reference>
+      </SignedInfo>
+      <SignatureValue>
+         DpEylhQoiUKBoKWmYfajXO7LZxiDYgVtUtCNyTgwZgoChzorA2nhkQ==
+       </SignatureValue>
+      <KeyInfo>
+         <KeyValue>
+            <DSAKeyValue>
+               <P>
+               rFto8uPQM6y34FLPmDh40BLJ1rVrC8VeRquuhPZ6jYNFkQuwxnu/wCvIAMhukPBLFET8bJf/b2ef+oqxZajEb+88zlZoyG8g/wMfDBHTxz+CnowLahnCCTYBp5kt7G8qUobJuvjylwj1st7V9Lsu03iXMXtbiriUjFa5gURasN8=
+             </P>
+               <Q>
+               kEjAFpCe4lcUOdwphpzf+tBaUds=
+             </Q>
+               <G>
+               oe14R2OtyKx+s+60O5BRNMOYpIg2TU/f15N3bsDErKOWtKXeNK9FS7dWStreDxo2SSgOonqAd4FuJ/4uva7GgNL4ULIqY7E+mW5iwJ7n/WTELh98mEocsLXkNh24HcH4BZfSCTruuzmCyjdV1KSqX/Eux04HfCWYmdxN3SQ/qqw=
+             </G>
+               <Y>
+               pA5NnZvcd574WRXuOA7ZfC/7Lqt4cB0MRLWtHubtJoVOao9ib5ry4rTk0r6ddnOvAIGKktutzK3ymvKleS3DOrwZQgJ+/BDWDW8kO9R66o6rdjiSobBi/0c2V1+dkqOgjFmKz395mvCOZGhC7fqAVhHat2EjGPMfgSZyABa7+1k=
+             </Y>
+            </DSAKeyValue>
+         </KeyValue>
+         <X509Data>
+            <X509Certificate>
+             MIIDbTCCAyygAwIBAgIGAOCdrKxkMAkGByqGSM44BAMwezELMAkGA1UEBhMCSUUxDzANBgNVBAgTBkR1YmxpbjElMCMGA1UEChMcQmFsdGltb3JlIFRlY2hub2xvZ2llcywgTHRkLjERMA8GA1UECxMIWC9TZWN1cmUxITAfBgNVBAMTGFgvU2VjdXJlIDEwMjQtYml0IERTQSBDQTAeFw0wMDA3MjcxNzEzMzNaFw0wMTA3MjcxNzEzMjZaMHwxCzAJBgNVBAYTAklFMQ8wDQYDVQQIEwZEdWJsaW4xJTAjBgNVBAoTHEJhbHRpbW9yZSBUZWNobm9sb2dpZXMsIEx0ZC4xETAPBgNVBAsTCFgvU2VjdXJlMSIwIAYDVQQDExlYL1NlY3VyZSAxMDI0LWJpdCBEU0EgY3J0MIIBuDCCASwGByqGSM44BAEwggEfAoGBAKxbaPLj0DOst+BSz5g4eNASyda1awvFXkarroT2eo2DRZELsMZ7v8AryADIbpDwSxRE/GyX/29nn/qKsWWoxG/vPM5WaMhvIP8DHwwR08c/gp6MC2oZwgk2AaeZLexvKlKGybr48pcI9bLe1fS7LtN4lzF7W4q4lIxWuYFEWrDfAhUAkEjAFpCe4lcUOdwphpzf+tBaUdsCgYEAoe14R2OtyKx+s+60O5BRNMOYpIg2TU/f15N3bsDErKOWtKXeNK9FS7dWStreDxo2SSgOonqAd4FuJ/4uva7GgNL4ULIqY7E+mW5iwJ7n/WTELh98mEocsLXkNh24HcH4BZfSCTruuzmCyjdV1KSqX/Eux04HfCWYmdxN3SQ/qqwDgYUAAoGBAKQOTZ2b3Hee+FkV7jgO2Xwv+y6reHAdDES1rR7m7SaFTmqPYm+a8uK05NK+nXZzrwCBipLbrcyt8prypXktwzq8GUICfvwQ1g1vJDvUeuqOq3Y4kqGwYv9HNldfnZKjoIxZis9/eZrwjmRoQu36gFYR2rdhIxjzH4EmcgAWu/tZozswOTAPBgNVHQ8BAf8EBQMDAIAAMBEGA1UdDgQKBAiA4IML4dndEDATBgNVHSMEDDAKgAiHoMnYnDxZUDAJBgcqhkjOOAQDAzAAMC0CFQCEXa1E2ueJ8WMX5nP1lCcBWhxC2wIUGUCBb6M6Oj3NQAJbnZsdY63rKa0=
+           </X509Certificate>
+         </X509Data>
+      </KeyInfo>
+   </Signature>
+   </digitalSignature>
+        <reportPeriod>
+            <beginDate>2014-04-24</beginDate>
+            <beginTime>09:30:10</beginTime>
+            <endDate>2014-04-24</endDate>
+            <endTime>09:40:20</endTime>
+        </reportPeriod>
+        <processingStation>
+            <gln>8052198010318</gln>
+            <locationOfProcessingStation>
+                <gln>8052198002313</gln>
+            </locationOfProcessingStation>
+            <operationMode>STANDARD</operationMode>
+        </processingStation>
+        <cashPackagingReportReceiver>
+            <gln>8052198010004</gln>
+        </cashPackagingReportReceiver>
+        <operator>
+            <contactTypeCode>QC</contactTypeCode>
+            <personName>John Brown</personName>
+            <operatorIdentification>2345</operatorIdentification>
+            <operatorRole>Operator</operatorRole>
+        </operator>
+        <operator>
+            <contactTypeCode>QC</contactTypeCode>
+            <personName>John Black</personName>
+            <operatorIdentification>23456</operatorIdentification>
+            <operatorRole>Operator</operatorRole>
+        </operator>
+        <operator>
+            <contactTypeCode>MGR</contactTypeCode>
+            <personName>Kelly Koko</personName>
+            <operatorIdentification>1234</operatorIdentification>
+            <operatorRole>Supervisor</operatorRole>
+        </operator>
+        <cashPackagingReportLineItem>
+            <lineItemNumber>1</lineItemNumber>
+            <reportUnitCreation>
+                <beginDate>2014-04-24</beginDate>
+                <beginTime>09:31:10</beginTime>
+                <endDate>2014-04-24</endDate>
+                <endTime>09:32:20</endTime>
+            </reportUnitCreation>
+            <cashPackagingEvent>
+                <processingFlagCode>BUNDLE_CREATION</processingFlagCode>
+                <processedQuantity measurementUnitCode="H87">1</processedQuantity>
+            </cashPackagingEvent>
+            <cashPackagingReportLineItemDetails>
+                <inputTradeItem>
+                    <cashArticleIdentification>04107001001299</cashArticleIdentification>
+                    <tradeItemQuantity measurementUnitCode="H87">1000</tradeItemQuantity>
+                </inputTradeItem>
+                <outputTradeItem>
+                    <cashArticleIdentification>04107001001435</cashArticleIdentification>
+                    <serialNumber>BUNDLECODE0000001</serialNumber>
+                    <tradeItemQuantity measurementUnitCode="H87">1</tradeItemQuantity>
+                </outputTradeItem>
+                <originProcessingStation>
+                    <gln>8052198002153</gln>
+                </originProcessingStation>
+                <outputLogisticUnit>
+                    <logisticUnitMeasurement>
+                        <unitMeasurement>
+                            <measurementType>TOTAL_GROSS_WEIGHT</measurementType>
+                            <measurementValue measurementUnitCode="GRM">830</measurementValue>
+                        </unitMeasurement>
+                    </logisticUnitMeasurement>
+                </outputLogisticUnit>
+            </cashPackagingReportLineItemDetails>
+        </cashPackagingReportLineItem>
+        <cashPackagingReportLineItem>
+            <lineItemNumber>2</lineItemNumber>
+            <reportUnitCreation>
+                <beginDate>2014-04-24</beginDate>
+                <beginTime>09:33:10</beginTime>
+                <endDate>2014-04-24</endDate>
+                <endTime>09:34:20</endTime>
+            </reportUnitCreation>
+            <cashPackagingEvent>
+                <processingFlagCode>BUNDLE_CREATION</processingFlagCode>
+                <processedQuantity measurementUnitCode="H87">1</processedQuantity>
+            </cashPackagingEvent>
+            <cashPackagingReportLineItemDetails>
+                <inputTradeItem>
+                    <cashArticleIdentification>04107001001299</cashArticleIdentification>
+                    <tradeItemQuantity measurementUnitCode="H87">1000</tradeItemQuantity>
+                </inputTradeItem>
+                <outputTradeItem>
+                    <cashArticleIdentification>04107001001435</cashArticleIdentification>
+                    <serialNumber>BUNDLECODE0000002</serialNumber>
+                    <tradeItemQuantity measurementUnitCode="H87">1</tradeItemQuantity>
+                </outputTradeItem>
+                <originProcessingStation>
+                    <gln>8052198002153</gln>
+                </originProcessingStation>
+                <outputLogisticUnit>
+                    <logisticUnitMeasurement>
+                        <unitMeasurement>
+                            <measurementType>TOTAL_GROSS_WEIGHT</measurementType>
+                            <measurementValue measurementUnitCode="GRM">830</measurementValue>
+                        </unitMeasurement>
+                    </logisticUnitMeasurement>
+                </outputLogisticUnit>
+            </cashPackagingReportLineItemDetails>
+        </cashPackagingReportLineItem>
+        <cashPackagingReportLineItem>
+            <lineItemNumber>3</lineItemNumber>
+            <reportUnitCreation>
+                <beginDate>2014-04-24</beginDate>
+                <beginTime>09:31:10</beginTime>
+                <endDate>2014-04-24</endDate>
+                <endTime>09:45:24</endTime>
+            </reportUnitCreation>
+            <cashPackagingEvent>
+                <processingFlagCode>CARDBOX_CREATION</processingFlagCode>
+                <processedQuantity measurementUnitCode="H87">1</processedQuantity>
+            </cashPackagingEvent>
+            <cashPackagingReportLineItemDetails>
+                <inputTradeItem>
+                    <cashArticleIdentification>04107001001435</cashArticleIdentification>
+                    <serialNumber>BUNDLECODE0000001</serialNumber>
+                    <tradeItemQuantity measurementUnitCode="H87">1</tradeItemQuantity>
+                </inputTradeItem>
+                <outputTradeItem>
+                    <cashArticleIdentification>04107001001473</cashArticleIdentification>
+                    <tradeItemQuantity measurementUnitCode="H87">1</tradeItemQuantity>
+                </outputTradeItem>
+                <originProcessingStation>
+                    <gln>8052198002153</gln>
+                </originProcessingStation>
+                <outputLogisticUnit>
+				<sscc>380521980012302723</sscc>
+                    <logisticUnitMeasurement>
+                        <unitMeasurement>
+                            <measurementType>TOTAL_GROSS_WEIGHT</measurementType>
+                            <measurementValue measurementUnitCode="GRM">8800</measurementValue>
+                        </unitMeasurement>
+                    </logisticUnitMeasurement>
+                </outputLogisticUnit>
+            </cashPackagingReportLineItemDetails>
+        </cashPackagingReportLineItem>
+    </cashPackagingReport>
+</cash_packaging_report:cashPackagingReportMessage>

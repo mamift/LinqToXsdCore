@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Development Projects Team, IT Services (Hampshire County Council) -->
+<xs:schema targetNamespace="http://www.hants.gov.uk/HampshireCountyCouncilEnquiry" xmlns="http://www.hants.gov.uk/HampshireCountyCouncilEnquiry" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pers="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="HampshireCountyCouncilEnquiry-v1-0">
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Peter Kitts, IT Services, Hampshire County Council (mailto:peter.kitts@hants.gov.uk)</Contributor>
+				<Contributor>Robin Ashford, Turing Service Management (mailto:rashford@turing.co.uk)</Contributor>
+				<Creator> (mailto:@hants.gov.uk)</Creator>
+				<Date>
+					<Created>2004-02-01</Created>
+				</Date>
+				<Date>
+					<Modified>2004-07-28</Modified>
+				</Date>
+				<Description/>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>HampshireCountyCouncilEnquiry-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2002,2003</Copyright>
+				</Rights>
+				<Subject>
+					<Category>People, communities and living</Category>
+				</Subject>
+				<Subject>
+					<Project>Public Enquiry Manager Inter-Authority Interchange of Highway Enquiries</Project>
+				</Subject>
+				<Title>Hampshire County Council Enquiry Schema</Title>
+				<Type>Architectural</Type>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="PersonalDetailsTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v1-3.xsd"/>
+	<xs:complexType name="EnquiryStructure">
+		<xs:sequence>
+			<xs:element name="InternalReference" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The reference assigned by the system receiving the enquiry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExternalReference" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The reference assigned by the system sending the enquiry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExternalSource" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The system sending the enquiry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Issue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Service">
+							<xs:annotation>
+								<xs:documentation>The service the enquiry relates to is indicated by the values of the child elements which are intended to be populated from a category list e.g. LGCL</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Scheme">
+										<xs:annotation>
+											<xs:documentation>e.g. LGCL</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Reference">
+										<xs:annotation>
+											<xs:documentation>e.g. 1402</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ServiceName">
+										<xs:annotation>
+											<xs:documentation>e.g. Road and pathway maintenance</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="HighwayEnquiry" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Contains child elements that relate to a Hampshire Highways enquiry.  It is the intention that various enquiry types could be defined relating to different services.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Location"/>
+									<xs:element name="Description"/>
+									<xs:element name="ContactOrganisation" minOccurs="0"/>
+									<xs:element name="CompletionDate" minOccurs="0"/>
+									<xs:element name="Status"/>
+									<xs:element name="Actions" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Contact" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="pers:CitizenNameStructure"/>
+						<xs:element name="Address" type="bs7666:BSaddressStructure" minOccurs="0"/>
+						<xs:element name="Details" type="pers:CitizenContactDetailsStructure" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="SchemaVersion" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="Enquiry" type="EnquiryStructure"/>
+</xs:schema>

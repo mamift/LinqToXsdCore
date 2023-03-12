@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.govtalk.gov.uk/gateway/digitalmail"
+			xmlns="http://www.govtalk.gov.uk/gateway/digitalmail" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 elementFormDefault="qualified" 
+			 attributeFormDefault="unqualified"
+			 version="1"
+			 id="DigitalMail-Core">
+			 
+	<xs:annotation>
+		<xs:documentation>This schema defines a series of reusable types that are used throughout the DigitalMail schemas</xs:documentation>
+		<xs:appinfo>gateway, administration, mail, message, email, secure, mailbox</xs:appinfo>
+	</xs:annotation>
+	
+	<xs:simpleType name="MessageIDType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MessageStateType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="READ"/>
+			<xs:enumeration value="UNREAD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="StringField100Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="StringField150Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MessageBoxType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="INBOX"/>
+			<xs:enumeration value="SENT"/>
+			<xs:enumeration value="ALL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MailPointNameType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="ReferencesType">
+		<xs:annotation>
+			<xs:documentation>Permits a collection of type ReferenceType</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Reference" type="ReferenceType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ReferenceType">
+		<xs:annotation>
+			<xs:documentation>Specifies a general reference for use by the Gateway or a Department</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Type" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+		<!--  -->
+	</xs:complexType>
+	
+	<xs:complexType name="ErrorsType">
+		<xs:annotation>
+			<xs:documentation> Permits a collection of type ErrorType</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Error" type="ErrorType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ErrorType">
+		<xs:annotation>
+			<xs:documentation>Specifies any errors that occur as a result of processing</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ID" type="xs:int" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:complexType name="MailBoxType">
+		<xs:annotation>
+			<xs:documentation> Provides a means for identifying a Secure Messaging user (or Department)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Keys" type="KeyType" minOccurs="0"/>
+			<xs:element name="MailPoint" type="MailPointType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="TargetMailBoxType">
+		<xs:annotation>
+			<xs:documentation>A specialisation of the MailBoxType that adds the SendTo attribute</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MailBoxType">
+				<xs:attribute name="SendTo" default="both">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="intermediary"/>
+							<xs:enumeration value="primary"/>
+							<xs:enumeration value="both"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="KeyType">
+		<xs:annotation>
+			<xs:documentation>Permits a collection of type KeyStructure</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Key" type="KeyStructure" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="MailPointType">
+		<xs:annotation>
+			<xs:documentation>Defines a means for identifying a Department and/or contact within an Organisation or Angency</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ID" type="xs:string"/>
+			<xs:element name="InternalRef" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="MessageBodyType" mixed="true">
+		<xs:annotation>
+			<xs:documentation> Defines the actual message body itself. (Either plain text or elements are permited)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent mixed="true">
+			<xs:restriction base="xs:anyType">
+				<xs:sequence>
+					<xs:any namespace="##any" processContents="lax"/>
+				</xs:sequence>
+				<xs:anyAttribute namespace="##any"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="TransformationType">
+		<xs:annotation>
+			<xs:documentation>Defines the transformation that will be applied to the message body</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attribute name="Type" type="xs:string" use="required"/>
+				<xs:attribute name="Device" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:complexType name="AttachmentType">
+		<xs:annotation>
+			<xs:documentation>Defines an Attachment that may be included with the message </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="xs:string"/>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="AttachmentBody">
+				<xs:simpleType>
+					<xs:restriction base="xs:base64Binary"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- 
+		Types defined in core-v1.xsd & modified to achieve validation 
+	-->
+	
+	<xs:simpleType name="ServiceNameType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z0-9_\-\(\)]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="KeyStructure">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Type" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+</xs:schema>

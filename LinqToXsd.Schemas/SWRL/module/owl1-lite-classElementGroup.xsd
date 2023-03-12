@@ -1,0 +1,45 @@
+<!--
+"owl1-lite-classElementGroup.xsd"
+XML Schema Module for the XML Presentation Syntax of OWL 1.0 
+Copyright: 2002-2003 W3C (MIT, INRIA, Keio), All Rights Reserved.
+See http://www.w3.org/Consortium/Legal/.
+Revision: 2003/06/01 
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
+    targetNamespace="http://www.w3.org/2003/05/owl-xml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <xsd:annotation>
+    <xsd:documentation>
+      Class element group for OWL Lite.  
+      EquivalentClasses in OWL Lite is only applicable to Class IDs. 
+      SubClassOf, EnumeratedClasses, and DisjointClasses are not included.  
+      This model group is replaced with "owl1-dl-classElementGroup.xsd" 
+      in OWL DL and Full. 
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:group name="classElements">
+    <xsd:choice>
+      <xsd:element ref="owlx:EquivalentClasses" /> 
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:element name="EquivalentClasses">
+    <xsd:annotation>
+      <xsd:documentation>
+        'EquivalentClasses' in OWL Lite contains only class IDs. 
+        Note that arbitrary descriptions are allowed in 
+        OWL DL and OWL Full. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType> 
+      <xsd:sequence minOccurs="2" maxOccurs="unbounded"> 
+        <xsd:element name="Class" type="owlx:ClassIDType" /> 
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element> 
+
+</xsd:schema>

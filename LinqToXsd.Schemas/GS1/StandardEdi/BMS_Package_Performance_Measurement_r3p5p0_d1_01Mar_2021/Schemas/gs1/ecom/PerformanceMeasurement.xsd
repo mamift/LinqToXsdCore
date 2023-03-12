@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:performance_measurement="urn:gs1:ecom:performance_measurement:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:performance_measurement:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="performanceMeasurementMessage" type="performance_measurement:PerformanceMeasurementMessageType"/>
+    <xsd:complexType name="DeliveryParameterType">
+        <xsd:sequence>
+            <xsd:element name="appointmentTimeMeasurementBasisTypeCode" type="ecom_common:AppointmentTimeMeasurementBasisTypeCodeType"/>
+            <xsd:element name="deliveryTimeMeasurementBasisTypeCode" type="ecom_common:DeliveryTimeMeasurementBasisTypeCodeType"/>
+            <xsd:element minOccurs="0" name="appointmentWindow" type="shared_common:TimeMeasurementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ForecastParameterType">
+        <xsd:sequence>
+            <xsd:element name="forecastLag" type="xsd:nonNegativeInteger"/>
+            <xsd:element name="forecastPurposeTypeCode" type="ecom_common:ForecastPurposeCodeType"/>
+            <xsd:element name="forecastTypeCode" type="ecom_common:ForecastTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InventoryParameterType">
+        <xsd:sequence>
+            <xsd:element name="demandEstimationTypeCode" type="ecom_common:DemandEstimationTypeCodeType"/>
+            <xsd:element name="inventoryMeasurementBasisTypeCode" type="ecom_common:InventoryMeasurementBasisTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ItemScopeParameterType">
+        <xsd:sequence>
+            <xsd:element name="itemScopeTypeCode" type="ecom_common:ItemScopeTypeCodeType"/>
+            <xsd:element minOccurs="0" name="itemScopeValue">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LocationScopeParameterType">
+        <xsd:sequence>
+            <xsd:element name="locationScopeParameterTypeCode" type="ecom_common:LocationScopeParameterTypeCodeType"/>
+            <xsd:element name="locationScopeTypeCode" type="ecom_common:LocationScopeTypeCodeType"/>
+            <xsd:element minOccurs="0" name="partyIdentification" type="ecom_common:Ecom_PartyIdentificationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MasterDataSynchronisationParameterType">
+        <xsd:sequence>
+            <xsd:element name="synchronisationCalculationTypeCode" type="ecom_common:SynchronisationCalculationTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OutOfStockParameterType">
+        <xsd:sequence>
+            <xsd:element name="outOfStockMeasurementMethodTypeCode" type="ecom_common:OutOfStockMeasurementTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PerformanceMeasurementMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="performanceMeasurement" type="performance_measurement:PerformanceMeasurementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PerformanceMeasurementType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="performanceMeasurementIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element minOccurs="0" name="buyer" type="ecom_common:Ecom_PartyIdentificationType"/>
+                    <xsd:element minOccurs="0" name="seller" type="ecom_common:Ecom_PartyIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" name="performanceMeasure" type="performance_measurement:PerformanceMeasureType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PerformanceMeasureType">
+        <xsd:sequence>
+            <xsd:element name="performanceMeasureTypeCode" type="ecom_common:PerformanceMeasureTypeCodeType"/>
+            <xsd:element minOccurs="0" name="performanceMeasureGoal" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="performanceMeasureResult" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="masterDataSynchronisationParameter" type="performance_measurement:MasterDataSynchronisationParameterType"/>
+            <xsd:element minOccurs="0" name="forecastParameter" type="performance_measurement:ForecastParameterType"/>
+            <xsd:element minOccurs="0" name="inventoryParameter" type="performance_measurement:InventoryParameterType"/>
+            <xsd:element minOccurs="0" name="deliveryParameter" type="performance_measurement:DeliveryParameterType"/>
+            <xsd:element minOccurs="0" name="salesParameter" type="performance_measurement:SalesParameterType"/>
+            <xsd:element minOccurs="0" name="outOfStockParameter" type="performance_measurement:OutOfStockParameterType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="locationScopeParameter" type="performance_measurement:LocationScopeParameterType"/>
+            <xsd:element minOccurs="0" name="itemContext" type="performance_measurement:ItemScopeParameterType"/>
+            <xsd:element minOccurs="0" name="itemSelection" type="performance_measurement:ItemScopeParameterType"/>
+            <xsd:element minOccurs="0" name="periodicityParameter" type="performance_measurement:PeriodicityParameterType"/>
+            <xsd:element name="timePeriodParameter" type="performance_measurement:TimePeriodParameterType"/>
+            <xsd:element minOccurs="0" name="serviceLevelParameter" type="performance_measurement:ServiceLevelParameterType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PeriodicityParameterType">
+        <xsd:sequence>
+            <xsd:element name="periodicityTypeCode" type="ecom_common:PeriodicityTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SalesParameterType">
+        <xsd:sequence>
+            <xsd:element name="salesMeasurementTypeCode" type="ecom_common:SalesMeasurementTypeCodeType"/>
+            <xsd:element minOccurs="0" name="salesMonetaryBasisCurrencyCode" type="shared_common:CurrencyCodeType"/>
+            <xsd:element minOccurs="0" name="salesVolumeMeasurementUnitCode" type="shared_common:MeasurementUnitCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ServiceLevelParameterType">
+        <xsd:sequence>
+            <xsd:element name="serviceLevelBasisTypeCode" type="ecom_common:ServiceLevelBasisTypeCodeType"/>
+            <xsd:element name="serviceLevelMeasurementBasisTypeCode" type="ecom_common:ServiceLevelMeasurementBasisTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TimePeriodParameterType">
+        <xsd:sequence>
+            <xsd:element name="timePeriodScopeTypeCode" type="ecom_common:TimePeriodScopeTypeCodeType"/>
+            <xsd:element name="dateTimeRange" type="shared_common:DateTimeRangeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

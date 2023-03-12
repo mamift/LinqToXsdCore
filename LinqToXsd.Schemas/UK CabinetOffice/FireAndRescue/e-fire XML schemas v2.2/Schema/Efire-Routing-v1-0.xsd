@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by david sinfield (customarchery) -->
+<xs:schema xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:cst="http://www.govtalk.gov.uk/core" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas/Efire" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-Routing-v1-0">
+	<xs:include schemaLocation="Efire-Types-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="gdsc\BS7666-v1-3.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(mailto:d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group, ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-09-03</Modified>
+				</Date>
+				<Description>Efire routing schema defining the Form characteristics used by the Portal orchestration to decide the form type and appropriate Brigade based on Property location.</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-Routing-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>Efire-Types-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>BS7666-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Safety/Fire</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>e-fire Portal Routing Schema</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Routing" type="RoutingStructure">
+		<xs:annotation>
+			<xs:documentation>Structure used by portal to indicate how document was routed</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RoutingStructure">
+		<xs:annotation>
+			<xs:documentation>Structure that represents the method used to route a request to an FRS</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FRSid" type="FRSIdType">
+				<xs:annotation>
+					<xs:documentation>Element to store FRS ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Status" type="RoutingStatusType">
+				<xs:annotation>
+					<xs:documentation>Element to store status of form</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RoutingMethod" type="RoutingMethodStructure">
+				<xs:annotation>
+					<xs:documentation>Element to store Routing method as UPRN or property id</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentId" type="DocumentIdType">
+				<xs:annotation>
+					<xs:documentation>Element to store document id</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentType" type="DocumentType">
+				<xs:annotation>
+					<xs:documentation>Element to store document type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RoutingMethodStructure">
+		<xs:annotation>
+			<xs:documentation>Either a building id and postcode or a uprn</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="UPRN" type="bs7666:UPRNtype"/>
+				<xs:element name="PropertyId" type="PropertyIdStructure"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PropertyIdStructure">
+		<xs:annotation>
+			<xs:documentation>Building number or name</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence>
+				<xs:element name="SAON" type="bs7666:SAONtype" minOccurs="0"/>
+				<xs:element name="PAON" type="bs7666:PAONtype"/>
+			</xs:sequence>
+			<xs:element name="PostCode" type="bs7666:PostCodeType">
+				<xs:annotation>
+					<xs:documentation>Postcode used to route this request</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RoutingStatusType">
+		<xs:annotation>
+			<xs:documentation>Status of document</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType">
+			<xs:enumeration value="Submitted"/>
+			<xs:enumeration value="Completed"/>
+			<xs:enumeration value="NoAction"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

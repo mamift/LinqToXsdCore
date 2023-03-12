@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--	Schema to provide BS7666 DTF 6.3 functionality as XML data
+
+	Changes from 1.4c to Final Project Version 1.6 
+		Duplicate import of CommonSimpleTypes schema added as as work-around for differing parsers
+
+	Changes 1.4b to 1.4c 
+		Updated to refer to version 1.4 of BS7666.xsd via AddressTypes-v1-4.xsd
+
+	Changes 1.4 to 1.4b incorporating  GovTalk consultation
+		Updated to refer to version 1.3b of BS7666.xsd via AddressTypes-v1-3b.xsd
+		Overriding include for BS7666-v1-3b.xsd added to avoid namespace conflict reported by some software 
+
+	Version 1.4 issued for Valuebill pilot operation and GovTalk consultation-->
+<!-- Schema for transfer of multiple address data and updates-->
+<xsd:schema xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns="http://www.govtalk.gov.uk/people/bs7666" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.govtalk.gov.uk/people/bs7666" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1-6" id="DTbs7666">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>e-champions,Government Schema Group, IDeA</Contributor>
+				<Contributor>Technology Policy Team, e-Government Unit (maito:govtalk@cabinet-office.gsi.gov.uk)</Contributor>
+				<Contributor>Valuebill Project</Contributor>
+				<Creator>Bruce Yeoman, EGIC (mailto:info@egic.ltd.uk)</Creator>
+				<Coverage>
+					<Temporal>
+						<BeginningDate>2004-12-12</BeginningDate>
+					</Temporal>
+				</Coverage>
+				<Date>
+					<Created>2003-11-17</Created>
+				</Date>
+				<Date>
+					<Modified>2004-06-09</Modified>
+				</Date>
+				<Date>
+					<Modified>2004-12-12</Modified>
+				</Date>
+				<Date>
+					<Valid>
+						<BeginningDate>2004-12-12</BeginningDate>
+					</Valid>
+				</Date>
+				<Description>Bulk transfer of BS7666 address data and updates</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>DTbs7666</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>e-Government Unit, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Relation>
+					<Requires>{http://www.govtalk.gov.uk/core}CommonSimpleTypes-v1-3</Requires>
+					<Requires>{http://www.govtalk.gov.uk/people/bs7666}BS7666-v1-4</Requires>
+					<Requires>{http://www.govtalk.gov.uk/people/AddressAndPersonalDetails}AddressTypes-v1-4</Requires>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>SelectiveUpdateSet</ProvidesDefinitionOf>
+					<ProvidesDefinitionOf>FullUpdateSet</ProvidesDefinitionOf>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2004</Copyright>
+				</Rights>
+				<Subject>
+					<Category>People, communities and living</Category>
+				</Subject>
+				<Subject>
+					<Project>Valuebill</Project>
+				</Subject>
+				<Title>Address Data Transfer Schema</Title>
+				<Type>message</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="BS7666-v1-4.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v1-4.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation>Additional duplicated import specification handle problems with differing interpretation by parsers</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<!-- start of Header & Trailer definition -->
+	<xsd:complexType name="TransferHeaderStructure">
+		<xsd:annotation>
+			<xsd:documentation>Indicates start of record transfer set and provides common information about source and creation of the record set</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="UserOrganisation">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:maxLength value="40"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ThisFileNumber">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the number of this file in a sequence of files if the data transfer spans multiple files (helps to keep file sizes to managable size)</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+						<xsd:maxInclusive value="999999999999"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DataProviderCode" type="bs7666:CustodianCodeType">
+				<xsd:annotation>
+					<xsd:documentation>This is the DETR/ODPM supplied four digit code</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProcessDate" type="xsd:date"/>
+			<xsd:element name="EntryDateTime" type="xsd:dateTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TransferTrailerStructure">
+		<xsd:annotation>
+			<xsd:documentation>Indicates termination of the transfer record set with a time stamp and record count for audit and integrity checks</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RecordCount">
+				<xsd:annotation>
+					<xsd:documentation>Number of gazetteer update records contained in this file - for audit</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NextFileNumber">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the number of the next file in a sequence of files if the data transfer spans multiple files (helps to keep file sizes to managable size)</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:maxInclusive value="999999999999"/>
+						<xsd:minInclusive value="0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="EntryDateTime" type="xsd:dateTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of Header & Trailer definition -->
+	<!-- start of update record types-->
+	<xsd:annotation>
+		<xsd:documentation>Each of these update structures provides a choice between Insert/Delete/Change for the individual component records and for the full record structure</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="UpdateProvenanceStructure">
+		<xsd:sequence>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber"/>
+			<xsd:choice>
+				<xsd:element name="InsertProvenance" type="bs7666:ExtendedProvenanceStructure"/>
+				<xsd:element name="DeleteProvenance" type="bs7666:ExtendedProvenanceStructure"/>
+				<xsd:element name="ChangeProvenance">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ProvenanceStatus" type="bs7666:ExtendedProvenanceStructure"/>
+							<xsd:element name="ProvenanceChange" type="bs7666:ExtendedProvenanceStructure"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateLandAndPropertyIdentifierStructure">
+		<xsd:sequence>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber"/>
+			<xsd:choice>
+				<xsd:element name="InsertLPI" type="bs7666:LandAndPropertyIdentifierStructure"/>
+				<xsd:element name="DeleteLPI" type="bs7666:LandAndPropertyIdentifierStructure"/>
+				<xsd:element name="ChangeLPI">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="LPIstatus" type="bs7666:LandAndPropertyIdentifierStructure"/>
+							<xsd:element name="LPIchange" type="bs7666:LandAndPropertyIdentifierStructure"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateBasicLandAndPropertyUnitStructure">
+		<xsd:sequence>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber"/>
+			<xsd:choice>
+				<xsd:element name="InsertBLPU" type="bs7666:CoreBasicLandAndPropertyUnitStructure"/>
+				<xsd:element name="DeleteBLPU" type="bs7666:CoreBasicLandAndPropertyUnitStructure"/>
+				<xsd:element name="ChangeBLPU">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="BLPUstatus" type="bs7666:CoreBasicLandAndPropertyUnitStructure"/>
+							<xsd:element name="BLPUchange" type="bs7666:CoreBasicLandAndPropertyUnitStructure"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateStreetStructure">
+		<xsd:sequence>
+			<xsd:element name="USRN" type="bs7666:USRNtype"/>
+			<xsd:choice>
+				<xsd:element name="InsertStreet" type="bs7666:StreetStructure"/>
+				<xsd:element name="DeleteStreet" type="bs7666:StreetStructure"/>
+				<xsd:element name="ChangeStreet">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="StreetStatus" type="bs7666:StreetStructure"/>
+							<xsd:element name="StreetChange" type="bs7666:StreetStructure"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateApplicationCrossReferenceStructure">
+		<xsd:sequence>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber"/>
+			<xsd:choice>
+				<xsd:element name="InsertApplicationXref" type="bs7666:ApplicationCrossReferenceStructure"/>
+				<xsd:element name="DeleteApplicationXref" type="bs7666:ApplicationCrossReferenceStructure"/>
+				<xsd:element name="ChangeApplicationXref">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ApplicationXrefStatus" type="bs7666:ApplicationCrossReferenceStructure"/>
+							<xsd:element name="ApplicationXrefChange" type="bs7666:ApplicationCrossReferenceStructure"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateStreetCrossReferenceStructure">
+		<xsd:choice>
+			<xsd:element name="InsertStreetXref" type="bs7666:StreetCrossReferenceStructure"/>
+			<xsd:element name="DeleteStreetXref" type="bs7666:StreetCrossReferenceStructure"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateElementaryStreetUnitStructure">
+		<xsd:choice>
+			<xsd:element name="InsertESU" type="bs7666:ElementaryStreetUnitStructure"/>
+			<xsd:element name="DeleteESU" type="bs7666:ElementaryStreetUnitStructure"/>
+			<xsd:element name="ChangeESU">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ESUstatus" type="bs7666:ElementaryStreetUnitStructure"/>
+						<xsd:element name="ESUchange" type="bs7666:ElementaryStreetUnitStructure"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateBLPUextentStructure">
+		<xsd:sequence>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber"/>
+			<xsd:element name="BLPUextentProvenance" type="bs7666:ProvenanceCodeType"/>
+			<xsd:choice>
+				<xsd:element name="InsertBLPUextent" type="bs7666:BLPUextentStructure"/>
+				<xsd:element name="DeleteBLPUextent" type="bs7666:BLPUextentStructure"/>
+				<xsd:element name="ChangeBLPUextent">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="BLPUextentStatus" type="bs7666:BLPUextentStructure"/>
+							<xsd:element name="BLPUextentChange" type="bs7666:BLPUextentStructure"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateBLPUextentPolygonStructure">
+		<xsd:sequence>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber"/>
+			<xsd:element name="BLPUextentProvenance" type="bs7666:ProvenanceCodeType"/>
+			<xsd:element name="BLPUextentEntrDate" type="xsd:date" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="InsertBLPUpolygon" type="bs7666:BLPUpolygonStructure"/>
+				<xsd:element name="DeleteBLPUpolygon" type="bs7666:BLPUpolygonStructure"/>
+				<xsd:element name="ChangeBLPUpolygon">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="BLPUpolygonStatus" type="bs7666:BLPUpolygonStructure"/>
+							<xsd:element name="BLPUpolygonChange" type="bs7666:BLPUpolygonStructure"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of update record types-->
+	<!-- start of additional simple BS7666 definitions-->
+	<xsd:complexType name="CoreBasicLandAndPropertyUnitStructure">
+		<xsd:annotation>
+			<xsd:documentation>This is a subset of the BS7666 BLPU structure which is used when only the core elements of the BLPU are to be updated. Restricted use of the full BLPU structure could cause confusion between the two</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="CustodianCode" type="bs7666:CustodianCodeType"/>
+			<xsd:element name="RepresentativePointCode" type="bs7666:RepresentativePointCodeType"/>
+			<xsd:element name="LogicalStatus" type="bs7666:LogicalStatusType"/>
+			<xsd:element name="GridReference" type="bs7666:CoordinateStructure"/>
+			<xsd:element name="BLPUentryDate" type="xsd:date"/>
+			<xsd:element name="BLPUstartDate" type="xsd:date"/>
+			<xsd:element name="BLPUendDate" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="BLPUlastUpdateDate" type="xsd:date"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExtendedProvenanceStructure">
+		<xsd:complexContent>
+			<xsd:extension base="bs7666:ProvenanceStructure">
+				<xsd:sequence minOccurs="0">
+					<xsd:element name="BLPUclass" type="bs7666:BLPUclassCodeStructure" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Provisional addition to indicate main use/status of BLPU - pending consideration by BS7666 review. Pending wider review, the code/look-up table contains provisional entries for the Valuebill Project which relate to the provenance of occupancy.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ApplicationCrossReferenceStructure">
+		<xsd:sequence>
+			<xsd:element name="APrefStartDate" type="xsd:date"/>
+			<xsd:element name="APrefLastUpdate" type="xsd:date"/>
+			<xsd:element name="CrossReference">
+				<xsd:simpleType>
+					<xsd:restriction base="core:PopulatedStringType">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="APrefSource">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="APrefEntryDate" type="xsd:date"/>
+			<xsd:element name="PostalAddress" type="apd:UKPostalAddressStructure" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>This element allows for the transfer of a postal address that has been derived from the original BS7666 address or by import of a cross-referenced address from PAF or other source.
+
+This element forms part of the application cross reference because a postal address is a specific application of an address and this construct allows both the source and the external reference to be transfered</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StreetCrossReferenceStructure">
+		<xsd:sequence>
+			<xsd:element name="StreetXrefType">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="StreetXrefUSRN" type="bs7666:USRNtype"/>
+			<xsd:element name="StreetXrefUSRNversion" type="bs7666:VersionNumberType"/>
+			<xsd:element name="StreetXrefIdentity" type="bs7666:RefPointGridCoordinateType"/>
+			<xsd:element name="StreetXrefIdentityVersion" type="bs7666:VersionNumberType"/>
+			<xsd:element name="StreetXrefEntryDate" type="xsd:date"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LocalCustodianStructure">
+		<xsd:annotation>
+			<xsd:documentation>This provides for identification of the source/owner of the data being transferred</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="LocalCustodian">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="60"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="LocalCustodianDepartment">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="CustodianAddressReference" type="bs7666:UPRNtype"/>
+			<xsd:element name="CustodianCode" type="bs7666:CustodianCodeType"/>
+			<xsd:element name="LLPGeditionDate" type="xsd:date"/>
+			<xsd:element name="EntryDate" type="xsd:date"/>
+			<xsd:element name="EntryTime" type="xsd:time"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BLPUclassCodeStructure">
+		<xsd:annotation>
+			<xsd:documentation>This allows for a classification of the BLPU which indicates the status/use of the BLPU in relation to its Provenance</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="BLPUclassCodeContentType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="BLPUclassCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:minLength value="2"/>
+			<xsd:maxLength value="5"/>
+			<xsd:pattern value="[FLOPRTU]{1}[A-Z0-9]{1,4}"/>
+			<xsd:enumeration value="OC">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Commerciall</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OE">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Education</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OF">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Public Utility - Formula Assessed</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OI">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Industrial</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OL">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Leisure</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OM">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Miscellaneous</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ON">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Non-formula Public Utliities and Others</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OT">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Treasury (Crown)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ORES">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Residential</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OMIX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Mixed Residential and Commercial</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- end of additional simple BS7666 definitions-->
+	<xsd:element name="FullUpdateSet">
+		<xsd:annotation>
+			<xsd:documentation>The FullUpdateSet provides for the transfer or update of a series of full address gazetteer records and would be used to transfer a set of complete gazetteer records</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="HeaderFull" type="bs7666:TransferHeaderStructure"/>
+				<xsd:element name="LocalCustodianRecord" type="bs7666:LocalCustodianStructure" minOccurs="0"/>
+				<xsd:element name="FullUpdateRecord" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="UpdateIdentity">
+								<xsd:annotation>
+									<xsd:documentation>Unique sequence number assigned to each gazetteer update record within the file - combined with the custodian ID, the date/time stamp and the file number from the header this provides a unique identity for each update record</xsd:documentation>
+								</xsd:annotation>
+								<xsd:simpleType>
+									<xsd:restriction base="core:PopulatedStringType">
+										<xsd:maxLength value="25"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:choice>
+								<xsd:element name="InsertFullRecord" type="bs7666:BasicLandAndPropertyUnitStructure"/>
+								<xsd:element name="DeleteFullRecord" type="bs7666:BasicLandAndPropertyUnitStructure"/>
+								<xsd:element name="ChangeFullRecord">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="FullRecordStatus" type="bs7666:BasicLandAndPropertyUnitStructure"/>
+											<xsd:element name="FullRecordChange" type="bs7666:BasicLandAndPropertyUnitStructure"/>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:choice>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="TrailerFull" type="bs7666:TransferTrailerStructure"/>
+			</xsd:sequence>
+			<xsd:attribute name="SchemaId" type="xsd:string" use="required"/>
+			<xsd:attribute name="SchemaVersion" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="SelectiveUpdateSet">
+		<xsd:annotation>
+			<xsd:documentation>The SelectiveUpdateSet will be the more commonly used element and provides for change-only update (insert/delete/change) of the individual components of the address gazetteer records</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="HeaderSelect" type="bs7666:TransferHeaderStructure"/>
+				<xsd:element name="LocalCustodianRecord" type="bs7666:LocalCustodianStructure" minOccurs="0"/>
+				<xsd:element name="UpdateListEntry" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="UpdateIdentity">
+								<xsd:annotation>
+									<xsd:documentation>Unique sequence number assigned to each gazetteer update record within the file - combined with the custodian ID, the date/time stamp and the file number from the header this provides a unique identity for each update record</xsd:documentation>
+								</xsd:annotation>
+								<xsd:simpleType>
+									<xsd:restriction base="core:PopulatedStringType">
+										<xsd:maxLength value="25"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:choice>
+								<xsd:element name="UpdateLPI" type="bs7666:UpdateLandAndPropertyIdentifierStructure"/>
+								<xsd:element name="UpdateBLPU" type="bs7666:UpdateBasicLandAndPropertyUnitStructure"/>
+								<xsd:element name="UpdateStreet" type="bs7666:UpdateStreetStructure"/>
+								<xsd:element name="UpdateProvenance" type="bs7666:UpdateProvenanceStructure"/>
+								<xsd:element name="UpdateApplicationXref" type="bs7666:UpdateApplicationCrossReferenceStructure"/>
+								<xsd:element name="UpdateESU" type="bs7666:UpdateElementaryStreetUnitStructure"/>
+								<xsd:element name="UpdateStreetXref" type="bs7666:UpdateStreetCrossReferenceStructure"/>
+								<xsd:element name="UpdateBLPUextent" type="bs7666:UpdateBLPUextentStructure"/>
+								<xsd:element name="UpdateBLPUpolygon" type="bs7666:UpdateBLPUextentPolygonStructure"/>
+							</xsd:choice>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="TrailerSelect" type="bs7666:TransferTrailerStructure"/>
+			</xsd:sequence>
+			<xsd:attribute name="SchemaId" type="xsd:string" use="required"/>
+			<xsd:attribute name="SchemaVersion" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

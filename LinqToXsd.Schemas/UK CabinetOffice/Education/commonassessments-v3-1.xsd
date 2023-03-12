@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Andrew Tarr (Logica) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.govtalk.gov.uk/Education/CommonAssessment" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:langid="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" targetNamespace="http://www.govtalk.gov.uk/Education/CommonAssessment" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.1">
+	<xs:import namespace="http://www.govtalk.gov.uk/people/PersonDescriptives" schemaLocation="gdsc/PersonDescriptiveTypes-v1-1.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="gdsc\AddressTypes-v2-0.xsd"/>
+	<xs:element name="CommonAssessments">
+		<xs:annotation>
+			<xs:documentation>Root element containing at least one CAF episode</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Episode" type="EpisodeStructure" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="schemaVersion"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EpisodeStructure">
+		<xs:sequence>
+			<xs:element name="EpisodeStartDate" type="xs:date"/>
+			<xs:element name="EpisodeArchivedDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="EpisodeStatus" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Displayed status</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EpisodePeopleList">
+				<xs:annotation>
+					<xs:documentation>Current episode TAC + historic snapshots at assessment and DPR finalisation dates.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AssessedChild">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="AssessedChildVersion" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="PersonStructure">
+													<xs:sequence>
+														<xs:element name="DateOfBirth" type="xs:date"/>
+														<xs:element name="DisabilityDescription" type="xs:string"/>
+														<xs:element name="Ethnicity">
+															<xs:complexType>
+																<xs:attribute name="code"/>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="EthnicityOtherDetails" type="xs:string"/>
+														<xs:element name="Gender">
+															<xs:complexType>
+																<xs:attribute name="code"/>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="IntentionToReturnIn3YrsFlag" type="xs:boolean"/>
+														<xs:element name="NoFixedAbodeFlag" type="xs:boolean"/>
+														<xs:element name="OutsideEnglandFlag" type="xs:boolean"/>
+														<xs:element name="ParentFirstLanguage">
+															<xs:complexType>
+																<xs:attribute name="code"/>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="SpecialRequirements" type="xs:string"/>
+														<xs:element name="IsDisabledFlag" type="xs:boolean"/>
+														<xs:element name="ImmigrationStatus">
+															<xs:complexType>
+																<xs:attribute name="code"/>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="FirstLanguage">
+															<xs:complexType>
+																<xs:attribute name="code"/>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="PreviousName" type="xs:string"/>
+													</xs:sequence>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Practitioners">
+							<xs:annotation>
+								<xs:documentation>There must at least be an EC</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Practitioner" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="PractitionerVersion" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:complexContent>
+															<xs:extension base="PersonStructure">
+																<xs:sequence>
+																	<xs:element name="Comments"/>
+																	<!-- cannot find in schema -->
+																	<xs:element name="SensitiveServiceFlag" type="xs:boolean"/>
+																	<xs:element name="Role" type="xs:string"/>
+																	<xs:element name="Organisation" type="xs:string"/>
+																	<xs:element name="DomainService" type="xs:string"/>
+																	<xs:element name="Domain" minOccurs="0">
+																		<xs:complexType>
+																			<xs:attribute name="code"/>
+																		</xs:complexType>
+																	</xs:element>
+																	<xs:element name="NationalServiceCategory" type="NationalServiceCategoryStructure"/>
+																	<xs:element name="ConsentOverrideDecision" minOccurs="0">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="ReasonForAccess" type="xs:string"/>
+																				<xs:element name="ExpiryDate" type="xs:date"/>
+																				<xs:element name="ScheduleTwoJustification">
+																					<xs:complexType>
+																						<xs:attribute name="code"/>
+																					</xs:complexType>
+																				</xs:element>
+																				<xs:element name="ScheduleThreeJustification">
+																					<xs:complexType>
+																						<xs:attribute name="code"/>
+																					</xs:complexType>
+																				</xs:element>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:extension>
+														</xs:complexContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="seqNo">
+												<xs:annotation>
+													<xs:documentation>Unique within episode</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Citizens" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>ParentCarers or Significant others</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Citizen" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="CitizenVersion" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:complexContent>
+															<xs:extension base="PersonStructure">
+																<xs:sequence>
+																	<xs:element name="RelationshipToChild">
+																		<xs:complexType>
+																			<xs:attribute name="code"/>
+																		</xs:complexType>
+																	</xs:element>
+																	<xs:element name="Comments"/>
+																	<!-- cannot find in schema -->
+																	<xs:element name="Gender">
+																		<xs:complexType>
+																			<xs:attribute name="code"/>
+																		</xs:complexType>
+																	</xs:element>
+																	<xs:element name="NoFixedAbodeFlag" type="xs:boolean"/>
+																	<xs:element name="ParentalResponsibilityFlag" type="xs:boolean"/>
+																	<xs:element name="ParentCarerFlag" type="xs:boolean"/>
+																</xs:sequence>
+															</xs:extension>
+														</xs:complexContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="seqNo">
+												<xs:annotation>
+													<xs:documentation>Unique within episode</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Assessments" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>All finalised and/or current draft</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AssessmentVersion" type="AssessmentVersionStructure" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DraftPlanAndReviews" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>All finalised and/or current draft</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DraftPlanAndReview" type="DraftPlanAndReviewStructure"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConsentStatements" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>All finalised and/or current draft</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ConsentStatement" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="GrantedDate" type="xs:date"/>
+									<xs:element name="GrantedBy" type="xs:string"/>
+									<xs:element name="Status" type="xs:string"/>
+									<xs:element name="FinalisationDate" type="xs:date"/>
+									<xs:element name="SignedCopyFlag" type="xs:boolean"/>
+									<xs:element name="FairProcNoticeIssuedFlag" type="xs:boolean"/>
+									<xs:element name="Comments" type="xs:string"/>
+									<xs:element name="DocumentReference" type="xs:string"/>
+									<xs:element name="Entries">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Entry" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="ConsentGrantedStatus" type="xs:string"/>
+															<xs:element name="NationalServiceCategory" type="NationalServiceCategoryStructure"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="versionSeqNo"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VerbalConsent">
+				<xs:annotation>
+					<xs:documentation>Latest only</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ReceivedFromChildFlag" type="xs:boolean"/>
+						<xs:element name="GrantedBy" type="xs:string"/>
+						<xs:element name="GrantedDate" type="xs:date"/>
+						<xs:element name="RelationshipToChild">
+							<xs:complexType>
+								<xs:attribute name="code"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ConsentAbsenceReason"/>
+						<!--  not currently in DB schema -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ActionList" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Latest snapshot of the global action list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Action" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DesiredOutcome" type="xs:string"/>
+									<xs:element name="DueDate" type="xs:date"/>
+									<xs:element name="EcmAimContributor">
+										<xs:complexType>
+											<xs:attribute name="code"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="EcmAimMetFlag" type="xs:boolean"/>
+									<xs:element name="ClosedDate" type="xs:date"/>
+									<xs:element name="ActionDetail" type="xs:string"/>
+									<xs:element name="PersonAssignedTo" type="PersonRefStructure" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Link to person from EpisodePersonList</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ReviewComment" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ServiceProvisions" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ServiceProvision" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Request">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="PractitionerRequestedBy" type="PersonRefStructure">
+													<xs:annotation>
+														<xs:documentation>Link to person from EpisodePersonList</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Reason" type="xs:string"/>
+												<xs:element name="RequestedDate" type="xs:date"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:choice>
+										<xs:element name="Confirmation">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="AcceptedDate" type="xs:date"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Rejection">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Reason">
+														<xs:complexType>
+															<xs:attribute name="code"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="RejectedDate" type="xs:date"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+									<xs:element name="StartDate" type="xs:date"/>
+									<xs:element name="EndDate" type="xs:date"/>
+									<xs:element name="Status" type="xs:string"/>
+									<xs:element name="DomainService" type="xs:string"/>
+									<xs:element name="NationalServiceCategory" type="NationalServiceCategoryStructure"/>
+									<xs:element name="ServiceCoordinator">
+										<xs:annotation>
+											<xs:documentation>Link to person from EpisodePersonList</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="PersonRefStructure"/>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="PractitionerInvolved">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Name" type="xs:string"/>
+												<xs:element name="Explanation" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FinalSummary" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Latest snapshot of the final summary</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Comments">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Final" type="xs:string"/>
+									<xs:element name="Child" type="xs:string"/>
+									<xs:element name="ParentCarer" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Closure">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Reason">
+										<xs:complexType>
+											<xs:attribute name="code"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Description" type="xs:string"/>
+									<xs:element name="Date" type="xs:date"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ConsentWithdrawlReason">
+							<xs:complexType>
+								<xs:attribute name="code"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="EpisodeId" use="required">
+			<xs:annotation>
+				<xs:documentation>ID of the episode on the source system.  May not be National eCAF episode ID</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PersonStructure">
+		<xs:sequence>
+			<xs:element name="TACInvolvement" type="TacInvolvementStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TAC involvements for historic versions are point in time only at the VersionEffectiveFromDate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VersionEffectiveFromDate" type="xs:dateTime"/>
+			<xs:element name="ContactAddress" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="apd:UKPostalAddressStructure"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ContactDetails" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ContactNumber" type="ContactNumberStructure"/>
+						<xs:element name="EmailAddress" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PersonDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="pdt:PersonNameStructure">
+										<xs:sequence>
+											<xs:element name="FamilyNameFirstFlag" type="xs:boolean" minOccurs="0"/>
+											<xs:element name="PreviousName" minOccurs="0"/>
+											<!--  cannot find in DB schema -->
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UnknownAddressFlag" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versionSeqNo">
+			<xs:annotation>
+				<xs:documentation>Unique within person type (e.g. AssessedChild)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TransferDetailsStructure">
+		<xs:sequence>
+			<xs:element name="EpisodeCoordinator"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AssessedChildRefStructure">
+		<xs:sequence>
+			<xs:element name="VersionSeqNo"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonVersionRefStructure">
+		<xs:sequence>
+			<xs:element name="SeqNo"/>
+			<xs:element name="VersionSeqNo"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NationalServiceCategoryStructure">
+		<xs:sequence>
+			<xs:element name="Category" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="code"/>
+	</xs:complexType>
+	<xs:complexType name="PersonRefStructure">
+		<xs:sequence>
+			<xs:element name="SeqNo"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VersionRefStructure">
+		<xs:sequence>
+			<xs:element name="VersionSeqNo"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeoplePresentStructure">
+		<xs:sequence>
+			<xs:element name="AssessedChildRef" type="AssessedChildRefStructure"/>
+			<xs:element name="PractitionerRef" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="PersonRefStructure">
+							<xs:attribute name="tacMemberWasPresentFlag" type="xs:boolean"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ParentCarerRef" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="PersonRefStructure">
+							<xs:attribute name="tacMemberWasPresentFlag" type="xs:boolean"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactNumberStructure">
+		<xs:sequence>
+			<xs:element name="Number" type="xs:string"/>
+			<xs:element name="Description" type="xs:string"/>
+			<xs:element name="NumberType"/>
+			<xs:element name="Preferred" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TacInvolvementStructure">
+		<xs:sequence>
+			<xs:element name="Type">
+				<xs:annotation>
+					<xs:documentation>Normal, LP or EC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string"/>
+			<xs:element name="StartDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Only for latest person version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Only for latest person version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DraftPlanAndReviewStructure">
+		<xs:sequence>
+			<xs:element name="PeoplePresent">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AssessedChild">
+							<xs:annotation>
+								<xs:documentation>Links to person version from EpisodePersonList</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="AssessedChildRefStructure">
+										<xs:sequence>
+											<xs:element name="PresentAtDPRFlag" type="xs:boolean"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PersonPresent" type="PersonPresentStructure" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Links to person version from EpisodePersonList</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Status"/>
+			<xs:element name="FinalisationDate" type="xs:date"/>
+			<xs:element name="OtherPeoplePresent" type="xs:string"/>
+			<xs:element name="NextSteps" type="xs:string"/>
+			<xs:element name="EpisodeProposedClosedFlag" type="xs:boolean"/>
+			<xs:element name="ClosureReason">
+				<xs:complexType>
+					<xs:attribute name="code"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AgreedReviewDate" type="xs:date"/>
+			<xs:element name="Comments">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Child" type="xs:string"/>
+						<xs:element name="ParentCarer" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReassessmentRequiredFlag" type="xs:boolean"/>
+			<xs:element name="Actions" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Action" type="ActionStructure" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="VersionSeqNo"/>
+	</xs:complexType>
+	<xs:complexType name="AssessmentVersionStructure">
+		<xs:sequence>
+			<xs:element name="Status">
+				<xs:annotation>
+					<xs:documentation>Draft or Final</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AssessmentVersionNumber"/>
+			<xs:element name="DateAssessmentStarted" type="xs:date"/>
+			<xs:element name="ReasonForAssessment"/>
+			<xs:element name="FamilyAndHomeSituation"/>
+			<xs:element name="AgreedReviewDate" type="xs:date"/>
+			<xs:element name="FinalisationDate" type="xs:date"/>
+			<xs:element name="PeoplePresent" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Snapshots of the people present at the assessment</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AssessmentChild" type="AssessmentChildStructure"/>
+						<xs:element name="ParentCarers">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ParentCarer" type="ParentCarerStructure" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SignificantOthers">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="SignificantOther" type="SignificantOtherStructure" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Practitioners">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Practitioner" type="PractitionerStructure" maxOccurs="unbounded"/>
+									<xs:element name="PersonUndertakingAssessment" type="PersonUndertakingAssessmentStructure"/>
+									<xs:element name="LeadProfessional" type="LeadProfessionalStructure"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConsentStatementRef" type="VersionRefStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>May be draft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Services">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Service" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="Universal">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Question"/>
+												<xs:element name="Response">
+													<xs:annotation>
+														<xs:documentation>Convert RTF/HTML to plain text</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="AdditionalInfo"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Other">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="ServiceName"/>
+												<xs:element name="Details"/>
+												<xs:element name="ContactNumber"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Observations">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Observation" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="QuestionCode">
+										<xs:annotation>
+											<xs:documentation>Code to identify the question text and related details</xs:documentation>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="Response">
+										<xs:annotation>
+											<xs:documentation>In plain text form</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="NotKnownNotRelevant"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Outcomes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Outcome" type="xs:string" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Simple text</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Actions" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Action" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DesiredOutcome"/>
+									<xs:element name="DueDate" type="xs:date"/>
+									<xs:element name="ClosedDate"/>
+									<xs:element name="ActionDetail"/>
+									<xs:element name="PractitionerSeqNo">
+										<xs:annotation>
+											<xs:documentation>Link to Assessment Practitioner</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="GlobalActionRef">
+										<xs:annotation>
+											<xs:documentation>Link to action in global action list</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versionSeqNo">
+			<xs:annotation>
+				<xs:documentation>Unique within Assessments</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PersonPresentStructure">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="PractitionerRef" type="PersonVersionRefStructure" maxOccurs="unbounded"/>
+				<xs:element name="CitizenRef" type="PersonVersionRefStructure" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element name="PresentAtDPRFlag" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ActionStructure">
+		<xs:sequence>
+			<xs:element name="DesiredOutcome" type="xs:string"/>
+			<xs:element name="DueDate" type="xs:date"/>
+			<xs:element name="EcmAimContributor">
+				<xs:complexType>
+					<xs:attribute name="code"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ClosedDate" type="xs:date"/>
+			<xs:element name="ActionDetail" type="xs:string"/>
+			<xs:element name="EcmAimMetFlag" type="xs:boolean"/>
+			<xs:element name="PersonAssignedTo" type="PersonVersionRefStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Link to the TAC member from the EpisodePersonList</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReviewComment" type="xs:string"/>
+			<xs:element name="GlobalActionRef">
+				<xs:annotation>
+					<xs:documentation>Link to same action in global Action list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AssessmentChildStructure">
+		<xs:sequence>
+			<xs:element name="PresentAtAssessmentFlag" type="xs:boolean"/>
+			<xs:element name="Name">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="pdt:PersonNameStructure">
+							<xs:sequence>
+								<xs:element name="FamilyNameFirstFlag" type="xs:boolean"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Gender"/>
+			<xs:element name="AlsoKnownAsPreviousName"/>
+			<xs:element name="ContactAddresses">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ContactAddress" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="apd:UKPostalAddressStructure">
+										<xs:sequence>
+											<xs:element name="PrimaryResidence" type="xs:boolean"/>
+											<xs:element name="CorrespondenceAddress" type="xs:boolean"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddressInformation">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NoFixedAddress"/>
+						<xs:element name="UnknownAddress"/>
+						<xs:element name="OutsideEngland"/>
+						<xs:element name="IntentionToReturnToEngland" type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DateOfBirth" type="xs:date"/>
+			<xs:element name="ContactDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ContactNumber" type="ContactNumberStructure" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReferenceNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="UniqueReferenceNumber"/>
+						<xs:element name="VersionNumber"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ImmigrationStatus"/>
+			<xs:element name="FirstLanguage"/>
+			<xs:element name="ParentsFirstLanguage"/>
+			<xs:element name="DisabledFlag" type="xs:boolean"/>
+			<xs:element name="DisabilityDetails" minOccurs="0"/>
+			<xs:element name="SpecialNeeds"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParentCarerStructure">
+		<xs:sequence>
+			<xs:element name="Name">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="pdt:PersonNameStructure">
+							<xs:sequence>
+								<xs:element name="FamilyNameFirstFlag" type="xs:boolean"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ContactDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ContactNumber" type="ContactNumberStructure" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ContactAddress">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="apd:UKPostalAddressStructure"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RelationshipToChild"/>
+			<xs:element name="ParentalResponsibility"/>
+			<xs:element name="AddressInformation">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NoFixedAddress"/>
+						<xs:element name="UnknownAddress"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Gender"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SignificantOtherStructure">
+		<xs:sequence>
+			<xs:element name="GivenName"/>
+			<xs:element name="FamilyName"/>
+			<xs:element name="RelationshipToChild"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PractitionerStructure">
+		<xs:sequence>
+			<xs:element name="GivenName"/>
+			<xs:element name="FamilyName"/>
+			<xs:element name="Organisation"/>
+			<xs:element name="Role"/>
+			<xs:element name="PresentAtAssessmentFlag" type="xs:boolean"/>
+		</xs:sequence>
+		<xs:attribute name="seqNo">
+			<xs:annotation>
+				<xs:documentation>Unique within assessment practitioners</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PersonUndertakingAssessmentStructure">
+		<xs:sequence>
+			<xs:element name="Name" type="pdt:PersonNameStructure"/>
+			<xs:element name="ContactNumber" type="ContactNumberStructure"/>
+			<xs:element name="ContactAddress" type="apd:UKPostalAddressStructure"/>
+			<xs:element name="Role"/>
+			<xs:element name="Organisation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LeadProfessionalStructure">
+		<xs:sequence>
+			<xs:element name="ContactDetails" type="ContactNumberStructure"/>
+			<xs:element name="Name" type="pdt:PersonNameStructure"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

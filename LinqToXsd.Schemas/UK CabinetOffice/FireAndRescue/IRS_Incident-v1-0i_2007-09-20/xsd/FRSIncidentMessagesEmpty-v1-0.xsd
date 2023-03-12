@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gms-xs="http://www.govtalk.gov.uk/CM/gms-xs" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentMessagesEmpty-v1-0">
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-03-14</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System message payloads</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentMessagesEmpty-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System message payloads</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>This allows any data to be included within any relevant Message. This avoids issues with Binding frameworks that don't handle full data bindings with the Strict WSDL.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##any" processContents="lax"/>
+	</xs:complexType>
+	<xs:element name="InsertIncidentDetailsRequest" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Insert Incident request message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InsertIncidentDetailsResponse" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Insert Incident response message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AmendIncidentDetailsRequest" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Amend Incident response message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AmendIncidentDetailsResponse" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Amend Incident response message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="GetIncidentDetailsRequest" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The structure to use for the get incident request message, which just contains the identification details</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="GetIncidentDetailsResponse" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Incident message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SearchIncidentsRequest" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Search Incident Request message structure to use within the system. This contains search criteria and filters in order to identify one or more Incidents.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SearchIncidentsResponse" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Search Incident Response message structure to use within the system. This contains the basic Incident details to identify an Incident.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IncidentDetails" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Incident Details is a common message structure used by Insert and Amend request message structures. This contains the full Incident details as well as optional dependant incidents and validation error information. This structure can be used for schema validation prior to placing in the Insert or Amend message structures. It might also be used for data storage.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Incidents" type="MessageStructure">
+		<xs:annotation>
+			<xs:documentation>The Incidents structure defines the definition used by the IRS websites Extract Incidents process. This contains the full Incident, but not the optional dependant incidents and validation error information. There could be zero, one or many Incident structures.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

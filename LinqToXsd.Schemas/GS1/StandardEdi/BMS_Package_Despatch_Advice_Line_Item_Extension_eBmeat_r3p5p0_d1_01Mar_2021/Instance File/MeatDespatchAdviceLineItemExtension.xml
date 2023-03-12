@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><despatch_advice:despatchAdviceMessage xmlns:despatch_advice="urn:gs1:ecom:despatch_advice:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:despatch_advice:xsd:3 ../Schemas/gs1/ecom/DespatchAdvice.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <despatchAdvice>
+        <creationDateTime>2010-07-31T11:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <despatchAdviceIdentification>
+            <entityIdentification>KC</entityIdentification>
+            <contentOwner>
+                <gln>8812345678903</gln>
+            </contentOwner>
+        </despatchAdviceIdentification>
+        <receiver>
+            <gln>8712345678913</gln>
+        </receiver>
+        <shipper>
+            <gln>8812345678903</gln>
+        </shipper>
+        <shipTo>
+            <gln>8712345678921</gln>
+        </shipTo>
+        <despatchInformation>
+            <actualShipDateTime>2010-07-04T15:00:00.000-05:00</actualShipDateTime>
+        </despatchInformation>
+        <purchaseOrder>
+            <entityIdentification>933</entityIdentification>
+            <contentOwner>
+                <gln>8712345678913</gln>
+            </contentOwner>
+            <creationDateTime>2010-07-31T00:00:00.000-05:00</creationDateTime>
+            <lineItemNumber>25</lineItemNumber>
+        </purchaseOrder>
+        <despatchAdviceLogisticUnit>
+            <packageTypeCode>PE (pallet, modular)</packageTypeCode>
+            <logisticUnitIdentification>
+                <sscc>881234567000010112</sscc>
+            </logisticUnitIdentification>
+            <despatchAdviceLineItem>
+                <lineItemNumber>1</lineItemNumber>
+                <despatchedQuantity>700</despatchedQuantity>
+                <countryOfOrigin>CR</countryOfOrigin>
+                <extension>
+                    <meat_despatch_advice_line_item_extension:meatDespatchAdviceLineItemExtension xmlns:meat_despatch_advice_line_item_extension="urn:gs1:ecom:meat_despatch_advice_line_item_extension:xsd:3" xsi:schemaLocation="urn:gs1:ecom:meat_despatch_advice_line_item_extension:xsd:3 ../Schemas/gs1/ecom/MeatDespatchAdviceLineItemExtension.xsd">
+                        <animalIdentification>
+                            <animalIdentificationNumber>AU71244008</animalIdentificationNumber>
+                        </animalIdentification>
+                        <meatActivityHistory>
+                            <meatProcessingActivityTypeCode>BREEDING</meatProcessingActivityTypeCode>
+                            <currentStepIdentification>1</currentStepIdentification>
+                            <nextStepIdentification>2</nextStepIdentification>
+                            <countryOfActivityCode>BE</countryOfActivityCode>
+                            <dateOfDeparture>2004-03-01</dateOfDeparture>
+                            <movementReasonCode>Sale for fattening</movementReasonCode>
+                            <meatProcessingParty>
+                                <address>
+                                    <city>Brussels</city>
+                                    <countryCode>BE</countryCode>
+                                    <name>Producer Company</name>
+                                    <postalCode>12345</postalCode>
+                                    <streetAddressOne>Rue du Bac 133</streetAddressOne>
+                                </address>
+                                <meatProcessingPartyTypeCode>BREEDER</meatProcessingPartyTypeCode>
+                            </meatProcessingParty>
+                            <meatWorkItemIdentification>
+                                <meatWorkItemTypeCode>ANIMAL</meatWorkItemTypeCode>
+                                <animalIdentification>
+                                    <animalIdentificationNumber>AU71244008</animalIdentificationNumber>
+                                </animalIdentification>
+                            </meatWorkItemIdentification>
+                            <meatBreedingDetails>
+                                <breedCode>Jersey</breedCode>
+                                <breedOfMotherCode>Jersey</breedOfMotherCode>
+                                <breedOfFatherCode>Jersey</breedOfFatherCode>
+                                <dateOfBirth>2004-01-01</dateOfBirth>
+                                <feedingSystemCode>organic</feedingSystemCode>
+                                <genderCode>MALE</genderCode>
+                                <housingSystemCode>Predominantly barn</housingSystemCode>
+                                <paternalIdentification>
+                                    <animalIdentificationNumber>AU71244111</animalIdentificationNumber>
+                                </paternalIdentification>
+                                <maternalIdentification>
+                                    <animalIdentificationNumber>AU71244222</animalIdentificationNumber>
+                                </maternalIdentification>
+                            </meatBreedingDetails>
+                        </meatActivityHistory>
+                        <meatActivityHistory>
+                            <meatProcessingActivityTypeCode>FATTENING</meatProcessingActivityTypeCode>
+                            <currentStepIdentification>2</currentStepIdentification>
+                            <nextStepIdentification>3</nextStepIdentification>
+                            <activitySubStepIdentification>1</activitySubStepIdentification>
+                            <countryOfActivityCode>NL</countryOfActivityCode>
+                            <dateOfArrival>2004-03-02</dateOfArrival>
+                            <dateOfDeparture>2004-06-01</dateOfDeparture>
+                            <movementReasonCode>Sale for fattening</movementReasonCode>
+                            <meatProcessingParty>
+                                <address>
+                                    <city>Amsterdam</city>
+                                    <countryCode>NL</countryCode>
+                                    <name>Fattening Company</name>
+                                    <postalCode>34567</postalCode>
+                                    <streetAddressOne>Damstraat 5</streetAddressOne>
+                                </address>
+                                <meatProcessingPartyTypeCode>FATTENER</meatProcessingPartyTypeCode>
+                            </meatProcessingParty>
+                            <meatWorkItemIdentification>
+                                <meatWorkItemTypeCode>ANIMAL</meatWorkItemTypeCode>
+                                <animalIdentification>
+                                    <animalIdentificationNumber>AU71244008</animalIdentificationNumber>
+                                </animalIdentification>
+                            </meatWorkItemIdentification>
+                            <meatFatteningDetails>
+                                <housingSystemCode>Predominantly pasture</housingSystemCode>
+                            </meatFatteningDetails>
+                        </meatActivityHistory>
+                        <meatActivityHistory>
+                            <meatProcessingActivityTypeCode>FATTENING</meatProcessingActivityTypeCode>
+                            <currentStepIdentification>3</currentStepIdentification>
+                            <nextStepIdentification>4</nextStepIdentification>
+                            <activitySubStepIdentification>2</activitySubStepIdentification>
+                            <countryOfActivityCode>DE</countryOfActivityCode>
+                            <dateOfArrival>2004-06-02</dateOfArrival>
+                            <dateOfDeparture>2004-09-02</dateOfDeparture>
+                            <movementReasonCode>Sale for slaughtering</movementReasonCode>
+                            <meatProcessingParty>
+                                <address>
+                                    <city>Köln</city>
+                                    <countryCode>DE</countryCode>
+                                    <name>Fettmann KG</name>
+                                    <postalCode>50825</postalCode>
+                                    <streetAddressOne>Kanalstraße 5</streetAddressOne>
+                                </address>
+                                <meatProcessingPartyTypeCode>FATTENER</meatProcessingPartyTypeCode>
+                            </meatProcessingParty>
+                            <meatWorkItemIdentification>
+                                <meatWorkItemTypeCode>ANIMAL</meatWorkItemTypeCode>
+                                <animalIdentification>
+                                    <animalIdentificationNumber>AU71244008</animalIdentificationNumber>
+                                </animalIdentification>
+                            </meatWorkItemIdentification>
+                            <meatFatteningDetails>
+                                <feedingSystemCode>Intensive</feedingSystemCode>
+                                <housingSystemCode>Predominantly pasture</housingSystemCode>
+                            </meatFatteningDetails>
+                        </meatActivityHistory>
+                        <meatActivityHistory>
+                            <meatProcessingActivityTypeCode>SLAUGHTERING</meatProcessingActivityTypeCode>
+                            <currentStepIdentification>4</currentStepIdentification>
+                            <countryOfActivityCode>BE</countryOfActivityCode>
+                            <dateOfArrival>2004-09-03</dateOfArrival>
+                            <dateOfDeparture>2004-09-05</dateOfDeparture>
+                            <movementReasonCode>Sale for cutting</movementReasonCode>
+                            <meatProcessingParty>
+                                <gln>4012345000009</gln>
+                                <meatProcessingPartyTypeCode>SLAUGHTERER</meatProcessingPartyTypeCode>
+                                <approvalNumber>BE234</approvalNumber>
+                            </meatProcessingParty>
+                            <meatWorkItemIdentification>
+                                <meatWorkItemTypeCode>CARCASS</meatWorkItemTypeCode>
+                                <productIdentification>
+                                    <gtin>40123450000166</gtin>
+                                </productIdentification>
+                                <animalIdentification>
+                                    <animalIdentificationNumber>AU71244008</animalIdentificationNumber>
+                                </animalIdentification>
+                            </meatWorkItemIdentification>
+                            <meatSlaughteringDetails>
+                                <meatConformationCode>SE</meatConformationCode>
+                                <dateOfSlaughtering>2004-09-04</dateOfSlaughtering>
+                                <meatCategoryCode>Young intact male</meatCategoryCode>
+                                <slaughteringSystemCode>halal</slaughteringSystemCode>
+                                <slaughteringWeight measurementUnitCode="KGM">280.3</slaughteringWeight>
+                            </meatSlaughteringDetails>
+                        </meatActivityHistory>
+                    </meat_despatch_advice_line_item_extension:meatDespatchAdviceLineItemExtension>
+                </extension>
+                <transactionalTradeItem>
+                    <gtin>08712345678906</gtin>
+                </transactionalTradeItem>                
+                <requestedItemIdentification>
+                    <gtin>08712345678906</gtin>
+                </requestedItemIdentification>                
+                <deliveryNote>
+                    <entityIdentification>DN</entityIdentification>
+                    <creationDateTime>2007-04-24T09:00:00.000-05:00</creationDateTime>
+                    <lineItemNumber>001</lineItemNumber>
+                </deliveryNote>
+            </despatchAdviceLineItem>
+        </despatchAdviceLogisticUnit>
+    </despatchAdvice>
+</despatch_advice:despatchAdviceMessage>

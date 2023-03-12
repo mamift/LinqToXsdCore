@@ -1,0 +1,209 @@
+{
+  "fields": [
+    {
+      "name": "codeId",
+      "type": "integer",
+      "constraints": {
+        "required": true,
+        "unique": true,
+        "minimum": 1
+      }
+    },
+    {
+      "name": "codeType",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "ANTENNA",
+          "BUILDING",
+          "CHIMNEY",
+          "CRANE",
+          "MAST",
+          "TOWER",
+          "TREE",
+          "WINDTURBINE",
+          "OTHER"
+        ]
+      }
+    },
+    {
+      "name": "txtName",
+      "type": "string",
+      "constraints": {
+        "pattern": "[A-Z]*"
+      }
+    },
+    {
+      "name": "codeLgt",
+      "type": "string",
+      "constraints": {
+        "enum": [
+          "Y",
+          "N"
+        ]
+      }
+    },
+    {
+      "name": "codeMarking",
+      "type": "string",
+      "constraints": {
+        "enum": [
+          "Y",
+          "N"
+        ]
+      }
+    },
+    {
+      "name": "txtDescrLgt",
+      "type": "string"
+    },
+    {
+      "name": "txtDescrMarking",
+      "type": "string"
+    },
+    {
+      "name": "geoLat",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "(([0-8][0-9](\\.\\d{1,8}){0,1}(N|S))|(90(\\.0{1,8}){0,1}(N|S)))"
+      }
+    },
+    {
+      "name": "geoLong",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "((((0[0-9])|(1[0-7]))[0-9](\\.\\d{1,8}){0,1}(E|W))|(180(\\.0{1,8}){0,1}(E|W)))"
+      }
+    },
+    {
+      "name": "valGeoAccuracy",
+      "type": "integer",
+      "constraints": {
+        "minimum": 0
+      }
+    },
+    {
+      "name": "uomGeoAccuracy",
+      "type": "string",
+      "constraints": {
+        "enum": [
+          "FT",
+          "KM",
+          "M",
+          "NM"
+        ]
+      }
+    },
+    {
+      "name": "valElev",
+      "type": "integer",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "valElevAccuracy",
+      "type": "integer",
+      "constraints": {
+        "minimum": 0
+      }
+    },
+    {
+      "name": "valHgt",
+      "type": "integer",
+      "constraints": {
+        "minimum": 1
+      }
+    },
+    {
+      "name": "codeHgtAccuracy",
+      "type": "string",
+      "constraints": {
+        "enum": [
+          "Y",
+          "N"
+        ]
+      }
+    },
+    {
+      "name": "uomDistVer",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "FT",
+          "M"
+        ]
+      }
+    },
+    {
+      "name": "valRadius",
+      "type": "integer",
+      "constraints": {
+        "minimum": 1
+      }
+    },
+    {
+      "name": "uomRadius",
+      "type": "string",
+      "constraints": {
+        "enum": [
+          "FT",
+          "KM",
+          "M",
+          "NM"
+        ]
+      }
+    },
+    {
+      "name": "codeGroupId",
+      "type": "string",
+      "constraints": {
+        "pattern": "(\\d+|[\\da-f]{8}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{12})?"
+      }
+    },
+    {
+      "name": "txtGroupName",
+      "type": "string"
+    },
+    {
+      "name": "codeLinkedToId",
+      "type": "integer"
+    },
+    {
+      "name": "codeLinkType",
+      "type": "string",
+      "constraints": {
+        "enum": [
+          "CABLE",
+          "SOLID",
+          "OTHER"
+        ]
+      }
+    },
+    {
+      "name": "datetimeValidWef",
+      "type": "string",
+      "format": "datetime"
+    },
+    {
+      "name": "datetimeValidTil",
+      "type": "string",
+      "format": "datetime"
+    },
+    {
+      "name": "txtRmk",
+      "type": "string"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "constraints": {
+        "required": true
+      }
+    }
+  ]
+}

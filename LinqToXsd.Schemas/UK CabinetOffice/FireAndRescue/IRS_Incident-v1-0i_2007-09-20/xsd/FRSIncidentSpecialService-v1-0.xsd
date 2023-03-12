@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp1 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentSpecialService-v1-0">
+	<xs:include schemaLocation="FRSIncidentHazardousMaterial-v1-0.xsd"/>
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-07-10</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System special service details structure</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentSpecialService-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FireTypes-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System special service details structure</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="SpecialServiceStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the information needed only for a Special Service Incident.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SpecialServiceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>3.3 - Stores the type information for this special service incident.  This is the ID value from the associated Special Service taxonomy file.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="fire:TaxonomyIDType">
+							<xs:attribute name="Other" type="fire:StringRestrictedMixedType" use="optional">
+								<xs:annotation>
+									<xs:documentation>Defines the attributes that should be added to any enumeration list where there is an 'other' option available.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="HazardousMaterialsInvolved" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>5.18 - Did the Incident involve Hazardous Materials?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HazardousMaterials" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Provides additional information on all hazardous materials involved in the incident. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="HazardousMaterial" type="HazardousMaterialStructure" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Provides information on a hazardous material</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IsRTC" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>5.22 - Was the Incident an RTC?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RTC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Provides additional information on RTC related actions.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MultipleVehicles" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Were multiple vehciles involved is defined with the selection of the appropriate PropertyType value. </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="NumberOfTwoWheeledVehicles" type="fire:ZeroTo999Type">
+										<xs:annotation>
+											<xs:documentation>5.25 - The No. of Two-wheeled vehicles involved in the RTC Incident.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="NumberOfSmallVehicles" type="fire:ZeroTo999Type">
+										<xs:annotation>
+											<xs:documentation>5.23 - The No. of Small vehicles involved in the RTC Incident.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="NumberOfLargeVehicles" type="fire:ZeroTo999Type">
+										<xs:annotation>
+											<xs:documentation>5.24 - The No. of Large vehicles involved in the RTC Incident.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ExtricationInvolved" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>5.26 - Were there any extrications from Vehicles?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Extrications" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Details of each vehicle that required extrication of victims.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Extrication" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="VehicleType" type="ExtricationRoadVehicleStructure">
+													<xs:annotation>
+														<xs:documentation>5.27 - The Type of Vehicle involved in the extrication activity e.g. Minibus.</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="VehiclePosition" type="ExtricationVehiclePositionStructure">
+													<xs:annotation>
+														<xs:documentation>5.28 - The Position of Vehicle at the time that the extrication activity took place e.g. On side.</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="MethodUsed" type="ExtricationMethodUsedStructure">
+													<xs:annotation>
+														<xs:documentation>5.29 - The method used for extricating victims e.g. Removal of roof. </xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="TimeTaken" type="ExtricationTimeTakenType">
+													<xs:annotation>
+														<xs:documentation>5.30 - How long did the extrication take to complete.</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExtricationRoadVehicleStructure">
+		<xs:annotation>
+			<xs:documentation>Extends RoadVehicleType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ExtricationRoadVehicleType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ExtricationRoadVehicleType">
+		<xs:annotation>
+			<xs:documentation>Simple type specifying all the options for the Road Vehicle types for RTC's. This list is a subset of the Property Type Taxonomy.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Car</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Van</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Motor Home</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Agricultural</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Motorcycle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Lorry/HGV</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Bus/coach</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Minibus</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Caravan on tow</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ExtricationVehiclePositionStructure">
+		<xs:annotation>
+			<xs:documentation>Extends ExtricationVehiclePositionType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ExtricationVehiclePositionType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ExtricationVehiclePositionType">
+		<xs:annotation>
+			<xs:documentation>Simple type specifying all the options for the position of the vehicle as a result of the RTC e.g. On Roof.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>On wheels</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>On roof</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>On side</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ExtricationMethodUsedStructure">
+		<xs:annotation>
+			<xs:documentation>Extends ExtricationMethodUsedType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ExtricationMethodUsedType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ExtricationMethodUsedType">
+		<xs:annotation>
+			<xs:documentation>Simple type specifying all the options for the method of extrication used for an RTC e.g. Roof Removal.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Dashboard roll</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Roof removal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Roof flap (vehicle on side)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>B post rip</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Side removal (vehicle on roof)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other space creation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExtricationTimeTakenType">
+		<xs:annotation>
+			<xs:documentation>Simple type specifying all the options for the time taken to extrciate people from the vehicle involved in the RTC e.g. 16-30 minutes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Up to 15 minutes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>16-30 minutes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>31-45 minutes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>46-60 minutes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Over 60 minutes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<BuildingRecordErrorSetResponse xsi:schemaLocation="http://www.govtalk.gov.uk/licensing/BuildingControlCompetentPersonsWork-200407 ../BuildingControlCompetentPersonsWork-v1-0.xsd" xmlns="http://www.govtalk.gov.uk/licensing/BuildingControlCompetentPersonsWork-200407" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SchemeName>FENSA</SchemeName>
+	<LocalAuthorityCode>16UH</LocalAuthorityCode>
+	<BuildingRecordError>
+		<SchemeUniqueRecordIdentifier>12345as</SchemeUniqueRecordIdentifier>
+		<ErrorDescriptionList>
+			<ErrorDescription>Cannot match address to Gazetteer</ErrorDescription>
+			<ErrorDescription>Missing work description</ErrorDescription>
+		</ErrorDescriptionList>
+	</BuildingRecordError>
+	<BuildingRecordError>
+		<SchemeUniqueRecordIdentifier>12346BB</SchemeUniqueRecordIdentifier>
+		<ErrorDescriptionList>
+			<ErrorDescription>Sent to wrong authority</ErrorDescription>
+		</ErrorDescriptionList>
+	</BuildingRecordError>
+</BuildingRecordErrorSetResponse>

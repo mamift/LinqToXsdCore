@@ -1,0 +1,3675 @@
+<ControlledList ItemName="PropertyType" ListName="Fire Incident Property Types List" VersionDate="2007-03-16" HomeLocation="" LatestVersionLocation="" Version="1.0" xsi:schemaLocation="http://www.esd.org.uk/standards http://www.esd.org.uk/standards/xmlschemas/taxonomy-v3.0.xsd" xmlns="http://www.esd.org.uk/standards" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fire="http://www.fire.gov.uk/schemas" xmlns:mos="urn:schemas-microsoft-com:office:spreadsheet">
+	<Metadata>
+		<Audience>e-service developers</Audience>
+		<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+		<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+		<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+		<Date>2007-04-30</Date>
+		<Date.Created>2005-08-15</Date.Created>
+		<Date.Modified>2007-08-09</Date.Modified>
+		<Description>Fire and Rescue Statistics - Incident Recording System (IRS) Taxonomy/Hierarch File for Property Types</Description>
+		<Format>text/xml</Format>
+		<Format.Medium>http://www.w3.org/2001/XMLSchema XML schema, W3C Recommendation 2001</Format.Medium>
+		<Identifier>FRSIncident-PropertyTypeTaxonomy-v1-0</Identifier>
+		<Language>[ISO 639-2/B] ENG</Language>
+		<Publisher>HM Government</Publisher>
+		<Relation.Requires>taxonomy-v3-0</Relation.Requires>
+		<Rights>Unclassified</Rights>
+		<Rights.Copyright>Crown Copyright 2007</Rights.Copyright>
+		<Subject.Category>Response</Subject.Category>
+		<Subject.Project>Fire and Rescue Statistics - Incident Recording System</Subject.Project>
+		<Title>Fire and Rescue Statistics - Incident Recording System Taxonomy/Hierarch File for Property Types</Title>
+	</Metadata>
+	<Item Preferred="true" LastUpdatedInVersion="1.0" AddedInVersion="1.0" Obsolete="false" ConceptId="0" Id="0">
+		<Name>Property</Name>
+		<ScopeNotes>Base item for all property types</ScopeNotes>
+	</Item>
+	<Item Id="1000" ConceptId="1000" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Building</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Property</BroaderItem>
+	</Item>
+	<Item Id="2000" ConceptId="2000" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Dwelling</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1000" ConceptId="1000">Building</BroaderItem>
+	</Item>
+	<Item Id="1" ConceptId="1" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>House - single occupancy</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="2" ConceptId="2" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bungalow - single occupancy</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="3000" ConceptId="3000" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Purpose Built Flat/Maisonette - single occupancy</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="10" ConceptId="10" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Up to 3 storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3000" ConceptId="3000">Purpose Built Flat/Maisonette - single occupancy</BroaderItem>
+	</Item>
+	<Item Id="11" ConceptId="11" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>4 to 9 storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3000" ConceptId="3000">Purpose Built Flat/Maisonette - single occupancy</BroaderItem>
+	</Item>
+	<Item Id="12" ConceptId="12" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>10 or more storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3000" ConceptId="3000">Purpose Built Flat/Maisonette - single occupancy</BroaderItem>
+	</Item>
+	<Item Id="3010" ConceptId="3010" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Converted Flat/Maisonette - single occupancy</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="20" ConceptId="20" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Up to 2 storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3010" ConceptId="3010">Converted Flat/Maisonette - single occupancy</BroaderItem>
+	</Item>
+	<Item Id="21" ConceptId="21" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>3 or more storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3010" ConceptId="3010">Converted Flat/Maisonette - single occupancy</BroaderItem>
+	</Item>
+	<Item Id="3020" ConceptId="3020" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Licensed HMO</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="30" ConceptId="30" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Up to 2 storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3020" ConceptId="3020">Licensed HMO</BroaderItem>
+	</Item>
+	<Item Id="31" ConceptId="31" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>3 or more storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3020" ConceptId="3020">Licensed HMO</BroaderItem>
+	</Item>
+	<Item Id="3030" ConceptId="3030" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Unlicensed HMO</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="40" ConceptId="40" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Up to 2 storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3030" ConceptId="3030">Unlicensed HMO</BroaderItem>
+	</Item>
+	<Item Id="41" ConceptId="41" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>3 or more storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3030" ConceptId="3030">Unlicensed HMO</BroaderItem>
+	</Item>
+	<Item Id="3040" ConceptId="3040" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Unknown if licensed HMO</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="50" ConceptId="50" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Up to 2 storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3040" ConceptId="3040">Unknown if licensed HMO</BroaderItem>
+	</Item>
+	<Item Id="51" ConceptId="51" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>3 or more storeys</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3040" ConceptId="3040">Unknown if licensed HMO</BroaderItem>
+	</Item>
+	<Item Id="52" ConceptId="52" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Self contained Sheltered Housing</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="53" ConceptId="53" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>caravan/mobile home (permanent dwelling)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="54" ConceptId="54" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Houseboat (permanent dwelling)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="55" ConceptId="55" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tenement Building</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="56" ConceptId="56" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other Dwelling</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2000" ConceptId="2000">Dwelling</BroaderItem>
+	</Item>
+	<Item Id="2010" ConceptId="2010" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other Residential</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1000" ConceptId="1000">Building</BroaderItem>
+	</Item>
+	<Item Id="60" ConceptId="60" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hotel/motel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="61" ConceptId="61" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Boarding House/B&amp;B for homeless/asylum seekers</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="62" ConceptId="62" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Boarding House/B&amp;B other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="63" ConceptId="63" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Youth hostel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="64" ConceptId="64" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Caravan site - in caravan/camper van</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="65" ConceptId="65" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other holiday residence (cottage, flat, chalet)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="66" ConceptId="66" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hostel (e.g. for homeless people)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="67" ConceptId="67" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Sheltered Housing – not self contained</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="3100" ConceptId="3100" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Residential Home </Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="70" ConceptId="70" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Children's</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3100" ConceptId="3100">Residential Home </BroaderItem>
+	</Item>
+	<Item Id="71" ConceptId="71" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Nursing/Care</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3100" ConceptId="3100">Residential Home </BroaderItem>
+	</Item>
+	<Item Id="72" ConceptId="72" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Retirement</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3100" ConceptId="3100">Residential Home </BroaderItem>
+	</Item>
+	<Item Id="73" ConceptId="73" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Student Hall of Residence</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="74" ConceptId="74" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Boarding School accommodation</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="75" ConceptId="75" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Nurses'/Doctors' accommodation</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="76" ConceptId="76" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Militray/barracks</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="77" ConceptId="77" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Monastery/convent</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="78" ConceptId="78" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other Residential Home</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OtherResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2010" ConceptId="2010">Other Residential</BroaderItem>
+	</Item>
+	<Item Id="2020" ConceptId="2020" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Non Residential</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1000" ConceptId="1000">Building</BroaderItem>
+	</Item>
+	<Item Id="3110" ConceptId="3110" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Offices and call centres</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="80" ConceptId="80" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Purpose built office</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3110" ConceptId="3110">Offices and call centres</BroaderItem>
+	</Item>
+	<Item Id="81" ConceptId="81" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Temporary office (eg portacabin)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3110" ConceptId="3110">Offices and call centres</BroaderItem>
+	</Item>
+	<Item Id="82" ConceptId="82" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Converted office</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3110" ConceptId="3110">Offices and call centres</BroaderItem>
+	</Item>
+	<Item Id="83" ConceptId="83" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Call Centre</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3110" ConceptId="3110">Offices and call centres</BroaderItem>
+	</Item>
+	<Item Id="84" ConceptId="84" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>TV/film/music/art studio</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3110" ConceptId="3110">Offices and call centres</BroaderItem>
+	</Item>
+	<Item Id="85" ConceptId="85" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3110" ConceptId="3110">Offices and call centres</BroaderItem>
+	</Item>
+	<Item Id="3120" ConceptId="3120" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Retail</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="90" ConceptId="90" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Single shop</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="91" ConceptId="91" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Post office (purpose built)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="92" ConceptId="92" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Post office (within other shop/premises)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="93" ConceptId="93" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Shopping Centre</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="94" ConceptId="94" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>DIY Warehouse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="95" ConceptId="95" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Electrical warehouse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="96" ConceptId="96" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Furniture warehouse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="97" ConceptId="97" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other retail warehouse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="98" ConceptId="98" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Large supermarket</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="99" ConceptId="99" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Department Store</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="100" ConceptId="100" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Laundrette</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="101" ConceptId="101" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hairdresser</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="102" ConceptId="102" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Indoor Market</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="103" ConceptId="103" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Vehicle sales</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="104" ConceptId="104" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Petrol station</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="105" ConceptId="105" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bank/Building Society</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="106" ConceptId="106" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Travel Agent</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="107" ConceptId="107" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Estate Agent</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="108" ConceptId="108" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other retail </Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3120" ConceptId="3120">Retail</BroaderItem>
+	</Item>
+	<Item Id="120" ConceptId="120" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Laboratory/research Establishment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="3130" ConceptId="3130" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Industrial Processing</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="130" ConceptId="130" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Animal products</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3130" ConceptId="3130">Industrial Processing</BroaderItem>
+	</Item>
+	<Item Id="131" ConceptId="131" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Chemicals</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3130" ConceptId="3130">Industrial Processing</BroaderItem>
+	</Item>
+	<Item Id="132" ConceptId="132" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Oil refinery</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3130" ConceptId="3130">Industrial Processing</BroaderItem>
+	</Item>
+	<Item Id="133" ConceptId="133" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Recycling</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3130" ConceptId="3130">Industrial Processing</BroaderItem>
+	</Item>
+	<Item Id="134" ConceptId="134" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3130" ConceptId="3130">Industrial Processing</BroaderItem>
+	</Item>
+	<Item Id="3140" ConceptId="3140" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Industrial Manufacturing</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="140" ConceptId="140" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Factory</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3140" ConceptId="3140">Industrial Manufacturing</BroaderItem>
+	</Item>
+	<Item Id="141" ConceptId="141" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Mill</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3140" ConceptId="3140">Industrial Manufacturing</BroaderItem>
+	</Item>
+	<Item Id="142" ConceptId="142" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Engineering</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3140" ConceptId="3140">Industrial Manufacturing</BroaderItem>
+	</Item>
+	<Item Id="143" ConceptId="143" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Assembly</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3140" ConceptId="3140">Industrial Manufacturing</BroaderItem>
+	</Item>
+	<Item Id="144" ConceptId="144" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Printing</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3140" ConceptId="3140">Industrial Manufacturing</BroaderItem>
+	</Item>
+	<Item Id="145" ConceptId="145" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3140" ConceptId="3140">Industrial Manufacturing</BroaderItem>
+	</Item>
+	<Item Id="3150" ConceptId="3150" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Public Utilities</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="150" ConceptId="150" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Gas works</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3150" ConceptId="3150">Public Utilities</BroaderItem>
+	</Item>
+	<Item Id="151" ConceptId="151" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Sewage works</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3150" ConceptId="3150">Public Utilities</BroaderItem>
+	</Item>
+	<Item Id="152" ConceptId="152" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Electricity power station</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3150" ConceptId="3150">Public Utilities</BroaderItem>
+	</Item>
+	<Item Id="153" ConceptId="153" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Water works</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3150" ConceptId="3150">Public Utilities</BroaderItem>
+	</Item>
+	<Item Id="154" ConceptId="154" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3150" ConceptId="3150">Public Utilities</BroaderItem>
+	</Item>
+	<Item Id="160" ConceptId="160" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Vehicle Repair</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="3160" ConceptId="3160" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Warehouses and bulk storage</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="170" ConceptId="170" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Warehouse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3160" ConceptId="3160">Warehouses and bulk storage</BroaderItem>
+	</Item>
+	<Item Id="171" ConceptId="171" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Oil</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3160" ConceptId="3160">Warehouses and bulk storage</BroaderItem>
+	</Item>
+	<Item Id="172" ConceptId="172" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Gas</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3160" ConceptId="3160">Warehouses and bulk storage</BroaderItem>
+	</Item>
+	<Item Id="173" ConceptId="173" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Waste</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3160" ConceptId="3160">Warehouses and bulk storage</BroaderItem>
+	</Item>
+	<Item Id="174" ConceptId="174" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hazardous materials</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3160" ConceptId="3160">Warehouses and bulk storage</BroaderItem>
+	</Item>
+	<Item Id="175" ConceptId="175" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3160" ConceptId="3160">Warehouses and bulk storage</BroaderItem>
+	</Item>
+	<Item Id="3170" ConceptId="3170" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Animal boarding/breeding/kennels (not farm)</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="180" ConceptId="180" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>cats</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3170" ConceptId="3170">Animal boarding/breeding/kennels (not farm)</BroaderItem>
+	</Item>
+	<Item Id="181" ConceptId="181" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>dogs</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3170" ConceptId="3170">Animal boarding/breeding/kennels (not farm)</BroaderItem>
+	</Item>
+	<Item Id="182" ConceptId="182" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3170" ConceptId="3170">Animal boarding/breeding/kennels (not farm)</BroaderItem>
+	</Item>
+	<Item Id="3180" ConceptId="3180" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Car Parks</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="190" ConceptId="190" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Underground</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3180" ConceptId="3180">Car Parks</BroaderItem>
+	</Item>
+	<Item Id="191" ConceptId="191" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Multi-Storey</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3180" ConceptId="3180">Car Parks</BroaderItem>
+	</Item>
+	<Item Id="192" ConceptId="192" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3180" ConceptId="3180">Car Parks</BroaderItem>
+	</Item>
+	<Item Id="3190" ConceptId="3190" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Education</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="200" ConceptId="200" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Pre School/nursery</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3190" ConceptId="3190">Education</BroaderItem>
+	</Item>
+	<Item Id="201" ConceptId="201" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>infant/primary school</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3190" ConceptId="3190">Education</BroaderItem>
+	</Item>
+	<Item Id="202" ConceptId="202" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>secondary school</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3190" ConceptId="3190">Education</BroaderItem>
+	</Item>
+	<Item Id="203" ConceptId="203" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>College/University</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3190" ConceptId="3190">Education</BroaderItem>
+	</Item>
+	<Item Id="204" ConceptId="204" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3190" ConceptId="3190">Education</BroaderItem>
+	</Item>
+	<Item Id="3200" ConceptId="3200" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Food and Drink</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="210" ConceptId="210" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Pub/wine bar/bar</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3200" ConceptId="3200">Food and Drink</BroaderItem>
+	</Item>
+	<Item Id="211" ConceptId="211" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Takeaway, fast food</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3200" ConceptId="3200">Food and Drink</BroaderItem>
+	</Item>
+	<Item Id="212" ConceptId="212" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other Restaurant/café</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3200" ConceptId="3200">Food and Drink</BroaderItem>
+	</Item>
+	<Item Id="3210" ConceptId="3210" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Entertainment and culture</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="220" ConceptId="220" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cinema</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="221" ConceptId="221" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Theatre</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="222" ConceptId="222" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Club/night club</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="223" ConceptId="223" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Sports/Social club</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="224" ConceptId="224" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Theme Park</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="225" ConceptId="225" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bingo Hall</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="226" ConceptId="226" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Casino</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="227" ConceptId="227" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Concert Hall</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="228" ConceptId="228" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Zoo</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="229" ConceptId="229" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Library</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="230" ConceptId="230" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Museum</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="231" ConceptId="231" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Art Gallery</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="232" ConceptId="232" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Exhibition Centre</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="233" ConceptId="233" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Community centre/Hall</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="234" ConceptId="234" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Conference Centre</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="235" ConceptId="235" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Health Centre</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="236" ConceptId="236" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other entertainment venue</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="237" ConceptId="237" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other cultural venue</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3210" ConceptId="3210">Entertainment and culture</BroaderItem>
+	</Item>
+	<Item Id="3220" ConceptId="3220" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hospitals and medical care</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="240" ConceptId="240" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Hospital</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3220" ConceptId="3220">Hospitals and medical care</BroaderItem>
+	</Item>
+	<Item Id="241" ConceptId="241" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other (including surgery)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3220" ConceptId="3220">Hospitals and medical care</BroaderItem>
+	</Item>
+	<Item Id="3230" ConceptId="3230" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Sporting venues</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="250" ConceptId="250" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Football stadium</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="251" ConceptId="251" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Rugby Stadium</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="252" ConceptId="252" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Athletics Stadium</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="253" ConceptId="253" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cricket ground</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="254" ConceptId="254" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tennis Courts</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="255" ConceptId="255" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Greyhound stadium</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="256" ConceptId="256" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Racecourse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="257" ConceptId="257" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Motor racing circuit</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="258" ConceptId="258" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other outdoor sporting venue</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="259" ConceptId="259" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Leisure Centre</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="260" ConceptId="260" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Gym</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="261" ConceptId="261" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Sports Hall</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="262" ConceptId="262" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Indoor stadium</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="263" ConceptId="263" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Swimming Pool</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="264" ConceptId="264" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Ice rink</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="265" ConceptId="265" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other indoor sporting venue</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3230" ConceptId="3230">Sporting venues</BroaderItem>
+	</Item>
+	<Item Id="270" ConceptId="270" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Sports pavilion/shower block/changing facility</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="271" ConceptId="271" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Private garage</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="272" ConceptId="272" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Private Garden Shed</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="273" ConceptId="273" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Private Summer house</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="274" ConceptId="274" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Private greenhouse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="275" ConceptId="275" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other private non-residential building</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="3240" ConceptId="3240" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Public admin, security and safety</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="280" ConceptId="280" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Town Hall</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="281" ConceptId="281" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Law Courts</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="282" ConceptId="282" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Local Government Office (open to public)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="283" ConceptId="283" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Central Government Office (open to public)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="284" ConceptId="284" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Police station</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="285" ConceptId="285" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fire station</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="286" ConceptId="286" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Ambulance station</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="287" ConceptId="287" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Prison</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="288" ConceptId="288" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Young offenders unit</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="289" ConceptId="289" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other public buildings</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3240" ConceptId="3240">Public admin, security and safety</BroaderItem>
+	</Item>
+	<Item Id="3250" ConceptId="3250" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Religious</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="300" ConceptId="300" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cathedral</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3250" ConceptId="3250">Religious</BroaderItem>
+	</Item>
+	<Item Id="301" ConceptId="301" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Church/Chapel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3250" ConceptId="3250">Religious</BroaderItem>
+	</Item>
+	<Item Id="302" ConceptId="302" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Mosque</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3250" ConceptId="3250">Religious</BroaderItem>
+	</Item>
+	<Item Id="303" ConceptId="303" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Temple</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3250" ConceptId="3250">Religious</BroaderItem>
+	</Item>
+	<Item Id="304" ConceptId="304" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Synagogue</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3250" ConceptId="3250">Religious</BroaderItem>
+	</Item>
+	<Item Id="305" ConceptId="305" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3250" ConceptId="3250">Religious</BroaderItem>
+	</Item>
+	<Item Id="3260" ConceptId="3260" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Permanent Agricultural</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="310" ConceptId="310" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Barn</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="311" ConceptId="311" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Greenhouse (commercial) glass</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="312" ConceptId="312" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Greenhouse (commercial) polytunnel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="313" ConceptId="313" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Intensive Farming Sheds (chickens, pigs etc)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="314" ConceptId="314" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Milking Parlour</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="315" ConceptId="315" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tractor Shed</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="316" ConceptId="316" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other building</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="317" ConceptId="317" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Silo</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3260" ConceptId="3260">Permanent Agricultural</BroaderItem>
+	</Item>
+	<Item Id="3270" ConceptId="3270" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Transport buildings</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="320" ConceptId="320" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Train station - platform (overground)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="321" ConceptId="321" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Train station - platform (underground)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="322" ConceptId="322" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Train station - concourse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="323" ConceptId="323" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Train station - elsewhere</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="324" ConceptId="324" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Trains - engine shed</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="325" ConceptId="325" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Trains - other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="326" ConceptId="326" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Airport - terminal</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="327" ConceptId="327" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Airport - hangar</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="328" ConceptId="328" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Airport - fuel storage</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="329" ConceptId="329" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Airport - elsewhere</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="330" ConceptId="330" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Docks</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="331" ConceptId="331" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Ferry terminal</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="332" ConceptId="332" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bus/coach station/garage</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="333" ConceptId="333" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other transport building</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="3270" ConceptId="3270">Transport buildings</BroaderItem>
+	</Item>
+	<Item Id="334" ConceptId="334" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Mines and quarries</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="335" ConceptId="335" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Public toilets</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="336" ConceptId="336" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other buildings/use not known</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>NonResidential</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2020" ConceptId="2020">Non Residential</BroaderItem>
+	</Item>
+	<Item Id="1010" ConceptId="1010" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Road Vehicle</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Property</BroaderItem>
+	</Item>
+	<Item Id="350" ConceptId="350" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Multiple Vehicles</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="340" ConceptId="340" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Car</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="341" ConceptId="341" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Van</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="342" ConceptId="342" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Motor Home</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="343" ConceptId="343" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Agricultural</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="344" ConceptId="344" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Motorcycle</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="345" ConceptId="345" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Lorry/HGV</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="346" ConceptId="346" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tanker</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="347" ConceptId="347" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bus/coach</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="348" ConceptId="348" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Minibus</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="349" ConceptId="349" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Caravan on tow</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="351" ConceptId="351" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RoadVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1010" ConceptId="1010">Road Vehicle</BroaderItem>
+	</Item>
+	<Item Id="1020" ConceptId="1020" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other transport vehicle</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Property</BroaderItem>
+	</Item>
+	<Item Id="2030" ConceptId="2030" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Trains</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1020" ConceptId="1020">Other transport vehicle</BroaderItem>
+	</Item>
+	<Item Id="360" ConceptId="360" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Passenger Train (above ground)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RailVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2030" ConceptId="2030">Trains</BroaderItem>
+	</Item>
+	<Item Id="361" ConceptId="361" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Freight Train</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RailVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2030" ConceptId="2030">Trains</BroaderItem>
+	</Item>
+	<Item Id="362" ConceptId="362" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tram</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RailVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2030" ConceptId="2030">Trains</BroaderItem>
+	</Item>
+	<Item Id="363" ConceptId="363" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Underground train – London system</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RailVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2030" ConceptId="2030">Trains</BroaderItem>
+	</Item>
+	<Item Id="364" ConceptId="364" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Underground train – Other system</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>RailVehicle</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2030" ConceptId="2030">Trains</BroaderItem>
+	</Item>
+	<Item Id="2040" ConceptId="2040" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Aircraft</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1020" ConceptId="1020">Other transport vehicle</BroaderItem>
+	</Item>
+	<Item Id="370" ConceptId="370" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Passenger plane</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Aircraft</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Aircraft</BroaderItem>
+	</Item>
+	<Item Id="371" ConceptId="371" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Light aircraft</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Aircraft</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Aircraft</BroaderItem>
+	</Item>
+	<Item Id="372" ConceptId="372" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Helicopter</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Aircraft</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Aircraft</BroaderItem>
+	</Item>
+	<Item Id="373" ConceptId="373" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Freight plane</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Aircraft</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Aircraft</BroaderItem>
+	</Item>
+	<Item Id="374" ConceptId="374" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Military plane</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Aircraft</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Aircraft</BroaderItem>
+	</Item>
+	<Item Id="375" ConceptId="375" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Military helicopter</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Aircraft</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Aircraft</BroaderItem>
+	</Item>
+	<Item Id="376" ConceptId="376" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Aircraft</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2040" ConceptId="2040">Aircraft</BroaderItem>
+	</Item>
+	<Item Id="2050" ConceptId="2050" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Boats</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1020" ConceptId="1020">Other transport vehicle</BroaderItem>
+	</Item>
+	<Item Id="380" ConceptId="380" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Barge</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="381" ConceptId="381" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Fishing boat</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="382" ConceptId="382" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Large passenger vessel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="383" ConceptId="383" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Motor yacht</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="384" ConceptId="384" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tanker</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="385" ConceptId="385" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other merchant vessel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="386" ConceptId="386" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Naval vessel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="387" ConceptId="387" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other vessel</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Boat</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2050" ConceptId="2050">Boats</BroaderItem>
+	</Item>
+	<Item Id="1030" ConceptId="1030" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Outdoor</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Property</BroaderItem>
+	</Item>
+	<Item Id="2060" ConceptId="2060" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Grassland, woodland and crops</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1030" ConceptId="1030">Outdoor</BroaderItem>
+	</Item>
+	<Item Id="390" ConceptId="390" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Standing crop</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="391" ConceptId="391" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Stacked/baled crop</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="392" ConceptId="392" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Woodland/forest - conifers/softwood</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="393" ConceptId="393" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Woodland/forest - broadleaf/hardwood</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="394" ConceptId="394" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tree scrub</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="395" ConceptId="395" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Straw/stubble burning</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="396" ConceptId="396" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Domestic garden (vegetation not equipment)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="397" ConceptId="397" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Nurseries, market garden</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="398" ConceptId="398" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Heathland or moorland</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="399" ConceptId="399" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Grassland, pasture, grazing etc</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="400" ConceptId="400" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Scrub land</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="401" ConceptId="401" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railway trackside vegetation</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="402" ConceptId="402" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Roadside vegetation</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="403" ConceptId="403" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Canal/riverbank vegetation</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2060" ConceptId="2060">Grassland, woodland and crops</BroaderItem>
+	</Item>
+	<Item Id="2070" ConceptId="2070" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Outdoor structures</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1030" ConceptId="1030">Outdoor</BroaderItem>
+	</Item>
+	<Item Id="410" ConceptId="410" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Refuse/rubbish tip</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="411" ConceptId="411" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Small refuse/rubbish container (eg wheelie bin)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="426" ConceptId="426" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Large refuse/rubbish container (eg skip)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="412" ConceptId="412" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Post box</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="413" ConceptId="413" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Telephone box</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="414" ConceptId="414" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Kiosk</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="415" ConceptId="415" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other outdoor structures</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="416" ConceptId="416" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Tunnel, subway</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="417" ConceptId="417" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Bridge</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="418" ConceptId="418" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railway goods yard</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="419" ConceptId="419" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Shelter</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="420" ConceptId="420" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Camping tent</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="421" ConceptId="421" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other tent/marquee</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>yes</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="422" ConceptId="422" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Roadside furniture (eg lamp posts, road signs, telegraph poles, speed cameras)</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="423" ConceptId="423" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railings</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="424" ConceptId="424" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Outdoor storage</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="425" ConceptId="425" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Recycling collection point, bottle bank</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2070" ConceptId="2070">Outdoor structures</BroaderItem>
+	</Item>
+	<Item Id="2080" ConceptId="2080" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Outdoor equipment and machinery</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1030" ConceptId="1030">Outdoor</BroaderItem>
+	</Item>
+	<Item Id="430" ConceptId="430" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Garden equipment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2080" ConceptId="2080">Outdoor equipment and machinery</BroaderItem>
+	</Item>
+	<Item Id="431" ConceptId="431" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Agricultural equipment</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2080" ConceptId="2080">Outdoor equipment and machinery</BroaderItem>
+	</Item>
+	<Item Id="432" ConceptId="432" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Pipes and drains</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2080" ConceptId="2080">Outdoor equipment and machinery</BroaderItem>
+	</Item>
+	<Item Id="433" ConceptId="433" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cables</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2080" ConceptId="2080">Outdoor equipment and machinery</BroaderItem>
+	</Item>
+	<Item Id="434" ConceptId="434" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Barbeque</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2080" ConceptId="2080">Outdoor equipment and machinery</BroaderItem>
+	</Item>
+	<Item Id="435" ConceptId="435" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other outdoor equipment/machinery</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>OutdoorStructure</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2080" ConceptId="2080">Outdoor equipment and machinery</BroaderItem>
+	</Item>
+	<Item Id="2090" ConceptId="2090" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other outdoors (including land)</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="1030" ConceptId="1030">Outdoor</BroaderItem>
+	</Item>
+	<Item Id="440" ConceptId="440" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Loose refuse</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="442" ConceptId="442" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>River/canal</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="443" ConceptId="443" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Lake/pond/reservoir</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="444" ConceptId="444" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Sea</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="445" ConceptId="445" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Road surface/pavement</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="446" ConceptId="446" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Railway</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="447" ConceptId="447" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Airfield/runway</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="448" ConceptId="448" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cycle path/public footpath/bridleway</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="449" ConceptId="449" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Cemetery</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="450" ConceptId="450" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Park</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="451" ConceptId="451" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Beach</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="452" ConceptId="452" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Landfill site</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="453" ConceptId="453" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Wasteland</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="454" ConceptId="454" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Other outdoor location</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>yes</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="455" ConceptId="455" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Mines and quarries</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Outdoor</fire:PropertyCategory>
+				<fire:IsPrimaryFire>yes</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="2090" ConceptId="2090">Other outdoors (including land)</BroaderItem>
+	</Item>
+	<Item Id="1040" ConceptId="1040" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>Not known</Name>
+		<ScopeNotes></ScopeNotes>
+		<BroaderItem Id="0" ConceptId="0">Property</BroaderItem>
+	</Item>
+	<Item Id="9999" ConceptId="9999" AddedInVersion="1.0" LastUpdatedInVersion="1.0" Obsolete="false" Preferred="true">
+		<Name>False Alarm - Property not found</Name>
+		<ScopeNotes></ScopeNotes>
+		<Attributes>
+			<fire:PropertyTypeDetails>
+				<fire:PropertyCategory>Dwelling</fire:PropertyCategory>
+				<fire:IsPrimaryFire>no</fire:IsPrimaryFire>
+				<fire:Other>no</fire:Other>
+				<fire:IsPropertyRegulated>no</fire:IsPropertyRegulated>
+			</fire:PropertyTypeDetails>
+		</Attributes>
+		<BroaderItem Id="1040" ConceptId="1040">Not known</BroaderItem>
+	</Item>
+</ControlledList>

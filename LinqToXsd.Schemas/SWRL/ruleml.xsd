@@ -1,0 +1,61 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml" 
+    xmlns:swrlx="http://www.w3.org/2003/11/swrlx" 
+    xmlns:ruleml="http://www.w3.org/2003/11/ruleml" 
+    targetNamespace="http://www.w3.org/2003/11/ruleml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <!-- compatible subset of RuleML 0.85 -->
+  <!-- see also http://www.ruleml.org -->
+
+  <xsd:import namespace="http://www.w3.org/2003/11/swrlx"
+              schemaLocation="swrlx.xsd" />
+
+  <xsd:import namespace="http://www.w3.org/2003/05/owl-xml"
+              schemaLocation="owl1-dl.xsd" />
+
+  <xsd:element name="var" type="xsd:string" />
+
+  <xsd:element name="imp">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <xsd:element ref="ruleml:_rlab" />
+        </xsd:sequence>
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+          <xsd:element ref="owlx:Annotation" />
+        </xsd:sequence>
+        <xsd:element ref="ruleml:_body" />  <!-- xsd:any precludes multiple owlx:Annotations -->
+        <xsd:element ref="ruleml:_head" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="_head">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="0" maxOccurs="unbounded">  <!-- RuleML 0.85 only allows single atom in head -->
+        <xsd:group ref="swrlx:atom" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="_body">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+        <xsd:group ref="swrlx:atom" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="_rlab">
+    <xsd:complexType>
+      <xsd:attribute name="href" type="ruleml:RuleName" use="required" />
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:simpleType name="RuleName">
+    <xsd:restriction base="xsd:anyURI" />
+  </xsd:simpleType>
+
+</xsd:schema>

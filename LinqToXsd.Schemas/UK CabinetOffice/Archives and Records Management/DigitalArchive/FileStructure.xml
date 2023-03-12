@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Mark Evans (Tessella Support Services) -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" 
+                      xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                      xmlns="http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession" 
+                      elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>Metadata according to e-GMS XML Schema Metadata v0.4</xsd:documentation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Contributor>Tessella Support Services plc  http://www.tessella.com</Contributor>
+				<Contributor>Public Reocd Office http://www.pro.gov.uk</Contributor>
+				<Date>
+					<Created>2003-01-14</Created>
+				</Date>
+				<Date>
+					<Modified>2003-03-04</Modified>
+				</Date>
+				<Description>Schema for Digital Archive file structure</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.govtalk.gov.uk/PRO/ARCv1.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Relation>
+					<Requires>GMSelement structure</Requires>
+				</Relation>
+				<Rights>unclassified
+				<Copyright>Crown copyright 2002</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Government, public records </Category>
+				</Subject>
+				<Subject>
+					<Project>Digital Archive</Project>
+				</Subject>
+				<Title>File metadata schema</Title>
+				<Type>metadata</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<!--																			-->
+	<!-- Modification History 														-->
+	<!--    Date               User	              Modification 								-->
+	<!--   =========== ==========  ==================================== -->
+	<!--   14/01/2003     EVAM	       Created										-->
+	<!--   15/01/2003	    EVAM		Re-arranged pre metadata elements. Added Status element -->
+	<!--	  17/01/2003    EVAM	 	Changed imported schemas to include schemas to remove namespace prefix -->
+	<!--	  20/01/2003    EVAM		Added Hash type attribute to element FileHash -->
+	<!--	  29/01/2003    EVAM    		Added FileType element: This is the PRONOM file identifier -->
+	<!--   11/02/2003    EVAM		Removed FileType element					-->
+	<!--   12/02/2003    EVAM 		Added Archive location as optional element    -->
+	<!--								Removed FileHash element					-->
+	<!--								PositiveInteger types changed to Integer types-->
+	<!--   04/03/2003    EVAM		Changed namespace to http://www.govtalk.gov.uk/nationalarchives/DigitalArchive/accession -->
+	<!--																			-->
+	<xsd:include schemaLocation="GMSelement.xsd"/>
+	<!--File Structure-->
+	<xsd:complexType name="FileStructure">
+		<xsd:sequence>
+			<xsd:element name="FileStatus" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="N"/>
+						<xsd:enumeration value="M"/>
+						<xsd:enumeration value="U"/>
+						<xsd:enumeration value="D"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FileIdentifier" type="xsd:integer"/>
+			<xsd:element name="FileName" type="xsd:string"/>
+			<xsd:element name="FilePath" type="xsd:string"/>
+			<xsd:element name="ArchiveLocation" minOccurs="0">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="Type" type="xsd:string" use="required"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Manifestation" type="xsd:string"/>
+			<xsd:element name="Metadata" type="MetadataStructure"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--Schema definition-->
+	<xsd:element name="FileList">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="File" type="FileStructure" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

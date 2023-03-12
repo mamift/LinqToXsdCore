@@ -1,0 +1,1860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" targetNamespace="http://www.fire.gov.uk/schemas" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FireTypes-v1-0">
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v2-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="bs7666-v2-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-08-10</Modified>
+				</Date>
+				<Description>Fire and Rescue Services - common fire types</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FireTypes-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>AddressTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>BS7666-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Safety</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Services - common fire types</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType name="DateTime">
+		<xs:annotation>
+			<xs:documentation>Date Time restricted to ensure valid range for Microsoft platform.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime">
+			<xs:minInclusive value="1753-01-01T00:00:00.000"/>
+			<xs:maxInclusive value="9999-12-31T23:59:59.997"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StationIdType">
+		<xs:annotation>
+			<xs:documentation>The unique identifier for a FRS Station.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="5"/>
+			<xs:pattern value="F[A-Z]{2}[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VehicleCallsignType">
+		<xs:annotation>
+			<xs:documentation>The unique identifier for a fire appliance (vehicle).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="7"/>
+			<xs:pattern value="F[A-Z]{2}[0-9]{2}[A-Z]{1}[0-9]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OperationalStaffCallsignType">
+		<xs:annotation>
+			<xs:documentation>The unique identifier for operationsl staff</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="7"/>
+			<xs:pattern value="F[A-Z]{2}[A-M,O-Z]{1}[0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EquipmentCallsignType">
+		<xs:annotation>
+			<xs:documentation>The unique identifier for a piece of equipment</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="7"/>
+			<xs:pattern value="F[A-Z]{2}N[0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FRScallsignType">
+		<xs:annotation>
+			<xs:documentation>The unique identifier for a FRS resource.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StringRestrictedMixedType">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="VehicleTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends VehicleTypeType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="VehicleTypeType">
+				<xs:attributeGroup ref="OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="VehicleTypeType">
+		<xs:annotation>
+			<xs:documentation>Defines the enumeration values for the possible types of vehicles</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:enumeration value="ATL">
+				<xs:annotation>
+					<xs:documentation>Turntable ladder</xs:documentation>
+					<xs:appinfo>
+						<Category id="Aerial"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AHP">
+				<xs:annotation>
+					<xs:documentation>Hydraulic platform</xs:documentation>
+					<xs:appinfo>
+						<Category id="Aerial"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALP">
+				<xs:annotation>
+					<xs:documentation>Aerial ladder platform</xs:documentation>
+					<xs:appinfo>
+						<Category id="Aerial"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AWT">
+				<xs:annotation>
+					<xs:documentation>Water tower</xs:documentation>
+					<xs:appinfo>
+						<Category id="Aerial"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AA">
+				<xs:annotation>
+					<xs:documentation>Other aerial appliance</xs:documentation>
+					<xs:appinfo>
+						<Category id="Aerial"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BTF">
+				<xs:annotation>
+					<xs:documentation>Fire boat</xs:documentation>
+					<xs:appinfo>
+						<Category id="Boat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BTI">
+				<xs:annotation>
+					<xs:documentation>Inshore waters boat</xs:documentation>
+					<xs:appinfo>
+						<Category id="Boat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BTC">
+				<xs:annotation>
+					<xs:documentation>Coastal waters boat</xs:documentation>
+					<xs:appinfo>
+						<Category id="Boat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BTR">
+				<xs:annotation>
+					<xs:documentation>Rescue boat</xs:documentation>
+					<xs:appinfo>
+						<Category id="Boat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BTS">
+				<xs:annotation>
+					<xs:documentation>Safety boat</xs:documentation>
+					<xs:appinfo>
+						<Category id="Boat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BTT">
+				<xs:annotation>
+					<xs:documentation>Transport boat</xs:documentation>
+					<xs:appinfo>
+						<Category id="Boat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CCU">
+				<xs:annotation>
+					<xs:documentation>Control unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Command"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CFC">
+				<xs:annotation>
+					<xs:documentation>Forward control unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Command"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CSU">
+				<xs:annotation>
+					<xs:documentation>Command unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Command"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CS">
+				<xs:annotation>
+					<xs:documentation>Command support</xs:documentation>
+					<xs:appinfo>
+						<Category id="Command"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FIU">
+				<xs:annotation>
+					<xs:documentation>Fire investigation unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Fire Investigation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HHM">
+				<xs:annotation>
+					<xs:documentation>Hazardous materials unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Hazmat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HCU">
+				<xs:annotation>
+					<xs:documentation>Chemical unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Hazmat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HIR">
+				<xs:annotation>
+					<xs:documentation>Incident response unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Hazmat"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PPL">
+				<xs:annotation>
+					<xs:documentation>Pump / Pump ladder</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PWT">
+				<xs:annotation>
+					<xs:documentation>Water tender</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PWL">
+				<xs:annotation>
+					<xs:documentation>Water tender ladder</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HDP">
+				<xs:annotation>
+					<xs:documentation>Heavy duty pump</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PLT">
+				<xs:annotation>
+					<xs:documentation>L4T – 4 x 4  or other off road or specialist vehicle</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PSF">
+				<xs:annotation>
+					<xs:documentation>Small fires unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RRT">
+				<xs:annotation>
+					<xs:documentation>Rescue tender</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rescue"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RRU">
+				<xs:annotation>
+					<xs:documentation>Fire rescue unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rescue"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RUU">
+				<xs:annotation>
+					<xs:documentation>Urban search and rescue unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rescue"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RCV">
+				<xs:annotation>
+					<xs:documentation>Co-responder vehicle</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rescue"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RSV">
+				<xs:annotation>
+					<xs:documentation>Other specialist vehicle</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rescue"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SST">
+				<xs:annotation>
+					<xs:documentation>Salvage tender / Damage control unit</xs:documentation>
+					<xs:appinfo>
+						<Category id="Support"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SFT">
+				<xs:annotation>
+					<xs:documentation>Foam tender</xs:documentation>
+					<xs:appinfo>
+						<Category id="Support"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SBA">
+				<xs:annotation>
+					<xs:documentation>BA lorry / BA van</xs:documentation>
+					<xs:appinfo>
+						<Category id="Support"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SCV">
+				<xs:annotation>
+					<xs:documentation>Canteen van</xs:documentation>
+					<xs:appinfo>
+						<Category id="Support"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TGL">
+				<xs:annotation>
+					<xs:documentation>General purpose lorry</xs:documentation>
+					<xs:appinfo>
+						<Category id="Transport"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TGV">
+				<xs:annotation>
+					<xs:documentation>General purpose van</xs:documentation>
+					<xs:appinfo>
+						<Category id="Transport"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TC">
+				<xs:annotation>
+					<xs:documentation>Personnel carriers</xs:documentation>
+					<xs:appinfo>
+						<Category id="Transport"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TFF">
+				<xs:annotation>
+					<xs:documentation>4 x 4</xs:documentation>
+					<xs:appinfo>
+						<Category id="Transport"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TOC">
+				<xs:annotation>
+					<xs:documentation>Officer’s car</xs:documentation>
+					<xs:appinfo>
+						<Category id="Transport"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WHL">
+				<xs:annotation>
+					<xs:documentation>Hose layer</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Management"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WTK">
+				<xs:annotation>
+					<xs:documentation>Water carrier / Tanker</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Management"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<!--			<xs:enumeration value="TPT">
+				<xs:annotation>
+					<xs:documentation>Prime movers / Tractor units</xs:documentation>
+					<xs:appinfo>
+						<Category id="Transport"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration> -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EquipmentTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends EquipmentTypeType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="EquipmentTypeType">
+				<xs:attributeGroup ref="OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="EquipmentTypeType">
+		<xs:annotation>
+			<xs:documentation>Defines the set of acceptable values for the equipement type field</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Hosereel - high pressure</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Hosereel - low pressure</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Main line/jet</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Monitor - high pressure</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Monitor - low pressure</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Fire bucket</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Stirrup Pump</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Water Delivery"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Low expansion</xs:documentation>
+					<xs:appinfo>
+						<Category id="Foam"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Medium expansion</xs:documentation>
+					<xs:appinfo>
+						<Category id="Foam"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>High expansion</xs:documentation>
+					<xs:appinfo>
+						<Category id="Foam"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Foam"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Water</xs:documentation>
+					<xs:appinfo>
+						<Category id="Extinguisher"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>CO2</xs:documentation>
+					<xs:appinfo>
+						<Category id="Extinguisher"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Dry powder</xs:documentation>
+					<xs:appinfo>
+						<Category id="Extinguisher"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Extinguisher"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Active firefighting</xs:documentation>
+					<xs:appinfo>
+						<Category id="PPV"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Smoke clearance</xs:documentation>
+					<xs:appinfo>
+						<Category id="PPV"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Fire other</xs:documentation>
+					<xs:appinfo>
+						<Category id="PPV"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>CABA - standard duration</xs:documentation>
+					<xs:appinfo>
+						<Category id="RPE"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>CABA - extended duration</xs:documentation>
+					<xs:appinfo>
+						<Category id="RPE"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Oxygen BA</xs:documentation>
+					<xs:appinfo>
+						<Category id="RPE"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="RPE"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>13.5m</xs:documentation>
+					<xs:appinfo>
+						<Category id="Ladders"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>9/10.5m</xs:documentation>
+					<xs:appinfo>
+						<Category id="Ladders"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="42">
+				<xs:annotation>
+					<xs:documentation>Roof ladder</xs:documentation>
+					<xs:appinfo>
+						<Category id="Ladders"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="43">
+				<xs:annotation>
+					<xs:documentation>Short extension</xs:documentation>
+					<xs:appinfo>
+						<Category id="Ladders"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Triple/Short extension ladder</xs:documentation>
+					<xs:appinfo>
+						<Category id="Ladders"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Ladders"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Cutters / Spreaders</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="51">
+				<xs:annotation>
+					<xs:documentation>Combi tools</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Door opener</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="53">
+				<xs:annotation>
+					<xs:documentation>Rams</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="54">
+				<xs:annotation>
+					<xs:documentation>Air bags</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="55">
+				<xs:annotation>
+					<xs:documentation>Lifting &amp; animal harnesses, straps</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56">
+				<xs:annotation>
+					<xs:documentation>Winches</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="57">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lifting &amp; Hydraulic"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="60">
+				<xs:annotation>
+					<xs:documentation>Decontamination equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Decontamination Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>gas tight</xs:documentation>
+					<xs:appinfo>
+						<Category id="Chemical Protective Clothing"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="62">
+				<xs:annotation>
+					<xs:documentation>non-gas tight</xs:documentation>
+					<xs:appinfo>
+						<Category id="Chemical Protective Clothing"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="63">
+				<xs:annotation>
+					<xs:documentation>Line rescue</xs:documentation>
+					<xs:appinfo>
+						<Category id="Line rescue"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="64">
+				<xs:annotation>
+					<xs:documentation>Thermal imaging camera</xs:documentation>
+					<xs:appinfo>
+						<Category id="Detection/Location Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="65">
+				<xs:annotation>
+					<xs:documentation>Flexible cameras</xs:documentation>
+					<xs:appinfo>
+						<Category id="Detection/Location Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="66">
+				<xs:annotation>
+					<xs:documentation>DIM (ND)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Detection/Location Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="67">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Detection/Location Equipment"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="70">
+				<xs:annotation>
+					<xs:documentation>Defibrillator (AED)</xs:documentation>
+					<xs:appinfo>
+						<Category id="First aid"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="71">
+				<xs:annotation>
+					<xs:documentation>Oxygen</xs:documentation>
+					<xs:appinfo>
+						<Category id="First aid"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="72">
+				<xs:annotation>
+					<xs:documentation>Resuscitator</xs:documentation>
+					<xs:appinfo>
+						<Category id="First aid"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="58">
+				<xs:annotation>
+					<xs:documentation>Spinal board</xs:documentation>
+					<xs:appinfo>
+						<Category id="First aid"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="73">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="First aid"/>
+						<Other>yes</Other>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="74">
+				<xs:annotation>
+					<xs:documentation>Electric saws/sutters</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electric Saws/Cutters"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="75">
+				<xs:annotation>
+					<xs:documentation>Electric submersible pump</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="76">
+				<xs:annotation>
+					<xs:documentation>Portable pump</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="77">
+				<xs:annotation>
+					<xs:documentation>Vacuum, suction hose</xs:documentation>
+					<xs:appinfo>
+						<Category id="Pumping Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="78">
+				<xs:annotation>
+					<xs:documentation>Environment agency equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Environment Agency Equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="79">
+				<xs:annotation>
+					<xs:documentation>Axes/Hammers/Crowbars/Croppers</xs:documentation>
+					<xs:appinfo>
+						<Category id="Forcible Entry Tools"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="80">
+				<xs:annotation>
+					<xs:documentation>Lift keys</xs:documentation>
+					<xs:appinfo>
+						<Category id="Lift Keys"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="85">
+				<xs:annotation>
+					<xs:documentation>Fire beaters</xs:documentation>
+					<xs:appinfo>
+						<Category id="Wild fire"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="86">
+				<xs:annotation>
+					<xs:documentation>Rakes, shovels, mathooks</xs:documentation>
+					<xs:appinfo>
+						<Category id="Wild fire"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="87">
+				<xs:annotation>
+					<xs:documentation>Knapsacks</xs:documentation>
+					<xs:appinfo>
+						<Category id="Wild fire"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="88">
+				<xs:annotation>
+					<xs:documentation>Strategically located water tanks</xs:documentation>
+					<xs:appinfo>
+						<Category id="Wild fire"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="81">
+				<xs:annotation>
+					<xs:documentation>Mud/Rescue paths</xs:documentation>
+					<xs:appinfo>
+						<Category id="Mud/Rescue Paths"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="82">
+				<xs:annotation>
+					<xs:documentation>Shovels/Forks/Brooms/Chimney Rods</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small Tools"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="90">
+				<xs:annotation>
+					<xs:documentation>Fire investigation dog</xs:documentation>
+					<xs:appinfo>
+						<Category id="Fire investigation dog"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ContextDataStructure">
+		<xs:annotation>
+			<xs:documentation>This allows any data to be included relevant to the context of use.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##any" processContents="lax"/>
+	</xs:complexType>
+	<xs:simpleType name="FRSIdType">
+		<xs:annotation>
+			<xs:documentation>Id of FRS brigade - The restricted list of FRS Id's.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="AN">
+				<xs:annotation>
+					<xs:documentation>Northumberland</xs:documentation>
+					<xs:appinfo>
+						<Region name="North East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AT">
+				<xs:annotation>
+					<xs:documentation>Tyne and Wear</xs:documentation>
+					<xs:appinfo>
+						<Region name="North East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AD">
+				<xs:annotation>
+					<xs:documentation>Durham</xs:documentation>
+					<xs:appinfo>
+						<Region name="North East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AC">
+				<xs:annotation>
+					<xs:documentation>Cleveland</xs:documentation>
+					<xs:appinfo>
+						<Region name="North East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BC">
+				<xs:annotation>
+					<xs:documentation>Cumbria</xs:documentation>
+					<xs:appinfo>
+						<Region name="North West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BL">
+				<xs:annotation>
+					<xs:documentation>Lancashire</xs:documentation>
+					<xs:appinfo>
+						<Region name="North West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BG">
+				<xs:annotation>
+					<xs:documentation>Greater Manchester</xs:documentation>
+					<xs:appinfo>
+						<Region name="North West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BM">
+				<xs:annotation>
+					<xs:documentation>Merseyside</xs:documentation>
+					<xs:appinfo>
+						<Region name="North West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BE">
+				<xs:annotation>
+					<xs:documentation>Cheshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="North West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DN">
+				<xs:annotation>
+					<xs:documentation>North Yorkshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="Yorkshire and Humberside"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DW">
+				<xs:annotation>
+					<xs:documentation>West Yorkshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="Yorkshire and Humberside"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DS">
+				<xs:annotation>
+					<xs:documentation>South Yorkshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="Yorkshire and Humberside"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DH">
+				<xs:annotation>
+					<xs:documentation>Humberside</xs:documentation>
+					<xs:appinfo>
+						<Region name="Yorkshire and Humberside"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EC">
+				<xs:annotation>
+					<xs:documentation>Lincolnshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ET">
+				<xs:annotation>
+					<xs:documentation>Nottinghamshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ED">
+				<xs:annotation>
+					<xs:documentation>Derbyshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ES">
+				<xs:annotation>
+					<xs:documentation>Leicestershire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EM">
+				<xs:annotation>
+					<xs:documentation>Northamptonshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FT">
+				<xs:annotation>
+					<xs:documentation>Staffordshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="West Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FM">
+				<xs:annotation>
+					<xs:documentation>West Midlands</xs:documentation>
+					<xs:appinfo>
+						<Region name="West Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FS">
+				<xs:annotation>
+					<xs:documentation>Warwickshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="West Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FE">
+				<xs:annotation>
+					<xs:documentation>Hereford and Worcester</xs:documentation>
+					<xs:appinfo>
+						<Region name="West Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FH">
+				<xs:annotation>
+					<xs:documentation>Shropshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="West Midlands"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GN">
+				<xs:annotation>
+					<xs:documentation>Norfolk</xs:documentation>
+					<xs:appinfo>
+						<Region name="East of England"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GS">
+				<xs:annotation>
+					<xs:documentation>Suffolk</xs:documentation>
+					<xs:appinfo>
+						<Region name="East of England"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GE">
+				<xs:annotation>
+					<xs:documentation>Essex</xs:documentation>
+					<xs:appinfo>
+						<Region name="East of England"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GC">
+				<xs:annotation>
+					<xs:documentation>Cambridgeshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East of England"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GB">
+				<xs:annotation>
+					<xs:documentation>Bedfordshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East of England"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GH">
+				<xs:annotation>
+					<xs:documentation>Hertfordshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="East of England"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HE">
+				<xs:annotation>
+					<xs:documentation>London - E</xs:documentation>
+					<xs:appinfo>
+						<Region name="London"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HF">
+				<xs:annotation>
+					<xs:documentation>London - F</xs:documentation>
+					<xs:appinfo>
+						<Region name="London"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HG">
+				<xs:annotation>
+					<xs:documentation>London - G</xs:documentation>
+					<xs:appinfo>
+						<Region name="London"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JC">
+				<xs:annotation>
+					<xs:documentation>Buckinghamshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JS">
+				<xs:annotation>
+					<xs:documentation>Surrey</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JK">
+				<xs:annotation>
+					<xs:documentation>Kent</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JE">
+				<xs:annotation>
+					<xs:documentation>East Sussex</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JW">
+				<xs:annotation>
+					<xs:documentation>West Sussex</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JH">
+				<xs:annotation>
+					<xs:documentation>Hampshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JY">
+				<xs:annotation>
+					<xs:documentation>Royal Berkshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JX">
+				<xs:annotation>
+					<xs:documentation>Oxfordshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JT">
+				<xs:annotation>
+					<xs:documentation>Isle of Wight</xs:documentation>
+					<xs:appinfo>
+						<Region name="South East"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KG">
+				<xs:annotation>
+					<xs:documentation>Gloucestershire</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KW">
+				<xs:annotation>
+					<xs:documentation>Wiltshire</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KT">
+				<xs:annotation>
+					<xs:documentation>Dorset</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KA">
+				<xs:annotation>
+					<xs:documentation>Avon</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KS">
+				<xs:annotation>
+					<xs:documentation>Somerset</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KV">
+				<xs:annotation>
+					<xs:documentation>Devon</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KC">
+				<xs:annotation>
+					<xs:documentation>Cornwall</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KL">
+				<xs:annotation>
+					<xs:documentation>Isle of Scilly</xs:documentation>
+					<xs:appinfo>
+						<Region name="South West"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NR">
+				<xs:annotation>
+					<xs:documentation>Northern Ireland</xs:documentation>
+					<xs:appinfo>
+						<Region name="Northern Ireland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WC">
+				<xs:annotation>
+					<xs:documentation>North Wales</xs:documentation>
+					<xs:appinfo>
+						<Region name="Wales"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WD">
+				<xs:annotation>
+					<xs:documentation>Mid Wales</xs:documentation>
+					<xs:appinfo>
+						<Region name="Wales"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WT">
+				<xs:annotation>
+					<xs:documentation>South Wales</xs:documentation>
+					<xs:appinfo>
+						<Region name="Wales"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SY">
+				<xs:annotation>
+					<xs:documentation>Strathclyde</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SH">
+				<xs:annotation>
+					<xs:documentation>Highland and Islands</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SG">
+				<xs:annotation>
+					<xs:documentation>Grampian</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ST">
+				<xs:annotation>
+					<xs:documentation>Tayside</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SL">
+				<xs:annotation>
+					<xs:documentation>Lothian and Borders</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SE">
+				<xs:annotation>
+					<xs:documentation>Fife</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SC">
+				<xs:annotation>
+					<xs:documentation>Central</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SD">
+				<xs:annotation>
+					<xs:documentation>Dumfries and Galloway</xs:documentation>
+					<xs:appinfo>
+						<Region name="Scotland"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="XX">
+				<xs:annotation>
+					<xs:documentation>Helpdesk FRS</xs:documentation>
+					<xs:appinfo>
+						<Region name="IRS Helpdesk"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="XY">
+				<xs:annotation>
+					<xs:documentation>Helpdesk OTB FRS</xs:documentation>
+					<xs:appinfo>
+						<Region name="IRS Helpdesk"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NS">
+				<xs:annotation>
+					<xs:documentation>National Statistics - Any FRS Query</xs:documentation>
+					<xs:appinfo>
+						<Region name="IRS Helpdesk"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+		<!--		<xs:annotation>
+			<xs:documentation>Id of FRS brigade</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="[0-9]{2}|[A-Z]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FRSIdListType"> -->
+	</xs:simpleType>
+	<xs:complexType name="LocationStructure">
+		<xs:annotation>
+			<xs:documentation>The structure that should be used for specifying a particular location.  this allows the most flexibility with a BS7666 address structure with optional UPRN, and also allows optional coordinates to be recorded. There is a key attribute to qualify the validation performed against the address.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Address">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="bs7666:BSaddressStructure">
+								<xs:sequence>
+									<xs:element name="Coordinates" type="bs7666:CoordinateStructure" minOccurs="0"/>
+								</xs:sequence>
+								<xs:attribute name="Qualifier" type="apd:AddressQualifierType"/>
+								<xs:attribute name="Validation" type="apd:AddressValidationType" use="required"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NonAddressable">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Coordinates" type="bs7666:CoordinateStructure"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="OtherGazetteerContent" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ExternalReferences" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="RCCgazetteerIdentifier" type="StringRestrictedMixedType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The unique identifier used by the RCC gazetteer system.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="FRSgazetteerIdentifier" type="StringRestrictedMixedType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The unique identifier used by the FRS gazetteer system.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="TOID" type="StringRestrictedMixedType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Ordance Survey Topographic Identifier.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="OSAPR" type="StringRestrictedMixedType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Ordance Survey Address-Point Reference.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="OrganisationName" type="StringRestrictedMixedType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The Comapny/Business/Organisation Name attached to an address.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="AddressChanged" type="core:YesNoType" use="optional">
+									<xs:annotation>
+										<xs:documentation>The Address has been changed on the form that may mean that it is no longer consistent with the External References passed to the IRS system.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="OtherContent" type="ContextDataStructure" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LocationDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Descriptive text for the Location e.g. In the front garden, On the pavement. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="NotKnownType">
+		<xs:annotation>
+			<xs:documentation>This type contains only the string enumeration value '0' to represent 'Not known'. This is expected to be used with the union option to add this option to other enumeration lists.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="YesNoDontKnowType">
+		<xs:annotation>
+			<xs:documentation>Defines an enumeration for the three options 'yes', 'no' and 'don't know'</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="yes"/>
+			<xs:enumeration value="no"/>
+			<xs:enumeration value="don't know"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZeroTo999Type">
+		<xs:annotation>
+			<xs:documentation>Defines an integer type that allows any value in the range 0 to 999</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZeroTo9999999Type">
+		<xs:annotation>
+			<xs:documentation>Defines an integer type that allows any value in the range 0 to 9999999</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZeroTo999999999Type">
+		<xs:annotation>
+			<xs:documentation>Defines an integer type that allows any value in the range 0 to 999999999</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRestrictedUpperType">
+		<xs:annotation>
+			<xs:documentation>General string validation to insure no malicious code is being passed through user input. General enough too allow email address, names, address, passwords, so on. Disallows ‘,\*&amp;$&apos;$&lt;&gt;$&quot; or other characters that could cause issues. Does not allow lower or mixed case.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Z@#+.,/?\-!_() ]{0,255}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRestrictedMixedType">
+		<xs:annotation>
+			<xs:documentation>General string validation to insure no malicious code is being passed through user input. General enough too allow email address, names, address, passwords, so on. Disallows $&amp;$&apos;$&gt;$&lt;$&quot; or other characters that could cause issues.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Za-z@#+.,/?\-!_() ]{0,255}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRestrictedKeyType">
+		<xs:annotation>
+			<xs:documentation>Used for any data that will be part of a Indexed Business Object. The primary difference with respect to the general StringRestrictedType is that no lower or mixed case, or special characters are allowed. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Z@#+.,/?\-!_() ]{0,255}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRestrictedUpperMandatoryType">
+		<xs:annotation>
+			<xs:documentation>General string validation to insure no malicious code is being passed through user input. General enough too allow email address, names, address, passwords, so on. Disallows ‘,\*&amp;$&apos;$&lt;&gt;$&quot; or other characters that could cause issues. Does not allow lower or mixed case.  Must have at least one non space character</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Z@#+.,/?\-!_() ]*[0-9A-Z@#+.,/?\-!_()]{1}[0-9A-Z@#+.,/?\-!_() ]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRestrictedMixedMandatoryType">
+		<xs:annotation>
+			<xs:documentation>General string validation to insure no malicious code is being passed through user input. General enough too allow email address, names, address, passwords, so on. Disallows $&amp;$&apos;$&gt;$&lt;$&quot; or other characters that could cause issues.  Must have at least one non space character.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Za-z@#+.,/?\-!_() ]*[0-9A-Za-z@#+.,/?\-!_()]{1}[0-9A-Za-z@#+.,/?\-!_() ]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRestrictedKeyMandatoryType">
+		<xs:annotation>
+			<xs:documentation>Used for any data that will be part of a Indexed item. The primary difference with respect to the general StringRestrictedType is that no lower or mixed case, or special characters are allowed.  Must have at least one non space character</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Z@#+.,/?\-!_() ]*[0-9A-Z@#+.,/?\-!_()]{1}[0-9A-Z@#+.,/?\-!_() ]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRelaxedMixedType">
+		<xs:annotation>
+			<xs:documentation>General string validation to insure no malicious code is being passed through user input. This is the same as the StringRestrictedMixedType, but allows XML characters such as &amp; and &lt; etc.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Za-z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\* ]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRelaxedMixedMandatoryType">
+		<xs:annotation>
+			<xs:documentation>Extends the StringRelaxedMixedType to ensure at least one non space character is present.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Za-z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\* ]*[0-9A-Za-z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\*][0-9A-Za-z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\* ]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRelaxedKeyType">
+		<xs:annotation>
+			<xs:documentation>Similar to the StringRestrictedKeyType, except that XML characters are allowed.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\* ]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringRelaxedKeyMandatoryType">
+		<xs:annotation>
+			<xs:documentation>Extends the StringRelaxedKeyType to ensure at least one non space character is present.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[0-9A-Z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\* ]*[0-9A-Z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\*][0-9A-Z@#+.,/?\-!_()\\`&apos;&quot;&amp;&lt;&gt;\* ]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attributeGroup name="OtherAttributes">
+		<xs:annotation>
+			<xs:documentation>Defines the attributes that should be added to any enumeration list where there is an 'other' option available.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Other" type="StringRestrictedMixedType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Contains the content entered by the user.  This is the 'other' value that was not present in the list.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:simpleType name="GenericIncidentType">
+		<xs:annotation>
+			<xs:documentation>Generic Incident Type used to categorise Mobilise Incident Types.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="A">
+				<xs:annotation>
+					<xs:documentation>Alarm</xs:documentation>
+					<xs:appinfo>
+						<IncidentType>Fire</IncidentType>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E">
+				<xs:annotation>
+					<xs:documentation>Explosion</xs:documentation>
+					<xs:appinfo>
+						<IncidentType>Fire</IncidentType>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="F">
+				<xs:annotation>
+					<xs:documentation>Fire</xs:documentation>
+					<xs:appinfo>
+						<IncidentType>Fire</IncidentType>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HM">
+				<xs:annotation>
+					<xs:documentation>Hazardous Material</xs:documentation>
+					<xs:appinfo>
+						<IncidentType>SpecialService</IncidentType>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="R">
+				<xs:annotation>
+					<xs:documentation>Rescue</xs:documentation>
+					<xs:appinfo>
+						<IncidentType>SpecialService</IncidentType>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CD">
+				<xs:annotation>
+					<xs:documentation>Civil Disturbance / Unlawful Act</xs:documentation>
+					<xs:appinfo>
+						<IncidentType>SpecialService</IncidentType>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HA">
+				<xs:annotation>
+					<xs:documentation>Humanitarian Assistance</xs:documentation>
+					<xs:appinfo>
+						<IncidentType>SpecialService</IncidentType>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PriorityType">
+		<xs:annotation>
+			<xs:documentation>Generic type for specifying priority values from 1 - 5. 1=High, 5=Low</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TaxonomyIDType">
+		<xs:annotation>
+			<xs:documentation>Simple type for specifying ID values from a taxonomy.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VersionType">
+		<xs:annotation>
+			<xs:documentation>Used to define version format for Schema Version</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="v[0-9]-[0-9][a-z]?"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

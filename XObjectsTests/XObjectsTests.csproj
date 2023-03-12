@@ -26,4 +26,8 @@
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PrototypeTests\" />
+  </ItemGroup>
+
 </Project>

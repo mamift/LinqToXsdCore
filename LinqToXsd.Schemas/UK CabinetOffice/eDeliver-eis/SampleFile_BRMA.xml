@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com) -->
+<tnsa:BRMA xmlns:tns="http://www.therentservice.gov.uk/schema/Common_ed.xsd" xmlns:tnsa="http://www.therentservice.gov.uk/schema/BRMA.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.therentservice.gov.uk/schema/BRMA.xsd C:\ElectronicInterface\EDeliver\v1.1\BRMA.xsd">
+  <tnsa:Manifest>
+    <tns:SenderRecipient>
+      <tns:LACode>string</tns:LACode>
+      <tns:OfficeCode>94</tns:OfficeCode>
+    </tns:SenderRecipient>
+    <tns:Timestamp>
+      <tns:CompilationDate>1974-07-13</tns:CompilationDate>
+      <tns:CompilationTime>12:33:08.03</tns:CompilationTime>
+    </tns:Timestamp>
+  </tnsa:Manifest>
+  <tnsa:BRMA_ID>-6695</tnsa:BRMA_ID>
+  <tnsa:BRMA_name>string</tnsa:BRMA_name>
+  <tnsa:ValidFrom>1990-04-13</tnsa:ValidFrom>
+  <tnsa:ValidTo>1986-11-22</tnsa:ValidTo>
+  <tnsa:postcode>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>no</tnsa:split>
+    <tnsa:properties>-1053</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>no</tnsa:split>
+    <tnsa:properties>-535</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>no</tnsa:split>
+    <tnsa:properties>-9417</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>1878</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>-854</tnsa:properties>
+  </tnsa:postcode>
+  <tnsa:property>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>-935</tnsa:gazeteer_ref>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>7636</tnsa:gazeteer_ref>
+  </tnsa:property>
+  <tnsa:postcode>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>3701</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>8453</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>no</tnsa:split>
+    <tnsa:properties>1817</tnsa:properties>
+  </tnsa:postcode>
+  <tnsa:property>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>2659</tnsa:gazeteer_ref>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>5426</tnsa:gazeteer_ref>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>-4288</tnsa:gazeteer_ref>
+  </tnsa:property>
+  <tnsa:postcode>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>7240</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>no</tnsa:split>
+    <tnsa:properties>5613</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>-2273</tnsa:properties>
+  </tnsa:postcode>
+  <tnsa:property>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>-3617</tnsa:gazeteer_ref>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>2588</tnsa:gazeteer_ref>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>8365</tnsa:gazeteer_ref>
+  </tnsa:property>
+  <tnsa:postcode>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>no</tnsa:split>
+    <tnsa:properties>2760</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>4314</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>no</tnsa:split>
+    <tnsa:properties>1872</tnsa:properties>
+    <tnsa:level4postcode>AA1 1AA</tnsa:level4postcode>
+    <tnsa:neighbourhood_id>string</tnsa:neighbourhood_id>
+    <tnsa:neighbourhood>string</tnsa:neighbourhood>
+    <tnsa:split>yes</tnsa:split>
+    <tnsa:properties>-9238</tnsa:properties>
+  </tnsa:postcode>
+  <tnsa:property>
+    <tnsa:address>
+      <tns:UKAddress>
+        <tns:Line>string</tns:Line>
+        <tns:Line>string</tns:Line>
+        <tns:PostCode>AA1 1AA</tns:PostCode>
+      </tns:UKAddress>
+    </tnsa:address>
+    <tnsa:gazeteer_ref>-3475</tnsa:gazeteer_ref>
+  </tnsa:property>
+</tnsa:BRMA>

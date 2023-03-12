@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com)-->
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Dino Joseph (The Rent Service) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Andrew Harding (The Rent Service) -->
+<xsd:schema xmlns:rep="http://www.therentservice.gov.uk/schema/BRMA.xsd" xmlns:cmn="http://www.therentservice.gov.uk/schema/Common_ed.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.therentservice.gov.uk/schema/BRMA.xsd" version="edeliver_v1-0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="Common_ed.xsd" namespace="http://www.therentservice.gov.uk/schema/Common_ed.xsd" />
+  <xsd:annotation>
+    <xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>The Rent Service (helpdesk@therentservice.gov.uk)</Creator>
+				<Date>
+					<Created>2007-07-24</Created>
+				</Date>
+				<Description>Schema for distributing BRMA definition</Description>
+				<Identifier>BRMA.xsd-edeliver_v1-1</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>The Rent Service, 5 Welbeck Street, London, W1G 9YQ</Publisher>
+				<Subject>
+					<Category>People, communities and living</Category>
+					<Keyword>Housing Benefit</Keyword>
+					<Keyword>Rent Service</Keyword>
+					<Keyword>Local Housing Allowance</Keyword>
+					<Keyword>Broad Rental Market Area</Keyword>
+				</Subject>
+				<Title>BRMA definition</Title>
+			</Metadata>
+		</xsd:appinfo>
+  </xsd:annotation>
+  <xsd:element name="BRMA">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Manifest" type="cmn:Manifest">
+          <xsd:annotation>
+            <xsd:documentation>Manifest Details</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="BRMA_ID">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:int" />
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="BRMA_name">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:minLength value="1" />
+              <xsd:maxLength value="40" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="ValidFrom" type="cmn:DateType" />
+        <xsd:element name="ValidTo" type="cmn:DateType" />
+        <xsd:sequence maxOccurs="unbounded">
+          <xsd:element name="postcode">
+            <xsd:complexType>
+              <xsd:sequence maxOccurs="unbounded">
+                <xsd:element name="level4postcode" type="cmn:PostCodeType" />
+                <xsd:element name="neighbourhood_id">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="60" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="neighbourhood">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="60" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="split" type="cmn:YesNoType" />
+                <xsd:element name="properties" type="xsd:int" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="property">
+            <xsd:complexType>
+              <xsd:sequence maxOccurs="unbounded">
+                <xsd:element name="address" type="cmn:Address" />
+                <xsd:element name="gazeteer_ref" type="xsd:int" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

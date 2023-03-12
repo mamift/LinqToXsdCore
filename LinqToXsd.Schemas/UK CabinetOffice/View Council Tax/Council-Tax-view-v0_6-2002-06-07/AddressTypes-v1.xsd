@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by Paul Spencer (alphaXML Ltd.) -->
+<!--
+	Changes 1.0 to 1.1
+	UK postcode now uses the data type defined in the BS7666 schema 
+	International addresses now allow a choice of postcode and/or country in either order
+	UKAddressStructure simplified and made unambiguous (but still allowing same combinations of BS7666 and 5 line addresses)
+-->
+<!-- Schema for commonly used address types -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1" id="AddressTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms" xmlns:dcq="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:contributor>e-champions,Government Schema Group, IDeA</dc:contributor>
+			<dc:creator>alphaXML Ltd  http://www.alphaxml.com
+						<dcq:owner>Technology Policy Team, Office of the e-Envoy, Cabinet Office</dcq:owner>
+				<dcq:contact>ukgovtalk@citu.gsi.gov.uk</dcq:contact>
+			</dc:creator>
+			<dc:date>
+				<dcq:created>2001-12-19</dcq:created>
+			</dc:date>
+			<dc:date>
+				<dcq:modified>2002-01-30</dcq:modified>
+			</dc:date>
+			<dc:format>text</dc:format>
+			<dc:format>
+				<dc:medium>http://www.w3.org/2001/XMLSchema</dc:medium>
+			</dc:format>
+			<dc:format>
+				<dc:medium>XML Schema (.xsd) file, W3C Recommendation 2001</dc:medium>
+			</dc:format>
+			<dc:identifier>AddressTypes-v1</dc:identifier>
+			<dc:language>en</dc:language>
+			<dc:publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</dc:publisher>
+			<dc:rights>
+				<dcq:copyright>Crown Copyright 2002</dcq:copyright>
+				<gms:SecurityClassification>Unclassified</gms:SecurityClassification>
+			</dc:rights>
+			<dc:subject>
+				<gms:Category>People, communities and living</gms:Category>
+			</dc:subject>
+			<dc:subject>
+				<gms:Project>Govtalk Development of Address and Personal Details Schema</gms:Project>
+			</dc:subject>
+			<dc:title>Address Types architectural schema</dc:title>
+			<dc:description>
+				<dcq:abstract>Schema for commonly used address types</dcq:abstract>
+			</dc:description>
+			<dc:relation>
+				<dcq:requires>BS7666-v1</dcq:requires>
+			</dc:relation>
+			<dc:relation>
+				<gms:HasPart>CommonSimpleTypes-v1</gms:HasPart>
+			</dc:relation>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v1.xsd"/>
+	<xsd:include schemaLocation="CommonSimpleTypes-v1.xsd"/>
+	<!-- start of InternationalAddress type definition -->
+	<xsd:complexType name="InternationalAddressStructure">
+		<xsd:sequence>
+			<xsd:element name="IntAddressLine" type="AddressLineType" minOccurs="2" maxOccurs="5"/>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element name="Country" type="AddressLineType"/>
+					<xsd:element name="InternationalPostCode" type="InternationalPostCodeType" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:sequence>
+					<xsd:element name="InternationalPostCode" type="InternationalPostCodeType"/>
+					<xsd:element name="Country" type="AddressLineType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of InternationalAddress type definition -->
+	<!-- start of AddressUKpostalStructure type definition -->
+	<xsd:complexType name="UKPostalAddressStructure">
+		<xsd:sequence>
+			<xsd:element name="Line" type="AddressLineType" minOccurs="2" maxOccurs="5"/>
+			<xsd:element name="PostCode" type="bs7666:PostCodeType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of AddressUKpostalStructure type definition -->
+	<!-- start of AddressUKstructure type definition -->
+	<xsd:complexType name="UKAddressStructure">
+		<xsd:annotation>
+			<xsd:documentation>Supports BS7666 address types.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:annotation>
+					<xsd:documentation>At least one of' 5LineAddress and BS7666Address.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:element name="BS7666Address" type="bs7666:BSaddressStructure"/>
+				<xsd:sequence>
+					<xsd:element name="A_5LineAddress" type="UKPostalAddressStructure"/>
+					<xsd:element name="BS7666Address" type="bs7666:BSaddressStructure" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element name="UniquePropertyReferenceNumber" type="bs7666:UPRNtype" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="SortCode" type="MailSortCodeType" minOccurs="0"/>
+				<xsd:element name="WalkSort" type="WalkSortCodeType" minOccurs="0"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of AddressUKstructure type definition -->
+	<xsd:simpleType name="AddressLineType">
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MailSortCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WalkSortCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{8}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="InternationalPostCodeType">
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddressQualifierType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="residential"/>
+			<xsd:enumeration value="correspondence"/>
+			<xsd:enumeration value="self-employed-business"/>
+			<xsd:enumeration value="business"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddressValidationType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="not-checked"/>
+			<xsd:enumeration value="PAF-check-failed"/>
+			<xsd:enumeration value="NLPG-check-failed"/>
+			<xsd:enumeration value="PAF-check-valid"/>
+			<xsd:enumeration value="NLPG-check-valid"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

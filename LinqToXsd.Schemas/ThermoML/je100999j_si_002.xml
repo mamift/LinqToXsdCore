@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>1989</yrYrPub>
+			<sAuthor1>chi</sAuthor1>
+			<sAuthor2>hos</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Chirico, R. D.[Robert D.]</sAuthor>
+		<sAuthor>Hossenlopp, I. A.</sAuthor>
+		<sAuthor>Nguyen, A.</sAuthor>
+		<sAuthor>Steele, W. V.[William V.]</sAuthor>
+		<sAuthor>Gammon, B. E.[Bruce E.]</sAuthor>
+		<sPubName>J. Chem. Thermodyn.</sPubName>
+		<yrPubYr>1989</yrPubYr>
+		<dateCit>2010-06-08</dateCit>
+		<sTitle>The thermodynamic properties of 4-methylphenanthrene</sTitle>
+		<sVol>21</sVol>
+		<sPage>179-201</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>4-methylphenanthrene</sCommonName>
+		<sFormulaMolec>C15H12</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>98</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Fractional distillation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nPurityMol>99.92</nPurityMol>
+				<nPurityMolDigits>4</nPurityMolDigits>
+				<eAnalMeth>Fraction melting in an adiabatic calorimeter</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nPurityMol>99.96</nPurityMol>
+				<nPurityMolDigits>4</nPurityMolDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>carbon</sCommonName>
+		<sFormulaMolec>C</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>hydrogen</sCommonName>
+		<sFormulaMolec>H2</sFormulaMolec>
+	</Compound>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-15</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+			<sPhaseDescription>graphite</sPhaseDescription>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-6</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>6/8/2010</dateDateAdded>
+		<eReactionType>Formation of a compound from elements in their stable state</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<eMethodName>Static bomb calorimetry</eMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>102.42</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

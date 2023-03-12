@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><product_recall_notification:productRecallNotificationMessage xmlns:product_recall_notification="urn:gs1:ecom:product_recall_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:product_recall_notification:xsd:3 ../Schemas/gs1/ecom/ProductRecallNotification.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <productRecallNotification>
+        <creationDateTime>2011-08-20T16:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <documentActionCode>ADD</documentActionCode>
+        <documentStructureVersion>3.0</documentStructureVersion>
+        <originalPRNIdentification>0857674002331</originalPRNIdentification>
+        <pRNIdentification>0857674002331CP855</pRNIdentification>
+        <pRNStatusCode>ISSUED</pRNStatusCode>
+        <pRNTitle languageCode="en">Pink Product Recall</pRNTitle>
+        <pRNVersionStatusCode>INITIAL</pRNVersionStatusCode>
+        <incidentRiskLevelCode>CLASS_2</incidentRiskLevelCode>
+        <isPRNIssuingOrganisationThePrimaryRecallOrganisation>TRUE</isPRNIssuingOrganisationThePrimaryRecallOrganisation>
+        <productRecallInitiator>
+            <gln>0857674002003</gln>
+            <contact>
+                <contactTypeCode>PRODUCT_RECALL_CONTACT</contactTypeCode>
+                <personName>Casey Crow</personName>
+                <jobTitle>Director Process Control</jobTitle>
+                <communicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>333-123-4444</communicationValue>
+                </communicationChannel>
+                <communicationChannel>
+                    <communicationChannelCode>EMAIL</communicationChannelCode>
+                    <communicationValue>sgarcia@org1.org</communicationValue>
+                </communicationChannel>
+                <afterHoursCommunicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>333-123-4445</communicationValue>
+                </afterHoursCommunicationChannel>
+            </contact>
+        </productRecallInitiator>
+        <productRecallImpactedRecipient>
+            <additionalPartyIdentification additionalPartyIdentificationTypeCode="BUYER_ASSIGNED_IDENTIFIER_FOR_A_PARTY">7777777</additionalPartyIdentification>
+            <address>
+                <city>Town USA</city>
+                <postalCode>56324</postalCode>
+                <state>LA</state>
+                <streetAddressOne>999 Main Street</streetAddressOne>
+            </address>
+            <contact>
+                <personName>Athena Gilbert</personName>
+                <jobTitle>Vice President Operations</jobTitle>
+                <communicationChannel>
+                    <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                    <communicationValue>777-123-4444</communicationValue>
+                </communicationChannel>
+            </contact>
+        </productRecallImpactedRecipient>
+        <productRecallReason>
+            <productRecallReasonCode>ALLERGY_HAZARD_PEANUTS</productRecallReasonCode>
+            <explanationForProductRecall languageCode="en">Traces of peanuts were discovered in the product.</explanationForProductRecall>
+        </productRecallReason>
+        <productRecallReason>
+            <productRecallReasonCode>ALLERGY_HAZARD_GLUTEN</productRecallReasonCode>
+            <explanationForProductRecall languageCode="en">Traces of peanuts were discovered in the product.</explanationForProductRecall>
+        </productRecallReason>
+        <productRecallMarketDetail>
+            <additionalTargetMarketForRegulatoryUse languageCode="en">School</additionalTargetMarketForRegulatoryUse>
+            <productRecallPotentialTargetMarket languageCode="en">South East United States</productRecallPotentialTargetMarket>
+            <productRecallPotentialTargetMarket languageCode="en">LA, GA, FL, SC</productRecallPotentialTargetMarket>
+            <sectorDescription languageCode="en">Consumer Packaged Goods</sectorDescription>
+        </productRecallMarketDetail>
+        <productRecallNotificationDistributionDetails>
+            <isTraceableItemExported>FALSE</isTraceableItemExported>
+            <isTraceableItemSoldViaDistributorship>FALSE</isTraceableItemSoldViaDistributorship>
+            <productRecallDistributionArea>
+                <distributionAreaCountryCode>US</distributionAreaCountryCode>
+                <distributionAreaSubdivisionCode>US-LA</distributionAreaSubdivisionCode>
+                <distributionDateRangeForTraceableItem>
+                    <beginDate>2011-07-04</beginDate>
+                    <endDate>2011-07-23</endDate>
+                </distributionDateRangeForTraceableItem>
+            </productRecallDistributionArea>
+        </productRecallNotificationDistributionDetails>
+        <productRecallNotificationPublicRelationsInstructions>
+            <pressReleaseDateTime>2011-08-31T16:00:00.000-05:00</pressReleaseDateTime>
+            <pressReleaseTemplate>Template 33</pressReleaseTemplate>
+            <productRecallPublicWebsiteURL>www.publicsite.com</productRecallPublicWebsiteURL>
+        </productRecallNotificationPublicRelationsInstructions>
+        <productRecallNotificationHandlingInstructions>
+            <specialHandlingInstructions>
+                <handlingInstructionCode>SLT</handlingInstructionCode>
+                <storageTemperature>
+                    <maximumTemperature temperatureMeasurementUnitCode="FA">66</maximumTemperature>
+                    <minimumTemperature temperatureMeasurementUnitCode="FA">33</minimumTemperature>
+                </storageTemperature>
+            </specialHandlingInstructions>
+            <inTransitSpecialHandlingInstructions>
+                <handlingInstructionCode>TRD</handlingInstructionCode>
+                <handlingInstructionText languageCode="en">Hold for cross dock delivery at point of distribution.</handlingInstructionText>
+            </inTransitSpecialHandlingInstructions>
+        </productRecallNotificationHandlingInstructions>
+        <productRecallNotificationReimbursementInstructions>
+            <productRecallReimbursementReason>LP_LABEL_PROBLEM</productRecallReimbursementReason>
+			<reimbursementProofInstruction languageCode="en">Issues with label quality.</reimbursementProofInstruction>
+        </productRecallNotificationReimbursementInstructions>
+        <productRecallSafetyStandardAgency>
+            <isItRequiredToNotifyYourRecallJurisdictionSafetyStandardsAgency>FALSE</isItRequiredToNotifyYourRecallJurisdictionSafetyStandardsAgency>
+            <isProductRecallVoluntary>TRUE</isProductRecallVoluntary>
+            <isTraceableItemAReportableFood>FALSE</isTraceableItemAReportableFood>
+        </productRecallSafetyStandardAgency>
+        <productRecallNotificationTradeItem>
+            <tradeItemName>Pink Product</tradeItemName>
+            <tradeItemUnitDescriptorCode>BASE_UNIT_OR_EACH</tradeItemUnitDescriptorCode>
+            <brandName>Brand ZZ</brandName>
+            <dataCarrierTypeCode>GS1_DATA_MATRIX</dataCarrierTypeCode>
+            <tradeItemSize measurementUnitCode="Grams">535</tradeItemSize>
+            <tradeItemIdentification>
+                <gtin>00857674002010</gtin>
+            </tradeItemIdentification>
+            <tradeItemImage>
+                <referenceIdentifier>Provides the product details</referenceIdentifier>
+                <referenceURI>www.productinfo.com</referenceURI>
+            </tradeItemImage>
+            <productRecallNotificationTraceableItem>
+                <totalQuantityAffected>3050</totalQuantityAffected>
+                <totalQuantityUnderManufacturersControl>2000</totalQuantityUnderManufacturersControl>
+                <productRecallTrackingKey>
+                    <productTrackingKeyCode>SELL_BY_DATE</productTrackingKeyCode>
+                    <productTrackingKeyValue>2011-12-25</productTrackingKeyValue>
+					<isProductTrackingKeyInDataCarrier>TRUE</isProductTrackingKeyInDataCarrier>
+                    <productTrackingKeyLocation>Bottom of bottle</productTrackingKeyLocation>
+                    <trackingKeyImage>
+                        <referenceURI>www.business.org</referenceURI>
+                    </trackingKeyImage>
+                </productRecallTrackingKey>
+                <productRecallTrackingKey>
+                    <productTrackingKeyCode>BATCH_LOT_CODE</productTrackingKeyCode>
+                    <productTrackingKeyValue>72A</productTrackingKeyValue>
+                    <productTrackingKeyLocation>On the label</productTrackingKeyLocation>
+                </productRecallTrackingKey>
+                <productRecallNotificationRecipientDetail>
+                    <totalShippedQuantity>53</totalShippedQuantity>
+                    <productRecallParty>
+                        <additionalPartyIdentification additionalPartyIdentificationTypeCode="BUYER_ASSIGNED_IDENTIFIER_FOR_A_PARTY">7777777</additionalPartyIdentification>
+                    </productRecallParty>
+                </productRecallNotificationRecipientDetail>
+            </productRecallNotificationTraceableItem>
+            <productRecallPackagingDetail>
+                <packageTypeCode>BO</packageTypeCode>
+                <packagingMaterialCode>COLOURED_GLASS</packagingMaterialCode>
+                <packagingMaterialCode>BIO_PLASTIC</packagingMaterialCode>
+            </productRecallPackagingDetail>
+        </productRecallNotificationTradeItem>
+    </productRecallNotification>
+</product_recall_notification:productRecallNotificationMessage>

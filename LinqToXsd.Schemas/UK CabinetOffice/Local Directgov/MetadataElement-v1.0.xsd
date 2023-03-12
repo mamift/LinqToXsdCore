@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.esd.org.uk/standards" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.esd.org.uk/standards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="MetadataElement-v1.0">
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Creator>esd-toolkit http://www.esd-toolkit.org</Creator>
+				<Date>
+					<Created>2005-05-13</Created>
+				</Date>
+				<Description>Complex Type reference to the controlled lists.</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>MetadataElement-v1.0</Identifier>
+				<Language>eng</Language>
+				<Publisher>Porism Limited http://www.porism.com</Publisher>
+				<Rights>
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Title>Complex Type reference to the controlled lists.</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ItemReference-v3.1.xsd"/>
+	<xs:complexType name="AgencyReferenceStructure">
+		<xs:annotation>
+			<xs:documentation>Scheme name for an agency reference</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="SimpleLiteralStructure">
+				<xs:attribute name="Id" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ONS-SNAC">
+		<xs:annotation>
+			<xs:documentation>Scheme name for the SNAC controlled list.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="AgencyReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="GCL">
+		<xs:annotation>
+			<xs:documentation>Governement Category List.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LGCL">
+		<xs:annotation>
+			<xs:documentation>Local Governement Category List.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LGChL">
+		<xs:annotation>
+			<xs:documentation>Local Governement Channel List</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LGAL">
+		<xs:annotation>
+			<xs:documentation>Local Governement Audience List</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LGAtL">
+		<xs:annotation>
+			<xs:documentation>Local Governement Agency Type List</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LGSL">
+		<xs:annotation>
+			<xs:documentation>Local Governement Service List</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LGIL">
+		<xs:annotation>
+			<xs:documentation>Local Governement Interaction List</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IPSV">
+		<xs:annotation>
+			<xs:documentation>Integrated Public Services List</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ItemReferenceStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IeeeStatus">
+		<xs:annotation>
+			<xs:documentation>Controlled list of the status elements defined by IEEE http://ltsc.ieee.org/</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="SimpleLiteralStructure">
+				<xs:enumeration value="draft"/>
+				<xs:enumeration value="final"/>
+				<xs:enumeration value="revised"/>
+				<xs:enumeration value="unavailable"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Version">
+		<xs:annotation>
+			<xs:documentation>Type for a version number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="SimpleLiteralStructure">
+				<xs:pattern value="[0-9](\.|[0-9])*[0-9][a-b]?"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ISO639-2">
+		<xs:annotation>
+			<xs:documentation>Language scheme http://www.loc.gov/standards/iso639-2/</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="SimpleLiteralStructure">
+				<xs:pattern value="([a-z][a-z][a-z])(/[a-z][a-z][a-z])?"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="URI">
+		<xs:annotation>
+			<xs:documentation>http://purl.org/dc/terms/URI</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="SimpleLiteralStructure"/>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema developed by Rupert Hollom, YellowStar Consultancy rupert@yellowstar.co.uk -->
+<xsd:schema targetNamespace="http://ITD1351WA/schemas/eforms" xmlns:xsd="http://www.w3.org/1999/XMLSchema" xmlns:eforms="http://ITD1351WA/schemas/eforms" xmlns:gt="http://www.govtalk.gov.uk/Schemas/govtalk/core" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.8" id="MAFF_IACS2">
+	<xsd:annotation>
+		<xsd:documentation>This schema is used for submitting IACS2, IACS2F and IACS11 forms to MAFF.</xsd:documentation>
+		<xsd:appinfo>
+			<gt:keywords>MAFF,IACS2, IACS11,Area Aid Application,FDP</gt:keywords>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="http://ITD1351WA/schemas/core.xsd"/>
+	<xsd:element name="eforms" type="eforms:eformsStructure"/>
+	<!-- Start of eformsStructure type definition -->
+	<xsd:complexType name="eformsStructure">
+		<xsd:annotation>
+			<xsd:documentation>Information about the structures that comprise this top-level information can be found within the relevant section of the schema.  For more general information about XML schemas please refer to XML Schema Part 0: Primer (http://www.w3.org/TR/2000/WD-xmlschema-0-20000407/).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="iacsref" type="eforms:iacsrefType"/>
+			<xsd:element name="farmer" type="eforms:FarmerStructure"/>
+			<xsd:element name="areaaidnonfood" type="eforms:AreaAidNonFoodStructure"/>
+			<xsd:element name="otherholdings" type="eforms:OtherHoldingsStructure"/>
+			<xsd:element name="formationdate" type="eforms:FormationDateStructure"/>
+			<xsd:element name="otherbusinesses" type="eforms:OtherBusinessesStructure"/>
+			<xsd:element name="sheepproducer" type="eforms:SheepProducerStructure"/>
+			<xsd:element name="agrienvironment" type="eforms:AgriEnvironmentStructure"/>
+			<xsd:element name="grainlegumes" type="eforms:YesNoType"/>
+			<xsd:element name="ecregimes" type="eforms:ECregimesStructure"/>
+			<xsd:element name="forageland" type="eforms:ForageStructure"/>
+			<xsd:element name="sharedgrazing" type="eforms:SharedGrazingStructure"/>
+			<xsd:element name="commonland" type="eforms:CommonLandStructure"/>
+			<xsd:element name="sapslfa" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="aaps" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="setasideland" type="eforms:SetAsideLandStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fwpssetaside" type="eforms:FWPSsetasideStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="voluntarysetaside" type="eforms:VoluntarySetasideStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="guaranteedsetaside" type="eforms:GuaranteedSetasideStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="arablesetaside" type="eforms:ArableSetasideStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="transferredland" type="eforms:TransferredLandStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="claimingdurumwheat" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="yieldsummary" type="eforms:YieldSummaryStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="supportingdocs" type="eforms:SupportingDocsStructure"/>
+			<xsd:element name="extensification" type="eforms:ExtensificationStructure"/>
+			<xsd:element name="hillfarm" type="eforms:HillFarmStructure"/>
+			<xsd:element name="declaration" type="eforms:DeclarationStructure" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fdp" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>This structure represents an individual sheet of the field data printout, it has two attributes indicating the sheet number and CPH for the sheet.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:element name="row" minOccurs="1" maxOccurs="21">
+						<xsd:annotation>
+							<xsd:documentation>This structure represents an individual row within an FDP sheet.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="line">
+									<xsd:simpleType base="xsd:positiveInteger">
+										<xsd:maxInclusive value="10"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<!-- The next 5 elements may or may not be present, if they are they must contain the number 1 -->
+								<xsd:element name="preloaded" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="1"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="joined" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="1"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="deleted" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="1"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="givenup" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="1"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="split" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="1"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="farmeruse" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:maxLength value="30"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="osref" minOccurs="0">
+									<xsd:simpleType derivedBy="restriction" base="xsd:string">
+										<xsd:pattern value="[a-zA-Z]{0,2}[0-9]{4,5}"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="ngfno" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:pattern value="[0-9]{4,5}"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="ossize" minOccurs="0" type="eforms:AreaType"/>
+								<xsd:element name="suffix" minOccurs="0">
+									<xsd:simpleType derivedBy="restriction" base="xsd:string">
+										<xsd:pattern value="[a-zA-Z]{1,2}"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="partfieldsize" minOccurs="0" type="eforms:AreaType"/>
+								<xsd:element name="eligibleaaps" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="Y"/>
+										<xsd:enumeration value="N"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="eligibleflaxhemp" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="Y"/>
+										<xsd:enumeration value="N"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="lfastatus" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="S"/>
+										<xsd:enumeration value="D"/>
+										<xsd:enumeration value="N"/>
+										<xsd:enumeration value="MD"/>
+										<xsd:enumeration value="MS"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="sapslfa" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="Y"/>
+										<xsd:enumeration value="N"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="foragearea" minOccurs="0" type="eforms:AreaType"/>
+								<xsd:element name="foragecrop" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="BA1"/>
+										<xsd:enumeration value="BE3"/>
+										<xsd:enumeration value="BE4"/>
+										<xsd:enumeration value="BE8"/>
+										<xsd:enumeration value="BU1"/>
+										<xsd:enumeration value="CA1"/>
+										<xsd:enumeration value="CA15"/>
+										<xsd:enumeration value="CE3"/>
+										<xsd:enumeration value="CL1"/>
+										<xsd:enumeration value="CL2"/>
+										<xsd:enumeration value="GA2"/>
+										<xsd:enumeration value="GA4"/>
+										<xsd:enumeration value="GR1"/>
+										<xsd:enumeration value="GR2"/>
+										<xsd:enumeration value="GR3"/>
+										<xsd:enumeration value="HE3"/>
+										<xsd:enumeration value="KA1"/>
+										<xsd:enumeration value="LI1"/>
+										<xsd:enumeration value="LU1"/>
+										<xsd:enumeration value="LU2"/>
+										<xsd:enumeration value="MA1"/>
+										<xsd:enumeration value="MA2"/>
+										<xsd:enumeration value="MA4"/>
+										<xsd:enumeration value="MC1"/>
+										<xsd:enumeration value="MF1"/>
+										<xsd:enumeration value="MI1"/>
+										<xsd:enumeration value="OA1"/>
+										<xsd:enumeration value="OR1"/>
+										<xsd:enumeration value="PE1"/>
+										<xsd:enumeration value="PE2"/>
+										<xsd:enumeration value="RA5"/>
+										<xsd:enumeration value="RI1"/>
+										<xsd:enumeration value="RY1"/>
+										<xsd:enumeration value="SF1"/>
+										<xsd:enumeration value="SP1"/>
+										<xsd:enumeration value="SU2"/>
+										<xsd:enumeration value="SW1"/>
+										<xsd:enumeration value="TA1"/>
+										<xsd:enumeration value="TR1"/>
+										<xsd:enumeration value="TU1"/>
+										<xsd:enumeration value="TY1"/>
+										<xsd:enumeration value="VE2"/>
+										<xsd:enumeration value="WH1"/>
+										<xsd:enumeration value="WH2"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="eligiblearea" minOccurs="0" type="eforms:AreaType"/>
+								<xsd:element name="eligiblecrop" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="BA1"/>
+										<xsd:enumeration value="BU1"/>
+										<xsd:enumeration value="CA1"/>
+										<xsd:enumeration value="MC1"/>
+										<xsd:enumeration value="MI1"/>
+										<xsd:enumeration value="OA1"/>
+										<xsd:enumeration value="RY1"/>
+										<xsd:enumeration value="SO1"/>
+										<xsd:enumeration value="SP1"/>
+										<xsd:enumeration value="SW2"/>
+										<xsd:enumeration value="TP1"/>
+										<xsd:enumeration value="TR1"/>
+										<xsd:enumeration value="WH1"/>
+										<xsd:enumeration value="WH2"/>
+										<xsd:enumeration value="WH3"/>
+										<xsd:enumeration value="LI1"/>
+										<xsd:enumeration value="LI2"/>
+										<xsd:enumeration value="TP4"/>
+										<xsd:enumeration value="FL1"/>
+										<xsd:enumeration value="HE2"/>
+										<xsd:enumeration value="MA1"/>
+										<xsd:enumeration value="MA4"/>
+										<xsd:enumeration value="TP5"/>
+										<xsd:enumeration value="BE4"/>
+										<xsd:enumeration value="CO1"/>
+										<xsd:enumeration value="RA1"/>
+										<xsd:enumeration value="RA6"/>
+										<xsd:enumeration value="SU2"/>
+										<xsd:enumeration value="TP2"/>
+										<xsd:enumeration value="TP6"/>
+										<xsd:enumeration value="TP7"/>
+										<xsd:enumeration value="BE3"/>
+										<xsd:enumeration value="LU1"/>
+										<xsd:enumeration value="PE1"/>
+										<xsd:enumeration value="PE3"/>
+										<xsd:enumeration value="TP3"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="eligibleforecast" minOccurs="0">
+									<xsd:simpleType base="xsd:decimal">
+										<xsd:scale value="2"/>
+										<xsd:maxInclusive value="9.99"/>
+										<xsd:minInclusive value="0.01"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="setasidearea" minOccurs="0" type="eforms:AreaType"/>
+								<xsd:element name="setasidetype" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="F"/>
+										<xsd:enumeration value="G"/>
+										<xsd:enumeration value="M"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="setasidecrop" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="CA16"/>
+										<xsd:enumeration value="FA1"/>
+										<xsd:enumeration value="FW1"/>
+										<xsd:enumeration value="FW2"/>
+										<xsd:enumeration value="GA2"/>
+										<xsd:enumeration value="HA1"/>
+										<xsd:enumeration value="MU3"/>
+										<xsd:enumeration value="NR1"/>
+										<xsd:enumeration value="NS1"/>
+										<xsd:enumeration value="NS3"/>
+										<xsd:enumeration value="NV1"/>
+										<xsd:enumeration value="PH1"/>
+										<xsd:enumeration value="SA5"/>
+										<xsd:enumeration value="SA7"/>
+										<xsd:enumeration value="WB1"/>
+										<xsd:enumeration value="WG1"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="nonfoodcrop" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="AR1"/>
+										<xsd:enumeration value="BA1"/>
+										<xsd:enumeration value="BE3"/>
+										<xsd:enumeration value="BE4"/>
+										<xsd:enumeration value="BE6"/>
+										<xsd:enumeration value="BE7"/>
+										<xsd:enumeration value="BO1"/>
+										<xsd:enumeration value="BU1"/>
+										<xsd:enumeration value="CA4"/>
+										<xsd:enumeration value="CH1"/>
+										<xsd:enumeration value="CO1"/>
+										<xsd:enumeration value="CO2"/>
+										<xsd:enumeration value="CO4"/>
+										<xsd:enumeration value="CR2"/>
+										<xsd:enumeration value="EV1"/>
+										<xsd:enumeration value="HE1"/>
+										<xsd:enumeration value="HE2"/>
+										<xsd:enumeration value="LI1"/>
+										<xsd:enumeration value="LU3"/>
+										<xsd:enumeration value="MA1"/>
+										<xsd:enumeration value="MC1"/>
+										<xsd:enumeration value="ME2"/>
+										<xsd:enumeration value="MI1"/>
+										<xsd:enumeration value="MI4"/>
+										<xsd:enumeration value="MU1"/>
+										<xsd:enumeration value="MU4"/>
+										<xsd:enumeration value="NU6"/>
+										<xsd:enumeration value="OA1"/>
+										<xsd:enumeration value="PE1"/>
+										<xsd:enumeration value="PO1"/>
+										<xsd:enumeration value="PO3"/>
+										<xsd:enumeration value="PW1"/>
+										<xsd:enumeration value="RA1"/>
+										<xsd:enumeration value="RA6"/>
+										<xsd:enumeration value="RI1"/>
+										<xsd:enumeration value="RY1"/>
+										<xsd:enumeration value="SA2"/>
+										<xsd:enumeration value="SE1"/>
+										<xsd:enumeration value="SI1"/>
+										<xsd:enumeration value="SO1"/>
+										<xsd:enumeration value="SP1"/>
+										<xsd:enumeration value="SU1"/>
+										<xsd:enumeration value="SU2"/>
+										<xsd:enumeration value="SW1"/>
+										<xsd:enumeration value="TR1"/>
+										<xsd:enumeration value="WH1"/>
+										<xsd:enumeration value="WH2"/>
+										<xsd:enumeration value="CA17"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="nonfoodfreq" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:maxLength value="15"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="nonfoodforecast" minOccurs="0">
+									<xsd:simpleType base="xsd:decimal">
+										<xsd:scale value="2"/>
+										<xsd:maxInclusive value="9.99"/>
+										<xsd:minInclusive value="0.01"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="agrienvcrop" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="AS2"/>
+										<xsd:enumeration value="CA16"/>
+										<xsd:enumeration value="CS1"/>
+										<xsd:enumeration value="EC1"/>
+										<xsd:enumeration value="ES1"/>
+										<xsd:enumeration value="FW1"/>
+										<xsd:enumeration value="FW2"/>
+										<xsd:enumeration value="HA1"/>
+										<xsd:enumeration value="MS1"/>
+										<xsd:enumeration value="NS1"/>
+										<xsd:enumeration value="NS2"/>
+										<xsd:enumeration value="NS3"/>
+										<xsd:enumeration value="OA2"/>
+										<xsd:enumeration value="OF1"/>
+										<xsd:enumeration value="TC1"/>
+										<xsd:enumeration value="WG1"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="otherlandcrop" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:enumeration value="AL1"/>
+										<xsd:enumeration value="AP1"/>
+										<xsd:enumeration value="AP2"/>
+										<xsd:enumeration value="AP3"/>
+										<xsd:enumeration value="AR1"/>
+										<xsd:enumeration value="AR2"/>
+										<xsd:enumeration value="AS1"/>
+										<xsd:enumeration value="AU1"/>
+										<xsd:enumeration value="BA1"/>
+										<xsd:enumeration value="BA2"/>
+										<xsd:enumeration value="BE1"/>
+										<xsd:enumeration value="BE2"/>
+										<xsd:enumeration value="BE3"/>
+										<xsd:enumeration value="BE4"/>
+										<xsd:enumeration value="BE5"/>
+										<xsd:enumeration value="BE6"/>
+										<xsd:enumeration value="BE7"/>
+										<xsd:enumeration value="BE8"/>
+										<xsd:enumeration value="BL1"/>
+										<xsd:enumeration value="BL2"/>
+										<xsd:enumeration value="BO1"/>
+										<xsd:enumeration value="BR1"/>
+										<xsd:enumeration value="BU1"/>
+										<xsd:enumeration value="BU2"/>
+										<xsd:enumeration value="CA1"/>
+										<xsd:enumeration value="CA10"/>
+										<xsd:enumeration value="CA11"/>
+										<xsd:enumeration value="CA12"/>
+										<xsd:enumeration value="CA13"/>
+										<xsd:enumeration value="CA14"/>
+										<xsd:enumeration value="CA15"/>
+										<xsd:enumeration value="CA17"/>
+										<xsd:enumeration value="CA2"/>
+										<xsd:enumeration value="CA3"/>
+										<xsd:enumeration value="CA4"/>
+										<xsd:enumeration value="CA5"/>
+										<xsd:enumeration value="CA6"/>
+										<xsd:enumeration value="CA7"/>
+										<xsd:enumeration value="CA8"/>
+										<xsd:enumeration value="CA9"/>
+										<xsd:enumeration value="CE1"/>
+										<xsd:enumeration value="CE2"/>
+										<xsd:enumeration value="CE3"/>
+										<xsd:enumeration value="CH1"/>
+										<xsd:enumeration value="CH2"/>
+										<xsd:enumeration value="CH3"/>
+										<xsd:enumeration value="CH4"/>
+										<xsd:enumeration value="CL1"/>
+										<xsd:enumeration value="CL2"/>
+										<xsd:enumeration value="CO1"/>
+										<xsd:enumeration value="CO2"/>
+										<xsd:enumeration value="CO3"/>
+										<xsd:enumeration value="CO4"/>
+										<xsd:enumeration value="CR1"/>
+										<xsd:enumeration value="CR2"/>
+										<xsd:enumeration value="CU1"/>
+										<xsd:enumeration value="DF1"/>
+										<xsd:enumeration value="EN1"/>
+										<xsd:enumeration value="EV1"/>
+										<xsd:enumeration value="EX1"/>
+										<xsd:enumeration value="FA1"/>
+										<xsd:enumeration value="FI1"/>
+										<xsd:enumeration value="FL1"/>
+										<xsd:enumeration value="GA1"/>
+										<xsd:enumeration value="GA2"/>
+										<xsd:enumeration value="GA3"/>
+										<xsd:enumeration value="GA4"/>
+										<xsd:enumeration value="GH1"/>
+										<xsd:enumeration value="GO1"/>
+										<xsd:enumeration value="GR1"/>
+										<xsd:enumeration value="GR2"/>
+										<xsd:enumeration value="GR3"/>
+										<xsd:enumeration value="GR5"/>
+										<xsd:enumeration value="GR6"/>
+										<xsd:enumeration value="GR7"/>
+										<xsd:enumeration value="HE1"/>
+										<xsd:enumeration value="HE2"/>
+										<xsd:enumeration value="HE3"/>
+										<xsd:enumeration value="HE4"/>
+										<xsd:enumeration value="HO1"/>
+										<xsd:enumeration value="HO2"/>
+										<xsd:enumeration value="HO3"/>
+										<xsd:enumeration value="KA1"/>
+										<xsd:enumeration value="KA2"/>
+										<xsd:enumeration value="KO1"/>
+										<xsd:enumeration value="LE1"/>
+										<xsd:enumeration value="LE2"/>
+										<xsd:enumeration value="LE3"/>
+										<xsd:enumeration value="LI1"/>
+										<xsd:enumeration value="LI2"/>
+										<xsd:enumeration value="LU1"/>
+										<xsd:enumeration value="LU2"/>
+										<xsd:enumeration value="LU3"/>
+										<xsd:enumeration value="MA1"/>
+										<xsd:enumeration value="MA2"/>
+										<xsd:enumeration value="MA3"/>
+										<xsd:enumeration value="MA4"/>
+										<xsd:enumeration value="MC1"/>
+										<xsd:enumeration value="ME1"/>
+										<xsd:enumeration value="ME2"/>
+										<xsd:enumeration value="ME3"/>
+										<xsd:enumeration value="MF1"/>
+										<xsd:enumeration value="MI1"/>
+										<xsd:enumeration value="MI2"/>
+										<xsd:enumeration value="MI3"/>
+										<xsd:enumeration value="MI4"/>
+										<xsd:enumeration value="MU1"/>
+										<xsd:enumeration value="MU2"/>
+										<xsd:enumeration value="MU3"/>
+										<xsd:enumeration value="MU4"/>
+										<xsd:enumeration value="NO1"/>
+										<xsd:enumeration value="NR1"/>
+										<xsd:enumeration value="NU1"/>
+										<xsd:enumeration value="NU10"/>
+										<xsd:enumeration value="NU3"/>
+										<xsd:enumeration value="NU7"/>
+										<xsd:enumeration value="NU8"/>
+										<xsd:enumeration value="NU9"/>
+										<xsd:enumeration value="OA1"/>
+										<xsd:enumeration value="ON1"/>
+										<xsd:enumeration value="OR1"/>
+										<xsd:enumeration value="OS1"/>
+										<xsd:enumeration value="PA1"/>
+										<xsd:enumeration value="PA2"/>
+										<xsd:enumeration value="PE1"/>
+										<xsd:enumeration value="PE2"/>
+										<xsd:enumeration value="PE3"/>
+										<xsd:enumeration value="PE5"/>
+										<xsd:enumeration value="PE6"/>
+										<xsd:enumeration value="PE7"/>
+										<xsd:enumeration value="PE8"/>
+										<xsd:enumeration value="PH1"/>
+										<xsd:enumeration value="PL1"/>
+										<xsd:enumeration value="PO1"/>
+										<xsd:enumeration value="PO3"/>
+										<xsd:enumeration value="PU1"/>
+										<xsd:enumeration value="PW1"/>
+										<xsd:enumeration value="QU1"/>
+										<xsd:enumeration value="QU2"/>
+										<xsd:enumeration value="RA1"/>
+										<xsd:enumeration value="RA2"/>
+										<xsd:enumeration value="RA3"/>
+										<xsd:enumeration value="RA4"/>
+										<xsd:enumeration value="RA5"/>
+										<xsd:enumeration value="RA6"/>
+										<xsd:enumeration value="RE1"/>
+										<xsd:enumeration value="RE2"/>
+										<xsd:enumeration value="RH1"/>
+										<xsd:enumeration value="RI1"/>
+										<xsd:enumeration value="RO1"/>
+										<xsd:enumeration value="RU1"/>
+										<xsd:enumeration value="RY1"/>
+										<xsd:enumeration value="SA1"/>
+										<xsd:enumeration value="SA2"/>
+										<xsd:enumeration value="SA3"/>
+										<xsd:enumeration value="SA4"/>
+										<xsd:enumeration value="SC1"/>
+										<xsd:enumeration value="SE1"/>
+										<xsd:enumeration value="SF1"/>
+										<xsd:enumeration value="SH1"/>
+										<xsd:enumeration value="SI1"/>
+										<xsd:enumeration value="SO1"/>
+										<xsd:enumeration value="SP1"/>
+										<xsd:enumeration value="SP2"/>
+										<xsd:enumeration value="SP3"/>
+										<xsd:enumeration value="SP4"/>
+										<xsd:enumeration value="ST1"/>
+										<xsd:enumeration value="SU1"/>
+										<xsd:enumeration value="SU2"/>
+										<xsd:enumeration value="SW1"/>
+										<xsd:enumeration value="SW2"/>
+										<xsd:enumeration value="TA1"/>
+										<xsd:enumeration value="TH1"/>
+										<xsd:enumeration value="TO1"/>
+										<xsd:enumeration value="TO2"/>
+										<xsd:enumeration value="TP1"/>
+										<xsd:enumeration value="TP2"/>
+										<xsd:enumeration value="TP3"/>
+										<xsd:enumeration value="TP4"/>
+										<xsd:enumeration value="TP5"/>
+										<xsd:enumeration value="TP6"/>
+										<xsd:enumeration value="TP7"/>
+										<xsd:enumeration value="TR1"/>
+										<xsd:enumeration value="TR2"/>
+										<xsd:enumeration value="TR3"/>
+										<xsd:enumeration value="TR4"/>
+										<xsd:enumeration value="TU1"/>
+										<xsd:enumeration value="TU2"/>
+										<xsd:enumeration value="TU3"/>
+										<xsd:enumeration value="TY1"/>
+										<xsd:enumeration value="VE1"/>
+										<xsd:enumeration value="VE2"/>
+										<xsd:enumeration value="VG1"/>
+										<xsd:enumeration value="VI1"/>
+										<xsd:enumeration value="WA1"/>
+										<xsd:enumeration value="WH1"/>
+										<xsd:enumeration value="WH2"/>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="comments" minOccurs="0">
+									<xsd:simpleType base="xsd:string">
+										<xsd:maxLength value="255"/>
+									</xsd:simpleType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:attribute name="sheet" type="xsd:positiveInteger" use="required"/>
+					<xsd:attribute name="holding" type="eforms:CPHnumType" use="required"/>
+					<xsd:attribute name="yieldregion" type="eforms:YieldRegionType" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of eformsStructure type definition -->
+	<!-- ==================== -->
+	<!-- Common Complex Types -->
+	<!-- ==================== -->
+	<!-- start of FarmerStructure type definition -->
+	<xsd:complexType name="FarmerStructure">
+		<xsd:annotation>
+			<xsd:documentation>The structure holds standard data about an individual farmer, including name, address and business details, together with any amendments that have been made.  This corresponds to questions 2 and 4 of the base form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="title" type="eforms:CitizenNameTitleType" minOccurs="0"/>
+			<xsd:element name="initials">
+				<xsd:simpleType base="xsd:string">
+					<xsd:minLength value="0"/>
+					<xsd:maxLength value="12"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="surname" type="eforms:CitizenNameSurnameType"/>
+			<xsd:element name="businessname">
+				<xsd:simpleType base="xsd:string">
+					<xsd:minLength value="1"/>
+					<xsd:maxLength value="70"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="address1" type="eforms:AddressLineType"/>
+			<xsd:element name="address2" type="eforms:AddressLineType"/>
+			<xsd:element name="address3" type="eforms:AddressLineType" minOccurs="0"/>
+			<xsd:element name="town" type="eforms:AddressTownType"/>
+			<xsd:element name="county" type="eforms:AddressLineType"/>
+			<xsd:element name="postcode" type="eforms:AddressPostCodeUKtype"/>
+			<xsd:element name="country" type="eforms:AddressTownType"/>
+			<xsd:element name="mainholding" type="eforms:CPHnumType"/>
+			<xsd:element name="telephone" type="eforms:TelephoneNumberType"/>
+			<xsd:element name="vendorno" type="eforms:VendorNumberType"/>
+			<xsd:element name="faxno" type="eforms:TelephoneNumberType" minOccurs="0"/>
+			<xsd:element name="mobileno" type="eforms:TelephoneNumberType" minOccurs="0"/>
+			<xsd:element name="emailaddr" type="eforms:EmailAddressType" minOccurs="0"/>
+			<xsd:element name="amend" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Amendments that have been made to the farmers details are held in this structure, this corresponds to question 3 on the base form.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence minOccurs="0">
+						<xsd:element name="title" type="eforms:CitizenNameTitleType"/>
+						<xsd:element name="initials">
+							<xsd:simpleType base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="12"/>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="surname" type="eforms:CitizenNameSurnameType"/>
+						<xsd:element name="businessname">
+							<xsd:simpleType base="xsd:string">
+								<xsd:minLength value="1"/>
+								<xsd:maxLength value="70"/>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="address1" type="eforms:AddressLineType"/>
+						<xsd:element name="address2" type="eforms:AddressLineType"/>
+						<xsd:element name="address3" type="eforms:AddressLineType"/>
+						<xsd:element name="town" type="eforms:AddressTownType"/>
+						<xsd:element name="county" type="eforms:AddressLineType"/>
+						<xsd:element name="postcode" type="eforms:AddressPostCodeUKtype"/>
+						<xsd:element name="country" type="eforms:AddressTownType"/>
+						<xsd:element name="telephone" type="eforms:TelephoneNumberType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of FarmerStructure type definition -->
+	<!-- Start of AreaAidNonFoodStructure type definition -->
+	<xsd:complexType name="AreaAidNonFoodStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 5 from the base form, each tag holds either 1 or 0 for Yes or No respectively.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="firsttime" type="eforms:YesNoType"/>
+			<xsd:element name="nfsetaside" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of AreaAidNonFoodStructure type definition -->
+	<!-- Start of OtherHoldingsStructure type definition -->
+	<xsd:complexType name="OtherHoldingsStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 6 from the base form, each line is represented by a holding node.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:element name="holding" minOccurs="0" maxOccurs="unbounded">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="cph" type="eforms:CPHnumType"/>
+					<xsd:element name="area" type="eforms:AreaType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:complexType>
+	<!-- End of OtherHoldingsStructure type definition -->
+	<!-- Start of FormationDateStructure type definition -->
+	<xsd:complexType name="FormationDateStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 7 from the base form, the reasonformed node is a free text entry field of 255 chars.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="formed920630" type="eforms:YesNoType"/>
+			<xsd:element name="reasonformed" type="eforms:LongStringType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of FormationDateStructure type definition -->
+	<!-- Start of OtherBusinessesStructure type definition -->
+	<xsd:complexType name="OtherBusinessesStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 8 from the base form, part a corresponds to otherland, each row of part b is represented by a business node, c is the deemedseparate node, nochanges holds part d, and changedetails is part e which can be up to 4Kb.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="otherland" type="eforms:YesNoType"/>
+			<xsd:element name="deemedseparate" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="nochanges" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="changedetails" type="eforms:ExtraLongStringType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="business" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="nameaddr" type="eforms:LongStringType" minOccurs="0" maxOccurs="1"/>
+						<xsd:element name="cph" type="eforms:CPHnumType" minOccurs="0" maxOccurs="1"/>
+						<xsd:element name="involvement" type="eforms:LongStringType" minOccurs="0" maxOccurs="1"/>
+						<xsd:element name="reasonformed" type="eforms:LongStringType" minOccurs="0" maxOccurs="1"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of OtherBusinessesStructure type definition -->
+	<!-- Start of SheepProducerStructure type definition -->
+	<xsd:complexType name="SheepProducerStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 9 from the base form, each box for the 2nd part of part c is represented by a member node.  Part d of the question is represented by nameaddr, postcode and phone nodes.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="producergroup" type="eforms:YesNoType"/>
+			<xsd:element name="single" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="separateapps" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="nameaddr" type="eforms:LongStringType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="postcode" type="eforms:AddressPostCodeUKtype" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="phone" type="eforms:TelephoneNumberType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="member" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="details" type="eforms:LongStringType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of SheepProducerStructure type definition -->
+	<!-- Start of AgriEnvironmentStructure type definition -->
+	<xsd:complexType name="AgriEnvironmentStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 10 from the base form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="energycrops" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="envsens" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="stewardship" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="access" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="habitat" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="nitrate" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="organic" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="orgfarm" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="moorland" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="woodland" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="woodgrant" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of AgriEnvironmentStructure type definition -->
+	<!-- Q. 11 is a simple Yes/No type so is inline above -->
+	<!-- Start of ECregimesStructure type definition -->
+	<xsd:complexType name="ECregimesStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 12 from the base form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="dehydfodder" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="seedprod" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="hopsincome" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of ECregimesStructure type definition -->
+	<!-- Start of ForageStructure type definition -->
+	<xsd:complexType name="ForageStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of questions 13 and 14 from the base form, each row from part b is represented by a details node</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="forage" type="eforms:YesNoType"/>
+			<xsd:element name="foragearea" type="eforms:AreaType" minOccurs="0"/>
+			<xsd:element name="allland" type="eforms:YesNoType" minOccurs="0"/>
+			<xsd:element name="foragedetails" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="fdpsheet" type="eforms:RestrictedIntegerType"/>
+						<xsd:element name="fdpline" type="eforms:RestrictedIntegerType"/>
+						<xsd:element name="dates" type="eforms:LongStringType"/>
+						<xsd:element name="prevdetails" type="eforms:LongStringType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of ForageStructure type definition -->
+	<!-- Start of SharedGrazingStructure type definition -->
+	<xsd:complexType name="SharedGrazingStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 15 from the base form, a details node holds information for each row.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence minOccurs="0">
+			<xsd:element name="sharedgrazing" type="eforms:YesNoType"/>
+			<xsd:element name="grazingdetails" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="fdpsheet" type="eforms:RestrictedIntegerType"/>
+						<xsd:element name="fdpline" type="eforms:RestrictedIntegerType"/>
+						<xsd:element name="users" type="eforms:CPHnumType"/>
+						<xsd:element name="sharing" type="eforms:PercentageType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of SharedGrazingStructure type definition -->
+	<!-- Start of CommonLandStructure type definition -->
+	<xsd:complexType name="CommonLandStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of questions 16, 17a) and 17b) from the base form, a registered node holds information for each row of question 17a) and a borrowed node for question 17b).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="commongrazing" type="eforms:YesNoType"/>
+			<xsd:element name="registered" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="commonname" type="eforms:LongStringType"/>
+						<xsd:element name="clnumber" type="eforms:CLnumberType" minOccurs="0" maxOccurs="1"/>
+						<xsd:element name="CLdetails" type="eforms:CLdetailsStructure"/>
+						<xsd:element name="lfasheepprod" type="eforms:YesNoType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="borrowed" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="commonname" type="eforms:LongStringType"/>
+						<xsd:element name="clnumber" type="eforms:CLnumberType" minOccurs="0" maxOccurs="1"/>
+						<xsd:element name="rightsname" type="eforms:LongStringType" minOccurs="0" maxOccurs="1"/>
+						<xsd:element name="rightscph" type="eforms:CPHnumType" minOccurs="0" maxOccurs="1"/>
+						<xsd:element name="CLdetails" type="eforms:CLdetailsStructure"/>
+						<xsd:element name="lfasheepprod" type="eforms:YesNoType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of CommonLandStructure type definition -->
+	<!-- Start of CLdetailsStructure type definition -->
+	<xsd:complexType name="CLdetailsStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node defines the structure for the common columns A, B and C from questions 17a) and 17b).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="GrazingAllowance">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number" type="xsd:positiveInteger" minOccurs="0"/>
+						<xsd:element name="type" minOccurs="0">
+							<xsd:simpleType base="xsd:string">
+								<xsd:enumeration value="Cattle"/>
+								<xsd:enumeration value="Sheep"/>
+								<xsd:enumeration value="Pigs"/>
+								<xsd:enumeration value="Goats"/>
+								<xsd:enumeration value="Ponies"/>
+								<xsd:enumeration value="Horses"/>
+								<xsd:enumeration value="Donkeys"/>
+								<xsd:enumeration value="Geese"/>
+								<xsd:enumeration value="Other Poultry"/>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="TotalLUs" type="eforms:RestrictedNumericType" minOccurs="0"/>
+			<xsd:element name="Stints" type="eforms:RestrictedNumericType" minOccurs="0"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<!-- End of CLdetailsStructure type definition -->
+	<!-- Start of SetAsideLandStructure type definition -->
+	<xsd:complexType name="SetAsideLandStructure">
+		<xsd:annotation>
+			<xsd:documentation>Questions 18 and 19 are simple Yes or No answers so appear in-line in eformsStructure.  This node holds details of question 20 from the base form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="setasidestrip10" type="eforms:YesNoType"/>
+			<xsd:element name="setasidestrip20" type="eforms:YesNoType"/>
+			<xsd:element name="setasidepart" type="eforms:YesNoType"/>
+			<xsd:element name="setasidewhole" type="eforms:YesNoType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of SetAsideLandStructure type definition -->
+	<!-- Start of FWPSStructure type definition -->
+	<xsd:complexType name="FWPSsetasideStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 21 from the base form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="fwpssetaside" type="eforms:YesNoType"/>
+			<xsd:element name="fwparea" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of FWPSStructure type definition -->
+	<!-- Start of VoluntarySetasideStructure type definition -->
+	<xsd:complexType name="VoluntarySetasideStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 22 from the base form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="voluntarysetaside" type="eforms:YesNoType"/>
+			<xsd:element name="fiveyear" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="biomass" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="reversion" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- End of VoluntarySetasideStructure type definition -->
+	<!--	Start of GuaranteedSetasideStructure type definition -->
+	<xsd:complexType name="GuaranteedSetasideStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 23 from the base form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="setasidescheme" minOccurs="0" maxOccurs="1">
+				<xsd:simpleType base="xsd:string">
+					<xsd:minLength value="0"/>
+					<xsd:maxLength value="22"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="caschemestart" minOccurs="0" maxOccurs="1">
+				<xsd:simpleType base="xsd:string">
+					<xsd:minLength value="0"/>
+					<xsd:maxLength value="22"/>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--	End of GuaranteedSetasideStructure type definition -->
+	<!--	Start of ArableSetasideStructure type definition -->
+	<xsd:complexType name="ArableSetasideStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 24-26 from the base form, there is a details node for each row from the third part of this question.  YieldRegionType is a enumerated type giving details of all the available regions, it is defined in core.xsd</xsd:documentation>
+		</xsd:annotation>
+		<xsd:element name="multiannual" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		<xsd:element name="arablesetaside" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		<xsd:element name="border" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		<xsd:element name="arabledetails" minOccurs="0" maxOccurs="1">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="arablearea" type="xsd:decimal"/>
+					<xsd:element name="yieldregionarable" type="eforms:YieldRegionType"/>
+					<xsd:element name="setasidearea" type="xsd:decimal"/>
+					<xsd:element name="yieldregionsetaside" type="eforms:YieldRegionType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:complexType>
+	<!--	End of ArableSetasideStructure type definition -->
+	<!--	Start of TransferredLandStructure type definition -->
+	<xsd:complexType name="TransferredLandStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 27 from the base form, in contrast to the hardcopy version of the IACS2 base form, it is possible to enter more than one set of details, each set is held in a details node.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="aaps" type="eforms:YesNoType"/>
+			<xsd:element name="transferreddetails" minOccurs="0" maxOccurs="1">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="fdpsheet" type="eforms:RestrictedIntegerType"/>
+						<xsd:element name="fdpline" type="eforms:RestrictedIntegerType"/>
+						<xsd:element name="nameaddr" type="eforms:LongStringType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--	End of TransferredLandStructure type definition -->
+	<!--	Start of YieldSummaryStructure type definition -->
+	<xsd:complexType name="YieldSummaryStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of question 29 from the base form, each entry on the grid is represented by an area node.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:element name="area" minOccurs="0" maxOccurs="unbounded">
+			<xsd:complexType derivedBy="extension" base="eforms:AreaType">
+				<xsd:attribute name="region" type="eforms:YieldRegionType" use="required"/>
+				<xsd:attribute name="group" type="eforms:CropGroupType" use="required"/>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:complexType>
+	<!--	End of YieldSummaryStructure type definition -->
+	<!--	Start of SupportingDocsStructure type definition -->
+	<xsd:complexType name="SupportingDocsStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of supporting documents question (Section IV) from the base form, each item can contain an integer between 0 and 255.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="sketchmap" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="iacs22" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="contractnonfood" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="glucosinolate" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="contracterucic" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="contractjetneuf" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="contractresearch" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="contractdurum" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="duruminvoicelabel" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="additionaldocs" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="contractfibreflax" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fibreflaxinvoicelabel" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="hemplabel" type="eforms:RestrictedIntegerType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="iacs31" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--	End of SupportingDocsStructure type definition -->
+	<!--	Start of ExtensificationStructure type definition -->
+	<xsd:complexType name="ExtensificationStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of the Extensification question from the base form (Section V on IACS2, section IV on IACS2F).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="extensification" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="exstandard" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="exsimplified" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="exlu16" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="exlu20" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--	End of ExtensificationStructure type definition -->
+	<!--	Start of HillFarmStructure type definition -->
+	<xsd:complexType name="HillFarmStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of the Hill Farm Allowances Scheme question (Section VI on IACS2, Section V on IACS2F).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:element name="hillfarm2002" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="lfaorganic" type="eforms:YesNoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="orglicence" minOccurs="0" maxOccurs="1">
+				<xsd:simpleType base="xsd:string">
+					<xsd:minLength value="0"/>
+					<xsd:maxLength value="12"/>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--	End of HillFarmStructure type definition -->
+	<!--	Start of DeclarationStructure type definition -->
+	<xsd:complexType name="DeclarationStructure">
+		<xsd:annotation>
+			<xsd:documentation>This node holds details of the Declarations and Undertakings question (Section VII on IACS2, Section VI on IACS2F).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="namedetails" type="xsd:string"/>
+			<xsd:element name="status">
+				<xsd:simpleType base="xsd:string">
+					<xsd:minLength value="0"/>
+					<xsd:maxLength value="50"/>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:element name="dob">
+			<xsd:simpleType derivedBy="restriction" base="xsd:string">
+				<xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,4}"/>
+			</xsd:simpleType>
+		</xsd:element>
+	</xsd:complexType>
+	<!--	End of DeclarationStructure type definition -->
+	<!-- End of EForms schema -->
+</xsd:schema>

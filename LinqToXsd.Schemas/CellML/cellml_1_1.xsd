@@ -1,0 +1,409 @@
+<?xml version='1.0'?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:cellml="http://www.cellml.org/cellml/1.1#"
+        xmlns:mathml="http://www.w3.org/1998/Math/MathML"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        elementFormDefault="qualified"
+        targetNamespace="http://www.cellml.org/cellml/1.1#">
+ <import namespace="http://www.w3.org/1998/Math/MathML"
+         schemaLocation="http://www.cellml.org/tools/cellml_1_1_schema/mathml2.xsd"/>
+ <import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.cellml.org/tools/cellml_1_1_schema/common/xlink-href.xsd"/>
+
+  <element name="model" type="cellml:model">
+    <key name="uniqueComponentName">
+      <selector xpath="cellml:component|cellml:import/cellml:component"/>
+      <field xpath="@name"/>
+    </key>
+    <unique name="UnitsName">
+      <selector xpath="cellml:units|cellml:import/cellml:units"/>
+      <field xpath="@name"/>
+    </unique>
+    <keyref name="connectionComponent1" refer="cellml:uniqueComponentName">
+      <selector xpath="cellml:connection/cellml:map_components"/>
+      <field xpath="@component_1"/>
+    </keyref>
+    <keyref name="connectionComponent2" refer="cellml:uniqueComponentName">
+      <selector xpath="cellml:connection/cellml:map_components"/>
+      <field xpath="@component_1"/>
+    </keyref>
+    <keyref name="componentRefExists" refer="cellml:uniqueComponentName">
+      <selector xpath=".//cellml:component_ref"/>
+      <field xpath="@component"/>
+    </keyref>
+  </element>
+  <complexType name="model">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element name="import" type="cellml:import" />
+        <element name="units" type="cellml:units" />
+        <element name="component" type="cellml:component">
+          <unique name="uniqueComponentUnitsName">
+            <selector xpath="cellml:units"/>
+            <field xpath="@name"/>
+          </unique>
+          <key name="uniqueComponentVariableName">
+            <selector xpath="cellml:variable"/>
+            <field xpath="@name"/>
+          </key>
+          <keyref name="checkReactions" refer="cellml:uniqueComponentVariableName">
+            <selector xpath=".//cellml:variable_ref"/>
+            <field xpath="@variable"/>
+          </keyref>
+          <keyref name="checkRoleDelta" refer="cellml:uniqueComponentVariableName">
+            <selector xpath=".//cellml:role"/>
+            <field xpath="@delta_variable"/>
+          </keyref>
+          <unique name="uniqueDelta">
+            <selector xpath=".//cellml:role"/>
+            <field xpath="@delta_variable"/>
+          </unique>
+        </element>
+        <element name="group" type="cellml:group" />
+        <element name="connection" type="cellml:connection" />
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="name" type="cellml:cellMLIdentifier" use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="import">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element name="units" type="cellml:importedUnits" />
+        <element name="component" type="cellml:importedComponent" />
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute ref="xlink:href" use="required" />
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="units">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element name="unit" type="cellml:unit" />
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="name" type="cellml:cellMLIdentifier" use="required"/>
+    <attribute name="base_units" type="cellml:yesno"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="unit">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="units" type="cellml:cellMLIdentifier" use="required"/>
+    <attribute name="multiplier" type="double"/>
+    <attribute name="prefix" type="cellml:unitPrefix"/>
+    <attribute name="offset" type="double"/>
+    <attribute name="exponent" type="double"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="component">
+    <choice minOccurs="0" maxOccurs="unbounded">
+      <element name="units" type="cellml:units"/>
+      <element name="variable" type="cellml:variable"/>
+      <element name="reaction" type="cellml:reaction"/>
+      <element ref="mathml:math"/>
+      <any namespace="##other" processContents="skip"/>
+    </choice>
+    <attribute name="name" type="cellml:cellMLIdentifier" use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="group">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+      <choice minOccurs="1" maxOccurs="1">
+        <sequence>
+          <element name="relationship_ref" type="cellml:relationshipRef"
+                   minOccurs="1" maxOccurs="unbounded"/>
+          <any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="component_ref" type="cellml:toplevelComponentRef"
+                   minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+        <sequence>
+          <element name="component_ref" type="cellml:toplevelComponentRef"
+                   minOccurs="1" maxOccurs="unbounded"/>
+          <any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="relationship_ref" type="cellml:relationshipRef"
+                   minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+      </choice>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element name="relationship_ref" type="cellml:relationshipRef"/>
+        <any namespace="##other" processContents="skip"/>
+        <element name="relationship_ref" type="cellml:relationshipRef"/>
+      </choice>
+    </sequence>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="relationshipRef">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="name" type="cellml:cellMLIdentifier"/>
+    <attribute name="relationship" type="cellml:relationship"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="toplevelComponentRef">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="component_ref" minOccurs="1" maxOccurs="unbounded"
+               type="cellml:componentRef"/>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element name="component_ref" type="cellml:componentRef"/>
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="component" type="cellml:cellMLIdentifier" use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="componentRef">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element name="component_ref" type="cellml:componentRef"/>
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="component" type="cellml:cellMLIdentifier" use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="connection">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+      <choice>
+        <sequence>
+          <element name="map_components" minOccurs="1" maxOccurs="1"
+                   type="cellml:mapComponents"/>
+          <sequence>
+            <element name="map_variables" minOccurs="1" maxOccurs="1" type="cellml:mapVariables"/>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element name="map_variables" type="cellml:mapVariables"/>
+              <any namespace="##other" processContents="skip" />
+            </choice>
+          </sequence>
+        </sequence>
+        <sequence>
+          <sequence>
+            <element name="map_variables" minOccurs="1" maxOccurs="1" type="cellml:mapVariables"/>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element name="map_variables" type="cellml:mapVariables"/>
+              <any namespace="##other" processContents="skip" />
+            </choice>
+          </sequence>
+          <element name="map_components" minOccurs="1" maxOccurs="1"
+                   type="cellml:mapComponents"/>
+          <sequence>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element name="map_variables" type="cellml:mapVariables"/>
+              <any namespace="##other" processContents="skip" />
+            </choice>
+          </sequence>
+        </sequence>
+      </choice>
+    </sequence>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="importedUnits">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="name" type="cellml:cellMLIdentifier" use="required"/>
+    <attribute name="units_ref" type="cellml:cellMLIdentifier" use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="importedComponent">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="name" type="cellml:cellMLIdentifier" use="required"/>
+    <attribute name="component_ref" type="cellml:cellMLIdentifier" use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="variable">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="name" type="cellml:cellMLIdentifier" use="required"/>
+    <attribute name="units" type="cellml:cellMLIdentifier" use="required"/>
+    <attribute name="public_interface" type="cellml:interface"/>
+    <attribute name="private_interface" type="cellml:interface"/>
+    <attribute name="initial_value" type="cellml:initialValue"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="mapComponents">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="component_1" type="cellml:cellMLIdentifier"
+               use="required"/>
+    <attribute name="component_2" type="cellml:cellMLIdentifier"
+               use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="mapVariables">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="variable_1" type="cellml:cellMLIdentifier"
+               use="required"/>
+    <attribute name="variable_2" type="cellml:cellMLIdentifier"
+               use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="reaction">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+      <element name="variable_ref" type="cellml:variableRef" minOccurs="1"
+               maxOccurs="unbounded"/>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="reversible" type="cellml:yesno"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="variableRef">
+    <sequence>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+      <element name="role" type="cellml:role" minOccurs="1"
+               maxOccurs="unbounded"/>
+      <any namespace="##other" processContents="skip" minOccurs="0"
+           maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="variable" type="cellml:cellMLIdentifier" use="required"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <complexType name="role">
+    <sequence>
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element ref="mathml:math"/>
+        <any namespace="##other" processContents="skip"/>
+      </choice>
+    </sequence>
+    <attribute name="role" type="cellml:roleType" use="required"/>
+    <attribute name="direction" type="cellml:direction"/>
+    <attribute name="delta_variable" type="cellml:cellMLIdentifier"/>
+    <attribute name="stoichiometry" type="double"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+
+  <simpleType name="cellMLIdentifier">
+    <restriction base="string">
+      <pattern value="[a-z|A-Z|_]*[a-z|A-Z][a-z|A-Z|0-9|_]*"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="interface">
+    <restriction base="string">
+      <enumeration value="in"/>
+      <enumeration value="out"/>
+      <enumeration value="none"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="initialValue">
+    <union>
+      <simpleType>
+        <restriction base="cellml:cellMLIdentifier"/>
+      </simpleType>
+      <simpleType>
+        <restriction base="double"/>
+      </simpleType>
+    </union>
+  </simpleType>
+
+  <simpleType name="unitPrefix">
+    <union>
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="yotta"/>
+          <enumeration value="zetta"/>
+          <enumeration value="exa"/>
+          <enumeration value="peta"/>
+          <enumeration value="tera"/>
+          <enumeration value="giga"/>
+          <enumeration value="mega"/>
+          <enumeration value="kilo"/>
+          <enumeration value="hecto"/>
+          <enumeration value="deka"/>
+          <enumeration value="deci"/>
+          <enumeration value="centi"/>
+          <enumeration value="milli"/>
+          <enumeration value="micro"/>
+          <enumeration value="nano"/>
+          <enumeration value="pico"/>
+          <enumeration value="femto"/>
+          <enumeration value="atto"/>
+          <enumeration value="zepto"/>
+          <enumeration value="yocto"/>
+        </restriction>
+      </simpleType>
+      <simpleType>
+        <restriction base="integer"/>
+      </simpleType>
+    </union>
+  </simpleType>
+
+  <simpleType name="yesno">
+    <restriction base="string">
+      <enumeration value="yes"/>
+      <enumeration value="no"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="relationship">
+    <restriction base="string">
+      <enumeration value="encapsulation"/>
+      <enumeration value="containment"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="roleType">
+    <restriction base="string">
+      <enumeration value="reactant"/>
+      <enumeration value="product"/>
+      <enumeration value="catalyst"/>
+      <enumeration value="activator"/>
+      <enumeration value="inhibitor"/>
+      <enumeration value="modifier"/>
+      <enumeration value="rate"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="direction">
+    <restriction base="string">
+      <enumeration value="forward"/>
+      <enumeration value="reverse"/>
+      <enumeration value="both"/>
+    </restriction>
+  </simpleType>
+</schema>

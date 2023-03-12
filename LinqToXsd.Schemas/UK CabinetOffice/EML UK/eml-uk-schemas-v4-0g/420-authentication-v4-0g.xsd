@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Paul Spencer (alphaXML Ltd.) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-420">
+	<xs:include schemaLocation="emlcore-v4-0g.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="Authentication"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="Authentication">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="VotingChannel" minOccurs="0"/>
+				<xs:choice>
+					<xs:element ref="VToken"/>
+					<xs:element ref="VTokenQualified"/>
+				</xs:choice>
+				<xs:element name="LoginMethod" type="xs:token" minOccurs="0"/>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="AuditInformation" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

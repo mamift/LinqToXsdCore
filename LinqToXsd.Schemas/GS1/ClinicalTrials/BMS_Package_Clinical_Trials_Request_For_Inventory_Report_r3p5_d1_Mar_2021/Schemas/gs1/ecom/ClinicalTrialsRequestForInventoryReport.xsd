@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:clinical_trials_request_for_inventory_report="urn:gs1:ecom:clinical_trials_request_for_inventory_report:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:clinical_trials_request_for_inventory_report:xsd:3" version="3.5">
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: May 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+	<xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+	<xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+	<xsd:element name="clinicalTrialsRequestForInventoryReportMessage" type="clinical_trials_request_for_inventory_report:ClinicalTrialsRequestForInventoryReportMessageType"/>
+	<xsd:complexType name="ClinicalTrialRequestForInventoryReportType">
+		<xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+				<xsd:sequence>
+					<xsd:element name="protocolID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20"/>
+								<xsd:minLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="protocolOwner" type="shared_common:GLNType"/>
+					<xsd:element name="requestForInventoryReportIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+					<xsd:element name="sender" type="ecom_common:Ecom_PartyIdentificationType"/>
+					<xsd:element name="receiver" type="ecom_common:Ecom_PartyIdentificationType"/>
+					<xsd:element maxOccurs="unbounded" name="inventoryReportRequestInformation" type="clinical_trials_request_for_inventory_report:InventoryReportRequestInformationType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ClinicalTrialsRequestForInventoryReportMessageType">
+		<xsd:sequence>
+			<xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+			<xsd:element maxOccurs="10000" name="clinicalTrialsRequestForInventoryReport" type="clinical_trials_request_for_inventory_report:ClinicalTrialRequestForInventoryReportType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InventoryReportRequestInformationType">
+		<xsd:sequence>
+			<xsd:element name="investigationalProductIdentification" type="shared_common:GTINType"/>
+			<xsd:element name="kitIdentification">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="200"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="kitType">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="200"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="inventoryReportingDateTime" type="xsd:dateTime"/>
+			<xsd:element name="inventoryReportingPartyLocation" type="ecom_common:Ecom_PartyIdentificationType"/>
+			<xsd:element minOccurs="0" name="inventoryReportingParty" type="ecom_common:Ecom_PartyIdentificationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

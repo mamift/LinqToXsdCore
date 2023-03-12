@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:product_recall_common="urn:gs1:ecom:product_recall_common:xsd:3" xmlns:product_removal_confirmation="urn:gs1:ecom:product_removal_confirmation:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:product_removal_confirmation:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:product_recall_common:xsd:3" schemaLocation="ProductRecallCommon.xsd"/>
+    <xsd:element name="productRemovalConfirmationMessage" type="product_removal_confirmation:ProductRemovalConfirmationMessageType"/>
+    <xsd:complexType name="ProductRemovalConfirmationMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="productRemovalConfirmation" type="product_removal_confirmation:ProductRemovalConfirmationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRemovalConfirmationTraceableItemType">
+        <xsd:sequence>
+            <xsd:element name="totalQuantityRemoved" type="shared_common:QuantityType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productRecallTrackingKey" type="product_recall_common:ProductRecallTrackingKeyType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="logisticUnitIdentification" type="ecom_common:Ecom_LogisticUnitIdentificationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRemovalConfirmationTradeItemType">
+        <xsd:sequence>
+            <xsd:element name="dispositionDisclosure" type="shared_common:Description80Type"/>
+            <xsd:element name="tradeItemName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemClassificationCode" type="shared_common:AdditionalTradeItemClassificationCodeType"/>
+            <xsd:element minOccurs="0" name="additionalTradeItemInformation" type="shared_common:Description500Type"/>
+            <xsd:element minOccurs="0" name="gpcCategoryCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d{8}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcCategoryName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="105"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="tradeItemIdentification" type="ecom_common:Ecom_TradeItemIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" name="productRemovalConfirmationTraceableItem" type="product_removal_confirmation:ProductRemovalConfirmationTraceableItemType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductRemovalConfirmationType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="originalPRNIdentification" type="ecom_common:GDTIType"/>
+                    <xsd:element name="pRCIdentification" type="ecom_common:GDTIType"/>
+                    <xsd:element name="pRCStatusCode" type="product_recall_common:ProductRecallNotificationStatusEnumerationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="associatedPRNIdentification" type="ecom_common:GDTIType"/>
+                    <xsd:element minOccurs="0" name="originalPRNIssueDateTime" type="xsd:dateTime"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="pRNTitle" type="shared_common:Description80Type"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="pRNUpdateReason" type="shared_common:Description80Type"/>
+                    <xsd:element minOccurs="0" name="updatedBy">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="80"/>
+                                <xsd:minLength value="1"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="productRemovalConfirmationIssuer" type="product_recall_common:ProductRecallPartyType"/>
+                    <xsd:element name="productRemovalConfirmationRecipient" type="product_recall_common:ProductRecallPartyType"/>
+                    <xsd:element minOccurs="0" name="productRecallMarketDetail" type="product_recall_common:ProductRecallMarketDetailType"/>
+                    <xsd:element maxOccurs="unbounded" name="productRemovalConfirmationTradeItem" type="product_removal_confirmation:ProductRemovalConfirmationTradeItemType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

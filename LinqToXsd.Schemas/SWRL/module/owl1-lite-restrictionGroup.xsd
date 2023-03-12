@@ -1,0 +1,88 @@
+<!--
+"owl1-lite-restrictionGroup.xsd"
+XML Schema Module for the XML Presentation Syntax of OWL 1.0
+Copyright: 2002-2003 W3C (MIT, INRIA, Keio), All Rights Reserved.
+See http://www.w3.org/Consortium/Legal/.
+Revision: 2003/06/01 
+--> 
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
+    targetNamespace="http://www.w3.org/2003/05/owl-xml"
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified">
+
+  <xsd:annotation>
+    <xsd:documentation>
+      Restriction group only for OWL Lite. This model group 
+      is replaced with "owl1-dl-restrictionGroup.xsd" provided 
+      for OWL DL and OWL Full. 
+    </xsd:documentation>
+    <xsd:documentation>
+      Restrictions for OWL Lite must have exactly one component. 
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:group name="dataRestriction">
+    <xsd:annotation>
+      <xsd:documentation>
+        Used by: 
+          + DataRestriction [Lite] (defined in "owl1-lite-core.xsd") 
+      </xsd:documentation>
+      <xsd:documentation>
+        Element types of 'allValuesFrom' and 'someValuesFrom' are 
+        restricted to datatype ID.  
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence> 
+      <xsd:choice minOccurs="1" maxOccurs="1"> 
+        <xsd:element ref="owlx:minCardinality" /> 
+        <xsd:element ref="owlx:maxCardinality" /> 
+        <xsd:element ref="owlx:cardinality" /> 
+        <xsd:element name="allValuesFrom" type="owlx:datatypeAttrType" /> 
+        <xsd:element name="someValuesFrom" type="owlx:datatypeAttrType" />
+        <!-- 'hasValue' restriction is not included --> 
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:group>
+  
+  <xsd:group name="objectRestriction"> 
+    <xsd:annotation>
+      <xsd:documentation>
+        Used by: 
+          + ObjectRestriction [Lite] (defined in "owl1-lite-core.xsd") 
+      </xsd:documentation>
+      <xsd:documentation>
+        Element types of 'allValuesFrom' and 'someValuesFrom' are 
+        restricted to class ID.  
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence> 
+      <xsd:choice minOccurs="1" maxOccurs="1">
+        <xsd:element ref="owlx:minCardinality" /> 
+        <xsd:element ref="owlx:maxCardinality" /> 
+        <xsd:element ref="owlx:cardinality" /> 
+        <xsd:element name="allValuesFrom" type="owlx:classAttrType" /> 
+        <xsd:element name="someValuesFrom" type="owlx:classAttrType" /> 
+        <!-- 'hasValue' restriction is not included --> 
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:group>
+
+  <xsd:simpleType name="CardinalityRangeType"> 
+    <xsd:annotation>
+      <xsd:documentation>
+        Used by: 
+          + cardinality [Lite] (defined in "owl1-lite-core.xsd") 
+      </xsd:documentation>
+      <xsd:documentation>
+        Cardinality value is restricted to either 0 or 1 for OWL Lite. 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:nonNegativeInteger"> 
+      <xsd:minInclusive value="0" /> 
+      <xsd:maxInclusive value="1" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>
+

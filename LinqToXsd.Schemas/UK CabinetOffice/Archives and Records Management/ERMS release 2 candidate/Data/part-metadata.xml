@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.govtalk.gov.uk/CM/gms
+../Schemas/ERMS-part-v3.xsd">
+	<Aggregation>part</Aggregation>
+	<Date>
+		<Closed>2003-02-28</Closed>
+		<CutOff>2003-02-28</CutOff>
+	</Date>
+	<Identifier>
+		<SystemID>[System-specific identifier]</SystemID>
+		<FileplanID>[System-specific identifier]</FileplanID>
+	</Identifier>
+	<Relation>
+		<HasPart>[System-specific record identifier 1]</HasPart>
+		<HasPart>[System-specific record identifier 2]</HasPart>
+		<IsPartOf>[System-specific folder identifier]</IsPartOf>
+	</Relation>
+</Metadata>

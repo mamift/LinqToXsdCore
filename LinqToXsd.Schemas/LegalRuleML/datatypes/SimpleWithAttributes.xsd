@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Adapted by OASIS LegalRuleML TC with the permission of RuleML Inc. from http://deliberation.ruleml.org/1.02/datatypes/SimpleWithAttributes.xsd of Deliberation RuleML 1.02
+dc:rights [ 'Copyright 2015 RuleML Inc. - Licensed under the RuleML Specification License, Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://ruleml.org/licensing/RSL1.0-RuleML. Disclaimer: THIS SPECIFICATION IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, ..., EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. See the License for the rulemlifics governing permissions and limitations under the License.' ]-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ruleml="http://ruleml.org/spec"
+  elementFormDefault="qualified" targetNamespace="http://ruleml.org/spec">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
+  <xs:import namespace="http://www.w3.org/2001/XMLSchema-datatypes" schemaLocation="http://www.w3.org/2001/XMLSchema-datatypes"/>
+  <xs:complexType name="duration">
+    <xs:simpleContent>
+      <xs:extension base="xs:duration">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="dateTime">
+    <xs:simpleContent>
+      <xs:extension base="xs:dateTime">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="time">
+    <xs:simpleContent>
+      <xs:extension base="xs:time">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="date">
+    <xs:simpleContent>
+      <xs:extension base="xs:date">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="gYearMonth">
+    <xs:simpleContent>
+      <xs:extension base="xs:gYearMonth">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="gYear">
+    <xs:simpleContent>
+      <xs:extension base="xs:gYear">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="gDay">
+    <xs:simpleContent>
+      <xs:extension base="xs:gDay">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="gMonth">
+    <xs:simpleContent>
+      <xs:extension base="xs:gMonth">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="boolean">
+    <xs:simpleContent>
+      <xs:extension base="xs:boolean">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="base64Binary">
+    <xs:simpleContent>
+      <xs:extension base="xs:base64Binary">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="hexBinary">
+    <xs:simpleContent>
+      <xs:extension base="xs:hexBinary">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="float">
+    <xs:simpleContent>
+      <xs:extension base="xs:float">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="decimal">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="double">
+    <xs:simpleContent>
+      <xs:extension base="xs:double">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="anyURI">
+    <xs:simpleContent>
+      <xs:extension base="xs:anyURI">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+        <xs:attribute ref="xml:base"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="QName">
+    <xs:simpleContent>
+      <xs:extension base="xs:QName">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="NOTATION">
+    <xs:simpleContent>
+      <xs:extension base="xs:NOTATION">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="String">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="normalizedString">
+    <xs:simpleContent>
+      <xs:extension base="xs:normalizedString">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="Token">
+    <xs:simpleContent>
+      <xs:extension base="xs:token">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="language">
+    <xs:simpleContent>
+      <xs:extension base="xs:language">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="Name">
+    <xs:simpleContent>
+      <xs:extension base="xs:Name">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="NCName">
+    <xs:simpleContent>
+      <xs:extension base="xs:NCName">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="NMTOKEN">
+    <xs:simpleContent>
+      <xs:extension base="xs:NMTOKEN">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="NMTOKENS">
+    <xs:simpleContent>
+      <xs:extension base="xs:NMTOKENS">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ENTITY">
+    <xs:simpleContent>
+      <xs:extension base="xs:ENTITY">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ENTITIES">
+    <xs:simpleContent>
+      <xs:extension base="xs:ENTITIES">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="integer">
+    <xs:simpleContent>
+      <xs:extension base="xs:integer">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="nonPositiveInteger">
+    <xs:simpleContent>
+      <xs:extension base="xs:nonPositiveInteger">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="negativeInteger">
+    <xs:simpleContent>
+      <xs:extension base="xs:negativeInteger">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="long">
+    <xs:simpleContent>
+      <xs:extension base="xs:long">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="int">
+    <xs:simpleContent>
+      <xs:extension base="xs:int">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="short">
+    <xs:simpleContent>
+      <xs:extension base="xs:short">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="byte">
+    <xs:simpleContent>
+      <xs:extension base="xs:byte">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="nonNegativeInteger">
+    <xs:simpleContent>
+      <xs:extension base="xs:nonNegativeInteger">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="unsignedLong">
+    <xs:simpleContent>
+      <xs:extension base="xs:unsignedLong">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="unsignedInt">
+    <xs:simpleContent>
+      <xs:extension base="xs:unsignedInt">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="unsignedByte">
+    <xs:simpleContent>
+      <xs:extension base="xs:unsignedByte">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="positiveInteger">
+    <xs:simpleContent>
+      <xs:extension base="xs:positiveInteger">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="anySimpleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:anySimpleType">
+        <xs:attributeGroup ref="ruleml:commonNode.attlist"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
