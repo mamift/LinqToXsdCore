@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "USBenefitTypeCodeList",
+	"description": "Specifies non-voluntary benefits paid by the employer on behalf of the worker.",
+	"enum": [
+		"SocialSecurityContribution",
+		"MedicareContribution",
+		"FederalUnemploymentInsurance",
+		"StateUnemploymentInsurance",
+		"WorkersCompensationContribution",
+		"Other"
+	]
+}

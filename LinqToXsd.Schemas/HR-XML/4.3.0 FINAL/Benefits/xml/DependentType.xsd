@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="DependentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/organization/OrganizationType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/SpecifiedPersonType.xsd" />
+  <xsd:include schemaLocation="codelist/RelationshipCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="SubscriberPersonType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/PersonReferenceType.xsd" />
+  <xsd:complexType name="DependentType">
+    <xsd:annotation>
+      <xsd:documentation>Contains information to describe the dependent, including the relationship between the primary insured and dependent.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="relationshipCode" type="hropen:RelationshipCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The code classifying the dependent type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:SubscriberPersonType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="custodialParent" type="hropen:PersonReferenceType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="responsible" type="hropen:SpecifiedPersonType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="fullTimeStudentIndicator" type="hropen:IndicatorType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="educationOrganization" type="hropen:OrganizationType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Dependent" type="hropen:DependentType" />
+</xsd:schema>

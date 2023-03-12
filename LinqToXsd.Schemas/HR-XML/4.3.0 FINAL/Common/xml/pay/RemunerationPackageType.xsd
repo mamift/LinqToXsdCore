@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RemunerationPackageType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="RemunerationRangeType.xsd" />
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:include schemaLocation="../codelist/RemunerationBasisCodeList.xsd" />
+  <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../base/EffectiveTimePeriodType.xsd" />
+  <xsd:complexType name="RemunerationPackageType">
+    <xsd:annotation>
+      <xsd:documentation>Terms offered or agreed regarding remuneration for a position. May include pay as well as benefits in-kind.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="basisCode" type="hropen:RemunerationBasisCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the primary method of payment for the associated position or employment. This classifies the method by which remuneration for a position is provided or calculated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ranges">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RemunerationRangeType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="benefitsSummary" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>A summary of the offered benefits.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="RemunerationPackage" type="hropen:RemunerationPackageType" />
+</xsd:schema>

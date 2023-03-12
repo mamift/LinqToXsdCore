@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AccountBasedProductCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="AccountBasedProductCodeList">
+    <xsd:annotation>
+      <xsd:documentation>The code classifying the type of account based product.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="HSA" />
+      <xsd:enumeration value="Parking" />
+      <xsd:enumeration value="Transit" />
+      <xsd:enumeration value="MedicalFSA" />
+      <xsd:enumeration value="LimitedPurposeFSA" />
+      <xsd:enumeration value="DependentCareFSA" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="AccountBasedProductCode" type="hropen:AccountBasedProductCodeList" />
+</xsd:schema>

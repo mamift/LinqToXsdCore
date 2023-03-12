@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "YearMonthPeriodType",
+    "description": "Single period between year/months. Both start and end are required.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "YearMonthOpenEndPeriodType.json#" }
+    ],
+    "required": [ "end" ]
+}

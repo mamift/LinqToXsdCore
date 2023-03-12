@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CatalogALaCarteType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/TextType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:complexType name="ALaCarteItemType">
+    <xsd:annotation>
+      <xsd:documentation>An aLaCarte screen.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="screeningCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The code corresponding to a screening type (e.g. MVR, Criminal, Civil, Credit, DrugTesting, Fingerprinting, Education, Employment).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="category" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>The category that this screening type falls in.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="screeningDescription" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>The description screening type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CatalogALaCarteType">
+    <xsd:annotation>
+      <xsd:documentation>A list of all available ALaCarte items.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="screenings">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>An array of aLaCarte Screens.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ALaCarteItemType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="CatalogALaCarte" type="hropen:CatalogALaCarteType" />
+</xsd:schema>

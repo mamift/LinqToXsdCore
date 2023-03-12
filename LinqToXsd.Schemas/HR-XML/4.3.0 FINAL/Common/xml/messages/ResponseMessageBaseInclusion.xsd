@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ResponseMessageBaseInclusion" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/DateTimeType.xsd" />
+  <xsd:complexType name="ResponseMessageBaseInclusion">
+    <xsd:annotation>
+      <xsd:documentation>A response to a request to process a list of items.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="messageId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier for the instance of the response message.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="messageDateTime" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date &amp; time that the response message instance was created.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requestId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The identifier for the request to which a confirm message is related. In the asynchronous processing case, this identifier may be used to refer to the processing job that is servicing a request.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requestProcessingStatusCode">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The processing status code for the request.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Received" />
+            <xsd:enumeration value="Validated" />
+            <xsd:enumeration value="Started" />
+            <xsd:enumeration value="Completed" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ResponseMessageBaseInclusion" type="hropen:ResponseMessageBaseInclusion" />
+</xsd:schema>

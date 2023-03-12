@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CompetencyDimensionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../evaluation/ScoreType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:complexType name="CompetencyDimensionType">
+    <xsd:annotation>
+      <xsd:documentation>A measurable characteristic of a competency. Examples might include 'frequency of use,' 'level of interest,' etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="dimensionType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the type of competency dimension.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="score" type="hropen:ScoreType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="CompetencyDimension" type="hropen:CompetencyDimensionType" />
+</xsd:schema>

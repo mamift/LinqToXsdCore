@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="MeasureType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/UnitCodeList.xsd" />
+  <xsd:complexType name="MeasureType">
+    <xsd:annotation>
+      <xsd:documentation>A measure is a numeric value determined by measuring an object along with the specified unit of measure.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The numeric value of the measure.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="unitCode" type="hropen:UnitCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The unit of measure.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Measure" type="hropen:MeasureType" />
+</xsd:schema>

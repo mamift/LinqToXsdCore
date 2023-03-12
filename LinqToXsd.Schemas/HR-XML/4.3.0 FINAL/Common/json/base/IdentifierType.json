@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "IdentifierType",
+    "description": "An identifier is a character string used to uniquely identify one instance of an object within an identification scheme that is managed by an agency. Use this type when the list or values are controlled by an external entity, the list or values are public and could be referenced or validated.",
+    "type": "object",
+    "properties": {
+        "value": { 
+            "description": "The identifier.",
+            "type": "string" 
+        },
+        "schemeId": {
+            "description": "The identification of the identifier scheme.",
+            "type": "string"
+        },
+        "schemeVersionId": {
+            "description": "The identification of the version of the identifier scheme.",
+            "type": "string"
+        },
+        "schemeAgencyId": {
+            "description": "The identification of the agency that manages the identifier scheme.",
+            "type": "string"
+        },
+        "description": { 
+            "description": "The description of the identifier.",
+            "type": "string" 
+        },
+        "schemeLink": {
+            "description": "The URI that identifies where the identification scheme data is located.",
+            "type": "string",
+            "format": "uri"
+        },
+        "agencyUri": {
+            "description": "The URI that identifies where the identification scheme is located.",
+            "type": "string",
+            "format": "uri"
+        }
+    },
+    "required": [ "value" ]
+}

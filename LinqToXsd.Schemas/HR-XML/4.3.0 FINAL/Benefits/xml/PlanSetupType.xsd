@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PlanSetupType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AccountBasedPlanSetupType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DateType.xsd" />
+  <xsd:include schemaLocation="codelist/WaitingRuleTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/EffectiveTimePeriodType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/codelist/CountryCodeList.xsd" />
+  <xsd:include schemaLocation="codelist/WaitingRuleEventCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="codelist/AccountBasedProductCodeList.xsd" />
+  <xsd:include schemaLocation="codelist/FinalFilingRuleTypeCodeList.xsd" />
+  <xsd:include schemaLocation="codelist/FinalFilingRuleCodeList.xsd" />
+  <xsd:complexType name="WaitingRuleType">
+    <xsd:annotation>
+      <xsd:documentation>The rule that defines how long the subscriber must wait before they are eligible to enroll in the plan.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="waitingRuleEventCode" type="hropen:WaitingRuleEventCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the event associated with the waiting rule.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="waitingRuleTypeCode" type="hropen:WaitingRuleTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the type associated with the waiting rule.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rollForwardIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator as to whether the ‘First of month’ waiting rule type can be rolled forward to the first of the following month when the hire date falls on the first of the month.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ruleValue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Value indicating the number of months or days for the waiting rule type code.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="FinalFilingRuleType">
+    <xsd:annotation>
+      <xsd:documentation>An indicator that defines how long a participant has to file a claim against the plan.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="finalFilingRuleCode" type="hropen:FinalFilingRuleCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the participant's employment status associated with the final filing rule.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="finalFilingRuleTypeCode" type="hropen:FinalFilingRuleTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the type associated with the final filing rule.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="finalFilingRuleValue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Value indicating the number of days for the final filing rule type code.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PlanSetupType">
+    <xsd:annotation>
+      <xsd:documentation>Plan setup type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The primary identifier of the plan. This should be assigned by the owner of the data.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="productCode" type="hropen:AccountBasedProductCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code to identify the type of plan.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="productDescription">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A description to identify the type of plan.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="legalPlanName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The plan name as described by the summary plan description.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="providerId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The primary identifier of provider for the plan.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="waitingRuleType">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The rule that defines how long the subscriber must wait before they are eligible to enroll in the plan.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WaitingRuleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectivePeriod" type="hropen:EffectiveTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The start and end date of the plan configuration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="originalEffectiveDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The first start date that this plan is effective. This date will stay the same accross multiple effective periods for the plan.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="terminationDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The last date that this plan is effective.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="countryCode" type="hropen:CountryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Two letter country codes as defined by ISO 3166-1:2013. Content referenced from Wikipedia.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The alternate identifier of the plan.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="planAnniversary">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The month and day of plan renewal.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="COBRAEligibleIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator as to whether an enrollee of the plan may be eligible for COBRA.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="COBRAEnrollmentIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator as to whether the plan restricts enrollments to only COBRA participants.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="gracePeriod">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The number of days expenses can be incurred after the plan year end date.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="carryOverAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The amount that can be carried over to subsequent plan year.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="finalFilingRule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:FinalFilingRuleType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="debitCardIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator as to whether the plan allows debit card as a form of reimbursement.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="accountBasedPlanSetupType" type="hropen:AccountBasedPlanSetupType">
+        <xsd:annotation>
+          <xsd:documentation>Information pertaining to account based plan types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PlanSetup" type="hropen:PlanSetupType" />
+</xsd:schema>

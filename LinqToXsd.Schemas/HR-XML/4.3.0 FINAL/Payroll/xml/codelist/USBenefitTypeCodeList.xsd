@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="USBenefitTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="USBenefitTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Specifies non-voluntary benefits paid by the employer on behalf of the worker.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SocialSecurityContribution" />
+      <xsd:enumeration value="MedicareContribution" />
+      <xsd:enumeration value="FederalUnemploymentInsurance" />
+      <xsd:enumeration value="StateUnemploymentInsurance" />
+      <xsd:enumeration value="WorkersCompensationContribution" />
+      <xsd:enumeration value="Other" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="USBenefitTypeCode" type="hropen:USBenefitTypeCodeList" />
+</xsd:schema>

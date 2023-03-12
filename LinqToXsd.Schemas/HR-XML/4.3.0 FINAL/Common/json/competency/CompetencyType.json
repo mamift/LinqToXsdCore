@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CompetencyType",
+    "description": "Represents competency types in HR Open Standards.",
+    "type": "object",
+    "properties": {
+        "personCompetency": { "$ref": "PersonCompetencyType.json#" },
+        "positionCompetency": { "$ref": "PositionCompetencyType.json#" },
+        "specifiedCompetency": { "$ref": "SpecifiedCompetencyType.json#" }
+    }
+}

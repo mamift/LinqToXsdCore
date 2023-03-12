@@ -1,0 +1,75 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "PayrollSetupType",
+	"description": "Provides the information needed to setup a payroll.",
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "../../common/json/base/NounType.json#"
+		}
+	],
+	"definitions": {
+		"PayrollPersonType": {
+			"title": "PayrollPersonType",
+			"description": "Information about the person.",
+			"type": "object",
+			"properties": {
+				"personName": {
+					"description": "The name of the person.",
+					"$ref": "../../common/json/person/PersonNameType.json#"
+				},
+				"personBase": {
+					"description": "General information about the person, e.g. id, birthdate and gender.",
+					"$ref": "../../common/json/person/PersonBaseType.json#"
+				},
+				"personLegal": {
+					"description": "Legal details about a person, e.g. passport, parents names, marital status.",
+					"$ref": "../../common/json/person/PersonLegalInclusion.json#"
+				}
+			}
+		}
+	},
+	"properties": {
+		"person": {
+			"description": "Information about the person, including name, birthdate, legal ids, and marital status.",
+			"$ref": "#/definitions/PayrollPersonType"
+		},
+		"workLifeCycle": {
+			"description": "Describes the relationship of the worker, e.g. hire date, termination, hir.",
+			"$ref": "../../common/json/work/WorkLifeCycleType.json#"
+		},
+		"deployment": {
+			"description": "Information about the person's position, organization, and work location.",
+			"$ref": "../../common/json/work/DeploymentType.json#"
+		},
+		"paymentInstructions": {
+			"description": "Instructions for payment method and amount.",
+			"type": "array",
+			"items": {
+				"$ref": "PaymentInstructionsType.json#"
+			}
+		},
+		"remunerationInstructions ": {
+			"description": "Instructions for the payments.",
+			"type": "array",
+			"items": {
+				"$ref": "../../common/json/pay/RemunerationOrDeductionType.json#"
+			}
+		},
+		"deductionInstructions": {
+			"description": "Instructions for General and Benefits deductions.",
+			"type": "array",
+			"items": {
+				"$ref": "../../common/json/pay/RemunerationOrDeductionType.json#"
+			}
+		},
+		"garnishmentInstructions": {
+			"description": "Instructions for Garnishment deductions.",
+			"type": "array",
+			"items": {
+				"$ref": "GarnishmentInstructionType.json#"
+			}
+		}
+	}
+}

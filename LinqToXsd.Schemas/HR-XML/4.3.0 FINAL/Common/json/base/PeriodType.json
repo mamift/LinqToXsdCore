@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PeriodType",
+    "description": "Single date/timespan/month/year or period between two dates/months/years.",
+    "anyOf": [
+        { "$ref": "FormattedDateTimeType.json#" },
+        { "$ref": "DateTimePeriodType.json#" },
+        { "$ref": "DatePeriodType.json#" },
+        { "$ref": "YearMonthPeriodType.json#" },
+        { "$ref": "YearPeriodType.json#" }
+    ]
+}

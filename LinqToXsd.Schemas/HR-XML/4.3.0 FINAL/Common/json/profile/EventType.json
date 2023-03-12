@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EventType",
+    "description": "Basic type that contains all properties common to an event, conference, or some other type of function.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],
+    "properties": {
+        "venue": { 
+            "description": "The name of the venue where the event occurred.",
+            "type": "string" 
+        },
+        "location": { 
+            "description": "The location of the venue.",
+            "$ref": "../communication/LocationType.json#" 
+        },
+        "when": {
+            "description": "The start and end date when the event occurred.",
+            "$ref": "../base/DateOpenEndPeriodType.json#"
+        }
+    }
+}

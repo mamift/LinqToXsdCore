@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="EmployerContributionCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="EmployerContributionCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A code identifying type of employer contribution.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Flat" />
+      <xsd:enumeration value="Percent" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="EmployerContributionCode" type="hropen:EmployerContributionCodeList" />
+</xsd:schema>

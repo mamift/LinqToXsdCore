@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AttachmentReferenceType",
+    "description": "A reference to an attachment that is within the current context of the document, or an external reference.",
+    "type": "object",
+    "properties": {
+        "reference": { 
+            "description": "An identifier or reference to a document.",
+            "$ref": "IdentifierType.json#" 
+        },
+        "uri": {
+            "description": "An internal reference (typically a JSON pointer reference).",
+            "type": "string"
+        },
+        "descriptions": { 
+            "description": "Descriptions of the attachment reference.",
+            "$ref": "StringTypeArray.json#" 
+        }
+    },
+    "required": [ "uri" ]
+}

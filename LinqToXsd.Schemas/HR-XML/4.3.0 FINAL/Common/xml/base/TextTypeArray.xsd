@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="TextTypeArray" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="TextType.xsd" />
+  <xsd:complexType name="TextTypeArray">
+    <xsd:annotation>
+      <xsd:documentation>Array of TextType data - for providing a multilingual textual representation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:TextType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="TextArray" type="hropen:TextTypeArray" />
+</xsd:schema>

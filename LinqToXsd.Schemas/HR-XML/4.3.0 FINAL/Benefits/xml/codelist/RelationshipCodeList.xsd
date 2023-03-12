@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RelationshipCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="RelationshipCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Contains information to describe the dependent, including the relationship between the primary insured and dependent.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="AdoptedChild" />
+      <xsd:enumeration value="Child" />
+      <xsd:enumeration value="Brother" />
+      <xsd:enumeration value="Sister" />
+      <xsd:enumeration value="Mother" />
+      <xsd:enumeration value="Father" />
+      <xsd:enumeration value="Spouse" />
+      <xsd:enumeration value="Exspouse" />
+      <xsd:enumeration value="Grandmother" />
+      <xsd:enumeration value="Grandfather" />
+      <xsd:enumeration value="Grandson" />
+      <xsd:enumeration value="Granddaughter" />
+      <xsd:enumeration value="LifePartner" />
+      <xsd:enumeration value="ChildOfDomesticPartner" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="RelationshipCode" type="hropen:RelationshipCodeList" />
+</xsd:schema>

@@ -1,0 +1,33 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "PlaceType",
+  "description" : "Fixed physical location.",
+  "type" : "object",
+  "properties" : {
+    "address" : {
+      "description" : "Physical address of the entity.",
+      "$ref" : "../../../common/json/communication/AddressType.json#"
+    },
+    "faxNumber" : {
+      "description" : "Fax number of an organization or person.",
+      "type" : "string"
+    },
+    "geo" : {
+      "description" : "The geo coordinates of the place.",
+      "$ref" : "../../../common/json/base/GeoType.json#"
+    },
+    "jobOpeningNumber" : {
+      "description" : "Number of positions open at this location.",
+      "type" : "number"
+    },
+    "name" : {
+      "description" : "The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.",
+      "type" : "string"
+    },
+    "telephone" : {
+      "description" : "The telephone number of an organization or person.",
+      "type" : "string"
+    }
+  }
+}

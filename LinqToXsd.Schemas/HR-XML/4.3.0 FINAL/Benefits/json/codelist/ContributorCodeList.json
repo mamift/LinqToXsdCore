@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ContributorCodeList",
+    "description": "A code identifying the source of the election.",
+    "enum": [
+        "Employee",
+        "Employer"
+    ]
+}

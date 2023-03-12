@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="LicenseType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="CertificationType.xsd" />
+  <xsd:include schemaLocation="../base/EffectiveTimePeriodType.xsd" />
+  <xsd:complexType name="LicenseType">
+    <xsd:annotation>
+      <xsd:documentation>Authoritative permission to hold a certain status or to do certain things, e.g. to practise some trade or profession. (OED license, n. a. A formal, usually a printed or written permission from a constituted authority to do something. b. The document embodying such a permission.)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier to the certificate as defined by the issuing authority.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The common name of the certificate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="type" type="hropen:EntityType">
+        <xsd:annotation>
+          <xsd:documentation>The type of the certificate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="status">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The status of the certificate. While this is an open string, common status include active, expired, pending, suspended.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectiveTimePeriod" type="hropen:EffectiveTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The time period for which the certificiate is valid and considered active.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issued" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The most recent issue date of the certificate. This might be of relevance if it differs from the start date of the valid time period or is a renewal of a previous certificate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="firstIssued" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The original issue date of the certificate. Often this is useful when the certificates need to be renewed often, and it is important to know how long the certificate has been held.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issuingAuthority" type="hropen:OrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>The organization that issued the certificate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>References to attachments in the message that provide evidence of the issue or the validity of the license.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="endorsements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The modifications to the base license as authorized by the issuing authority that allow for additional access or grant additional qualifications. Examples include different variations of drivers or pilot licenses that allow for additional vehicles to be operated.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="unbounded" name="item">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+                  <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+                  <xsd:element minOccurs="1" maxOccurs="1" name="value">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="description">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="restrictions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The modifications to the base license as authorized by the issuing authority that restrict access or remove permissions or authority. Examples include requiring vision ware while operating a motor vehicle, or requiring an additional licensed operator to accompany the licensee while operating a vehicle.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="unbounded" name="item">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+                  <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+                  <xsd:element minOccurs="1" maxOccurs="1" name="value">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="description">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="violations">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The violations or transgressions against the license as per the licensing authority or other authorities. Examples include points violations on a drivers license due to speeding.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="unbounded" name="item">
+              <xsd:complexType>
+                <xsd:all>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+                  <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+                  <xsd:element minOccurs="1" maxOccurs="1" name="value">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" maxOccurs="1" name="description">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string" />
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:all>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="License" type="hropen:LicenseType" />
+</xsd:schema>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WebTypeArray" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="WebType.xsd" />
+  <xsd:include schemaLocation="CommunicationItemInclusion.xsd" />
+  <xsd:complexType name="WebTypeArray">
+    <xsd:annotation>
+      <xsd:documentation>Array of web information details.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="1" maxOccurs="1" name="url">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Actual web address.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="name">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Provide description for particular communication item.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="useCode" type="hropen:CodeType">
+              <xsd:annotation>
+                <xsd:documentation>Code identifying the usage of the contact point e.g. business, private, etc.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="preference">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Provide priority for given communication item.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="availablePeriod" type="hropen:DateTimePeriodType" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="WebArray" type="hropen:WebTypeArray" />
+</xsd:schema>

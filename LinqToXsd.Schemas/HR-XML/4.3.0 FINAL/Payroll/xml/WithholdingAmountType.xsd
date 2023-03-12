@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WithholdingAmountType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:complexType name="WithholdingAmountType">
+    <xsd:annotation>
+      <xsd:documentation>Type and monetary value withheld from an worker. This may include taxes, premiums, and retirement withholdings.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Type of withholding amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Short phrase further describing the withholding amount.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>Monetary value of withholding amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="WithholdingAmount" type="hropen:WithholdingAmountType" />
+</xsd:schema>

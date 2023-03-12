@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "GeoPolygonQueryType",
+    "description": "Type for geographical polygon queries.",
+    "type": "object",
+    "properties": {
+        "geoPolygon": {
+            "type": "object",
+            "properties": {
+                "propertyPath": {
+                    "description": "Path of the property to which the condition applies.",
+                    "type": "string"
+                },
+                "geoPolygon": {
+                    "description": "The geographical polygon of geographical points. In order to fulfill the query/criterion, the location geo points must fall inside the polygon.",
+                    "$ref": "GeoPolygonType.json#"
+                }
+            },
+            "required": [
+                "geoPolygon"
+            ]
+        }
+    }
+}

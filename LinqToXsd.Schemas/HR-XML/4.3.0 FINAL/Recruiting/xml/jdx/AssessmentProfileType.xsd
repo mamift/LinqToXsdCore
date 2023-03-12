@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="AssessmentProfileType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AnnotatedDefinedTermType.xsd" />
+  <xsd:complexType name="AssessmentProfileType">
+    <xsd:annotation>
+      <xsd:documentation>Entity that describes the key characteristics of an assessment administered to candidates for a job.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="areaAssessed">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the area or domain to be assessed.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assessmentExample">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Resource describing an example assessment.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assessmentMethod" type="hropen:AnnotatedDefinedTermType">
+        <xsd:annotation>
+          <xsd:documentation>Type of method used to conduct an assessment; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of assessment method types such as the AssessmentMethod vocabulary.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="conceptKeyword">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Word or phrase used to refine and describe significant aspects of the entity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="evidenceCategory" type="hropen:AnnotatedDefinedTermType">
+        <xsd:annotation>
+          <xsd:documentation>The type of referenced artifact, exam or performance confirming or supporting an assertion; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of evidence types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="AssessmentProfile" type="hropen:AssessmentProfileType" />
+</xsd:schema>

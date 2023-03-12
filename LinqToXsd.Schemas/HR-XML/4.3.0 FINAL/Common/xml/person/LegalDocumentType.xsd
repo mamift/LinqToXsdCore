@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="LegalDocumentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:complexType name="LegalDocumentType">
+    <xsd:annotation>
+      <xsd:documentation>Identifying information for a legal document, e.g. Passport, Visa, etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identifier.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeId">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identification of the identifier scheme.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeVersionId">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identification of the version of the identifier scheme.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeAgencyId">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identification of the agency that manages the identifier scheme.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The description of the identifier.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeLink">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The URI that identifies where the identification scheme data is located.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="agencyUri">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The URI that identifies where the identification scheme is located.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The type of document, e.g. Passport, Visa, National Registration Card.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issuingAuthority">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the organization that issued the document. E.g. American Consulate, UK Passport Authority.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="issueDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date the document was issued.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="expirationDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date the document expires.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="LegalDocument" type="hropen:LegalDocumentType" />
+</xsd:schema>

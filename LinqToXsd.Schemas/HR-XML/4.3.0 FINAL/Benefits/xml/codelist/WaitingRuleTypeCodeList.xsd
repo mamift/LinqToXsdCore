@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="WaitingRuleTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="WaitingRuleTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A code classifying the type associated with the waiting rule.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="HireDate" />
+      <xsd:enumeration value="FirstOfMonthAfterXMonths" />
+      <xsd:enumeration value="AfterXMonths" />
+      <xsd:enumeration value="AfterXDays" />
+      <xsd:enumeration value="FirstOfMonthAfterXDays" />
+      <xsd:enumeration value="OtherProbation" />
+      <xsd:enumeration value="FirstOfMonthAfterHire" />
+      <xsd:enumeration value="FirstPayPeriodAfterXDays" />
+      <xsd:enumeration value="NoWaitingRule" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="WaitingRuleTypeCode" type="hropen:WaitingRuleTypeCodeList" />
+</xsd:schema>

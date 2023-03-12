@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PaymentMethodType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../codelist/CurrencyCodeList.xsd" />
+  <xsd:include schemaLocation="../codelist/CountryCodeList.xsd" />
+  <xsd:complexType name="PaymentMethodType">
+    <xsd:annotation>
+      <xsd:documentation>Defines how a payment is paid.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="methodType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The manner is which a payment is made. E.g. Direct Deposit, Check, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="accountId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An account ID within a bank into which a payroll payment is deposited. The schemeID would include the word 'IBAN' or 'SWIFT' to reference the ID Type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="accountType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A bank account into which a payment is deposited.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="nameOnAccount">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the person on the bank account</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="bankId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>This is a number or identifier for a bank used in the context of electronic funds transfer. Usually, only a single BankID needs to be specified in the context of a given transaction. The bankId may have different names in different parts of the world. E.g. BIC in Europe, Routing Number in the US, and Sort Code in UK.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="countryCode" type="hropen:CountryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The country code where the bank is located.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="currencyCode" type="hropen:CurrencyCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The currency of the payment to be made.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PaymentMethod" type="hropen:PaymentMethodType" />
+</xsd:schema>

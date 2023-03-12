@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="JobPostingType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../../common/xml/base/DateType.xsd" />
+  <xsd:include schemaLocation="QualifyingExperienceType.xsd" />
+  <xsd:include schemaLocation="../../../common/xml/base/GeoType.xsd" />
+  <xsd:include schemaLocation="../../../common/xml/base/NounType.xsd" />
+  <xsd:include schemaLocation="../../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="PlaceType.xsd" />
+  <xsd:include schemaLocation="PostingInstructionsType.xsd" />
+  <xsd:include schemaLocation="ConditionType.xsd" />
+  <xsd:include schemaLocation="JDXOrganizationType.xsd" />
+  <xsd:include schemaLocation="MonetaryAmountDistributionType.xsd" />
+  <xsd:include schemaLocation="../../../common/xml/base/LocalizationInclusion.xsd" />
+  <xsd:include schemaLocation="../../../common/xml/base/DateTimeType.xsd" />
+  <xsd:include schemaLocation="AnnotatedDefinedTermType.xsd" />
+  <xsd:include schemaLocation="CredentialType.xsd" />
+  <xsd:include schemaLocation="MonetaryAmountType.xsd" />
+  <xsd:include schemaLocation="AssessmentProfileType.xsd" />
+  <xsd:complexType name="JobPostingType">
+    <xsd:annotation>
+      <xsd:documentation>Entity describing an on-line advertisement for filling one or more job openings.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="abilities">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Aptitude, capacity or power to act physically, socially, mentally, legally, or morally at a level suitable to the work context; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of ability types such as the O*NET cognitive, sensory, psychomotor and physical abilities.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternativeCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an alternative credential fulfilling requirements for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternativeEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an alternative education or training fulfilling requirements for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternativeExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an alternative experience fulfilling requirements for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="applicantLocationRequirements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Geographic location(s) in which employees may be located for remote (telecommuting) jobs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:GeoType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attitudes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Motivator of performance including values, aspirations, and priorities necessary to successful performance of a task or job; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of attitude types.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="baseSalaries">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Base salary of the job or of an employee in an employee role including minimum and maximum salary and unit value (e.g., hour, day, week, month, or year).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:MonetaryAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="careerLevels">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A code classifying the level of a candidate based on career experience; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of career level types (e.g., HR Open Standards CareerLevelCodeList#).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="citizenshipRequirements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Required country of the applicant's citizenship. Note(s): Use a value selected from a country code list such as the Library of Congress' List of Countries.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="competencies">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Observable and measurable knowledge, skills, abilities and personal attributes that contribute to enhanced employee performance of the job; select from an existing enumeration of such types. </xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="dateCreated" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>Date on which the position was created.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="dateModified" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>Date on which the position was modified.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="datePosted" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>Date of posting by a channel.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disclaimers">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Statement that denies aspects of a statement made or omitted by the employing entity in the position or posting.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="educationLevels">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Word or phrase identifying the location of the person in terms of his or her progression through an education or training context; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of education levels such as HR Open Standards IscedCodeList#.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employerOverview">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the employer, career opportunities and work environment.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="employmentUnit" type="hropen:JDXOrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>Department, unit and/or facility where the employee reports and/or in which the job is to be performed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="equivalentCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of an equivalent credential for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="equivalentEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of equivalent education or training for the position or occupation. Note(s): An educational experience without award of a credential should be recorded with a range of QualifyingExperience. An educational experience with award of a credential should be recoded with a range of Credential, not QualifyingExperience.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="equivalentExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of equivalent experience for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="estimatedSalaries">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the estimated salary for a job posting based on a variety of variables including, but not limited to industry, job title, and location.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:MonetaryAmountDistributionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="experienceCategories">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Category of experience needed for the position or Occupation; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of experience types including, but not limited to, "Education Experience", "Training Experience", "Work Experience", "Apprenticeship", and "Traineeship".</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="formattedDescriptions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>HTML-tagged summary of the salient aspects of the job, including job responsibilities, qualifications, skills, working hours, education requirements, and experience requirements.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="postingInstructions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Resource providing instructions for posting a job position opening to a job board or media channel and for submission of applications.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PostingInstructionsType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="hiringOrganization" type="hropen:JDXOrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>Organization offering the job position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="incentiveCompensation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of bonus and commission compensation aspects of the job.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="identifiers">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc. Note(s): Identifier in JDX has a constrained range of PropertyValue. Best practice is to use name property to textually identify the type of identifier, value property to hold the textual value of the identifier, and the properytID for a URI indicating the type of identifier. NOTE: JDX defines positionID and postingID to handle the employer's identifier for a particular position or posting.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="industries">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the most critical economic or work activities performed (e.g. software development, electronic manufacturing, motor vehicle production, or diagnostic and therapeutic services). Note(s): NOTE: The industry description expected here is a brief narrative of the most critical economic or work activities performed. To identify a formal industry code, such as NAICS in the U.S., use the industryCode property.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="industryCodes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Code from a controlled vocabulary of industry types identifying the primary economic activity of an establishment defined as a single physical location where business is conducted or where services or industrial operations are performed. Note(s): 1.) Use a value selected from a controlled vocabulary of industry types used in the country where the job is located; e.g., NAICS in the U.S. and ESCO in the European Union. 2.) In a JDX job description, there my be multiple levels and locations for an organization identified and each may have different industry codes based on the kinds of work performed at those locations.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="inLanguage" type="hropen:LocalizationInclusion">
+        <xsd:annotation>
+          <xsd:documentation>The language of the content of the job posting.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobAgreements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Type of employment agreement (e.g. "employee", "contract-to-hire", "contract", "internship", "externship", "apprenticeship", "student", "volunteer", "under collective bargaining", "eligible for overtime"; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of employment contract agreements; select from an existing enumeration of such types.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobBenefits">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of benefits associated with the job (e.g., "employee discount", "health insurance", "401K plan"); select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of benefit types; select from an existing enumeration of such types.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobImmediateStart">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Indicator as to whether a position is available for an immediate start.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobLocation" type="hropen:PlaceType">
+        <xsd:annotation>
+          <xsd:documentation>Typically single geographic location where the work is performed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobLocationTypes">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the job location (e.g., TELECOMMUTE for telecommute jobs).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobSchedules">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Schedule of the employment (e.g. "full-time", "part-time", "flex-time", "hourly", "shared-time"); select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of employment schedule types; select from an existing enumeration of such types.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobStartDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>Target date when the employment would begin.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobTerms">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Type of employment term (e.g. "regular", "temporary", "seasonal"); select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of employment term types; select from an existing enumeration of such types.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="knowledge">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Body of facts, principles, theories and practices that is related to a field of work or study; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of knowledge types such as the O*NET knowledge.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the minimum experience needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the minimum credential needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the minimum education needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="occupationCategories">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Category of the relevant occupation of the job used in the country of employment; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of occupation categories such as the Standard Occupational Classification (SOC).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="physicalActivities">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the physical activity expected or required for a position. Note(s): Use a value selected from a controlled vocabulary of physical activity types such as "bending", "standing", "sitting".</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="physicalRequirements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation></xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionID">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Employer's identifier for a particular position.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="postingID">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Employer's identifier for a particular job posting. Note(s): For the identifier of the position for this posting, use positionID.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="postingRequestor" type="hropen:JDXOrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>Agent requesting the posting.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the preferred credential needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the preferred education or training needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the preferred experience needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="qualificationSummary">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Summary description of the ideal candidate's qualifications for a position.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reportingRelationships">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Position(s) to which this position reports and over which this position exercises some degree of authority, control or leadership.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredAssessments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Resource referenced is an example of a direct, indirect, formative, and summative evaluation or estimation of the nature, ability, or quality of a person's performance or outcome of an action.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AssessmentProfileType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredConditions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Resource referenced provides the means to make logical assertions that combine resources that in aggregate fulfill education, experience and credential requirements.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ConditionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredCredentials">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the required credential needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CredentialType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredEducation">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the required education or training needed for the position or occupation. Note(s): Specific credential requirements should use requiredCredential.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredExperiences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of the required experience needed for the position or occupation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:QualifyingExperienceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="responsibilities">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Key work tasks or activities over which this position exercises some degree of authority, control or leadership. Note(s): Use a value selected from a controlled vocabulary of responsibilities.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="riskExposures">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of any exposure to risks associated with the job including exposure to extreme noise or temperature, dust/particle matter, radiation, chemicals, airborne communicable diseases and bloodborne pathogens.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="securityClearanceRequirements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Description of any security clearance requirements.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="sensoryRequirements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation></xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="shiftSchedules">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Type of the typical work shift of the job; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of work shift types. Sample may include swing shift, day shift, or weekend shift. </xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="skills">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Ability to apply knowledge and use know-how to complete tasks and solve problems including types or categories of developed proficiency or dexterity in mental operations and physical processes required to fulfill a work role; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of skill types such as the O*NET skills.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="specialCommitments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Any special commitments associated with this job posting (e.g. low-income, native American, ex-offenders, military commit) along with any special exclusions (e.g. criminal records).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="tasks">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Piece or unit of work to be done or undertaken and accomplished within a defined period of time or by a deadline; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of task types such as O*NET tasks.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="technologies">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Tool, application or other form of technology that requires knowledge, skill and ability to use effectively in executing the tasks and responsibilities of the job; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of technology types such as O*NET technology and tools.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="title">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The title of the job.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalJobOpenings">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Total number of positions open at all locations.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="travelRequirements">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Information about any required travel, systematic or occasional.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date from which the job posting is valid.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="validThrough" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date after which the item is not valid. For example the end of an offer, salary period, or a period of opening hours.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workActivities">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Purposeful, systematic activity by one or more workers acting on a work objective to reach an intended outcome; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of activity types such as the O*NET work activities.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AnnotatedDefinedTermType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workLanguages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Information on the work languages used for the job.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:LocalizationInclusion" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workHours">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Typical working hours for this job; e.g. "1st shift", "night shift", "8am-5pm".</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="JobPosting" type="hropen:JobPostingType" />
+</xsd:schema>

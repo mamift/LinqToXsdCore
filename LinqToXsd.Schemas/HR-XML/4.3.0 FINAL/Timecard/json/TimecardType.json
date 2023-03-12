@@ -1,0 +1,210 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "TimecardType",
+    "description": "A record of time worked; associated expenses to be reimbursed; and/or allowances associated with the engagement.",
+    "definitions": {
+        "TimeWorkedRoundingType": {
+            "title": "TimeWorkedRoundingType",
+            "type": "object",
+            "properties": {
+                "cycleCode": { "$ref": "../../common/json/codelist/PayCycleIntervalCodeList.json#" },
+                "ruleCode": { "type": "string" },
+                "unitCode": { "type": "string" }
+            }
+        },
+        "StateCodeType": {
+            "title": "StateCodeType",
+            "description": "A set of codes classifying the state of a TimeCard.",
+            "enum": [
+                "Raw",
+                "Processed",
+                "Submitted",
+                "Rejected",
+                "Approved",
+                "Final",
+                "Open",
+                "Adjusted"
+            ]
+        },
+        "ItemTypeCodeType": {
+            "title": "ItemTypeCodeType",
+            "description": "Identifies common types of time/work classification",
+            "enum": [
+                "Regular",
+                "Illness",
+                "Vacation",
+                "SpecialLeave",
+                "Holiday",
+                "Break",
+                "ClockAction",
+                "Training",
+                "Unscheduled",
+                "Compensation",
+                "Overtime",
+                "Travel",
+                "Pickup"
+            ]
+        },
+        "ItemBase": {
+            "title": "ItemBase",
+            "description": "Common properties used on TimeCardItem and PieceOfWork/Allowance/Expense/Balance",
+            "allOf": [
+                { "$ref": "../../common/json/base/EntityType.json#" },
+                { "$ref": "../../common/json/person/ResponsibleInclusion.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "statusCode": { "$ref": "../../common/json/codelist/ActionCodeList.json#" },
+                "billable": { "type": "boolean" },
+                "payable": { "type": "boolean" },
+                "comment": { "$ref": "../../common/json/base/CommentType.json#" }
+            }
+        },
+        "QuantityAmount": {
+            "title": "QuantityAmount",
+            "anyOf": [
+                {
+                    "title": "quantity",
+                    "type": "object",
+                    "properties": {
+                        "quantity": { "$ref": "../../common/json/base/QuantityType.json#" }
+                    },
+                    "required": [ "quantity" ]
+                },
+                {
+                    "title": "amount",
+                    "type": "object",
+                    "properties": {
+                        "amount": { "$ref": "../../common/json/base/AmountType.json#" }
+                    },
+                    "required": [ "amount" ]
+                }
+            ]
+        },
+        "PieceWorkType": {
+            "title": "PieceWorkType",
+            "description": "Contains information relating to renumeration based on count of items produced or serviced.",
+            "allOf": [
+                { "$ref": "#/definitions/ItemBase" }
+            ],
+            "type": "object",
+            "properties": {
+                "quantity": { "$ref": "../../common/json/base/QuantityType.json#" },
+                "payRates": {
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/pay/PayRateType.json#" }
+                }
+            },
+            "required": [ "quantity" ]
+        },
+        "ExpenseType": {
+            "title": "ExpenseType",
+            "description": "This allows for the reporting of expenses for reimbursement or payment. TimeCard is not designed as an all-purpose expense-reporting format, but rather is designed to accommodate the type of expenses that are reported and reimbursed in the context of staffing assignments.",
+            "allOf": [
+                { "$ref": "#/definitions/ItemBase" }
+            ],
+            "type": "object",
+            "properties": {
+                "amount": { "$ref": "../../common/json/base/AmountType.json#" }
+            },
+            "required": [ "amount" ]
+        },
+        "AllowanceType": {
+            "title": "AllowanceType",
+            "description": "Allows for the reporting of allowances that may be associated with the particular time worked. For example, some workers may be due per diems to cover expenses incurred during an assignment or may receive allowances to cover the cost of items such as uniforms.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "#/definitions/ItemBase" },
+                { "$ref": "#/definitions/QuantityAmount" }
+            ],
+            "properties": {
+                "payRates": {
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/pay/PayRateType.json#" }
+                }
+            },
+            "dependencies": {
+                "payRates": [ "quantity" ]
+            }
+        },
+        "BalanceType": {
+            "title": "BalanceType",
+            "description": "Allows for the reporting of direct balance values.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "#/definitions/ItemBase" },
+                { "$ref": "#/definitions/QuantityAmount" }
+            ]
+        },
+        "TimeCardItemType": {
+            "title": "TimeCardItemType",
+            "description": "Contains data on a period of work, time event, expense, or allowance that is being reported within a time card.",
+            "allOf": [
+                { "$ref": "#/definitions/ItemBase" },
+                { "$ref": "../../common/json/work/ResourceClassificationInclusion.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "typeCode": { "$ref": "#/definitions/ItemTypeCodeType" },
+                "period": { "$ref": "../../common/json/base/PeriodType.json#" },
+                "timeTotal": { "$ref": "../../common/json/base/DurationType.json#" },
+                "expenseDate": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "entryDate": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "entryChangeDate": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "payRates": {
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/pay/PayRateType.json#" }
+                },
+                "assignmentIds": {
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/IdentifierType.json#" }
+                },
+                "pieceWork": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/PieceWorkType" }
+                },
+                "allowances": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/AllowanceType" }
+                },
+                "expenses": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/ExpenseType" }
+                },
+                "balances": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/BalanceType" }
+                },
+                "geo": { "$ref": "../../common/json/base/GeoType.json#" },
+                "attachment": { "$ref": "../../common/json/base/BinaryObjectType.json#" }
+            },
+            "required": [ "period" ],
+            "dependencies": {
+                "expenseDate": [ "expense" ]
+            }
+        }
+    },
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" },
+        { "$ref": "../../common/json/person/ResponsibleInclusion.json#" },
+        { "$ref": "../../common/json/organization/PartyInclusion.json#" },
+        { "$ref": "../../common/json/work/ResourceClassificationInclusion.json#" }
+    ],
+    "properties": {
+        "person": { "$ref": "../../common/json/person/SpecifiedPersonType.json#" },
+        "period": { "$ref": "../../common/json/base/PeriodType.json#" },
+        "payRates": {
+            "type": "array",
+            "items": { "$ref": "../../common/json/pay/PayRateType.json#" }
+        },
+        "stateCode": { "$ref": "#/definitions/StateCodeType" },
+        "staffingIds": { "$ref": "../../common/json/work/StaffingReferenceIdsType.json#" },
+        "items": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/TimeCardItemType" }
+        },
+        "geo": { "$ref": "../../common/json/base/GeoType.json#" }
+    }
+}

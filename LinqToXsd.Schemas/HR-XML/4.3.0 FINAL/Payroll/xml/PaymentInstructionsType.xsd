@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PaymentInstructionsType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/PercentType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/pay/PaymentMethodType.xsd" />
+    <xsd:complexType name="PaymentDistributionType">
+        <xsd:annotation>
+            <xsd:documentation>Describes how to distribute the payment among the accounts.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The amount of the payment.  This is only relevant for the secondary account in the event of a partial distribution.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="percentage" type="hropen:PercentType">
+                <xsd:annotation>
+                    <xsd:documentation>The percentage of the payment. This is only relevant for the secondary account in the event of a partial distribution.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="remainingBalanceIndicator" type="hropen:IndicatorType">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies if the remaining amount should be applied to this account.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="PaymentInstructionsType">
+        <xsd:annotation>
+            <xsd:documentation>The instructions for payment.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+                <xsd:annotation>
+                    <xsd:documentation>Identifies the payment instruction when there is more than one payment instruction.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="sequence">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>Specifies in what order are the payments processed in the secondary accounts until the remainder is paid into the main account.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:decimal" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="deploymentId" type="hropen:IdentifierType">
+                <xsd:annotation>
+                    <xsd:documentation>Provides a unique identifier to a specific deployment. This may be used when a person has multiple deployments within an organization. For example, a coach and math teacher at a school.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="paymentMethod" type="hropen:PaymentMethodType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="paymentDistribution" type="hropen:PaymentDistributionType" />
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="PaymentInstructions" type="hropen:PaymentInstructionsType" />
+</xsd:schema>

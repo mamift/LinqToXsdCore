@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WellnessType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/codelist/PayCycleIntervalCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DateTimeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DateTimePeriodType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+  <xsd:complexType name="WellnessRequestSummaryType">
+    <xsd:annotation>
+      <xsd:documentation>A summary of a wellness report related to the request.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="cycleCode" type="hropen:PayCycleIntervalCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The cycle to which the wellness is related. e.g. Day, Week, Month, Year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="episodeCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The period under which the activity is measured. e.g. daily, weekly, monthly.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="unitCode" type="hropen:WellnessMeasureCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The unit of wellness being measured. e.g. steps, strokes, cycles.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryCode" type="hropen:WellnessActivityCategoryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A wellness category being measured. e.g. walking, swimming, running, biking.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:simpleType name="WellnessActivityCategoryCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A set of codes classifying activities related to wellness.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Walking" />
+      <xsd:enumeration value="Swimming" />
+      <xsd:enumeration value="Running" />
+      <xsd:enumeration value="Biking" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="WellnessMeasureCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Units for wellness activity measures</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Steps" />
+      <xsd:enumeration value="Strokes" />
+      <xsd:enumeration value="Cycles" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="WellnessSummaryActivityType">
+    <xsd:annotation>
+      <xsd:documentation>The summary of activity related to wellness</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryCode" type="hropen:WellnessActivityCategoryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The wellness code being evaluated. e.g. walking, swimming, running, biking.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalRoutine">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The total measure of routine/normal activity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalModerate">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The total measure of moderate activity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalIntense">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The total measure of intense activity.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="units" type="hropen:WellnessMeasureCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The unit of wellness being measured. e.g. steps, strokes, cycles.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="period" type="hropen:DateTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The period of the recorded activity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DeviceType">
+    <xsd:annotation>
+      <xsd:documentation>A type to identify the device being used in a wellness program.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="vendor">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The vendor of the device.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="device">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The specific device (identifier or serial number).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the device.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="WellnessActivityType">
+    <xsd:annotation>
+      <xsd:documentation>The record of an activity related to wellness.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="periodType">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Daily" />
+            <xsd:enumeration value="Weekly" />
+            <xsd:enumeration value="Monthly" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier for the wellness activity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="lastAcquisitionTime" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date/time of the last aquisition of data for the wellness activity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="period" type="hropen:DateTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The period to which the measured activity was recorded.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="utcOffset">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The number of hours offset of the recorded activity to UTC.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryCode" type="hropen:WellnessActivityCategoryCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A wellness category being measured. e.g. walking, swimming, running, biking.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="units" type="hropen:WellnessMeasureCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The unit of wellness being measured. e.g. steps, strokes, cycles.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="intensity">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Low" />
+            <xsd:enumeration value="Medium" />
+            <xsd:enumeration value="High" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The value of wellness being measured.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="source" type="hropen:DeviceType">
+        <xsd:annotation>
+          <xsd:documentation>The device from which the measured value was recorded.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="WellnessType">
+    <xsd:annotation>
+      <xsd:documentation>A set of recorded activity information related to an individual. The main purpose is to allow employees to set and reach employee wellness goals within their employment organization.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requestSummary" type="hropen:WellnessRequestSummaryType">
+        <xsd:annotation>
+          <xsd:documentation>A summary of a wellness report related to the request.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="activitySummaries">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>An array of wellness activity summaries.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WellnessSummaryActivityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="activities">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>An array of wellness activities.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WellnessActivityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Wellness" type="hropen:WellnessType" />
+</xsd:schema>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="IndirectCompensationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="codelist/USBenefitTypeCodeList.xsd" />
+  <xsd:include schemaLocation="codelist/VoluntaryBenefitTypeCodeList.xsd" />
+  <xsd:complexType name="VoluntaryBenefitAmountType">
+    <xsd:annotation>
+      <xsd:documentation>The type and amount of voluntary benefit compensation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:VoluntaryBenefitTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Types of voluntary benefits such as insurance, retirement or savings.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A short phrase further describing the benefit type.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The monetary value of the voluntary benefit.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="NonVoluntaryBenefitAmountType">
+    <xsd:annotation>
+      <xsd:documentation>Describes the type and amount of benefits paid by the employer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:USBenefitTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Types of non-voluntary benefits. In the US, this would include social security, medicare, unemployment and workers compensation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A short phrase further describing the benefit type.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The monetary value of the non-voluntary benefit.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="IndirectCompensationType">
+    <xsd:annotation>
+      <xsd:documentation>The monetary value of compensation paid by the employer for a worker's voluntary and non-voluntary non-cash fringe benefits.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalVoluntaryBenefitAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>Total monetary value of employer-paid contributions for discretionary fringe benefits provided to the worker, including insurance, retirement, and savings.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalNonVoluntaryBenefitAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary value of compensation paid by the employer for a worker's legally required non-cash benefits. In the US, this would include employer contributions to Social Security, Medicare, FUTA, state Unemployment Insurance, Workers’ Compensation, and any other government-mandated benefits.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="voluntaryBenefitAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary value of employer-paid contributions for discretionary fringe benefits provided to the worker, including insurance, retirement, and savings.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:VoluntaryBenefitAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="nonVoluntaryBenefitAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary value of compensation paid by the employer for workers’s legally required non-cash fringe benefits, including employer contributions to Social Security, Medicare, FUTA, state Unemployment Insurance, Workers’ Compensation, and any other state-mandated benefits. </xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:NonVoluntaryBenefitAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="IndirectCompensation" type="hropen:IndirectCompensationType" />
+</xsd:schema>

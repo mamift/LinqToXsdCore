@@ -1,0 +1,37 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "MonetaryAmountDistributionType",
+  "description" : "Statistical distribution of monetary amounts.",
+  "type" : "object",
+  "properties" : {
+    "currency" : {
+      "description" : "Currency designation (e.g., USD).",
+      "type" : "string"
+    },
+    "duration" : {
+      "description" : "Duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.",
+      "type" : "string"
+    },
+    "median" : {
+      "description" : "The median value.",
+      "type" : "number"
+    },
+    "percentile10" : {
+      "description" : "The 10th percentile value.",
+      "type" : "number"
+    },
+    "percentile25" : {
+      "description" : "The 25th percentile value.",
+      "type" : "number"
+    },
+    "percentile75" : {
+      "description" : "The 75th percentile value.",
+      "type" : "number"
+    },
+    "percentile90" : {
+      "description" : "The 90th percentile value.",
+      "type" : "number"
+    }
+  }
+}

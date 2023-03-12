@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CompetencyDimensionType",
+    "description": "A measurable characteristic of a competency. Examples might include 'frequency of use,' 'level of interest,' etc.",
+    "type": "object",
+    "properties": {
+        "dimensionType": {
+            "description": "A code classifying the type of competency dimension.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "score": { "$ref": "../evaluation/ScoreType.json#" }
+    }
+}

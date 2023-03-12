@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="TravelType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/PercentType.xsd" />
+  <xsd:complexType name="TravelType">
+    <xsd:annotation>
+      <xsd:documentation>Information regarding travel - preferences or necessities.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="willingToTravelIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicates that a person is willing to travel within the capacity of his or her position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentage" type="hropen:PercentType">
+        <xsd:annotation>
+          <xsd:documentation>The percentage of time required (or willing) to travel for a position. For example, a person needs (or is willing) to travel 25% of his or her regularly scheduled hours.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Text describing any special travel preferences or considerations.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Travel" type="hropen:TravelType" />
+</xsd:schema>

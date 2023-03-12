@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "version": "4.3.0",
+    "title": "OrderType",
+    "description": "A Screening order.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" },
+        { "$ref": "../../common/json/organization/PartyInclusion.json#" }
+    ],
+    "definitions": {
+        "ALaCarteScreenType": {
+            "title": "ALaCarteScreenType",
+            "description": "An aLaCarte screen.",
+            "type": "object",
+            "properties": {
+                "screeningCode": {
+                    "description": "The code corresponding to a screening type (e.g. MVR, Criminal, Civil, Credit, DrugTesting, Fingerprinting, Education, Employment).",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "screeningInstructions": {
+                    "description": "The instructions of what should be done in the screening request.",
+                    "$ref": "../../common/json/base/TextType.json#"
+                }
+            },
+            "required": ["screeningCode"]
+        }
+    },
+    "properties": {
+        "subjectId": {
+            "description": "Reference to the subject required for the package.",
+            "type": "object",
+            "items": { "$ref": "../../common/json/base/EntityType.json#" }
+        },
+        "packageCode": {
+            "description": "The code corresponding to a screening package.",
+            "$ref": "../../common/json/base/CodeType.json#"
+        },
+        "aLaCarteItems": {
+            "description": "Individual screens that are part of this order.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/ALaCarteScreenType" }
+        },
+        "purpose": {
+            "description": "The reason why this report is requested (e.g. Court Order/Subpoena, Employment, Insurance Underwriting).",
+            "type": "string"
+        },
+        "referenceObject": {
+            "description": "Reference to the data required for the package.",
+            "$ref": "ReferenceObjectTypeArray.json#"
+        }
+    }
+}

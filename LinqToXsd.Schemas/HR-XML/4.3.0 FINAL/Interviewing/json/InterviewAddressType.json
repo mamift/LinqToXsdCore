@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "InterviewAddressType",
+    "description": "Contact information regarding the candidate to invite.",
+    "allOf": [
+        { "$ref": "../../common/json/communication/AddressType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "comments": {
+            "description": "Instructions or comments for the candidate.",
+            "$ref": "../../common/json/base/StringTypeArray.json#"
+        }
+    }
+}

@@ -1,0 +1,212 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "WorkLifeCycleType",
+	"description": "Contains a collection of information about a period of employment, including hire, leaves of absence, and termination.",
+	"type": "object",
+	"definitions": {
+		"ContractType": {
+			"description": "Describes the relationship between the employer and worker.",
+			"type": "object",
+			"properties": {
+				"contractNumber": {
+					"description": "The identifier for the contract.",
+					"$ref": "../base/IdentifierType.json#"
+				},
+				"contractStartDate": {
+					"description": "The start date for the contract.",
+					"$ref": "../base/DateType.json#"
+				},
+				"contractEndDate": {
+					"description": "The end date for the contract.",
+					"$ref": "../base/DateType.json#"
+				},
+				"addendum": {
+					"description": "Date for each occurrence.",
+					"type": "array",
+					"items": {
+						"$ref": "../base/DateType.json#"
+					}
+				},
+				"workRelationshipType": {
+					"description": "This property is deprecated starting with release 4.3. Use ResourceRelationshipCodeList instead.",
+					"enum": [
+						"volunteer",
+						"employee",
+						"contractor"
+					]
+				}
+			}
+		},
+		"HireType": {
+			"description": "Provides hire date information.",
+			"type": "object",
+			"properties": {
+				"typeCode": {
+					"enum": [
+						"NewHire",
+						"Rehire",
+						"Acquisition",
+						"Transfer"
+					]
+				},
+				"date": {
+					"description": "The first date the person is classed as a worker.",
+					"$ref": "../base/DateType.json#"
+				},
+				"firstWorkDate": {
+					"description": "The actual first date the person starts work.",
+					"$ref": "../base/DateType.json#"
+				},
+				"expectedFirstWorkDate": {
+					"description": "The first date is expected to start work.",
+					"$ref": "../base/DateType.json#"
+				},
+				"originalDate": {
+					"description": "Original date of hire.",
+					"$ref": "../base/DateType.json#"
+				},
+				"adjustedDate": {
+					"description": "Adjusted date of hire.",
+					"$ref": "../base/DateType.json#"
+				},
+				"probationaryStartDate": {
+					"description": "The first day of a worker's probationary status.",
+					"$ref": "../base/DateType.json#"
+				},
+				"probationaryEndDate": {
+					"description": "The last day of a worker's probationary status.",
+					"$ref": "../base/DateType.json#"
+				},
+				"serviceStartDates": {
+					"description": "Service start date(s).",
+					"type": "array",
+					"items": {
+						"$ref": "../base/DateType.json#"
+					}
+				}
+			}
+		},
+		"TerminationType": {
+			"description": "Provides termination details.",
+			"type": "object",
+			"properties": {
+				"reasonCode": {
+					"description": "Retirement, Voluntary (subcategory), Involuntary (subcategory), Transfer, Business Sold. In EU - info must be sent to government but the codes are provided by the government. Will use IdentifierType. This allows us to define who owns the list and the list value.",
+					"$ref": "../base/IdentifierType.json#"
+				},
+				"date": {
+					"description": "Date the contract is complete or the worker is terminated.",
+					"$ref": "../base/DateType.json#"
+				},
+				"lastWorkedDate": {
+					"description": "May need for statutory purposes. For example, we will pay you through end of month but your last worked day was on the 15th. Access turned off, etc from an HR perspective.",
+					"$ref": "../base/DateType.json#"
+				},
+				"lastPaidDate": {
+					"description": "The date the worker was last paid. High level workers that have terminated but the salary may carry on for a few more months. Or Date the recurring payment is turned off.",
+					"$ref": "../base/DateType.json#"
+				},
+				"intendedDate": {
+					"description": "Last day the worker is intending to work.",
+					"$ref": "../base/DateType.json#"
+				}
+			}
+		},
+		"LeaveType": {
+			"type": "object",
+			"properties": {
+				"statusCode": {
+					"enum": [
+						"Active",
+						"Inactive"
+					]
+				},
+				"remunerationCode": {
+					"enum": [
+						"Paid",
+						"Unpaid"
+					]
+				},
+				"reasonCode": {
+					"description": "The reason the person is on leave.",
+					"$ref": "../base/CodeType.json#"
+				},
+				"startDate": {
+					"description": "The starting date for leave.",
+					"$ref": "../base/DateType.json#"
+				},
+				"lastWorkedDate": {
+					"description": "The last day on which a worker worked for pay.",
+					"$ref": "../base/DateType.json#"
+				},
+				"lastPaidDate": {
+					"description": "The date the person was last paid before going on leave.",
+					"$ref": "../base/DateType.json#"
+				},
+				"scheduledWorkReturnDate": {
+					"description": "The date the person is scheduled to return to work.",
+					"$ref": "../base/DateType.json#"
+				},
+				"workReturnDate": {
+					"description": "The date the person returned to work.",
+					"$ref": "../base/DateType.json#"
+				},
+				"incurServicesOnLeaveIndicator": {
+					"description": "Determination if the person can continue to use their benefits for new expenses incurred while they are on leave.",
+					"$ref": "../base/IndicatorType.json#"
+				}
+			}
+		},
+		"RecruitingAndStaffingType": {
+			"description": "Provides recruiting and staffing key date information.",
+			"type": "object",
+			"properties": {
+				"applicationDate": {
+					"description": "The date of the application submission by the candidate.",
+					"$ref": "../base/DateType.json#"
+				},
+				"interviewDates": {
+					"description": "The date(s) of interview(s).",
+					"type": "array",
+					"items": {
+						"$ref": "../base/DateType.json#"
+					}
+				},
+				"rejectionDate": {
+					"description": "The date of the application was rejected or withdrawn.",
+					"$ref": "../base/DateType.json#"
+				},
+				"rejectionReasonCode": {
+					"description": "The reason for the application rejection or withdrawal.",
+					"$ref": "../base/CodeType.json#"
+				},
+				"offeredOnDate": {
+					"description": "The date that the initial offer was made.",
+					"$ref": "../base/DateType.json#"
+				},
+				"offerAcceptedDate": {
+					"description": "The date that the final offer was accepted.",
+					"$ref": "../base/DateType.json#"
+				}
+			}
+		}
+	},
+	"properties": {
+		"contract": {
+			"$ref": "#/definitions/ContractType"
+		},
+		"hire": {
+			"$ref": "#/definitions/HireType"
+		},
+		"termination": {
+			"$ref": "#/definitions/TerminationType"
+		},
+		"leaveOfAbsence": {
+			"$ref": "#/definitions/LeaveType"
+		},
+		"recruitingAndStaffing": {
+			"$ref": "#/definitions/RecruitingAndStaffingType"
+		}
+	}
+}

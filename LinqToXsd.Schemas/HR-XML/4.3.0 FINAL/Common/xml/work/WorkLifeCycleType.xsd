@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WorkLifeCycleType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/DateType.xsd" />
+  <xsd:complexType name="ContractType">
+    <xsd:annotation>
+      <xsd:documentation>Describes the relationship between the employer and worker.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contractNumber" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The identifier for the contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contractStartDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The start date for the contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contractEndDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The end date for the contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="addendum">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Date for each occurrence.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:DateType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workRelationshipType">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>This property is deprecated starting with release 4.3. Use ResourceRelationshipCodeList instead.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="volunteer" />
+            <xsd:enumeration value="employee" />
+            <xsd:enumeration value="contractor" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="HireType">
+    <xsd:annotation>
+      <xsd:documentation>Provides hire date information.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NewHire" />
+            <xsd:enumeration value="Rehire" />
+            <xsd:enumeration value="Acquisition" />
+            <xsd:enumeration value="Transfer" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="date" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The first date the person is classed as a worker.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="firstWorkDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The actual first date the person starts work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="expectedFirstWorkDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The first date is expected to start work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="originalDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>Original date of hire.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="adjustedDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>Adjusted date of hire.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="probationaryStartDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The first day of a worker's probationary status.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="probationaryEndDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The last day of a worker's probationary status.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="serviceStartDates">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Service start date(s).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:DateType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="TerminationType">
+    <xsd:annotation>
+      <xsd:documentation>Provides termination details.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reasonCode" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Retirement, Voluntary (subcategory), Involuntary (subcategory), Transfer, Business Sold. In EU - info must be sent to government but the codes are provided by the government. Will use IdentifierType. This allows us to define who owns the list and the list value.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="date" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>Date the contract is complete or the worker is terminated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="lastWorkedDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>May need for statutory purposes. For example, we will pay you through end of month but your last worked day was on the 15th. Access turned off, etc from an HR perspective.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="lastPaidDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date the worker was last paid. High level workers that have terminated but the salary may carry on for a few more months. Or Date the recurring payment is turned off.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="intendedDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>Last day the worker is intending to work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="LeaveType">
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Active" />
+            <xsd:enumeration value="Inactive" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="remunerationCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Paid" />
+            <xsd:enumeration value="Unpaid" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reasonCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The reason the person is on leave.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="startDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The starting date for leave.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="lastWorkedDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The last day on which a worker worked for pay.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="lastPaidDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date the person was last paid before going on leave.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scheduledWorkReturnDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date the person is scheduled to return to work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="workReturnDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date the person returned to work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="incurServicesOnLeaveIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Determination if the person can continue to use their benefits for new expenses incurred while they are on leave.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="RecruitingAndStaffingType">
+    <xsd:annotation>
+      <xsd:documentation>Provides recruiting and staffing key date information.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="applicationDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date of the application submission by the candidate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewDates">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The date(s) of interview(s).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:DateType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rejectionDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date of the application was rejected or withdrawn.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="rejectionReasonCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The reason for the application rejection or withdrawal.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="offeredOnDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date that the initial offer was made.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="offerAcceptedDate" type="hropen:DateType">
+        <xsd:annotation>
+          <xsd:documentation>The date that the final offer was accepted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="WorkLifeCycleType">
+    <xsd:annotation>
+      <xsd:documentation>Contains a collection of information about a period of employment, including hire, leaves of absence, and termination.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contract" type="hropen:ContractType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="hire" type="hropen:HireType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="termination" type="hropen:TerminationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="leaveOfAbsence" type="hropen:LeaveType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="recruitingAndStaffing" type="hropen:RecruitingAndStaffingType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="WorkLifeCycle" type="hropen:WorkLifeCycleType" />
+</xsd:schema>

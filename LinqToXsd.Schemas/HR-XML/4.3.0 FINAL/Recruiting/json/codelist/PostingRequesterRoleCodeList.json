@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PostingRequesterRoleCodeList",
+    "description": "Values that describe the roles of job posting requesters.",
+    "enum": [
+        "Company",
+        "Agency"
+    ]
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PeriodType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="DatePeriodType.xsd" />
+  <xsd:include schemaLocation="YearPeriodType.xsd" />
+  <xsd:include schemaLocation="YearMonthPeriodType.xsd" />
+  <xsd:include schemaLocation="DateTimePeriodType.xsd" />
+  <xsd:complexType name="PeriodType">
+    <xsd:annotation>
+      <xsd:documentation>Single date/timespan/month/year or period between two dates/months/years.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice minOccurs="1" maxOccurs="1">
+      <xsd:element ref="hropen:FormattedDateTime" />
+      <xsd:element ref="hropen:DateTimePeriod" />
+      <xsd:element ref="hropen:DatePeriod" />
+      <xsd:element ref="hropen:YearMonthPeriod" />
+      <xsd:element ref="hropen:YearPeriod" />
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:element name="Period" type="hropen:PeriodType" />
+</xsd:schema>

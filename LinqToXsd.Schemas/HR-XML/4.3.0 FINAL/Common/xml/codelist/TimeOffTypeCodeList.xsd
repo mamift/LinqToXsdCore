@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.x" id="TimeOffTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="TimeOffTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Specifies type of absence from work. Includes compensatory time off (CTO) when used.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Administrative" />
+      <xsd:enumeration value="Bereavement" />
+      <xsd:enumeration value="Compensatory" />
+      <xsd:enumeration value="Consolidated" />
+      <xsd:enumeration value="Education" />
+      <xsd:enumeration value="Family" />
+      <xsd:enumeration value="PublicHoliday" />
+      <xsd:enumeration value="FloatingHoliday" />
+      <xsd:enumeration value="InLieuOfNotice" />
+      <xsd:enumeration value="JuryDuty" />
+      <xsd:enumeration value="MilitaryDuty" />
+      <xsd:enumeration value="Sick" />
+      <xsd:enumeration value="Vacation" />
+      <xsd:enumeration value="OtherPersonal" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="TimeOffTypeCode" type="hropen:TimeOffTypeCodeList" />
+</xsd:schema>

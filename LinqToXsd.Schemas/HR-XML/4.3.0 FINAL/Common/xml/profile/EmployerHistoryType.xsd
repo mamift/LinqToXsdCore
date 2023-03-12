@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="EmployerHistoryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/ResourceRelationshipCodeList.xsd" />
+  <xsd:include schemaLocation="../organization/OrganizationType.xsd" />
+  <xsd:include schemaLocation="../communication/LocationType.xsd" />
+  <xsd:include schemaLocation="BaseHistoryType.xsd" />
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:complexType name="PositionHistoryType">
+    <xsd:annotation>
+      <xsd:documentation>The details about a persons tenure within position.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The identifier for the history.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="start" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The start date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="end" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The end date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="current" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicator that the person's history entry is currently active (i.e. if education, still at the school. If work history, still working at the organization)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachment references supporting the history entry.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Additional details or descriptions about the history entry.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="title">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The title that the person held for this position.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="resourceRelationshipCode" type="hropen:ResourceRelationshipCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The relationship of the person to the organization - an employee or an employee of another company (contract or temporary staffing).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>The department, sub-company, office, or other sub-organization to which the person was employed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="location" type="hropen:LocationType">
+        <xsd:annotation>
+          <xsd:documentation>The location of the position to which the person was employed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobCategories">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The job categories under which the position is classified. These may be international, national, industry, or company categories as defined by the entity owner.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EntityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="jobLevels">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The job levels under which this position is classified. These may be international, national, industry or company levels as defined by the entity owner.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:EntityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="EmployerHistoryType">
+    <xsd:annotation>
+      <xsd:documentation>The prior and current details of a person's employment, work, or relevant experience such as might be reported within a professional profile, CV, resume, employment application, or similar document. Details of a particular tenure of employment or work with an organization.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The identifier for the history.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="start" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The start date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="end" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The end date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="current" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicator that the person's history entry is currently active (i.e. if education, still at the school. If work history, still working at the organization)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachment references supporting the history entry.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Additional details or descriptions about the history entry.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType">
+        <xsd:annotation>
+          <xsd:documentation>The specific organization to which the person held positions or performed work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionHistories">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The set of positions that the person held at the organization.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:PositionHistoryType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="EmployerHistory" type="hropen:EmployerHistoryType" />
+</xsd:schema>

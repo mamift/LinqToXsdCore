@@ -1,0 +1,46 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "AccountBasedCoverageType",
+	"description": "Enrollment data specific to account based coverage types.",
+	"definitions": {
+		"ElectionType": {
+			"description": "The detail of a given election including the amount, frequency and source.",
+			"type": "array",
+			"items": {
+			"properties": {
+				"amount": {
+					"description": "The amount of the given election.",
+					"$ref": "../../common/json/base/AmountType.json#"
+				},
+				"frequencyCode": {
+					"description": "The frequency of the given election.",
+					"$ref": "codelist/ElectionFrequencyCodeList.json#"
+				},
+				"contributorCode": {
+					"description": "A code identifying the source of the election.",
+					"$ref": "codelist/ContributorCodeList.json#"
+				}
+			}
+		    }
+		}
+	},
+	"allOf": [
+        { "$ref": "CoverageType.json#" }
+    	],
+	"type": "object",
+	"properties": {
+		"accountBasedProductCode": {
+			"description": "The code classifying the type of account based product.",
+			"$ref": "codelist/AccountBasedProductCodeList.json#"
+		},
+        "effectivePeriod": {
+            "description": "A time period during which the enrollment is effective.",
+            "$ref": "../../common/json/base/EffectiveTimePeriodType.json#"
+        },
+		"electionType": {
+			"description": "The detail of a given election including the amount, frequency and source.",
+			"$ref": "#/definitions/ElectionType"
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CompetencyEvidenceType",
+    "description": "A document or other record providing evidence of a competency or that is treated as a proxy for the existence of the competency. Examples include: an assessment result; a performance appraisal; an educational degree; a supervisor's observation; etc.",
+    "type": "object",
+    "properties": {
+        "ids": {
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "evidenceTypeCode": {
+            "description": "A code categorizing the type of evidence that substantiates a related competency. For example, 'assessment', 'degree', 'performance appraisal', etc.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "evidenceName": {
+            "description": "A name or label for the evidence.",
+            "type": "string"
+        },
+        "descriptions": {
+            "description": "Description of the evidence requirement.",
+            "$ref": "../base/StringTypeArray.json#",
+            "items": { "type": "string" }
+        },
+        "evidenceRequirementsId": {
+            "description": "An identifier for a policy associated with or governing the type of evidence. For example, a policy setting a confidence level or minimum requirement for the associated evidence.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "scores": {
+            "description": "Scores supporting the competency evidence.",
+            "type": "array",
+            "items": { "$ref": "../evaluation/ScoreType.json#" }
+        },
+        "effectivePeriod": { "$ref": "../base/OpenEndPeriodType.json#" },
+        "verificationDate": {
+            "description": "The date on which the associated information or fact was verified.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "verificationSourceName": {
+            "description": "The name of the service, person, or agent from which the verification was obtained.",
+            "type": "string"
+        },
+        "attachmentReference": { "$ref": "../base/AttachmentReferenceType.json#" }
+    }
+}

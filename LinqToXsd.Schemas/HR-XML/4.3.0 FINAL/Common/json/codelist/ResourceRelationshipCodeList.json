@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "ResourceRelationshipCodeList",
+	"description": "Resource relationship code list.",
+	"enum": [
+		"Employee",
+		"VendorEmployee",
+		"IndependentContractor",
+		"Volunteer",
+		"Internship",
+		"Externship",
+		"Apprenticeship"
+	],
+	"enumNames": [
+		"A paid position with all related benefits.",
+		"A worker hired by a third party such as a consulting agency.",
+		"A worker with a contract signed directly by the employer.",
+		"An unpaid position.",
+		"A paid or voluntary position with an organization for someone who is learning a profession and industry.",
+		"An unpaid shadowing of a respected industry professional during which the extern will observe daily duties.",
+		"A kind of job training that involves following and studying a master of the trade on the job instead of in school."
+	]
+}

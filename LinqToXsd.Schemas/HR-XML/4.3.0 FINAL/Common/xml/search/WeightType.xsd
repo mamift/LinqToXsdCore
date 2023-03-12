@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WeightType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:complexType name="WeightType">
+    <xsd:annotation>
+      <xsd:documentation>Weight that describes the importance of the search criteria.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maximumValue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Highest score in the weight range for the search criteria to be considered matched.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumValue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Lowest score in the weight range for the search criteria to be considered matched.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="isRequired" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>The search criterion is required to be in the matching items.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumScoreToFulfillRequired">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Lowest score in order to fulfill a required criterion. Only relevant for cases of partial match, e.g. by affinities.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Weight" type="hropen:WeightType" />
+</xsd:schema>

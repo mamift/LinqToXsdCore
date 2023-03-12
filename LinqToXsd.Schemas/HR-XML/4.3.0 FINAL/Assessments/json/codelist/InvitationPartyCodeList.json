@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "InvitationPartyCodeList",
+    "description": "Specifies who will send the invitation to the assessment subject.  Options are the Customer or the Supplier.",
+    "enum": [
+        "Customer",
+        "Supplier"
+    ]
+}

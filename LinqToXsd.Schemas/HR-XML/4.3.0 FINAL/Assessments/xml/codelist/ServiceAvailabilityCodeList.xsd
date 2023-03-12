@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ServiceAvailabilityCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="ServiceAvailabilityCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A set of codes classifying the availability of an assessment package.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Available" />
+      <xsd:enumeration value="Unavailable" />
+      <xsd:enumeration value="TemporarilyUnavailable" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ServiceAvailabilityCode" type="hropen:ServiceAvailabilityCodeList" />
+</xsd:schema>

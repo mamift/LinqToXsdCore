@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "FulltextQueryType",
+    "description": "Type for fulltext queries.",
+    "type": "object",
+    "properties": {
+        "fulltext": {
+            "type": "object",
+            "properties": {
+                "propertyPaths": {
+                    "description": "Path of the properties to which the condition applies.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "values": {
+                    "description": "Fulltext search string(s).",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "options": {
+                    "description": "Further parameters to specify the behavior of the fulltext search.",
+                    "$ref": "ParameterTypeArray.json#"
+                }
+            },
+            "required": [
+                "values"
+            ]
+        }
+    }
+}

@@ -1,0 +1,132 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PlanSetupType",
+    "description": "Plan setup type",
+    "definitions": {
+        "WaitingRuleType": {
+            "description": "The rule that defines how long the subscriber must wait before they are eligible to enroll in the plan.",
+            "type": "object",
+            "properties": {
+                "waitingRuleEventCode": {
+                    "description": "A code classifying the event associated with the waiting rule.",
+                    "$ref": "codelist/WaitingRuleEventCodeList.json#"
+                },
+                "waitingRuleTypeCode": {
+                    "description": "A code classifying the type associated with the waiting rule.",
+                    "$ref": "codelist/WaitingRuleTypeCodeList.json#"
+                },
+                "rollForwardIndicator": {
+                    "description": "An indicator as to whether the ‘First of month’ waiting rule type can be rolled forward to the first of the following month when the hire date falls on the first of the month.",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "ruleValue": {
+                    "description": "Value indicating the number of months or days for the waiting rule type code.",
+                    "type": "integer"
+                }
+            }
+        },
+        "FinalFilingRuleType": {
+            "description": "An indicator that defines how long a participant has to file a claim against the plan.",
+            "type": "object",
+            "properties": {
+                "finalFilingRuleCode": {
+                    "description": "A code classifying the participant's employment status associated with the final filing rule.",
+                    "$ref": "codelist/FinalFilingRuleCodeList.json#"
+                },
+                "finalFilingRuleTypeCode": {
+                    "description": "A code classifying the type associated with the final filing rule.",
+                    "$ref": "codelist/FinalFilingRuleTypeCodeList.json#"
+                },
+                "finalFilingRuleValue": {
+                    "description": "Value indicating the number of days for the final filing rule type code.",
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "The primary identifier of the plan. This should be assigned by the owner of the data.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "productCode": {
+            "description": "A code to identify the type of plan.",
+            "$ref": "codelist/AccountBasedProductCodeList.json#"
+        },
+        "productDescription": {
+            "description": "A description to identify the type of plan.",
+            "type": "string"
+        },
+        "legalPlanName": {
+            "description": "The plan name as described by the summary plan description.",
+            "type": "string"
+        },
+        "providerId": {
+            "description": "The primary identifier of provider for the plan.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "waitingRuleType": {
+            "description": "The rule that defines how long the subscriber must wait before they are eligible to enroll in the plan.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/WaitingRuleType"
+            }
+        },
+        "effectivePeriod": {
+            "description": "The start and end date of the plan configuration.",
+            "$ref": "../../common/json/base/EffectiveTimePeriodType.json#"
+        },
+        "originalEffectiveDate": {
+            "description": "The first start date that this plan is effective. This date will stay the same accross multiple effective periods for the plan.",
+            "$ref": "../../common/json/base/DateType.json#"
+        },
+        "terminationDate": {
+            "description": "The last date that this plan is effective.",
+            "$ref": "../../common/json/base/DateType.json#"
+        },
+        "countryCode": {
+            "description": "Two letter country codes as defined by ISO 3166-1:2013. Content referenced from Wikipedia.",
+            "$ref": "../../common/json/codelist/CountryCodeList.json#"
+        },
+        "alternateId": {
+            "description": "The alternate identifier of the plan.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "planAnniversary": {
+            "description": "The month and day of plan renewal.",
+            "type": "string"
+        },
+        "COBRAEligibleIndicator": {
+            "description": "An indicator as to whether an enrollee of the plan may be eligible for COBRA.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "COBRAEnrollmentIndicator": {
+            "description": "An indicator as to whether the plan restricts enrollments to only COBRA participants.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "gracePeriod": {
+            "description": "The number of days expenses can be incurred after the plan year end date.",
+            "type": "integer"
+        },
+        "carryOverAmount": {
+            "description": "The amount that can be carried over to subsequent plan year.",
+            "$ref": "../../common/json/base/AmountType.json#"
+        },
+        "finalFilingRule": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/FinalFilingRuleType"
+            }
+        },
+        "debitCardIndicator": {
+            "description": "An indicator as to whether the plan allows debit card as a form of reimbursement.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "accountBasedPlanSetupType": {
+            "description": "Information pertaining to account based plan types.",
+            "$ref": "AccountBasedPlanSetupType.json#"
+        }
+    }
+}

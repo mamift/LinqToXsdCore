@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ReportType",
+    "description": "Represents an Assessments Report for HR Open Standards.",
+    "definitions": {
+        "AssessmentResultType": {
+            "description": "Contains various scoring details and related metadata to interpret the scores.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "../../common/json/base/EffectiveTimePeriodType.json#" }
+            ],
+            "properties": {
+                "id": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "packageId": {
+                    "description": "This is a reference to the Package ID that was ordered.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "name": {
+                    "description": "This is a place to put any formal name or identifier for the result. This might be a pass-through value tied to the specific test instrument.",
+                    "type": "string"
+                },
+                "assessmentProfileId": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "overallResult": {
+                    "description": "A high-level or summary result for an assessment or appraisal. Can indicate whether or not there was a satisfactory result (PassedIndicator) as well as include some type of overall score or a `rolled up` average or weighted average of component scores.",
+                    "$ref": "#/definitions/AssessmentScoreType"
+                },
+                "detailedResults": {
+                    "description": "Assessment scores.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/AssessmentScoreType" }
+                },
+                "testInstance": {
+                    "description": "TestInstance is a set of information about the test instance actually taken by the assessment subject.",
+                    "$ref": "#/definitions/TestInstanceType"
+                },
+                "assessmentStatus": {
+                    "description": "Code indicating the status of an assessment.",
+                    "$ref": "codelist/AssessmentStatusCodeList.json#"
+                },
+                "attachment": { "$ref": "../../common/json/base/AttachmentType.json#" },
+                "languageCode": { "$ref": "../../common/json/codelist/LanguageCodeList.json#" },
+                "accessPoint": { "$ref": "../../common/json/communication/WebType.json#" }
+            }
+        },
+        "AssessmentScoreType": {
+            "title": "AssessmentScoreType",
+            "description": "This is the test score type structure.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "This is an identifier for the assessment score.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "passedIndicator": {
+                    "description": "Pass or fail indicator.",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "bandId": {
+                    "description": "An identifier of a band, a place on a distribution of scores.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "comments": {
+                    "description": "Comments from the assessment.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/CommentType.json#" }
+                },
+                "descriptions": {
+                    "description": "Result descriptions.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "assessedCompetency": { "$ref": "../../common/json/competency/SpecifiedCompetencyType.json#" },
+                "score": { "$ref": "../../common/json/evaluation/ScoreType.json#" }
+            }
+        },
+        "TestInstanceType": {
+            "title": "TestInstanceType",
+            "description": "TestInstance is a set of information about the test instance actually taken by the assessment subject.",
+            "type": "object",
+            "properties": {
+                "testInstanceId": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "versionId": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "assessmentLanguageCode": { "$ref": "../../common/json/codelist/LanguageCodeList.json#" },
+                "testDate": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "testScoreIssuedDate": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "locationId": { "$ref": "../../common/json/base/IdentifierType.json#" }
+            }
+        }
+    },
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" },
+        { "$ref": "../../common/json/organization/PartyInclusion.json#" }
+    ],
+    "properties": {
+        "documentSequence": {
+            "description": "The DocumentSequence serves as an identifier on the different instances of a noun in a message instance; the sequence numbers are specific to the message instance",
+            "type": "number"
+        },
+        "orderId": {
+            "description": "AssessmentOrderId. Used to indicate the order line number on which the rate is specified.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "results": {
+            "description": "Array of results for the assessment ordered.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/AssessmentResultType" }
+        },
+        "subject": { "$ref": "AssessmentSubjectType.json#" },
+        "assessmentResultsURL": {
+            "description": "Specifies the URL to retrieve assessment results.",
+            "$ref": "RedirectUrlType.json#"
+        }
+    }
+}

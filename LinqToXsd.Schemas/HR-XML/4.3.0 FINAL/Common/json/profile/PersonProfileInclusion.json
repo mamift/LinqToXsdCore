@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonProfileInclusion",
+    "description": "Personal profile.",
+    "type": "object",
+    "properties": {
+        "profileName": {
+            "description": "The name given to the profile.",
+            "type": "string"
+        },
+        "languageCode": {
+            "description": "The primary language of the content of the profile.",
+            "$ref": "../codelist/LanguageCodeList.json#"
+        },
+        "education": {
+            "description": "The education history of the person.",
+            "type": "array",
+            "items": { "$ref": "EducationAttendanceType.json#" }
+        },
+        "employment": {
+            "description": "The employment history of the person.",
+            "type": "array",
+            "items": { "$ref": "EmployerHistoryType.json#" }
+        },
+        "militaryService": {
+            "description": "The military history of the person.",
+            "type": "array",
+            "items": { "$ref": "MilitaryServiceType.json#" }
+        },
+        "licenses": {
+            "description": "The licenses that the person holds.",
+            "type": "array",
+            "items": { "$ref": "LicenseType.json#" }
+        },
+        "certifications": {
+            "description": "The certifications that the person holds.",
+            "type": "array",
+            "items": { "$ref": "CertificationType.json#" }
+        },
+        "patents": {
+            "description": "The patents with which the person is involved.",
+            "type": "array",
+            "items": { "$ref": "PatentType.json#" }
+        },
+        "publications": {
+            "description": "The publications with which the person is involved.",
+            "type": "array",
+            "items": { "$ref": "PublicationType.json#" }
+        },
+        "qualifications": {
+            "description": "The competencies of the person.",
+            "type": "array",
+            "items": { "$ref": "../competency/PersonCompetencyType.json#" }
+        },
+        "affiliations": {
+            "description": "The organizations with which the person is affiliated.",
+            "type": "array",
+            "items": { "$ref": "OrganizationAffiliationType.json#" }
+        },
+        "securityCredentials": {
+            "description": "The security credentials that the person holds.",
+            "type": "array",
+            "items": { "$ref": "CertificationType.json#" }
+        },
+        "references": {
+            "description": "The references of the person.",
+            "type": "array",
+            "items": { "$ref": "RefereeType.json#" }
+        },
+        "attachments": {
+            "description": "Attachments or online references related to the person's profile.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentType.json#" }
+        }
+    }
+}

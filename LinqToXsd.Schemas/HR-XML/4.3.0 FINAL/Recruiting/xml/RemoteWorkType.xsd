@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RemoteWorkType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:simpleType name="WorkLocationCodeList">
+        <xsd:annotation>
+            <xsd:documentation>A code classifying the role of an entity or the role with which that entity is associated. 'Home' allows for work at a candidate's home. 'Virtual' allows for work in any location that is not provided by the company (i.e. airport, coffee shop). 'Colocation' would be for remote office or shared office environment near the candidate.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Home" />
+            <xsd:enumeration value="Virtual" />
+            <xsd:enumeration value="Colocation" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="RestrictionCodeList">
+        <xsd:annotation>
+            <xsd:documentation>A code classifying the restriction of the remote work to a particular region or time zone. 'Local' typically refers to a city or small area. 'Regional' refers to a state, province or official territory. 'Timezone' refers to a restriction based on time zone. 'Country' refers to a restriction in one or more countries. 'Territory' refers to a defined area by the company. 'Other' means a restriction not defined by the other choices. If there are no restrictions, use 'None'. The details of the restriction should be specified in 'RestrictionDetails'.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Local" />
+            <xsd:enumeration value="Regional" />
+            <xsd:enumeration value="Timezone" />
+            <xsd:enumeration value="Country" />
+            <xsd:enumeration value="Territory" />
+            <xsd:enumeration value="Other" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="RemoteWorkType">
+        <xsd:annotation>
+            <xsd:documentation>Represents the remote work specification.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="remoteWorkIndicator">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>Indicator for remote work is available to employee.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:boolean" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="workLocationCodes">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>A list of codes defining work locations allowed for or desired for remote work.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WorkLocationCodeList" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="restrictionCodes">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>A list of codes defining the scope of restrictions of work locations allowed for or desired for remote work.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RestrictionCodeList" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="remoteEligibilityRequirement">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The requirements of the remote work for a candidate. This could include having a computer, internet access, a quiet or private office environment, etc.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="restrictionDetails">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The details related to the RestrictionCode that help to describe the specifics of the remote work restriction.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string" />
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="RemoteWork" type="hropen:RemoteWorkType" />
+</xsd:schema>

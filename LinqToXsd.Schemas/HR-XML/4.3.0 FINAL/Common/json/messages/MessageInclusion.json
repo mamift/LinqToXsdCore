@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "MessageInclusion",
+    "description": "Human readable description of the response message.",
+    "type": "object",
+    "properties": {
+        "type": {
+            "description": "The purpose of the message.",
+            "enum": [
+                "Warning",
+                "Error",
+                "Success", 
+                "Info"
+            ]
+        },
+        "code": {
+            "description": "The code that classifies the message.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "text": {
+            "description": "Human readable text of the message.",
+            "type": "string"
+        }
+    }
+}

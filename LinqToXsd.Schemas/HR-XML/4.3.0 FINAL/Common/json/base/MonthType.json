@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "MonthType",
+    "description": "A single month, in the format MM from 01-12",
+    "type": "string",
+    "hropenFormat": "month",
+    "pattern": "^(1[012]|0?[1-9])$"
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="SearchQueryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="SearchLimitType.xsd" />
+  <xsd:include schemaLocation="SearchCriterionType.xsd" />
+  <xsd:include schemaLocation="ScoreThresholdType.xsd" />
+  <xsd:include schemaLocation="SearchOrderType.xsd" />
+  <xsd:include schemaLocation="RequestedMatchedObjectDescriptorType.xsd" />
+  <xsd:complexType name="SearchQueryType">
+    <xsd:annotation>
+      <xsd:documentation>A general search query type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="limit" type="hropen:SearchLimitType">
+        <xsd:annotation>
+          <xsd:documentation>The limit of the number of items to return in the search result.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="orders">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The order of the items in the search result.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SearchOrderType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="searchCriteria">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The search criteria to use when executing the search.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SearchCriterionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scoreThreshold" type="hropen:ScoreThresholdType">
+        <xsd:annotation>
+          <xsd:documentation>The score threshold (minimum and/or maximum) of the items in the search result.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requestedMatchedObjectDescriptors">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Requested descriptors (attributes) of the search result items. Elements should be selected using the JSONPath notation.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RequestedMatchedObjectDescriptorType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="SearchQuery" type="hropen:SearchQueryType" />
+</xsd:schema>

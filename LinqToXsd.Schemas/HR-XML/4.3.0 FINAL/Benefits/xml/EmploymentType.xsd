@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="EmploymentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/DateType.xsd" />
+    <xsd:complexType name="BenefitsHireType">
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="typeCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="NewHire" />
+                        <xsd:enumeration value="Rehire" />
+                        <xsd:enumeration value="Acquisition" />
+                        <xsd:enumeration value="Transfer" />
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="date" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="firstWorkDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="expectedFirstWorkDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="originalDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="adjustedDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="cancelDate" type="hropen:DateType" />
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="BenefitsLeaveType">
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="statusCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Active" />
+                        <xsd:enumeration value="Inactive" />
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="remunerationCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Paid" />
+                        <xsd:enumeration value="Unpaid" />
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="reasonCode" type="hropen:CodeType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="startDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lastWorkedDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lastPaidDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="scheduledWorkReturnDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="workReturnDate" type="hropen:DateType" />
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="BenefitsTerminationType">
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="reasonCode" type="hropen:CodeType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="date" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lastWorkedDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lastPaidDate" type="hropen:DateType" />
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="BenefitsRetirementType">
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="intendedDate" type="hropen:DateType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="firstDayDate" type="hropen:DateType" />
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="EmploymentType">
+        <xsd:annotation>
+            <xsd:documentation>This data type has been deprecated.  WorkLifeCycleType will be used instead. Describes the work life cycle of a person, i.e details for leave of absence, termination or retirement. </xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="hire" type="hropen:BenefitsHireType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="leave" type="hropen:BenefitsLeaveType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="termination" type="hropen:BenefitsTerminationType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="retirement" type="hropen:BenefitsRetirementType" />
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="Employment" type="hropen:EmploymentType" />
+</xsd:schema>

@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AllQueryType",
+    "description": "Set of all query types.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "LeafQueryType.json#" },
+        { "$ref": "BooleanQueryType.json#" },
+        { "$ref": "NestedQueryType.json#" }
+    ]
+}

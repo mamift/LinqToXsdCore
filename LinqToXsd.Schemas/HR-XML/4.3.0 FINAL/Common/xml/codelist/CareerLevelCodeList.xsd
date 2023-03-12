@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CareerLevelCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="CareerLevelCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A code classifying the level of a candidate based on career experience. Student, Entry Level, Recent Graduate, Mid-Career, Manager, Experienced Non-Manager, Senior Executive</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Student">
+        <xsd:annotation>
+          <xsd:documentation>Student</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="EntryLevel">
+        <xsd:annotation>
+          <xsd:documentation>Entry Level</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RecentGraduate">
+        <xsd:annotation>
+          <xsd:documentation>Recent Graduate</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MidCareer">
+        <xsd:annotation>
+          <xsd:documentation>Mid Career</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Manager">
+        <xsd:annotation>
+          <xsd:documentation>Manager</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ExperiencedNonManager">
+        <xsd:annotation>
+          <xsd:documentation>Experienced Non-Manager</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SeniorExecutive">
+        <xsd:annotation>
+          <xsd:documentation>Senior Executive</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="CareerLevelCode" type="hropen:CareerLevelCodeList" />
+</xsd:schema>

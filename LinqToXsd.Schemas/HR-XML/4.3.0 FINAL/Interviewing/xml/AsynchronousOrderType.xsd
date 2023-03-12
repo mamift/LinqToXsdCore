@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="AsynchronousOrderType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/codelist/LanguageCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CommentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="PositionQuestionsType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="CandidateContactType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+  <xsd:include schemaLocation="RecruiterContactType.xsd" />
+  <xsd:complexType name="AsynchronousOrderType">
+    <xsd:annotation>
+      <xsd:documentation>Provides the information needed to order the Interview.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>This is the Position Identifier assigned by the interviewing system.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionTitle">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The position title which might be presented to candidates.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalPositionId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier used by the requesting system to identify the position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalInterviewOrderId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier used by the requesting system to identify the interview transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewOrderId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>This is the Interview Identifier assigned by the interviewing system.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewFormatType" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The type of interview (asynchronous video, asynchronous audio, live video, live audio, in-person).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="recruiter" type="hropen:RecruiterContactType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="candidate" type="hropen:CandidateContactType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="accountCode">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Account Code for use for accounting purposes.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="submissionDeadline" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The default deadline, in hours or date, for an interview requested for this position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="languageCode" type="hropen:LanguageCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The default language in which the position is presented to the outside world.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="question" type="hropen:PositionQuestionsType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="comments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Additional information in support of the order, such as a URL to interviewing system.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="AsynchronousOrder" type="hropen:AsynchronousOrderType" />
+</xsd:schema>

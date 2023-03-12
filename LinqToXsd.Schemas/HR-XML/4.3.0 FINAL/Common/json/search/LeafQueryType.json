@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "LeafQueryType",
+    "description": "Set of all leaf query types, i.e. without any substructure, which look for a particular value in a particular field, such as the fulltext match, terms, geo distance, or range queries.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "RangeQueryType.json#" },
+        { "$ref": "TermsQueryType.json#" },
+        { "$ref": "FulltextQueryType.json#" },
+        { "$ref": "GeoDistanceQueryType.json#" },
+        { "$ref": "GeoPolygonQueryType.json#" }
+    ]
+}

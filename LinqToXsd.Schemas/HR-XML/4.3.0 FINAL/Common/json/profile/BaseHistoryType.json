@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "BaseHistoryType",
+    "description": "Basic type that contains all properties common to a person's profile history entry - intended for use in education history, employment history or military history.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "The identifier for the history.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "start": {
+            "description": "The start date of the history if known.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "end": {
+            "description": "The end date of the history if known.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "current": {
+            "description": "Indicator that the person's history entry is currently active (i.e. if education, still at the school. If work history, still working at the organization)",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "attachmentReferences": {
+            "description": "Attachment references supporting the history entry.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        },
+        "descriptions": {
+            "description": "Additional details or descriptions about the history entry.",
+            "$ref": "../base/StringTypeArray.json#"
+        }
+    }
+}

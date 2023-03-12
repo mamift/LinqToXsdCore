@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AccountBasedCoverageType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="codelist/ElectionFrequencyCodeList.xsd" />
+  <xsd:include schemaLocation="CoverageType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="codelist/AccountBasedProductCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/EffectiveTimePeriodType.xsd" />
+  <xsd:include schemaLocation="codelist/ContributorCodeList.xsd" />
+  <xsd:complexType name="ElectionType">
+    <xsd:annotation>
+      <xsd:documentation>The detail of a given election including the amount, frequency and source.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType">
+              <xsd:annotation>
+                <xsd:documentation>The amount of the given election.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="frequencyCode" type="hropen:ElectionFrequencyCodeList">
+              <xsd:annotation>
+                <xsd:documentation>The frequency of the given election.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="contributorCode" type="hropen:ContributorCodeList">
+              <xsd:annotation>
+                <xsd:documentation>A code identifying the source of the election.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AccountBasedCoverageType">
+    <xsd:annotation>
+      <xsd:documentation>Enrollment data specific to account based coverage types.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="electedPlanId" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="groupNumberId" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="carrierOrganization" type="hropen:OrganizationReferenceType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="deductionInstructions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Instructions for benefits deductions.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RemunerationOrDeductionType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="accountBasedProductCode" type="hropen:AccountBasedProductCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The code classifying the type of account based product.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectivePeriod" type="hropen:EffectiveTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>A time period during which the enrollment is effective.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="electionType" type="hropen:ElectionType">
+        <xsd:annotation>
+          <xsd:documentation>The detail of a given election including the amount, frequency and source.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="AccountBasedCoverage" type="hropen:AccountBasedCoverageType" />
+</xsd:schema>

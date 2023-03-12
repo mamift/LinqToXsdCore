@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "TextType",
+    "description": "Text is a character string, such as a finite set of characters, generally in the form of words of a language.",
+    "type": "object",
+    "properties": {
+        "value": { 
+            "description": "The text.",
+            "type": "string" 
+        },
+        "languageCode": { 
+            "description": "The language of the text.",
+            "$ref": "../codelist/LanguageCodeList.json#" 
+        }
+    }
+}

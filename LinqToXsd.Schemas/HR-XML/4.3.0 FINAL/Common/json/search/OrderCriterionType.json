@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "OrderCriterionType",
+    "description": "Type to define a single order criterion.",
+    "type": "object",
+    "properties": {
+        "propertyPath": {
+            "description": "Path of the property to be ordered by.",
+            "type": "string"
+        },
+        "options": {
+            "description": "Further parameters. May include additional information relevant for ordering.",
+            "$ref": "ParameterTypeArray.json#"
+        }
+    }
+}

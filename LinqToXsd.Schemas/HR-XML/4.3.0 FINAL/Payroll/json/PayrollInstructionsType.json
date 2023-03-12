@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PayrollInstructionsType",
+    "description": "Contains details to process a payroll for a person.",
+    "type": "object",
+        "allOf": [{
+        "$ref": "../../common/json/base/NounType.json#"
+    }], 
+    "properties": {
+        "personId": {
+                    "description": "The identifier for the person.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+       "paymentInstructions": {
+            "description": "Instructions for payment method and amount.",
+            "type": "array",
+            "items": {
+                "$ref": "PaymentInstructionsType.json#"
+            }
+        },
+        "remunerationInstructions ": {
+            "description": "Instructions for the payments.",
+            "type": "array",
+            "items": {
+                "$ref": "../../common/json/pay/RemunerationOrDeductionType.json#"
+            }
+        },
+        "deductionInstructions": {
+            "description": "Instructions for General and Benefits deductions.",
+            "type": "array",
+            "items": {
+                "$ref": "../../common/json/pay/RemunerationOrDeductionType.json#"
+            }
+        },
+        "garnishmentInstructions": {
+            "description": "Instructions for Garnishment deductions.",
+            "type": "array",
+            "items": {
+                "$ref": "GarnishmentInstructionType.json#"
+            }
+        }
+    } 
+}

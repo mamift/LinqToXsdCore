@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EmploymentPermitType",
+    "description": "A type that gives information on the permissions of a person to work.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../profile/CertificationType.json#" }
+    ],
+    "properties": {
+        "countryCode": {
+            "$ref": "../codelist/CountryCodeList.json#"
+        },
+        "countrySubDivisions": {
+            "description": "Qualifies the further divisions of the country. These may be districts, regions, states, provinces, etc.",
+            "type": "array",
+            "items": {
+                "$ref": "../communication/AddressComponentType.json#"
+            }
+        }
+    }
+}

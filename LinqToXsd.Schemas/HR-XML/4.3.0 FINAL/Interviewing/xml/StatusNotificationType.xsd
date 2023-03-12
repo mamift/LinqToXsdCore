@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="StatusNotificationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/evaluation/BaseScoreType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CommentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NumberType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/TextType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/person/PersonNameType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DateTimeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/communication/CommunicationType.xsd" />
+  <xsd:complexType name="InterviewQuestionsScoreType">
+    <xsd:annotation>
+      <xsd:documentation>The collection of question scores for a specific interview type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="questionScore" type="hropen:BaseScoreType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="questionScoreNotes" type="hropen:CommentType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="InterviewScoreType">
+    <xsd:annotation>
+      <xsd:documentation>The score of a specific interview type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewScoreCode" type="hropen:CodeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewScore" type="hropen:BaseScoreType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewScoreNotes" type="hropen:CommentType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ReviewerType">
+    <xsd:annotation>
+      <xsd:documentation>Information about the person and date/time of the review.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="averageRating" type="hropen:NumberType">
+        <xsd:annotation>
+          <xsd:documentation>Average rating from the reviewer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="decision" type="hropen:TextType">
+        <xsd:annotation>
+          <xsd:documentation>Reviewer decision.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reviewerName" type="hropen:PersonNameType">
+        <xsd:annotation>
+          <xsd:documentation>The reviewer's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reviewerContact">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The phone number, email or other communication method for contacting the requesting reviewer.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommunicationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="StatusNotificationType">
+    <xsd:annotation>
+      <xsd:documentation>Provides the status information related to asyncrhonous interviewing system activity.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>This is the Interview Identifier assigned by the interviewing system.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>This is the Position Identifier assigned by the interviewing system.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalPositionId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier used by the requesting system to identify the position transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalInterviewId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier used by the requesting system to identify the interview transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="status">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Acknowledged by Provider, Invitations Sent, In Progress, Expired, Complete, Canceled, Position Created, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="positionCategoryId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The identifier of a position category. E.g, Manager, Admin, Software, Retail, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="questionScores">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:InterviewQuestionsScoreType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewScores">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A collection of interview scores.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:InterviewScoreType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reviewers">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Reviewers for the interview.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ReviewerType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="reviewDateTime" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="comments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Additional information in support of status, such as a URL to interviewing system.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="StatusNotification" type="hropen:StatusNotificationType" />
+</xsd:schema>

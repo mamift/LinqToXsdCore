@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="TaxableCompensationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="codelist/USTaxableCompensationTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:complexType name="TaxableCompensationType">
+    <xsd:annotation>
+      <xsd:documentation>Type and monetary value reported in government reports. In the US, an example would be the Internal Revenue Service Form W-2.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:USTaxableCompensationTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>Type of taxable wage.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A short phrase further describing the taxable compensation type.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="amount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>Monetary value of taxable wage.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="TaxableCompensation" type="hropen:TaxableCompensationType" />
+</xsd:schema>

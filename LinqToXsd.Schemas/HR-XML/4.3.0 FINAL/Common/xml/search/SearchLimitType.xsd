@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="SearchLimitType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="SearchLimitType">
+    <xsd:annotation>
+      <xsd:documentation>Specifying limit information of a search result.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="from">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>(Index of) first item to be returned. A minimum value of 0 should be used.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="size">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Number of items to be returned.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="SearchLimit" type="hropen:SearchLimitType" />
+</xsd:schema>

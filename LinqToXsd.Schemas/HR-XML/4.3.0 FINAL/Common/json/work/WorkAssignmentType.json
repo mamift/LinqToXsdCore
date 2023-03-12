@@ -1,0 +1,41 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "WorkAssignmentType",
+	"description": "WorkAssignment may associate a Job and/or Position with a Worker.",
+	"type": "object",
+	"properties": {
+		"id": {
+			"description": "Identifier of the assignment.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"description": {
+			"description": "Describes the assignment.",
+			"$ref": "../base/TextType.json#"
+		},
+		"assignmentTermTypeCode": {
+			"description": "The code of the assignment term. Values include Fixed, Permanent, Casual, Seasonal.",
+			"$ref": "../codelist/PositionTermTypeCodeList.json#"
+		},
+		"assignmentLifeCyle": {
+			"description": "Contains a collection of dates related to the assignment.",
+			"$ref": "AssignmentLifeCycleType.json#"
+		},
+		"assignmentLocation": {
+			"description": "The location of the assignment.",
+			"$ref": "../communication/AddressType.json#"
+		},
+		"jobId": {
+			"description": "Indentifier of the specific job at an organization.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"positionId": {
+			"description": "Indentifier of the specific position at an organization.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"payCycleCode": {
+			"description": "Describes how often the payee is paid. Pay Frequency - The period of time covered by the employee's regular pay checks. (EER WG, HR-Open Data Element Requirements) (xmi_attribute)",
+			"$ref": "../codelist/PayCycleIntervalCodeList.json#"
+		}
+	}
+}

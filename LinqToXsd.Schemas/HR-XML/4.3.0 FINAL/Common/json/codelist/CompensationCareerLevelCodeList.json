@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CompensationCareerLevelCodeList",
+    "description": "A set of codes classifying the compensation career level codes.",
+    "enum": [
+        "EntryLevel",
+        "SomeRelevantExperience",
+        "Experienced",
+        "SeniorLevel",
+        "MasteryLevel",
+        "IndustryExpert"
+    ],
+    "enumNames": [
+        "Entry Level",
+        "Some Relevant Experience",
+        "Experienced",
+        "Senior Level",
+        "Mastery Level",
+        "Industry Expert"
+    ]
+}

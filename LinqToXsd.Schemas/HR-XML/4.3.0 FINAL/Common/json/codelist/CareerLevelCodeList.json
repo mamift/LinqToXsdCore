@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CareerLevelCodeList",
+    "description": "A code classifying the level of a candidate based on career experience. Student, Entry Level, Recent Graduate, Mid-Career, Manager, Experienced Non-Manager, Senior Executive",
+    "enum": [
+        "Student",
+        "EntryLevel",
+        "RecentGraduate",
+        "MidCareer",
+        "Manager",
+        "ExperiencedNonManager",
+        "SeniorExecutive"
+    ],
+    "enumNames": [
+        "Student",
+        "Entry Level",
+        "Recent Graduate",
+        "Mid Career",
+        "Manager",
+        "Experienced Non-Manager",
+        "Senior Executive"
+    ]
+}

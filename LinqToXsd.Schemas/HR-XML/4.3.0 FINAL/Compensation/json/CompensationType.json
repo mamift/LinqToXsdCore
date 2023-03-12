@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CompensationType",
+    "description": "Represents the Compensation Specification.",
+    "type": "object",
+    "properties": {
+        "salarySurvey": { "$ref": "SalarySurveySubmissionType.json#" },
+        "salarySurveyResults": { "$ref": "SalarySurveyReportType.json#" }
+    }
+}

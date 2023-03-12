@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PositionScheduleTypeCodeList",
+    "description": "Values that classify the working schedule of a position offered or a position sought. Essentially, whether a position offered or sought is full-time or part-time or has provision for flexible scheduling. Shared Time is meant to indicate a single position that is shared amongst more than one person. Intended to classify schedule position preferences of a candidate or conversely employer preferences or requirements related to candidates with respect to an advertised position. Used in the context of matching candidates to positions.",
+    "enum": [
+        "FullTime",
+        "PartTime",
+        "FlexTime",
+        "SharedTime"
+    ],
+    "enumNames": [
+        "Full-Time",
+        "Part-Time",
+        "Flex Time",
+        "Shared Time"
+    ]
+}

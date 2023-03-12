@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="TimeType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:simpleType name="TimeType">
+        <xsd:annotation>
+            <xsd:documentation>Time point according ISO 8601 standard.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:time" />
+    </xsd:simpleType>
+    <xsd:element name="Time" type="hropen:TimeType" />
+</xsd:schema>

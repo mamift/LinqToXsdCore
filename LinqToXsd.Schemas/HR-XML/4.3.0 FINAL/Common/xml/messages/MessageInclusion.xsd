@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="MessageInclusion" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:complexType name="MessageInclusion">
+    <xsd:annotation>
+      <xsd:documentation>Human readable description of the response message.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="type">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The purpose of the message.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Warning" />
+            <xsd:enumeration value="Error" />
+            <xsd:enumeration value="Success" />
+            <xsd:enumeration value="Info" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The code that classifies the message.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="text">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Human readable text of the message.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="MessageInclusion" type="hropen:MessageInclusion" />
+</xsd:schema>

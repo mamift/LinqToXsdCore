@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AddressType",
+    "description": "The physical or mailing address of the entity. This may include the street and building number, city, region (state, province, etc), country and postal code.",
+    "type": "object",
+    "properties": {
+        "line": {
+            "description": "Street line address",
+            "type": "string"
+        },
+        "extendedLines": {
+            "description": "Extended address components (e.g. apartment or suite number).",
+            "type": "array",
+            "items": { "$ref": "AddressComponentType.json#" }
+        },
+        "countryCode": { "$ref": "../codelist/CountryCodeList.json#" },
+        "countrySubDivisions": {
+            "description": "Qualifies the further divisions of the Country. These may be Districts, Regions, States, Provinces etc.",
+            "type": "array",
+            "items": { "$ref": "AddressComponentType.json#" }
+        },
+        "city": { "type": "string" },
+        "postalCode": { "type": "string" },
+        "postOfficeBox": { "type": "string" },
+        "geoLocation": { "$ref": "../base/GeoType.json#" },
+        "formattedAddress": { "type": "string" }
+    },
+    "minProperties": 1
+}

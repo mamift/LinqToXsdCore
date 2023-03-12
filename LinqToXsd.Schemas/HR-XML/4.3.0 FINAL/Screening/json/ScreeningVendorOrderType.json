@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "version": "4.3.0",
+  "title": "ScreeningVendorOrderType",
+  "description": "A Screening vendor order.",
+  "type": "object",
+  "definitions": {
+    "CourtSearchOptionsType": {
+      "title": "CourtSearchOptionsType",
+      "description": "A set of court specific search options.",
+      "type": "object",
+      "properties": {
+        "jurisdiction": {
+          "description": "The jurisdiction to be searched.",
+          "$ref": "../../common/json/Communication/JurisdictionType.json#"
+        },
+        "numberYearsSearched": {
+          "description": "How many years to search.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "yearSearchEnds": {
+          "description": "Ordinarily not supplied. Used to perform a search on a specific set of years in the past. E.g. a 1996-2000 search, numberOfYearsSearched=5 and yearSearchEnds=2000",
+          "type": "integer"
+        },
+        "isCopyRequiredIndicator": {
+          "description": "Indicates if court copies need to be obtained.",
+          "$ref": "../../common/json/base/IndicatorType.json#"
+        }
+      },
+      "required": [
+        "jurisdiction"
+      ]
+    },
+    "ScreeningVendorOrderSubjectType": {
+      "title": "ScreeningVendorOrderSubjectType",
+      "description": "A set of subject specific properties.",
+      "type": "object",
+      "properties": {
+        "subject": {
+          "description": "The subject to be researched.",
+          "$ref": "SubjectType.json#"
+        },
+        "purpose": {
+          "description": "The reason why this subject is supplied (e.g. to search, for adjudication, etc.).",
+          "$ref": "../../common/json/base/TextType.json#"
+        }
+      },
+      "required": [
+        "subject"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "../../common/json/base/NounType.json#"
+    }
+  ],
+  "properties": {
+    "serviceCode": {
+      "description": "The code corresponding to a screening type (e.g. MVR, Criminal, Civil, Credit, Fingerprinting, Education, Employment).",
+      "$ref": "../../common/json/base/CodeType.json#"
+    },
+    "subjects": {
+      "description": "The subjects of the requested service. Supply multiple subjects if the subject may match on multiple descriptions (e.g. they may be found under different Date of Birth values).",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ScreeningVendorOrderSubjectType"
+      },
+      "minItems": 1
+    },
+    "purpose": {
+      "description": "The reason why this report is requested (e.g. Court Order/Subpoena, Employment, Insurance Underwriting).",
+      "$ref": "../../common/json/base/TextType.json#"
+    },
+    "referenceObjects": {
+      "description": "Reference to the data required for the package.",
+      "$ref": "ReferenceObjectTypeArray.json#"
+    },
+    "instructions": {
+      "description": "Instructions for what information should be sent for a Lead.",
+      "$ref": "../../common/json/base/TextType.json#"
+    },
+    "courtSearchOptions": {
+      "description": "Court search options.",
+      "$ref": "#/definitions/CourtSearchOptionsType"
+    },
+    "workLocations": {
+      "description": "Work location used for reporting guidelines.",
+      "type": "array",
+      "items": {
+        "$ref": "../../common/json/Communication/JurisdictionType.json#"
+      }
+    }
+  },
+  "required": [
+    "subjects",
+    "serviceCode"
+  ]
+}

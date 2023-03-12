@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "TaxableCompensationType",
+	"description": "Type and monetary value reported in government reports. In the US, an example would be the Internal Revenue Service Form W-2.",
+	"type": "object",
+	"properties": {
+		"typeCode": {
+			"description": "Type of taxable wage.",
+			"$ref": "codelist/USTaxableCompensationTypeCodeList.json#"
+		},
+		"description": {
+			"description": "A short phrase further describing the taxable compensation type.",
+			"type": "string"
+		},
+		"amount": {
+			"description": "Monetary value of taxable wage.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		}
+	}
+}

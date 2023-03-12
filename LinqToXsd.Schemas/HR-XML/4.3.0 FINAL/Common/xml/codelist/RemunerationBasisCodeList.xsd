@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RemunerationBasisCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="RemunerationBasisCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A code classifying the primary method of payment for the associated position or employment. This classifies the method by which remuneration for a position is provided or calculated.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Hourly">
+        <xsd:annotation>
+          <xsd:documentation>Hourly</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Salaried">
+        <xsd:annotation>
+          <xsd:documentation>Salaried</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SalariedPlusBonus">
+        <xsd:annotation>
+          <xsd:documentation>Salaried Plus Bonus</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SalariedPlusCommission">
+        <xsd:annotation>
+          <xsd:documentation>Salaried Plus Commission</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CommissionOnly">
+        <xsd:annotation>
+          <xsd:documentation>Commission Only</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="RemunerationBasisCode" type="hropen:RemunerationBasisCodeList" />
+</xsd:schema>

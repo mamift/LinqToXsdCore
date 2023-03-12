@@ -1,0 +1,493 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "JobPostingType",
+  "description" : "Entity describing an on-line advertisement for filling one or more job openings.",
+  "type" : "object",
+  "allOf" : [ {
+    "$ref" : "../../../common/json/base/NounType.json#"
+  } ],
+  "properties" : {
+    "abilities" : {
+      "description" : "Aptitude, capacity or power to act physically, socially, mentally, legally, or morally at a level suitable to the work context; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of ability types such as the O*NET cognitive, sensory, psychomotor and physical abilities.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "alternativeCredentials" : {
+      "description" : "Description of an alternative credential fulfilling requirements for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "alternativeEducation" : {
+      "description" : "Description of an alternative education or training fulfilling requirements for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "alternativeExperiences" : {
+      "description" : "Description of an alternative experience fulfilling requirements for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "applicantLocationRequirements" : {
+      "description" : "Geographic location(s) in which employees may be located for remote (telecommuting) jobs.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "../../../common/json/base/GeoType.json#"
+      }
+    },
+    "attitudes" : {
+      "description" : "Motivator of performance including values, aspirations, and priorities necessary to successful performance of a task or job; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of attitude types.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "baseSalaries" : {
+      "description" : "Base salary of the job or of an employee in an employee role including minimum and maximum salary and unit value (e.g., hour, day, week, month, or year).",
+      "type" : "array",
+      "items" : {
+        "$ref" : "MonetaryAmountType.json#"
+      }
+    },
+    "careerLevels" : {
+      "description" : "A code classifying the level of a candidate based on career experience; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of career level types (e.g., HR Open Standards CareerLevelCodeList.json).",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "citizenshipRequirements" : {
+      "description" : "Required country of the applicant's citizenship. Note(s): Use a value selected from a country code list such as the Library of Congress' List of Countries.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "competencies" : {
+      "description" : "Observable and measurable knowledge, skills, abilities and personal attributes that contribute to enhanced employee performance of the job; select from an existing enumeration of such types. ",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "dateCreated" : {
+      "description" : "Date on which the position was created.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    },
+    "dateModified" : {
+      "description" : "Date on which the position was modified.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    },
+    "datePosted" : {
+      "description" : "Date of posting by a channel.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    },
+    "disclaimers" : {
+      "description" : "Statement that denies aspects of a statement made or omitted by the employing entity in the position or posting.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "educationLevels" : {
+      "description" : "Word or phrase identifying the location of the person in terms of his or her progression through an education or training context; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of education levels such as HR Open Standards IscedCodeList.json.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "employerOverview" : {
+      "description" : "Description of the employer, career opportunities and work environment.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "employmentUnit" : {
+      "description" : "Department, unit and/or facility where the employee reports and/or in which the job is to be performed.",
+      "$ref" : "JDXOrganizationType.json#"
+    },
+    "equivalentCredentials" : {
+      "description" : "Description of an equivalent credential for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "equivalentEducation" : {
+      "description" : "Description of equivalent education or training for the position or occupation. Note(s): An educational experience without award of a credential should be recorded with a range of QualifyingExperience. An educational experience with award of a credential should be recoded with a range of Credential, not QualifyingExperience.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "equivalentExperiences" : {
+      "description" : "Description of equivalent experience for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "estimatedSalaries" : {
+      "description" : "Description of the estimated salary for a job posting based on a variety of variables including, but not limited to industry, job title, and location.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "MonetaryAmountDistributionType.json#"
+      }
+    },
+    "experienceCategories" : {
+      "description" : "Category of experience needed for the position or Occupation; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of experience types including, but not limited to, \"Education Experience\", \"Training Experience\", \"Work Experience\", \"Apprenticeship\", and \"Traineeship\".",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "formattedDescriptions" : {
+      "description" : "HTML-tagged summary of the salient aspects of the job, including job responsibilities, qualifications, skills, working hours, education requirements, and experience requirements.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "postingInstructions" : {
+      "description" : "Resource providing instructions for posting a job position opening to a job board or media channel and for submission of applications.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "PostingInstructionsType.json#"
+      }
+    },
+    "hiringOrganization" : {
+      "description" : "Organization offering the job position.",
+      "$ref" : "JDXOrganizationType.json#"
+    },
+    "incentiveCompensation" : {
+      "description" : "Description of bonus and commission compensation aspects of the job.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "identifiers" : {
+      "description" : "The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc. Note(s): Identifier in JDX has a constrained range of PropertyValue. Best practice is to use name property to textually identify the type of identifier, value property to hold the textual value of the identifier, and the properytID for a URI indicating the type of identifier. NOTE: JDX defines positionID and postingID to handle the employer's identifier for a particular position or posting.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "../../../common/json/base/IdentifierType.json#"
+      }
+    },
+    "industries" : {
+      "description" : "Description of the most critical economic or work activities performed (e.g. software development, electronic manufacturing, motor vehicle production, or diagnostic and therapeutic services). Note(s): NOTE: The industry description expected here is a brief narrative of the most critical economic or work activities performed. To identify a formal industry code, such as NAICS in the U.S., use the industryCode property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "industryCodes" : {
+      "description" : "Code from a controlled vocabulary of industry types identifying the primary economic activity of an establishment defined as a single physical location where business is conducted or where services or industrial operations are performed. Note(s): 1.) Use a value selected from a controlled vocabulary of industry types used in the country where the job is located; e.g., NAICS in the U.S. and ESCO in the European Union. 2.) In a JDX job description, there my be multiple levels and locations for an organization identified and each may have different industry codes based on the kinds of work performed at those locations.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "inLanguage" : {
+      "description" : "The language of the content of the job posting.",
+      "$ref" : "../../../common/json/base/LocalizationInclusion.json#"
+    },
+    "jobAgreements" : {
+      "description" : "Type of employment agreement (e.g. \"employee\", \"contract-to-hire\", \"contract\", \"internship\", \"externship\", \"apprenticeship\", \"student\", \"volunteer\", \"under collective bargaining\", \"eligible for overtime\"; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of employment contract agreements; select from an existing enumeration of such types.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "jobBenefits" : {
+      "description" : "Description of benefits associated with the job (e.g., \"employee discount\", \"health insurance\", \"401K plan\"); select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of benefit types; select from an existing enumeration of such types.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "jobImmediateStart" : {
+      "description" : "Indicator as to whether a position is available for an immediate start.",
+      "type" : "boolean"
+    },
+    "jobLocation" : {
+      "description" : "Typically single geographic location where the work is performed.",
+      "$ref" : "PlaceType.json#"
+    },
+    "jobLocationTypes" : {
+      "description" : "A description of the job location (e.g., TELECOMMUTE for telecommute jobs).",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "jobSchedules" : {
+      "description" : "Schedule of the employment (e.g. \"full-time\", \"part-time\", \"flex-time\", \"hourly\", \"shared-time\"); select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of employment schedule types; select from an existing enumeration of such types.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "jobStartDate" : {
+      "description" : "Target date when the employment would begin.",
+      "$ref" : "../../../common/json/base/DateType.json#"
+    },
+    "jobTerms" : {
+      "description" : "Type of employment term (e.g. \"regular\", \"temporary\", \"seasonal\"); select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of employment term types; select from an existing enumeration of such types.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "knowledge" : {
+      "description" : "Body of facts, principles, theories and practices that is related to a field of work or study; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of knowledge types such as the O*NET knowledge.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "minimumExperiences" : {
+      "description" : "Description of the minimum experience needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "minimumCredentials" : {
+      "description" : "Description of the minimum credential needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "minimumEducation" : {
+      "description" : "Description of the minimum education needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "name" : {
+      "description" : "The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.",
+      "type" : "string"
+    },
+    "occupationCategories" : {
+      "description" : "Category of the relevant occupation of the job used in the country of employment; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of occupation categories such as the Standard Occupational Classification (SOC).",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "physicalActivities" : {
+      "description" : "Description of the physical activity expected or required for a position. Note(s): Use a value selected from a controlled vocabulary of physical activity types such as \"bending\", \"standing\", \"sitting\".",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "physicalRequirements" : {
+      "description" : "",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "positionID" : {
+      "description" : "Employer's identifier for a particular position.",
+      "type" : "string"
+    },
+    "postingID" : {
+      "description" : "Employer's identifier for a particular job posting. Note(s): For the identifier of the position for this posting, use positionID.",
+      "type" : "string"
+    },
+    "postingRequestor" : {
+      "description" : "Agent requesting the posting.",
+      "$ref" : "JDXOrganizationType.json#"
+    },
+    "preferredCredentials" : {
+      "description" : "Description of the preferred credential needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "preferredEducation" : {
+      "description" : "Description of the preferred education or training needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "preferredExperiences" : {
+      "description" : "Description of the preferred experience needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "qualificationSummary" : {
+      "description" : "Summary description of the ideal candidate's qualifications for a position.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "reportingRelationships" : {
+      "description" : "Position(s) to which this position reports and over which this position exercises some degree of authority, control or leadership.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "requiredAssessments" : {
+      "description" : "Resource referenced is an example of a direct, indirect, formative, and summative evaluation or estimation of the nature, ability, or quality of a person's performance or outcome of an action.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AssessmentProfileType.json#"
+      }
+    },
+    "requiredConditions" : {
+      "description" : "Resource referenced provides the means to make logical assertions that combine resources that in aggregate fulfill education, experience and credential requirements.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "ConditionType.json#"
+      }
+    },
+    "requiredCredentials" : {
+      "description" : "Description of the required credential needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "requiredEducation" : {
+      "description" : "Description of the required education or training needed for the position or occupation. Note(s): Specific credential requirements should use requiredCredential.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "requiredExperiences" : {
+      "description" : "Description of the required experience needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "responsibilities" : {
+      "description" : "Key work tasks or activities over which this position exercises some degree of authority, control or leadership. Note(s): Use a value selected from a controlled vocabulary of responsibilities.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "riskExposures" : {
+      "description" : "Description of any exposure to risks associated with the job including exposure to extreme noise or temperature, dust/particle matter, radiation, chemicals, airborne communicable diseases and bloodborne pathogens.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "./AnnotatedDefinedTermType.json#"
+      }
+    },
+    "securityClearanceRequirements" : {
+      "description" : "Description of any security clearance requirements.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "sensoryRequirements" : {
+      "description" : "",
+      "type" : "array",
+      "items" : {
+        "$ref" : "./AnnotatedDefinedTermType.json#"
+      }
+    },
+    "shiftSchedules" : {
+      "description" : "Type of the typical work shift of the job; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of work shift types. Sample may include swing shift, day shift, or weekend shift. ",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "skills" : {
+      "description" : "Ability to apply knowledge and use know-how to complete tasks and solve problems including types or categories of developed proficiency or dexterity in mental operations and physical processes required to fulfill a work role; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of skill types such as the O*NET skills.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "specialCommitments" : {
+      "description" : "Any special commitments associated with this job posting (e.g. low-income, native American, ex-offenders, military commit) along with any special exclusions (e.g. criminal records).",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "tasks" : {
+      "description" : "Piece or unit of work to be done or undertaken and accomplished within a defined period of time or by a deadline; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of task types such as O*NET tasks.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "technologies" : {
+      "description" : "Tool, application or other form of technology that requires knowledge, skill and ability to use effectively in executing the tasks and responsibilities of the job; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of technology types such as O*NET technology and tools.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "title" : {
+      "description" : "The title of the job.",
+      "type" : "string"
+    },
+    "totalJobOpenings" : {
+      "description" : "Total number of positions open at all locations.",
+      "type" : "number"
+    },
+    "travelRequirements" : {
+      "description" : "Information about any required travel, systematic or occasional.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "validFrom" : {
+      "description" : "The date from which the job posting is valid.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    },
+    "validThrough" : {
+      "description" : "The date after which the item is not valid. For example the end of an offer, salary period, or a period of opening hours.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    },
+    "workActivities" : {
+      "description" : "Purposeful, systematic activity by one or more workers acting on a work objective to reach an intended outcome; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of activity types such as the O*NET work activities.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "workLanguages" : {
+      "description" : "Information on the work languages used for the job.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "../../../common/json/base/LocalizationInclusion.json#"
+      }
+    },
+    "workHours" : {
+      "description" : "Typical working hours for this job; e.g. \"1st shift\", \"night shift\", \"8am-5pm\".",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    }
+  }
+}

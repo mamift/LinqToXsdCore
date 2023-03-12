@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "SearchLimitType",
+    "description": "Specifying limit information of a search result.",
+    "type": "object",
+    "properties": {
+        "from" : {
+            "description" : "(Index of) first item to be returned. A minimum value of 0 should be used.",
+            "type" : "integer"
+        },
+        "size" : {
+            "description" : "Number of items to be returned.",
+            "type" : "integer"
+        }
+    }
+}

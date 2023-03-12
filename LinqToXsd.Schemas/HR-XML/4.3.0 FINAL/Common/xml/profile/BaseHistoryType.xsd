@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="BaseHistoryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:complexType name="BaseHistoryType">
+    <xsd:annotation>
+      <xsd:documentation>Basic type that contains all properties common to a person's profile history entry - intended for use in education history, employment history or military history.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>The identifier for the history.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="start" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The start date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="end" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The end date of the history if known.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="current" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Indicator that the person's history entry is currently active (i.e. if education, still at the school. If work history, still working at the organization)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachment references supporting the history entry.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Additional details or descriptions about the history entry.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="BaseHistory" type="hropen:BaseHistoryType" />
+</xsd:schema>

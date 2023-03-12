@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="GeoPolygonQueryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="GeoPolygonType.xsd" />
+  <xsd:complexType name="GeoPolygonQueryType">
+    <xsd:annotation>
+      <xsd:documentation>Type for geographical polygon queries.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="geoPolygon">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="propertyPath">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Path of the property to which the condition applies.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="1" maxOccurs="1" name="geoPolygon" type="hropen:GeoPolygonType">
+              <xsd:annotation>
+                <xsd:documentation>The geographical polygon of geographical points. In order to fulfill the query/criterion, the location geo points must fall inside the polygon.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="GeoPolygonQuery" type="hropen:GeoPolygonQueryType" />
+</xsd:schema>

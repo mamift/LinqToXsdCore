@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="YearOpenEndPeriodType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="YearType.xsd" />
+  <xsd:complexType name="YearOpenEndPeriodType">
+    <xsd:annotation>
+      <xsd:documentation>Single period between years. The end year is optional and should be used in cases where the end of the period is unknown or uncertain.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="start" type="hropen:YearType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="end" type="hropen:YearType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="YearOpenEndPeriod" type="hropen:YearOpenEndPeriodType" />
+</xsd:schema>

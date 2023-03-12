@@ -1,0 +1,78 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RewardType",
+    "description": "Details of the compensation reward",
+    "type": "object",
+    "properties": {
+        "rewardCode": {
+            "description": "A code that describes the type of remuneration being paid",
+            "$ref": "../../common/json/codelist/PayTypeCodeList.json#"
+        },
+        "effectiveDate": {
+            "description": "The date that this piece of remuneration started",
+            "$ref": "../../common/json/base/DateType.json#"
+        },
+        "eligibleIndicator": {
+            "description": "Is the Employee eligible for this reward or not",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "clientProvidedValue": {
+            "type": "object",
+            "properties": {
+                 "name": {
+                    "description": "Total Reward name.",
+                    "$ref": "../../common/json/base/NameType.json#"
+                },
+                "valueAmount": {
+                    "description": "Total Reward amount (including any additional payments)",
+                    "$ref": "../../common/json/base/AmountType.json#"
+                },
+                "valuePercent": {
+                    "description": "Reward as a percentage of (applicable) Base in case reward is in percentage",
+                    "$ref": "../../common/json/base/PercentType.json#"
+                },
+                "rateIntervalCode": {
+                    "description": "Frequency of reward payments",
+                    "$ref": "../../common/json/codelist/PayRateIntervalCodeList.json#"
+                },
+                "numberOfAdditionalPayments": {
+                    "description": "Additional number of months/weeks included in the Annual pay",
+                    "$ref": "../../common/json/base/NumberType.json#"
+                },
+                "taxableIndicator": {
+                    "description": "An indicator which describes if this remuneration is taxable",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "cashIndicator": {
+                    "description": "An indicator of whether this remuneration is paid in cash",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "fixedIndicator": {
+                    "description": "An indicator of whether this remuneration is fixed, if not then it is variable",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                }
+            },
+            "required": ["rateIntervalCode", "cashIndicator"]
+        },
+        "clientProvidedTarget": {
+            "type": "object",
+            "properties": {
+                "targetAmount": {
+                    "description": "The value that is expected to be awarded for this remuneration award",
+                    "$ref": "../../common/json/base/AmountType.json#"
+                },
+                "targetPercent": {
+                    "description": "The percent of a basis expected to be awarded for this remuneration award",
+                    "$ref": "../../common/json/base/PercentType.json#"
+                },
+                "basisOfTarget": {
+                    "description": "Basis of Target e.g., Base Pay, Base Pay plus Mandatory Bonus, etc",
+                    "$ref": "../../common/json/codelist/PayTypeCodeList.json#"
+                }
+            },
+            "required": ["target", "basisOfTarget"]
+        }
+    },
+    "required": ["rewardCode", "eligibleIndicator"]
+}

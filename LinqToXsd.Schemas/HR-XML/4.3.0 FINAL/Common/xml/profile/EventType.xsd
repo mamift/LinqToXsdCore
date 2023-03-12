@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="EventType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:include schemaLocation="../base/DateOpenEndPeriodType.xsd" />
+  <xsd:include schemaLocation="../communication/LocationType.xsd" />
+  <xsd:complexType name="EventType">
+    <xsd:annotation>
+      <xsd:documentation>Basic type that contains all properties common to an event, conference, or some other type of function.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="id" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>A unique identifier which cannot be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Free text description for that entity</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="code" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code which can be expressed as enumeration</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="venue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the venue where the event occurred.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="location" type="hropen:LocationType">
+        <xsd:annotation>
+          <xsd:documentation>The location of the venue.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="when" type="hropen:DateOpenEndPeriodType">
+        <xsd:annotation>
+          <xsd:documentation>The start and end date when the event occurred.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Event" type="hropen:EventType" />
+</xsd:schema>

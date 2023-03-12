@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonType",
+    "description": "A schema that represents all of the information of a person.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "PersonBaseType.json#" },
+        { "$ref": "PersonPhysicalInclusion.json#" },
+        { "$ref": "../profile/PersonProfileInclusion.json#" },
+        { "$ref": "PersonLegalInclusion.json#" }
+    ]
+}

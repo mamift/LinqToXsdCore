@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="MonetaryAmountType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AnnotatedDefinedTermType.xsd" />
+  <xsd:complexType name="MonetaryAmountType">
+    <xsd:annotation>
+      <xsd:documentation>A monetary value or range. Note(s): This type can be used to describe an amount of money such as $50 USD, or a range as in describing a bank account being suitable for a balance between £1,000 and £1,000,000 GBP, or the value of a salary, etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="currency">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Currency designation (e.g., USD).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maxValue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The upper value of some characteristic or property.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minValue">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The lower value of some characteristic or property.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="payCycleInterval" type="hropen:AnnotatedDefinedTermType">
+        <xsd:annotation>
+          <xsd:documentation>Pay cycle interval specifies how often the pay cycle occurs or, in other words, how often a person is paid, e.g., "daily", "weekly", "monthly", "yearly" etc.; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of pay cycles (e.g., the HR Open PayCycleIntervalCodeList).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="unitText">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Unit of measurement on which values for MonetaryAmount or QuantitativeValue are based; select from an existing enumeration of such types. An example of MonetaryAmount is $100 per day where unitText equals DAY. </xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Value of the quantitative value or property value node.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="MonetaryAmount" type="hropen:MonetaryAmountType" />
+</xsd:schema>

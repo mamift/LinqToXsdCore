@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="DisabilityType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/EffectiveTimePeriodType.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../base/FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/PercentType.xsd" />
+  <xsd:include schemaLocation="../base/CommentType.xsd" />
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:simpleType name="DisabilityLevelCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A value classifying the level of disability.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="1">
+        <xsd:annotation>
+          <xsd:documentation>need for another person's assistance with daily life tasks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="2">
+        <xsd:annotation>
+          <xsd:documentation>inability to perform one or more sensory or physical functions</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="3">
+        <xsd:annotation>
+          <xsd:documentation>experiencing difficulties in multiple sensory or physical functions</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="4">
+        <xsd:annotation>
+          <xsd:documentation>experiencing difficulty in just one function</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="5">
+        <xsd:annotation>
+          <xsd:documentation>no limitations in functioning</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="DisabilitySummaryType">
+    <xsd:annotation>
+      <xsd:documentation>Describes a disability associated with a specified person. Want of ability to discharge a function. Incapacity in the eye of the law.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disabilityId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier of the persons disability recognition, e.g. the number of the persons 'severely handicapped pass'.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disabilityLevelCode" type="hropen:DisabilityLevelCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A value classifying the level of disability.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentage" type="hropen:PercentType">
+        <xsd:annotation>
+          <xsd:documentation>The amount of disability as a percentage of impairment. This should be defined by a medical board based on standards.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disabilityType" type="hropen:EntityType">
+        <xsd:annotation>
+          <xsd:documentation>A value from an external code list classifying the type of disability. Examples: 1. DisabilityConditionType as defined by PESC.org; 2. U.S. Office of Special Education Programs (OSEP) Primary and Secondary Disability Codes; 3. 'Total', 'Partial', and 'Residual' as broad classifications of disability in certain contexts (Acord.org).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disabilityDate" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date on which an injury occurred or which is otherwise associated as the start of a period of disability.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="disabilityCertifiedDate" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date on which a person's disabled status is verified by a doctor or medical professional.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="recoveryDate" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date on which a person is determined to have recovered from an injury or disability.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="accommodationTypeCode">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A code identifying a type of assistance or technology required to accommodate a disability. This is a value from an external code list.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comment" type="hropen:CommentType">
+        <xsd:annotation>
+          <xsd:documentation>Additional comments on the disability.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectiveDate" type="hropen:EffectiveTimePeriodType">
+        <xsd:annotation>
+          <xsd:documentation>Effective date of the defined disability.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachments supporting the disability summary.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReferences">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Attachment references supporting the disability summary.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentReferenceType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DisabilityType">
+    <xsd:annotation>
+      <xsd:documentation>Describes a disability associated with a specified person. Want of ability to discharge a function. Incapacity in the eye of the law.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="indicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>An indicator of a disability associated with a specified person.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="summary">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A summary of a disability associated with a specified person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:DisabilitySummaryType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Disability" type="hropen:DisabilityType" />
+</xsd:schema>

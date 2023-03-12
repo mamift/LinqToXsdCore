@@ -1,0 +1,122 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PublicationType",
+    "description": "Basic type that contains all properties common to publication, which could be print or electronic.",
+    "type": "object",
+    "properties": {
+        "id": { 
+            "description": "An identifier of the publication.",
+            "$ref": "../base/IdentifierType.json#" 
+        },
+        "type": {
+            "description": "Type of publication, such as a book or article.",
+            "$ref": "../codelist/PublicationTypeCodeList.json#"
+        },
+        "date": { 
+            "description": "The date that the publication was published.",
+            "$ref": "../base/DateType.json#" 
+        },
+        "title": { 
+            "description": "The title of the publication.",
+            "type": "string" 
+        },
+        "abstract": { 
+            "description": "A summary or abstract of the publication.",
+            "type": "string" 
+        },
+        "contributors": {
+            "description": "A list of contributors to the publication.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { 
+                        "description": "The name of the contributor.",
+                        "type": "string" 
+                    },
+                    "role": { 
+                        "description": "The role of the contributor.",
+                        "type": "string" 
+                    }
+                }
+            }
+        },
+        "copyrights": {
+            "description": "A list of copyright holders and year when the copyright was issued.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "owner": {
+                        "description": "The owner(s) of the copyright.",
+                        "type": "string"
+                    },
+                    "year": {
+                        "description": "The year when the copyright was issued to the owner.",
+                        "$ref": "../base/YearType.json#"
+                    }
+                }
+            }
+        },
+        "attachmentReferences": {
+            "description": "A reference to an attachment related to the publication.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        },
+        "languageCode": {
+            "description": "The language of the publication.",
+            "$ref": "../codelist/LanguageCodeList.json#"
+        },
+        "comments": {
+            "description": "Comments related to the publication.",
+            "type": "array",
+            "items": { "$ref": "../base/CommentType.json#" }
+        },
+        "journal": {
+            "description": "The journal where the publication was published.",
+            "type": "string"
+        },
+        "issn": {
+            "description": "The ISSN (International Standard Serial Number) issued for the publication.",
+            "type": "string"
+        },
+        "volume": {
+            "description": "The volume of the publication if the publication is part of a series.",
+            "type": "string"
+        },
+        "issue": {
+            "description": "The issue of the publication if the publication is part of a series.",
+            "type": "string"
+        },
+        "pages": {
+            "description": "The pages related to the publication if the published material is only part of a larger work.",
+            "type": "string"
+        },
+        "edition": {
+            "description": "The edition or version number of the publication.",
+            "type": "string"
+        },
+        "chapters": {
+            "description": "The chapters related to the publication if the published material is only part of a larger work.",
+            "type": "string"
+        },
+        "isbn": {
+            "description": "The ISBN representing the publication. ISBN is an International Standard Book Number, which is typically 13 digits.",
+            "type": "string"
+        },
+        "publisher": {
+            "description": "The publisher of the publication.",
+            "type": "string"
+        },
+        "publisherLocation": {
+            "description": "The location of the publisher of the publication.",
+            "$ref": "../communication/LocationType.json#"
+        },
+        "event": {
+            "description": "The event that is related to a publication (i.e. a book launch or a conference).",
+            "$ref": "EventType.json#"
+        }
+    },
+    "required": [ "title", "type" ]
+}

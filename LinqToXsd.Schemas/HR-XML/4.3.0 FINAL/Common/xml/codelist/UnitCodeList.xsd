@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="UnitCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="UnitCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A partial list of UN/CEFACT Unit Codes for Trade (2014, Annex II &amp; Annex III).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="ACR">
+        <xsd:annotation>
+          <xsd:documentation>acre</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ARE">
+        <xsd:annotation>
+          <xsd:documentation>are</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CMT">
+        <xsd:annotation>
+          <xsd:documentation>centimeter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="DAY">
+        <xsd:annotation>
+          <xsd:documentation>day</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="EA">
+        <xsd:annotation>
+          <xsd:documentation>each</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FOT">
+        <xsd:annotation>
+          <xsd:documentation>foot</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GRM">
+        <xsd:annotation>
+          <xsd:documentation>gram</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HAR">
+        <xsd:annotation>
+          <xsd:documentation>hectare</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HUR">
+        <xsd:annotation>
+          <xsd:documentation>hour</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="INH">
+        <xsd:annotation>
+          <xsd:documentation>inch</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KGM">
+        <xsd:annotation>
+          <xsd:documentation>kilogram</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KMT">
+        <xsd:annotation>
+          <xsd:documentation>kilometre</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LTR">
+        <xsd:annotation>
+          <xsd:documentation>litre</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MTR">
+        <xsd:annotation>
+          <xsd:documentation>metre</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SMI">
+        <xsd:annotation>
+          <xsd:documentation>mile</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MGM">
+        <xsd:annotation>
+          <xsd:documentation>milligram</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MLT">
+        <xsd:annotation>
+          <xsd:documentation>millilitre</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MMT">
+        <xsd:annotation>
+          <xsd:documentation>millimetre</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="C26">
+        <xsd:annotation>
+          <xsd:documentation>millisecond</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MIN">
+        <xsd:annotation>
+          <xsd:documentation>minute</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MON">
+        <xsd:annotation>
+          <xsd:documentation>month</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="C62">
+        <xsd:annotation>
+          <xsd:documentation>one [piece]</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ONZ">
+        <xsd:annotation>
+          <xsd:documentation>ounce</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PTI">
+        <xsd:annotation>
+          <xsd:documentation>pint [UK]</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PT">
+        <xsd:annotation>
+          <xsd:documentation>pint [US]</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LBR">
+        <xsd:annotation>
+          <xsd:documentation>pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="QTI">
+        <xsd:annotation>
+          <xsd:documentation>quart [UK]</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="QT">
+        <xsd:annotation>
+          <xsd:documentation>quart [US]</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SEC">
+        <xsd:annotation>
+          <xsd:documentation>second</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="STI">
+        <xsd:annotation>
+          <xsd:documentation>stone</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="WEE">
+        <xsd:annotation>
+          <xsd:documentation>week</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="YRD">
+        <xsd:annotation>
+          <xsd:documentation>yard</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ANN">
+        <xsd:annotation>
+          <xsd:documentation>year</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="UnitCode" type="hropen:UnitCodeList" />
+</xsd:schema>

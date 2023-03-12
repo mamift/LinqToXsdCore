@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PercentType",
+    "description": "A percent is a value representing a fraction of one hundred, expressed as a quotient.",
+    "type": "number"
+}

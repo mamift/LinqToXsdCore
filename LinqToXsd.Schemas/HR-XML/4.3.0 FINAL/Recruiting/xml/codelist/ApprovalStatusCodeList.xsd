@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ApprovalStatusCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="ApprovalStatusCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that describe the status of an approval process.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="InReview" />
+      <xsd:enumeration value="Approved" />
+      <xsd:enumeration value="NotApproved" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ApprovalStatusCode" type="hropen:ApprovalStatusCodeList" />
+</xsd:schema>

@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "SalarySurveySubmissionType",
+    "description": "A record of Salary Survey to capture details of related employment and organization",
+    "allOf": [{
+        "$ref": "../../common/json/base/NounType.json#"
+    }],
+    "type": "object",
+    "definitions": {
+        "SalarySurveySubmissionItem": {
+            "type": "object",
+            "properties": {
+                "match": {
+                    "description": "An indication by the participating organization that specifies the match accuracy (strength) of their job vs. the survey job. ",
+                    "$ref": "MatchType.json#"
+                },
+                "hireDate": {
+                    "description": "The date the person was hired.",
+                    "$ref": "../../common/json/base/DateType.json#"
+                },
+                "deployment": {
+                    "description": "The position a person currently holds. This may include details on the job, location, compensation, and other related information.",
+                    "type": "object",
+                    "allOf": [{
+                        "$ref": "../../common/json/work/DeploymentType.json#"
+                    }],
+                    "properties": {
+                        "employeeRecordIdentifier": {
+                            "description": "Random number assigned by the participating company, that can not be connected to the system of record and is assigned exclusively for the salary survey.",
+                            "$ref": "../../common/json/base/IdentifierType.json#"
+                        },
+                        "shiftCompensation": {
+                            "description": "Premium pay for working a 2nd or 3rd shift.",
+                            "$ref": "ShiftCompensationType.json#"
+                        }
+                    }
+                },
+                "reward": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RewardType.json#"
+                    },
+                    "minItems": 1
+                },
+                "longTermIncentivePlan": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "LongTermIncentivePlanType.json#"
+                    }
+                }
+            },
+            "required": ["deployment", "reward"]
+        }
+    },
+    "properties": {
+        "salarySurveySubmissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/SalarySurveySubmissionItem"
+            },
+            "minItems": 1
+        }
+    },
+    "required": ["salarySurveySubmissions"]
+}

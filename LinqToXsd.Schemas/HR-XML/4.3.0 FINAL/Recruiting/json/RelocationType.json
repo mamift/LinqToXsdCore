@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RelocationType",
+    "description": "Information about relocation.",
+    "type": "object",
+    "properties": {
+        "willingToRelocateIndicator": {
+            "description": "Indicates whether relocation is an option for the candidate or considered by the hiring company.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "descriptions": {
+            "description": "Text describing any special considerations about relocation.",
+            "$ref": "../../common/json/base/StringTypeArray.json#"
+        }
+    }
+}

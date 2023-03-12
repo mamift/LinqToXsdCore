@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="ScreeningReportType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/CommentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/AttachmentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/DateTimeType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+  <xsd:complexType name="ServiceReportType">
+    <xsd:annotation>
+      <xsd:documentation>The type of service or search type requested in the overall order.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="serviceId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Typically used for a reference ID provided by the Consumer Reporting Agency (CRA) specific to the service itself.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="serviceOrderDate" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>Order date and time when service was requested.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="serviceCompletedDate" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>Completed date and time when service was completed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="serviceCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>Code used for service type.  Specific to each Consumer Reporting Agency (CRA).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="serviceName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Service Name used for service type.  Specific to each Consumer Reporting Agency (CRA).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusMessage">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Overall status of service.  Typically would be reflective of a value like Pending, Complete, etc. Specific to each Consumer Reporting Agency (CRA).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="flaggedIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Typically a true or false value indicating whether or not the service is flagged.  For example, a value of 'true' may indicate flagged information was found. Specific to each Consumer Reporting Agency (CRA).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="result">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Overall result of service.  Typically would be reflective of a value like Record Found, No Record Found, etc. Specific to each Consumer Reporting Agency (CRA).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="comments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Any additional comments or ETAs tied to service. Specific to each Consumer Reporting Agency (CRA).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:CommentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentPointers">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>This points to the an attachment in attachments array.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Indicates JSON Pointer value such as /foo/bar. Although this is a string, HR Open requires a json-pointer format. Do not use JSON Pointer URI fragments such as #/foo/bar</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ScreeningReportType">
+    <xsd:annotation>
+      <xsd:documentation>A Screening report.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Alternative document IDs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+              <xsd:annotation>
+                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                    <xsd:complexType>
+                      <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                          <xsd:annotation>
+                            <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                          <xsd:complexType>
+                            <xsd:annotation>
+                              <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:sequence>
+                              <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                          <xsd:annotation>
+                            <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:all>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="packageCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The code corresponding to a screening package.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="orderId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Typically used for a reference ID provided by the Consumer Reporting Agency (CRA) specific to the order itself. Can often be used as a lookup value in the CRA's client portal.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="subjectId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Reference ID tied to the subject (consumer) being screened.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="orderedDate" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>Date and time when order was successfully submitted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="completedDate" type="hropen:DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>Completed date and time when overall order was completed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="overallEvaluation">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Reflects overall evaluation of order for organizations using a CRA for scoring purposes.  Often reflects values like Pass, Needs Review, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="screeningResults">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A collection of separate service results. For example, Education Verification, Employment Verification, MVR, Criminal Checks, etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ServiceReportType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusMessage">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Overall status of order.  Typically would be reflective of a value like Pending, Complete, etc. Specific to each Consumer Reporting Agency (CRA).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>This points to the attachments array</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ScreeningReport" type="hropen:ScreeningReportType" />
+</xsd:schema>

@@ -1,0 +1,57 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "WorkerCompensationType",
+	"description": "The direct and indirect compensation a worker was paid.",
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "../../common/json/base/NounType.json#"
+		}
+	],
+	"properties": {
+		"workerId": {
+			"description": "Provides a unique identifier to a specific worker (an employer specific identifier).",
+			"$ref": "../../common/json/base/IdentifierType.json#"
+		},
+		"reportingTimePeriod": {
+			"description": "Defines the period of the compensation paid. 'As of date' would use the validTo date.",
+			"$ref": "../../common/json/base/EffectiveTimePeriodType.json#"
+		},
+		"totalCompensationAmount": {
+			"description": "The total monetary amount of all cash, cash-equivalent and non-cash compensation that was paid by the employer to a worker for her or his services, for work or time off from work. Includes payments directly to the worker as well as the dollar value of non-cash fringe benefits paid indirectly to the worker.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalDirectCompensationAmount": {
+			"description": "The total monetary amount of all forms of cash or cash-equivalent compensation paid by the employer directly to the employee for her or his services, for work or time off from work.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalIndirectCompensationAmount": {
+			"description": "The total monetary value of all compensation and contributions paid by the employer for the worker’s legally required and discretionary (voluntary) non-cash fringe benefits. ",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"totalWorkerWithholdingAmount": {
+			"description": "The total monetary amount withheld by the employer from the worker's pay for all purposes.",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"directCompensationAmount": {
+			"description": "The monetary compensation paid to a worker.",
+			"$ref": "DirectCompensationType.json#"
+		},
+		"indirectCompensationAmount": {
+			"description": "The monetary value of compensation paid by the employer for a worker's voluntary and non-voluntary non-cash fringe benefits.",
+			"$ref": "IndirectCompensationType.json#"
+		},
+		"taxableCompensationAmount": {
+			"description": "The monetary value withheld from the worker for tax purposes. ",
+			"type": "array",
+			"items": {
+				"$ref": "TaxableCompensationType.json#"
+			}
+		},
+		"workerWithholdingAmount": {
+			"description": "The monetary value withheld from the worker for the specified tax, premiums, retirement or other purposes.",
+			"$ref": "WorkerWithholdingType.json#"
+		}
+	}
+}

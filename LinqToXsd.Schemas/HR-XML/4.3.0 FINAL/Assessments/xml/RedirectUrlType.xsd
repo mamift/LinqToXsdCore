@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="RedirectUrlType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/EffectiveTimePeriodType.xsd" />
+  <xsd:complexType name="RedirectUrlType">
+    <xsd:annotation>
+      <xsd:documentation>Structure for a link to an action in an assessment order and report.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="uri">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>URI or URL for the redirect.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusCode">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>HTTP Status Code.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="message">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Text message to be displayed.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="timeOut">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Countdown for the URL to be displayed.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="RedirectUrl" type="hropen:RedirectUrlType" />
+</xsd:schema>

@@ -1,0 +1,129 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "ConditionType",
+  "description" : "Entity providing the means to make logical assertions that combine resources that in aggregate fulfill education, experience and credential requirements.",
+  "type" : "object",
+  "properties" : {
+    "alternativeCondition" : {
+      "description" : "Resource referenced provides the means to make logical assertions about alternative conditions.",
+      "$ref" : "ConditionType.json#"
+    },
+    "alternativeCredentials" : {
+      "description" : "Description of an alternative credential fulfilling requirements for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "alternativeEducation" : {
+      "description" : "Description of an alternative education or training fulfilling requirements for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "alternativeExperiences" : {
+      "description" : "Description of an alternative experience fulfilling requirements for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "equivalentCredentials" : {
+      "description" : "Description of an equivalent credential for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "equivalentEducation" : {
+      "description" : "Description of equivalent education or training for the position or occupation. Note(s): An educational experience without award of a credential should be recorded with a range of QualifyingExperience. An educational experience with award of a credential should be recoded with a range of Credential, not QualifyingExperience.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "equivalentExperiences" : {
+      "description" : "Description of equivalent experience for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "minimumExperiences" : {
+      "description" : "Description of the minimum experience needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "minimumCredentials" : {
+      "description" : "Description of the minimum credential needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "minimumEducation" : {
+      "description" : "Description of the minimum education needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "preferredCondition" : {
+      "description" : "Resource referenced provides the means to make logical asserions about alternative conditions.",
+      "$ref" : "ConditionType.json#"
+    },
+    "preferredCredentials" : {
+      "description" : "Description of the preferred credential needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "preferredEducation" : {
+      "description" : "Description of the preferred education or training needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "preferredExperiences" : {
+      "description" : "Description of the preferred experience needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "requiredConditions" : {
+      "description" : "Resource referenced provides the means to make logical assertions that combine resources that in aggregate fulfill education, experience and credential requirements.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "ConditionType.json#"
+      }
+    },
+    "requiredCredentials" : {
+      "description" : "Description of the required credential needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "CredentialType.json#"
+      }
+    },
+    "requiredEducation" : {
+      "description" : "Description of the required education or training needed for the position or occupation. Note(s): Specific credential requirements should use requiredCredential.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    },
+    "requiredExperiences" : {
+      "description" : "Description of the required experience needed for the position or occupation.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "QualifyingExperienceType.json#"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="EmailType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="EmailType">
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="address">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Actual email address</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Email" type="hropen:EmailType" />
+</xsd:schema>

@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "GarnishmentInstructionType",
+    "description": "This defines the deduction associated to a garnishment in the context of that which is relevant to payroll processing.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/pay/RemunerationOrDeductionType.json#" }
+    ],
+    "properties": {
+        "partialGarnishmentAllowedIndicator": {
+            "description": "True: If there isn't enough pay to cover the full garnishment, deduct part of the garnishment.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "issuanceDate": {
+            "description": "The date the garnishment was issued.",
+            "$ref": "../../common/json/base/DateType.json#"
+        },
+        "registrationDate": {
+            "description": "The date the garnishment was registered.",
+            "$ref": "../../common/json/base/DateType.json#"
+        },
+        "jurisdictionRegions": {
+             "description": "A set of information broadly describing the region(s) where the garnishment was issues.",
+             "type": "array",
+             "items": { "$ref": "../../common/json/communication/JurisdictionType.json#" }
+        },
+        "issuerId": {
+            "description": "Identifier of the issuer.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "serviceChargeAmount": {
+            "description": "The requested service charge amount or adminstrative fee to be levied.",
+            "$ref": "../../common/json/base/AmountType.json#"
+        },
+        "serviceChargeFeeIndicator": {
+            "description": "Specifies if a standard administration fee may be charged. If indicator is specified, the amount is not used.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "maximumServiceChargeAmount": {
+            "description": "The maximum service charge amount or administration fee a processor can levy. If amount is specificed, the indicator is not used.",
+            "$ref": "../../common/json/base/AmountType.json#"
+        },
+        "actualServiceChargeAmount": {
+            "description": "The actual service charge amount or adminstrative fee levied.",
+            "$ref": "../../common/json/base/AmountType.json#"
+        },
+        "priority": {
+            "description": "The priority of the garnishment in relation to other Garnishments.",
+            "type": "string"
+        },
+        "protectedEarningsAmount": {
+            "description": "The amount of earnings to be left to the employee when deducting this garnishment. ",
+            "$ref": "../../common/json/base/AmountType.json#"
+        }        
+    }
+}

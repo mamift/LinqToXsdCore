@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RemunerationRangeType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/AmountType.xsd" />
+  <xsd:include schemaLocation="../codelist/PayTypeCodeList.xsd" />
+  <xsd:include schemaLocation="../codelist/PayRateIntervalCodeList.xsd" />
+  <xsd:complexType name="RemunerationRangeType">
+    <xsd:annotation>
+      <xsd:documentation>The minimum and maximum range of work compensation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="typeCode" type="hropen:PayTypeCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The type of remuneration (e.g. BasePay, Bonus).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="referenceAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>A reference to an associated monetary amount. A monetary quantity. An attribute is available to express the currency in which the amount is expressed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The minimum amount a person is willing to accept or an organization is willing to pay for a position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maximumAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The maximum amount a person is willing to accept or an organization is willing to pay for a position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="intervalCode" type="hropen:PayRateIntervalCodeList">
+        <xsd:annotation>
+          <xsd:documentation>An interval of time or other basis used to express a rate of pay or remuneration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="RemunerationRange" type="hropen:RemunerationRangeType" />
+</xsd:schema>

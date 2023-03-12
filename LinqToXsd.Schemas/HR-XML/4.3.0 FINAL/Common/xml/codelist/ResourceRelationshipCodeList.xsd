@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="ResourceRelationshipCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="ResourceRelationshipCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Resource relationship code list.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Employee">
+        <xsd:annotation>
+          <xsd:documentation>A paid position with all related benefits.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="VendorEmployee">
+        <xsd:annotation>
+          <xsd:documentation>A worker hired by a third party such as a consulting agency.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="IndependentContractor">
+        <xsd:annotation>
+          <xsd:documentation>A worker with a contract signed directly by the employer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Volunteer">
+        <xsd:annotation>
+          <xsd:documentation>An unpaid position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Internship">
+        <xsd:annotation>
+          <xsd:documentation>A paid or voluntary position with an organization for someone who is learning a profession and industry.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Externship">
+        <xsd:annotation>
+          <xsd:documentation>An unpaid shadowing of a respected industry professional during which the extern will observe daily duties.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Apprenticeship">
+        <xsd:annotation>
+          <xsd:documentation>A kind of job training that involves following and studying a master of the trade on the job instead of in school.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ResourceRelationshipCode" type="hropen:ResourceRelationshipCodeList" />
+</xsd:schema>

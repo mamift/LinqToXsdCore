@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AccountBasedProductCodeList",
+    "description": "The code classifying the type of account based product.",
+    "enum": [
+        "HSA",
+        "Parking",
+        "Transit",
+        "MedicalFSA",
+        "LimitedPurposeFSA",
+        "DependentCareFSA"
+    ]
+}

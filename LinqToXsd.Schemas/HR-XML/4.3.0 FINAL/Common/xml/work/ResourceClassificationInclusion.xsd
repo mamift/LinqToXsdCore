@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ResourceClassificationInclusion" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../pay/WorkAllocationType.xsd" />
+  <xsd:include schemaLocation="../base/EntityType.xsd" />
+  <xsd:include schemaLocation="../pay/CostAllocationType.xsd" />
+  <xsd:complexType name="ResourceClassificationInclusion">
+    <xsd:annotation>
+      <xsd:documentation>Holds customer specific properties of an entity.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="managerName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="supervisorName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contactName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="department" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="location" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="costCenter" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="job" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="account" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="project" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="shift" type="hropen:EntityType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalOrderNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="externalReqNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="referenceNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="purchaseOrderNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="purchaseOrderLineItem">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="costAllocation" type="hropen:CostAllocationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="workAllocation" type="hropen:WorkAllocationType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ResourceClassificationInclusion" type="hropen:ResourceClassificationInclusion" />
+</xsd:schema>

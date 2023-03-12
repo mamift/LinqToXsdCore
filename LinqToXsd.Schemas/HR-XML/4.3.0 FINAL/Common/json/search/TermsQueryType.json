@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "TermsQueryType",
+    "description": "Type for fixed term / keyword queries.",
+    "type": "object",
+    "properties": {
+        "terms": {
+            "type": "object",
+            "properties": {
+                "propertyPath": {
+                    "description": "Path of the property to which the condition applies.",
+                    "type": "string"
+                },
+                "values": {
+                    "description": "Terms to be searched.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "matchMode": {
+                    "description": "Mode for matching - to fulfill the condition: 'allOf': all search values have to be found, 'anyOf': at least one search value has to be found, 'oneOf': exactly one search value has to be found, 'noneOf': none search value is found.",
+                    "enum": [
+                        "allOf",
+                        "anyOf",
+                        "oneOf",
+                        "noneOf"
+                    ]
+                }
+            },
+            "required": [
+                "values"
+            ]
+        }
+    }
+}

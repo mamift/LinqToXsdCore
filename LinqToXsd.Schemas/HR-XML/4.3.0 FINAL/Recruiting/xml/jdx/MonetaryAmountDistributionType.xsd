@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="MonetaryAmountDistributionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="MonetaryAmountDistributionType">
+    <xsd:annotation>
+      <xsd:documentation>Statistical distribution of monetary amounts.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="currency">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Currency designation (e.g., USD).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="duration">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="median">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The median value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentile10">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The 10th percentile value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentile25">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The 25th percentile value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentile75">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The 75th percentile value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="percentile90">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The 90th percentile value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="MonetaryAmountDistribution" type="hropen:MonetaryAmountDistributionType" />
+</xsd:schema>

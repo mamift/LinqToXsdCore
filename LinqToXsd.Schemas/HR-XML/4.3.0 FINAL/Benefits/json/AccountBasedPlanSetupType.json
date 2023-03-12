@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AccountBasedPlanSetupType",
+    "description": "Account Based Plan set up type",
+    "definitions": {
+        "EmployerContributionType": {
+            "type": "object",
+            "properties": {
+                "contributionType": {
+                    "$ref": "codelist/EmployerContributionCodeList.json#"
+                },
+                "contributionAmount": {
+                    "$ref": "../../common/json/base/AmountType.json#"
+                }
+            }
+        }
+    },
+    "properties": {
+        "minimumContribution": {
+            "$ref": "../../common/json/base/AmountType.json#"
+        },
+        "maximumContribution": {
+            "$ref": "../../common/json/base/AmountType.json#"
+        },
+        "employerContributionType": {
+            "$ref": "#/definitions/EmployerContributionType"
+        }
+    }
+}

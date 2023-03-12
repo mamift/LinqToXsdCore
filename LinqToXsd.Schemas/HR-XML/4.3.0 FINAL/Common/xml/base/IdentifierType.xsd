@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="IdentifierType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="IdentifierType">
+    <xsd:annotation>
+      <xsd:documentation>An identifier is a character string used to uniquely identify one instance of an object within an identification scheme that is managed by an agency. Use this type when the list or values are controlled by an external entity, the list or values are public and could be referenced or validated.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identifier.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeId">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identification of the identifier scheme.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeVersionId">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identification of the version of the identifier scheme.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeAgencyId">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The identification of the agency that manages the identifier scheme.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="description">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The description of the identifier.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeLink">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The URI that identifies where the identification scheme data is located.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="agencyUri">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The URI that identifies where the identification scheme is located.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Identifier" type="hropen:IdentifierType" />
+</xsd:schema>

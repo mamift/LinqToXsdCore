@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ScheduleType",
+    "description": "Periodic schedule of employee worktime.",
+    "type": "object",
+    "definitions": {
+        "DayScheduleType": {
+            "type": "object",
+            "allOf": [
+                { "$ref": "../base/EntityType.json#" }
+            ],
+            "properties": {
+                "weekday": { "$ref": "../codelist/WeekdayCodeList.json#" },
+                "date": { "$ref": "../base/TimeType.json#" },
+                "startTime": { "$ref": "../base/TimeType.json#" },
+                "endTime": { "$ref": "../base/TimeType.json#" },
+                "hours": { "$ref": "../base/DurationType.json#" },
+                "shift": { "$ref": "../base/EntityType.json#" }
+            },
+            "minProperties": 1,
+            "dependencies": {
+                "startTime": ["endTime"],
+                "endTime": ["startTime"],
+                "weekday": {
+                    "not": {"required": ["date"]
+                    }
+                },
+                "date": {
+                    "not": {"required": ["weekday"]
+                    }
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],
+    "properties": {
+        "period": { "$ref": "../base/PeriodType.json#" },
+        "hours": { "$ref": "../base/DurationType.json#" },
+        "schedules": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/DayScheduleType" }
+        }
+    }
+}

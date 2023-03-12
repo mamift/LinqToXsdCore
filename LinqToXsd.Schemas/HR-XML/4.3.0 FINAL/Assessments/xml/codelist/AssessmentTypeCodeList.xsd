@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AssessmentTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="AssessmentTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A set of codes broadly classifying the type of assessment or the principal target of what is assessed.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Knowledge" />
+      <xsd:enumeration value="Skill" />
+      <xsd:enumeration value="Ability" />
+      <xsd:enumeration value="Psychometric" />
+      <xsd:enumeration value="CertificationOrLicense" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="AssessmentTypeCode" type="hropen:AssessmentTypeCodeList" />
+</xsd:schema>

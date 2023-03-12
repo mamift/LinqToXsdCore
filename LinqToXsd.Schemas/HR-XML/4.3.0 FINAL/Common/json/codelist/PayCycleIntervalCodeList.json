@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PayCycleIntervalCodeList",
+    "description": "PayCycleInterval specifies how often the pay cycle occurs or, in other words, how often a person is paid, e.g., weekly, biweekly, etc. This is a different concept than an interval used in expressing a rate of pay.",
+    "enum": [
+        "Day",
+        "Week",
+        "TwoWeeks",
+        "HalfMonth",
+        "Month",
+        "TwoMonths",
+        "MonthWeek",
+        "MonthWeek2",
+        "MonthWeek3",
+        "MonthWeek4",
+        "MonthWeek5",
+        "MonthWeekLast",
+        "Quarter",
+        "HalfYear",
+        "Year"
+    ],
+    "enumNames": [
+        "Day",
+        "Week",
+        "Two Weeks",
+        "Half Month",
+        "Month",
+        "Two Months",
+        "Month-Week",
+        "Month-Week 2",
+        "Month-Week 3",
+        "Month-Week 4",
+        "Month-Week 5",
+        "Month-Week-Last",
+        "Quarter",
+        "Half Year",
+        "Year"
+    ]
+}

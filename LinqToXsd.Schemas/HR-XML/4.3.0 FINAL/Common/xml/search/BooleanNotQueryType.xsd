@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="BooleanNotQueryType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AllQueryType.xsd" />
+  <xsd:complexType name="BooleanNotQueryType">
+    <xsd:annotation>
+      <xsd:documentation>Type to implement a 'boolean NOT' query.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="booleanNot" type="hropen:AllQueryType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="BooleanNotQuery" type="hropen:BooleanNotQueryType" />
+</xsd:schema>

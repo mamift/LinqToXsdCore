@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ScoreNumericType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/ScoreNumericCodeList.xsd" />
+  <xsd:complexType name="ScoreNumericType">
+    <xsd:annotation>
+      <xsd:documentation>A numeric measurement of abilities or capacity to learn.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scoreCode" type="hropen:ScoreNumericCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="interval">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The stop points between minimum and maximum.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimum">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Optional. Indicates lower value for a range.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maximum">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Optional. Indicates upper value for a range.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ScoreNumeric" type="hropen:ScoreNumericType" />
+</xsd:schema>

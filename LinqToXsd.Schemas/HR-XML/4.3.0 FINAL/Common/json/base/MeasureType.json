@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "MeasureType",
+    "description": "A measure is a numeric value determined by measuring an object along with the specified unit of measure.",
+    "type": "object",
+    "properties": {
+        "value": { 
+            "description": "The numeric value of the measure.",
+            "type": "number" 
+        },
+        "unitCode": { 
+            "description": "The unit of measure.",
+            "$ref": "../codelist/UnitCodeList.json#" 
+        }
+    },
+    "required": [ "value" ]
+}

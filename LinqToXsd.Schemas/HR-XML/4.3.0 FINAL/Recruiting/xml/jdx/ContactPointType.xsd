@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="ContactPointType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AnnotatedDefinedTermType.xsd" />
+  <xsd:complexType name="ContactPointType">
+    <xsd:annotation>
+      <xsd:documentation>Contact point—for example, for information about a job opening or interview.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="contactType" type="hropen:AnnotatedDefinedTermType">
+        <xsd:annotation>
+          <xsd:documentation>Specification of the type of contact point. Note(s): Use a value selected from a controlled vocabulary of contact types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="email">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Email address of an organization or person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="faxNumber">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Fax number of an organization or person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="name">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="telephone">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The telephone number of an organization or person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ContactPoint" type="hropen:ContactPointType" />
+</xsd:schema>

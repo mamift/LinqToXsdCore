@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CostAllocationType",
+    "description": "Contains percentage table per identifier of an account, department, or other entity to which an item should be allocated.",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "percentage": { "$ref": "../base/PercentType.json#" },
+            "department": { "$ref": "../base/EntityType.json#" },
+            "location": { "$ref": "../base/EntityType.json#" },
+            "costCenter": { "$ref": "../base/EntityType.json#" },
+            "job": { "$ref": "../base/EntityType.json#" },
+            "account": { "$ref": "../base/EntityType.json#" },
+            "project": { "$ref": "../base/EntityType.json#" },
+            "shift": { "$ref": "../base/EntityType.json#" }
+        },
+        "minProperties": 2,
+        "required": [ "percentage" ]
+    }
+}

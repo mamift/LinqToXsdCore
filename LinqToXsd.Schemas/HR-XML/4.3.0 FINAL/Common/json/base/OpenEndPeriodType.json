@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "OpenEndPeriodType",
+    "description": "Single date/timespan/month/year or period between two dates/months/years. The end date is optional and should be used in cases where the end of the period is unknown or uncertain.",
+    "anyOf": [
+        { "$ref": "FormattedDateTimeType.json#" },
+        { "$ref": "DateTimeOpenEndPeriodType.json#" },
+        { "$ref": "DateOpenEndPeriodType.json#" },
+        { "$ref": "YearMonthOpenEndPeriodType.json#" },
+        { "$ref": "YearOpenEndPeriodType.json#" }
+    ]
+}

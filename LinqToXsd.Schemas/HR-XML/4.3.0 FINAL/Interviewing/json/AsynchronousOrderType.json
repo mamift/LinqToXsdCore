@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AsynchronousOrderType",
+    "description": "Provides the information needed to order the Interview.",
+    "type": "object",
+
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "positionId": {
+            "description": "This is the Position Identifier assigned by the interviewing system.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "positionTitle": {
+            "description": "The position title which might be presented to candidates.",
+            "type": "string"
+        },
+        "externalPositionId": {
+            "description": "Identifier used by the requesting system to identify the position.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "externalInterviewOrderId": {
+            "description": "Identifier used by the requesting system to identify the interview transaction.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "interviewOrderId": {
+            "description": "This is the Interview Identifier assigned by the interviewing system.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "interviewFormatType": {
+            "description": "The type of interview (asynchronous video, asynchronous audio, live video, live audio, in-person).",
+            "$ref": "../../common/json/base/CodeType.json#"
+        },
+        "recruiter": { "$ref": "RecruiterContactType.json#" },
+        "candidate": { "$ref": "CandidateContactType.json#" },
+        "accountCode": {
+            "description": "Account Code for use for accounting purposes.",
+            "type": "string"
+        },
+        "submissionDeadline": {
+            "description": "The default deadline, in hours or date, for an interview requested for this position.",
+            "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+        },
+        "languageCode": {
+            "description": "The default language in which the position is presented to the outside world.",
+            "$ref": "../../common/json/codelist/LanguageCodeList.json#"
+        },
+        "question": {
+            "type": "object",
+            "$ref": "PositionQuestionsType.json#"
+        },
+        "comments": {
+            "description": "Additional information in support of the order, such as a URL to interviewing system.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/base/CommentType.json#" }
+        }
+    }
+}

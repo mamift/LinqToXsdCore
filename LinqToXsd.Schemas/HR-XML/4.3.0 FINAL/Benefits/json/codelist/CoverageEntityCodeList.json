@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CoverageEntityCodeList",
+    "description": "A code identifying coverage entity.",
+    "enum": [
+                "Self",
+                "Spouse",
+                "CommonLawSpouse",
+                "Dependent",
+                "Child"
+            ]
+}

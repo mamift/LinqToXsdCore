@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EntityType",
+    "description": "A description of an entity with id, name and code.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "A unique identifier which cannot be expressed as enumeration.",
+            "$ref": "IdentifierType.json#"
+        },
+        "name": {
+            "description": "Free text description for that entity.",
+            "type": "string"
+        },
+        "code": {
+            "description": "A code which can be expressed as enumeration.",
+            "$ref": "CodeType.json#"
+        }
+    },
+    "minProperties": 1
+}

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="PersonNameType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../base/LocalizationInclusion.xsd" />
+  <xsd:complexType name="PersonNameType">
+    <xsd:annotation>
+      <xsd:documentation>A component for capturing summary or fine-grain data comprising a person's name.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="formattedName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The formatted name of a person, as it would be written out together (for example, on a mailing label).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="legal">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The legal name of a person (typically used if it differs from family name).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="given">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The given name of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferred">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The preferred name of a person (if it differs from given name).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="middle">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The middle names or initials of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="family">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The family name (or surname) of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="familyPrefix">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The prefix of a family name, e.g. van der, de jong.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="alias">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>An alias or (or also known as) name of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="formerFamily">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The former family name of a person (used if the person's name was changed).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="formerFamilyPrefix">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The prefix of the former family name, e.g. van der, de jong.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferredSalutationCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The salutation used to address a person (such as Dr., Mr., Mrs.).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="generationAffixCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The generational designation attached to the end of a person's name (such as Jr., Sr., II, III).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="qualificationAffixCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The professional designation attached to the end of a person's name (such as M.Sc., Ph.D).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="titleAffixCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The title designation attached to the end of a person's name (such as Esq., K.B.E.).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="initials">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The initials of a person.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="script">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Script used to represent the name.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="PersonName" type="hropen:PersonNameType" />
+</xsd:schema>

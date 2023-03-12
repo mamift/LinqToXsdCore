@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="FamilyRelationshipCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="FamilyRelationshipCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A Family Relationship Code List</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="AdoptedChild" />
+      <xsd:enumeration value="BrotherOrSister" />
+      <xsd:enumeration value="BrotherInLawOrSisterInLaw" />
+      <xsd:enumeration value="Child" />
+      <xsd:enumeration value="CollateralDependent" />
+      <xsd:enumeration value="CourtAppointedGardian" />
+      <xsd:enumeration value="Cousin" />
+      <xsd:enumeration value="DependentOfAMinorDependent" />
+      <xsd:enumeration value="ExSpouse" />
+      <xsd:enumeration value="Father" />
+      <xsd:enumeration value="FatheOrMother" />
+      <xsd:enumeration value="FatherInLawOrMotherInLaw" />
+      <xsd:enumeration value="FosterChild" />
+      <xsd:enumeration value="GrandfatherOrGrandmother" />
+      <xsd:enumeration value="GrandsonOrGranddaughter" />
+      <xsd:enumeration value="Guardian" />
+      <xsd:enumeration value="LifePartner" />
+      <xsd:enumeration value="Mother" />
+      <xsd:enumeration value="NephewOrNiece" />
+      <xsd:enumeration value="Self" />
+      <xsd:enumeration value="SonInLawOrDaughterInLaw" />
+      <xsd:enumeration value="SponsoredDependent" />
+      <xsd:enumeration value="SpouseStepfather" />
+      <xsd:enumeration value="Stepmother" />
+      <xsd:enumeration value="StepsonOrStepdaughter" />
+      <xsd:enumeration value="UncleOrAunt" />
+      <xsd:enumeration value="Ward" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="FamilyRelationshipCode" type="hropen:FamilyRelationshipCodeList" />
+</xsd:schema>

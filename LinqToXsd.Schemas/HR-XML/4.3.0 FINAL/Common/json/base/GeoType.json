@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "GeoType",
+    "description": "A geographical coordinate.",
+    "type": "object",
+    "properties": {
+        "latitude": {
+            "description": "The latitude of the geographical location.",
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+        },
+        "longitude": {
+            "description": "The longitude of the geographical location.",
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+        },
+        "altitude": {
+            "description": "The altitude of the geographical location. Defaults to meters above sea level in case no unitCode provided.",
+            "$ref": "MeasureType.json#"
+        },
+        "name": {
+            "description": "The label of the geo coordinates.",
+            "type": "string"
+        }     
+    },
+    "required": [
+        "latitude",
+        "longitude"
+    ]
+}

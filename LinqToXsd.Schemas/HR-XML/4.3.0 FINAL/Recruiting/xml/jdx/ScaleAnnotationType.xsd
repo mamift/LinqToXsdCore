@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="ScaleAnnotationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AssessmentProfileType.xsd" />
+  <xsd:include schemaLocation="AnnotatedDefinedTermType.xsd" />
+  <xsd:complexType name="ScaleAnnotationType">
+    <xsd:annotation>
+      <xsd:documentation>Resource for identifying and applying a defined scale or rating to another resource. Note(s): Used, for example, when applying an importance scale to a competency identified in an instance of the AnnotatedDefinedTerm class.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="acquiredInternally">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Whether or not a requirement in a posting may be acquired post-hire.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="acquisitionDifficulty">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Rating or score representing the difficulty of the particular entity to acquire. Note(s): The scale may be applied to any appropriate controlled vocabulary concept such as knowledge, skill, and ability as identified in the associated AnnotationDefinedTerm.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assessmentMethod" type="hropen:AnnotatedDefinedTermType">
+        <xsd:annotation>
+          <xsd:documentation>Type of method used to conduct an assessment; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of assessment method types such as the AssessmentMethod vocabulary.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="evidenceCategory" type="hropen:AnnotatedDefinedTermType">
+        <xsd:annotation>
+          <xsd:documentation>The type of referenced artifact, exam or performance confirming or supporting an assertion; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of evidence types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="preferred">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Whether or not the attribute being annotated has been given priority.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="required">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Whether or not the attribute being annotated is required.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredAssessments">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Resource referenced is an example of a direct, indirect, formative, and summative evaluation or estimation of the nature, ability, or quality of a person's performance or outcome of an action.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AssessmentProfileType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requiredAtHiring">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Whether or not a particular requirement is expected at the time of hiring or may be subsequently obtained.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:boolean" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scaleCategory" type="hropen:AnnotatedDefinedTermType">
+        <xsd:annotation>
+          <xsd:documentation>Type or category of scale or weighting to be applied to a specific competency (knowledge, skill, ability), task, responsibility, interest etc.; select from an existing enumeration of such types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ScaleAnnotation" type="hropen:ScaleAnnotationType" />
+</xsd:schema>

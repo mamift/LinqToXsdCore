@@ -1,0 +1,55 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "ScaleAnnotationType",
+  "description" : "Resource for identifying and applying a defined scale or rating to another resource. Note(s): Used, for example, when applying an importance scale to a competency identified in an instance of the AnnotatedDefinedTerm class.",
+  "type" : "object",
+  "properties" : {
+    "acquiredInternally" : {
+      "description" : "Whether or not a requirement in a posting may be acquired post-hire.",
+      "type" : "boolean"
+    },
+    "acquisitionDifficulty" : {
+      "description" : "Rating or score representing the difficulty of the particular entity to acquire. Note(s): The scale may be applied to any appropriate controlled vocabulary concept such as knowledge, skill, and ability as identified in the associated AnnotationDefinedTerm.",
+      "type" : "number"
+    },
+    "assessmentMethod" : {
+      "description" : "Type of method used to conduct an assessment; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of assessment method types such as the AssessmentMethod vocabulary.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    },
+    "descriptions" : {
+      "description" : "A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "evidenceCategory" : {
+      "description" : "The type of referenced artifact, exam or performance confirming or supporting an assertion; select from an existing enumeration of such types. Note(s): Use a value selected from a controlled vocabulary of evidence types.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    },
+    "preferred" : {
+      "description" : "Whether or not the attribute being annotated has been given priority.",
+      "type" : "boolean"
+    },
+    "required" : {
+      "description" : "Whether or not the attribute being annotated is required.",
+      "type" : "boolean"
+    },
+    "requiredAssessments" : {
+      "description" : "Resource referenced is an example of a direct, indirect, formative, and summative evaluation or estimation of the nature, ability, or quality of a person's performance or outcome of an action.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AssessmentProfileType.json#"
+      }
+    },
+    "requiredAtHiring" : {
+      "description" : "Whether or not a particular requirement is expected at the time of hiring or may be subsequently obtained.",
+      "type" : "boolean"
+    },
+    "scaleCategory" : {
+      "description" : "Type or category of scale or weighting to be applied to a specific competency (knowledge, skill, ability), task, responsibility, interest etc.; select from an existing enumeration of such types.",
+      "$ref" : "AnnotatedDefinedTermType.json#"
+    }
+  }
+}

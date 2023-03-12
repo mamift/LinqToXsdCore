@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RedirectUrlType",
+    "description": "Structure for a link to an action in an assessment order and report.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/EffectiveTimePeriodType.json#" }
+    ],
+    "properties": {
+        "uri": {
+            "description": "URI or URL for the redirect.",
+            "type": "string",
+            "format": "uri"
+        },
+        "statusCode": {
+            "description": "HTTP Status Code.",
+            "type": "string"
+        },
+        "message": {
+            "description": "Text message to be displayed.",
+            "type": "string"
+        },
+        "timeOut": {
+            "description": "Countdown for the URL to be displayed.",
+            "type": "integer"
+        }
+    },
+    "required": [ "uri" ]
+}

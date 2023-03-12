@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PayRateType",
+    "description": "Associates billing and/or pay rate information with time worked information reported on an entity.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],
+    "properties": {
+        "amount": { "$ref": "../base/AmountType.json#" },
+        "intervalCode": { "$ref": "../codelist/PayRateIntervalCodeList.json#" }
+    },
+    "required": [ "amount" ]
+}

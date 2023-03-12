@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "LocalizationInclusion",
+    "description": "Can be used for any entity to specify localization language code.",
+    "type": "object",
+    "properties": {
+        "language": { "$ref": "../codelist/LanguageCodeList.json#" }
+    }
+}

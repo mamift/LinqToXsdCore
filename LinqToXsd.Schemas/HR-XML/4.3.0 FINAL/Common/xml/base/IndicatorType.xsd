@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="IndicatorType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="IndicatorType">
+    <xsd:annotation>
+      <xsd:documentation>An indicator is a list of two mutually exclusive boolean values that express the only possible states of a property.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:boolean" />
+  </xsd:simpleType>
+  <xsd:element name="Indicator" type="hropen:IndicatorType" />
+</xsd:schema>

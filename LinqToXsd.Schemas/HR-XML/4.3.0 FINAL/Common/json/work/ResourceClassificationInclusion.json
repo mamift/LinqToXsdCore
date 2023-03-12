@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ResourceClassificationInclusion",
+    "description": "Holds customer specific properties of an entity.",
+    "type": "object",
+    "properties": {
+        "managerName": { "type": "string" },
+        "supervisorName": { "type": "string" },
+        "contactName": { "type": "string" },
+        "department": { "$ref": "../base/EntityType.json#" },
+        "location": { "$ref": "../base/EntityType.json#" },
+        "costCenter": { "$ref": "../base/EntityType.json#" },
+        "job": { "$ref": "../base/EntityType.json#" },
+        "account": { "$ref": "../base/EntityType.json#" },
+        "project": { "$ref": "../base/EntityType.json#" },
+        "shift": { "$ref": "../base/EntityType.json#" },
+        "externalOrderNumber": { "type": "string" },
+        "externalReqNumber": { "type": "string" },
+        "referenceNumber": { "type": "string" },
+        "purchaseOrderNumber": { "type": "string" },
+        "purchaseOrderLineItem": { "type": "string" },
+        "costAllocation": { "$ref": "../pay/CostAllocationType.json#" },
+        "workAllocation": { "$ref": "../pay/WorkAllocationType.json#" }
+    }
+}

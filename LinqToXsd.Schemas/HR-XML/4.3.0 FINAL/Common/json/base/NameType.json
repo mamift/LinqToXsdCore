@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "NameType",
+    "description": "A name is a word or phrase that constitutes the distinctive designation of a person, place, thing or concept.",
+    "type": "object",
+    "properties": {
+        "value": { "type": "string" },
+        "languageCode": { "$ref": "../codelist/LanguageCodeList.json#" }
+    }
+}

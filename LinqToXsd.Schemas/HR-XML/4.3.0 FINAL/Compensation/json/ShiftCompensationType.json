@@ -1,0 +1,30 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "ShiftCompensationType",
+	"description": "Details of Shift Compensation",
+	"type": "object",
+	"properties": {
+		"type": { 
+			"description": "A code that classifies ShiftCompensationType e.g., 'Base Pay','Variable Pay', 'Commission','Bonus','Short Term Incentive','Shift Pay','OnCall','Hazard','Allowance'",
+			"$ref": "../../common/json/base/CodeType.json#" 
+		},
+		"differential": {
+			"type": "object",
+			"properties": {
+				"flatPremiumAmount": { 
+					"description": "A fixed amount paid based on working a shift",		     
+					"$ref": "../../common/json/base/AmountType.json#" 				
+				},
+				"hourlyBaseRatePercent": { 
+					"description": "An amount paid based on the number of hours worked during a shift",
+					"$ref": "../../common/json/base/PercentType.json#" 
+				},
+				"bonusSupplement": { 
+					"description": "An additional amount paid based in the form of a bonus for working a shift",
+					"$ref": "../../common/json/base/AmountType.json#" 
+				}
+			}
+		}
+	}
+}

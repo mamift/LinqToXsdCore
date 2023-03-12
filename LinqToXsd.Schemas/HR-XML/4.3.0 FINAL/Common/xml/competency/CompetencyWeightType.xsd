@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CompetencyWeightType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="CompetencyWeightType">
+    <xsd:annotation>
+      <xsd:documentation>A number expressing the relative importance of a particular component (e.g., a position competency) among sibling components. Weights are most frequently expressed a percentage (where the weights assigned to individual sibling competencies would total 100 percent when totaled), but they may be expressed using another numeric scale.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Value for the weightType.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeId">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>An identifier used to distinguish the relevant scoring scheme to which the weight belongs.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="schemeName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A name for scheme in which the score is expressed.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="interval">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The stop points between minimum and maximum.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="maximumScore">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Highest score in the weight range.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="minimumScore">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Lowest score in the weight range.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="CompetencyWeight" type="hropen:CompetencyWeightType" />
+</xsd:schema>

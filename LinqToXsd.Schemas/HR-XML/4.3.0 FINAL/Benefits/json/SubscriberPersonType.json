@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "SubscriberPersonType",
+	"description": "A collection of information containing relevant person information for a benefits plan subscriber.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/person/PersonBaseType.json#" },
+        { "$ref": "../../common/json/person/PersonPhysicalInclusion.json#" },
+        { "$ref": "../../common/json/person/PersonLegalInclusion.json#" }
+	],
+    "properties": {
+		"deceasedIndicator": {
+			"description": "An indicator that the subscriber is deceased.",
+			"$ref": "../../common/json/base/IndicatorType.json#"
+		},
+		"certifiedDeathDate": {
+			"description": "The date on which the associated person's death was certified.",
+			"$ref": "../../common/json/base/FormattedDateTimeType.json#" 
+		}
+    }
+}

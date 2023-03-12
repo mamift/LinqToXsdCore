@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RateBasedCoverageType",
+    "description": "Specifies details for rate-based coverage (typically voluntary benefits offered by an employer), such as type and dates of coverage. ",
+    "definitions": {
+        "CoverageLevelType": {
+            "type": "object",
+            "properties": {
+                "amount": { "$ref": "../../common/json/base/AmountType.json#" },
+                "multiplier": { "$ref": "../../common/json/base/NumberType.json#" },
+                "typeCode": {"$ref": "codelist/CoverageLevelTypeCodeList.json#" 
+                },
+                "volumeAmount": { "$ref": "../../common/json/base/AmountType.json#" }
+            }
+        },
+        "QuestionAnswerType": {
+            "type": "object",
+            "properties": {
+                "id": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "questionSetId": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "question": { "type": "string" },
+                "answer": { "type": "string" }
+            }
+        },
+        "BeneficiaryType": {
+            "allOf": [
+                { "$ref": "../../common/json/person/PersonBaseType.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "designationSequence": { "$ref": "../../common/json/base/PercentType.json#" },
+                "familyRelationshipCode": { "$ref": "codelist/FamilyRelationshipCodeList.json#" },
+                "inheritanceAmount": { "$ref": "../../common/json/base/AmountType.json#" }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "CoverageType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "rateBasedProductCode": { "$ref": "codelist/RateBasedProductCodeList.json#" },
+        "productTypeCode": { "$ref": "codelist/RateBasedProductSubTypeCodeList.json#" },
+        "coverageEntityCode": { "$ref": "codelist/CoverageEntityCodeList.json#" },
+        "eligibilityRegionCode": { "$ref": "../../common/json/base/CodeType.json#" },
+        "effectivePeriod": { "$ref": "../../common/json/base/EffectiveTimePeriodType.json#" },
+        "lateEntranceIndicator": { "$ref": "../../common/json/base/IndicatorType.json#" },
+        "approvedCoverageLevel": { "$ref": "#/definitions/CoverageLevelType" },
+        "requestedCoverageLevel": { "$ref": "#/definitions/CoverageLevelType" },
+        "questionAnswerPair": {
+			"type": "array",
+			"items": { "$ref": "#/definitions/QuestionAnswerType" }
+		},
+        "eoiOnFileWithEmployerIndicator": { 
+		"description": "Indicates if the Evidence of Insurability document is on file with the employer.",
+		"$ref": "../../common/json/base/IndicatorType.json#" },
+        "eoiRequiredIndictator": { 
+		"description": "Indicates if the Evidence of Insurability document is required.",
+		"$ref": "../../common/json/base/IndicatorType.json#" },
+        "beneficiary": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/BeneficiaryType" }
+        },
+        "lifeCoverageStatus": { "$ref": "codelist/LifeCoverageStatusCodeList.json#" }
+    }
+}
+

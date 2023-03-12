@@ -1,0 +1,102 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "StatusNotificationType",
+    "description": "Provides the status information related to asyncrhonous interviewing system activity.",
+    "type": "object",
+    "definitions": {
+        "InterviewQuestionsScoreType": {
+            "title": "InterviewQuestionsScoreType",
+            "description": "The collection of question scores for a specific interview type.",
+            "type": "object",
+            "properties": {
+                "questionScore": { "$ref": "../../common/json/evaluation/BaseScoreType.json#" },
+                "questionScoreNotes": { "$ref": "../../common/json/base/CommentType.json#" }
+            }
+        },
+
+        "InterviewScoreType": {
+            "title": "InterviewScoreType",
+            "description": "The score of a specific interview type.",
+            "type": "object",
+            "properties": {
+                "interviewScoreCode": { "$ref": "../../common/json/base/CodeType.json#" },
+                "interviewScore": { "$ref": "../../common/json/evaluation/BaseScoreType.json#" },
+                "interviewScoreNotes": { "$ref": "../../common/json/base/CommentType.json#" }
+            }
+        },
+        "ReviewerType": {
+            "title": "ReviewerType",
+            "description": "Information about the person and date/time of the review.",
+            "type": "object",
+            "properties": {
+                "averageRating": {
+                    "description": "Average rating from the reviewer.",
+                    "$ref": "../../common/json/base/NumberType.json#"
+                },
+                "decision": {
+                    "description": "Reviewer decision.",
+                    "$ref": "../../common/json/base/TextType.json#"
+                },
+                "reviewerName": {
+                    "description": "The reviewer's name.",
+                    "$ref": "../../common/json/person/PersonNameType.json#"
+                },
+                "reviewerContact": {
+                    "description": "The phone number, email or other communication method for contacting the requesting reviewer.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/communication/CommunicationType.json#" }
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "interviewId": {
+            "description": "This is the Interview Identifier assigned by the interviewing system.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "positionId": {
+            "description": "This is the Position Identifier assigned by the interviewing system.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "externalPositionId": {
+            "description": "Identifier used by the requesting system to identify the position transaction.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "externalInterviewId": {
+            "description": "Identifier used by the requesting system to identify the interview transaction.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "status": {
+            "description": "Acknowledged by Provider, Invitations Sent, In Progress, Expired, Complete, Canceled, Position Created, etc.",
+            "type": "string"
+        },
+        "positionCategoryId": {
+            "description": "The identifier of a position category. E.g, Manager, Admin, Software, Retail, etc.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "questionScores": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/InterviewQuestionsScoreType" }
+        },
+        "interviewScores": {
+            "description": "A collection of interview scores.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/InterviewScoreType" }
+        },
+        "reviewers": {
+            "description": "Reviewers for the interview.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/ReviewerType" }
+        },
+        "reviewDateTime": { "$ref": "../../common/json/base/DateTimeType.json#" },
+        "comments": {
+            "description": "Additional information in support of status, such as a URL to interviewing system.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/base/CommentType.json#" }
+        }
+    }
+}

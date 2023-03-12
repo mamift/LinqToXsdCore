@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="SubjectType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="../../common/xml/base/AttachmentType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/profile/PersonProfileInclusion.xsd" />
+    <xsd:include schemaLocation="../../common/xml/Communication/JurisdictionType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/organization/OrganizationType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/person/PersonBaseType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/communication/AddressType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/EffectiveTimePeriodType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/TextType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/base/NounType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/person/PersonNameType.xsd" />
+    <xsd:include schemaLocation="../../common/xml/person/PersonLegalInclusion.xsd" />
+    <xsd:complexType name="SubjectDisclosureType">
+        <xsd:annotation>
+            <xsd:documentation>A Subject's disclosure.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="details" type="hropen:TextType">
+                <xsd:annotation>
+                    <xsd:documentation>Information about the Disclosure.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="jurisdiction" type="hropen:JurisdictionType">
+                <xsd:annotation>
+                    <xsd:documentation>The jurisdiction to be searched.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="courtCaseNumber">
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation>The Court Case Number.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string" />
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="status" type="hropen:TextType">
+                <xsd:annotation>
+                    <xsd:documentation>The result or status.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="type" type="hropen:TextType">
+                <xsd:annotation>
+                    <xsd:documentation>Disclosure Types (e.g. Felony, Misdemeanor, Forclosure, Civil Investigation).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="agency" type="hropen:TextType">
+                <xsd:annotation>
+                    <xsd:documentation>The entity that handled the Disclosure.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="ScreeningPersonType">
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="names">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>List of names associated with this person.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                            <xsd:complexType>
+                                <xsd:all>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="formattedName">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The formatted name of a person, as it would be written out together (for example, on a mailing label).</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="legal">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The legal name of a person (typically used if it differs from family name).</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="given">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The given name of a person.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="preferred">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The preferred name of a person (if it differs from given name).</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="middle">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The middle names or initials of a person.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="family">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The family name (or surname) of a person.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="familyPrefix">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The prefix of a family name, e.g. van der, de jong.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="alias">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>An alias or (or also known as) name of a person.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="formerFamily">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The former family name of a person (used if the person's name was changed).</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="formerFamilyPrefix">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The prefix of the former family name, e.g. van der, de jong.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="preferredSalutationCode" type="hropen:CodeType">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The salutation used to address a person (such as Dr., Mr., Mrs.).</xsd:documentation>
+                                        </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="generationAffixCode" type="hropen:CodeType">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The generational designation attached to the end of a person's name (such as Jr., Sr., II, III).</xsd:documentation>
+                                        </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="qualificationAffixCode" type="hropen:CodeType">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The professional designation attached to the end of a person's name (such as M.Sc., Ph.D).</xsd:documentation>
+                                        </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="titleAffixCode" type="hropen:CodeType">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The title designation attached to the end of a person's name (such as Esq., K.B.E.).</xsd:documentation>
+                                        </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="initials">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>The initials of a person.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="script">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>Script used to represent the name.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+                                </xsd:all>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="addresses">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>List of addresses associated with this subject.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                            <xsd:complexType>
+                                <xsd:all>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="line">
+                                        <xsd:simpleType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>Street line address</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="extendedLines">
+                                        <xsd:complexType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>Extended address components (e.g. apartment or suite number).</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:sequence>
+                                                <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="countryCode" type="hropen:CountryCodeList" />
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                                        <xsd:complexType>
+                                            <xsd:annotation>
+                                                <xsd:documentation>Qualifies the further divisions of the Country. These may be Districts, Regions, States, Provinces etc.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:sequence>
+                                                <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="city">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="postalCode">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="postOfficeBox">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="geoLocation" type="hropen:GeoType" />
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="formattedAddress">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string" />
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="validFrom" type="hropen:DateTimeType" />
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="validTo" type="hropen:DateTimeType" />
+                                </xsd:all>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="profile" type="hropen:PersonProfileInclusion">
+                <xsd:annotation>
+                    <xsd:documentation>Details about this person, such-as work history</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="traits" type="hropen:PersonBaseType">
+                <xsd:annotation>
+                    <xsd:documentation>Traits about this person: SSN, DOB</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="legal" type="hropen:PersonLegalInclusion">
+                <xsd:annotation>
+                    <xsd:documentation>Legal properties about this person: mother's surname</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="attachments">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>List of documents associated with this person</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AttachmentType" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="disclosures">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>The data that represents a Disclosure is typically provided by the Applicant and is often sparse.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SubjectDisclosureType" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="SubjectType">
+        <xsd:annotation>
+            <xsd:documentation>Represents a subject (person or organization).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="documentId" type="hropen:IdentifierType">
+                <xsd:annotation>
+                    <xsd:documentation>Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="alternateIds">
+                <xsd:complexType>
+                    <xsd:annotation>
+                        <xsd:documentation>Alternative document IDs.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="language" type="hropen:LanguageCodeList" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="dataProtectionPolicy">
+                <xsd:complexType>
+                    <xsd:all>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="retentionDate" type="hropen:DateType">
+                            <xsd:annotation>
+                                <xsd:documentation>Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="retentionDays">
+                            <xsd:simpleType>
+                                <xsd:annotation>
+                                    <xsd:documentation>Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:restriction base="xsd:integer" />
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="geoRestrictions">
+                            <xsd:complexType>
+                                <xsd:annotation>
+                                    <xsd:documentation>Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:sequence>
+                                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+                                        <xsd:complexType>
+                                            <xsd:all>
+                                                <xsd:element minOccurs="0" maxOccurs="1" name="country" type="hropen:CountryCodeList">
+                                                    <xsd:annotation>
+                                                        <xsd:documentation>The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.</xsd:documentation>
+                                                    </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+                                                    <xsd:complexType>
+                                                        <xsd:annotation>
+                                                            <xsd:documentation>An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.</xsd:documentation>
+                                                        </xsd:annotation>
+                                                        <xsd:sequence>
+                                                            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                                                        </xsd:sequence>
+                                                    </xsd:complexType>
+                                                </xsd:element>
+                                                <xsd:element minOccurs="0" maxOccurs="1" name="policy" type="hropen:SecurityPermissionType">
+                                                    <xsd:annotation>
+                                                        <xsd:documentation>The description of the data protection policy (optionally associated with the country and optional region).</xsd:documentation>
+                                                    </xsd:annotation>
+                                                </xsd:element>
+                                            </xsd:all>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:all>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="person" type="hropen:ScreeningPersonType"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="organization" type="hropen:OrganizationType"/>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="Subject" type="hropen:SubjectType" />
+</xsd:schema>

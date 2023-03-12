@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PersonNameType",
+    "description": "A component for capturing summary or fine-grain data comprising a person's name.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../base/LocalizationInclusion.json#" }
+    ],
+    "properties": {
+        "formattedName": {
+            "description": "The formatted name of a person, as it would be written out together (for example, on a mailing label).",
+            "type": "string"
+        },
+        "legal": {
+            "description": "The legal name of a person (typically used if it differs from family name).",
+            "type": "string"
+        },
+        "given": {
+            "description": "The given name of a person.",
+            "type": "string"
+        },
+        "preferred": {
+            "description": "The preferred name of a person (if it differs from given name).",
+            "type": "string"
+        },
+        "middle": {
+            "description": "The middle names or initials of a person.",
+            "type": "string"
+        },
+        "family": {
+            "description": "The family name (or surname) of a person.",
+            "type": "string"
+        },
+         "familyPrefix": {
+            "description": "The prefix of a family name, e.g. van der, de jong.",
+            "type": "string"
+        },
+        "alias": {
+            "description": "An alias or (or also known as) name of a person.",
+            "type": "string"
+        },
+        "formerFamily": {
+            "description": "The former family name of a person (used if the person's name was changed).",
+            "type": "string"
+        },
+         "formerFamilyPrefix": {
+            "description": "The prefix of the former family name, e.g. van der, de jong.",
+            "type": "string"
+        },
+        "preferredSalutationCode": {
+            "description": "The salutation used to address a person (such as Dr., Mr., Mrs.).",
+            "$ref": "../base/CodeType.json#"
+        },
+        "generationAffixCode": {
+            "description": "The generational designation attached to the end of a person's name (such as Jr., Sr., II, III).",
+            "$ref": "../base/CodeType.json#"
+        },
+        "qualificationAffixCode": {
+            "description": "The professional designation attached to the end of a person's name (such as M.Sc., Ph.D).",
+            "$ref": "../base/CodeType.json#"
+        },
+        "titleAffixCode": {
+            "description": "The title designation attached to the end of a person's name (such as Esq., K.B.E.).",
+            "$ref": "../base/CodeType.json#"
+        },
+        "initials": {
+            "description": "The initials of a person.",
+            "type": "string"
+        },
+        "script": {
+            "description": "Script used to represent the name.",
+            "type": "string"
+        }
+    }
+}

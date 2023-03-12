@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AddressTypeArray",
+    "description": "Array of address information details.",
+    "type": "array",
+    "items": {
+        "allOf": [
+            { "$ref": "AddressType.json#" },
+            { "$ref": "CommunicationItemInclusion.json#" }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="RateType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../codelist/UnitCodeList.xsd" />
+  <xsd:include schemaLocation="../codelist/CurrencyCodeList.xsd" />
+  <xsd:complexType name="RateType">
+    <xsd:annotation>
+      <xsd:documentation>Used to represent the numerical quotient resulting from a comparison of two independent things such as a quantity measured with respect to another measured quantity.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The value of the rate.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="multiplier">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The multiplier of the value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="unitCode" type="hropen:UnitCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The unit code of the value.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="currencyCode" type="hropen:CurrencyCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The currency code of the value.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="baseMultiplier">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The base multiplier of the value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="baseUnitCode" type="hropen:UnitCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The base unit code of the value.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="baseCurrencyCode" type="hropen:CurrencyCodeList">
+        <xsd:annotation>
+          <xsd:documentation>The base currency code of the value.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Rate" type="hropen:RateType" />
+</xsd:schema>

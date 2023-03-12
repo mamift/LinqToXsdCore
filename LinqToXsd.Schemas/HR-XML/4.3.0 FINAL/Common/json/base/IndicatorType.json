@@ -1,0 +1,7 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "IndicatorType",
+    "description": "An indicator is a list of two mutually exclusive boolean values that express the only possible states of a property.",
+    "type": "boolean"
+}

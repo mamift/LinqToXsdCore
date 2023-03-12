@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ElectionFrequencyCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="ElectionFrequencyCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Election frequency  code list</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Monthly" />
+      <xsd:enumeration value="Annually" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ElectionFrequencyCode" type="hropen:ElectionFrequencyCodeList" />
+</xsd:schema>

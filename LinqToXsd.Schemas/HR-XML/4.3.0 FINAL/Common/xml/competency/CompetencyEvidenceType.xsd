@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CompetencyEvidenceType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/CodeType.xsd" />
+  <xsd:include schemaLocation="../base/OpenEndPeriodType.xsd" />
+  <xsd:include schemaLocation="../base/AttachmentReferenceType.xsd" />
+  <xsd:include schemaLocation="../evaluation/ScoreType.xsd" />
+  <xsd:include schemaLocation="../base/StringTypeArray.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/FormattedDateTimeType.xsd" />
+  <xsd:complexType name="CompetencyEvidenceType">
+    <xsd:annotation>
+      <xsd:documentation>A document or other record providing evidence of a competency or that is treated as a proxy for the existence of the competency. Examples include: an assessment result; a performance appraisal; an educational degree; a supervisor's observation; etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ids">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:IdentifierType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="evidenceTypeCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>A code categorizing the type of evidence that substantiates a related competency. For example, 'assessment', 'degree', 'performance appraisal', etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="evidenceName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A name or label for the evidence.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="descriptions" type="hropen:StringTypeArray">
+        <xsd:annotation>
+          <xsd:documentation>Description of the evidence requirement.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="evidenceRequirementsId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier for a policy associated with or governing the type of evidence. For example, a policy setting a confidence level or minimum requirement for the associated evidence.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="scores">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Scores supporting the competency evidence.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ScoreType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="effectivePeriod" type="hropen:OpenEndPeriodType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="verificationDate" type="hropen:FormattedDateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>The date on which the associated information or fact was verified.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="verificationSourceName">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The name of the service, person, or agent from which the verification was obtained.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="attachmentReference" type="hropen:AttachmentReferenceType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="CompetencyEvidence" type="hropen:CompetencyEvidenceType" />
+</xsd:schema>

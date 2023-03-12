@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="InterviewType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="AsynchronousOrderType.xsd" />
+  <xsd:include schemaLocation="InterviewPositionType.xsd" />
+  <xsd:include schemaLocation="StatusNotificationType.xsd" />
+  <xsd:include schemaLocation="SynchronousOrderType.xsd" />
+  <xsd:complexType name="InterviewType">
+    <xsd:annotation>
+      <xsd:documentation>Represents the Interview Specification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="asynchronousOrder" type="hropen:AsynchronousOrderType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="interviewPosition" type="hropen:InterviewPositionType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="statusNotification" type="hropen:StatusNotificationType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="synchronousOrder" type="hropen:SynchronousOrderType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Interview" type="hropen:InterviewType" />
+</xsd:schema>

@@ -1,0 +1,38 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "PostingInstructionsType",
+  "description" : "Entity providing information about where and how a posting should be communicated. Note(s): A posting channel usually would be a job board or other advertising medium (HR).",
+  "type" : "object",
+  "properties" : {
+    "applicationCloseDate" : {
+      "description" : "Closing date for accepting applications.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    },
+    "applicationContact" : {
+      "description" : "Organization or person contact point for the posting.",
+      "$ref" : "../../../common/json/communication/AddressTypeArray.json#"
+    },
+    "applicationInstructions" : {
+      "description" : "Narrative instructions for applying for this position.",
+      "type" : "string"
+    },
+    "applicationLocation" : {
+      "description" : "Physical location where job applications can be submitted.",
+      "$ref" : "PlaceType.json#"
+    },
+    "distributionChannel" : {
+      "description" : "Identifies a job board or media channel associated with a job posting.",
+      "type" : "string",
+      "format" : "uri"
+    },
+    "postingEndDate" : {
+      "description" : "End date (time) for the posting.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    },
+    "postingStartDate" : {
+      "description" : "Start date (time) for the posting.",
+      "$ref" : "../../../common/json/base/DateTimeType.json#"
+    }
+  }
+}

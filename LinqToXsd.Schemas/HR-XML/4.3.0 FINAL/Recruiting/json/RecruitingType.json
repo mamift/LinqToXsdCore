@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RecruitingType",
+    "description": "Represents the Recruiting Specification.",
+    "type": "object",
+    "properties": {
+        "candidate": { "$ref": "CandidateType.json#" },
+        "positionOpening": { "$ref": "PositionOpeningType.json#" }
+    }
+}

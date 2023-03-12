@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="OpenEndPeriodType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="FormattedDateTimeType.xsd" />
+  <xsd:include schemaLocation="YearMonthOpenEndPeriodType.xsd" />
+  <xsd:include schemaLocation="DateOpenEndPeriodType.xsd" />
+  <xsd:include schemaLocation="YearOpenEndPeriodType.xsd" />
+  <xsd:include schemaLocation="DateTimeOpenEndPeriodType.xsd" />
+  <xsd:complexType name="OpenEndPeriodType">
+    <xsd:annotation>
+      <xsd:documentation>Single date/timespan/month/year or period between two dates/months/years. The end date is optional and should be used in cases where the end of the period is unknown or uncertain.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice minOccurs="1" maxOccurs="1">
+      <xsd:element ref="hropen:FormattedDateTime" />
+      <xsd:element ref="hropen:DateTimeOpenEndPeriod" />
+      <xsd:element ref="hropen:DateOpenEndPeriod" />
+      <xsd:element ref="hropen:YearMonthOpenEndPeriod" />
+      <xsd:element ref="hropen:YearOpenEndPeriod" />
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:element name="OpenEndPeriod" type="hropen:OpenEndPeriodType" />
+</xsd:schema>

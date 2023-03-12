@@ -1,0 +1,409 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CandidateType",
+    "description": "A person who is requesting consideration or is being considered for a current or future position at a company.",
+    "definitions": {
+        "CandidatePersonType": {
+            "title": "CandidatePersonType",
+            "description": "A collection of demographic and personal data about a candidate - a person being considered for, or who has otherwise been associated with, a position opening or resource requirement.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "../../common/json/person/PersonBaseType.json#" },
+                { "$ref": "../../common/json/person/PersonPhysicalInclusion.json#" },
+                { "$ref": "../../common/json/person/PersonLegalInclusion.json#" }
+            ]
+        },
+        "CandidateProfileType": {
+            "title": "CandidateProfileType",
+            "description": "Contains structured information about a candidate, including information about their past experiences (Work History, Education History, etc.). This information can be used for evaluation or submission of candidacy for a position opening or resource requirement.",
+            "allOf": [
+                { "$ref": "../../common/json/profile/PersonProfileInclusion.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "profileId": {
+                    "description": "The primary identifier of the candidate profile. This should be the identifier assigned by the owner of the data.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "alternateIds": {
+                    "description": "An array of other identifiers for the candidate profile. These may be identifiers assigned by other trading partners or third party systems.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/IdentifierType.json#" }
+                },
+                "personAvailability": {
+                    "description": "The availability of this profile to be considered for work assignments.",
+                    "$ref": "#/definitions/PersonAvailabilityType"
+                },
+                "processingInformation": {
+                    "description": "Instructions to a third party on how this profile should be processed.",
+                    "type": "string"
+                },
+                "distributionGuidelines": {
+                    "description": "Instructions to a third party on how this profile should be distributed.",
+                    "$ref": "#/definitions/DistributionGuidelinesType"
+                },
+                "associatedPositionOpenings": {
+                    "description": "The positions in which this candidate is associated. This could be due to application or source activities.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/AssociatedPositionOpeningType" }
+                },
+                "objective": {
+                    "description": "The objective of the candidate in finding appropriate employment. A brief statement on career and position goals.",
+                    "type": "string"
+                },
+                "executiveSummary": {
+                    "description": "A concise section describing the experience of the candidate, or an introduction to the candidate.",
+                    "type": "string"
+                },
+                "employerPreferences": {
+                    "description": "A list of information about a candidate's preferences in an ideal employer or company.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/EmployerPreferenceType" }
+                },
+                "positionPreferences": {
+                    "description": "A list of information about a candidate's preferences in an ideal position or role.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/PositionPreferenceType" }
+                },
+                "candidateRelationships": {
+                    "description": "A list of information about a candidate's relationship to the (potential) employer.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/CandidateRelationshipType" }
+                },
+                "candidateSources": {
+                    "description": "A list of information about a candidate's sources.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/CandidateSourceType" }
+                },
+                "applicationProcessHistory": {
+                    "description": "Information about the application process history.",
+                    "$ref": "../../common/json/process/ProcessHistoryType.json#"
+                },
+                "workLifeCycles": {
+                    "description": "Information to specify details on the recruiting life cycle. For example, application date, hire date, rejection date including rejection reason, etc.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/work/WorkLifeCycleType.json#" }
+                }
+            }
+        },
+        "PersonAvailabilityType": {
+            "title": "PersonAvailabilityType",
+            "description": "Details about when a person is available for work engagements.",
+            "type": "object",
+            "properties": {
+                "availabilityDates": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/AvailabilityDatesType" }
+                },
+                "noticePeriodMeasure": {
+                    "description": "The notice period that is required.",
+                    "$ref": "../../common/json/base/MeasureType.json#"
+                },
+                "immediateStartIndicator": {
+                    "description": "An indicator that the person could start immediately.",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                }
+            }
+        },
+        "AvailabilityDatesType": {
+            "title": "AvailabilityDatesType",
+            "description": "The dates of availability for work engagements.",
+            "type": "object",
+            "properties": {
+                "startDateTime": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "endDateTime": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" }
+            }
+        },
+        "DistributionGuidelinesType": {
+            "title": "DistributionGuidelinesType",
+            "description": "The rules for dispersing information contained in the object to a person or organization.",
+            "type": "object",
+            "properties": {
+                "doNotRedistributeIndicator": {
+                    "description": "An indicator to not redistribute this to other third parties.",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "distributeTo": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/DistributeToType" }
+                },
+                "doNotDistributeTo": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/DoNotDistributeToType" }
+                }
+            }
+        },
+        "DistributionType": {
+            "title": "DistributionType",
+            "description": "The person or organization to which objects should (not) be distributed, and the related effective dates.",
+            "type": "object",
+            "properties": {
+                "startDate": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "endDate": { "$ref": "../../common/json/base/FormattedDateTimeType.json#" },
+                "duration": { "$ref": "../../common/json/base/DurationType.json#" },
+                "person": { "$ref": "../../common/json/base/EntityType.json#" },
+                "organization": { "$ref": "../../common/json/organization/OrganizationType.json#" },
+                "communication": { "$ref": "../../common/json/communication/CommunicationType.json#" },
+                "descriptions": { "$ref": "../../common/json/base/StringTypeArray.json#" }
+            }
+        },
+        "DistributeToType": {
+            "title": "DistributeToType",
+            "description": "The person or organization to which the objects should be delivered, and the effective dates of this distribution.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "#/definitions/DistributionType" }
+            ]
+        },
+        "DoNotDistributeToType": {
+            "title": "DoNotDistributeToType",
+            "description": "The person or organization to which the objects should not be delivered (excluded), including the effective dates to this exclusion.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "#/definitions/DistributionType" }
+            ]
+        },
+        "AssociatedPositionOpeningType": {
+            "title": "AssociatedPositionOpeningType",
+            "description": "Contains details answering the questions: 1. What, if any, are the position openings with which is the candidate associated? 2. How did the candidate become associated with those positions? The positionOpeningId, positionTitle, and positionUri components address the first question. The candidateAppliedIndicator addresses the second question. All elements are optional. In general, a candidate becomes associated with a position by applying to be considered for the position or by having been sourced and matched to the opening through some manner of automated and/or human-initiated recruiting or research process.",
+            "type": "object",
+            "properties": {
+                "positionOpeningId": {
+                    "description": "An identifier to a related position opening (related to recruiting for a job).",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "staffingOrderId": {
+                    "description": "An identifier to a related staffing order (related to filling a position from a staffing organization).",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "positionTitle": {
+                    "description": "A short phrase describing the position as it would be listed on a business card or in a company directory. OED: An appellation attaching to a position in virtue of rank, function or office.",
+                    "type": "string"
+                },
+                "positionUri": {
+                    "description": "A Uniform Resource Identifier to the associated position opening. This is often a web page or HTTP URL.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "candidateAppliedIndicator": {
+                    "description": "An indicator that the candidate applied to this associated position.",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "dispositionStatus": {
+                    "description": "The current disposition status of the candidate to the associated position opening.",
+                    "$ref": "#/definitions/DispositionStatusType"
+                }
+            }
+        },
+        "DispositionStatusType": {
+            "title": "DispositionStatusType",
+            "description": "Contains the related disposition or status of a candidate related to a specific position opening.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "The name of the disposition status.",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "The code of the disposition status.",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "description": {
+                    "description": "Description of the disposition status.",
+                    "type": "string"
+                },
+                "reasonCode": {
+                    "description": "A reason code representing the reason for the disposition change.",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "reasonDescription": {
+                    "description": "Description of the reason for the status code change. Typically used for the rejection reason or hire reason.",
+                    "type": "string"
+                },
+                "date": { 
+                    "description": "The date of the disposition change.",
+                    "$ref": "../../common/json/base/FormattedDateTimeType.json#" 
+                }
+            }
+        },
+        "EmployerPreferenceType": {
+            "title": "EmployerPreferenceType",
+            "description": "Contains a collection of information about a candidate's preferences in an ideal employer or company.",
+            "type": "object",
+            "properties": {
+                "organizationNames": {
+                    "description": "A list of organization names which are preferred to the candidate.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "organizationTypes": {
+                    "description": "A list of organization types (such as public, non-profit) which are preferred to the candidate.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "industryCodes": {
+                    "description": "A list of industry codes which are preferred to the candidate.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/IdentifierType.json#" }
+                },
+                "headcountRange": {
+                    "description": "A measure of size of a company based on the number of employees (headcount). This range is inclusive of the minimum and maximum number.",
+                    "type": "object",
+                    "properties": {
+                        "minimum": { "type": "number" },
+                        "maximum": { "type": "number" }
+                    },
+                    "minProperties": 1
+                },
+                "descriptions": {
+                    "description": "A list of text descriptions of the candidate preferences for an employer.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                }
+            }
+        },
+        "PositionPreferenceType": {
+            "title": "PositionPreferenceType",
+            "description": "Contains a collection of information about a candidate's preferences in an ideal position or role.",
+            "type": "object",
+            "properties": {
+                "locations": {
+                    "description": "A list of locations which are preferred to the candidate.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/PreferredLocationType" }
+                },
+                "jobCategories": {
+                    "description": "A list of job categories which are preferred to the candidate.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/EntityType.json#" }
+                },
+                "positionTitles": {
+                    "description": "A list of position titles which are preferred to the candidate.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "positionOfferingTypeCodes": {
+                    "description": "These are values that are descriptive in classifying a position within advertising or communications of a position opportunity or offering. Note that these classifications are useful within advertising, but they are not precise classes useful internally to drive pay, benefits, and HR compliance. This is an enumerated list.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/codelist/PositionTypeCodeList.json#" }
+                },
+                "positionScheduleTypeCodes": {
+                    "description": "Values that classify the working schedule of a position offered or a position sought. Essentially, whether a position offered or sought is full-time or part-time or has provision for flexible scheduling. Intended to classify schedule position preferences of a candidate or conversely employer preferences or requirements related to candidates with respect to an advertised position. Used in the context of matching candidates to positions. This is an enumerated list.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/codelist/PositionScheduleTypeCodeList.json#" }
+                },
+                "shiftSchedules": {
+                    "description": "In detail specification of shift schedules.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/work/ScheduleType.json#" }
+                },
+                "shiftDescriptions": {
+                    "description": "A list of shifts which are preferred to the candidate.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "remoteWork": {
+                    "description": "The preference for remote work requirement.",
+                    "$ref": "./RemoteWorkType.json#"
+                },
+                "careerLevelCodes": {
+                    "description": "A list of career levels which are preferred to the candidate. This describes the experience level, management level, or other levels of measuring a career.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/codelist/CareerLevelCodeList.json#" }
+                },
+                "jobGradeCode": {
+                    "description": "A job grade code for the position. This would be defined by a company, union, or industry.",
+                    "$ref": "../../common/json/base/EntityType.json#"
+                },
+                "offeredRemunerationPackage": {
+                    "description": "The preference for remuneration (including salary or hourly rate, benefits) for a position.",
+                    "$ref": "../../common/json/pay/RemunerationPackageType.json#"
+                },
+                "travel": {
+                    "description": "Information regarding travel preferences of a person seeking a job.",
+                    "$ref": "TravelType.json#"
+                },
+                "relocation": {
+                    "description": "Indicates if a candidate would consider moving to a new city or location for a suitable position.",
+                    "$ref": "RelocationType.json#"
+                },
+                "workingLanguageCodes": {
+                    "description": "A code classifying the language or languages used within the workplace or associated with work. This is intended to communicate general information about the language(s) used within the work environment or correspondingly general information about a candidate's specific language preferences. This component might be offered as descriptive 'pre-qualification' information on a position announcement. It might appear within the context of a Candidate Profile as a general statement of a candidate's general language capabilities or preferences. WorkingLanguageCode is not intended as a statement of language proficiency or specific requirement relating to language proficiency. Specific information regarding language proficiency should be covered either within PersonCompetency or PositionCompetency as may be appropriate.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/codelist/LanguageCodeList.json#" }
+                }
+            }
+        },
+        "PreferredLocationType": {
+            "title": "PreferredLocationType",
+            "description": "Contains a collection of information about a candidate's preferences in the location of a position.",
+            "type": "object",
+            "properties": {
+                "maximumCommuteDuration": { "$ref": "../../common/json/base/MeasureType.json#" },
+                "maximumCommuteDistance": { "$ref": "../../common/json/base/MeasureType.json#" },
+                "referenceLocation": { "$ref": "../../common/json/communication/AddressType.json#" }
+            }
+        },
+        "CandidateRelationshipType": {
+            "title": "CandidateRelationshipType",
+            "description": "Information about the relationship of a candidate to the (potential) employer of his/her candidacy.",
+            "type": "object",
+            "properties": {
+                "candidateRelationshipId": {
+                    "description": "An identifier for the relationship of a candidate to a (potential) employer, e.g. current or former employee number.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "internalCandidateIndicator": {
+                    "description": "An indicator to classify the candidate as internal to the (potential) employer. This could be a current employee, current intern, or current contractor.",
+                    "$ref": "../../common/json/base/IndicatorType.json#"
+                },
+                "candidateRelationshipCode": {
+                    "description": "A code classifying the relationship of a candidate to a (potential) employer.",
+                    "$ref": "codelist/CandidateRelationshipCodeList.json#"
+                },
+                "otherCandidateRelationshipCode": {
+                    "description": "Further information characterizing the relationship of a candidate to a (potential) employer. Mostly vendor or employer specific.",
+                    "$ref": "../../common/json/base/CodeType.json#"
+                }
+            }
+        },
+        "CandidateSourceType": {
+            "title": "CandidateSourceType",
+            "description": "Information about the source of a candidate.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "../../common/json/base/EntityType.json#" }
+            ],
+            "properties": {
+                "type": {
+                    "description": "Information on the type of source.",
+                    "type": "string"
+                },
+                "order": {
+                    "description": "Information on the order of source.",
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "uri": {
+            "description": "A URI (uniform resource identifier) to more information on the candidate on the internet. This could include a public profile URL, an online resume, or a person website.",
+            "type": "string",
+            "format": "uri"
+        },
+        "distributionGuidelines": {
+            "description": "Instructions on how this candidate should be distributed to third parties.",
+            "$ref": "#/definitions/DistributionGuidelinesType"
+        },
+        "person": {
+            "description": "Information to identify the person, including name, communication, demographic details and other identifiers.",
+            "$ref": "#/definitions/CandidatePersonType"
+        },
+        "profiles": {
+            "description": "Information on the profiles of a candidate. A typical candidate will have one profile, but additional profiles can be included in difference languages, presentations, or industry focus.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/CandidateProfileType" }
+        }
+    }
+}

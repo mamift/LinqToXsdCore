@@ -1,0 +1,29 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "AssignmentLifeCycleType",
+	"description": "Contains a collection dates related to the assignment.",
+	"type": "object",
+	"properties": {
+		"startDate": {
+			"description": "The first date the person is classed as a worker.",
+			"$ref": "../base/DateType.json#"
+		},
+		"expectedStartDate": {
+			"description": "The date the worker is expected to start working.",
+			"$ref": "../base/DateType.json#"
+		},
+		"endDate": {
+			"description": "The date the contract is complete or the worker is terminated.",
+			"$ref": "../base/DateType.json#"
+		},
+		"probationaryStartDate": {
+			"description": "The first day of a worker's probationary status.",
+			"$ref": "../base/DateType.json#"
+		},
+		"probationaryEndDate": {
+			"description": "The last day of a worker's probationary status.",
+			"$ref": "../base/DateType.json#"
+		}
+	}
+}

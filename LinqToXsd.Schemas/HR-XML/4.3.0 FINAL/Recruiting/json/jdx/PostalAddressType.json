@@ -1,0 +1,33 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "PostalAddressType",
+  "description" : "Mailing address of an entity.",
+  "type" : "object",
+  "properties" : {
+    "addressCountry" : {
+      "description" : "The relevant country of the resource. For example, USA.",
+      "type" : "string"
+    },
+    "addressLocality" : {
+      "description" : "The locality; e.g., Mountain View, London, Moscow.",
+      "type" : "string"
+    },
+    "addressRegion" : {
+      "description" : "The region; e.g., CA, TX. Note(s): The relevant state, province, territory or other subdivision of a nation.",
+      "type" : "string"
+    },
+    "name" : {
+      "description" : "The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.",
+      "type" : "string"
+    },
+    "postalCode" : {
+      "description" : "Postal code; for example, 94043.",
+      "type" : "string"
+    },
+    "streetAddress" : {
+      "description" : "Street address; for example, \"1600 Amphitheatre Pkwy\".",
+      "type" : "string"
+    }
+  }
+}

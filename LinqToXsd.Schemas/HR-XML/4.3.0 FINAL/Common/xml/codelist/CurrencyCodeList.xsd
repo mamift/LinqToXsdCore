@@ -1,0 +1,901 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="CurrencyCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="CurrencyCodeList">
+    <xsd:annotation>
+      <xsd:documentation>ISO 4217 is the International Standard for currency codes. The most recent edition is ISO 4217:2015.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="AED">
+        <xsd:annotation>
+          <xsd:documentation>UAE Dirham</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AFN">
+        <xsd:annotation>
+          <xsd:documentation>Afghani</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ALL">
+        <xsd:annotation>
+          <xsd:documentation>Lek</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AMD">
+        <xsd:annotation>
+          <xsd:documentation>Armenian Dram</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ANG">
+        <xsd:annotation>
+          <xsd:documentation>Netherlands Antillean Guilder</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AOA">
+        <xsd:annotation>
+          <xsd:documentation>Kwanza</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ARS">
+        <xsd:annotation>
+          <xsd:documentation>Argentine Peso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AUD">
+        <xsd:annotation>
+          <xsd:documentation>Australian Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AWG">
+        <xsd:annotation>
+          <xsd:documentation>Aruban Florin</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AZN">
+        <xsd:annotation>
+          <xsd:documentation>Azerbaijanian Manat</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BAM">
+        <xsd:annotation>
+          <xsd:documentation>Convertible Mark</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BBD">
+        <xsd:annotation>
+          <xsd:documentation>Barbados Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BDT">
+        <xsd:annotation>
+          <xsd:documentation>Taka</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BGN">
+        <xsd:annotation>
+          <xsd:documentation>Bulgarian Lev</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BHD">
+        <xsd:annotation>
+          <xsd:documentation>Bahraini Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BIF">
+        <xsd:annotation>
+          <xsd:documentation>Burundi Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BMD">
+        <xsd:annotation>
+          <xsd:documentation>Bermudian Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BND">
+        <xsd:annotation>
+          <xsd:documentation>Brunei Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BOB">
+        <xsd:annotation>
+          <xsd:documentation>Boliviano</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BOV">
+        <xsd:annotation>
+          <xsd:documentation>Mvdol</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BRL">
+        <xsd:annotation>
+          <xsd:documentation>Brazilian Real</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BSD">
+        <xsd:annotation>
+          <xsd:documentation>Bahamian Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BTN">
+        <xsd:annotation>
+          <xsd:documentation>Ngultrum</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BWP">
+        <xsd:annotation>
+          <xsd:documentation>Pula</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BYR">
+        <xsd:annotation>
+          <xsd:documentation>Belarussian Ruble</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="BZD">
+        <xsd:annotation>
+          <xsd:documentation>Belize Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CAD">
+        <xsd:annotation>
+          <xsd:documentation>Canadian Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CDF">
+        <xsd:annotation>
+          <xsd:documentation>Congolese Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CHE">
+        <xsd:annotation>
+          <xsd:documentation>WIR Euro</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CHF">
+        <xsd:annotation>
+          <xsd:documentation>Swiss Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CHW">
+        <xsd:annotation>
+          <xsd:documentation>WIR Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CLF">
+        <xsd:annotation>
+          <xsd:documentation>Unidades de fomento</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CLP">
+        <xsd:annotation>
+          <xsd:documentation>Chilean Peso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CNY">
+        <xsd:annotation>
+          <xsd:documentation>Yuan Renminbi</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="COP">
+        <xsd:annotation>
+          <xsd:documentation>Colombian Peso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="COU">
+        <xsd:annotation>
+          <xsd:documentation>Unidad de Valor Real</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CRC">
+        <xsd:annotation>
+          <xsd:documentation>Costa Rican Colon</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CUC">
+        <xsd:annotation>
+          <xsd:documentation>Peso Convertible</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CUP">
+        <xsd:annotation>
+          <xsd:documentation>Cuban Peso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CVE">
+        <xsd:annotation>
+          <xsd:documentation>Cape Verde Escudo</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CZK">
+        <xsd:annotation>
+          <xsd:documentation>Czech Koruna</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="DJF">
+        <xsd:annotation>
+          <xsd:documentation>Djibouti Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="DKK">
+        <xsd:annotation>
+          <xsd:documentation>Danish Krone</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="DOP">
+        <xsd:annotation>
+          <xsd:documentation>Dominican Peso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="DZD">
+        <xsd:annotation>
+          <xsd:documentation>Algerian Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="EGP">
+        <xsd:annotation>
+          <xsd:documentation>Egyptian Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ERN">
+        <xsd:annotation>
+          <xsd:documentation>Nakfa</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ETB">
+        <xsd:annotation>
+          <xsd:documentation>Ethiopian Birr</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="EUR">
+        <xsd:annotation>
+          <xsd:documentation>Euro</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FJD">
+        <xsd:annotation>
+          <xsd:documentation>Fiji Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FKP">
+        <xsd:annotation>
+          <xsd:documentation>Falkland Islands Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GBP">
+        <xsd:annotation>
+          <xsd:documentation>Pound Sterling</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GEL">
+        <xsd:annotation>
+          <xsd:documentation>Lari</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GHS">
+        <xsd:annotation>
+          <xsd:documentation>Ghana Cedi</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GIP">
+        <xsd:annotation>
+          <xsd:documentation>Gibraltar Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GMD">
+        <xsd:annotation>
+          <xsd:documentation>Dalasi</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GNF">
+        <xsd:annotation>
+          <xsd:documentation>Guinea Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GTQ">
+        <xsd:annotation>
+          <xsd:documentation>Quetzal</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GYD">
+        <xsd:annotation>
+          <xsd:documentation>Guyana Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HKD">
+        <xsd:annotation>
+          <xsd:documentation>Hong Kong Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HNL">
+        <xsd:annotation>
+          <xsd:documentation>Lempira</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HRK">
+        <xsd:annotation>
+          <xsd:documentation>Croatian Kuna</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HTG">
+        <xsd:annotation>
+          <xsd:documentation>Gourde</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="HUF">
+        <xsd:annotation>
+          <xsd:documentation>Forint</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="IDR">
+        <xsd:annotation>
+          <xsd:documentation>Rupiah</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ILS">
+        <xsd:annotation>
+          <xsd:documentation>New Israeli Sheqel</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="INR">
+        <xsd:annotation>
+          <xsd:documentation>Indian Rupee</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="IQD">
+        <xsd:annotation>
+          <xsd:documentation>Iraqi Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="IRR">
+        <xsd:annotation>
+          <xsd:documentation>Iranian Rial</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ISK">
+        <xsd:annotation>
+          <xsd:documentation>Iceland Krona</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="JMD">
+        <xsd:annotation>
+          <xsd:documentation>Jamaican Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="JOD">
+        <xsd:annotation>
+          <xsd:documentation>Jordanian Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="JPY">
+        <xsd:annotation>
+          <xsd:documentation>Yen</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KES">
+        <xsd:annotation>
+          <xsd:documentation>Kenyan Shilling</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KGS">
+        <xsd:annotation>
+          <xsd:documentation>Som</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KHR">
+        <xsd:annotation>
+          <xsd:documentation>Riel</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KMF">
+        <xsd:annotation>
+          <xsd:documentation>Comoro Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KPW">
+        <xsd:annotation>
+          <xsd:documentation>North Korean Won</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KRW">
+        <xsd:annotation>
+          <xsd:documentation>Won</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KWD">
+        <xsd:annotation>
+          <xsd:documentation>Kuwaiti Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KYD">
+        <xsd:annotation>
+          <xsd:documentation>Cayman Islands Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="KZT">
+        <xsd:annotation>
+          <xsd:documentation>Tenge</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LAK">
+        <xsd:annotation>
+          <xsd:documentation>Kip</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LBP">
+        <xsd:annotation>
+          <xsd:documentation>Lebanese Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LKR">
+        <xsd:annotation>
+          <xsd:documentation>Sri Lanka Rupee</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LRD">
+        <xsd:annotation>
+          <xsd:documentation>Liberian Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LSL">
+        <xsd:annotation>
+          <xsd:documentation>Loti</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LYD">
+        <xsd:annotation>
+          <xsd:documentation>Libyan Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MAD">
+        <xsd:annotation>
+          <xsd:documentation>Moroccan Dirham</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MDL">
+        <xsd:annotation>
+          <xsd:documentation>Moldovan Leu</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MGA">
+        <xsd:annotation>
+          <xsd:documentation>Malagasy Ariary</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MKD">
+        <xsd:annotation>
+          <xsd:documentation>Denar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MMK">
+        <xsd:annotation>
+          <xsd:documentation>Kyat</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MNT">
+        <xsd:annotation>
+          <xsd:documentation>Tugrik</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MOP">
+        <xsd:annotation>
+          <xsd:documentation>Pataca</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MRU">
+        <xsd:annotation>
+          <xsd:documentation>Ouguiya</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MUR">
+        <xsd:annotation>
+          <xsd:documentation>Mauritius Rupee</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MVR">
+        <xsd:annotation>
+          <xsd:documentation>Rufiyaa</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MWK">
+        <xsd:annotation>
+          <xsd:documentation>Kwacha</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MXN">
+        <xsd:annotation>
+          <xsd:documentation>Mexican Peso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MXV">
+        <xsd:annotation>
+          <xsd:documentation>Mexican Unidad de Inversion (UDI)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MYR">
+        <xsd:annotation>
+          <xsd:documentation>Malaysian Ringgit</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MZN">
+        <xsd:annotation>
+          <xsd:documentation>Mozambique Metical</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NAD">
+        <xsd:annotation>
+          <xsd:documentation>Namibia Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NGN">
+        <xsd:annotation>
+          <xsd:documentation>Naira</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NIO">
+        <xsd:annotation>
+          <xsd:documentation>Cordoba Oro</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NOK">
+        <xsd:annotation>
+          <xsd:documentation>Norwegian Krone</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NPR">
+        <xsd:annotation>
+          <xsd:documentation>Nepalese Rupee</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NZD">
+        <xsd:annotation>
+          <xsd:documentation>New Zealand Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OMR">
+        <xsd:annotation>
+          <xsd:documentation>Rial Omani</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PAB">
+        <xsd:annotation>
+          <xsd:documentation>Balboa</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PEN">
+        <xsd:annotation>
+          <xsd:documentation>Nuevo Sol</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PGK">
+        <xsd:annotation>
+          <xsd:documentation>Kina</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PHP">
+        <xsd:annotation>
+          <xsd:documentation>Philippine Peso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PKR">
+        <xsd:annotation>
+          <xsd:documentation>Pakistan Rupee</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PLN">
+        <xsd:annotation>
+          <xsd:documentation>Zloty</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PYG">
+        <xsd:annotation>
+          <xsd:documentation>Guarani</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="QAR">
+        <xsd:annotation>
+          <xsd:documentation>Qatari Rial</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RON">
+        <xsd:annotation>
+          <xsd:documentation>New Romanian Leu</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RSD">
+        <xsd:annotation>
+          <xsd:documentation>Serbian Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RUB">
+        <xsd:annotation>
+          <xsd:documentation>Russian Ruble</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RWF">
+        <xsd:annotation>
+          <xsd:documentation>Rwanda Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SAR">
+        <xsd:annotation>
+          <xsd:documentation>Saudi Riyal</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SBD">
+        <xsd:annotation>
+          <xsd:documentation>Solomon Islands Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SCR">
+        <xsd:annotation>
+          <xsd:documentation>Seychelles Rupee</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SDG">
+        <xsd:annotation>
+          <xsd:documentation>Sudanese Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SEK">
+        <xsd:annotation>
+          <xsd:documentation>Swedish Krona</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SGD">
+        <xsd:annotation>
+          <xsd:documentation>Singapore Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SHP">
+        <xsd:annotation>
+          <xsd:documentation>Saint Helena Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SLL">
+        <xsd:annotation>
+          <xsd:documentation>Leone</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SOS">
+        <xsd:annotation>
+          <xsd:documentation>Somali Shilling</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SRD">
+        <xsd:annotation>
+          <xsd:documentation>Surinam Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SSP">
+        <xsd:annotation>
+          <xsd:documentation>South Sudanese Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="STN">
+        <xsd:annotation>
+          <xsd:documentation>Dobra</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SVC">
+        <xsd:annotation>
+          <xsd:documentation>El Salvador Colon</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SYP">
+        <xsd:annotation>
+          <xsd:documentation>Syrian Pound</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SZL">
+        <xsd:annotation>
+          <xsd:documentation>Lilangeni</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="THB">
+        <xsd:annotation>
+          <xsd:documentation>Baht</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TJS">
+        <xsd:annotation>
+          <xsd:documentation>Somoni</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TMT">
+        <xsd:annotation>
+          <xsd:documentation>Turkmenistan New Manat</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TND">
+        <xsd:annotation>
+          <xsd:documentation>Tunisian Dinar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TOP">
+        <xsd:annotation>
+          <xsd:documentation>Pa’anga</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TRY">
+        <xsd:annotation>
+          <xsd:documentation>Turkish Lira</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TTD">
+        <xsd:annotation>
+          <xsd:documentation>Trinidad and Tobago Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TWD">
+        <xsd:annotation>
+          <xsd:documentation>New Taiwan Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TZS">
+        <xsd:annotation>
+          <xsd:documentation>Tanzanian Shilling</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UAH">
+        <xsd:annotation>
+          <xsd:documentation>Hryvnia</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UGX">
+        <xsd:annotation>
+          <xsd:documentation>Uganda Shilling</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="USD">
+        <xsd:annotation>
+          <xsd:documentation>US Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="USN">
+        <xsd:annotation>
+          <xsd:documentation>US Dollar (Next day)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UYI">
+        <xsd:annotation>
+          <xsd:documentation>Uruguay Peso en Unidades Indexadas (URUIURUI)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UYU">
+        <xsd:annotation>
+          <xsd:documentation>Peso Uruguayo</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UZS">
+        <xsd:annotation>
+          <xsd:documentation>Uzbekistan Sum</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="VEF">
+        <xsd:annotation>
+          <xsd:documentation>Bolivar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="VND">
+        <xsd:annotation>
+          <xsd:documentation>Dong</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="VUV">
+        <xsd:annotation>
+          <xsd:documentation>Vatu</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="WST">
+        <xsd:annotation>
+          <xsd:documentation>Tala</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XAF">
+        <xsd:annotation>
+          <xsd:documentation>CFA Franc BEAC</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XAG">
+        <xsd:annotation>
+          <xsd:documentation>Silver</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XAU">
+        <xsd:annotation>
+          <xsd:documentation>Gold</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XBA">
+        <xsd:annotation>
+          <xsd:documentation>Bond Markets Unit European Composite Unit (EURCO)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XBB">
+        <xsd:annotation>
+          <xsd:documentation>Bond Markets Unit European Monetary Unit (E.M.U.-6)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XBC">
+        <xsd:annotation>
+          <xsd:documentation>Bond Markets Unit European Unit of Account 9 (E.U.A.-9)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XBD">
+        <xsd:annotation>
+          <xsd:documentation>Bond Markets Unit European Unit of Account 17 (E.U.A.-17)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XCD">
+        <xsd:annotation>
+          <xsd:documentation>East Caribbean Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XDR">
+        <xsd:annotation>
+          <xsd:documentation>SDR (Special Drawing Right)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XOF">
+        <xsd:annotation>
+          <xsd:documentation>CFA Franc BCEAO</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XPD">
+        <xsd:annotation>
+          <xsd:documentation>Palladium</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XPF">
+        <xsd:annotation>
+          <xsd:documentation>CFP Franc</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XPT">
+        <xsd:annotation>
+          <xsd:documentation>Platinum</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XSU">
+        <xsd:annotation>
+          <xsd:documentation>Sucre</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XTS">
+        <xsd:annotation>
+          <xsd:documentation>Codes specifically reserved for testing purposes</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XUA">
+        <xsd:annotation>
+          <xsd:documentation>ADB Unit of Account</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="XXX">
+        <xsd:annotation>
+          <xsd:documentation>The codes assigned for transactions where no currency is involved</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="YER">
+        <xsd:annotation>
+          <xsd:documentation>Yemeni Rial</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ZAR">
+        <xsd:annotation>
+          <xsd:documentation>Rand</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ZMW">
+        <xsd:annotation>
+          <xsd:documentation>Zambian Kwacha</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ZWL">
+        <xsd:annotation>
+          <xsd:documentation>Zimbabwe Dollar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="CurrencyCode" type="hropen:CurrencyCodeList" />
+</xsd:schema>

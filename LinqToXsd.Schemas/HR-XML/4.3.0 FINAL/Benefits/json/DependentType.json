@@ -1,0 +1,19 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "DependentType ",
+	"description": "Contains information to describe the dependent, including the relationship between the primary insured and dependent.",
+	"type": "object",
+	"properties": {
+		"id": { "$ref": "../../common/json/base/IdentifierType.json#" },
+		"relationshipCode": {
+			"description": "The code classifying the dependent type.",
+			"$ref": "codelist/RelationshipCodeList.json#"
+		},
+		"person": { "$ref": "SubscriberPersonType.json#" },
+		"custodialParent": { "$ref": "../../common/json/person/PersonReferenceType.json#" },
+		"responsible": { "$ref": "../../common/json/person/SpecifiedPersonType.json#" },
+		"fullTimeStudentIndicator": { "$ref": "../../common/json/base/IndicatorType.json#" },
+		"educationOrganization": { "$ref": "../../common/json/organization/OrganizationType.json#" }
+	}
+}

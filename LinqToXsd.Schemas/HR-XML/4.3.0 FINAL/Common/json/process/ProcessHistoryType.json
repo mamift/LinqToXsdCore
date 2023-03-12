@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ProcessHistoryType",
+    "description": "Describes a workflow process history, which can be used for modelling recruiting dispositions, onboarding workflow, etc.",
+    "type": "array",
+    "items": {
+        "$ref": "ProcessHistoryItemType.json#"
+    }
+}

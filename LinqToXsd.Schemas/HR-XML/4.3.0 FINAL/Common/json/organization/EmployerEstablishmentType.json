@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "EmployerEstablishmentType",
+	"description": "Information to identify and reference a specific establishment within an organization.",
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "OrganizationReferenceType.json#"
+		}
+	],
+	"properties": {
+		"taxIdentifiers": {
+			"description": "A government assigned identifier to distinguish the establishment. This may be assigned by a country, state, province, etc. ",
+			"type": "array",
+			"items": {
+				"$ref": "../base/IdentifierType.json#"
+			}
+		},
+		"industryIdentifiers": {
+			"description": "The types of industry to which the establishment belongs. The Industry identifiers could be referenced to a standard taxonomy (such as NAICS) or a custom taxonomy.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/IdentifierType.json#"
+			}
+		},
+		"businessFunction": {
+			"description": "Describe the business functions performed at the location, e.g., administrative, warehouse, retail, professional services, information technology, engineering, R&D, etc.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/CodeType.json#"
+			}
+		},
+		"establishmentActivity": {
+			"description": "A description of the business activities conducted at the establishment, listed by approximate percentage of revenue or sales associated with each activity.",
+			"type": "array",
+			"items": {
+				"$ref": "EstablishmentActivityType.json#"
+			}
+		},
+		"tradeName": {
+			"description": "Trade name of the establishment or doing-business-as (DBA).",
+			"type": "string"
+		},
+		"statusHistory": {
+			"description": "Specifies the current status of the establishment, e.g. sold, temporarily closed, permanently closed, merged, acquired, etc.",
+			"type": "array",
+			"items": {
+				"$ref": "../base/StatusType.json#"
+			}
+		}
+	}
+}

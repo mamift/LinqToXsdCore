@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "LicenseType",
+    "description": "Authoritative permission to hold a certain status or to do certain things, e.g. to practise some trade or profession. (OED license, n. a. A formal, usually a printed or written permission from a constituted authority to do something. b. The document embodying such a permission.)",
+    "type": "object",
+    "allOf": [
+        { "$ref": "CertificationType.json#" }
+    ],
+    "properties": {
+        "endorsements": {
+            "description": "The modifications to the base license as authorized by the issuing authority that allow for additional access or grant additional qualifications. Examples include different variations of drivers or pilot licenses that allow for additional vehicles to be operated.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "allOf": [
+                    { "$ref": "../base/EffectiveTimePeriodType.json#" }
+                ],
+                "properties": {
+                    "value": { "type": "string" },
+                    "description": { "type": "string" }
+                },
+                "required": [ "value" ]
+            },
+            "minItems": 1
+        },
+        "restrictions": {
+            "description": "The modifications to the base license as authorized by the issuing authority that restrict access or remove permissions or authority. Examples include requiring vision ware while operating a motor vehicle, or requiring an additional licensed operator to accompany the licensee while operating a vehicle.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "allOf": [
+                    { "$ref": "../base/EffectiveTimePeriodType.json#" }
+                ],
+                "properties": {
+                    "value": { "type": "string" },
+                    "description": { "type": "string" }
+                },
+                "required": [ "value" ]
+            },
+            "minItems": 1
+        },
+        "violations": {
+            "description": "The violations or transgressions against the license as per the licensing authority or other authorities. Examples include points violations on a drivers license due to speeding.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "allOf": [
+                    { "$ref": "../base/EffectiveTimePeriodType.json#" }
+                ],
+                "properties": {
+                    "value": { "type": "string" },
+                    "description": { "type": "string" }
+                },
+                "required": [ "value" ]
+            },
+            "minItems": 1
+        }
+    }
+}

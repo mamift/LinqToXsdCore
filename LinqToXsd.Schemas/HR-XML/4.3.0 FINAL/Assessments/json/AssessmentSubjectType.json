@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AssessmentSubjectType",
+    "description": "Person to be assessed.",
+    "allOf": [
+        { "$ref": "../../common/json/person/PersonLegalType.json#" },
+        { "$ref": "../../common/json/person/PersonPhysicalInclusion.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "subjectId": {
+            "description": "Primary identifier for the person to be assessed.The test taker or person who takes the assessment or is assessed.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "internalCandidateIndicator": {
+            "description": "Indicates whether a subject is a candidate for a position with the customer party.",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "accomodationTypeCodes": {
+            "description": "A code identifying a type of assistance or technology required to accomodate a disability.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/base/CodeType.json#" }
+        }
+    }
+}

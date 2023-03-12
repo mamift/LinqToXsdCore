@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="StaffingReferenceIdsType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:complexType name="StaffingReferenceIdsType">
+    <xsd:annotation>
+      <xsd:documentation>A collection of identifiers related to a staffing assignment of a resource.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="assignmentId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>An identifier for a particular engagement or assignment of a staffing resource.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="orderId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely distinguishes the order.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="requestForQuotationId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Used to specify a reference to a StaffingRFQ document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="resourceId" type="hropen:IdentifierType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="quoteId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Used to specify a reference to a StaffingQuote document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="actionId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Used to specify a reference to a StaffingAction document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="masterOrderId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Reference to a master order or project. Used to associate multiple orders.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="StaffingReferenceIds" type="hropen:StaffingReferenceIdsType" />
+</xsd:schema>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AddressComponentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="AddressComponentType">
+    <xsd:annotation>
+      <xsd:documentation>Holds address extension components.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="type">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Specify purpose of this extension (province, secondary line, house number, etc).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="value">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Actual component value.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="AddressComponent" type="hropen:AddressComponentType" />
+</xsd:schema>

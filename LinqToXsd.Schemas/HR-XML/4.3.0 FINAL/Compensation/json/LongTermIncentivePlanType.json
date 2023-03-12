@@ -1,0 +1,68 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "LongTermIncentivePlanType",
+	"description": "Details of long term incentive plans",
+	"type": "object",
+	"properties": {
+		"planId": {
+			"$ref": "../../common/json/base/NameType.json#"
+		},
+		"planType": {
+			"description": "A set of codes classifying the compensation stock grant types.",
+			"enum": [
+				"Non-Qualified Option",
+				"Qualified Option",
+				"Restricted Stock / RSUs",
+				"Performance-Based Stock",
+				"Unconditional Stock",
+				"Phantom Stock / SARs"
+			]
+		},
+		"eligibleIndicator": {
+			"description": "Is the Employee eligible for this reward or not",
+			"$ref": "../../common/json/base/IndicatorType.json#"
+		},
+		"grantType": {
+			"description": "A set of codes classifying the compensation stock grant types.",
+			"enum": [
+				"Performance",
+				"Annual",
+				"Signon",
+				"Retention"
+			]
+		},
+		"grantFrequency": {
+			"description": "Expected frequency of the grant of reward in years",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"grantDate": {
+			"description": "The date a grant is awarded to a recipient",
+			"$ref": "../../common/json/base/DateType.json#"
+		},
+		"grantPrice": {
+			"description": "The price of the stock unit that is granted to the recipient",
+			"$ref": "../../common/json/base/AmountType.json#"
+		},
+		"unitsGrantedQuantity": {
+			"description": "The quantity or number of units granted to the recipient",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"vestingSchedule": {
+			"description": "Values that classify the various vesting schedules",
+			"enum": [
+				"Gradual",
+				"Cliff"
+			]
+		},
+		"vestingPeriod": {
+			"description": "A representation of the time periods by which the grant is deemed vested and available to the recipient",
+			"$ref": "../../common/json/base/NumberType.json#"
+		},
+		"accountingValue": {
+			"description": "A representation of the valuation of the stock based award that is granted to the recipient",
+			"$ref": "../../common/json/base/AmountType.json#"
+		}
+	},
+	"required": ["eligibleIndicator", "grantType", "grantPrice", "unitsGrantedQuantity"]
+}

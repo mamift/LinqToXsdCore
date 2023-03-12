@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="SearchResultType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="SearchCriterionType.xsd" />
+  <xsd:include schemaLocation="../base/IndicatorType.xsd" />
+  <xsd:include schemaLocation="ReferencedPropertyValueType.xsd" />
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="../base/MeasureType.xsd" />
+  <xsd:complexType name="SearchResultItemType">
+    <xsd:annotation>
+      <xsd:documentation>Search result item.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="matchedObjectId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier of the matched object/item.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="matchedObjectDescriptors">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Descriptors of the matched object/item. Remark: usually correspond to the requested descriptors as given in the search query.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ReferencedPropertyValueType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="relevanceRank">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Rank according to relevance of the search.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="relevanceScore">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Relevance score - usually in numerical values from 0.0 (no overestimation) to 1.0 (full overestimation with search criteria).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="relevanceScoreIsRequiredMissedIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Relevance score indicator that at least one required criterion is missed in the item. Remark: Only needed if such search results are forced to be considered.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="relevanceScoreDetails">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Details about the score or evaluation of the item to help explain its relevance to the search criteria.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:RelevanceScoreDetailsItemType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="RelevanceScoreDetailsItemType">
+    <xsd:annotation>
+      <xsd:documentation>Detailed information about the relevance score evaluation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="searchCriterion" type="hropen:SearchCriterionType">
+        <xsd:annotation>
+          <xsd:documentation>Related search criterion data.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="searchCriterionReference">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Reference to related search criterion. Remark: refers to 'searchCriterion.id.value'.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fulfillmentScore">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Fulfillment score - usually in values from 0.0 (no relevance or fulfillment) to 1.0 (full relevance or complete fulfillment with search criterion).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:decimal" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fulfillmentScoreIsRequiredMissedIndicator" type="hropen:IndicatorType">
+        <xsd:annotation>
+          <xsd:documentation>Fulfillment score indicator that a required criterion is missed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="fulfillmentData">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Further information about fulfillment evaluation for this criterion.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:ReferencedPropertyValueType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="SearchResultType">
+    <xsd:annotation>
+      <xsd:documentation>The actual search result (set/list).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="count">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Number of items in this result set.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="countAll">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>Number of all items that match the search criteria.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:integer" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="executionCode">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A result code from the execution of the search.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="executionTime" type="hropen:MeasureType">
+        <xsd:annotation>
+          <xsd:documentation>Execution duration of the search.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="items">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Search result items (of this set).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:SearchResultItemType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="SearchResult" type="hropen:SearchResultType" />
+</xsd:schema>

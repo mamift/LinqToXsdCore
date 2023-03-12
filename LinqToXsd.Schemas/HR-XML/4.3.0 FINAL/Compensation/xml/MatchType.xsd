@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="MatchType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/PercentType.xsd" />
+  <xsd:include schemaLocation="../../common/xml/base/CodeType.xsd" />
+  <xsd:complexType name="MatchType">
+    <xsd:annotation>
+      <xsd:documentation>Survey details to match jobs across organization</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="1" maxOccurs="1" name="surveyJobCode" type="hropen:CodeType">
+        <xsd:annotation>
+          <xsd:documentation>The code which represents the survey job</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="surveyJobTitle">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>The title of the survey job</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="surveyJobDescription">
+        <xsd:simpleType>
+          <xsd:annotation>
+            <xsd:documentation>A description of the survey job</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="matchPercent" type="hropen:PercentType">
+        <xsd:annotation>
+          <xsd:documentation>A score provided by the person matching the employer job to the survey job for applicability: with 0% meaning no applicability and 100% meaning exact match</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="surveyJobCodeLevel">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Code classifying the survey job code levels e.g., 1, 2, 3, 4</xsd:documentation>
+          </xsd:annotation>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="title">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>A title that describes the level of a survey job</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="description">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>A description of the level of a survey job</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="code">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>A code representing the level of a survey job</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="surveyJobCodeSpeciality">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>Code classifying the survey job code specialities e.g., 'Exec Comp', 'Cash Comp', 'Sales Comp', etc.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="title">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>A title representing the specialization of a survey job</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="description">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>A description of the specialization of a survey job</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="code">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>A code representing the specialization of a survey job</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Match" type="hropen:MatchType" />
+</xsd:schema>

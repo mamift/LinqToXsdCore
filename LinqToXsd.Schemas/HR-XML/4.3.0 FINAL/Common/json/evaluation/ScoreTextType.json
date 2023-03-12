@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ScoreTextType",
+    "description": "A non-numeric or textual representation of a Score.",
+    "type": "object",
+    "properties": {
+        "value": { "type": "string" },
+        "scoreTextCode": {
+            "description": "Default: CourseGrade. A code used to textually classify the type scoring methodology or convention.",
+            "type": "string"
+        },
+        "minimum": {
+            "description": "Optional. Describes the minimum score.",
+            "type": "string"
+        },
+        "maximum": {
+            "description": "Optional. Describes the maximum score.",
+            "type": "string"
+        }
+    },
+    "required": [ "value" ]
+}

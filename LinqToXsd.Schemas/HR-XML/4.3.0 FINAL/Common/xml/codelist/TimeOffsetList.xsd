@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="TimeOffsetList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="TimeOffsetList">
+    <xsd:annotation>
+      <xsd:documentation>Coordinated Universal Time (UTC), from the westernmost (−12:00) to the easternmost (+14:00).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="UTC−12:00" />
+      <xsd:enumeration value="UTC−11:00" />
+      <xsd:enumeration value="UTC-10:00" />
+      <xsd:enumeration value="UTC-09:30" />
+      <xsd:enumeration value="UTC-09:00" />
+      <xsd:enumeration value="UTC-08:00" />
+      <xsd:enumeration value="UTC-07:00" />
+      <xsd:enumeration value="UTC-06:00" />
+      <xsd:enumeration value="UTC-05:00" />
+      <xsd:enumeration value="UTC-04:00" />
+      <xsd:enumeration value="UTC-03:30" />
+      <xsd:enumeration value="UTC-03:00" />
+      <xsd:enumeration value="UTC-01:00" />
+      <xsd:enumeration value="UTC-00:00" />
+      <xsd:enumeration value="UTC+01:00" />
+      <xsd:enumeration value="UTC+02:00" />
+      <xsd:enumeration value="UTC+03:00" />
+      <xsd:enumeration value="UTC+03:30" />
+      <xsd:enumeration value="UTC+04:00" />
+      <xsd:enumeration value="UTC+04:30" />
+      <xsd:enumeration value="UTC+05:00" />
+      <xsd:enumeration value="UTC+05:30" />
+      <xsd:enumeration value="UTC+05:45" />
+      <xsd:enumeration value="UTC+06:00" />
+      <xsd:enumeration value="UTC+06:30" />
+      <xsd:enumeration value="UTC+07:00" />
+      <xsd:enumeration value="UTC+08:00" />
+      <xsd:enumeration value="UTC+08:45" />
+      <xsd:enumeration value="UTC+09:00" />
+      <xsd:enumeration value="UTC+09:30" />
+      <xsd:enumeration value="UTC+10:00" />
+      <xsd:enumeration value="UTC+10:30" />
+      <xsd:enumeration value="UTC+11:00" />
+      <xsd:enumeration value="UTC+12:00" />
+      <xsd:enumeration value="UTC+12:45" />
+      <xsd:enumeration value="UTC+13:00" />
+      <xsd:enumeration value="UTC+14:00" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="TimeOffsetList" type="hropen:TimeOffsetList" />
+</xsd:schema>

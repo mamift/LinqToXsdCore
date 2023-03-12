@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="FinalFilingRuleTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="FinalFilingRuleTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A code identifying the source of the election.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="AfterXDaysFromPlanEndDate" />
+      <xsd:enumeration value="AfterXDaysFromEventDate" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="FinalFilingRuleTypeCode" type="hropen:FinalFilingRuleTypeCodeList" />
+</xsd:schema>

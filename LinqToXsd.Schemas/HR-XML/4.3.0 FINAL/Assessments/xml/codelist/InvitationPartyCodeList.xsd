@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="InvitationPartyCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="InvitationPartyCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Specifies who will send the invitation to the assessment subject.  Options are the Customer or the Supplier.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Customer" />
+      <xsd:enumeration value="Supplier" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="InvitationPartyCode" type="hropen:InvitationPartyCodeList" />
+</xsd:schema>

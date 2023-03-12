@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "NounType",
+    "description": "A common type that should be included at the top level of schemas.",
+    "allOf": [
+        { "$ref": "LocalizationInclusion.json#" },
+        { "$ref": "DataProtectionPolicyInclusion.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "documentId": {
+            "description": "Provides the Identifier(s) of the document being communicated. Uniquely identifies a Document within an organization.",
+            "$ref": "IdentifierType.json#"
+        },
+        "alternateIds": {
+            "description": "Alternative document IDs.",
+            "type": "array",
+            "items": { "$ref": "IdentifierType.json#" }
+        }
+    }
+}

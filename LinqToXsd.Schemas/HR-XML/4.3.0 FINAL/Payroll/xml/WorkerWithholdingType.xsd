@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.3.0" id="WorkerWithholdingType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../../common/xml/base/AmountType.xsd" />
+  <xsd:include schemaLocation="WithholdingAmountType.xsd" />
+  <xsd:complexType name="WorkerWithholdingType">
+    <xsd:annotation>
+      <xsd:documentation>Amounts withheld from the worker including taxes, premiums, insurance, other withholdings.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalTaxWithholdingAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to taxes.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalInsurancePremiumsWithholdingAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to insurance premiums.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalRetirementWithholdingAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to retirement.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="totalOtherWithholdingAmount" type="hropen:AmountType">
+        <xsd:annotation>
+          <xsd:documentation>The total of all other monetary amounts withheld by the employer from the worker's pay for other than taxes, insurance and retirement.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="taxWithholdingAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to taxes.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WithholdingAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="insurancePremiumsWithholdingAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to insurance premiums.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WithholdingAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="retirementWithholdingAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary amount withheld by the employer from the worker's pay to cover the worker's contribution to retirement.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WithholdingAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="otherWithholdingAmount">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>The monetary amount withheld by the employer from the worker's pay for other than taxes, insurance, and retirement.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:WithholdingAmountType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="WorkerWithholding" type="hropen:WorkerWithholdingType" />
+</xsd:schema>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AddressTypeArray" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="CommunicationItemInclusion.xsd" />
+  <xsd:include schemaLocation="AddressType.xsd" />
+  <xsd:complexType name="AddressTypeArray">
+    <xsd:annotation>
+      <xsd:documentation>Array of address information details.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" maxOccurs="1" name="line">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Street line address</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="extendedLines">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Extended address components (e.g. apartment or suite number).</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="countryCode" type="hropen:CountryCodeList" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="countrySubDivisions">
+              <xsd:complexType>
+                <xsd:annotation>
+                  <xsd:documentation>Qualifies the further divisions of the Country. These may be Districts, Regions, States, Provinces etc.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:AddressComponentType" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="city">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="postalCode">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="postOfficeBox">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="geoLocation" type="hropen:GeoType" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="formattedAddress">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="name">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Provide description for particular communication item</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="useCode" type="hropen:CodeType">
+              <xsd:annotation>
+                <xsd:documentation>Code identifying the usage of the contact point e.g. business, private, etc.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="preference">
+              <xsd:simpleType>
+                <xsd:annotation>
+                  <xsd:documentation>Provide priority for given communication item</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:integer" />
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" maxOccurs="1" name="availablePeriod" type="hropen:DateTimePeriodType" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AddressArray" type="hropen:AddressTypeArray" />
+</xsd:schema>

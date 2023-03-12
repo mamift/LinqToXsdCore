@@ -1,0 +1,25 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "DefinedTermSetType",
+  "description" : "A set of defined terms for example a set of categories or a classification scheme, a glossary, dictionary or enumeration.",
+  "type" : "object",
+  "properties" : {
+    "descriptions" : {
+      "description" : "A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "name" : {
+      "description" : "The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.",
+      "type" : "string"
+    },
+    "url" : {
+      "description" : "URL of the item.",
+      "type" : "string",
+      "format" : "uri"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="OrdinalType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="OrdinalType">
+    <xsd:annotation>
+      <xsd:documentation>An ordinal number is an assigned mathematical number that represents order or sequence.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer" />
+  </xsd:simpleType>
+  <xsd:element name="Ordinal" type="hropen:OrdinalType" />
+</xsd:schema>

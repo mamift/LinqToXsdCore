@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ResourceMessageInclusion" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../base/IdentifierType.xsd" />
+  <xsd:include schemaLocation="MessageInclusion.xsd" />
+  <xsd:include schemaLocation="ResultStatusCodeList.xsd" />
+  <xsd:complexType name="ResourceMessageInclusion">
+    <xsd:annotation>
+      <xsd:documentation>A response type for communicating processing results of a single resource.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="resourceId" type="hropen:IdentifierType">
+        <xsd:annotation>
+          <xsd:documentation>Identifier for the resource identifier if one is available.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="resourceResultStatusCode" type="hropen:ResultStatusCodeList">
+        <xsd:annotation>
+          <xsd:documentation>A code classifying the event associated with the waiting rule.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="messages">
+        <xsd:complexType>
+          <xsd:annotation>
+            <xsd:documentation>A list of messages concerning the processing of the resource.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="hropen:MessageInclusion" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ResourceMessageInclusion" type="hropen:ResourceMessageInclusion" />
+</xsd:schema>

@@ -1,0 +1,103 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PositionQuestionsType",
+    "description": "The collection of questions for each interview type in which a candidate may participate.",
+    "allOf": [
+        { "$ref": "../../common/json/base/EntityType.json#" }
+    ],
+    "type": "object",
+    "definitions": {
+        "QuestionType": {
+            "title": "QuestionType",
+            "description": "Includes the questions to be asked during an interview.",
+            "type": "object",
+            "properties": {
+                "questionText": { "type": "string" },
+                "mediaURL": {
+                    "description": "The media URL if the question if the question is to be presented in some form of media.",
+                    "$ref": "../../common/json/communication/WebType.json#"
+                },
+                "responseType": {
+                    "description": "video, audio, essay, multiple-choice, multiple-select, etc.",
+                    "type": "string"
+                },
+                "responsePrepTimeSeconds": {
+                    "description": "How long after question presentation before the candidate must start answering the question.",
+                    "$ref": "../../common/json/base/DurationType.json#"
+                },
+                "maxResponseTimeSeconds": {
+                    "description": "How long does the user have to answer the question once presented to them.",
+                    "$ref": "../../common/json/base/DurationType.json#"
+                },
+                "maxResponseLength": {
+                    "description": "What is the maximum length of the response? Units will be a number representing the number of seconds or characters.",
+                    "$ref": "../../common/json/base/NumberType.json#"
+                },
+                "rerecordCount": {
+                    "description": "Can the user rerecord their answer and if so, how many times? If not present option left to the interviewing system.",
+                    "$ref": "../../common/json/base/NumberType.json#"
+                },
+                "questionContext": {
+                    "description": "The context for the question. Typically used with a group of questions related to a scenario.",
+                    "type": "string"
+                },
+                "reviewType": {
+                    "description": "If reviewers can review by question, what type of review (text, multiple choice, multiple select).",
+                    "type": "string"
+                },
+                "responseChoice": {
+                    "description": "If multiple choice or multiple select, the collection of possible responses.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/ChoiceType" }
+                },
+                "reviewChoice": {
+                    "description": "xxx.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/ChoiceType" }
+                },
+                "rankingChoice": {
+                    "description": "xxx.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/ChoiceType" }
+                }
+            }
+        },
+        "ChoiceType": {
+            "title": "ChoiceType",
+            "description": "Provides a choice for the response or review.",
+            "type": "object",
+            "properties": {
+                "text": {
+                    "description": "The score for the selection if provided automated scoring for multiple-select or multiple-choice answers",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The score for the selection if provided automated scoring for multiple-select or multiple-choice answers.",
+                    "type": "string"
+                }
+            }
+        }
+
+    },
+    "properties": {
+        "interviewFormatType": {
+            "description": "The type of interview (asynchronous video, asynchronous audio, live video, live audio, in-person).",
+            "$ref": "../../common/json/base/CodeType.json#"
+        },
+        "questions": {
+            "description": "The collection of questions for a specific interview type.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/QuestionType" }
+        },
+        "defaultRerecordCount": {
+            "description": "The number of times an answer may be rerecorded.",
+            "$ref": "../../common/json/base/NumberType.json#"
+        },
+        "comments": {
+            "description": "Additional information in support of position questions, such as a URL to interviewing system.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/base/CommentType.json#" }
+        }
+    }
+}

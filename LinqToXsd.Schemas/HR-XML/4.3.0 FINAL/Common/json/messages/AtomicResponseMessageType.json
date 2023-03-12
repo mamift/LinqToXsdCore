@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AtomicResponseMessageType",
+    "description": "A response message for communicating processing results of a request to process a single resource, an atomic request.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "ResponseMessageBaseInclusion.json#" }
+    ],
+    "properties": {
+        "requestResultStatusCode": {
+            "description": "The result status code for the request.",
+            "$ref": "ResultStatusCodeList.json#"
+        },
+        "messages": {
+            "description": "A list of messages concerning the processing of an atomic request.",
+            "type": "array",
+            "items": {
+                "$ref": "MessageInclusion.json#"
+            }
+        }
+    }
+}

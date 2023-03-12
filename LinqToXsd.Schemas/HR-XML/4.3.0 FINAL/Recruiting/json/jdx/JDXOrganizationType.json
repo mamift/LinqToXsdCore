@@ -1,0 +1,121 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "JDXOrganizationType",
+  "description" : "An organization such as a corporate body, employer, distribution channel provider.",
+  "type" : "object",
+  "properties" : {
+    "address" : {
+      "description" : "Physical address of the entity.",
+      "$ref" : "../../../common/json/communication/AddressType.json#"
+    },
+    "contactPoint" : {
+      "description" : "A contact point for a person or organization.",
+      "$ref" : "../../../common/json/communication/AddressTypeArray.json#"
+    },
+    "department" : {
+      "description" : "Relationship between an organization and a department of that organization.",
+      "$ref" : "JDXOrganizationType.json#"
+    },
+    "descriptions" : {
+      "description" : "A description of the item. Note(s): Some online job boards and other services (e.g., Google Jobs) require the general description of a JobPosting to be HTML tagged; in such instances, use the formattedDescription property (if available) instead of the description property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "duns" : {
+      "description" : "Dun & Bradstreet DUNS number for identifying an organization or business person.",
+      "type" : "string"
+    },
+    "email" : {
+      "description" : "Email address of an organization or person.",
+      "type" : "string"
+    },
+    "faxNumber" : {
+      "description" : "Fax number of an organization or person.",
+      "type" : "string"
+    },
+    "fein" : {
+      "description" : "Federal Employer Identification Number (FEIN) identifying organizations, persons, states, government agencies, corporations, and companies.",
+      "type" : "string"
+    },
+    "geo" : {
+      "description" : "The geo coordinates of the place.",
+      "$ref" : "../../../common/json/base/GeoType.json#"
+    },
+    "job" : {
+      "description" : "Entity referenced is a full description of a job defined and to be offered by the organization being described.",
+      "$ref" : "../../../common/json/work/JobType.json#"
+    },
+    "industries" : {
+      "description" : "Description of the most critical economic or work activities performed (e.g. software development, electronic manufacturing, motor vehicle production, or diagnostic and therapeutic services). Note(s): NOTE: The industry description expected here is a brief narrative of the most critical economic or work activities performed. To identify a formal industry code, such as NAICS in the U.S., use the industryCode property.",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "industryCodes" : {
+      "description" : "Code from a controlled vocabulary of industry types identifying the primary economic activity of an establishment defined as a single physical location where business is conducted or where services or industrial operations are performed. Note(s): 1.) Use a value selected from a controlled vocabulary of industry types used in the country where the job is located; e.g., NAICS in the U.S. and ESCO in the European Union. 2.) In a JDX job description, there my be multiple levels and locations for an organization identified and each may have different industry codes based on the kinds of work performed at those locations.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AnnotatedDefinedTermType.json#"
+      }
+    },
+    "isicV4" : {
+      "description" : "International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.",
+      "type" : "string"
+    },
+    "jobLocation" : {
+      "description" : "Typically single geographic location where the work is performed.",
+      "$ref" : "PlaceType.json#"
+    },
+    "legalName" : {
+      "description" : "The official name of the organization, e.g. the registered company name.",
+      "type" : "string"
+    },
+    "leiCode" : {
+      "description" : "An organization identifier that uniquely identifies a legal entity as defined in ISO 17442.",
+      "type" : "string"
+    },
+    "logo" : {
+      "description" : "An associated logo.",
+      "type" : "string",
+      "format" : "uri"
+    },
+    "naics" : {
+      "description" : "The North American Industry Classification System (NAICS) code for a particular organization or business person.",
+      "type" : "string"
+    },
+    "name" : {
+      "description" : "The name of the item. Note(s): NOTE: For the name of the hiring organization, use the subproperty legalName.",
+      "type" : "string"
+    },
+    "numberOfEmployees" : {
+      "description" : "Number of employees in the hiring organization.",
+      "type" : "integer"
+    },
+    "parentOrganization" : {
+      "description" : "The larger organization that this organization is a subOrganization of, if any.",
+      "$ref" : "JDXOrganizationType.json#"
+    },
+    "sameAs" : {
+      "description" : "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
+      "type" : "string",
+      "format" : "uri"
+    },
+    "subOrganization" : {
+      "description" : "A relationship between two organizations where the first includes the second, e.g., as a subsidiary.",
+      "$ref" : "JDXOrganizationType.json#"
+    },
+    "telephone" : {
+      "description" : "The telephone number of an organization or person.",
+      "type" : "string"
+    },
+    "url" : {
+      "description" : "URL of the item.",
+      "type" : "string",
+      "format" : "uri"
+    }
+  }
+}

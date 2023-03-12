@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "SearchQueryType",
+    "description": "A general search query type.",
+    "type": "object",
+    "properties": {
+        "limit": {
+            "description": "The limit of the number of items to return in the search result.",
+            "$ref": "SearchLimitType.json#"
+        },
+        "orders": {
+            "description": "The order of the items in the search result.",
+            "type": "array",
+            "items": {
+                "$ref": "SearchOrderType.json#"
+            }
+        },
+        "searchCriteria": {
+            "description": "The search criteria to use when executing the search.",
+            "type": "array",
+            "items": {
+                "$ref": "SearchCriterionType.json#"
+            }
+        },
+        "scoreThreshold": {
+            "description": "The score threshold (minimum and/or maximum) of the items in the search result.",
+            "$ref": "ScoreThresholdType.json#"
+        },
+        "requestedMatchedObjectDescriptors" : {
+            "description" : "Requested descriptors (attributes) of the search result items. Elements should be selected using the JSONPath notation.",
+            "type": "array",
+            "items": {
+                "$ref": "RequestedMatchedObjectDescriptorType.json#"
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "IdGroupType",
+    "description": "A set of identifiers for an object, with a primary identifier and an array of alternate identifiers.",
+    "type": "object",
+    "properties": {
+        "Id": {
+            "description": "The unique and/or primary identifier.",
+            "$ref": "IdentifierType.json#"
+        },
+        "alternateIds": {
+            "description": "Associated alternative identifiers.",
+            "type": "array",
+            "items": { "$ref": "IdentifierType.json#" }
+        }
+    }
+}

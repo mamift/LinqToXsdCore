@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="ObjectiveActionCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="ObjectiveActionCodeList">
+    <xsd:annotation>
+      <xsd:documentation>A code classifying an action to be taken with respect to achieving an objective. This may be used in the definition or specification of an objective or objective plan.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Increase">
+        <xsd:annotation>
+          <xsd:documentation>Increase</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Decrease">
+        <xsd:annotation>
+          <xsd:documentation>Decrease</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MaintainAt">
+        <xsd:annotation>
+          <xsd:documentation>Maintain At</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MaintainAbove">
+        <xsd:annotation>
+          <xsd:documentation>Maintain Above</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Reach">
+        <xsd:annotation>
+          <xsd:documentation>Reach</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MaintainBelow">
+        <xsd:annotation>
+          <xsd:documentation>Maintain Below</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ObjectiveActionCode" type="hropen:ObjectiveActionCodeList" />
+</xsd:schema>

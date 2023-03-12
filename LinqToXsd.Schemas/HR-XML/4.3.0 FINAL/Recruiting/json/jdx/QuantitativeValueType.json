@@ -1,0 +1,25 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "version" : "4.3.0-rc.2",
+  "title" : "QuantitativeValueType",
+  "description" : "Point value or interval for product characteristics and other purposes.",
+  "type" : "object",
+  "properties" : {
+    "maxValue" : {
+      "description" : "The upper value of some characteristic or property.",
+      "type" : "number"
+    },
+    "minValue" : {
+      "description" : "The lower value of some characteristic or property.",
+      "type" : "number"
+    },
+    "unitText" : {
+      "description" : "Unit of measurement on which values for MonetaryAmount or QuantitativeValue are based; select from an existing enumeration of such types. An example of MonetaryAmount is $100 per day where unitText equals DAY. ",
+      "type" : "string"
+    },
+    "value" : {
+      "description" : "Value of the quantitative value or property value node.",
+      "type" : "string"
+    }
+  }
+}

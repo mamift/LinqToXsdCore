@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "InterviewType",
+    "description": "Represents the Interview Specification.",
+    "type": "object",
+    "properties": {
+        "asynchronousOrder": { "$ref": "AsynchronousOrderType.json#" },
+        "interviewPosition": { "$ref": "InterviewPositionType.json#" },
+        "statusNotification": { "$ref": "StatusNotificationType.json#" },
+        "synchronousOrder": { "$ref": "SynchronousOrderType.json#" }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ResourceMessageInclusion",
+    "description": "A response type for communicating processing results of a single resource.",
+    "type": "object",
+    "properties": {
+        "resourceId": {
+            "description": "Identifier for the resource identifier if one is available.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "resourceResultStatusCode": {
+            "description": "A code classifying the event associated with the waiting rule.",
+            "$ref": "ResultStatusCodeList.json#"
+        },
+        "messages": {
+            "description": "A list of messages concerning the processing of the resource.",
+            "type": "array",
+            "items": {
+                "$ref": "MessageInclusion.json#"
+            }
+        }
+    }
+}

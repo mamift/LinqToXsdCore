@@ -1,0 +1,12 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.x",
+	"title": "VoluntaryBenefitTypeCodeList",
+	"description": "Specifies voluntary benefits paid by the employer on behalf of the worker.",
+	"enum": [
+		"Insurance",
+		"Retirement",
+		"Saving",
+		"Other"
+	]
+}

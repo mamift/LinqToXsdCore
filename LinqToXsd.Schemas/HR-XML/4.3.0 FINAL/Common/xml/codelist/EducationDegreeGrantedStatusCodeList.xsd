@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="EducationDegreeGrantedStatusCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="EducationDegreeGrantedStatusCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that classify the education degree granted status.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Granted">
+        <xsd:annotation>
+          <xsd:documentation>Granted</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InProgress">
+        <xsd:annotation>
+          <xsd:documentation>In Progress</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Postponed">
+        <xsd:annotation>
+          <xsd:documentation>Postponed</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NotGranted">
+        <xsd:annotation>
+          <xsd:documentation>Not Granted</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="EducationDegreeGrantedStatusCode" type="hropen:EducationDegreeGrantedStatusCodeList" />
+</xsd:schema>

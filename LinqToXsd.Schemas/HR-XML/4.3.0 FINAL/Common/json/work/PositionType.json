@@ -1,0 +1,85 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"version": "4.3.0",
+	"title": "PositionType",
+	"description": "A type that defines a position type and related identifiers.",
+	"definitions": {
+		"PositionStatusCodeList": {
+			"title": "PositionStatusCodeList",
+			"description": "A value defining the status of the position.",
+			"enum": [
+				"Approved",
+				"Active",
+				"Filled",
+				"Frozen",
+				"Cancelled"
+			],
+			"enumNames": [
+				"Authorized to hire for the position",
+				"Currently filling an open position",
+				"The position is filled",
+				"Vacant but not currently being filled",
+				"Position is no longer valid"
+			]
+		}
+	},
+	"type": "object",
+	"properties": {
+		"id": {
+			"description": "An identifier for a position.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"title": {
+			"description": "The title of a position.",
+			"type": "string"
+		},
+		"remunerationBasisCode": {
+			"description": "A code classifying the primary method by which remuneration for a position is provided or calculated. Examples include Hourly, Salaried, Salaried plus Commission, Commission Only, Salaried plus Bonus, etc.",
+			"$ref": "../codelist/RemunerationBasisCodeList.json#"
+		},
+		"positionScheduleType": {
+			"description": "The type of position schedule. Values include FullTime, PartTime, SharedTime and FlexTime. ",
+			"$ref": "../codelist/PositionScheduleTypeCodeList.json#"
+		},
+		"positionTypeCode": {
+			"description": "Deprecated for the Employee Earnings specifications in 4.3 release. Use PositionTermType instead. Other domains will review in future releases. The code of the position type. Values include DirectHire, Temporary, Contract, Internship, Seasonal, etc.",
+			"$ref": "../codelist/PositionTypeCodeList.json#"
+		},
+		"positionTermTypeCode": {
+			"description": "The code of the term of the position. Values include Fixed, Permanent, Casual, Seasonal.",
+			"$ref": "../codelist/PositionTermTypeCodeList.json#"
+		},
+		"permanentEligibleIndicator": {
+			"description": "An arrangement where a worker is hired on a short-term contract on the condition that they may be hired for a permanent position.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"fillByContractorIndicator": {
+			"description": "Indicates that this position should be filled by an independent or third party contractor.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"fillByStudentIndicator": {
+			"description": "Indicates that this position should be filled by a student.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"fillByVolunteerIndicator": {
+			"description": "Indicates that this position should be filled by a volunteer.",
+			"$ref": "../base/IndicatorType.json#"
+		},
+		"positionStatusCode": {
+			"description": "Defines the status of the position. Options may be Approved, Active,  Filled, Frozen, Cancelled.",
+			"$ref": "#/definitions/PositionStatusCodeList"
+		},
+		"positionStatusDate": {
+			"description": "The date of the status.",
+			"$ref": "../base/DateType.json#"
+		},
+		"jobId": {
+			"description": "Identifies the related job.",
+			"$ref": "../base/IdentifierType.json#"
+		},
+		"careerLevelCode": {
+			"description": "The code representing the career level.",
+			"$ref": "../base/CodeType.json#"
+		}
+	}
+}

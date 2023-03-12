@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PositionTermTypeCodeList",
+    "description": "The term of the work agreement or position. Options are Fixed, Permanent, Casual, Seasonal.",
+    "enum": [
+        "Fixed",
+        "Permanent",
+        "Temporary",
+        "Seasonal"
+    ],
+    "enumNames": [
+        "Ends on a specified date or when a particular event occurs.",
+        "Has the full set of employment rights and responsibilities. This may be full or part time.",
+        "Used for unpredictable workloads, project work, seasonal peaks, and other limited-term needs, such as a leave of absence.",
+        "A type of fixed-term employment where the employment agreement says that the work will finish at the end of the season."
+    ]
+}

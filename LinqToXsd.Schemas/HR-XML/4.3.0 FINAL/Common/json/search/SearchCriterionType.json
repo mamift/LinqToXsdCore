@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "SearchCriterionType",
+    "description": "A search criterion.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "AllQueryType.json#" }
+    ],
+    "properties": {
+        "weight": {
+            "description": "Criterion importance. Criterion can be set as required, or a numerical weight may be assigned.",
+            "$ref": "WeightType.json#"
+        },
+        "id": {
+            "description": "Criterion identifier. Can be used to refer to the criterion later, e.g. in search result details explanation.",
+            "$ref": "../base/IdentifierType.json#"
+        }
+    }
+}

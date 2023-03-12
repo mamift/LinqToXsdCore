@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "DateTimeType",
+    "description": "DateTime representation according ISO 8601 standard.",
+    "type": "string",
+    "format": "date-time"
+}

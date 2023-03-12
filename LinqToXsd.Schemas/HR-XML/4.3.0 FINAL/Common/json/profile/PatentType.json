@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PatentType",
+    "description": "Basic type that contains all properties common to represent a patent.",
+    "type": "object",
+    "properties": {
+        "ids": {
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "title": {
+            "description": "The patent title as registered with the government organization.",
+            "type": "string"
+        },
+        "inventorNames": {
+            "description": "The list of inventors who are registered on the patent.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "assigneeNames": {
+            "description": "The list of assignees who are registered on the patent.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "issuingAuthority": {
+            "description": "The agency under which the patent is registered.",
+            "$ref": "../organization/OrganizationType.json#"
+        },
+        "status": {
+            "description": "The current status of the patent. Statuses include filed, pending, issued.",
+            "$ref": "../codelist/PatentStatusCodeList.json#"
+        },
+        "attachmentReferences": {
+            "description": "References to the patent.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        },
+        "descriptions": {
+            "$ref": "../base/StringTypeArray.json#"
+        }
+    }
+}

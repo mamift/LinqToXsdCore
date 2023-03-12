@@ -1,0 +1,109 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ProcessHistoryItemType",
+    "description": "Describes a single workflow process history step or item.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "The identifier for the history item.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "actionDate": {
+            "description": "The date and time that the action was executed or the event occurred or the step was completed.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "action": {
+            "description": "The executed action that occurred on the step or item by the primary parties. This action may or may not involve a status change of the underlying process. E.g. reviewed application, sent for approval, approved (which might then change status as well).",
+            "$ref": "#/definitions/ProcessActionType"
+        },
+        "status": {
+            "description": "The current status of the underlying entity/process. For example, if it is an application process, the status would represent the current state of the candidate to the position opening. E.g. applied, interviewed, offered, hired.",
+            "$ref": "#/definitions/ProcessStatusType"
+        },
+        "previousStatus": {
+            "description": "The previous status of the underlying entity/process - relevant in a status change process. Use status only if the whole history is maintained - previousStatus may not be needed.",
+            "$ref": "#/definitions/ProcessStatusType"
+        },
+        "primaryParties": {
+            "description": "The parties executing the action. For example, the company, the hiring manager, the HR manager, etc.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/ProcessPartyType"
+            }
+        },
+        "associatedParties": {
+            "description": "The parties additionally involved in the executed action. For example, the recruiting team or a set of people involved in an interview step. They are not the ones making the decision, but may be influencers or need to be informed.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/ProcessPartyType"
+            }
+        },
+        "attachments": {
+            "description": "Attachments related to the history item.",
+            "type": "array",
+            "items": {
+                "$ref": "../base/AttachmentType.json#"
+            }
+        },
+        "descriptions": {
+            "description": "Additional details or descriptions about the history item.",
+            "$ref": "../base/StringTypeArray.json#"
+        }
+    },
+    "definitions": {
+        "ProcessActionType": {
+            "title": "ProcessActionType",
+            "description": "The type of action, process, or step that was executed.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "The name of the executed action, process, or step.",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "The code of the executed action, process, or step.",
+                    "$ref": "../base/CodeType.json#"
+                },
+                "description": {
+                    "description": "Description of the executed action, process, or step.",
+                    "type": "string"
+                }
+            }
+        },
+        "ProcessStatusType": {
+            "title": "ProcessStatusType",
+            "description": "A type defining the status of the underlying item.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "The name of the status of the underlying item.",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "The code of the status of the underlying item.",
+                    "$ref": "../base/CodeType.json#"
+                },
+                "description": {
+                    "description": "Description of the status of the underlying item.",
+                    "type": "string"
+                }
+            }
+        },
+        "ProcessPartyType": {
+            "title": "ProcessPartyType",
+            "description": "A type defining the party, which may be a person or organization or both.",
+            "type": "object",
+            "properties": {
+                "person": {
+                    "description": "Contains information to identify a person associated with the interaction or entity.",
+                    "$ref": "../person/SpecifiedPersonType.json#"
+                },
+                "organization": {
+                    "description": "Basic information to reference a specific organization.",
+                    "$ref": "../organization/OrganizationReferenceType.json#"
+                }
+            }
+        }
+    }
+}

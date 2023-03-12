@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="AssessmentType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="CatalogType.xsd" />
+  <xsd:include schemaLocation="OrderType.xsd" />
+  <xsd:include schemaLocation="ReportType.xsd" />
+  <xsd:complexType name="AssessmentType">
+    <xsd:annotation>
+      <xsd:documentation>Represents the Assessments Specification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element minOccurs="0" maxOccurs="1" name="catalog" type="hropen:CatalogType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="order" type="hropen:OrderType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="report" type="hropen:ReportType" />
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="Assessment" type="hropen:AssessmentType" />
+</xsd:schema>

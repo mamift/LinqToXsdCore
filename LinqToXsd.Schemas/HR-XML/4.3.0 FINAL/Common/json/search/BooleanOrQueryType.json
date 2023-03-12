@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "BooleanOrQueryType",
+    "description": "Type to implement a 'boolean OR' query.",
+    "type": "object",
+    "properties": {
+        "booleanOr": {
+            "type": "array",
+            "items": {
+                "$ref": "AllQueryType.json#"
+            },
+            "minItems": 2
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CertificationType",
+    "description": "A document or confirmation certifying the status or acquirements of the bearer, or his fulfillment of conditions which authorize him to act or practise in a specified way; hence, often equal to a certificate.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "A unique identifier to the certificate as defined by the issuing authority.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "name": {
+            "description": "The common name of the certificate.",
+            "type": "string"
+        },
+        "type": {
+            "description": "The type of the certificate.",
+            "$ref": "../base/EntityType.json#"
+        },
+        "status": {
+            "description": "The status of the certificate. While this is an open string, common status include active, expired, pending, suspended.",
+            "type": "string"
+        },
+        "effectiveTimePeriod": {
+            "description": "The time period for which the certificate is valid and considered active.",
+            "$ref": "../base/EffectiveTimePeriodType.json#"
+        },
+        "issued": {
+            "description": "The most recent issue date of the certificate. This might be of relevance if it differs from the start date of the valid time period or is a renewal of a previous certificate.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "firstIssued": {
+            "description": "The original issue date of the certificate. Often this is useful when the certificates need to be renewed often, and it is important to know how long the certificate has been held.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "issuingAuthority": {
+            "description": "The organization that issued the certificate.",
+            "$ref": "../organization/OrganizationType.json#"
+        },
+        "attachmentReferences": {
+            "description": "References to attachments in the message that provide evidence of the issue or the validity of the license.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        },
+        "descriptions": { "$ref": "../base/StringTypeArray.json#" }
+    }
+}

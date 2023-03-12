@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "ScoreNumericType",
+    "description": "A numeric measurement of abilities or capacity to learn.",
+    "type": "object",
+    "properties": {
+        "value": { "type": "number" },
+        "scoreCode": { "$ref": "../codelist/ScoreNumericCodeList.json#" },
+        "interval": {
+            "description": "The stop points between minimum and maximum.",
+            "type": "number"
+        },
+        "minimum": {
+            "description": "Optional. Indicates lower value for a range.",
+            "type": "number"
+        },
+        "maximum": {
+            "description": "Optional. Indicates upper value for a range.",
+            "type": "number"
+        }
+    },
+    "required": [ "value" ]
+}

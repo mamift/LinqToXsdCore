@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "AttachmentType",
+    "description": "Embedded attachment data or URL to actual attachment.",
+    "definitions": {
+        "AttachmentContent": {
+            "title": "AttachmentContent",
+            "description": "Content of an attachment in the JSON message, which can be embedded or an external reference.",
+            "type": "object",
+            "properties": {
+                "content": { 
+                    "description": "Embedded attachment represented as a binary object.",
+                    "$ref": "BinaryObjectType.json#" 
+                },
+                "url": {
+                    "description": "A URL to an external document.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "minProperties": 1
+        }
+    },
+    "allOf": [
+        { "$ref": "#/definitions/AttachmentContent" }
+    ],
+    "type": "object",
+    "properties": {
+        "id": { 
+            "description": "An identifier of the attachment.",
+            "$ref": "IdentifierType.json#" 
+        },
+        "descriptions": { 
+            "description": "Descriptions of the attachment.",
+            "$ref": "StringTypeArray.json#" 
+        }
+    }
+}

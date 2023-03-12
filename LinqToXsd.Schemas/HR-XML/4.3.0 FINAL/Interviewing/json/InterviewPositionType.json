@@ -1,0 +1,97 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "InterviewPositionType",
+    "description": "Provides the information needed to create a Position for an Interview.",
+    "type": "object",
+    "definitions": {
+        "PositionType": {
+            "title": "PositionType",
+            "description": "Information about the position.",
+            "type": "object",
+            "properties": {
+                "positionId": {
+                    "description": "This is the Position Identifier assigned by the interviewing system.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "positionTemplate": {
+                    "description": "The name and Id of a position template.",
+                    "$ref": "../../common/json/base/EntityType.json#"
+                },
+                "positionTitle": {
+                    "description": "The position title which might be presented to interviewees.",
+                    "type": "string"
+                },
+                "positionPublicTitle": {
+                    "description": "The position title that is presented to the interviewee as opposed to the PositionTitle which is used internally by recruiters to reference the position..",
+                    "type": "string"
+                },
+                "positionDescription": {
+                    "description": "Position description, which may include html or some type of formatting information.",
+                    "type": "string"
+                },
+                "positionLocation": {
+                    "description": "The location of the position..",
+                    "$ref": "../../common/json/communication/LocationType.json#"
+                },
+                "positionEndDate": {
+                    "description": "The end date for the position.",
+                    "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+                },
+                "positionCategory": {
+                    "description": "A way of grouping positions. E.g, Manager, Admin, Software, Retail, etc.",
+                    "$ref": "../../common/json/base/EntityType.json#"
+                },
+                "themeId": {
+                    "description": "ID of branding theme this position will use.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "interviewFormatArray": {
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/CodeType.json#" }
+                }
+            },
+            "required": [ "interviewFormatArray", "positionTitle" ]
+        }
+    },
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "position": { "$ref": "#/definitions/PositionType" },
+        "recruiter": { "$ref": "RecruiterContactType.json#" },
+        "accountCode": {
+            "description": "Account Code for use for accounting purposes.",
+            "type": "string"
+        },
+        "externalId": {
+            "description": "Identifier used by the requesting system to identify the position.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "submissionDeadline": {
+            "description": "The default deadline, in hours or date, for an interview requested for this position.",
+            "$ref": "../../common/json/base/FormattedDateTimeType.json#"
+        },
+        "languageCode": {
+            "description": "The default language in which the position is presented to the outside world.",
+            "$ref": "../../common/json/codelist/LanguageCodeList.json#"
+        },
+        "positionQuestions": {
+            "type": "array",
+            "items": { "$ref": "PositionQuestionsType.json#" }
+        },
+        "introVideoInId": {
+            "description": "ID of video that welcomes the interviewee to the interview.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "introVideoOutId": {
+            "description": "ID of video that thanks interviewee for their participation.",
+            "$ref": "../../common/json/base/IdentifierType.json#"
+        },
+        "comments": {
+            "description": "Additional information in support of interview position, such as a URL to interviewing system.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/base/CommentType.json#" }
+        }
+    }
+}

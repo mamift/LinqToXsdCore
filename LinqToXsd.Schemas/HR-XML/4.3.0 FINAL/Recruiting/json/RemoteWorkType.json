@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "RemoteWorkType",
+    "description": "Represents the remote work specification.",
+    "type": "object",
+    "properties": {
+        "remoteWorkIndicator": {
+            "description": "Indicator for remote work is available to employee.",
+            "type": "boolean"
+        },
+        "workLocationCodes": {
+            "description": "A list of codes defining work locations allowed for or desired for remote work.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/WorkLocationCodeList"
+            }
+        },
+        "restrictionCodes": {
+            "description": "A list of codes defining the scope of restrictions of work locations allowed for or desired for remote work.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/RestrictionCodeList"
+            }
+        },
+        "remoteEligibilityRequirement": {
+            "description": "The requirements of the remote work for a candidate. This could include having a computer, internet access, a quiet or private office environment, etc.",
+            "type": "string"
+        },
+        "restrictionDetails": {
+            "description": "The details related to the RestrictionCode that help to describe the specifics of the remote work restriction.",
+            "type": "string"
+        }
+    },
+    "definitions": {
+        "WorkLocationCodeList": {
+            "title": "WorkLocationCodeList",
+            "description": "A code classifying the role of an entity or the role with which that entity is associated. 'Home' allows for work at a candidate's home. 'Virtual' allows for work in any location that is not provided by the company (i.e. airport, coffee shop). 'Colocation' would be for remote office or shared office environment near the candidate.",
+            "enum": [
+                "Home",
+                "Virtual",
+                "Colocation"
+            ]
+        },
+        "RestrictionCodeList": {
+            "title": "RestrictionCodeList",
+            "description": "A code classifying the restriction of the remote work to a particular region or time zone. 'Local' typically refers to a city or small area. 'Regional' refers to a state, province or official territory. 'Timezone' refers to a restriction based on time zone. 'Country' refers to a restriction in one or more countries. 'Territory' refers to a defined area by the company. 'Other' means a restriction not defined by the other choices. If there are no restrictions, use 'None'. The details of the restriction should be specified in 'RestrictionDetails'.",
+            "enum": [
+                "Local",
+                "Regional",
+                "Timezone",
+                "Country",
+                "Territory",
+                "Other"
+            ]
+        }
+    }
+}

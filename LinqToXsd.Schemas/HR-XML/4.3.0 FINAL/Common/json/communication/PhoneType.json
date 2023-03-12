@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "PhoneType",
+    "type": "object",
+    "properties": {
+        "countryDialingCode": {
+            "description": "The country dialing code for a communication number.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "areaDialingCode": {
+            "description": "The area dialing code for a communication number.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "dialNumber": {
+            "description": "The communication number, not including country dialing or area dialing codes.",
+            "type": "string"
+        },
+        "phoneExtension": {
+            "description": "The extension of the associated communication number.",
+            "type": "string"
+        },
+        "access": {
+            "description": "The text that permits access to the electronic network of the associated communication number such as telephone network, for example 9, *70.",
+            "type": "string"
+        },
+        "formattedNumber": {
+            "description": "Specifies details of an actual formatted number.",
+            "type": "string"
+        }
+    },
+    "required": [ "formattedNumber" ]
+}

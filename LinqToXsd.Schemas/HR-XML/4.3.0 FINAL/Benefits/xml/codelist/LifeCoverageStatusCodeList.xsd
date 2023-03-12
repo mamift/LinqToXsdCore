@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="LifeCoverageStatusCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="LifeCoverageStatusCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Life Coverage Status Code List.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Member is active" />
+      <xsd:enumeration value="Premium waived due to disability" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="LifeCoverageStatusCode" type="hropen:LifeCoverageStatusCodeList" />
+</xsd:schema>

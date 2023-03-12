@@ -1,0 +1,109 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "EducationAttendanceType",
+    "description": "Contains details documenting a person's attendance at an educational institution. (OED Institution, n. An establishment, organization, or association, instituted for the promotion of education.)",
+    "definitions": {
+        "EducationSpecializationType": {
+            "title": "EducationSpecializationType",
+            "allOf": [
+                { "$ref": "../base/EntityType.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Type of specialization, e.g. 'major', 'minor'.",
+                    "type": "string"
+                }
+            }
+        },
+        "EducationDegreeType": {
+            "title": "EducationDegreeType",
+            "description": "Contains details about the student's degree. A degree is a recognized completion of studies at a school (such as a college or university). A certificate, which may be a diploma or degree, is generally issued in recognition of having completed the course of study.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Identifier for the degree.",
+                    "$ref": "../base/IdentifierType.json#"
+                },
+                "name": {
+                    "description": "Name for the degree.",
+                    "type": "string"
+                },
+                "codes": {
+                    "type": "array",
+                    "items": { "$ref": "../base/CodeType.json#" }
+                },
+                "date": { "$ref": "../base/FormattedDateTimeType.json#" },
+                "specializations": {
+                    "description": "The focus of study for the student's degree. This may include majors, minors, emphasis or other foci.",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/EducationSpecializationType" }
+                },
+                "score": { "$ref": "../evaluation/ScoreType.json#" },
+                "academicHonors": { "$ref": "../base/StringTypeArray.json#" },
+                "degreeGrantedStatus": {
+                    "description": "Current education degree granted status.",
+                    "$ref": "../codelist/EducationDegreeGrantedStatusCodeList.json#"
+                },
+                "iscedEducationLevelCode": {
+                    "description": "ISCED: International Standard Classification of Education - is the standard classification of the education level of this attendance.",
+                    "$ref": "../codelist/IscedCodeList.json#"
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "BaseHistoryType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "institution": {
+            "description": "The institution to which the person attended.",
+            "$ref": "../organization/OrganizationType.json#"
+        },
+        "department": {
+            "description": "The department at the institution to which the person attended.",
+            "$ref": "../organization/OrganizationType.json#"
+        },
+        "programs": {
+            "description": "The list of programs to which the person attended.",
+            "$ref": "../base/StringTypeArray.json#"
+        },
+        "educationLevelCodes": {
+            "description": "The identifier to the level of the education attendance. This could be country-specific or industry-specific classifications.",
+            "type": "array",
+            "items": { "$ref": "../base/EntityType.json#" }
+        },
+        "currentlyAttendingIndicator": {
+            "description": "Indicator that the person is still attending.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "goodStandingIndicator": {
+            "description": "Indicator that the person is currently in good standing according to the rules of the educational institution.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "educationDegrees": {
+            "description": "The degrees which were awarded or in process at the institution.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/EducationDegreeType" }
+        },
+        "otherAttendancePeriods": {
+            "description": "Additional periods of attendance.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "start": {
+                        "description": "The start date of the additional attendance period if known.",
+                        "$ref": "../base/FormattedDateTimeType.json#"
+                    },
+                    "end": {
+                        "description": "The end date of the additional attendance period if known.",
+                        "$ref": "../base/FormattedDateTimeType.json#"
+                    }
+                }
+            }
+        }
+    }
+}

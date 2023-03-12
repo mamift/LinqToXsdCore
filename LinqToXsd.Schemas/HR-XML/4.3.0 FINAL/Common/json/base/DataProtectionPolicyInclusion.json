@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "DataProtectionPolicyInclusion",
+    "description": "Data protection policy according General Data Protection Regulation (GDPR) (Regulation (EU) 2016/679).",
+    "definitions": {
+        "SecurityPermissionType": {
+            "enum": [
+                "Read",
+                "Modify",
+                "Store",
+                "Full Control"
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "dataProtectionPolicy": {
+            "type": "object",
+            "properties": {
+                "retentionDate": {
+                    "description": "Date until allowed to keep privacy data. In case 'retentionDays' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.",
+                    "$ref": "DateType.json#"
+                },
+                "retentionDays": {
+                    "description": "Number of days allowed to keep privacy data. In case 'retentionDate' is also present, earlier one is taken as retention limit. In case of no retention property present, data can be kept indefinitely.",
+                    "type": "integer"
+                },
+                "geoRestrictions": {
+                    "description": "Data can be processed only in countries from this list. In case not present, there is no country restriction associated with data.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "country": { 
+                                "description": "The Country (represented by an ISO 3166 2 letter code) under which the data protection policy applies. If the policy applies to the world, the country is optional.",
+                                "$ref": "../codelist/CountryCodeList.json#" 
+                            },
+                            "countrySubDivisions": {
+                                "description": "An optional further restriction or application of the data protection policy based on a region within the associated country. It should contain an ISO 3166-2 code for the country. Example would be 'US-CA' for California for further restrictions based on the CCPA regulation.",
+                                "type": "array",
+                                "items": { "$ref": "../communication/AddressComponentType.json#" }
+                            },
+                            "policy": { 
+                                "description": "The description of the data protection policy (optionally associated with the country and optional region).",
+                                "$ref": "#/definitions/SecurityPermissionType"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

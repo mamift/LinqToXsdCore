@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "BenefitsType",
+    "description": "Represents the Benefits Specification.",
+    "type": "object",
+    "properties": {
+        "census": { "$ref": "CensusType.json#" },
+        "enrollment": { "$ref": "EnrollmentType.json#" },
+        "planSetup": { "$ref": "PlanSetupType.json#" }
+    }
+}

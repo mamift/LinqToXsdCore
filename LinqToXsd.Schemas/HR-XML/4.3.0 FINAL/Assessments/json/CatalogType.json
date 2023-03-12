@@ -1,0 +1,201 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "CatalogType",
+    "description": "Represents an Assessments Catalog for HR Open Standards.",
+    "definitions": {
+        "AdditionalAmountType": {
+            "title": "AdditionalAmountType",
+            "description": "Part of assessment package costs.",
+            "allOf": [
+                { "$ref": "../../common/json/base/AmountType.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "typeCode": {
+                    "description": "Type code for an additional amount.",
+                    "$ref": "../../common/json/base/AmountType.json#"
+                }
+            }
+        },
+        "AdditionalItemType": {
+            "title": "AdditionalItemType",
+            "description": "Structure to define additional items between trading partners.",
+            "type": "object",
+            "properties": {
+                "id": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "sequence": {
+                    "description": "Order for the additional item to be displayed",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "Name of the additional item.",
+                    "type": "string"
+                },
+                "typeCode": {
+                    "$ref": "../../common/json/base/CodeType.json#"
+                },
+                "content": {
+                    "description": "Description of the additional item.",
+                    "type": "string"
+                }
+            }
+        },
+        "AssessmentAdministrationType": {
+            "description": "Provides details for the administration of an assessment.",
+            "type": "object",
+            "properties": {
+                "descriptions": { "$ref": "../../common/json/base/StringTypeArray.json#" },
+                "proctoredAssessmentIndicator": { "type": "boolean" },
+                "timeEnforcedIndicator": { "type": "boolean" },
+                "testDuration": { "$ref": "../../common/json/base/DurationType.json#" },
+                "schedulingRequiredIndicator": { "type": "boolean" }
+            }
+        },
+        "AssessmentApplicabilityType": {
+            "description": "Provides details for the applicability of an assessment test.",
+            "type": "object",
+            "properties": {
+                "descriptions": { "$ref": "../../common/json/base/StringTypeArray.json#" },
+                "applicableRegions": {
+                    "description": "A set of information broadly describing the region(s) where the assessment is applicable or available.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/communication/JurisdictionType.json#" }
+                },
+                "assessmentTypeCodes": {
+                    "description": "An array of assessment type codes for the test package.",
+                    "type": "array",
+                    "items": { "$ref": "codelist/AssessmentTypeCodeList.json#" }
+                },
+                "assessedCompetencies": {
+                    "description": "An array of assessment competencies for the test package.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/competency/SpecifiedCompetencyType.json#" }
+                },
+                "jobCategoryCodes": {
+                    "description": "An array of job category codes for the test package.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/CodeType.json#" }
+                },
+                "careerLevelCode": {
+                    "$ref": "../../common/json/codelist/CareerLevelCodeList.json#"
+                }
+            }
+        },
+        "AssessmentFulfillmentType": {
+            "description": "A set of information describing options and characteristics relating to the way an assessment result is provided. For example, the language or available languages of the assessment report; the period for which the result is recognized as valid or reliable, the name or identity of the scoring profile used in calculating the result; etc.",
+            "type": "object",
+            "properties": {
+                "descriptions": { "$ref": "../../common/json/base/StringTypeArray.json#" },
+                "effectivePeriod": {
+                    "description": "The period for which the result is recognized as valid or reliable.",
+                    "$ref": "../../common/json/base/EffectiveTimePeriodType.json#"
+                },
+                "scoreProfileNames": {
+                    "description": "Name or identity of the scoring profile used in calculating the result.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "reportLanguageCodes": {
+                    "description": "Available languages for the assessment report.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/codelist/LanguageCodeList.json#" }
+                }
+            }
+        },
+        "IdSetType": {
+            "title": "IdSetType",
+            "description": "Identification Set",
+            "allOf": [
+                { "$ref": "../../common/json/base/EffectiveTimePeriodType.json#" }
+            ],
+            "properties": {
+                "id": {
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/IdentifierType.json#" }
+                },
+                "agencyRole": { "$ref": "../../common/json/codelist/AgencyRoleCodeList.json#" },
+                "identifierAttributeGroup": { "type": "string" }
+            }
+        },
+        "AssessmentPackageType": {
+            "title": "AssessmentPackageType",
+            "definition": "Describes a set of component services that are marketed and can be ordered as a unit.",
+            "type": "object",
+            "properties": {
+                "packageId": {
+                    "description": "This is the 'Package ID' used to order a set of assessment services.",
+                    "$ref": "../../common/json/base/IdentifierType.json#"
+                },
+                "ids": {
+                    "description": "This is the 'Package ID' that would be used to order a set of assessment services.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/IdentifierType.json#" }
+                },
+                "name": {
+                    "description": "The name or terse descriptive label by which the package is referred.",
+                    "type": "string"
+                },
+                "descriptions": {
+                    "description": "An array of descriptions for the package.",
+                    "$ref": "../../common/json/base/StringTypeArray.json#"
+                },
+                "parentGroupIds": {
+                    "description": "A reference from a child package to one or more associated parent entity.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/IdentifierType.json#" }
+                },
+                "packageTypeCodes": {
+                    "description": "Associated type codes.",
+                    "type": "array",
+                    "items": { "$ref": "../../common/json/base/CodeType.json#" }
+                },
+                "partyReportingIds": {
+                    "description": "A repeating ID set used to pass along identifiers that are used for reporting, filtering, accounting, cost center identification, and similar purposes",
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/IdSetType" }
+                },
+                "serviceAvailabilityCode": {
+                    "description": "Indicates availability of the package.",
+                    "$ref": "codelist/ServiceAvailabilityCodeList.json#"
+                },
+                "packageCost": {
+                    "description": "Contains availible costs associated with the package.",
+                    "type": "object",
+                    "properties": {
+                        "baseAmount": {
+                            "$ref": "../../common/json/base/AmountType.json#"
+                        },
+                        "additionalAmounts": {
+                            "description": "Additional item costs",
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/AdditionalAmountType" }
+                        },
+                        "additionalItems": {
+                            "description": "Additional items that are part of the package cost.",
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/AdditionalItemType" }
+                        },
+                        "totalAmount": {
+                            "description": "Includes baseAmount and additionalAmounts.",
+                            "$ref": "../../common/json/base/AmountType.json#"
+                        }
+                    }
+                },
+                "administration": { "$ref": "#/definitions/AssessmentAdministrationType" },
+                "applicability": { "$ref": "#/definitions/AssessmentApplicabilityType" },
+                "fulfillment": { "$ref": "#/definitions/AssessmentFulfillmentType" }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" },
+        { "$ref": "../../common/json/organization/PartyInclusion.json#" }
+    ],
+    "properties": {
+        "documentSequence": { "type": "integer" },
+        "packages": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/AssessmentPackageType" }
+        }
+    }
+}

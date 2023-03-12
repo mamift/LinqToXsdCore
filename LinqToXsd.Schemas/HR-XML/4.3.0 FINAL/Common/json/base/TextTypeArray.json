@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "4.3.0",
+    "title": "TextTypeArray",
+    "description": "Array of TextType data - for providing a multilingual textual representation.",
+    "type": "array",
+    "items": {
+        "$ref": "TextType.json#"
+    }
+}

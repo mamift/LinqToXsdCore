@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hropen="https://hropenstandards.org/schema/xml/" targetNamespace="https://hropenstandards.org/schema/xml/" version="4.2.0" id="PositionScheduleTypeCodeList" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="PositionScheduleTypeCodeList">
+    <xsd:annotation>
+      <xsd:documentation>Values that classify the working schedule of a position offered or a position sought. Essentially, whether a position offered or sought is full-time or part-time or has provision for flexible scheduling. Shared Time is meant to indicate a single position that is shared amongst more than one person. Intended to classify schedule position preferences of a candidate or conversely employer preferences or requirements related to candidates with respect to an advertised position. Used in the context of matching candidates to positions.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FullTime">
+        <xsd:annotation>
+          <xsd:documentation>Full-Time</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PartTime">
+        <xsd:annotation>
+          <xsd:documentation>Part-Time</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FlexTime">
+        <xsd:annotation>
+          <xsd:documentation>Flex Time</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SharedTime">
+        <xsd:annotation>
+          <xsd:documentation>Shared Time</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="PositionScheduleTypeCode" type="hropen:PositionScheduleTypeCodeList" />
+</xsd:schema>
