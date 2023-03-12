@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cash_packaging_report="urn:gs1:ecom:cash_packaging_report:xsd:3" xmlns:cash_processing_machines_common="urn:gs1:ecom:cash_processing_machines_common:xsd:3" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:gs1_xmldsig="urn:gs1:ext:xmldsig:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:cash_packaging_report:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:ext:xmldsig:xsd:3" schemaLocation="../ext/DigitalSignature.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:cash_processing_machines_common:xsd:3" schemaLocation="CashProcessingMachinesCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="cashPackagingReportMessage" type="cash_packaging_report:CashPackagingReportMessageType"/>
+    <xsd:complexType name="CashPackagingReportLineItemDetailsType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="inputTradeItem" type="cash_processing_machines_common:CashPackagingTradeItemType"/>
+            <xsd:element name="outputTradeItem" type="cash_processing_machines_common:CashPackagingTradeItemType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="originProcessingStation" type="cash_processing_machines_common:CashProcessingStationType"/>
+            <xsd:element minOccurs="0" name="outputLogisticUnit" type="cash_packaging_report:OutputLogisticUnitType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashPackagingReportLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="reportUnitCreation" type="shared_common:DateTimeRangeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="cashPackagingEvent" type="cash_processing_machines_common:CashProcessingEventType"/>
+            <xsd:element maxOccurs="unbounded" name="cashPackagingReportLineItemDetails" type="cash_packaging_report:CashPackagingReportLineItemDetailsType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashPackagingReportMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="cashPackagingReport" type="cash_packaging_report:CashPackagingReportType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashPackagingReportType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="cashPackagingReportIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element minOccurs="0" name="digitalSignature" type="gs1_xmldsig:DigitalSignatureType"/>
+                    <xsd:element name="reportPeriod" type="shared_common:DateTimeRangeType"/>
+                    <xsd:element name="processingStation" type="cash_processing_machines_common:CashProcessingStationType"/>
+                    <xsd:element name="cashPackagingReportReceiver" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="operator" type="cash_processing_machines_common:OperatorOfProcessingStationType"/>
+                    <xsd:element maxOccurs="unbounded" name="cashPackagingReportLineItem" type="cash_packaging_report:CashPackagingReportLineItemType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="OutputLogisticUnitType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:Ecom_LogisticUnitIdentificationType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="logisticUnitMeasurement" type="ecom_common:LogisticUnitMeasurementType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema  targetNamespace="http://www.govtalk.gov.uk/gateway/digitalmail" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns="http://www.govtalk.gov.uk/gateway/digitalmail" 
+			elementFormDefault="qualified" 
+			attributeFormDefault="unqualified" 
+			version="1"
+			id="DigitalMail-MessageBox">
+			
+	<xs:include schemaLocation="digitalmail_core-v1.xsd"/>
+	
+	<xs:element name="MessageBox">
+		<xs:annotation>
+			<xs:documentation>Defines the return value from the GetMessageBox method</xs:documentation>
+			<xs:appinfo>gateway, administration, mail, message, email, secure, mailbox</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="MessageSummary" type="MessageSummaryType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="MessageSummaryType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="MessageID" type="MessageIDType"/>
+			<xs:element name="ServiceName" type="ServiceNameType"/>
+			<xs:element name="DocumentType" type="StringField100Type"/>
+			<xs:element name="Subject" type="StringField100Type"/>
+			<xs:element name="DateTimeStamp" type="xs:dateTime"/>
+			<xs:element name="ReplyAccepted" type="xs:boolean" default="true"/>
+			<xs:element name="MessageState" type="MessageStateType"/>
+			<xs:element name="MessageType" type="MessageBoxType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

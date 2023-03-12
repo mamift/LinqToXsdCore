@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:transport_pickup_dropoff_common="urn:gs1:ecom:transport_pickup_dropoff_common:xsd:3" xmlns:transport_pickup_dropoff_request="urn:gs1:ecom:transport_pickup_dropoff_request:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:transport_pickup_dropoff_request:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:transport_pickup_dropoff_common:xsd:3" schemaLocation="TransportPickUpDropOffCommon.xsd"/>
+    <xsd:element name="transportPickUpDropOffRequestMessage" type="transport_pickup_dropoff_request:TransportPickUpDropOffRequestMessageType"/>
+    <xsd:complexType name="TransportPickUpDropOffRequestMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="transportPickUpDropOffRequest" type="transport_pickup_dropoff_request:TransportPickUpDropOffRequestType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TransportPickUpDropOffRequestType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="transportPickUpDropOffRequestIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="transportAppointmentTypeCode" type="transport_pickup_dropoff_common:TransportAppointmentTypeEnumerationType"/>
+                    <xsd:element minOccurs="0" name="dockTypeCode" type="ecom_common:DockTypeCodeType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportPickUpDropOffConsignment" type="transport_pickup_dropoff_common:TransportPickUpDropOffConsignmentType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportPickUpDropOffShipment" type="transport_pickup_dropoff_common:TransportPickUpDropOffShipmentType"/>
+                    <xsd:element minOccurs="0" name="plannedPickUp" type="ecom_common:LogisticEventType"/>
+                    <xsd:element minOccurs="0" name="plannedDropOff" type="ecom_common:LogisticEventType"/>
+                    <xsd:element name="transportMeans" type="ecom_common:TransportMeansType"/>
+                    <xsd:element minOccurs="0" name="transportResponsiblePerson" type="ecom_common:PersonType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportEquipment" type="ecom_common:TransportEquipmentType"/>
+                    <xsd:element minOccurs="0" name="transportInstruction" type="ecom_common:Ecom_DocumentReferenceType"/>
+                    <xsd:element name="slotRequestor" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="slotProvider" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="carrier" type="ecom_common:TransactionalPartyType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Changes 3.0 to 3.1 (First maintenance release)
+		Updated to use VBcore-v3-1 and VBcodes-v3-1
+		Duplicate import specifications for AddressTypes, BS7666 and CommonSimpleTypes schemas added as work-around for differing parsers
+
+	Final Project Version 3.0 issued (no change from 2.0c)
+
+	Changes 2.0a to 2.0c (no change at v-2-0b)
+		Updated to include version 2.0c of VbCore and VbCodes supporting schemas
+		<PropertyDescription> elements moved to form part of the individual property identification so as to enable description of individual split/merged properties
+
+	Changes 2.0 to 2.0a incorporating GovTalk consultation
+		Updated to include version 2.0a of VbCore and VbCodes supporting schemas
+		VbCodes schema now included indirectly via VBCore to avoid problem with inclusion of multiple schema with same NameSpace
+		Organisation contact name added as alternative to personal contact name
+
+	Version 2.0 issued for pilot operation and GovTalk consultation
+	
+	Changes 1.1a to 1.1b incorporating VOA feedback on V 1.1a
+		Updated to refer to version 1.1b of VbCore and VbCodes 
+		Property Description structure updated
+		Existing Ctax Band / Rateable Value now associated with the individual property identities
+
+	Version 1.1a incorporating changes agreed with VOA 30/04/04 -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/LG/Valuebill" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.govtalk.gov.uk/LG/Valuebill" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3-1" id="VbBAtoVOA">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Technology Policy Team, e-Government Unit (maito:govtalk@cabinet-office.gsi.gov.uk)</Contributor>
+				<Creator>Bruce Yeoman, EGIC (mailto:info@egic.ltd.uk)</Creator>
+				<Contributor>Valuebill Project</Contributor>
+				<Coverage>
+					<Temporal>
+						<BeginningDate>2004-12-12</BeginningDate>
+					</Temporal>
+				</Coverage>
+				<Date>
+					<Created>2004-01-17</Created>
+				</Date>
+				<Date>
+					<Modified>2004-06-10</Modified>
+				</Date>
+				<Date>
+					<Modified>2004-12-12</Modified>
+				</Date>
+				<Date>
+					<Modified>2005-02-22</Modified>
+				</Date>
+				<Date>
+					<Valid>
+						<BeginningDate>2004-12-12</BeginningDate>
+					</Valid>
+				</Date>
+				<Description>Schema for Billing Authority Council Tax and Non-Domestic Rates Reports</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>VbBAtoVOA</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>e-Government Unit, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Relation>
+					<Requires>{http://www.govtalk.gov.uk/core}CommonSimpleTypes-v1-3</Requires>
+					<Requires>{http://www.govtalk.gov.uk/people/bs7666}BS7666-v1-4</Requires>
+					<Requires>{http://www.govtalk.gov.uk/people/AddressAndPersonalDetails}AddressTypes-v1-4</Requires>
+					<Requires>{http://www.govtalk.gov.uk/people/AddressAndPersonalDetails}PersonalDetailsTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<HasPart>VBcore-v3-1</HasPart>
+					<HasPart>VBcodes-v3-1</HasPart>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>BAreports</ProvidesDefinitionOf>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2004</Copyright>
+				</Rights>
+				<Subject>
+					<Category>People, communities and living;Local Taxes</Category>
+				</Subject>
+				<Subject>
+					<Project>Valuebill</Project>
+				</Subject>
+				<Title>Valuebill BA to VOA Report Schema</Title>
+				<Type>message</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="VBcore-v3-1.xsd"/>
+	<!--<xsd:include schemaLocation="VBcodes-v3-1.xsd"/>-->
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="PersonalDetailsTypes-v1-3.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation>Additional duplicated import specifications added to handle problems with differing interpretation by parsers</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v1-4.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v1-4.xsd"/>
+	<!--<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="ContactTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="CitizenIdentificationTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/PersonDescriptives" schemaLocation="PersonDescriptiveTypes-v1-0.xsd"/>-->
+	<!-- start of Header & Trailer definition -->
+	<xsd:complexType name="ReportHeaderStructure">
+		<xsd:annotation>
+			<xsd:documentation>Indicates start of record transfer set and provides common information about source and creation of the record set</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BillingAuthority">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:maxLength value="60"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="BillingAuthorityIdentityCode" type="BAidentityNumberType">
+				<xsd:annotation>
+					<xsd:documentation>This is the DETR/ODPM supplied four digit code</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProcessDate" type="xsd:date"/>
+			<xsd:element name="EntryDateTime" type="xsd:dateTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReportTrailerStructure">
+		<xsd:annotation>
+			<xsd:documentation>Indicates termination of the transfer record set with a time stamp and record count for audit and integrity checks</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RecordCount">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="EntryDateTime" type="xsd:dateTime"/>
+			<xsd:element name="TotalNNDRreportCount" type="xsd:integer"/>
+			<xsd:element name="TotalCtaxReportCount" type="xsd:integer"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of Header & Trailer definition -->
+	<!-- start of record types-->
+	<xsd:complexType name="CouncilTaxReportStructure">
+		<xsd:annotation>
+			<xsd:documentation>Council Tax Report</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ReasonForReport">
+				<xsd:annotation>
+					<xsd:documentation>Change code as in VOA Technical Circular 9th Edition </xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType/>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NNDRreportStructure">
+		<xsd:annotation>
+			<xsd:documentation>NNDR Report</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ReasonForReport">
+				<xsd:annotation>
+					<xsd:documentation>Change code as in VOA Technical Circular 9th Edition </xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType/>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BApropertySplitMergeStructure">
+		<xsd:annotation>
+			<xsd:documentation>A group of property identities which indicate the properties into which the subject of the report is to be split OR the properties to be merged into the subject of the report</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AssessmentProperties" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="PropertyIdentity" type="BApropertyIdentificationStructure"/>
+						<xsd:element name="PropertyDescription" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Individual description of each assessment property in the group - PropertyDescriptionText is optionally available to Ctax and NNDR reports - in addition, NNDR requires coded description if available</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="PrimaryDescriptionCode" type="NndrPrimaryDescriptionCodeStructure" minOccurs="0"/>
+									<xsd:element name="SecondaryDescriptionCode" type="NndrSecondaryDescriptionCodeStructure" minOccurs="0"/>
+									<xsd:element name="PropertyDescriptionText" type="core:PopulatedStringType" minOccurs="0"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="CurrentTax" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Current tax assessment included if known because re-assement of existing hereditament / dwelling</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:choice>
+									<xsd:element name="CouncilTaxBand" type="BandType"/>
+									<xsd:element name="RateableValue">
+										<xsd:complexType>
+											<xsd:simpleContent>
+												<xsd:restriction base="MonetaryStructure">
+													<xsd:minInclusive value="1"/>
+												</xsd:restriction>
+											</xsd:simpleContent>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:choice>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Remarks" type="core:PopulatedStringType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Information about splits and mergers should be included here </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--end of record types-->
+	<xsd:complexType name="BAreportBodyStructure">
+		<xsd:sequence>
+			<xsd:element name="DateSent" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Date that the update record is sent by the Billing Authority</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TransactionIdentityBA" type="TransactionIdentityType"/>
+			<xsd:element name="BAidentityNumber" type="BAidentityNumberType">
+				<xsd:annotation>
+					<xsd:documentation>The four digit LA reference issued by DETR/ODPM</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BAreportNumber">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TypeOfTax">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="CtaxReasonForReport">
+							<xsd:annotation>
+								<xsd:documentation>This is a Council Tax Report</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ReasonForReportCode" type="CtaxReasonForReportCodeStructure">
+										<xsd:annotation>
+											<xsd:documentation>Change code as in VOA Technical Circular</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="ReasonForReportDescription" type="core:PopulatedStringType" minOccurs="0"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="NNDRreasonForReport">
+							<xsd:annotation>
+								<xsd:documentation>This is a Non-Domestic Rates report</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ReasonForReportCode" type="NndrReasonForReportCodeStructure">
+										<xsd:annotation>
+											<xsd:documentation>Change code as in VOA Technical Circular</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="ReasonForReportDescription" type="core:PopulatedStringType" minOccurs="0"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="PreviousAssessments" type="BApropertySplitMergeStructure" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The address or addresses that unambiguously identify the property(s) form which the subject(s) of the assessment have been split or merged. Or, in the case of a change of address, the previous address</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProposedAssessments" type="BApropertySplitMergeStructure">
+				<xsd:annotation>
+					<xsd:documentation>The address or addresses which unambiguously identify the property(s) to be assessed. These should be structured BS7666 address(s) and UPRN(s) but in the pilot stage a text address(s) will also be accepted</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IndicatedDateOfChange" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Date indicated for the change in property use/occupation to become effective</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OccupierContact" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Occupier contact details if available</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="OccupierName" type="apd:CitizenNameStructure" minOccurs="0"/>
+						<xsd:element name="OrganisationName" type="OrganisationNameType" minOccurs="0"/>
+						<xsd:element name="BillingAddress" type="apd:UKPostalAddressStructure" minOccurs="0"/>
+						<xsd:element name="OccupierContactNos" type="apd:CitizenContactDetailsStructure" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="PropertyPlanReferenceNumber" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Reference number of property plan, if any, accompanying the report</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="core:PopulatedStringType">
+						<xsd:maxLength value="25"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SourceOfUpdate" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Source of update information if known</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="core:PopulatedStringType">
+						<xsd:maxLength value="60"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Remarks" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:PopulatedStringType">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="BAreports">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BAreportHeader" type="ReportHeaderStructure"/>
+				<xsd:element name="BApropertyReport" type="BAreportBodyStructure" maxOccurs="unbounded"/>
+				<xsd:element name="BAreportTrailer" type="ReportTrailerStructure"/>
+			</xsd:sequence>
+			<xsd:attribute name="SchemaId" type="xsd:string" use="required"/>
+			<xsd:attribute name="SchemaVersion" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

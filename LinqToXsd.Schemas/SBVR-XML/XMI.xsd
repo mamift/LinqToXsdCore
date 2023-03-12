@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          	xmlns="http://www.omg.org/spec/XMI/20110701"
+          	targetNamespace="http://www.omg.org/spec/XMI/20110701">
+
+<xsd:attribute name="id" type="xsd:ID"/>
+
+<xsd:attributeGroup name="IdentityAttribs">
+   <xsd:attribute name="label" type="xsd:string" use="optional" form="qualified"/>
+   <xsd:attribute name="uuid" type="xsd:string" use="optional" form="qualified"/>
+</xsd:attributeGroup>
+
+<xsd:attributeGroup name="LinkAttribs">
+   <xsd:attribute name="href" type="xsd:anyURI" use="optional"/>
+   <xsd:attribute name="idref" type="xsd:IDREF" use="optional" form="qualified"/>
+</xsd:attributeGroup>
+
+<xsd:attributeGroup name="ObjectAttribs">
+   <xsd:attributeGroup ref="IdentityAttribs"/>
+   <xsd:attributeGroup ref="LinkAttribs"/>
+   <xsd:attribute name="type" type="xsd:QName" form="qualified"/>
+</xsd:attributeGroup>
+
+<xsd:complexType name="XMI">
+  <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:any processContents="strict"/>
+  </xsd:choice>
+  <xsd:attribute ref="id"/>
+  <xsd:attributeGroup ref="IdentityAttribs"/>
+  <xsd:attributeGroup ref="LinkAttribs"/>
+  <xsd:attribute name="type" type="xsd:QName" use="optional" form="qualified"/>
+</xsd:complexType>
+<xsd:element name="documentation" type="Documentation"/>
+<xsd:element name="difference" type="Difference"/>
+<xsd:element name="extension" type="Extension"/>
+
+<xsd:element name="XMI" type="XMI"/>
+
+<xsd:complexType name="Documentation">
+  <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:element name="contact" type="xsd:string"/>
+    <xsd:element name="exporter" type="xsd:string"/>
+    <xsd:element name="exporterVersion" type="xsd:string"/>
+    <xsd:element name="longDescription" type="xsd:string"/>
+    <xsd:element name="shortDescription" type="xsd:string"/>
+    <xsd:element name="notice" type="xsd:string"/>
+    <xsd:element name="owner" type="xsd:string"/>
+    <xsd:element name="timestamp" type="xsd:dateTime"/>
+    <xsd:element ref="Extension"/>
+  </xsd:choice>
+  <xsd:attribute ref="id"/>
+  <xsd:attributeGroup ref="ObjectAttribs"/>
+</xsd:complexType>
+
+<xsd:element name="Documentation" type="Documentation"/>
+
+<xsd:complexType name="Extension">
+  <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:any processContents="lax"/>
+  </xsd:choice>
+  <xsd:attribute ref="id"/>
+  <xsd:attributeGroup ref="ObjectAttribs"/>
+  <xsd:attribute name="extender" type="xsd:string" use="optional"/>
+  <xsd:attribute name="extenderID" type="xsd:string" use="optional"/>
+</xsd:complexType>
+
+<xsd:element name="Extension" type="Extension"/>
+
+<xsd:complexType name="Difference">
+  <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:element name="target">
+      <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+          <xsd:any processContents="skip"/>
+        </xsd:choice>
+        <xsd:anyAttribute processContents="skip"/>
+      </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="difference" type="Difference"/>
+    <xsd:element name="container" type="Difference"/>
+    <xsd:element ref="Extension"/>
+  </xsd:choice>
+  <xsd:attribute ref="id"/>
+  <xsd:attributeGroup ref="ObjectAttribs"/>
+  <xsd:attribute name="target" type="xsd:IDREFS" use="optional"/>
+  <xsd:attribute name="container" type="xsd:IDREFS" use="optional"/>
+</xsd:complexType>
+
+<xsd:element name="Difference" type="Difference"/>
+
+<xsd:complexType name="Add">
+  <xsd:complexContent>
+    <xsd:extension base="Difference">
+      <xsd:attribute name="position" type="xsd:integer" use="optional"/>
+      <xsd:attribute name="addition" type="xsd:IDREFS" use="optional"/>
+    </xsd:extension>
+  </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:element name="Add" type="Add"/>
+
+<xsd:complexType name="Replace">
+  <xsd:complexContent>
+    <xsd:extension base="Difference">
+      <xsd:attribute name="position" type="xsd:integer" use="optional"/>
+      <xsd:attribute name="replacement" type="xsd:IDREFS"
+                   use="optional"/>
+    </xsd:extension>
+  </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:element name="Replace" type="Replace"/>
+
+<xsd:complexType name="Delete">
+  <xsd:complexContent>
+    <xsd:extension base="Difference"/>
+  </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:element name="Delete" type="Delete"/>
+
+<xsd:complexType name="Any">
+  <xsd:choice minOccurs="0" maxOccurs="unbounded">
+     <xsd:any processContents="skip"/>
+  </xsd:choice>
+  <xsd:anyAttribute processContents="skip"/>
+</xsd:complexType>
+
+</xsd:schema>

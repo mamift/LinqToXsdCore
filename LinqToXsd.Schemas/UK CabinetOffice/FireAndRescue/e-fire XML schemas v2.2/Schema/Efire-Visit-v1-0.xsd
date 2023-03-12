@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by david sinfield (customarchery) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas/Efire" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:cst="http://www.govtalk.gov.uk/core" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-Visit-v1-0">
+	<xs:include schemaLocation="Efire-Types-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="gdsc\PersonalDetailsTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="gdsc\CommonSimpleTypes-v1-3.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group,ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-09-03</Modified>
+				</Date>
+				<Description>Efire visit request</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-Visit-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>PersonalDetailsTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-Types-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Community Involvement</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>Form schema for visit request</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="BaseVisitStructure">
+		<xs:annotation>
+			<xs:documentation>Visit base information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ContactNameAndAddress" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to record contact person information if not organised by the occupier. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="apd:CitizenDetailsStructure"/>
+						<xs:element name="Address" type="ExtendedAddressStructure" minOccurs="0"/>
+						<xs:element name="OrganisationContact" type="OrganisationContactStructure" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VisitNameAndAddress">
+				<xs:annotation>
+					<xs:documentation>Element to record the visit location and the occupiers name details</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="apd:CitizenDetailsStructure"/>
+						<xs:element name="Address" type="ExtendedAddressStructure"/>
+						<xs:element name="OrganisationContact" type="OrganisationContactStructure" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PreferredTime" type="PreferredVisitPeriodStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store visit schedule details</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="AdditionalInfoStructure" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Element to store any additional free format textual information related to visit: General | EventSchedule | NatureOfEvent | VisitReason</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="VisitType" type="VisitTypeType" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="VisitTypeType">
+		<xs:annotation>
+			<xs:documentation>Enumeration for visit types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="cst:RestrictedStringType">
+			<xs:enumeration value="Home"/>
+			<xs:enumeration value="School"/>
+			<xs:enumeration value="Community Event"/>
+			<xs:enumeration value="Firesetter"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PreferredVisitTimeStructure">
+		<xs:annotation>
+			<xs:documentation>Used by visits. Date and time of day</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DateOfVisit" type="cst:DateType">
+				<xs:annotation>
+					<xs:documentation>Date visit to be made</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Time" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>Time visit to be made</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="VisitRelationshipType">
+		<xs:annotation>
+			<xs:documentation>Used by firesetter visit. Relationship between person requesting visit and person to be visited. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:complexType name="PreferredVisitPeriodStructure">
+		<xs:annotation>
+			<xs:documentation>Structure to store visit time details either as definite time or as flexible time format</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="DefiniteTimes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DefiniteTime" type="PreferredVisitTimeStructure" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FlexibleTimes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="WeekDay" type="TimeOfDayType" minOccurs="0" maxOccurs="3"/>
+						<xs:element name="WeekEnd" type="TimeOfDayType" minOccurs="0" maxOccurs="3"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Paul Spencer (alphaXML Ltd.) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-520">
+	<xs:include schemaLocation="emlcore-v4-0g.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="Result"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="Result">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EventIdentifier" minOccurs="0"/>
+				<xs:element name="Election" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="ElectionIdentifier"/>
+							<xs:element name="Contest" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="ContestIdentifier"/>
+										<xs:element name="Selection" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice>
+														<xs:sequence>
+															<xs:element ref="CandidateIdentifier"/>
+															<xs:element ref="AffiliationIdentifier" minOccurs="0"/>
+														</xs:sequence>
+														<xs:element ref="AffiliationIdentifier"/>
+														<xs:element ref="ReferendumOptionIdentifier"/>
+													</xs:choice>
+													<xs:element name="Votes" type="xs:positiveInteger" minOccurs="0"/>
+													<xs:choice>
+														<xs:sequence>
+															<xs:element name="Ranking" type="xs:positiveInteger"/>
+															<xs:element name="Elected" type="YesNoType" minOccurs="0"/>
+														</xs:sequence>
+														<xs:element name="Elected" type="YesNoType"/>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="AuditInformation" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

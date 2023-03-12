@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gms-xs="http://www.govtalk.gov.uk/CM/gms-xs" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentMessages-v1-0">
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-08-08</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System message payloads</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentMessages-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FRSIncident-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentValidation-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System message payloads</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="FRSIncident-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentValidation-v1-0.xsd"/>
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:element name="InsertIncidentDetailsRequest" type="IncidentDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>The Insert Incident request message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InsertIncidentDetailsResponse" type="IncidentDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>The Insert Incident response message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AmendIncidentDetailsRequest" type="IncidentDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>The Amend Incident response message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AmendIncidentDetailsResponse" type="IncidentDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>The Amend Incident response message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="GetIncidentDetailsRequest">
+		<xs:annotation>
+			<xs:documentation>The structure to use for the get incident request message, which just contains the identification details.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SearchIdentifierStructure">
+					<xs:attributeGroup ref="IncidentIdentifierAttributes"/>
+					<xs:attribute name="SchemaVersion" type="fire:VersionType" use="required" fixed="v1-0"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetIncidentDetailsResponse" type="GetIncidentDetailsResponseStructure">
+		<xs:annotation>
+			<xs:documentation>The Incident message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information. The Incident is optional as as the GetIncidentRequest may not match an Incident.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SearchIncidentsRequest">
+		<xs:annotation>
+			<xs:documentation>The Search Incident Request message structure to use within the system. This contains search criteria and filters in order to identify one or more Incidents.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SearchIncidentsRequestStructure">
+					<xs:attribute name="SchemaVersion" type="fire:VersionType" use="required" fixed="v1-0"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchIncidentsResponse">
+		<xs:annotation>
+			<xs:documentation>The Search Incidents Response message structure to use within the system. This contains the basic Incident details to identify one or more Incidents that match the request criteria.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SearchIncidentsResponseStructure">
+					<xs:attribute name="SchemaVersion" type="fire:VersionType" use="required" fixed="v1-0"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IncidentDetails" type="IncidentDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>The Incident Details is a common message structure used by Insert and Amend request message structures. This contains the full Incident details as well as optional dependant incidents and validation error information. This structure can be used for schema validation prior to placing in the Insert or Amend message structures. It might also be used for data storage.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Incidents">
+		<xs:annotation>
+			<xs:documentation>The Incidents structure defines the definition used by the IRS websites Extract Incidents process. This contains the full Incident, but not the optional dependant incidents and validation error information. There could be zero, one or many Incident structures.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Incident" type="IncidentStructure" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>This contains details of each Incident.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="IncidentDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>The Incident details message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Incident" type="IncidentStructure">
+				<xs:annotation>
+					<xs:documentation>This contains details of the Incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DependantIncidents" type="ChildIncidentStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This contains details of any Incidents that have had the Parent Incident details added to the Incident. This area is returned but should not be populated. It is to provide information on dependant Incidents. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Validation" type="ValidationErrorsStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Validation Errors returned from the IRS system when performing validation. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="SchemaVersion" type="fire:VersionType" use="required" fixed="v1-0"/>
+		<xs:attribute name="ValidationStatus" type="IncidentValidationStatusType" default="Full"/>
+	</xs:complexType>
+	<xs:complexType name="GetIncidentDetailsResponseStructure">
+		<xs:annotation>
+			<xs:documentation>The Incident details message structure to use within the system. This contains the full Incident details as well as optional dependant incidents and validation error information. The Incident is optional as as the GetIncidentRequest may not match an Incident.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Incident" type="IncidentStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This contains details of the Incident. This may be empty if a single Incident is not identified with the request details.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DependantIncidents" type="ChildIncidentStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This contains details of any Incidents that have had the Parent Incident details added to the Incident. This area is returned but should not be populated. It is to provide information on dependant Incidents. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Validation" type="ValidationErrorsStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Validation Errors returned from the IRS system when performing validation. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="SchemaVersion" type="fire:VersionType" use="required" fixed="v1-0"/>
+		<xs:attribute name="ValidationStatus" type="IncidentValidationStatusType" default="Full"/>
+	</xs:complexType>
+	<xs:complexType name="SearchIncidentsRequestStructure">
+		<xs:annotation>
+			<xs:documentation>The Search Incident Request message structure to use within the system. This contains search criteria and filters in order to identify one or more Incidents.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SearchCriteria" type="SearchIncidentCriteriaStructure">
+				<xs:annotation>
+					<xs:documentation>This contains details of the primary criteria that must be used to search / select Incidents.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SearchFilters" type="SearchIncidentFiltersStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This contains details of the optional secondary elements that can be used to pre-filter the Incidents returned.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SearchControl" type="SearchControlRequestStructure">
+				<xs:annotation>
+					<xs:documentation>Control information with respect to the sequence of matching records to be returned.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SearchIncidentsResponseStructure">
+		<xs:annotation>
+			<xs:documentation>The Search Incidents Response message structure to use within the system. This contains the basic Incident details to identify one or more Incidents that match the request criteria.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Incident" type="BasicIncidentDetailsStructure" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This contains basic details of any Incidents that have been returned by the Search criteria.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Validation" type="ValidationErrorsStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Validation Errors returned from the IRS system when performing validation. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SearchControl" type="SearchControlResultsStructure"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

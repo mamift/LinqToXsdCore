@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentResource-v1-0">
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-08-07</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System resource usage details</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentResource-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FireTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System resource usage details</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="ResourceStructure">
+		<xs:annotation>
+			<xs:documentation>Contains the details on all types of resource used within an incident. (Vehicles, equipment, and firefighters)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Vehicle" type="VehicleStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="NumberOfVehiclesDeployed" type="fire:ZeroTo999Type">
+				<xs:annotation>
+					<xs:documentation>3.7 - If 5 or more vehicles (appliances) deployed to a Fire incident then it will be categorised as a Primary Fire.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Equipment" type="EquipmentStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EquipmentUsed" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>6.15 - Were Equipment/Resources used at the Incident? Should be 'no' for False Alarms and Late Call Fires, but 'yes' for all other Fires and SpecialServices. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FireOfficer" type="FireOfficerStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="NumberOfNonRiderOfficers" type="fire:ZeroTo999Type">
+				<xs:annotation>
+					<xs:documentation>6.1 - The number of the supervisory command support FireOfficers that attend the incident independently of the applicances.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VehicleStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the information that defines a fire vehicle (appliance) used in an incident</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="fire:VehicleTypeStructure">
+				<xs:annotation>
+					<xs:documentation>6.2 - The type of this vehicle.  This is chosen from a set list.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RCCcallsign" type="fire:VehicleCallsignType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.3a -  The RCC callsign for this vehicle (appliance) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FRScallsign" type="fire:FRScallsignType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.3b - The FRS callsign for this vehicle (appliance) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeMobilised" type="fire:DateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.6 - The full date and time that this vehicle was mobilied for this incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeMobile" type="fire:DateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.7 - The full date and time that this vehicle was actually mobile and on the way to the incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeAtScene" type="fire:DateTime">
+				<xs:annotation>
+					<xs:documentation>6.8 - The full date and time that this vehicle arrived at the scene of the incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeAvailable" type="fire:DateTime">
+				<xs:annotation>
+					<xs:documentation>6.9 - The full date and time that the vehicle was available to be redeployed to another incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsDemountable" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>6.5 - Is the Vehicle a demountable resource. For example a Pod mobilised by a PrimeMover.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumberOfCrew">
+				<xs:annotation>
+					<xs:documentation>6.4 - The total number of crew that attended the incident on the vehicle.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="fire:ZeroTo999Type">
+						<xs:maxInclusive value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DeployedFrom">
+				<xs:annotation>
+					<xs:documentation>The location from which the vehicle (appliance) was deployed in order to attend the incident. The location will either be a Station Identifier or another remote location (another incident, officers home, school visit, etc.)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="HomeStation">
+								<xs:annotation>
+									<xs:documentation>HomeStation identifier to be populated if the LocationType is "1 = HomeStation"  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FRSId" type="fire:FRSIdType">
+											<xs:annotation>
+												<xs:documentation>6.10a - The identifier for the brigade.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="StationId" type="fire:StationIdType">
+											<xs:annotation>
+												<xs:documentation>6.10b - The Home station identifer if deployed from the appliances base station. This will normally be the same value as the prefix of the Vehicles callsign.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OtherStation">
+								<xs:annotation>
+									<xs:documentation>HomeStation identifier to be populated if the LocationType is "2 = OtherStation"  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FRSId" type="fire:FRSIdType">
+											<xs:annotation>
+												<xs:documentation>6.11a - The identifier for the brigade.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="StationId" type="fire:StationIdType">
+											<xs:annotation>
+												<xs:documentation>6.11b - The station identifier from which the vehicle (appliance) may have been deployed. This would be the case if  appliances are re-distributed due to staffing levels.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Location" type="fire:LocationStructure">
+								<xs:annotation>
+									<xs:documentation>6.12 + 6.13a to 6.14b - Alternatively a specific location: either an address or non-addressable coordinates.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeployedTo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.14c - The location to which the vehicle (appliance) was deployed in order to attend the incident. Only if different to incident location. This is planned to be used where accurate GPS is available. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Location" type="fire:LocationStructure">
+							<xs:annotation>
+								<xs:documentation>Alternatively a specific location: either an address or non-addressable coordinates.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EquipmentStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the information about a piece of equipment used within an Incident</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="fire:EquipmentTypeStructure">
+				<xs:annotation>
+					<xs:documentation>6.16 - The type of this piece of equipment.  This is chosen from the set list.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumberUsed" type="fire:ZeroTo999Type">
+				<xs:annotation>
+					<xs:documentation>6.17 - The number of this type of equipment that were used in dealing with this incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RCCcallsign" type="fire:EquipmentCallsignType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.17a - The RCC callsign for this vehicle (appliance). Either RCC or FRS callsign must be populated. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FRScallsign" type="fire:FRScallsignType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.17b - The FRS callsign for this vehicle (appliance). Either RCC or FRS callsign must be populated.  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FireOfficerStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the information about a Fire Officer involved in an Incident</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RCCcallsign" type="fire:OperationalStaffCallsignType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The RCC callsign for this vehicle (appliance). Either RCC or FRS callsign must be populated.  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FRScallsign" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The FRS callsign for this vehicle (appliance). Either RCC or FRS callsign must be populated.  </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="fire:FRScallsignType"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeployedFromTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Where was the Appliance Deployed from? Extends DeployedFromType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="DeployedFromType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="DeployedFromType">
+		<xs:annotation>
+			<xs:documentation>Defines the enumeration values for the possible deployed from location types e.g. “Home Station”, “Other Station”, “Another Incident”, “Home safety visit”, “RRO risk assessment” “Community Event”, ”School visit”, “Firesetter advisory visit”, “Other”</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Home Station</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Other Station</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other Location</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

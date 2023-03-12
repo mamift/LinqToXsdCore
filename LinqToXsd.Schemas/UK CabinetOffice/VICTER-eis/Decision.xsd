@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com)-->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by David Duncan for The Rent Service -->
+<xsd:schema xmlns:dec="http://www.therentservice.gov.uk/schema/Decision.xsd" xmlns:cmn="http://www.therentservice.gov.uk/schema/Common.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.therentservice.gov.uk/schema/Decision.xsd" version="3.9" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--Decision.xsd for Case Decisions-->
+  <!--Uses Common.xsd-->
+  <!--Authors : Jahanzeb Abdur-Rahman and Andrew Hall-->
+  <!--The Rent Service Project Victer-->
+  <xsd:import schemaLocation="Common.xsd" namespace="http://www.therentservice.gov.uk/schema/Common.xsd" />
+  <xsd:annotation>
+    <xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>The Rent Service (webmaster@therentservice.gov.uk)</Creator>
+				<Date>
+					<Created>2004-02-16</Created>
+					<Updated>2009-03-01</Updated>
+				</Date>
+				<Description>Schema for the Rent Service determinations (i.e. decisions) for HB, PTD and RD referrals</Description>
+				<Identifier>Decision.xsd-v4.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>The Rent Service, 5 Welbeck Street, London, W1G 9YQ</Publisher>
+				<Subject>
+					<Category>People, communities and living</Category>
+					<Keyword>Housing Benefit</Keyword>
+					<Keyword>Rent Service</Keyword>
+					<Keyword>Appeal</Keyword>
+					<Keyword>Redetermination</Keyword>
+					<Keyword>Determination</Keyword>
+				</Subject>
+				<Title>HB/PTD/RD Determination schema</Title>
+			</Metadata>
+		</xsd:appinfo>
+  </xsd:annotation>
+  <xsd:complexType name="AdditionalInformation">
+    <xsd:annotation>
+      <xsd:documentation>Additional Information</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Information" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AmountPerPeriod">
+    <xsd:annotation>
+      <xsd:documentation>AmountPerPeriod</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Amount">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:decimal">
+              <xsd:attribute name="TimePeriod" type="cmn:TypeTimePeriod" use="required" />
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Case">
+    <xsd:annotation>
+      <xsd:documentation>Response Case Uses Mandatory attribute to identify case type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:annotation>
+        <xsd:documentation>Choice of Case Type</xsd:documentation>
+      </xsd:annotation>
+      <xsd:element ref="cmn:LAReference" />
+      <xsd:element ref="cmn:TRSReference" />
+      <xsd:element minOccurs="0" name="LAContact" type="cmn:AuthorityContact">
+        <xsd:annotation>
+          <xsd:documentation>Optional Local Authority Contact Details</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:choice>
+        <xsd:element name="HbResponse" type="dec:HbResponse">
+          <xsd:annotation>
+            <xsd:documentation>Housing Benefit Response</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="PTResponse" type="dec:PTDResponse">
+          <xsd:annotation>
+            <xsd:documentation>Pre-Tenency Determinatoin Response</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="RDResponse" type="dec:ReDetResponse">
+          <xsd:annotation>
+            <xsd:documentation>Redetermination Response</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="RequestForInformation" type="dec:AdditionalInformation">
+          <xsd:annotation>
+            <xsd:documentation>Request For additional Information about the case</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="CaseType" type="cmn:TypeCase" use="required" />
+  </xsd:complexType>
+  <xsd:element name="Decision">
+    <xsd:annotation>
+      <xsd:documentation>Root Element For Rent Service Responses</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:annotation>
+          <xsd:documentation>Single occurence</xsd:documentation>
+        </xsd:annotation>
+        <xsd:element name="Manifest" type="cmn:Manifest">
+          <xsd:annotation>
+            <xsd:documentation>Manifest specifying control Informatoin</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="Case">
+          <xsd:annotation>
+            <xsd:documentation>Case Responses</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+            <xsd:complexContent mixed="false">
+              <xsd:extension base="dec:Case">
+                <xsd:attribute name="TransactionType" type="cmn:TypeTransaction" use="required" />
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="Determination">
+    <xsd:annotation>
+      <xsd:documentation>Determinations</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ReferredRent" type="dec:AmountPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Referred Rent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="IneligbleServices" type="dec:AmountPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Determination for Ineligible services</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="NetReferredRent" type="dec:AmountPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Net Referred Rent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SignificantlyHighRentDet" type="dec:AmountPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Dependent on SignificantlyHigh Rent Element</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SizeNotional" type="dec:AmountPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Dependent on SizeCriteriaExceeded Element</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ExceptionallyHighRentDet" type="dec:AmountPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Dependent on ExceptionalyHighRent Element</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ClaimRelatedRent" type="dec:AmountPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Claim Related Rent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="LocalReferenceRent" type="dec:SingleLocalRent">
+        <xsd:annotation>
+          <xsd:documentation>Local Reference Rents</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SingleRoomRent" type="dec:SingleLocalRent">
+        <xsd:annotation>
+          <xsd:documentation>Single Room Rent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Reason" type="dec:Reasons">
+        <xsd:annotation>
+          <xsd:documentation>Reasons</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Signed" type="cmn:CitizenNameStructure">
+        <xsd:annotation>
+          <xsd:documentation>Signed By Rent Officer </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Date" type="xsd:date">
+        <xsd:annotation>
+          <xsd:documentation>Dated</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Remarks" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>Any other information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HbResponse">
+    <xsd:annotation>
+      <xsd:documentation>Housing Benefit Case Response</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="dec:DateReferralReceived" />
+      <xsd:choice>
+        <xsd:annotation>
+          <xsd:documentation>Choice</xsd:documentation>
+        </xsd:annotation>
+        <xsd:element name="HBValuation" type="dec:HbValuation">
+          <xsd:annotation>
+            <xsd:documentation>Valuation Details</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="NonValuation" type="dec:NonValuation">
+          <xsd:annotation>
+            <xsd:documentation>Non Valuation Details</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="NonValuation">
+    <xsd:annotation>
+      <xsd:documentation>Housing Benefit Non Valuation</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="NonValuationReason" type="dec:TypeNonValuation">
+        <xsd:annotation>
+          <xsd:documentation>Non valuation Reason - Enumerated List</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="PreviousDetermination" type="dec:Determination">
+        <xsd:annotation>
+          <xsd:documentation>Mandatory if Non Valuation Reason is Not Entertained Within 12 months.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Remarks" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>Optional Additional Remarks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HbValuation">
+    <xsd:annotation>
+      <xsd:documentation>Housing Benefit Valuation</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ROHB5B" type="dec:Determination">
+        <xsd:annotation>
+          <xsd:documentation>Housing benefit Determination</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PTD5">
+    <xsd:annotation>
+      <xsd:documentation>PTD5</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="MaximumRent" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation>Maximum Rent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="DateReceivedApplication" type="xsd:date">
+        <xsd:annotation>
+          <xsd:documentation>Date The Rent Service Received Application</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Determination" type="dec:Determination">
+        <xsd:annotation>
+          <xsd:documentation>Determination Details</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PTD5Required">
+    <xsd:annotation>
+      <xsd:documentation>PTD5 Required</xsd:documentation>
+    </xsd:annotation>
+  </xsd:complexType>
+  <xsd:complexType name="PTDValuation">
+    <xsd:annotation>
+      <xsd:documentation>Pre Tenancy Determination valuation decision.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:annotation>
+        <xsd:documentation>Sequence</xsd:documentation>
+      </xsd:annotation>
+      <xsd:element name="PTD5" type="dec:PTD5">
+        <xsd:annotation>
+          <xsd:documentation>PTD5 Letter Data</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PTDNonValuation">
+    <xsd:sequence>
+      <xsd:annotation>
+        <xsd:documentation>Pre Tenency Determination non-valuation decision.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:element name="ReasonForRejection" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>Reason For Rejection</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="PreviousPTD5">
+        <xsd:annotation>
+          <xsd:documentation>Previous PTD5 Details</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:complexContent mixed="false">
+            <xsd:extension base="dec:PTD5">
+              <xsd:sequence>
+                <xsd:element ref="cmn:LAReference" />
+                <xsd:element ref="cmn:TRSReference" />
+              </xsd:sequence>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Remarks" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>Optional Additional Remarks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PTDResponse">
+    <xsd:annotation>
+      <xsd:documentation>Pre Tenancy Determination Response</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="dec:DateReferralReceived">
+        <xsd:annotation>
+          <xsd:documentation>Identifies the prospective tenant</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:choice>
+        <xsd:annotation>
+          <xsd:documentation>Choice</xsd:documentation>
+        </xsd:annotation>
+        <xsd:element name="PTDValuation" type="dec:PTDValuation">
+          <xsd:annotation>
+            <xsd:documentation>Pre-Tenancy Determination Valuation</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="PTDNonValuation" type="dec:PTDNonValuation">
+          <xsd:annotation>
+            <xsd:documentation>Pre-tenancy Determination Non Valuation.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Reasons">
+    <xsd:annotation>
+      <xsd:documentation>Determination Reason</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence maxOccurs="unbounded">
+      <xsd:annotation>
+        <xsd:documentation>Unbounded Repeating structure</xsd:documentation>
+      </xsd:annotation>
+      <xsd:element name="Reason">
+        <xsd:annotation>
+          <xsd:documentation>Individual Determination Reason</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ReDetResponse">
+    <xsd:annotation>
+      <xsd:documentation>Redetermination Response</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="dec:DateReferralReceived" />
+      <xsd:choice>
+        <xsd:annotation>
+          <xsd:documentation>Choice.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:element name="Determination" type="dec:Determination">
+          <xsd:annotation>
+            <xsd:documentation>Determination</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="NonValuation" type="dec:NonValuation">
+          <xsd:annotation>
+            <xsd:documentation>Non Valuation reasons.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SingleLocalRent">
+    <xsd:annotation>
+      <xsd:documentation>Single Local Rent</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="dec:AmountPerPeriod">
+        <xsd:attribute name="Low" type="xsd:decimal" use="required" />
+        <xsd:attribute name="High" type="xsd:decimal" use="required" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TypeNonPTD5Reasons">
+    <xsd:annotation>
+      <xsd:documentation>Rejection Reasons For Non PTD5 Cases</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Not Entertained - Outside Scope of Scheme" />
+      <xsd:enumeration value="Withdrawn - Local Authority Request" />
+      <xsd:enumeration value="Withdrawn - Tenant Request" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TypeNonValuation">
+    <xsd:annotation>
+      <xsd:documentation>Non Valuation Reasons</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Not Entertained - Outside Scope of scheme" />
+      <xsd:enumeration value="Not Entertained - Within 12 Months" />
+      <xsd:enumeration value="Not Entertained -  Within 52 weeks" />
+      <xsd:enumeration value="Withdrawn - Local Authority request" />
+      <xsd:enumeration value="Withdrawn - Tenant request" />
+      <xsd:enumeration value="Rejected or Withdrawn - 12 Month Decision" />
+      <xsd:enumeration value="Rejected or Withdrawn - Within 52 Weeks" />
+      <xsd:enumeration value="Rejected or Withdrawn - Duplicate Referral" />
+      <xsd:enumeration value="Rejected or Withdrawn - Incomplete Sections" />
+      <xsd:enumeration value="Rejected or Withdrawn - Other" />
+      <xsd:enumeration value="Rejected or Withdrawn - Outside scope of scheme" />
+      <xsd:enumeration value="Rejected or Withdrawn - Board and Attendance not considered substantial." />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="DateReferralReceived" type="xsd:date">
+    <xsd:annotation>
+      <xsd:documentation>Date Referral Received By The Rent Service</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

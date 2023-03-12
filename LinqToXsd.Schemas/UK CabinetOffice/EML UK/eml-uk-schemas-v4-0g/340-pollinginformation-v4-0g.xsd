@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-340">
+	<xs:include schemaLocation="340-410-430-include-v4-0g.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="PollingInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="PollingInformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Polling" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Multiple sets of polling information allowed to allow transfer to a printer. There has been no attempt to avoid duplication of data - we have gone for simplicity.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="EventIdentifier"/>
+							<xs:element name="Description" type="MessagesStructure" minOccurs="0"/>
+							<xs:element name="Voter" minOccurs="0">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="VoterIdentificationStructure">
+											<xs:sequence>
+												<xs:element name="Contact" type="ContactDetailsStructure" minOccurs="0"/>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="Proxy" minOccurs="0"/>
+							<xs:element ref="ElectionRuleId" minOccurs="0"/>
+							<xs:element name="VotingPeriod" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Start" type="xs:dateTime"/>
+										<xs:element name="End" type="xs:dateTime"/>
+									</xs:sequence>
+									<xs:attribute name="DisplayOrder" type="xs:positiveInteger" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Election" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="ElectionIdentifier"/>
+										<xs:element name="Description" type="MessagesStructure" minOccurs="0"/>
+										<xs:element name="Contest">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="ContestIdentifier"/>
+													<xs:element ref="Area" minOccurs="0"/>
+													<xs:element ref="Position" minOccurs="0"/>
+													<xs:element name="Description" type="MessagesStructure" minOccurs="0"/>
+													<xs:element name="VotingInformation" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="VotingPeriod" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Start" type="xs:dateTime"/>
+																			<xs:element name="End" type="xs:dateTime"/>
+																		</xs:sequence>
+																		<xs:attribute name="DisplayOrder" type="xs:positiveInteger" use="optional"/>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element ref="PollingDistrict" minOccurs="0"/>
+																<xs:element ref="PollingPlace"/>
+																<xs:choice minOccurs="0">
+																	<xs:element ref="VToken"/>
+																	<xs:element ref="VTokenQualified"/>
+																</xs:choice>
+																<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+															</xs:sequence>
+															<xs:attribute name="DisplayOrder" type="xs:positiveInteger" use="optional"/>
+															<xs:attribute name="Channel" type="VotingChannelType" use="optional"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="BallotInformation" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element ref="BallotIdentifier" minOccurs="0"/>
+																<xs:element name="HowToVote" type="MessagesStructure" minOccurs="0"/>
+																<xs:element name="Rotation" type="YesNoType" minOccurs="0"/>
+																<xs:element ref="VotingMethod" minOccurs="0"/>
+																<xs:element ref="MaxVotes" minOccurs="0"/>
+																<xs:element ref="MinVotes" minOccurs="0"/>
+																<xs:element name="MaxWriteIn" type="xs:nonNegativeInteger" minOccurs="0"/>
+																<xs:element ref="BallotChoices"/>
+																<xs:element name="Messages" type="MessagesStructure" minOccurs="0" maxOccurs="unbounded"/>
+																<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Messages" type="MessagesStructure" minOccurs="0"/>
+										<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Messages" type="MessagesStructure" minOccurs="0"/>
+							<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

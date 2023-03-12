@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema module Organisation Identifier types -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/financial/OrganisationIdentifiers" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" xmlns="http://www.govtalk.gov.uk/financial/OrganisationIdentifiers" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="OrganisationIdentifierTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Paul Spencer, Boynings Consulting  (mailto:paul.spencer@boynings.co.uk)</Contributor>
+				<Contributor>Adrian Kent, Office e-Envoy</Contributor>
+				<Creator>Office of the e-Envoy (maito:govtalk@e-envoy.gsi.gov.uk </Creator>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+						<ProvidesDefinitionOf>OrganisationNameType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>CompaniesHouseReferenceNumberType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ValueAddedTaxNumberType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>StandardisedIndustrialClassificationNumberType</ProvidesDefinitionOf>
+				</Relation>
+				<Date>
+					<Created>2003-02-11</Created>
+				</Date>
+				<Date>
+					<Modified>2003-02-11</Modified>
+				</Date>
+				<Description>Organisation Identifier types for use within UK Government</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+				</Format>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Rights>unclassified
+					<Copyright>Crown copyright 2003</Copyright>
+				</Rights>
+				<Subject>
+					<Project>UK GovTalk</Project>
+				</Subject>
+				<Title>Organisation Identifier types</Title>
+				<Category>Financial Service Industries</Category>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:simpleType name="OrganisationNameType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CompaniesHouseReferenceNumberType">
+		<xsd:restriction base="core:PopulatedStringType">
+			<xsd:pattern value="([R]|[OO]|[AC]|[FC]|[GE]|[GN]|[GS]|[IC]|[IP]|[LP]|[NA]|[NF]|[NI]|[NL]|[NO]|[NP]|[NR]|[NZ]|[OC]|[RC]|[SA]|[SC]|[SF]|[SI]|[SL]|[SO]|[SP]|[SR]|[SZ]|[ZC]){1}[0-9]{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:annotation>
+		<xsd:documentation>The first part must be the single character R or two characters within the set: OO, AC, FC, GE, GN, GS, IC, IP, LP, NA, NF, NI, NL, NO, NP, NR, NZ, OC, RC, SA, SC, SF, SI, SL, SO, SP, SR, SZ, ZC. The second part is up to 6 numeric characters.
+            </xsd:documentation>
+	</xsd:annotation>
+	<xsd:simpleType name="ValueAddedTaxNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{9}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- possible candidate for a codelist </-->
+	<xsd:simpleType name="StandardisedIndustrialClassificationNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

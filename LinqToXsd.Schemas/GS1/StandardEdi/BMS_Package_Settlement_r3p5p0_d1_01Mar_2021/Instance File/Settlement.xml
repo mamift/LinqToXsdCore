@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><settlement:settlementMessage xmlns:settlement="urn:gs1:ecom:settlement:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:settlement:xsd:3 ../Schemas/gs1/ecom/Settlement.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <settlement>
+        <creationDateTime>2011-04-14T11:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <settlementIdentification>
+            <entityIdentification>SE25709</entityIdentification>
+            <contentOwner>
+                <gln>5412345000013</gln>
+            </contentOwner>
+        </settlementIdentification>
+        <settlementCurrency>EUR</settlementCurrency>
+        <settlementHandlingTypeCode>REMITTANCE_ONLY</settlementHandlingTypeCode>
+        <totalAmount currencyCode="EUR">380</totalAmount>
+        <payer>
+            <gln>5412345000013</gln>
+        </payer>
+        <payee>
+            <gln>4098765000010</gln>
+            <financialInstitutionInformation>
+                <financialAccount>
+                    <financialAccountNumber>NL62510007547061</financialAccountNumber>
+                    <financialAccountNumberTypeCode>CHECKING_ACCOUNT</financialAccountNumberTypeCode>
+                    <financialAccountName>DUTCHBANK</financialAccountName>
+                </financialAccount>
+            </financialInstitutionInformation>
+        </payee>
+        <paymentMethod>
+            <paymentMethodCode>BANK_GIRO</paymentMethodCode>
+        </paymentMethod>
+        <settlementLineItem>
+            <lineItemNumber>1</lineItemNumber>
+            <amountPaid currencyCode="EUR">380</amountPaid>
+            <settlementParty>
+                <gln>5412345000174</gln>
+                <partyRoleCode>STORE</partyRoleCode>
+            </settlementParty>
+            <invoice>
+                <entityIdentification>IN11-548</entityIdentification>
+                <contentOwner>
+                    <gln>4098765000010</gln>
+                </contentOwner>
+                <invoiceTypeCode>INVOICE</invoiceTypeCode>
+            </invoice>
+        </settlementLineItem>
+        <settlementLineItem>
+            <lineItemNumber>1</lineItemNumber>
+            <amountPaid currencyCode="EUR">380</amountPaid>
+            <originalAmount currencyCode="EUR">480</originalAmount>
+            <settlementParty>
+                <gln>5412345000174</gln>
+                <partyRoleCode>STORE</partyRoleCode>
+            </settlementParty>
+            <invoice>
+                <entityIdentification>IN11-549</entityIdentification>
+                <contentOwner>
+                    <gln>4098765000010</gln>
+                </contentOwner>
+                <invoiceTypeCode>INVOICE</invoiceTypeCode>
+            </invoice>
+            <settlementAdjustment>
+                <adjustmentAmount currencyCode="EUR">-100</adjustmentAmount>
+                <financialAdjustmentReasonCode>3</financialAdjustmentReasonCode>
+                <financialAdjustmentReasonPartyRoleCode>INFORMATION_PROVIDER</financialAdjustmentReasonPartyRoleCode>
+                <transactionalReference>
+                    <entityIdentification>CLA200511-1</entityIdentification>
+                    <transactionalReferenceTypeCode>ALQ</transactionalReferenceTypeCode>
+                </transactionalReference>
+            </settlementAdjustment>
+        </settlementLineItem>
+    </settlement>
+</settlement:settlementMessage>

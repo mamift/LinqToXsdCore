@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.1 U (http://www.xmlspy.com) by Paul Giangarra (U.K. Cabinet Office) -->
+<!-- Schema module Financial Identifier types -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/financial/GDSCFinancialTypes" xmlns="http://www.govtalk.gov.uk/financial/GDSCFinancialTypes" xmlns:codelist="http://example.com/iso4217CurrencyCodeSample" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FinancialTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Paul Spencer, Boynings Consulting  (mailto:paul.spencer@boynings.co.uk)</Contributor>
+				<Contributor>Adrian Kent, Office e-Envoy</Contributor>
+				<Creator>Office of the e-Envoy (maito:govtalk@e-envoy.gsi.gov.uk </Creator>
+				<Date>
+					<Created>2003-02-19</Created>
+				</Date>
+				<Date>
+					<Modified>2003-02-19</Modified>
+				</Date>
+				<Description>Financial Type definitions for use within UK Government</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+				</Format>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Rights>unclassified
+					<Copyright>Crown copyright 2003</Copyright>
+				</Rights>
+				<Subject>
+					<Project>UK GovTalk</Project>
+				</Subject>
+				<Title>Financial Types</Title>
+				<Category>Financial Service Industries</Category>
+				<Relation>
+					<Requires>codelist-ISO4217-v0-3</Requires>
+				</Relation>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://example.com/iso4217CurrencyCodeSample" schemaLocation="codelist-ISO4217-v0-3.xsd"/>
+	<!--In this structure Currency is optional, so would only included in a message to override a default -->
+	<xsd:complexType name="AmountStructure">
+		<xsd:sequence>
+			<xsd:element name="Amount" type="AmountType"/>
+			<xsd:element name="Currency" type="codelist:CodeType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AmountSterlingStructure">
+		<xsd:sequence>
+			<xsd:element name="Amount" type="AmountType"/>
+			<xsd:element name="Currency" type="codelist:CodeType" fixed="GBP"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="AmountType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:minInclusive value="0"/>
+			<xsd:totalDigits value="14"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PercentageType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[-+]{0,1}[0-9]{1,3}|[-,+]{0,1}[0-9]{1,3}\.[0-9]{1,16}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UKGovernmentFinancialYearType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[1-2]{1}[0-9]{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UKTaxYearType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[1-2]{1}[0-9]{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DunsNumberType">
+		<xsd:annotation>
+			<xsd:documentation>The Dun and Bradstrret D-U-N-S Number is a unique nine-digit identification sequence, which provides unique identifiers of single business entities, while linking corporate family structures together. An example is 27-552-4106 This is 11 characters long 
+  </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{2}-[0-9]{3}-[0-9]{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

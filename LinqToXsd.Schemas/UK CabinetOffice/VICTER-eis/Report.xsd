@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com)-->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by David Duncan for The Rent Service -->
+<xsd:schema xmlns:rep="http://www.therentservice.gov.uk/schema/Report.xsd" xmlns:cmn="http://www.therentservice.gov.uk/schema/Common.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.therentservice.gov.uk/schema/Report.xsd" version="3.9" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="Common.xsd" namespace="http://www.therentservice.gov.uk/schema/Common.xsd" />
+  <xsd:annotation>
+    <xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>The Rent Service (helpdesk@therentservice.gov.uk)</Creator>
+				<Date>
+					<Created>2007-01-29</Created>
+					<Updated>2009-03-01</Updated>
+				</Date>
+				<Description>Schema for identifying status of HB referrals e.g. being inspected, rejected</Description>
+				<Identifier>Report.xsd-v4.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>The Rent Service, 5 Welbeck Street, London, W1G 9YQ</Publisher>
+				<Subject>
+					<Category>People, communities and living</Category>
+					<Keyword>Housing Benefit</Keyword>
+					<Keyword>Rent Service</Keyword>
+					<Keyword>Status report</Keyword>
+					<Keyword>Inspection</Keyword>
+					<Keyword>Rejection</Keyword>
+				</Subject>
+				<Title>Referral status report schema</Title>
+			</Metadata>
+		</xsd:appinfo>
+  </xsd:annotation>
+  <xsd:element name="CaseReport">
+    <xsd:annotation>
+      <xsd:documentation>Status Report</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Manifest" type="cmn:Manifest">
+          <xsd:annotation>
+            <xsd:documentation>Manifest Details</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element ref="cmn:LAReference" />
+        <xsd:element minOccurs="0" name="Reject">
+          <xsd:annotation>
+            <xsd:documentation>Indicates if referral has been rejected for Business Reasons.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="Yes" />
+              <xsd:enumeration value="No" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="Status" type="rep:Status">
+          <xsd:annotation>
+            <xsd:documentation>Case Status Details</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="Error">
+    <xsd:annotation>
+      <xsd:documentation>Error Details</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ErrorText" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>Error Description</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="FilePosition" type="xsd:long">
+        <xsd:annotation>
+          <xsd:documentation>Parse Error File Position Error Occurred At</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="LineNumber" type="xsd:long">
+        <xsd:annotation>
+          <xsd:documentation>Parse Error Line Number Error Occurred At</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="LinePosition" type="xsd:long">
+        <xsd:annotation>
+          <xsd:documentation>Parse Error Line Poition Error Occurred At</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SourceText" type="xsd:normalizedString">
+        <xsd:annotation>
+          <xsd:documentation>Parse Error Source Text</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="URL" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>URL of file</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Information">
+    <xsd:annotation>
+      <xsd:documentation>Progress Information</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Information" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Status">
+    <xsd:annotation>
+      <xsd:documentation>Status Report Details</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence minOccurs="0">
+      <xsd:element minOccurs="0" name="Information" type="rep:Information">
+        <xsd:annotation>
+          <xsd:documentation>Required if Status attribute is Information otherwise not used</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Error" type="rep:Error">
+        <xsd:annotation>
+          <xsd:documentation>Required if Status attribute is Error otherwise not used</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="StatusReportType" type="rep:TypeStatus" use="required" />
+  </xsd:complexType>
+  <xsd:simpleType name="TypeStatus">
+    <xsd:annotation>
+      <xsd:documentation>Status Descriptions</xsd:documentation>
+      <xsd:documentation>New "Rejection" enumeration added at v3.9a, to enable users to apply responses automatically.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="OK" />
+      <xsd:enumeration value="Information" />
+      <xsd:enumeration value="Error" />
+      <xsd:enumeration value="Rejection" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

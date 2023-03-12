@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema for commonly used contact types -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="ContactTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms" xmlns:dcq="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:contributor>e-champions,Government Schema Group, IDeA</dc:contributor>
+			<dc:creator>alphaXML Ltd  http://www.alphaxml.com
+						<dcq:owner>Technology Policy Team, Office of the e-Envoy, Cabinet Office</dcq:owner>
+				<dcq:contact>ukgovtalk@citu.gsi.gov.uk</dcq:contact>
+			</dc:creator>
+			<dc:date>
+				<dcq:created>2001-12-19</dcq:created>
+			</dc:date>
+			<dc:date>
+				<dcq:modified>2002-01-16</dcq:modified>
+			</dc:date>
+			<dc:format>text</dc:format>
+			<dc:format>
+				<dc:medium>http://www.w3.org/2001/XMLSchema</dc:medium>
+			</dc:format>
+			<dc:format>
+				<dc:medium>XML Schema (.xsd) file, W3C Recommendation 2001</dc:medium>
+			</dc:format>
+			<dc:identifier>AddressTypes-v1</dc:identifier>
+			<dc:language>en</dc:language>
+			<dc:publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</dc:publisher>
+			<dc:rights>
+				<dcq:copyright>Crown Copyright 2002</dcq:copyright>
+				<gms:SecurityClassification>Unclassified</gms:SecurityClassification>
+			</dc:rights>
+			<dc:subject>
+				<gms:Category>People, communities and living</gms:Category>
+			</dc:subject>
+			<dc:subject>
+				<gms:Project>Govtalk Development of Address and Personal Details Schema</gms:Project>
+			</dc:subject>
+			<dc:title>Citizen Contact Types architectural schema</dc:title>
+			<dc:description>
+				<dcq:abstract>Schema for various citizen contact type definitions</dcq:abstract>
+			</dc:description>
+			<dc:relation>
+				<gms:IsPartOf>PersonalDetailsTypes-v1</gms:IsPartOf>
+			</dc:relation>
+			<dc:relation>
+				<gms:HasPart>CommonSimpleTypes-v1</gms:HasPart>
+			</dc:relation>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="CommonSimpleTypes-v1.xsd"/>
+	<!-- start of TelephoneStructure type definition -->
+	<xsd:complexType name="TelephoneStructure">
+		<xsd:sequence>
+			<xsd:element name="TelNationalNumber" type="TelephoneNumberType"/>
+			<xsd:element name="TelExtensionNumber" type="TelephoneExtensionType" minOccurs="0"/>
+			<xsd:element name="TelCountryCode" type="TelCountryCodeType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="TelUse" type="WorkHomeType"/>
+		<xsd:attribute name="TelMobile" type="YesNoType"/>
+		<xsd:attribute name="TelPreferred" type="YesNoType"/>
+	</xsd:complexType>
+	<!-- end of TelephoneStructure type definition -->
+	<!-- start of FaxStructure type definition -->
+	<xsd:complexType name="FaxStructure">
+		<xsd:sequence>
+			<xsd:element name="FaxNationalNumber" type="TelephoneNumberType"/>
+			<xsd:element name="FaxExtensionNumber" type="TelephoneExtensionType" minOccurs="0"/>
+			<xsd:element name="FaxCountryCode" type="TelCountryCodeType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="FaxUse" type="WorkHomeType"/>
+		<xsd:attribute name="FaxMobile" type="YesNoType"/>
+		<xsd:attribute name="FaxPreferred" type="YesNoType"/>
+	</xsd:complexType>
+	<!-- end of FaxStructure type definition -->
+	<!-- start of EmailStructure type definition -->
+	<xsd:complexType name="EmailStructure">
+		<xsd:sequence>
+			<xsd:element name="EmailAddress" type="RestrictedStringType"/>
+		</xsd:sequence>
+		<xsd:attribute name="EmailUsage" type="WorkHomeType"/>
+		<xsd:attribute name="EmailPreferred" type="YesNoType"/>
+	</xsd:complexType>
+	<!-- end of EmailStructure type definition -->
+</xsd:schema>

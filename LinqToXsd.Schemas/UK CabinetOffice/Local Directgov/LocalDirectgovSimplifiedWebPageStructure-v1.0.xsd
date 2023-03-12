@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esd.org.uk/standards" targetNamespace="http://www.esd.org.uk/standards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="LocalDirectgovSimplifiedWebPageStructure-v1.0">
+	<xs:complexType name="LocalDirectgovSimplifiedWebPageStructure">
+		<xs:sequence>
+			<xs:element name="Service">
+				<xs:annotation>
+					<xs:documentation>LGSL (Local Government service List) ID for the Service</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:integer">
+							<xs:attribute name="Applicable" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation>If the service is not applicable to the authority, this should be "false". If not included, this will be "true"</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="Name" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>The name of the service</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Interaction">
+				<xs:annotation>
+					<xs:documentation>LGIL (Local Government Interaction List) ID for the interaction</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:integer">
+							<xs:attribute name="Name" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>The name of the interaction</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="URL" type="xs:anyURI" nillable="true">
+				<xs:annotation>
+					<xs:documentation>URL to be updated (leave blank to remove)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

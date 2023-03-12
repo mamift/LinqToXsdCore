@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esd.org.uk/standards" targetNamespace="http://www.esd.org.uk/standards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="LocalDirectgovSimplified-v1.0">
+	<xs:include schemaLocation="LocalDirectgovSimplifiedMetadataStructure-v1.0.xsd"/>
+	<xs:include schemaLocation="LocalDirectgovSimplifiedAgencyStructure-v1.0.xsd"/>
+	<xs:include schemaLocation="LocalDirectgovSimplifiedWebPageStructure-v1.0.xsd"/>
+	<xs:include schemaLocation="LocalDirectgovSimplifiedPortalOfficerStructure-v1.0.xsd"/>
+	<xs:element name="SimplifiedAgencyServices">
+		<xs:annotation>
+			<xs:documentation>Schema for transferring data to Local DirectGov</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Metadata" type="LocalDirectgovSimplifiedMetadataStructure" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Metadata to be used if the file is being shared</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Agency" type="LocalDirectgovSimplifiedAgencyStructure">
+					<xs:annotation>
+						<xs:documentation>Details regarding the organisation</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="WebPage" type="LocalDirectgovSimplifiedWebPageStructure" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>URL for use by LDG</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="PortalOfficer" type="LocalDirectgovSimplifiedPortalOfficerStructure" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Person at the organisation responsible for updating LDG information</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Efire" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-SoapHeader-v1-0">
+	<xs:include schemaLocation="Efire-Types-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(mailto:d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group, ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-09-03</Modified>
+				</Date>
+				<Description>e-fire Portal OISYS Soap Header. Controls the application status of the request  and response message exchanges.</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-SoapHeader-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>EfireTypes-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>People, communities and living</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>e-fire Portal OISYS Soap Header</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="EfireSoapHeaderStructure">
+		<xs:annotation>
+			<xs:documentation>The SOAP header</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MajorVersion" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>An integer that describes the major version of the service. The client must not amend this.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinorVersion" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>An integer that describes the minor version of the service. The client must not amend this.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FRSId" type="FRSIdType">
+				<xs:annotation>
+					<xs:documentation>FRSId of the origination FRS; This is set by the service as the result of a  successful logon and must not be changed by the client and must be persisted in every request</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SessionToken" type="ShortPopulatedStringType">
+				<xs:annotation>
+					<xs:documentation>The token issued by a successful logon. It is valid until the session times out or the client calls the LogOut() web method. It must be persisted in every request following a successful log on.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MoreWaiting" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>A boolean indicating that there are more documents waiting on the server.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

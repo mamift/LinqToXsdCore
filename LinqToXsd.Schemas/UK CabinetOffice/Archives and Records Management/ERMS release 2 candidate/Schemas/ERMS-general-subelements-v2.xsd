@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by Anna Harvey (HEDRA ltd) -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/CM/gms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns="http://www.govtalk.gov.uk/CM/gms" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2" id="GMSv2_MetadataElements">
+	<xsd:annotation>
+		<xsd:documentation>v2: This schema contains only the elements that are common to all aggregation levels in ERMS metadata.  Rights: ProtectiveMarkingChange now a repeatable group; Disclosability for DPA, EIR and FOI revised, combining differentiation between FOI and the rest with the future capability for all to work in the same way.
+		
+	v1:	This schema document contains XML element declarations for e-GMS v2 metadata elements as used in the metadata specification in the PRO ERMS 2002 Requirements. 
+The elements are listed here in the order in which they appear in the e-GMS document v2.0, with each element followed immediately by its subelements. The e-GMS ordering has been used in preference to the ERMS requirements documentation ordering, in order to ensure that valid ERMS metadata is also valid e-GMS metadata (with respect to XML validation).
+
+Mostly, the element or subelement name as given in the e-GMS document has been used directly as the XML element or subelement name, with appropriate capitalisation. Some over-long names have been shortened (for example, in Rights subelements). Within Relation, the Parent and Child relationships are expressed using the standard e-GMS refinements HasPart and IsPartOf, in order to provide e-GMS compatibility in the XML syntax. 
+
+The CommonSimpleTypes schema published in the Address and Personal Details schema set is used to provide definitions of GDSC types. Where this is not possible, an annotation explains why (Language).
+              </xsd:documentation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-records software suppliers</Audience>
+				<Audience>e-records integrators</Audience>
+				<Audience>archivists and records managers</Audience>
+				<Contributor>National Archives</Contributor>
+				<Contributor>Office of the e-Envoy</Contributor>
+				<Creator>Hedra Ltd http://www.hedra.com</Creator>
+				<Date>
+					<Created>2004-02-12</Created>
+				</Date>
+				<Date>
+					<Valid>
+						<BeginningDate>2004</BeginningDate>
+					</Valid>
+				</Date>
+				<Description>Schema to represent the general sub-elements of 2003 local implementation of e-GMS2 in ERMS (Electronic Records Management System) environment</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.govtalk.gov.uk/Archives and records management}ERM schemas</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Relation>
+					<Requires>{http://www.govtalk.gov.uk/people/bs7666}</Requires>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ERMS general sub-elements metadata</ProvidesDefinitionOf>
+				</Relation>
+				<Rights>unclassified</Rights>
+				<Rights>
+					<Copyright>Crown copyright 2004</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Information management</Category>
+				</Subject>
+				<Subject>
+					<Project/>
+				</Subject>
+				<Title>ERMS general sub-elements schema</Title>
+				<Type>ERMS sub-elements</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="Govtalk/CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/PersonDescriptives" schemaLocation="Govtalk/PersonDescriptiveTypes-v1-0.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="Govtalk/BS7666-v1-3.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation> work around for non-importation of multiple files with same namespace. This is necessary
+for the parsing to work on various processors by using an "umbrella" schema to allow one import for all (non-address) APD files.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AllPersonalDetailsTypes-v1-3.xsd"/>
+	<xsd:element name="Addressee" type="MetadataElementStructure"/>
+	<xsd:element name="Creator" type="MetadataElementStructure"/>
+	<xsd:element name="Acquired" type="core:DateType"/>
+	<xsd:element name="Available" type="DateRangeStructure"/>
+	<xsd:element name="Created" type="core:DateType"/>
+	<xsd:element name="CutOff" type="core:DateType"/>
+	<xsd:element name="Declared" type="core:DateType"/>
+	<xsd:element name="Opened" type="core:DateType"/>
+	<xsd:element name="Closed" type="core:DateType"/>
+	<xsd:element name="Description" type="MetadataElementStructure"/>
+	<xsd:element name="DigitalSignature" type="MetadataElementStructure"/>
+	<xsd:element name="Disposal">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DisposalStage">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="DisposalScheduleID"/>
+							<xsd:element name="DisposalAction">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="destroy"/>
+										<xsd:enumeration value="review"/>
+										<xsd:enumeration value="export"/>
+										<xsd:enumeration value="transfer"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element ref="DisposalPeriod"/>
+							<xsd:element ref="DisposalEvent" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element ref="ExternalEvent" minOccurs="0"/>
+				<xsd:element ref="DisposalDate" minOccurs="0"/>
+				<xsd:element ref="DisposalAuthorisedBy" minOccurs="0"/>
+				<xsd:element ref="DisposalComment" minOccurs="0"/>
+				<xsd:element ref="ExportDestination" minOccurs="0"/>
+				<xsd:element ref="ExportStatus" minOccurs="0"/>
+				<xsd:element ref="ReviewDate" minOccurs="0"/>
+				<xsd:element ref="ReviewComments" minOccurs="0"/>
+				<xsd:element ref="LastReviewDate" minOccurs="0"/>
+				<xsd:element ref="ReviewedBy" minOccurs="0"/>
+				<xsd:element ref="ReviewerComments" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="DisposalScheduleID" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalPeriod" type="MetadataSubelementStructure"/>
+	<xsd:annotation>
+		<xsd:documentation>DisposalPeriod is a length of time, eg 5 years or 3 months; at present the way in which tis is expressed is not constrained in the XML. </xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="DisposalEvent" type="MetadataSubelementStructure"/>
+	<xsd:element name="ExternalEvent" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalDate" type="core:DateType"/>
+	<xsd:element name="DisposalAuthorisedBy" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalComment" type="CommentStructure"/>
+	<xsd:element name="ExportDestination" type="MetadataSubelementStructure"/>
+	<xsd:element name="ExportStatus" type="MetadataSubelementStructure"/>
+	<xsd:element name="ReviewDate" type="core:DateType"/>
+	<xsd:element name="ReviewComments" type="CommentStructure"/>
+	<xsd:element name="LastReviewDate" type="core:DateType"/>
+	<xsd:element name="ReviewedBy" type="MetadataSubelementStructure"/>
+	<xsd:element name="ReviewerComments" type="CommentStructure"/>
+	<xsd:element name="SystemID"/>
+	<xsd:element name="FileplanID" type="MetadataSubelementStructure"/>
+	<xsd:element name="Language">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>This definition should be referenced from the "core" namespace, but the definition given there is for two-letter language codes.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:pattern value="ISO 639-2/B \[[A-Z][a-z]{2}\]"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="Location">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="HomeLocation" minOccurs="0"/>
+				<xsd:element ref="CurrentLocation" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="HomeLocation" type="MetadataSubelementStructure"/>
+	<xsd:element name="CurrentLocation" type="MetadataSubelementStructure"/>
+	<xsd:element name="Mandate">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="AuthorisingStatute" minOccurs="0"/>
+				<xsd:element ref="AcquisitionPurpose" minOccurs="0"/>
+				<xsd:element ref="DPAexemptCategory" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AuthorisingStatute" type="MetadataSubelementStructure"/>
+	<xsd:element name="AcquisitionPurpose" type="MetadataSubelementStructure"/>
+	<xsd:element name="DPAexemptCategory" type="MetadataSubelementStructure"/>
+	<xsd:element name="Preservation" type="MetadataElementStructure"/>
+	<xsd:element name="OriginalFormat" type="MetadataSubelementStructure"/>
+	<xsd:element name="IsCopyOf" type="ResourceIDStructure"/>
+	<xsd:element name="IsPartOf" type="ResourceIDStructure"/>
+	<xsd:element name="HasPart" type="ResourceIDStructure"/>
+	<xsd:element name="IsExtractOf" type="ResourceIDStructure"/>
+	<xsd:element name="ExtractComment" type="CommentStructure"/>
+	<xsd:element name="IsRenditionOf" type="ResourceIDStructure"/>
+	<xsd:element name="SeeAlso" type="ResourceIDStructure"/>
+	<xsd:element name="HybridPaperLink" type="ResourceIDStructure"/>
+	<xsd:element name="Rights">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ProtectiveMarking"/>
+				<xsd:element ref="Descriptor" minOccurs="0"/>
+				<xsd:element ref="ProtectiveMarkingExpiry" minOccurs="0"/>
+				<xsd:element ref="Custodian" minOccurs="0"/>
+				<xsd:element ref="UserAccessList" minOccurs="0"/>
+				<xsd:element ref="GroupAccessList" minOccurs="0"/>
+				<xsd:element ref="ProtectiveMarkingChange" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="DPA" maxOccurs="unbounded"/>
+				<xsd:element ref="EIR" maxOccurs="unbounded"/>
+				<xsd:element ref="FOI" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ProtectiveMarking" type="ProtectiveMarkingStructure"/>
+	<xsd:element name="Descriptor" type="MetadataSubelementStructure"/>
+	<xsd:element name="ProtectiveMarkingExpiry" type="core:DateType"/>
+	<xsd:element name="Custodian" type="MetadataSubelementStructure"/>
+	<xsd:element name="UserAccessList" type="MetadataSubelementStructure"/>
+	<xsd:element name="GroupAccessList" type="MetadataSubelementStructure"/>
+	<xsd:element name="PreviousProtectiveMarking" type="ProtectiveMarkingStructure"/>
+	<xsd:element name="ProtectiveMarkingChangeDate" type="core:DateType"/>
+	<xsd:element name="ProtectiveMarkingChange">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="PreviousProtectiveMarking" minOccurs="0"/>
+				<xsd:element ref="ProtectiveMarkingChangeDate" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="DPA" type="DisclosabilityStructure"/>
+	<xsd:element name="EIR" type="DisclosabilityStructure"/>
+	<xsd:element name="FOI">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="FOIdisclosability" type="DisclosabilityStructure" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="FOIrelease" type="DisclosureStructure" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Subject" type="MetadataElementStructure"/>
+	<xsd:element name="Title" type="MetadataElementStructure"/>
+	<xsd:annotation>
+		<xsd:documentation> These simple type definitions are expected to be supplemented or replaced by system specific validation. </xsd:documentation>
+	</xsd:annotation>
+	<xsd:simpleType name="MetadataElementStructure">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="MetadataSubelementStructure">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ProtectiveMarkingStructure">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:annotation>
+		<xsd:documentation> Datatypes follow for subelements that are more specifically constrained by e-GMS.  </xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="DateRangeStructure">
+		<xsd:sequence>
+			<xsd:element name="StartDate" type="core:DateType" minOccurs="0"/>
+			<xsd:element name="EndDate" type="core:DateType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="CommentStructure">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ResourceIDStructure">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DisclosabilityStructure">
+		<xsd:annotation>
+			<xsd:documentation>DisclosabilityStructure provides the elements required for DPA, EIR and FOI disclosability. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Disclosability" type="core:YesNoType"/>
+			<xsd:element name="Exemption" type="MetadataSubelementStructure" minOccurs="0"/>
+			<xsd:element name="MostRecentReviewDate" type="core:DateType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DisclosureStructure">
+		<xsd:annotation>
+			<xsd:documentation>DisclosureStructure provides the elements required for FOI Release documentation - this may be used in future for DPA and EIR, so is provided as a reusable type. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ReleaseDetails" type="CommentStructure" minOccurs="0"/>
+			<xsd:element name="ReleaseDate" type="core:DateType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

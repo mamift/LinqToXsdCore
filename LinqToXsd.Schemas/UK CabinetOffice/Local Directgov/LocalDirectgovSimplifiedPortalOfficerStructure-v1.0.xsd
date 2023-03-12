@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:core="http://www.govtalk.gov.uk/core" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esd.org.uk/standards" targetNamespace="http://www.esd.org.uk/standards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="LocalDirectgovSimplifiedPortalOfficerStructure-v1.0">
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:include schemaLocation="MetadataElement-v1.0.xsd"/>
+	<xs:complexType name="LocalDirectgovSimplifiedPortalOfficerStructure">
+		<xs:sequence>
+			<xs:element name="EMailAddress" type="core:EmailAddressType">
+				<xs:annotation>
+					<xs:documentation>E-mail address (which needs to be registered with esd-toolkit) of person responsible for LDG updates</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Title" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Mr, Mrs, Miss etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Forename" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>First name or names of person</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Surname" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Last name of person</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Telephone" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telephone number (including area code) of person responsible</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="core:TelephoneNumberType">
+						<xs:minLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

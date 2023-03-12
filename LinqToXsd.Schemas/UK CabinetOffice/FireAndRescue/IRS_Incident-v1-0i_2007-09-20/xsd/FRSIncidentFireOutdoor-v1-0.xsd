@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp1 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentFireOutdoor-v1-0">
+	<xs:include schemaLocation="FRSIncidentCommonTypes-v1-0.xsd"/>
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-04-25</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System specific outdoor fire details</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentFireOutdoor-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FRSIncidentCommonTypes-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System specific building fire details</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="OutdoorStructure">
+		<xs:annotation>
+			<xs:documentation>Structure containing the details required for a primary fire that occurr outdoors e.g. Woodland</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FireStartLocation" type="OutdoorFireStartLocationStructure">
+				<xs:annotation>
+					<xs:documentation>8.14 - Location of fire start.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CauseAndReason" type="OtherCauseAndReasonStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains the additional cause and reason details that apply to outdoor fires</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutdoorStructureStructure">
+		<xs:annotation>
+			<xs:documentation>Structure containing the details required for a primary fire that occurrs to outdoor structures e.g. Postbox</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CauseAndReason" type="OtherCauseAndReasonStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains the additional cause and reason details that apply to outdoor fires</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutdoorDamageStructure">
+		<xs:annotation>
+			<xs:documentation>Contains the damage information specifc for an outdoor fire.  This includes the size of fire on arrival, and total area the fire was restricted to.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FireSizeOnArrival">
+				<xs:annotation>
+					<xs:documentation>8.20 - Estimated fire size on arrival of service.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="OutdoorFireSizeType">
+							<xs:attribute name="DistanceToAdjoiningProperty" type="DistanceToType" use="required">
+								<xs:annotation>
+									<xs:documentation>8.21 - Add the attribute DistanceToAdjoiningProperty to specify how far away the other affected properties were. (in metres)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DamageRestrictedTo">
+				<xs:annotation>
+					<xs:documentation>8.22 - Damage restricted to (at stop)  e.g. origin.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="OutdoorFireSizeType">
+							<xs:attribute name="DistanceToAdjoiningProperty" type="DistanceToType" use="required">
+								<xs:annotation>
+									<xs:documentation>8.23 - Add the attribute DistanceToAdjoiningProperty to specify how far away the other affected properties were. (in metres)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="OutdoorFireSizeType">
+		<xs:annotation>
+			<xs:documentation>defines the available options for the FireSizeOnArrival / DamageRestrictedTo fields for an outdoor fire</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Limited to item 1st ignited</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Beyond item 1st ignited</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OutdoorFireStartLocationStructure">
+		<xs:annotation>
+			<xs:documentation>Extends OutdoorFireStartLocationType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="OutdoorFireStartLocationType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="OutdoorFireStartLocationType">
+		<xs:annotation>
+			<xs:documentation>This is a subset of the options available in the FireStartLocationType, containing only the options applicable to Outdoor Primary Fires</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="FireStartLocationType">
+			<xs:enumeration value="70">
+				<xs:annotation>
+					<xs:documentation>On or near tracks or paths</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="71">
+				<xs:annotation>
+					<xs:documentation>In open area next to housing</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="72">
+				<xs:annotation>
+					<xs:documentation>Near amenity or recreation structure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="73">
+				<xs:annotation>
+					<xs:documentation>Military live firing range</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="74">
+				<xs:annotation>
+					<xs:documentation>Military training area</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

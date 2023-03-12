@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema module simple Address and Personal Details (APD) specific types -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="CitizenIdentificationTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms" xmlns:dcq="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:contributor>e-champions,Government Schema Group, IDeA</dc:contributor>
+			<dc:creator>alphaXML Ltd  http://www.alphaxml.com
+						<dcq:owner>Technology Policy Team, Office of the e-Envoy, Cabinet Office</dcq:owner>
+				<dcq:contact>ukgovtalk@citu.gsi.gov.uk</dcq:contact>
+			</dc:creator>
+			<dc:date>
+				<dcq:created>2001-12-19</dcq:created>
+			</dc:date>
+			<dc:date>
+				<dcq:modified>2002-01-16</dcq:modified>
+			</dc:date>
+			<dc:format>text</dc:format>
+			<dc:format>
+				<dc:medium>http://www.w3.org/2001/XMLSchema</dc:medium>
+			</dc:format>
+			<dc:format>
+				<dc:medium>XML Schema (.xsd) file, W3C Recommendation 2001</dc:medium>
+			</dc:format>
+			<dc:identifier>CommonSimpleTypes-v1</dc:identifier>
+			<dc:language>en</dc:language>
+			<dc:publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</dc:publisher>
+			<dc:rights>
+				<dcq:copyright>Crown Copyright 2002</dcq:copyright>
+				<gms:SecurityClassification>Unclassified</gms:SecurityClassification>
+			</dc:rights>
+			<dc:subject>
+				<gms:Category>People, communities and living</gms:Category>
+			</dc:subject>
+			<dc:subject>
+				<gms:Project>Govtalk Development of Address and Personal Details Schema</gms:Project>
+			</dc:subject>
+			<dc:title>Citizen Identification Types architectural schema</dc:title>
+			<dc:description>
+				<dcq:abstract>Schema for various citizen reference type definitions</dcq:abstract>
+			</dc:description>
+			<dc:relation>
+				<gms:IsPartOf>PersonalDetailsTypes-v1</gms:IsPartOf>
+			</dc:relation>
+			<dc:relation>
+				<gms:HasPart>CommonSimpleTypes-v1</gms:HasPart>
+			</dc:relation>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="CommonSimpleTypes-v1.xsd"/>
+	<xsd:simpleType name="NationalInsuranceNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-CEGHJ-NPR-TW-Z]{2}[0-9]{6}[ABCD\S]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UniqueTaxReferenceType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{1,10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassportNumber_OldType">
+		<xsd:restriction base="PopulatedStringType">
+			<xsd:pattern value="[A-Z,0-9]{1}[0-9]{4}[A-Z,0-9]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassportNumber_NewType">
+		<xsd:restriction base="xsd:int">
+			<xsd:pattern value="[0-9]{9}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DrivingLicenceNumberType">
+		<xsd:restriction base="PopulatedStringType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="NHSnumberStructure">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="EWregNHSnumber" type="DigNHSnumberType"/>
+				<xsd:element name="SregNHSnumber" type="CharNHSnumberType"/>
+				<xsd:element name="NIregNHSnumber" type="CharNHSnumberType"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="DigNHSnumberType">
+		<xsd:restriction base="PopulatedStringType">
+			<xsd:pattern value="[0-9]{10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CharNHSnumberType">
+		<xsd:restriction base="PopulatedStringType">
+			<xsd:maxLength value="18"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ElectoralRollNumberType">
+		<xsd:annotation>
+			<xsd:documentation>No Pattern yet for Electoral roll number</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="PopulatedStringType"/>
+	</xsd:simpleType>
+</xsd:schema>

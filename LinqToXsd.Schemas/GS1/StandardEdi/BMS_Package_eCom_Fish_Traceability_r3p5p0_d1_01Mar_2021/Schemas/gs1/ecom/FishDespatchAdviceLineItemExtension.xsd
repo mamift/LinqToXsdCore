@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:fish_despatch_advice_line_item_extension="urn:gs1:ecom:fish_despatch_advice_line_item_extension:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:fish_despatch_advice_line_item_extension:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="fishDespatchAdviceLineItemExtension" type="fish_despatch_advice_line_item_extension:FishDespatchAdviceLineItemExtensionType"/>
+    <xsd:complexType name="AquaticSpeciesCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CatchAreaCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DateOfCatchProcessTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="FishCatchOrProductionDatesType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="catchDateTime" type="shared_common:DateOptionalTimeType"/>
+            <xsd:element minOccurs="0" name="catchEndDate" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="catchStartDate" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="dateOfCatchProcessTypeCode" type="fish_despatch_advice_line_item_extension:DateOfCatchProcessTypeCodeType"/>
+            <xsd:element minOccurs="0" name="firstFreezeDate" type="xsd:date"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FishCatchOrProductionType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="catchArea" type="fish_despatch_advice_line_item_extension:CatchAreaCodeType"/>
+            <xsd:element minOccurs="0" name="fishingGearTypeCode" type="fish_despatch_advice_line_item_extension:FishingGearTypeCodeType"/>
+            <xsd:element minOccurs="0" name="productionCountry" type="shared_common:CountryCodeType"/>
+            <xsd:element minOccurs="0" name="productionMethodForFishAndSeafoodCode" type="fish_despatch_advice_line_item_extension:ProductionMethodForFishAndSeafoodCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FishDespatchAdviceLineItemExtensionType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="fishSizeCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="fishPresentationCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="qualityGradeCode" type="shared_common:CodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="aquaticSpeciesCode" type="fish_despatch_advice_line_item_extension:AquaticSpeciesCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="aquaticSpeciesName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="storageStateCode" type="fish_despatch_advice_line_item_extension:StorageStateCodeType"/>
+            <xsd:element minOccurs="0" name="fishCatchOrProduction" type="fish_despatch_advice_line_item_extension:FishCatchOrProductionType"/>
+            <xsd:element minOccurs="0" name="fishCatchOrProductionDates" type="fish_despatch_advice_line_item_extension:FishCatchOrProductionDatesType"/>
+            <xsd:element minOccurs="0" name="fishingVessel" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="aquaCultureProductionUnit" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="placeOfSlaughter" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="portOfLanding" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="dateOfLanding" type="shared_common:DateOptionalTimeType"/>
+            <xsd:element minOccurs="0" name="dateOfSlaughter" type="shared_common:DateOptionalTimeType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FishingGearTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ProductionMethodForFishAndSeafoodCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="StorageStateCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

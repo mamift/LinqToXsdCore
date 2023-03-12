@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:re="http://www.govtalk.gov.uk/people/ReligionAndEthnicity-200407" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentVictim-v1-0">
+	<xs:import namespace="http://www.govtalk.gov.uk/people/PersonDescriptives" schemaLocation="PersonDescriptiveTypes-v1-1.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/ReligionAndEthnicity-200407" schemaLocation="ReligionAndEthnicity-v0-1.xsd"/>
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-07-10</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System victim details structure</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentVictim-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FireTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>PersonDescriptiveTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>ReligionAndEthnicity-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System victim details structure</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="VictimsStructure">
+		<xs:annotation>
+			<xs:documentation>Provides the structure for specifying victim information.  This provides a choice between entering full individual victim details, or just summary data.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Victim" type="VictimStructure" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A Victim is involved in an Incident as a Fatality, Injury or just Rescued.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VictimSummary" type="VictimSummaryStructure">
+				<xs:annotation>
+					<xs:documentation>Summary information providing totals of all the types of victims involved in this special service incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="VictimStructure">
+		<xs:annotation>
+			<xs:documentation>Stores the information about a particular victim involved in an incident</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="VictimTypeType">
+				<xs:annotation>
+					<xs:documentation>9.6 - The type of this victim, fatality, casualty, or uninjured (rescued)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LocationAtFireStart" type="LocationAtFireStartStructure">
+				<xs:annotation>
+					<xs:documentation>9.10 - The location of this victim when the fire initially started if known.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WhereFound" type="WhereFoundStructure">
+				<xs:annotation>
+					<xs:documentation>9.11 - Describes where this victim was found at the scene by the fire officers.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Role" type="VictimRoleStructure">
+				<xs:annotation>
+					<xs:documentation>9.12 - The role played by this victim, eg resident, firefighter etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PersonName" type="pdt:PersonNameStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>9.18 and 9.19 - The Persons family name should be populated if available. It must be populated for Fatalities and for all Fire Injured victims with Serious SeverityOfInjury = 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Age">
+				<xs:annotation>
+					<xs:documentation>9.7 - Approximate age of the victim e.g. Child, Elderly, etc.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="fire:ZeroTo999Type">
+						<xs:maxInclusive value="115"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Gender" type="pdt:GenderCurrentType">
+				<xs:annotation>
+					<xs:documentation>9.8 - Gender (census categories)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ethnicity" type="EthnicityStructure">
+				<xs:annotation>
+					<xs:documentation>9.9 - Ethnicity (census categories)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WasRescued" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>9.13 - Was this victim rescued at the scene, regardless of whether they sustained any injuries (Fatality, Injured or just Rescued).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RescueDetails" type="RescueDetailsStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If this victim WasRescued, then this section contains details on the rescue that took place. Must be populated for Rescued individuals. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>This choice structure is determined by the value of the victim type field.   Note: A Casualty is defined as a Fatality or Injury. </xs:documentation>
+				</xs:annotation>
+				<xs:element name="Fatality" type="FatalityStructure">
+					<xs:annotation>
+						<xs:documentation>Extra details only needed for fatality victims</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Injured" type="InjuredStructure">
+					<xs:annotation>
+						<xs:documentation>Extra details only needed for injury victims</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Rescued" type="RescuedStructure">
+					<xs:annotation>
+						<xs:documentation>Extra details only needed for uninjured victims</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="Id" type="fire:StringRestrictedKeyMandatoryType"/>
+	</xs:complexType>
+	<xs:complexType name="FatalityStructure">
+		<xs:annotation>
+			<xs:documentation>Contains the information specific to a fatality victim</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Circumstances" type="FatalityCircumstancesType">
+				<xs:annotation>
+					<xs:documentation>9.20 - e.g. Thought to be already dead on arrival.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CauseOfDeath" type="CauseOfDeathStructure">
+				<xs:annotation>
+					<xs:documentation>9.22 - e.g. Burns or scalds, Heart Attack, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeathCertificateMarker" type="DeathCertificateMarkerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>9.23 - A status determining if the Death Certificate has been received and checked. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WasFireRelated" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>9.21 - Was the fataility specifically due to Fire?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OxygenProvided" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>9.26 - Was oxygen give to the casualty victim?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OtherCircumstances" type="OtherCircumstancesStructure">
+				<xs:annotation>
+					<xs:documentation>9.25 - e.g. Fell onto Fire, Trapped by Smoke, Injured by blast, etc. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InjuredStructure">
+		<xs:annotation>
+			<xs:documentation>Contains the information specific to a casualty victim</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NatureOfInjury" type="NatureOfInjuryStructure">
+				<xs:annotation>
+					<xs:documentation>9.22 - e.g. Internal injury, Drowning, Severe Burns, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SeverityOfInjury" type="SeverityOfInjuryType">
+				<xs:annotation>
+					<xs:documentation>9.24 - Medical Assistance e.g. Serious – overnight stay in hospital as in-patient.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OtherCircumstances" type="OtherCircumstancesStructure">
+				<xs:annotation>
+					<xs:documentation>9.25 - e.g. Fell onto Fire, Trapped by Smoke, Injured by blast, etc. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OxygenProvided" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>9.26 - Was oxygen give to the casualty victim?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WasFireRelated" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>9.21 - Was the injury specifically due to Fire?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RescuedStructure">
+		<xs:annotation>
+			<xs:documentation>Contains the information specific to an uninjured victim</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OtherCircumstances" type="OtherCircumstancesStructure">
+				<xs:annotation>
+					<xs:documentation>9.25 - e.g. Bedridden, Chair-ridden, Drunk, etc. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RescueDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>Contains the information about whether or not this victim was rescued</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Location" type="RescueLocationType">
+				<xs:annotation>
+					<xs:documentation>9.14 - location and circumstances e.g. Different room, cabin or compartment on floor of origin.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="By" type="RescuedByType">
+				<xs:annotation>
+					<xs:documentation>9.15 - Who rescued the victim e.g. FRS personnel with breathing apparatus.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Method" type="RescueMethodStructure">
+				<xs:annotation>
+					<xs:documentation>9.16 - Rescue method e.g. Extension ladder</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="VictimTypeType">
+		<xs:annotation>
+			<xs:documentation>Provides an enumeration of the three distinct victim types (fatality, casualty/injury and uninjured/rescue)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Fatal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Injury (incl. rescue with injury)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Rescued (rescue without injury)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="VictimRoleStructure">
+		<xs:annotation>
+			<xs:documentation>Extends VictimRoleType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="VictimRoleType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="VictimRoleType">
+		<xs:annotation>
+			<xs:documentation>Lists the possible roles that a victim could have, eg firefighter</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Firefighter on duty</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Other emergency service personnel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Resident/Occupant</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Passer by</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Driver</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Passenger</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Visitor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Employee in workplace</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Customer in shop</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Other FRS personnel on duty</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="LocationAtFireStartStructure">
+		<xs:annotation>
+			<xs:documentation>Extends LocationAtFireStartType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="LocationAtFireStartType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="LocationAtFireStartType">
+		<xs:annotation>
+			<xs:documentation>Defines the options available to describe the location of a victim when the fire started.  This adds the 'not known' option to the where found list.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="WhereFoundType fire:NotKnownType"/>
+	</xs:simpleType>
+	<xs:complexType name="WhereFoundStructure">
+		<xs:annotation>
+			<xs:documentation>Extends WhereFoundType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="WhereFoundType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="WhereFoundType">
+		<xs:annotation>
+			<xs:documentation>Defines the options available to describe where a victim was found</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Room, cabin or compartment of origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Different room, cabin or compartment on floor of origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Floor above origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Two or more floors above origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>One floor below origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Two or more floors below origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Outside building, vehicle etc of origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Seat of fire unknown or multi-seated (and above not applicable)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Location of person unknown</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other Location</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RescuedByType">
+		<xs:annotation>
+			<xs:documentation>Defines the set of avilable options for the rescued by field</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Firefighter without breathing apparatus</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Firefighter with breathing apparatus</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Other without breathing apparatus</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Other with breathing apparatus</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Rescuer not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RescueMethodStructure">
+		<xs:annotation>
+			<xs:documentation>Extends RescueMethodType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="RescueMethodType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="RescueMethodType">
+		<xs:annotation>
+			<xs:documentation>Defines the set of available options for the resuce methods used field</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Ladder</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Aerial appliance</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Specialist rope rescue</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Rescue with fire service lines e.g. lowered from height</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Boat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Supported/Carried out</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Extricated</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Released</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Other organisation’s resources e.g. helicopter, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other method</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RescueLocationType">
+		<xs:annotation>
+			<xs:documentation>Defines the available options for specifying the location and circumstances of the rescue</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Room, cabin or compartment of origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Different room, cabin or compartment on floor of origin </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Floor above origin - includes mezzanine above floor of origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Two or more floors above origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>One floor below origin - includes stairway leading down from floor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Two or more floors below origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Roof</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Outside building of origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CauseOfDeathStructure">
+		<xs:annotation>
+			<xs:documentation>Extends CauseOfDeathType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="CauseOfDeathType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="CauseOfDeathType">
+		<xs:annotation>
+			<xs:documentation>Defines all the values that could be entered for the cause of death of a fatality victim.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Overcome by gas, smoke or toxic fumes; asphyxiation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Burns - severe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Combination of burns and overcome by gas/smoke</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Shock/Anaphylactic shock</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Other medical condition</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Fracture</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Other physical injury</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Cuts/Lacerations</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Impalement</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Drowning</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Hypothermia</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Heat exhaustion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Back/Neck injury (spinal)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Head injury</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Chest/Abdominal injury</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Chest pain/Heart condition/Cardiac arrest</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FatalityCircumstancesType">
+		<xs:annotation>
+			<xs:documentation>Details the circumstances of each fatality victim.  Ie did they die at the scene or later.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Thought to be already dead when Firefighter arrived</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Unable to resuscitate, confirmed dead at scene</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Unable to resuscitate at scene, confirmed dead at hospital</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Alive on leaving scene, but died later</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeathCertificateMarkerType">
+		<xs:annotation>
+			<xs:documentation>Defines whether the Death Certificate process has been completed</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Received</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Matched</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Finalised</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="NatureOfInjuryStructure">
+		<xs:annotation>
+			<xs:documentation>Extends NatureOfInjuryType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="NatureOfInjuryType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="NatureOfInjuryType">
+		<xs:annotation>
+			<xs:documentation>Contains the options that can be used to specify the type of injury a casualty victim has recieved</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Overcome by gas, smoke or toxic fumes; asphyxiation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Burns - severe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Burns - slight</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Combination of burns and overcome by gas/smoke</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Shock/Anaphylatic shock</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Other medical condition</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Other Breathing difficulties</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Fracture</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Concussion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Bruising</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Unconscious, fitting or unresponsive (no other evident significant injury)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Other physical injury</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Cuts/Lacerations</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Impalement</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Drowning</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Hypothermia</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Heat exhaustion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Back/Neck injury (spinal)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Head injury</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Chest/Abdominal injury</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Chest pain/Heart condition/Cardiac arrest</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Choking</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Collapse</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SeverityOfInjuryType">
+		<xs:annotation>
+			<xs:documentation>Contains the options to specify the seriousness of a casualty victims injuries.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Victim went to hospital, injuries appear to be Serious</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Victim went to hospital, injuries appear to be Slight</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>First aid given at scene</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Precautionary check recommended</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OtherCircumstancesStructure">
+		<xs:annotation>
+			<xs:documentation>Extends OtherCircumstancesType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="OtherCircumstancesType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="OtherCircumstancesType">
+		<xs:annotation>
+			<xs:documentation>Defines the options available for specifying the circumstances of a casualty or uninjured victim.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Bedridden</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Chair-ridden, e.g. in a wheel chair</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Other immobility</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Suspected under the influence of alcohol</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Suspected under the influence of drugs</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Discovering fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Fell onto fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Fighting fire (including attempts)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Trapped by fire because unaware, e.g. asleep</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Trapped by fire other than unaware</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Trapped by collapse of structure </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Trapped by smoke</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Injured escaping</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Injured rescuing person</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Injured rescuing property or animals</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Injured being rescued</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Injured by blast</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Returned to fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Intentionally sustained at start of fire (e.g. suicides and attempts)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Injury accidentally sustained at start of fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EthnicityStructure">
+		<xs:annotation>
+			<xs:documentation>Defines the possible options that can be entered for a victim's ethnicity.  This consists of a mandatory specific value (e.g. Bangladeshi). If the specific values is not known use NOT STATED.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="FireEthnicCategoryType"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="VictimSummaryStructure">
+		<xs:annotation>
+			<xs:documentation>Contains summary victim information, including fatalities, casualties and uninjured totals, as well as firefighter victims.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FatalVictims" type="VictimSummaryTotalsStructure">
+				<xs:annotation>
+					<xs:documentation>Summary of the people fataly injured at the scene of the Special Service.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CasualtyVictims" type="VictimSummaryTotalsStructure">
+				<xs:annotation>
+					<xs:documentation>Summary of the people injured at the scene of the Special Service.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnInjuredVictims" type="VictimSummaryTotalsStructure">
+				<xs:annotation>
+					<xs:documentation>Summary of the people removed, but with out injury at the scene of the Special Service.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirefighterCasualties">
+				<xs:annotation>
+					<xs:documentation>Summary of the Fire fighter casualties on attending the Special Service.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Fatalities" type="fire:ZeroTo9999999Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The number of firefighter fatalities.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SeriousInjuries" type="fire:ZeroTo9999999Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The number of firefighters with serious injuries, generally requiring hospitalisation.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SlightInjuries" type="fire:ZeroTo9999999Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The number of firefighters with minor injuries.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VictimSummaryTotalsStructure">
+		<xs:annotation>
+			<xs:documentation>A simple structure for specifying two totals. The number of people extricated (using special means), and the number released. This is applied to fatality, casualty, and uninjured victims.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NumberExtricated" type="fire:ZeroTo9999999Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number extricated using specialised equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumberReleased" type="fire:ZeroTo9999999Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number released by other means.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="FireEthnicCategoryType">
+		<xs:annotation>
+			<xs:documentation>Ethnic categories used by all areas (except Northern Ireland which has completely different list). This list has been cloned from the GovTalk schemas as Descriptions have been added for annotations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="British">
+				<xs:annotation>
+					<xs:documentation>White - British</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Irish">
+				<xs:annotation>
+					<xs:documentation>White - Irish</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other White">
+				<xs:annotation>
+					<xs:documentation>White - Other White</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="White &amp; Black Caribbean">
+				<xs:annotation>
+					<xs:documentation>Mixed - White &amp; Black Caribbean</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="White &amp; Black African">
+				<xs:annotation>
+					<xs:documentation>Mixed - White &amp; Black African</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="White &amp; Asian">
+				<xs:annotation>
+					<xs:documentation>Mixed - White &amp; Asian</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other Mixed">
+				<xs:annotation>
+					<xs:documentation>Mixed - Other Mixed</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Indian">
+				<xs:annotation>
+					<xs:documentation>Asian or Asian British - Indian</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Pakistani">
+				<xs:annotation>
+					<xs:documentation>Asian or Asian British - Pakistani</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bangladeshi">
+				<xs:annotation>
+					<xs:documentation>Asian or Asian British - Bangladeshi</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other Asian">
+				<xs:annotation>
+					<xs:documentation>Asian or Asian British - Other Asian</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Caribbean">
+				<xs:annotation>
+					<xs:documentation>Black or Black British - Caribbean</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="African">
+				<xs:annotation>
+					<xs:documentation>Black or Black British - African</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other Black">
+				<xs:annotation>
+					<xs:documentation>Black or Black British - Other Black</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Chinese">
+				<xs:annotation>
+					<xs:documentation>Chinese</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Any Other">
+				<xs:annotation>
+					<xs:documentation>Other Ethnic group</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NOT STATED">
+				<xs:annotation>
+					<xs:documentation>Not known/stated</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

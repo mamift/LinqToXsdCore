@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://www.nhsia.nhs.uk/DataStandards/XMLschema/CDS/ns" targetNamespace="http://www.nhsia.nhs.uk/DataStandards/XMLschema/CDS/ns" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6-2">
+	<xs:include schemaLocation="CDS-XML_Standard_Data_Structures-V6-2-3.xsd"/>
+	<xs:complexType name="EmergencyCare_Stucture">
+		<xs:sequence>
+			<xs:element name="PatientPathway" type="ns:PatientPathway_EC_Structure" minOccurs="0"/>
+			<xs:element name="PersonGroupPatient" type="ns:PersonGroupPatient_EC_Structure"/>
+			<xs:element name="GPRegistration" type="ns:GPRegistration_Structure" minOccurs="0"/>
+			<xs:element name="EmergencyCareAttendanceLocation">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OrganisationSiteIdentifier_OfTreatment" type="ns:AN_5_9_EC_Type"/>
+						<xs:element name="EmergencyCareDepartmentType" type="ns:AN_2_EC_Type"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AttendanceOccurrence" type="ns:AttendanceOccurrence_EC_Structure"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatientPathway_EC_Structure">
+		<xs:sequence>
+			<xs:element name="PatientPathwayIdentity">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="UniqueBookingReferenceNumber_Converted" type="ns:UBRN_Converted_Type"/>
+							<xs:element name="PatientPathwayIdentifier" type="ns:PatientPathwayIdentifier_Type"/>
+						</xs:choice>
+						<xs:element name="OrganisationIdentifier_PatientPathwayIdentifierIssuer" type="ns:OrgIden_EC_Type"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RTTPeriodCharacteristics">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ReferralToTreatmentPeriod_Status" type="ns:ReferralToTreatmentPeriod_Status_Type"/>
+						<xs:element name="WaitingTimeMeasurementType" type="ns:WaitingTimeMeasurementType_Type"/>
+						<xs:element name="ReferralToTreatmentPeriod_StartDate" type="ns:ReferralToTreatmentPeriod_StartDate_Type" minOccurs="0"/>
+						<xs:element name="ReferralToTreatmentPeriod_EndDate" type="ns:ReferralToTreatmentPeriod_EndDate_Type" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonGroupPatient_EC_Structure">
+		<xs:sequence>
+			<xs:element name="PatientIdentity" type="ns:PatientIdentity"/>
+			<xs:element name="PatientCharacteristics_EmergencyCare" type="ns:PatientCharacteristics_EmergencyCare_Structure" minOccurs="0"/>
+			<xs:element name="MentalHealthActLegalStatus" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StartDate_MentalHealthActLegalStatusClassificationAssignmentPeriod" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="StartTime_MentalHealthActLegalStatusClassificationAssignmentPeriod" type="ns:Time_Type" minOccurs="0"/>
+						<xs:element name="ExpiryDate_MentalHealthActLegalStatusClassification" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="ExpiryTime_MentalHealthActLegalStatusClassification" type="ns:Time_Type" minOccurs="0"/>
+						<xs:element name="MentalHealthActLegalStatusClassificationCode" type="ns:MH_Status_EC_Type" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatientIdentity">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="WithheldIdentity_Structure">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NHSNumberStatusIndicatorCode" type="ns:NHSNumberStatusIndicatorCode_Withheld_Type"/>
+							<xs:element name="OrganisationIdentifier_ResidenceResponsibility" type="ns:OrgIden_EC_Type" minOccurs="0"/>
+							<xs:element name="WithheldIdentityReason" type="ns:WithheldIdentityReason_Type" minOccurs="0"/>
+						</xs:sequence>
+						<xs:attribute name="NHSNumberStatusIndicatorCode" type="ns:NHSNumberStatusIndicatorCode_Withheld_Type" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="VerifiedIdentity_Structure">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="LocalIdentifierStructure" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence minOccurs="0">
+										<xs:element name="LocalPatientIdentifier_Extended" type="ns:LocalPatientIdentifier_EC_Type"/>
+										<xs:element name="OrganisationIdentifier_LocalPatientIdentifier" type="ns:OrgIden_EC_Type"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DataElementStructure">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NHSNumber" type="ns:NHSNumber_Type"/>
+										<xs:element name="NHSNumberStatusIndicatorCode" type="ns:NHSNumberStatusIndicatorCode_Verified_Type"/>
+										<xs:element name="PostcodeOfUsualAddress" type="ns:PostcodeOfUsualAddress_Type"/>
+										<xs:element name="OrganisationIdentifier_ResidenceResponsibility" type="ns:OrgIden_EC_Type" minOccurs="0"/>
+										<xs:element name="PersonBirthDate" type="ns:PersonBirthDate_Type" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="NHSNumberStatusIndicatorCode" type="ns:NHSNumberStatusIndicatorCode_Verified_Type" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="UnverifiedIdentity_Structure">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:sequence minOccurs="0">
+								<xs:element name="LocalIdentifierStructure" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="LocalPatientIdentifier_Extended" type="ns:LocalPatientIdentifier_EC_Type"/>
+											<xs:element name="OrganisationIdentifier_LocalPatientIdentifier" type="ns:OrgIden_EC_Type"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="DataElementStructure">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="NHSNumber" type="ns:NHSNumber_Type" minOccurs="0"/>
+											<xs:element name="NHSNumberStatusIndicatorCode" type="ns:NHSNumberStatusIndicatorCode_Unverified_Type"/>
+											<xs:element name="PatientName" type="ns:PersonName_Structure" minOccurs="0"/>
+											<xs:element name="PatientUsualAddress" type="ns:Address_Structure" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="DataElementStructure2" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="PostcodeOfUsualAddress" type="ns:PostcodeOfUsualAddress_Type" minOccurs="0"/>
+											<xs:element name="OrganisationIdentifier_ResidenceResponsibility" type="ns:OrgIden_EC_Type" minOccurs="0"/>
+											<xs:element name="PersonBirthDate" type="ns:PersonBirthDate_Type" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:sequence>
+						<xs:attribute name="NHSNumberStatusIndicatorCode" type="ns:NHSNumberStatusIndicatorCode_Unverified_Type" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatientCharacteristics_EmergencyCare_Structure">
+		<xs:sequence>
+			<xs:element name="PersonStatedGenderCode" type="ns:PersonStatedGenderCode_EC_Type" minOccurs="0"/>
+			<xs:element name="EthnicCategory" type="ns:EthnicCategory_Type" minOccurs="0"/>
+			<!-- Following Added for 6-2-3     DB  18/08/2020 -->
+			<xs:element name="EthnicCategory2021" type="ns:EthnicCategory2021_Type" minOccurs="0"/>
+			<!-- End of Addition -->
+			<xs:element name="AccommodationStatus_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+			<xs:element name="PreferredSpokenLanguage_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+			<xs:element name="AccessibleInformationProfessionalRequiredCode_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+			<xs:element name="InterpreterLanguage_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+			<xs:element name="OverseasVisitorChargingCategoryAtCdsActivityDate" type="ns:Overseas_EC_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AttendanceOccurrence_EC_Structure">
+		<xs:sequence>
+			<xs:element name="AmbulanceDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- Following Removed V6-2-3     DB 18/08/2020     
+						<xs:element name="AmbulanceIncidentNumber" type="ns:AN_max_20_EC_Type" minOccurs="0"/>
+						-->
+						<!-- Following Added V6-2-3		DB 18/08/2020 -->
+						<xs:element name="AmbulanceCallIdentifier" type="ns:AN_max_20_EC_Type" minOccurs="0"/>
+						<!-- End of addition -->
+						<xs:element name="OrganisationIdentifier_ConveyingAmbulanceTrust" type="ns:AN_3_5_EC_Type" minOccurs="0"/>
+						<!-- Following Added V6-2-3     DB 24/08/2020 -->
+						<xs:element name="CareContactIdentifier_AmbulanceService" type="ns:AN_max_20_EC_Type" minOccurs="0"/>
+						<!-- End of addition -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!-- Following Added V6-2-3    DB 20/08/2020 -->
+			<xs:element name="ExpectedDateTimeOfTreatment" minOccurs="0" maxOccurs="unbounded">
+				<!-- 24/08/20 set to unbounded -->
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EmergencyCareExpectedDateTimestampTreatment" type="ns:DateTimeStamp" minOccurs="0"/>
+						<xs:element name="EmergencyCareTreatmentTimestamp" type="ns:DateTimeStamp" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!-- End of Addition -->
+			<xs:element name="EmergencyCareAttendanceActivityCharacteristics">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EmergencyCareAttendanceIdentifier" type="ns:AN_min_1_max_12_EC_Type"/>
+						<xs:element name="EmergencyCareArrivalMode_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareAttendanceCategory" type="ns:AttendCat_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareAttendanceSource_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="OrganisationSiteIdentifier_EmergencyCareAttendanceSource" type="ns:AN_5_9_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareArrivalDate" type="ns:Date_Type"/>
+						<xs:element name="EmergencyCareArrivalTime" type="ns:Time_Type"/>
+						<xs:element name="AgeAtCdsActivityDate" type="ns:AgeAtCDSActivityDate_Type"/>
+						<xs:element name="EmergencyCareInitialAssessmentDate" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareInitialAssessmentTime" type="ns:Time_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareAcuity_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareChiefComplaint_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareDateSeenForTreatment" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareTimeSeenForTreatment" type="ns:Time_Type" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!-- Following Added V6-2-3     DB 21/08/2020  Amended 26/08/2020-->
+			<xs:element name="CodedScoredAssessment" minOccurs="0" maxOccurs="unbounded">
+				<!-- amended to unbounded 6-2-3 DB 24/08/2020   -->
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CodedAssessmentToolType_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="1"/>
+						<xs:element name="PersonScore" type="ns:AN_max_5_EC_Type" minOccurs="0"/>
+						<xs:element name="AssessmentToolValidationTimestamp" type="ns:DateTimeStamp" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!-- Amended 6-2-3 DB 26/08/2020  Following element bame and occurances-->
+			<xs:element name="CodedClinicalObservations" minOccurs="0" maxOccurs="unbounded">
+				<!-- Updated 6-2-3 DB 24/08/2020  -->
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CodedObservation_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="1"/>
+						<!-- Updated 6-2-3 DB 24/08/2020  -->
+						<xs:element name="ObservationValue" type="ns:AN_max_10_EC_Type" minOccurs="1"/>
+						<xs:element name="UCUMunitOfMeasurement" type="ns:AN_max_10_EC_Type" minOccurs="0"/>
+						<xs:element name="CodedObservationTimeStamp" type="ns:DateTimeStamp" minOccurs="1"/>
+						<!-- Updated 6-2-3 DB 24/08/2020  and moved to new complex element 26/08/2020-->
+						<!-- xs:element name="CodedFinding_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/-->
+						<!-- Added 6-2-3  DB 24/08/2020 -->
+						<!-- xs:element name="CodedFinding_TimeStamp" type="ns:TimeStamp" minOccurs="0"/-->
+						<!-- Added 6-2-3  DB 24/08/2020 -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!-- End of Addition   -->
+			<!-- Added 6-2-3 DB 26/08/2020-->
+			<xs:element name="CodedClinicalFinding" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CodedFinding_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="1"/>
+						<xs:element name="CodedFinding_TimeStamp" type="ns:DateTimeStamp" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!-- End of Addition  -->
+			<xs:element name="InjuryCharacteristics" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="InjuryDate" type="ns:Date_Type" minOccurs="1"/>
+						<xs:element name="InjuryTime" type="ns:Time_Type" minOccurs="1"/>
+						<xs:element name="EmergencyCarePlaceOfInjury_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCarePlaceOfInjury_LatitudeAndLongitude" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Latitude">
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:fractionDigits value="6"/>
+												<xs:maxInclusive value="90"/>
+												<xs:minInclusive value="-90"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Longitude">
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:fractionDigits value="6"/>
+												<xs:maxInclusive value="180"/>
+												<xs:minInclusive value="-180"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="EmergencyCareInjuryIntent_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareInjuryActivityStatus_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareInjuryActivityType_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareInjuryMechanism_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareInjuryAlcoholOrDrugInvolvement_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0" maxOccurs="unbounded"/>
+						<!-- Added 6-2-3    db  18/08/2020 -->
+						<xs:element name="AssaultLocationDescription" type="ns:AN_max_255_EC_Type" minOccurs="0"/>
+						<!-- End of Addition-->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PatientClinicalHistory" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Comorbidity_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ServiceAgreementDetails" minOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CommissioningSerialNumber" type="ns:CommissioningSerialNumber_Type" minOccurs="0"/>
+						<!-- not EC -->
+						<xs:element name="NhsServiceAgreementLineNumber" type="ns:NHSServiceAgreementLineNumber_Type" minOccurs="0"/>
+						<!-- not EC -->
+						<xs:element name="ProviderReferenceNumber" type="ns:ProviderReferenceNumber_Type" minOccurs="0"/>
+						<!-- not EC -->
+						<xs:element name="CommissionerReferenceNumber" type="ns:CommissionerReferenceNumber_Type" minOccurs="0"/>
+						<!-- not EC -->
+						<xs:element name="OrganisationIdentifier_CodeOfProvider" type="ns:AN_3_5_EC_Type" minOccurs="1"/>
+						<xs:element name="OrganisationIdentifier_CodeOfCommissioner" type="ns:AN_3_5_EC_Type" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CareProfessionals_EmergencyCare" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ProfessionalRegistrationIssuerCode" type="ns:ProfessionalRegistrationIssuerCode_EC_Type" minOccurs="1"/>
+						<xs:element name="ProfessionalRegistrationEntryIdentifier" type="ns:AN_min_1_max_32_EC_Type" minOccurs="1"/>
+						<xs:element name="CareProfessionalTier_EmergencyCare" type="ns:CareProfessionalTier_EC_Type" minOccurs="1"/>
+						<xs:element name="CareProfessionalDischargeResponsibilityIndicator_EmergencyCare" type="ns:Yes_No_EC_Type" minOccurs="1"/>
+						<!-- Following Added 6-2-3     db 21/08/20 -->
+						<xs:element name="CareProfessionalClinicalResponsibilityTimeStamp" type="ns:DateTimeStamp" minOccurs="0"/>
+						<!-- End of Addition -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EmergencyCareDiagnoses_SnomedCt" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EmergencyCareDiagnosis_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="1"/>
+						<xs:element name="CodedClinicalEntrySequenceNumber" type="ns:N_1_N_5_EC_Type" minOccurs="1"/>
+						<xs:element name="EmergencyCareDiagnosisQualifier_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EmergencyCareInvestigations_SnomedCt" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EmergencyCareClinicalInvestigation_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="1"/>
+						<xs:element name="ProcedureDate_EmergencyCareClinicalInvestigation" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="ProcedureTime_EmergencyCareClinicalInvestigation" type="ns:Time_Type" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EmergencyCareTreatments_SnomedCt" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EmergencyCareProcedure_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="1"/>
+						<xs:element name="ProcedureDate_EmergencyCareProcedure" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="ProcedureTime_EmergencyCareProcedure" type="ns:Time_Type" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReferralsToOtherServices" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ReferredToService_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="ActivityServiceRequestDate_EmergencyCare" type="ns:Date_Type"/>
+						<xs:element name="ActivityServiceRequestTime_EmergencyCare" type="ns:Time_Type"/>
+						<xs:element name="ReferredToServiceAssessmentDate" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="ReferredToServiceAssessmentTime" type="ns:Time_Type" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DischargeFromEmergencyCare" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DecidedToAdmitDate" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="DecidedToAdmitTime" type="ns:Time_Type" minOccurs="0"/>
+						<xs:element name="ActivityTreatmentFunctionCode_DecisionToAdmit" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="ns:AlphaNumeric_Type">
+									<xs:length value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<!-- Following Added       6-2-3      21/08/2020  -->
+						<xs:element name="EmergencyCareClinicallyReadyToProceedTimeStamp" type="ns:DateTimeStamp" minOccurs="0"/>
+						<!-- End of Addition -->
+						<xs:element name="EmergencyCareDischargeStatus_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<!-- Following Removed     6-2-3      18/08/2020
+						<xs:element name="EmergencyCareAttendanceConclusionDate" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareAttendanceConclusionTime" type="ns:Time_Type" minOccurs="0"/>
+						-->
+						<xs:element name="EmergencyCareDepartureDate" type="ns:Date_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareDepartureTime" type="ns:Time_Type" minOccurs="0"/>
+						<xs:element name="SafeguardingConcern_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="EmergencyCareDischargeDestination_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="OrganisationSiteIdentifier_DischargeFromEmergencyCare" type="ns:AN_5_9_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareDischargeFollowUp_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="EmergencyCareDischargeInformationGiven_SnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ResearchAndDiseaseOutbreakNotification" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClinicalTrialIdentifier" type="ns:AN_max_20_EC_Type" minOccurs="0"/>
+						<!-- Following Removed  6-2-3    18/08/2020  
+						<xs:element name="DiseaseOutbreakNotification" type="ns:AN_max_20_EC_Type" minOccurs="0"/>
+						-->
+						<!-- Following Added  6-2-3     18/08/2020  -->
+						<xs:element name="DiseaseOutBreakNotificationSnomedCt" type="ns:N_6_18_EC_Type" minOccurs="0"/>
+						<xs:element name="DiseaseOutBreakNotificationDescription" type="ns:AN_max_20_EC_Type" minOccurs="0"/>
+						<!-- End of Addition -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- type -->
+	<xs:simpleType name="OrgIden_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocalPatientIdentifier_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PersonStatedGenderCode_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="1"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="X"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="N_6_18_EC_Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="6"/>
+			<xs:maxLength value="18"/>
+			<xs:pattern value="[0-9]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="N_5_EC_Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+			<xs:pattern value="[0-9]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="N_1_N_5_EC_Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+			<xs:pattern value="[0-9]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Overseas_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="1"/>
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="E"/>
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MH_Status_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="2"/>
+			<!-- Following removed 6-2-3  DB
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+			-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AN_5_9_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:minLength value="5"/>
+			<xs:maxLength value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AN_2_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="2"/>
+			<!-- Following removed 6-2-3     db 18/08/2020
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			-->
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Added 6-2-3      db      18/08/2020 -->
+	<xs:simpleType name="AN_max_5_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AN_max_10_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- End of Addition -->
+	<xs:simpleType name="AN_max_12_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Added 6-2-3      db     18/08/2020 -->
+	<xs:simpleType name="AN_max_255_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- End of Addition  -->
+	<xs:simpleType name="AN_min_1_max_12_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AN_max_20_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AN_max_32_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AN_min_1_max_32_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AN_3_5_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AttendCat_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="1"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="X"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProfessionalRegistrationIssuerCode_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="2"/>
+			<!-- Following removed 6-2-3     db 18/08/20
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CareProfessionalTier_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="2"/>
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Yes_No_EC_Type">
+		<xs:restriction base="ns:AlphaNumeric_Type">
+			<xs:length value="1"/>
+			<xs:enumeration value="Y"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

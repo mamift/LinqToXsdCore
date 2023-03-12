@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://www.nhsia.nhs.uk/DataStandards/XMLschema/CDS/ns" targetNamespace="http://www.nhsia.nhs.uk/DataStandards/XMLschema/CDS/ns" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CDS-XML_Standard_Data_Structures-V6-2-3.xsd"/>
+	<xs:include schemaLocation="CDS_011_Emergency_Care-V6-2-3.xsd"/>
+	<xs:complexType name="CDSInterchange_Structure" mixed="false">
+		<xs:annotation>
+			<xs:documentation>CDS Interchange Entry Point For ALL Protocols (Bulk and Net)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CDSInterchangeHeader" type="ns:CDSInterchangeHeader_Structure"/>
+			<xs:choice>
+				<xs:element name="CDSNetChange-All-MessageTypes" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>ALL CDS Types Any combination or sequenced</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CDSMessageHeader" type="ns:CDSMessageHeader_Structure"/>
+							<xs:element name="CDSTransactionHeader_NetChange" type="ns:CDSTransactionHeader_NetChange_Structure"/>
+							<xs:choice>
+								<xs:element name="EmergencyCare" type="ns:EmergencyCare_Stucture">
+									<xs:annotation>
+										<xs:documentation>CDS TYPE 011</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="DeleteTransaction">
+									<xs:complexType/>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="CDSMessageTrailer" type="ns:CDSMessageTrailer_Structure"/>
+						</xs:sequence>
+						<xs:attribute name="CDSProtocolIdentifierCode" type="ns:CDSProtocolIdentifierCode_Type" use="required" fixed="010">
+							<xs:annotation>
+								<xs:documentation>Enforce CDS Protocols 010 = NET</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="CDSBulkReplacementGroupCode" type="ns:CDSBulkReplacementGroupCode_Type" use="prohibited">
+							<xs:annotation>
+								<xs:documentation>Bulk Replacement Group Not Required</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="CDSTypeCode" type="ns:CDSTypeCode_Type" use="required">
+							<xs:annotation>
+								<xs:documentation>All valid CDS Types</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CDSBulkGroup-160-Message" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Emergency  Care  - CDS Type 011  Added in V6-2-1 Feb 2017</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CDSMessageHeader" type="ns:CDSMessageHeader_Structure"/>
+							<xs:element name="CDSTransactionHeader_BulkUpdate" type="ns:CDSTransactionHeader_BulkUpdate_Structure"/>
+							<xs:element name="EmergencyCare" type="ns:EmergencyCare_Stucture">
+								<xs:annotation>
+									<xs:documentation>CDS TYPE 011</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="CDSMessageTrailer" type="ns:CDSMessageTrailer_Structure"/>
+						</xs:sequence>
+						<xs:attribute name="CDSProtocolIdentifierCode" type="ns:CDSProtocolIdentifierCode_Type" use="required" fixed="020"/>
+						<xs:attribute name="CDSBulkReplacementGroupCode" type="ns:CDSBulkReplacementGroupCode_Type" use="required" fixed="160"/>
+						<xs:attribute name="CDSTypeCode" type="ns:CDSTypeCode_Type" use="required">
+							<xs:annotation>
+								<xs:documentation>CDS Type 011 only</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="CDSInterchangeTrailer" type="ns:CDSInterchangeTrailer_Structure"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDSInterchangeHeader_Structure">
+		<xs:annotation>
+			<xs:documentation>CDS Interchange Header</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CDSInterchangeSenderIdentity" type="ns:CDSInterchangeSenderIdentity_Type"/>
+			<xs:element name="CDSInterchangeReceiverIdentity" type="ns:CDSInterchangeReceiverIdentity_Type"/>
+			<xs:element name="CDSInterchangeControlReference" type="ns:CDSInterchangeControlReference_Type"/>
+			<xs:element name="CDSInterchangeDateOfPreparation" type="ns:CDSInterchangeDateOfPreparation_Type"/>
+			<xs:element name="CDSInterchangeTimeOfPreparation" type="ns:CDSInterchangeTimeOfPreparation_Type"/>
+			<xs:element name="CDSInterchangeApplicationReference" type="ns:CDSInterchangeApplicationReference_Type"/>
+			<xs:element name="CDSInterchangeTestIndicator" type="ns:CDSInterchangeTestIndicator_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>It is recommended that test CDS should be  only be sent using separate Interchanges using this facility.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDSInterchangeTrailer_Structure">
+		<xs:annotation>
+			<xs:documentation>CDS Interchange Trailer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CDSInterchangeControlReference" type="ns:CDSInterchangeControlReference_Type"/>
+			<xs:element name="CDSInterchangeControlCount" type="ns:CDSInterchangeControlCount_Type"/>
+			<xs:element name="CDSInterchangeSenderIdentity" type="ns:CDSInterchangeSenderIdentity_Type" minOccurs="0"/>
+			<xs:element name="CDSInterchangeReceiverIdentity" type="ns:CDSInterchangeReceiverIdentity_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDSMessageHeader_Structure">
+		<xs:annotation>
+			<xs:documentation>CDS Message Header</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CDSMessageType" type="ns:CDSMessageType_Type"/>
+			<xs:element name="CDSMessageVersionNumber" type="ns:CDSMessageVersionNumber_Type"/>
+			<xs:element name="CDSMessageReferenceNumber" type="ns:CDSMessageReferenceNumber_Type"/>
+			<xs:element name="CDSMessageRecordIdentifier" type="ns:CDSMessageRecordIdentifier_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDSMessageTrailer_Structure">
+		<xs:annotation>
+			<xs:documentation>CDS Message Trailer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CDSMessageReferenceNumber" type="ns:CDSMessageReferenceNumber_Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDSTransactionHeader_NetChange_Structure">
+		<xs:annotation>
+			<xs:documentation>NET CHANGE CDS Transaction Header Group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CDSTypeCode" type="ns:CDSTypeCode_Type"/>
+			<xs:element name="CDSProtocolIdentifierCode" type="ns:CDSProtocolIdentifierCode_Type"/>
+			<xs:element name="CDSUniqueIdentifier" type="ns:CDSUniqueIdentifier_Type"/>
+			<xs:element name="CDSUpdateType" type="ns:CDSUpdateType_Type"/>
+			<xs:element name="CDSApplicableDate" type="ns:CDSApplicableDate_Type"/>
+			<xs:element name="CDSApplicableTime" type="ns:CDSApplicableTime_Type"/>
+			<xs:element name="CDSActivityDate" type="ns:CDSActivityDate_Type">
+				<xs:annotation>
+					<xs:documentation>Added in V6 For CDS Type 170 and the EAL "Census" CDS Types this data element carries the CDS CENSUS DATE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- Following Removed for V6-2-3   DB 17/08/20
+			<xs:element name="OrganisationCode_CDSSenderIdentity" type="ns:CDSSenderCode_Type"/>
+			<xs:element name="OrganisationCode_CDSPrimeRecipientIdentity" type="ns:CDSPrimeRecipientCode_Type"/>
+			<xs:element name="OrganisationCode_CDSCopyRecipientIdentity" type="ns:CDSCopyRecipientCode_Type" minOccurs="0" maxOccurs="7"/>
+			-->
+			<!-- Following Added for V6-2-3     DB 20/08/20 -->
+			<xs:element name="OrganisationIdentifier_CDSSender" type="ns:CDSSender_Identifier_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="OrganisationIdentifier_CDSRecipient" type="ns:CDSRecipient_Identifier_Type" minOccurs="0" maxOccurs="7"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDSTransactionHeader_BulkUpdate_Structure">
+		<xs:annotation>
+			<xs:documentation>BULK UPDATE CDS Transaction Header Group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CDSTypeCode" type="ns:CDSTypeCode_Type"/>
+			<xs:element name="CDSProtocolIdentifierCode" type="ns:CDSProtocolIdentifierCode_Type"/>
+			<xs:element name="CDSUniqueIdentifier" type="ns:CDSUniqueIdentifier_Type" minOccurs="0"/>
+			<xs:element name="CDSBulkReplacementGroupCode" type="ns:CDSBulkReplacementGroupCode_Type"/>
+			<xs:element name="CDSExtractDate" type="ns:CDSExtractDate_Type"/>
+			<xs:element name="CDSExtractTime" type="ns:CDSExtractTime_Type"/>
+			<xs:element name="CDSReportPeriodStartDate" type="ns:CDSReportPeriodStartDate_Type"/>
+			<xs:element name="CDSReportPeriodEndDate" type="ns:CDSReportPeriodEndDate_Type"/>
+			<xs:element name="CDSActivityDate" type="ns:CDSActivityDate_Type">
+				<xs:annotation>
+					<xs:documentation>Added in V6 For CDS Type 170 and the EAL "Census" CDS Types this data element carries the CDS CENSUS DATE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- Following Removed for V6-2-3   DB 17/08/20
+			<xs:element name="OrganisationCode_CDSSenderIdentity" type="ns:CDSSenderCode_Type"/>
+			<xs:element name="OrganisationCode_CDSPrimeRecipientIdentity" type="ns:CDSPrimeRecipientCode_Type"/>
+			<xs:element name="OrganisationCode_CDSCopyRecipientIdentity" type="ns:CDSCopyRecipientCode_Type" minOccurs="0" maxOccurs="7"/>
+			-->
+			<!-- Following Added for V6-2-3     DB 20/08/20 -->
+			<xs:element name="OrganisationIdentifier_CDSSender" type="ns:CDSSender_Identifier_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="OrganisationIdentifier_CDSRecipient" type="ns:CDSRecipient_Identifier_Type" minOccurs="0" maxOccurs="7"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

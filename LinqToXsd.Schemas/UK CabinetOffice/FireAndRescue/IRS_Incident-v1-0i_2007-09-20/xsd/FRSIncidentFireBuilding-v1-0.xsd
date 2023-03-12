@@ -1,0 +1,1696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fire="http://www.fire.gov.uk/schemas" xmlns:core="http://www.govtalk.gov.uk/core" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentFireBuilding-v1-0">
+	<xs:include schemaLocation="FRSIncidentCommonTypes-v1-0.xsd"/>
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-08-09</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System specific building fire details</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentFireBuilding-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FRSIncidentCommonTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FireTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System specific building fire details</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="DwellingStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the specific details needed for a dwelling primary fire.  This extends the PFBuildingStructure</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="PFBuildingStructure">
+				<xs:sequence>
+					<xs:element name="FireStartLocation" type="DwellingFireStartLocationStructure">
+						<xs:annotation>
+							<xs:documentation>8.14 - Location of fire start e.g. kitchen, engine room.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CauseAndReason" type="DwellingCauseAndReasonStructure">
+						<xs:annotation>
+							<xs:documentation>Contains the additional cause and reason details that only apply to dwelling fires.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OtherResidentialStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the specific details needed for an 'OtherResidential' primary fire.  This extends the PFBuildingStructure</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="PFBuildingStructure">
+				<xs:sequence>
+					<xs:element name="FireStartLocation" type="OtherResedentialFireStartLocationStructure">
+						<xs:annotation>
+							<xs:documentation>8.14 - Location of fire start e.g. kitchen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CauseAndReason" type="OtherCauseAndReasonStructure" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Contains the additional cause and reason details that apply to other residential fires</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonResidentialStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the specific details needed for a 'NonResidential' primary fire.  This extends the PFBuildingStructure</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="PFBuildingStructure">
+				<xs:sequence>
+					<xs:element name="FireStartLocation" type="NonResedentialFireStartLocationStructure">
+						<xs:annotation>
+							<xs:documentation>8.14 - Location of fire start e.g. kitchen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CauseAndReason" type="OtherCauseAndReasonStructure" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Contains the additional cause and reason details that apply to non resedential fires</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PFBuildingStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the elements that are required by all types of buildings.  This should be extended by the above three more specific building types</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SpecialConstruction" type="SpecialBuildingConstructionStructure">
+				<xs:annotation>
+					<xs:documentation>8.18 - Special Building construction involved e.g. sandwich panels.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EvacuationTime" type="EvacuationTimePeriodType">
+				<xs:annotation>
+					<xs:documentation>9.5 - Estimated time for evacuation to be completed e.g. 5 to 30 minutes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EvacuationDelay" type="EvacuationDelayType">
+				<xs:annotation>
+					<xs:documentation>9.4 - Was there a delay in completing building evacuation e.g. Means of escape – exits locked.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SafetySystems" type="BuildingSafetySystemsStructure"/>
+			<xs:element name="Damage" type="BuildingDamageStructure"/>
+			<xs:element name="FireLocation" type="BuildingFireLocationStructure"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SpecialBuildingConstructionStructure">
+		<xs:annotation>
+			<xs:documentation>Extends SpecialBuildingConstructionType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="SpecialBuildingConstructionType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="SpecialBuildingConstructionType">
+		<xs:annotation>
+			<xs:documentation>Defines the options available for indicating whether or not any special construction methods have been used on the building.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>None</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Timber framed</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Cladding </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Sandwich panels</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Atria</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Thatch </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Large single storey retail premises</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EvacuationTimePeriodType">
+		<xs:annotation>
+			<xs:documentation>A generic type for indicating the time period that has passed. Includes a "Not applicable" option.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Immediately</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Under 5 minutes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>5 to 30 minutes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Over 30 minutes and up to 2 hours</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Over 2 hours</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EvacuationDelayType">
+		<xs:annotation>
+			<xs:documentation>The options available for specifing whether there was a delay in evacuation, and if so what caused it.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Evacuation, but no delay</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Firefighting actions - public</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Occupants did not respond to automatic alarm</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Elderly or disabled</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Re-entered building</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Building management poor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Building layout/signage poor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Firefighting actions by fire service - contraflow on stairs</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Means of escape - exits locked</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Means of escape - items stored</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Means of escape - not suitable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Means of escape - other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Occupants gathering possessions</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BuildingSafetySystemsStructure">
+		<xs:annotation>
+			<xs:documentation>Details any safety systems present in the building involved in the fire, and the affect they had.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MeansOfEscape" type="MeansOfEscapeTypeStructure">
+				<xs:annotation>
+					<xs:documentation>5.6 - Details of the effect of safety regarding means of escape.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Compartmentation" type="CompartmentationTypeStructure">
+				<xs:annotation>
+					<xs:documentation>5.7 - The effect of safety compartmentation had on the Fire.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AlarmSystemsPresent">
+				<xs:annotation>
+					<xs:documentation>Contains information on all alarm systems present in the building</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="AlarmSystemsPresentStructure"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SafetySystemsPresent">
+				<xs:annotation>
+					<xs:documentation>Contains information on all the active firefighting safety systems that were present in the building</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="SafetySystemsPresentStructure"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SafetySystemsPresentStructure">
+		<xs:annotation>
+			<xs:documentation>This structure contains information on all safety systems present in the building</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="System" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This structure allows for any number of safety systems to be defined, but in reality, the forms may only make provision for entered e.g. 3 of them.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Type" type="AFSafetySystemsTypeStructure">
+							<xs:annotation>
+								<xs:documentation>7.12 - Active System present in vicinity of fire e.g. sprinklers.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Location" type="SafetySystemsLocationType">
+							<xs:annotation>
+								<xs:documentation>7.13 - Location of system e.g. room of origin.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Operated" type="SafetySystemsOperatedType">
+							<xs:annotation>
+								<xs:documentation>7.14 - Did system operate e.g. Yes and raised alarm.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="NumberOperated" type="AFSafetySystemsNumberOperatedType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>7.15 - Number od system type operated e.g. number of sprinklers. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Impact" type="AFSafetySystemsImpactType">
+							<xs:annotation>
+								<xs:documentation>7.16 - Impact made by safety system. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ReasonForPoorOutcome" type="AFSafetySystemsPoorOutcomeStructure" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>7.17 - Poor outcome e.g. Alarm battery missing.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="WereSafetySystemsPresent" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>7.11 - Were Fire Safety Systems present?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MeansOfEscapeTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends MeansOfEscapeType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="MeansOfEscapeType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="MeansOfEscapeType">
+		<xs:annotation>
+			<xs:documentation>Options for defining the means of escape and potential problem.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>OK - no visible concerns</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Exits locked</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Exits blocked (e.g. Materials stored blocking exit)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Exit route blocked by smoke/flames</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Poor implementation e.g. doors swing the wrong way</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Contents contributing to abnormal fire spread /smoke production</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CompartmentationTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends CompartmentationType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="CompartmentationType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="CompartmentationType">
+		<xs:annotation>
+			<xs:documentation>Options for defining the compertmentation systems present.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Stopped/Checked spread</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Breached - current building work</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Breached - previous building work</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Breached - fire doors left open or incorrectly fitted</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Damage to compartmentation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Fire spread through gaps or voids in construction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="90">
+				<xs:annotation>
+					<xs:documentation>No compartmentation in building</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AlarmSystemsPresentStructure">
+		<xs:sequence>
+			<xs:element name="System" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This structure allows for any number of alarm systems to be defined, but in reality, the forms may only make provision for entered e.g. 3 of them.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Type" type="AlarmSystemsTypeStructure">
+							<xs:annotation>
+								<xs:documentation>5.9 - Type of Alarm system.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Location" type="SafetySystemsLocationType">
+							<xs:annotation>
+								<xs:documentation>5.10 - Location of Alarm system.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Operated" type="SafetySystemsOperatedType">
+							<xs:annotation>
+								<xs:documentation>5.11 - Did the Alarm system operate?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ReasonForPoorOutcome" type="AlarmSystemsPoorOutcomeStructure" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>5.12 - If the Alarm system did not operate correctly, why?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="WereAlarmSystemsPresent" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>5.8 - Were Fire Alarm Systems present?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AlarmSystemsTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends AlarmSystemsPresentType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="AlarmSystemsPresentType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AlarmSystemsPresentType">
+		<xs:annotation>
+			<xs:documentation>Represents the type of alarm system.  This provides an enumeration list of the available options.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Smoke alarm - 1 year battery</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Smoke alarm - long life battery</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Smoke alarm - mains</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Smoke alarm - mains and battery</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Smoke alarm - battery type not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Mains security system including smoke alarm</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other/Unspecified</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AFSafetySystemsTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends AFSafetySystemsPresentType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="AFSafetySystemsPresentType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AFSafetySystemsPresentType">
+		<xs:annotation>
+			<xs:documentation>Represents the type of active firefighting safety system.  This provides an enumeration list of the available options.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Sprinklers</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Water mist</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Gaseous system - halon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Gaseous system - other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Pressurisation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Smoke ventilation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Drencher</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Foam</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Powder</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SafetySystemsLocationType">
+		<xs:annotation>
+			<xs:documentation>Specifies where the safety system was located in relation to the origin of the fire.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>In room of origin of fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>On same floor as fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Different floor from fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SafetySystemsOperatedType">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the safety system operated, and whether it successfully raised the alarm.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>No</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Yes, but did not raise alarm</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Yes and raised alarm</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AFSafetySystemsNumberOperatedType">
+		<xs:annotation>
+			<xs:documentation>Used to specify the number of a type of safety system that operated.  This currently allows specifying numbers 0 to 5, or setting more than 5.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>0</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>2</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>3</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>4</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>5</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>More than 5</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AlarmSystemsPoorOutcomeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends AlarmSystemsPoorOutcomeType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="AlarmSystemsPoorOutcomeType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AlarmSystemsPoorOutcomeType">
+		<xs:annotation>
+			<xs:documentation>Specifies the reason for a poor outcome from an alarm system type if needed.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Alarm battery missing</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Alarm battery defective</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>System not set up correctly</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>System damaged by fire</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Fire not close enough to detector</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Fault in system</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>System turned off</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Fire in area not covered by system</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Detector removed</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Alerted by other means</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="1"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Alarm was raised before the system operated</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="2"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>No person in earshot</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="2"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Occupants did not respond</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="2"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>No other person responded</xs:documentation>
+					<xs:appinfo>
+						<AlarmSystemOperated id="2"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AFSafetySystemsPoorOutcomeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends AFSafetySystemsPoorOutcomeType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="AFSafetySystemsPoorOutcomeType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AFSafetySystemsPoorOutcomeType">
+		<xs:annotation>
+			<xs:documentation>Specifies the reason for a poor outcome from a safety system type if needed.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>System not set up correctly</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>System damaged by fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Fault in system</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>System turned off</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Fire in area not covered by system</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AFSafetySystemsImpactType">
+		<xs:annotation>
+			<xs:documentation>Specifies the impact of an active fire fighting safety system.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Extinguished</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Contained/Controlled</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Did not contain/control</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BuildingDamageStructure">
+		<xs:annotation>
+			<xs:documentation>Contains information an the amount of damage that has occurred to the building</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FireSizeOnArrival">
+				<xs:annotation>
+					<xs:documentation>8.20 - Estimated fire size on arrival of service. If the fire affected adjoining properties on arival. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="BuildingFireSizeType">
+							<xs:attribute name="DistanceToAdjoiningProperty" type="DistanceToType" use="required">
+								<xs:annotation>
+									<xs:documentation>8.21 - Add the attribute DistanceToAdjoiningProperty to specify how far away the other affected properties were. (in metres)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DamageRestrictedTo">
+				<xs:annotation>
+					<xs:documentation>8.22 - Damage restricted to (at stop)  e.g room of origin.  If the fire affected adjoining properties during the fire. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="BuildingFireSizeType">
+							<xs:attribute name="DistanceToAdjoiningProperty" type="DistanceToType" use="required">
+								<xs:annotation>
+									<xs:documentation>8.23 - Add the attribute DistanceToAdjoiningProperty to specify how far away the other affected properties were. (in metres)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FireDamageArea" type="AreaRangeType">
+				<xs:annotation>
+					<xs:documentation>8.24 - Fire damage m2 (at stop).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalDamageArea" type="AreaRangeType">
+				<xs:annotation>
+					<xs:documentation>8.25 - Total damage area m2 (at stop) - fire+heat+smoke+water</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginRoomSize" type="AreaRangeType">
+				<xs:annotation>
+					<xs:documentation>8.26 - Size of room/compartment of origin, m2.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginFloorSize" type="AreaRangeType">
+				<xs:annotation>
+					<xs:documentation>8.27 - Size of floor of origin, m2
+.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="BuildingFireSizeType">
+		<xs:annotation>
+			<xs:documentation>Defines the available options for the FireSizeOnArrival / DamageRestrictedTo fields for a building fire</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Limited to item 1st ignited</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Limited to room of origin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Limited to floor of origin (not whole building)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Limited to 2 floors (not whole building)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Affecting more than 2 floors (not whole building)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Whole building</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Roof space only</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Roof space and other floors(s)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>External roof only</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Whole roof (including roof space)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BuildingFireLocationStructure">
+		<xs:annotation>
+			<xs:documentation>Contains extra information about the location of the fire, which is needed for building fires.  This specifies the number of floors in the building, and on which the fire occurred.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FloorsAboveGround" type="fire:ZeroTo999Type">
+				<xs:annotation>
+					<xs:documentation>8.28 - Number of storeys above ground.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FloorsBelowGround" type="fire:ZeroTo999Type">
+				<xs:annotation>
+					<xs:documentation>8.29 - Number of storeys below ground floor.
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FloorOfOrigin">
+				<xs:annotation>
+					<xs:documentation>8.30 - Floor of origin of fire. Less than or eual to Floors Above Ground. Greater than or equal to negative value of FloorsBelowGround.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="-999"/>
+						<xs:maxInclusive value="999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DwellingFireStartLocationStructure">
+		<xs:annotation>
+			<xs:documentation>Extends DwellingFireStartLocationType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="DwellingFireStartLocationType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="DwellingFireStartLocationType">
+		<xs:annotation>
+			<xs:documentation>This is a subset of the options available in the FireStartLocationType, containing only the options applicable to Dwelling Fires</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="FireStartLocationType">
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Airing/Drying cupboard</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Bathroom/Toilet</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Bedroom</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Bedsitting room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Chimney</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Conservatory</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Corridor/Hall</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Dining room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>External fittings</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="62">
+				<xs:annotation>
+					<xs:documentation>External structures</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Garage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="59">
+				<xs:annotation>
+					<xs:documentation>Indoor swimming pool</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Kitchen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="48">
+				<xs:annotation>
+					<xs:documentation>Lift/Lift shaft/Motor room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Living room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="49">
+				<xs:annotation>
+					<xs:documentation>Refuse store</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="63">
+				<xs:annotation>
+					<xs:documentation>Roof</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Roof space</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="58">
+				<xs:annotation>
+					<xs:documentation>Sauna</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Stairs</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Under stairs (enclosed, storage area)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Utility room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Open plan area</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<!--			<xs:enumeration value="57">
+				<xs:annotation>
+					<xs:documentation>Basement</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration> -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OtherResedentialFireStartLocationStructure">
+		<xs:annotation>
+			<xs:documentation>Extends OtherResedentialFireStartLocationType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="OtherResedentialFireStartLocationType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="OtherResedentialFireStartLocationType">
+		<xs:annotation>
+			<xs:documentation>This is a subset of the options available in the FireStartLocationType, containing only the options applicable to OtherResedential Fires</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="FireStartLocationType">
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Airing/Drying cupboard</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Bar/Canteen/Restaurant/Mess</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Bathroom/Toilet</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Bedroom</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Bedsitting room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Boiler room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Cell</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Chimney</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Class room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Cloakroom</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Common room/Staff room/Day room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Conservatory</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Corridor/Hall</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Dining room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Dormitory</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>External fittings</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="62">
+				<xs:annotation>
+					<xs:documentation>External structures</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Garage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="59">
+				<xs:annotation>
+					<xs:documentation>Indoor swimming pool</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Kitchen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Laundry room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="48">
+				<xs:annotation>
+					<xs:documentation>Lift/Lift shaft/Motor room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="51">
+				<xs:annotation>
+					<xs:documentation>Meeting room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Office</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Power house/Plant/Generator</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Reception area</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="49">
+				<xs:annotation>
+					<xs:documentation>Refuse store</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="63">
+				<xs:annotation>
+					<xs:documentation>Roof</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Roof space</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="58">
+				<xs:annotation>
+					<xs:documentation>Sauna</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Stairs</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Store room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Under stairs (enclosed, storage area)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Utility room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Ward/Sick bay</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<!--			<xs:enumeration value="57">
+				<xs:annotation>
+					<xs:documentation>Basement</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration> -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="NonResedentialFireStartLocationStructure">
+		<xs:annotation>
+			<xs:documentation>Extends NonResedentialFireStartLocationType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="NonResedentialFireStartLocationType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="NonResedentialFireStartLocationType">
+		<xs:annotation>
+			<xs:documentation>This is a subset of the options available in the FireStartLocationType, containing only the options applicable to Non Resedential Building Fires</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="FireStartLocationType">
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Barn</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Bathroom/Toilet</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Boiler room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Canteen/Restaurant</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Chimney</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Cloakroom</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Conservatory</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Corridor/Hall</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>External fittings</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="62">
+				<xs:annotation>
+					<xs:documentation>External structures</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Garage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Kitchen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Process/Production room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>IT server/Mainframe room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="48">
+				<xs:annotation>
+					<xs:documentation>Lift/Lift shaft/Motor room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="51">
+				<xs:annotation>
+					<xs:documentation>Meeting room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Office</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="60">
+				<xs:annotation>
+					<xs:documentation>Parking garage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Power house/Plant/Generator</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Reception area</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="49">
+				<xs:annotation>
+					<xs:documentation>Refuse store</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="63">
+				<xs:annotation>
+					<xs:documentation>Roof</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Roof space</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Shop floor/Showroom/Display hall</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Stairs</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Store room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Under stairs (enclosed, storage area)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Utility room</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<!--			<xs:enumeration value="57">
+				<xs:annotation>
+					<xs:documentation>Basement</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration> -->
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Changes 3.0 to 3.1 (First maintenance release)
+		Updated to use VBcodes-v3-1
+		Elements of <VOdescriptiveAddressStructure> redefined as individual elements (not linked to BS7666 types)
+		Duplicate import specifications for BS7666 and CommonSimpleTypes schemas added as work-around for differing parsers
+
+	Final Project Version 3.0 issued (no change from 2.0c)
+
+	Changes 2.0a to 2.0c (no change at v-2-0b)   
+		Updated to use VBcodes-v2-0c and AddressTypes-v1-3c
+		Enumeration value of '1990' for <ListYearType> changed to '1993'
+		<VoPostcode> extended to differentiate between full and partial Postcode
+	
+	Changes 2.0 to 2.0a incorporating GovTalk consultation
+		Updated to import BS7666-v1-3b via AddressTypes-v1-3b
+		OrganisationNameType added as per GDSC entry
+		VbCodes-v2-0a included so as to be available to main schemas to avoid problem with inclusion of multiple schema with same NameSpace
+
+	Version 2.0 issued for pilot operation and GovTalk consultation
+	
+	Changes 1.1a to 1.1b incorporating VOA feedback on V 1.1a
+		Additional C.Tax Band "I" added
+		<VOAcaseNumberType> made mandatory - zero value not allowed
+		 
+	Version 1.1a incorporating changes agreed with VOA 30/04/04 -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/LG/Valuebill" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.govtalk.gov.uk/LG/Valuebill" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3-1" id="VbCore">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>Bruce Yeoman, EGIC (mailto:info@egic.ltd.uk)</Creator>
+				<Contributor>Technology Policy Team, e-Government Unit (maito:govtalk@cabinet-office.gsi.gov.uk)</Contributor>
+				<Contributor>Valuebill Project</Contributor>
+				<Coverage>
+					<Temporal>
+						<BeginningDate>2004-12-12</BeginningDate>
+					</Temporal>
+				</Coverage>
+				<Date>
+					<Created>2004-01-16</Created>
+				</Date>
+				<Date>
+					<Modified>2004-06-10</Modified>
+				</Date>
+				<Date>
+					<Modified>2004-12-12</Modified>
+				</Date>
+				<Date>
+					<Modified>2005-02-22</Modified>
+				</Date>
+				<Date>
+					<Valid>
+						<BeginningDate>2004-12-12</BeginningDate>
+					</Valid>
+				</Date>
+				<Description>Schema to support core data types for Valuebill</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>VbCore</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>e-Government Unit, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Relation>
+					<Requires>{http://www.govtalk.gov.uk/core}CommonSimpleTypes-v1-3</Requires>
+					<Requires>{http://www.govtalk.gov.uk/people/bs7666}BS7666-v1-4</Requires>
+					<Requires>{http://www.govtalk.gov.uk/people/AddressAndPersonalDetails}AddressTypes-v1-4</Requires>
+				</Relation>
+				<Relation>
+					<HasPart>VBcodes-v3-1</HasPart>
+				</Relation>
+				<Rights>unclassified
+				<Copyright>Crown copyright 2004</Copyright>
+				</Rights>
+				<Subject>
+					<Category>People, communities and living;Local Taxes</Category>
+				</Subject>
+				<Subject>
+					<Project>Valuebill</Project>
+				</Subject>
+				<Title>Valuebill Core Data Types</Title>
+				<Type>message</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="VBcodes-v3-1.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="AddressTypes-v1-4.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation>Additional duplicated import specifications added to handle problems with differing interpretation by parsers</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v1-4.xsd"/>
+	<xsd:simpleType name="DecimalType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:pattern value="-?(([1-9][0-9]*)|0)\.[0-9]{2,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NonNegativeDecimalType">
+		<xsd:restriction base="DecimalType">
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ISOcurrencyType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="GBP"/>
+			<xsd:enumeration value="EUR"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="MonetaryStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="DecimalType">
+				<xsd:attribute name="Currency" type="ISOcurrencyType" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="PeriodTypeStructure">
+		<xsd:sequence>
+			<xsd:element name="StartDate" type="xsd:date"/>
+			<xsd:element name="EndDate" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="NumberofDays" type="xsd:integer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="BandType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="A"/>
+			<xsd:enumeration value="B"/>
+			<xsd:enumeration value="C"/>
+			<xsd:enumeration value="D"/>
+			<xsd:enumeration value="E"/>
+			<xsd:enumeration value="F"/>
+			<xsd:enumeration value="G"/>
+			<xsd:enumeration value="H"/>
+			<xsd:enumeration value="I"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="BAidentityNumberType">
+		<xsd:annotation>
+			<xsd:documentation>The four digit LA reference issued by DETR/ODPM</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="bs7666:CustodianCodeType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="BAreferenceType">
+		<xsd:annotation>
+			<xsd:documentation>The reference assigned to each dwelling/hereditament by the Billing Authority</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="25"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VOAcaseNumberType">
+		<xsd:annotation>
+			<xsd:documentation>Case number as assigned by VOA - this should be mandatory but zero value permitted as temporary measure (for CT NoAction updates)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="99999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TaxListType">
+		<xsd:annotation>
+			<xsd:documentation>Indicates whether the list is draft, compiled or shadow</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:PopulatedStringType">
+			<xsd:enumeration value="draft"/>
+			<xsd:enumeration value="compiled"/>
+			<xsd:enumeration value="shadow"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ListYearType">
+		<xsd:annotation>
+			<xsd:documentation>Indicates Tax List Year - mandatory for NNDR optional for Ctax as not used yet</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:gYear">
+			<xsd:enumeration value="1993"/>
+			<xsd:enumeration value="1995"/>
+			<xsd:enumeration value="2000"/>
+			<xsd:enumeration value="2005"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CouncilTaxOrNNDRflagType">
+		<xsd:annotation>
+			<xsd:documentation>Flag to indicate whether message relates to Council Tax (ctax) or Non-Domestic Rates (nndr)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4"/>
+			<xsd:enumeration value="ctax"/>
+			<xsd:enumeration value="nndr"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TransactionIdentityType">
+		<xsd:annotation>
+			<xsd:documentation>Unique identity assigned to each report transaction for audit/system integrity</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="5"/>
+			<xsd:maxLength value="25"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SCATcodeType">
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrganisationNameType">
+		<xsd:annotation>
+			<xsd:documentation>Organisation name as per GDSC</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="CommunityDescriptionStructure">
+		<xsd:sequence>
+			<xsd:element name="CommunityCode" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="CommunityDescriptionText" type="core:PopulatedStringType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="TransitionIndicatorType">
+		<xsd:annotation>
+			<xsd:documentation>'Y' indicates that provisions of the Transitional scheme apply - 'L' indicates informative letter sent</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+			<xsd:enumeration value="Y"/>
+			<xsd:enumeration value="L"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OccupancyIndicatorType">
+		<xsd:annotation>
+			<xsd:documentation>Indicates whether singular or composite occupancy i.e. partially domestic/commercial</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="9"/>
+			<xsd:enumeration value="composite"/>
+			<xsd:enumeration value="singular"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddressChangedFlagType">
+		<xsd:annotation>
+			<xsd:documentation>Indicates whether the original address provided by the BA has been changed by the VOA processing</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="core:YesNoType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="VOApropertyReferenceType">
+		<xsd:annotation>
+			<xsd:documentation>VOA unique database address reference</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="99999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="BApropertyIdentificationStructure">
+		<xsd:annotation>
+			<xsd:documentation>The address which unambiguously identifies the property to be assessed. This should be a structured BS7666 address and UPRN but in the pilot stage a text address will also be accepted</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation>UPRN is an optional element for the pilot phase but is likely to become mandatory once allocation processes are in place</xsd:documentation>
+			</xsd:annotation>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element ref="bs7666:BS7666Address"/>
+					<xsd:element name="PropertyGridCoords" type="bs7666:CoordinateStructure" minOccurs="0"/>
+					<xsd:element name="TextAddress" type="TextAddressStructure" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="TextAddress" type="TextAddressStructure"/>
+			</xsd:choice>
+			<xsd:element name="BAreference" type="BAreferenceType">
+				<xsd:annotation>
+					<xsd:documentation>Existing and/or new BAreferences must be provided for each property</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VOpropertyIdentificationStructure">
+		<xsd:annotation>
+			<xsd:documentation>The address which unambiguously identifies the property that is the subject of the update and appears on the List. This should be a structured BS7666 address and UPRN but in the interim stage a descriptive text address will also be accepted</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation>UPRN is an optional element for the pilot phase but is likely to become mandatory once allocation processes are in place</xsd:documentation>
+			</xsd:annotation>
+			<xsd:element ref="bs7666:UniquePropertyReferenceNumber" minOccurs="0"/>
+			<xsd:element name="VOApropertyReference" type="VOApropertyReferenceType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element ref="bs7666:BS7666Address"/>
+					<xsd:element name="PropertyGridCoords" type="bs7666:CoordinateStructure" minOccurs="0"/>
+					<xsd:element name="DescriptiveAddress" type="VOAdescriptiveAddressStructure" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="DescriptiveAddress" type="VOAdescriptiveAddressStructure"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TextAddressStructure">
+		<xsd:annotation>
+			<xsd:documentation>Simple multiline address for interim use until BS7666 compliance</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AddressLine" minOccurs="2" maxOccurs="6">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Postcode" type="bs7666:PostCodeType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VOAdescriptiveAddressStructure">
+		<xsd:sequence>
+			<xsd:element name="VoDescriptivePropertyAddress">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="190"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoStreetDescriptor" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoLocality" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoPostTown" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoAdministrativeArea" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="core:RestrictedStringType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="36"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VoPostcode" minOccurs="0">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="Full" type="bs7666:PostCodeType"/>
+						<xsd:element name="Partial">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:pattern value="[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9]?[A-Z]?[A-Z]?"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

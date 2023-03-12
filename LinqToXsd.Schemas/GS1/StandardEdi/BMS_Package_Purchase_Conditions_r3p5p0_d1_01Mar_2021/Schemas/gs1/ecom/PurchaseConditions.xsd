@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:purchase_conditions="urn:gs1:ecom:purchase_conditions:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:purchase_conditions:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="purchaseConditionsMessage" type="purchase_conditions:PurchaseConditionsMessageType"/>
+    <xsd:complexType name="PurchaseConditionsCommitmentPeriodType">
+        <xsd:sequence>
+            <xsd:element name="commitmentPeriodDuration" type="shared_common:TimeMeasurementType"/>
+            <xsd:element name="purchaseConditionsCommitmentTypeCode" type="ecom_common:PurchaseConditionsCommitmentTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PurchaseConditionsLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="discrepancyTolerancePercentage" type="xsd:float"/>
+            <xsd:element minOccurs="0" name="packagingTypeCode" type="ecom_common:PackageTypeCodeType"/>
+            <xsd:element minOccurs="0" name="purchaseConditionsQuantity" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="parentLineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element name="transactionalTradeItem" type="ecom_common:TransactionalTradeItemType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="purchaseConditionsCommitmentPeriod" type="purchase_conditions:PurchaseConditionsCommitmentPeriodType"/>
+            <xsd:element minOccurs="0" name="purchaseConditionsQuantityRange" type="shared_common:QuantityRangeType"/>
+            <xsd:element minOccurs="0" name="materialSpecification" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="allowanceCharge" type="ecom_common:AllowanceChargeType"/>
+            <xsd:element minOccurs="0" name="leviedDutyFeeTax" type="ecom_common:LeviedDutyFeeTaxType"/>
+            <xsd:element minOccurs="0" name="effectivePeriod" type="shared_common:DateTimeRangeType"/>
+            <xsd:element maxOccurs="unbounded" name="purchaseConditionsPriceInformation" type="purchase_conditions:PurchaseConditionsPriceInformationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PurchaseConditionsLocationInformationType">
+        <xsd:sequence>
+            <xsd:element name="shipTo" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="shipFrom" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element maxOccurs="unbounded" name="purchaseConditionsLineItem" type="purchase_conditions:PurchaseConditionsLineItemType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PurchaseConditionsMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="purchaseConditions" type="purchase_conditions:PurchaseConditionsType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PurchaseConditionsPriceInformationType">
+        <xsd:sequence>
+            <xsd:element name="itemPriceExclusiveAllowancesCharges" type="shared_common:AmountType"/>
+            <xsd:element minOccurs="0" name="itemPriceBaseQuantity" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="quantityRange" type="shared_common:QuantityRangeType"/>
+            <xsd:element minOccurs="0" name="effectivePeriod" type="shared_common:DateTimeRangeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PurchaseConditionsType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="purchaseConditionsIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="purchaseConditionsCurrencyCode" type="shared_common:CurrencyCodeType"/>
+                    <xsd:element name="buyer" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="seller" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="payer" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="payee" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="taxRepresentative" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="remitTo" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="accountingCurrencyInformation" type="shared_common:CurrencyExchangeRateInformationType"/>
+                    <xsd:element maxOccurs="unbounded" name="purchaseConditionsLocationInformation" type="purchase_conditions:PurchaseConditionsLocationInformationType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

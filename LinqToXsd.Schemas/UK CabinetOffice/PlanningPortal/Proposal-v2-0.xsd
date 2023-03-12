@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.planningportal.gov.uk/schema/XForm/Proposal-2003" 
+xmlns:pType="http://www.govtalk.gov.uk/planning/PINSTypes-2003" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:woodland="http://www.planningportal.gov.uk/schema/XForm/Woodland-2003" 
+xmlns:ldc192="http://www.planningportal.gov.uk/schema/XForm/Ldc192-2003" 
+xmlns:ldc191="http://www.planningportal.gov.uk/schema/XForm/Ldc191-2003" 
+xmlns:brch="http://www.planningportal.gov.uk/schema/XForm/BreachComplaint-200401" 
+xmlns:pa1="http://www.planningportal.gov.uk/schema/XForm/PlanningApp1-2003" 
+xmlns:list="http://www.planningportal.gov.uk/schema/XForm/ListedBuilding-2003" 
+xmlns:hh="http://www.planningportal.gov.uk/schema/XForm/Householder-2003" 
+xmlns:adv="http://www.planningportal.gov.uk/schema/XForm/Advert-2003" 
+xmlns:pins="http://www.planningportal.gov.uk/schema/XForm-2003" 
+xmlns="http://www.planningportal.gov.uk/schema/XForm/Proposal-2003" 
+elementFormDefault="qualified" version="2.1">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Developed for the Planning Portal, contact Dominic Crowson, Planning inspectorate (mailto:Dominic.Crowson@planning-inspectorate.gsi.gov.uk) </Contributor>
+				<Contributor>Adpated to meet Govtalk standards by Colin Mackenzie, Electronic Media Consultants Ltd (mailto:colin@elecmc.com), http://www.elecmc.com</Contributor>
+				<Coverage>
+					<Temporal>
+						<BeginningDate>2004-01-01</BeginningDate>
+					</Temporal>
+				</Coverage>
+				<Creator>Planning inspectorate</Creator>
+				<Date>
+					<Created>????</Created>
+				</Date>
+				<Date>
+					<Valid>
+						<BeginningDate>2004-01-01</BeginningDate>
+					</Valid>
+				</Date>
+				<Description>Schema for the representation of Planning Applications to be used to primarily when exchanging information between agents/applicants and the national portal.</Description>
+				<Disposal>
+					<Review>2005-01-01</Review>
+				</Disposal>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>{http://www.planningportal.gov.uk/schema/XForm/Proposal-2003}Proposal-v2-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Relation>
+					<Requires>{http://www.planningportal.gov.uk/schema/XForm-2003}PPForms-v2-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>{http://www.planningportal.gov.uk/schema/XForm/Advert-2003}AdvertisementConsent-v2-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>{http://www.planningportal.gov.uk/schema/XForm/Householder-2003}Householder-2003</Requires>
+				</Relation>
+				<Relation>
+					<Requires>{http://www.planningportal.gov.uk/schema/XForm/ListedBuilding-2003}ListedBuilding-2003</Requires>
+				</Relation>
+				<Relation>
+					<Requires>{http://www.planningportal.gov.uk/schema/XForm/PlanningApp1-2003}PlanningApplication-v2-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>{http://www.govtalk.gov.uk/planning/PINSTypes-2003}PersonDescriptiveTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ApplicationsType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PaymentType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>PaymentMethodType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>CurrencyType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>FileAttachmentsType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>FileAttachmentType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ApplicationNameType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ProposalHeaderType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ProposalListType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ProposalType</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>Proposal</ProvidesDefinitionOf>
+				</Relation>
+				<Relation>
+					<ProvidesDefinitionOf>ProposalList</ProvidesDefinitionOf>
+				</Relation>
+				<Rights>unclassified
+					<Copyright>Crown copyright 2003</Copyright>
+				</Rights>
+				<Subject>
+					<Category>People, communities and living:Planning (town and country)</Category>
+				</Subject>
+				<Subject>
+					<Project>National Planning Portal</Project>
+				</Subject>
+				<Title>Planning Application Schema</Title>
+				<Type>message</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm-2003" schemaLocation="PPForms-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/Advert-2003" schemaLocation="AdvertisementConsent-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/Householder-2003" schemaLocation="Householder-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/ListedBuilding-2003" schemaLocation="ListedBuilding-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/PlanningApp1-2003" schemaLocation="PlanningApplication-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/Ldc191-2003" schemaLocation="ldc191-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/Ldc192-2003" schemaLocation="ldc192-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/Woodland-2003" schemaLocation="woodland-v2-0.xsd"/>
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm/BreachComplaint-200401" schemaLocation="breachcomplaint-v2-0.xsd"/>
+	<xsd:complexType name="ApplicationsType">
+		<xsd:annotation>
+			<xsd:documentation>
+				This type defines the element that acts a root or placeholder for all the
+				applications associated with a Proposal
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="AdvertisementConsent" type="adv:AdvertisementConsentType" minOccurs="0"/>
+			<xsd:element name="Householder" type="hh:HouseholderType" minOccurs="0"/>
+			<xsd:element name="ListedBuilding" type="list:ListedBuildingType" minOccurs="0"/>
+			<xsd:element name="PlanningApplication" type="pa1:PA1Type" minOccurs="0"/>
+			<xsd:element name="Ldc191Application" type="ldc191:Ldc191Type" minOccurs="0"/>
+			<xsd:element name="Ldc192Application" type="ldc192:Ldc192Type" minOccurs="0"/>
+			<xsd:element name="WoodlandApplication" type="woodland:WoodlandApplicationType" minOccurs="0"/>
+			<xsd:element name="BreachComplaint" type="brch:BreachComplaintType" minOccurs="0"/>
+
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="PaymentType">
+		<xsd:annotation>
+			<xsd:documentation>
+				This type defines the payment associated with a Proposal, including an amount
+				due and an amount paid. In general, if the paymentMethod is online, the amountPaid
+				must equal the amountDue by the time the proposal leaves the Portal. If the
+				paymentMethod is cheque, the amountPaid will be zero. In the case where the
+				amountDue is zero, the paymentMethod is defaulted to cheque. Payment is made on a
+				per Proposal basis.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="paymentMethod" type="PaymentMethodType"/>
+			<xsd:element name="amountDue" type="xsd:decimal"/>
+			<xsd:element name="amountPaid" type="xsd:decimal"/>
+			<xsd:element name="currency" type="CurrencyType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="PaymentMethodType">
+		<xsd:annotation>
+			<xsd:documentation>
+				The method that the user has chosen to pay for the processing of their
+				application(s)
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Cheque"/>
+			<xsd:enumeration value="Online"/>
+			<xsd:enumeration value="Telephone"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CurrencyType">
+		<xsd:annotation>
+			<xsd:documentation>
+				The currency in which amountDue and amountPaid are calculated in. At present, the
+				Portal only calculates and accepts payments made in Pounds Sterling
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="GBP"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="FileAttachmentsType">
+		<xsd:annotation>
+			<xsd:documentation>
+				The root element for any file attachments associated with a Proposal. Some
+				attachments may have been uploaded by the user, such as photographs or
+				supplementary documents. Other attachments will have been generated by the Portal,
+				such as PDF versions of each application form.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="FileAttachment" type="FileAttachmentType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FileAttachmentType">
+		<xsd:annotation>
+			<xsd:documentation>
+				An attachment which forms part of a particular proposal submission. The contents
+				of the file itself are included as a binary stream in a subsequent part of a
+				multipart mime document of which the SOAP message which describes the proposal
+				forms the first part. There may be zero to many of these attachments. The href
+				attribute is used to identify the contentID of the document part with which this
+				FileAttachment is associated. This follows the HTTP Binding scheme as defined in
+				the W3C Soap Messages with Attachments submission (see
+				http://www.w3.org/TR/SOAP-attachments). The mime type and file name are recorded
+				when the user uploads the attachment and are supplied verbatim. The description is
+				supplied by the user at time of upload. For generated attachments, size has not
+				been calculated and is supplied as -1 to indicate this. Each attachment may be
+				associated with one or more application and the AssociateApplication child element
+				is used to indicate this. NB: Whilst attachments have been scanned for viruses by
+				the Portal, it is the responsibility of the receiving organisation to satisfy
+				themselves that the supplied files are indeed virus free.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Size" type="xsd:int"/>
+			<xsd:element name="MimeType" type="xsd:string"/>
+			<xsd:element name="FileName" type="xsd:string"/>
+			<xsd:element name="Description" type="xsd:string"/>
+			<xsd:element name="Type" type="AttachmentTypeType"/>
+			<xsd:element name="AssociatedApplication" type="ApplicationNameType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="href" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:simpleType name="AttachmentTypeType">
+		<xsd:annotation>
+			<xsd:documentation>
+				The means by which this attachment has been associated with this proposal
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Unknown"/>
+			<xsd:enumeration value="User Uploaded"/>
+			<xsd:enumeration value="Auto-generated PDF"/>
+			<xsd:enumeration value="Generated Site Location Plan"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ApplicationNameType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A list of Applications supported by the Portal with which other elements (e.g.
+				FileAttachments) may be associated
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AdvertisementConsent"/>
+			<xsd:enumeration value="Householder"/>
+			<xsd:enumeration value="ListedBuilding"/>
+			<xsd:enumeration value="PlanningApplication"/>
+			<xsd:enumeration value="Ldc191Application"/>
+			<xsd:enumeration value="Ldc192Application"/>
+			<xsd:enumeration value="WoodlandApplication"/>
+			<xsd:enumeration value="BreachComplaint"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ProposalHeaderType">
+		<xsd:annotation>
+			<xsd:documentation>
+				The most basic information about a Proposal required to determine when and
+				whether to request the download of the full Proposal details. RefNum is the
+				internal reference number for the proposal as it should be supplied to the
+				GetProposal operation. Size in an indicative figure in bytes (at present, it does
+				not include the size of any generated attachments - however these should not exceed
+				300k in total). DateSubmitted indicates the date on which the user chose to submit
+				this Proposal. The Portal reserves the right to delete Proposals that have been
+				submitted over 60 days previously.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RefNum" type="xsd:int"/>
+			<xsd:element name="Size" type="xsd:int"/>
+			<xsd:element name="DateSubmitted" type="xsd:date"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProposalListType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A list of ProposalHeaders for Proposals that have been submitted.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ProposalHeader" type="ProposalHeaderType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="version" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[0-9]+\.[0-9]+"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ProposalType">
+		<xsd:annotation>
+			<xsd:documentation>
+				This type describes Proposal which consists of one or more Applications. RefNum
+				is the internal number used to uniquely identify a particular proposal and is used
+				for machine communications about this Proposal. FormattedRefNum is a formatted
+				version of this number which is displayed to the user and used for human
+				communications about this Proposal. Description is supplied by the user when they
+				create the Proposal.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RefNum" type="xsd:int"/>
+			<xsd:element name="FormattedRefNum" type="xsd:string"/>
+			<xsd:element name="Description" type="xsd:string"/>
+			<xsd:element name="Payment" type="PaymentType"/>
+			<xsd:element name="FileAttachments" type="FileAttachmentsType"/>
+			<xsd:element name="Applications" type="ApplicationsType"/>
+			<!--<xsd:element name="ChecklistItems" type="ChecklistItemsType"/>-->
+		</xsd:sequence>
+		<xsd:attribute name="version" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[0-9]+\.[0-9]+"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:element name="Proposal" type="ProposalType"/>
+	<xsd:element name="ProposalList" type="ProposalListType"/>
+</xsd:schema>

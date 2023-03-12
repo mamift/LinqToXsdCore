@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by david sinfield (customarchery) -->
+<xs:schema xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas/Efire" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:cst="http://www.govtalk.gov.uk/core" xmlns:ft="http://www.govtalk.gov.uk/financial/GDSCFinancialTypes" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-Types-v1-0">
+	<xs:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="Efire-AllPersonalAndAddressDetailsTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="gdsc\BS7666-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="gdsc\CommonSimpleTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/financial/GDSCFinancialTypes" schemaLocation="gdsc\FinancialTypes-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(mailto:d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group, ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-12-23</Modified>
+				</Date>
+				<Description>Common Types used in efire portal schemas</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-Types-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>FinancialTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>AddressTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>BS7666-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>PersonalDetailsTypes-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Safety/Fire</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>Efire Common types</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="VOCodeStructure">
+		<xs:annotation>
+			<xs:documentation>Valuation Office codes to describe the primary use of premises. Comprises a code and description</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ShortPopulatedStringType">
+				<xs:attribute name="VOCode" type="VOCodeType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="YesNoDontKnowType">
+		<xs:annotation>
+			<xs:documentation>Simple question response - Yes, No or Don't Know</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType">
+			<xs:enumeration value="yes"/>
+			<xs:enumeration value="no"/>
+			<xs:enumeration value="don't know"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CompanyStructure">
+		<xs:annotation>
+			<xs:documentation>Company name and registered address</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CompanyName" type="ShortPopulatedStringType">
+				<xs:annotation>
+					<xs:documentation>Element to store Name of Company</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegisteredAddress" type="ExtendedAddressStructure">
+				<xs:annotation>
+					<xs:documentation>Element to store registered address of company</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contact">
+				<xs:annotation>
+					<xs:documentation>Element to store main contact details</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="apd:CitizenDetailsStructure"/>
+						<xs:element name="Address" type="ExtendedAddressStructure"/>
+						<xs:element name="Position" type="ShortPopulatedStringType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CalendarPeriodStructure">
+		<xs:annotation>
+			<xs:documentation>To date and from date</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Start" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Element to store start date</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="End" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Element to store end date</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApplicantStructure">
+		<xs:annotation>
+			<xs:documentation>Used by licence applications. Choice of individual details or company details.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="IndividualApplicant">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Name" type="apd:CitizenDetailsStructure"/>
+							<xs:element name="Address" type="ExtendedAddressStructure"/>
+							<xs:element name="Position" type="ShortPopulatedStringType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CompanyApplicant" type="CompanyStructure"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LicenceActionType">
+		<xs:annotation>
+			<xs:documentation>The Type of Action for the Licence Application - New, Renew, Transfer (of Ownership). Vary is supported, but not currently used by online forms.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="New"/>
+			<xs:enumeration value="Renew"/>
+			<xs:enumeration value="Transfer"/>
+			<xs:enumeration value="Vary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ExistingLicenceStructure">
+		<xs:annotation>
+			<xs:documentation>Generic structure for defining existing licence application details for renewals or transfers.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReferenceNumber" type="ShortPopulatedStringType">
+				<xs:annotation>
+					<xs:documentation>Element to store reference licence number of an existing licence application</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuingAuthority" type="ShortPopulatedStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The organisation that issued the existing licence</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExpiryDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The date the exisiting licence  expired</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PreviousApplicationStructure">
+		<xs:annotation>
+			<xs:documentation>Generic structure for listing previously declined applications</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExpiryDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store expiry date of previous licence application</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReferenceNumber" type="ShortPopulatedStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store reference number of previous licence application</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuingAuthority" type="ShortPopulatedStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store licenceing Authority name of previous licence application</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclinedReasonType" type="DeclinedReasonType">
+				<xs:annotation>
+					<xs:documentation>The reason for the application being declined.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="DeclinedReasonType">
+		<xs:annotation>
+			<xs:documentation>The reason the Licence Application was previously declined - Refused, Revoked or Conviction. An AdditionalInfo element can optionally be populated with a type of DeclinedReason.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Refused"/>
+			<xs:enumeration value="Revoked"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FRSIdType">
+		<xs:annotation>
+			<xs:documentation>Id of FRS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType"/>
+	</xs:simpleType>
+	<xs:simpleType name="VODescriptionType">
+		<xs:annotation>
+			<xs:documentation>Abstraction of the VOCode.Description element</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType"/>
+	</xs:simpleType>
+	<xs:simpleType name="VOCodeType">
+		<xs:annotation>
+			<xs:documentation>Valuation Office Code and Description</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType"/>
+	</xs:simpleType>
+	<xs:simpleType name="TimeOfDayType">
+		<xs:annotation>
+			<xs:documentation>Enumeration for time of day used in visit.preferredtime</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="cst:RestrictedStringType">
+			<xs:enumeration value="Morning"/>
+			<xs:enumeration value="Afternoon"/>
+			<xs:enumeration value="Evening"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ExtendedAddressStructure">
+		<xs:annotation>
+			<xs:documentation>Address structure extended from bs7666:BSaddressStructure with </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="bs7666:BSaddressStructure">
+				<xs:sequence>
+					<xs:element name="Coordinates" type="bs7666:CoordinateStructure" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="AddressQualifier" type="apd:AddressQualifierType" use="required"/>
+				<xs:attribute name="AddressValidation" type="apd:AddressValidationType" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DocumentType">
+		<xs:annotation>
+			<xs:documentation>Identifys the particular Document Type to be stored in the Portal.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="cst:RestrictedStringType">
+			<xs:enumeration value="HomeVisit"/>
+			<xs:enumeration value="SchoolVisit"/>
+			<xs:enumeration value="CommunityEventVisit"/>
+			<xs:enumeration value="FiresetterVisit"/>
+			<xs:enumeration value="SAToolkit"/>
+			<xs:enumeration value="PetroleumLicence"/>
+			<xs:enumeration value="ExplosivesLicence"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentIdType">
+		<xs:annotation>
+			<xs:documentation>Used to define document id format </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType"/>
+	</xs:simpleType>
+	<xs:simpleType name="ShortPopulatedStringType">
+		<xs:annotation>
+			<xs:documentation>Used to define type with restriction on PopulatedStringType</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="cst:PopulatedStringType">
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ImageMimeType">
+		<xs:annotation>
+			<xs:documentation>Used in Petroleum and Explosive application to indicate mime-type of base64 elements</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="image/gif"/>
+			<xs:enumeration value="image/jpg"/>
+			<xs:enumeration value="application/ms-word"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VersionType">
+		<xs:annotation>
+			<xs:documentation>Used to define version format for scehemaversion</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="v[0-9]-[0-9][a-z]?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ImageStructure">
+		<xs:annotation>
+			<xs:documentation>Structure to store image file anme and mime type</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:base64Binary">
+				<xs:attribute name="FileName" type="xs:anyURI" use="required"/>
+				<xs:attribute name="MimeType" type="ImageMimeType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AddressQualifierType">
+		<xs:annotation>
+			<xs:documentation>Qualifies the type of address.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xsd:string">
+			<xs:enumeration value="residential"/>
+			<xs:enumeration value="correspondence"/>
+			<xs:enumeration value="self-employed-business"/>
+			<xs:enumeration value="business"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AddressValidationType">
+		<xs:annotation>
+			<xs:documentation>Defines the type of validation that has or has not been performed. e.g. PAF-check-valid.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xsd:string">
+			<xs:enumeration value="not-checked"/>
+			<xs:enumeration value="PAF-check-failed"/>
+			<xs:enumeration value="NLPG-check-failed"/>
+			<xs:enumeration value="PAF-check-valid"/>
+			<xs:enumeration value="NLPG-check-valid"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OrganisationContactStructure">
+		<xs:annotation>
+			<xs:documentation>Used to define the Organisation Name and a persons position if appropriate.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="ShortPopulatedStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store Name of Organisation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Position" type="ShortPopulatedStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Position is mandatory if the Applicant is a company - IsCompany='yes'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdditionalInfoStructure">
+		<xs:annotation>
+			<xs:documentation>Element to store any additional information related to any document.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ShortPopulatedStringType">
+				<xs:attribute name="InfoType" type="ShortPopulatedStringType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="OccupancyCodeType">
+		<xs:annotation>
+			<xs:documentation>FSEC Occupancy Code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType">
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SubmissionMethodType">
+		<xs:annotation>
+			<xs:documentation>Whether the user will be submitting the licence application by Post or Online. This may be defaulted by the capabilities of the FRS.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Online"/>
+			<xs:enumeration value="Postal"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

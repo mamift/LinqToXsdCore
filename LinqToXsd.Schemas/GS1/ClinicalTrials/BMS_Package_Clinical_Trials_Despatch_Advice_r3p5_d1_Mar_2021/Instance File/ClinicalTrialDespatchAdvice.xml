@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_trial_despatch_advice:clinicalTrialDespatchAdviceMessage xmlns:clinical_trial_despatch_advice="urn:gs1:ecom:clinical_trial_despatch_advice:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:clinical_trial_despatch_advice:xsd:3 ../Schemas/gs1/ecom/ClinicalTrialDespatchAdvice.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4.1</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <clinicalTrialDespatchAdvice>
+        <clinicalTrialDespatchAdviceIdentification>
+            <entityIdentification>345</entityIdentification>
+        </clinicalTrialDespatchAdviceIdentification>
+        <dMEShippingReference>
+            <entityIdentification>133</entityIdentification>
+        </dMEShippingReference>
+        <sender>
+            <gln>9520000000028</gln>
+        </sender>
+        <receiver>
+            <gln>9520000000011</gln>
+        </receiver>
+        <shipFrom>
+            <gln>9520000000152</gln>
+        </shipFrom>
+        <shipTo>
+            <gln>9520000000127</gln>
+        </shipTo>
+        <dMEShippingOrderNumber>13</dMEShippingOrderNumber>
+        <protocolID>PROT1</protocolID>
+        <protocolOwner>9520000000004</protocolOwner>
+        <estimatedDeliveryDate>2020-03-27T00:00:00.000</estimatedDeliveryDate>
+        <shippingDate>2020-03-23T09:00:00.000+02:00</shippingDate>
+        <clinicalTrialDespatchAdviceLineItem>
+            <clinicalTrialLogisticUnitIdentification>
+                <sscc>952000000000000125</sscc>
+            </clinicalTrialLogisticUnitIdentification>
+            <kitInformation>
+                <investigationalProductIdentification>9520000000530</investigationalProductIdentification>
+                <kitSerialNumber>1243</kitSerialNumber>
+                <kitExpiryDateTime>2021-01-20T00:00:00.000</kitExpiryDateTime>
+                <kitMeasurementUnitCode>H87</kitMeasurementUnitCode>
+                <kitTemperatureTrackerReferenceNumber>XDTR456</kitTemperatureTrackerReferenceNumber>
+                <kitMinimumTemperature>
+                    <temperatureMeasurement>10</temperatureMeasurement>
+                </kitMinimumTemperature>
+                <kitMaximumTemperature>
+                    <temperatureMeasurement>25</temperatureMeasurement>
+                </kitMaximumTemperature>
+                <storageConditionTypeCode>1</storageConditionTypeCode>
+                <KitSecurityInformation>
+                    <securityTypeCode>1</securityTypeCode>
+                    <securityIdentification>PFISR-346-TZ</securityIdentification>
+                </KitSecurityInformation>
+                <quantity>
+                    <quantity>1</quantity>
+                    <measurementUnitCode>H87</measurementUnitCode>
+                </quantity>
+            </kitInformation>
+        </clinicalTrialDespatchAdviceLineItem>
+    </clinicalTrialDespatchAdvice>
+</clinical_trial_despatch_advice:clinicalTrialDespatchAdviceMessage>

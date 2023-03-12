@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.planningportal.gov.uk/schema/XForm/PlanningApp1-2003" xmlns="http://www.planningportal.gov.uk/schema/XForm-2003" xmlns:pins="http://www.planningportal.gov.uk/schema/XForm-2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pType="http://www.govtalk.gov.uk/planning/PINSTypes-2003" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" elementFormDefault="qualified" version="2.0">
+	<xsd:import namespace="http://www.planningportal.gov.uk/schema/XForm-2003" schemaLocation="PPForms-v2-0.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/planning/PINSTypes-2003" schemaLocation="PINSTypes-v2-0.xsd"/>
+	<xsd:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="BS7666-v1-3.xsd"/>
+	<xsd:complexType name="PA1Type">
+		<xsd:complexContent>
+			<xsd:extension base="pins:ApplicationType">
+				<xsd:sequence>
+					<xsd:element name="form" type="pins:PA1Form"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="form" type="PA1Form"/>
+</xsd:schema>

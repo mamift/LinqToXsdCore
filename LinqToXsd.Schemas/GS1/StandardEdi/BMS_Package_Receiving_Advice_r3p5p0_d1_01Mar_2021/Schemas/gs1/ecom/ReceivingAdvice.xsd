@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:receiving_advice="urn:gs1:ecom:receiving_advice:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" xmlns:warehousing_common="urn:gs1:ecom:warehousing_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:receiving_advice:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:warehousing_common:xsd:3" schemaLocation="WarehousingCommon.xsd"/>
+    <xsd:element name="receivingAdviceMessage" type="receiving_advice:ReceivingAdviceMessageType"/>
+    <xsd:complexType name="ReceivingAdviceLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element name="quantityReceived" type="shared_common:QuantityType"/>
+            <xsd:element name="quantityAccepted" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="quantityDespatched" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="extension" type="shared_common:ExtensionType"/>
+            <xsd:element minOccurs="0" name="parentLineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+            <xsd:element minOccurs="0" name="pickUpDateTime" type="xsd:dateTime"/>
+            <xsd:element name="transactionalTradeItem" type="ecom_common:TransactionalTradeItemType"/>
+            <xsd:element minOccurs="0" name="requestedItemIdentification" type="ecom_common:Ecom_TradeItemIdentificationType"/>
+            <xsd:element minOccurs="0" name="despatchAdvice" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="productCertification" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="promotionalDeal" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="customerReference" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="specification" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="deliveryNote" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="contract" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="purchaseOrder" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="purchaseConditions" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element minOccurs="0" name="consignmentIdentification" type="ecom_common:Ecom_ConsignmentIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="receivingConditionInformation" type="receiving_advice:ReceivingConditionInformationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReceivingAdviceLogisticUnitType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:LogisticUnitsType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="receivingAdviceLineItem" type="receiving_advice:ReceivingAdviceLineItemType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ReceivingAdviceMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="receivingAdvice" type="receiving_advice:ReceivingAdviceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReceivingAdviceTransportInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="transportMeansID" type="shared_common:IdentifierType"/>
+            <xsd:element minOccurs="0" name="transportMeansName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="routeID" type="shared_common:IdentifierType"/>
+            <xsd:element minOccurs="0" name="driver" type="shared_common:ContactType"/>
+            <xsd:element minOccurs="0" name="receiver" type="shared_common:ContactType"/>
+            <xsd:element name="driverID" type="ecom_common:PersonType"/>
+            <xsd:element minOccurs="0" name="receiverID" type="ecom_common:PersonType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReceivingAdviceType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="receivingAdviceIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="receivingDateTime" type="xsd:dateTime"/>
+                    <xsd:element name="reportingCode" type="ecom_common:GoodsReceiptReportingCodeType"/>
+                    <xsd:element minOccurs="0" name="despatchAdviceDeliveryDateTime" type="xsd:dateTime"/>
+                    <xsd:element minOccurs="0" name="totalDepositAmount" type="shared_common:AmountType"/>
+                    <xsd:element minOccurs="0" name="paymentDateTime" type="xsd:dateTime"/>
+                    <xsd:element minOccurs="0" name="note" type="shared_common:Description500Type"/>
+                    <xsd:element minOccurs="0" name="totalAcceptedAmount" type="shared_common:AmountType"/>
+                    <xsd:element minOccurs="0" name="totalOnHoldAmount" type="shared_common:AmountType"/>
+                    <xsd:element minOccurs="0" name="totalRejectedAmount" type="shared_common:AmountType"/>
+                    <xsd:element minOccurs="0" name="totalNumberOfLines" type="xsd:positiveInteger"/>
+                    <xsd:element name="shipper" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="receiver" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="buyer" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="seller" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="shipTo" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="shipFrom" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="inventoryLocation" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="carrier" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element minOccurs="0" name="receivingAdviceTransportInformation" type="receiving_advice:ReceivingAdviceTransportInformationType"/>
+                    <xsd:element minOccurs="0" name="billOfLadingNumber" type="ecom_common:Ecom_DocumentReferenceType"/>
+                    <xsd:element minOccurs="0" name="despatchAdvice" type="ecom_common:Ecom_DocumentReferenceType"/>
+                    <xsd:element minOccurs="0" name="purchaseOrder" type="ecom_common:Ecom_DocumentReferenceType"/>
+                    <xsd:element minOccurs="0" name="deliveryNote" type="ecom_common:Ecom_DocumentReferenceType"/>
+                    <xsd:element minOccurs="0" name="shipmentIdentification" type="ecom_common:Ecom_ShipmentIdentificationType"/>
+                    <xsd:element minOccurs="0" name="consignmentIdentification" type="ecom_common:Ecom_ConsignmentIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="receivingAdviceLogisticUnit" type="receiving_advice:ReceivingAdviceLogisticUnitType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ReceivingConditionInformationType">
+        <xsd:sequence>
+            <xsd:element name="receivingConditionCode" type="ecom_common:ReceivingConditionCodeType"/>
+            <xsd:element name="receivingConditionQuantity" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="receivedGoodsDisposition" type="warehousing_common:InventoryDispositionCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

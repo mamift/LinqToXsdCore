@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--Sample XML file for the e-GMS application profile for XML Schema exhibiting all elements and refinements -->
+<!-- Much of the data used in this file is random and meaningless. However, the format is correct -->
+<!-- the egms:Refines attributes are optional, but included here for clarity -->
+<Metadata xsi:schemaLocation="http://www.govtalk.gov.uk/metadata/egms ../schemas/egms-profile-schemas-v0-1.xsd" xmlns="http://www.govtalk.gov.uk/metadata/egms" xmlns:egms="http://www.govtalk.gov.uk/metadata/egms" xmlns:gcl="http://www.govtalk.gov.uk/metadata/gcl" xmlns:iso639="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Contributor Role="reviewer" Href="mailto:adam.bailin@cabinet-office.gsi.gov.uk">Adam Bailin</Contributor>
+	<Contributor Role="developer" Href="mailto:paul.spencer@boynings.co.uk">Paul Spencer</Contributor>
+	<Temporal egms:Refines="Coverage">
+		<StartDate>2005-01-01</StartDate>
+		<EndDate>2005-12-31</EndDate>
+	</Temporal>
+	<Creator Href="mailto:info@boynings.co.uk">Boynings Consulting Ltd</Creator>
+	<Created egms:Refines="Date">2004-12-15</Created>
+	<Issued egms:Refines="Date">2004-12-31</Issued>
+	<Modified egms:Refines="Date">2004-12-21</Modified>
+	<Valid egms:Refines="Date">
+		<StartDate>2005-01-01</StartDate>
+		<EndDate>2005-12-31</EndDate>
+	</Valid>
+	<Description>A sample set of metadata for an XML schema</Description>
+	<Review egms:Refines="Disposal">2005-11-30</Review>
+	<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+	<Identifier Href="http://www.govtalk.gov.uk/metadata/sample.xsd">Metadata Sample</Identifier>
+	<Language codeListID="ISO639-2" codeListAgencyID="6" codeListAgencyName="United Nations Economic Commission for Europe" codeListName="Language" codeListVersionID="0.1" codeListURI="http://www.loc.gov/standards/iso639-2/langcodes.html" codeListSchemeURI="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" languageID="en">eng</Language>
+	<Publisher Href="mailto:govtalk@cabinet-office.gsi.gov.uk">Cabinet Office e-Government Unit</Publisher>
+	<ConformsTo egms:Refines="Relation">http://www.w3.org/2001/XMLSchema</ConformsTo>
+	<HasPart egms:Refines="Relation">http://www.govtalk.gov.uk/metadata/childsample.xsd</HasPart>
+	<IsPartOf egms:Refines="Relation">http://www.govtalk.gov.uk/metadata/parentsample.xsd</IsPartOf>
+	<IsVersionOf egms:Refines="Relation">http://www.govtalk.gov.uk/metadata/differentversionofsample.pdf</IsVersionOf>
+	<ProvidesDefinitionOf egms:Refines="Relation" Namespace="http://www.govtalk.gov.uk/namespaces/sample">something</ProvidesDefinitionOf>
+	<Requires egms:Refines="Relation">http://www.govtalk.gov.uk/core/commonsimpletypes-v1-3.xsd</Requires>
+	<Copyright egms:Refines="Rights">Crown Copyright 2004</Copyright>
+	<ProtectiveMarking egms:Refines="Rights">unclassified</ProtectiveMarking>
+	<Status>draft</Status>
+	<StatusDescription egms:Refines="Status">For approval by GSG</StatusDescription>
+	<Version egms:Refines="Status">0.1</Version>
+	<Category egms:Refines="Subject" codeListID="GCL" codeListAgencyName="Cabinet Office" codeListName="Government Category List" codeListVersionID="0.1" codeListURI="http://www.govtalk.gov.uk/schemasstandards/gcl.xsd" codeListSchemeURI="http://www.govtalk.gov.uk/metadata/gcl" languageID="en">Metadata</Category>
+	<Project egms:Refines="Subject">e-GMS Application Profile for XML Schema</Project>
+	<Title>e-GMS binding for XML Schema</Title>
+	<Type>architectural</Type>
+</Metadata>

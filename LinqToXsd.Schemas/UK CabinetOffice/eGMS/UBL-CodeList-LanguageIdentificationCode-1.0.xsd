@@ -1,0 +1,3565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<!--
+  Universal Business Language (UBL) Schema 1.0
+
+  Copyright (C) OASIS Open (2004). All Rights Reserved.
+
+  This document and translations of it may be copied and furnished to others, and
+  derivative works that comment on or otherwise explain it or assist in its
+  implementation may be prepared, copied, published and distributed, in whole or
+  in part, without restriction of any kind, provided that the above copyright
+  notice and this paragraph are included on all such copies and derivative works.
+  However, this document itself may not be modified in any way, such as by
+  removing the copyright notice or references to OASIS, except as needed for the
+  purpose of developing OASIS specifications, in which case the procedures for
+  copyrights defined in the OASIS Intellectual Property Rights document must be
+  followed, or as required to translate it into languages other than English.
+
+  The limited permissions granted above are perpetual and will not be revoked by
+  OASIS or its successors or assigns.
+
+  This document and the information contained herein is provided on an "AS IS"
+  basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+  LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT
+  INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
+  A PARTICULAR PURPOSE.
+
+  ===============================================================================
+
+  For our absent friend, Michael J. Adcock  - il miglior fabbro
+
+  ===============================================================================
+
+  Universal Business Language Specification
+      (http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=ubl)
+  OASIS Open (http://www.oasis-open.org/)
+
+
+  Document Type:     LanguageIdentificationCode
+  Generated On:      Tue Apr 27 11:27:34 2004
+-->
+<xsd:schema targetNamespace="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1:0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" xmlns:ccts="urn:oasis:names:tc:ubl:CoreComponentParameters:1:0">
+	<xsd:simpleType name="LanguageIdentificationCodeContentType">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:enumeration value="aar">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Afar</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="abk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Abkhazian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ace">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Achinese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ach">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Acoli</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ada">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Adangme</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ady">
+				<xsd:annotation>
+					<xsd:documentation>
+						<!-- is this the best way to model one code to multiple names? -->
+						<CodeName>Adyghe</CodeName>
+						<CodeName>Adygei</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="afa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Afro-Asiatic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="afh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Afrihili</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="afr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Afrikaans</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="aka">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Akan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="akk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Akkadian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="alb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Albanian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ale">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Aleut</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="alg">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Algonquian languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="amh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Amharic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ang">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>English, Old (ca.450-1100)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="apa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Apache languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ara">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Arabic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="arc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Aramaic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="arg">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Aragonese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="arm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Armenian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="arn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Araucanian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="arp">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Arapaho</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="art">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Artificial (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="arw">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Arawak</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="asm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Assamese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ast">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Asturian; Bable</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ath">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Athapascan languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="aus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Australian languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ava">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Avaric</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ave">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Avestan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="awa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Awadhi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="aym">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Aymara</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="aze">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Azerbaijani</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bad">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Banda</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bamileke languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bak">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bashkir</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bal">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Baluchi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bam">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bambara</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ban">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Balinese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="baq">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Basque</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bas">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Basa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bat">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Baltic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bej">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Beja</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bel">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Belarusian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bem">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bemba</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ben">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bengali</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ber">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Berber (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bho">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bhojpuri</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bih">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bihari</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bik">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bikol</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bin">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bini</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bis">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bislama</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bla">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Siksika</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bnt">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bantu (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bod">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tibetan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bos">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bosnian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bra">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Braj</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bre">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Breton</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="btk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Batak (Indonesia)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bua">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Buriat</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bug">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Buginese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bul">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Bulgarian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="bur">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Burmese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="byn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Blin</CodeName>
+						<CodeName>Bilin</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cad">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Caddo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Central American Indian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="car">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Carib</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cat">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Catalan</CodeName>
+						<CodeName>Valencian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cau">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Caucasian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ceb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Cebuano</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cel">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Celtic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ces">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Czech</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cha">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chamorro</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chibcha</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="che">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chechen</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chg">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chagatai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="GH">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>GHANA</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chinese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chuukese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mari</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chinook jargon</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cho">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Choctaw</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chp">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chipewyan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Cherokee</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chu">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Church Slavic</CodeName>
+						<CodeName>Old Slavonic</CodeName>
+						<CodeName>Church Slavonic</CodeName>
+						<CodeName>Old Bulgarian</CodeName>
+						<CodeName>Old Church Slavonic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chv">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chuvash</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="chy">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Cheyenne</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cmc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chamic languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cop">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Coptic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cor">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Cornish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cos">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Corsican</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cpe">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Creoles and pidgins, English based (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cpf">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Creoles and pidgins, French-based (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cpp">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Creoles and pidgins, Portuguese-based (Other) </CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cre">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Cree</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ID">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>INDONESIA</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="crh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Crimean Tatar</CodeName>
+						<CodeName>Crimean Turkish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="crp">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Creoles and pidgins (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="csb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kashubian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Cushitic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="wel">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Welsh</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cym">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Welsh</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="cze">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Czech</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dak">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dakota</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dan">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Danish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dar">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dargwa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="day">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dayak</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="del">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Delaware</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="den">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Slave (Athapascan)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="deu">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>deu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dgr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dogrib</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="din">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dinka</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="div">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Divehi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="doi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dogri</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dra">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dravidian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dsb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lower Sorbian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dua">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Duala</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dum">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dutch, Middle (ca.1050-1350)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dut">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dutch</CodeName>
+						<CodeName>Felmish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dyu">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dyula</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="dzo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dzongkha</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="efi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Efik</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="egy">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Egyptian (Ancient)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="eka">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ekajuk</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ell">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Greek, Modern (1453-)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="elx">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Elamite</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="eng">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>English</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="enm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>English, Middle (1100-1500)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="epo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Esperanto</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="est">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Estonian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="eus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Basque</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ewe">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ewe</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ewo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ewondo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fan">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Fang</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fao">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Faroese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fas">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Persian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fat">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Fanti</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fij">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Fijian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fin">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Finnish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fiu">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Finno-Ugrian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fon">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Fon</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fre">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>French</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fra">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>French</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="frm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>French, Middle (ca.1400-1800)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fro">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>French, Old (842-ca.1400)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fry">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Frisian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ful">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Fulah</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MV">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>MALDIVES</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="fur">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Friulian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gaa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ga</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gay">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gayo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gba">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gbaya</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gem">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Germanic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="geo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Georgian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ger">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>German</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gez">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Geez</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gil">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gilbertese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gla">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gaelic</CodeName>
+						<CodeName>Scottish Gaelic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gle">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Irish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="glg">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gallegan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="glv">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Manx</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gmh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>German, Middle High (ca.1050-1500)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="goh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>German, Old High (ca.750-1050)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gon">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gondi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gor">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gorontalo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="got">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gothic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="grb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Grebo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="grc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Greek, Ancient (to 1453)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gre">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Greek, Modern (1453-)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="grn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Guarani</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="guj">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gujarati</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="PL">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>POLAND</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="gwi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Gwich´in</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Haitian</CodeName>
+						<CodeName>Haitian Creole</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hau">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hausa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="haw">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hawaiian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="heb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hebrew</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="her">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Herero</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hil">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hiligaynon</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="him">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Himachali</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hin">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hindi </CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hit">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hittite</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hmn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hmong</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hmo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hiri Motu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hrv">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Croatian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hsb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Upper Sorbian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hun">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hungarian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hup">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Hupa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="hye">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Armenian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="iba">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Iban</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ibo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Igbo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ice">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Icelandic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ido">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ido</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="iii">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sichuan Yi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ijo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ijo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="iku">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Inuktitut</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ile">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Interlingue</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ilo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Iloko</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ina">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Interlingua (International Auxiliary Language Association)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="inc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Indic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ind">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Indonesian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ine">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Indo-European (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="inh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ingush</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ipk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Inupiaq</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ira">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Iranian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="iro">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Iroquoian languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="isl">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Icelandic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ita">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Italian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="jav">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Javanese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="jbo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lojban</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="jpn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Japanese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="jpr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Judeo-Persian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="jrb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Judeo-Arabic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kaa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kara-Kalpak</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kab">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kabyle</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kac">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kachin</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kal">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kalaallisut</CodeName>
+						<CodeName>Greenlandic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kam">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kamba</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kan">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kannada</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kar">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Karen</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kas">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kashmiri</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kat">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Georgian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kau">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kanuri</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kaw">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kawi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kaz">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kazakh</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kbd">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kabardian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kha">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Khasi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="khi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Khoisan (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="khm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Khmer</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kho">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Khotanese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kik">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kikuyu</CodeName>
+						<CodeName>Gikuyu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kin">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kinyarwanda</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kir">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kirghiz</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kmb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kimbundu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kok">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Konkani</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kom">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Komi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kon">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kongo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kor">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Korean</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kos">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kosraean</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kpe">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kpelle</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="krc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Karachay-Balkar</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kro">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kru</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kru">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kurukh</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kua">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kuanyama</CodeName>
+						<CodeName>Kwanyama</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kum">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kumyk</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kur">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kurdish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="kut">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kutenai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lad">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ladino</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lah">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lahnda</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lam">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lamba</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lao">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lao</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lat">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Latin</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lav">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Latvian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lez">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lezghian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lim">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Limburgan</CodeName>
+						<CodeName>Limburger</CodeName>
+						<CodeName>Limburgish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lin">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lingala</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lit">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lithuanian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lol">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mongo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="loz">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lozi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ltz">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Luxembourgish</CodeName>
+						<CodeName>Letzeburgesch</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lua">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Luba-Lulua</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lub">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Luba-Katanga</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lug">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ganda</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lui">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Luiseno</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lun">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lunda</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="luo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Luo (Kenya and Tanzania)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="lus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>lushai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mac">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Macedonian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mad">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Madurese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mag">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Magahi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mah">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Marshallese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Maithili</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mak">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Makasar</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mal">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Malayalam</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="man">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mandingo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mao">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Maori</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="map">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Austronesian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mar">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Marathi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mas">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Masai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="may">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Malay</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mdf">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Moksha</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mdr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mandar</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="men">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mende</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mga">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Irish, Middle (900-1200)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mic">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Micmac</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="min">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Minangkabau</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mis">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Miscellaneous languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mkd">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Macedonian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mkh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mon-Khmer (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mlg">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Malagasy</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mlt">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Maltese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mnc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Manchu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mni">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Manipuri</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mno">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Manobo languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="moh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mohawk</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mol">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Moldavian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mon">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mongolian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mos">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mossi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mri">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Maori</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="msa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Malay</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mul">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Multiple languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mun">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Munda languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Creek</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mwr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Marwari</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mya">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Burmese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="myn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Mayan languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="myv">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Erzya</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nah">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nahuatl</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>North American Indian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nap">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Neapolitan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nau">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nauru</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nav">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Navajo</CodeName>
+						<CodeName>Navaho</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nbl">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ndebele, South</CodeName>
+						<CodeName>South Ndebele</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nde">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ndebele, North</CodeName>
+						<CodeName>North Ndebele</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ndo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ndonga</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nds">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Low German</CodeName>
+						<CodeName>Low Saxon</CodeName>
+						<CodeName>German, Low</CodeName>
+						<CodeName>Saxon, Low</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nep">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nepali</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="new">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Newari</CodeName>
+						<CodeName>Nepal Bhasa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nia">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nias</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nic">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Niger-Kordofanian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="niu">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Niuean</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nld">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Dutch</CodeName>
+						<CodeName>Flemish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nno">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Norwegian Nynorsk</CodeName>
+						<CodeName>Nynorsk, Norwegian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nob">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Norwegian Bokmål</CodeName>
+						<CodeName>Bokmål, Norwegian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nog">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nogai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="non">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Norse, Old</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nor">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Norwegian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nso">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sotho, Northern</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nub">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nubian languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nwc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Classical Newari</CodeName>
+						<CodeName>Old Newari</CodeName>
+						<CodeName>Classical Nepal Bhasa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nya">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chichewa</CodeName>
+						<CodeName>Chewa</CodeName>
+						<CodeName>Nyanja</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nym">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nyamwezi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nyn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nyankole</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nyo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nyoro</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="nzi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nzima</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="oci">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Occitan (post 1500)</CodeName>
+						<CodeName>Provençal</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="oji">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ojibwa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ori">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Oriya</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="orm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Oromo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="osa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Osage</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="oss">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ossetian</CodeName>
+						<CodeName>Ossetic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ota">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Turkish, Ottoman (1500-1928)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="oto">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Otomian languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="paa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Papuan (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pag">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Pangasinan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pal">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Pahlavi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pam">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Pampanga</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pan">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Panjabi</CodeName>
+						<CodeName>Punjabi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pap">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Papiamento</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pau">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Palauan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="peo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Persian, Old (ca.600-400 B.C.)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="per">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Persian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="phi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Philippine (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="phn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Phoenician</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pli">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Pali</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pol">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Polish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pon">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Pohnpeian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="por">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Portuguese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pra">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Prakrit languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pro">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Provençal, Old (to 1500)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="pus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Pushto</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="que">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Quechua</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="raj">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Rajasthani</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="rap">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Rapanui</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="rar">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Rarotongan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="roa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Romance (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="roh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Raeto-Romance</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="rom">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Romany</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="rum">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Romanian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ron">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Romanian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="run">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Rundi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="rus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Russian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sad">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sandawe</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sag">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sango</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sah">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Yakut</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>South American Indian (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sal">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Salishan languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sam">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Samaritan Aramaic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="san">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sanskrit</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sas">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sasak</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sat">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Santali</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="scc">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Serbian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sco">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Scots</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="scr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Croatian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sel">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Selkup</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sem">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Semitic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sga">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Irish, Old (to 900)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sgn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sign Languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="shn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Shan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sid">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sidamo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sin">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sinhalese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sio">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Siouan languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sit">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sino-Tibetan (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sla">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Slavic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="slo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Slovak</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="slk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Slovak</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="slv">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Slovenian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sma">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Southern Sami</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sme">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Northern Sami</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="smi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sami languages (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="smj">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Lule Sami</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="smn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Inari Sami</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="smo">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Samoan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sms">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Skolt Sami</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sna">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Shona</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="snd">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sindhi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="snk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Soninke</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sog">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sogdian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="som">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Somali</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="son">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Songhai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sot">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sotho, Southern</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="spa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Spanish</CodeName>
+						<CodeName>Castilian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sqi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Albanian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="srd">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sardinian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="srp">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Serbian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="srr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Serer</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ssa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Nilo-Saharan (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ssw">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Swati</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="suk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sukuma</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sun">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sundanese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sus">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Susu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="sux">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sumerian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="swa">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Swahili</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="swe">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Swedish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="syr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Syriac</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tah">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tahitian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tai (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tam">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tamil</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tat">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tatar</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tel">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Telugu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tem">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Timne</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ter">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tereno</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tet">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tetum</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tgk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tajik</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tgl">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tagalog</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tha">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Thai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tib">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tibetan</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tig">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tigre</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tir">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tigrinya</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tiv">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tokelau</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tlh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Klingon</CodeName>
+						<CodeName>tlhlngan-Hol</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tli">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tlingit</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tmh">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tamashek</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tog">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tonga (Nyasa)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ton">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tonga (Tonga Islands)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tpi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tok Pisin</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tsi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tsimshian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tsn">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tswana</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tso">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tsonga</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tuk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Turkmen</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tum">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tumbuka</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tup">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tupi languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tur">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Turkish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tut">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Altaic (Other)</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tvl">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tuvalu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="twi">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Twi</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="tyv">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Tuvinian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="udm">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Udmurt</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="uga">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ugaritic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="uig">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Uighur</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ukr">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Ukrainian</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="umb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Umbundu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="und">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Undetermined</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="urd">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Urdu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="uzb">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Uzbek</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="vai">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Vai</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ven">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Venda</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="vie">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Vietnamese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="vol">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Volapük</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="vot">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Votic</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="wak">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Wakashan languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="wal">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Walamo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="war">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Waray</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="was">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Washo</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="wen">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Sorbian languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="wln">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Walloon</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="wol">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Wolof</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="xal">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Kalmyk</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="xho">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Xhosa</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="yao">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Yao</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="yap">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Yapese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="yid">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Yiddish</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="yor">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Yoruba</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ypk">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Yupik languages</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="zap">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Zapotec</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="zen">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Zenaga</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="zha">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Zhuang</CodeName>
+						<CodeName>Chuang</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="zho">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Chinese</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="znd">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Zande</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="zul">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Zulu</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="zun">
+				<xsd:annotation>
+					<xsd:documentation>
+						<CodeName>Zuni</CodeName>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="LanguageIdentificationCodeType">
+		<xsd:annotation>
+			<xsd:documentation>
+				<ccts:Component>
+					<ccts:ComponentType>DT</ccts:ComponentType>
+					<ccts:DictionaryEntryName>Language Identification_ Code. Type</ccts:DictionaryEntryName>
+					<ccts:RepresentationTerm>Code</ccts:RepresentationTerm>
+					<ccts:DataTypeQualifier>Language Identification</ccts:DataTypeQualifier>
+					<ccts:DataType>Code. Type</ccts:DataType>
+				</ccts:Component>
+				<ccts:Instance>
+					<ccts:CodeListID>ISO639-2</ccts:CodeListID>
+					<ccts:CodeListAgencyID>6</ccts:CodeListAgencyID>
+					<ccts:CodeListAgencyName>United Nations Economic Commission for Europe</ccts:CodeListAgencyName>
+					<ccts:CodeListName>Language</ccts:CodeListName>
+					<ccts:CodeListVersionID>0.1</ccts:CodeListVersionID>
+					<ccts:CodeListUniformResourceID>http://www.loc.gov/standards/iso639-2/langcodes.html</ccts:CodeListUniformResourceID>
+					<ccts:CodeListSchemeUniformResourceID>urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0</ccts:CodeListSchemeUniformResourceID>
+					<ccts:LanguageID>en</ccts:LanguageID>
+				</ccts:Instance>
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="LanguageIdentificationCodeContentType">
+				<xsd:attribute name="name" type="xsd:string" use="optional"/>
+				<xsd:attribute name="codeListID" type="xsd:normalizedString" use="optional" fixed="ISO639-2"/>
+				<xsd:attribute name="codeListAgencyID" type="xsd:normalizedString" use="optional" fixed="6"/>
+				<xsd:attribute name="codeListAgencyName" type="xsd:string" use="optional" fixed="United Nations Economic Commission for Europe"/>
+				<xsd:attribute name="codeListName" type="xsd:string" use="optional" fixed="Language"/>
+				<xsd:attribute name="codeListVersionID" type="xsd:normalizedString" use="optional" fixed="0.1"/>
+				<xsd:attribute name="codeListURI" type="xsd:anyURI" use="optional" fixed="http://www.loc.gov/standards/iso639-2/langcodes.html"/>
+				<xsd:attribute name="codeListSchemeURI" type="xsd:anyURI" use="optional" fixed="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0"/>
+				<xsd:attribute name="languageID" type="xsd:language" use="optional" fixed="en"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

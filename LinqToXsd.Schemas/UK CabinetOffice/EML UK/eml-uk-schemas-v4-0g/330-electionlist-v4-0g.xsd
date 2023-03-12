@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-330">
+	<xs:include schemaLocation="120-310-330-include-v4-0g.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="ElectionList"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="ElectionList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Qualifier" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="VotingChannel" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="VoterGroup" type="xs:token" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>e.g. proxies, blocked</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Comment" type="xs:token" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="EventIdentifier" minOccurs="0"/>
+				<xs:element name="VoterDetails" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RequestedAction" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:NMTOKEN">
+										<xs:enumeration value="add"/>
+										<xs:enumeration value="delete"/>
+										<xs:enumeration value="replace"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element ref="VoterRegistration"/>
+							<xs:element name="Election" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="ElectionIdentifier" minOccurs="0"/>
+										<xs:element ref="ContestIdentifier" minOccurs="0"/>
+										<xs:element ref="PollingDistrict" minOccurs="0"/>
+										<xs:element ref="PollingPlace" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element ref="Blocked" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Blocked">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="YesNoType">
+					<xs:attribute name="Reason" type="xs:token" use="optional"/>
+					<xs:attribute name="Channel" type="VotingChannelType" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<!-- Developed by e-Government Unit, www.e-envoy.gov.uk. Conforms to w3c http://www.w3.org/TR/XMLSchema
+	Changes from v2.0 to 2.0a: 
+		Key element changed to type xsd:token to bring it into line with government data standards for identifiers. This includes the possibility of spaces occurring in the values of Key. xsd:token does not allow any whitespace except single spaces (not leading or trailing).
+-->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/CM/envelope" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:gt="http://www.govtalk.gov.uk/CM/core" xmlns="http://www.govtalk.gov.uk/CM/envelope" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0" id="GovTalk-Envelope">
+	<xsd:annotation>
+		<xsd:documentation>
+      This schema is used as the envelope for all GovTalk messages. It is 
+      described in detail in a separate document on the GovTalk web site.
+    </xsd:documentation>
+		<xsd:appinfo>
+			<gt:KeyWords> GovTalk, header, envelope </gt:KeyWords>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:element name="GovTalkMessage">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="EnvelopeVersion" type="xsd:string"/>
+				<xsd:element name="Header">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="MessageDetails">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Class">
+											<xsd:simpleType>
+												<xsd:restriction base="UnicodeNameString">
+													<xsd:maxLength value="32"/>
+													<xsd:minLength value="4"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Qualifier">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:enumeration value="request"/>
+													<xsd:enumeration value="acknowledgement"/>
+													<xsd:enumeration value="response"/>
+													<xsd:enumeration value="poll"/>
+													<xsd:enumeration value="error"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Function" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:enumeration value="list"/>
+													<xsd:enumeration value="read"/>
+													<xsd:enumeration value="delete"/>
+													<xsd:enumeration value="add"/>
+													<xsd:enumeration value="submit"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="TransactionID" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:minLength value="0"/>
+													<xsd:maxLength value="32"/>
+													<xsd:pattern value="[0-9A-F]{0,32}"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="AuditID" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:minLength value="0"/>
+													<xsd:maxLength value="32"/>
+													<xsd:pattern value="[A-F0-9]{0,32}"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="CorrelationID" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:minLength value="0"/>
+													<xsd:maxLength value="32"/>
+													<xsd:pattern value="[0-9A-F]{0,32}"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="ResponseEndPoint" minOccurs="0">
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:string">
+														<xsd:attribute name="PollInterval" type="xsd:integer" default="2"/>
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Transformation" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:enumeration value="XML"/>
+													<xsd:enumeration value="HTML"/>
+													<xsd:enumeration value="text"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="GatewayTest" type="xsd:integer" minOccurs="0"/>
+										<xsd:element name="GatewayTimestamp" type="xsd:dateTime" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="SenderDetails" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element ref="IDAuthentication" minOccurs="0"/>
+										<xsd:element name="X509Certificate" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:base64Binary"/>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="EmailAddress" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:maxLength value="129"/>
+													<xsd:minLength value="3"/>
+													<xsd:pattern value="[A-Za-z0-9\.\-_]{1,64}@[A-Za-z0-9\.\-_]{1,64}"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="GovTalkDetails">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Keys" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Key" minOccurs="0" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:token">
+														<xsd:attribute name="Type" type="UnicodeNameString" use="required"/>
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="TargetDetails" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Organisation" minOccurs="0" maxOccurs="unbounded">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:minLength value="1"/>
+													<xsd:maxLength value="64"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="GatewayValidation" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Processed">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:enumeration value="no"/>
+													<xsd:enumeration value="yes"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Result">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:enumeration value="pass"/>
+													<xsd:enumeration value="fail"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ChannelRouting" minOccurs="0" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Channel">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:choice>
+														<xsd:element name="URI" type="xsd:anyURI"/>
+														<xsd:element name="Name" type="xsd:string"/>
+													</xsd:choice>
+													<xsd:element name="Product" type="xsd:string" minOccurs="0"/>
+													<xsd:element name="Version" type="xsd:string" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:string">
+														<xsd:attribute name="Type" type="xsd:string" use="required"/>
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="GovTalkErrors" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Error" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="RaisedBy" type="xsd:string"/>
+													<xsd:element name="Number" type="xsd:integer" minOccurs="0"/>
+													<xsd:element name="Type">
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:enumeration value="fatal"/>
+																<xsd:enumeration value="recoverable"/>
+																<xsd:enumeration value="business"/>
+																<xsd:enumeration value="warning"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:element>
+													<xsd:element name="Text" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+													<xsd:element name="Location" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="GatewayAdditions" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:any namespace="##local"/>
+									</xsd:sequence>
+									<xsd:anyAttribute namespace="##local"/>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Body" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+						</xsd:sequence>
+						<xsd:anyAttribute namespace="##any"/>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="IDAuthentication">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SenderID" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="Authentication" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Method">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="clear"/>
+										<xsd:enumeration value="MD5"/>
+										<xsd:enumeration value="W3Csigned"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="Role" type="xsd:string" minOccurs="0"/>
+							<xsd:choice>
+								<xsd:element name="Value" type="xsd:string"/>
+								<!---<xsd:element ref="dsig:Signature"/>-->
+							</xsd:choice>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:simpleType name="UnicodeNameString">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[\p{L}\p{Nd}_\-\(\)\{\}]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

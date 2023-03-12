@@ -1,0 +1,3088 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Gerard Smyth (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncidentFire-v1-0">
+	<xs:include schemaLocation="FRSIncidentFireBuilding-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentFireTransport-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentFireOutdoor-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentCommonTypes-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-07-10</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System fire details structure</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncidentFire-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FRSIncidentFireBuilding-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentFireTransport-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentFireOutdoor-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentCommonTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FireTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System fire details structure</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="FireStructure">
+		<xs:annotation>
+			<xs:documentation>Details all the information that will be recorded for any type of fire incident.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IsPrimaryFire" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>Was this a Primary fire? (Not a Secondary Fire). This flag is determined from a number of other attributes 3.5 to 3.9.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cause" type="FireCauseType">
+				<xs:annotation>
+					<xs:documentation>5.15 - The main cause/motive of this fire, ie accidental or deliberate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsDerelict" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>3.8 - Was the Property Type derelict (Building, Boat, Road Vehicle, etc.)?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Building" type="BuildingStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Extra information only needed for building fires.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OutdoorArea" type="OutdoorAreaStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Extra information only needed for outdoor fires.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrimaryFire" type="PrimaryFireStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Extra information only needed for Primary Fires.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BuildingStructure">
+		<xs:annotation>
+			<xs:documentation>Information that should be recorded for all types of building fire</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NormalOccupationStatus" type="BuildingOccupationStatusType">
+				<xs:annotation>
+					<xs:documentation>5.14 - Is the building normally occupied or  un-oocupied most of the time.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OccupiedAtTimeOfIncident" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>5.13 - Was the building occupied at the time of the fire incident?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsChimneyFire" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>3.9 - Was the fire contained solely within the Chimney of a residential Building?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutdoorAreaStructure">
+		<xs:annotation>
+			<xs:documentation>Contains information recorded for all outdoor fires.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DamageArea">
+				<xs:annotation>
+					<xs:documentation>5.16 (Secondary Fire) / 8.35 (Primary Fire) - The size of the damaged area held in square metres up to 10,000 m2.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="AreaRangeType">
+							<xs:attribute name="LargeAreaSize" type="fire:ZeroTo9999999Type">
+								<xs:annotation>
+									<xs:documentation>5.16a / 8.35a - The area in hectares if the outdoor area is greater than 10,000 m2 (1 hectare) captured in the DamageArea.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IsNationalPark" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>5.17 (Secondary Fire) / 8.36 (Primary Fire) - Was the area inside a National Park?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PrimaryFireStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the extra information that is recorded only for PrimaryFires</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IsMultiSeated" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>5.1 - Did the fire have multiple seats (start locations)?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsHeatSmokeDamageOnly" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>8.19 - Was there no exposed flame, but heat or smoke damage only?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Discovery" type="PFDiscoveryStructure"/>
+			<xs:element name="CauseAndReason" type="PFCauseAndReasonStructure">
+				<xs:annotation>
+					<xs:documentation>Information on the cause of the fire and the reasons for its spread.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Action" type="PFActionStructure">
+				<xs:annotation>
+					<xs:documentation>Details the actions taken and facilities used to combat the fire</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>This choice block is determined by the incident type data, whcih details the type of location that the fire is in.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="Dwelling" type="DwellingStructure">
+					<xs:annotation>
+						<xs:documentation>House, Bungalow, Mobile Home, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OtherResidential" type="OtherResidentialStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Nursing Home, Motel, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="NonResidential" type="NonResidentialStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Offices, Shop, Warehouse, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="RoadVehicle" type="RoadVehicleStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Passenger Car, Van, Lorry, Tanker, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Aircraft" type="AircraftStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Passenger plane, Helicopter, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Boat" type="BoatStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Barge, Motor Yacht, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="RailVehicle" type="RailVehicleStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Passenger Train, Freight Train, Steam Train, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Outdoor" type="OutdoorStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Forest, Woodland, RiverBank, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OutdoorStructure" type="OutdoorStructureStructure">
+					<xs:annotation>
+						<xs:documentation>e.g. Refuse Tip, Post Box, Road Furniture, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="BuildingOccupationStatusType">
+		<xs:annotation>
+			<xs:documentation>Defines the ocupation staus of the building normally.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Yes - occupied</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>No - unoccupied permanently (vacant)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>No - under construction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<!--			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Unoccupied</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration> -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FireCauseType">
+		<xs:annotation>
+			<xs:documentation>Lists the available options for indicating the cause/motive of the fire</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Accidental</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Deliberate - own property</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Deliberate - others property</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Deliberate - unknown owner</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFCauseAndReasonStructure">
+		<xs:annotation>
+			<xs:documentation>Structure containing detailed information on the cause and reason for spread of a primary fire</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MainCause">
+				<xs:annotation>
+					<xs:documentation>8.1 - Main cause e.g. playing with fire</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="PFMainCauseStructure">
+							<xs:attribute name="MakeModelDescription" type="fire:StringRestrictedMixedType">
+								<xs:annotation>
+									<xs:documentation>8.2 - Dependant on MainCause being set to '4 = Faulty lead to equipment or appliance', '5 = fault in equipment or appliance', 15 = Vehicle crash or collision or ’99 = Other’</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IgnitionSource" type="PFIgnitionSourceStructure">
+				<xs:annotation>
+					<xs:documentation>8.4 - Source of ignition e.g. heating equipment. The annotations define an applicable IgnitionSourcePower setting, or that the user must select a value. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IgnitionSourcePower" type="PFIgnitionSourcePowerStructure">
+				<xs:annotation>
+					<xs:documentation>8.5 - The power resource that enabled ignition e.g. gas, electricity. This value must be populated if Ignition Source is a powered source.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CausedBy" type="PFCausedByStructure">
+				<xs:annotation>
+					<xs:documentation>8.3 - Caused by person, appliance, etc
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItemFirstIgnited" type="PFItemIgnitedStructure">
+				<xs:annotation>
+					<xs:documentation>8.6 - Item first ignited e.g. furniture.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItemResponsibleForSpread" type="PFItemIgnitedStructure">
+				<xs:annotation>
+					<xs:documentation>8.7 - Item responsible for spread e.g. foam.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RapidGrowth" type="PFRapidGrowthStructure">
+				<xs:annotation>
+					<xs:documentation>8.8 - Rapid fire growth due to e.g. backdraft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DangerousSubstances" type="PFDangerousSubstanceType">
+				<xs:annotation>
+					<xs:documentation>8.9 - Were dangerous substance involved e.g. Ammunitions, Fireworks.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExplosionInvolved" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>8.10 - Was an Explosion Involved?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExplosionDetails" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Explosion details if there was an explosion.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ExplosionSubstances" type="PFExplosionSubstanceType">
+							<xs:annotation>
+								<xs:documentation>8.11 - Explosion due to substance involved e.g. Ammunitions, Fireworks.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ExplosionStage" type="PFExplosionStageType">
+							<xs:annotation>
+								<xs:documentation>8.12 - Was it before fire, during fire, not fire related, etc.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ExplosionContainers" type="PFExplosionContainersStructure">
+							<xs:annotation>
+								<xs:documentation>8.13 - What was the container that exploded e.g. Cylinder, Drum, etc. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PFMainCauseStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFMainCauseType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFMainCauseType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFMainCauseType">
+		<xs:annotation>
+			<xs:documentation>Details the available options for specifying the main cause of a primary fire</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Faulty fuel supply - gas</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Faulty fuel supply - electricity</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Faulty fuel supply - petrol product</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Faulty leads to equipment or appliance</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Fault in equipment or appliance</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Cooking - chip pan/deep fat fryer</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Cooking - other cooking</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Negligent use of equipment or appliance (heat source)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Playing with fire (or heat source)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Careless handling - due to sleep or unconsciousness</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Careless handling  - due to careless disposal</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Careless handling - due to knocking over</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Combustible articles too close to heat source (or fire)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Person too close to heat source (or fire)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Vehicle crash or collision</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Chimney fire</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Bonfire going out of control</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Other intentional burning, going out of control</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Accumulation of flammable material</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Natural occurrence</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Overheating, unknown cause</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Bomb/incendiary device</xs:documentation>
+					<xs:appinfo>
+						<FireCause>2</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Suicide/attempted: setting fire to self</xs:documentation>
+					<xs:appinfo>
+						<FireCause>2</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Homicide/attempted: setting fire to other person/s</xs:documentation>
+					<xs:appinfo>
+						<FireCause>2</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Heat source and combustibles brought together deliberately</xs:documentation>
+					<xs:appinfo>
+						<FireCause>2</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Bomb/incendiary device</xs:documentation>
+					<xs:appinfo>
+						<FireCause>3</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Suicide/attempted: setting fire to self</xs:documentation>
+					<xs:appinfo>
+						<FireCause>3</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>Homicide/attempted: setting fire to other person/s</xs:documentation>
+					<xs:appinfo>
+						<FireCause>3</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Heat source and combustibles brought together deliberately</xs:documentation>
+					<xs:appinfo>
+						<FireCause>3</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Bomb/incendiary device</xs:documentation>
+					<xs:appinfo>
+						<FireCause>4</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>Suicide/attempted: setting fire to self</xs:documentation>
+					<xs:appinfo>
+						<FireCause>4</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>Homicide/attempted: setting fire to other person/s</xs:documentation>
+					<xs:appinfo>
+						<FireCause>4</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>Heat source and combustibles brought together deliberately</xs:documentation>
+					<xs:appinfo>
+						<FireCause>4</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>Faulty fuel supply - gas</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>Faulty fuel supply - electricity</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="42">
+				<xs:annotation>
+					<xs:documentation>Faulty fuel supply - petrol product</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="43">
+				<xs:annotation>
+					<xs:documentation>Faulty leads to equipment or appliance</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Fault in equipment or appliance</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Cooking - chip pan/deep fat fryer</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Cooking - other cooking</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="47">
+				<xs:annotation>
+					<xs:documentation>Negligent use of equipment or appliance (heat source)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="48">
+				<xs:annotation>
+					<xs:documentation>Playing with fire (or heat source)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="49">
+				<xs:annotation>
+					<xs:documentation>Careless handling - due to sleep or unconsciousness</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Careless handling  - due to careless disposal</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="53">
+				<xs:annotation>
+					<xs:documentation>Careless handling - due to knocking over</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="54">
+				<xs:annotation>
+					<xs:documentation>Combustible articles too close to heat source (or fire)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="55">
+				<xs:annotation>
+					<xs:documentation>Person too close to heat source (or fire)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56">
+				<xs:annotation>
+					<xs:documentation>Vehicle crash or collision</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="57">
+				<xs:annotation>
+					<xs:documentation>Chimney fire</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="58">
+				<xs:annotation>
+					<xs:documentation>Bonfire going out of control</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="59">
+				<xs:annotation>
+					<xs:documentation>Other intentional burning, going out of control</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="60">
+				<xs:annotation>
+					<xs:documentation>Accumulation of flammable material</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Natural occurrence</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="62">
+				<xs:annotation>
+					<xs:documentation>Overheating, unknown cause</xs:documentation>
+					<xs:appinfo>
+						<FireCause>0</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<!--			<xs:enumeration value="70">
+				<xs:annotation>
+					<xs:documentation>Fireworks (incl Military tracers, pyrotechnics, smoke grenades, etc)</xs:documentation>
+					<xs:appinfo>
+						<FireCause>1</FireCause>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration> -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFIgnitionSourceStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFIgnitionSourceType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFIgnitionSourceType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFIgnitionSourceType">
+		<xs:annotation>
+			<xs:documentation>Specifes the list of options available for choosing the soure of the primary fire.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Cooker incl. oven</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Ring/hot plate (separate appliance)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Microwave oven</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Grill/Toaster</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="81">
+				<xs:annotation>
+					<xs:documentation>Deep fat fryer</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Barbecue</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Camping stove</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Other cooking appliance</xs:documentation>
+					<xs:appinfo>
+						<Category id="Cooking appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Matches</xs:documentation>
+					<xs:appinfo>
+						<Category id="Matches and candles"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="47">
+				<xs:annotation>
+					<xs:documentation>Candles</xs:documentation>
+					<xs:appinfo>
+						<Category id="Matches and candles"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="75">
+				<xs:annotation>
+					<xs:documentation>Oil/Incense burners</xs:documentation>
+					<xs:appinfo>
+						<Category id="Matches and candles"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Cigarette lighter</xs:documentation>
+					<xs:appinfo>
+						<Category id="Smoking related"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Smoking materials</xs:documentation>
+					<xs:appinfo>
+						<Category id="Smoking related"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="58">
+				<xs:annotation>
+					<xs:documentation>Fridge/Freezer</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>TV</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Audio equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>PC equipment (domestic use)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Video/DVD</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="60">
+				<xs:annotation>
+					<xs:documentation>Other electrical visual equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Washing machine</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Tumble dryer</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="78">
+				<xs:annotation>
+					<xs:documentation>Washer/Dryer combined</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Vacuum cleaner</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Iron</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Trouser press</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Extractor fan</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Dishwasher</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Electric blanket</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Hair dryer</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Electric kettle</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Blow lamp/Paint remover</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="62">
+				<xs:annotation>
+					<xs:documentation>Battery charger</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="63">
+				<xs:annotation>
+					<xs:documentation>Spin dryer</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Gardening equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Other domestic style appliance</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other domestic style appliance"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Fairy lights</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electric lighting"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Spot lights</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electric lighting"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="64">
+				<xs:annotation>
+					<xs:documentation>Other incandescent light bulbs</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electric lighting"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Fluorescent lights</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electric lighting"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Other lights</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electric lighting"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Heating/Fire</xs:documentation>
+					<xs:appinfo>
+						<Category id="Heating equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="59">
+				<xs:annotation>
+					<xs:documentation>Patio equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Heating equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Central heating/Hot water</xs:documentation>
+					<xs:appinfo>
+						<Category id="Heating equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="73">
+				<xs:annotation>
+					<xs:documentation>Other heating equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Heating equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Separate water heating</xs:documentation>
+					<xs:appinfo>
+						<Category id="Heating equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Food warming equipment (not cooking)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Heating equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="74">
+				<xs:annotation>
+					<xs:documentation>Power Source</xs:documentation>
+					<xs:appinfo>
+						<Category id="Heating equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>Apparatus - batteries, generators</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electricity supply"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Wiring, cabling, plugs</xs:documentation>
+					<xs:appinfo>
+						<Category id="Electricity supply"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Copiers/Printers</xs:documentation>
+					<xs:appinfo>
+						<Category id="Office equipment"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Vending equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Office equipment"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="77">
+				<xs:annotation>
+					<xs:documentation>PC</xs:documentation>
+					<xs:appinfo>
+						<Category id="Office equipment"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>Other computer equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Office equipment"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="65">
+				<xs:annotation>
+					<xs:documentation>Telephone/Answering machine/Fax machine</xs:documentation>
+					<xs:appinfo>
+						<Category id="Office equipment"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>Kiln, oven, furnace</xs:documentation>
+					<xs:appinfo>
+						<Category id="Industrial equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>Dryer</xs:documentation>
+					<xs:appinfo>
+						<Category id="Industrial equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>Manufacturing equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Industrial equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>Welding/Cutting equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Industrial equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="66">
+				<xs:annotation>
+					<xs:documentation>Lift</xs:documentation>
+					<xs:appinfo>
+						<Category id="Industrial equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="67">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Industrial equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="68">
+				<xs:annotation>
+					<xs:documentation>Chimney</xs:documentation>
+					<xs:appinfo>
+						<Category id="Chimney"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="79">
+				<xs:annotation>
+					<xs:documentation>Spread from secondary fire</xs:documentation>
+					<xs:appinfo>
+						<Category id="Spread from secondary fire"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>Electrical fault</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vehicles only"/>
+						<IgnitionSourcePower>3</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="42">
+				<xs:annotation>
+					<xs:documentation>Engine, fuel line or pump</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vehicles only"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="43">
+				<xs:annotation>
+					<xs:documentation>Wheels or brakes</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vehicles only"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="69">
+				<xs:annotation>
+					<xs:documentation>Other non-electrical</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vehicles only"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="80">
+				<xs:annotation>
+					<xs:documentation>Exhausts</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vehicles only"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="70">
+				<xs:annotation>
+					<xs:documentation>Unknown</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vehicles only"/>
+						<IgnitionSourcePower>0</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="71">
+				<xs:annotation>
+					<xs:documentation>Other appliance or equipment</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other appliance or equipment"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="48">
+				<xs:annotation>
+					<xs:documentation>Lighted paper or card, or other naked flame</xs:documentation>
+					<xs:appinfo>
+						<Category id="Naked flame"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="49">
+				<xs:annotation>
+					<xs:documentation>Fireworks</xs:documentation>
+					<xs:appinfo>
+						<Category id="Fireworks"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Intentional burning - out of control</xs:documentation>
+					<xs:appinfo>
+						<Category id="Bombs and explosives"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="51">
+				<xs:annotation>
+					<xs:documentation>Incendiary device</xs:documentation>
+					<xs:appinfo>
+						<Category id="Bombs and explosives"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="72">
+				<xs:annotation>
+					<xs:documentation>Bomb/Explosives</xs:documentation>
+					<xs:appinfo>
+						<Category id="Bombs and explosives"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Natural occurrence</xs:documentation>
+					<xs:appinfo>
+						<Category id="Natural occurrence"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="53">
+				<xs:annotation>
+					<xs:documentation>Wet hay</xs:documentation>
+					<xs:appinfo>
+						<Category id="Wet hay"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="54">
+				<xs:annotation>
+					<xs:documentation>Gases</xs:documentation>
+					<xs:appinfo>
+						<Category id="Fuel/Chemical"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="55">
+				<xs:annotation>
+					<xs:documentation>Liquids; petrol/oil related</xs:documentation>
+					<xs:appinfo>
+						<Category id="Fuel/Chemical"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56">
+				<xs:annotation>
+					<xs:documentation>Solids; coal, coke, wood, card</xs:documentation>
+					<xs:appinfo>
+						<Category id="Fuel/Chemical"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="57">
+				<xs:annotation>
+					<xs:documentation>Flammable chemicals</xs:documentation>
+					<xs:appinfo>
+						<Category id="Fuel/Chemical"/>
+						<IgnitionSourcePower>98</IgnitionSourcePower>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFIgnitionSourcePowerStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFIgnitionSourcePowerType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFIgnitionSourcePowerType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFIgnitionSourcePowerType">
+		<xs:annotation>
+			<xs:documentation>If needed, this provides the available options for specifying the power source of the item causing the primary fire.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Gas - mains</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Gas - cylinder</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Electric</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Unknown</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFCausedByStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFCausedByType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFCausedByType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFCausedByType">
+		<xs:annotation>
+			<xs:documentation>This specifies the type of person (age range) or otherwise that caused the primary fire.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Child (0 - 9)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Youth (10 - 17)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Adult (18 - 64)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Elderly (65 plus)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Person, age not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Animal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Not applicable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFItemIgnitedStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFItemIgnitedType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFItemIgnitedType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFItemIgnitedType">
+		<xs:annotation>
+			<xs:documentation>Provides a set of options for selecting an item involved in the fire.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Trees</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vegetation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Crops</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vegetation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Grassland/Heath/Scrub</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vegetation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Straw/Stubble</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vegetation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Leaves</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vegetation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>Hedge</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vegetation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Vegetation"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Cooking oil or fat</xs:documentation>
+					<xs:appinfo>
+						<Category id="Food"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Food"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Animal products</xs:documentation>
+					<xs:appinfo>
+						<Category id="Animal"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Bedding</xs:documentation>
+					<xs:appinfo>
+						<Category id="Clothing/Textiles"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Clothing</xs:documentation>
+					<xs:appinfo>
+						<Category id="Clothing/Textiles"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>Other textiles</xs:documentation>
+					<xs:appinfo>
+						<Category id="Clothing/Textiles"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Bed/Mattress</xs:documentation>
+					<xs:appinfo>
+						<Category id="Furniture/Furnishings"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Upholstered furniture</xs:documentation>
+					<xs:appinfo>
+						<Category id="Furniture/Furnishings"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Other furniture</xs:documentation>
+					<xs:appinfo>
+						<Category id="Furniture/Furnishings"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Floor coverings</xs:documentation>
+					<xs:appinfo>
+						<Category id="Furniture/Furnishings"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Window coverings</xs:documentation>
+					<xs:appinfo>
+						<Category id="Furniture/Furnishings"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Lampshades</xs:documentation>
+					<xs:appinfo>
+						<Category id="Furniture/Furnishings"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>Other/Unspecified furnishings</xs:documentation>
+					<xs:appinfo>
+						<Category id="Furniture/Furnishings"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Roof</xs:documentation>
+					<xs:appinfo>
+						<Category id="Structural/Fixtures/Fittings - External"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>External fittings</xs:documentation>
+					<xs:appinfo>
+						<Category id="Structural/Fixtures/Fittings - External"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Structural/Fixtures/Fittings - External"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Internal fittings</xs:documentation>
+					<xs:appinfo>
+						<Category id="Structural/Fixtures/Fittings - Internal"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="42">
+				<xs:annotation>
+					<xs:documentation>Wiring insulation</xs:documentation>
+					<xs:appinfo>
+						<Category id="Structural/Fixtures/Fittings - Internal"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Structural/Fixtures/Fittings - Internal"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Foam - raw material only</xs:documentation>
+					<xs:appinfo>
+						<Category id="Foam, rubber, plastic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Rubber - raw material only</xs:documentation>
+					<xs:appinfo>
+						<Category id="Foam, rubber, plastic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Plastic - raw material only</xs:documentation>
+					<xs:appinfo>
+						<Category id="Foam, rubber, plastic"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Fireworks</xs:documentation>
+					<xs:appinfo>
+						<Category id="Explosives, gas, chemicals"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Explosives/Ammunition</xs:documentation>
+					<xs:appinfo>
+						<Category id="Explosives, gas, chemicals"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Gases</xs:documentation>
+					<xs:appinfo>
+						<Category id="Explosives, gas, chemicals"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Petrol/Oil products</xs:documentation>
+					<xs:appinfo>
+						<Category id="Explosives, gas, chemicals"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Paint, varnish, resins, creosote</xs:documentation>
+					<xs:appinfo>
+						<Category id="Explosives, gas, chemicals"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Chemicals in raw state</xs:documentation>
+					<xs:appinfo>
+						<Category id="Explosives, gas, chemicals"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Decorations/Cards</xs:documentation>
+					<xs:appinfo>
+						<Category id="Decoration/Celebration"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Christmas trees</xs:documentation>
+					<xs:appinfo>
+						<Category id="Decoration/Celebration"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Rubbish/Waste material</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rubbish/Waste/Recycling"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Recycling - paper, cardboard</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rubbish/Waste/Recycling"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>Recycling - other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Rubbish/Waste/Recycling"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="43">
+				<xs:annotation>
+					<xs:documentation>Household paper/Cardboard</xs:documentation>
+					<xs:appinfo>
+						<Category id="Paper/Cardboard"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Paper/Cardboard"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Garden shed</xs:documentation>
+					<xs:appinfo>
+						<Category id="Wood"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>Other wooden</xs:documentation>
+					<xs:appinfo>
+						<Category id="Wood"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>None</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFRapidGrowthStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFRapidGrowthType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFRapidGrowthType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFRapidGrowthType">
+		<xs:annotation>
+			<xs:documentation>Provides a set of options for indicating if and why there was rapid growth in the fire.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>No rapid fire growth</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Yes, cooking oil or fat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Yes, fireworks</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Yes, ammunition</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Yes, gases</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Yes, petrol/oil products</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Yes, paint, varnish, resins, creosote</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Yes, chemicals</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Yes, backdraft</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Yes, flashover</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Yes, strong wind</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PFDangerousSubstanceType">
+		<xs:annotation>
+			<xs:documentation>The set of options for selecting whether any dangerous substance were involved in the fire (e.g. fireworks)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>None</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Fireworks</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Acetylene</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Ammunition</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Other explosives</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Gases</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Flammable liquids</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Flammable solids</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PFExplosionSubstanceType">
+		<xs:annotation>
+			<xs:documentation>The set of options for selecting whether any explosive substances were involved in the fire (eg fireworks)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Fireworks</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Acetylene</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Ammunition</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Other explosives</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Gases</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Flammable liquids</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Flammable solids</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PFExplosionStageType">
+		<xs:annotation>
+			<xs:documentation>Provides the options available for selecting whether an explosion occurred, and if so at what satge of the fire</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Yes, before fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Yes, during fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Yes, both before and during</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Yes, sequence not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFExplosionContainersStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFExplosionContainersType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFExplosionContainersType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFExplosionContainersType">
+		<xs:annotation>
+			<xs:documentation>Provides the options available for selecting what containers may have been involved with the explosion.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>None</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Bottles</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Cylinders</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Cans</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Drums</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Tank/s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Pipe/Pipeline</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFDiscoveryStructure">
+		<xs:annotation>
+			<xs:documentation>Provides information on the discovery of the fire.  Eg time until discovery, how discovered, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IgnitionToDiscovery" type="TimePeriodType">
+				<xs:annotation>
+					<xs:documentation>5.2 - Ignition to discovery e.g. Under 5 minutes, Over 2 hours, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscoveryToCall" type="TimePeriodType">
+				<xs:annotation>
+					<xs:documentation>5.3 - Discovery to first call e.g. Under 5 minutes, Over 2 hours, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HowDiscovered" type="PFHowDiscoveredStructure">
+				<xs:annotation>
+					<xs:documentation>5.4 - How discovered e.g person or alarm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PFHowDiscoveredStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFHowDiscoveredType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFHowDiscoveredType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFHowDiscoveredType">
+		<xs:annotation>
+			<xs:documentation>Provides the available options for specifying how the fire was discovered.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Person</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Automatic alarm system</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PFStartingDelayType">
+		<xs:annotation>
+			<xs:documentation>Contains the options available for specifying the delay (if any) that occurred before starting firefighting</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>No delay</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Sent to wrong location</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Vehicle access problems</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Accessing fire - large site</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Accessing fire - due to building type e.g. high rise building</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Accessing fire - security doors/other security measures</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Location of fire not immediately evident</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Civil disturbance</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Delay due to: Assault on Firefighters</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFActionStructure">
+		<xs:annotation>
+			<xs:documentation>Contains information on action taken (both by FRS and nonFRS people) to combat the fire.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StartingDelay" type="PFStartingDelayType">
+				<xs:annotation>
+					<xs:documentation>7.1 - Delay in starting fire-fighting e.g. Accessing fire – large site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MainActionNonFRS" type="PFMainActionNonFRSStructure">
+				<xs:annotation>
+					<xs:documentation>7.2 - Main action taken by non-FRS people  e.g. smothering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MainActionFRS" type="PFMainActionFRSStructure">
+				<xs:annotation>
+					<xs:documentation>7.3 - Main action taken by FRS fire fighters e.g. firefighting.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManualSystems" type="PFManualSystemsProvidedStructure">
+				<xs:annotation>
+					<xs:documentation>Manual systems provided at location.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BuildingFacilities" type="PFBuildingFacilitiesStructure">
+				<xs:annotation>
+					<xs:documentation>Defines the presence of specifics fire-fighting facilities at the scene.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PFMainActionNonFRSStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFMainActionNonFRSType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFMainActionNonFRSType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFMainActionNonFRSType">
+		<xs:annotation>
+			<xs:documentation>Defines the main action undertaken by non FRS people to combat the fire.  This is from an enumeration of available options.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>None</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Removal from heat source</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Fuel supply disconnected</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Smothering</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Water from bucket/container</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Water from garden hose</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Used hosereel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Fire extinguisher</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Beaten out</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Work team</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFManualSystemsProvidedStructure">
+		<xs:annotation>
+			<xs:documentation>Contains information on all the manual systems (eg Fire blanket, buckets etc) provided, and the impact they had</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ManualSystem" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This schema structure allows for any number of manual systems to be defined, however it is possible that the forms may only provide provision for entering (eg) three of them.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Type" type="PFManualSystemsTypeStructure">
+							<xs:annotation>
+								<xs:documentation>7.5 - Manual system used e.g. fire bucket.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Impact" type="PFManualSystemsImpactStructure">
+							<xs:annotation>
+								<xs:documentation>7.6 - Effectiveness of the manual system employed e.g contained fire.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ManualSystemsUsed" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>7.4 - Were any Manual Systems used?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PFManualSystemsTypeStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFManualSystemsProvidedType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFManualSystemsProvidedType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFManualSystemsProvidedType">
+		<xs:annotation>
+			<xs:documentation>Defines all the types of manual systems available.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Fire buckets</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Portable extinguishers</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Fire blanket</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Hosereel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Larger system that is started manually</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Firebeaters</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFManualSystemsImpactStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFManualSystemsImpactType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFManualSystemsImpactType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFManualSystemsImpactType">
+		<xs:annotation>
+			<xs:documentation>Defines the impact of each manual system.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Extinguished fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Contained fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Did not contain fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Made incident worse</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>None</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFBuildingFacilitiesStructure">
+		<xs:annotation>
+			<xs:documentation>Provides information on all the building facilities present, and whether they were used or not.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BuildingFacility" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This schema structure allows for any number of building facilities to be defined, however it is possible that the forms may only provide provision for entering (eg) three of them.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Type" type="PFBuildingFacilitiesProvidedStructure">
+							<xs:annotation>
+								<xs:documentation>7.8 - Fire service building facilities present e.g dry risers.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Used" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>7.9 - Was facility used?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="NotWorkingDueTo" type="PFBuildingFacilitiesNotWorkingDueToType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>7.10 - Facility not working due to e.g. vandalism, fire damage.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BuildingFacilitiesPresent" type="fire:YesNoDontKnowType">
+				<xs:annotation>
+					<xs:documentation>7.7 - Were Building Facilities present?</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PFBuildingFacilitiesProvidedStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFBuildingFacilitiesProvidedType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFBuildingFacilitiesProvidedType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFBuildingFacilitiesProvidedType">
+		<xs:annotation>
+			<xs:documentation>Specifies the types of building facilities that can be used by firefighters. eg dry/wet risers</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Dry risers</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Wet risers</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Firefighting lift</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Firefighting shaft</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Foam makers/drenchers/downcomers</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Smoke extraction/ventilation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PFBuildingFacilitiesNotWorkingDueToType">
+		<xs:annotation>
+			<xs:documentation>Defines the possoble options that can be chosen for indicating why the building facilities wern't working, if required.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Poor maintenance</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Vandalism</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Damaged by fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PFMainActionFRSStructure">
+		<xs:annotation>
+			<xs:documentation>Extends PFMainActionFRSType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="PFMainActionFRSType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PFMainActionFRSType">
+		<xs:annotation>
+			<xs:documentation>Defines the main action undertaken by FRS to combat the fire.  This is from an enumeration of available options.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>No firefighting</xs:documentation>
+					<xs:appinfo>
+						<Category id="None"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Burned out (Allowed to burn under control)</xs:documentation>
+					<xs:appinfo>
+						<Category id="None"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Removal from/of heat source</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Cutting away</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Disconnection of fuel supply</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Beating, stamping</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Smothering - use of sand, earth, snow etc</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8">
+				<xs:annotation>
+					<xs:documentation>Smothering - use of fire blanket</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Smothering – use of fire beaters</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Smothering - use of other method</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Water - from bucket/containers</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Water - domestic supply</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Immersed in water</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Other small means</xs:documentation>
+					<xs:appinfo>
+						<Category id="Small means"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>CO2 (carbon dioxide)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Portable extinguishers"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Other vaporising liquid</xs:documentation>
+					<xs:appinfo>
+						<Category id="Portable extinguishers"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Dry powder (DP)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Portable extinguishers"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Water, soda acid, gas expulsion etc (water stored pressure)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Portable extinguishers"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Foam - AFFF (Aqueous Film Forming Foam)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Portable extinguishers"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Foam - other than AFFF</xs:documentation>
+					<xs:appinfo>
+						<Category id="Portable extinguishers"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Extinguisher – other</xs:documentation>
+					<xs:appinfo>
+						<Category id="Portable extinguishers"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Water from garden hose</xs:documentation>
+					<xs:appinfo>
+						<Category id="Non-portable/ fixed sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Water from fixed hosereel installation</xs:documentation>
+					<xs:appinfo>
+						<Category id="Non-portable/ fixed sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Bulk CO2</xs:documentation>
+					<xs:appinfo>
+						<Category id="Non-portable/ fixed sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Specialist extinguishing agents used in bulk</xs:documentation>
+					<xs:appinfo>
+						<Category id="Non-portable/ fixed sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Hosereel (low pressure) (HR) - tank supply only</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Hosereel (low pressure) (HR) - augmented supply</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Hosereel (high pressure) (HRJ) - tank supply only</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Hosereel (high pressure) (HRJ) - augmented supply</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Main branch/Jet (J)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Foam - low expansion (LX) or type unspecified</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Foam – medium expansion (MX)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Foam - high expansion (HX)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>Monitors (MON) – ground or aerial (if using foam use Foam categories)</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other sources"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other methods</xs:documentation>
+					<xs:appinfo>
+						<Category id="Other"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:logistics_inventory_report="urn:gs1:ecom:logistics_inventory_report:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" xmlns:warehousing_common="urn:gs1:ecom:warehousing_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:logistics_inventory_report:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:warehousing_common:xsd:3" schemaLocation="WarehousingCommon.xsd"/>
+    <xsd:element name="logisticsInventoryReportMessage" type="logistics_inventory_report:LogisticsInventoryReportMessageType"/>
+    <xsd:complexType name="LogisticsInventoryReportInventoryLocationType">
+        <xsd:sequence>
+            <xsd:element name="inventoryLocation" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemInventoryStatus" type="warehousing_common:TradeItemInventoryStatusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="logisticUnitInventoryStatus" type="warehousing_common:LogisticUnitInventoryStatusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnablePackagingInventoryStatus" type="warehousing_common:ReturnablePackagingInventoryStatusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportEquipmentInventoryStatus" type="warehousing_common:TransportEquipmentInventoryStatusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemInventoryEvent" type="warehousing_common:TradeItemInventoryEventType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="logisticUnitInventoryEvent" type="warehousing_common:LogisticUnitInventoryEventType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnablePackagingInventoryEvent" type="warehousing_common:ReturnablePackagingInventoryEventType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="transportEquipmentInventoryEvent" type="warehousing_common:TransportEquipmentInventoryEventType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LogisticsInventoryReportMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="logisticsInventoryReport" type="logistics_inventory_report:LogisticsInventoryReportType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LogisticsInventoryReportType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="logisticsInventoryReportIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="structureTypeCode" type="ecom_common:StructureTypeCodeType"/>
+                    <xsd:element minOccurs="0" name="typeOfServiceTransaction" type="logistics_inventory_report:TypeOfServiceTransactionCodeType"/>
+                    <xsd:element name="inventoryReportingParty" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="inventoryReportToParty" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="reportingPeriod" type="shared_common:DateTimeRangeType"/>
+                    <xsd:element minOccurs="0" name="logisticsInventoryReportRequest" type="ecom_common:Ecom_DocumentReferenceType"/>
+                    <xsd:element maxOccurs="unbounded" name="logisticsInventoryReportInventoryLocation" type="logistics_inventory_report:LogisticsInventoryReportInventoryLocationType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TypeOfServiceTransactionCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

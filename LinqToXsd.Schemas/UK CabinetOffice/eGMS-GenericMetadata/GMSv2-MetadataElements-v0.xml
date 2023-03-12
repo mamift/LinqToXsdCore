@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Ann Wrightson (HEDRA Limited) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2" id="GMSv2_MetadataElements">
+	<xsd:annotation>
+		<xsd:appinfo>Schema metadata to follow when govtalk schema metadata has been updated to e-GMSv2. This is to prevent the inconsistency of using, in a schema intended for widespread normative use, e-GMSv1 metadata to describe a schema pertaining to e-GMSv2 metadata.</xsd:appinfo>
+		<xsd:documentation>This schema document contains XML element declarations for e-GMS v2 metadata elements.  All the available elements are declared here, though very little is stated about their content. In practice,  further information about their content is likely to be specified in the schemas for local metadata standards.
+The elements are listed here in the order in which they appear in the e-GMS document v2.0, with each element followed immediately by its subelements. 
+
+Mostly, the element or subelement name as given in the e-GMS document has been used directly as the XML element or subelement name, with appropriate capitalisation. Some over-long names have been shortened (for example, in Rights subelements).
+
+The CommonSimpleTypes schema published in the Address and Personal Details schema set is used to provide definitions of GDSC types. 
+</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="CommonSimpleTypes-v1.xsd"/>
+	<xsd:element name="Accessibility" type="MetadataElementStructure"/>
+	<xsd:element name="Addressee" type="MetadataElementStructure"/>
+	<xsd:element name="Aggregation" type="MetadataElementStructure"/>
+	<xsd:element name="Audience" type="MetadataElementStructure"/>
+	<xsd:element name="Contributor" type="MetadataElementStructure"/>
+	<xsd:element name="Coverage" type="MetadataElementStructure"/>
+	<xsd:element name="Spatial" type="MetadataSubelementStructure"/>
+	<xsd:element name="Temporal" type="MetadataSubelementStructure"/>
+	<xsd:element name="Creator" type="MetadataElementStructure"/>
+	<xsd:element name="Date" type="MetadataElementStructure"/>
+	<xsd:element name="Acquired" type="DateType"/>
+	<xsd:element name="Available" type="DateRangeStructure"/>
+	<xsd:element name="Created" type="DateType"/>
+	<xsd:element name="CutOff" type="DateType"/>
+	<xsd:element name="Declared" type="DateType"/>
+	<xsd:element name="Opened" type="DateType"/>
+	<xsd:element name="Closed" type="DateType"/>
+	<xsd:element name="Issued" type="DateType"/>
+	<xsd:element name="Modified" type="DateType"/>
+	<xsd:element name="NextVersionDue" type="DateType"/>
+	<xsd:element name="UpdatingFrequency" type="DateRangeStructure"/>
+	<xsd:element name="Valid" type="DateRangeStructure"/>
+	<xsd:element name="Description" type="MetadataElementStructure"/>
+	<xsd:element name="DigitalSignature" type="MetadataElementStructure"/>
+	<xsd:element name="Disposal" type="MetadataElementStructure"/>
+	<xsd:element name="Conditions" type="MetadataSubelementStructure"/>
+	<xsd:element name="Action" type="MetadataSubelementStructure"/>
+	<xsd:element name="ReviewDetails" type="MetadataSubelementStructure"/>
+	<xsd:element name="AutoRemove" type="DateType"/>
+	<xsd:element name="DisposalScheduleID" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalAction" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalPeriod" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalEvent" type="MetadataSubelementStructure"/>
+	<xsd:element name="ExternalEvent" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalDate" type="DateType"/>
+	<xsd:element name="DisposalAuthorisedBy" type="MetadataSubelementStructure"/>
+	<xsd:element name="DisposalComment" type="CommentStructure"/>
+	<xsd:element name="ExportDestination" type="MetadataSubelementStructure"/>
+	<xsd:element name="ExportStatus" type="MetadataSubelementStructure"/>
+	<xsd:element name="ReviewDate" type="DateType"/>
+	<xsd:element name="ReviewComment" type="CommentStructure"/>
+	<xsd:element name="LastReviewDate" type="DateType"/>
+	<xsd:element name="ReviewedBy" type="MetadataSubelementStructure"/>
+	<xsd:element name="ReviewerComment" type="CommentStructure"/>
+	<xsd:element name="Format" type="MetadataElementStructure"/>
+	<xsd:element name="Identifier" type="MetadataElementStructure"/>
+	<xsd:element name="SystemID" type="MetadataSubelementStructure"/>
+	<xsd:element name="FileplanID" type="MetadataSubelementStructure"/>
+	<xsd:element name="Language" type="MetadataElementStructure"/>
+	<xsd:element name="Location" type="MetadataElementStructure"/>
+	<xsd:element name="HomeLocation" type="MetadataSubelementStructure"/>
+	<xsd:element name="CurrentLocation" type="MetadataSubelementStructure"/>
+	<xsd:element name="Mandate" type="MetadataElementStructure"/>
+	<xsd:element name="AuthorisingStatute" type="MetadataSubelementStructure"/>
+	<xsd:element name="DPApurpose" type="MetadataSubelementStructure"/>
+	<xsd:element name="DPAexemptCategory" type="MetadataSubelementStructure"/>
+	<xsd:element name="Preservation" type="MetadataElementStructure"/>
+	<xsd:element name="OriginalFormat" type="MetadataSubelementStructure"/>
+	<xsd:element name="Publisher" type="MetadataElementStructure"/>
+	<xsd:element name="Relation" type="MetadataElementStructure"/>
+	<xsd:element name="Rights" type="MetadataElementStructure"/>
+	<xsd:element name="ProtectiveMarking" type="ProtectiveMarkingStructure"/>
+	<xsd:element name="Descriptor" type="MetadataSubelementStructure"/>
+	<xsd:element name="ProtectiveMarkingExpiry" type="DateType"/>
+	<xsd:element name="Custodian" type="MetadataSubelementStructure"/>
+	<xsd:element name="UserAccessList" type="MetadataSubelementStructure"/>
+	<xsd:element name="GroupAccessList" type="MetadataSubelementStructure"/>
+	<xsd:element name="PreviousProtectiveMarking" type="ProtectiveMarkingStructure"/>
+	<xsd:element name="ProtectiveMarkingChanged" type="DateType"/>
+	<xsd:element name="DPA" type="DisclosabilityStructure"/>
+	<xsd:element name="EIR" type="DisclosabilityStructure"/>
+	<xsd:element name="FOI" type="DisclosabilityStructure"/>
+	<xsd:element name="Source" type="MetadataElementStructure"/>
+	<xsd:element name="Status" type="MetadataElementStructure"/>
+	<xsd:element name="Subject" type="MetadataElementStructure"/>
+	<xsd:element name="Category" type="MetadataSubelementStructure"/>
+	<xsd:element name="Keyword" type="MetadataSubelementStructure"/>
+	<xsd:element name="ProcessID" type="MetadataSubelementStructure"/>
+	<xsd:element name="Programme" type="MetadataSubelementStructure"/>
+	<xsd:element name="Project" type="MetadataSubelementStructure"/>
+	<xsd:element name="Title" type="MetadataElementStructure"/>
+	<xsd:element name="AlternativeTitle" type="MetadataSubelementStructure"/>
+	<xsd:annotation>
+		<xsd:documentation>Elements for Type refinements and subelements are not provided here, as they are likely to follow structured local thesauri etc. </xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="Type" type="MetadataElementStructure"/>
+	<!-- *************************************************************************************************************** -->
+	<!-- *********************** Metadata element datatypes follow ****************************************** -->
+	<!-- *************************************************************************************************************** -->
+	<xsd:annotation>
+		<xsd:documentation>  Metadata element datatypes follow. No validation is provided for metadata element content. It is envisaged that specific services will apply additional validation, either as a more specific XML schema or otherwise. Note that in particular, the validation required to ensure that only those values of the refinement attribute are used that are appropriate to each element, is outside the capability of W3C XML schemas. </xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="GMSelementStructure">
+		<xsd:annotation>
+			<xsd:documentation> Datatype for metadata elements represented using the GMSelement XML element. Adds required "Name" attribute to the general MetadataElementStructure datatype.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="MetadataElementStructure">
+				<xsd:attribute name="Name" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MetadataElementStructure">
+		<xsd:annotation>
+			<xsd:documentation> Default type for metadata elements; allows any content, and provides the standardized attributes Refinement (name of refinement used); Notation (indicates the notation used in the element value); and ElementLocation ( to enable the metadata element value to be given using an XPath expression).  </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xsd:anyType">
+				<xsd:attribute name="Refinement" type="xsd:string"/>
+				<xsd:attribute name="Notation" type="xsd:string"/>
+				<xsd:attribute name="ElementLocation" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MetadataSubelementStructure">
+		<xsd:annotation>
+			<xsd:documentation> Default type for metadata subelements. Unconstrained in this schema; expected to be constrained in schemas for specific applications. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xsd:anyType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation> Datatypes follow for subelements that are specifically constrained by e-GMS.  </xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="DateRangeStructure">
+		<xsd:sequence>
+			<xsd:element name="StartDate" type="DateType" minOccurs="0"/>
+			<xsd:element name="EndDate" type="DateType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CommentStructure">
+		<xsd:annotation>
+			<xsd:documentation> Allows arbitrary content for comments.  </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xsd:anyType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceIDStructure">
+		<xsd:annotation>
+			<xsd:documentation>
+			Provided to support future standardization of resource identification. Allows arbitrary content.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xsd:anyType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="DisclosabilityStructure">
+		<xsd:sequence>
+			<xsd:element name="Disclosability" type="YesNoType"/>
+			<xsd:element name="Exemption" type="MetadataSubelementStructure" minOccurs="0"/>
+			<xsd:element name="ReleaseDetails" type="CommentStructure" minOccurs="0"/>
+			<xsd:element name="ReleaseDate" type="DateType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProtectiveMarkingStructure">
+		<xsd:annotation>
+			<xsd:documentation> 
+			Provided to support future standardization of protective marking. Allows arbitrary content.
+</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xsd:anyType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

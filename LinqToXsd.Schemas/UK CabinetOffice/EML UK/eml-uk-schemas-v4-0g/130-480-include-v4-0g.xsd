@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-130">
+	<xs:include schemaLocation="emlcore-v4-0g.xsd"/>
+	<xs:element name="Response" type="ResponseStructure"/>
+	<xs:complexType name="ResponseStructure">
+		<xs:sequence>
+			<xs:element ref="SequenceNumber" minOccurs="0"/>
+			<xs:element ref="MessageType"/>
+			<xs:element name="RequestedMessageLanguage" type="LanguageType" minOccurs="0"/>
+			<xs:element name="RaisedBy" type="ProcessingUnitStructure"/>
+			<xs:element ref="Accepted"/>
+			<xs:element name="Errors" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Error" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ErrorCode" type="ErrorCodeType"/>
+									<xs:element name="Description" type="MessagesStructure" minOccurs="0"/>
+									<xs:element name="ErrorLocation" type="xs:token" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AuditInformation" type="AuditInformationStructure" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

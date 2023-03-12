@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com)-->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Matt Best (Rent Service Project) -->
+<xsd:schema xmlns:cmn="http://www.therentservice.gov.uk/schema/Common.xsd" xmlns="http://www.therentservice.gov.uk/schema/PTDReferral.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.therentservice.gov.uk/schema/PTDReferral.xsd" version="3.9" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="Common.xsd" namespace="http://www.therentservice.gov.uk/schema/Common.xsd" />
+  <!--PTDReferral For Pre-Tenancy Determination Referrals-->
+  <!--Namespace http://www.therentservice.gov.uk/schema/PTDReferral.xsd-->
+  <!--Uses Common.xsd-->
+  <!--Authors : Jahanzeb Abdur-Rahman and Andrew Hall-->
+  <!--The Rent Service Project Victer-->
+  <xsd:annotation>
+    <xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>The Rent Service (helpdesk@therentservice.gov.uk)</Creator>
+				<Date>
+					<Created>2004-03-04</Created>
+					<Updated>2009-03-01</Updated>
+				</Date>
+				<Description>Schema for the validation of PTD referrals</Description>
+				<Identifier>PTDReferral.xsd-v4.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>The Rent Service, 5 Welbeck Street, London, W1G 9YQ</Publisher>
+				<Relation>
+					<IsPartOf>Referral.xsd-v4.0</IsPartOf>
+				</Relation>
+				<Subject>
+					<Category>People, communities and living</Category>
+					<Keyword>Housing Benefit</Keyword>
+					<Keyword>Rent Service</Keyword>
+				</Subject>
+				<Title>Pre-Tenancy Determination schema</Title>
+			</Metadata>
+		</xsd:appinfo>
+  </xsd:annotation>
+  <xsd:element name="PTReferral">
+    <xsd:annotation>
+      <xsd:documentation>Root Element</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence maxOccurs="unbounded">
+        <xsd:element name="LADetails" type="cmn:LocalAuthority">
+          <xsd:annotation>
+            <xsd:documentation>Local Authority Identifiers</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="PTCase" type="PreTenancyCase">
+          <xsd:annotation>
+            <xsd:documentation>PreTenancy Cases</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="PreTenancyCase">
+    <xsd:annotation>
+      <xsd:documentation>Pre Tenancy Determination Case</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="cmn:LAReference" />
+      <xsd:element minOccurs="0" name="LAContact" type="cmn:AuthorityContact">
+        <xsd:annotation>
+          <xsd:documentation>Optional Contact Details For The Case</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Property" type="cmn:Property">
+        <xsd:annotation>
+          <xsd:documentation>Identifies The Property For The Case</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ClaimReceived" type="xsd:date">
+        <xsd:annotation>
+          <xsd:documentation>Date claim was received by Local Authority.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ChangeOfCircumstances" type="cmn:ChangeOfCircumstances">
+        <xsd:annotation>
+          <xsd:documentation>Ist the case a change of circumstances?</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Tenant" type="cmn:Tenant">
+        <xsd:annotation>
+          <xsd:documentation>Identifies the Tenant For The Case</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="LandlordAgent" type="cmn:LandlordAgent">
+        <xsd:annotation>
+          <xsd:documentation>Landlord or Agent Details</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Accomodation">
+        <xsd:annotation>
+          <xsd:documentation>Defines Accomodation Details</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:complexContent mixed="false">
+            <xsd:extension base="cmn:Accomodation">
+              <xsd:sequence>
+                <xsd:element name="MaxRentTopUp" type="xsd:boolean">
+                  <xsd:annotation>
+                    <xsd:documentation>Maximum Rent Per Period PTD Only so Extend Common Accomodation Definition</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Tenancy" type="cmn:Tenancy">
+        <xsd:annotation>
+          <xsd:documentation>Tenancy Details</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="cmn:CaseRemarks" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

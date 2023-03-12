@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><artwork_content_response:artworkContentResponseMessage xmlns:artwork_content_response="urn:gs1:ecom:artwork_content_response:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:artwork_content_response:xsd:3 ../Schemas/gs1/ecom/ArtworkContentResponse.xsd">
+	<sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+	<artworkContentResponse>
+		<creationDateTime>2010-12-01T11:00:00.000-05:00</creationDateTime>
+		<documentStatusCode>ORIGINAL</documentStatusCode>
+		<documentActionCode>ADD</documentActionCode>
+		<documentStructureVersion>3.0.1</documentStructureVersion>
+		<artworkContentResponseIdentification>
+			<entityIdentification>Pack_Content_Response1</entityIdentification>
+		</artworkContentResponseIdentification>
+		<artworkProjectIdentification>PROJ_1</artworkProjectIdentification>
+		<artworkProjectName>Lovely Hair Holiday Promotion</artworkProjectName>
+		<artworkContentSource>
+			<gln>1234567890128</gln>
+			<partyName>Manufacturer A</partyName>
+		</artworkContentSource>
+		<artworkContentRecipient>
+			<gln>9998881234564</gln>
+			<partyName>Artwork Studio X</partyName>
+		</artworkContentRecipient>
+		<artworkContentDocumentReference>
+			<entityIdentification>Pack_Content1</entityIdentification>
+		</artworkContentDocumentReference>
+		<artworkContentPieceOfArt>
+			<versionIdentifier>1</versionIdentifier>
+			<versionDateTime>2010-11-29T09:00:00.000-05:00</versionDateTime>
+			<pieceOfArtDescription languageCode="en">Front label for 14oz bottle</pieceOfArtDescription>
+			<pieceOfArtGroupingIdentifier>ProjectID_WaveName</pieceOfArtGroupingIdentifier>
+			<packagingComponentDescription languageCode="en">Brown Box</packagingComponentDescription>
+			<pieceOfArtIdentification>
+				<entityIdentification>ABC123</entityIdentification>
+				<contentOwner>
+					<gln>1234567890128</gln>
+				</contentOwner>
+			</pieceOfArtIdentification>
+			<artworkTemplate>
+				<referenceIdentifier>TEMPLATE567</referenceIdentifier>
+			</artworkTemplate>
+			<associatedTradeItem>
+				<gtin>04567898919198</gtin>
+			</associatedTradeItem>
+			<artworkContentLocale>
+				<localeSequence>1</localeSequence>
+				<localeIdentifier>en-US</localeIdentifier>
+			</artworkContentLocale>
+			<artworkContentTechnicalDrawing>
+				<isTechnicalDrawingApproved>TRUE</isTechnicalDrawingApproved>
+				<sourceReference>
+					<sourceName>CMS1</sourceName>
+					<referenceIdentifier>FIELD_A</referenceIdentifier>
+					<versionIdentifier>VERSION_A</versionIdentifier>
+					<versionDateTime>2010-12-21T00:00:00.000-05:00</versionDateTime>
+				</sourceReference>
+				<technicalDrawing>
+					<referenceURI>file://mfr/file1</referenceURI>
+				</technicalDrawing>
+			</artworkContentTechnicalDrawing>
+			<artworkContentCopyElement>
+				<copyElementTypeCode codeListURI="urn:gs1:gdd:cl:CopyElementTypeCode">MARKETING_COPY</copyElementTypeCode>
+				<instanceSequence>1</instanceSequence>
+				<localeSequence>1</localeSequence>
+				<isContentApproved>TRUE</isContentApproved>
+				<forPlacementOnly>FALSE</forPlacementOnly>
+				<expectedNumberOfOccurrences>1</expectedNumberOfOccurrences>
+				<textContent>
+					<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+						<body>
+							<p>Makes hair shinier</p>
+						</body>
+					</html>
+				</textContent>
+				<sourceReference>
+					<sourceName>CMS1</sourceName>
+					<referenceIdentifier>FIELD_A</referenceIdentifier>
+				</sourceReference>
+				<artworkContentResponseStatus>
+					<changedByRecipient>false</changedByRecipient>
+				</artworkContentResponseStatus>
+			</artworkContentCopyElement>
+			<artworkContentStructuredCopyElement>
+				<structuredCopyElementTypeCode codeListURI="urn:gs1:gdd:cl:StructuredCopyElementTypeCode">NUTRITION_FACTS</structuredCopyElementTypeCode>
+				<instanceSequence>1</instanceSequence>
+				<expectedNumberOfOccurrences>1</expectedNumberOfOccurrences>
+				<structuredCopyElementTemplate>
+					<referenceIdentifier>US Standard Vertical Format</referenceIdentifier>
+				</structuredCopyElementTemplate>
+				<artworkContentCopyElement>
+					<copyElementTypeCode codeListURI="urn:gs1:gdd:cl:CopyElementTypeCode">ENERPF_NUTRIENT_VALUE</copyElementTypeCode>
+					<instanceSequence>1</instanceSequence>
+					<localeSequence>1</localeSequence>
+					<isContentApproved>TRUE</isContentApproved>
+					<forPlacementOnly>FALSE</forPlacementOnly>
+					<expectedNumberOfOccurrences>1</expectedNumberOfOccurrences>
+					<textContent>
+						<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+							<body>
+								<p>25</p>
+							</body>
+						</html>
+					</textContent>
+					<sourceReference>
+						<sourceName>CMS1</sourceName>
+						<referenceIdentifier>FIELD9</referenceIdentifier>
+					</sourceReference>
+					<artworkContentResponseStatus>
+						<changedByRecipient>false</changedByRecipient>
+					</artworkContentResponseStatus>
+				</artworkContentCopyElement>
+				<artworkContentCopyElement>
+					<copyElementTypeCode codeListURI="urn:gs1:gdd:cl:CopyElementTypeCode">ENER-_NUTRIENT_VALUE</copyElementTypeCode>
+					<instanceSequence>1</instanceSequence>
+					<localeSequence>1</localeSequence>
+					<isContentApproved>TRUE</isContentApproved>
+					<forPlacementOnly>FALSE</forPlacementOnly>
+					<expectedNumberOfOccurrences>1</expectedNumberOfOccurrences>
+					<textContent>
+						<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+							<body>
+								<p>5</p>
+							</body>
+						</html>
+					</textContent>
+					<sourceReference>
+						<sourceName>CMS1</sourceName>
+						<referenceIdentifier>FIELD10</referenceIdentifier>
+					</sourceReference>
+					<artworkContentResponseStatus>
+						<changedByRecipient>false</changedByRecipient>
+					</artworkContentResponseStatus>
+				</artworkContentCopyElement>
+			</artworkContentStructuredCopyElement>
+			<artworkContentGraphicElement>
+				<graphicElementTypeCode codeListURI="urn:gs1:gdd:cl:GraphicElementTypeCode">RECYCLE_SYMBOL</graphicElementTypeCode>
+				<instanceSequence>1</instanceSequence>
+				<localeSequence>1</localeSequence>
+				<isContentApproved>TRUE</isContentApproved>
+				<forPlacementOnly>FALSE</forPlacementOnly>
+				<expectedNumberOfOccurrences>1</expectedNumberOfOccurrences>
+				<sourceReference>
+					<sourceName>CMS1</sourceName>
+					<referenceIdentifier>FIELD_A</referenceIdentifier>
+					<versionIdentifier>A123</versionIdentifier>
+				</sourceReference>
+				<graphicElementReference>
+					<referenceURI>http://domain/symbol1B.html</referenceURI>
+				</graphicElementReference>
+				<artworkContentResponseStatus>
+					<changedByRecipient>true</changedByRecipient>
+					<changeReason languageCode="en">Changed the source reference, used Symbol1B instead of Symbol1.</changeReason>
+				</artworkContentResponseStatus>
+			</artworkContentGraphicElement>
+			<artworkContentDataCarrierElement>
+				<dataCarrierElementTypeCode codeListURI="urn:gs1:gdd:cl:BarCodeTypeCode">EAN-13</dataCarrierElementTypeCode>
+				<instanceSequence>1</instanceSequence>
+				<localeSequence>1</localeSequence>
+				<expectedNumberOfOccurrences>1</expectedNumberOfOccurrences>
+				<sourceReference>
+					<sourceName>CMS1</sourceName>
+					<referenceIdentifier>FIELD_A</referenceIdentifier>
+				</sourceReference>
+				<artworkContentResponseStatus>
+					<changedByRecipient>false</changedByRecipient>
+				</artworkContentResponseStatus>
+				<artworkContentDataCarrierDetail>
+					<dataCarrierContent>4512345678906</dataCarrierContent>
+					<isContentApproved>TRUE</isContentApproved>
+					<forPlacementOnly>FALSE</forPlacementOnly>
+					<isHumanReadableInterpretationRequired>TRUE</isHumanReadableInterpretationRequired>
+				</artworkContentDataCarrierDetail>
+			</artworkContentDataCarrierElement>
+		</artworkContentPieceOfArt>
+	</artworkContentResponse>
+</artwork_content_response:artworkContentResponseMessage>

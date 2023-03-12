@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Schema for RTA-->
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by Peter Cope (www.ecsoft.com) -->
+<!-- <xsd:schema targetNamespace="http://www.govtalk.gov.uk/schemas/govtalk/core" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema" xmlns:gt="http://www.govtalk.gov.uk/schemas/govtalk/core"   elementFormDefault="qualified" version="0.2" id="GovTalk-Core"> -->
+<xsd:schema targetNamespace="http://www.dwp.gov.uk/rta2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gt="http://www.govtalk.gov.uk/schemas/govtalk/core" xmlns:dwp="http://www.dwp.gov.uk/rta2" elementFormDefault="qualified" version="0.2" id="GovTalk-Core">
+	<!-- <xsd:include schemaLocation="GovTalk core.xsd"/> -->
+	<xsd:import namespace="gt" schemaLocation="GovTalk core.xsd"/>
+	<!-- RTA FORM STRUCTURE -->
+	<!--  -->
+	<xsd:element name="RTA" type="dwp:RTAEnvelope"/>
+	<!-- The form is actually divided into two parts
+	     a) Those completed by DWP(CRU) on outbound leg
+	     b) Those completed by the Trust before sending back to DWP(CRU) -->
+	<!-- BULK RTA FORM STRUCTURE -->
+	<xsd:complexType name="RTAEnvelope">
+		<xsd:sequence>
+			<xsd:element name="Header" type="dwp:RTAHeader"/>
+			<xsd:element name="Body" type="dwp:RTAForm" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- The Header -->
+	<xsd:complexType name="RTAHeader">
+		<xsd:sequence>
+			<xsd:element name="From" type="gt:EmailAddressType"/>
+			<xsd:element name="To" type="gt:EmailAddressType"/>
+			<xsd:element name="SchemaVersion" type="dwp:SchemaVersionType"/>
+			<xsd:element name="ConversationalId" type="dwp:ConversationIdType"/>
+			<xsd:element name="ConversationalIdRecordCount" type="xsd:positiveInteger"/>
+			<xsd:element name="ServiceElement" type="dwp:ServiceElementType"/>
+			<xsd:element name="MessageId" type="dwp:MessageIdType"/>
+			<xsd:element name="MessageData" type="dwp:MessageDataType"/>
+			<xsd:element name="DigitalSignatureCheckSum" type="dwp:DigitalSignatureCheckSumType" minOccurs="0" maxOccurs="0"/>
+			<xsd:element name="AdditionalServiceIndicator" type="dwp:AdditionServiceIndicatorType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- 
+	
+	We define a number of Envelope objects here ... these are defined as ComplexTypes to make extensibility easier.
+	
+	
+	-->
+	<xsd:simpleType name="FromToType">
+		<xsd:annotation>
+			<xsd:documentation>The contents to be agreed with NHS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Za-z0-9]{1,40}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- *************************************************************** -->
+	<xsd:simpleType name="SchemaVersionType">
+		<xsd:annotation>
+			<xsd:documentation>Format is nn.mm (nn=major, mm=minor)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{1,2}.[0-9]{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- *************************************************************** -->
+	<xsd:simpleType name="ConversationIdType">
+		<xsd:annotation>
+			<xsd:documentation>This will uniquely identify the set of RTA2 messages with a conversation and is equivalent to an EDIFACT ICR</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9a-zA-Z]{1,40}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- *************************************************************** -->
+	<!-- <xsd:simpleType name="ServiceElementType">
+		<xsd:annotation>
+			<xsd:documentation> This element will contain the value Rta2ElectronicProcessing</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Rta2ElectronicProcessing"/>
+		</xsd:restriction>
+	</xsd:simpleType> -->
+	<xsd:complexType name="ServiceElementType">
+		<xsd:annotation>
+			<xsd:documentation> This element will contain the value Rta2ElectronicProcessing</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="Type" type="dwp:ServiceElementTypeNames" use="optional"/>
+		<!-- <xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Rta2ElectronicProcessing"/>
+		</xsd:restriction> -->
+	</xsd:complexType>
+	<xsd:simpleType name="ServiceElementTypeNames">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Rta2ElectronicProcessing"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- *************************************************************** -->
+	<xsd:simpleType name="MessageIdType">
+		<xsd:annotation>
+			<xsd:documentation> Datestamp CCYYMMDD</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{8}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- *************************************************************** -->
+	<xsd:simpleType name="MessageDataType">
+		<xsd:annotation>
+			<xsd:documentation> Timestamp HHMMSS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- *************************************************************** -->
+	<xsd:complexType name="DigitalSignatureCheckSumType">
+		<xsd:annotation>
+			<xsd:documentation> Reserved - Usage to be ageed beyond Stage 1</xsd:documentation>
+		</xsd:annotation>
+	</xsd:complexType>
+	<!-- *************************************************************** -->
+	<xsd:complexType name="AdditionServiceIndicatorType">
+		<xsd:annotation>
+			<xsd:documentation> Used for bilaterally agreed service/service elements</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Compression" type="dwp:CompressionType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- *************************************************************** -->
+	<xsd:simpleType name="CompressionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yes"/>
+			<xsd:enumeration value="no"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- CRU Types -->
+	<!-- 
+	
+	
+	     The translator will check for valid characters / lengths. 
+	     This allows the XSD to reference GovTalk.
+	     
+	     
+	     
+   -->
+	<!-- The form is actually divided into two parts
+	     a) Those completed by DWP(CRU) on outbound leg
+	     b) Those completed by the Trust before sending back to DWP(CRU) -->
+	<xsd:complexType name="RTAForm">
+		<xsd:sequence>
+			<xsd:element name="DWPPortion" type="dwp:CRU"/>
+			<xsd:element name="NHSPortion" type="dwp:RTA2" minOccurs="0" maxOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="BatchNo" type="xsd:positiveInteger"/>
+	</xsd:complexType>
+	<!-- Trust Name -->
+	<xsd:simpleType name="TrustName">
+		<xsd:restriction base="gt:RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Yes/no/not known -->
+	<!-- <xsd:simpleType name="YesNoNKType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yes"/>
+			<xsd:enumeration value="no"/>
+			<xsd:enumeration value="not known"/>
+		</xsd:restriction>
+	</xsd:simpleType> -->
+	<!-- Reference code -->
+	<xsd:simpleType name="CRUReferenceCode">
+		<xsd:annotation>
+			<xsd:documentation>CRUCREFE - 6 alphanumeric characters</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z0-9]{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Citizen (including dead ones) -->
+	<xsd:complexType name="RTACitizen">
+		<xsd:sequence>
+			<xsd:element name="GovTalkCitizen" type="gt:CitizenDetailsStructure">
+				<xsd:annotation>
+					<xsd:documentation>CLMFNAM1, CLMSNAM1, CLMADDR1, CLMADDR2, CLMADDR3, CLMADDR4, CLMPOSTC, DATEBRTH</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DateOfAccident" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>DATEACCI</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DateOfDeath" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>DATEDETH</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- CRU stuff -->
+	<xsd:complexType name="CRU">
+		<xsd:sequence>
+			<xsd:element name="CRURef" type="dwp:CRUReferenceCode">
+				<xsd:annotation>
+					<xsd:documentation>CRUCREFE</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RTAIssueDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>DATEISSU</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OutAddress" type="dwp:UniqueHospitalTrustType">
+				<xsd:annotation>
+					<xsd:documentation>Code: Three character region and three character trust code [NHSTORGC]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Citizen" type="dwp:RTACitizen"/>
+			<xsd:element name="HospitalName" type="dwp:TrustName" maxOccurs="4">
+				<xsd:annotation>
+					<xsd:documentation>HOS1NAME, HOS2NAME, HOS3NAME, HOS4NAME</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- NHS reply -->
+	<xsd:complexType name="RTA2">
+		<xsd:sequence>
+			<xsd:element name="AdmissionDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>If treatment without admission, state the date of first attendance. Note that the Date of Attendance cannot be earlier than Date of Accident, DATEACCI) [DATEOPAT]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AdmissionPeriod" type="dwp:AdmissionPeriodType" maxOccurs="5">
+				<xsd:annotation>
+					<xsd:documentation>The first and upto four other admission periods [DATEIP01..DATEIP05 DAYSIP01 .. DATEIP05]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Trust" type="gt:AddressUKpostalStructure">
+				<xsd:annotation>
+					<xsd:documentation>TRANNAME, TRANADD1, TRANADD2, TRANADD3, TRANADD4, TRANPOST</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Moreinfo" type="dwp:MoreInfoType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>MOREINFO</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Message" type="dwp:MessageType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>1=No Trace, 2=Non RTA, 3=Date of accident query [MESSAGES]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="UniqueHospitalTrustType">
+		<xsd:restriction base="gt:RestrictedStringType">
+			<xsd:minLength value="6"/>
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MoreInfoType">
+		<xsd:restriction base="gt:RestrictedStringType">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MessageType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="No Trace"/>
+			<xsd:enumeration value="Non RTA"/>
+			<xsd:enumeration value="Date of accident Query"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="AdmissionPeriodType">
+		<xsd:sequence>
+			<xsd:element name="DateFrom" type="xsd:date"/>
+			<xsd:element name="DateTo" type="xsd:date" minOccurs="0" maxOccurs="0"/>
+			<xsd:element name="TotalDays" type="xsd:positiveInteger"/>
+		</xsd:sequence>
+		<xsd:attribute name="Period" type="xsd:positiveInteger" use="optional"/>
+	</xsd:complexType>
+</xsd:schema>

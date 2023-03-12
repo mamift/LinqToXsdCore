@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio 6.1.17.0 (http://www.liquid-technologies.com)-->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by David Duncan for The Rent Service -->
+<xsd:schema xmlns:cmn="http://www.therentservice.gov.uk/schema/Common.xsd" xmlns:rd="http://www.therentservice.gov.uk/schema/ReDetReferral.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.therentservice.gov.uk/schema/ReDetReferral.xsd" version="3.9" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="Common.xsd" namespace="http://www.therentservice.gov.uk/schema/Common.xsd" />
+  <!--ReDetReferral.xsd for Housing Benefit Redeterminations-->
+  <!--Namespace http://www.therentservice.gov.uk/schema/ReDetReferal.xsd-->
+  <!--Uses Common.xsd-->
+  <!--Authors : Jahanzeb Abdur-Rahman and Andrew Hall-->
+  <!--The Rent Service Project Victer-->
+  <xsd:annotation>
+    <xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Creator>The Rent Service (webmaster@therentservice.gov.uk)</Creator>
+				<Date>
+					<Created>2004-02-16</Created>
+					<Updated>2009-03-01</Updated>
+				</Date>
+				<Description>Schema for the validation of referrals</Description>
+				<Identifier>ReDetReferral.xsd-v4.0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>The Rent Service, 5 Welbeck Street, London, W1G 9YQ</Publisher>
+				<Relation>
+					<IsPartOf>Referral.xsd-v4.0</IsPartOf>
+				</Relation>
+				<Subject>
+					<Category>People, communities and living</Category>
+					<Keyword>Housing Benefit</Keyword>
+					<Keyword>Rent Service</Keyword>
+					<Keyword>Appeal</Keyword>
+					<Keyword>Redetermination</Keyword>
+				</Subject>
+				<Title>Schema for Redetermination referrals</Title>
+			</Metadata>
+		</xsd:appinfo>
+  </xsd:annotation>
+  <xsd:element name="RDReferral">
+    <xsd:annotation>
+      <xsd:documentation>Root Element</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence maxOccurs="unbounded">
+        <xsd:element name="LADetails" type="cmn:LocalAuthority">
+          <xsd:annotation>
+            <xsd:documentation>Local Authority Details</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="RDCase" type="rd:ReDeterminationCase" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="ReferredDetermination">
+    <xsd:annotation>
+      <xsd:documentation>Referred Determination</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Determination" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>Statement of Determination</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="RentRate" type="rd:RentPerPeriod">
+        <xsd:annotation>
+          <xsd:documentation>Rent Rate as an Amount Per Time Period either Weekly or Monthly</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RentPerPeriod">
+    <xsd:annotation>
+      <xsd:documentation>Amount per period (Weekly or Monthly)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="TimePeriod" type="rd:TypeTimePeriod" use="required" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="ReDeterminationCase">
+    <xsd:annotation>
+      <xsd:documentation>Redetermination Case</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="cmn:LAReference" />
+      <xsd:element ref="cmn:TRSReference">
+        <xsd:annotation>
+          <xsd:documentation>Rent Office Case Reference</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="LAContact" type="cmn:AuthorityContact">
+        <xsd:annotation>
+          <xsd:documentation>Optional Contact Details For The Case</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Claimant" type="cmn:CitizenNameStructure">
+        <xsd:annotation>
+          <xsd:documentation>Identifies the claimant using the Common Person Data structure</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ReferredDetermination" type="rd:ReferredDetermination">
+        <xsd:annotation>
+          <xsd:documentation>Referred Determination</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SoughtBy" type="rd:TypeSoughtBy">
+        <xsd:annotation>
+          <xsd:documentation>Identifies the Party seeking the redetermination</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="NumPrevDeterminations" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>Number of Previous Determination</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DateRequested" type="xsd:date">
+        <xsd:annotation>
+          <xsd:documentation>Date of Redetermination Request (Received By Local Authority)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="cmn:CaseRemarks" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="TypeTimePeriod">
+    <xsd:annotation>
+      <xsd:documentation>Specifies Types of Time Period</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Weekly" />
+      <xsd:enumeration value="Monthly" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TypeSoughtBy">
+    <xsd:annotation>
+      <xsd:documentation>Party seeking Redetermination</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Claimant" />
+      <xsd:enumeration value="Local Authority" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

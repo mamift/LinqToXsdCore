@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Steve Bailey (Hyfinity Limited) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Incident" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gms-xs="http://www.govtalk.gov.uk/CM/gms-xs" xmlns:pdt="http://www.govtalk.gov.uk/people/PersonDescriptives" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:bs7666="http://www.govtalk.gov.uk/people/bs7666" xmlns:core="http://www.govtalk.gov.uk/core" xmlns:fire="http://www.fire.gov.uk/schemas" targetNamespace="http://www.fire.gov.uk/schemas/Incident" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FRSIncident-v1-0">
+	<xs:include schemaLocation="FRSIncidentState-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentFire-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentSpecialService-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentFalseAlarm-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentResource-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentVictim-v1-0.xsd"/>
+	<xs:include schemaLocation="FRSIncidentEvacuationAssistance-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="CommonSimpleTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.fire.gov.uk/schemas" schemaLocation="FireTypes-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/bs7666" schemaLocation="bs7666-v2-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Abdul Kayam, Hyfinity Limited (mailto:abdul.kayam@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>
+					<Created>2005-08-15</Created>
+				</Date>
+				<Date>
+					<Modified>2007-07-26</Modified>
+				</Date>
+				<Description>Fire and Rescue Statistics - Incident Collection System main incident structure.</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>FRSIncident-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation>
+					<Requires>FRSIncidentState-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentSpecialService-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentFalseAlarm-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentResource-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentVictim-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentEvacuationAssistance-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FRSIncidentHazardousMaterial-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FireTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Rights>Unclassified
+                    <Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Response</Category>
+				</Subject>
+				<Subject>
+					<Project>Fire and Rescue Statistics - Incident Collection System</Project>
+				</Subject>
+				<Title>Fire and Rescue Statistics - Incident Collection System main incident structure.</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="IncidentStructure">
+		<xs:annotation>
+			<xs:documentation>The top level structure containing all information about an FRS Incident</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identifier">
+				<xs:annotation>
+					<xs:documentation>The information that uniquely defines an incident</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="IdentifierStructure">
+							<xs:attributeGroup ref="IncidentIdentifierAttributes"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ParentIncident" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The identification details of the parent incident of this incident if there is one.This enables the sharing of Resource details across multiple incidents.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="IdentifierStructure">
+							<xs:attributeGroup ref="IncidentIdentifierAttributes"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AuditDetail" type="AuditDetailStructure">
+				<xs:annotation>
+					<xs:documentation>Contains information useful for auditing this incident, such as its current state, along with info on when and by whom it was created and last updated.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ResponsibleParty" type="ResponsiblePartyStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The party responsible for completing and publishing the Incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IncidentLocation" type="fire:LocationStructure">
+				<xs:annotation>
+					<xs:documentation>4.1 to 4.3b - The location at which the incident took place.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IncidentAtCall" type="IncidentAtCallStructure">
+				<xs:annotation>
+					<xs:documentation>Stores the type of this incident as understood from the original call</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IncidentOnAttendance" type="IncidentOnAttendanceStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Stores the information on this incident as known after attendance</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ResourceUsage" type="ResourceStructure">
+				<xs:annotation>
+					<xs:documentation>Information on all resources used in dealing with this incident.  This includes vehicles (appliances), equipment, and fire officers.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalContent" type="fire:ContextDataStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element that allows any XML content so that other relevant details can be associated with the incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>10.4, 10.5, 10.6 - Element to store any additional (String) information related to the incident. eg comments</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="InfoType" type="fire:StringRelaxedMixedType" use="required">
+								<xs:annotation>
+									<xs:documentation>The following fixed values have been allocated: ‘Summary’, ‘Recorded with Queries’, ‘Published with Conditions’, ‘Queried by National Statistics’. Other values can be used.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="IncidentTypeLevelType">
+		<xs:annotation>
+			<xs:documentation>This needs to be restricted properly once confirmed.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fire:StringRestrictedMixedType"/>
+	</xs:simpleType>
+	<xs:complexType name="IncidentAtCallStructure">
+		<xs:annotation>
+			<xs:documentation>Provides the information known about the fire after the initial call</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MobiliseIncidentType">
+				<xs:annotation>
+					<xs:documentation>2.3 - Describes the type of this incident as initially understood, by using one of the FireControl Values.  This actually stores the ID value from the appropriate taxonomy.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="fire:TaxonomyIDType">
+							<xs:attribute name="GenericType" type="fire:GenericIncidentType" use="required">
+								<xs:annotation>
+									<xs:documentation>The GenericType defines a broad categorisation of the Mobilisation Incident Types. The value is set to a attribute value from the Taxonomy file.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="Description" type="fire:StringRestrictedMixedType" use="optional">
+								<xs:annotation>
+									<xs:documentation>The Description needs to be populated if the Mobilisation IncidentType is set to 'Not known' as the command and control system supports text types only.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="Other" type="fire:StringRestrictedMixedType" use="optional">
+								<xs:annotation>
+									<xs:documentation>Defines the attributes that should be added to any enumeration list where there is an 'other' option available.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PriorityAtCall" type="fire:PriorityType">
+				<xs:annotation>
+					<xs:documentation>2.3a - The initial priority that was assigned to this incident. Defaulted from the mobilse incident type taxonomy file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LateCall" type="core:YesNoType">
+				<xs:annotation>
+					<xs:documentation>2.4 - Identifies whether or not this was a late call. i.e. A fire occurred, but had already been put out.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeOfCall" type="fire:DateTime">
+				<xs:annotation>
+					<xs:documentation>2.1 - The data and time of the call</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginOfCall">
+				<xs:annotation>
+					<xs:documentation>2.2 - Identifies where the call came from, ie person or automated system.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="OriginOfCallStructure">
+							<xs:attribute name="Description" use="optional">
+								<xs:annotation>
+									<xs:documentation>The Description needs to be populated if the OriginOfCall is set to 'Not known' as the command and control system supports text types only.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TimeStoppedMobilising" type="fire:DateTime">
+				<xs:annotation>
+					<xs:documentation>2.5 - The date and time of the last vehicle was mobilised to the incident. The Stop Message Sent.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeIncidentClosed" type="fire:DateTime">
+				<xs:annotation>
+					<xs:documentation>2.6 - The date and time of the last vehicle was remoced from the scene of the incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OverTheBorder">
+				<xs:annotation>
+					<xs:documentation>1.5 - Was the incident over the border? Indicates that mobilisation request is to a location outside the FRS's territory.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="core:YesNoType">
+							<xs:attribute name="OverTheBorderFRSIncidentIdentifier" type="FRSIncidentIdentifierType" use="optional">
+								<xs:annotation>
+									<xs:documentation>1.7 - The FRSIncidentIdentifier for the FRS who's terrtory the Incident occured within.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IncidentOnAttendanceStructure">
+		<xs:annotation>
+			<xs:documentation>Contains all the information known about the fire after attendance</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IncidentCategory" type="IncidentCategoryType">
+				<xs:annotation>
+					<xs:documentation>3.1 - Contains the final top level classification of this incident. (fire, special service, or false alarm)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PriorityOnAttendance" type="fire:PriorityType">
+				<xs:annotation>
+					<xs:documentation>2.3a - The final priority value (1-5) assigned to this incident. Defaulted from Mobilise Incident Type Taxonomy.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PropertyType">
+				<xs:annotation>
+					<xs:documentation>3.2 - Stores the type of property involved in this incident. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="fire:TaxonomyIDType">
+							<xs:attribute name="PropertyCategory" type="PropertyCategoryType" use="required">
+								<xs:annotation>
+									<xs:documentation>Defines the high-level Property Category used to decide the additional information required for the incident. Populated from the Property Type Taxonomy.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="Other" type="fire:StringRestrictedMixedType" use="optional">
+								<xs:annotation>
+									<xs:documentation>Defines the attributes that should be added to any enumeration list where there is an 'other' option available.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="IsPropertyRegulated" type="core:YesNoType" use="required">
+								<xs:annotation>
+									<xs:documentation>5.5 - Defines whether the property is covered by the Regulatory Reform Order (RRO). This value is defaulted from the Property Type Taxonomy, but can be overriden. </xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Generally there will be one of these three sections populated based on the IncidentCategory. However, for Fires the SpecialService structure could be populated if the Incident is a Fire that involves and RTC or HazardousMaterials.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="Fire" type="FireStructure" minOccurs="0"/>
+				<xs:element name="SpecialService" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="SpecialServiceStructure"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FalseAlarm" type="FalseAlarmStructure" minOccurs="0"/>
+			</xs:sequence>
+			<xs:element name="InvolvementOfPersons" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Details of people involved during the incident - Evacuations, Rescues, Injuries and Fatalities.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EvacuationAssistanceInvolved" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>3.6 - Were people evacuated in the incident? </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="EvacuationAssistance" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Provides information on the numbers of people evacuated from the incident, with or without assistance.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="EvacuationAssistanceStructure"/>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="VictimsInvolved" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>3.5 - Were people rescued, extricated, injured or killed in the incident?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Victims" type="VictimsStructure" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Provides details on all the victims involved in the incident.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="AttackOnFirefightersInvolved" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>3.10 - Was there attacks on firefighters at the incident?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="AttackOnFirefighters" type="AttackOnFirefightersStructure" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>This section is used to provide extra information for incidents of special interest</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SearchIncidentCriteriaStructure">
+		<xs:annotation>
+			<xs:documentation>The structure containing all the primary search criteria for Incidents.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IncidentDateRange">
+				<xs:annotation>
+					<xs:documentation>The date range for the incidents to be selected.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StartDateTime" type="fire:DateTime">
+							<xs:annotation>
+								<xs:documentation>The start date for selecting incidents. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="EndDateTime" type="fire:DateTime">
+							<xs:annotation>
+								<xs:documentation>The date range for the incidents to be selected.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="DateRangeType" type="DateRangeTypeType">
+							<xs:annotation>
+								<xs:documentation>The date range will be processed against the Incidents for the TimeOfCall or LastUpdated Date/Time.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ByFRS">
+					<xs:annotation>
+						<xs:documentation>Enables all incidents to be selected for: a) the nominated FRS Territory b) recorded by the FRS in any other territory c) recorded by any other FRS in the nominated FRS territory. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FRSId" type="fire:FRSIdType">
+								<xs:annotation>
+									<xs:documentation>The identifier for the brigade FRS.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="StationId" type="fire:StationIdType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The Station identifier if supplied.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ByTerritoryCategory">
+					<xs:annotation>
+						<xs:documentation>Enables incidents to be selected based on combinations of: a) FRS Territory (National Statistics FRS Id) b) Responible Party that Recording an incident c) if the incident was over the border or not. At least a) or b) must be used.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identifier" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The information that uniquely defines an incident. Used to select a specific incident or a collection based on the National Statistics FRS ID (Territory FRS Id).</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="SearchIdentifierStructure">
+											<xs:attributeGroup ref="IncidentIdentifierAttributes"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ResponsibleParty" type="ResponsiblePartyStructure" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The party responsible for completing, recording and publishing the Incident.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="OverTheBorder" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Indicates that mobilisation request is to a location outside the FRS border selected from the Identifier or the ResponsibleParty FRS Id values.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="core:YesNoType">
+											<xs:attribute name="OverTheBorderFRSIncidentIdentifier" type="FRSIncidentIdentifierType" use="optional">
+												<xs:annotation>
+													<xs:documentation>The FRSIncidentIdentifier used by territory FRS, if the incident is recorded by another FRS (alternate ResponsibleParty).   </xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="IncidentStatusRange">
+				<xs:annotation>
+					<xs:documentation>This range allows the user to select a specific range of Incident Status values to be returned. By default all Incidents are returned in the range 0 to 99. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="IncidentStatusFrom" type="IncidentStatusType" default="0">
+							<xs:annotation>
+								<xs:documentation>Stores the current status of this incident e.g. 50=Closed (Mobilised Data Captured), 60=Recorded, 65=Recorded With Queries, 70=Published, 0=Cancelled</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IncidentStatusTo" type="IncidentStatusType" default="90">
+							<xs:annotation>
+								<xs:documentation>Stores the current status of this incident e.g. 50=Closed (Mobilised Data Captured), 60=Recorded, 65=Recorded With Queries, 70=Published, 0=Cancelled.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SearchControlRequestStructure">
+		<xs:annotation>
+			<xs:documentation>The structure containing control information if paging is used.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PageSize" type="xs:nonNegativeInteger" default="50">
+				<xs:annotation>
+					<xs:documentation>Number of match results per page.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PageNumber" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The page to be returned for the selection criteria.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderSearchBy" type="OrderSearchByType" default="TimeOfCall" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This allows a field to be used to define the sequence of the Search Results retuned e.g. TimeOfCall, FRSIncidentNumber. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderingType" default="Ascending" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This allows a field to be used to define the sorting sequence of a particular field - Ascending / Descending.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="OrderingTypeType">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SearchControlResultsStructure">
+		<xs:annotation>
+			<xs:documentation>The structure containing control information if paging is used.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PageSize" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>Number of match results per page.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PageNumber" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>The current page number. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalSize" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total number of search results returned for the search criteria.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalPageNumber" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total number of pages of matched results.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderSearchBy" type="OrderSearchByType" default="TimeOfCall" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This allows a field to be used to define the sequence of the Search Results retuned e.g. TimeOfCall, FRSIncidentNumber. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderingType" default="Ascending" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This allows a field to be used to define the sorting sequence of a particular field - Ascending / Descending.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="OrderingTypeType">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SearchIncidentFiltersStructure">
+		<xs:annotation>
+			<xs:documentation>The structure containing all elements that can be used to filter / restict the incidents returned for the Search Criteria.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PostCode" type="bs7666:PostCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The PostCode of the Incident Location.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IncidentCategory" type="IncidentCategoryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains the final top level classification of this incident. (fire, special service, or false alarm)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BasicIncidentDetailsStructure">
+		<xs:annotation>
+			<xs:documentation>The structure containing the basic information about an Incident.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identifier">
+				<xs:annotation>
+					<xs:documentation>The information that uniquely defines an incident.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="IdentifierStructure">
+							<xs:attributeGroup ref="IncidentIdentifierAttributes"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ParentIncident" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The identification details of the parent incident of this incident if there is one.This enables the sharing of Resource details across multiple incidents.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="IdentifierStructure">
+							<xs:attributeGroup ref="IncidentIdentifierAttributes"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AuditDetail" type="BasicAuditDetailStructure">
+				<xs:annotation>
+					<xs:documentation>The basic audit details defining details such as: Incident Status, who created and last updated the Incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ResponsibleParty" type="ResponsiblePartyStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The party responsible for completing and publishing the Incident.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeOfCall" type="fire:DateTime">
+				<xs:annotation>
+					<xs:documentation>The data and time of the call</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IncidentLocation" type="fire:LocationStructure">
+				<xs:annotation>
+					<xs:documentation>The location at which the incident took place</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IncidentCategory" type="IncidentCategoryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains the final top level classification of this incident. (fire, special service, or false alarm)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OverTheBorder" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates that mobilisation request is to a location outside the FRS borders.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="core:YesNoType">
+							<xs:attribute name="OverTheBorderFRSIncidentIdentifier" type="FRSIncidentIdentifierType" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PropertyType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>3.2 - Stores the type of property involved in this incident. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="fire:TaxonomyIDType">
+							<xs:attribute name="PropertyCategory" type="PropertyCategoryType" use="required">
+								<xs:annotation>
+									<xs:documentation>Defines the high-level Property Category used to decide the additional information required for the incident. Populated from the Property Type Taxonomy.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="Other" type="fire:StringRestrictedMixedType" use="optional">
+								<xs:annotation>
+									<xs:documentation>Defines the attributes that should be added to any enumeration list where there is an 'other' option available.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="IsPropertyRegulated" type="core:YesNoType" use="required">
+								<xs:annotation>
+									<xs:documentation>5.5 - Defines whether the property is covered by the Regulatory Reform Order (RRO). This value is defaulted from the Property Type Taxonomy, but can be overriden. </xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Fire" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="IsPrimaryFire" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>Was this a Primary fire? (Not a Secondary Fire). This flag is determined from a number of other attributes 3.5 to 3.9.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IsChimneyFire" type="core:YesNoType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>3.9 - Was the fire contained solely within the Chimney of a residential Building?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Cause" type="FireCauseType">
+							<xs:annotation>
+								<xs:documentation>5.15 - The main cause/motive of this fire, ie accidental or deliberate.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SpecialService" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SpecialServiceType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>3.3 - Stores the type information for this special service incident.  This is the ID value from the associated Special Service taxonomy file.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="fire:TaxonomyIDType">
+										<xs:attribute name="Other" type="fire:StringRestrictedMixedType" use="optional">
+											<xs:annotation>
+												<xs:documentation>Defines the attributes that should be added to any enumeration list where there is an 'other' option available.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="HazardousMaterialsInvolved" type="fire:YesNoDontKnowType">
+							<xs:annotation>
+								<xs:documentation>5.18 - Did the Incident involve Hazardous Materials?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IsRTC" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>5.22 - Was the Incident an RTC?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FalseAlarm" type="FalseAlarmStructure" minOccurs="0"/>
+			<xs:element name="InvolvementOfPersons" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="VictimsInvolved" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>3.5 - Were people rescued, extricated, injured or killed in the incident?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="EvacuationAssistanceInvolved" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>3.6 - Were people evacuated in the incident? </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="AttackOnFirefightersInvolved" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>3.10 - Was there attacks on firefighters at the incident?</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ResourceUsage" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NumberOfVehiclesDeployed" type="fire:ZeroTo999Type">
+							<xs:annotation>
+								<xs:documentation>3.7 - If more than 5 vehicles (appliances) deployed to a Fire incident then it will be categorised as a Primary Fire.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="EquipmentUsed" type="core:YesNoType">
+							<xs:annotation>
+								<xs:documentation>6.15 - Were Equipment/Resources used at the Incident? Should be 'no' for False Alarms and Late Call Fires, but 'yes' for all other Fires and SpecialServices. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ValidationStatus" type="IncidentValidationStatusType" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="DateRangeTypeType">
+		<xs:annotation>
+			<xs:documentation>Defines the appropriate date time element to be used for seaching for Incidents.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TimeOfCall">
+				<xs:annotation>
+					<xs:documentation>The Time of the call that initiated the mobilisation event within the Command and Control System.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LastUpdated">
+				<xs:annotation>
+					<xs:documentation>The Last updated data/time of the Incident recorded within the AuditDetails.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NoOfIncidentsType">
+		<xs:annotation>
+			<xs:documentation>Defines the restriction of the number of Incidents that will be returned.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OriginOfCallStructure">
+		<xs:annotation>
+			<xs:documentation>Extends OriginOfCallType to provide the 'other' attribute so that the user's custom value can be stored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="OriginOfCallType">
+				<xs:attributeGroup ref="fire:OtherAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="OriginOfCallType">
+		<xs:annotation>
+			<xs:documentation>Simple type specifying all the options for the origin of call value</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Not known</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Person (land line)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Person (mobile)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Person (running call)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>AFA from originator</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>AFA from call centre</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Ambulance</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Police</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="12">
+				<xs:annotation>
+					<xs:documentation>Coastguard</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Other FRS</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AttackOnFirefightersStructure">
+		<xs:annotation>
+			<xs:documentation>Contains details needed for incidents of special interest</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TypeOfAttack" type="FOSITypeOfAttackType">
+				<xs:annotation>
+					<xs:documentation>3.11 - Must be provided if classification is 'C' to indicate the type of attack that occurred, eg objects thrown.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirefighterSeriousInjuries" type="fire:ZeroTo999Type">
+				<xs:annotation>
+					<xs:documentation>3.12 - The number of firefighters with serious injuries, generally requiring hospitalisation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirefighterSlightInjuries" type="fire:ZeroTo999Type">
+				<xs:annotation>
+					<xs:documentation>3.13 - The number of firefighters with minor injuries.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="FOSITypeOfAttackType">
+		<xs:annotation>
+			<xs:documentation>Defines the options available for specifying the type of attack in relation to FOSI incidents.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Objects thrown at firefighters/appliances</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Physical abuse</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Verbal abuse</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Harassment</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Other acts of aggression</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IncidentCategoryType">
+		<xs:annotation>
+			<xs:documentation>Defines the highest level categorisation of the yype of Incident: Fire, Special Service or False Alarm.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+			<xs:enumeration value="Fire">
+				<xs:annotation>
+					<xs:documentation>Fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SpecialService">
+				<xs:annotation>
+					<xs:documentation>Special Service</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FalseAlarm">
+				<xs:annotation>
+					<xs:documentation>False Alarm</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PropertyCategoryType">
+		<xs:annotation>
+			<xs:documentation>Defines the valid Property Categories that can be used in the Property Type Taxonomy files</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:enumeration value="Dwelling">
+				<xs:annotation>
+					<xs:documentation>Dwelling</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OtherResidential">
+				<xs:annotation>
+					<xs:documentation>Other Residential</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NonResidential">
+				<xs:annotation>
+					<xs:documentation>Non Residential</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Aircraft">
+				<xs:annotation>
+					<xs:documentation>Aircraft</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RoadVehicle">
+				<xs:annotation>
+					<xs:documentation>Road Vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RailVehicle">
+				<xs:annotation>
+					<xs:documentation>Rail Vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Boat">
+				<xs:annotation>
+					<xs:documentation>Boat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Outdoor">
+				<xs:annotation>
+					<xs:documentation>Outdoor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OutdoorStructure">
+				<xs:annotation>
+					<xs:documentation>Outdoor Structure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderSearchByType">
+		<xs:annotation>
+			<xs:documentation>The fields that can be used to order/sequence the search results set.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+			<xs:enumeration value="FRSIncidentNumber">
+				<xs:annotation>
+					<xs:documentation>FRS Incident Number</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IncidentId">
+				<xs:annotation>
+					<xs:documentation>IRS Internal Incident Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IncidentStatus">
+				<xs:annotation>
+					<xs:documentation>Incident Status</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TimeOfCall">
+				<xs:annotation>
+					<xs:documentation>Time of Incident Call</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DateUpdated">
+				<xs:annotation>
+					<xs:documentation>Last Updated Timestamp</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UpdatedBy">
+				<xs:annotation>
+					<xs:documentation>User that Last Updated Incident</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StationId">
+				<xs:annotation>
+					<xs:documentation>Responsible / Recording Party - Station Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FireOfficerId">
+				<xs:annotation>
+					<xs:documentation>Responsible / Recording Party - Fire Officer Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OverTheBorder">
+				<xs:annotation>
+					<xs:documentation>Was it Over The Border</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OverTheBorderFRSIncidentIdentifier">
+				<xs:annotation>
+					<xs:documentation>Over The Border - FRS Incident Number</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IncidentCategory">
+				<xs:annotation>
+					<xs:documentation>Incident Category</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PostCode">
+				<xs:annotation>
+					<xs:documentation>Incident Location Post Code</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<!-- 
+			<xs:enumeration value="FRSId">
+				<xs:annotation>
+					<xs:documentation>Responsible / Recording Party - FRS Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PropertyType">
+				<xs:annotation>
+					<xs:documentation>Property Type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PropertyCategory">
+				<xs:annotation>
+					<xs:documentation>Property Category</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IsPropertyRegulated">
+				<xs:annotation>
+					<xs:documentation>Was the Property Regulated - RRO</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IsPrimaryFire">
+				<xs:annotation>
+					<xs:documentation>Was it a Primary Fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IsChimneyFire">
+				<xs:annotation>
+					<xs:documentation>Was it a Chimney Fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Cause">
+				<xs:annotation>
+					<xs:documentation>Fire Cause</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SpecialServiceType">
+				<xs:annotation>
+					<xs:documentation>Special Service Type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HazardousMaterialsInvolved">
+				<xs:annotation>
+					<xs:documentation>Were Hazardous Materials Involved</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IsRTC">
+				<xs:annotation>
+					<xs:documentation>Was it an RTC</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FalseAlarmReason">
+				<xs:annotation>
+					<xs:documentation>False Alarm Resaon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VictimsInvolved">
+				<xs:annotation>
+					<xs:documentation>Were Victims Involved</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EvacuationAssistanceInvolved">
+				<xs:annotation>
+					<xs:documentation>Was Evacuation Assistance Involved</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AttackOnFirefightersInvolved">
+				<xs:annotation>
+					<xs:documentation>Were Firefighters Attacked</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NumberOfVehiclesDeployed">
+				<xs:annotation>
+					<xs:documentation>Number of Vehicles Deployed</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EquipmentUsed">
+				<xs:annotation>
+					<xs:documentation>Was Equipment Used</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderingTypeType">
+		<xs:annotation>
+			<xs:documentation>The order with which a particular field is sequenced - Ascending / Descending.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+			<xs:enumeration value="Ascending">
+				<xs:annotation>
+					<xs:documentation>Ascending</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Descending">
+				<xs:annotation>
+					<xs:documentation>Descending</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

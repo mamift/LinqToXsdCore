@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Paul Spencer (alphaXML Ltd.) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-440-460-include">
+	<xs:include schemaLocation="emlcore-v4-0g.xsd"/>
+	<xs:element name="CastVote" type="CastVoteStructure"/>
+	<xs:complexType name="CastVoteStructure">
+		<xs:sequence>
+			<xs:choice minOccurs="0">
+				<xs:element ref="VToken"/>
+				<xs:element ref="VTokenQualified"/>
+			</xs:choice>
+			<xs:element ref="EventIdentifier"/>
+			<xs:element name="Election" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ElectionIdentifier"/>
+						<xs:element name="Contest">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ContestIdentifier"/>
+									<xs:element name="Selection" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:choice minOccurs="0">
+												<xs:sequence>
+													<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructure"/>
+													<xs:element ref="AffiliationIdentifier" minOccurs="0"/>
+												</xs:sequence>
+												<xs:sequence>
+													<xs:element ref="AffiliationIdentifier"/>
+													<xs:element name="Candidate" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructure"/>
+															</xs:sequence>
+															<xs:attribute name="Value" type="VotingValueType" use="optional"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:element name="PersonalIdentifier" type="xs:token"/>
+												<xs:element name="WriteinCandidateName" type="xs:token"/>
+												<xs:element ref="ReferendumOptionIdentifier"/>
+											</xs:choice>
+											<xs:attribute name="Value" type="VotingValueType" use="optional"/>
+											<xs:attribute name="ShortCode" type="ShortCodeType" use="optional"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element ref="Seal" minOccurs="0"/>
+								</xs:sequence>
+								<xs:attribute name="Spoilt" type="xs:token" use="optional"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="BallotIdentifier" minOccurs="0"/>
+			<xs:element ref="ReportingUnitIdentifier" minOccurs="0"/>
+			<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Spoilt" type="xs:token" use="optional"/>
+	</xs:complexType>
+</xs:schema>

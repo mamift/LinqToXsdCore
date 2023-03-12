@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-620">
+	<xs:include schemaLocation="emlcore-v4-0g.xsd"/>
+	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="external/xlink.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="OptionsNominationResponse"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="OptionsNominationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EventIdentifier" minOccurs="0"/>
+				<xs:element ref="ElectionIdentifier" minOccurs="0"/>
+				<xs:element ref="ContestIdentifier" minOccurs="0"/>
+				<xs:element ref="ProposalIdentifier"/>
+				<xs:element name="Accepted" type="YesNoType"/>
+				<xs:element name="Remark" type="MessagesStructure" minOccurs="0"/>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

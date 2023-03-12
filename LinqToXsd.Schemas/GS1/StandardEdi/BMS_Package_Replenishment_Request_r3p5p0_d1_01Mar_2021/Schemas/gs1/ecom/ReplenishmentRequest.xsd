@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:replenishment_request="urn:gs1:ecom:replenishment_request:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:replenishment_request:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="replenishmentRequestMessage" type="replenishment_request:ReplenishmentRequestMessageType"/>
+    <xsd:complexType name="ReplenishmentRequestInventoryStatusLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="parentLineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="inventoryDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="logisticUnitIdentification" type="ecom_common:Ecom_LogisticUnitIdentificationType"/>
+            <xsd:element minOccurs="0" name="inventorySubLocation" type="ecom_common:Ecom_PartyIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="inventoryStatusQuantitySpecification" type="ecom_common:InventoryStatusQuantitySpecificationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReplenishmentRequestItemLocationInformationType">
+        <xsd:sequence>
+            <xsd:element name="shipTo" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element name="inventoryLocation" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element minOccurs="0" name="shipFrom" type="ecom_common:TransactionalPartyType"/>
+            <xsd:element name="transactionalTradeItem" type="ecom_common:TransactionalTradeItemType"/>
+            <xsd:element maxOccurs="unbounded" name="replenishmentRequestRequirementsLineItem" type="replenishment_request:ReplenishmentRequestRequirementsLineItemType"/>
+            <xsd:element maxOccurs="unbounded" name="replenishmentRequestInventoryStatusLineItem" type="replenishment_request:ReplenishmentRequestInventoryStatusLineItemType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReplenishmentRequestMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="10000" name="replenishmentRequest" type="replenishment_request:ReplenishmentRequestType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReplenishmentRequestRequirementsLineItemType">
+        <xsd:sequence>
+            <xsd:element name="lineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element name="planBucketSizeCode" type="ecom_common:PlanBucketSizeCodeType"/>
+            <xsd:element name="requiredQuantity" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="replenishmentRequestStatusCode" type="replenishment_request:ReplenishmentRequestStatusEnumerationType"/>
+            <xsd:element minOccurs="0" name="replenishmentRequestTypeDescription" type="shared_common:Description200Type"/>
+            <xsd:element minOccurs="0" name="parentLineItemNumber" type="xsd:positiveInteger"/>
+            <xsd:element name="requirementsPeriod" type="shared_common:DateTimeRangeType"/>
+            <xsd:element minOccurs="0" name="purchaseConditions" type="ecom_common:Ecom_DocumentReferenceType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="requiredQuantitySpecification" type="ecom_common:QuantitySpecificationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReplenishmentRequestType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:EcomDocumentType">
+                <xsd:sequence>
+                    <xsd:element name="replenishmentRequestIdentification" type="ecom_common:Ecom_EntityIdentificationType"/>
+                    <xsd:element name="replenishmentRequestTypeCode" type="replenishment_request:ReplenishmentRequestTypeEnumerationType"/>
+                    <xsd:element name="structureTypeCode" type="ecom_common:StructureTypeCodeType"/>
+                    <xsd:element name="seller" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element name="buyer" type="ecom_common:TransactionalPartyType"/>
+                    <xsd:element maxOccurs="unbounded" name="replenishmentRequestItemLocationInformation" type="replenishment_request:ReplenishmentRequestItemLocationInformationType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:simpleType name="ReplenishmentRequestStatusEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="COMMITTED"/>
+            <xsd:enumeration value="PLANNED"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ReplenishmentRequestTypeEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ACTUAL_SALES_AND_INVENTORY"/>
+            <xsd:enumeration value="FORECAST_AND_INVENTORY"/>
+            <xsd:enumeration value="GROSS_REQUIREMENTS_AND_INVENTORY"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

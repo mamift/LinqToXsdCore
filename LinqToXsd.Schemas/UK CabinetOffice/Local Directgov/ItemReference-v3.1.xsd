@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="http://www.esd.org.uk/standards" xmlns="http://www.esd.org.uk/standards" xmlns:esd="http://www.esd.org.uk/standards" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gms="http://www.govtalk.gov.uk/CM/gms-xs" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.0" id="ItemReference">
+	<xs:annotation>
+		<xs:documentation>Element making reference to an item of a controlled list.</xs:documentation>
+		<xs:appinfo>
+			<gms:Metadata>
+				<gms:Identifier>ItemReference</gms:Identifier>
+				<gms:Source>http://www.esd.org.uk/standards/xmlschemas/itemreference-v3.0.xsd</gms:Source>
+			</gms:Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="SimpleLiteralStructure-v1.0.xsd"/>
+	<xs:complexType name="ItemReferenceStructure">
+		<xs:annotation>
+			<xs:documentation>Element making reference to an item of a controlled list.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="SimpleLiteralStructure">
+				<xs:attribute name="Id" type="xs:string" use="required"/>
+				<xs:attribute name="ConceptId" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

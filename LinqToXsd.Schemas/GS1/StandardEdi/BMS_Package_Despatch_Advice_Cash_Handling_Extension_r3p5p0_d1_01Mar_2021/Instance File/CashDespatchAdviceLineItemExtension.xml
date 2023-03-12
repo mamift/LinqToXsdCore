@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<despatch_advice:despatchAdviceMessage xmlns:despatch_advice="urn:gs1:ecom:despatch_advice:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:ecom:despatch_advice:xsd:3 ../Schemas/gs1/ecom/DespatchAdvice.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>John Doe</sh:Contact>
+				<sh:EmailAddress>John_Doe@purchasing.XYZretailer.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-212-555-1213</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-212-555-2122</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Buyer</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1"/>
+			<sh:ContactInformation>
+				<sh:Contact>Mary Smith</sh:Contact>
+				<sh:EmailAddress>Mary_Smith@widgets.com</sh:EmailAddress>
+				<sh:FaxNumber>+1-312-555-1214</sh:FaxNumber>
+				<sh:TelephoneNumber>+1-312-555-2125</sh:TelephoneNumber>
+				<sh:ContactTypeIdentifier>Seller</sh:ContactTypeIdentifier>
+			</sh:ContactInformation>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.4</sh:TypeVersion>
+			<sh:InstanceIdentifier>100002</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <despatchAdvice>
+        <creationDateTime>2010-07-31T11:00:00.000-05:00</creationDateTime>
+        <documentStatusCode>ORIGINAL</documentStatusCode>
+        <despatchAdviceIdentification>
+            <entityIdentification>KC</entityIdentification>
+            <contentOwner>
+                <gln>8812345678903</gln>
+            </contentOwner>
+        </despatchAdviceIdentification>
+        <receiver>
+            <gln>8712345678913</gln>
+        </receiver>
+        <shipper>
+            <gln>8812345678903</gln>
+        </shipper>
+        <shipTo>
+            <gln>8712345678921</gln>
+        </shipTo>
+        <despatchInformation>
+            <actualShipDateTime>2010-07-04T15:00:00.000-05:00</actualShipDateTime>
+        </despatchInformation>
+        <purchaseOrder>
+            <entityIdentification>933</entityIdentification>
+            <contentOwner>
+                <gln>8712345678913</gln>
+            </contentOwner>
+            <creationDateTime>2010-07-31T00:00:00.000-05:00</creationDateTime>
+            <lineItemNumber>25</lineItemNumber>
+        </purchaseOrder>
+        <despatchAdviceLogisticUnit>
+            <packageTypeCode>PE (pallet, modular)</packageTypeCode>
+            <logisticUnitIdentification>
+                <sscc>881234567000010112</sscc>
+            </logisticUnitIdentification>
+            <despatchAdviceLineItem>
+                <lineItemNumber>1</lineItemNumber>
+                <despatchedQuantity>700</despatchedQuantity>
+                <countryOfOrigin>CR</countryOfOrigin>
+                <extension>
+                    <cash_despatch_advice_line_item_extension:cashDespatchAdviceLineItemExtension xmlns:cash_despatch_advice_line_item_extension="urn:gs1:ecom:cash_despatch_advice_line_item_extension:xsd:3" xsi:schemaLocation="urn:gs1:ecom:cash_despatch_advice_line_item_extension:xsd:3 ../Schemas/gs1/ecom/CashDespatchAdviceLineItemExtension.xsd">
+                        <paymentDateTime>2006-01-10T12:00:00.000-05:00</paymentDateTime>
+                        <customer>
+                            <gln>1313131313131</gln>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="FOR_INTERNAL_USE_1" codeListVersion="1.0">XX</additionalPartyIdentification>
+                            <address>
+                                <city>City</city>
+                                <cityCode>City Code</cityCode>
+                                <countryCode codeListVersion="1.0">US</countryCode>
+                                <countyCode>County Code</countyCode>
+                                <crossStreet>Cross Street</crossStreet>
+                                <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                <name>Name</name>
+                                <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                <postalCode>Postal Code</postalCode>
+                                <provinceCode>Province Code</provinceCode>
+                                <state>State</state>
+                                <streetAddressOne>Street Name 1</streetAddressOne>
+                                <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                <streetAddressThree>Street Name 3</streetAddressThree>
+                                <geographicalCoordinates>
+                                    <latitude>13° 00 N</latitude>
+                                    <longitude>122° 00 E</longitude>
+                                </geographicalCoordinates>
+                            </address>
+                            <contact>
+                                <contactTypeCode codeListVersion="1.0">AA</contactTypeCode>
+                                <personName>XX</personName>
+                                <departmentName>XX</departmentName>
+                                <jobTitle>XX</jobTitle>
+                                <responsibility codeListVersion="1.0" languageCode="en">XX</responsibility>
+                                <communicationChannel>
+                                    <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                    <communicationValue>Communication Value</communicationValue>
+                                    <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                </communicationChannel>
+                                <afterHoursCommunicationChannel>
+                                    <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                    <communicationValue>Communication Value</communicationValue>
+                                    <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                </afterHoursCommunicationChannel>
+                            </contact>
+                            <dutyFeeTaxRegistration>
+                                <dutyFeeTaxRegistrationID identificationSchemeAgencyCode="XX" identificationSchemeAgencyCodeCodeListVersion="1.0" identificationSchemeAgencyName="XX" identificationSchemeName="XX">Identifier</dutyFeeTaxRegistrationID>
+                                <dutyFeeTaxTypeCode codeListVersion="1.0">AAD</dutyFeeTaxTypeCode>
+                                <dutyFeeTaxAgencyName>XX</dutyFeeTaxAgencyName>
+                                <dutyFeeTaxDescription codeListVersion="1.0" languageCode="en">XX</dutyFeeTaxDescription>
+                                <dutyFeeTaxRegistrationType codeListVersion="1.0">VA</dutyFeeTaxRegistrationType>
+                            </dutyFeeTaxRegistration>
+                            <organisationDetails>
+                                <organisationName>XX</organisationName>
+                                <issuedCapital codeListVersion="1.0" currencyCode="USD">2.0</issuedCapital>
+                                <legalStructure codeListVersion="1.0" languageCode="en">XX</legalStructure>
+                                <officialAddress>
+                                    <city>City</city>
+                                    <cityCode>City Code</cityCode>
+                                    <countryCode codeListVersion="1.0">US</countryCode>
+                                    <countyCode>County Code</countyCode>
+                                    <crossStreet>Cross Street</crossStreet>
+                                    <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                    <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                    <name>Name</name>
+                                    <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                    <postalCode>Postal Code</postalCode>
+                                    <provinceCode>Province Code</provinceCode>
+                                    <state>State</state>
+                                    <streetAddressOne>Street Name 1</streetAddressOne>
+                                    <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                    <streetAddressThree>Street Name 3</streetAddressThree>
+                                    <geographicalCoordinates>
+                                        <latitude>13° 00 N</latitude>
+                                        <longitude>122° 00 E</longitude>
+                                    </geographicalCoordinates>
+                                </officialAddress>
+                                <legalRegistration>
+                                    <legalRegistrationNumber>XX</legalRegistrationNumber>
+                                    <legalRegistrationType codeListVersion="1.0">BUSINESS_REGISTRATION</legalRegistrationType>
+                                    <legalRegistrationAdditionalInformation>XX</legalRegistrationAdditionalInformation>
+                                </legalRegistration>
+                            </organisationDetails>
+                            <financialInstitutionInformation>
+                                <financialInstitutionName>XX</financialInstitutionName>
+                                <financialInstitutionBranchName>XX</financialInstitutionBranchName>
+                                <financialAccount>
+                                    <financialAccountNumber>1001</financialAccountNumber>
+                                    <financialAccountNumberTypeCode codeListVersion="1.0">CHECKING_ACCOUNT</financialAccountNumberTypeCode>
+                                    <financialAccountName>ABC Corporation</financialAccountName>
+                                </financialAccount>
+                                <financialRoutingNumber>
+                                    <financialRoutingNumber>1001</financialRoutingNumber>
+                                    <financialRoutingNumberTypeCode codeListVersion="1.0">SWIFT_IDENTIFICATION</financialRoutingNumberTypeCode>
+                                </financialRoutingNumber>
+                                <additionalFinancialInformation>
+                                    <description codeListVersion="1.0" languageCode="en">XX</description>
+                                </additionalFinancialInformation>
+                                <address>
+                                    <city>City</city>
+                                    <cityCode>City Code</cityCode>
+                                    <countryCode codeListVersion="1.0">US</countryCode>
+                                    <countyCode>County Code</countyCode>
+                                    <crossStreet>Cross Street</crossStreet>
+                                    <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                    <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                    <name>Name</name>
+                                    <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                    <postalCode>Postal Code</postalCode>
+                                    <provinceCode>Province Code</provinceCode>
+                                    <state>State</state>
+                                    <streetAddressOne>Street Name 1</streetAddressOne>
+                                    <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                    <streetAddressThree>Street Name 3</streetAddressThree>
+                                    <geographicalCoordinates>
+                                        <latitude>13° 00 N</latitude>
+                                        <longitude>122° 00 E</longitude>
+                                    </geographicalCoordinates>
+                                </address>
+                            </financialInstitutionInformation>
+                            <avpList>
+                                <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                            </avpList>
+                        </customer>
+                        <bankBranch>
+                            <gln>1313131313131</gln>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="FOR_INTERNAL_USE_1" codeListVersion="1.0">XX</additionalPartyIdentification>
+                            <address>
+                                <city>City</city>
+                                <cityCode>City Code</cityCode>
+                                <countryCode codeListVersion="1.0">US</countryCode>
+                                <countyCode>County Code</countyCode>
+                                <crossStreet>Cross Street</crossStreet>
+                                <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                <name>Name</name>
+                                <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                <postalCode>Postal Code</postalCode>
+                                <provinceCode>Province Code</provinceCode>
+                                <state>State</state>
+                                <streetAddressOne>Street Name 1</streetAddressOne>
+                                <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                <streetAddressThree>Street Name 3</streetAddressThree>
+                                <geographicalCoordinates>
+                                    <latitude>13° 00 N</latitude>
+                                    <longitude>122° 00 E</longitude>
+                                </geographicalCoordinates>
+                            </address>
+                            <contact>
+                                <contactTypeCode codeListVersion="1.0">AA</contactTypeCode>
+                                <personName>XX</personName>
+                                <departmentName>XX</departmentName>
+                                <jobTitle>XX</jobTitle>
+                                <responsibility codeListVersion="1.0" languageCode="en">XX</responsibility>
+                                <communicationChannel>
+                                    <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                    <communicationValue>Communication Value</communicationValue>
+                                    <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                </communicationChannel>
+                                <afterHoursCommunicationChannel>
+                                    <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                    <communicationValue>Communication Value</communicationValue>
+                                    <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                </afterHoursCommunicationChannel>
+                            </contact>
+                            <dutyFeeTaxRegistration>
+                                <dutyFeeTaxRegistrationID identificationSchemeAgencyCode="XX" identificationSchemeAgencyCodeCodeListVersion="1.0" identificationSchemeAgencyName="XX" identificationSchemeName="XX">Identifier</dutyFeeTaxRegistrationID>
+                                <dutyFeeTaxTypeCode codeListVersion="1.0">AAD</dutyFeeTaxTypeCode>
+                                <dutyFeeTaxAgencyName>XX</dutyFeeTaxAgencyName>
+                                <dutyFeeTaxDescription codeListVersion="1.0" languageCode="en">XX</dutyFeeTaxDescription>
+                                <dutyFeeTaxRegistrationType codeListVersion="1.0">VA</dutyFeeTaxRegistrationType>
+                            </dutyFeeTaxRegistration>
+                            <organisationDetails>
+                                <organisationName>XX</organisationName>
+                                <issuedCapital codeListVersion="1.0" currencyCode="USD">2.0</issuedCapital>
+                                <legalStructure codeListVersion="1.0" languageCode="en">XX</legalStructure>
+                                <officialAddress>
+                                    <city>City</city>
+                                    <cityCode>City Code</cityCode>
+                                    <countryCode codeListVersion="1.0">US</countryCode>
+                                    <countyCode>County Code</countyCode>
+                                    <crossStreet>Cross Street</crossStreet>
+                                    <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                    <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                    <name>Name</name>
+                                    <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                    <postalCode>Postal Code</postalCode>
+                                    <provinceCode>Province Code</provinceCode>
+                                    <state>State</state>
+                                    <streetAddressOne>Street Name 1</streetAddressOne>
+                                    <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                    <streetAddressThree>Street Name 3</streetAddressThree>
+                                    <geographicalCoordinates>
+                                        <latitude>13° 00 N</latitude>
+                                        <longitude>122° 00 E</longitude>
+                                    </geographicalCoordinates>
+                                </officialAddress>
+                                <legalRegistration>
+                                    <legalRegistrationNumber>XX</legalRegistrationNumber>
+                                    <legalRegistrationType codeListVersion="1.0">BUSINESS_REGISTRATION</legalRegistrationType>
+                                    <legalRegistrationAdditionalInformation>XX</legalRegistrationAdditionalInformation>
+                                </legalRegistration>
+                            </organisationDetails>
+                            <financialInstitutionInformation>
+                                <financialInstitutionName>XX</financialInstitutionName>
+                                <financialInstitutionBranchName>XX</financialInstitutionBranchName>
+                                <financialAccount>
+                                    <financialAccountNumber>1001</financialAccountNumber>
+                                    <financialAccountNumberTypeCode codeListVersion="1.0">CHECKING_ACCOUNT</financialAccountNumberTypeCode>
+                                    <financialAccountName>ABC Corporation</financialAccountName>
+                                </financialAccount>
+                                <financialRoutingNumber>
+                                    <financialRoutingNumber>1001</financialRoutingNumber>
+                                    <financialRoutingNumberTypeCode codeListVersion="1.0">SWIFT_IDENTIFICATION</financialRoutingNumberTypeCode>
+                                </financialRoutingNumber>
+                                <additionalFinancialInformation>
+                                    <description codeListVersion="1.0" languageCode="en">XX</description>
+                                </additionalFinancialInformation>
+                                <address>
+                                    <city>City</city>
+                                    <cityCode>City Code</cityCode>
+                                    <countryCode codeListVersion="1.0">US</countryCode>
+                                    <countyCode>County Code</countyCode>
+                                    <crossStreet>Cross Street</crossStreet>
+                                    <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                    <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                    <name>Name</name>
+                                    <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                    <postalCode>Postal Code</postalCode>
+                                    <provinceCode>Province Code</provinceCode>
+                                    <state>State</state>
+                                    <streetAddressOne>Street Name 1</streetAddressOne>
+                                    <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                    <streetAddressThree>Street Name 3</streetAddressThree>
+                                    <geographicalCoordinates>
+                                        <latitude>13° 00 N</latitude>
+                                        <longitude>122° 00 E</longitude>
+                                    </geographicalCoordinates>
+                                </address>
+                            </financialInstitutionInformation>
+                            <avpList>
+                                <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                            </avpList>
+                        </bankBranch>
+                        <packager>
+                            <gln>1313131313131</gln>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="FOR_INTERNAL_USE_1" codeListVersion="1.0">XX</additionalPartyIdentification>
+                            <address>
+                                <city>City</city>
+                                <cityCode>City Code</cityCode>
+                                <countryCode codeListVersion="1.0">US</countryCode>
+                                <countyCode>County Code</countyCode>
+                                <crossStreet>Cross Street</crossStreet>
+                                <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                <name>Name</name>
+                                <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                <postalCode>Postal Code</postalCode>
+                                <provinceCode>Province Code</provinceCode>
+                                <state>State</state>
+                                <streetAddressOne>Street Name 1</streetAddressOne>
+                                <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                <streetAddressThree>Street Name 3</streetAddressThree>
+                                <geographicalCoordinates>
+                                    <latitude>13° 00 N</latitude>
+                                    <longitude>122° 00 E</longitude>
+                                </geographicalCoordinates>
+                            </address>
+                            <contact>
+                                <contactTypeCode codeListVersion="1.0">AA</contactTypeCode>
+                                <personName>XX</personName>
+                                <departmentName>XX</departmentName>
+                                <jobTitle>XX</jobTitle>
+                                <responsibility codeListVersion="1.0" languageCode="en">XX</responsibility>
+                                <communicationChannel>
+                                    <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                    <communicationValue>Communication Value</communicationValue>
+                                    <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                </communicationChannel>
+                                <afterHoursCommunicationChannel>
+                                    <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                    <communicationValue>Communication Value</communicationValue>
+                                    <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                </afterHoursCommunicationChannel>
+                            </contact>
+                            <dutyFeeTaxRegistration>
+                                <dutyFeeTaxRegistrationID identificationSchemeAgencyCode="XX" identificationSchemeAgencyCodeCodeListVersion="1.0" identificationSchemeAgencyName="XX" identificationSchemeName="XX">Identifier</dutyFeeTaxRegistrationID>
+                                <dutyFeeTaxTypeCode codeListVersion="1.0">AAD</dutyFeeTaxTypeCode>
+                                <dutyFeeTaxAgencyName>XX</dutyFeeTaxAgencyName>
+                                <dutyFeeTaxDescription codeListVersion="1.0" languageCode="en">XX</dutyFeeTaxDescription>
+                                <dutyFeeTaxRegistrationType codeListVersion="1.0">VA</dutyFeeTaxRegistrationType>
+                            </dutyFeeTaxRegistration>
+                            <organisationDetails>
+                                <organisationName>XX</organisationName>
+                                <issuedCapital codeListVersion="1.0" currencyCode="USD">2.0</issuedCapital>
+                                <legalStructure codeListVersion="1.0" languageCode="en">XX</legalStructure>
+                                <officialAddress>
+                                    <city>City</city>
+                                    <cityCode>City Code</cityCode>
+                                    <countryCode codeListVersion="1.0">US</countryCode>
+                                    <countyCode>County Code</countyCode>
+                                    <crossStreet>Cross Street</crossStreet>
+                                    <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                    <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                    <name>Name</name>
+                                    <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                    <postalCode>Postal Code</postalCode>
+                                    <provinceCode>Province Code</provinceCode>
+                                    <state>State</state>
+                                    <streetAddressOne>Street Name 1</streetAddressOne>
+                                    <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                    <streetAddressThree>Street Name 3</streetAddressThree>
+                                    <geographicalCoordinates>
+                                        <latitude>13° 00 N</latitude>
+                                        <longitude>122° 00 E</longitude>
+                                    </geographicalCoordinates>
+                                </officialAddress>
+                                <legalRegistration>
+                                    <legalRegistrationNumber>XX</legalRegistrationNumber>
+                                    <legalRegistrationType codeListVersion="1.0">BUSINESS_REGISTRATION</legalRegistrationType>
+                                    <legalRegistrationAdditionalInformation>XX</legalRegistrationAdditionalInformation>
+                                </legalRegistration>
+                            </organisationDetails>
+                            <financialInstitutionInformation>
+                                <financialInstitutionName>XX</financialInstitutionName>
+                                <financialInstitutionBranchName>XX</financialInstitutionBranchName>
+                                <financialAccount>
+                                    <financialAccountNumber>1001</financialAccountNumber>
+                                    <financialAccountNumberTypeCode codeListVersion="1.0">CHECKING_ACCOUNT</financialAccountNumberTypeCode>
+                                    <financialAccountName>ABC Corporation</financialAccountName>
+                                </financialAccount>
+                                <financialRoutingNumber>
+                                    <financialRoutingNumber>1001</financialRoutingNumber>
+                                    <financialRoutingNumberTypeCode codeListVersion="1.0">SWIFT_IDENTIFICATION</financialRoutingNumberTypeCode>
+                                </financialRoutingNumber>
+                                <additionalFinancialInformation>
+                                    <description codeListVersion="1.0" languageCode="en">XX</description>
+                                </additionalFinancialInformation>
+                                <address>
+                                    <city>City</city>
+                                    <cityCode>City Code</cityCode>
+                                    <countryCode codeListVersion="1.0">US</countryCode>
+                                    <countyCode>County Code</countyCode>
+                                    <crossStreet>Cross Street</crossStreet>
+                                    <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                    <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                    <name>Name</name>
+                                    <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                    <postalCode>Postal Code</postalCode>
+                                    <provinceCode>Province Code</provinceCode>
+                                    <state>State</state>
+                                    <streetAddressOne>Street Name 1</streetAddressOne>
+                                    <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                    <streetAddressThree>Street Name 3</streetAddressThree>
+                                    <geographicalCoordinates>
+                                        <latitude>13° 00 N</latitude>
+                                        <longitude>122° 00 E</longitude>
+                                    </geographicalCoordinates>
+                                </address>
+                            </financialInstitutionInformation>
+                            <avpList>
+                                <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                            </avpList>
+                        </packager>
+                        <incidentDetails>
+                            <incidentDateTime>2006-01-10T12:00:00.000-05:00</incidentDateTime>
+                            <depositDateTime>2006-01-10T12:00:00.000-05:00</depositDateTime>
+                            <incidentDetectedDuringBankNoteRecycling>true</incidentDetectedDuringBankNoteRecycling>
+                            <incidentDetected>XX</incidentDetected>
+                            <incidentLocation>
+                                <gln>1313131313131</gln>
+                                <additionalPartyIdentification additionalPartyIdentificationTypeCode="FOR_INTERNAL_USE_1" codeListVersion="1.0">XX</additionalPartyIdentification>
+                                <address>
+                                    <city>City</city>
+                                    <cityCode>City Code</cityCode>
+                                    <countryCode codeListVersion="1.0">US</countryCode>
+                                    <countyCode>County Code</countyCode>
+                                    <crossStreet>Cross Street</crossStreet>
+                                    <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                    <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                    <name>Name</name>
+                                    <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                    <postalCode>Postal Code</postalCode>
+                                    <provinceCode>Province Code</provinceCode>
+                                    <state>State</state>
+                                    <streetAddressOne>Street Name 1</streetAddressOne>
+                                    <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                    <streetAddressThree>Street Name 3</streetAddressThree>
+                                    <geographicalCoordinates>
+                                        <latitude>13° 00 N</latitude>
+                                        <longitude>122° 00 E</longitude>
+                                    </geographicalCoordinates>
+                                </address>
+                                <contact>
+                                    <contactTypeCode codeListVersion="1.0">AA</contactTypeCode>
+                                    <personName>XX</personName>
+                                    <departmentName>XX</departmentName>
+                                    <jobTitle>XX</jobTitle>
+                                    <responsibility codeListVersion="1.0" languageCode="en">XX</responsibility>
+                                    <communicationChannel>
+                                        <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                        <communicationValue>Communication Value</communicationValue>
+                                        <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                    </communicationChannel>
+                                    <afterHoursCommunicationChannel>
+                                        <communicationChannelCode codeListVersion="1.0">EMAIL</communicationChannelCode>
+                                        <communicationValue>Communication Value</communicationValue>
+                                        <communicationChannelName>Communication Channel Name</communicationChannelName>
+                                    </afterHoursCommunicationChannel>
+                                </contact>
+                                <dutyFeeTaxRegistration>
+                                    <dutyFeeTaxRegistrationID identificationSchemeAgencyCode="XX" identificationSchemeAgencyCodeCodeListVersion="1.0" identificationSchemeAgencyName="XX" identificationSchemeName="XX">Identifier</dutyFeeTaxRegistrationID>
+                                    <dutyFeeTaxTypeCode codeListVersion="1.0">AAD</dutyFeeTaxTypeCode>
+                                    <dutyFeeTaxAgencyName>XX</dutyFeeTaxAgencyName>
+                                    <dutyFeeTaxDescription codeListVersion="1.0" languageCode="en">XX</dutyFeeTaxDescription>
+                                    <dutyFeeTaxRegistrationType codeListVersion="1.0">VA</dutyFeeTaxRegistrationType>
+                                </dutyFeeTaxRegistration>
+                                <organisationDetails>
+                                    <organisationName>XX</organisationName>
+                                    <issuedCapital codeListVersion="1.0" currencyCode="USD">2.0</issuedCapital>
+                                    <legalStructure codeListVersion="1.0" languageCode="en">XX</legalStructure>
+                                    <officialAddress>
+                                        <city>City</city>
+                                        <cityCode>City Code</cityCode>
+                                        <countryCode codeListVersion="1.0">US</countryCode>
+                                        <countyCode>County Code</countyCode>
+                                        <crossStreet>Cross Street</crossStreet>
+                                        <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                        <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                        <name>Name</name>
+                                        <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                        <postalCode>Postal Code</postalCode>
+                                        <provinceCode>Province Code</provinceCode>
+                                        <state>State</state>
+                                        <streetAddressOne>Street Name 1</streetAddressOne>
+                                        <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                        <streetAddressThree>Street Name 3</streetAddressThree>
+                                        <geographicalCoordinates>
+                                            <latitude>13° 00 N</latitude>
+                                            <longitude>122° 00 E</longitude>
+                                        </geographicalCoordinates>
+                                    </officialAddress>
+                                    <legalRegistration>
+                                        <legalRegistrationNumber>XX</legalRegistrationNumber>
+                                        <legalRegistrationType codeListVersion="1.0">BUSINESS_REGISTRATION</legalRegistrationType>
+                                        <legalRegistrationAdditionalInformation>XX</legalRegistrationAdditionalInformation>
+                                    </legalRegistration>
+                                </organisationDetails>
+                                <financialInstitutionInformation>
+                                    <financialInstitutionName>XX</financialInstitutionName>
+                                    <financialInstitutionBranchName>XX</financialInstitutionBranchName>
+                                    <financialAccount>
+                                        <financialAccountNumber>1001</financialAccountNumber>
+                                        <financialAccountNumberTypeCode codeListVersion="1.0">CHECKING_ACCOUNT</financialAccountNumberTypeCode>
+                                        <financialAccountName>ABC Corporation</financialAccountName>
+                                    </financialAccount>
+                                    <financialRoutingNumber>
+                                        <financialRoutingNumber>1001</financialRoutingNumber>
+                                        <financialRoutingNumberTypeCode codeListVersion="1.0">SWIFT_IDENTIFICATION</financialRoutingNumberTypeCode>
+                                    </financialRoutingNumber>
+                                    <additionalFinancialInformation>
+                                        <description codeListVersion="1.0" languageCode="en">XX</description>
+                                    </additionalFinancialInformation>
+                                    <address>
+                                        <city>City</city>
+                                        <cityCode>City Code</cityCode>
+                                        <countryCode codeListVersion="1.0">US</countryCode>
+                                        <countyCode>County Code</countyCode>
+                                        <crossStreet>Cross Street</crossStreet>
+                                        <currencyOfPartyCode codeListVersion="1.0">USD</currencyOfPartyCode>
+                                        <languageOfThePartyCode codeListVersion="1.0">en</languageOfThePartyCode>
+                                        <name>Name</name>
+                                        <pOBoxNumber>PO Box Number</pOBoxNumber>
+                                        <postalCode>Postal Code</postalCode>
+                                        <provinceCode>Province Code</provinceCode>
+                                        <state>State</state>
+                                        <streetAddressOne>Street Name 1</streetAddressOne>
+                                        <streetAddressTwo>Street Name 2</streetAddressTwo>
+                                        <streetAddressThree>Street Name 3</streetAddressThree>
+                                        <geographicalCoordinates>
+                                            <latitude>13° 00 N</latitude>
+                                            <longitude>122° 00 E</longitude>
+                                        </geographicalCoordinates>
+                                    </address>
+                                </financialInstitutionInformation>
+                                <avpList>
+                                    <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                                </avpList>
+                            </incidentLocation>
+                            <avpList>
+                                <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                            </avpList>
+                        </incidentDetails>
+                        <inkStainDetails>
+                            <theftDeterrenceSystemID>XX</theftDeterrenceSystemID>
+                            <theftDeterrenceSystemName>XX</theftDeterrenceSystemName>
+                            <theftDeterrenceSystemType>XX</theftDeterrenceSystemType>
+                            <incidentCircumstances>
+                                <complaintID>XX</complaintID>
+                                <circumstanceDescription codeListVersion="1.0" languageCode="en">XX</circumstanceDescription>
+                                <incidentTypeCode codeListVersion="1.0">ACCIDENT</incidentTypeCode>
+                                <avpList>
+                                    <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                                </avpList>
+                            </incidentCircumstances>
+                            <avpList>
+                                <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                            </avpList>
+                        </inkStainDetails>
+                        <avpList>
+                            <eComStringAttributeValuePairList attributeName="XX" qualifierCodeList="XX" qualifierCodeListVersion="XX" qualifierCodeName="XX">XX</eComStringAttributeValuePairList>
+                        </avpList>
+                    </cash_despatch_advice_line_item_extension:cashDespatchAdviceLineItemExtension>
+                </extension>
+                <transactionalTradeItem>
+                    <gtin>08712345678906</gtin>
+                </transactionalTradeItem>                
+                <requestedItemIdentification>
+                    <gtin>08712345678906</gtin>
+                </requestedItemIdentification>                
+                <deliveryNote>
+                    <entityIdentification>DN</entityIdentification>
+                    <creationDateTime>2007-04-24T09:00:00.000-05:00</creationDateTime>
+                    <lineItemNumber>001</lineItemNumber>
+                </deliveryNote>
+            </despatchAdviceLineItem>
+        </despatchAdviceLogisticUnit>
+    </despatchAdvice>
+</despatch_advice:despatchAdviceMessage>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema 
+	targetNamespace="http://www.govtalk.gov.uk/metadata/egms" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	xmlns:iso639="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" 
+	xmlns:gcl="http://www.govtalk.gov.uk/metadata/gcl" 
+	xmlns="http://www.govtalk.gov.uk/metadata/egms" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	version="0.1"
+	id="egms-xmlschema">
+	<xs:annotation>
+		<xs:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/metadata/egms" xmlns:egms="http://www.govtalk.gov.uk/metadata/egms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.govtalk.gov.uk/metadata/egms egms-profile-schemas.xsd">
+				<Contributor Role="reviewer" Href="mailto:adam.bailin@cabinet-office.gsi.gov.uk">Adam Bailin</Contributor>
+				<Contributor Role="developer" Href="mailto:paul.spencer@boynings.co.uk">Paul Spencer</Contributor>
+				<Creator Href="mailto:info@boynings.co.uk">Boynings Consulting Ltd</Creator>
+				<Created>2004-12-16</Created>
+				<Modified>2004-12-16</Modified>
+				<Description>XML binding for the Metadata element for the e-GMS Application Profile for XML Schema</Description>
+				<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+				<Identifier Href="http://www.govtalk.gov.uk/.../egms-profile-schemas-v0-1.xsd">egms-xmlschema</Identifier>
+				<Language>eng</Language>
+				<Publisher Href="mailto:govtalk@cabinet-office.gsi.gov.uk">Cabinet Office e-Government Unit</Publisher>
+				<ConformsTo>http://www.w3.org/2001/XMLSchema</ConformsTo>
+				<IsVersionOf>http://www.govtalk.gov.uk/documents/egms-ap-xml-schemas.pdf</IsVersionOf>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/metadata/egms">Metadata</ProvidesDefinitionOf>
+				<Requires>http://www.govtalk.gov.uk/.../egms-components.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/.../gcl-0-2.xsd</Requires>
+				<Requires>http://www.govtalk.gov.uk/.../UBL-CodeList-LanguageIdentificationCode-1.0.xsd</Requires>
+				<Copyright>Crown Copyright 2004</Copyright>
+				<Status>draft</Status>
+				<StatusDescription>For review by ad hoc GSG metadata representation sub-committee</StatusDescription>
+				<Version>0.1</Version>
+				<Category codeListID="GCL" codeListAgencyName="Cabinet Office" codeListName="Government Category List" codeListVersionID="0.1" codeListURI="http://www.govtalk.gov.uk/schemasstandards/gcl.xsd" codeListSchemeURI="http://www.govtalk.gov.uk/metadata/gcl" languageID="en">Metadata</Category>
+				<Project>e-GMS Application Profile for XML Schema</Project>
+				<Title>XML binding for the Metadata element for the e-GMS Application Profile for XML Schema</Title>
+				<Type>architectural</Type>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="http://www.govtalk.gov.uk/metadata/gcl" schemaLocation="gcl-v0-2.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ubl:codelist:LanguageIdentificationCode:1:0" schemaLocation="UBL-CodeList-LanguageIdentificationCode-1.0.xsd"/>
+	<xs:include schemaLocation="egms-components-v0-1.xsd"/>
+	<xs:element name="Metadata">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Contributor" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Spatial" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Temporal" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Creator"/>
+				<xs:element ref="Created" minOccurs="0"/>
+				<xs:element ref="Issued" minOccurs="0"/>
+				<xs:element ref="Modified" maxOccurs="unbounded"/>
+				<xs:element ref="Valid" minOccurs="0"/>
+				<xs:element ref="Description" minOccurs="0"/>
+				<xs:element ref="Review" minOccurs="0"/>
+				<xs:element ref="Format">
+					<xs:annotation>
+						<xs:documentation>http://www.iana.org/assignments/media-types/</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="Identifier"/>
+				<xs:element ref="Language" minOccurs="0"/>
+				<xs:element ref="Publisher"/>
+				<xs:element ref="ConformsTo" maxOccurs="unbounded"/>
+				<xs:element ref="HasPart" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="IsPartOf" minOccurs="0"/>
+				<xs:element ref="IsVersionOf" minOccurs="0"/>
+				<xs:element ref="ProvidesDefinitionOf" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Requires" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Copyright" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ProtectiveMarking" minOccurs="0"/>
+				<xs:element ref="Status"/>
+				<xs:element ref="StatusDescription"/>
+				<xs:element ref="Version"/>
+				<xs:element ref="Category" maxOccurs="unbounded"/>
+				<xs:element ref="Project" minOccurs="0"/>
+				<xs:element ref="Title"/>
+				<xs:element ref="Type"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

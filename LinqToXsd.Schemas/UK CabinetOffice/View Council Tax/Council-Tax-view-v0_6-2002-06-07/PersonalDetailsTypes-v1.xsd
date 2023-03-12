@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema for citizen details -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Citizen">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms" xmlns:dcq="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:contributor>e-champions,Government Schema Group, IDeA</dc:contributor>
+			<dc:creator>alphaXML Ltd  http://www.alphaxml.com
+						<dcq:owner>Technology Policy Team, Office of the e-Envoy, Cabinet Office</dcq:owner>
+				<dcq:contact>ukgovtalk@citu.gsi.gov.uk</dcq:contact>
+			</dc:creator>
+			<dc:date>
+				<dcq:created>2001-12-19</dcq:created>
+			</dc:date>
+			<dc:date>
+				<dcq:modified>2002-01-16</dcq:modified>
+			</dc:date>
+			<dc:format>text</dc:format>
+			<dc:format>
+				<dc:medium>http://www.w3.org/2001/XMLSchema</dc:medium>
+			</dc:format>
+			<dc:format>
+				<dc:medium>XML Schema (.xsd) file, W3C Recommendation 2001</dc:medium>
+			</dc:format>
+			<dc:identifier>Citizen-v1</dc:identifier>
+			<dc:language>en</dc:language>
+			<dc:publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</dc:publisher>
+			<dc:rights>
+				<dcq:copyright>Crown Copyright 2002</dcq:copyright>
+				<gms:SecurityClassification>Unclassified</gms:SecurityClassification>
+			</dc:rights>
+			<dc:subject>
+				<gms:Category>People, communities and living</gms:Category>
+			</dc:subject>
+			<dc:subject>
+				<gms:Project>Govtalk Development of Personal Details Types Schema</gms:Project>
+			</dc:subject>
+			<dc:title>Personal Details Types architectural schema</dc:title>
+			<dc:description>
+				<dcq:abstract>Schema for general data types for a citizen</dcq:abstract>
+			</dc:description>
+			<dc:relation>
+				<gms:HasPart>ContactTypes-v1</gms:HasPart>
+			</dc:relation>
+			<dc:relation>
+				<gms:HasPart>CitizenIdentificationTypes-v1</gms:HasPart>
+			</dc:relation>
+			<dc:relation>
+				<gms:HasPart>CommonSimpleTypes-v1</gms:HasPart>
+			</dc:relation>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation="ContactTypes-v1.xsd"/>
+	<xsd:include schemaLocation="CitizenIdentificationTypes-v1.xsd"/>
+	<!-- Next include is required because XML Spy v4.2 cannot handle two levels of includes for schemas without target namespaces. Bug reported and accepted by Altova. -->
+	<xsd:include schemaLocation="CommonSimpleTypes-v1.xsd"/>
+	<!-- start of CitizenNameStructure type definition -->
+	<xsd:complexType name="CitizenNameStructure">
+		<xsd:sequence>
+			<xsd:element name="CitizenNameTitle" type="CitizenNameTitleType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="CitizenNameForename" type="CitizenNameForenameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="CitizenNameSurname" type="CitizenNameSurnameType"/>
+			<xsd:element name="CitizenNameSuffix" type="CitizenNameSuffixType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="CitizenNameRequestedName" type="CitizenNameRequestedNameType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of CitizenNameStructure type definition -->
+	<!-- start of CitizenRegistrationStructure type definition -->
+	<xsd:complexType name="CitizenRegistrationStructure">
+		<xsd:sequence>
+			<xsd:element name="NationalInsuranceNumber" type="NationalInsuranceNumberType" minOccurs="0"/>
+			<xsd:element name="UniqueTaxReference" type="UniqueTaxReferenceType" minOccurs="0"/>
+			<xsd:element name="DrivingLicenceNumber" type="DrivingLicenceNumberType" minOccurs="0"/>
+			<xsd:element name="NHSNumber" type="NHSnumberStructure" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="PassportNumber_Old" type="PassportNumber_OldType"/>
+				<xsd:element name="PassportNumber_New" type="PassportNumber_NewType"/>
+			</xsd:choice>
+			<xsd:element name="ElectoralRollNumber" type="ElectoralRollNumberType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of CitizenRegistrationStructure type definition -->
+	<!-- start of CitizenDetailsStructure type definition -->
+	<xsd:complexType name="CitizenDetailsStructure">
+		<xsd:sequence>
+			<xsd:element name="CitizenName" type="CitizenNameStructure"/>
+			<xsd:element name="CitizenRegistration" type="CitizenRegistrationStructure"/>
+			<xsd:element name="PreferredLanguages" type="LanguageType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ContactDetails" type="CitizenContactDetailsStructure"/>
+			<xsd:element name="CitizenSex" type="SexType" minOccurs="0"/>
+			<xsd:element name="CitizenMaritalStatus" type="MaritalStatusType" minOccurs="0"/>
+			<xsd:element name="CitizenBirthDate" type="CitizenBirthDateStructure" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of CitizenDetailsStructure type definition -->
+	<!-- start of CitizenContactDetailsStructure type definition -->
+	<xsd:complexType name="CitizenContactDetailsStructure">
+		<xsd:sequence>
+			<xsd:element name="Email" type="EmailStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Telephone" type="TelephoneStructure" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Fax" type="FaxStructure" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of CitizenContactDetailsStructure type definition -->
+	<!-- start of CitizenBirthDateStructure type definition -->
+	<xsd:complexType name="CitizenBirthDateStructure">
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation>This might change to allow codes as well as descriptions of for verification</xsd:documentation>
+			</xsd:annotation>
+			<xsd:element name="BirthDate" type="DateType"/>
+			<xsd:element name="VerifiedBy" type="VerifiedByType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end of CitizenBirthDateStructure type definition -->
+	<xsd:simpleType name="VerifiedByType">
+		<xsd:annotation>
+			<xsd:documentation>A Change of Address specific data type</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:enumeration value="not verified"/>
+			<xsd:enumeration value="accepted on balance of probabilities"/>
+			<xsd:enumeration value="secondary certificate"/>
+			<xsd:enumeration value="certified copy of birth certificate"/>
+			<xsd:enumeration value="short form birth certificate or certificate of registration of birth"/>
+			<xsd:enumeration value="birth certificate"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameTitleType">
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameForenameType">
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameSurnameType">
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameSuffixType">
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CitizenNameRequestedNameType">
+		<xsd:restriction base="RestrictedStringType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="70"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

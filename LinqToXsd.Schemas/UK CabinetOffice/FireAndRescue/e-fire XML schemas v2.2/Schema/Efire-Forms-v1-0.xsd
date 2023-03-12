@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by david sinfield (customarchery) -->
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Simon Phillips (Parity Solutions Ltd Wimbledon Bridge House) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fire.gov.uk/schemas/Efire" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-Forms-v1-0">
+	<xs:include schemaLocation="Efire-MetaData-v1-0.xsd"/>
+	<xs:include schemaLocation="Efire-Messages-v1-0.xsd"/>
+	<xs:include schemaLocation="Efire-Routing-v1-0.xsd"/>
+	<xs:include schemaLocation="Efire-Types-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(mailto:d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group, ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-09-03</Modified>
+				</Date>
+				<Description>Efire visit request</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-Forms-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>Efire-Metadata-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-Messages-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-Routing-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Safety/Fire</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>Form schema for visit request</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Form">
+		<xs:annotation>
+			<xs:documentation>Contains the form specific data, metadata and routing information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MetaData" type="MetaDataStructure"/>
+				<xs:element name="Document" type="EfireDocumentStructure"/>
+				<xs:element name="Routing" type="RoutingStructure"/>
+			</xs:sequence>
+			<xs:attribute name="SchemaVersion" type="VersionType" use="required" fixed="v1-0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

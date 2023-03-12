@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Paul Spencer (Boynings Consulting) -->
+<xs:schema targetNamespace="urn:oasis:names:tc:evs:schema:eml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0" id="eml-320">
+	<xs:include schemaLocation="120-310-330-include-v4-0g.xsd"/>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure">
+					<xs:sequence>
+						<xs:element ref="InterDb"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:unique name="DisplayOrder">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@DisplayOrder"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="InterDb">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Source" type="ProcessingUnitStructure"/>
+				<xs:element name="Destination" type="ProcessingUnitStructure"/>
+				<xs:choice>
+					<xs:element name="Request">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Action" type="xs:token"/>
+								<xs:element name="ActionDateTime" type="xs:dateTime"/>
+								<xs:choice>
+									<xs:element ref="VoterRegistration" minOccurs="0" maxOccurs="unbounded"/>
+									<xs:element ref="Candidate" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:choice>
+								<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Response">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Action" type="xs:token" minOccurs="0"/>
+								<xs:element name="Result">
+									<xs:complexType>
+										<xs:choice>
+											<xs:sequence>
+												<xs:element name="Success" type="YesNoType"/>
+												<xs:element name="Remark" type="xs:token" minOccurs="0"/>
+											</xs:sequence>
+											<xs:element name="Remark" type="xs:token"/>
+										</xs:choice>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="ActionedDateTime" type="xs:dateTime" minOccurs="0"/>
+								<xs:choice>
+									<xs:element ref="VoterRegistration" minOccurs="0" maxOccurs="unbounded"/>
+									<xs:element ref="Candidate" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:choice>
+								<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

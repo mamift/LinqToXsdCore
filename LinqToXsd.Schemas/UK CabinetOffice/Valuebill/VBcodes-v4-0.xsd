@@ -1,0 +1,3660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Changes 3.1 to 4-0 (Second maintenance release)
+		Descriptions for  NndrReasonForReportCode 13, 18 and 19 revised (as per VOA Change Request Oct.2005)
+		Metadata updated to eGMS-v3-0
+
+	Changes 3.0 to 3.1 (First maintenance release)
+		Description for  NndrReasonForReportCode 14 updated
+		Additional codes requested by VOA for following types:
+			<CtaxCourtDecisionIndicatorCodeContentType>
+			<CtaxReasonForReportCodeContentType>
+			<CtaxReasonForAlterationCodeContentType>
+			<NndrReasonForChangeCodeContentType>
+			<NndrReasonForReportCodeContentType>
+		Codes adjusted for <CtaxAppealSettlementTypeCodeContentType>
+
+	Final Project Version 3.0 issued (no change from 2.0c)
+
+	Changes 2.0b to 2.0c
+		Spelling of element name <NndrAnalysisClassType> corrected
+		Pattern value for <NndrAnalysisClassType> restricted to 3 characters
+		Enumeration value 'EN' removed from <NndrPrimaryDescriptionContentCodeType>
+		Various Dereference Descriptions updated to reflect changes to the VOA Technical Circular
+		Reference to 'code' namespace removed - not required
+		
+	Changes 2.0a to 2.0b
+		Additional NDR codes for CaseType REV and ReasonForChange 26 inserted
+		
+	Changes 2.0 to 2.0a incorporating  GovTalk consultation
+		insert missing description attribute for following types:
+			<CtaxNoActionCodeContentType> 
+			<NndrPropertyCategoryCodeContentType> 
+			<NndrPrimaryDescriptionCodeContentType> 
+			<NndrSecondaryDescriptionCodeContentType>
+		<NndrAnalysisClassType> added to support NNDR analysis in List schema
+
+	Version 2.0 issued for pilot operation and GovTalk consultation
+	
+	Changes 1.1a to 1.1b incorporating VOA feedback on V 1.1a
+		Enumerations "CR13" & "CR14" added to <CtaxReasonForReportCode> & "CR11" description changed  
+		Enumerations for <CtaxAppealSettlementTypeCode> changed
+		<CtaxNoActionCodeCode> changed to <CtaxNoActionCode> 
+		<NNDRnoActionCodeCode> changed to <NNDRnoActionCode> 
+		Enumerations "6" & "14" added to <NndrReasonForChangeCode>
+		Enumerations "CA" & "WL" added to <NNDRsettlementTypeCode>
+		NNDR Property Description Code names corrected
+
+	Version 1.1a incorporating changes agreed with VOA 30/04/04 -->
+<xsd:schema xmlns="http://www.govtalk.gov.uk/LG/Valuebill" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.govtalk.gov.uk/LG/Valuebill" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4-0" id="VBcodes">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<Metadata xmlns="http://www.govtalk.gov.uk/metadata/egms">
+				<Contributor Href="mailto:govtalk@cabinet-office.gsi.gov.uk">Technology Policy Team, e-Government Unit</Contributor>
+				<Contributor Href="mailto:valuebill@tuckwood.co.uk">Valuebill Project, Project Manager - Barry Tuckwood</Contributor>
+				<Creator Href="mailto:bay@egic.ltd.uk">Bruce Yeoman, EGiC</Creator>
+				<Created>2004-01-21</Created>
+				<Modified>2004-06-03</Modified>
+				<Modified>2004-12-12</Modified>
+				<Modified>2005-02-14</Modified>
+				<Modified>2006-01-24</Modified>
+				<Description>Valuebill CODE Schema holding code lists for messages</Description>
+				<Review>2006-04-01</Review>
+				<Format Scheme="http://www.iana.org/assignments/media-types/">text/xml</Format>
+				<Identifier>VBcodes</Identifier>
+				<Identifier Href="http://www.govtalk.gov.uk/LG/Valuebill/VBcodes-v4-0.xsd">VBcodes-v4-0</Identifier>
+				<Language codeListID="ISO639-2">eng</Language>
+				<Publisher Href="mailto:valuebill@tuckwood.co.uk">Valuebill Project</Publisher>
+				<ConformsTo>http://www.w3.org/2001/XMLSchema</ConformsTo>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxAppealSettlementTypeCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxCourtDecisionIndicatorCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxListUpdateTypeCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxNoActionCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxReasonForAlterationCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxReasonForReportCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">CtaxReportOrCaseTypeCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrCaseTypeCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrInvalidClearanceCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrInvalidReasonCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrNoActionCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrPrimaryDescriptionCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrPropertyCategoryCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrReasonForChangeCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrReasonForReportCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrSecondaryDescriptionCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrSettlementTypeCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrUpdateCodeStructure</ProvidesDefinitionOf>>
+				<ProvidesDefinitionOf Namespace="http://www.govtalk.gov.uk/LG/Valuebill">NndrAnalysisClassType</ProvidesDefinitionOf>>
+				<Copyright>Crown Copyright 2004, 2005</Copyright>
+				<ProtectiveMarking>Unclassified</ProtectiveMarking>
+				<Status>draft</Status>
+				<StatusDescription>Maintenance Release for Consultation</StatusDescription>
+				<Version>4-0</Version>
+				<Category codeListID="GCL">People, communities and living; Local Taxes</Category>
+				<Project>Valuebill National Project</Project>
+				<Title>Valuebill Report and Schedule Codes</Title>
+				<Type>architectural code</Type>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:complexType name="CtaxCourtDecisionIndicatorCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="CtaxCourtDecisionIndicatorCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="CtaxCourtDecisionIndicatorCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="V">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Valuation Tribunal Determination.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="C">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Valuation Tribunal Confirmation.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="D">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Decision.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="H">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Confirmation.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="E">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Consent Order</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="R">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Valuation Tribunal Redetermination following a High Court Referral.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="X">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Appeal Withdrawn</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="CtaxReportOrCaseTypeCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="CtaxReportOrCaseTypeCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="CtaxReportOrCaseTypeCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="BA">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>a report/case received from Billing Authority.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LO">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>a report/case raised by the Valuation Office Agency Listing Officer.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IP">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>an appeal against the Council Tax List entry.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="CtaxAppealSettlementTypeCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="CtaxAppealSettlementTypeCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="CtaxAppealSettlementTypeCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="V">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Valuation Tribunal Determination.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="C">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Valuation Tribunal Confirmation.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="D">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Decision.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="H">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Confirmation.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="E">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Consent Order.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="R">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Valuation Tribunal Redetermination following a High Court Referral</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="X">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>High Court Appeal Withdrawn.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="A">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Agreed</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="F">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Well Founded</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="CtaxReasonForReportCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="CtaxReasonForReportCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="CtaxReasonForReportCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="CR01">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Demolished</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR02">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Change from Domestic Use - Deletion from Council Tax Valuation List</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR03">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR04">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Change to Domestic Use - Inclusion in Council Tax Valuation List</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR05">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Reconstitution (including splits/mergers)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR06">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Any case that relates to a Composite dwelling not covered by any other code</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR07">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Demolition of Part - Potential reduction in Band</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR08">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Error in Council Tax Valuation List Entry (reinstate) Immediate Review (for Valuation Office Agency use only)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR09">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Other case - Immediate Review</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR10">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Structural Alterations - Potential Increase in Band</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR11">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Boundary Change - Deletion</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR12">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Change of Address</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR13">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Boundary Change - New</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR14">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Minor Address Change</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR15">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Enquiry Received</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR16">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Consequential To Band Alteration For a Neighbouring Dwelling</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="CtaxListUpdateTypeCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="CtaxListUpdateTypeCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="CtaxListUpdateTypeCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="D">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deletion.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="R">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Reinstatement.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Insertion (New).</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="A">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Amendment.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="E">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Historic Deletion.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="S">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Historic Reinstatement.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="J">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Historic Insertion (New).</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="B">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Historic Amendment.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="M">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Minor Address Change.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="CtaxReasonForAlterationCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="CtaxReasonForAlterationCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="CtaxReasonForAlterationCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="CL01">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Demolished</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL02">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Reconstituted into different units (splits or mergers)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL03">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Ceased to be a Dwelling</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL04">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deletion of entry due to Boundary Change</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL05">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deletion of entry due to change of address</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL06">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deletion of entry due to clerical error</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL07">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deletion as no longer capable of being occupied as a dwelling</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL09">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deletion of entry for other reasons</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL10">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New property not previously included in Valuation List</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL11">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New Entry derived from a reconstitution (split or merger)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL12">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New Entry due to a Boundary Change</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL13">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New Entry due to A Change of Address</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL14">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New entry due to a previous clerical error</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL19">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New Entry for other reasons</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL20">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Reinstatement of previous entry due to a clerical error</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL21">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Previously wholly domestic now a constitutes a composite hereditament</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL22">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Increase in domestic element of a composite hereditament</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL23">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Decrease in domestic element of a composite hereditament</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL24">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Material increase and relevant transaction</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL25">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Material reduction</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL26">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Correction of an inaccuracy in the Valuation List</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL27">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Alteration to a Deleted Band</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL28">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Previously composite now wholly domestic</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL29">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Amendment for other reasons</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="CtaxNoActionCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="CtaxNoActionCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="CtaxNoActionCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="CN01">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Already reflected in the current Band</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CN02">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>De Minimis</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CN03">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Duplicate Report</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CN04">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Present Band Sufficient</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CN05">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Not ready for Banding - please re-submit when complete</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CN06">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Not liable for banding within Council Tax</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CN09">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Non standard reason</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrPropertyCategoryCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrPropertyCategoryCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrPropertyCategoryCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="C">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Commercial</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="E">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Education</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="F">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Formula-Assessed Public Utility</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Industrial</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="L">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Leisure</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="M">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Miscellaneous</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="N">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Non-formula Assessed Public and Other Utilities</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="T">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Treasury(Crown)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrPrimaryDescriptionCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrPrimaryDescriptionCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrPrimaryDescriptionCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="CA">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>ADVERTISING RIGHT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CA1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>ADVERTISING STATION AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CAMPING SITE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CARAVAN PARK AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HOLIDAY CENTRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CARAVAN AND PITCH AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CARAVAN PITCH AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CHALET PARK AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CARAVAN AND CHALET PARK AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CC7">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>TIME SHARE COMPLEX AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CG">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>PETROL FILLING STATION AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CG1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>VEHICLE REPAIR WORKSHOP AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CG2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>GARAGE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CG3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CAR SHOWROOM AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CG4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>ROAD HAULAGE DEPOT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CH">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HOTEL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CH1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>APARTMENT HOUSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CH1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SELF CATERING HOLIDAY UNIT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CH2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BOARDING HOUSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CH2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>GUEST HOUSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CH3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MOTEL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>PUBLIC HOUSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>WINE BAR AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CL2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CLUB AND PREMISES (Social)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CM">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MARKET OUTDOOR AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CM">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MARKET AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CM1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MARKET INDOOR AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CM1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MARKET AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CO">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>OFFICES AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CO1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>COMPUTER CENTRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CP">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CAR PARK AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CP1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CAR PARKING SPACE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>RESTAURANT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CAFE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CR2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>FOOD COURT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SHOP AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BANK AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BETTING SHOP AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HAIRDRESSING SALON AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>KIOSK AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>LAUNDERETTE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>POST OFFICE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS7">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SHOWROOM AND PREMISES (Not Car Showroom)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS8">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HYPERMARKET AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS9">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SUPERSTORE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CS10">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>RETAIL WAREHOUSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CW">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>WAREHOUSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CW1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>LAND USED FOR STORAGE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CW2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>STORAGE DEPOT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CW3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>STORE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Commercial unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EL">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SCHOOL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EL1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>COLLEGE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EM">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>LIBRARY AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EM1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MUSEUM AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EN1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>DAY NURSERY AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EP">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SCHOOL AND PREMISES (Private)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EP1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>COLLEGE AND PREMISES (Private)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EU">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>UNIVERSITY AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="EX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Education unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="FD">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>DOCK HEREDITAMENT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="FE">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>ELECTRICITY HEREDITAMENT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IF">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>FACTORY AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IF1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MILL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IF2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>WORKS AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IF3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>WORKSHOP AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IF4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BUSINESS UNIT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IM">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>QUARRY AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IM1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MINE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IM2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BRICKWORKS AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IM3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CONCRETE BATCHING PLANT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IM4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>TIPPING SITE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IM5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SPOIL HEAP WORKINGS AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IM6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>PEAT FIELDS AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IMX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Industrial [minerals] Unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Industrial Unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LC">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>COMMUNITY CENTRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LC1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CLUBHOUSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LC2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>LEISURE CENTRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LC3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HALL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LH1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BEACH HUT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LI">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SPORTS CENTRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LI1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>STADIUM AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SPORTS GROUND AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SPORTING RIGHT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>GOLF COURSE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MARINA AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>PLAYING FIELD AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>FOOTBALL GROUND AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SWIMMING POOL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LS7">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>TENNIS CENTRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LT">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CINEMA AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LT1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMUSEMENT ARCADE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LT2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BINGO HALL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LT3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>THEATRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LT4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMUSEMENT PARK AND PREMISES (Incl. Zoos)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Leisure unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MC">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CEMETERY AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MC1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CREMATORIUM AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MH">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SURGERY AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MH1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HEALTH CENTRE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MH2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HOSPITAL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MH3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HOSPITAL AND PREMISES (Private)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ML">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>OFFICES AND PREMISES (Local Government)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MP">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>POLICE STATION AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MP1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>LAW COURT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MP2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>PRISON AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MR">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HOSTEL AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MR1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>HOME AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MS1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>FIRE STATION AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MS2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMBULANCE STATION AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MT1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>COMMUNICATION STATION AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MT2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>PUBLIC TELEPHONE KIOSK AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MTX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Miscellaneous [Communications] Unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Miscellaneous Unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NT">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>BUS STATION AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NT1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MOORING AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NT3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>WHARF AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NW">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>SEWAGE TREATMENT WORKS AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Non Formula Assessed Public and Other Utilities Unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="TD1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>FORCES CAREERS OFFICE AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="TD2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AUXILIARY DEFENCE ESTABLISHMENT AND PREMISES</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="TX">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>(Crown unclassified)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrSecondaryDescriptionCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrSecondaryDescriptionCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrSecondaryDescriptionCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="C">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>CAR SPACE</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="O">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>OFFICE (Singular)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="S">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>STORE</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="W">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>WORKSHOP</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrUpdateCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrUpdateCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrUpdateCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="A">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMENDMENT to HISTORICAL Assessment (Single hereditament)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="B">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>DELETION of HISTORICAL Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="C">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMENDMENT of CURRENT Assessment (Single assessment)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="D">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>DELETION of CURRENT Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="E">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMENDMENT of CURRENT Assessment (splits or mergers) reconstituted</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="F">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>DELETION of CURRENT Assessment (splits or mergers) reconstituted</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="G">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>NEW HISTORICAL Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="H">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>RATING LIST ENDORSEMENTS - Current (minor changes to the rating list)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>RATING LIST ENDORSEMENTS - Historical (minor changes to the rating list)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="J">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMENDMENT of the deletion of an Historical assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="K">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>MINOR LIST UPDATES.(Correction of minor errors - no change to CURRENT rating assessment ) e.g. spelling error corrections in Number/Name address field - description - individual postcode and BA reference number corrections/changes.</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="L">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Significant ADDRESS CHANGE ONLY and ADDRESS CHANGE WITH ALTERATION/CORRECTION of CURRENT rating assessment (single assessment).</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="M">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Significant ADDRESS CHANGE ONLY and ADDRESS CHANGE WITH ALTERATION/CORRECTION of HISTORIC rating assessment (single assessment).</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="N">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>NEW CURRENT Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="R">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>AMENDMENT of the deletion of a CURRENT assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrReasonForReportCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrReasonForReportCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrReasonForReportCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New (Formerly Domestic)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New (Formerly Exempt)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Other (New)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deleted - Demolished</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deleted - Ceased</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="7">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deleted - Exempt</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="8">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Other (deleted)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="9">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Improvements and/or Alterations</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="10">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Reconstitution</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="11">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Other (Alterations)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="12">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Address/Reference Number Only Change</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="13">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>ACW Resulting from Scheme Review</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="14">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Consequential - Resulting from Appeal Action</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="15">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Annual Revision (Minerals)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="16">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Annual Revision (Licensed Property)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="17">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Continuous Referencing</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="18">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>ACW Reactive Resulting from Enquiry</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="19">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>ACW Scheme Investigation and Review</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrNoActionCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrNoActionCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrNoActionCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="0">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Non Standard reason (input)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Already included in the Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>De Minimis</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Exempt from Rating</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Duplicate Report</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Present Assessment sufficient</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Not ready for assessment please submit when complete</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="7">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Not Rateable</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="8">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Case Aborted</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrReasonForChangeCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrReasonForChangeCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrReasonForChangeCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="0">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Minor Change Only</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Demolished</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Reconstituted</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Exempt from Rating</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Ceased to be relevant</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Boundary Change</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Address Change and Review of Assessment (deletion)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="7">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Deletion of Draft List Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="8">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Replacement Reval 2000 Assessment (Deletion)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="9">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Other deletion</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="10">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>New Hereditament</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="11">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Reconstituted</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="12">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Ceased to be Exempt</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="13">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Boundary Change</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="14">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Address Change and Review of Assessment (Insertion)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="17">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Replacement Reval 2000 Assessment (New)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="19">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Other New</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="20">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Alteration (of a non deleted assessment)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="21">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Alteration of Effective Date only (non deleted assessment)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="26">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Amend Draft List Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="28">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Correct Reval 2000 Assessment</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="29">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Other Alteration (non deleted assessment)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="31">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Alteration of a deleted assessment (Effective date only)</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrCaseTypeCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrCaseTypeCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrCaseTypeCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="BAR">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Billing Authority Report Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BC">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Boundary Change Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="HL">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>House of Lords Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IPP">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Proposal Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LT">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Lands Tribunal Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MRL">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Minor Rating List Change Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VOR">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Valuation Office Report Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VP">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Invalid Proposal Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REV">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Revaluation Case</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrSettlementTypeCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrSettlementTypeCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrSettlementTypeCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="A">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Agreed</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="C">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Confirmed by Valuation Tribunal</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CA">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Consent Order</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="D">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Dismissed by Valuation Tribunal</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="DL">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Dismissed by Lands Tribunal</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="F">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Well Founded</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="L">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Decision by Lands Tribunal</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="T">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Confirmed by Lands Tribunal</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="V">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Decision by Valuation Tribunal</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="W">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Withdrawn</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="WL">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>Withdrawn by Lands Tribunal</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrInvalidReasonCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrInvalidReasonCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrInvalidReasonCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="VP1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>NOT INTERESTED PERSON</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VP2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>STATUTORY TIME LIMIT EXPIRED</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VP3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>DOES NOT FULFILL STATUTORY REQUIREMENTS</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NndrInvalidClearanceCodeStructure">
+		<xsd:simpleContent>
+			<xsd:extension base="NndrInvalidClearanceCodeContentType">
+				<xsd:attribute name="Description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NndrInvalidClearanceCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="I1">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>NO RESPONSE/NOT PROCEEDING</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I2">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>FRESH PROPOSAL</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I3">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>INVALIDITY NOTICE WITHDRAWN BEFORE TRANSMISSION TO VT</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I4">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>INVALIDITY NOTICE WITHDRAWN AFTER TRANSMISSION TO VT</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I5">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>INVALIDITY APPEAL DECISION INVALID</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="I6">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<Dereference>
+							<Description xml:lang="en">
+								<Full>INVALIDITY APPEAL DECISION VALID</Full>
+							</Description>
+						</Dereference>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NndrAnalysisClassType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="3"/>
+			<xsd:pattern value="[CEFILMNT]{1}[A-Z]{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

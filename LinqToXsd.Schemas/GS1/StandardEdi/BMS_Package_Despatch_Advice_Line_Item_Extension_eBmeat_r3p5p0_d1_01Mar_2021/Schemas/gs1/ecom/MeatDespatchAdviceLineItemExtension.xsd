@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:meat_despatch_advice_line_item_extension="urn:gs1:ecom:meat_despatch_advice_line_item_extension:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:meat_despatch_advice_line_item_extension:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:element name="meatDespatchAdviceLineItemExtension" type="meat_despatch_advice_line_item_extension:MeatDespatchAdviceLineItemExtensionType"/>
+    <xsd:complexType name="AnimalIdentificationType">
+        <xsd:sequence>
+            <xsd:element name="animalIdentificationNumber" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="animalIdentificationTypeCode" type="meat_despatch_advice_line_item_extension:AnimalIdentificationTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AnimalIdentificationTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="MeatAcidityType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="acidityMeasurementTime" type="xsd:integer"/>
+            <xsd:element minOccurs="0" name="acidityOfMeat" type="xsd:float"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatActivityHistoryType">
+        <xsd:sequence>
+            <xsd:element name="meatProcessingActivityTypeCode" type="meat_despatch_advice_line_item_extension:MeatProcessingActivityTypeCodeType"/>
+            <xsd:element minOccurs="0" name="currentStepIdentification" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="nextStepIdentification" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="activitySubStepIdentification" type="xsd:positiveInteger"/>
+            <xsd:element minOccurs="0" name="countryOfActivityCode" type="shared_common:CountryCodeType"/>
+            <xsd:element minOccurs="0" name="dateOfArrival" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="dateOfDeparture" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="movementReasonCode" type="shared_common:CodeType"/>
+            <xsd:element name="meatProcessingParty" type="meat_despatch_advice_line_item_extension:MeatProcessingPartyType"/>
+            <xsd:element minOccurs="0" name="meatWorkItemIdentification" type="meat_despatch_advice_line_item_extension:MeatWorkItemIdentificationType"/>
+            <xsd:element minOccurs="0" name="meatBreedingDetails" type="meat_despatch_advice_line_item_extension:MeatBreedingDetailsType"/>
+            <xsd:element minOccurs="0" name="meatFatteningDetails" type="meat_despatch_advice_line_item_extension:MeatFatteningDetailsType"/>
+            <xsd:element minOccurs="0" name="meatSlaughteringDetails" type="meat_despatch_advice_line_item_extension:MeatSlaughteringDetailsType"/>
+            <xsd:element minOccurs="0" name="meatCuttingDetails" type="meat_despatch_advice_line_item_extension:MeatCuttingDetailsType"/>
+            <xsd:element minOccurs="0" name="meatMincingDetails" type="meat_despatch_advice_line_item_extension:MeatMincingDetailsType"/>
+            <xsd:element minOccurs="0" name="avpList" type="ecom_common:Ecom_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatBreedingDetailsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="animalTypeCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="breedCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="breedOfMotherCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="breedOfFatherCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="crossBreedIndicator" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="dateOfBirth" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="feedingSystemCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="genderCode" type="shared_common:GenderEnumerationType"/>
+            <xsd:element minOccurs="0" name="housingSystemCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="paternalIdentification" type="meat_despatch_advice_line_item_extension:AnimalIdentificationType"/>
+            <xsd:element minOccurs="0" name="maternalIdentification" type="meat_despatch_advice_line_item_extension:AnimalIdentificationType"/>
+            <xsd:element minOccurs="0" name="breedingDNATest" type="meat_despatch_advice_line_item_extension:MeatTestType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatCuttingDetailsType">
+        <xsd:sequence>
+            <xsd:element name="meatProfileCode" type="shared_common:CodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatDespatchAdviceLineItemExtensionType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="animalIdentification" type="meat_despatch_advice_line_item_extension:AnimalIdentificationType"/>
+            <xsd:element minOccurs="0" name="slaughterNumber" type="meat_despatch_advice_line_item_extension:AnimalIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" name="meatActivityHistory" type="meat_despatch_advice_line_item_extension:MeatActivityHistoryType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatFatteningDetailsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="feedingSystemCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="housingSystemCode" type="shared_common:CodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatMincingDetailsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="fatContentPercent" type="xsd:float"/>
+            <xsd:element minOccurs="0" name="mincingTypeCode" type="shared_common:CodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatProcessingActivityTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="MeatProcessingPartyIdentificationTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="MeatProcessingPartyType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:TransactionalPartyType">
+                <xsd:sequence>
+                    <xsd:element name="meatProcessingPartyTypeCode" type="meat_despatch_advice_line_item_extension:MeatProcessingPartyTypeCodeType"/>
+                    <xsd:element minOccurs="0" name="approvalNumber" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="meatProcessingPartyIdentificationTypeCode" type="meat_despatch_advice_line_item_extension:MeatProcessingPartyIdentificationTypeCodeType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="MeatProcessingPartyTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="MeatSlaughteringDetailsType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="meatProfileCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="ageOfAnimal" type="xsd:nonNegativeInteger"/>
+            <xsd:element minOccurs="0" name="meatConformationCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="dateOfSlaughtering" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="fatContentPercent" type="xsd:float"/>
+            <xsd:element minOccurs="0" name="fatCoverCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="meatCategoryCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="meatColourCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="optimumMaturationDate" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="slaughteringSystemCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="slaughteringWeight" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="bseTest" type="meat_despatch_advice_line_item_extension:MeatTestType"/>
+            <xsd:element minOccurs="0" name="slaughteringDNATest" type="meat_despatch_advice_line_item_extension:MeatTestType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="meatAcidity" type="meat_despatch_advice_line_item_extension:MeatAcidityType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatTestType">
+        <xsd:sequence>
+            <xsd:element name="testResult" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="testMethod" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatWorkItemIdentificationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="meatWorkItemTypeCode" type="meat_despatch_advice_line_item_extension:MeatWorkItemTypeCodeType"/>
+            <xsd:element minOccurs="0" name="batchNumber" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="livestockMobIdentifier" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="productIdentification" type="ecom_common:Ecom_TradeItemIdentificationType"/>
+            <xsd:element minOccurs="0" name="slaughterNumber" type="meat_despatch_advice_line_item_extension:AnimalIdentificationType"/>
+            <xsd:element minOccurs="0" name="animalIdentification" type="meat_despatch_advice_line_item_extension:AnimalIdentificationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MeatWorkItemTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

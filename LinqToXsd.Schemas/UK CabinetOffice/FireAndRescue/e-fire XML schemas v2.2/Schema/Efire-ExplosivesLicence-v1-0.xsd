@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by david sinfield (customarchery) -->
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Simon Phillips (Parity Solutions Ltd Wimbledon Bridge House) -->
+<xs:schema xmlns="http://www.fire.gov.uk/schemas/Efire" xmlns:apd="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cst="http://www.govtalk.gov.uk/core" xmlns:ft="http://www.govtalk.gov.uk/financial/GDSCFinancialTypes" targetNamespace="http://www.fire.gov.uk/schemas/Efire" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="Efire-ExplosivesLicence-v1-0">
+	<xs:include schemaLocation="Efire-Types-v1-0.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/people/AddressAndPersonalDetails" schemaLocation="gdsc\PersonalDetailsTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/core" schemaLocation="gdsc\CommonSimpleTypes-v1-3.xsd"/>
+	<xs:import namespace="http://www.govtalk.gov.uk/financial/GDSCFinancialTypes" schemaLocation="gdsc\FinancialTypes-v1-0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>david sinfield,parity solutions(d.sinfield@parity.net)</Contributor>
+				<Contributor>steve bailey, hyfinity (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Creator>e-fire group,ODPM</Creator>
+				<Date>
+					<Created>2005-07-15</Created>
+				</Date>
+				<Date>
+					<Modified>2005-12-23</Modified>
+				</Date>
+				<Description>Application for Petroleum Licence</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>Efire-ExplosivesLicence-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>ODPM</Publisher>
+				<Relation>
+					<Requires>CommonSimpleTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>PersonalDetailsTypes-v1-3</Requires>
+				</Relation>
+				<Relation>
+					<Requires>FinancialTypes-v1-0</Requires>
+				</Relation>
+				<Relation>
+					<Requires>Efire-Types-v1-0</Requires>
+				</Relation>
+				<Rights>Unclassified
+					<Copyright>Crown Copyright 2005</Copyright>
+				</Rights>
+				<Subject>
+					<Category>Safety/Fire/Regulation</Category>
+				</Subject>
+				<Subject>
+					<Project>e-fire</Project>
+				</Subject>
+				<Title>Form schema for Petroleum Licence Application</Title>
+			</Metadata>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="StoragePeriodStructure">
+		<xs:annotation>
+			<xs:documentation>Used by the Explosives Licence Application. Either a holiday or a given period.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Holidays" type="HolidayType" maxOccurs="10"/>
+				<xs:element name="OtherDates" type="CalendarPeriodStructure"/>
+				<xs:element name="AllYear" type="cst:YesNoType"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NetMassStructure">
+		<xs:annotation>
+			<xs:documentation>Used by Explosives Licence Application.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:nonNegativeInteger">
+				<xs:attribute name="Unit" type="MassUnitType"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="HolidayType">
+		<xs:annotation>
+			<xs:documentation>Used by Explosives Licence Application Enumeration of predefined periods.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="cst:RestrictedStringType">
+			<xs:enumeration value="All Year"/>
+			<xs:enumeration value="New Year"/>
+			<xs:enumeration value="Chinese New Year"/>
+			<xs:enumeration value="Diwali"/>
+			<xs:enumeration value="Oct15-Nov15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ExplosivesLicenceStructure">
+		<xs:annotation>
+			<xs:documentation>Explosives Licence Application details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StoreAddress" type="ExtendedAddressStructure">
+				<xs:annotation>
+					<xs:documentation>Element to save StoreAddress in ExtendedAddressStructure format</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExplosivesType" type="ExplosivesType" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Element to store type of explosive based on enumaration of explosive types</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WhenSold" type="StoragePeriodStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store period od storage of explosives</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Applicant" type="ApplicantStructure">
+				<xs:annotation>
+					<xs:documentation>Element to store applicant's details</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PersonResponsible">
+				<xs:annotation>
+					<xs:documentation>Element to store main responsible person for the store</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="apd:CitizenDetailsStructure"/>
+						<xs:element name="Address" type="ExtendedAddressStructure"/>
+						<xs:element name="OrganisationContact" type="OrganisationContactStructure" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OutOfHoursContact">
+				<xs:annotation>
+					<xs:documentation>Element to store Out of hours contact person details</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="apd:CitizenDetailsStructure">
+							<xs:sequence>
+								<xs:element name="OrganisationContact" type="OrganisationContactStructure" minOccurs="0"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MainUseOfPremises" type="VOCodeStructure">
+				<xs:annotation>
+					<xs:documentation>Element to store main use of premises</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclinedApplication" type="PreviousApplicationStructure" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Element to store details of previous declined application details </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExplosivesCertificate" type="ExplosivesCertificateStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store explosive certificate in ExplosivesCertificateStructure format</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirearmsCertificate" type="FirearmsCertificateStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store explosive certificate in FirearmsCertificateStructureformat</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Map" type="ImageStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store image of map of store</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Plan" type="ImageStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element to store site image</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NetMass">
+				<xs:annotation>
+					<xs:documentation>Element to store Netmass of explosives and unit of storage</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="NetMassStructure">
+							<xs:minInclusive value="1"/>
+							<xs:maxInclusive value="99999999"/>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CalculatedFee" type="ft:AmountSterlingStructure">
+				<xs:annotation>
+					<xs:documentation>Element to store calculated fee</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Element to store startdate of storage period</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExistingLicence" type="ExistingLicenceStructure" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Element to store details of an existing licence for renewals</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Element to store any additional information related to application</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="ShortPopulatedStringType">
+							<xs:attribute name="InfoType" type="ShortPopulatedStringType" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BusinessType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Business Type defines the type of Premise. The Occupancy Code is defined ast the FSEC Occupancy Code.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="ShortPopulatedStringType">
+							<xs:attribute name="OccupancyCode" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="ShortPopulatedStringType">
+										<xs:maxLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="LicenceAction" type="LicenceActionType" use="required"/>
+		<xs:attribute name="SubmissionMethod" type="SubmissionMethodType" use="required"/>
+		<!--	<xs:attribute name="IsUpdate" type="cst:YesNoType"/> It has been removed as it has been replaced with LicenceAction -->
+	</xs:complexType>
+	<!--d.sinfield@parity.net
+	May be revisited if pito have data types or structures that are appropriate -->
+	<xs:complexType name="ExplosivesCertificateStructure">
+		<xs:annotation>
+			<xs:documentation>Explosives Certificate details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExpiryDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Expiry Date</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuingPoliceAuthority" type="ShortPopulatedStringType">
+				<xs:annotation>
+					<xs:documentation>Police authority that issued licence</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--d.sinfield@parity.net
+	May be revisited if pito have data types or structures that are appropriate -->
+	<xs:complexType name="FirearmsCertificateStructure">
+		<xs:annotation>
+			<xs:documentation>Firearms Certificate details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CertificateNumbers" type="FirearmsCertNumberType">
+				<xs:annotation>
+					<xs:documentation>Reference number of certificates </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuingAuthority" type="ShortPopulatedStringType">
+				<xs:annotation>
+					<xs:documentation>The police authority granting the certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExpiryDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Date of expiry of certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ExplosivesType">
+		<xs:annotation>
+			<xs:documentation>Used by Explosives Licence Application. Enumeration.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="cst:RestrictedStringType">
+			<xs:enumeration value="Blasting"/>
+			<xs:enumeration value="Fireworks"/>
+			<xs:enumeration value="Other Pyrotechnics"/>
+			<xs:enumeration value="Airbag Inflators/Seatbelt Tensioners"/>
+			<xs:enumeration value="Shooters Powder/Small Arms Ammunition"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StoreType">
+		<xs:annotation>
+			<xs:documentation>Used by Explosives Licence Application. Enumeration to describe the store types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="cst:RestrictedStringType">
+			<xs:enumeration value="Fireworks"/>
+			<xs:enumeration value="Explosives"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FirearmsCertNumberType">
+		<xs:annotation>
+			<xs:documentation>Abstraction of the firearms certificate number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortPopulatedStringType"/>
+	</xs:simpleType>
+	<xs:simpleType name="MassUnitType">
+		<xs:annotation>
+			<xs:documentation>Type of Volume Units</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="gram"/>
+			<xs:enumeration value="kilogram"/>
+			<xs:enumeration value="tonne"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

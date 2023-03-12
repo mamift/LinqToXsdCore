@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cash_processing_machines_common="urn:gs1:ecom:cash_processing_machines_common:xsd:3" xmlns:ecom_common="urn:gs1:ecom:ecom_common:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:ecom:cash_processing_machines_common:xsd:3" version="3.5">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2021
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.5
+Date of creation: March 2021
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:ecom:ecom_common:xsd:3" schemaLocation="eComCommon.xsd"/>
+    <xsd:complexType name="AdditionalDepositUnitIdentificationType">
+        <xsd:sequence>
+            <xsd:element name="additionalDepositUnitIdentifier">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="additionalDepositUnitIdentificationType">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashCountStatisticsTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CashCountTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CashPackagingTradeItemType">
+        <xsd:sequence>
+            <xsd:element name="cashArticleIdentification" type="shared_common:GTINType"/>
+            <xsd:element minOccurs="0" name="serialNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="tradeItemQuantity" type="shared_common:QuantityType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashProcessingEventType">
+        <xsd:sequence>
+            <xsd:element name="processingFlagCode" type="cash_processing_machines_common:CashProcessingFlagCodeType"/>
+            <xsd:element name="processedQuantity" type="shared_common:QuantityType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CashProcessingFlagCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CashProcessingStationType">
+        <xsd:complexContent>
+            <xsd:extension base="ecom_common:Ecom_PartyIdentificationType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="locationOfProcessingStation" type="ecom_common:Ecom_PartyIdentificationType"/>
+                    <xsd:element minOccurs="0" name="serialNumber">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="80"/>
+                                <xsd:minLength value="1"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="configurationMode" type="shared_common:CodeType"/>
+                    <xsd:element minOccurs="0" name="operationMode" type="shared_common:CodeType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="DepositUnitIdentificationType">
+        <xsd:sequence>
+            <xsd:element name="headerCardIdentification">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="headerCardType" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="accompanyingDocumentPicture" type="xsd:base64Binary"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalDepositUnitIdentification" type="cash_processing_machines_common:AdditionalDepositUnitIdentificationType"/>
+            <xsd:element minOccurs="0" name="cashOwner" type="ecom_common:Ecom_PartyIdentificationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OperatorOfProcessingStationType">
+        <xsd:complexContent>
+            <xsd:extension base="shared_common:ContactType">
+                <xsd:sequence>
+                    <xsd:element name="operatorIdentification">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="200"/>
+                                <xsd:minLength value="1"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="operatorRole">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="80"/>
+                                <xsd:minLength value="1"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

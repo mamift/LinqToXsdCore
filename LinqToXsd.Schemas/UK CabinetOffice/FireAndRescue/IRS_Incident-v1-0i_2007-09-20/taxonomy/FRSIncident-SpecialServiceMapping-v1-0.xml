@@ -1,0 +1,382 @@
+<ItemMappings xsi:schemaLocation="http://www.esd.org.uk/standards http://www.esd.org.uk/standards/xmlschemas/mapping-v3.0.xsd" HomeLocation="" LatestVersionLocation="" Version="1.0" FromResource="FRSIncident-MobilisationTypeTaxonomy-v1-0.xml" ToResource="FRSIncident-SpecialServiceTypeTaxonomy-v1-0.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.esd.org.uk/standards">
+	<Metadata>
+				<Audience>e-service developers</Audience>
+				<Contributor>Steve Bailey,Hyfinity Limited (mailto:steve.bailey@hyfinity.com)</Contributor>
+				<Contributor>Gerard Smyth, Hyfinity Limited (mailto:gerard.smyth@hyfinity.com)</Contributor>
+				<Creator>Fire and Rescue Statistics Division, HM Government</Creator>
+				<Date>2007-03-16</Date>
+				<Date.Created>2005-08-15</Date.Created>
+				<Date.Modified>2007-06-15</Date.Modified>
+				<Description>Fire and Rescue Statistics - Incident Collection System taxonomy file defining the Mappings for Mobilise Incident Types to Special Service Types.</Description>
+				<Format>XML schema Instance, W3C Recommendation 2001</Format>
+				<Identifier>FRSIncident-SpecialServiceMapping-v1-0</Identifier>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Publisher>HM Government</Publisher>
+				<Relation.Requires>FRSIncidentTypeTaxonomy-v1-0.xml</Relation.Requires>
+				<Relation.Requires>FRSSpecialServiceTaxonomy-v1-0.xml</Relation.Requires>
+				<Rights.Copyright>Crown Copyright 2007</Rights.Copyright>
+				<Subject.Category>Response</Subject.Category>
+				<Subject.Project>Fire and Rescue Statistics - Incident Collection System</Subject.Project>
+				<Title>Fire and Rescue Statistics - Incident Collection System taxonomy mappings for Mobilise Incident Types to Special Service Types</Title>
+	</Metadata>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="80" ConceptId="80">ADVICE GIVEN</Item>
+        </From>
+        <To>
+            <Item Id="1180" ConceptId="1180">Advice Only</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="81" ConceptId="81">AIRCRAFT LANDING</Item>
+        </From>
+        <To>
+            <Item Id="1190" ConceptId="1190">Stand By</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="82" ConceptId="82">ASSIST OTHER AGENCY</Item>
+        </From>
+        <To>
+            <Item Id="1170" ConceptId="1170">Assist other agencies</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="83" ConceptId="83">BOAT STABILITY</Item>
+        </From>
+        <To>
+            <Item Id="1040" ConceptId="1040">Rescue or evacuation from water</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="84" ConceptId="84">CO RESPONDER</Item>
+        </From>
+        <To>
+            <Item Id="1140" ConceptId="1140">Medical incident - Co-responer/First responder</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="85" ConceptId="85">DANGEROUS STRUCTURE</Item>
+        </From>
+        <To>
+            <Item Id="1090" ConceptId="1090">Making safe (not RTC)</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="86" ConceptId="86">FIRE SAFETY ISSUE</Item>
+        </From>
+        <To>
+            <Item Id="1180" ConceptId="1180">Advice only</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="87" ConceptId="87">FLOODING</Item>
+        </From>
+        <To>
+            <Item Id="1030" ConceptId="1030">Flooding</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="89" ConceptId="89">PERSONS COLLAPSED</Item>
+        </From>
+        <To>
+            <Item Id="1140" ConceptId="1140">Medical incident - Co-responder</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="90" ConceptId="90">PERSONS LOCKED OUT</Item>
+        </From>
+        <To>
+            <Item Id="1110" ConceptId="1110">Effecting entry/exit</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="91" ConceptId="91">RTC</Item>
+        </From>
+        <To>
+            <Item Id="1010" ConceptId="1010">RTC</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="92" ConceptId="92">SUPPLY WATER</Item>
+        </From>
+        <To>
+            <Item Id="1160" ConceptId="1160">Water provision</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="93" ConceptId="93">SWILL AWAY</Item>
+        </From>
+        <To>
+            <Item Id="1080" ConceptId="1080">Spills and leaks (not RTC)</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="100" ConceptId="100">GAS INVOLVED</Item>
+        </From>
+        <To>
+            <Item Id="1070" ConceptId="1070">Hazardous Materials incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="101" ConceptId="101">HAZ MAT MINOR</Item>
+        </From>
+        <To>
+            <Item Id="1070" ConceptId="1070">Hazardous Materials incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="102" ConceptId="102">OIL POLLUTION</Item>
+        </From>
+        <To>
+            <Item Id="1070" ConceptId="1070">Hazardous Materials incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="103" ConceptId="103">PIPELINE</Item>
+        </From>
+        <To>
+            <Item Id="1070" ConceptId="1070">Hazardous Materials incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="104" ConceptId="104">RADIATION INVOLVED</Item>
+        </From>
+        <To>
+            <Item Id="2270" ConceptId="2270">Hazardous Materials incident - Class 7: Radioactive Materials</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="105" ConceptId="105">UNIDENTIFIED SMELL</Item>
+        </From>
+        <To>
+            <Item Id="1070" ConceptId="1070">Hazardous Materials incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="106" ConceptId="106">VEHICLE LEAKING FUEL</Item>
+        </From>
+        <To>
+            <Item Id="221" ConceptId="221">Vehicle leaking fuel</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="107" ConceptId="107">HAZ MAT MAJOR</Item>
+        </From>
+        <To>
+            <Item Id="1070" ConceptId="1070">Hazardous Materials incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="120" ConceptId="120">AIRCRAFT ACCIDENT LARGE</Item>
+        </From>
+        <To>
+            <Item Id="1020" ConceptId="1020">Other Transport incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="121" ConceptId="121">AIRCRAFT ACCIDENT LIGHT</Item>
+        </From>
+        <To>
+            <Item Id="1020" ConceptId="1020">Other Transport incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="122" ConceptId="122">AIRCRAFT IN DISTRESS</Item>
+        </From>
+        <To>
+            <Item Id="1020" ConceptId="1020">Other Transport incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="123" ConceptId="123">ANIMAL RESCUE LARGE</Item>
+        </From>
+        <To>
+            <Item Id="1060" ConceptId="1060">Animal assistance incidents</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="124" ConceptId="124">ANIMAL RESCUE SMALL</Item>
+        </From>
+        <To>
+            <Item Id="1060" ConceptId="1060">Animal assistance incidents</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="125" ConceptId="125">BOAT RESCUE</Item>
+        </From>
+        <To>
+            <Item Id="1040" ConceptId="1040">Rescue or evacuation from water</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="126" ConceptId="126">BUILDING COLLAPSE</Item>
+        </From>
+        <To>
+            <Item Id="1090" ConceptId="1090">Making Safe (not RTC)</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="127" ConceptId="1277">EVACUATION OF PERSONS</Item>
+        </From>
+        <To>
+            <Item Id="1150" ConceptId="1150">Evacuation (no fire)</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="128" ConceptId="128">LIFT PERSONS SHUT IN</Item>
+        </From>
+        <To>
+            <Item Id="1100" ConceptId="1100">Lift Release</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="129" ConceptId="129">PERSONS LOCKED IN</Item>
+        </From>
+        <To>
+            <Item Id="1110" ConceptId="1110">Effecting entry/exit</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="130" ConceptId="130">PERSONS TRAPPED</Item>
+        </From>
+        <To>
+            <Item Id="1050" ConceptId="1050">Other rescue/release of persons</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="131" ConceptId="131">RAILWAY ACCIDENT</Item>
+        </From>
+        <To>
+            <Item Id="1020" ConceptId="1020">Other Transport incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="132" ConceptId="132">RESCUE FROM CONFINED SPACE</Item>
+        </From>
+        <To>
+            <Item Id="1050" ConceptId="1050">Other rescue/release of persons</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="133" ConceptId="133">RESCUE FROM ENTRAPMENT</Item>
+        </From>
+        <To>
+            <Item Id="1050" ConceptId="1050">Other rescue/release of persons</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="134" ConceptId="134">RESCUE FROM HEIGHT</Item>
+        </From>
+        <To>
+            <Item Id="65" ConceptId="65">from height</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="135" ConceptId="135">RESCUE FROM MUD</Item>
+        </From>
+        <To>
+            <Item Id="62" ConceptId="62">from mud</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="136" ConceptId="136">RESCUE FROM WATER</Item>
+        </From>
+        <To>
+            <Item Id="1040" ConceptId="1040">Rescue or evacuation from water</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="137" ConceptId="137">RTC PERSONS TRAPPED (LARGE VEHICLES)</Item>
+        </From>
+        <To>
+            <Item Id="1" ConceptId="1">RTC - Extrication of person/s</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="138" ConceptId="138">RTC PERSONS TRAPPED (SMALL VEHICLES)</Item>
+        </From>
+        <To>
+            <Item Id="1" ConceptId="1">RTC - Extrication of person/s</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="139" ConceptId="139">SHIP SINKING</Item>
+        </From>
+        <To>
+            <Item Id="1020" ConceptId="1020">Other Transport incident</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="140" ConceptId="140">SUICIDE ATTEMPT</Item>
+        </From>
+        <To>
+            <Item Id="1130" ConceptId="1130">Suicide/attempts</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="160" ConceptId="160">BOMB CONFIRMED</Item>
+        </From>
+        <To>
+            <Item Id="1150" ConceptId="1150">Evacuation (no fire)</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="161" ConceptId="161">BOMB SUSPECTED</Item>
+        </From>
+        <To>
+            <Item Id="1150" ConceptId="1150">Evacuation (no fire)</Item>
+        </To>
+    </ItemMapping>
+    <ItemMapping AddedInVersion="1.0" LastUpdatedInVersion="1.0">
+        <From>
+            <Item Id="162" ConceptId="162">CIVIL DISTURBANCE</Item>
+        </From>
+        <To>
+            <Item Id="310" ConceptId="310">Civil Disturbance</Item>
+        </To>
+    </ItemMapping>
+</ItemMappings>

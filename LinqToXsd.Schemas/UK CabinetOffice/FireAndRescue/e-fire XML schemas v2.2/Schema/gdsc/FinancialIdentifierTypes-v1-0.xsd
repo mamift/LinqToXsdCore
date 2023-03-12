@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema module Financial Identifier types -->
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/financial/FinancialIdentifiers" xmlns="http://www.govtalk.gov.uk/financial/FinancialIdentifiers" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="FinancialIdentifierTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>e-service developers</Audience>
+				<Contributor>Paul Spencer, Boynings Consulting  (mailto:paul.spencer@boynings.co.uk)</Contributor>
+				<Contributor>Adrian Kent, Office e-Envoy</Contributor>
+				<Creator>Office of the e-Envoy (maito:govtalk@e-envoy.gsi.gov.uk </Creator>
+				<Date>
+					<Created>2003-02-11</Created>
+				</Date>
+				<Date>
+					<Modified>2003-02-11</Modified>
+				</Date>
+				<Description>Financial Identifier definitions for use within UK Government</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+				</Format>
+				<Language>[ISO 639-2/B] ENG</Language>
+				<Rights>unclassified
+					<Copyright>Crown copyright 2003</Copyright>
+				</Rights>
+				<Subject>
+					<Project>UK GovTalk</Project>
+				</Subject>
+				<Title>Financial Identifiers</Title>
+				<Category>Financial Service Industries</Category>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:simpleType name="UKBankAccountNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{8}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UKBankBranchSortCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UKChequeNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UKBuildingSocietyAccountNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Za-z0-9\s&amp;'\(\)\-\.\*]{18}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

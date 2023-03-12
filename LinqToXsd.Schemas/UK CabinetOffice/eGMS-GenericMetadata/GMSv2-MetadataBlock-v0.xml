@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.govtalk.gov.uk/CM/gms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.govtalk.gov.uk/CM/gms" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2" id="GMSv2_MetadataBlock">
+	<xsd:annotation>
+		<xsd:appinfo>Schema metadata to follow</xsd:appinfo>
+		<xsd:documentation>This schema document provides a default structure for an e-GMS v2 metadata block in XML. Applications that do not follow the order of metadata elements given in the e-GMS document will not be able to use this schema, though they may still conform to e-GMS.
+</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="GMSv2-MetadataElements-v0.xsd"/>
+	<xsd:element name="Metadata" type="MetadataBlock">
+		<xsd:annotation>
+			<xsd:documentation> This element provides a container for e-GMS metadata. 
+			
+			There are two possible structures for a metadata block. The first alternative uses the "GMSelement"  element to represent every metadata element; the key feature of this option is that order is not significant, and there is built-in resilience to accommodate future arbitrary extensions of GMS. 
+
+The second alternative uses an XML element, with a similar name, to represent each e-GMS metadata element; these must appear in the sequence given. 
+
+These two structures cannot be combined in the same MetadataBlock, however, there is nothing in this schema to prevent the use of more than one MetadataBlock (eg two blocks, one using each alternative structure) to represent the metadata for a single information resource.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="MetadataBlock">
+		<xsd:choice>
+			<xsd:element name="GMSelement" type="GMSelementStructure" maxOccurs="unbounded"/>
+			<xsd:sequence>
+				<xsd:annotation>
+					<xsd:documentation> The order of the XML elements in the sequence follows the order of metadata elements given in the e-GMS.  
+This complex type is expected to form the basis of implementation of an e-GMS Local Metadata Standard, to include additional constraints such as elements being mandatory. Note that it is very unlikely that all the validation required for a Local Metadata Standard can be expressed in an XML schema, and it may well be preferable to perform all the metadata validation by other means.
+Mandatory metadata elements have a minimum occurence of 1 on the corresponding XML element. Note that the XML schema cannot differentiate between the concepts of "Optional", "Recommended" and "Mandatory if Applicable"; in each case  the XML element may be present or absent.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:element ref="Accessibility" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Addressee" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Aggregation" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Audience" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Contributor" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Coverage" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Creator" maxOccurs="unbounded"/>
+				<xsd:element ref="Date" maxOccurs="unbounded"/>
+				<xsd:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="DigitalSignature" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Disposal" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Format" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Identifier" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Language" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Mandate" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Preservation" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Publisher" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Relation" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Rights" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Source" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Status" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="Subject" maxOccurs="unbounded"/>
+				<xsd:element ref="Title" maxOccurs="unbounded"/>
+				<xsd:element ref="Type" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:choice>
+	</xsd:complexType>
+</xsd:schema>

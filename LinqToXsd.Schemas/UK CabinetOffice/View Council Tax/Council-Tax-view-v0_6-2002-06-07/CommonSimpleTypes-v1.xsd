@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	Changes 1.0 to 1.1
+	Pattern for RestrictedStringType corrected (there was a superfluous line feed)
+ -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1" id="CommonSimpleTypes">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms" xmlns:dcq="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:contributor>e-champions,Government Schema Group, IDeA</dc:contributor>
+			<dc:creator>alphaXML Ltd  http://www.alphaxml.com
+						<dcq:owner>Technology Policy Team, Office of the e-Envoy, Cabinet Office</dcq:owner>
+				<dcq:contact>ukgovtalk@citu.gsi.gov.uk</dcq:contact>
+			</dc:creator>
+			<dc:date>
+				<dcq:created>2001-12-19</dcq:created>
+			</dc:date>
+			<dc:date>
+				<dcq:modified>2002-01-16</dcq:modified>
+				<dcq:modified>2002-01-28</dcq:modified>
+			</dc:date>
+			<dc:format>text</dc:format>
+			<dc:format>
+				<dc:medium>http://www.w3.org/2001/XMLSchema</dc:medium>
+			</dc:format>
+			<dc:format>
+				<dc:medium>XML Schema (.xsd) file, W3C Recommendation 2001</dc:medium>
+			</dc:format>
+			<dc:identifier>CommonSimpleTypes-v1</dc:identifier>
+			<dc:language>en</dc:language>
+			<dc:publisher>Office of the e-Envoy, Stockley House,130 Wilton Road, London SW1V 1LQ</dc:publisher>
+			<dc:rights>
+				<dcq:copyright>Crown Copyright 2002</dcq:copyright>
+				<gms:SecurityClassification>Unclassified</gms:SecurityClassification>
+			</dc:rights>
+			<dc:subject>
+				<gms:Category>People, communities and living</gms:Category>
+			</dc:subject>
+			<dc:subject>
+				<gms:Project>Govtalk Development of Address and Personal Details Schema</gms:Project>
+			</dc:subject>
+			<dc:title>Common Simple Types architectural schema</dc:title>
+			<dc:description>
+				<dcq:abstract>Schema for general data type definitions</dcq:abstract>
+			</dc:description>
+			<dc:relation>
+				<gms:IsPartOf>AddressTypes-v1</gms:IsPartOf>
+			</dc:relation>
+			<dc:relation>
+				<gms:IsPartOf>ContactTypes-v1</gms:IsPartOf>
+			</dc:relation>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:simpleType name="PopulatedStringType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RestrictedStringType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Za-z0-9\s~!&quot;@#$%&amp;'\(\)\*\+,\-\./:;&lt;=&gt;\?\[\\\]_\{\}\^&#xa3;&#x20ac;]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="YesNoType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yes"/>
+			<xsd:enumeration value="no"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DateType">
+		<xsd:annotation>
+			<xsd:documentation>A Common DataType W 3C XML Schema datetype</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="SexType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="unknown"/>
+			<xsd:enumeration value="male"/>
+			<xsd:enumeration value="female"/>
+			<xsd:enumeration value="indeterminate"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MaritalStatusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="s"/>
+			<xsd:enumeration value="m"/>
+			<xsd:enumeration value="d"/>
+			<xsd:enumeration value="w"/>
+			<xsd:enumeration value="n"/>
+			<xsd:enumeration value="p"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LanguageType">
+		<xsd:annotation>
+			<xsd:documentation>A Common DataType Values from the ISO standard for 2 character language codes (ISO 639:1988 Code for the representation of names of languages).  </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Za-z]{2}"/>
+			<xsd:enumeration value="en"/>
+			<xsd:enumeration value="cy"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EmailAddressType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9A-Za-z\.\-_]{1,127}@[0-9A-Za-z\.\-_]{1,127}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TelCountryCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{1,3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TelephoneNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9 \-]{1,20}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TelephoneExtensionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{1,6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WorkHomeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="work"/>
+			<xsd:enumeration value="home"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

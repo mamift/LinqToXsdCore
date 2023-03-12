@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.govtalk.gov.uk/gateway/digitalmail"
+			 xmlns:dms="http://www.govtalk.gov.uk/gateway/digitalmail" 
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			 elementFormDefault="qualified" 
+			 attributeFormDefault="unqualified"
+			 version="1"
+			 id="DigitalMail">
+			  
+	<xs:include schemaLocation="digitalmail_core-v1.xsd"/>
+	
+	<xs:annotation>
+		<xs:documentation>This schema defines messages that can be sent in either direction between a registered user of the Gateway and a Government Department</xs:documentation>
+		<xs:appinfo>gateway, administration, mail, message, email, secure, mailbox</xs:appinfo>
+	</xs:annotation>
+	
+	<xs:element name="DigitalMail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ServiceName" type="dms:ServiceNameType"/>
+				<xs:element name="DocumentType" type="xs:string"/>
+				<xs:element name="Subject" type="xs:string"/>
+				<xs:element name="References" type="dms:ReferencesType" minOccurs="0"/>
+				<xs:element name="Errors" type="dms:ErrorsType" minOccurs="0"/>
+				<xs:element name="ReplyAccepted" type="xs:boolean" default="true" minOccurs="0"/>
+				<xs:element name="DeliveryDate" type="xs:date" minOccurs="0"/>
+				<xs:element name="Expires" type="xs:date" minOccurs="0"/>
+				<xs:element name="Sender" type="dms:MailBoxType"/>
+				<xs:element name="Recipients" type="dms:TargetMailBoxType"/>
+				<xs:element name="Transformation" type="dms:TransformationType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="MessageBody" type="dms:MessageBodyType"/>
+				<xs:element name="Attachment" type="dms:AttachmentType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

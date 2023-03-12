@@ -1,0 +1,149 @@
+<definitions 
+	xmlns="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:tns="http://www.planningportal.gov.uk/schema/Proposal-2003.wsdl" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:req="http://www.planningportal.gov.uk/schema/ProposalWebservice" 
+	xmlns:res="http://www.planningportal.gov.uk/schema/XForm/Proposal-2003" 
+	xmlns:types="http://www.planningportal.gov.uk/schema/Types-2003" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	targetNamespace="http://www.planningportal.gov.uk/schema/Proposal-2003.wsdl" 
+	name="Proposal">
+	
+	<!-- 
+			Planning Portal Proposal WebService 
+			version 2.0 - 2003-10-09
+			Updated to use latest Proposal namespace
+	-->
+
+	<!--The type for an attachment-->
+	<types>
+		<xsd:schema 
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+			xmlns="http://www.w3.org/2001/XMLSchema" 
+			targetNamespace="http://www.planningportal.gov.uk/schema/Types-2003" 
+			xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+
+			<import namespace="http://www.planningportal.gov.uk/schema/ProposalWebservice" schemaLocation="ProposalWebservices-v2-0.xsd"/>
+			<import namespace="http://www.planningportal.gov.uk/schema/XForm/Proposal-2003" schemaLocation="Proposal-v2-0.xsd"/>
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			
+			<complexType name="ArrayOfBinary">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute wsdl:arrayType="xsd:byte[]" ref="soapenc:arrayType"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+		</xsd:schema>
+	</types>
+	<!-- GetProposal messages -->
+	<message name="ProposalInput">
+		<part name="in" element="req:getProposal"/>
+	</message>
+	<message name="ProposalBCInput">
+		<part name="in" element="req:getProposalBC"/>
+	</message>
+
+	<message name="ProposalOutput">
+		<!-- This is the main message content which describes the Proposal -->
+		<part name="out" element="res:Proposal"/>
+		<!-- There may be zero to many attachment parts -->
+		<part name="attachment" type="types:ArrayOfBinary"/>
+	</message>
+	<!-- GetProposalList messages -->
+	<message name="ProposalListInput">
+		<part name="in" element="req:getProposalList"/>
+	</message>
+	<message name="ProposalListOutput">
+		<part name="out" element="res:ProposalList"/>
+	</message>
+	<!-- SetProposalReceived messages -->
+	<message name="ProposalReceivedInput">
+		<part name="in" element="req:setProposalReceived"/>
+	</message>
+	<message name="ProposalReceivedOutput">
+		<part name="out" element="req:ProposalReceivedResult"/>
+	</message>
+	<portType name="ProposalPortType">
+		<operation name="getProposal">
+			<input message="tns:ProposalInput"/>
+			<output message="tns:ProposalOutput"/>
+		</operation>
+		<operation name="getPlanningProposalBC">
+			<input message="tns:ProposalBCInput"/>
+			<output message="tns:ProposalOutput"/>
+		</operation>
+		<operation name="getProposalList">
+			<input message="tns:ProposalListInput"/>
+			<output message="tns:ProposalListOutput"/>
+		</operation>
+		<operation name="setProposalReceived">
+			<input message="tns:ProposalReceivedInput"/>
+			<output message="tns:ProposalReceivedOutput"/>
+		</operation>
+	</portType>
+	<binding name="ProposalBinding" type="tns:ProposalPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getProposal">
+			<soap:operation soapAction="http://www.planningportal.gov.uk/action/getProposal"/>
+			<input>
+				<soap:body use="literal" namespace="urn:GetProposal"/>
+			</input>
+			<output>
+				<mime:multipartRelated>
+					<!-- The main message -->
+					<mime:part>
+						<soap:body use="literal" namespace="urn:GetProposal" parts="in"/>
+					</mime:part>
+					<!--The Attachments-->
+					<mime:part>
+						<mime:content part="attachment" type="*/*"/>
+					</mime:part>
+				</mime:multipartRelated>
+			</output>
+		</operation>
+		<operation name="getPlanningProposalBC">
+			<soap:operation soapAction="http://www.planningportal.gov.uk/action/getProposal"/>
+			<input>
+				<soap:body use="literal" namespace="urn:GetProposal"/>
+			</input>
+			<output>
+				<mime:multipartRelated>
+					<!-- The main message -->
+					<mime:part>
+						<soap:body use="literal" namespace="urn:GetProposalBC" parts="in"/>
+					</mime:part>
+					<!--The Attachments-->
+					<mime:part>
+						<mime:content part="attachment" type="*/*"/>
+					</mime:part>
+				</mime:multipartRelated>
+			</output>
+		</operation>		
+		<operation name="getProposalList">
+			<soap:operation soapAction="http://www.planningportal.gov.uk/action/getProposalList"/>
+			<input>
+				<soap:body use="literal" namespace="urn:GetProposalList"/>
+			</input>
+			<output>
+				<soap:body use="literal" namespace="urn:GetProposalList"/>
+			</output>
+		</operation>
+		<operation name="setProposalReceived">
+			<soap:operation soapAction="http://www.planningportal.gov.uk/action/setProposalReceived"/>
+			<input>
+				<soap:body use="literal" namespace="urn:SetProposalReceived"/>
+			</input>
+			<output>
+				<soap:body use="literal" namespace="urn:SetProposalReceived"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="Proposal-service">
+		<port name="ProposalPort" binding="tns:ProposalBinding">
+			<soap:address location="https://release.planningportal.gov.uk/soap/servlet/messagerouter"/>
+		</port>
+	</service>
+</definitions>

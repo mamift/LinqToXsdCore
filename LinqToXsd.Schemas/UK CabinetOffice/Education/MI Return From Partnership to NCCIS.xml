@@ -1,0 +1,1168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Jason Stevens (CareerVision Ltd) -->
+<!-- Developed for the NCCIS Database by Jason Stevens (CareerVision Ltd) -->
+<!-- Modified : 29/03/2004 - Jason Stevens - 
+	Corrected declaration of SENCategoryType 
+	Corrected spelling of AchievementDate
+	Added ActivityType definitions
+	Removed code value "5" from InterventionType
+
+Modified : 30/04/2004 - Jason Stevens - 
+	Removed StartDate and EndDate from Level of Need.
+	Renamed SupportGroups to Characteristics
+	Renamed SupportGroupCode to CharacteristicCode
+	Defined CharacteristicType
+	Defined ActivityType
+	Defined LeaveToType
+	Defined JoinFromType
+	Defined SOC2000GroupType
+	Defined MVProjectType
+	Defined AgencyType
+	Defined IntDestType
+
+Modified : 18/05/2004 - Jason Stevens -
+Added CohortStatus and CohortStatusType
+
+Modified : 12/08/2004 - Jason Stevens -
+Extended SourceLMC to include multiple values to accomodate partnerships returning data for more than one LMC.
+Added new level to activity history to improve structure for multiple activity entries.
+Added new level to interventions to improve structure for multiple intervention entries.
+Added new column to Activty record to indicate why the activity has been included in the return.
+Modified 0301,0302,0303,0304 activity type codes.
+Added 0310,0311,0312,0313 activity type codes.
+Added definition for ActivityGroupType to enable categorisation of activity at time of contact.
+Added IVActitity to intervention to identify activity at time of intervention.
+Added IVLevelOfNeed to intervention to identify level of need at time of intervention.
+Added IVTeenMother to intervention to identify if client is a teenage mother at time of intervention.
+Added IVCleaver to intervention to identify if client looked after children/care leaver at time of intervention.
+Added IVYOTS to intervention to identify if client was supervised by YOTS at time of intervention.
+Added new level to Millennium Volunteers to improve structure for multiple entries.
+Added new level to Substance Misuse Referrals to improve structure for multiple entries.
+
+Modified : 09/09/2004 - Jason Stevens - 
+Corrected FileHeader embedding.
+Removed duplicate entry for ActivityType definition.
+
+Modified : 10/10/2004 - Jason Stevens
+Added required metadata in accordance with guidance document e-Gonvernment Metadata Standard / Version 3.0 / 2004-04-29
+
+Modified : 12/11/2004 - Jason Stevens
+Added the following codes to the characteristics type
+023 = Parent
+024 = Supervised by YoT
+-->
+<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0a" id="NCCIS" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:appinfo xmlns:gms="http://www.govtalk.gov.uk/CM/gms">
+			<Metadata xmlns="http://www.govtalk.gov.uk/CM/gms-xs">
+				<Audience>ccis developers</Audience>
+				<Contributor>Jason Stevens, CareerVision Ltd(mailto:jason.stevens@careervision.co.uk)</Contributor>
+				<Contributor>Tom Wedge, CareerVision Ltd(mailto:tom.wedge@careervision.co.uk)</Contributor>
+				<Contributor>Brenda Alexander, SCYPG</Contributor>
+				<Creator>CareerVision Ltd (mailto:hq@careerision.co.uk)</Creator>
+				<Date>
+					<Created>2004-03-19</Created>
+				</Date>
+				<Date>
+					<Modified>2004-10-10</Modified>
+				</Date>
+				<Description>Schema for transfer of CCIS management information data to NCCIS</Description>
+				<Format>
+					<MediaType>text/xml</MediaType>
+					<Syntax>http://www.w3.org/2001/XMLSchema</Syntax>
+					<Description>XML schema, W3C Recommendation 2001</Description>
+				</Format>
+				<Identifier>NCCIS</Identifier>
+				<Publisher>e-Government Unit, Stockley House,130 Wilton Road, London SW1V 1LQ</Publisher>
+				<Subject>
+					<Category>Education, careers and employment</Category>
+				</Subject>
+				<Subject>
+					<Project>NCCIS</Project>
+				</Subject>
+				<Title>MI Return from Connexions Partnership to NCCIS schema</Title>
+			</Metadata>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:element name="FileHeader">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SourceCXPID" type="PartnershipIDtype"/>
+				<xsd:element name="SourceLMCs" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="SourceLMC" type="LMCtype" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="DateOfSend" type="xsd:date"/>
+				<xsd:element name="SequenceNo" type="xsd:integer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="YoungPersonsRecord">
+		<xsd:sequence>
+			<xsd:element name="PersonalDetails" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="YoungPersonsID" type="xsd:string"/>
+						<xsd:element name="CohortStatus" type="CohortStatusType"/>
+						<xsd:element name="Gender" type="GenderType" minOccurs="0"/>
+						<xsd:element name="DOB" type="xsd:date" minOccurs="0"/>
+						<xsd:element name="Ethnicity" type="EthnicityType" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="LevelOfNeed" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="LevelofNeedCode" type="LevelOfNeedType"/>
+						<xsd:element name="SENStatusCode" type="SENStatusType" minOccurs="0"/>
+						<xsd:element name="SENCategoryCode" type="SenCategoryType" minOccurs="0"/>
+						<xsd:element name="HealthStatusCode" type="HealthStatusType" minOccurs="0"/>
+						<xsd:element name="Characteristics" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="CharacteristicCode" type="CharacteristicType" minOccurs="0"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ActivityHistory" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Activity" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="StartDate" type="xsd:date"/>
+									<xsd:element name="ActivityCode" type="ActivityType"/>
+									<xsd:element name="EndDate" type="xsd:date" minOccurs="0"/>
+									<xsd:element name="JoiningFromCode" type="JoinFromType"/>
+									<xsd:element name="LeavingToCode" type="LeaveToType" minOccurs="0"/>
+									<xsd:element name="EstablishmentNumber" type="NumericSeven" minOccurs="0"/>
+									<xsd:element name="SOC2000Code" type="SOC2000GroupType" minOccurs="0"/>
+									<xsd:element name="DateOfConfirmation" type="xsd:date" minOccurs="0"/>
+									<xsd:element name="ReviewDate" type="xsd:date" minOccurs="0"/>
+									<xsd:element name="ActivityRecord" type="ActivityRecordType" minOccurs="0"/>
+									<xsd:element name="SchoolYear" type="AlphaFour" minOccurs="0"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Interventions" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Intervention" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="IVDate" type="xsd:date"/>
+									<xsd:element name="IVTime" type="xsd:time"/>
+									<xsd:element name="IVType" type="InterventionType"/>
+									<xsd:element name="IVPAType" type="PAType"/>
+									<xsd:element name="IVActivity" type="ActivityGroupType"/>
+									<xsd:element name="IVLevelOfNeed" type="LevelOfNeedType"/>
+									<xsd:element name="IVTeenMother" type="YesNoType"/>
+									<xsd:element name="IVCleaver" type="YesNoType"/>
+									<xsd:element name="IVYOTS" type="YesNoType"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="AcademicAchievement" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="AchievementDate" type="xsd:date"/>
+						<xsd:element name="AcademicLevel" type="AcademicLevelType"/>
+						<xsd:element name="NVQLevel" type="NVQType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="MillenniumVolunteers" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Volunteer" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="StartDate" type="xsd:date"/>
+									<xsd:element name="ProjectType" type="MVProjectType"/>
+									<xsd:element name="EndDate" type="xsd:date"/>
+									<xsd:element name="VolunteerBefore" type="YesNoType"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SubstanceMisuseReferrals" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Referral" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="DateOfReferral" type="xsd:date"/>
+									<xsd:element name="AgencyType" type="AgencyType"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="IntendedDestination" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="IDDate" type="xsd:date"/>
+						<xsd:element name="IDCode" type="IntDestType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ================================================================ Data Definition Types ================================================================  -->
+	<xsd:simpleType name="YesNoType">
+		<xsd:annotation>
+			<xsd:documentation>
+			Y Yes, N No
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="Y|N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GenderType">
+		<xsd:annotation>
+			<xsd:documentation>F Female, M Male, U Unknown, W Withheld</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="F|M|U|W"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EthnicityType">
+		<xsd:annotation>
+			<xsd:documentation>
+			WBRI = WHITE BRITISH, 
+			WIRI = WHITE IRISH
+			WOTH = ANY OTHER WHITE BACKGROUND
+			MWBC = WHITE AND BLACK CARIBBEAN
+			MWBA = WHITE AND BLACK AFRICAN
+			MWAS = WHITE AND ASIAN
+			MOTH = ANY OTHER MIXED BACKGROUND
+			AIND = INDIAN
+			APKN = PAKISTANI
+			ABAN = BANGLADESHI
+			AOTH = ANY OTHER ASIAN BACKGROUND
+			BCRB = CARIBBEAN
+			BAFR = AFRICAN
+			BOTH = ANY OTHER BLACK BACKGROUND
+			CHNE = CHINESE
+			OOTH = ANY OTHER ETHNIC GROUP
+			REFU = REFUSED
+			NOBT = INFORMATION NOT OBTAINED
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="WBRI"/>
+			<xsd:enumeration value="WIRI"/>
+			<xsd:enumeration value="WOTH"/>
+			<xsd:enumeration value="MWBC"/>
+			<xsd:enumeration value="MWBA"/>
+			<xsd:enumeration value="MWAS"/>
+			<xsd:enumeration value="MOTH"/>
+			<xsd:enumeration value="AIND"/>
+			<xsd:enumeration value="APKN"/>
+			<xsd:enumeration value="ABAN"/>
+			<xsd:enumeration value="AOTH"/>
+			<xsd:enumeration value="BCRB"/>
+			<xsd:enumeration value="BAFR"/>
+			<xsd:enumeration value="BOTH"/>
+			<xsd:enumeration value="CHNE"/>
+			<xsd:enumeration value="OOTH"/>
+			<xsd:enumeration value="REFU"/>
+			<xsd:enumeration value="NOBT"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LevelOfNeedType">
+		<xsd:annotation>
+			<xsd:documentation>1 Intensive Support, 2 Supported, 3 Minimum Intervention
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="1|2|3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SENStatusType">
+		<xsd:annotation>
+			<xsd:documentation>0 No LDD, 1 LDD Not Statemented, 2 School Action, 3 School Action+, 4 Statemented
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="0|1|2|3|4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SenCategoryType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AUT"/>
+			<xsd:enumeration value="EBH"/>
+			<xsd:enumeration value="HI"/>
+			<xsd:enumeration value="MLD"/>
+			<xsd:enumeration value="MSI"/>
+			<xsd:enumeration value="PD"/>
+			<xsd:enumeration value="PMLD"/>
+			<xsd:enumeration value="SLD"/>
+			<xsd:enumeration value="SPCH"/>
+			<xsd:enumeration value="SPLD"/>
+			<xsd:enumeration value="VI"/>
+			<xsd:enumeration value="OTH"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="HealthStatusType">
+		<xsd:annotation>
+			<xsd:documentation>
+				0 No additional health needs, 
+				1 Learning Difficulty or Disability (as per the Connexions Business Planning Guidance), 
+				2 Other special need(s), 
+				3 Health may affect work choice.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="0|1|2|3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="InterventionType">
+		<xsd:annotation>
+			<xsd:documentation>
+			1 One to one personal contact, 2 Telephone, 3 email/letter/text message/fax, 4 Other (including contact with parents) 
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="1|2|3|4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PAType">
+		<xsd:annotation>
+			<xsd:documentation>
+			1 Personal Adviser, 2 Other delivery staff, 3 Other agency on behalf of Connexions			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="1|2|3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NVQType">
+		<xsd:annotation>
+			<xsd:documentation>
+			0 = not taking an NVQ; 1 = NVQ level 1; 2 = NVQ level 2; 3 = NVQ level 3.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="0|1|2|3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AcademicLevelType">
+		<xsd:annotation>
+			<xsd:documentation>
+				0 = less than 1 GCSEs at A* - G
+				1 = 1 or more GCSEs at A* - G
+				2 = less than 5 GCSEs with A* - C or equivalent
+				3 = 5 or more GCSEs at grades A* - G or equivalent including English and maths GCSE
+				4 = 5 or more GCSEs at grades A* - C or equivalent
+				5 = holds level 2 qualification
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="0|1|2|3|4|5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PartnershipIDtype">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="BCY"/>
+			<xsd:enumeration value="BDP"/>
+			<xsd:enumeration value="BED"/>
+			<xsd:enumeration value="BER"/>
+			<xsd:enumeration value="BIR"/>
+			<xsd:enumeration value="CAD"/>
+			<xsd:enumeration value="CAM"/>
+			<xsd:enumeration value="CAW"/>
+			<xsd:enumeration value="CHW"/>
+			<xsd:enumeration value="CLO"/>
+			<xsd:enumeration value="CUM"/>
+			<xsd:enumeration value="DER"/>
+			<xsd:enumeration value="DUR"/>
+			<xsd:enumeration value="ELO"/>
+			<xsd:enumeration value="EST"/>
+			<xsd:enumeration value="GLO"/>
+			<xsd:enumeration value="HAM"/>
+			<xsd:enumeration value="HAW"/>
+			<xsd:enumeration value="HER"/>
+			<xsd:enumeration value="HUM"/>
+			<xsd:enumeration value="KNT"/>
+			<xsd:enumeration value="LAN"/>
+			<xsd:enumeration value="LAR"/>
+			<xsd:enumeration value="LEI"/>
+			<xsd:enumeration value="MAN"/>
+			<xsd:enumeration value="MOB"/>
+			<xsd:enumeration value="MSY"/>
+			<xsd:enumeration value="NFK"/>
+			<xsd:enumeration value="NHL"/>
+			<xsd:enumeration value="NHP"/>
+			<xsd:enumeration value="NLO"/>
+			<xsd:enumeration value="NOT"/>
+			<xsd:enumeration value="NYO"/>
+			<xsd:enumeration value="SFF"/>
+			<xsd:enumeration value="SOL"/>
+			<xsd:enumeration value="SOM"/>
+			<xsd:enumeration value="STW"/>
+			<xsd:enumeration value="SUF"/>
+			<xsd:enumeration value="SUR"/>
+			<xsd:enumeration value="SUS"/>
+			<xsd:enumeration value="SYO"/>
+			<xsd:enumeration value="TAW"/>
+			<xsd:enumeration value="TEE"/>
+			<xsd:enumeration value="WES"/>
+			<xsd:enumeration value="WIL"/>
+			<xsd:enumeration value="WLO"/>
+			<xsd:enumeration value="WYO"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LMCtype">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="BAD"/>
+			<xsd:enumeration value="BAR"/>
+			<xsd:enumeration value="BAT"/>
+			<xsd:enumeration value="BCP"/>
+			<xsd:enumeration value="BDR"/>
+			<xsd:enumeration value="BDS"/>
+			<xsd:enumeration value="BEX"/>
+			<xsd:enumeration value="BFD"/>
+			<xsd:enumeration value="BFP"/>
+			<xsd:enumeration value="BKB"/>
+			<xsd:enumeration value="BKP"/>
+			<xsd:enumeration value="BLY"/>
+			<xsd:enumeration value="BMG"/>
+			<xsd:enumeration value="BNT"/>
+			<xsd:enumeration value="BOL"/>
+			<xsd:enumeration value="BOU"/>
+			<xsd:enumeration value="BPL"/>
+			<xsd:enumeration value="BPP"/>
+			<xsd:enumeration value="BRA"/>
+			<xsd:enumeration value="BRE"/>
+			<xsd:enumeration value="BRI"/>
+			<xsd:enumeration value="BRO"/>
+			<xsd:enumeration value="BSL"/>
+			<xsd:enumeration value="BSP"/>
+			<xsd:enumeration value="BUC"/>
+			<xsd:enumeration value="BUR"/>
+			<xsd:enumeration value="CAL"/>
+			<xsd:enumeration value="CBG"/>
+			<xsd:enumeration value="CDB"/>
+			<xsd:enumeration value="CDP"/>
+			<xsd:enumeration value="CEN"/>
+			<xsd:enumeration value="CLP"/>
+			<xsd:enumeration value="CMN"/>
+			<xsd:enumeration value="CMP"/>
+			<xsd:enumeration value="CNO"/>
+			<xsd:enumeration value="CNY"/>
+			<xsd:enumeration value="COR"/>
+			<xsd:enumeration value="COV"/>
+			<xsd:enumeration value="CPP"/>
+			<xsd:enumeration value="CRK"/>
+			<xsd:enumeration value="CSR"/>
+			<xsd:enumeration value="CVP"/>
+			<xsd:enumeration value="CWE"/>
+			<xsd:enumeration value="CWP"/>
+			<xsd:enumeration value="CYN"/>
+			<xsd:enumeration value="DAR"/>
+			<xsd:enumeration value="DAV"/>
+			<xsd:enumeration value="DBP"/>
+			<xsd:enumeration value="DBY"/>
+			<xsd:enumeration value="DEV"/>
+			<xsd:enumeration value="DHP"/>
+			<xsd:enumeration value="DON"/>
+			<xsd:enumeration value="DOR"/>
+			<xsd:enumeration value="DUD"/>
+			<xsd:enumeration value="EAL"/>
+			<xsd:enumeration value="ELP"/>
+			<xsd:enumeration value="ENF"/>
+			<xsd:enumeration value="ERI"/>
+			<xsd:enumeration value="ESP"/>
+			<xsd:enumeration value="ESS"/>
+			<xsd:enumeration value="ESU"/>
+			<xsd:enumeration value="GAT"/>
+			<xsd:enumeration value="GLP"/>
+			<xsd:enumeration value="GMP"/>
+			<xsd:enumeration value="GRE"/>
+			<xsd:enumeration value="HAC"/>
+			<xsd:enumeration value="HAF"/>
+			<xsd:enumeration value="HAL"/>
+			<xsd:enumeration value="HAR"/>
+			<xsd:enumeration value="HAV"/>
+			<xsd:enumeration value="HFD"/>
+			<xsd:enumeration value="HFP"/>
+			<xsd:enumeration value="HIL"/>
+			<xsd:enumeration value="HMP"/>
+			<xsd:enumeration value="HMS"/>
+			<xsd:enumeration value="HOU"/>
+			<xsd:enumeration value="HRW"/>
+			<xsd:enumeration value="HRY"/>
+			<xsd:enumeration value="HUL"/>
+			<xsd:enumeration value="HWP"/>
+			<xsd:enumeration value="IOW"/>
+			<xsd:enumeration value="ISL"/>
+			<xsd:enumeration value="KAS"/>
+			<xsd:enumeration value="KEN"/>
+			<xsd:enumeration value="KIN"/>
+			<xsd:enumeration value="KIR"/>
+			<xsd:enumeration value="KNO"/>
+			<xsd:enumeration value="KNP"/>
+			<xsd:enumeration value="KSC"/>
+			<xsd:enumeration value="LAC"/>
+			<xsd:enumeration value="LAM"/>
+			<xsd:enumeration value="LCY"/>
+			<xsd:enumeration value="LEC"/>
+			<xsd:enumeration value="LEE"/>
+			<xsd:enumeration value="LEW"/>
+			<xsd:enumeration value="LIN"/>
+			<xsd:enumeration value="LIV"/>
+			<xsd:enumeration value="LNP"/>
+			<xsd:enumeration value="LRP"/>
+			<xsd:enumeration value="LSP"/>
+			<xsd:enumeration value="LUT"/>
+			<xsd:enumeration value="MAC"/>
+			<xsd:enumeration value="MDP"/>
+			<xsd:enumeration value="MED"/>
+			<xsd:enumeration value="MER"/>
+			<xsd:enumeration value="MID"/>
+			<xsd:enumeration value="MIL"/>
+			<xsd:enumeration value="MKP"/>
+			<xsd:enumeration value="MNP"/>
+			<xsd:enumeration value="NEL"/>
+			<xsd:enumeration value="NEW"/>
+			<xsd:enumeration value="NFP"/>
+			<xsd:enumeration value="NHN"/>
+			<xsd:enumeration value="NLD"/>
+			<xsd:enumeration value="NLI"/>
+			<xsd:enumeration value="NLP"/>
+			<xsd:enumeration value="NMP"/>
+			<xsd:enumeration value="NSO"/>
+			<xsd:enumeration value="NTC"/>
+			<xsd:enumeration value="NTH"/>
+			<xsd:enumeration value="NTP"/>
+			<xsd:enumeration value="NTY"/>
+			<xsd:enumeration value="NUT"/>
+			<xsd:enumeration value="NWW"/>
+			<xsd:enumeration value="NYP"/>
+			<xsd:enumeration value="OAK"/>
+			<xsd:enumeration value="OLD"/>
+			<xsd:enumeration value="OXF"/>
+			<xsd:enumeration value="PET"/>
+			<xsd:enumeration value="PLY"/>
+			<xsd:enumeration value="POL"/>
+			<xsd:enumeration value="POR"/>
+			<xsd:enumeration value="RDB"/>
+			<xsd:enumeration value="REA"/>
+			<xsd:enumeration value="RED"/>
+			<xsd:enumeration value="RIC"/>
+			<xsd:enumeration value="ROC"/>
+			<xsd:enumeration value="RTH"/>
+			<xsd:enumeration value="SAL"/>
+			<xsd:enumeration value="SAN"/>
+			<xsd:enumeration value="SCP"/>
+			<xsd:enumeration value="SED"/>
+			<xsd:enumeration value="SEF"/>
+			<xsd:enumeration value="SFP"/>
+			<xsd:enumeration value="SFX"/>
+			<xsd:enumeration value="SHE"/>
+			<xsd:enumeration value="SHL"/>
+			<xsd:enumeration value="SHN"/>
+			<xsd:enumeration value="SHR"/>
+			<xsd:enumeration value="SKP"/>
+			<xsd:enumeration value="SKT"/>
+			<xsd:enumeration value="SLO"/>
+			<xsd:enumeration value="SLP"/>
+			<xsd:enumeration value="SMP"/>
+			<xsd:enumeration value="SOG"/>
+			<xsd:enumeration value="SOS"/>
+			<xsd:enumeration value="SOU"/>
+			<xsd:enumeration value="SRP"/>
+			<xsd:enumeration value="STF"/>
+			<xsd:enumeration value="STH"/>
+			<xsd:enumeration value="STK"/>
+			<xsd:enumeration value="STP"/>
+			<xsd:enumeration value="STY"/>
+			<xsd:enumeration value="SUN"/>
+			<xsd:enumeration value="SUT"/>
+			<xsd:enumeration value="SWK"/>
+			<xsd:enumeration value="SWN"/>
+			<xsd:enumeration value="SXP"/>
+			<xsd:enumeration value="SYP"/>
+			<xsd:enumeration value="TAM"/>
+			<xsd:enumeration value="TEL"/>
+			<xsd:enumeration value="THU"/>
+			<xsd:enumeration value="TOR"/>
+			<xsd:enumeration value="TOW"/>
+			<xsd:enumeration value="TRA"/>
+			<xsd:enumeration value="TVP"/>
+			<xsd:enumeration value="TWP"/>
+			<xsd:enumeration value="WAK"/>
+			<xsd:enumeration value="WAL"/>
+			<xsd:enumeration value="WAN"/>
+			<xsd:enumeration value="WAR"/>
+			<xsd:enumeration value="WBE"/>
+			<xsd:enumeration value="WEC"/>
+			<xsd:enumeration value="WEN"/>
+			<xsd:enumeration value="WEP"/>
+			<xsd:enumeration value="WHF"/>
+			<xsd:enumeration value="WIG"/>
+			<xsd:enumeration value="WIN"/>
+			<xsd:enumeration value="WIR"/>
+			<xsd:enumeration value="WKS"/>
+			<xsd:enumeration value="WLP"/>
+			<xsd:enumeration value="WOK"/>
+			<xsd:enumeration value="WOL"/>
+			<xsd:enumeration value="WOR"/>
+			<xsd:enumeration value="WSN"/>
+			<xsd:enumeration value="WST"/>
+			<xsd:enumeration value="WSU"/>
+			<xsd:enumeration value="WTP"/>
+			<xsd:enumeration value="WYP"/>
+			<xsd:enumeration value="YOR"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CharacteristicType">
+		<xsd:annotation>
+			<xsd:documentation>
+				001 = Attending specialist education provision 
+				002 = Educated out of mainstream
+				003 = Excluded from FTE pre 16
+				004 = Suspended from FTE pre 16
+				005 = In FE Provision pre 16
+				006 = Key Stage 4 disapplied 
+				007 = Looked after / In care 
+				008 = N/A due to illness 
+				009 = Pregnant
+				010 = Caring for own child
+				011 = No fixed abode
+				012 = Not Available - other reason
+				013 = Refugee / Asylum seeker
+				014 = Gifted but vulnerable
+				015 = Carer not own child
+				016 = Client disclosed alcohol or drug use
+				017 = English as 2nd Language
+				018 = Attends sheltered provision
+				019 = Care Leaver
+				020 = Literacy / Numeracy needs
+				021 = Lone parent
+				022 = Other
+				023 = Parent
+				024 = Supervised by YoT
+				050 = Working with Local Authority 
+				051 = Working with Health Authority
+				052 = Working with Social Services
+				053 = Working with Learning and Skills Council
+				054 = Working with Police
+				055 = Working with Probation Service 
+				056 = Working with Young Offending Team 
+				057 = Working with Primary Care
+				058 = Working with Jobcentre Plus
+				059 = Working with Educational Welfare Officers
+				060 = Working with Drug Action Team 
+				061 = Working with Housing
+				062 = Working with Youth Services
+				063 = Working with Other Agency
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="001"/>
+			<xsd:enumeration value="002"/>
+			<xsd:enumeration value="003"/>
+			<xsd:enumeration value="004"/>
+			<xsd:enumeration value="005"/>
+			<xsd:enumeration value="006"/>
+			<xsd:enumeration value="007"/>
+			<xsd:enumeration value="008"/>
+			<xsd:enumeration value="009"/>
+			<xsd:enumeration value="010"/>
+			<xsd:enumeration value="011"/>
+			<xsd:enumeration value="012"/>
+			<xsd:enumeration value="013"/>
+			<xsd:enumeration value="014"/>
+			<xsd:enumeration value="015"/>
+			<xsd:enumeration value="016"/>
+			<xsd:enumeration value="017"/>
+			<xsd:enumeration value="018"/>
+			<xsd:enumeration value="019"/>
+			<xsd:enumeration value="020"/>
+			<xsd:enumeration value="021"/>
+			<xsd:enumeration value="022"/>
+			<xsd:enumeration value="050"/>
+			<xsd:enumeration value="051"/>
+			<xsd:enumeration value="052"/>
+			<xsd:enumeration value="053"/>
+			<xsd:enumeration value="054"/>
+			<xsd:enumeration value="055"/>
+			<xsd:enumeration value="056"/>
+			<xsd:enumeration value="057"/>
+			<xsd:enumeration value="058"/>
+			<xsd:enumeration value="059"/>
+			<xsd:enumeration value="060"/>
+			<xsd:enumeration value="061"/>
+			<xsd:enumeration value="062"/>
+			<xsd:enumeration value="063"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ActivityType">
+		<xsd:annotation>
+			<xsd:documentation>
+				0100 = Of compulsory education age.
+				0101 = Registered at a school or other educational establishment in the Partnership area
+				0102 = Educated at home
+				0103 = In a Custodial Sentence
+				0104 = Not registered at a school or other educational establishment in the Partnership area
+				0105 = Current Situation not known
+				0201 = Full time Education
+				0202 = Employment funded through GST (eg AMA, FMA)
+				0203 = Employment with training to NVQ 2 or above
+				0204 = Employment without training to NVQ 2
+				0205 = Temporary employment
+				0206 = Government supported training FMA/other WBL
+				0207 = Government supported training E2E
+				0208 = Government supported training Other GST (eg New Deal)
+				0209 = Part time Education
+				0210 = Part Time Employment 
+				0211 = Full/part time personal development opportunities
+				0212 = Gap Year students
+				0213 = Available to labour market
+				0214 = Not available to labour market Young carers
+				0215 = Not available to labour market Teenage parents
+				0216 = Not available to labour market Illness
+				0217 = Not available to labour market Pregnancy
+				0218 = Not available to labour market those not available on religious grounds 
+				0219 = Not available to labour market those who are currently unlikely to be economically active 
+				0220 = Not available to labour market Other reason not available
+				0221 = Custody
+				0222 = Refugees/Asylum seekers who have not yet been granted citizenship
+				0223 = Current situation not known Currency- Full time education
+				0224 = Current situation not known Currency- Employment
+				0225 = Current situation not known Currency- Government Support Training – non employed status
+				0226 = Current situation not known Currency- Gap Year Students
+				0227 = Current situation not known Currency- Part time EET
+				0228 = Current situation not known Currency- Personal development opportunities
+				0229 = Current situation not known Currency- Other
+				0230 = Current situation not known Currency- NEET- available to labour market
+				0231 = Current situation not known Currency- NEET - not available to labour market
+				0232 = Current situation not known -Other Situation Not Known
+				0301 = Left Education in Partnership Area – not resident
+				0302 = Known to be travelling abroad for extended period
+				0303 = No longer in cohort (age, other)
+				0304 = Educated outside partnership area (resident)
+				0310 = Moved out of Partnership area – to education
+				0311 = Moved out of Partnership area – to employment
+				0312 = Moved out of Partnership area – to other known activity
+				0313 = Moved out of Partnership area – to unknown activity.
+				9999 = Unspecified code
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="0100"/>
+			<xsd:enumeration value="0101"/>
+			<xsd:enumeration value="0102"/>
+			<xsd:enumeration value="0103"/>
+			<xsd:enumeration value="0104"/>
+			<xsd:enumeration value="0105"/>
+			<xsd:enumeration value="0200"/>
+			<xsd:enumeration value="0201"/>
+			<xsd:enumeration value="0202"/>
+			<xsd:enumeration value="0203"/>
+			<xsd:enumeration value="0204"/>
+			<xsd:enumeration value="0205"/>
+			<xsd:enumeration value="0206"/>
+			<xsd:enumeration value="0207"/>
+			<xsd:enumeration value="0208"/>
+			<xsd:enumeration value="0209"/>
+			<xsd:enumeration value="0210"/>
+			<xsd:enumeration value="0211"/>
+			<xsd:enumeration value="0212"/>
+			<xsd:enumeration value="0213"/>
+			<xsd:enumeration value="0214"/>
+			<xsd:enumeration value="0215"/>
+			<xsd:enumeration value="0216"/>
+			<xsd:enumeration value="0217"/>
+			<xsd:enumeration value="0218"/>
+			<xsd:enumeration value="0219"/>
+			<xsd:enumeration value="0220"/>
+			<xsd:enumeration value="0221"/>
+			<xsd:enumeration value="0222"/>
+			<xsd:enumeration value="0223"/>
+			<xsd:enumeration value="0224"/>
+			<xsd:enumeration value="0225"/>
+			<xsd:enumeration value="0226"/>
+			<xsd:enumeration value="0227"/>
+			<xsd:enumeration value="0228"/>
+			<xsd:enumeration value="0229"/>
+			<xsd:enumeration value="0230"/>
+			<xsd:enumeration value="0231"/>
+			<xsd:enumeration value="0232"/>
+			<xsd:enumeration value="0300"/>
+			<xsd:enumeration value="0301"/>
+			<xsd:enumeration value="0302"/>
+			<xsd:enumeration value="0303"/>
+			<xsd:enumeration value="0304"/>
+			<xsd:enumeration value="0305"/>
+			<xsd:enumeration value="0310"/>
+			<xsd:enumeration value="0311"/>
+			<xsd:enumeration value="0312"/>
+			<xsd:enumeration value="0313"/>
+			<xsd:enumeration value="0351"/>
+			<xsd:enumeration value="0352"/>
+			<xsd:enumeration value="0353"/>
+			<xsd:enumeration value="0354"/>
+			<xsd:enumeration value="0355"/>
+			<xsd:enumeration value="0356"/>
+			<xsd:enumeration value="0357"/>
+			<xsd:enumeration value="9999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="JoinFromType">
+		<xsd:annotation>
+			<xsd:documentation>
+				J01 = Compulsory education
+				J02 = Full time Further Education
+				J03 = Full time Higher Education
+				J04 = Employment
+				J05 = Employment funded through GST (eg AMA, FMA)
+				J06 = Employment with training to NVQ 2
+				J07 = Employment without training to NVQ 2
+				J08 = Temporary employment
+				J09 = Government supported training - FMA/other WBL
+				J10 = Government supported training -E2E
+				J11 = Government supported training -Other GST (eg New Deal)
+				J12 = Part time education
+				J13 = Part time employment
+				J14 = Personal development opportunities
+				J15 = Contact re-established
+				J16 = Moved into area (NEET)
+				J17 = Not previously known to Connexions
+				J18 = Other (inc custodial sentence)
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="J01"/>
+			<xsd:enumeration value="J02"/>
+			<xsd:enumeration value="J03"/>
+			<xsd:enumeration value="J04"/>
+			<xsd:enumeration value="J05"/>
+			<xsd:enumeration value="J06"/>
+			<xsd:enumeration value="J07"/>
+			<xsd:enumeration value="J08"/>
+			<xsd:enumeration value="J09"/>
+			<xsd:enumeration value="J10"/>
+			<xsd:enumeration value="J11"/>
+			<xsd:enumeration value="J12"/>
+			<xsd:enumeration value="J13"/>
+			<xsd:enumeration value="J14"/>
+			<xsd:enumeration value="J15"/>
+			<xsd:enumeration value="J16"/>
+			<xsd:enumeration value="J17"/>
+			<xsd:enumeration value="J18"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LeaveToType">
+		<xsd:annotation>
+			<xsd:documentation>
+				L01 = Full time Education
+				L02 = Employment -funded through GST (eg AMA, FMA)
+				L03 = Employment -with training to NVQ 2
+				L04 = Employment -without training to NVQ 2
+				L05 = Temporary employment
+				L06 = Government supported training - FMA/other WBL
+				L07 = Government supported training - E2E
+				L08 = Government supported training - Other GST (eg New Deal)
+				L09 = Part time education
+				L10 = Part time employment
+				L11 = Personal development opportunities
+				L12 = Currency Expired
+				L13 = Known to be travelling abroad for extended period
+				L14 = no longer in the NEET cohort for other reasons (inc custodial sentence/age)
+				L15 = Moved out of area to education
+				L16 = Moved out of area to employment
+				L17 = Moved out of area other known activity
+				L18 = Moved out of area other unknown activity
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="L01"/>
+			<xsd:enumeration value="L02"/>
+			<xsd:enumeration value="L03"/>
+			<xsd:enumeration value="L04"/>
+			<xsd:enumeration value="L05"/>
+			<xsd:enumeration value="L06"/>
+			<xsd:enumeration value="L07"/>
+			<xsd:enumeration value="L08"/>
+			<xsd:enumeration value="L09"/>
+			<xsd:enumeration value="L10"/>
+			<xsd:enumeration value="L11"/>
+			<xsd:enumeration value="L12"/>
+			<xsd:enumeration value="L13"/>
+			<xsd:enumeration value="L14"/>
+			<xsd:enumeration value="L15"/>
+			<xsd:enumeration value="L16"/>
+			<xsd:enumeration value="L17"/>
+			<xsd:enumeration value="L18"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SOC2000GroupType">
+		<xsd:annotation>
+			<xsd:documentation>
+				01 = Managerial/Professonal
+				02 = Clerical/Secriterial
+				03 = Skilled Construction
+				04 = Skilled Engineering
+				05 = Electrical Engineering
+				06 = Metal Forming Trades
+				07 = Vehicle Trades
+				08 = Textile/Garment Trades
+				09 = Other Skilled Trades
+				10 = Protective Service Occupations
+				11 = Catering Occupations
+				12 = Health Care Occupations
+				13 = Childcare and Related Occupations
+				14 = Hairdressing and related Occupations
+				15 = Other Professional Service Occupations
+				16 = Sales Occupations
+				17 = Plant/Machine Occupations
+				18 = Agricultural/Forestry/Fishing Occupations
+				19 = Labouring/Unskilled Industrial
+				20 = Mail Workers
+				21 = Unskilled Service Sector
+				22 = Other Elementary Occupations
+				23 = Unknown Occupations
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="01"/>
+			<xsd:enumeration value="02"/>
+			<xsd:enumeration value="03"/>
+			<xsd:enumeration value="04"/>
+			<xsd:enumeration value="05"/>
+			<xsd:enumeration value="06"/>
+			<xsd:enumeration value="07"/>
+			<xsd:enumeration value="08"/>
+			<xsd:enumeration value="09"/>
+			<xsd:enumeration value="10"/>
+			<xsd:enumeration value="11"/>
+			<xsd:enumeration value="12"/>
+			<xsd:enumeration value="13"/>
+			<xsd:enumeration value="14"/>
+			<xsd:enumeration value="15"/>
+			<xsd:enumeration value="16"/>
+			<xsd:enumeration value="17"/>
+			<xsd:enumeration value="18"/>
+			<xsd:enumeration value="19"/>
+			<xsd:enumeration value="20"/>
+			<xsd:enumeration value="21"/>
+			<xsd:enumeration value="22"/>
+			<xsd:enumeration value="23"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MVProjectType">
+		<xsd:annotation>
+			<xsd:documentation>
+				01 = Community Action
+				02 = Housing
+				03 = Arts/Music
+				04 = Sports
+				05 = Culture and Heritage
+				06 = Working with Children
+				07 = Working with Elderly
+				08 = Crime Prevention
+				09 = Conservation and Environmental Work
+				10 = Peer Support/Education
+				11 = Youth Led Project (ind)
+				12 = Youth Led Project (grp)
+				13 = Animal Welfare
+				14 = Health and Social Welfare
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="01"/>
+			<xsd:enumeration value="02"/>
+			<xsd:enumeration value="03"/>
+			<xsd:enumeration value="04"/>
+			<xsd:enumeration value="05"/>
+			<xsd:enumeration value="06"/>
+			<xsd:enumeration value="07"/>
+			<xsd:enumeration value="08"/>
+			<xsd:enumeration value="09"/>
+			<xsd:enumeration value="10"/>
+			<xsd:enumeration value="11"/>
+			<xsd:enumeration value="12"/>
+			<xsd:enumeration value="13"/>
+			<xsd:enumeration value="14"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AgencyType">
+		<xsd:annotation>
+			<xsd:documentation>
+				01 = Specialist Service
+				02 = Other
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="01"/>
+			<xsd:enumeration value="02"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CohortStatusType">
+		<xsd:annotation>
+			<xsd:documentation>
+				P=Primary
+				S=Secondary
+				X=Included in return, not in cohort.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="P"/>
+			<xsd:enumeration value="S"/>
+			<xsd:enumeration value="X"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="IntDestType">
+		<xsd:annotation>
+			<xsd:documentation>
+				01 = Full Time Education
+				02 = Employment 
+				03 = Government Supported Training
+				04 = Voluntary Activity
+				05 = Gap Year
+				06 = Carer / Extended Illness
+				07 = Undecided
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="01"/>
+			<xsd:enumeration value="02"/>
+			<xsd:enumeration value="03"/>
+			<xsd:enumeration value="04"/>
+			<xsd:enumeration value="05"/>
+			<xsd:enumeration value="06"/>
+			<xsd:enumeration value="07"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ActivityRecordType">
+		<xsd:annotation>
+			<xsd:documentation>
+				C=Cohort
+				L=NEET Leaver
+				J=NEET Joiner
+				N=Moved out of Area/No Longer in Cohort
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="C"/>
+			<xsd:enumeration value="L"/>
+			<xsd:enumeration value="J"/>
+			<xsd:enumeration value="N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ActivityGroupType">
+		<xsd:annotation>
+			<xsd:documentation>
+				1 = Pre Year 9
+				2 = Year 9
+				3 = Year 10
+				4 = Year 11
+				5 = Education
+				6 = WBL or Other GST
+				7 = Employment
+				8 = NEET
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="4"/>
+			<xsd:enumeration value="5"/>
+			<xsd:enumeration value="6"/>
+			<xsd:enumeration value="7"/>
+			<xsd:enumeration value="8"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaOne">
+		<xsd:annotation>
+			<xsd:documentation>One character alpha string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaThree">
+		<xsd:annotation>
+			<xsd:documentation>Three character alpha string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z][A-Z][A-Z]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaFour">
+		<xsd:annotation>
+			<xsd:documentation>Four character alpha string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z][A-Z][A-Z][A-Z]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaFive">
+		<xsd:annotation>
+			<xsd:documentation>Five character alpha string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z][A-Z][A-Z][A-Z][A-Z]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NumericOne">
+		<xsd:annotation>
+			<xsd:documentation>One digit numeric string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NumericTwo">
+		<xsd:annotation>
+			<xsd:documentation>Two digit numeric string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9][0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NumericFour">
+		<xsd:annotation>
+			<xsd:documentation>Four digit numeric string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9][0-9][0-9][0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NumericSeven">
+		<xsd:annotation>
+			<xsd:documentation>Seven digit numeric string
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
