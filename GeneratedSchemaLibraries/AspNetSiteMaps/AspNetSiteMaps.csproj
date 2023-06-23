@@ -5,6 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="example.sitemap" />
+    <None Remove="SiteMapSchema.xsd" />
+    <None Remove="SiteMapSchema.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="example.sitemap" />
+    <EmbeddedResource Include="SiteMapSchema.xsd" />
+    <EmbeddedResource Include="SiteMapSchema.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" />
   </ItemGroup>
 

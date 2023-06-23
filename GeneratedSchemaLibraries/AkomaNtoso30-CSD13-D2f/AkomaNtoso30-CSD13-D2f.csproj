@@ -5,6 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="schema\akomantoso30.dtd" />
+    <None Remove="schema\akomantoso30.xml" />
+    <None Remove="schema\akomantoso30.xsd" />
+    <None Remove="schema\modular.xsd" />
+    <None Remove="schema\pst.dtd" />
+    <None Remove="schema\xml.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="schema\akomantoso30.dtd" />
+    <EmbeddedResource Include="schema\akomantoso30.xml" />
+    <EmbeddedResource Include="schema\akomantoso30.xsd" />
+    <EmbeddedResource Include="schema\modular.xsd" />
+    <EmbeddedResource Include="schema\pst.dtd" />
+    <EmbeddedResource Include="schema\xml.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" />
   </ItemGroup>
 
