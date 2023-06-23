@@ -33,6 +33,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractTypeTest", "GeneratedSchemaLibraries\AbstractTypeTest\AbstractTypeTest.csproj", "{FC15BBDD-171C-4795-9588-5116311DAF88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GeneratedSchemaLibraries", "GeneratedSchemaLibraries", "{E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}"
+	ProjectSection(SolutionItems) = preProject
+		GeneratedSchemaLibraries\Directory.Build.props = GeneratedSchemaLibraries\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XMLSpec", "GeneratedSchemaLibraries\XMLSpec\XMLSpec.csproj", "{50225D74-8662-427B-AECB-1B9572821943}"
 EndProject
