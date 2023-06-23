@@ -339,13 +339,13 @@ namespace PubMed.MyCollections {
         /// Regular expression: (Title, URL, Description, Details, ShortDetails?, Resource, Type, Identifiers, EntrezUID, Properties)
         /// </para>
         /// </summary>
-        public virtual object Type {
+        public virtual PubMed.MyCollections.Type Type {
             get {
                 XElement x = this.GetElement(TypeXName);
-                return ((object)(x));
+                return ((PubMed.MyCollections.Type)(x));
             }
             set {
-                this.SetElement(TypeXName, value.ToString());
+                this.SetElement(TypeXName, value);
             }
         }
         
@@ -490,13 +490,13 @@ namespace PubMed.MyCollections {
         public Type() {
         }
         
-        public virtual PubMed.MyCollections.Type1LocalType TypedValue {
+        public virtual PubMed.MyCollections.Type.Type1Enum TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((PubMed.MyCollections.Type1LocalType)(Enum.Parse(typeof(PubMed.MyCollections.Type1LocalType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                return ((PubMed.MyCollections.Type.Type1Enum)(Enum.Parse(typeof(PubMed.MyCollections.Type.Type1Enum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName).Datatype))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", Type1LocalTypeValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", Type1EnumValidator.TypeDefinition);
             }
         }
         
@@ -553,21 +553,21 @@ namespace PubMed.MyCollections {
             return ContentModelEntity.Default;
         }
         
-        public enum Type1LocalType {
+        public enum Type1Enum {
             
             citation,
             
             article,
         }
         
-        private class Type1LocalTypeValidator {
+        private class Type1EnumValidator {
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NCName), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                             "citation",
-                            "article"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                            "article"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
             
-            private Type1LocalTypeValidator() {
+            private Type1EnumValidator() {
             }
         }
     }
