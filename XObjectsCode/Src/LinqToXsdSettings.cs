@@ -56,6 +56,10 @@ namespace Xml.Schema.Linq
             GenerateNamespaceFileMapping(namespacesElement);
 
             var codegenElement = rootElement.Element(XName.Get("CodeGeneration", Constants.TypedXLinqNs));
+
+            UseDateOnly = codegenElement?.Element(XName.Get("UseDateOnly", Constants.TypedXLinqNs))?.Value == "true";
+            UseTimeOnly = codegenElement?.Element(XName.Get("UseTimeOnly", Constants.TypedXLinqNs))?.Value == "true";
+
             var splitFilesElement = codegenElement?.Element(XName.Get("SplitCodeFiles", Constants.TypedXLinqNs));
             SplitFilesByNamespace = splitFilesElement?.Attribute("By")?.Value == "Namespace";
 
@@ -103,6 +107,9 @@ namespace Xml.Schema.Linq
             get { return enableServiceReference; }
             set { enableServiceReference = value; }
         }
+
+        public bool UseDateOnly { get; set; }
+        public bool UseTimeOnly { get; set; }
 
         public bool NullableReferences { get; set; }
 

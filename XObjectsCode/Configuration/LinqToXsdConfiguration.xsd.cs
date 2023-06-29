@@ -235,10 +235,18 @@ namespace Xml.Schema.Linq {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (SplitCodeFiles)
+    /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
     /// </para>
     /// </summary>
     internal partial class CodeGeneration : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName UseDateOnlyXName = System.Xml.Linq.XName.Get("UseDateOnly", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName UseTimeOnlyXName = System.Xml.Linq.XName.Get("UseTimeOnly", "http://www.microsoft.com/xml/schema/linq");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -256,12 +264,12 @@ namespace Xml.Schema.Linq {
         
         static CodeGeneration() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SplitCodeFilesXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(UseDateOnlyXName), new NamedContentModelEntity(UseTimeOnlyXName), new NamedContentModelEntity(SplitCodeFilesXName));
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal CodeGeneration() {
@@ -269,10 +277,52 @@ namespace Xml.Schema.Linq {
         
         /// <summary>
         /// <para>
+        /// Generate .net 6 DateOnly type for xs:date
+        /// </para>
+        /// <para>
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal virtual bool UseDateOnly {
+            get {
+                XElement x = this.GetElement(UseDateOnlyXName);
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(UseDateOnlyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Generate .net 6 TimeOnly type for xs:time
+        /// </para>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal virtual bool UseTimeOnly {
+            get {
+                XElement x = this.GetElement(UseTimeOnlyXName);
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(UseTimeOnlyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal virtual SplitCodeFiles SplitCodeFiles {
@@ -342,6 +392,8 @@ namespace Xml.Schema.Linq {
         }
         
         private static void BuildElementDictionary() {
+            localElementDictionary.Add(UseDateOnlyXName, typeof(bool));
+            localElementDictionary.Add(UseTimeOnlyXName, typeof(bool));
             localElementDictionary.Add(SplitCodeFilesXName, typeof(SplitCodeFiles));
         }
         

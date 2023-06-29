@@ -99,7 +99,7 @@ public partial class ClrTypeReference
         get { return typeName; }
         set
         {
-            typeName = value; //needed to fixup typename of anonymous types 
+            typeName = value; //needed to fixup typename of anonymous types
         }
     }
 
@@ -245,7 +245,10 @@ public partial class ClrTypeReference
         return clrTypeName;
     }
 
-    public string GetClrFullTypeName(string parentTypeClrNs, Dictionary<XmlSchemaObject, string> nameMappings,
+    public string GetClrFullTypeName(
+        string parentTypeClrNs,
+        Dictionary<XmlSchemaObject, string> nameMappings,
+        LinqToXsdSettings settings,
         out string refTypeName)
     {
         string clrTypeName = null;
@@ -268,11 +271,17 @@ public partial class ClrTypeReference
         {
             //its a simple type - get default xsd -> clr mapping
             Debug.Assert(IsSimpleType);
-            XmlSchemaSimpleType st = schemaObject as XmlSchemaSimpleType;
+            var st = schemaObject as XmlSchemaSimpleType;
             Debug.Assert(st != null);
-            clrTypeName = IsSchemaList
-                ? st.GetListItemType().Datatype.ValueType.ToString()
-                : st.Datatype.ValueType.ToString();
+
+            var schemaType = IsSchemaList ? st.GetListItemType().Datatype : st.Datatype;
+
+            clrTypeName = schemaType.TypeCode switch
+            {
+                XmlTypeCode.Date when settings.UseDateOnly => "System.DateOnly",
+                XmlTypeCode.Time when settings.UseTimeOnly => "System.TimeOnly",
+                _ => schemaType.ValueType.ToString(),
+            };
         }
 
         return clrTypeName;

@@ -19,6 +19,16 @@
   <xs:element name="CodeGeneration">
     <xs:complexType>
       <xs:sequence maxOccurs="1">
+		<xs:element name="UseDateOnly" type="xs:boolean" default="0">
+			<xs:annotation>
+				<xs:documentation>Generate .net 6 DateOnly type for xs:date</xs:documentation>
+			</xs:annotation>
+		</xs:element>
+		<xs:element name="UseTimeOnly" type="xs:boolean" default="0">
+			<xs:annotation>
+				<xs:documentation>Generate .net 6 TimeOnly type for xs:time</xs:documentation>
+			</xs:annotation>
+		</xs:element>
         <xs:element name="SplitCodeFiles">
           <xs:complexType>
             <xs:attribute name="By">
