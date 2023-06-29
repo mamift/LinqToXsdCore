@@ -496,6 +496,10 @@ namespace Xml.Schema.Linq {
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly System.Xml.Linq.XName DefaultVisibilityXName = System.Xml.Linq.XName.Get("DefaultVisibility", "");
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FileXName = System.Xml.Linq.XName.Get("File", "");
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq");
         
 		public static explicit operator Namespace(XElement xe) { return XTypedServices.ToXTypedElement<Namespace>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
@@ -554,6 +558,24 @@ namespace Xml.Schema.Linq {
             }
             set {
                 this.SetAttribute(DefaultVisibilityXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Filename of C# generated file for this CLR namespace, when using SplitCodeFiles.By=Namespace.
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        internal virtual string File {
+            get {
+                XAttribute x = this.Attribute(FileXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetAttribute(FileXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         

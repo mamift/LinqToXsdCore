@@ -16,18 +16,19 @@ namespace Xml.Schema.Linq
     public class LinqToXsdSettings
     {
         private Dictionary<string, string> namespaceMapping;
-        public Dictionary<string, GeneratedTypesVisibility> NamespaceTypesVisibilityMap { get; } = new Dictionary<string, GeneratedTypesVisibility>();
+        public Dictionary<string, GeneratedTypesVisibility> NamespaceTypesVisibilityMap { get; } = new();
+        public Dictionary<string, string> NamespaceFileMap { get; } = new();
         internal XElement trafo;
         private bool verifyRequired = false;
         private bool enableServiceReference = false;
         private readonly bool NameMangler2;
-        
+
         public LinqToXsdSettings(bool nameMangler2 = false)
         {
             this.NameMangler2 = nameMangler2;
             namespaceMapping = new Dictionary<string, string>();
         }
-        
+
         public LinqToXsdSettings(string filePath, bool nameMangler2 = false)
         {
             this.NameMangler2 = nameMangler2;
@@ -39,7 +40,7 @@ namespace Xml.Schema.Linq
         {
             if (string.IsNullOrEmpty(configFile))
                 throw new ArgumentException("Argument configFile should be non-null and non-empty.");
-            
+
             Load(XDocument.Load(configFile));
         }
 
@@ -48,12 +49,21 @@ namespace Xml.Schema.Linq
             if (configDocument?.Root == null) throw new ArgumentNullException(nameof(configDocument));
 
             var rootElement = configDocument.Root;
+
             var namespacesElement = rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs));
             GenerateNamespaceMapping(namespacesElement);
             GenerateNamespaceVisibilityMapping(namespacesElement);
+            GenerateNamespaceFileMapping(namespacesElement);
+
+            var codegenElement = rootElement.Element(XName.Get("CodeGeneration", Constants.TypedXLinqNs));
+            var splitFilesElement = codegenElement?.Element(XName.Get("SplitCodeFiles", Constants.TypedXLinqNs));
+            SplitFilesByNamespace = splitFilesElement?.Attribute("By")?.Value == "Namespace";
+
             XElement nullableSettings = rootElement.Element(XName.Get("NullableReferences", Constants.TypedXLinqNs));
             NullableReferences = nullableSettings?.Value == "true";
+
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
+
             XElement validationSettings = rootElement.Element(XName.Get("Validation", Constants.TypedXLinqNs));
             if (validationSettings != null)
             {
@@ -80,6 +90,8 @@ namespace Xml.Schema.Linq
             namespaceMapping.Add(xmlNamespace, clrNamespace);
             return clrNamespace;
         }
+
+        public bool SplitFilesByNamespace { get; set; }
 
         public bool VerifyRequired
         {
@@ -116,6 +128,18 @@ namespace Xml.Schema.Linq
                     : GeneratedTypesVisibility.Public;
 
                 NamespaceTypesVisibilityMap.Add(clrNs, visibility);
+            }
+        }
+
+        private void GenerateNamespaceFileMapping(XElement namespaces)
+        {
+            if (namespaces == null) return;
+            foreach (var ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs)))
+            {
+                var file = ns.Attribute(XName.Get("File"))?.Value;
+                if (file == null) continue;
+                var clrNs = ns.Attribute(XName.Get("Clr"))?.Value;
+                NamespaceFileMap.Add(clrNs, file);
             }
         }
     }

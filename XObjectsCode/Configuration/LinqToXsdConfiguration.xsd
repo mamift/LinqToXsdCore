@@ -40,7 +40,7 @@
   </xs:element>
   <xs:element name="Namespaces">
     <xs:annotation>
-      <xs:documentation>Lists chlid Namespace elements.</xs:documentation>
+      <xs:documentation>Lists child Namespace elements.</xs:documentation>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence maxOccurs="1">
@@ -74,6 +74,11 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="File" type="xs:string">
+		<xs:annotation>
+		  <xs:documentation>Filename of C# generated file for this CLR namespace, when using SplitCodeFiles.By=Namespace.</xs:documentation>
+		</xs:annotation>
+	  </xs:attribute>
     </xs:complexType>
   </xs:element>
   <xs:element name="NullableReferences" type="xs:boolean" default="0">
