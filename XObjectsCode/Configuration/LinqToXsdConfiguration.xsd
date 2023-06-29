@@ -19,16 +19,21 @@
   <xs:element name="CodeGeneration">
     <xs:complexType>
       <xs:sequence maxOccurs="1">
-		<xs:element name="UseDateOnly" type="xs:boolean" default="0">
-			<xs:annotation>
-				<xs:documentation>Generate .net 6 DateOnly type for xs:date</xs:documentation>
-			</xs:annotation>
-		</xs:element>
-		<xs:element name="UseTimeOnly" type="xs:boolean" default="0">
-			<xs:annotation>
-				<xs:documentation>Generate .net 6 TimeOnly type for xs:time</xs:documentation>
-			</xs:annotation>
-		</xs:element>
+        <xs:element name="UseDateOnly" type="xs:boolean" default="false">
+          <xs:annotation>
+            <xs:documentation>Generate .net 6 DateOnly type for xs:date</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="UseTimeOnly" type="xs:boolean" default="false">
+          <xs:annotation>
+            <xs:documentation>Generate .net 6 TimeOnly type for xs:time</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="NullableReferences" type="xs:boolean" default="false">
+          <xs:annotation>
+            <xs:documentation>Generates C# 8 nullable references.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="SplitCodeFiles">
           <xs:complexType>
             <xs:attribute name="By">
@@ -85,15 +90,15 @@
         </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="File" type="xs:string">
-		<xs:annotation>
-		  <xs:documentation>Filename of C# generated file for this CLR namespace, when using SplitCodeFiles.By=Namespace.</xs:documentation>
-		</xs:annotation>
-	  </xs:attribute>
+        <xs:annotation>
+          <xs:documentation>Filename of C# generated file for this CLR namespace, when using SplitCodeFiles.By=Namespace.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
   <xs:element name="NullableReferences" type="xs:boolean" default="0">
     <xs:annotation>
-      <xs:documentation>Generates C# 8 nullable references.</xs:documentation>
+      <xs:documentation>Generates C# 8 nullable references. [Obsolete, use CodeGeneration/NullableReferences instead.]</xs:documentation>
     </xs:annotation>
   </xs:element>
   <xs:element name="Validation">

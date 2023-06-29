@@ -235,7 +235,7 @@ namespace Xml.Schema.Linq {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
+    /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
     /// </para>
     /// </summary>
     internal partial class CodeGeneration : XTypedElement, IXMetaData {
@@ -247,6 +247,10 @@ namespace Xml.Schema.Linq {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly System.Xml.Linq.XName UseTimeOnlyXName = System.Xml.Linq.XName.Get("UseTimeOnly", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName NullableReferencesXName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -264,12 +268,12 @@ namespace Xml.Schema.Linq {
         
         static CodeGeneration() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(UseDateOnlyXName), new NamedContentModelEntity(UseTimeOnlyXName), new NamedContentModelEntity(SplitCodeFilesXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(UseDateOnlyXName), new NamedContentModelEntity(UseTimeOnlyXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(SplitCodeFilesXName));
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal CodeGeneration() {
@@ -283,7 +287,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal virtual bool UseDateOnly {
@@ -304,7 +308,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal virtual bool UseTimeOnly {
@@ -319,10 +323,31 @@ namespace Xml.Schema.Linq {
         
         /// <summary>
         /// <para>
+        /// Generates C# 8 nullable references.
+        /// </para>
+        /// <para>
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (UseDateOnly, UseTimeOnly, SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal virtual bool NullableReferences {
+            get {
+                XElement x = this.GetElement(NullableReferencesXName);
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(NullableReferencesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal virtual SplitCodeFiles SplitCodeFiles {
@@ -394,6 +419,7 @@ namespace Xml.Schema.Linq {
         private static void BuildElementDictionary() {
             localElementDictionary.Add(UseDateOnlyXName, typeof(bool));
             localElementDictionary.Add(UseTimeOnlyXName, typeof(bool));
+            localElementDictionary.Add(NullableReferencesXName, typeof(bool));
             localElementDictionary.Add(SplitCodeFilesXName, typeof(SplitCodeFiles));
         }
         

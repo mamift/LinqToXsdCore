@@ -63,8 +63,10 @@ namespace Xml.Schema.Linq
             var splitFilesElement = codegenElement?.Element(XName.Get("SplitCodeFiles", Constants.TypedXLinqNs));
             SplitFilesByNamespace = splitFilesElement?.Attribute("By")?.Value == "Namespace";
 
-            XElement nullableSettings = rootElement.Element(XName.Get("NullableReferences", Constants.TypedXLinqNs));
-            NullableReferences = nullableSettings?.Value == "true";
+
+            var nullableRefsName = XName.Get("NullableReferences", Constants.TypedXLinqNs);
+            NullableReferences =
+                (codegenElement?.Element(nullableRefsName) ?? rootElement.Element(nullableRefsName))?.Value == "true";
 
             trafo = rootElement.Element(XName.Get("Transformation", Constants.FxtNs));
 
