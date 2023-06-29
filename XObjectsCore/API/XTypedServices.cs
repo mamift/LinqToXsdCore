@@ -594,20 +594,27 @@ namespace Xml.Schema.Linq
 
         internal static string GetXmlString(object value, XmlSchemaDatatype datatype, XElement element)
         {
-            string stringValue = null;
-            if (datatype.TypeCode == XmlTypeCode.QName)
+            switch (datatype.TypeCode)
             {
-                XmlQualifiedName qName = value as XmlQualifiedName;
-                Debug.Assert(qName != null);
-                stringValue = XTypedServices.QNameToString(qName, element);
-            }
-            else {
-                // just return the string when the value is a string type and the XmlType is AnyAtomicType
-                if (datatype.TypeCode == XmlTypeCode.AnyAtomicType && value is string str) stringValue = str;
-                else stringValue = (string) datatype.ChangeType(value, XTypedServices.typeOfString);
-            }
+                case XmlTypeCode.QName:
+                    var qName = value as XmlQualifiedName;
+                    Debug.Assert(qName != null);
+                    return QNameToString(qName, element);
 
-            return stringValue;
+                case XmlTypeCode.AnyAtomicType when value is string str:
+                    return str;
+
+#if NET6_0_OR_GREATER
+                case XmlTypeCode.Date when value is DateOnly d:
+                    return d.ToString("o", CultureInfo.InvariantCulture);
+
+                case XmlTypeCode.Time when value is TimeOnly t:
+                    return t.ToString("o", CultureInfo.InvariantCulture);
+#endif
+
+                default:
+                    return (string)datatype.ChangeType(value, typeOfString);
+            };
         }
 
         internal static XElement GetXElement(XTypedElement xObj, XName name)
