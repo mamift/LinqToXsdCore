@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <PackageReference Include="System.CodeDom" Version="6.0.0" />
-    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" />
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
   </ItemGroup>
 </Project>

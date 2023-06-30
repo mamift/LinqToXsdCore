@@ -313,11 +313,11 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 //This might happen if the schema set has no global elements and only global types
                 rootCodeNamespace =
-                    codeNamespacesTable.Values.FirstOrDefault(); //then you can create a root tag with xsi:type 
-                // rootCodeNamespace may still be null  if schema has only simple typed global elements or simple types which we are ignoring for now 
+                    codeNamespacesTable.Values.FirstOrDefault(); //then you can create a root tag with xsi:type
+                // rootCodeNamespace may still be null  if schema has only simple typed global elements or simple types which we are ignoring for now
             }
 
-            //Build list of types that will need to be included 
+            //Build list of types that will need to be included
             //in XRoot
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(rootClrNamespace);
             foreach (CodeNamespace codeNamespace in xroots.Keys)
@@ -485,7 +485,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     string innerTypeName = null;
                     string innerTypeFullName =
-                        innerType.GetClrFullTypeName(typeInfo.clrtypeNs, nameMappings, out innerTypeName);
+                        innerType.GetClrFullTypeName(typeInfo.clrtypeNs, nameMappings, settings, out innerTypeName);
                     string innerTypeNs = innerType.Namespace;
 
                     CodeNamespace innerTypeCodeNamespace = GetCodeNamespace(innerTypeNs);
@@ -559,7 +559,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 //This might happen if the schema set has no global elements and only global types
                 rootCodeNamespace =
-                    codeNamespacesTable.Values.FirstOrDefault(); //then you can create a root tag with xsi:type 
+                    codeNamespacesTable.Values.FirstOrDefault(); //then you can create a root tag with xsi:type
             }
 
             if (rootCodeNamespace != null)

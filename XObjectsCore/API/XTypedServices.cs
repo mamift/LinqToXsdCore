@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -115,7 +116,7 @@ namespace Xml.Schema.Linq
             }
 
             //Try getting back as the type first, optimized for the cases where xsi:type cannot appear
-            XTypedElement xoSubType = GetAnnotation(t, xe); 
+            XTypedElement xoSubType = GetAnnotation(t, xe);
             if (xoSubType == null)
             {
                 //Try xsi:type and lookup in the typeDictionary
@@ -136,7 +137,7 @@ namespace Xml.Schema.Linq
                 }
                 else
                 {
-                    //xsi:type not present or CLRType not found for xsi:type name 
+                    //xsi:type not present or CLRType not found for xsi:type name
                     clrType = t;
                 }
 
@@ -512,6 +513,16 @@ namespace Xml.Schema.Linq
 
         internal static T ParseValue<T>(string value, XElement element, XmlSchemaDatatype datatype)
         {
+#if NET6_0_OR_GREATER
+            // Using XmlSchemaDatatype.ChangeType would return a DateTime for those two
+
+            if (typeof(T) == typeof(DateOnly))
+                return (T)(object)DateOnly.Parse(value, CultureInfo.InvariantCulture);
+
+            if (typeof(T) == typeof(TimeOnly))
+                return (T)(object)TimeOnly.Parse(value, CultureInfo.InvariantCulture);
+#endif
+
             if (datatype.TypeCode == XmlTypeCode.AnyAtomicType && value is T)
             {
                 return (T) (value as object);
@@ -521,10 +532,8 @@ namespace Xml.Schema.Linq
             {
                 return (T) datatype.ParseValue(value, NameTable, new XNamespaceResolver(element));
             }
-            else
-            {
-                return (T) datatype.ChangeType(value, typeof(T));
-            }
+
+            return (T) datatype.ChangeType(value, typeof(T));
         }
 
         internal static NameTable NameTable
@@ -585,20 +594,28 @@ namespace Xml.Schema.Linq
 
         internal static string GetXmlString(object value, XmlSchemaDatatype datatype, XElement element)
         {
-            string stringValue = null;
-            if (datatype.TypeCode == XmlTypeCode.QName)
+            switch (datatype.TypeCode)
             {
-                XmlQualifiedName qName = value as XmlQualifiedName;
-                Debug.Assert(qName != null);
-                stringValue = XTypedServices.QNameToString(qName, element);
-            }
-            else {
-                // just return the string when the value is a string type and the XmlType is AnyAtomicType
-                if (datatype.TypeCode == XmlTypeCode.AnyAtomicType && value is string str) stringValue = str;
-                else stringValue = (string) datatype.ChangeType(value, XTypedServices.typeOfString);
-            }
+                case XmlTypeCode.QName:
+                    var qName = value as XmlQualifiedName;
+                    Debug.Assert(qName != null);
+                    return QNameToString(qName, element);
 
-            return stringValue;
+                case XmlTypeCode.AnyAtomicType when value is string str:
+                    return str;
+
+#if NET6_0_OR_GREATER
+                case XmlTypeCode.Date when value is DateOnly d:
+                    return d.ToString("o", CultureInfo.InvariantCulture);
+
+                case XmlTypeCode.Time when value is TimeOnly t:
+                    // ToString("o") works too, but it always print the milliseconds, which are often not required
+                    return t.ToString("HH':'mm':'ss.FFFFFFF", CultureInfo.InvariantCulture);
+#endif
+
+                default:
+                    return (string)datatype.ChangeType(value, typeOfString);
+            };
         }
 
         internal static XElement GetXElement(XTypedElement xObj, XName name)
@@ -626,7 +643,7 @@ namespace Xml.Schema.Linq
             //Does this need a type qualifier?
             if (xObj.GetType() != elementBaseType)
             {
-                //Don't overwrite anything explicitly added 
+                //Don't overwrite anything explicitly added
                 var xsiType = (string)newElement.Attribute(XName.Get("type", XmlSchema.InstanceNamespace));
                 if (xsiType == null)
                 {
