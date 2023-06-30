@@ -609,7 +609,8 @@ namespace Xml.Schema.Linq
                     return d.ToString("o", CultureInfo.InvariantCulture);
 
                 case XmlTypeCode.Time when value is TimeOnly t:
-                    return t.ToString("o", CultureInfo.InvariantCulture);
+                    // ToString("o") works too, but it always print the milliseconds, which are often not required
+                    return t.ToString("HH':'mm':'ss.FFFFFFF", CultureInfo.InvariantCulture);
 #endif
 
                 default:
