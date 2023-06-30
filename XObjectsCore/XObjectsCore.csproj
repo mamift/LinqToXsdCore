@@ -9,7 +9,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
-    <Version>3.3.0</Version>
+    <Version>3.4.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
