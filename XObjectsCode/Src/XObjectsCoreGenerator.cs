@@ -39,7 +39,10 @@ namespace Xml.Schema.Linq
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
 
             return xsdFilePaths
-                .SelectMany (file => Generate(file, settings))
+                .SelectMany(file => Generate(file, settings))
+                // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
+                // In this case we arbitrary keep the first occurence.
+                .Distinct(new FileNameComparer())
                 .ToDictionary(x => x.filename, x => x.writer);
         }
 
