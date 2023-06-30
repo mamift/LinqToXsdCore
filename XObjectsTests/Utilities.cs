@@ -60,7 +60,11 @@ namespace Xml.Schema.Linq.Tests
 
             var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
 
-            return SourceText.From(code.ToString());
+            var writerText = code.Select(t => t.writer.ToString());
+
+            var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
+
+            return SourceText.From(delimitedByNewLines);
         }
 
         /// <summary>
