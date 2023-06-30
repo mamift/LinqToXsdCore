@@ -65,8 +65,8 @@ namespace Xml.Schema.Linq.Tests.Extensions
             var enumTwo = new CodeTypeDeclaration() {
                 Name = "DesignerTyper",
                 IsEnum = true,
-                Members = { 
-                    new CodeMemberField("DesignerType", "TestingMember1"), 
+                Members = {
+                    new CodeMemberField("DesignerType", "TestingMember1"),
                     new CodeMemberField("DesignerType", "A")
                 }
             };
@@ -87,10 +87,10 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsNotNull(xmlSpecSchemaSet);
             Assert.IsTrue(xmlSpecSchemaSet.IsCompiled);
 
-            var ccu = XObjectsCoreGenerator.GenerateCodeCompileUnit(xmlSpecSchemaSet,
+            var ccus = XObjectsCoreGenerator.GenerateCodeCompileUnits(xmlSpecSchemaSet,
                 xmlSpecXsdConfig.ToLinqToXsdSettings());
 
-            var classStringWriters = ccu.ToClassStringWriters().ToList();
+            var classStringWriters = ccus.SelectMany(x => x.unit.ToClassStringWriters()).ToList();
 
             Assert.IsNotEmpty(classStringWriters);
 
