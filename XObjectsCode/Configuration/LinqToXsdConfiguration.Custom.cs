@@ -156,11 +156,6 @@ namespace Xml.Schema.Linq
                 Validation = new Validation {
                     VerifyRequired = new VerifyRequired(false)
                 },
-                CodeGeneration = new CodeGeneration() {
-                    SplitCodeFiles = new SplitCodeFiles() {
-                        By = SplitCodeFiles.ByEnum.Namespace
-                    }
-                }
             };
         }
 

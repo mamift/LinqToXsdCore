@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <Description>This $(MSBuildProjectName) library provides an API for generated code and projects that use said generated code. Use this library in shipping apps + libraries; use LinqToXsdCore to generate code. Original Authors: Microsoft Corporation.</Description>
     <PackageReadmeFile>RELEASENOTES.md</PackageReadmeFile>
   </PropertyGroup>
@@ -9,7 +9,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
-    <Version>3.3.0</Version>
+    <Version>3.4.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

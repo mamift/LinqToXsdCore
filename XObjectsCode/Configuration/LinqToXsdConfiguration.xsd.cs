@@ -235,10 +235,22 @@ namespace Xml.Schema.Linq {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (SplitCodeFiles)
+    /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
     /// </para>
     /// </summary>
     internal partial class CodeGeneration : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName UseDateOnlyXName = System.Xml.Linq.XName.Get("UseDateOnly", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName UseTimeOnlyXName = System.Xml.Linq.XName.Get("UseTimeOnly", "http://www.microsoft.com/xml/schema/linq");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName NullableReferencesXName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -256,12 +268,12 @@ namespace Xml.Schema.Linq {
         
         static CodeGeneration() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SplitCodeFilesXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(UseDateOnlyXName), new NamedContentModelEntity(UseTimeOnlyXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(SplitCodeFilesXName));
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal CodeGeneration() {
@@ -269,10 +281,73 @@ namespace Xml.Schema.Linq {
         
         /// <summary>
         /// <para>
+        /// Generate .net 6 DateOnly type for xs:date
+        /// </para>
+        /// <para>
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (SplitCodeFiles)
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal virtual bool UseDateOnly {
+            get {
+                XElement x = this.GetElement(UseDateOnlyXName);
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(UseDateOnlyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Generate .net 6 TimeOnly type for xs:time
+        /// </para>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal virtual bool UseTimeOnly {
+            get {
+                XElement x = this.GetElement(UseTimeOnlyXName);
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(UseTimeOnlyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Generates C# 8 nullable references.
+        /// </para>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
+        /// </para>
+        /// </summary>
+        internal virtual bool NullableReferences {
+            get {
+                XElement x = this.GetElement(NullableReferencesXName);
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(NullableReferencesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (UseDateOnly, UseTimeOnly, NullableReferences, SplitCodeFiles)
         /// </para>
         /// </summary>
         internal virtual SplitCodeFiles SplitCodeFiles {
@@ -342,6 +417,9 @@ namespace Xml.Schema.Linq {
         }
         
         private static void BuildElementDictionary() {
+            localElementDictionary.Add(UseDateOnlyXName, typeof(bool));
+            localElementDictionary.Add(UseTimeOnlyXName, typeof(bool));
+            localElementDictionary.Add(NullableReferencesXName, typeof(bool));
             localElementDictionary.Add(SplitCodeFilesXName, typeof(SplitCodeFiles));
         }
         
@@ -496,6 +574,10 @@ namespace Xml.Schema.Linq {
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly System.Xml.Linq.XName DefaultVisibilityXName = System.Xml.Linq.XName.Get("DefaultVisibility", "");
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FileXName = System.Xml.Linq.XName.Get("File", "");
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Namespace", "http://www.microsoft.com/xml/schema/linq");
         
 		public static explicit operator Namespace(XElement xe) { return XTypedServices.ToXTypedElement<Namespace>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
@@ -554,6 +636,24 @@ namespace Xml.Schema.Linq {
             }
             set {
                 this.SetAttribute(DefaultVisibilityXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Filename of C# generated file for this CLR namespace, when using SplitCodeFiles.By=Namespace.
+        /// </para>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        internal virtual string File {
+            get {
+                XAttribute x = this.Attribute(FileXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetAttribute(FileXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         

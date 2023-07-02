@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.0
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.0
+	* `<SplitCodeFiles By="Namespace" />` now works, but it requires a new `File` filename attribute on every `<Namespace />`. **If you had set this unimplemented option in your config before upgrading, you will get an error and need to modify your config!**
+	* `<NullableReferences>` option should now be set inside `<CodeGeneration>`. It still works in `<Configuration>` for backward compatibility.
+	* New options `<UseDateOnly>` and `<UseTimeOnly>` inside `<CodeGeneration>`. When `true`, .net 6 `DateOnly` and `TimeOnly` types will be generated for `xs:date` and `xs:time` properties.
+	* _Minor breaking change:_ if you used `XObjectsCodeGen` directly (as a library), a few public APIs have changed to support splitting files by namespace. There is no breaking change for users of LinqToXsd tool and `XObjectsCore` runtime.
+
 ## Version 3.3.3
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.3.3
