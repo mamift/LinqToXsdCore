@@ -20,6 +20,9 @@
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
     <PackageOutputPath>$(MSBuildProjectDirectory)\nupkg</PackageOutputPath>
+    
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <!-- Disable XML comment warnings -->
