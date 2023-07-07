@@ -13,7 +13,7 @@ namespace Xml.Schema.Linq.CodeGen
 {
     public partial class ClrPropertyInfo : ClrBasePropertyInfo
     {
-        bool nullableReferences;
+        LinqToXsdSettings settings;
 
         ClrTypeReference typeRef;
         PropertyFlags propertyFlags;
@@ -30,11 +30,11 @@ namespace Xml.Schema.Linq.CodeGen
 
         public ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
-            this.nullableReferences = settings.NullableReferences;
+            this.settings = settings;
             this.contentType = ContentType.Property;
             this.propertyName = propertyName;
             this.propertyNs = propertyNs;
-            this.schemaName = schemaName;            
+            this.schemaName = schemaName;
             this.hasSet = true;
             this.returnType = null;
             this.defaultValueType = null;
@@ -301,12 +301,12 @@ namespace Xml.Schema.Linq.CodeGen
                 return CreateListReturnType(fullTypeName);
             }
 
-            if (!IsRef && IsNullable && (nullableReferences || typeRef.IsValueType))
-            {                
+            if (!IsRef && IsNullable && (settings.NullableReferences || typeRef.IsValueType))
+            {
                 return new XCodeTypeReference(fullTypeName + "?");
             }
-            
-            return new XCodeTypeReference(typeName) { fullTypeName = fullTypeName };            
+
+            return new XCodeTypeReference(typeName) { fullTypeName = fullTypeName };
         }
 
         private XCodeTypeReference CreateListReturnType(string fullTypeName)
@@ -342,7 +342,7 @@ namespace Xml.Schema.Linq.CodeGen
                 }
             }
 
-            this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, out string refTypeName);
+            this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, settings, out string refTypeName);
 
             if (Validation || IsUnion)
             {
@@ -400,7 +400,7 @@ namespace Xml.Schema.Linq.CodeGen
                     AddListSetStatements(clrProperty.SetStatements, listType, listName);
                 }
 
-                if (nullableReferences)
+                if (settings.NullableReferences)
                 {
                     clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
                 }
@@ -517,7 +517,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         private void AddSetValueMethodCall(CodeStatementCollection setStatements)
-        {            
+        {
             string setMethodName = "Set";
             if (!IsRef && IsSchemaList)
             {
@@ -557,7 +557,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     setStatements.Add(
                         CodeDomHelper.CreateMethodCall(
-                            CodeDomHelper.This(), 
+                            CodeDomHelper.This(),
                             setMethodName,
                             CodeDomHelper.SetValue(),
                             new CodePrimitiveExpression(this.propertyName),
@@ -570,7 +570,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     setStatements.Add(
                         CodeDomHelper.CreateMethodCall(
-                            CodeDomHelper.This(), 
+                            CodeDomHelper.This(),
                             setMethodName,
                             CodeDomHelper.SetValue(),
                             new CodePrimitiveExpression(this.propertyName),
@@ -587,7 +587,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     var setValue = CodeDomHelper.SetValue();
                     setWithValidation = CodeDomHelper.CreateMethodCall(
-                        CodeDomHelper.This(), 
+                        CodeDomHelper.This(),
                         setMethodName + "WithValidation",
                         xNameExpression,
                         valueExpr,
@@ -597,7 +597,7 @@ namespace Xml.Schema.Linq.CodeGen
                 else
                 {
                     setWithValidation = CodeDomHelper.CreateMethodCall(
-                        CodeDomHelper.This(), 
+                        CodeDomHelper.This(),
                         setMethodName + "WithValidation",
                         valueExpr,
                         new CodePrimitiveExpression(PropertyName),
@@ -642,7 +642,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (xNameParm)
             {
                 var methodCall = CodeDomHelper.CreateMethodCall(
-                    CodeDomHelper.This(), 
+                    CodeDomHelper.This(),
                     setMethodName,
                     xNameExpression,
                     new CodeSnippetExpression(valueExpr)
@@ -656,7 +656,7 @@ namespace Xml.Schema.Linq.CodeGen
             else
             {
                 return CodeDomHelper.CreateMethodCall(
-                    CodeDomHelper.This(), 
+                    CodeDomHelper.This(),
                     setMethodName,
                     new CodeSnippetExpression(valueExpr),
                     GetSchemaDatatypeExpression()
@@ -1081,7 +1081,7 @@ namespace Xml.Schema.Linq.CodeGen
                     new CodeAttributeDeclaration("EditorBrowsable", new CodeAttributeArgument(new CodeSnippetExpression("EditorBrowsableState.Never"))),
                 },
             };
-            
+
             typeDecl.Members.Add(field);
         }
 

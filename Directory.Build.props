@@ -3,7 +3,7 @@
 
   <!-- Build and design defaults -->
   <PropertyGroup>
-    <TargetFramework>net6</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Xml.Schema.Linq</RootNamespace>
   </PropertyGroup>
 
@@ -21,7 +21,7 @@
     <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
     <PackageOutputPath>$(MSBuildProjectDirectory)\nupkg</PackageOutputPath>
   </PropertyGroup>
-  
+
   <!-- Disable XML comment warnings -->
   <PropertyGroup>
     <!--

@@ -24,15 +24,15 @@ namespace LinqToXsd
                 PrintLn($"Outputting {textWriters.Count} files...".Gray());
                 foreach (var kvp in textWriters)
                 {
-                    var outputFilename = Path.GetFileName($"{kvp.Key}.cs");
-                    string outputFilePath;
+                    var outputFilename = Path.GetFileName(kvp.Key);
+                    if (!outputFilename.EndsWith(".cs"))
+                        outputFilename += ".cs";
 
-                    if (possibleOutputFolder == "-1")
-                        outputFilePath = Path.Combine(Path.GetDirectoryName(kvp.Key), outputFilename);
-                    else if (possibleOutputFolder.IsNotEmpty())
-                        outputFilePath = Path.Combine(possibleOutputFolder, outputFilename);
-                    else
-                        outputFilePath = Path.GetFullPath(outputFilename);
+                    string outputFilePath = possibleOutputFolder == "-1"
+                        ? Path.Combine(Path.GetDirectoryName(kvp.Key), outputFilename)
+                        : possibleOutputFolder.IsNotEmpty()
+                            ? Path.Combine(possibleOutputFolder, outputFilename)
+                            : Path.GetFullPath(outputFilename);
 
                     var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
 

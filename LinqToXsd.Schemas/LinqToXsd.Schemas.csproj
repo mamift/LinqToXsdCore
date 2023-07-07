@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <!-- Avoid being overrun by warnings -->
@@ -72,6 +72,45 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AbstractTypeTest\abstracttest.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AbstractTypeTest\abstracttest.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AspNetSiteMaps\example.sitemap">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AspNetSiteMaps\SiteMapSchema.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AspNetSiteMaps\SiteMapSchema.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Atom\atom.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Atom\atom.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Atom\xml2001.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ContentModelTest\ContentModelTest.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EnumsTest\EnumsTest.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EnumsTest\EnumsTest.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="DupEnum\DupEnumTest.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -148,6 +187,17 @@
     <None Update="Schemas\XSD\xml.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="NHS CDS\CDS-XML_Standard_Data_Elements-V6-2-3.xsd.cs" />
+    <Content Include="NHS CDS\CDS-XML_Standard_Data_Elements-V6-2-3.xsd.cs" />
+    <Compile Remove="NHS CDS\CDS-XML_Standard_Data_Structures-V6-2-3.xsd.cs" />
+    <Content Include="NHS CDS\CDS-XML_Standard_Data_Structures-V6-2-3.xsd.cs" />
+    <Compile Remove="NHS CDS\CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.cs" />
+    <Content Include="NHS CDS\CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.cs" />
+    <Compile Remove="NHS CDS\CDS_011_Emergency_Care-V6-2-3.xsd.cs" />
+    <Content Include="NHS CDS\CDS_011_Emergency_Care-V6-2-3.xsd.cs" />
   </ItemGroup>
 
 </Project>

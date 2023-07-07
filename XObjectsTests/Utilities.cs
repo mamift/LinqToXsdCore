@@ -32,11 +32,14 @@ namespace Xml.Schema.Linq.Tests
         public static SourceText GenerateSourceText(string xsdFileName)
         {
             var possibleSettingsFile = $"{xsdFileName}.config";
-            KeyValuePair<string, TextWriter> code = File.Exists(possibleSettingsFile)
+            var codeWriters = File.Exists(possibleSettingsFile)
                 ? XObjectsCoreGenerator.Generate(xsdFileName, possibleSettingsFile)
                 : XObjectsCoreGenerator.Generate(xsdFileName, default(string));
 
-            return SourceText.From(code.Value.ToString());
+            // This method assumes SplitCodeFile is not used, so there's only a single writer per file.
+            var writer = codeWriters.Single().writer;
+
+            return SourceText.From(writer.ToString());
         }
 
         /// <summary>
@@ -57,7 +60,11 @@ namespace Xml.Schema.Linq.Tests
 
             var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
 
-            return SourceText.From(code.ToString());
+            var writerText = code.Select(t => t.writer.ToString());
+
+            var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
+
+            return SourceText.From(delimitedByNewLines);
         }
 
         /// <summary>
