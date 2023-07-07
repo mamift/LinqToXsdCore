@@ -14,8 +14,11 @@
     <NoWarn>$(NoWarn);108;114;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="NHS CDS\**" />
     <Compile Remove="_temp\**" />
+    <EmbeddedResource Remove="NHS CDS\**" />
     <EmbeddedResource Remove="_temp\**" />
+    <None Remove="NHS CDS\**" />
     <None Remove="_temp\**" />
   </ItemGroup>
 
@@ -187,17 +190,6 @@
     <None Update="Schemas\XSD\xml.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="NHS CDS\CDS-XML_Standard_Data_Elements-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS-XML_Standard_Data_Elements-V6-2-3.xsd.cs" />
-    <Compile Remove="NHS CDS\CDS-XML_Standard_Data_Structures-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS-XML_Standard_Data_Structures-V6-2-3.xsd.cs" />
-    <Compile Remove="NHS CDS\CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.cs" />
-    <Compile Remove="NHS CDS\CDS_011_Emergency_Care-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS_011_Emergency_Care-V6-2-3.xsd.cs" />
   </ItemGroup>
 
 </Project>
