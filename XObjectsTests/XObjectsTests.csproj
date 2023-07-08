@@ -17,6 +17,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.IO.Abstractions" Version="19.2.29" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="19.2.29" />
+    <PackageReference Include="TestableIO.System.IO.Abstractions.Extensions" Version="1.0.42" />
   </ItemGroup>
 
   <ItemGroup>

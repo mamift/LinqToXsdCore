@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
+using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
@@ -10,13 +15,30 @@ using System.Xml.Schema;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
-
+using Microsoft.Schemas.SharePoint;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
     public static class Utilities
     {
+        public static Dictionary<string, MockFileData> GetAssemblyTextFilesDictionary(Assembly assembly)
+        {
+            var names = assembly.GetManifestResourceNames();
+
+            var rootName = assembly.GetName().Name + ".";
+
+            var streams = names.Select(n => (
+                name: n.Replace(rootName, rootName.Replace(".", "\\")),
+                stream: assembly.GetManifestResourceStream(n))
+            ).ToList();
+
+            var contents = streams.Select(tu => (tu.name, data: new MockFileData(tu.stream.ReadAsString(dispose: true))))
+                .ToDictionary(k => k.name, v => v.data);
+            
+            return contents;
+        }
+
         public static string WarningMessage(object expected, object actual, [CallerMemberName] string caller = "")
         {
             return caller + "() failed; expected " + expected + ", got " + actual;
@@ -70,7 +92,48 @@ namespace Xml.Schema.Linq.Tests
         /// <summary>
         /// Generates C# code from a given <paramref name="xsdFilePath"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFilePath) => GenerateSyntaxTree(new FileInfo(xsdFilePath));
+        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFilePath)
+        {
+            return GenerateSyntaxTree(new FileInfo(xsdFilePath));
+        }
+
+        /// <summary>
+        /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
+        /// the generated code.
+        /// </summary>
+        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor fs = null)
+        {
+            if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
+
+            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
+            var directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
+            var additionalXsds = directoryInfo.GetFiles("*.xsd").Where(f => f.FullName != xsdFile.FullName).ToArray();
+
+            var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
+
+            foreach (var xsd in additionalXsds) {
+                var fileStream = xsd.OpenRead();
+                var uri = new Uri($"{xsd.Name}", UriKind.Relative);
+                xmlPreloadedResolver.Add(uri, fileStream);
+            }
+
+            var xmlReaderSettings = new XmlReaderSettings() {
+                DtdProcessing = DtdProcessing.Ignore,
+                CloseInput = true
+            };
+            var schemaSet = XmlReader.Create(xsdFile.OpenRead(), xmlReaderSettings)
+                .ToXmlSchemaSet(xmlPreloadedResolver);
+
+            var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName);
+            var stringBuilder = new StringBuilder();
+            using var writer = new StringWriter(stringBuilder);
+            sourceText.Write(writer);
+
+            var tree = CSharpSyntaxTree.ParseText(sourceText, CSharpParseOptions.Default);
+
+            return tree as CSharpSyntaxTree;
+        }
+
         /// <summary>
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.

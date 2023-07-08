@@ -2,10 +2,15 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml.Schema;
+using System.Xml;
+using System.Xml.Resolvers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
@@ -13,11 +18,65 @@ using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
+    internal class MockXmlUrlResolver : XmlPreloadedResolver
+    {
+        private readonly IMockFileDataAccessor fs;
+
+        public MockXmlUrlResolver(IMockFileDataAccessor fs)
+        {
+            this.fs = fs;
+        }
+
+        public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
+        {
+            if (absoluteUri == null) throw new ArgumentNullException(nameof (absoluteUri));
+
+            return new MockFileInfo(this.fs, absoluteUri.OriginalString).OpenRead();
+        }
+
+        public override Task<object> GetEntityAsync(Uri absoluteUri, string role, Type ofObjectToReturn)
+        {
+            return base.GetEntityAsync(absoluteUri, role, ofObjectToReturn);
+        }
+
+        public override Uri ResolveUri(Uri baseUri, string relativeUri)
+        {
+            var theFile = fs.AllFiles.FirstOrDefault(f => f.EndsWith(relativeUri, StringComparison.CurrentCultureIgnoreCase));
+
+            var exists = theFile != null;
+                 
+            if (exists) {
+                return new Uri(theFile);
+            }
+
+            throw new FileNotFoundException();
+        }
+
+        public override bool SupportsType(Uri absoluteUri, Type type)
+        {
+            return base.SupportsType(absoluteUri, type);
+        }
+    }
+
     /// <summary>
     /// Extension methods used specifically in unit tests.
     /// </summary>
     public static class TestExtensionsMethods
     {
+        public static XmlSchemaSet ToXmlSchemaSet(this XmlReader reader, IMockFileDataAccessor fs)
+        {
+            var xmlResolver = new MockXmlUrlResolver(fs);
+            var newXmlSet = new XmlSchemaSet {
+                XmlResolver = xmlResolver
+            };
+
+            newXmlSet.Add(null, reader);
+            newXmlSet.Compile();
+
+            return newXmlSet;
+        }
+
+
         /// <summary>
         /// Copies an existing <paramref name="dir"/> to a <paramref name="destination"/> directory, that may or may not exist.
         /// <para>https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-copy-directories</para>

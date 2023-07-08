@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
+using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -18,12 +18,19 @@ namespace Xml.Schema.Linq.Tests
 
         private List<ClassDeclarationSyntax> GeneratedTypes { get; set; }
 
+        private MockFileSystem WssFiles { get; set; }
+
         [SetUp]
         public void GenerateCode()
         {
+            WssFiles = new MockFileSystem(Utilities.GetAssemblyTextFilesDictionary(typeof(FieldDefinition).Assembly));
+
             const string wssXsdFilePath = @"SharePoint2010\wss.xsd";
-            var wssXsdFileInfo = new FileInfo(wssXsdFilePath);
-            Tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo);
+            
+            var wssXsdFileInfo = new MockFileInfo(WssFiles, wssXsdFilePath);
+
+            MockFileData mockFile = WssFiles.GetFile(wssXsdFilePath);
+            Tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo, WssFiles);
 
             GeneratedTypes = Tree
                              .GetNamespaceRoot()

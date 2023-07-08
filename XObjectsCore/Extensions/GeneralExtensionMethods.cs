@@ -15,8 +15,9 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <param name="reader">The current <see cref="XmlReader"/>.</param>
         /// <param name="resolver">Add a custom <see cref="XmlResolver"/>. Defaults to using an <see cref="XmlUrlResolver"/>.</param>
+        /// <param name="disposeReader"></param>
         /// <returns></returns>
-        public static XmlSchemaSet ToXmlSchemaSet(this XmlReader reader, XmlResolver resolver = null)
+        public static XmlSchemaSet ToXmlSchemaSet(this XmlReader reader, XmlResolver resolver = null, bool disposeReader = false)
         {
             var xmlResolver = resolver ?? new XmlUrlResolver();
             var newXmlSet = new XmlSchemaSet {
@@ -25,6 +26,8 @@ namespace Xml.Schema.Linq.Extensions
 
             newXmlSet.Add(null, reader);
             newXmlSet.Compile();
+
+            if (disposeReader) reader.Dispose();
 
             return newXmlSet;
         }
