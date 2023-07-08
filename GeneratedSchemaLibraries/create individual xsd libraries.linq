@@ -1,5 +1,7 @@
 <Query Kind="Program" />
 
+public string LinqToXsdSchemasCsProjFilePath;
+
 void Main()
 {
 	var thisFileDir = Path.GetDirectoryName(LINQPad.Util.CurrentQueryPath);
@@ -10,6 +12,10 @@ void Main()
 
 	var eo = new EnumerationOptions() { RecurseSubdirectories = true };
 	var schemaDirs = Directory.GetDirectories(genSchemasDir);
+	
+	LinqToXsdSchemasCsProjFilePath = Path.Combine(thisFileDir, @"..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj");
+	
+	var linqtoxsdSchemasCsproj = XDocument.Load(LinqToXsdSchemasCsProjFilePath);
 	foreach (var vd in schemaDirs) {
 		var theDir = new DirectoryInfo(vd);
 		
@@ -21,13 +27,33 @@ void Main()
 
 		var lastFolderName = theDir.FullName.Split('\\').Last();
 		var dest = Path.Combine(genSchemasDir, lastFolderName);
-		//var strProj = $"<ProjectReference Include=\"..\\GeneratedSchemaLibraries\\{lastFolderName}\\{lastFolderName}.csproj\">" + 
-		//	"<SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework></ProjectReference>";
-		//strProj.Dump();
 		
 		var destCsproj = Path.Combine(dest, lastFolderName + ".csproj");
 		destCsproj.Dump();
+
 		File.Copy(templateProjFile, destCsproj);
+
+		var relativePath = $"..\\GeneratedSchemaLibraries\\{lastFolderName}\\{lastFolderName}.csproj";
+		var strProj = $"<ProjectReference Include=\"{relativePath}\">";
+		strProj.Dump();
+		InsertProjectRef(linqtoxsdSchemasCsproj, relativePath, LinqToXsdSchemasCsProjFilePath); 
 	}
 }
 
+void InsertProjectRef(XDocument xdoc, string projectRefStr, string xdocLocation) {
+	// used as a pointer to the real target
+	var xsdPre = xdoc.Descendants().First(e => e.Name == "ProjectReference" && e.Attribute("Include").Value == @"..\GeneratedSchemaLibraries\XSD\XSD.csproj");
+	var itemGroupParent = xsdPre.Parent;
+
+	var newPr = new XElement("ProjectReference");
+	newPr.SetAttributeValue("Include", projectRefStr);
+	
+	var possiblyExistingPrEl = xdoc.Descendants().FirstOrDefault(e => e.Equals(newPr));
+		
+	if (possiblyExistingPrEl != null) return;
+	
+	newPr.Dump();
+	itemGroupParent.Add(newPr);
+	return;
+	xdoc.Save(xdocLocation);
+}

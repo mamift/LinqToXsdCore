@@ -131,6 +131,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OfficeOpenXML-XMLSchema-Tra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenPackagingConventions-XMLSchema", "GeneratedSchemaLibraries\OpenPackagingConventions-XMLSchema\OpenPackagingConventions-XMLSchema.csproj", "{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office 2003 Reference schemas", "GeneratedSchemaLibraries\Office 2003 Reference schemas\Office 2003 Reference schemas.csproj", "{7E74DD95-A8DF-4CDC-AC83-41A228078D4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -361,6 +363,10 @@ Global
 		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E74DD95-A8DF-4CDC-AC83-41A228078D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E74DD95-A8DF-4CDC-AC83-41A228078D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E74DD95-A8DF-4CDC-AC83-41A228078D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E74DD95-A8DF-4CDC-AC83-41A228078D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -417,6 +423,7 @@ Global
 		{2B5E4034-79AC-465C-AC4F-FCEA32800677} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{FD0AED0B-8BA0-4ADF-BDFF-5FC81FD21B90} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{7E74DD95-A8DF-4CDC-AC83-41A228078D4E} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {515FF9D5-932D-4E95-A20B-E2A06A52858F}

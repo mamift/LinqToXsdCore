@@ -88,6 +88,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Strict\OfficeOpenXML-XMLSchema-Strict.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Transitional\OfficeOpenXML-XMLSchema-Transitional.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\OpenPackagingConventions-XMLSchema\OpenPackagingConventions-XMLSchema.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Office 2003 Reference schemas\Office 2003 Reference schemas.csproj" />
   </ItemGroup>
 
   <ItemGroup>
