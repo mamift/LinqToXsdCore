@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq
 {
@@ -112,6 +113,21 @@ namespace Xml.Schema.Linq
                         return (filename, x.writer);
                     });
             }
+        }
+
+        /// <summary>
+        /// Generates code using a given <paramref name="schemaSet"/> of XSDs.
+        /// </summary>
+        /// <param name="schemaSet"></param>
+        /// <returns>
+        ///     A single (null, StringWriter) when configuration doesn't split files per namespace.
+        ///     Otherwise, one StringWriter per CLR namespace.
+        /// </returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
+        public static IEnumerable<(string clrNamespace, TextWriter writer)> Generate(XmlSchemaSet schemaSet)
+        {
+            var settings = new LinqToXsdSettings();
+            return Generate(schemaSet, settings);
         }
 
         /// <summary>

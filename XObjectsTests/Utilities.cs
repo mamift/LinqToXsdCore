@@ -83,9 +83,8 @@ namespace Xml.Schema.Linq.Tests
             if (possibleSettings.Exists) {
                 LinqToXsdSettings settings = XObjectsCoreGenerator.LoadLinqToXsdSettings(XDocument.Load(possibleSettings.OpenRead()));
                 codeWriters = XObjectsCoreGenerator.Generate(schemaSet, settings);
-            }
-            else {
-                codeWriters = XObjectsCoreGenerator.Generate(xsdFileName, default(string));
+            } else {
+                codeWriters = XObjectsCoreGenerator.Generate(schemaSet);
             }
 
             // This method assumes SplitCodeFile is not used, so there's only a single writer per file.

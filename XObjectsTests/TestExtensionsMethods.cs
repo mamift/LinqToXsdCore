@@ -8,8 +8,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml.Schema;
-using System.Xml;
 using System.Xml.Resolvers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -63,20 +61,6 @@ namespace Xml.Schema.Linq.Tests
     /// </summary>
     public static class TestExtensionsMethods
     {
-        public static XmlSchemaSet ToXmlSchemaSet(this XmlReader reader, IMockFileDataAccessor fs)
-        {
-            var xmlResolver = new MockXmlUrlResolver(fs);
-            var newXmlSet = new XmlSchemaSet {
-                XmlResolver = xmlResolver
-            };
-
-            newXmlSet.Add(null, reader);
-            newXmlSet.Compile();
-
-            return newXmlSet;
-        }
-
-
         /// <summary>
         /// Copies an existing <paramref name="dir"/> to a <paramref name="destination"/> directory, that may or may not exist.
         /// <para>https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-copy-directories</para>
