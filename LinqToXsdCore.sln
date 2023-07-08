@@ -125,6 +125,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameMangled", "GeneratedSch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft Project 2007", "GeneratedSchemaLibraries\Microsoft Project 2007\Microsoft Project 2007.csproj", "{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OfficeOpenXML-XMLSchema-Strict", "GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Strict\OfficeOpenXML-XMLSchema-Strict.csproj", "{2B5E4034-79AC-465C-AC4F-FCEA32800677}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OfficeOpenXML-XMLSchema-Transitional", "GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Transitional\OfficeOpenXML-XMLSchema-Transitional.csproj", "{FD0AED0B-8BA0-4ADF-BDFF-5FC81FD21B90}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenPackagingConventions-XMLSchema", "GeneratedSchemaLibraries\OpenPackagingConventions-XMLSchema\OpenPackagingConventions-XMLSchema.csproj", "{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -343,6 +349,18 @@ Global
 		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B5E4034-79AC-465C-AC4F-FCEA32800677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B5E4034-79AC-465C-AC4F-FCEA32800677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B5E4034-79AC-465C-AC4F-FCEA32800677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B5E4034-79AC-465C-AC4F-FCEA32800677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD0AED0B-8BA0-4ADF-BDFF-5FC81FD21B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD0AED0B-8BA0-4ADF-BDFF-5FC81FD21B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD0AED0B-8BA0-4ADF-BDFF-5FC81FD21B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD0AED0B-8BA0-4ADF-BDFF-5FC81FD21B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -396,6 +414,9 @@ Global
 		{A34483A4-03A5-4C9E-A490-C25EBB65D8A2} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{5A242D12-D86C-4CF4-8DC2-C97E07D7AF67} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{2B5E4034-79AC-465C-AC4F-FCEA32800677} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{FD0AED0B-8BA0-4ADF-BDFF-5FC81FD21B90} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {515FF9D5-932D-4E95-A20B-E2A06A52858F}
