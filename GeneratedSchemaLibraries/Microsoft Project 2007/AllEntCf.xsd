@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://schemas.microsoft.com/project/2007"
+    xmlns="http://schemas.microsoft.com/project/2007">
+
+    <xs:include schemaLocation="AssnEntCF.xsd"/>
+    <xs:include schemaLocation="ProjEntCF.xsd"/>
+    <xs:include schemaLocation="ResEntCF.xsd"/>
+    <xs:include schemaLocation="TaskEntCF.xsd"/>
+</xs:schema>
