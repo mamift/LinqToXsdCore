@@ -57,12 +57,15 @@
 	  <!--<ProjectReference Include="..\GeneratedSchemaLibraries\LandXML\LandXML.csproj" />-->
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\LegalRuleML\LegalRuleML.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\MetaLEX\MetaLEX.csproj" />
+	  <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Project 2007\Microsoft Project 2007.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\MSBuild\MSBuild.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\Multi-namespaces\Multi-namespaces.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\mzIdentML\mzIdentML.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\mzML\mzML.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\mzQuantML\mzQuantML.csproj" />
+	  <ProjectReference Include="..\GeneratedSchemaLibraries\NameMangled\NameMangled.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\NHS CDS\NHS CDS.csproj" />
+	  <ProjectReference Include="..\GeneratedSchemaLibraries\OcmContracts\OcmContracts.csproj" />
 	  <!--<ProjectReference Include="..\GeneratedSchemaLibraries\NIEM\NIEM.csproj" />-->
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\OFMX\OFMX.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\OPC\OPC.csproj" />
@@ -81,6 +84,10 @@
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\XMLSpec\XMLSpec.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\XQueryX\XQueryX.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\XSD\XSD.csproj" />
+
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Strict\OfficeOpenXML-XMLSchema-Strict.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Transitional\OfficeOpenXML-XMLSchema-Transitional.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OpenPackagingConventions-XMLSchema\OpenPackagingConventions-XMLSchema.csproj" />
   </ItemGroup>
 
   <ItemGroup>
