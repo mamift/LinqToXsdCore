@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
@@ -15,13 +14,32 @@ using System.Xml.Schema;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
-using Microsoft.Schemas.SharePoint;
+
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
     public static class Utilities
     {
+        public static MockFileSystem GetAggregateMockFileSystem(IEnumerable<Assembly> assemblies)
+        {
+            var mockFs = new MockFileSystem();
+            foreach (var assembly in assemblies) {
+                var fileData = GetAssemblyTextFilesDictionary(assembly);
+                foreach (var kvp in fileData) {
+                    mockFs.AddFile(kvp.Key, kvp.Value);
+                }
+            }
+
+            return mockFs;
+        }
+
+        public static MockFileSystem GetAssemblyFileSystem(Assembly assembly)
+        {
+            var mockFs = new MockFileSystem(GetAssemblyTextFilesDictionary(assembly));
+            return mockFs;
+        }
+
         public static Dictionary<string, MockFileData> GetAssemblyTextFilesDictionary(Assembly assembly)
         {
             var names = assembly.GetManifestResourceNames();
@@ -101,7 +119,7 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor fs = null)
+        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor fs)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
 

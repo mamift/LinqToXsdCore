@@ -5,7 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <None Remove="collections.xsd" />
+    <None Remove="collections.xsd.config" />
+    <None Remove="efetch-pubmed.xsd" />
+    <None Remove="efetch-pubmed.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="collections.xsd" />
+    <EmbeddedResource Include="collections.xsd.config" />
+    <EmbeddedResource Include="efetch-pubmed.xsd" />
+    <EmbeddedResource Include="efetch-pubmed.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
