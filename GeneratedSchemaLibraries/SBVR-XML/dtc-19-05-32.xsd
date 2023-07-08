@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema elementFormDefault="unqualified" attributeFormDefault="unqualified"    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmi="http://www.omg.org/spec/XMI/20110701"    
            xmlns:sbvr="https://www.omg.org/spec/SBVR/20190601"    targetNamespace="https://www.omg.org/spec/SBVR/20190601">
-  <xs:import namespace="http://www.omg.org/spec/XMI/20110701" schemaLocation="https://www.omg.org/spec/XMI/20110701/XMI.xsd"/>
+  <xs:import namespace="http://www.omg.org/spec/XMI/20110701" schemaLocation="XMI.xsd"/>
   <!-- ====== Package: SBVR ======= -->
   <xs:element name="adoptedDefinition" type="sbvr:adoptedDefinition"/>
   <xs:complexType name="adoptedDefinition">
