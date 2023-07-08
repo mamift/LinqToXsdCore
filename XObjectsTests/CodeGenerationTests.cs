@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
@@ -17,15 +20,25 @@ namespace Xml.Schema.Linq.Tests
 
     public class CodeGenerationTests
     {
+        public MockFileSystem TestFiles { get; set; }
         private const string AtomXsdFilePath = @"Atom\atom.xsd";
+
+        [SetUp]
+        public void Setup()
+        {
+            var assemblies = new Assembly[] { typeof(AtomSyndication.XRoot).Assembly, typeof(urn.simple.doc.XRoot).Assembly };
+            TestFiles = Utilities.GetAggregateMockFileSystem(assemblies);
+        }
 
         [Test]
         public void NamespaceCodeGenerationConventionTest()
         {
             const string simpleDocXsdFilepath = @"Toy schemas\Simple doc.xsd";
-            var simpleDocXsd = XmlReader.Create(simpleDocXsdFilepath).ToXmlSchema();
+            var mockFileInfo = new MockFileInfo(TestFiles, simpleDocXsdFilepath);
+            
+            var simpleDocXsd = XmlReader.Create(mockFileInfo.OpenRead()).ToXmlSchema();
 
-            var sourceText = Utilities.GenerateSourceText(simpleDocXsdFilepath);
+            var sourceText = Utilities.GenerateSourceText(simpleDocXsdFilepath, TestFiles);
 
             var tree = CSharpSyntaxTree.ParseText(sourceText);
             var namespaceNode = tree.GetNamespaceRoot();

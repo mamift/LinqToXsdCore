@@ -7,7 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Resolvers;
 using System.Xml.Schema;
 
@@ -34,10 +36,14 @@ namespace Xml.Schema.Linq.Tests
             return mockFs;
         }
 
+        /// <summary>
+        /// Load all the embedded resources of a given assembly and load it into a <see cref="MockFileSystem"/>.
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
         public static MockFileSystem GetAssemblyFileSystem(Assembly assembly)
         {
-            var mockFs = new MockFileSystem(GetAssemblyTextFilesDictionary(assembly));
-            return mockFs;
+            return new MockFileSystem(GetAssemblyTextFilesDictionary(assembly));
         }
 
         public static Dictionary<string, MockFileData> GetAssemblyTextFilesDictionary(Assembly assembly)
@@ -45,11 +51,14 @@ namespace Xml.Schema.Linq.Tests
             var names = assembly.GetManifestResourceNames();
 
             var rootName = assembly.GetName().Name + ".";
+            var replacementRegex = new Regex(rootName);
 
-            var streams = names.Select(n => (
-                name: n.Replace(rootName, rootName.Replace(".", "\\")),
-                stream: assembly.GetManifestResourceStream(n))
-            ).ToList();
+            var streams = names.Select(n => {
+                var rootNameReplaced = replacementRegex.Replace(n, rootName.Replace(".", "\\"), 1);
+                return (
+                    name: rootNameReplaced,
+                    stream: assembly.GetManifestResourceStream(n));
+            }).ToList();
 
             var contents = streams.Select(tu => (tu.name, data: new MockFileData(tu.stream.ReadAsString(dispose: true))))
                 .ToDictionary(k => k.name, v => v.data);
@@ -60,6 +69,29 @@ namespace Xml.Schema.Linq.Tests
         public static string WarningMessage(object expected, object actual, [CallerMemberName] string caller = "")
         {
             return caller + "() failed; expected " + expected + ", got " + actual;
+        }
+        
+        public static SourceText GenerateSourceText(string xsdFileName, IMockFileDataAccessor fs)
+        {
+            var possibleSettingsFilePath = $"{xsdFileName}.config";
+            
+            var xsdFile = new MockFileInfo(fs, xsdFileName);
+            var possibleSettings = new MockFileInfo(fs, possibleSettingsFilePath);
+            var schemaSet = GetXmlSchemaSet(xsdFile, fs);
+
+            IEnumerable<(string filename, TextWriter writer)> codeWriters;
+            if (possibleSettings.Exists) {
+                LinqToXsdSettings settings = XObjectsCoreGenerator.LoadLinqToXsdSettings(XDocument.Load(possibleSettings.OpenRead()));
+                codeWriters = XObjectsCoreGenerator.Generate(schemaSet, settings);
+            }
+            else {
+                codeWriters = XObjectsCoreGenerator.Generate(xsdFileName, default(string));
+            }
+
+            // This method assumes SplitCodeFile is not used, so there's only a single writer per file.
+            var writer = codeWriters.Single().writer;
+
+            return SourceText.From(writer.ToString());
         }
 
         /// <summary>
@@ -119,7 +151,12 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor fs)
+        public static CSharpSyntaxTree GenerateSyntaxTree(string xsdFile, IMockFileDataAccessor fs)
+        {
+            return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs);
+        }
+        
+        public static XmlSchemaSet GetXmlSchemaSet(IFileInfo xsdFile, IMockFileDataAccessor fs)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
 
@@ -141,6 +178,17 @@ namespace Xml.Schema.Linq.Tests
             };
             var schemaSet = XmlReader.Create(xsdFile.OpenRead(), xmlReaderSettings)
                 .ToXmlSchemaSet(xmlPreloadedResolver);
+
+            return schemaSet;
+        }
+
+        /// <summary>
+        /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
+        /// the generated code.
+        /// </summary>
+        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor fs)
+        {
+            var schemaSet = GetXmlSchemaSet(xsdFile, fs);
 
             var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName);
             var stringBuilder = new StringBuilder();

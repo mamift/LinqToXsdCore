@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
@@ -24,6 +25,18 @@ namespace Xml.Schema.Linq
         {
             var settings = new LinqToXsdSettings();
             if (fromXmlFile.IsNotEmpty()) settings.Load(fromXmlFile);
+
+            return settings;
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="LinqToXsdSettings"/> from an already parsed <see cref="XDocument"/>.
+        /// </summary>
+        /// <returns></returns>
+        public static LinqToXsdSettings LoadLinqToXsdSettings(XDocument xdoc)
+        {
+            var settings = new LinqToXsdSettings();
+            settings.Load(xdoc);
 
             return settings;
         }
