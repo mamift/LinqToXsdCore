@@ -123,6 +123,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcmContracts", "GeneratedSc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameMangled", "GeneratedSchemaLibraries\NameMangled\NameMangled.csproj", "{5A242D12-D86C-4CF4-8DC2-C97E07D7AF67}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft Project 2007", "GeneratedSchemaLibraries\Microsoft Project 2007\Microsoft Project 2007.csproj", "{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -337,6 +339,10 @@ Global
 		{5A242D12-D86C-4CF4-8DC2-C97E07D7AF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A242D12-D86C-4CF4-8DC2-C97E07D7AF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A242D12-D86C-4CF4-8DC2-C97E07D7AF67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -389,6 +395,7 @@ Global
 		{671A29EC-BB75-4140-88C9-40EF943BC712} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{A34483A4-03A5-4C9E-A490-C25EBB65D8A2} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{5A242D12-D86C-4CF4-8DC2-C97E07D7AF67} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{391A8DDC-1C81-4BA8-ADBB-E6AC6A7B7EF6} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {515FF9D5-932D-4E95-A20B-E2A06A52858F}
