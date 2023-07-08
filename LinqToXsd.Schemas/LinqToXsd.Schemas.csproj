@@ -70,7 +70,7 @@
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\Pubmed\Pubmed.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\Rss\Rss.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\SBML\SBML.csproj" />
-	  <ProjectReference Include="..\GeneratedSchemaLibraries\SBVR-XML\SBVR-XML.csproj" />
+	  <!--<ProjectReference Include="..\GeneratedSchemaLibraries\SBVR-XML\SBVR-XML.csproj" />-->
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\SharePoint2010\SharePoint2010.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\SWRL\SWRL.csproj" />
 	  <ProjectReference Include="..\GeneratedSchemaLibraries\ThermoML\ThermoML.csproj" />
