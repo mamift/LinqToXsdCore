@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:ocm/#/ocmContracts"
+    xmlns="urn:ocm/#/ocmContracts">
+    <xs:element name="Contract">
+        <xs:annotation>
+            <xs:documentation>The Contract element represents a time period with a start and end date, with optional review periods/dates.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="contractInfo"/>
+                <xs:element name="StartDate" type="absoluteDateType">
+                    <xs:annotation>
+                        <xs:documentation>The date the terms of the contract become enforceable.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" name="ReviewPeriod" type="periodType"
+                    minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>A contract can have any number of arbitrary review periods. They can be treated like a duration, like a week, or a single instance of time (one datetime).</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="EndDate" type="absoluteDateType">
+                    <xs:annotation>
+                        <xs:documentation>The date the contract expires.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" name="CustomData">
+                    <xs:annotation>
+                        <xs:documentation>Store custom data here.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:any namespace="##any" processContents="lax"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:attributeGroup name="identifyingAttrs">
+        <xs:attribute name="Name" type="xs:string" use="required"/>
+        <xs:attribute name="Description" type="xs:string"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+    </xs:attributeGroup>
+    <xs:simpleType name="money">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="calculationType">
+        <xs:annotation>
+            <xs:documentation>Specifies the type of calculation to perform on the date (either calculate before or after)</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="before"/>
+            <xs:enumeration value="after"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="periodType">
+        <xs:annotation>
+            <xs:documentation>A periodType represnts a specific time period or date within the term of a contract that can be used to notify or remind users to do something, like review the contract terms etc.
+
+This type allows for computing the date or date ranges from a given expression, and storing the date or duration after it's been computed. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="StartBoundary" type="computeExpressionType">
+                <xs:annotation>
+                    <xs:documentation>Specify the start datetime of this period. Only specifying this means this periodType functions as an instant of time and not a duration.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EndBoundary" type="computeExpressionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Specify this optional EndDuration to make this a time spanning-period</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ComputedDuration" type="xs:duration">
+                <xs:annotation>
+                    <xs:documentation>If an EndBoundary was specified, then this is the computed duration.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="identifyingAttrs"/>
+        <xs:attribute name="IsComputed" type="xs:boolean"/>
+        <xs:attribute default="false" name="IsDuration" type="xs:boolean"/>
+    </xs:complexType>
+    <xs:group name="durationSpecification">
+        <xs:sequence>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="Minute" type="xs:int" minOccurs="0"/>
+                <xs:element name="Hour" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="Day" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="Week" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="Workweek" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="Fortnight" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="Month" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="Quarter" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="HalfYear" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="Year" type="xs:decimal" minOccurs="0"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
+    <xs:group name="contractInfo">
+        <xs:annotation>
+            <xs:documentation>Information about a contract.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Description" type="xs:string"/>
+            <xs:element minOccurs="0" name="Supplier" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The name of the supplier or vendor that is the contractor.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Value" type="money">
+                <xs:annotation>
+                    <xs:documentation>The value of the contract from the contractee perspective.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="computeExpressionType">
+        <xs:choice minOccurs="0">
+            <xs:annotation>
+                <xs:documentation>This choice is optional; if it's nil, then the @DateTimeValue attribute is used.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="Before">
+                <xs:complexType>
+                    <xs:group ref="durationSpecification"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="After">
+                <xs:complexType>
+                    <xs:group ref="durationSpecification"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute ref="DateTimeValue"/>
+    </xs:complexType>
+    <xs:complexType name="absoluteDateType">
+        <xs:simpleContent>
+            <xs:extension base="xs:dateTime">
+                <xs:attributeGroup ref="identifyingAttrs"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:attribute name="DateTimeValue" type="xs:dateTime">
+        <xs:annotation>
+            <xs:documentation>Ab absolute datetime value.</xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+</xs:schema>
