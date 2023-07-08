@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ocm.Contracts {
+namespace Ocm.Contracts.v2 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -167,7 +167,7 @@ namespace Ocm.Contracts {
                     this.SetElement(ValueXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Decimal).Datatype);
                 }
                 else {
-                    this.SetElementWithValidation(ValueXName, value, "Value", global::Ocm.Contracts.money.TypeDefinition);
+                    this.SetElementWithValidation(ValueXName, value, "Value", global::Ocm.Contracts.v2.money.TypeDefinition);
                 }
             }
         }
@@ -1985,13 +1985,13 @@ namespace Ocm.Contracts {
         }
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("periodType", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.periodType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("computeExpressionType", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.computeExpressionType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("absoluteDateType", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.absoluteDateType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("periodType", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.v2.periodType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("computeExpressionType", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.v2.computeExpressionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("absoluteDateType", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.v2.absoluteDateType));
         }
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Contract", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.Contract));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Contract", "urn:ocm/#/ocmContracts"), typeof(global::Ocm.Contracts.v2.Contract));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -2141,12 +2141,12 @@ namespace Ocm.Contracts {
         private XTypedElement rootObject;
         
 
-		public global::Ocm.Contracts.Contract Contract {  get {return rootObject as global::Ocm.Contracts.Contract; } }
+		public global::Ocm.Contracts.v2.Contract Contract {  get {return rootObject as global::Ocm.Contracts.v2.Contract; } }
         
         private XRoot() {
         }
         
-        public XRoot(global::Ocm.Contracts.Contract root) {
+        public XRoot(global::Ocm.Contracts.v2.Contract root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
