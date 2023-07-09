@@ -23,12 +23,62 @@ namespace Xml.Schema.Linq.Tests
 {
     public static class Utilities
     {
+        public static List<MockFileData> ResolveFileAndFolderPathsToJustFiles(MockFileSystem mfs, 
+            IEnumerable<string> sequenceOfFileAndOrFolderPaths, string filter = "*.*")
+        {
+            if (sequenceOfFileAndOrFolderPaths == null) throw new ArgumentNullException(nameof(sequenceOfFileAndOrFolderPaths));
+
+            var enumeratedFileAndOrFolderPaths = sequenceOfFileAndOrFolderPaths.ToList();
+
+            if (!enumeratedFileAndOrFolderPaths.Any())
+                throw new InvalidOperationException("There are no file or folder paths present in the enumerable!");
+
+            var dirs = enumeratedFileAndOrFolderPaths.Where(sf => mfs.GetFile(sf).Attributes.HasFlag(FileAttributes.Directory)).ToArray();
+            List<MockFileData> files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(f => mfs.GetFile(f)).ToList();
+            var filteredFiles = dirs.SelectMany(d => 
+                new MockDirectoryInfo(mfs, d).GetFiles(filter, SearchOption.AllDirectories).Select(f => new MockFileData(f.OpenRead().ReadAsString()))).ToList();
+            files.AddRange(filteredFiles);
+            return files;
+        }
+
+
+        public static List<string> ResolvePossibleFileAndFolderPathsToProcessableSchemas(MockFileSystem mockFileSystem,
+            IEnumerable<string> filesOrFolders)
+        {
+            var files = ResolveFileAndFolderPathsToJustFiles(mockFileSystem, filesOrFolders, "*.xsd");
+
+            // convert files to XDocuments and check if they are proper W3C schemas
+            var pairs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)));
+            var xDocs = pairs.Where(kvp => kvp.Value.IsAnXmlSchema())
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key).ToList();
+            
+            var resolvedSchemaFiles = files.Except(filteredIncludeAndImportRefs).Distinct().ToList();
+
+
+            if (filteredIncludeAndImportRefs.Count == files.Count && !resolvedSchemaFiles.Any()) {
+                throw new LinqToXsdException("Cannot decide which XSD files to process as the specified " +
+                                             "XSD files or folder of XSD files recursively import and/or " +
+                                             "include each other! In this case you must explicitly provide" +
+                                             "a file path and not a folder path.");
+            }
+
+            return resolvedSchemaFiles;
+        }
+
+
         public static MockFileSystem GetAggregateMockFileSystem(IEnumerable<Assembly> assemblies)
         {
             var mockFs = new MockFileSystem();
             foreach (var assembly in assemblies) {
                 var fileData = GetAssemblyTextFilesDictionary(assembly);
                 foreach (var kvp in fileData) {
+                    var possibleExistingPath = kvp.Key;
+
+                    if (mockFs.FileExists(possibleExistingPath)) {
+                        throw new InvalidOperationException($"Possibly existing file in test data: [{possibleExistingPath}]");
+                    }
                     mockFs.AddFile(kvp.Key, kvp.Value);
                 }
             }
@@ -127,12 +177,10 @@ namespace Xml.Schema.Linq.Tests
             Configuration config = File.Exists(possibleSettingsFile)
                 ? Configuration.Load(possibleSettingsFile)
                 : Configuration.GetBlankConfigurationInstance();
+
             var settings = config.ToLinqToXsdSettings();
-
             var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
-
             var writerText = code.Select(t => t.writer.ToString());
-
             var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
 
             return SourceText.From(delimitedByNewLines);

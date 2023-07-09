@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Reflection;
@@ -21,17 +22,23 @@ namespace Xml.Schema.Linq.Tests
 
     public class CodeGenerationTests
     {
+        private List<Assembly> TestAssembliesLoaded;
         public MockFileSystem TestFiles { get; set; }
         private const string AtomXsdFilePath = @"Atom\atom.xsd";
 
         [SetUp]
         public void Setup()
         {
-            var assemblies = new Assembly[] {
-                typeof(AtomSyndication.XRoot).Assembly, typeof(urn.simple.doc.XRoot).Assembly, typeof(Microsoft.Schemas.SharePoint.XRoot).Assembly,
-                typeof(complexRestrictionType).Assembly
-            };
-            TestFiles = Utilities.GetAggregateMockFileSystem(assemblies);
+            var current = Assembly.GetExecutingAssembly();
+            var location = new DirectoryInfo(Path.GetDirectoryName(current.Location)!);
+            var allDlls = location.GetFileSystemInfos("*.dll", SearchOption.AllDirectories);
+            var testDlls = allDlls.Where(a => !(a.Name.Contains("System.") || a.Name.Contains("Microsoft.") || a.Name.Contains("MoreLinq") || a.Name.Contains("LinqToXsd") || 
+                                                    a.Name.Contains("nunit") || a.Name.Contains("Fasterflect"))).ToList();
+            var referencedAssemblies = testDlls.OrderBy(a => a.FullName).ToList();
+
+            TestAssembliesLoaded = referencedAssemblies.Select(name => Assembly.LoadFile(name.FullName)).ToList();
+            
+            TestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
         }
 
         [Test]
@@ -108,18 +115,17 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
         {
-            var dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "."));
-            if (!dir.Exists) throw new InvalidOperationException($"Directory {dir.FullName} doesn't exist!");
+            var dir = new MockDirectoryInfo(TestFiles, ".");
             var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
                 // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
                 .Where(f => !f.FullName.Contains("Microsoft.Build."))
                 .Select(f => f.FullName).ToArray();
 
-            var allProcessableXsds = FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(allXsds)
-                .Select(fp => new FileInfo(fp));
+            var allProcessableXsds = Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(TestFiles, allXsds)
+                .Select(fp => new MockFileInfo(TestFiles, fp));
 
             foreach (var xsd in allProcessableXsds) {
-                var generatedCodeTree = Utilities.GenerateSyntaxTree(xsd);
+                var generatedCodeTree = Utilities.GenerateSyntaxTree(xsd.FullName);
 
                 var root = generatedCodeTree.GetRoot();
 

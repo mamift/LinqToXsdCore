@@ -49,7 +49,7 @@ namespace Xml.Schema.Linq
 
         public static bool HasFilePaths(IEnumerable<string> sequenceOfFileAndOrFolderPaths) =>
             sequenceOfFileAndOrFolderPaths.Any(File.Exists);
-
+        
         /// <summary>
         /// THe next logical step after <see cref="ResolveFileAndFolderPathsToJustFiles"/>, takes those resolved file paths
         /// and then narrows down the list to a list of file paths that refer to schemas that LinqToXsd can processes.

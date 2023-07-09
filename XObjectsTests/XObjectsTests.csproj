@@ -26,9 +26,9 @@
     <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
     <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" />
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" />
-	<ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
-	  <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
-	</ProjectReference>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
