@@ -48,9 +48,9 @@ namespace Xml.Schema.Linq.Tests
             var files = ResolveFileAndFolderPathsToJustFiles(mockFileSystem, filesOrFolders, "*.xsd");
 
             // convert files to XDocuments and check if they are proper W3C schemas
-            var pairs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)));
-            var xDocs = pairs.Where(kvp => kvp.Value.IsAnXmlSchema())
-                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            var pairs = files.Select(f => (file: f, schema: XDocument.Parse(f.TextContents)));
+            var xDocs = pairs.Where(kvp => kvp.schema.IsAnXmlSchema())
+                .ToDictionary(kvp => kvp.file, kvp => kvp.schema);
 
             var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key).ToList();
             
