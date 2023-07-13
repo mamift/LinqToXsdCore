@@ -448,6 +448,10 @@ namespace Xml.Schema.Linq.CodeGen
                 xroot.Members.Add(CodeDomHelper.CreateXRootGetter(typeName, fqTypeName, lst, visibility));
             }
 
+            if (codeNamespace == null) {
+                codeNamespace = new CodeNamespace();
+            }
+
             codeNamespace.Types.Add(xroot);
         }
 
