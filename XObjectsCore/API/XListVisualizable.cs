@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 
 namespace Xml.Schema.Linq
@@ -20,7 +21,12 @@ namespace Xml.Schema.Linq
             {
                 get
                 {
-                    XTypedElement[] tArray = new XTypedElement[((ICountAndCopy) _xList).Count];
+                    var countAndCopy = _xList as ICountAndCopy;
+                    if (countAndCopy == null) {
+                        return Array.Empty<XTypedElement>();
+                    }
+
+                    XTypedElement[] tArray = new XTypedElement[countAndCopy.Count];
                     ((ICountAndCopy) _xList).CopyTo(tArray, 0);
                     return tArray;
                 }
