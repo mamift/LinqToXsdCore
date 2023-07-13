@@ -121,11 +121,10 @@ namespace Xml.Schema.Linq.Tests
                 .Where(f => !f.FullName.Contains("Microsoft.Build."))
                 .Select(f => f.FullName).ToArray();
 
-            var allProcessableXsds = Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(TestFiles, allXsds)
-                .Select(fp => new MockFileInfo(TestFiles, fp));
+            var allProcessableXsds = Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(TestFiles, allXsds);
 
             foreach (var xsd in allProcessableXsds) {
-                var generatedCodeTree = Utilities.GenerateSyntaxTree(xsd.FullName);
+                var generatedCodeTree = Utilities.GenerateSyntaxTree(xsd, TestFiles);
 
                 var root = generatedCodeTree.GetRoot();
 

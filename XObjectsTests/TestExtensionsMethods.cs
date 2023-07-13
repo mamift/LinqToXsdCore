@@ -39,7 +39,9 @@ namespace Xml.Schema.Linq.Tests
 
         public override Uri ResolveUri(Uri baseUri, string relativeUri)
         {
-            var theFile = fs.AllFiles.FirstOrDefault(f => f.EndsWith(relativeUri, StringComparison.CurrentCultureIgnoreCase));
+            var str = baseUri.ToString();
+            var justTheFileName = Path.GetFileName(relativeUri);
+            var theFile = fs.AllFiles.FirstOrDefault(f => f.EndsWith(justTheFileName, StringComparison.CurrentCultureIgnoreCase));
 
             var exists = theFile != null;
                  

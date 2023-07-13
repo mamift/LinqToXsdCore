@@ -9,8 +9,8 @@ namespace Xml.Schema.Linq.Extensions
     public static class XDocumentExtensions
     {
         private const string W3CXmlSchemaNamespaceUri = "http://www.w3.org/2001/XMLSchema";
-        private static readonly XName IncludeXName = XName.Get("include", W3CXmlSchemaNamespaceUri);
-        private static readonly XName ImportXName = XName.Get("import", W3CXmlSchemaNamespaceUri);
+        public static readonly XName IncludeXName = XName.Get("include", W3CXmlSchemaNamespaceUri);
+        public static readonly XName ImportXName = XName.Get("import", W3CXmlSchemaNamespaceUri);
 
         /// <summary>
         /// Determines if the current <see cref="XDocument"/> is a W3C Xml Schema by checking for the presence of the
