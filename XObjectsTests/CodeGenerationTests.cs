@@ -128,7 +128,10 @@ namespace Xml.Schema.Linq.Tests
 
                 var root = generatedCodeTree.GetRoot();
 
-                var allDescendents = root.DescendantNodes().SelectMany(d => d.DescendantNodes());
+                var allDescendents = root.DescendantNodes().SelectMany(d => d.DescendantNodes()).ToList();
+
+                if (!allDescendents.Any()) continue;
+
                 var allStatements = allDescendents.OfType<StatementSyntax>();
                 var allExpressions = allStatements.SelectMany(s => s.DescendantNodes()).OfType<ExpressionSyntax>();
                 var typeOfExpressions = allExpressions.OfType<TypeOfExpressionSyntax>().Distinct().ToArray();

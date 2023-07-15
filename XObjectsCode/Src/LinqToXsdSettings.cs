@@ -117,12 +117,16 @@ namespace Xml.Schema.Linq
 
         private void GenerateNamespaceMapping(XElement namespaces)
         {
-            if (namespaces == null)
-                return;
-            foreach (XElement ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs)))
-            {
-                namespaceMapping.Add((string) ns.Attribute(XName.Get("Schema")),
-                    (string) ns.Attribute(XName.Get("Clr")));
+            if (namespaces == null) return;
+            foreach (XElement ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs))) {
+                var schemaXName = XName.Get("Schema");
+                var schema = (string)ns.Attribute(schemaXName);
+                if (schema == null) {
+                    ns.SetAttributeValue(schemaXName, string.Empty);
+                    schema = string.Empty;
+                }
+                var clr = (string) ns.Attribute(XName.Get("Clr"));
+                namespaceMapping.Add(schema, clr);
             }
         }
 
