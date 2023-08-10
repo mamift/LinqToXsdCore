@@ -1,0 +1,8 @@
+<macroDefinitions>
+<macro xmlns="http://www.clixml.org/clix/1.0" name="expandTest">
+    <param name="test_var" />
+    <output>
+        <equal op1="/" op2="$test_var" />
+    </output>
+</macro>
+</macroDefinitions>

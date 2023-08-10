@@ -1,0 +1,26 @@
+<macroDefinitions xmlns:Macro="http://www.clixml.org/clix/1.0/Macro" xmlns="http://www.clixml.org/clix/1.0">
+<macro name="expandTest">
+    <param name="test_var" />
+    <output>
+        <Macro:macroCall name="expandTestA">
+            <Macro:macroVariable name="test_var" value="this_was_a_variable"/>
+        </Macro:macroCall>
+    </output>
+</macro>
+<macro name="expandTestA">
+        <param name="test_var" />
+        <output>
+            <Macro:macroCall name="expandTestB">
+                <Macro:macroVariable name="test_var" value="this_was_a_variable"/>
+            </Macro:macroCall>
+        </output>
+</macro>
+<macro name="expandTestB">
+        <param name="test_var" />
+        <output>
+            <Macro:macroCall name="expandTest">
+                <Macro:macroVariable name="test_var" value="this_was_a_variable"/>
+            </Macro:macroCall>
+        </output>
+</macro>
+</macroDefinitions>

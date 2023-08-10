@@ -1,0 +1,35 @@
+<rules xmlns="http://www.clixml.org/clix/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:reportVariables="http://clixml.sourceforge.net/reportVariables"
+        xmlns:Macro="http://www.clixml.org/clix/1.0/Macro"
+        xsi:schemaLocation="http://www.clixml.org/clix/1.0 http://clixml.sourceforge.net/clix.xsd
+        http://clixml.sourceforge.net/reportVariables
+        http://clixml.sourceforge.net/reportVariables.xsd http://www.clixml.org/clix/1.0/Macro
+        http://clixml.sourceforge.net/Macro.xsd">
+        <rule id="valid_edges">
+                <report>edge leads to non existing vertex</report>
+                <forall var="edge" in="/graph/vertex/edge">
+                        <exists var="vertex" in="/graph/vertex">
+                                <equal op1="$vertex/@id" op2="$edge/@idref" />
+                        </exists>
+                </forall>	
+        </rule>
+        <rule id="loop_free">
+                <report>graph is cyclic</report>
+                <forall var="srcV" in="/graph/vertex">
+                        <forall var="dstVID" in="$srcV/edge">
+                                <less op1="$srcV/@id" op2="$dstVID/@idref" />
+                        </forall>
+                </forall>	
+        </rule>
+        <rule id="connex">
+                <report>graph is not connex</report>
+                <forall var="v" in="/graph/vertex">
+                        <exists var="eID" in="/graph/vertex/edge">
+                                <or>
+                                        <equal op1="$v/@id" op2="math:min(/graph/vertex/@id)"/>
+                                        <equal op1="$v/@id" op2="$eID/@idref"/>
+                                </or>
+                        </exists>
+                </forall>
+        </rule>
+</rules>

@@ -1,0 +1,19 @@
+<equal>
+    <plus>
+        <div>
+            <minus>
+                <int>10</int>
+                <int>2</int>
+            </minus>
+            <int>4</int>
+        </div>
+        <int>5</int>    
+    </plus>
+    <minus>
+        <mult>
+            <int>5</int>
+            <int>2</int>
+        </mult>
+        <int>3</int> 
+    </minus>           
+</equal>

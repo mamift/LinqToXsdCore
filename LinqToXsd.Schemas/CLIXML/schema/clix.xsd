@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	targetNamespace="http://www.clixml.org/clix/1.0" 
+	xmlns="http://www.clixml.org/clix/1.0" 
+	xmlns:clix="http://www.clixml.org/clix/1.0" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:Macro="http://www.clixml.org/clix/1.0/Macro" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>Schema originally by Systemwire, modified.
+		changes: 
+			- put the any in the report header to namespace="##other", otherwise the schema is not valid (there would be a ambiguity between any and the other elements within report element).
+			- put the any in the report to occurs as often as needed 
+			- removed processContents="skip" in any within the report element. OpenCLiXML want to check if elements from the reportVariable Namespace are valid.
+			- removed processContents="skip" in any within the formulaGroup for Macros. OpenCLiXML want to check if elements from the Macro Namespace are valid.
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="rules">
+		<xs:annotation>
+			<xs:documentation>Root element for CLiX rule files.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="macros" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Include a macro file for preprocessing</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="href" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="variable" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Define a global variable, with a given variable identifier and XPath</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:string" use="required"/>
+						<xs:attribute name="xpath" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Define a key with a given name that references all elements matching the path in "match", referring to each element using the relative path in "use"</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="match" type="xs:string" use="required"/>
+						<xs:attribute name="use" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="rule" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>A CLiX rule with a rule identifier</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="header" minOccurs="0"/>
+							<xs:element name="report" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Report for rule violation</xs:documentation>
+								</xs:annotation>
+								<xs:complexType mixed="true">
+									<xs:sequence>
+										<xs:choice>
+											<xs:any minOccurs="0" maxOccurs="unbounded" namespace="##other"/>
+										</xs:choice>
+										<xs:element name="stacktrace" minOccurs="0" maxOccurs="1" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:group ref="formulaGroup"/>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:ID" use="required"/>
+						<xs:attribute name="disabled" type="xs:boolean" use="optional"/>
+						<xs:attribute name="positiveReporting" type="xs:boolean" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="macroDefinitions">
+		<xs:annotation>
+			<xs:documentation>Root element for macro definitions files. A list of macros that can be applied over rule files to expand rules that contain macro invocations.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="header" minOccurs="0"/>
+				<xs:element name="macro" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>A macro definition</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A named parameter</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="header" minOccurs="0"/>
+							<xs:element name="output">
+								<xs:annotation>
+									<xs:documentation>A parametric formula that can be expanded and inserted into rules</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:group ref="formulaGroup"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:ID" use="required"/>
+					</xs:complexType>
+					<xs:unique name="paramUnique">
+						<xs:selector xpath="clix:param"/>
+						<xs:field xpath="@name"/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="macroNameUnique">
+			<xs:selector xpath="clix:macro"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+	</xs:element>
+
+	<xs:element name="header">
+		<xs:annotation>
+			<xs:documentation>Documentation elements and metadata information about CLiX artefacts.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="author" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The author of the artefact to which this header is attached.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="description">
+						<xs:annotation>
+							<xs:documentation>A description of the artefact to which this header is attached. Any XHTML element may occur within the description.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType mixed="true">
+							<xs:sequence>
+								<xs:any namespace="http://www.w3.org/1999/xhtml" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="comment" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>A comment about the status of the element to which the header is attached.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:any processContents="skip" namespace="##other" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Any element may occur. This can be used to build additional metadata structures.</xs:documentation>
+						</xs:annotation>
+					</xs:any>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="formulaGroup">
+		<xs:choice>
+			<xs:element ref="forall"/>
+			<xs:element ref="exists"/>
+			<xs:element ref="equal"/>
+			<xs:element ref="notEqual"/>
+			<xs:element ref="same"/>
+			<xs:element ref="less"/>
+			<xs:element ref="greater"/>
+			<xs:element ref="lessOrEqual"/>
+			<xs:element ref="greaterOrEqual"/>
+			<xs:element ref="and"/>
+			<xs:element ref="or"/>
+			<xs:element ref="implies"/>
+			<xs:element ref="iff"/>
+			<xs:element ref="not"/>
+			<xs:element ref="operator"/>
+			<xs:any namespace="http://www.clixml.org/clix/1.0/Macro" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="QuantifierType">
+		<xs:group ref="formulaGroup" minOccurs="0"/>
+		<xs:attribute name="var" type="xs:string" use="required"/>
+		<xs:attribute name="in" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="BinaryOperatorType">
+		<xs:group ref="formulaGroup" minOccurs="2" maxOccurs="2"/>
+	</xs:complexType>
+
+	<xs:complexType name="BinaryPredicateType">
+		<xs:attribute name="op1" type="xs:string" use="required"/>
+		<xs:attribute name="op2" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:element name="forall" type="QuantifierType"/>
+	<xs:element name="and" type="BinaryOperatorType"/>
+	<xs:element name="or" type="BinaryOperatorType"/>
+	<xs:element name="implies" type="BinaryOperatorType"/>
+	<xs:element name="iff" type="BinaryOperatorType"/>
+	<xs:element name="not">
+		<xs:complexType>
+			<xs:group ref="formulaGroup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="exists" type="QuantifierType"/>
+	<xs:element name="equal" type="BinaryPredicateType"/>
+	<xs:element name="notEqual" type="BinaryPredicateType"/>
+	<xs:element name="same" type="BinaryPredicateType"/>
+	<xs:element name="less" type="BinaryPredicateType"/>
+	<xs:element name="greater" type="BinaryPredicateType"/>
+	<xs:element name="lessOrEqual" type="BinaryPredicateType"/>
+	<xs:element name="greaterOrEqual" type="BinaryPredicateType"/>
+	<xs:element name="operator">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="value" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,14 @@
+<equal 
+    xmlns:clixtestcase="http://clixml.sourceforge.net"
+    clixtestcase:schemaLocation="http://clixml.sourceforge.net http://clixml.sourceforge.net">
+<clixtestcase:schema location="../schema/example3.clx" assert="success"/>
+	<plus>
+		<int>1</int>
+		<int>3</int>
+		<int>5</int>
+	</plus>
+	<plus>
+		<int>3</int>
+		<int>6</int>
+	</plus>
+</equal>

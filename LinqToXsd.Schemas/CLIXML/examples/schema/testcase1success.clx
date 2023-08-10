@@ -1,0 +1,137 @@
+<rules xmlns="http://www.clixml.org/clix/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:reportVariables="http://clixml.sourceforge.net/reportVariables"
+	xmlns:Macro="http://www.clixml.org/clix/1.0/Macro"
+	xsi:schemaLocation="http://www.clixml.org/clix/1.0 http://clixml.sourceforge.net/clix.xsd http://clixml.sourceforge.net/reportVariables http://clixml.sourceforge.net/reportVariables.xsd http://www.clixml.org/clix/1.0/Macro http://clixml.sourceforge.net/Macro.xsd">
+	<!-- begin operators -->
+	<rule id="and_t_t_">
+		<report>Test Failed</report>
+		<and>
+			<equal op1="/" op2="/"/>
+			<equal op1="/a" op2="/a"/>
+		</and>
+	</rule>
+	<rule id="iff_t_t_">
+		<report>Test Failed</report>
+		<iff>
+			<equal op1="/" op2="/"/>
+			<equal op1="/a" op2="/a"/>
+		</iff>
+	</rule>
+	<rule id="iff_f_f_">
+		<report>Test Failed</report>
+		<iff>
+			<equal op1="/a" op2="/"/>
+			<equal op1="/a" op2="/"/>
+		</iff>
+	</rule>
+	<rule id="implies_t_t_">
+		<report>Test Failed</report>
+		<implies>
+			<equal op1="/" op2="/"/>
+			<equal op1="/a" op2="/a"/>
+		</implies>
+	</rule>
+	<rule id="implies_f_t_">
+		<report>Test Failed</report>
+		<implies>
+			<equal op1="/a" op2="/"/>
+			<equal op1="/a" op2="/a"/>
+		</implies>
+	</rule>
+	<rule id="implies_f_f_">
+		<report>Test Failed</report>
+		<implies>
+			<equal op1="/a" op2="/"/>
+			<equal op1="/a" op2="/"/>
+		</implies>
+	</rule>
+	<rule id="not_f_">
+		<report>Test Failed</report>
+		<not>
+			<equal op1="/a" op2="/"/>
+		</not>
+	</rule>
+	<rule id="or_t_t_">
+		<report>Test Failed</report>
+		<or>
+			<equal op1="/" op2="/"/>
+			<equal op1="/a" op2="/a"/>
+		</or>
+	</rule>
+	<rule id="or_f_t_">
+		<report>Test Failed</report>
+		<or>
+			<equal op1="/a" op2="/"/>
+			<equal op1="/a" op2="/a"/>
+		</or>
+	</rule>
+	<rule id="equal">
+		<report>Test Failed</report>
+		<or>
+			<equal op1="/" op2="/"/>
+			<equal op1="/a" op2="/"/>
+		</or>
+	</rule>
+	<!-- end operators -->
+	<!-- begin predicators -->
+	<rule id="equal1">
+		<report>Test Failed</report>
+		<equal op1="/" op2="/"/>
+	</rule>
+	<rule id="greater">
+		<report>Test Failed</report>
+		<greater op1="/a/d/@i" op2="/a/c/@i"/>
+	</rule>
+	<rule id="greaterorequal1">
+		<report>Test Failed</report>
+		<greaterOrEqual op1="/a/d/@i" op2="/a/c/@i"/>
+	</rule>
+	<rule id="greaterorequal2">
+		<report>Test Failed</report>
+		<greaterOrEqual op1="/a/c/@i" op2="/a/c/@i"/>
+	</rule>
+	<rule id="greaterorequal3">
+		<report>Test Failed</report>
+		<greaterOrEqual op1="/" op2="/"/>
+	</rule>
+	<rule id="less">
+		<report>Test Failed</report>
+		<less op1="/a/c/@i" op2="/a/d/@i"/>
+	</rule>
+	<rule id="lessorequal1">
+		<report>Test Failed</report>
+		<lessOrEqual op1="/a/c/@i" op2="/a/d/@i"/>
+	</rule>
+	<rule id="lessorequal2">
+		<report>Test Failed</report>
+		<lessOrEqual op1="/a/c/@i" op2="/a/c/@i"/>
+	</rule>
+	<rule id="notequal">
+		<report>Test Failed</report>
+		<notEqual op1="/" op2="/a" />
+	</rule>
+	<rule id="same">
+		<report>Test Failed</report>
+		<same op1="/" op2="/"/>
+	</rule>
+	<!-- end predicators -->
+	<!-- begin quantifiers -->
+	<rule id="exists1">
+		<report>Test Failed</report>
+		<exists var="test" in="/a"/>
+	</rule>
+	<rule id="exists2">
+		<report>Test Failed</report>
+		<exists var="test" in="/a/child::*[name()!='clixtestcase:schema']">
+			<exists var="innertest" in="$test/@attr"/>
+		</exists>
+	</rule>
+	<rule id="forall1">
+		<report>Test Failed</report>
+		<forall var="myvar" in="/a/child::*[name()!='clixtestcase:schema']">
+			<exists var="d" in="$myvar/@i"/>
+		</forall>
+	</rule>
+	<!-- end quantifiers -->
+</rules>

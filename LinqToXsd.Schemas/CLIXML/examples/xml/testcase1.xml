@@ -1,0 +1,10 @@
+<a 
+xmlns:clixtestcase="http://clixml.sourceforge.net"
+    clixtestcase:schemaLocation="http://clixml.sourceforge.net http://clixml.sourceforge.net"
+i="1">
+<clixtestcase:schema location="../schema/testcase1success.clx" assert="success"/>
+<clixtestcase:schema location="../schema/testcase1fail.clx" assert="fail"/>
+<b attr="val" i="2"/>
+    <c i="3"/>
+    <d i="4"/>
+</a>

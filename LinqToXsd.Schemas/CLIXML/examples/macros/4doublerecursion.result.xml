@@ -1,0 +1,3 @@
+<Macro:macroCall xmlns:Macro="http://www.clixml.org/clix/1.0/Macro" name="expandTest">
+    <Macro:macroVariable name="test_var" value="this_was_a_variable" />
+</Macro:macroCall>

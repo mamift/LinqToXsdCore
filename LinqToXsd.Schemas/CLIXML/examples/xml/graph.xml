@@ -1,0 +1,11 @@
+<graph xmlns:clixtestcase="http://clixml.sourceforge.net"
+    xmlns:g="http://clixml.sourceforge.net/g"
+    clixtestcase:schemaLocation="http://clixml.sourceforge.net/g http://clixml.sourceforge.net/g http://clixml.sourceforge.net http://clixml.sourceforge.net">
+    <clixtestcase:schema location="../schema/graph.clx" assert="success"/>
+    <vertex id="0">
+        <edge idref="5"/>
+        <edge idref="7"/>
+    </vertex>
+    <vertex id="5" />
+    <vertex id="7" />
+</graph>

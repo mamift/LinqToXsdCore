@@ -1,0 +1,87 @@
+<macro name="equationEval">
+    <parameter name="lh_result"/>
+    <parameter name="rh_result"/>
+    <parameter name="lh_position"/>
+    <parameter name="rh_position"/>
+    <or>
+        <and>
+            <and>
+                <equal op1="name($lh_position)" op2="int"/>
+                <equal op1="name($rh_position)" op2="int"/>
+            </and>
+            <equal op1="$lh_result" op2="$rh_result"/>    
+        </and>
+        <and>
+            <equal op1="name($lh_position)" op2="plus"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result + $lh_position/int[1]"/>
+                <parameter name="rh_result" value="$rh_result"/>
+                <parameter name="lh_position" value="$lh_position/.."/>
+                <parameter name="rh_position" value="$rh_position"/>
+            </macroCall>
+        </and>
+        <and>
+            <equal op1="name($rh_position)" op2="plus"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result"/>
+                <parameter name="rh_result" value="$rh_result + $rh_position/int[1]"/>
+                <parameter name="lh_position" value="$lh_position"/>
+                <parameter name="rh_position" value="$rh_position/.."/>
+            </macroCall>
+        </and>
+        <and>
+            <equal op1="name($lh_position)" op2="minus"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result - $lh_position/int[1]"/>
+                <parameter name="rh_result" value="$rh_result"/>
+                <parameter name="lh_position" value="$lh_position/.."/>
+                <parameter name="rh_position" value="$rh_position"/>
+            </macroCall>
+        </and>
+        <and>
+            <equal op1="name($rh_position)" op2="minus"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result"/>
+                <parameter name="rh_result" value="$rh_result - $rh_position/int[1]"/>
+                <parameter name="lh_position" value="$lh_position"/>
+                <parameter name="rh_position" value="$rh_position/.."/>
+            </macroCall>
+        </and>
+        <and>
+            <equal op1="name($lh_position)" op2="div"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result / $lh_position/int[1]"/>
+                <parameter name="rh_result" value="$rh_result"/>
+                <parameter name="lh_position" value="$lh_position/.."/>
+                <parameter name="rh_position" value="$rh_position"/>
+            </macroCall>
+        </and>
+        <and>
+            <equal op1="name($rh_position)" op2="div"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result"/>
+                <parameter name="rh_result" value="$rh_result / $rh_position/int[1]"/>
+                <parameter name="lh_position" value="$lh_position"/>
+                <parameter name="rh_position" value="$rh_position/.."/>
+            </macroCall>
+        </and>
+        <and>
+            <equal op1="name($lh_position)" op2="mult"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result * $lh_position/int[1]"/>
+                <parameter name="rh_result" value="$rh_result"/>
+                <parameter name="lh_position" value="$lh_position/.."/>
+                <parameter name="rh_position" value="$rh_position"/>
+            </macroCall>
+        </and>
+        <and>
+            <equal op1="name($rh_position)" op2="mult"/>
+            <macroCall name="equationEval">
+                <parameter name="lh_result" value="$lh_result"/>
+                <parameter name="rh_result" value="$rh_result * $rh_position/int[1]"/>
+                <parameter name="lh_position" value="$lh_position"/>
+                <parameter name="rh_position" value="$rh_position/.."/>
+            </macroCall>
+        </and>
+     </or>
+</macro>   
