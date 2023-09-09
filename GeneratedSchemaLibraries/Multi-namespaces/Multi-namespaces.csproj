@@ -1,21 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Include="TestNs1.xsd" />
+    <EmbeddedResource Include="TestNs1.xsd.config" />
+    <EmbeddedResource Include="TestNs1.xsd.cs" />
+    <EmbeddedResource Include="TestNs2.xsd" />
+    <EmbeddedResource Include="TestNs3ToBeIncluded.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="TestNs1.xsd" />
+    <None Remove="TestNs1.xsd.config" />
+    <None Remove="TestNs2.xsd" />
+    <None Remove="TestNs3ToBeIncluded.xsd" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp" Version="1.13.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

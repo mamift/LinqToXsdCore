@@ -1,13 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="OFMX-DataTypes.xsd" />
+    <EmbeddedResource Include="OFMX-Features.xsd" />
+    <EmbeddedResource Include="OFMX-Snapshot.xsd" />
+    <EmbeddedResource Include="OFMX-Snapshot.xsd.config" />
+    <EmbeddedResource Include="OFMX-Snapshot.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="OFMX-DataTypes.xsd" />
+    <None Remove="OFMX-Features.xsd" />
+    <None Remove="OFMX-Snapshot.xsd" />
+    <None Remove="OFMX-Snapshot.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

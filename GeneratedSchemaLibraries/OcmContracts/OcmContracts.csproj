@@ -1,14 +1,25 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Include="OcmContracts.xsd" />
+    <EmbeddedResource Include="OcmContracts.xsd.config" />
+    <EmbeddedResource Include="OcmContracts.xsd.cs" />
+    <EmbeddedResource Include="v2\OcmContracts.xsd" />
+    <EmbeddedResource Include="v2\OcmContracts.xsd.config" />
+    <EmbeddedResource Include="v2\OcmContracts.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="OcmContracts.xsd" />
+    <None Remove="OcmContracts.xsd.config" />
+    <None Remove="v2\OcmContracts.xsd" />
+    <None Remove="v2\OcmContracts.xsd.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
-      
   </ItemGroup>
-
 </Project>

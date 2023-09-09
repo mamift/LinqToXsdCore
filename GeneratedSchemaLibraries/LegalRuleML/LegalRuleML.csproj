@@ -1,13 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="basic\lrml-basic.xsd" />
+    <EmbeddedResource Include="basic\ruleml.xsd" />
+    <EmbeddedResource Include="compact\lrml-compact.xsd" />
+    <EmbeddedResource Include="compact\ruleml.xsd" />
+    <EmbeddedResource Include="datatypes\SimpleWithAttributes.xsd" />
+    <EmbeddedResource Include="normal\lrml-normal.xsd" />
+    <EmbeddedResource Include="normal\ruleml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="basic\lrml-basic.xsd" />
+    <None Remove="basic\ruleml.xsd" />
+    <None Remove="compact\lrml-compact.xsd" />
+    <None Remove="compact\ruleml.xsd" />
+    <None Remove="datatypes\SimpleWithAttributes.xsd" />
+    <None Remove="normal\lrml-normal.xsd" />
+    <None Remove="normal\ruleml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

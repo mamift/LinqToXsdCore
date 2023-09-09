@@ -1,13 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="dtc-19-05-32.xsd" />
+    <EmbeddedResource Include="dtc-19-05-32.xsd.config" />
+    <EmbeddedResource Include="dtc-19-05-32.xsd.cs" />
+    <EmbeddedResource Include="SBVR-Content-Model-for-SBVR.xml" />
+    <EmbeddedResource Include="SBVR-XMI-Metamodel.xml" />
+    <EmbeddedResource Include="XMI.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dtc-19-05-32.xsd" />
+    <None Remove="dtc-19-05-32.xsd.config" />
+    <None Remove="SBVR-Content-Model-for-SBVR.xml" />
+    <None Remove="SBVR-XMI-Metamodel.xml" />
+    <None Remove="XMI.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

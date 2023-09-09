@@ -1,13 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="AllEntCf.xsd" />
+    <EmbeddedResource Include="AllEntCf.xsd.config" />
+    <EmbeddedResource Include="AssnEntCF.xsd" />
+    <EmbeddedResource Include="mspdi_pj12.xsd" />
+    <EmbeddedResource Include="mspdi_pj12.xsd.config" />
+    <EmbeddedResource Include="mspdi_pj12.xsd.cs" />
+    <EmbeddedResource Include="ProjEntCF.xsd" />
+    <EmbeddedResource Include="ResEntCF.xsd" />
+    <EmbeddedResource Include="TaskEntCF.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="AllEntCf.xsd" />
+    <None Remove="AllEntCf.xsd.config" />
+    <None Remove="AssnEntCF.xsd" />
+    <None Remove="mspdi_pj12.xsd" />
+    <None Remove="mspdi_pj12.xsd.config" />
+    <None Remove="ProjEntCF.xsd" />
+    <None Remove="ResEntCF.xsd" />
+    <None Remove="TaskEntCF.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

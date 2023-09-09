@@ -1,13 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="ms-mapping.xml" />
+    <EmbeddedResource Include="mzML1.1.0.xsd" />
+    <EmbeddedResource Include="mzML1.1.1_idx.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ms-mapping.xml" />
+    <None Remove="mzML1.1.0.xsd" />
+    <None Remove="mzML1.1.1_idx.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

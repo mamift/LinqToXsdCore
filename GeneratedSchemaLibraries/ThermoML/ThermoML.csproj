@@ -1,13 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="je100999j_si_001.xsd" />
+    <EmbeddedResource Include="je100999j_si_001.xsd.cs" />
+    <EmbeddedResource Include="je100999j_si_002.xml" />
+    <EmbeddedResource Include="je100999j_si_003.xml" />
+    <EmbeddedResource Include="je100999j_si_004.xml" />
+    <EmbeddedResource Include="je100999j_si_005.xml" />
+    <EmbeddedResource Include="je100999j_si_006.xml" />
+    <EmbeddedResource Include="je100999j_si_007.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="je100999j_si_001.xsd" />
+    <None Remove="je100999j_si_002.xml" />
+    <None Remove="je100999j_si_003.xml" />
+    <None Remove="je100999j_si_004.xml" />
+    <None Remove="je100999j_si_005.xml" />
+    <None Remove="je100999j_si_006.xml" />
+    <None Remove="je100999j_si_007.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

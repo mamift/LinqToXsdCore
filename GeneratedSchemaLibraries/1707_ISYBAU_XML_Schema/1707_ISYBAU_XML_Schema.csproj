@@ -1,13 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="1707-betriebsdaten.xsd" />
+    <EmbeddedResource Include="1707-hydraulikdaten.xsd" />
+    <EmbeddedResource Include="1707-metadaten.xsd" />
+    <EmbeddedResource Include="1707-metadaten.xsd.config" />
+    <EmbeddedResource Include="1707-metadaten.xsd.cs" />
+    <EmbeddedResource Include="1707-praesentationsdaten.xsd" />
+    <EmbeddedResource Include="1707-referenzlisten.xsd" />
+    <EmbeddedResource Include="1707-stammdaten.xsd" />
+    <EmbeddedResource Include="1707-zustandsdaten.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="1707-betriebsdaten.xsd" />
+    <None Remove="1707-hydraulikdaten.xsd" />
+    <None Remove="1707-metadaten.xsd" />
+    <None Remove="1707-metadaten.xsd.config" />
+    <None Remove="1707-praesentationsdaten.xsd" />
+    <None Remove="1707-referenzlisten.xsd" />
+    <None Remove="1707-stammdaten.xsd" />
+    <None Remove="1707-zustandsdaten.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

@@ -1,13 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="akomantoso30.xsd" />
+    <EmbeddedResource Include="akomantoso30.xsd.config" />
+    <EmbeddedResource Include="xml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="akomantoso30.xsd" />
+    <None Remove="akomantoso30.xsd.config" />
+    <None Remove="xml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

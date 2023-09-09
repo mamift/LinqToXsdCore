@@ -1,13 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="FuGElightv1.0.0.xsd" />
+    <EmbeddedResource Include="GelML-v1_1candidate.xsd" />
+    <EmbeddedResource Include="GelML-v1_1candidate.xsd.config" />
+    <EmbeddedResource Include="GelML-v1_1candidate.xsd.cs" />
+    <EmbeddedResource Include="ExampleFiles\Aberdeen_gel2d_v4.xml" />
+    <EmbeddedResource Include="ExampleFiles\Gel1D_Indirect_Newcastle_v4.xml" />
+    <EmbeddedResource Include="ExampleFiles\MIAPE_In_GelML.xml" />
+    <EmbeddedResource Include="ExampleFiles\ProteoRed_GE528_53320586_output.xml" />
+    <EmbeddedResource Include="libvirt\domain.xsd" />
+    <EmbeddedResource Include="libvirt\libosinfo.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="FuGElightv1.0.0.xsd" />
+    <None Remove="GelML-v1_1candidate.xsd" />
+    <None Remove="GelML-v1_1candidate.xsd.config" />
+    <None Remove="ExampleFiles\Aberdeen_gel2d_v4.xml" />
+    <None Remove="ExampleFiles\Gel1D_Indirect_Newcastle_v4.xml" />
+    <None Remove="ExampleFiles\MIAPE_In_GelML.xml" />
+    <None Remove="ExampleFiles\ProteoRed_GE528_53320586_output.xml" />
+    <None Remove="libvirt\domain.xsd" />
+    <None Remove="libvirt\libosinfo.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

@@ -1,13 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="abstracttest.xsd" />
+    <EmbeddedResource Include="abstracttest.xsd.config" />
+    <EmbeddedResource Include="abstracttest.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="abstracttest.xsd" />
+    <None Remove="abstracttest.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

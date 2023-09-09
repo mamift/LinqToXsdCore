@@ -1,13 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="Chem_eStandards_Data_Dictionary_2013-10-30.xml" />
+    <EmbeddedResource Include="OAGi_Chem_eStandards_5.3.xsd" />
+    <EmbeddedResource Include="OAGi_Chem_eStandards_5.3.xsd.config" />
+    <EmbeddedResource Include="OAGi_Chem_eStandards_5.3.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Chem_eStandards_Data_Dictionary_2013-10-30.xml" />
+    <None Remove="OAGi_Chem_eStandards_5.3.xsd" />
+    <None Remove="OAGi_Chem_eStandards_5.3.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

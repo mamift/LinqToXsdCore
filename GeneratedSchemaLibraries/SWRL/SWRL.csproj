@@ -1,13 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj" >
+    <EmbeddedResource Include="owl1-dl.xsd" />
+    <EmbeddedResource Include="owl1-full.xsd" />
+    <EmbeddedResource Include="ruleml.xsd" />
+    <EmbeddedResource Include="swrlx.xsd" />
+    <EmbeddedResource Include="module\owl1-dl-classElementGroup.xsd" />
+    <EmbeddedResource Include="module\owl1-dl-descriptionGroup.xsd" />
+    <EmbeddedResource Include="module\owl1-dl-domainRangeGroup.xsd" />
+    <EmbeddedResource Include="module\owl1-dl-objectPropInverseFuncAttr.xsd" />
+    <EmbeddedResource Include="module\owl1-dl-restrictionGroup.xsd" />
+    <EmbeddedResource Include="module\owl1-full-dataPropInverseFuncAttr.xsd" />
+    <EmbeddedResource Include="module\owl1-lite-classElementGroup.xsd" />
+    <EmbeddedResource Include="module\owl1-lite-core.xsd" />
+    <EmbeddedResource Include="module\owl1-lite-dataPropInverseFuncAttr.xsd" />
+    <EmbeddedResource Include="module\owl1-lite-descriptionGroup.xsd" />
+    <EmbeddedResource Include="module\owl1-lite-domainRangeGroup.xsd" />
+    <EmbeddedResource Include="module\owl1-lite-objectPropInverseFuncAttr.xsd" />
+    <EmbeddedResource Include="module\owl1-lite-restrictionGroup.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="owl1-dl.xsd" />
+    <None Remove="owl1-full.xsd" />
+    <None Remove="ruleml.xsd" />
+    <None Remove="swrlx.xsd" />
+    <None Remove="module\owl1-dl-classElementGroup.xsd" />
+    <None Remove="module\owl1-dl-descriptionGroup.xsd" />
+    <None Remove="module\owl1-dl-domainRangeGroup.xsd" />
+    <None Remove="module\owl1-dl-objectPropInverseFuncAttr.xsd" />
+    <None Remove="module\owl1-dl-restrictionGroup.xsd" />
+    <None Remove="module\owl1-full-dataPropInverseFuncAttr.xsd" />
+    <None Remove="module\owl1-lite-classElementGroup.xsd" />
+    <None Remove="module\owl1-lite-core.xsd" />
+    <None Remove="module\owl1-lite-dataPropInverseFuncAttr.xsd" />
+    <None Remove="module\owl1-lite-descriptionGroup.xsd" />
+    <None Remove="module\owl1-lite-domainRangeGroup.xsd" />
+    <None Remove="module\owl1-lite-objectPropInverseFuncAttr.xsd" />
+    <None Remove="module\owl1-lite-restrictionGroup.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
 </Project>
