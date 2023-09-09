@@ -45,7 +45,7 @@
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\DTSX\DTSX.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\EnumsTest\EnumsTest.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\EnzymeML\EnzymeML.csproj" />
-    <ProjectReference Include="..\GeneratedSchemaLibraries\FHIR\FHIR.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\FHIR\FHIR.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\GelML\GelML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\GS1\GS1.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\HL-7\HL-7.csproj" />
