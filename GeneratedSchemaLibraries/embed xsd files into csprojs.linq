@@ -20,7 +20,7 @@ async Task EmbedDirectivesIntoCsproj(string destdir, string name) {
 	var csProjXdoc = XDocument.Parse(await File.ReadAllTextAsync(csprojPath));
 	var allFiles = Directory.GetFiles(destProjDir, "*.*", new EnumerationOptions() { RecurseSubdirectories = true });
 	var dirFiles = allFiles
-	.Where(f => Regex.Match(f, @".*\.(xsd(.cs|.config)?|xml)").Success)
+	.Where(f => Regex.Match(f, @".*\.(xsd(.cs|.config)?|xml|txt|md)").Success)
 	.Select(f => new FileInfo(f)).ToList();
 	var filesToNoneRemove = dirFiles.Where(f => !f.Name.EndsWith(".cs"));
 	var filesToEmbed = dirFiles;
