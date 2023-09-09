@@ -1,0 +1,18 @@
+<FeatureInfo xmlns="http://www.opengis.net/3dps/1.0/info">
+  <FeatureInfoList featureType="buildings">
+    <ObjectId>496376</ObjectId>
+    <FeatureId>BLDG_0003000e0080fce9</FeatureId>
+    <FeatureAttributeList>
+      <FeatureAttribute name="id">34891270</FeatureAttribute>
+      <FeatureAttribute name="objkey">1123 Hochschulgebaeude</FeatureAttribute>
+      <FeatureAttribute name="strkey">2390</FeatureAttribute>
+      <FeatureAttribute name="hsno">1</FeatureAttribute>
+      <FeatureAttribute name="description">Alte Universitaet</FeatureAttribute>
+    </FeatureAttributeList>
+    <FeatureAttributeList>
+      <FeatureAttribute name="sockelhoehe">2.500000</FeatureAttribute>
+      <FeatureAttribute name="traufhoehe">15.000000</FeatureAttribute>
+      <FeatureAttribute name="height">115.347270</FeatureAttribute>
+    </FeatureAttributeList>
+  </FeatureInfoList>
+</FeatureInfo>

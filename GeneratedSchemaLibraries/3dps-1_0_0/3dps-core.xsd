@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.opengis.net/3dps/1.0/core"
+    targetNamespace="http://www.opengis.net/3dps/1.0/core"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ows="http://www.opengis.net/ows/2.0"
+    xmlns:core="http://www.opengis.net/3dps/1.0/core"
+    version="1.0.0">
+    <xs:annotation>
+        <xs:documentation>
+            OGC 3D Portrayal Service 1.0 is an OGC Standard.
+            Copyright (c) 2016, 2023 Open Geospatial Consortium.
+            To obtain additional rights of use, visit http://www.ogc.org/legal/ .
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsContents.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsDataIdentification.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsCommon.xsd"/>
+    <xs:complexType name="AbstractGetPortrayalType" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="RequestBaseType">
+                <xs:sequence>
+                    <xs:element name="CRS" type="xs:anyURI" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="BoundingBox" type="ows:BoundingBoxType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="SpatialSelection" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="Layers" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="Styles" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="Background" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="LODs" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="LODSelection" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="OverallStyles" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="DeliveryOptions" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="Exceptions" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CapabilitiesType">
+        <xs:complexContent>
+            <xs:extension base="ows:CapabilitiesBaseType">
+                <xs:sequence>
+                    <xs:element name="Contents" type="ContentsType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="PortrayalCapabilities" type="PortrayalCapabilitiesType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RequestBaseType" abstract="true">
+        <xs:sequence>
+            <xs:sequence minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="service" use="required" type="xs:string"/>
+        <xs:attribute name="request" use="required" type="xs:string"/>
+        <xs:attribute name="version" use="required" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="DeliveryOptionType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element ref="ows:Identifier" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="Format" type="ows:MimeType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ViewpointHintType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element name="POC" type="Position3DType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="POI" type="Position3DType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="UP" type="Position3DType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="FOVX" type="xs:double" minOccurs="1" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="Section">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ServiceIdentification"/>
+            <xs:enumeration value="ServiceProvider"/>
+            <xs:enumeration value="OperationsMetadata"/>
+            <xs:enumeration value="Languages"/>
+            <xs:enumeration value="Contents"/>
+            <xs:enumeration value="PortrayalCapabilities"/>
+            <xs:enumeration value="All"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="PortrayalCapabilitiesType">
+        <xs:sequence>
+            <xs:element name="AvailableSpatialSelection" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="AvailableLODSelection" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="SupportsBoundingBoxConversion" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="AvailableLODScheme" type="LODSchemeType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="ViewpointHint" type="ViewpointHintType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="DeliveryOption" type="DeliveryOptionType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="OverallStyle" type="OverallStyleType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="Background" type="BackgroundType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:sequence minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LODSchemeType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element ref="ows:Identifier" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="LOD" type="xs:QName" minOccurs="1" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="LayerType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element ref="ows:Identifier" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="AvailableCRS" type="xs:anyURI" minOccurs="1" maxOccurs="unbounded"/>
+                    <xs:element name="AvailableLOD" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="DeliveryOption" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="Layer" type="LayerType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:sequence minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="AvailableStyle" type="StyleType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="WGS84BoundingBox" type="ows:WGS84BoundingBoxType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="Metadata" type="ows:MetadataType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="BoundingBox" type="ows:BoundingBoxType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetResourceByIdType">
+        <xs:complexContent>
+            <xs:extension base="RequestBaseType">
+                <xs:sequence>
+                    <xs:element name="ResourceID" type="xs:anyURI" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="OutputFormat" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Position3DType">
+        <xs:sequence>
+            <xs:element name="X1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="X2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="X3" type="xs:double" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentsType">
+        <xs:complexContent>
+            <xs:extension base="core:OWSContentsBaseRestrictionType">
+                <xs:sequence minOccurs="0" maxOccurs="1">
+                    <xs:element name="Layer" type="LayerType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetCapabilitiesType">
+        <xs:complexContent>
+            <xs:extension base="ows:GetCapabilitiesType">
+                <xs:sequence/>
+                <xs:attribute name="service" use="optional" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="OverallStyleType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element ref="ows:Identifier" minOccurs="1" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="BackgroundType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element ref="ows:Identifier" minOccurs="1" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="StyleType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element ref="ows:Identifier" minOccurs="1" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Position2DType">
+        <xs:sequence>
+            <xs:element name="X1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="X2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OWSContentsBaseRestrictionType">
+        <xs:complexContent>
+            <xs:extension base="ows:ContentsBaseType">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

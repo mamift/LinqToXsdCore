@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.opengis.net/3dps/1.0/scene"
+    targetNamespace="http://www.opengis.net/3dps/1.0/scene"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ows="http://www.opengis.net/ows/2.0"
+    xmlns:core="http://www.opengis.net/3dps/1.0/core"
+    xmlns:scene="http://www.opengis.net/3dps/1.0/scene"
+    version="1.0.0">
+    <xs:annotation>
+        <xs:documentation>
+            OGC 3D Portrayal Service 1.0 is an OGC Standard.
+            Copyright (c) 2016, 2023 Open Geospatial Consortium.
+            To obtain additional rights of use, visit http://www.ogc.org/legal/ .
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/ows19115subset.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsCommon.xsd"/>
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/core" schemaLocation="http://schemas.opengis.net/3dps/1.0/3dps-core.xsd"/>
+    <xs:complexType name="SceneLayerExtensionType">
+        <xs:sequence>
+            <xs:element name="AvailableFormat" type="ows:MimeType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="AvailableOffset" type="core:Position3DType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="AvailableOffsetMode" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GetSceneType">
+        <xs:complexContent>
+            <xs:extension base="core:AbstractGetPortrayalType">
+                <xs:sequence>
+                    <xs:element name="Offset" type="core:Position3DType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="OffsetMode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="Format" type="ows:MimeType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="Viewpoints" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ScenePortrayalCapabilitiesExtensionType">
+        <xs:sequence>
+            <xs:element name="SupportsArbitraryOffset" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SceneLayerExtension" type="scene:SceneLayerExtensionType"/>
+</xs:schema>
