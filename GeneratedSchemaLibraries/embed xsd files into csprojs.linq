@@ -4,6 +4,15 @@
 
 public string LinqToXsdSchemasCsProjFilePath;
 
+async Task<bool> HasEmbeddedAndNoneElements(string csproj)
+{
+	var csProjXdoc = XDocument.Parse(await File.ReadAllTextAsync(csproj));
+	var existingNoneRemoveElements = csProjXdoc.Descendants().Where(e => e.Name == "None").ToList();
+	var existingEmbeddedElements = csProjXdoc.Descendants().Where(e => e.Name == "EmbeddedResource").ToList();
+
+	return (existingNoneRemoveElements.Any() && existingEmbeddedElements.Any());
+}
+
 async Task EmbedDirectivesIntoCsproj(string destdir, string name) {
 	var destProjDir = Path.Combine(destdir, name);
 	var csprojPath = Path.Combine(destProjDir, name + ".csproj");
@@ -15,8 +24,8 @@ async Task EmbedDirectivesIntoCsproj(string destdir, string name) {
 	var filesToNoneRemove = dirFiles.Where(f => !f.Name.EndsWith(".cs"));
 	var filesToEmbed = dirFiles;
 
-	var nonRemoveProjectDirectives = filesToNoneRemove.Select(f => XElement.Parse($"<None Remove=\"{f.Name}\" />"));
-	var embeddedProjectDirectives = filesToEmbed.Select(f => XElement.Parse($"<EmbeddedResource Include=\"{f.Name}\" />"));
+	var nonRemoveProjectDirectives = filesToNoneRemove.Select(f => XElement.Parse($"<None Remove=\"{WithoutParentDir(f, destProjDir)}\" />"));
+	var embeddedProjectDirectives = filesToEmbed.Select(f => XElement.Parse($"<EmbeddedResource Include=\"{WithoutParentDir(f, destProjDir)}\" />"));
 	
 	var existingNoneRemoveElements = csProjXdoc.Descendants().Where(e => e.Name == "None").ToList();
 	var existingEmbeddedElements = csProjXdoc.Descendants().Where(e => e.Name == "EmbeddedResource").ToList();
@@ -37,6 +46,12 @@ async Task EmbedDirectivesIntoCsproj(string destdir, string name) {
 	var sw = File.OpenWrite(csprojPath);
 	await csProjXdoc.SaveAsync(sw, SaveOptions.None, CancellationToken.None);
 	await sw.DisposeAsync();
+	
+	string WithoutParentDir(FileInfo _file, string _theDir) {
+		var replaced = _file.FullName.Replace(_theDir, "");
+		
+		return replaced.TrimStart('\\');
+	}
 }
 
 async Task Main()
@@ -60,6 +75,13 @@ async Task Main()
 		var possibleCsprojs = theDir.GetFiles("*.csproj", opts);
 		if (!possibleCsprojs.Any())	{
 			skipCount++;
+			continue;
+		}
+		
+		var p = possibleCsprojs.First();
+		if (await HasEmbeddedAndNoneElements(p.FullName)) {
+			skipCount++;
+			p.Name.Dump("Has none/embedded directives in csproj already");
 			continue;
 		}
 
