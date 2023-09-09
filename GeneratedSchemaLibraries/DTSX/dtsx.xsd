@@ -1433,9 +1433,7 @@
      <xs:attribute name="dataType"
                    type="DTS:PipelineComponentDataTypeEnum"
                    form="unqualified"/>
-     <xs:attribute name="name"
-                   type="xs:string"
-                   form="unqualified"/>
+     <!--<xs:attribute name="name" type="xs:string" form="unqualified"/>-->
      <xs:attribute name="state"
                    type="DTS:PipelineComponentStateEnum"
                    form="unqualified"/>
