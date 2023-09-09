@@ -40,7 +40,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\AspNetSiteMaps\AspNetSiteMaps.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Atom\Atom.csproj" />
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\CellML\CellML.csproj" />-->
-    <ProjectReference Include="..\GeneratedSchemaLibraries\Chem eStandards\Chem eStandards.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\Chem eStandards\Chem eStandards.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\ContentModelTest\ContentModelTest.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\DTSX\DTSX.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\EnumsTest\EnumsTest.csproj" />
