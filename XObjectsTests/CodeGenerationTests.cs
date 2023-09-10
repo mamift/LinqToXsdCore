@@ -20,26 +20,9 @@ namespace Xml.Schema.Linq.Tests
 {
     using SF = SyntaxFactory;
 
-    public class CodeGenerationTests
+    public class CodeGenerationTests: BaseTester
     {
-        private List<Assembly> TestAssembliesLoaded;
-        public MockFileSystem TestFiles { get; set; }
         private const string AtomXsdFilePath = @"Atom\atom.xsd";
-
-        [SetUp]
-        public void Setup()
-        {
-            var current = Assembly.GetExecutingAssembly();
-            var location = new DirectoryInfo(Path.GetDirectoryName(current.Location)!);
-            var allDlls = location.GetFileSystemInfos("*.dll", SearchOption.AllDirectories);
-            var testDlls = allDlls.Where(a => !(a.Name.Contains("System.") || a.Name.Contains("Microsoft.") || a.Name.Contains("MoreLinq") || a.Name.Contains("LinqToXsd") || 
-                                                    a.Name.Contains("nunit") || a.Name.Contains("Fasterflect"))).ToList();
-            var referencedAssemblies = testDlls.OrderBy(a => a.FullName).ToList();
-
-            TestAssembliesLoaded = referencedAssemblies.Select(name => Assembly.LoadFile(name.FullName)).ToList();
-            
-            TestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
-        }
 
         [Test]
         public void NamespaceCodeGenerationConventionTest()

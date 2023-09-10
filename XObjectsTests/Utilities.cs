@@ -23,6 +23,40 @@ namespace Xml.Schema.Linq.Tests
 {
     public static class Utilities
     {
+        /// <summary>
+        /// Assuming that other XSDs exist in the same directory as the given <paramref name="fileName"/>, this will pre-load those
+        /// additional XSDs into an <see cref="XmlPreloadedResolver"/> and use them if they are referenced by the file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="fs"></param>
+        /// <returns>Returns a compiled <see cref="XmlSchemaSet"/></returns>
+        public static XmlSchemaSet PreLoadXmlSchemas(string fileName, IFileSystem fs)
+        {
+            if (fileName.IsEmpty()) throw new ArgumentNullException(nameof(fileName));
+
+            var xsdFile = fs.FileInfo.New(fileName);
+            var directoryInfo = fs.DirectoryInfo.New(xsdFile.DirectoryName!);
+            var additionalXsds = directoryInfo.GetFiles("*.xsd");
+
+            var xmlPreloadedResolver = new XmlPreloadedResolver();
+
+            foreach (var xsd in additionalXsds) {
+                var pathRoot = Path.GetPathRoot(xsd.FullName);
+                var unrooted = xsd.FullName.Replace(pathRoot, "");
+                xmlPreloadedResolver.Add(new Uri($"file://{unrooted}"), xsd.OpenRead());
+            }
+
+            var xmlReaderSettings = new XmlReaderSettings() {
+                DtdProcessing = DtdProcessing.Ignore,
+                CloseInput = true
+            };
+
+            var xmlReader = XmlReader.Create(xsdFile.OpenRead(), xmlReaderSettings);
+            XmlSchemaSet xmlSchemaSet = xmlReader.ToXmlSchemaSet(xmlPreloadedResolver);
+
+            return xmlSchemaSet;
+        }
+
         public static Dictionary<IFileInfo, XDocument> FilterOutSchemasThatAreIncludedOrImported(this Dictionary<IFileInfo, XDocument> xDocs)
         {
             var actualSchemas = xDocs.Where(kvp => kvp.Value.IsAnXmlSchema()).ToList();

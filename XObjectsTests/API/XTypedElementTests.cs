@@ -12,7 +12,7 @@ using W3C.XSD;
 
 namespace Xml.Schema.Linq.Tests.API
 {
-    public class XTypedElementTests
+    public class XTypedElementTests: BaseTester
     {
         /// <summary>
         /// Tests strong-typed conversion from weak-typed XML to an internal LinqToXsd type.
@@ -145,7 +145,7 @@ namespace Xml.Schema.Linq.Tests.API
         [Test]
         public void TestAncestorIsRootElement()
         {
-            var example = siteMap.Load(@"AspNetSiteMaps\example.sitemap");
+            var example = siteMap.Load(GetFileStreamReader(@"AspNetSiteMaps\example.sitemap"));
 
             List<siteMapNodeType> children = example.Query.Descendants<siteMapNodeType>().ToList();
 
@@ -157,7 +157,7 @@ namespace Xml.Schema.Linq.Tests.API
         [Test]
         public void TestAncestorOfRecursiveChild()
         {
-            var example = siteMap.Load(@"AspNetSiteMaps\example.sitemap");
+            var example = siteMap.Load(GetFileStreamReader(@"AspNetSiteMaps\example.sitemap"));
 
             List<siteMapNodeType> descendents = example.Query.Descendants<siteMapNodeType>().ToList();
 

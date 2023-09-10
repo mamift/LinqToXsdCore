@@ -11,7 +11,7 @@ using Xml.Schema.Linq.Extensions;
 namespace Xml.Schema.Linq.Tests.Extensions
 {
     [TestFixture]
-    public class CodeDomExtensionTests
+    public class CodeDomExtensionTests: BaseTester
     {
         [Test]
         public void IsEquivalentEnumDeclarationTestTrue()
@@ -81,8 +81,8 @@ namespace Xml.Schema.Linq.Tests.Extensions
         {
             var xmlSpecXsd = @"XMLSpec\xmlspec.xsd";
             var xmlSpecXsdConfigFile = @"XMLSpec\xmlspec.xsd.config";
-            var xmlSpecXsdConfig = Configuration.Load(xmlSpecXsdConfigFile);
-            var xmlSpecSchemaSet = FileSystemUtilities.PreLoadXmlSchemas(xmlSpecXsd);
+            var xmlSpecXsdConfig = Configuration.Load(GetFileStreamReader(xmlSpecXsdConfigFile));
+            var xmlSpecSchemaSet = Utilities.PreLoadXmlSchemas(xmlSpecXsd, TestFiles);
 
             Assert.IsNotNull(xmlSpecSchemaSet);
             Assert.IsTrue(xmlSpecSchemaSet.IsCompiled);
