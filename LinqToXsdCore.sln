@@ -135,6 +135,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office 2003 Reference schem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft Search", "GeneratedSchemaLibraries\Microsoft Search\Microsoft Search.csproj", "{E6F222CB-26B5-4123-B16D-B15936D9EC55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3dps-1_0_0", "GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj", "{E4A3C7C1-252A-4AA5-B517-4DE91BB1DAF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -373,6 +375,10 @@ Global
 		{E6F222CB-26B5-4123-B16D-B15936D9EC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6F222CB-26B5-4123-B16D-B15936D9EC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6F222CB-26B5-4123-B16D-B15936D9EC55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4A3C7C1-252A-4AA5-B517-4DE91BB1DAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A3C7C1-252A-4AA5-B517-4DE91BB1DAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A3C7C1-252A-4AA5-B517-4DE91BB1DAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A3C7C1-252A-4AA5-B517-4DE91BB1DAF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -431,6 +437,7 @@ Global
 		{ED4B0792-7FF7-40D4-AF7A-05D758582C9B} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{7E74DD95-A8DF-4CDC-AC83-41A228078D4E} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{E6F222CB-26B5-4123-B16D-B15936D9EC55} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{E4A3C7C1-252A-4AA5-B517-4DE91BB1DAF7} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {515FF9D5-932D-4E95-A20B-E2A06A52858F}

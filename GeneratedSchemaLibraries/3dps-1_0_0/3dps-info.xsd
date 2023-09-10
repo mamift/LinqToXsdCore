@@ -1,35 +1,30 @@
 <?xml version="1.0"?>
-<xs:schema xmlns="http://www.opengis.net/3dps/1.0/info"
-    targetNamespace="http://www.opengis.net/3dps/1.0/info"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:ows="http://www.opengis.net/ows/2.0"
-    xmlns:core="http://www.opengis.net/3dps/1.0/core"
-    xmlns:view="http://www.opengis.net/3dps/1.0/view"
-    xmlns:info="http://www.opengis.net/3dps/1.0/info"
-    version="1.0.0">
+<xs:schema targetNamespace="http://www.opengis.net/3dps/1.0/info" version="1.0.0"
+    xmlns="http://www.opengis.net/3dps/1.0/info" xmlns:core="http://www.opengis.net/3dps/1.0/core"
+    xmlns:info="http://www.opengis.net/3dps/1.0/info" xmlns:ows="http://www.opengis.net/ows/2.0"
+    xmlns:view="http://www.opengis.net/3dps/1.0/view" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:annotation>
-        <xs:documentation>
-            OGC 3D Portrayal Service 1.0 is an OGC Standard.
-            Copyright (c) 2016, 2023 Open Geospatial Consortium.
-            To obtain additional rights of use, visit http://www.ogc.org/legal/ .
-        </xs:documentation>
+        <xs:documentation>             OGC 3D Portrayal Service 1.0 is an OGC Standard.
+            Copyright (c) 2016, 2023 Open Geospatial Consortium.             To obtain additional
+            rights of use, visit http://www.ogc.org/legal/ .         </xs:documentation>
     </xs:annotation>
-    <xs:import namespace="http://www.opengis.net/3dps/1.0/view" schemaLocation="http://schemas.opengis.net/3dps/1.0/3dps-view.xsd"/>
-    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsCommon.xsd"/>
-    <xs:import namespace="http://www.opengis.net/3dps/1.0/core" schemaLocation="http://schemas.opengis.net/3dps/1.0/3dps-core.xsd"/>
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/view" schemaLocation="3dps-view.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="owsCommon.xsd"/>
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/core" schemaLocation="3dps-core.xsd"/>
     <xs:complexType name="InfoLayerExtensionType">
         <xs:sequence/>
-        <xs:attribute name="queryable" use="optional" type="xs:boolean"/>
+        <xs:attribute name="queryable" type="xs:boolean" use="optional"/>
     </xs:complexType>
-    <xs:complexType name="AbstractGetFeatureInfoType" abstract="true">
+    <xs:complexType abstract="true" name="AbstractGetFeatureInfoType">
         <xs:complexContent>
             <xs:extension base="core:RequestBaseType">
                 <xs:sequence>
-                    <xs:element name="Layers" type="xs:string" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="FeatureCount" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
-                    <xs:element name="IdOnly" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
-                    <xs:element name="Format" type="ows:MimeType" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Exceptions" type="ows:MimeType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Layers" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="FeatureCount"
+                        type="xs:positiveInteger"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="IdOnly" type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Format" type="ows:MimeType"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Exceptions" type="ows:MimeType"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -38,11 +33,13 @@
         <xs:complexContent>
             <xs:extension base="AbstractGetFeatureInfoType">
                 <xs:sequence>
-                    <xs:element name="CRS" type="xs:anyURI" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Height" type="xs:positiveInteger" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Width" type="xs:positiveInteger" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Projection" type="view:ProjectionBaseType" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="ImagePosition" type="core:Position2DType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="CRS" type="xs:anyURI"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Height" type="xs:positiveInteger"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Width" type="xs:positiveInteger"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Projection"
+                        type="view:ProjectionBaseType"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="ImagePosition"
+                        type="core:Position2DType"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -51,9 +48,10 @@
         <xs:complexContent>
             <xs:extension base="AbstractGetFeatureInfoType">
                 <xs:sequence>
-                    <xs:element name="CRS" type="xs:anyURI" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Coordinate" type="core:Position3DType" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Tolerance" type="xs:float" minOccurs="0" maxOccurs="1"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="CRS" type="xs:anyURI"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Coordinate"
+                        type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Tolerance" type="xs:float"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -62,7 +60,8 @@
         <xs:complexContent>
             <xs:extension base="AbstractGetFeatureInfoType">
                 <xs:sequence>
-                    <xs:element name="ObjectId" type="xs:anyURI" minOccurs="1" maxOccurs="unbounded"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="ObjectId" type="xs:anyURI"
+                    />
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

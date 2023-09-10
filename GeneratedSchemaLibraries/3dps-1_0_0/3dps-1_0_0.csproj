@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="3dps-core.xsd" />
+    <EmbeddedResource Include="3dps-info.xsd" />
+    <EmbeddedResource Include="3dps-info.xsd.config" />
+    <EmbeddedResource Include="3dps-scene.xsd" />
+    <EmbeddedResource Include="3dps-scene.xsd.config" />
+    <EmbeddedResource Include="3dps-view.xsd" />
+    <EmbeddedResource Include="ows19115subset.xsd" />
+    <EmbeddedResource Include="owsCommon.xsd" />
+    <EmbeddedResource Include="owsContents.xsd" />
+    <EmbeddedResource Include="owsDataIdentification.xsd" />
+    <EmbeddedResource Include="owsDomainType.xsd" />
+    <EmbeddedResource Include="ReadMe-3dps-1_0_0.txt" />
+    <EmbeddedResource Include="xlink.xsd" />
+    <EmbeddedResource Include="xml.xsd" />
+    <EmbeddedResource Include="examples\FeatureInfoResponse.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="3dps-core.xsd" />
+    <None Remove="3dps-info.xsd" />
+    <None Remove="3dps-info.xsd.config" />
+    <None Remove="3dps-scene.xsd" />
+    <None Remove="3dps-scene.xsd.config" />
+    <None Remove="3dps-view.xsd" />
+    <None Remove="ows19115subset.xsd" />
+    <None Remove="owsCommon.xsd" />
+    <None Remove="owsContents.xsd" />
+    <None Remove="owsDataIdentification.xsd" />
+    <None Remove="owsDomainType.xsd" />
+    <None Remove="ReadMe-3dps-1_0_0.txt" />
+    <None Remove="xlink.xsd" />
+    <None Remove="xml.xsd" />
+    <None Remove="examples\FeatureInfoResponse.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
