@@ -8,16 +8,15 @@ using XObjects;
 namespace Xml.Schema.Linq.Tests.Extensions
 {
     [TestFixture]
-    public class XmlSchemaExtensionsTests
+    public class XmlSchemaExtensionsTests: BaseTester
     {
         private string xsdFilePathPubmed = @"Pubmed\efetch-pubmed.xsd";
 
         [Test]
         public void TestGetClosestNamedParent1()
         {
-            Assert.IsTrue(File.Exists(xsdFilePathPubmed));
-
-            var xsd = XmlSchema.Read(File.OpenText(xsdFilePathPubmed), (sender, args) => { });
+            using var streamReader = GetFileStreamReader(xsdFilePathPubmed);
+            var xsd = XmlSchema.Read(streamReader, (sender, args) => { });
 
             var urlElement = xsd.Items.Cast<XmlSchemaObject>()
                 .OfType<XmlSchemaElement>()
@@ -47,9 +46,8 @@ namespace Xml.Schema.Linq.Tests.Extensions
         [Test]
         public void TestGetClosestNamedParent2()
         {
-            Assert.IsTrue(File.Exists(xsdFilePathPubmed));
-
-            var xsd = XmlSchema.Read(File.OpenText(xsdFilePathPubmed), (sender, args) => { });
+            using var streamReader = GetFileStreamReader(xsdFilePathPubmed);
+            var xsd = XmlSchema.Read(streamReader, (sender, args) => { });
 
             var urlElement = xsd.Items.Cast<XmlSchemaObject>()
                 .OfType<XmlSchemaElement>()
@@ -64,9 +62,8 @@ namespace Xml.Schema.Linq.Tests.Extensions
         [Test]
         public void TestGetClosestNamedParent3()
         {
-            Assert.IsTrue(File.Exists(xsdFilePathPubmed));
-
-            var xsd = XmlSchema.Read(File.OpenText(xsdFilePathPubmed), (sender, args) => { });
+            using var streamReader = GetFileStreamReader(xsdFilePathPubmed);
+            var xsd = XmlSchema.Read(streamReader, (sender, args) => { });
 
             var articleType = xsd.Items.Cast<XmlSchemaObject>()
                 .OfType<XmlSchemaComplexType>()
