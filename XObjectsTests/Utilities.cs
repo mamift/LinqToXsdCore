@@ -16,7 +16,7 @@ using System.Xml.Schema;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
-
+using NUnit.Framework;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
@@ -28,22 +28,26 @@ namespace Xml.Schema.Linq.Tests
         /// additional XSDs into an <see cref="XmlPreloadedResolver"/> and use them if they are referenced by the file.
         /// </summary>
         /// <param name="fileName"></param>
-        /// <param name="fs"></param>
+        /// <param name="mfs"></param>
         /// <returns>Returns a compiled <see cref="XmlSchemaSet"/></returns>
-        public static XmlSchemaSet PreLoadXmlSchemas(string fileName, IFileSystem fs)
+        public static XmlSchemaSet PreLoadXmlSchemas(string fileName, MockFileSystem mfs)
         {
             if (fileName.IsEmpty()) throw new ArgumentNullException(nameof(fileName));
 
-            var xsdFile = fs.FileInfo.New(fileName);
-            var directoryInfo = fs.DirectoryInfo.New(xsdFile.DirectoryName!);
+            var xsdFile = mfs.FileInfo.New(fileName);
+            var directoryInfo = mfs.DirectoryInfo.New(xsdFile.DirectoryName!);
             var additionalXsds = directoryInfo.GetFiles("*.xsd");
 
-            var xmlPreloadedResolver = new XmlPreloadedResolver();
+            var xmlPreloadedResolver = new MockXmlUrlResolver(mfs);
 
             foreach (var xsd in additionalXsds) {
-                var pathRoot = Path.GetPathRoot(xsd.FullName);
+                var pathRoot = Path.GetPathRoot(xsd.FullName) ?? "";
                 var unrooted = xsd.FullName.Replace(pathRoot, "");
-                xmlPreloadedResolver.Add(new Uri($"file://{unrooted}"), xsd.OpenRead());
+
+                var xsdText = new StreamReader(xsd.OpenRead()).ReadToEnd();
+                Assert.IsNotNull(xsdText);
+                Assert.IsFalse(string.IsNullOrWhiteSpace(xsdText));
+                xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}", UriKind.Absolute), xsd.OpenRead());
             }
 
             var xmlReaderSettings = new XmlReaderSettings() {
