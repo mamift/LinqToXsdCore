@@ -2,13 +2,10 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Resolvers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
@@ -16,48 +13,6 @@ using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
-    internal class MockXmlUrlResolver : XmlPreloadedResolver
-    {
-        private readonly IMockFileDataAccessor fs;
-
-        public MockXmlUrlResolver(IMockFileDataAccessor fs)
-        {
-            this.fs = fs;
-        }
-
-        public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
-        {
-            if (absoluteUri == null) throw new ArgumentNullException(nameof (absoluteUri));
-
-            return new MockFileInfo(this.fs, absoluteUri.OriginalString).OpenRead();
-        }
-
-        public override Task<object> GetEntityAsync(Uri absoluteUri, string role, Type ofObjectToReturn)
-        {
-            return base.GetEntityAsync(absoluteUri, role, ofObjectToReturn);
-        }
-
-        public override Uri ResolveUri(Uri baseUri, string relativeUri)
-        {
-            var str = baseUri.ToString();
-            var justTheFileName = Path.GetFileName(relativeUri);
-            var theFile = fs.AllFiles.FirstOrDefault(f => f.EndsWith(justTheFileName, StringComparison.CurrentCultureIgnoreCase));
-
-            var exists = theFile != null;
-                 
-            if (exists) {
-                return new Uri(theFile);
-            }
-
-            throw new FileNotFoundException();
-        }
-
-        public override bool SupportsType(Uri absoluteUri, Type type)
-        {
-            return base.SupportsType(absoluteUri, type);
-        }
-    }
-
     /// <summary>
     /// Extension methods used specifically in unit tests.
     /// </summary>
