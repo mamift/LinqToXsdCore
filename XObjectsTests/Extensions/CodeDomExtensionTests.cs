@@ -82,7 +82,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
             var xmlSpecXsd = @"XMLSpec\xmlspec.xsd";
             var xmlSpecXsdConfigFile = @"XMLSpec\xmlspec.xsd.config";
             var xmlSpecXsdConfig = Configuration.Load(GetFileStreamReader(xmlSpecXsdConfigFile));
-            var xmlSpecSchemaSet = Utilities.PreLoadXmlSchemas(xmlSpecXsd, TestFiles);
+            var xmlSpecSchemaSet = Utilities.PreLoadXmlSchemas(xmlSpecXsd, Utilities.GetAssemblyFileSystem(typeof(W3C.XMLSpec.listclass).Assembly));
 
             Assert.IsNotNull(xmlSpecSchemaSet);
             Assert.IsTrue(xmlSpecSchemaSet.IsCompiled);
