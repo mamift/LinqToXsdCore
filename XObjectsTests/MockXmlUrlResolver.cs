@@ -25,7 +25,9 @@ internal class MockXmlUrlResolver : XmlResolver
     {
         if (absoluteUri == null) throw new ArgumentNullException(nameof (absoluteUri));
 
-        return new MockFileInfo(this.fs, absoluteUri.OriginalString).OpenRead();
+        var mockFileInfo = new MockFileInfo(this.fs, absoluteUri.OriginalString);
+        var fileSystemStream = mockFileInfo.OpenRead();
+        return fileSystemStream;
     }
 
     public override Task<object> GetEntityAsync(Uri absoluteUri, string role, Type ofObjectToReturn)

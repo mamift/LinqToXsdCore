@@ -36,7 +36,8 @@ namespace Xml.Schema.Linq.Tests
 
             var xsdFile = mfs.FileInfo.New(fileName);
             var directoryInfo = mfs.DirectoryInfo.New(xsdFile.DirectoryName!);
-            var additionalXsds = directoryInfo.GetFiles("*.xsd");
+            var additionalXsds = directoryInfo.GetFiles("*.xsd")
+                .Where(f => f.FullName != xsdFile.FullName);
 
             var xmlPreloadedResolver = new MockXmlUrlResolver(mfs);
 
