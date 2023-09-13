@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Xml.Schema.Linq.Tests
 {
-    public class CommandLineInterfaceTests
+    public class CommandLineInterfaceTests: BaseTester
     {
         private static readonly DirectoryInfo CurrentFolder = new DirectoryInfo(@".");
         
@@ -94,6 +94,7 @@ namespace Xml.Schema.Linq.Tests
         public void TestGenerateCodeFromSingleFileWithAutoConfig()
         {
             _copyOfSchemasFolder.Refresh();
+            
             var microsoftBuildXsd = "Microsoft.Build.xsd";
             var msBuildXsd = Directory.GetFiles(_copyOfSchemasFolder.FullName, microsoftBuildXsd, SearchOption.AllDirectories).Single();
 
@@ -144,6 +145,9 @@ namespace Xml.Schema.Linq.Tests
         [SetUp]
         public void Up()
         {
+            var fs = GetFileSystemForAssemblyName("MSBuild");
+            fs.CopyToRealFileSystem(Environment.CurrentDirectory);
+
             CopySchemasFolder();
         }
 

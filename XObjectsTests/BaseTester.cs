@@ -30,6 +30,12 @@ public class BaseTester
         AllTestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
     }
 
+    public MockFileSystem GetFileSystemForAssemblyName(string assemblyName)
+    {
+        Assembly fileSystemForAssemblyName = TestAssembliesLoaded.Single(a => a.GetName().Name == assemblyName);
+        return Utilities.GetAssemblyFileSystem(fileSystemForAssemblyName);
+    }
+
     public StreamReader GetFileStreamReader(string nonRootedPath)
     {
         return GetFile(nonRootedPath).ToStreamReader();
