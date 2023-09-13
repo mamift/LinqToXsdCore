@@ -11,7 +11,7 @@ namespace Xml.Schema.Linq.Tests.API
         [Test]
         public void TestXListEnumerateTest()
         {
-            var schemas = TestFiles.AllFiles.Where(f => f.EndsWith("W3C XMLSchema v1.xsd")).Select(f => TestFiles.FileInfo.New(f)).ToList();
+            var schemas = AllTestFiles.AllFiles.Where(f => f.EndsWith("W3C XMLSchema v1.xsd")).Select(f => AllTestFiles.FileInfo.New(f)).ToList();
 
             Assert.DoesNotThrow(() => {
                 using var reader = new StreamReader(schemas.First().OpenRead());

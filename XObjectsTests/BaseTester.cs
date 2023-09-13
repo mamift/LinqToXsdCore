@@ -13,7 +13,7 @@ namespace Xml.Schema.Linq.Tests;
 public class BaseTester
 {
     protected List<Assembly> TestAssembliesLoaded { get; private set; } = null!;
-    public MockFileSystem TestFiles { get; protected set; } = null!;
+    public MockFileSystem AllTestFiles { get; protected set; } = null!;
 
     [SetUp]
     public void Setup()
@@ -27,7 +27,7 @@ public class BaseTester
 
         TestAssembliesLoaded = referencedAssemblies.Select(name => Assembly.LoadFile(name.FullName)).ToList();
             
-        TestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
+        AllTestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
     }
 
     public StreamReader GetFileStreamReader(string nonRootedPath)
@@ -37,6 +37,6 @@ public class BaseTester
 
     public IFileInfo GetFile(string nonRootedPath)
     {
-        return TestFiles.AllFiles.Where(f => f.EndsWith(nonRootedPath)).Select(f => TestFiles.FileInfo.New(f)).First();
+        return AllTestFiles.AllFiles.Where(f => f.EndsWith(nonRootedPath)).Select(f => AllTestFiles.FileInfo.New(f)).First();
     }
 }

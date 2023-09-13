@@ -17,6 +17,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
 using NUnit.Framework;
+using OneOf;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
@@ -139,7 +140,6 @@ namespace Xml.Schema.Linq.Tests
             
             var resolvedSchemaFilesFilteredList = filesComparisonList.Except(filteredIncludeAndImportRefsComparisonList).Distinct().ToList();
             var resolvedSchemaFiles = resolvedSchemaFilesFilteredList.Select(fn => mfs.FileInfo.New(fn)).ToList();
-
 
             if (filteredIncludeAndImportRefs.Count == files.Count && !resolvedSchemaFilesFilteredList.Any()) {
                 throw new LinqToXsdException("Cannot decide which XSD files to process as the specified " +
@@ -358,6 +358,16 @@ namespace Xml.Schema.Linq.Tests
             return tree as CSharpSyntaxTree;
         }
 
+        public static OneOf<CSharpSyntaxTree, Exception> GenerateSyntaxTreeOrError(IFileInfo xsdFile, IMockFileDataAccessor mfs)
+        {
+            try {
+                return GenerateSyntaxTree(xsdFile, mfs);
+            }
+            catch (Exception ex) {
+                return ex;
+            }
+        }
+
         /// <summary>
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
@@ -403,6 +413,7 @@ namespace Xml.Schema.Linq.Tests
         ///    Assert.AreEqual(0, diags.Length);
         /// ]]></code></remarks>
         public static Diagnostic[] GetSyntaxAndCompilationDiagnostics(SyntaxTree tree) => GetSyntaxAndCompilationDiagnostics(tree, out _, out _);
+
         /// <summary>
         /// Compile a syntax tree and returns syntax and compilation diagnostics
         /// </summary>

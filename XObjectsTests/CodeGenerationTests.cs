@@ -28,11 +28,11 @@ namespace Xml.Schema.Linq.Tests
         public void NamespaceCodeGenerationConventionTest()
         {
             const string simpleDocXsdFilepath = @"Toy schemas\Simple doc.xsd";
-            var mockFileInfo = new MockFileInfo(TestFiles, simpleDocXsdFilepath);
+            var mockFileInfo = new MockFileInfo(AllTestFiles, simpleDocXsdFilepath);
             
             var simpleDocXsd = XmlReader.Create(mockFileInfo.OpenRead()).ToXmlSchema();
 
-            var sourceText = Utilities.GenerateSourceText(simpleDocXsdFilepath, TestFiles);
+            var sourceText = Utilities.GenerateSourceText(simpleDocXsdFilepath, AllTestFiles);
 
             var tree = CSharpSyntaxTree.ParseText(sourceText);
             var namespaceNode = tree.GetNamespaceRoot();
@@ -56,8 +56,8 @@ namespace Xml.Schema.Linq.Tests
         {
             const string atomDir = @"Atom";
             var atomRssXsdFile = $"{atomDir}\\atom.xsd";
-            var atomRssXsdFileInfo = new MockFileInfo(TestFiles, atomRssXsdFile);
-            var tree = Utilities.GenerateSyntaxTree(atomRssXsdFileInfo, TestFiles);
+            var atomRssXsdFileInfo = new MockFileInfo(AllTestFiles, atomRssXsdFile);
+            var tree = Utilities.GenerateSyntaxTree(atomRssXsdFileInfo, AllTestFiles);
 
             var linqToXsdTypeManagerClassDeclarationSyntax = tree.GetNamespaceRoot().DescendantNodes().OfType<ClassDeclarationSyntax>()
                                                                  .FirstOrDefault(cds => cds.Identifier.ValueText == nameof(LinqToXsdTypeManager));
@@ -98,17 +98,25 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
         {
-            var dir = new MockDirectoryInfo(TestFiles, ".");
+            var dir = new MockDirectoryInfo(AllTestFiles, ".");
             var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
                 // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
                 .Where(f => !f.FullName.Contains("Microsoft.Build."))
                 .Select(f => f.FullName).ToArray();
 
-            var allProcessableXsds = Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(TestFiles, allXsds);
+            var allProcessableXsds = Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(AllTestFiles, allXsds);
+
+            var failingXsds = new List<IFileInfo>(allProcessableXsds.Capacity);
 
             foreach (var xsd in allProcessableXsds) {
-                var generatedCodeTree = Utilities.GenerateSyntaxTree(xsd, TestFiles);
+                var generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
 
+                if (generateResult.IsT1) {
+                    failingXsds.Add(xsd);
+                    continue;
+                }
+
+                var generatedCodeTree = generateResult.AsT0;
                 var root = generatedCodeTree.GetRoot();
 
                 var allDescendents = root.DescendantNodes().SelectMany(d => d.DescendantNodes()).ToList();
@@ -126,7 +134,12 @@ namespace Xml.Schema.Linq.Tests
                 var voidTypeOfExpressions = typeOfExpressions.Where(toe => toe.IsEquivalentTo(typeOfVoid)).ToArray();
 
                 Assert.IsNotEmpty(nonVoidTypeOfExpressions);
-                Assert.IsEmpty(voidTypeOfExpressions);
+                Assert.IsEmpty(voidTypeOfExpressions, $"Failling XSD: " + xsd.FullName);
+            }
+
+            if (failingXsds.Any()) {
+                var failingList = failingXsds.Select(f => f.FullName).ToDelimitedString(",");
+                throw new Exception("The following XSDs failed to generate code: " + failingList);
             }
         }
 
@@ -137,7 +150,7 @@ namespace Xml.Schema.Linq.Tests
         public void NoVoidTypeDefReferencesInAnyStatementsInClrPropertiesTest()
         {
             const string xsdSchema = @"XSD\W3C XMLSchema v1.xsd";
-            var xsdCode = Utilities.GenerateSyntaxTree(new MockFileInfo(TestFiles, xsdSchema), TestFiles);
+            var xsdCode = Utilities.GenerateSyntaxTree(new MockFileInfo(AllTestFiles, xsdSchema), AllTestFiles);
 
             var allClasses = xsdCode.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>();
             var allProperties = allClasses.SelectMany(cds => cds.DescendantNodes().OfType<PropertyDeclarationSyntax>())
@@ -180,8 +193,8 @@ namespace Xml.Schema.Linq.Tests
         public void EnumAtNamespaceLevelGenerationTest()
         {
             const string wssXsdFilePath = @"SharePoint2010\wss.xsd";
-            var wssXsdFileInfo = new MockFileInfo(TestFiles, wssXsdFilePath);
-            var tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo, TestFiles);
+            var wssXsdFileInfo = new MockFileInfo(AllTestFiles, wssXsdFilePath);
+            var tree = Utilities.GenerateSyntaxTree(wssXsdFileInfo, AllTestFiles);
             var root = tree.GetNamespaceRoot();
 
             var namespaceScopedEnums = root.DescendantNodes().OfType<EnumDeclarationSyntax>().ToList();
@@ -199,8 +212,8 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void TestXNameGetInvocationsAreFullyQualified()
         {
-            var atomXsdFileInfo = new MockFileInfo(TestFiles, AtomXsdFilePath);
-            CSharpSyntaxTree tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, TestFiles);
+            var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
+            CSharpSyntaxTree tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
 
             TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new []{ tree.ToString() });
 
@@ -220,9 +233,9 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void DebuggerBrowsableAttributesGeneratedTest()
         {
-            var atomXsdFileInfo = new MockFileInfo(TestFiles, AtomXsdFilePath);
+            var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
 
-            var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, TestFiles);
+            var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
             var root = tree.GetNamespaceRoot();
 
             TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new [] { root.ToFullString() });
