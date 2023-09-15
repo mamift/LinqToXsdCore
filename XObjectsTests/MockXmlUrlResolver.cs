@@ -37,7 +37,14 @@ internal class MockXmlUrlResolver : XmlResolver
 
     public override Uri ResolveUri(Uri baseUri, string relativeUri)
     {
-        var oBaseUri = base.ResolveUri(baseUri, relativeUri);
+        var baseResolvedUri = base.ResolveUri(baseUri, relativeUri);
+        if (baseResolvedUri.ToString().Equals(relativeUri, StringComparison.CurrentCultureIgnoreCase)) {
+            if (baseUri.Scheme.StartsWith("http")) {
+
+            }
+            //return baseResolvedUri;
+        }
+
         var str = baseUri.ToString();
         var justTheFileName = Path.GetFileName(relativeUri);
         var fsSearch = fs.AllFiles.Where(f => f.EndsWith(justTheFileName, StringComparison.CurrentCultureIgnoreCase));

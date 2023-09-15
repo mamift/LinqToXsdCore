@@ -145,8 +145,13 @@ namespace Xml.Schema.Linq.Tests
         [SetUp]
         public void Up()
         {
-            var fs = GetFileSystemForAssemblyName("MSBuild");
-            fs.CopyToRealFileSystem(Environment.CurrentDirectory);
+            //var fs = GetFileSystemForAssemblyName("MSBuild");
+            //fs.CopyToRealFileSystem(Environment.CurrentDirectory);
+
+            var names = new[] { "XSD", "XQueryX", "XMLSpec", "Windows", "UK CabinetOffice", "TraML", "ThermoML", "MSBuild" };
+            foreach (var mockFileSystem in GetFileSystemForAssemblyNames(names)) {
+                mockFileSystem.CopyToRealFileSystem(Environment.CurrentDirectory);
+            }
 
             CopySchemasFolder();
         }

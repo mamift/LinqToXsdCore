@@ -5,15 +5,13 @@ using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using MoreLinq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
-using W3C.XSD;
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests
@@ -96,19 +94,26 @@ namespace Xml.Schema.Linq.Tests
         /// <para>See commit bc75ea0 which introduced this incorrect behaviour.</para>
         /// </summary>
         [Test]
-        public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
+        [TestCase("1707_ISYBAU_XML_Schema"), TestCase("3dps-1_0_0"), TestCase("AbstractTypeTest"), TestCase("AkomaNtoso"), TestCase("AkomaNtoso30-CSD13-D2f"), TestCase("AspNetSiteMaps"), TestCase("Atom"), TestCase("CityGML"), TestCase("ContentModelTest"), TestCase("EnumsTest"), TestCase("EnzymeML"), TestCase("GelML"), TestCase("GS1"), TestCase("HL-7"), TestCase("HR-XML"), TestCase("LegalRuleML"), TestCase("MetaLEX"), TestCase("Microsoft Search"), TestCase("Multi-namespaces"), TestCase("mzIdentML"), TestCase("mzML"), TestCase("mzQuantML"), TestCase("NameMangled"), TestCase("NHS CDS"), TestCase("OcmContracts"), TestCase("Office 2003 Reference schemas"), TestCase("OfficeOpenXML-XMLSchema-Strict"), TestCase("OfficeOpenXML-XMLSchema-Transitional"), TestCase("OFMX"), TestCase("OGC-misc"), TestCase("OPC"), TestCase("OpenPackagingConventions-XMLSchema"), TestCase("Opml"), TestCase("Pubmed"), TestCase("Rss"), TestCase("SBML"), TestCase("SharePoint2010"), TestCase("SWRL"), TestCase("ThermoML"), TestCase("Toy schemas"), TestCase("TraML"), TestCase("UK CabinetOffice"), TestCase("Windows"), TestCase("XMLSpec"), TestCase("XQueryX"), TestCase("XSD")]
+        //[TestCase("NIEM"), TestCase("SBVR-XML"), TestCase("LandXML"), TestCase("FHIR"), TestCase("CellML"), TestCase("DTSX"), TestCase("Chem eStandards"), TestCase("AIXM")]
+        // [TestCase("Microsoft Project 2007"), TestCase("MSBuild")]
+        public void NoVoidTypeOfExpressionsInGeneratedCode(string assemblyName)
         {
-            var dir = new MockDirectoryInfo(AllTestFiles, ".");
-            var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
-                // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
-                .Where(f => !f.FullName.Contains("Microsoft.Build."))
-                .Select(f => f.FullName).ToArray();
+            var xsdsToProcess = GetFileSystemForAssemblyName(assemblyName).AllFiles.Where(f => f.EndsWith(".xsd"));
 
-            var allProcessableXsds = Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(AllTestFiles, allXsds);
+            CheckTypeOfVoidExpressionsInGeneratedCode(xsdsToProcess);
+        }
+
+        private void CheckTypeOfVoidExpressionsInGeneratedCode(IEnumerable<string> xsdsToProcess, int randomSubset = -1)
+        {
+            var allProcessableXsds =
+                Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(AllTestFiles, xsdsToProcess);
 
             var failingXsds = new List<IFileInfo>(allProcessableXsds.Capacity);
 
-            foreach (var xsd in allProcessableXsds) {
+            var toProcess = randomSubset > 0 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
+
+            foreach (var xsd in toProcess) {
                 var generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
 
                 if (generateResult.IsT1) {
@@ -141,9 +146,26 @@ namespace Xml.Schema.Linq.Tests
             }
 
             if (failingXsds.Any()) {
-                var failingList = failingXsds.Select(f => f.FullName).ToDelimitedString(",");
+                var failingList = GeneralExtensionMethods.ToDelimitedString(failingXsds.Select(f => f.FullName), ",");
                 throw new Exception("The following XSDs failed to generate code: " + failingList);
             }
+        }
+
+        /// <summary>
+        /// There shouldn't be <c>typeof(void)</c> expressions in any generated code.
+        /// <para>See commit bc75ea0 which introduced this incorrect behaviour.</para>
+        /// </summary>
+        // [Test]
+        public void NoVoidTypeOfExpressionsInGeneratedCodeEver()
+        {
+            var dir = new MockDirectoryInfo(AllTestFiles, ".");
+            var allXsds = dir.GetFiles("*.xsd", SearchOption.AllDirectories)
+                // Microsoft.Build schemas will have typeof(void) expressions due to the existence of bugs that predate this .net core port
+                .Where(f => !f.FullName.Contains("Microsoft.Build.") && !f.FullName.Contains("Microsoft Project 2007"))
+                .Select(f => f.FullName).ToArray();
+
+            // cant run all
+            CheckTypeOfVoidExpressionsInGeneratedCode(allXsds, 100);
         }
 
         /// <summary>

@@ -30,6 +30,13 @@ public class BaseTester
         AllTestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
     }
 
+    public IEnumerable<MockFileSystem> GetFileSystemForAssemblyNames(IEnumerable<string> assemblyNames)
+    {
+        foreach (var assemblyName in assemblyNames) {
+            yield return GetFileSystemForAssemblyName(assemblyName);
+        }
+    }
+
     public MockFileSystem GetFileSystemForAssemblyName(string assemblyName)
     {
         Assembly fileSystemForAssemblyName = TestAssembliesLoaded.Single(a => a.GetName().Name == assemblyName);
