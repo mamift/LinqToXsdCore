@@ -95,7 +95,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\OpenPackagingConventions-XMLSchema\OpenPackagingConventions-XMLSchema.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Office 2003 Reference schemas\Office 2003 Reference schemas.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Search\Microsoft Search.csproj" />
-    <ProjectReference Include="..\GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj" />
+    <!-- <ProjectReference Include="..\GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj" /> -->
   </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">

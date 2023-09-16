@@ -3,7 +3,6 @@
     "path": "LinqToXsdCore.sln",
     "projects": [
       "GeneratedSchemaLibraries\\1707_ISYBAU_XML_Schema\\1707_ISYBAU_XML_Schema.csproj",
-      "GeneratedSchemaLibraries\\3dps-1_0_0\\3dps-1_0_0.csproj",
       "GeneratedSchemaLibraries\\AbstractTypeTest\\AbstractTypeTest.csproj",
       "GeneratedSchemaLibraries\\AkomaNtoso30-CSD13-D2f\\AkomaNtoso30-CSD13-D2f.csproj",
       "GeneratedSchemaLibraries\\AkomaNtoso\\AkomaNtoso.csproj",
