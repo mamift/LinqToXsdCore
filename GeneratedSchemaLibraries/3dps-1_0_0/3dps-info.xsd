@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="http://www.opengis.net/3dps/1.0/info" version="1.0.0"
+    xmlns="http://www.opengis.net/3dps/1.0/info" xmlns:core="http://www.opengis.net/3dps/1.0/core"
+    xmlns:info="http://www.opengis.net/3dps/1.0/info" xmlns:ows="http://www.opengis.net/ows/2.0"
+    xmlns:view="http://www.opengis.net/3dps/1.0/view" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>             OGC 3D Portrayal Service 1.0 is an OGC Standard.
+            Copyright (c) 2016, 2023 Open Geospatial Consortium.             To obtain additional
+            rights of use, visit http://www.ogc.org/legal/ .         </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/view" schemaLocation="3dps-view.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="owsCommon.xsd"/>
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/core" schemaLocation="3dps-core.xsd"/>
+    <xs:complexType name="InfoLayerExtensionType">
+        <xs:sequence/>
+        <xs:attribute name="queryable" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="AbstractGetFeatureInfoType">
+        <xs:complexContent>
+            <xs:extension base="core:RequestBaseType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Layers" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="FeatureCount"
+                        type="xs:positiveInteger"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="IdOnly" type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Format" type="ows:MimeType"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Exceptions" type="ows:MimeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetFeatureInfoByRayType">
+        <xs:complexContent>
+            <xs:extension base="AbstractGetFeatureInfoType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" name="CRS" type="xs:anyURI"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Height" type="xs:positiveInteger"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Width" type="xs:positiveInteger"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Projection"
+                        type="view:ProjectionBaseType"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="ImagePosition"
+                        type="core:Position2DType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetFeatureInfoByPositionType">
+        <xs:complexContent>
+            <xs:extension base="AbstractGetFeatureInfoType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" name="CRS" type="xs:anyURI"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Coordinate"
+                        type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Tolerance" type="xs:float"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetFeatureInfoByObjectIdType">
+        <xs:complexContent>
+            <xs:extension base="AbstractGetFeatureInfoType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="ObjectId" type="xs:anyURI"
+                    />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

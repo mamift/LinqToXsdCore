@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="EnumsTest.xsd" />
+    <None Remove="EnumsTest.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="EnumsTest.xsd" />
+    <EmbeddedResource Include="EnumsTest.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>

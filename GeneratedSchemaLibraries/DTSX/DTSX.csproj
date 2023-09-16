@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dtsx.xsd" />
+    <EmbeddedResource Include="dtsx.xsd.config" />
+    <EmbeddedResource Include="dtsx.xsd.cs" />
+    <EmbeddedResource Include="ns_activexscripttask.xsd" />
+    <EmbeddedResource Include="ns_bulkinserttask.xsd" />
+    <EmbeddedResource Include="ns_exec80packagetask.xsd" />
+    <EmbeddedResource Include="ns_messagequeuetask.xsd" />
+    <EmbeddedResource Include="ns_sendmailtask.xsd" />
+    <EmbeddedResource Include="ns_sqltask.xsd" />
+    <EmbeddedResource Include="ns_webservicetask.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dtsx.xsd" />
+    <None Remove="dtsx.xsd.config" />
+    <None Remove="ns_activexscripttask.xsd" />
+    <None Remove="ns_bulkinserttask.xsd" />
+    <None Remove="ns_exec80packagetask.xsd" />
+    <None Remove="ns_messagequeuetask.xsd" />
+    <None Remove="ns_sendmailtask.xsd" />
+    <None Remove="ns_sqltask.xsd" />
+    <None Remove="ns_webservicetask.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

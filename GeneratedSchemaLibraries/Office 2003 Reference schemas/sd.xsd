@@ -1,0 +1,1627 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsf="http://schemas.microsoft.com/office/infopath/2003/solutionDefinition"
+ targetNamespace="http://schemas.microsoft.com/office/infopath/2003/solutionDefinition" elementFormDefault="qualified"
+ attributeFormDefault="unqualified">
+ <xsd:annotation>
+  <xsd:documentation>
+   Permission to copy, display and distribute the contents of this document (the "Specification"), in any medium for any purpose without fee or royalty is hereby granted, provided that you include the following notice on ALL copies of the Specification, or portions thereof, that you make:
+   Copyright (c) Microsoft Corporation.  All rights reserved.  Permission to copy, display and distribute this document is available at:  http://msdn.microsoft.com/library/en-us/odcXMLRef/html/odcXMLRefLegalNotice.asp?frame=true.  
+   No right to create modifications or derivatives of this Specification is granted herein.
+   There is a separate patent license available to parties interested in implementing software programs that can read and write files that conform to the Specification.  This patent license is available at this location:  http://www.microsoft.com/mscorp/ip/format/xmlpatentlicense.asp.
+   THE SPECIFICATION IS PROVIDED "AS IS" AND MICROSOFT MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THE SPECIFICATION ARE SUITABLE FOR ANY PURPOSE; NOR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+   MICROSOFT WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THE SPECIFICATION.
+   The name and trademarks of Microsoft may NOT be used in any manner, including advertising or publicity pertaining to the Specification or its contents without specific, written prior permission. Title to copyright in the Specification will at all times remain with Microsoft.
+   No other rights are granted by implication, estoppel or otherwise.
+  </xsd:documentation>
+ </xsd:annotation>
+ <!-- xdTitle type -->
+ <xsd:simpleType name="xdTitle">
+  <xsd:restriction base="xsd:string">
+   <xsd:minLength value="1" />
+   <xsd:maxLength value="255" />
+   <xsd:pattern value="([^\p{Z}\p{Cc}\p{Cf}\p{Cn}])(([^\p{Zl}\p{Zp}\p{Cc}])*([^\p{Z}\p{Cc}\p{Cf}\p{Cn}]))?" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdViewName type -->
+ <xsd:simpleType name="xdViewName">
+  <xsd:restriction base="xsd:string">
+   <xsd:minLength value="1" />
+   <xsd:maxLength value="255" />
+   <xsd:pattern value="([^\p{Z}\p{C}/\\#&amp;&quot;&gt;&lt;])(([^\p{Zl}\p{Zp}\p{C}/\\#&amp;&quot;&gt;&lt;])*([^\p{Z}\p{C}/\\#&amp;&quot;&gt;&lt;]))?" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdRoleName type -->
+ <!-- uses xdViewName as base -->
+ <xsd:simpleType name="xdRoleName">
+  <xsd:restriction base="xsf:xdViewName"></xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdYesNo type -->
+ <xsd:simpleType name="xdYesNo">
+  <xsd:restriction base="xsd:NMTOKEN">
+   <xsd:enumeration value="yes" />
+   <xsd:enumeration value="no" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdEnabledDisabled type -->
+ <xsd:simpleType name="xdEnabledDisabled">
+  <xsd:restriction base="xsd:NMTOKEN">
+   <xsd:enumeration value="enabled" />
+   <xsd:enumeration value="disabled" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdManualAuto type -->
+ <xsd:simpleType name="xdManualAuto">
+  <xsd:restriction base="xsd:NMTOKEN">
+   <xsd:enumeration value="manual" />
+   <xsd:enumeration value="automatic" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdExpressionLiteral type -->
+ <xsd:simpleType name="xdExpressionLiteral">
+  <xsd:restriction base="xsd:NMTOKEN">
+   <xsd:enumeration value="expression" />
+   <xsd:enumeration value="literal" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdFileName type -->
+ <xsd:simpleType name="xdFileName">
+  <xsd:restriction base="xsd:string">
+   <xsd:minLength value="1" />
+   <xsd:maxLength value="64" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdScriptLanguage type -->
+ <xsd:simpleType name="xdScriptLanguage">
+  <xsd:restriction base="xsd:NMTOKEN">
+   <xsd:pattern value="(([Jj][Aa][Vv][Aa]|(([Jj])|([Vv][Bb]))([Ss][Cc][Rr][Ii][Pp][Tt]))([.][Ee][Nn][Cc][Oo][Dd][Ee]))|([Jj][Aa][Vv][Aa]|(([Jj])|([Vv][Bb]))([Ss][Cc][Rr][Ii][Pp][Tt]))|([Mm][Aa][Nn][Aa][Gg][Ee][Dd][Cc][Oo][Dd][Ee])" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdSolutionVersion type -->
+ <xsd:simpleType name="xdSolutionVersion">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="(([0-9]{1,4}.){3}[0-9]{1,4})" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdEmptyString type -->
+ <xsd:simpleType name="xdEmptyString">
+  <xsd:restriction base="xsd:string">
+   <xsd:maxLength value="0" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdErrorMessage type -->
+ <xsd:simpleType name="xdErrorMessage">
+  <xsd:restriction base="xsd:string">
+   <xsd:maxLength value="1023" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdDesignMode type -->
+ <xsd:simpleType name="xdDesignMode">
+  <xsd:restriction base="xsd:NMTOKEN">
+   <xsd:enumeration value="normal" />
+   <xsd:enumeration value="protected" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdTrustLevel type -->
+ <xsd:simpleType name="xdTrustLevel">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="restricted" />
+   <xsd:enumeration value="domain" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdSignedDataBlockName type -->
+ <xsd:simpleType name="xdSignedDataBlockName">
+  <xsd:restriction base="xsd:ID">
+   <xsd:minLength value="1" />
+   <xsd:maxLength value="255" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdSignedDataBlockMessage type -->
+ <xsd:simpleType name="xdSignedDataBlockMessage">
+  <xsd:restriction base="xsd:string">
+   <xsd:maxLength value="255" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdSignatureRelationEnum type -->
+ <xsd:simpleType name="xdSignatureRelationEnum">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="countersign" />
+   <xsd:enumeration value="cosign" />
+   <xsd:enumeration value="single" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdHWSname type -->
+ <xsd:simpleType name="xdHWSname">
+  <xsd:restriction base="xsd:NCName">
+   <xsd:pattern value="[^-^\.^\\^\[^\]^\|^\+^?^\*^@^\{^\}^\(^\)^&gt;^&lt;^=^;^,]*" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xdHWSCaption type -->
+ <xsd:simpleType name="xdHWSCaption">
+  <xsd:restriction base="xsd:string">
+   <xsd:minLength value="1" />
+   <xsd:maxLength value="255" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <!-- xDocumentClass -->
+ <xsd:element name="xDocumentClass">
+  <xsd:complexType>
+   <xsd:all>
+    <xsd:element ref="xsf:package" minOccurs="1" />
+    <xsd:element ref="xsf:permissions" minOccurs="0" />
+    <xsd:element ref="xsf:views" minOccurs="1" />
+    <xsd:element ref="xsf:hwsWorkflow" minOccurs="0" />
+    <xsd:element ref="xsf:externalViews" minOccurs="0" />
+    <xsd:element ref="xsf:scripts" minOccurs="0" />
+    <xsd:element ref="xsf:schemaErrorMessages" minOccurs="0" />
+    <xsd:element ref="xsf:documentSchemas" minOccurs="0" />
+    <xsd:element ref="xsf:applicationParameters" minOccurs="0" />
+    <xsd:element ref="xsf:featureRestrictions" minOccurs="0" />
+    <xsd:element ref="xsf:fileNew" minOccurs="0" />
+    <xsd:element ref="xsf:customValidation" minOccurs="0" />
+    <xsd:element ref="xsf:domEventHandlers" minOccurs="0" />
+    <xsd:element ref="xsf:importParameters" minOccurs="0" />
+    <xsd:element ref="xsf:listProperties" minOccurs="0" />
+    <xsd:element ref="xsf:taskpane" minOccurs="0" />
+    <xsd:element ref="xsf:documentSignatures" minOccurs="0" />
+    <xsd:element ref="xsf:dataObjects" minOccurs="0" />
+    <xsd:element ref="xsf:dataAdapters" minOccurs="0" />
+    <xsd:element ref="xsf:query" minOccurs="0" />
+    <xsd:element ref="xsf:submit" minOccurs="0" />
+    <xsd:element ref="xsf:save" minOccurs="0" />
+    <xsd:element ref="xsf:roles" minOccurs="0" />
+    <xsd:element ref="xsf:onLoad" minOccurs="0" />
+    <xsd:element ref="xsf:documentVersionUpgrade" minOccurs="0" />
+    <xsd:element ref="xsf:extensions" minOccurs="0" />
+    <xsd:element ref="xsf:ruleSets" minOccurs="0" />
+    <xsd:element ref="xsf:calculations" minOccurs="0" />
+   </xsd:all>
+   <xsd:attribute name="name" type="xsd:string" use="optional" />
+   <xsd:attribute name="author" type="xsd:string" use="optional" />
+   <xsd:attribute name="description" use="optional">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="solutionVersion" type="xsf:xdSolutionVersion" use="optional" />
+   <xsd:attribute name="productVersion" type="xsd:string" use="optional" />
+   <xsd:attribute name="solutionFormatVersion" type="xsf:xdSolutionVersion" use="required" />
+   <xsd:attribute name="dataFormSolution" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="requireFullTrust" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="trustLevel" type="xsf:xdTrustLevel" use="optional" />
+   <xsd:attribute name="trustSetting" type="xsf:xdManualAuto" use="optional" />
+   <xsd:attribute name="publishUrl" type="xsd:string" use="optional" />
+  </xsd:complexType>
+  <xsd:key name="view_name_key">
+   <xsd:selector xpath="./xsf:views/xsf:view" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:key name="externalView_name_key">
+   <xsd:selector xpath="./xsf:externalViews/xsf:externalView" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:key name="view_or_externalView_name_key">
+   <xsd:selector xpath="./xsf:views/xsf:view | ./xsf:externalViews/xsf:externalView" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:key name="ruleset_name_key">
+   <xsd:selector xpath="./xsf:ruleSets/xsf:ruleSet" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:key name="dataObject_name_key">
+   <xsd:selector xpath="./xsf:dataObjects/xsf:dataObject" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:unique name="adapter_name_unique">
+   <xsd:selector xpath="./xsf:dataObjects/xsf:dataObject/xsf:query/* | ./xsf:query/* | ./xsf:dataAdapters/* | ./xsf:submit/xsf:webServiceAdapter | ./xsf:submit/xsf:davAdapter | ./xsf:submit/xsf:emailAdapter" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+  <xsd:key name="adapter_name_key">
+   <xsd:selector xpath="./xsf:dataAdapters/*" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:unique name="view_external_name_unique">
+   <xsd:selector xpath="./xsf:views/xsf:view | ./xsf:externalViews/xsf:externalView" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+ </xsd:element>
+ <!-- schemaErrorMessages -->
+ <xsd:element name="schemaErrorMessages">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:override" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- override -->
+ <xsd:element name="override">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:errorMessage" />
+   </xsd:sequence>
+   <xsd:attribute name="match" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- applicationParameters -->
+ <xsd:element name="applicationParameters">
+  <xsd:complexType>
+   <xsd:all>
+    <xsd:element ref="xsf:solutionProperties" minOccurs="0" />
+   </xsd:all>
+   <xsd:attribute name="application" use="required">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="InfoPath Design Mode" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- solutionProperties -->
+ <xsd:element name="solutionProperties">
+  <xsd:complexType>
+   <xsd:attribute name="allowCustomization" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="lastOpenView" use="optional" />
+   <xsd:attribute name="scriptLanguage" type="xsf:xdScriptLanguage" use="optional" />
+   <xsd:attribute name="automaticallyCreateNodes" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="lastVersionNeedingTransform" type="xsf:xdSolutionVersion" use="optional" />
+   <xsd:attribute name="fullyEditableNamespace" type="xsd:anyURI" use="optional" />
+   <xsd:attribute name="publishSaveUrl" type="xsd:string" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- featureRestrictions -->
+ <xsd:element name="featureRestrictions">
+  <xsd:complexType>
+   <xsd:all>
+    <xsd:element name="save" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="ui" type="xsf:xdEnabledDisabled" use="required" />
+     </xsd:complexType>
+    </xsd:element>
+    <xsd:element ref="xsf:exportToWeb" minOccurs="0" />
+    <xsd:element ref="xsf:exportToExcel" minOccurs="0" />
+    <xsd:element ref="xsf:print" minOccurs="0" />
+    <xsd:element ref="xsf:sendMail" minOccurs="0" />
+    <xsd:element ref="xsf:autoRecovery" minOccurs="0" />
+   </xsd:all>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- exportToWeb -->
+ <xsd:element name="exportToWeb">
+  <xsd:complexType>
+   <xsd:attribute name="ui" type="xsf:xdEnabledDisabled" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- exportToExcel -->
+ <xsd:element name="exportToExcel">
+  <xsd:complexType>
+   <xsd:attribute name="ui" type="xsf:xdEnabledDisabled" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- print -->
+ <xsd:element name="print">
+  <xsd:complexType>
+   <xsd:attribute name="ui" type="xsf:xdEnabledDisabled" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- sendMail -->
+ <xsd:element name="sendMail">
+  <xsd:complexType>
+   <xsd:attribute name="ui" type="xsf:xdEnabledDisabled" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- autoRecovery -->
+ <xsd:element name="autoRecovery">
+  <xsd:complexType>
+   <xsd:attribute name="feature" type="xsf:xdEnabledDisabled" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- query -->
+ <xsd:element name="query">
+  <xsd:complexType>
+   <xsd:choice>
+    <xsd:element ref="xsf:queryAction" />
+    <xsd:element ref="xsf:adoAdapter" />
+    <xsd:element ref="xsf:webServiceAdapter" />
+    <xsd:element ref="xsf:xmlFileAdapter" />
+    <xsd:element ref="xsf:sharepointListAdapter" />
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- scripts -->
+ <xsd:element name="scripts">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:script" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="language" type="xsf:xdScriptLanguage" use="required" />
+   <xsd:attribute name="enforceScriptTimeout" type="xsf:xdYesNo" use="optional" default="yes" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="script">
+  <xsd:complexType>
+   <xsd:attribute name="src" type="xsf:xdFileName" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- dataObjects -->
+ <xsd:element name="dataObjects">
+  <xsd:complexType>
+   <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:element ref="xsf:dataObject" />
+   </xsd:choice>
+  </xsd:complexType>
+  <xsd:unique name="dataObjects_name_unique">
+   <xsd:selector xpath="./xsf:dataObject" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+ </xsd:element>
+ <xsd:element name="dataObject">
+  <xsd:complexType>
+   <xsd:choice>
+    <xsd:element name="query">
+     <xsd:complexType>
+      <xsd:choice>
+       <xsd:element ref="xsf:adoAdapter" />
+       <xsd:element ref="xsf:webServiceAdapter" />
+       <xsd:element ref="xsf:xmlFileAdapter" />
+       <xsd:element ref="xsf:sharepointListAdapter" />
+      </xsd:choice>
+     </xsd:complexType>
+    </xsd:element>
+   </xsd:choice>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="schema" type="xsd:string" use="optional" />
+   <xsd:attribute name="initOnLoad" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- dataAdapters -->
+ <xsd:element name="adoAdapter">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="optional" />
+   <xsd:attribute name="connectionString" type="xsd:string" use="required" />
+   <xsd:attribute name="commandText" type="xsd:string" use="required" />
+   <xsd:attribute name="queryAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="submitAllowed" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="webServiceAdapter">
+  <xsd:complexType>
+   <xsd:choice>
+    <xsd:element ref="xsf:operation" />
+   </xsd:choice>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="optional" />
+   <xsd:attribute name="wsdlUrl" type="xsd:string" use="required" />
+   <xsd:attribute name="queryAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="submitAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="useDataSet" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="hwsAdapter">
+  <xsd:complexType>
+   <xsd:choice>
+    <xsd:element ref="xsf:hwsOperation" />
+   </xsd:choice>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="wsdlUrl" type="xsd:string" use="required" />
+   <xsd:attribute name="queryAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="submitAllowed" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="operation">
+  <xsd:complexType>
+   <xsd:choice>
+    <xsd:element ref="xsf:input" minOccurs="0" />
+   </xsd:choice>
+   <xsd:attribute name="name" type="xsd:string" use="required" />
+   <xsd:attribute name="soapAction" type="xsd:string" use="required" />
+   <xsd:attribute name="serviceUrl" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="hwsOperation">
+  <xsd:complexType>
+   <xsd:choice>
+    <xsd:element ref="xsf:input" />
+   </xsd:choice>
+   <xsd:attribute name="type" type="xsd:string" use="required" />
+   <xsd:attribute name="typeID" type="xsd:string" use="required" />
+   <xsd:attribute name="serviceUrl" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="input">
+  <xsd:complexType>
+   <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:element ref="xsf:partFragment" />
+   </xsd:choice>
+   <xsd:attribute name="source" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="partFragment">
+  <xsd:complexType>
+   <xsd:attribute name="match" type="xsd:string" use="required" />
+   <xsd:attribute name="replaceWith" type="xsd:string" use="required" />
+   <xsd:attribute name="sendAsString" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="dataObject" type="xsd:string" use="optional" />
+   <xsd:attribute name="filter" type="xsd:string" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="xmlFileAdapter">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="optional" />
+   <xsd:attribute name="fileUrl" type="xsd:anyURI" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="sharepointListAdapter">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element name="field" minOccurs="0" maxOccurs="unbounded">
+     <xsd:complexType>
+      <xsd:attribute name="sharepointName" type="xsd:string" use="required" />
+      <xsd:attribute name="infopathName" type="xsd:string" use="required" />
+      <xsd:attribute name="isLookup" type="xsf:xdYesNo" use="optional" />
+     </xsd:complexType>
+    </xsd:element>
+   </xsd:sequence>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="siteUrl" type="xsd:string" use="required" />
+   <xsd:attribute name="sharepointGuid" type="xsd:string" use="required" />
+   <xsd:attribute name="infopathGroup" type="xsd:string" use="required" />
+   <xsd:attribute name="queryAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="submitAllowed" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="davAdapter">
+  <xsd:complexType>
+   <xsd:all>
+    <xsd:element name="folderURL">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+     </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="fileName">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+      <xsd:attribute name="valueType" type="xsf:xdExpressionLiteral" use="optional" />
+     </xsd:complexType>
+    </xsd:element>
+   </xsd:all>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="overwriteAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="queryAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="submitAllowed" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="emailAdapter">
+  <xsd:complexType>
+   <xsd:all>
+    <xsd:element name="to" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+      <xsd:attribute name="valueType" type="xsf:xdExpressionLiteral" use="optional" />
+     </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cc" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+      <xsd:attribute name="valueType" type="xsf:xdExpressionLiteral" use="optional" />
+     </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="bcc" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+      <xsd:attribute name="valueType" type="xsf:xdExpressionLiteral" use="optional" />
+     </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="subject" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+      <xsd:attribute name="valueType" type="xsf:xdExpressionLiteral" use="optional" />
+     </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="intro" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+     </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="attachmentFileName" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="value" type="xsd:string" use="required" />
+      <xsd:attribute name="valueType" type="xsf:xdExpressionLiteral" use="optional" />
+     </xsd:complexType>
+    </xsd:element>
+   </xsd:all>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="queryAllowed" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="submitAllowed" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="dataAdapters">
+  <xsd:complexType>
+   <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:element ref="xsf:adoAdapter" />
+    <xsd:element ref="xsf:webServiceAdapter" />
+    <xsd:element ref="xsf:xmlFileAdapter" />
+    <xsd:element ref="xsf:sharepointListAdapter" />
+    <xsd:element ref="xsf:davAdapter" />
+    <xsd:element ref="xsf:emailAdapter" />
+    <xsd:element ref="xsf:hwsAdapter" />
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- documentSchemas -->
+ <xsd:element name="documentSchemas">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:documentSchema" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="documentSchema">
+  <xsd:complexType>
+   <xsd:attribute name="location" type="xsd:string" use="required" />
+   <xsd:attribute name="rootSchema" type="xsf:xdYesNo" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- customValidation -->
+ <xsd:element name="customValidation">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:errorCondition" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="errorCondition">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:errorMessage" />
+   </xsd:sequence>
+   <xsd:attribute name="match" type="xsd:string" use="required" />
+   <xsd:attribute name="expression" type="xsd:string" use="required" />
+   <xsd:attribute name="expressionContext" type="xsd:string" use="optional" />
+   <xsd:attribute name="showErrorOn" type="xsd:string" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="errorMessage">
+  <xsd:complexType>
+   <xsd:simpleContent>
+    <xsd:extension base="xsf:xdErrorMessage">
+     <xsd:attribute name="type" use="optional">
+      <xsd:simpleType>
+       <xsd:restriction base="xsd:NMTOKEN">
+        <xsd:enumeration value="modal" />
+        <xsd:enumeration value="modeless" />
+       </xsd:restriction>
+      </xsd:simpleType>
+     </xsd:attribute>
+     <xsd:attribute name="shortMessage" use="required">
+      <xsd:simpleType>
+       <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="127" />
+       </xsd:restriction>
+      </xsd:simpleType>
+     </xsd:attribute>
+    </xsd:extension>
+   </xsd:simpleContent>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- domEventHandlers -->
+ <xsd:element name="domEventHandlers">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:domEventHandler" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+  <xsd:unique name="domEventHandler_handlerObject_unique">
+   <xsd:selector xpath="." />
+   <xsd:field xpath="@handlerObject" />
+  </xsd:unique>
+ </xsd:element>
+ <xsd:element name="domEventHandler">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:ruleSetAction" minOccurs="0" maxOccurs="1" />
+   </xsd:sequence>
+   <xsd:attribute name="dataObject" type="xsd:string" use="optional" />
+   <xsd:attribute name="match" type="xsd:string" use="required" />
+   <xsd:attribute name="handlerObject" type="xsd:string" use="optional" />
+  </xsd:complexType>
+  <xsd:keyref name="domEventHandler_ruleSetAction" refer="xsf:ruleset_name_key">
+   <xsd:selector xpath="./xsf:ruleSetAction" />
+   <xsd:field xpath="@ruleSet" />
+  </xsd:keyref>
+ </xsd:element>
+ <!-- importParameters -->
+ <xsd:element name="importParameters">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:importSource" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="enabled" type="xsf:xdYesNo" use="required" />
+   <xsd:attribute name="useScriptHandler" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="importSource">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsd:string" use="required" />
+   <xsd:attribute name="schema" type="xsf:xdFileName" use="required" />
+   <xsd:attribute name="transform" type="xsf:xdFileName" use="required" />
+   <xsd:attribute name="authoringOfTransform" type="xsf:xdManualAuto" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- listProperties -->
+ <xsd:element name="listProperties">
+  <xsd:complexType>
+   <xsd:all>
+    <xsd:element ref="xsf:fields" />
+   </xsd:all>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="fields">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:field" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="field">
+  <xsd:complexType>
+   <xsd:attribute name="type" type="xsd:NMTOKEN" use="required" />
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="columnName" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="required" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="viewable" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="node" type="xsd:string" use="required" />
+   <xsd:attribute name="maxLength" type="xsd:byte" />
+   <xsd:attribute name="aggregation" use="optional">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="sum" />
+      <xsd:enumeration value="count" />
+      <xsd:enumeration value="average" />
+      <xsd:enumeration value="min" />
+      <xsd:enumeration value="max" />
+      <xsd:enumeration value="first" />
+      <xsd:enumeration value="last" />
+      <xsd:enumeration value="merge" />
+      <xsd:enumeration value="plaintext" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- submit -->
+ <xsd:element name="submit">
+  <xsd:complexType>
+   <xsd:all>
+    <xsd:element name="submitAction" minOccurs="0">
+     <xsd:complexType>
+      <xsd:attribute name="adapter" type="xsf:xdTitle" use="required" />
+     </xsd:complexType>
+     <xsd:keyref name="submitAdapter_name_keyref" refer="xsf:adapter_name_key">
+      <xsd:selector xpath="." />
+      <xsd:field xpath="@adapter" />
+     </xsd:keyref>
+    </xsd:element>
+    <xsd:element ref="xsf:useHttpHandler" minOccurs="0" />
+    <xsd:element ref="xsf:useScriptHandler" minOccurs="0" />
+    <xsd:element ref="xsf:ruleSetAction" minOccurs="0" />
+    <xsd:element ref="xsf:useQueryAdapter" minOccurs="0" />
+    <xsd:element ref="xsf:webServiceAdapter" minOccurs="0" />
+    <xsd:element ref="xsf:davAdapter" minOccurs="0" />
+    <xsd:element ref="xsf:emailAdapter" minOccurs="0" />
+    <xsd:element name="successMessage" type="xsd:string" minOccurs="0" />
+    <xsd:element name="errorMessage" type="xsd:string" minOccurs="0" />
+   </xsd:all>
+   <xsd:attribute name="caption" type="xsd:string" use="optional" />
+   <xsd:attribute name="onAfterSubmit" use="optional">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="close" />
+      <xsd:enumeration value="keepOpen" />
+      <xsd:enumeration value="openNew" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="showStatusDialog" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="showSignatureReminder" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="disableMenuItem" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+  <xsd:keyref name="submit_ruleSetAction" refer="xsf:ruleset_name_key">
+   <xsd:selector xpath="./xsf:ruleSetAction" />
+   <xsd:field xpath="@ruleSet" />
+  </xsd:keyref>
+ </xsd:element>
+ <xsd:element name="useHttpHandler">
+  <xsd:complexType>
+   <xsd:attribute name="method" use="required">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="POST" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="href" type="xsd:anyURI" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="useScriptHandler" />
+ <xsd:element name="useQueryAdapter" />
+ <!-- onLoad -->
+ <xsd:element name="onLoad">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:ruleSetAction" minOccurs="1" maxOccurs="1" />
+   </xsd:sequence>
+  </xsd:complexType>
+  <xsd:keyref name="load_ruleSetAction" refer="xsf:ruleset_name_key">
+   <xsd:selector xpath="./xsf:ruleSetAction" />
+   <xsd:field xpath="@ruleSet" />
+  </xsd:keyref>
+ </xsd:element>
+ <!-- save -->
+ <xsd:element name="save">
+  <xsd:complexType>
+   <xsd:choice minOccurs="0" maxOccurs="1">
+    <xsd:element ref="xsf:useScriptHandler" />
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- roles -->
+ <xsd:element name="roles">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:role" minOccurs="1" maxOccurs="unbounded" />
+    <xsd:element ref="xsf:membership" minOccurs="0" maxOccurs="1" />
+   </xsd:sequence>
+   <xsd:attribute name="default" type="xsd:string" use="required" />
+   <xsd:attribute name="initiator" type="xsd:string" use="optional" />
+   <xsd:attribute name="hideStatusBarDisplay" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+  <!-- role names must be unique -->
+  <xsd:unique name="roles_name_unique">
+   <xsd:selector xpath="./xsf:role" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+  <!-- fields must reference existing role -->
+  <xsd:key name="role_name_key">
+   <xsd:selector xpath="./xsf:role" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:keyref name="role_default" refer="xsf:role_name_key">
+   <xsd:selector xpath="." />
+   <xsd:field xpath="@default" />
+  </xsd:keyref>
+  <xsd:keyref name="role_initiator" refer="xsf:role_name_key">
+   <xsd:selector xpath="." />
+   <xsd:field xpath="@initiator" />
+  </xsd:keyref>
+  <xsd:keyref name="role_membership" refer="xsf:role_name_key">
+   <xsd:selector xpath="./xsf:membership/*" />
+   <xsd:field xpath="@memberOf" />
+  </xsd:keyref>
+ </xsd:element>
+ <xsd:element name="role">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsf:xdRoleName" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="membership">
+  <xsd:complexType>
+   <xsd:choice minOccurs="1" maxOccurs="unbounded">
+    <xsd:element ref="xsf:getUserNameFromData" />
+    <xsd:element ref="xsf:userName" />
+    <xsd:element ref="xsf:group" />
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="getUserNameFromData">
+  <xsd:complexType>
+   <xsd:attribute name="dataObject" type="xsd:string" use="optional" />
+   <xsd:attribute name="select" type="xsd:string" use="required" />
+   <xsd:attribute name="memberOf" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="userName">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsd:string" use="required" />
+   <xsd:attribute name="memberOf" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="group">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsd:string" use="required" />
+   <xsd:attribute name="memberOf" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- hwsWorkflow -->
+ <xsd:element name="hwsWorkflow">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:location" minOccurs="1" maxOccurs="1" />
+    <xsd:element ref="xsf:allowedActions" minOccurs="1" maxOccurs="1" />
+    <xsd:element ref="xsf:allowedTasks" minOccurs="0" maxOccurs="1" />
+   </xsd:sequence>
+   <xsd:attribute name="taskpaneVisible" type="xsf:xdYesNo" />
+  </xsd:complexType>
+  <xsd:unique name="hws_actiontask_name">
+   <xsd:selector xpath="./xsf:allowedActions/xsf:action|./xsf:allowedTasks/xsf:task" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+ </xsd:element>
+ <!-- location -->
+ <xsd:element name="location">
+  <xsd:complexType>
+   <xsd:attribute name="url" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- allowedActions -->
+ <xsd:element name="allowedActions">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:action" minOccurs="1" maxOccurs="20" />
+   </xsd:sequence>
+  </xsd:complexType>
+  <xsd:unique name="hws_actionTypeID_unique">
+   <xsd:selector xpath="./xsf:action" />
+   <xsd:field xpath="@actionTypeID" />
+  </xsd:unique>
+ </xsd:element>
+ <!-- action -->
+ <xsd:element name="action">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsf:xdHWSname" use="required" />
+   <xsd:attribute name="actionTypeID" type="xsd:string" use="required" />
+   <xsd:attribute name="canInitiateWorkflow" type="xsf:xdYesNo" use="required" />
+   <xsd:attribute name="caption" type="xsf:xdHWSCaption" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- allowedTasks -->
+ <xsd:element name="allowedTasks">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:task" minOccurs="1" maxOccurs="20" />
+   </xsd:sequence>
+  </xsd:complexType>
+  <xsd:unique name="hws_taskID_unique">
+   <xsd:selector xpath="./xsf:task" />
+   <xsd:field xpath="@taskTypeID" />
+  </xsd:unique>
+ </xsd:element>
+ <!-- task -->
+ <xsd:element name="task">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsf:xdHWSname" use="required" />
+   <xsd:attribute name="taskTypeID" type="xsd:string" use="required" />
+   <xsd:attribute name="caption" type="xsf:xdHWSCaption" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- fileNew -->
+ <xsd:element name="fileNew">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:initialXmlDocument" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="initialXmlDocument">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:customCategory" minOccurs="0" />
+   </xsd:sequence>
+   <xsd:attribute name="caption" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="href" type="xsf:xdFileName" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- customCategory -->
+ <xsd:element name="customCategory">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- package -->
+ <xsd:element name="package">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:files" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="files">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:file" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="file">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:fileProperties" minOccurs="0" maxOccurs="1" />
+   </xsd:sequence>
+   <xsd:attribute name="name" type="xsf:xdFileName" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="fileProperties">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:property" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="property">
+  <xsd:complexType>
+   <xsd:attribute name="name" type="xsd:string" use="required" />
+   <xsd:attribute name="value" type="xsd:string" use="required" />
+   <xsd:attribute name="type" type="xsd:QName" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- permissions -->
+ <xsd:element name="permissions">
+  <xsd:complexType>
+   <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    <xsd:element ref="xsf:allowedControl" />
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="allowedControl">
+  <xsd:complexType>
+   <xsd:attribute name="cabFile" type="xsd:string" use="optional" />
+   <xsd:attribute name="clsid" type="xsd:string" use="required" />
+   <xsd:attribute name="version" type="xsd:string" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- View and Context-Driven Editing definitions -->
+ <!-- External Views -->
+ <xsd:element name="externalViews">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:externalView" minOccurs="1" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="default" type="xsd:string" />
+  </xsd:complexType>
+  <xsd:unique name="externalViews_name_unique">
+   <xsd:selector xpath="./xsf:externalView" />
+   <xsd:field xpath="@default" />
+  </xsd:unique>
+  <xsd:keyref name="external_views_printView" refer="xsf:externalView_name_key">
+   <xsd:selector xpath="." />
+   <xsd:field xpath="@default" />
+  </xsd:keyref>
+ </xsd:element>
+ <xsd:element name="externalView">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:mainpane" />
+   </xsd:sequence>
+   <xsd:attribute name="target" type="xsd:string" />
+   <xsd:attribute name="name" type="xsf:xdViewName" use="required" />
+   <xsd:attribute name="designMode" type="xsf:xdDesignMode" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- attributeData -->
+ <xsd:element name="attributeData">
+  <xsd:complexType>
+   <xsd:attribute name="attribute" type="xsd:string" use="required" />
+   <xsd:attribute name="value" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- button -->
+ <xsd:element name="button">
+  <xsd:complexType>
+   <xsd:attribute name="caption" type="xsf:xdTitle" />
+   <xsd:attribute name="icon" type="xsd:string" />
+   <xsd:attribute name="tooltip" type="xsf:xdTitle" />
+   <xsd:attribute name="name" type="xsd:NMTOKEN" />
+   <xsd:attribute name="xmlToEdit" type="xsd:NMTOKEN" />
+   <xsd:attribute name="action">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="xCollection::insert" />
+      <xsd:enumeration value="xCollection::insertBefore" />
+      <xsd:enumeration value="xCollection::insertAfter" />
+      <xsd:enumeration value="xCollection::remove" />
+      <xsd:enumeration value="xCollection::refreshFilter" />
+      <xsd:enumeration value="xCollection::removeAll" />
+      <xsd:enumeration value="xOptional::insert" />
+      <xsd:enumeration value="xOptional::remove" />
+      <xsd:enumeration value="xReplace::replace" />
+      <xsd:enumeration value="xFileAttachment::attach" />
+      <xsd:enumeration value="xFileAttachment::open" />
+      <xsd:enumeration value="xFileAttachment::saveAs" />
+      <xsd:enumeration value="xFileAttachment::remove" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="showIf">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="always" />
+      <xsd:enumeration value="enabled" />
+      <xsd:enumeration value="immediate" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- chooseFragment -->
+ <xsd:element name="chooseFragment">
+  <xsd:complexType mixed="true">
+   <xsd:sequence>
+    <xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip" />
+   </xsd:sequence>
+   <xsd:attribute name="parent" type="xsd:string" />
+   <xsd:attribute name="followingSiblings" type="xsd:string" use="optional" />
+   <xsd:attribute name="innerFragment" type="xsd:string" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- editWith -->
+ <xsd:element name="editWith">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:masterDetail" minOccurs="0" maxOccurs="1" />
+    <xsd:element ref="xsf:fragmentToInsert" minOccurs="0" maxOccurs="1" />
+   </xsd:sequence>
+   <xsd:attribute name="component" use="required">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="xCollection" />
+      <xsd:enumeration value="xOptional" />
+      <xsd:enumeration value="xReplace" />
+      <xsd:enumeration value="xTextList" />
+      <xsd:enumeration value="xField" />
+      <xsd:enumeration value="xImage" />
+      <xsd:enumeration value="xFileAttachment" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="caption" type="xsf:xdTitle" use="optional" />
+   <xsd:attribute name="autoComplete" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="proofing" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="type" use="optional">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="plain" />
+      <xsd:enumeration value="formatted" />
+      <xsd:enumeration value="plainMultiline" />
+      <xsd:enumeration value="formattedMultiline" />
+      <xsd:enumeration value="rich" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="useFilter" use="optional">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="yes" />
+      <xsd:enumeration value="no" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="widgetIcon" use="optional">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="standard" />
+      <xsd:enumeration value="filter" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="filterDependency" type="xsd:string" use="optional" />
+   <xsd:attribute name="field" type="xsd:string" use="optional" />
+   <xsd:attribute name="removeAncestors" type="xsd:nonNegativeInteger" use="optional" />
+   <xsd:attribute name="maxLength" use="optional">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="-1" />
+      <xsd:maxInclusive value="9999" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="allowedFileTypes" type="xsd:string" use="optional" />
+   <xsd:anyAttribute namespace="http://schemas.microsoft.com/office/infopath/2003" processContents="skip" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- unboundControls -->
+ <xsd:element name="unboundControls">
+  <xsd:complexType>
+   <xsd:sequence>
+    <!-- button -->
+    <xsd:element name="button" minOccurs="0" maxOccurs="unbounded">
+     <xsd:complexType>
+      <xsd:sequence>
+       <xsd:element ref="xsf:ruleSetAction" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+      <xsd:attribute name="name" use="required">
+       <xsd:simpleType>
+        <!-- type of name is non qualified name, but NCName also accepts '.' and '-', 
+        so these characters are disabled by pattern restriction -->
+        <xsd:restriction base="xsd:NCName">
+         <xsd:pattern value="[^\.\^-]*" />
+        </xsd:restriction>
+       </xsd:simpleType>
+      </xsd:attribute>
+     </xsd:complexType>
+     <xsd:keyref name="button_ruleSetAction" refer="xsf:ruleset_name_key">
+      <xsd:selector xpath="./xsf:ruleSetAction" />
+      <xsd:field xpath="@ruleSet" />
+     </xsd:keyref>
+    </xsd:element>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- editing -->
+ <xsd:element name="editing">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:xmlToEdit" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- Master Detail -->
+ <xsd:element name="masterDetail">
+  <xsd:complexType>
+   <xsd:attribute name="master" type="xsd:string" />
+   <xsd:attribute name="masterViewContext" type="xsd:string" />
+   <xsd:attribute name="masterKey" type="xsd:string" />
+   <xsd:attribute name="detailKey" type="xsd:string" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- fragmentToInsert -->
+ <xsd:element name="fragmentToInsert">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:chooseFragment" minOccurs="1" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- mainpane -->
+ <xsd:element name="mainpane">
+  <xsd:complexType>
+   <xsd:attribute name="transform" type="xsf:xdFileName" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- printSettings -->
+ <xsd:element name="printSettings">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:header" minOccurs="0" maxOccurs="1" />
+    <xsd:element ref="xsf:footer" minOccurs="0" maxOccurs="1" />
+   </xsd:sequence>
+   <xsd:attribute name="orientation">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="portrait" />
+      <xsd:enumeration value="landscape" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="header">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="footer">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="marginUnitsType">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="in" />
+      <xsd:enumeration value="cm" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="rightMargin">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:float">
+      <xsd:minInclusive value="0" />
+      <xsd:maxInclusive value="100" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="leftMargin">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:float">
+      <xsd:minInclusive value="0" />
+      <xsd:maxInclusive value="100" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="topMargin">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:float">
+      <xsd:minInclusive value="0" />
+      <xsd:maxInclusive value="100" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="bottomMargin">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:float">
+      <xsd:minInclusive value="0" />
+      <xsd:maxInclusive value="100" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="printerName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="paperSize">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="paperSource">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="copies">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1" />
+      <xsd:maxInclusive value="9999" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="collate" type="xsf:xdYesNo" />
+   <xsd:attribute name="pageRangeStart">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1" />
+      <xsd:maxInclusive value="32000" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="pageRangeEnd">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1" />
+      <xsd:maxInclusive value="32000" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="printerSpecificSettings">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="header">
+  <xsd:complexType mixed="true">
+   <xsd:sequence>
+    <xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="footer">
+  <xsd:complexType mixed="true">
+   <xsd:sequence>
+    <xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- toolbar -->
+ <xsd:element name="toolbar">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:group ref="xsf:UIItem" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="name" type="xsf:xdTitle" use="required" />
+   <xsd:attribute name="caption" type="xsf:xdTitle" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- menu -->
+ <xsd:element name="menu">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:group ref="xsf:UIItem" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="caption" type="xsf:xdTitle" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- menuArea -->
+ <xsd:element name="menuArea">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:group ref="xsf:UIItem" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="name" use="required">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="msoFileMenu" />
+      <xsd:enumeration value="msoEditMenu" />
+      <xsd:enumeration value="msoInsertMenu" />
+      <xsd:enumeration value="msoViewMenu" />
+      <xsd:enumeration value="msoFormatMenu" />
+      <xsd:enumeration value="msoToolsMenu" />
+      <xsd:enumeration value="msoTableMenu" />
+      <xsd:enumeration value="msoHelpMenu" />
+      <xsd:enumeration value="msoStructuralEditingContextMenu" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- UIContainer -->
+ <xsd:group name="UIContainer">
+  <xsd:choice>
+   <xsd:element ref="xsf:toolbar" />
+   <xsd:element ref="xsf:menu" />
+   <xsd:element ref="xsf:menuArea" />
+  </xsd:choice>
+ </xsd:group>
+ <!-- UIItem -->
+ <xsd:group name="UIItem">
+  <xsd:choice>
+   <xsd:element ref="xsf:button" />
+   <xsd:element ref="xsf:menu" />
+  </xsd:choice>
+ </xsd:group>
+ <!-- taskpane -->
+ <xsd:element name="taskpane">
+  <xsd:complexType>
+   <xsd:attribute name="caption" type="xsd:string" use="required" />
+   <xsd:attribute name="href" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- views -->
+ <xsd:element name="views">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:view" minOccurs="1" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="default" type="xsd:string" />
+  </xsd:complexType>
+  <xsd:unique name="views_name_unique">
+   <xsd:selector xpath="./xsf:view" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+  <xsd:keyref name="view_printView" refer="xsf:view_or_externalView_name_key">
+   <xsd:selector xpath="./xsf:view" />
+   <xsd:field xpath="@printView" />
+  </xsd:keyref>
+  <xsd:keyref name="views_default" refer="xsf:view_name_key">
+   <xsd:selector xpath="." />
+   <xsd:field xpath="@default" />
+  </xsd:keyref>
+ </xsd:element>
+ <!-- ViewContent -->
+ <xsd:group name="ViewContent">
+  <xsd:choice>
+   <xsd:element ref="xsf:editing" minOccurs="0" />
+   <xsd:element ref="xsf:mainpane" minOccurs="0" />
+   <xsd:element ref="xsf:printSettings" minOccurs="0" />
+   <xsd:group ref="xsf:UIContainer" minOccurs="0" maxOccurs="unbounded" />
+   <xsd:element ref="xsf:unboundControls" minOccurs="0" />
+  </xsd:choice>
+ </xsd:group>
+ <!-- view -->
+ <xsd:element name="view">
+  <xsd:complexType>
+   <xsd:group ref="xsf:ViewContent" minOccurs="0" maxOccurs="unbounded" />
+   <xsd:attribute name="caption" type="xsf:xdViewName" />
+   <xsd:attribute name="name" type="xsf:xdViewName" use="required" />
+   <xsd:attribute name="showMenuItem" type="xsf:xdYesNo" use="optional" />
+   <xsd:attribute name="printView" type="xsd:string" />
+   <xsd:attribute name="designMode" type="xsf:xdDesignMode" />
+  </xsd:complexType>
+  <xsd:unique name="toolbar_name_unique">
+   <xsd:selector xpath="./xsf:toolbar" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+  <xsd:unique name="menuArea_name_unique">
+   <xsd:selector xpath="./xsf:menuArea" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+  <xsd:unique name="xmlToEdit_name_unique">
+   <xsd:selector xpath="./xsf:editing/xsf:xmlToEdit" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+  <xsd:key name="xmlToEdit_name_key">
+   <xsd:selector xpath="./xsf:editing/xsf:xmlToEdit" />
+   <xsd:field xpath="@name" />
+  </xsd:key>
+  <xsd:keyref name="button_xmlToEdit_reference" refer="xsf:xmlToEdit_name_key">
+   <xsd:selector xpath="./xsf:menuArea/xsf:button | ./xsf:menu/xsf:button | ./xsf:toolbar/xsf:button" />
+   <xsd:field xpath="@xmlToEdit" />
+  </xsd:keyref>
+ </xsd:element>
+ <!-- xmlToEdit -->
+ <xsd:element name="xmlToEdit">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:editWith" minOccurs="0" maxOccurs="1" />
+   </xsd:sequence>
+   <xsd:attribute name="name" type="xsd:NMTOKEN" use="required" />
+   <xsd:attribute name="item" type="xsd:string" use="required" />
+   <xsd:attribute name="container" type="xsd:string" />
+   <xsd:attribute name="viewContext">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="((\.|\#|[a-zA-Z0-9_])[a-zA-Z0-9_]*)(\s((\.|\#|[a-zA-Z0-9_])[a-zA-Z0-9_]*))*" />
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:attribute>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- Digital Signatures -->
+ <xsd:element name="documentSignatures">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:signedDataBlock" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="signatureLocation" type="xsd:string" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="signedDataBlock">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element name="message" type="xsf:xdSignedDataBlockMessage" minOccurs="0" />
+   </xsd:sequence>
+   <xsd:attribute name="name" type="xsf:xdSignedDataBlockName" use="required" />
+   <xsd:attribute name="data" type="xsd:string" use="required" />
+   <xsd:attribute name="signatureLocation" type="xsd:string" use="required" />
+   <xsd:attribute name="mode" type="xsf:xdSignatureRelationEnum" use="required" />
+  </xsd:complexType>
+  <xsd:unique name="signedDataBlock_name_unique">
+   <xsd:selector xpath="." />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+ </xsd:element>
+ <!-- Version Upgrade -->
+ <xsd:element name="documentVersionUpgrade">
+  <xsd:complexType>
+   <xsd:choice>
+    <xsd:element ref="xsf:useScriptHandler" />
+    <xsd:element ref="xsf:useTransform" />
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="useTransform">
+  <xsd:complexType>
+   <xsd:attribute name="transform" use="required">
+    <xsd:simpleType>
+     <xsd:union memberTypes="xsf:xdFileName xsf:xdEmptyString" />
+    </xsd:simpleType>
+   </xsd:attribute>
+   <xsd:attribute name="minVersionToUpgrade" type="xsf:xdSolutionVersion" use="required" />
+   <xsd:attribute name="maxVersionToUpgrade" type="xsf:xdSolutionVersion" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- XSF Extensions -->
+ <xsd:element name="extensions">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:extension" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="extension">
+  <xsd:complexType mixed="true">
+   <xsd:sequence>
+    <xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip" />
+   </xsd:sequence>
+   <xsd:attribute name="name" type="xsd:NMTOKEN" use="required" />
+   <xsd:anyAttribute processContents="skip" />
+  </xsd:complexType>
+ </xsd:element>
+ <!-- Rules -->
+ <xsd:element name="ruleSetAction">
+  <xsd:complexType>
+   <xsd:attribute name="ruleSet" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="rule">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+     <xsd:element ref="xsf:dialogBoxMessageAction" />
+     <xsd:element ref="xsf:dialogBoxExpressionAction" />
+     <xsd:element ref="xsf:switchViewAction" />
+     <xsd:element ref="xsf:assignmentAction" />
+     <xsd:element ref="xsf:queryAction" />
+     <xsd:element name="submitAction">
+      <xsd:complexType>
+       <xsd:attribute name="adapter" type="xsf:xdTitle" use="required" />
+      </xsd:complexType>
+     </xsd:element>
+     <xsd:element ref="xsf:openNewDocumentAction" />
+     <xsd:element ref="xsf:closeDocumentAction" />
+    </xsd:choice>
+    <xsd:element name="exitRuleSet" minOccurs="0">
+     <xsd:complexType />
+    </xsd:element>
+   </xsd:sequence>
+   <xsd:attribute name="caption" type="xsd:string" use="required" />
+   <xsd:attribute name="condition" type="xsd:string" use="optional" />
+   <xsd:attribute name="isEnabled" type="xsf:xdYesNo" use="optional" default="yes" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="dialogBoxMessageAction">
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="1024" />
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:element>
+ <xsd:element name="dialogBoxExpressionAction" type="xsd:string" />
+ <xsd:element name="switchViewAction">
+  <xsd:complexType>
+   <xsd:attribute name="view" type="xsf:xdViewName" use="required" />
+  </xsd:complexType>
+  <xsd:keyref name="switchViewAction_view_keyref" refer="xsf:view_name_key">
+   <xsd:selector xpath="." />
+   <xsd:field xpath="@view" />
+  </xsd:keyref>
+ </xsd:element>
+ <xsd:element name="assignmentAction">
+  <xsd:complexType>
+   <xsd:attribute name="targetField" type="xsd:string" use="required" />
+   <xsd:attribute name="expression" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="queryAction">
+  <xsd:complexType>
+   <xsd:attribute name="adapter" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="openNewDocumentAction">
+  <xsd:complexType>
+   <xsd:attribute name="solutionURI" type="xsd:anyURI" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="closeDocumentAction">
+  <xsd:complexType>
+   <xsd:attribute name="promptToSaveChanges" type="xsf:xdYesNo" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="ruleSet">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:rule" minOccurs="1" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="name" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="ruleSets">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:ruleSet" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+  </xsd:complexType>
+  <xsd:unique name="ruleSets_name_unique">
+   <xsd:selector xpath="./xsf:ruleSet" />
+   <xsd:field xpath="@name" />
+  </xsd:unique>
+ </xsd:element>
+ <!-- Declarative Calculations -->
+ <xsd:element name="calculations">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref="xsf:calculatedField" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+   <xsd:attribute name="treatBlankValueAsZero" type="xsf:xdYesNo" use="optional" />
+  </xsd:complexType>
+ </xsd:element>
+ <xsd:element name="calculatedField">
+  <xsd:complexType>
+   <xsd:attribute name="target" type="xsd:string" use="required" />
+   <xsd:attribute name="expression" type="xsd:string" use="required" />
+   <xsd:attribute name="refresh" type="xsd:string" use="required" />
+  </xsd:complexType>
+ </xsd:element>
+</xsd:schema>

@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="http://www.opengis.net/3dps/1.0/view" version="1.0.0"
+    xmlns="http://www.opengis.net/3dps/1.0/view" xmlns:core="http://www.opengis.net/3dps/1.0/core"
+    xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:view="http://www.opengis.net/3dps/1.0/view"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>             OGC 3D Portrayal Service 1.0 is an OGC Standard.
+            Copyright (c) 2016, 2023 Open Geospatial Consortium.             To obtain additional
+            rights of use, visit http://www.ogc.org/legal/ .         </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="owsCommon.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="ows19115subset.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="owsDomainType.xsd"/>
+    <xs:import namespace="http://www.opengis.net/ows/2.0" schemaLocation="owsDataIdentification.xsd"/>
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/core" schemaLocation="3dps-core.xsd"/>
+    <xs:complexType name="ViewLayerExtensionType">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="Projection" type="view:ProjectionBaseType"/>
+    <xs:complexType name="GetViewType">
+        <xs:complexContent>
+            <xs:extension base="core:AbstractGetPortrayalType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="0" name="BackgroundColor" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="TransparentBackground"
+                        type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Portrayals"
+                        type="PortrayalListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="PortrayalListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="Portrayal" type="PortrayalType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PerspectiveProjectionType">
+        <xs:complexContent>
+            <xs:extension base="ProjectionBaseType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" name="POC" type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="POI" type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="UP" type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="FOVX" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="FOVY" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="NearPlane" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="FarPlane" type="xs:double"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ViewPortrayalCapabilitiesExtensionType">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="farPlaneHint" type="xs:double"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="nearPlaneHint" type="xs:double"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="supportsMultipleViews" type="xs:boolean"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="AvailableImageLayer"
+                type="ImageLayerType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="AvailableProjection"
+                type="AvailableProjectionType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OrthographicProjectionType">
+        <xs:complexContent>
+            <xs:extension base="ProjectionBaseType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" name="POC" type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="POI" type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="UP" type="core:Position3DType"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Left" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Right" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Bottom" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Top" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="NearPlane" type="xs:double"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="FarPlane" type="xs:double"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ProjectionBaseType">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" ref="ows:Identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ImageLayerType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" name="Identifier" type="ows:CodeType"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="AvailableFormat"
+                        type="ows:MimeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="AvailableProjectionType">
+        <xs:complexContent>
+            <xs:extension base="ows:DescriptionType">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" ref="ows:Identifier"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="ProjectionParameter"
+                        type="ProjectionParameterType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ProjectionParameterType">
+        <xs:complexContent>
+            <xs:extension base="ows:DomainType">
+                <xs:sequence/>
+                <xs:attribute name="required" type="xs:boolean" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="PortrayalType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Width" type="xs:int"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Height" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="ImageLayers" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="Formats" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="Qualities" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" ref="Projection"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PerspectiveProjection" substitutionGroup="Projection"
+        type="view:PerspectiveProjectionType"/>
+    <xs:element name="OrthographicProjection" substitutionGroup="Projection"
+        type="view:OrthographicProjectionType"/>
+</xs:schema>

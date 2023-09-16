@@ -1,9 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
   <!-- Avoid being overrun by warnings -->
   <PropertyGroup>
     <!--
@@ -14,31 +14,89 @@
     <NoWarn>$(NoWarn);108;114;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="NHS CDS\**" />
     <Compile Remove="_temp\**" />
+    <EmbeddedResource Remove="NHS CDS\**" />
     <EmbeddedResource Remove="_temp\**" />
+    <None Remove="NHS CDS\**" />
     <None Remove="_temp\**" />
   </ItemGroup>
-
   <ItemGroup>
-    <Compile Remove="AIXM\aixm-5.1.1\AIXM_Features.xsd.cs" />
-    <Compile Remove="LandXML\v1.2\LandXML-1.2.xsd.cs" />
-    <Compile Remove="NIEM\xsd\niem-core.xsd.cs" />
-    <Compile Remove="Pubmed\collections.xsd.cs" />
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="AIXM\aixm-5.1.1\AIXM_Features.xsd.cs" />
-    <None Include="LandXML\v1.2\LandXML-1.2.xsd.cs" />
-    <None Include="NIEM\xsd\niem-core.xsd.cs" />
+  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
   </ItemGroup>
-
-  <ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="PolySharp" Version="1.13.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Portable.System.DateTimeOnly" Version="7.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeneratedSchemaLibraries\1707_ISYBAU_XML_Schema\1707_ISYBAU_XML_Schema.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\AbstractTypeTest\AbstractTypeTest.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\AIXM\AIXM.csproj" />-->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso\AkomaNtoso.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso30-CSD13-D2f\AkomaNtoso30-CSD13-D2f.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\AspNetSiteMaps\AspNetSiteMaps.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Atom\Atom.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\CellML\CellML.csproj" />-->
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\Chem eStandards\Chem eStandards.csproj" />-->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\ContentModelTest\ContentModelTest.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\DTSX\DTSX.csproj" />-->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\EnumsTest\EnumsTest.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\EnzymeML\EnzymeML.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\FHIR\FHIR.csproj" />-->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\GelML\GelML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\GS1\GS1.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\HL-7\HL-7.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\HR-XML\HR-XML.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\LandXML\LandXML.csproj" />-->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\LegalRuleML\LegalRuleML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\MetaLEX\MetaLEX.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Project 2007\Microsoft Project 2007.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\MSBuild\MSBuild.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Multi-namespaces\Multi-namespaces.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\mzIdentML\mzIdentML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\mzML\mzML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\mzQuantML\mzQuantML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\NameMangled\NameMangled.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\NHS CDS\NHS CDS.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OcmContracts\OcmContracts.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\NIEM\NIEM.csproj" />-->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OFMX\OFMX.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OPC\OPC.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Opml\Opml.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Pubmed\Pubmed.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Rss\Rss.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\SBML\SBML.csproj" />
+    <!--<ProjectReference Include="..\GeneratedSchemaLibraries\SBVR-XML\SBVR-XML.csproj" />-->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\SharePoint2010\SharePoint2010.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\SWRL\SWRL.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\ThermoML\ThermoML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Toy schemas\Toy schemas.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\TraML\TraML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\UK CabinetOffice\UK CabinetOffice.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Windows\Windows.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\XMLSpec\XMLSpec.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\XQueryX\XQueryX.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\XSD\XSD.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Strict\OfficeOpenXML-XMLSchema-Strict.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OfficeOpenXML-XMLSchema-Transitional\OfficeOpenXML-XMLSchema-Transitional.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OpenPackagingConventions-XMLSchema\OpenPackagingConventions-XMLSchema.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Office 2003 Reference schemas\Office 2003 Reference schemas.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Search\Microsoft Search.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj" />
+  </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -79,33 +137,6 @@
     </None>
     <None Update="DupEnum\DupEnumTest.xsd.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="MSBuild\Microsoft.Build.Commontypes.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="MSBuild\Microsoft.Build.Core.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="MSBuild\Microsoft.Build.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="MSBuild\Microsoft.Build.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Opml\opml2.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Pubmed\efetch-pubmed.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Pubmed\efetch-pubmed.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="ContentModelTest\ContentModelTest.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Rss\rss-2_0.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Schemas\AbstractTypeTest\abstracttest.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -176,59 +207,5 @@
     <None Update="Schemas\XSD\xml.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="SharePoint2010\CamlQuery.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SharePoint2010\CamlView.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SharePoint2010\CoreDefinitions.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SharePoint2010\cui.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SharePoint2010\WorkflowActions.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SharePoint2010\wss.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SharePoint2010\wss.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Toy schemas\Simple doc.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="XMLSpec\xlink.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="XMLSpec\xml.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="XMLSpec\xmlspec.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="XMLSpec\xmlspec.xsd.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="XSD\W3C XMLSchema v1.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="XSD\xml.xsd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="NHS CDS\CDS-XML_Standard_Data_Elements-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS-XML_Standard_Data_Elements-V6-2-3.xsd.cs" />
-    <Compile Remove="NHS CDS\CDS-XML_Standard_Data_Structures-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS-XML_Standard_Data_Structures-V6-2-3.xsd.cs" />
-    <Compile Remove="NHS CDS\CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.cs" />
-    <Compile Remove="NHS CDS\CDS_011_Emergency_Care-V6-2-3.xsd.cs" />
-    <Content Include="NHS CDS\CDS_011_Emergency_Care-V6-2-3.xsd.cs" />
-  </ItemGroup>
-
 </Project>

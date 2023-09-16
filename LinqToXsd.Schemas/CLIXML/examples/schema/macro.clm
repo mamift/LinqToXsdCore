@@ -1,0 +1,14 @@
+<macroDefinitions xmlns="http://www.clixml.org/clix/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:reportVariables="http://clixml.sourceforge.net/reportVariables"
+    xmlns:Macro="http://www.clixml.org/clix/1.0/Macro"
+    xsi:schemaLocation="http://www.clixml.org/clix/1.0 http://clixml.sourceforge.net/clix.xsd
+    http://clixml.sourceforge.net/reportVariables http://clixml.sourceforge.net/reportVariables.xsd
+    http://www.clixml.org/clix/1.0/Macro http://clixml.sourceforge.net/Macro.xsd">
+    <macro name="expandTest">
+        <param name="test"/>
+        <output>
+            <equal op1="/" op2="/" />
+        </output>
+    </macro>
+</macroDefinitions>

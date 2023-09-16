@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:Microsoft.Search.Query" xmlns="urn:Microsoft.Search.Query">
+
+    <xs:simpleType name="similarityReference">
+        <xs:annotation>
+            <xs:documentation>The similarityReference is a string that represents a statistical similarity reference when searching for similar items.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="refinerSpecification">
+        <xs:annotation>
+            <xs:documentation>This contains the name of the refiner, but you can also use an advanced syntax to apply non-default configuration values for the named refiner. For more information about the advanced syntax for the Refiner element, see Refiner Specification in the Query Web Service and Query Object Model (https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/gg984547%28v%3doffice.14%29).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="QueryPacket">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Query">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="QueryId" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>If this element is present, it must be returned in the response from the Query Web service.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="Context" minOccurs="0"/>
+                            <xs:element ref="Range" minOccurs="0"/>
+                            <xs:element ref="Properties" minOccurs="0"/>
+                            <xs:element ref="SortByProperties" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>If no managed properties are specified for sorting results, by default the results will be sorted by Rank.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="ImplicitAndBehavior" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>This element applies to the Query Web method, and only when using the Keyword Query Syntax Reference. The only format that is supported is the Microsoft.Search.Response.Document format.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="RelevanceModel" minOccurs="0"/>
+                            <xs:element ref="EnableStemming" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>When using the FAST Query Language, it is also possible to control stemming more precisely inside the query string.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="TrimDuplicates" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>For FAST Search Server 2010 for SharePoint, this element can also be used to collapse hits in the result set by using a group identifier (ID).
+
+The attributes apply only to FAST Search Server 2010 for SharePoint.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="IncludeSpecialTermResults" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>For FAST Search Server 2010 for SharePoint, special term results includes best bets and Visual best bets.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="PreQuerySuggestions" minOccurs="0"/>
+                            <xs:element ref="HighlightQuerySuggestions" minOccurs="0"/>
+                            <xs:element ref="CapitalizeFirstLetters" minOccurs="0"/>
+                            <xs:element ref="ResultProvider" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>NOTE: For People Search queries, specify SharePointSearch as the result provider even when FAST Search Server 2010 for SharePoint is the search back-end.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="ResubmitFlags" minOccurs="0"/>
+                            <xs:element ref="EnableSpellcheck" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>The element value specifies the spelling correction mode to apply to the query.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="UserContext" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>The keyword management search settings can be restricted to context. A context defines when a search setting should apply, typically targeting a specific group of users.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="FindSimilar" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>The find similar features enable you to search for documents that are similar to already retrieved query results. The similarity evaluation is based on a statistical measure.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="IncludeRefinementResults" minOccurs="0"/>
+                            <xs:element ref="RefinementFilters" minOccurs="0"/>
+                            <xs:element ref="IgnoreAllNoiseQuery" minOccurs="0"/>
+                            <xs:element ref="IncludeRelevantResults" minOccurs="0"/>
+                            <xs:element ref="IncludeHighConfidenceResults" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="revision" type="xs:int"/>
+            <xs:attribute name="build" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="QueryId">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="Context">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="QueryText"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="QueryText">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type">
+                        <xs:annotation>
+                            <xs:documentation>Identifies the query type (see the following type Attribute table).</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="STRING"/>
+                                <xs:enumeration value="MSSQLFT"/>
+                                <xs:enumeration value="FQL"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="language" type="xs:language">
+                        <xs:annotation>
+                            <xs:documentation>Identifies the language of the keyword search. The value type is xml:lang. If specified, this is interpreted by SharePoint Enterprise Search as the query locale. If not specified, the default value is the language of the site.
+
+For more information about query processing related to the query locale for FAST Search Server 2010 for SharePoint, see Linguistic Query Features (FAST Search Server 2010 for SharePoint).</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Range">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="StartAt"/>
+                <xs:element ref="Count"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="StartAt" default="1" type="xs:int"> </xs:element>
+    <xs:element name="Count" default="10" type="xs:int"> </xs:element>
+    <xs:element name="Properties">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Property" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Property">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SortByProperties">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SortByProperty" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SortByProperty">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The name of the managed property to sort on.
+
+The following special conditions apply to FAST Search Server 2010 for SharePoint only:
+
+* The name attribute may contain the name of a rank profile instead of a managed property. In this case the result set is sorted by Rank, but using the non-default rank profile specified by name. For more information, see Sort Search Results by Rank.
+
+* The name attribute may contain a sort formula specification. In this case the result set is sorted based on the specified formula. For more information about the syntax, see Sort Search Results by a Formula Expression.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="direction" default="Descending">
+                <xs:annotation>
+                    <xs:documentation>Specifies the direction (ascending or descending) to sort the results.
+
+* Ascending Sorting is based on ascending value
+* Descending Sorting is based on descending value
+
+Note: This attribute is not used when specifying a rank profile name in the name attribute (rank sorting is always descending). This applies to FAST Search Server 2010 for SharePoint only.
+
+Defaults to Descending.
+
+</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Ascending"/>
+                        <xs:enumeration value="Descending"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ImplicitAndBehavior" type="xs:boolean"> </xs:element>
+    <xs:element name="RelevanceModel" type="xs:anyType"> </xs:element>
+    <xs:element name="EnableStemming" type="xs:boolean"> </xs:element>
+    <xs:element name="TrimDuplicates">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="onproperty" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Optional attribute indicating the name of a non-default managed property to use as the basis for duplicate removal.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="keepcount" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>Optional attribute specifying how many items to keep for each set of duplicates.
+
+The default value is 1.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="includeid" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Specifies the value associated with a collapse group, typically used when a user clicks the Duplicates(n) link of an item with duplicates.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="IncludeSpecialTermResults" type="xs:boolean"> </xs:element>
+    <xs:element name="PreQuerySuggestions" type="xs:boolean"> </xs:element>
+    <xs:element name="HighlightQuerySuggestions" type="xs:boolean"> </xs:element>
+    <xs:element name="CapitalizeFirstLetters" type="xs:boolean"> </xs:element>
+    <xs:element name="ResultProvider" default="Default">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="Default"/>
+                <xs:enumeration value="SharePointSearch"/>
+                <xs:enumeration value="FASTSearch"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="ResubmitFlags">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ResubmitFlag" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>The effect of an automatic resubmit is that the query is modified and automatically re-evaluated before results are returned to the client.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ResubmitFlag">
+        <xs:complexType>
+            <xs:attribute name="value">
+                <xs:annotation>
+                    <xs:documentation>Explanation of values follows.
+
+NoResubmit: Do not resubmit the query, but return with ZERO results. If this attribute value is set, any other ResubmitFlag elements are ignored.
+
+EnableSpellcheckOnResubmit: Resubmit the query with automatic spelling checking enabled. This corresponds to evaluating the query with EnableSpellCheck set to 4 when re-evaluating the query.
+
+EnableSpellcheckSuggestOnResubmit: Resubmit the query with spelling checking enabled in suggest mode. This corresponds to evaluating the query with EnableSpellCheck set to 2 when re-evaluating the query. Note - This option will still return a query result with zero hits.
+
+EnableStemmingOnResubmit: Resubmit the query with stemming enabled. This corresponds to evaluating the query with EnableStemming set to true when re-evaluating the query.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="NoResubmit"/>
+                        <xs:enumeration value="EnableSpellcheckOnResubmit"/>
+                        <xs:enumeration value="EnableSpellcheckSuggestOnResubmit"/>
+                        <xs:enumeration value="EnableStemmingOnResubmit"/>
+                        <xs:enumeration value="AddSynonymsAutomatically"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EnableSpellcheck">
+        <xs:simpleType>
+            <xs:annotation>
+                <xs:documentation>Off: Do not apply spelling correction to the query text.
+Suggest: Suggest transformed (spelled correctly) query in the result, but do not apply spelling checking to the actual query performed. This enables the Did You Mean feature search tip in the result pages.
+On: Apply spelling corrections to the query text before evaluating the query.</xs:documentation>
+            </xs:annotation>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="off"/>
+                <xs:enumeration value="suggest"/>
+                <xs:enumeration value="on"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="UserContext">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="UserContextData">
+                    <xs:annotation>
+                        <xs:documentation>The keyword management search settings can be restricted to context. A context defines when a search setting should apply, typically targeting a specific group of users.
+
+If a user with the responsibilities "developer" and "tester" submits a query for "office", the query request should include the following userContextString: "responsibilities:;:developer;tester"
+</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute default="true" name="includeuserprofile" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Specifies the type of user context data to be applied.
+
+true  Context values from the SharePoint 2010 user profile service will be included as part of the user context. If UserContextData is also used, the user profile data and the custom context data are both used.
+
+false  Context values from the SharePoint 2010 user profile are not included as part of the user context. Use UserContextData to submit custom user contexts.
+
+Default: true.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UserContextData" type="xs:string"> </xs:element>
+    <xs:element name="FindSimilar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SimilarTo">
+                    <xs:annotation>
+                        <xs:documentation/>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="SimilarType">
+                    <xs:annotation>
+                        <xs:documentation>An explanation of possible values follows.
+
+FindSimilar: The similarity vectors are added to the query by using an OR operator.
+RefineSimilar: The query will match if the original query conditions and the similarity vector conditions are met.
+ExcludeSimilar: The query will match if the original query conditions are met, but not the similarity conditions.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="SortSimilar">
+                    <xs:annotation>
+                        <xs:documentation>If set to False, the result is sorted by relevance score (rank). Default: true.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SimilarTo" type="similarityReference"> </xs:element>
+    <xs:element name="SimilarType">
+        <xs:annotation>
+            <xs:documentation>An explanation of possible values follows.
+
+FindSimilar: The similarity vectors are added to the query by using an OR operator.
+RefineSimilar: The query will match if the original query conditions and the similarity vector conditions are met.
+ExcludeSimilar: The query will match if the original query conditions are met, but not the similarity conditions.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="FindSimilar"/>
+                <xs:enumeration value="RefineSimilar"/>
+                <xs:enumeration value="ExcludeSimilar"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="SortSimilar" default="true" type="xs:boolean"> </xs:element>
+    <xs:element name="IncludeRefinementResults">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Refiners"/>
+                <xs:element ref="MaxShallowRefinementHits"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Refiners">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Refiner"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Refiner" type="refinerSpecification"> </xs:element>
+    <xs:element name="MaxShallowRefinementHits" type="xs:int"> </xs:element>
+    <xs:element name="RefinementFilters">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RefinementFilter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RefinementFilter" type="xs:base64Binary"> </xs:element>
+    <xs:element name="IgnoreAllNoiseQuery" type="xs:boolean"> </xs:element>
+    <xs:element name="IncludeRelevantResults" type="xs:boolean"> </xs:element>
+    <xs:element name="IncludeHighConfidenceResults" type="xs:boolean"> </xs:element>
+
+</xs:schema>

@@ -621,8 +621,19 @@ namespace Xml.Schema.Linq.CodeGen
             }
             else
             {
-                var valueExpr = !IsEnum ? "value" : IsNullable ? "value?.ToString()" : "value.ToString()";
-                setStatements.Add(CreatePlainSetCall(setMethodName, valueExpr, xNameParm));
+                string valueExpr;
+                if (IsEnum) {
+                    if (propertyOrigin == SchemaOrigin.Element) {
+                        valueExpr = "value";
+                    } else {
+                        valueExpr = IsNullable ? "value?.ToString()" : "value.ToString()";
+                    }
+                } else {
+                    valueExpr = "value";
+                }
+
+                var setter = CreatePlainSetCall(setMethodName, valueExpr, xNameParm);
+                setStatements.Add(setter);
             }
         }
 

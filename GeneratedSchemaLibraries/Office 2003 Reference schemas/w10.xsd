@@ -1,0 +1,186 @@
+<xsd:schema targetNamespace="urn:schemas-microsoft-com:office:word" xmlns="urn:schemas-microsoft-com:office:word"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+ <xsd:annotation>
+  <xsd:documentation>
+   Permission to copy, display and distribute the contents of this document (the “Specification”), in any medium for any purpose without fee or royalty is hereby granted, provided that you include the following notice on ALL copies of the Specification, or portions thereof, that you make:
+   Copyright (c) Microsoft Corporation.  All rights reserved.  Permission to copy, display and distribute this document is available at:  http://msdn.microsoft.com/library/en-us/odcXMLRef/html/odcXMLRefLegalNotice.asp?frame=true.  
+   No right to create modifications or derivatives of this Specification is granted herein.
+   There is a separate patent license available to parties interested in implementing software programs that can read and write files that conform to the Specification.  This patent license is available at this location:  http://www.microsoft.com/mscorp/ip/format/xmlpatentlicense.asp.
+   THE SPECIFICATION IS PROVIDED "AS IS" AND MICROSOFT MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THE SPECIFICATION ARE SUITABLE FOR ANY PURPOSE; NOR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+   MICROSOFT WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THE SPECIFICATION.
+   The name and trademarks of Microsoft may NOT be used in any manner, including advertising or publicity pertaining to the Specification or its contents without specific, written prior permission. Title to copyright in the Specification will at all times remain with Microsoft.
+   No other rights are granted by implication, estoppel or otherwise.
+  </xsd:documentation>
+ </xsd:annotation>
+ <xsd:element name="bordertop" type="borderElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents the properties for the top border of an image.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:element name="borderleft" type="borderElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents the properties for the left border of an image.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:element name="borderright" type="borderElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents the properties for the right border of an image.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:element name="borderbottom" type="borderElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents the properties for the bottom border of an image.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="borderElt">
+  <xsd:annotation>
+   <xsd:documentation>Determines the contents of the border elements.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence />
+  <xsd:attribute name="type" type="borderTypeElt" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the type of border.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="width" type="xsd:positiveInteger" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the border width.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="shadow" type="borderShadowElt" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a value indicating whether the border has a shadow.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:simpleType name="borderTypeElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines which types of borders are supported.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="none" />
+   <xsd:enumeration value="single" />
+   <xsd:enumeration value="thick" />
+   <xsd:enumeration value="double" />
+   <xsd:enumeration value="hairline" />
+   <xsd:enumeration value="dot" />
+   <xsd:enumeration value="dash" />
+   <xsd:enumeration value="dotDash" />
+   <xsd:enumeration value="dashDotDot" />
+   <xsd:enumeration value="triple" />
+   <xsd:enumeration value="thinThickSmall" />
+   <xsd:enumeration value="thickThinSmall" />
+   <xsd:enumeration value="thickBetweenThinSmall" />
+   <xsd:enumeration value="thinThick" />
+   <xsd:enumeration value="thickThin" />
+   <xsd:enumeration value="thickBetweenThin" />
+   <xsd:enumeration value="thinThickLarge" />
+   <xsd:enumeration value="thickThinLarge" />
+   <xsd:enumeration value="thickBetweenThinLarge" />
+   <xsd:enumeration value="wave" />
+   <xsd:enumeration value="doubleWave" />
+   <xsd:enumeration value="dashedSmall" />
+   <xsd:enumeration value="dashDotStroked" />
+   <xsd:enumeration value="threeDEmboss" />
+   <xsd:enumeration value="threeDEngrave" />
+   <xsd:enumeration value="HTMLOutset" />
+   <xsd:enumeration value="HTMLInset" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="borderShadowElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a Boolean value (t or f) that determines whether a shadow is present. (Note: Word does not save the f value.)</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="t" />
+   <xsd:enumeration value="f" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:element name="wrap" type="wrapElt">
+  <xsd:annotation>
+   <xsd:documentation>Determines the wrapping properties of the image.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="wrapElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines the contents of the wrap element.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence />
+  <xsd:attribute name="type" type="wrapTypeElt" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the type of wrapping.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="side" type="wrapSideElt" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the side that text can wrap around.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="anchorx" type="wrapAnchorxElt" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets of sets the type of horizontal (x) anchor.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="anchory" type="wrapAnchoryElt" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets of sets the type of vertical (y) anchor.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:simpleType name="wrapTypeElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a list of allowed wrapping types.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="topandbottom" />
+   <xsd:enumeration value="square" />
+   <xsd:enumeration value="none" />
+   <xsd:enumeration value="tight" />
+   <xsd:enumeration value="through" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="wrapSideElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a list of allowed types for which side text can wrap around.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="both" />
+   <xsd:enumeration value="left" />
+   <xsd:enumeration value="right" />
+   <xsd:enumeration value="largest" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="wrapAnchorxElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a list of allowed types for the x anchor.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="margin" />
+   <xsd:enumeration value="page" />
+   <xsd:enumeration value="text" />
+   <xsd:enumeration value="char" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="wrapAnchoryElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a list of allowed types for the y anchor.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="margin" />
+   <xsd:enumeration value="page" />
+   <xsd:enumeration value="text" />
+   <xsd:enumeration value="line" />
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:element name="anchorlock" type="anchorlockElt">
+  <xsd:annotation>
+   <xsd:documentation>Determines whether the picture is anchor-locked to the document.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="anchorlockElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines the contents of the anchorlock element. Note that the anchorlock element must be empty.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence />
+ </xsd:complexType>
+</xsd:schema>

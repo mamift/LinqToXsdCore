@@ -1,0 +1,1323 @@
+<xsd:schema targetNamespace="urn:schemas-microsoft-com:office:office" xmlns="urn:schemas-microsoft-com:office:office"
+ xmlns:v="urn:schemas-microsoft-com:vml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+ attributeFormDefault="unqualified">
+ <xsd:import namespace="urn:schemas-microsoft-com:vml" schemaLocation="vml.xsd"></xsd:import>
+ <xsd:annotation>
+  <xsd:documentation>
+   Permission to copy, display and distribute the contents of this document (the “Specification”), in any medium for any purpose without fee or royalty is hereby granted, provided that you include the following notice on ALL copies of the Specification, or portions thereof, that you make:
+   Copyright (c) Microsoft Corporation.  All rights reserved.  Permission to copy, display and distribute this document is available at:  http://msdn.microsoft.com/library/en-us/odcXMLRef/html/odcXMLRefLegalNotice.asp?frame=true.  
+   No right to create modifications or derivatives of this Specification is granted herein.
+   There is a separate patent license available to parties interested in implementing software programs that can read and write files that conform to the Specification.  This patent license is available at this location:  http://www.microsoft.com/mscorp/ip/format/xmlpatentlicense.asp.
+   THE SPECIFICATION IS PROVIDED "AS IS" AND MICROSOFT MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THE SPECIFICATION ARE SUITABLE FOR ANY PURPOSE; NOR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+   MICROSOFT WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THE SPECIFICATION.
+   The name and trademarks of Microsoft may NOT be used in any manner, including advertising or publicity pertaining to the Specification or its contents without specific, written prior permission. Title to copyright in the Specification will at all times remain with Microsoft.
+   No other rights are granted by implication, estoppel or otherwise.
+  </xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="versionType">
+  <xsd:annotation>
+   <xsd:documentation>Defines a version number format.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="[0-9]?[0-9].[0-9]{4}"></xsd:pattern>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:element name="File" type="FileElt">
+  <xsd:annotation>
+   <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="FileElt">
+  <xsd:annotation>
+   <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="HRef" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="MainFile" type="MainFileElt">
+  <xsd:annotation>
+   <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="MainFileElt">
+  <xsd:attribute name="HRef" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="documentPropertiesElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines the collection of standard document properties.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="Title" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the title of the document. The title can be different than the file name. The title is used when searching for the document and also when creating Web pages from the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Subject" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the subject of the document. This property can be used to group similar files together, so you can search for all files that have the same subject.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Author" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the author who created the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Keywords" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents keywords to be used when searching for the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Description" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents comments to be used when searching for the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="LastAuthor" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the name of the author who last saved the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Revision" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents the number of times the document has been saved.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="AppName" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the name of the application that created the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="TotalTime" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents the number of minutes that the document has been open for editing since it was created.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="LastPrinted" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+    <xsd:annotation>
+     <xsd:documentation>Represents the date and time that the document was last printed.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Created" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+    <xsd:annotation>
+     <xsd:documentation>Represents the date and time that the document was originally created.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="LastSaved" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+    <xsd:annotation>
+     <xsd:documentation>Represents the date and time that the document was last saved.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Pages" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents an estimate of the number of pages in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Words" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents an estimate of the number of words in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Characters" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents an estimate of the number of characters in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Category" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the category of the document. This property can be used to group similar files together, so you can search for all files that have the same category.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="PresentationFormat" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the presentation format of the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Manager" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the manager of the author of the document. This property can be used to group similar files together, so you can search for all the files that have the same manager.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Company" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the company that employs the author. This property can be used to group similar files together, so you can search for all files that have the same company.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Guid" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the globally unique identifier for the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="HyperlinkBase" minOccurs="0" maxOccurs="1" type="xsd:string">
+    <xsd:annotation>
+     <xsd:documentation>Represents the path or URL that is used for all hyperlinks with the same base address that are inserted in the document. This can be an Internet address (for example, http://www.microsoft.com), a path to a folder on your hard disk (for example, c:\personal\documents), or a path to a folder on a network (for example, \\myserver\public\documents).</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Bytes" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents an estimate of the number of bytes in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Lines" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents an estimate of the number of lines in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Paragraphs" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents an estimate of the number of paragraphs in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="CharactersWithSpaces" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger">
+    <xsd:annotation>
+     <xsd:documentation>Represents an estimate of the number of characters (including spaces) in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Version" minOccurs="0" maxOccurs="1" type="versionType">
+    <xsd:annotation>
+     <xsd:documentation>Represents the version number of the application that created the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:element name="DocumentProperties" type="documentPropertiesElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents the collection of standard document properties.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="smartTagTypeElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a smart tag used in the document.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="namespaceuri" type="xsd:string" form="qualified">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the namespace Uniform Resource Identifier (URI) for a smart tag in Word.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="name" type="xsd:string" form="qualified">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the element name used for a smart tag in Word.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="url" type="xsd:string" form="qualified">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the URL for a smart tag provided by the smart tag provider in Word.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="namespaceuri" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the namespace Uniform Resource Identifier (URI) for a smart tag in Excel.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="name" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the element name used for a smart tag in Excel.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="url" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the URL for a smart tag provided by the smart tag provider in Excel.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="SmartTagType" type="smartTagTypeElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a smart tag in the document.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:element name="SmartTags" type="SmartTagsElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a collection of smart tags.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="SmartTagsElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a collection of smart tags.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:any processContents="skip" minOccurs="0" maxOccurs="unbounded"></xsd:any>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:element name="CustomDocumentProperties" type="CustomDocumentPropertiesElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents represents the collection of custom document properties.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="CustomDocumentPropertiesElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents represents the collection of custom document properties.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:any processContents="lax" namespace="##targetNamespace" minOccurs="1" maxOccurs="unbounded"></xsd:any>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:element name="OfficeDocumentSettings" type="OfficeDocumentSettingsElt">
+  <xsd:annotation>
+   <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="OfficeDocumentSettingsElt">
+  <xsd:sequence>
+   <xsd:element name="DownloadComponents" form="qualified" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="LocationOfComponents" type="LocationOfComponentsElt" form="qualified" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="LocationOfComponentsElt">
+  <xsd:attribute name="HRef" type="xsd:string" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Not used by Microsoft Office Word 2003 or Microsoft Office Excel 2003.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:attribute name="bwmode">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="color"></xsd:enumeration>
+    <xsd:enumeration value="auto"></xsd:enumeration>
+    <xsd:enumeration value="grayscale"></xsd:enumeration>
+    <xsd:enumeration value="lightGrayScale"></xsd:enumeration>
+    <xsd:enumeration value="inverseGray"></xsd:enumeration>
+    <xsd:enumeration value="grayOutline"></xsd:enumeration>
+    <xsd:enumeration value="highContrast"></xsd:enumeration>
+    <xsd:enumeration value="black"></xsd:enumeration>
+    <xsd:enumeration value="white"></xsd:enumeration>
+    <xsd:enumeration value="hide"></xsd:enumeration>
+    <xsd:enumeration value="numModes"></xsd:enumeration>
+    <xsd:enumeration value="undrawn"></xsd:enumeration>
+    <xsd:enumeration value="blackTextAndLines"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:attribute name="bwpure">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="color"></xsd:enumeration>
+    <xsd:enumeration value="auto"></xsd:enumeration>
+    <xsd:enumeration value="grayscale"></xsd:enumeration>
+    <xsd:enumeration value="lighGrayscale"></xsd:enumeration>
+    <xsd:enumeration value="grayOutline"></xsd:enumeration>
+    <xsd:enumeration value="highContrast"></xsd:enumeration>
+    <xsd:enumeration value="black"></xsd:enumeration>
+    <xsd:enumeration value="white"></xsd:enumeration>
+    <xsd:enumeration value="hide"></xsd:enumeration>
+    <xsd:enumeration value="numModes"></xsd:enumeration>
+    <xsd:enumeration value="blackTextAndLines"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:attribute name="bwnormal">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="color"></xsd:enumeration>
+    <xsd:enumeration value="auto"></xsd:enumeration>
+    <xsd:enumeration value="grayscale"></xsd:enumeration>
+    <xsd:enumeration value="lighGrayscale"></xsd:enumeration>
+    <xsd:enumeration value="grayOutline"></xsd:enumeration>
+    <xsd:enumeration value="highContrast"></xsd:enumeration>
+    <xsd:enumeration value="black"></xsd:enumeration>
+    <xsd:enumeration value="white"></xsd:enumeration>
+    <xsd:enumeration value="hide"></xsd:enumeration>
+    <xsd:enumeration value="numModes"></xsd:enumeration>
+    <xsd:enumeration value="blackTextAndLines"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:attribute name="targetscreensize">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="544,376"></xsd:enumeration>
+    <xsd:enumeration value="640,480"></xsd:enumeration>
+    <xsd:enumeration value="720,512"></xsd:enumeration>
+    <xsd:enumeration value="800,600"></xsd:enumeration>
+    <xsd:enumeration value="1024,768"></xsd:enumeration>
+    <xsd:enumeration value="1152,862"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:element name="shapedefaults" type="shapedefaultsElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="shapedefaultsElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element ref="v:fill" minOccurs="0"></xsd:element>
+   <xsd:element ref="v:stroke" minOccurs="0"></xsd:element>
+   <xsd:element ref="v:textbox" minOccurs="0"></xsd:element>
+   <xsd:element ref="v:shadow" minOccurs="0"></xsd:element>
+   <xsd:element ref="v:textpath" minOccurs="0"></xsd:element>
+   <xsd:element ref="v:imagedata" minOccurs="0"></xsd:element>
+   <xsd:element ref="skew" minOccurs="0"></xsd:element>
+   <xsd:element ref="extrusion" minOccurs="0"></xsd:element>
+   <xsd:element ref="callout" minOccurs="0"></xsd:element>
+   <xsd:element ref="lock" minOccurs="0"></xsd:element>
+   <xsd:element name="colormru" type="colormruType" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="colormenu" type="colormenuType" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute name="spidmax" type="xsd:integer" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="style" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="fill" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="fillcolor" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="colormruType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="colors" type="xsd:string" minOccurs="0" maxOccurs="8">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+  <xsd:attribute name="colors" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="colormenuType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="fillcolor" type="xsd:string" use="optional" default="rgb(0,0,255)">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="strokecolor" type="xsd:string" use="optional" default="rgb(255,0,0)">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="shadowcolor" type="xsd:string" use="optional" default="rgb(128,128,12)">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="extrusioncolor" type="xsd:string" use="optional" default="rgb(0,0,0)">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="colors" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="shapelayout" type="shapelayoutElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="shapelayoutElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="idmap" type="idmapElt" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="regrouptable" type="regrouptableElt" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="rules" type="rulesElt" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:all>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="idmapElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+  <xsd:attribute name="data" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="regrouptableElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="entry" type="entryElt" minOccurs="0" maxOccurs="unbounded">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="entryElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="new" type="xsd:int" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="old" type="xsd:int" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="rulesElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="r" type="rElt" minOccurs="0" maxOccurs="unbounded">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="rElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="proxy" type="proxyElt" minOccurs="0" maxOccurs="unbounded">
+    <xsd:annotation>
+     <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+  <xsd:attribute name="id" type="xsd:string" use="required">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="type" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="arc"></xsd:enumeration>
+     <xsd:enumeration value="callout"></xsd:enumeration>
+     <xsd:enumeration value="connector"></xsd:enumeration>
+     <xsd:enumeration value="align"></xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="how" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="top"></xsd:enumeration>
+     <xsd:enumeration value="middle"></xsd:enumeration>
+     <xsd:enumeration value="bottom"></xsd:enumeration>
+     <xsd:enumeration value="left"></xsd:enumeration>
+     <xsd:enumeration value="center"></xsd:enumeration>
+     <xsd:enumeration value="right"></xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="idref" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="proxyElt">
+  <xsd:attribute name="start" type="tfType" use="optional" default="f">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="end" type="tfType" use="optional" default="f">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="idref" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="connectloc" type="xsd:int" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:attribute name="insetmode" default="custom">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="auto"></xsd:enumeration>
+    <xsd:enumeration value="custom"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:element name="skew" type="skewElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="skewElt">
+  <xsd:attribute name="id" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+  <xsd:attribute name="on" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="offset" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="origin" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="matrix" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="extrusion" type="extrusionElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="extrusionElt">
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+  <xsd:attribute name="on" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="type" default="parallel" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="perspective"></xsd:enumeration>
+     <xsd:enumeration value="parallel"></xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="render" default="solid" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="solid"></xsd:enumeration>
+     <xsd:enumeration value="wireFrame"></xsd:enumeration>
+     <xsd:enumeration value="boundingcube"></xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="viewpointorigin" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="viewpoint" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="plane" default="XY" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="XY"></xsd:enumeration>
+     <xsd:enumeration value="ZX"></xsd:enumeration>
+     <xsd:enumeration value="YZ"></xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="skewangle" type="xsd:float" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="skewamt" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="foredepth" type="xsd:float" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="backdepth" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="orientation" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="orientationangle" type="xsd:float" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lockrotationcenter" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="autorotationcenter" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rotationcenter" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rotationangle" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="colormode" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="color" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="shininess" type="xsd:float" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="specularity" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="diffusity" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="metal" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="edge" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="facet" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lightface" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="brightness" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lightposition" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lightlevel" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lightharsh" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lightposition2" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lightlevel2" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lightharsh2" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="callout" type="calloutElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="calloutElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+  <xsd:attribute name="on" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="type" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="gap" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="angle" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="any"></xsd:enumeration>
+     <xsd:enumeration value="auto"></xsd:enumeration>
+     <xsd:enumeration value="30"></xsd:enumeration>
+     <xsd:enumeration value="45"></xsd:enumeration>
+     <xsd:enumeration value="60"></xsd:enumeration>
+     <xsd:enumeration value="90"></xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="dropauto" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="drop" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType>
+    <xsd:union>
+     <xsd:simpleType>
+      <xsd:restriction base="xsd:float"></xsd:restriction>
+     </xsd:simpleType>
+     <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+       <xsd:enumeration value="top"></xsd:enumeration>
+       <xsd:enumeration value="center"></xsd:enumeration>
+       <xsd:enumeration value="bottom"></xsd:enumeration>
+       <xsd:enumeration value="user"></xsd:enumeration>
+      </xsd:restriction>
+     </xsd:simpleType>
+    </xsd:union>
+   </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="distance" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="lengthspecified" type="tfType" default="f" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="length" type="xsd:float" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="accentbar" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="textborder" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="minusx" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="minusy" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="lock" type="lockElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="lockElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+  <xsd:attribute name="position" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="selection" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="grouping" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rotation" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="cropping" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="verticies" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="adjusthandles" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="text" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="aspectratio" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="shapetype" type="tfType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:attribute name="spt" type="xsd:float">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="wrapcoords" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="oned" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="regroupid" type="xsd:integer">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="doubleclicknotify" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="ruleinitiator" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="ruleproxy" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="connectortype" default="straight">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="none"></xsd:enumeration>
+    <xsd:enumeration value="straight"></xsd:enumeration>
+    <xsd:enumeration value="elbow"></xsd:enumeration>
+    <xsd:enumeration value="curved"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:attribute name="button" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="userhidden" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="forcedash" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="oleicon" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="ole" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="preferrelative" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="bullet" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="hr" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="hrstd" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="hrnoshade" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="hrheight" type="xsd:float">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="hrwidth" type="xsd:float">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="hrpct" type="xsd:float">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="hralign" default="left">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="left"></xsd:enumeration>
+    <xsd:enumeration value="right"></xsd:enumeration>
+    <xsd:enumeration value="center"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:attribute name="relativeposition" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="allowincell" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="allowoverlap" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="userdrawn" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="tableproperties" type="xsd:int">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="tablelimits" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="bordertopcolor" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="borderleftcolor" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="borderbottomcolor" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="borderrightcolor" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="connecttype">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="none"></xsd:enumeration>
+    <xsd:enumeration value="rect"></xsd:enumeration>
+    <xsd:enumeration value="segments"></xsd:enumeration>
+    <xsd:enumeration value="custom"></xsd:enumeration>
+   </xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:element name="OLEObject" type="OLEObjectElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="OLEObjectElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:any processContents="lax" namespace="##any"></xsd:any>
+  </xsd:sequence>
+  <xsd:attribute name="Type" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="ProgID" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="ShapeID" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="DrawAspect" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="ObjectID" type="xsd:string" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="complex" type="complexElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this element, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="complexElt">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute ref="v:ext" use="optional"></xsd:attribute>
+ </xsd:complexType>
+ <xsd:attribute name="connectlocs" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="connectangles" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="master" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="extrusionok" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="href" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="althref" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="title" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="singleclick" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="oleid" type="xsd:float">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="detectmouseclick" type="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="movie" type="xsd:float">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="spid" type="xsd:string">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="opacity2" type="xsd:integer">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this attribute, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:simpleType name="tfType">
+  <xsd:annotation>
+   <xsd:documentation>For more information on this type, please refer to the VML Reference, located online in the Microsoft Developer Network (MSDN) Library.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="t"></xsd:enumeration>
+   <xsd:enumeration value="f"></xsd:enumeration>
+   <xsd:enumeration value=""></xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:schema>

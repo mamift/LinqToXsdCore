@@ -1,0 +1,98 @@
+<xsd:schema targetNamespace="http://schemas.microsoft.com/office/word/2003/wordml/sp2" xmlns="http://schemas.microsoft.com/office/word/2003/wordml/sp2" 
+ xmlns:W="http://schemas.microsoft.com/office/word/2003/wordml"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  elementFormDefault="qualified" attributeFormDefault="qualified">
+
+  <xsd:simpleType name="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>4 byte hex number, 8 hex digits in length.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:hexBinary">
+      <xsd:length value="4" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="longHexNumberProperty">
+    <xsd:annotation>
+      <xsd:documentation>The long hex number property/type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="val" type="longHexNumberType" use="required">
+      <xsd:annotation>
+        <xsd:documentation>4 byte hex number, 8 hex digits in length.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="rsidType">
+    <xsd:annotation>
+      <xsd:documentation>Used in the rsid table for the whole document.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="val" type="longHexNumberType" use="required">
+      <xsd:annotation>
+        <xsd:documentation>4 byte hex number, 8 hex digits in length.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:attribute name="rsidRPr" type="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>Revision save id for the formatting of section mark.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rsidDel" type="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>Revision save id for the text for the deletion of section mark.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rsidR" type="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>Revision save id for the text of this section mark.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rsidSect" type="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>Revision save id of the SEP.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rsidP" type="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>Revision save id of the PAP.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rsidRDefault" type="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>The default rsid for runs of a paragraph.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="rsidTr" type="longHexNumberType">
+    <xsd:annotation>
+      <xsd:documentation>Revision save id of the PAP.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:complexType name="docRsidsElt">
+    <xsd:annotation>
+      <xsd:documentation>Full set of RSIDs for this doc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="rsidRoot" type="longHexNumberProperty" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Each rsid used in this document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsid" type="longHexNumberProperty" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>Each rsid used in this document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="rsids" type="docRsidsElt" >
+    <xsd:annotation>
+      <xsd:documentation>A table of all the rsids used in this document.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+
+</xsd:schema>
+

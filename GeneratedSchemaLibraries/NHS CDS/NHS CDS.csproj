@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CDS-XML_Message_Root-V6-2-3.xsd" />
+    <EmbeddedResource Include="CDS-XML_Message_Root-V6-2-3.xsd.config" />
+    <EmbeddedResource Include="CDS-XML_Message_Root-V6-2-3.xsd.cs" />
+    <EmbeddedResource Include="CDS-XML_Standard_Data_Elements-V6-2-3.xsd" />
+    <EmbeddedResource Include="CDS-XML_Standard_Data_Elements-V6-2-3.xsd.config" />
+    <EmbeddedResource Include="CDS-XML_Standard_Data_Structures-V6-2-3.xsd" />
+    <EmbeddedResource Include="CDS-XML_Standard_Data_Structures-V6-2-3.xsd.config" />
+    <EmbeddedResource Include="CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd" />
+    <EmbeddedResource Include="CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.config" />
+    <EmbeddedResource Include="CDS_011_Emergency_Care-V6-2-3.xsd" />
+    <EmbeddedResource Include="CDS_011_Emergency_Care-V6-2-3.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="CDS-XML_Message_Root-V6-2-3.xsd" />
+    <None Remove="CDS-XML_Message_Root-V6-2-3.xsd.config" />
+    <None Remove="CDS-XML_Standard_Data_Elements-V6-2-3.xsd" />
+    <None Remove="CDS-XML_Standard_Data_Elements-V6-2-3.xsd.config" />
+    <None Remove="CDS-XML_Standard_Data_Structures-V6-2-3.xsd" />
+    <None Remove="CDS-XML_Standard_Data_Structures-V6-2-3.xsd.config" />
+    <None Remove="CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd" />
+    <None Remove="CDS_000_Message_Headers_And_Trailers-V6-2-3.xsd.config" />
+    <None Remove="CDS_011_Emergency_Care-V6-2-3.xsd" />
+    <None Remove="CDS_011_Emergency_Care-V6-2-3.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -333,6 +333,7 @@ namespace Xml.Schema.Linq.CodeGen
                 CreateXRoot(codeNamespace, "XRootNamespace", xroots[codeNamespace], null, typeVisibility);
             }
 
+            if (rootCodeNamespace == null && xroots.Count == 0 && allTypes.Count == 0 && allNamespaces.Count == 0) return;
             CreateXRoot(rootCodeNamespace, "XRoot", allTypes, allNamespaces, typeVisibility);
         }
 

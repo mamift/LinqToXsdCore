@@ -1,0 +1,8 @@
+<schema targetNamespace="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <annotation>
+        <documentation xml:lang="en">       This schema provides the XLink href attribute for use in
+            the MathML2        schema. Written by Max Froumentin, W3C.     </documentation>
+    </annotation>
+    <attribute name="href" type="anyURI"/>
+</schema>

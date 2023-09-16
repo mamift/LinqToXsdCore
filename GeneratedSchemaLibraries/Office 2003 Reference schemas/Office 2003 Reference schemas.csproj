@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="aml.xsd" />
+    <EmbeddedResource Include="c.xsd" />
+    <EmbeddedResource Include="dt.xsd" />
+    <EmbeddedResource Include="excel.xsd" />
+    <EmbeddedResource Include="excel2003xml.xsd" />
+    <EmbeddedResource Include="excelss.xsd" />
+    <EmbeddedResource Include="mspdi.xsd" />
+    <EmbeddedResource Include="office.xsd" />
+    <EmbeddedResource Include="office2.xsd" />
+    <EmbeddedResource Include="rowsetschema.xsd" />
+    <EmbeddedResource Include="rowsset.xsd" />
+    <EmbeddedResource Include="schema.xsd" />
+    <EmbeddedResource Include="sd.xsd" />
+    <EmbeddedResource Include="SimpleImport.xsd" />
+    <EmbeddedResource Include="SoapEnvelope.xsd" />
+    <EmbeddedResource Include="udc.xsd" />
+    <EmbeddedResource Include="udcsoap.xsd" />
+    <EmbeddedResource Include="udcxmlfile.xsd" />
+    <EmbeddedResource Include="visio.xsd" />
+    <EmbeddedResource Include="vml.xsd" />
+    <EmbeddedResource Include="vml2.xsd" />
+    <EmbeddedResource Include="w10.xsd" />
+    <EmbeddedResource Include="wordnet.xsd" />
+    <EmbeddedResource Include="wordnetaux.xsd" />
+    <EmbeddedResource Include="wordsp.xsd" />
+    <EmbeddedResource Include="xml.xsd" />
+    <EmbeddedResource Include="xsdlib.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="aml.xsd" />
+    <None Remove="c.xsd" />
+    <None Remove="dt.xsd" />
+    <None Remove="excel.xsd" />
+    <None Remove="excel2003xml.xsd" />
+    <None Remove="excelss.xsd" />
+    <None Remove="mspdi.xsd" />
+    <None Remove="office.xsd" />
+    <None Remove="office2.xsd" />
+    <None Remove="rowsetschema.xsd" />
+    <None Remove="rowsset.xsd" />
+    <None Remove="schema.xsd" />
+    <None Remove="sd.xsd" />
+    <None Remove="SimpleImport.xsd" />
+    <None Remove="SoapEnvelope.xsd" />
+    <None Remove="udc.xsd" />
+    <None Remove="udcsoap.xsd" />
+    <None Remove="udcxmlfile.xsd" />
+    <None Remove="visio.xsd" />
+    <None Remove="vml.xsd" />
+    <None Remove="vml2.xsd" />
+    <None Remove="w10.xsd" />
+    <None Remove="wordnet.xsd" />
+    <None Remove="wordnetaux.xsd" />
+    <None Remove="wordsp.xsd" />
+    <None Remove="xml.xsd" />
+    <None Remove="xsdlib.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

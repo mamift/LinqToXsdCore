@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "LinqToXsdCore.sln",
+    "projects": [
+      "LinqToXsd\\LinqToXsd.csproj",
+      "XObjectsCode\\XObjectsCodeGen.csproj",
+      "XObjectsCore\\XObjectsCore.csproj"
+    ]
+  }
+}

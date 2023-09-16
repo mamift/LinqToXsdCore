@@ -1,0 +1,7 @@
+<element 
+	xmlns:clixtestcase="http://clixml.sourceforge.net"
+    clixtestcase:schemaLocation="http://clixml.sourceforge.net http://clixml.sourceforge.net" 
+    id="2">
+<clixtestcase:schema location="../schema/macro.clx" assert="success"/>
+    
+</element>

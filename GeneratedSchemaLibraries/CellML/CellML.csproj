@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="cellml_1_1.xsd" />
+    <EmbeddedResource Include="flattened\cellml_1_1.xsd" />
+    <EmbeddedResource Include="flattened\cellml_1_1.xsd.config" />
+    <EmbeddedResource Include="flattened\cellml_1_1.xsd.cs" />
+    <EmbeddedResource Include="flattened\mathml2.xsd" />
+    <EmbeddedResource Include="flattened\xlink-href.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="cellml_1_1.xsd" />
+    <None Remove="flattened\cellml_1_1.xsd" />
+    <None Remove="flattened\cellml_1_1.xsd.config" />
+    <None Remove="flattened\mathml2.xsd" />
+    <None Remove="flattened\xlink-href.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -144,9 +144,13 @@ namespace Xml.Schema.Linq
                             {
                                 continue;
                             }
-                            // if datatype is NCName then this causes an exception
-                            var value = type.BaseXmlSchemaType.Datatype.
-                                ParseValue(s: facet.Value, nameTable: null, nsmgr: null);
+
+                            NameTable nameTable = null;
+                            // if datatype is NCName then a null nametable causes an exception
+                            if (type.BaseXmlSchemaType.Datatype.TypeCode == XmlTypeCode.NCName) {
+                                nameTable = new NameTable();
+                            }
+                            var value = type.BaseXmlSchemaType.Datatype.ParseValue(s: facet.Value, nameTable: nameTable, nsmgr: null);
                             enumerations.Add(value);
                         }
                         else if (facet is XmlSchemaPatternFacet)

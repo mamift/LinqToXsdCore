@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dml-chart.xsd" />
+    <EmbeddedResource Include="dml-chartDrawing.xsd" />
+    <EmbeddedResource Include="dml-diagram.xsd" />
+    <EmbeddedResource Include="dml-lockedCanvas.xsd" />
+    <EmbeddedResource Include="dml-main.xsd" />
+    <EmbeddedResource Include="dml-picture.xsd" />
+    <EmbeddedResource Include="dml-spreadsheetDrawing.xsd" />
+    <EmbeddedResource Include="dml-wordprocessingDrawing.xsd" />
+    <EmbeddedResource Include="pml.xsd" />
+    <EmbeddedResource Include="shared-additionalCharacteristics.xsd" />
+    <EmbeddedResource Include="shared-bibliography.xsd" />
+    <EmbeddedResource Include="shared-commonSimpleTypes.xsd" />
+    <EmbeddedResource Include="shared-customXmlDataProperties.xsd" />
+    <EmbeddedResource Include="shared-customXmlSchemaProperties.xsd" />
+    <EmbeddedResource Include="shared-documentPropertiesCustom.xsd" />
+    <EmbeddedResource Include="shared-documentPropertiesExtended.xsd" />
+    <EmbeddedResource Include="shared-documentPropertiesVariantTypes.xsd" />
+    <EmbeddedResource Include="shared-math.xsd" />
+    <EmbeddedResource Include="shared-relationshipReference.xsd" />
+    <EmbeddedResource Include="sml.xsd" />
+    <EmbeddedResource Include="vml-main.xsd" />
+    <EmbeddedResource Include="vml-officeDrawing.xsd" />
+    <EmbeddedResource Include="vml-presentationDrawing.xsd" />
+    <EmbeddedResource Include="vml-spreadsheetDrawing.xsd" />
+    <EmbeddedResource Include="vml-wordprocessingDrawing.xsd" />
+    <EmbeddedResource Include="wml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dml-chart.xsd" />
+    <None Remove="dml-chartDrawing.xsd" />
+    <None Remove="dml-diagram.xsd" />
+    <None Remove="dml-lockedCanvas.xsd" />
+    <None Remove="dml-main.xsd" />
+    <None Remove="dml-picture.xsd" />
+    <None Remove="dml-spreadsheetDrawing.xsd" />
+    <None Remove="dml-wordprocessingDrawing.xsd" />
+    <None Remove="pml.xsd" />
+    <None Remove="shared-additionalCharacteristics.xsd" />
+    <None Remove="shared-bibliography.xsd" />
+    <None Remove="shared-commonSimpleTypes.xsd" />
+    <None Remove="shared-customXmlDataProperties.xsd" />
+    <None Remove="shared-customXmlSchemaProperties.xsd" />
+    <None Remove="shared-documentPropertiesCustom.xsd" />
+    <None Remove="shared-documentPropertiesExtended.xsd" />
+    <None Remove="shared-documentPropertiesVariantTypes.xsd" />
+    <None Remove="shared-math.xsd" />
+    <None Remove="shared-relationshipReference.xsd" />
+    <None Remove="sml.xsd" />
+    <None Remove="vml-main.xsd" />
+    <None Remove="vml-officeDrawing.xsd" />
+    <None Remove="vml-presentationDrawing.xsd" />
+    <None Remove="vml-spreadsheetDrawing.xsd" />
+    <None Remove="vml-wordprocessingDrawing.xsd" />
+    <None Remove="wml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<rules xmlns="http://www.clixml.org/clix/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:reportVariables="http://clixml.sourceforge.net/reportVariables"
+    xmlns:Macro="http://www.clixml.org/clix/1.0/Macro"
+    xsi:schemaLocation="http://www.clixml.org/clix/1.0 http://clixml.sourceforge.net/clix.xsd http://clixml.sourceforge.net/reportVariables http://clixml.sourceforge.net/reportVariables.xsd http://www.clixml.org/clix/1.0/Macro http://clixml.sourceforge.net/Macro.xsd">
+<key name="dessertKey" match="//dinner" use="dessert"/>
+<rule id="key">
+    <header>
+     <author>Dominik Jungo</author>
+     <description>Tests the example from the clixml website.</description>
+     <comment>This code is copyrighted under the GNU General Public License. Please see the file LICENSE.txt for the details of that license.</comment>
+     </header>
+				
+<report>Key Test Failed</report>
+	<equal op1="key('dessertKey','Crepes')/price/text()" op2="2.50"/>
+</rule>
+</rules>

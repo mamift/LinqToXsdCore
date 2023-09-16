@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="datatypes.dtd" />
+    <None Remove="W3C XMLSchema v1.xsd" />
+    <None Remove="W3C XMLSchema v1.xsd.config" />
+    <None Remove="W3C XMLSchema v1_1.xsd" />
+    <None Remove="xml.xsd" />
+    <None Remove="xml.xsd.config" />
+    <None Remove="XMLSchema.dtd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="datatypes.dtd" />
+    <EmbeddedResource Include="W3C XMLSchema v1.xsd" />
+    <EmbeddedResource Include="W3C XMLSchema v1.xsd.config" />
+    <EmbeddedResource Include="W3C XMLSchema v1_1.xsd" />
+    <EmbeddedResource Include="xml.xsd" />
+    <EmbeddedResource Include="xml.xsd.config" />
+    <EmbeddedResource Include="XMLSchema.dtd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>

@@ -11,8 +11,9 @@ namespace Xml.Schema.Linq.Extensions
         /// </summary>
         /// <param name="stream"></param>
         /// <param name="encoding"></param>
+        /// <param name="dispose">Pass <c>true</c> to dispose the stream upon returning.</param>
         /// <returns></returns>
-        public static string ReadAsString(this Stream stream, Encoding encoding = null)
+        public static string ReadAsString(this Stream stream, Encoding encoding = null, bool dispose = false)
         {
             var streamReader = encoding == null
                 ? new StreamReader(stream, detectEncodingFromByteOrderMarks: true)

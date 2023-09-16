@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ua\Opc.Ua.Gds.Types.xsd" />
+    <EmbeddedResource Include="Ua\Opc.Ua.Onboarding.Types.xsd" />
+    <EmbeddedResource Include="Ua\Opc.Ua.Safety.Types.xsd" />
+    <EmbeddedResource Include="Ua\Opc.Ua.Types.xsd" />
+    <EmbeddedResource Include="Ua\OPCBinarySchema.xsd" />
+    <EmbeddedResource Include="Ua\SecuredApplication.xsd" />
+    <EmbeddedResource Include="Ua\UANodeSet.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Ua\Opc.Ua.Gds.Types.xsd" />
+    <None Remove="Ua\Opc.Ua.Onboarding.Types.xsd" />
+    <None Remove="Ua\Opc.Ua.Safety.Types.xsd" />
+    <None Remove="Ua\Opc.Ua.Types.xsd" />
+    <None Remove="Ua\OPCBinarySchema.xsd" />
+    <None Remove="Ua\SecuredApplication.xsd" />
+    <None Remove="Ua\UANodeSet.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

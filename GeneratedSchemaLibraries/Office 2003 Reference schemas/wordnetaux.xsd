@@ -1,0 +1,530 @@
+<xsd:schema targetNamespace="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns="http://schemas.microsoft.com/office/word/2003/auxHint"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified">
+ <xsd:annotation>
+  <xsd:documentation>
+   Permission to copy, display and distribute the contents of this document (the “Specification”), in any medium for any purpose without fee or royalty is hereby granted, provided that you include the following notice on ALL copies of the Specification, or portions thereof, that you make:
+   Copyright (c) Microsoft Corporation.  All rights reserved.  Permission to copy, display and distribute this document is available at:  http://msdn.microsoft.com/library/en-us/odcXMLRef/html/odcXMLRefLegalNotice.asp?frame=true.  
+   No right to create modifications or derivatives of this Specification is granted herein.
+   There is a separate patent license available to parties interested in implementing software programs that can read and write files that conform to the Specification.  This patent license is available at this location:  http://www.microsoft.com/mscorp/ip/format/xmlpatentlicense.asp.
+   THE SPECIFICATION IS PROVIDED "AS IS" AND MICROSOFT MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THE SPECIFICATION ARE SUITABLE FOR ANY PURPOSE; NOR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+   MICROSOFT WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THE SPECIFICATION.
+   The name and trademarks of Microsoft may NOT be used in any manner, including advertising or publicity pertaining to the Specification or its contents without specific, written prior permission. Title to copyright in the Specification will at all times remain with Microsoft.
+   No other rights are granted by implication, estoppel or otherwise.
+  </xsd:documentation>
+ </xsd:annotation>
+ <xsd:element name="sect" type="sectElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a container for document sections. The sect element encloses all text between inserted section breaks.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="sectElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a document section.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="sub-section" minOccurs="0" maxOccurs="unbounded" type="subsectionElt">
+    <xsd:annotation>
+     <xsd:documentation>Represents a document subsection as derived from heading levels in the document.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:any processContents="lax" namespace="##other" minOccurs="0" maxOccurs="unbounded"></xsd:any>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="subsectionElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a document subsection as derived from heading levels in the document.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:any processContents="lax" namespace="##other" minOccurs="0" maxOccurs="unbounded"></xsd:any>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="fontElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a font.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the name of the font.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="allowEmptyCollapse">
+  <xsd:annotation>
+   <xsd:documentation>Represents a hint to transforms to allow the current paragraph to autocollapse if empty when rendered as HTML.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:element name="font" type="fontElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a hint to transforms that identifies the font used by Microsoft Office Word 2003 to display the document.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:annotation>
+  <xsd:documentation> HEX NUMBER PROPERTY </xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="hexNumberType">
+  <xsd:annotation>
+   <xsd:documentation>Defines a hexadecimal number.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:hexBinary"></xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="hexNumberProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a property that consists of a hexadecimal number.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="hexNumberType" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the hexadecimal number value.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="symElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a symbol character.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="font" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the font in which the symbol character is found.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="char" type="hexNumberType">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the character code of the symbol.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="sym" type="symElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a hint to transforms that this run resolves to a single symbol, described herein.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:annotation>
+  <xsd:documentation> BG COLOR PROPERTY </xsd:documentation>
+ </xsd:annotation>
+ <xsd:attribute name="bgcolor">
+  <xsd:annotation>
+   <xsd:documentation>Gets or sets the HTML equivalent of the background color. This color value takes into account various shading settings and represents the appropriate final presentation color.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:union>
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:hexBinary">
+      <xsd:length value="3" fixed="true"></xsd:length>
+     </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="auto"></xsd:enumeration>
+      <xsd:enumeration value="transparent"></xsd:enumeration>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:union>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:attribute name="bdrwidth">
+  <xsd:annotation>
+   <xsd:documentation>Gets or sets the HTML equivalent of the border width, in points. This number takes into account different internal border styles and represents the appropriate final presentation width.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:integer"></xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:attribute name="wTab">
+  <xsd:annotation>
+   <xsd:documentation>Gets or sets the tab width, in twips.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType>
+   <xsd:restriction base="xsd:integer"></xsd:restriction>
+  </xsd:simpleType>
+ </xsd:attribute>
+ <xsd:annotation>
+  <xsd:documentation> TAB LEADER VALUE </xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="tabTLCValue">
+  <xsd:annotation>
+   <xsd:documentation>Defines the tab leader character.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="none">
+    <xsd:annotation>
+     <xsd:documentation>No leader line</xsd:documentation>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="dot">
+    <xsd:annotation>
+     <xsd:documentation>Dotted leader line</xsd:documentation>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="hyphen">
+    <xsd:annotation>
+     <xsd:documentation>Dashed leader line</xsd:documentation>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="underscore">
+    <xsd:annotation>
+     <xsd:documentation>Solid leader line</xsd:documentation>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="heavy">
+    <xsd:annotation>
+     <xsd:documentation>Heavy solid leader line (appears as middle-dot in Word 2000 and beyond)</xsd:documentation>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="middle-dot">
+    <xsd:annotation>
+     <xsd:documentation>Bullet character leader line</xsd:documentation>
+    </xsd:annotation>
+   </xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:attribute name="tlc" type="tabTLCValue">
+  <xsd:annotation>
+   <xsd:documentation>Gets or sets the tab leader character.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:attribute name="cTlc" type="xsd:integer">
+  <xsd:annotation>
+   <xsd:documentation>Gets or sets the count of tab leader characters that equals one tab.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+ <xsd:simpleType name="booleanType">
+  <xsd:annotation>
+   <xsd:documentation>Defines a Boolean value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="true"></xsd:enumeration>
+   <xsd:enumeration value="false"></xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:annotation>
+  <xsd:documentation> HEX COLOR PROPERTY </xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="hexColorType">
+  <xsd:annotation>
+   <xsd:documentation>Defines a hexadecimal color value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:union>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:hexBinary">
+     <xsd:length value="3" fixed="true"></xsd:length>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType>
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="auto"></xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+  </xsd:union>
+ </xsd:simpleType>
+ <xsd:complexType name="hexColorProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a color property that uses a hexadecimal value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="hexColorType" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a hexadecimal color code in the format of RRGGBB or 'auto'.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:simpleType name="htmlBorderValues">
+  <xsd:annotation>
+   <xsd:documentation>Defines border types for the HTML rendering of the document.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="none"></xsd:enumeration>
+   <xsd:enumeration value="solid"></xsd:enumeration>
+   <xsd:enumeration value="double"></xsd:enumeration>
+   <xsd:enumeration value="dotted"></xsd:enumeration>
+   <xsd:enumeration value="dashed"></xsd:enumeration>
+   <xsd:enumeration value="ridge"></xsd:enumeration>
+   <xsd:enumeration value="groove"></xsd:enumeration>
+   <xsd:enumeration value="outset"></xsd:enumeration>
+   <xsd:enumeration value="inset"></xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:annotation>
+  <xsd:documentation> BOOLEAN PROPERTY</xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="onOffType">
+  <xsd:annotation>
+   <xsd:documentation>Defines an 'on' or 'off' value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="on"></xsd:enumeration>
+   <xsd:enumeration value="off"></xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="onOffProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a property consisting of a value that is 'on' or 'off.'</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="onOffType" default="on">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the Boolean value of either 'on' or 'off.'.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="borderProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a border.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="htmlBorderValues" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a border style.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="color" type="hexColorType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a border color.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute ref="bdrwidth" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>The 'html' equivalent for this border width</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="space" type="decimalNumberType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a border space in eighths of a point.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="shadow" type="onOffType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a value indicating whether the border has a shadow.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="frame" type="onOffType" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a value indicating whether the border is reversed to create a frame.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:annotation>
+  <xsd:documentation> DECIMAL NUMBER PROPERTY </xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="decimalNumberType">
+  <xsd:annotation>
+   <xsd:documentation>Defines a decimal number value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:integer"></xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="decimalNumberProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a property that uses a decimal number value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="decimalNumberType" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the decimal number value.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="bordersElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines borders.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="top" type="borderProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the top border.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="left" type="borderProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the left border.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="bottom" type="borderProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the bottom border.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="right" type="borderProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the right border.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="between" type="borderProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the interior border that subdivides sections within the outer four borders.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="bar" type="borderProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Not used by Microsoft Office Word 2003.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:annotation>
+  <xsd:documentation> JUSTIFICATION VALUE </xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="jcValue">
+  <xsd:annotation>
+   <xsd:documentation>Defines values for the document-justification settings.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="left"></xsd:enumeration>
+   <xsd:enumeration value="center"></xsd:enumeration>
+   <xsd:enumeration value="right"></xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:annotation>
+  <xsd:documentation> JUSTIFICATION PROPERTY </xsd:documentation>
+ </xsd:annotation>
+ <xsd:complexType name="jcProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a property that uses a justification setting.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="jcValue" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the justification position.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:annotation>
+  <xsd:documentation> TWIPS MEASURE PROPERTY </xsd:documentation>
+ </xsd:annotation>
+ <xsd:simpleType name="twipsMeasureType">
+  <xsd:annotation>
+   <xsd:documentation>Defines a positive measurement in twips (twentieths of a point, 1/1440 of an inch).</xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:unsignedInt"></xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="twipsMeasureProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a property that uses a positive measurement in twips.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="twipsMeasureType" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets a positive measurement in twips (twentieths of a point, 1/1440 of an inch).</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="apoElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines an object placed using absolute positioning in HTML.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="width" type="twipsMeasureProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the width of the absolute-positioning frame.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="height" type="twipsMeasureProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the height of the absolute-positioning frame.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="jc" type="jcProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the justification of the absolute-positioning frame.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="vertFromText" type="twipsMeasureProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the top and bottom padding of the absolute-positioning frame, measured in twips.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="horizFromText" type="twipsMeasureProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the left and right padding of the absolute-positioning frame, measured in twips.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="hintShdProperty">
+  <xsd:annotation>
+   <xsd:documentation>Defines a property that uses a background color value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute ref="bgcolor" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>The HTML equivalent of the background color. This takes into account various shading settings and represents the appropriate final presentation color.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:complexType name="pBdrGroupElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a set of borders for a group of elements.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+   <xsd:element name="borders" minOccurs="0" maxOccurs="1" type="bordersElt">
+    <xsd:annotation>
+     <xsd:documentation>Represents describes the borders for the group.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="margin-left" minOccurs="0" maxOccurs="1" type="twipsMeasureProperty">
+    <xsd:annotation>
+     <xsd:documentation>Represents the left margin for the border.  If you apply this value to a div element, you should nest another div element immediately within to reverse the effect. Otherwise, you will see double-indented paragraphs.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="margin-right" minOccurs="0" maxOccurs="1" type="twipsMeasureProperty">
+    <xsd:annotation>
+     <xsd:documentation>Represents the right margin for the border.  If you apply this value to a div element, you should nest another div element immediately within to reverse the effect. Otherwise, you will see double-indented paragraphs.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="apo" minOccurs="0" maxOccurs="1" type="apoElt">
+    <xsd:annotation>
+     <xsd:documentation>Represents the absolute-positioning properties for the group.  Also referred to as frame properties.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="shd" type="hintShdProperty" minOccurs="0">
+    <xsd:annotation>
+     <xsd:documentation>Represents the shading for the group.</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:any processContents="lax" namespace="##other" minOccurs="0" maxOccurs="unbounded"></xsd:any>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:element name="pBdrGroup" type="pBdrGroupElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a hint for transforms describing the border, shading, and positioning of groups of paragraphs with similar properties.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="stringElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a string value.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="xsd:string">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the string value.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:annotation>
+  <xsd:documentation> TEXT ELT </xsd:documentation>
+ </xsd:annotation>
+ <xsd:complexType name="textElt">
+  <xsd:annotation>
+   <xsd:documentation>Defines a run of text.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:attribute name="val" type="xsd:string" use="required">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the text displayed for this object.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="wTabBefore" type="xsd:integer" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the width (in twips) of the tab before the number. Use this value only if the number is not left-justified.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="wTabAfter" type="xsd:integer" use="optional">
+   <xsd:annotation>
+    <xsd:documentation>Gets or sets the width (in twips) of the tab after the number.</xsd:documentation>
+   </xsd:annotation>
+  </xsd:attribute>
+ </xsd:complexType>
+ <xsd:element name="t" type="textElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents the text Word displayed for this object.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:element name="uiName" type="stringElt">
+  <xsd:annotation>
+   <xsd:documentation>Represents a style name as displayed to the user.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:attribute name="iPersistPropertyBag" type="booleanType">
+  <xsd:annotation>
+   <xsd:documentation>Gets or sets a Boolean value indicating whether an ActiveX control supports the iPersistPropertyBag interface.</xsd:documentation>
+  </xsd:annotation>
+ </xsd:attribute>
+</xsd:schema>

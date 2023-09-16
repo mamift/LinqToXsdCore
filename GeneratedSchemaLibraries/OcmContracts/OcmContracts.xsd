@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:ocm/#/ocmContracts"
+    xmlns="urn:ocm/#/ocmContracts">
+
+    <xs:element name="Contract">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="Description" type="xs:string"/>
+                <xs:element name="StartDate" type="xs:dateTime"/>
+                <xs:element minOccurs="0" name="OtherDates">
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                            <xs:choice>
+                                <xs:element name="Date" type="otherDate"/>
+                                <xs:element name="DateCalculation" type="calculatedDate"/>
+                            </xs:choice>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="EndDate" type="xs:dateTime"/>
+                <xs:element minOccurs="0" name="Value" type="money"/>
+                <xs:element minOccurs="0" name="Vendor">
+                    <xs:annotation>
+                        <xs:documentation>The vendor's name.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="Description" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="CustomData">
+                    <xs:annotation>
+                        <xs:documentation>Store custom data here.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:any namespace="##any" processContents="lax"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="dateTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ContractReviewDate"/>
+            <xs:enumeration value="PaymentDate"/>
+            <xs:enumeration value="OtherReviewDate"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="money">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="calculatedDurationType">
+        <xs:annotation>
+            <xs:documentation>Specifies the type of calculation to perform on the date (either calculate before or after)</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="before"/>
+            <xs:enumeration value="after"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="calculatedDate">
+        <xs:simpleContent>
+            <xs:extension base="xs:duration">
+                <xs:attribute name="Type" type="calculatedDurationType">
+                    <xs:annotation>
+                        <xs:documentation>The type of calculation to make.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="CalculatedDate" type="xs:dateTime">
+                    <xs:annotation>
+                        <xs:documentation>The calculated date value stored for caching.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="otherDate">
+        <xs:simpleContent>
+            <xs:extension base="xs:dateTime">
+                <xs:attribute name="Type" type="dateTypes"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

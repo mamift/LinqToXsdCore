@@ -11,6 +11,45 @@ namespace Xml.Schema.Linq.Extensions
     public static class GeneralExtensionMethods
     {
         /// <summary>
+        /// Assuming the file is an XML schema, will return the XML schema version (<see cref="XmlSchemaVersion"/>).
+        /// </summary>
+        /// <param name="xsdFile"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static XmlSchemaVersion GetXmlSchemaVersion(this FileInfo xsdFile)
+        {
+            if (!xsdFile.Extension.EndsWith("xsd")) throw new ArgumentOutOfRangeException("Only XSD files supported");
+
+            using var firstReadStream = xsdFile.OpenRead();
+            using var reader = XmlReader.Create(firstReadStream, Defaults.DefaultXmlReaderSettings);
+            var pastFirstElement = false;
+            while (reader.Read()) {
+                switch (reader.NodeType) {
+                    case XmlNodeType.Element:
+                        if (reader.IsStartElement("schema", "http://www.w3.org/2001/XMLSchema")) {
+                            var version = reader.GetAttribute("version");
+                            if (version == null) {
+                                goto outOfLoop;
+                            }
+
+                            if (version.EndsWith(".1") && version.StartsWith("1")) return XmlSchemaVersion.Version1_1;
+                            if (version == "1" || (version.EndsWith(".0") && version.StartsWith("1"))) return XmlSchemaVersion.Version1_0;
+                            pastFirstElement = true;
+                        }
+
+                        break;
+                }
+
+                if (pastFirstElement) {
+                    goto outOfLoop;
+                }
+            }
+
+            outOfLoop:
+            return XmlSchemaVersion.Unspecified;
+        }
+
+        /// <summary>
         /// Converts an <see cref="XmlReader"/>s to an <see cref="XmlSchemaSet"/>, assuming the reader points to an XML Schema file.
         /// </summary>
         /// <param name="reader">The current <see cref="XmlReader"/>.</param>

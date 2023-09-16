@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="windowsTaskSched.xsd" />
+    <EmbeddedResource Include="windowsTaskSched.xsd.config" />
+    <EmbeddedResource Include="windowsTaskSched.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="windowsTaskSched.xsd" />
+    <None Remove="windowsTaskSched.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

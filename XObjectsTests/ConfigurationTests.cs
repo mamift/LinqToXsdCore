@@ -1,12 +1,23 @@
-﻿using System.Linq;
+﻿using System.IO.Abstractions.TestingHelpers;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
+using Rss;
 
 namespace Xml.Schema.Linq.Tests
 {
     public class ConfigurationTests
     {
+        public MockFileSystem TestFiles { get; set; }
+
+        [SetUp]
+        public void Setup()
+        {
+            TestFiles = Utilities.GetAssemblyFileSystem(typeof(RssChannel).Assembly);
+        }
+
         [Test]
         public void TestExampleNamespaceElementsArePresentInExampleConfig()
         {
@@ -32,7 +43,7 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void TestThatConfigHasDefaultNamespaceMappingForXsdWithNoTargetNamespace()
         {
-            var rssSchema = XDocument.Load(@"Rss\rss-2_0.xsd");
+            var rssSchema = XDocument.Parse(TestFiles.GetFile(@"Rss\rss-2_0.xsd").TextContents);
             var loaded = Configuration.LoadForSchema(rssSchema);
 
             var namespaceEl = loaded.Namespaces.Namespace.First();

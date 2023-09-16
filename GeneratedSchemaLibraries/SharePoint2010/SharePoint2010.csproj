@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CamlQuery.xsd" />
+    <None Remove="CamlView.xsd" />
+    <None Remove="CoreDefinitions.xsd" />
+    <None Remove="cui.xsd" />
+    <None Remove="WorkflowActions.xsd" />
+    <None Remove="wss.xsd" />
+    <None Remove="wss.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="CamlQuery.xsd" />
+    <EmbeddedResource Include="CamlView.xsd" />
+    <EmbeddedResource Include="CoreDefinitions.xsd" />
+    <EmbeddedResource Include="cui.xsd" />
+    <EmbeddedResource Include="WorkflowActions.xsd" />
+    <EmbeddedResource Include="wss.xsd" />
+    <EmbeddedResource Include="wss.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>

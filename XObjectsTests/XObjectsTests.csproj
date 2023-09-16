@@ -17,15 +17,19 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="OneOf" Version="3.0.263" />
+    <PackageReference Include="System.IO.Abstractions" Version="19.2.29" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="19.2.29" />
+    <PackageReference Include="TestableIO.System.IO.Abstractions.Extensions" Version="1.0.42" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
     <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" />
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" />
-	<ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
-	  <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
-	</ProjectReference>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>

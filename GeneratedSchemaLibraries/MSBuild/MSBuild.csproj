@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Microsoft.Build.Commontypes.xsd" />
+    <EmbeddedResource Include="Microsoft.Build.Core.xsd" />
+    <EmbeddedResource Include="Microsoft.Build.xsd" />
+    <EmbeddedResource Include="Microsoft.Build.xsd.config" />
+    <EmbeddedResource Include="Microsoft.Build.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Microsoft.Build.Commontypes.xsd" />
+    <None Remove="Microsoft.Build.Core.xsd" />
+    <None Remove="Microsoft.Build.xsd" />
+    <None Remove="Microsoft.Build.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<restaurant
+  xmlns:clixtestcase="http://clixml.sourceforge.net"
+  clixtestcase:schemaLocation="http://clixml.sourceforge.net http://clixml.sourceforge.net">
+  <clixtestcase:schema location="../schema/keyexample.clx" assert="success"/>
+  <dinner>
+    <dessert>Crepes</dessert>
+    <price>2.50</price>
+  </dinner>
+  <dinner>
+    <dessert>Chocolate gateaux</dessert>
+    <price>3</price>
+  </dinner>
+  <favourite>Crepes</favourite>
+</restaurant>

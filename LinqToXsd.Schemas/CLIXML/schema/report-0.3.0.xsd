@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	targetNamespace="http://www.clixml.org/clix/1.0" 
+	xmlns="http://www.clixml.org/clix/1.0" 
+	xmlns:clix="http://www.clixml.org/clix/1.0" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation>Report for rule violation</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:element name="stacktrace" minOccurs="0" maxOccurs="1">
+					<xs:complexType mixed="true">
+						<xs:choice minOccurs="0" maxOccurs="1">
+							<xs:element name="disabled" >
+								<xs:complexType></xs:complexType>
+							</xs:element>
+							<xs:sequence>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:any minOccurs="0" maxOccurs="unbounded" namespace="##other" />
+								<xs:element name="success" type="resultType"></xs:element>
+								<xs:element name="fail" type="resultType"></xs:element>
+							</xs:choice>
+							</xs:sequence>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="id" type="xs:NMTOKEN" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="resultType" mixed="true">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="variable" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:NMTOKEN" use="required"></xs:attribute>
+						<xs:attribute name="value" type="xs:string" use="required"></xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="fail" type="resultType" minOccurs="0" maxOccurs="unbounded"></xs:element>
+				<xs:element name="success" type="resultType" minOccurs="0" maxOccurs="unbounded"></xs:element>
+		</xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:element name="forall-candidate" type="quantifier-variable"></xs:element>
+				<xs:element name="exists-candidate" type="quantifier-variable"></xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="test" type="xs:NMTOKEN" use="required" />
+	</xs:complexType>
+	<xs:complexType name="quantifier-variable">
+		<xs:attribute name="variable" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="value" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+</xs:schema>

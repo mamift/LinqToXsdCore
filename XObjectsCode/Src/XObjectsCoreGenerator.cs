@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq
 {
@@ -24,6 +26,18 @@ namespace Xml.Schema.Linq
         {
             var settings = new LinqToXsdSettings();
             if (fromXmlFile.IsNotEmpty()) settings.Load(fromXmlFile);
+
+            return settings;
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="LinqToXsdSettings"/> from an already parsed <see cref="XDocument"/>.
+        /// </summary>
+        /// <returns></returns>
+        public static LinqToXsdSettings LoadLinqToXsdSettings(XDocument xdoc)
+        {
+            var settings = new LinqToXsdSettings();
+            settings.Load(xdoc);
 
             return settings;
         }
@@ -73,10 +87,7 @@ namespace Xml.Schema.Linq
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
 
-            var xmlReader = XmlReader.Create(xsdFilePath, new XmlReaderSettings {
-                DtdProcessing = DtdProcessing.Parse,
-                CloseInput = true
-            });
+            var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
 
             using (xmlReader) {
                 var schemaSet = xmlReader.ToXmlSchemaSet();
@@ -99,6 +110,21 @@ namespace Xml.Schema.Linq
                         return (filename, x.writer);
                     });
             }
+        }
+
+        /// <summary>
+        /// Generates code using a given <paramref name="schemaSet"/> of XSDs.
+        /// </summary>
+        /// <param name="schemaSet"></param>
+        /// <returns>
+        ///     A single (null, StringWriter) when configuration doesn't split files per namespace.
+        ///     Otherwise, one StringWriter per CLR namespace.
+        /// </returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
+        public static IEnumerable<(string clrNamespace, TextWriter writer)> Generate(XmlSchemaSet schemaSet)
+        {
+            var settings = new LinqToXsdSettings();
+            return Generate(schemaSet, settings);
         }
 
         /// <summary>
@@ -174,11 +200,15 @@ namespace Xml.Schema.Linq
         public static Dictionary<string, TextWriter> Generate(IEnumerable<string> schemaFiles)
         {
             // xsd file paths are keys, the FileInfo's to their config files are values
-            var dictOfSchemasAndTheirConfigs = schemaFiles.Select(s => new KeyValuePair<string, FileInfo>(s,
-                                                               new FileInfo($"{s}.config")))
+            var dictOfSchemasAndTheirConfigs = schemaFiles.Select(xsdFilePath => new KeyValuePair<string, FileInfo>(xsdFilePath,
+                                                               new FileInfo($"{xsdFilePath}.config")))
                                                            .ToDictionary(k => k.Key, v => v.Value);
-            return dictOfSchemasAndTheirConfigs
-                .Where(kvp => kvp.Value.Exists)
+
+
+            var excludeV11Xsds = dictOfSchemasAndTheirConfigs
+                .Where(kvp => kvp.Value.Exists && new FileInfo(kvp.Key).GetXmlSchemaVersion() != XmlSchemaVersion.Version1_1).ToList();
+
+            return excludeV11Xsds
                 .SelectMany(kvp => Generate(kvp.Key, kvp.Value.FullName))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.

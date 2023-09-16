@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,6 +19,41 @@ namespace Xml.Schema.Linq.Tests
     /// </summary>
     public static class TestExtensionsMethods
     {
+        public static void CopyToRealFileSystem(this MockFileSystem mfs, string parentDir)
+        {
+            if (!Path.IsPathRooted(parentDir))
+                throw new ArgumentException("Parent dir should be rooted and absolute", nameof(parentDir));
+
+            var dir = new DirectoryInfo(parentDir);
+
+            foreach (var file in mfs.AllFiles) {
+                var fileInfo = mfs.FileInfo.New(file);
+
+                var pathRoot = Path.GetPathRoot(file);
+                var unrootedPath = file.Replace(pathRoot, "");
+
+                var destInRealFs = Path.Combine(dir.FullName, unrootedPath);
+
+                using var stream = fileInfo.OpenRead();
+                using var memoryStream = new MemoryStream();
+                stream.CopyTo(memoryStream);
+
+                memoryStream.Position = 0;
+
+                var destDir = Path.GetDirectoryName(destInRealFs);
+
+                if (!Directory.Exists(destDir)) {
+                    Directory.CreateDirectory(destDir!);
+                }
+
+                using var destFileStream = File.Create(destInRealFs);
+
+                memoryStream.CopyTo(destFileStream);
+
+                destFileStream.Flush();
+            }
+        }
+
         /// <summary>
         /// Copies an existing <paramref name="dir"/> to a <paramref name="destination"/> directory, that may or may not exist.
         /// <para>https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-copy-directories</para>

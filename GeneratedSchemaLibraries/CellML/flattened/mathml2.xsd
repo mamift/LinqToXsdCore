@@ -1,0 +1,2033 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.w3.org/1998/Math/MathML"
+    xmlns="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema for MathML.   Author: Stéphane Dalmas, INRIA.
+        </xs:documentation>
+    </xs:annotation>
+    <!-- common stuff -->
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module defining the "math" element of MathML.
+            Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- The four groups that govern a lot of things -->
+    <!-- currently very lax. Should be tightened from Chapter 5 -->
+    <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink-href.xsd"/>
+    <xs:import/>
+    <xs:group name="Presentation-expr.class">
+        <xs:choice>
+            <xs:group ref="PresExpr.class"/>
+            <xs:group ref="ContExpr.class"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="Content-expr.class">
+        <xs:choice>
+            <xs:group ref="ContExpr.class"/>
+            <xs:group ref="PresExpr.class"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="PresExpr.class">
+        <xs:choice>
+            <xs:group ref="Presentation-token.class"/>
+            <xs:group ref="Presentation-layout.class"/>
+            <xs:group ref="Presentation-script.class"/>
+            <xs:group ref="Presentation-table.class"/>
+            <xs:element ref="mspace"/>
+            <xs:element ref="maction"/>
+            <xs:element ref="merror"/>
+            <xs:element ref="mstyle"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="ContExpr.class">
+        <xs:choice>
+            <xs:group ref="Content-tokens.class"/>
+            <xs:group ref="Content-arith.class"/>
+            <xs:group ref="Content-functions.class"/>
+            <xs:group ref="Content-logic.class"/>
+            <xs:group ref="Content-constants.class"/>
+            <xs:group ref="Content-sets.class"/>
+            <xs:group ref="Content-relations.class"/>
+            <xs:group ref="Content-elementary-functions.class"/>
+            <xs:group ref="Content-calculus.class"/>
+            <xs:group ref="Content-linear-algebra.class"/>
+            <xs:group ref="Content-vector-calculus.class"/>
+            <xs:group ref="Content-statistics.class"/>
+            <xs:group ref="Content-constructs.class"/>
+            <xs:element ref="semantics"/>
+        </xs:choice>
+    </xs:group>
+    <!-- "math" -->
+    <xs:attributeGroup name="Browser-interface.attrib">
+        <xs:attribute name="baseline" type="xs:string"/>
+        <xs:attribute default="scroll" name="overflow">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="scroll"/>
+                    <xs:enumeration value="elide"/>
+                    <xs:enumeration value="truncate"/>
+                    <xs:enumeration value="scale"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="altimg" type="xs:anyURI"/>
+        <xs:attribute name="alttext" type="xs:string"/>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="height" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="math.attlist">
+        <xs:attributeGroup ref="Browser-interface.attrib"/>
+        <xs:attribute name="macros" type="xs:string"/>
+        <!-- deprecated
+  <xs:attribute name="mode" type="xs:string"/>
+-->
+        <xs:attribute default="inline" name="display">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="block"/>
+                    <xs:enumeration value="inline"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="math.content">
+        <xs:choice>
+            <!-- *** This region was not commented out in the original W3C version,
+         but has been commented out as the mathml:math element in
+         CellML does not allow presentation MathML elements.
+    <xs:group ref="PresExpr.class"/>
+*** End of region commented out for CellML *** -->
+            <xs:group ref="ContExpr.class"/>
+        </xs:choice>
+    </xs:group>
+    <xs:complexType name="math.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="math.content"/>
+        <xs:attributeGroup ref="math.attlist"/>
+    </xs:complexType>
+    <xs:element name="math" type="math.type"/>
+    <xs:annotation>
+        <xs:documentation>   This is the common attributes module for MathML.   Author: Stéphane
+            Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- import any foreign namespace -->
+    <!-- The type of "class" is from the XHTML modularization with Schema
+     document -->
+    <xs:attributeGroup name="Common.attrib">
+        <xs:attribute name="class" type="xs:NMTOKENS"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="xref" type="xs:IDREF"/>
+        <xs:attribute name="id" type="xs:ID"/>
+        <xs:attribute ref="xlink:href"/>
+        <!-- allow attributes from foreign namespaces, and don't check them -->
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+    </xs:attributeGroup>
+    <!-- Presentation -->
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module containing some type definitions for
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- Simple sizes -->
+    <xs:simpleType name="simple-size">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="small"/>
+            <xs:enumeration value="normal"/>
+            <xs:enumeration value="big"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Centering values -->
+    <xs:simpleType name="centering">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="center"/>
+            <xs:enumeration value="right"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- The named spaces -->
+    <!-- this is also used in the value of the "width" attribute on the
+     "mpadded" element -->
+    <xs:simpleType name="named-space">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="veryverythinmathspace"/>
+            <xs:enumeration value="verythinmathspace"/>
+            <xs:enumeration value="thinmathspace"/>
+            <xs:enumeration value="mediummathspace"/>
+            <xs:enumeration value="thickmathspace"/>
+            <xs:enumeration value="verythickmathspace"/>
+            <xs:enumeration value="veryverythickmathspace"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Thickness -->
+    <xs:simpleType name="thickness">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="thin"/>
+            <xs:enumeration value="medium"/>
+            <xs:enumeration value="thick"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- number with units used to specified lengths -->
+    <xs:simpleType name="length-with-unit">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%))|0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="length-with-optional-unit">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%)?"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- This is just "infinity" that can be used as a length -->
+    <xs:simpleType name="infinity">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="infinity"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- colors defined as RGB -->
+    <xs:simpleType name="RGB-color">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="#(([0-9]|[a-f]){3}|([0-9]|[a-f]){6})"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:annotation>
+        <xs:documentation>   This schema module defines sets of attributes common to several
+            elements   of presentation MathML.   Author: Stéphane Dalmas, INRIA.
+        </xs:documentation>
+    </xs:annotation>
+    <!-- The mathematics style attributes. These attributes are valid on all
+     presentation token elements except "mspace" and "mglyph", and on no
+     other elements except "mstyle". -->
+    <xs:attributeGroup name="Token-style.attrib">
+        <xs:attribute name="mathvariant">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="normal"/>
+                    <xs:enumeration value="bold"/>
+                    <xs:enumeration value="italic"/>
+                    <xs:enumeration value="bold-italic"/>
+                    <xs:enumeration value="double-struck"/>
+                    <xs:enumeration value="bold-fraktur"/>
+                    <xs:enumeration value="script"/>
+                    <xs:enumeration value="bold-script"/>
+                    <xs:enumeration value="fraktur"/>
+                    <xs:enumeration value="sans-serif"/>
+                    <xs:enumeration value="bold-sans-serif"/>
+                    <xs:enumeration value="sans-serif-italic"/>
+                    <xs:enumeration value="sans-serif-bold-italic"/>
+                    <xs:enumeration value="monospace"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="mathsize">
+            <xs:simpleType>
+                <xs:union memberTypes="simple-size length-with-unit"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <!-- For both of the following attributes the types should be
+        more restricted -->
+        <xs:attribute name="mathcolor" type="xs:string"/>
+        <xs:attribute name="mathbackground" type="xs:string"/>
+    </xs:attributeGroup>
+    <!-- These operators are all related to operators. They are valid on "mo" 
+     and "mstyle". -->
+    <xs:attributeGroup name="Operator.attrib">
+        <!-- this attribute value is normally inferred from the position of
+    the operator in its "<mrow"> -->
+        <xs:attribute name="form">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="prefix"/>
+                    <xs:enumeration value="infix"/>
+                    <xs:enumeration value="postfix"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <!-- set by dictionnary, else it is "thickmathspace" -->
+        <xs:attribute name="lspace">
+            <xs:simpleType>
+                <xs:union memberTypes="length-with-unit named-space"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <!-- set by dictionnary, else it is "thickmathspace" -->
+        <xs:attribute name="rspace">
+            <xs:simpleType>
+                <xs:union memberTypes="length-with-unit named-space"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <!-- set by dictionnary, else it is "false" -->
+        <xs:attribute name="fence" type="xs:boolean"/>
+        <!-- set by dictionnary, else it is "false" -->
+        <xs:attribute name="separator" type="xs:boolean"/>
+        <!-- set by dictionnary, else it is "false" -->
+        <xs:attribute name="stretchy" type="xs:boolean"/>
+        <!-- set by dictionnary, else it is "true" -->
+        <xs:attribute name="symmetric" type="xs:boolean"/>
+        <!-- set by dictionnary, else it is "false" -->
+        <xs:attribute name="movablelimits" type="xs:boolean"/>
+        <!-- set by dictionnary, else it is "false" -->
+        <xs:attribute name="accent" type="xs:boolean"/>
+        <!-- set by dictionnary, else it is "false" -->
+        <xs:attribute name="largeop" type="xs:boolean"/>
+        <xs:attribute name="minsize">
+            <xs:simpleType>
+                <xs:union memberTypes="length-with-unit named-space"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="maxsize">
+            <xs:simpleType>
+                <xs:union memberTypes="length-with-unit named-space infinity xs:float"/>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:annotation>
+        <xs:documentation>   This is the XML Schema module for the MathML "mglyph" element.
+            Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <xs:attributeGroup name="mglyph.attlist">
+        <xs:attribute name="alt" type="xs:string"/>
+        <xs:attribute name="fontfamily" type="xs:string"/>
+        <xs:attribute name="index" type="xs:positiveInteger"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mglyph.type">
+        <xs:attributeGroup ref="mglyph.attlist"/>
+    </xs:complexType>
+    <xs:element name="mglyph" type="mglyph.type"/>
+    <xs:annotation>
+        <xs:documentation>   This is the XML schema module for the token elements of the
+            presentation part of MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- The content of presentation token elements is either normal
+  characters, "mglyph" ones or alignment marks -->
+    <xs:group name="Glyph-alignmark.class">
+        <xs:choice>
+            <xs:element ref="malignmark"/>
+            <xs:element ref="mglyph"/>
+        </xs:choice>
+    </xs:group>
+    <!-- "mi" -->
+    <!-- "mi" is supposed to have a default value of its "mathvariant" attribute
+     set to "italic" -->
+    <xs:attributeGroup name="mi.attlist">
+        <xs:attributeGroup ref="Token-style.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="mi.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Glyph-alignmark.class"/>
+        <xs:attributeGroup ref="mi.attlist"/>
+    </xs:complexType>
+    <xs:element name="mi" type="mi.type"/>
+    <!-- "mo" -->
+    <xs:attributeGroup name="mo.attlist">
+        <xs:attributeGroup ref="Operator.attrib"/>
+        <xs:attributeGroup ref="Token-style.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="mo.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Glyph-alignmark.class"/>
+        <xs:attributeGroup ref="mo.attlist"/>
+    </xs:complexType>
+    <xs:element name="mo" type="mo.type"/>
+    <!-- "mn" -->
+    <xs:attributeGroup name="mn.attlist">
+        <xs:attributeGroup ref="Token-style.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="mn.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Glyph-alignmark.class"/>
+        <xs:attributeGroup ref="mi.attlist"/>
+    </xs:complexType>
+    <xs:element name="mn" type="mn.type"/>
+    <!-- "mtext" -->
+    <xs:attributeGroup name="mtext.attlist">
+        <xs:attributeGroup ref="Token-style.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="mtext.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Glyph-alignmark.class"/>
+        <xs:attributeGroup ref="mtext.attlist"/>
+    </xs:complexType>
+    <xs:element name="mtext" type="mtext.type"/>
+    <!-- "ms" -->
+    <xs:attributeGroup name="ms.attlist">
+        <!-- the values of "lquote" or "rquote" are not restricted to be
+        one character strings... -->
+        <xs:attribute default="&quot;" name="lquote" type="xs:string"/>
+        <xs:attribute default="&quot;" name="rquote" type="xs:string"/>
+        <xs:attributeGroup ref="Token-style.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="ms.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Glyph-alignmark.class"/>
+        <xs:attributeGroup ref="ms.attlist"/>
+    </xs:complexType>
+    <xs:element name="ms" type="ms.type"/>
+    <!-- And the group of any token -->
+    <xs:group name="Presentation-token.class">
+        <xs:choice>
+            <xs:element ref="mi"/>
+            <xs:element ref="mo"/>
+            <xs:element ref="mn"/>
+            <xs:element ref="mtext"/>
+            <xs:element ref="ms"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the presentation elements of MathML
+            dealing with subscripts and superscripts.   Author: Stéphane Dalmas, INRIA.
+        </xs:documentation>
+    </xs:annotation>
+    <!-- "msub" -->
+    <xs:attributeGroup name="msub.attlist">
+        <xs:attribute name="subscriptshift" type="length-with-unit"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="msub.type">
+        <xs:group maxOccurs="2" minOccurs="2" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="msub.attlist"/>
+    </xs:complexType>
+    <xs:element name="msub" type="msub.type"/>
+    <!-- "msup" -->
+    <xs:attributeGroup name="msup.attlist">
+        <xs:attribute name="superscriptshift" type="length-with-unit"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="msup.type">
+        <xs:group maxOccurs="2" minOccurs="2" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="msup.attlist"/>
+    </xs:complexType>
+    <xs:element name="msup" type="msup.type"/>
+    <!-- "msubsup" -->
+    <xs:attributeGroup name="msubsup.attlist">
+        <xs:attribute name="subscriptshift" type="length-with-unit"/>
+        <xs:attribute name="superscriptshift" type="length-with-unit"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="msubsup.type">
+        <xs:group maxOccurs="3" minOccurs="3" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="msubsup.attlist"/>
+    </xs:complexType>
+    <xs:element name="msubsup" type="msubsup.type"/>
+    <!-- "munder" -->
+    <xs:attributeGroup name="munder.attlist">
+        <xs:attribute name="accentunder" type="xs:boolean"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="munder.type">
+        <xs:group maxOccurs="2" minOccurs="2" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="munder.attlist"/>
+    </xs:complexType>
+    <xs:element name="munder" type="munder.type"/>
+    <!-- "mover" -->
+    <xs:attributeGroup name="mover.attlist">
+        <xs:attribute name="accent" type="xs:boolean"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mover.type">
+        <xs:group maxOccurs="2" minOccurs="2" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="mover.attlist"/>
+    </xs:complexType>
+    <xs:element name="mover" type="mover.type"/>
+    <!-- "munderover" -->
+    <xs:attributeGroup name="munderover.attlist">
+        <xs:attribute name="accent" type="xs:boolean"/>
+        <xs:attribute name="accentunder" type="xs:boolean"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="munderover.type">
+        <xs:group maxOccurs="3" minOccurs="3" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="munderover.attlist"/>
+    </xs:complexType>
+    <xs:element name="munderover" type="munderover.type"/>
+    <!-- "mmultiscripts", "mprescripts" and "none" -->
+    <xs:attributeGroup name="mmultiscripts.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="Presentation-expr-or-none.class">
+        <xs:choice>
+            <xs:group ref="Presentation-expr.class"/>
+            <xs:element ref="none"/>
+        </xs:choice>
+    </xs:group>
+    <!-- not used
+<xs:group name="mprescripts.group">
+  <xs:sequence>
+     <xs:element ref="mprescripts"/>
+     <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="Presentation-expr.class"/>
+        <xs:element ref="none"/>
+     </xs:choice>
+  </xs:sequence>
+</xs:group>
+-->
+    <xs:group name="mmultiscripts.content">
+        <xs:sequence>
+            <xs:group ref="Presentation-expr.class"/>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="Presentation-expr-or-none.class"/>
+                <xs:group ref="Presentation-expr-or-none.class"/>
+            </xs:sequence>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="mprescripts"/>
+                <xs:sequence maxOccurs="unbounded">
+                    <xs:group ref="Presentation-expr-or-none.class"/>
+                    <xs:group ref="Presentation-expr-or-none.class"/>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="mmultiscripts.type">
+        <xs:group ref="mmultiscripts.content"/>
+        <xs:attributeGroup ref="mmultiscripts.attlist"/>
+    </xs:complexType>
+    <xs:element name="mmultiscripts" type="mmultiscripts.type"/>
+    <!-- Nothing... -->
+    <xs:complexType name="none.type"> </xs:complexType>
+    <xs:element name="none" type="none.type"/>
+    <!-- also void -->
+    <xs:complexType name="mprescripts.type"> </xs:complexType>
+    <xs:element name="mprescripts" type="mprescripts.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Presentation-script.class">
+        <xs:choice>
+            <xs:element ref="msub"/>
+            <xs:element ref="msup"/>
+            <xs:element ref="msubsup"/>
+            <xs:element ref="munder"/>
+            <xs:element ref="mover"/>
+            <xs:element ref="munderover"/>
+            <xs:element ref="mmultiscripts"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is the XML Schema module for the MathML "mspace" element.
+            Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <xs:attributeGroup name="mspace.attlist">
+        <xs:attribute default="0em" name="width">
+            <xs:simpleType>
+                <xs:union memberTypes="length-with-unit named-space"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute default="0ex" name="height" type="length-with-unit"/>
+        <xs:attribute default="0ex" name="depth" type="length-with-unit"/>
+        <xs:attribute default="auto" name="linebreak">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="auto"/>
+                    <xs:enumeration value="newline"/>
+                    <xs:enumeration value="indentingnewline"/>
+                    <xs:enumeration value="nobreak"/>
+                    <xs:enumeration value="goodbreak"/>
+                    <xs:enumeration value="badbreak"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mspace.type">
+        <xs:attributeGroup ref="mspace.attlist"/>
+    </xs:complexType>
+    <xs:element name="mspace" type="mspace.type"/>
+    <xs:annotation>
+        <xs:documentation>   This is the XML schema module for the layout elements of the
+            presentation part of MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "mrow" -->
+    <xs:attributeGroup name="mrow.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mrow.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="mrow.attlist"/>
+    </xs:complexType>
+    <xs:element name="mrow" type="mrow.type"/>
+    <!-- "mfrac" -->
+    <xs:attributeGroup name="mfrac.attlist">
+        <xs:attribute name="bevelled" type="xs:boolean"/>
+        <xs:attribute default="center" name="denomalign" type="centering"/>
+        <xs:attribute default="center" name="numalign" type="centering"/>
+        <xs:attribute default="1" name="linethickness">
+            <xs:simpleType>
+                <xs:union memberTypes="length-with-optional-unit thickness"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mfrac.type">
+        <xs:group maxOccurs="2" minOccurs="2" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="mfrac.attlist"/>
+    </xs:complexType>
+    <xs:element name="mfrac" type="mfrac.type"/>
+    <!-- "msqrt" -->
+    <xs:attributeGroup name="msqrt.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <!-- "msqrt" has an "inferred mrow" if more than one argument -->
+    <xs:complexType name="msqrt.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="msqrt.attlist"/>
+    </xs:complexType>
+    <xs:element name="msqrt" type="msqrt.type"/>
+    <!-- "mroot" -->
+    <xs:attributeGroup name="mroot.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mroot.type">
+        <xs:group maxOccurs="2" minOccurs="2" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="mroot.attlist"/>
+    </xs:complexType>
+    <xs:element name="mroot" type="mroot.type"/>
+    <!-- "mpadded" -->
+    <xs:simpleType name="mpadded-space">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="(\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?) *(width|lspace|height|depth))|(em|ex|px|in|cm|mm|pt|pc))"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="mpadded-width-space">
+        <xs:restriction base="xs:string">
+            <!-- MaxF: definition from spec seems wrong, fixing to ([+|-] unsigned-number (%[pseudo-unit]|pseudo-unit|h-unit)) | namedspace | 0 -->
+            <xs:pattern
+                value="((\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?) *(width|lspace|height|depth)?)|(width|lspace|height|depth)|(em|ex|px|in|cm|mm|pt|pc)))|((veryverythin|verythin|thin|medium|thick|verythick|veryverythick)mathspace)|0"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:attributeGroup name="mpadded.attlist">
+        <xs:attribute name="width" type="mpadded-width-space"/>
+        <!-- should have default=0 below but '0' is not in value space -->
+        <!-- see bug #425 -->
+        <xs:attribute name="lspace" type="mpadded-space"/>
+        <xs:attribute name="height" type="mpadded-space"/>
+        <xs:attribute name="depth" type="mpadded-space"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mpadded.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="mpadded.attlist"/>
+    </xs:complexType>
+    <xs:element name="mpadded" type="mpadded.type"/>
+    <!-- "mphantom" -->
+    <xs:attributeGroup name="mphantom.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mphantom.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="mphantom.attlist"/>
+    </xs:complexType>
+    <xs:element name="mphantom" type="mphantom.type"/>
+    <!-- "mfenced" -->
+    <xs:attributeGroup name="mfenced.attlist">
+        <xs:attribute default="(" name="open" type="xs:string"/>
+        <xs:attribute default=")" name="close" type="xs:string"/>
+        <xs:attribute default="," name="separators" type="xs:string"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mfenced.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="mfenced.attlist"/>
+    </xs:complexType>
+    <xs:element name="mfenced" type="mfenced.type"/>
+    <!-- "menclose" -->
+    <xs:attributeGroup name="menclose.attlist">
+        <xs:attribute default="longdiv" name="notation">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="actuarial"/>
+                    <xs:enumeration value="longdiv"/>
+                    <xs:enumeration value="radical"/>
+                    <xs:enumeration value="box"/>
+                    <xs:enumeration value="roundedbox"/>
+                    <xs:enumeration value="circle"/>
+                    <xs:enumeration value="left"/>
+                    <xs:enumeration value="right"/>
+                    <xs:enumeration value="top"/>
+                    <xs:enumeration value="bottom"/>
+                    <xs:enumeration value="updiagonalstrike"/>
+                    <xs:enumeration value="downdiagonalstrike"/>
+                    <xs:enumeration value="verticalstrike"/>
+                    <xs:enumeration value="horizontalstrike"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="menclose.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Presentation-expr.class"/>
+        <xs:attributeGroup ref="menclose.attlist"/>
+    </xs:complexType>
+    <xs:element name="menclose" type="menclose.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Presentation-layout.class">
+        <xs:choice>
+            <xs:element ref="mrow"/>
+            <xs:element ref="mfrac"/>
+            <xs:element ref="msqrt"/>
+            <xs:element ref="mroot"/>
+            <xs:element ref="mpadded"/>
+            <xs:element ref="mphantom"/>
+            <xs:element ref="mfenced"/>
+            <xs:element ref="menclose"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for tables in MathML presentation.
+            Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- Common attributes -->
+    <xs:attributeGroup name="Table-alignment.attrib">
+        <xs:attribute default="baseline" name="rowalign">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern
+                        value="(top|bottom|center|baseline|axis)( top| bottom| center| baseline| axis)*"
+                    />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute default="center" name="columnalign">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(left|center|right)( left| center| right)*"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="groupalign" type="xs:string"/>
+    </xs:attributeGroup>
+    <!-- "mtr" -->
+    <xs:attributeGroup name="mtr.attlist">
+        <xs:attributeGroup ref="Table-alignment.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="mtr.content">
+        <xs:sequence>
+            <xs:element ref="mtd"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="mtr.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="mtr.content"/>
+        <xs:attributeGroup ref="mtr.attlist"/>
+    </xs:complexType>
+    <xs:element name="mtr" type="mtr.type"/>
+    <!-- "labeledtr" -->
+    <xs:attributeGroup name="mlabeledtr.attlist">
+        <xs:attributeGroup ref="Table-alignment.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="mlabeledtr.content">
+        <xs:sequence>
+            <xs:element ref="mtd"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="mlabeledtr.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="mlabeledtr.content"/>
+        <xs:attributeGroup ref="mlabeledtr.attlist"/>
+    </xs:complexType>
+    <xs:element name="mlabeledtr" type="mlabeledtr.type"/>
+    <!-- "mtd" -->
+    <xs:attributeGroup name="mtd.attlist">
+        <xs:attributeGroup ref="Table-alignment.attrib"/>
+        <xs:attribute default="1" name="columnspan" type="xs:positiveInteger"/>
+        <xs:attribute default="1" name="rowspan" type="xs:positiveInteger"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="mtd.content">
+        <xs:sequence>
+            <xs:group maxOccurs="1" minOccurs="0" ref="Presentation-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="mtd.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="mtd.content"/>
+        <xs:attributeGroup ref="mtd.attlist"/>
+    </xs:complexType>
+    <xs:element name="mtd" type="mtd.type"/>
+    <!-- "mtable" -->
+    <xs:attributeGroup name="mtable.attlist">
+        <xs:attributeGroup ref="Table-alignment.attrib"/>
+        <xs:attribute default="axis" name="align" type="xs:string"/>
+        <xs:attribute default="true" name="alignmentscope">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(true|false)( true| false)*"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute default="auto" name="columnwidth" type="xs:string"/>
+        <xs:attribute default="auto" name="width" type="xs:string"/>
+        <xs:attribute default="1.0ex" name="rowspacing" type="xs:string"/>
+        <xs:attribute default="0.8em" name="columnspacing" type="xs:string"/>
+        <xs:attribute default="none" name="rowlines" type="xs:string"/>
+        <xs:attribute default="none" name="columnlines" type="xs:string"/>
+        <xs:attribute default="none" name="frame">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="none"/>
+                    <xs:enumeration value="solid"/>
+                    <xs:enumeration value="dashed"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute default="0.4em 0.5ex" name="framespacing" type="xs:string"/>
+        <xs:attribute default="false" name="equalrows" type="xs:boolean"/>
+        <xs:attribute default="false" name="equalcolumns" type="xs:boolean"/>
+        <xs:attribute default="false" name="displaystyle" type="xs:boolean"/>
+        <xs:attribute default="right" name="side">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="left"/>
+                    <xs:enumeration value="right"/>
+                    <xs:enumeration value="leftoverlap"/>
+                    <xs:enumeration value="rightoverlap"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute default="0.8em" name="minlabelspacing" type="length-with-unit"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="mtable.content">
+        <xs:choice>
+            <xs:element ref="mtr"/>
+            <xs:element ref="mlabeledtr"/>
+        </xs:choice>
+    </xs:group>
+    <xs:complexType name="mtable.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="mtable.content"/>
+        <xs:attributeGroup ref="mtable.attlist"/>
+    </xs:complexType>
+    <xs:element name="mtable" type="mtable.type"/>
+    <!-- "maligngroup" -->
+    <xs:attributeGroup name="maligngroup.attlist">
+        <xs:attribute name="groupalign">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="left"/>
+                    <xs:enumeration value="center"/>
+                    <xs:enumeration value="right"/>
+                    <xs:enumeration value="decimalpoint"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="maligngroup.type">
+        <xs:attributeGroup ref="maligngroup.attlist"/>
+    </xs:complexType>
+    <xs:element name="maligngroup" type="maligngroup.type"/>
+    <!-- "malignmark" -->
+    <xs:attributeGroup name="malignmark.attlist">
+        <xs:attribute default="left" name="edge">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="left"/>
+                    <xs:enumeration value="right"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="malignmark.type">
+        <xs:attributeGroup ref="malignmark.attlist"/>
+    </xs:complexType>
+    <xs:element name="malignmark" type="malignmark.type"/>
+    <!-- The group of everything -->
+    <xs:group name="Presentation-table.class">
+        <xs:choice>
+            <xs:element ref="mtable"/>
+            <xs:element ref="maligngroup"/>
+            <xs:element ref="malignmark"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema for the "mstyle" element of MathML.   Author:
+            Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "mstyle" -->
+    <xs:attributeGroup name="mstyle.attlist">
+        <xs:attribute name="scriptlevel" type="xs:integer"/>
+        <xs:attribute name="displaystyle" type="xs:boolean"/>
+        <xs:attribute default="0.71" name="scriptsizemultiplier" type="xs:decimal"/>
+        <xs:attribute default="8pt" name="scriptminsize" type="length-with-unit"/>
+        <xs:attribute name="color" type="xs:string"/>
+        <xs:attribute default="transparent" name="background" type="xs:string"/>
+        <xs:attribute default="0.0555556em" name="veryverythinmathspace" type="length-with-unit"/>
+        <xs:attribute default="0.111111em" name="verythinmathspace" type="length-with-unit"/>
+        <xs:attribute default="0.166667em" name="thinmathspace" type="length-with-unit"/>
+        <xs:attribute default="0.222222em" name="mediummathspace" type="length-with-unit"/>
+        <xs:attribute default="0.277778em" name="thickmathspace" type="length-with-unit"/>
+        <xs:attribute default="0.333333em" name="verythickmathspace" type="length-with-unit"/>
+        <xs:attribute default="0.388889em" name="veryverythickmathspace" type="length-with-unit"/>
+        <xs:attribute default="1" name="linethickness">
+            <xs:simpleType>
+                <xs:union memberTypes="length-with-optional-unit thickness"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Operator.attrib"/>
+        <xs:attributeGroup ref="Token-style.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="mstyle.content">
+        <xs:sequence>
+            <xs:group ref="Presentation-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="mstyle.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="mstyle.content"/>
+        <xs:attributeGroup ref="mstyle.attlist"/>
+    </xs:complexType>
+    <xs:element name="mstyle" type="mstyle.type"/>
+    <xs:annotation>
+        <xs:documentation>   This is the XML Schema module for the MathML "merror" element.
+            Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <xs:attributeGroup name="merror.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="merror.content">
+        <xs:sequence>
+            <xs:group ref="Presentation-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="merror.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="merror.content"/>
+        <xs:attributeGroup ref="merror.attlist"/>
+    </xs:complexType>
+    <xs:element name="merror" type="merror.type"/>
+    <xs:annotation>
+        <xs:documentation>   This is the XML Schema module for the MathML "maction" element.
+            Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <xs:attributeGroup name="maction.attlist">
+        <xs:attribute name="actiontype" type="xs:string" use="required"/>
+        <xs:attribute default="1" name="selection" type="xs:positiveInteger"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="maction.content">
+        <xs:sequence>
+            <xs:group ref="Presentation-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="maction.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="maction.content"/>
+        <xs:attributeGroup ref="maction.attlist"/>
+    </xs:complexType>
+    <xs:element name="maction" type="maction.type"/>
+    <!-- Content -->
+    <xs:annotation>
+        <xs:documentation>   This is the XML schema module defining common attributes for the
+            content part of MathML.   Authors: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <xs:attributeGroup name="Definition.attrib">
+        <xs:attribute name="encoding" type="xs:string"/>
+        <xs:attribute name="definitionURL" type="xs:anyURI"/>
+    </xs:attributeGroup>
+    <xs:annotation>
+        <xs:documentation>   This is the XML schema module for the token elements of the    content
+            part of MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- common content for the token elements -->
+    <xs:group name="Content-token.content">
+        <xs:sequence>
+            <xs:group ref="Presentation-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <!-- "cn" -->
+    <xs:attributeGroup name="cn.attlist">
+        <xs:attribute name="base">
+            <xs:simpleType>
+                <xs:restriction base="xs:positiveInteger">
+                    <xs:minInclusive value="2"/>
+                    <xs:maxInclusive value="36"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="type">
+            <xs:simpleType>
+                <xs:restriction base="xs:NMTOKEN">
+                    <xs:enumeration value="e-notation"/>
+                    <xs:enumeration value="integer"/>
+                    <xs:enumeration value="rational"/>
+                    <xs:enumeration value="real"/>
+                    <xs:enumeration value="complex-cartesian"/>
+                    <xs:enumeration value="complex-polar"/>
+                    <xs:enumeration value="constant"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <!-- the content of "cn" may have <sep> elements in it -->
+    <xs:complexType name="sep.type"> </xs:complexType>
+    <xs:element name="sep" type="sep.type"/>
+    <xs:group name="cn.content">
+        <xs:choice>
+            <xs:group ref="Presentation-expr.class"/>
+            <xs:element ref="sep"/>
+        </xs:choice>
+    </xs:group>
+    <xs:complexType mixed="true" name="cn.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="cn.content"/>
+        <xs:attributeGroup ref="cn.attlist"/>
+    </xs:complexType>
+    <xs:element name="cn" type="cn.type"/>
+    <!-- "ci" -->
+    <xs:attributeGroup name="ci.attlist">
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="ci.type">
+        <xs:group minOccurs="0" ref="Content-token.content"/>
+        <xs:attributeGroup ref="ci.attlist"/>
+    </xs:complexType>
+    <xs:element name="ci" type="ci.type"/>
+    <!-- "csymbol" -->
+    <xs:attributeGroup name="csymbol.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="csymbol.type">
+        <xs:group minOccurs="0" ref="Content-token.content"/>
+        <xs:attributeGroup ref="csymbol.attlist"/>
+    </xs:complexType>
+    <xs:element name="csymbol" type="csymbol.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-tokens.class">
+        <xs:choice>
+            <xs:element ref="cn"/>
+            <xs:element ref="ci"/>
+            <xs:element ref="csymbol"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the "arithmetic" operators of content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- a common type for all this -->
+    <xs:complexType name="Arith.type">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <!-- The elements -->
+    <xs:element name="abs" type="Arith.type"/>
+    <xs:element name="conjugate" type="Arith.type"/>
+    <xs:element name="arg" type="Arith.type"/>
+    <xs:element name="real" type="Arith.type"/>
+    <xs:element name="imaginary" type="Arith.type"/>
+    <xs:element name="floor" type="Arith.type"/>
+    <xs:element name="ceiling" type="Arith.type"/>
+    <xs:element name="power" type="Arith.type"/>
+    <xs:element name="root" type="Arith.type"/>
+    <xs:element name="minus" type="Arith.type"/>
+    <xs:element name="plus" type="Arith.type"/>
+    <xs:element name="sum" type="Arith.type"/>
+    <xs:element name="times" type="Arith.type"/>
+    <xs:element name="product" type="Arith.type"/>
+    <xs:element name="max" type="Arith.type"/>
+    <xs:element name="min" type="Arith.type"/>
+    <xs:element name="factorial" type="Arith.type"/>
+    <xs:element name="quotient" type="Arith.type"/>
+    <xs:element name="divide" type="Arith.type"/>
+    <xs:element name="rem" type="Arith.type"/>
+    <xs:element name="gcd" type="Arith.type"/>
+    <xs:element name="lcm" type="Arith.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-arith.class">
+        <xs:choice>
+            <xs:element ref="abs"/>
+            <xs:element ref="conjugate"/>
+            <xs:element ref="factorial"/>
+            <xs:element ref="arg"/>
+            <xs:element ref="real"/>
+            <xs:element ref="imaginary"/>
+            <xs:element ref="floor"/>
+            <xs:element ref="ceiling"/>
+            <xs:element ref="quotient"/>
+            <xs:element ref="divide"/>
+            <xs:element ref="rem"/>
+            <xs:element ref="minus"/>
+            <xs:element ref="plus"/>
+            <xs:element ref="times"/>
+            <xs:element ref="power"/>
+            <xs:element ref="root"/>
+            <xs:element ref="max"/>
+            <xs:element ref="min"/>
+            <xs:element ref="gcd"/>
+            <xs:element ref="lcm"/>
+            <xs:element ref="sum"/>
+            <xs:element ref="product"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for operators dealing with functions in
+            content   MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- a common type for all this -->
+    <xs:complexType name="Functions.type">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <!-- "compose" -->
+    <xs:element name="compose" type="Functions.type"/>
+    <!-- Domain, codomain and image -->
+    <xs:element name="domain" type="Functions.type"/>
+    <xs:element name="codomain" type="Functions.type"/>
+    <xs:element name="image" type="Functions.type"/>
+    <!-- "domainofapplication" -->
+    <xs:group name="domainofapplication.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="domainofapplication.type">
+        <xs:group ref="domainofapplication.content"/>
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <xs:element name="domainofapplication" type="domainofapplication.type"/>
+    <!-- identity -->
+    <xs:element name="ident" type="Functions.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-functions.class">
+        <xs:choice>
+            <xs:element ref="compose"/>
+            <xs:element ref="domain"/>
+            <xs:element ref="codomain"/>
+            <xs:element ref="image"/>
+            <xs:element ref="domainofapplication"/>
+            <xs:element ref="ident"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the logic operators of content MathML.
+            Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- a common type for all this -->
+    <xs:complexType name="Logic.type">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <xs:element name="and" type="Elementary-functions.type"/>
+    <xs:element name="or" type="Logic.type"/>
+    <xs:element name="xor" type="Logic.type"/>
+    <xs:element name="not" type="Logic.type"/>
+    <xs:element name="exists" type="Logic.type"/>
+    <xs:element name="forall" type="Logic.type"/>
+    <xs:element name="implies" type="Logic.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-logic.class">
+        <xs:choice>
+            <xs:element ref="and"/>
+            <xs:element ref="or"/>
+            <xs:element ref="xor"/>
+            <xs:element ref="not"/>
+            <xs:element ref="exists"/>
+            <xs:element ref="forall"/>
+            <xs:element ref="implies"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the basic constructs of content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "apply" -->
+    <xs:attributeGroup name="apply.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="apply.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="apply.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="apply.content"/>
+        <xs:attributeGroup ref="apply.attlist"/>
+    </xs:complexType>
+    <xs:element name="apply" type="apply.type"/>
+    <!-- "interval" -->
+    <xs:attributeGroup name="interval.attlist">
+        <xs:attribute default="closed" name="closure">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="closed"/>
+                    <xs:enumeration value="open"/>
+                    <xs:enumeration value="open-closed"/>
+                    <xs:enumeration value="closed-open"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <!--
+<xs:group name="interval.content">
+  <xs:choice>
+    <xs:group ref="Content-expr.class" minOccurs="2" maxOccurs="2"/>
+    <xs:element ref="condition"/>
+  </xs:choice>
+</xs:group>
+-->
+    <xs:complexType name="interval.type">
+        <!--  <xs:group ref="interval.content"/> -->
+        <xs:group maxOccurs="2" ref="Content-expr.class"/>
+        <xs:attributeGroup ref="interval.attlist"/>
+    </xs:complexType>
+    <xs:element name="interval" type="interval.type"/>
+    <!-- "inverse" -->
+    <xs:attributeGroup name="inverse.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="inverse.type">
+        <xs:attributeGroup ref="inverse.attlist"/>
+    </xs:complexType>
+    <xs:element name="inverse" type="inverse.type"/>
+    <!-- "condition" -->
+    <xs:attributeGroup name="condition.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="condition.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="condition.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="condition.content"/>
+        <xs:attributeGroup ref="condition.attlist"/>
+    </xs:complexType>
+    <xs:element name="condition" type="condition.type"/>
+    <!-- "declare" -->
+    <xs:attributeGroup name="declare.attlist">
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="scope" type="xs:string"/>
+        <xs:attribute name="nargs" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="occurrence">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="prefix"/>
+                    <xs:enumeration value="infix"/>
+                    <xs:enumeration value="function-model"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Definition.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="declare.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="declare.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="declare.content"/>
+        <xs:attributeGroup ref="declare.attlist"/>
+    </xs:complexType>
+    <xs:element name="declare" type="declare.type"/>
+    <!-- "lambda" -->
+    <xs:attributeGroup name="lambda.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="lambda.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="lambda.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="lambda.content"/>
+        <xs:attributeGroup ref="lambda.attlist"/>
+    </xs:complexType>
+    <xs:element name="lambda" type="lambda.type"/>
+    <!-- "piecewise" and its inner elements -->
+    <xs:group name="otherwise.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="otherwise.type">
+        <xs:group ref="otherwise.content"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <xs:element name="otherwise" type="otherwise.type"/>
+    <xs:group name="piece.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="piece.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="piece.content"/>
+    </xs:complexType>
+    <xs:element name="piece" type="piece.type"/>
+    <xs:attributeGroup name="piecewise.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="piecewise.content">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="piece"/>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="otherwise"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="piece"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="piecewise.type">
+        <xs:group ref="piecewise.content"/>
+        <xs:attributeGroup ref="piecewise.attlist"/>
+    </xs:complexType>
+    <xs:element name="piecewise" type="piecewise.type"/>
+    <!-- "bvar" -->
+    <xs:attributeGroup name="bvar.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="bvar.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="bvar.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="bvar.content"/>
+        <xs:attributeGroup ref="bvar.attlist"/>
+    </xs:complexType>
+    <xs:element name="bvar" type="bvar.type"/>
+    <!-- "degree" -->
+    <xs:attributeGroup name="degree.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="degree.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="degree.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="degree.content"/>
+        <xs:attributeGroup ref="degree.attlist"/>
+    </xs:complexType>
+    <xs:element name="degree" type="degree.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-constructs.class">
+        <xs:choice>
+            <xs:element ref="apply"/>
+            <xs:element ref="interval"/>
+            <xs:element ref="inverse"/>
+            <xs:element ref="condition"/>
+            <xs:element ref="declare"/>
+            <xs:element ref="lambda"/>
+            <xs:element ref="piecewise"/>
+            <xs:element ref="bvar"/>
+            <xs:element ref="degree"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is the XML Schema module for the basic constants of MathML
+            content.   Author: Stéphane Dalmas.   </xs:documentation>
+    </xs:annotation>
+    <!-- a common type for all this -->
+    <xs:complexType name="Constant.type">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <!-- Basic sets -->
+    <xs:element name="naturalnumbers" type="Constant.type"/>
+    <xs:element name="primes" type="Constant.type"/>
+    <xs:element name="integers" type="Constant.type"/>
+    <xs:element name="rationals" type="Constant.type"/>
+    <xs:element name="reals" type="Constant.type"/>
+    <xs:element name="complexes" type="Constant.type"/>
+    <!-- Empty set -->
+    <xs:element name="emptyset" type="Constant.type"/>
+    <!-- Basic constants -->
+    <xs:element name="exponentiale" type="Constant.type"/>
+    <xs:element name="imaginaryi" type="Constant.type"/>
+    <xs:element name="pi" type="Constant.type"/>
+    <xs:element name="eulergamma" type="Constant.type"/>
+    <!-- Boolean constants -->
+    <xs:element name="true" type="Constant.type"/>
+    <xs:element name="false" type="Constant.type"/>
+    <!-- Infinty -->
+    <xs:element name="infinity" type="Constant.type"/>
+    <!-- NotANumber -->
+    <xs:element name="notanumber" type="Constant.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-constants.class">
+        <xs:choice>
+            <xs:element ref="naturalnumbers"/>
+            <xs:element ref="primes"/>
+            <xs:element ref="integers"/>
+            <xs:element ref="rationals"/>
+            <xs:element ref="reals"/>
+            <xs:element ref="complexes"/>
+            <xs:element ref="emptyset"/>
+            <xs:element ref="exponentiale"/>
+            <xs:element ref="imaginaryi"/>
+            <xs:element ref="pi"/>
+            <xs:element ref="eulergamma"/>
+            <xs:element ref="true"/>
+            <xs:element ref="false"/>
+            <xs:element ref="infinity"/>
+            <xs:element ref="notanumber"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the elementary functions in content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- a common type for all this -->
+    <xs:complexType name="Elementary-functions.type">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <!-- Exp and logs -->
+    <xs:element name="exp" type="Elementary-functions.type"/>
+    <xs:element name="ln" type="Elementary-functions.type"/>
+    <xs:element name="log" type="Elementary-functions.type"/>
+    <!-- special element of the base of logarithms -->
+    <xs:group name="logbase.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="logbase.type">
+        <xs:group ref="logbase.content"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <xs:element name="logbase" type="logbase.type"/>
+    <!-- Trigonometric functions -->
+    <xs:element name="sin" type="Elementary-functions.type"/>
+    <xs:element name="cos" type="Elementary-functions.type"/>
+    <xs:element name="tan" type="Elementary-functions.type"/>
+    <xs:element name="sec" type="Elementary-functions.type"/>
+    <xs:element name="csc" type="Elementary-functions.type"/>
+    <xs:element name="cot" type="Elementary-functions.type"/>
+    <xs:element name="arcsin" type="Elementary-functions.type"/>
+    <xs:element name="arccos" type="Elementary-functions.type"/>
+    <xs:element name="arctan" type="Elementary-functions.type"/>
+    <xs:element name="arccot" type="Elementary-functions.type"/>
+    <xs:element name="arccsc" type="Elementary-functions.type"/>
+    <xs:element name="arcsec" type="Elementary-functions.type"/>
+    <!-- Hyperbolic trigonometric functions -->
+    <xs:element name="sinh" type="Elementary-functions.type"/>
+    <xs:element name="cosh" type="Elementary-functions.type"/>
+    <xs:element name="tanh" type="Elementary-functions.type"/>
+    <xs:element name="sech" type="Elementary-functions.type"/>
+    <xs:element name="csch" type="Elementary-functions.type"/>
+    <xs:element name="coth" type="Elementary-functions.type"/>
+    <xs:element name="arccosh" type="Elementary-functions.type"/>
+    <xs:element name="arccoth" type="Elementary-functions.type"/>
+    <xs:element name="arccsch" type="Elementary-functions.type"/>
+    <xs:element name="arcsech" type="Elementary-functions.type"/>
+    <xs:element name="arcsinh" type="Elementary-functions.type"/>
+    <xs:element name="arctanh" type="Elementary-functions.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-elementary-functions.class">
+        <xs:choice>
+            <xs:element ref="exp"/>
+            <xs:element ref="ln"/>
+            <xs:element ref="log"/>
+            <xs:element ref="logbase"/>
+            <xs:element ref="sin"/>
+            <xs:element ref="cos"/>
+            <xs:element ref="tan"/>
+            <xs:element ref="sec"/>
+            <xs:element ref="csc"/>
+            <xs:element ref="cot"/>
+            <xs:element ref="arcsin"/>
+            <xs:element ref="arccos"/>
+            <xs:element ref="arctan"/>
+            <xs:element ref="arcsec"/>
+            <xs:element ref="arccsc"/>
+            <xs:element ref="arccot"/>
+            <xs:element ref="sinh"/>
+            <xs:element ref="cosh"/>
+            <xs:element ref="tanh"/>
+            <xs:element ref="sech"/>
+            <xs:element ref="csch"/>
+            <xs:element ref="coth"/>
+            <xs:element ref="arccosh"/>
+            <xs:element ref="arccoth"/>
+            <xs:element ref="arccsch"/>
+            <xs:element ref="arcsech"/>
+            <xs:element ref="arcsinh"/>
+            <xs:element ref="arctanh"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the relational operators of content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- a common type for all this -->
+    <xs:complexType name="Relations.type">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:complexType>
+    <xs:element name="eq" type="Relations.type"/>
+    <xs:element name="neq" type="Relations.type"/>
+    <xs:element name="leq" type="Relations.type"/>
+    <xs:element name="lt" type="Relations.type"/>
+    <xs:element name="geq" type="Relations.type"/>
+    <xs:element name="gt" type="Relations.type"/>
+    <xs:element name="equivalent" type="Relations.type"/>
+    <xs:element name="approx" type="Relations.type"/>
+    <xs:element name="factorof" type="Relations.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-relations.class">
+        <xs:choice>
+            <xs:element ref="eq"/>
+            <xs:element ref="neq"/>
+            <xs:element ref="leq"/>
+            <xs:element ref="lt"/>
+            <xs:element ref="geq"/>
+            <xs:element ref="gt"/>
+            <xs:element ref="equivalent"/>
+            <xs:element ref="approx"/>
+            <xs:element ref="factorof"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the "sematics" element of content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "annotation" -->
+    <xs:attributeGroup name="annotation.attlist">
+        <xs:attribute name="encoding" type="xs:string"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType mixed="true" name="annotation.type">
+        <xs:attributeGroup ref="annotation.attlist"/>
+    </xs:complexType>
+    <xs:element name="annotation" type="annotation.type"/>
+    <!-- "annotation-xml" -->
+    <xs:attributeGroup name="annotation-xml.attlist">
+        <xs:attribute name="encoding" type="xs:string"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="annotation-xml.content">
+        <xs:sequence>
+            <xs:any processContents="lax"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="annotation-xml.type">
+        <xs:group ref="annotation-xml.content"/>
+        <xs:attributeGroup ref="annotation-xml.attlist"/>
+    </xs:complexType>
+    <xs:element name="annotation-xml" type="annotation-xml.type"/>
+    <!-- "semantics" -->
+    <xs:attributeGroup name="semantics.attlist">
+        <xs:attribute name="encoding" type="xs:string"/>
+        <xs:attribute name="definitionURL" type="xs:anyURI"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="Annotation.class">
+        <xs:choice>
+            <xs:element ref="annotation"/>
+            <xs:element ref="annotation-xml"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="semantics.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+            <xs:group maxOccurs="unbounded" minOccurs="1" ref="Annotation.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="semantics.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="semantics.content"/>
+        <xs:attributeGroup ref="semantics.attlist"/>
+    </xs:complexType>
+    <xs:element name="semantics" type="semantics.type"/>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the part of content MathML dealing
+            with   sets and lists.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "set" -->
+    <!-- "type" could be "multiset" or "normal" or anything else -->
+    <xs:attributeGroup name="set.attlist">
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="set.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="set.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="set.content"/>
+        <xs:attributeGroup ref="set.attlist"/>
+    </xs:complexType>
+    <xs:element name="set" type="set.type"/>
+    <!-- "list" -->
+    <xs:attributeGroup name="list.attlist">
+        <xs:attribute name="order">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="lexicographic"/>
+                    <xs:enumeration value="numeric"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="list.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="list.type">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="list.content"/>
+        <xs:attributeGroup ref="list.attlist"/>
+    </xs:complexType>
+    <xs:element name="list" type="list.type"/>
+    <!-- "union" -->
+    <xs:attributeGroup name="union.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="union.type">
+        <xs:attributeGroup ref="union.attlist"/>
+    </xs:complexType>
+    <xs:element name="union" type="union.type"/>
+    <!-- "intersect" -->
+    <xs:attributeGroup name="intersect.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="intersect.type">
+        <xs:attributeGroup ref="intersect.attlist"/>
+    </xs:complexType>
+    <xs:element name="intersect" type="intersect.type"/>
+    <!-- "in" -->
+    <xs:attributeGroup name="in.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="in.type">
+        <xs:attributeGroup ref="in.attlist"/>
+    </xs:complexType>
+    <xs:element name="in" type="in.type"/>
+    <!-- "notin" -->
+    <xs:attributeGroup name="notin.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="notin.type">
+        <xs:attributeGroup ref="notin.attlist"/>
+    </xs:complexType>
+    <xs:element name="notin" type="notin.type"/>
+    <!-- "subset" -->
+    <xs:attributeGroup name="subset.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="subset.type">
+        <xs:attributeGroup ref="subset.attlist"/>
+    </xs:complexType>
+    <xs:element name="subset" type="subset.type"/>
+    <!-- "prsubset" -->
+    <xs:attributeGroup name="prsubset.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="prsubset.type">
+        <xs:attributeGroup ref="prsubset.attlist"/>
+    </xs:complexType>
+    <xs:element name="prsubset" type="prsubset.type"/>
+    <!-- "notsubset" -->
+    <xs:attributeGroup name="notsubset.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="notsubset.type">
+        <xs:attributeGroup ref="notsubset.attlist"/>
+    </xs:complexType>
+    <xs:element name="notsubset" type="notsubset.type"/>
+    <!-- "notprsubset" -->
+    <xs:attributeGroup name="notprsubset.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="notprsubset.type">
+        <xs:attributeGroup ref="notprsubset.attlist"/>
+    </xs:complexType>
+    <xs:element name="notprsubset" type="notprsubset.type"/>
+    <!-- "setdiff" -->
+    <xs:attributeGroup name="setdiff.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="setdiff.type">
+        <xs:attributeGroup ref="setdiff.attlist"/>
+    </xs:complexType>
+    <xs:element name="setdiff" type="setdiff.type"/>
+    <!-- "card" -->
+    <xs:attributeGroup name="card.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="card.type">
+        <xs:attributeGroup ref="card.attlist"/>
+    </xs:complexType>
+    <xs:element name="card" type="card.type"/>
+    <!-- "cartesianproduct" -->
+    <xs:attributeGroup name="cartesianproduct.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="cartesianproduct.type">
+        <xs:attributeGroup ref="cartesianproduct.attlist"/>
+    </xs:complexType>
+    <xs:element name="cartesianproduct" type="cartesianproduct.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-sets.class">
+        <xs:choice>
+            <xs:element ref="set"/>
+            <xs:element ref="list"/>
+            <xs:element ref="union"/>
+            <xs:element ref="intersect"/>
+            <xs:element ref="in"/>
+            <xs:element ref="notin"/>
+            <xs:element ref="subset"/>
+            <xs:element ref="prsubset"/>
+            <xs:element ref="notsubset"/>
+            <xs:element ref="notprsubset"/>
+            <xs:element ref="setdiff"/>
+            <xs:element ref="card"/>
+            <xs:element ref="cartesianproduct"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the linear algebra part of content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "vector" -->
+    <xs:attributeGroup name="vector.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="vector.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="vector.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="vector.content"/>
+        <xs:attributeGroup ref="vector.attlist"/>
+    </xs:complexType>
+    <xs:element name="vector" type="vector.type"/>
+    <!-- "matrix" -->
+    <xs:attributeGroup name="matrix.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="matrix.content">
+        <xs:sequence>
+            <xs:element ref="matrixrow"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="matrix.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="matrix.content"/>
+        <xs:attributeGroup ref="matrix.attlist"/>
+    </xs:complexType>
+    <xs:element name="matrix" type="matrix.type"/>
+    <!-- "matrixrow" -->
+    <xs:attributeGroup name="matrixrow.attlist">
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="matrixrow.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="matrixrow.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="matrixrow.content"/>
+        <xs:attributeGroup ref="matrixrow.attlist"/>
+    </xs:complexType>
+    <xs:element name="matrixrow" type="matrixrow.type"/>
+    <!-- "determinant" -->
+    <xs:attributeGroup name="determinant.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="determinant.type">
+        <xs:attributeGroup ref="determinant.attlist"/>
+    </xs:complexType>
+    <xs:element name="determinant" type="determinant.type"/>
+    <!-- "transpose" -->
+    <xs:attributeGroup name="transpose.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="transpose.type">
+        <xs:attributeGroup ref="transpose.attlist"/>
+    </xs:complexType>
+    <xs:element name="transpose" type="transpose.type"/>
+    <!-- "selector" -->
+    <xs:attributeGroup name="selector.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="selector.type">
+        <xs:attributeGroup ref="selector.attlist"/>
+    </xs:complexType>
+    <xs:element name="selector" type="selector.type"/>
+    <!-- "vectorproduct" -->
+    <xs:attributeGroup name="vectorproduct.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="vectorproduct.type">
+        <xs:attributeGroup ref="vectorproduct.attlist"/>
+    </xs:complexType>
+    <xs:element name="vectorproduct" type="vectorproduct.type"/>
+    <!-- "scalarproduct" -->
+    <xs:attributeGroup name="scalarproduct.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="scalarproduct.type">
+        <xs:attributeGroup ref="scalarproduct.attlist"/>
+    </xs:complexType>
+    <xs:element name="scalarproduct" type="scalarproduct.type"/>
+    <!-- "outerproduct" -->
+    <xs:attributeGroup name="outerproduct.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="outerproduct.type">
+        <xs:attributeGroup ref="outerproduct.attlist"/>
+    </xs:complexType>
+    <xs:element name="outerproduct" type="outerproduct.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-linear-algebra.class">
+        <xs:choice>
+            <xs:element ref="vector"/>
+            <xs:element ref="matrix"/>
+            <xs:element ref="determinant"/>
+            <xs:element ref="transpose"/>
+            <xs:element ref="selector"/>
+            <xs:element ref="vectorproduct"/>
+            <xs:element ref="scalarproduct"/>
+            <xs:element ref="outerproduct"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the calculs operators of content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "int" -->
+    <xs:attributeGroup name="int.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="int.type">
+        <xs:attributeGroup ref="int.attlist"/>
+    </xs:complexType>
+    <xs:element name="int" type="int.type"/>
+    <!-- "diff" -->
+    <xs:attributeGroup name="diff.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="diff.type">
+        <xs:attributeGroup ref="diff.attlist"/>
+    </xs:complexType>
+    <xs:element name="diff" type="diff.type"/>
+    <!-- "partialdiff" -->
+    <xs:attributeGroup name="partialdiff.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="partialdiff.type">
+        <xs:attributeGroup ref="partialdiff.attlist"/>
+    </xs:complexType>
+    <xs:element name="partialdiff" type="partialdiff.type"/>
+    <!-- "limit" -->
+    <xs:attributeGroup name="limit.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="limit.type">
+        <xs:attributeGroup ref="limit.attlist"/>
+    </xs:complexType>
+    <xs:element name="limit" type="limit.type"/>
+    <!-- "lowlimit" -->
+    <xs:attributeGroup name="lowlimit.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="lowlimit.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="lowlimit.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="lowlimit.content"/>
+        <xs:attributeGroup ref="lowlimit.attlist"/>
+    </xs:complexType>
+    <xs:element name="lowlimit" type="lowlimit.type"/>
+    <!-- "uplimit" -->
+    <xs:attributeGroup name="uplimit.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="uplimit.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="uplimit.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="uplimit.content"/>
+        <xs:attributeGroup ref="uplimit.attlist"/>
+    </xs:complexType>
+    <xs:element name="uplimit" type="uplimit.type"/>
+    <!-- "tendsto" -->
+    <xs:attributeGroup name="tendsto.attlist">
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="tendsto.type">
+        <xs:attributeGroup ref="tendsto.attlist"/>
+    </xs:complexType>
+    <xs:element name="tendsto" type="tendsto.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-calculus.class">
+        <xs:choice>
+            <xs:element ref="int"/>
+            <xs:element ref="diff"/>
+            <xs:element ref="partialdiff"/>
+            <xs:element ref="limit"/>
+            <xs:element ref="lowlimit"/>
+            <xs:element ref="uplimit"/>
+            <xs:element ref="tendsto"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the vector calculs operators of
+            content   MathML.    Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "divergence" -->
+    <xs:attributeGroup name="divergence.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="divergence.type">
+        <xs:attributeGroup ref="divergence.attlist"/>
+    </xs:complexType>
+    <xs:element name="divergence" type="divergence.type"/>
+    <!-- "grad" -->
+    <xs:attributeGroup name="grad.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="grad.type">
+        <xs:attributeGroup ref="grad.attlist"/>
+    </xs:complexType>
+    <xs:element name="grad" type="grad.type"/>
+    <!-- "curl" -->
+    <xs:attributeGroup name="curl.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="curl.type">
+        <xs:attributeGroup ref="curl.attlist"/>
+    </xs:complexType>
+    <xs:element name="curl" type="curl.type"/>
+    <!-- "laplacian" -->
+    <xs:attributeGroup name="laplacian.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="laplacian.type">
+        <xs:attributeGroup ref="laplacian.attlist"/>
+    </xs:complexType>
+    <xs:element name="laplacian" type="laplacian.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-vector-calculus.class">
+        <xs:choice>
+            <xs:element ref="divergence"/>
+            <xs:element ref="grad"/>
+            <xs:element ref="curl"/>
+            <xs:element ref="laplacian"/>
+        </xs:choice>
+    </xs:group>
+    <xs:annotation>
+        <xs:documentation>   This is an XML Schema module for the statistical operators of content
+            MathML.   Author: Stéphane Dalmas, INRIA.   </xs:documentation>
+    </xs:annotation>
+    <!-- "mean" -->
+    <xs:attributeGroup name="mean.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mean.type">
+        <xs:attributeGroup ref="mean.attlist"/>
+    </xs:complexType>
+    <xs:element name="mean" type="mean.type"/>
+    <!-- "sdev" -->
+    <xs:attributeGroup name="sdev.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="sdev.type">
+        <xs:attributeGroup ref="sdev.attlist"/>
+    </xs:complexType>
+    <xs:element name="sdev" type="sdev.type"/>
+    <!-- "variance" -->
+    <xs:attributeGroup name="variance.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="variance.type">
+        <xs:attributeGroup ref="variance.attlist"/>
+    </xs:complexType>
+    <xs:element name="variance" type="variance.type"/>
+    <!-- "median" -->
+    <xs:attributeGroup name="median.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="median.type">
+        <xs:attributeGroup ref="median.attlist"/>
+    </xs:complexType>
+    <xs:element name="median" type="median.type"/>
+    <!-- "mode" -->
+    <xs:attributeGroup name="mode.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="mode.type">
+        <xs:attributeGroup ref="mode.attlist"/>
+    </xs:complexType>
+    <xs:element name="mode" type="mode.type"/>
+    <!-- "moment" -->
+    <xs:attributeGroup name="moment.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:complexType name="moment.type">
+        <xs:attributeGroup ref="moment.attlist"/>
+    </xs:complexType>
+    <xs:element name="moment" type="moment.type"/>
+    <!-- "momentabout" -->
+    <xs:attributeGroup name="momentabout.attlist">
+        <xs:attributeGroup ref="Definition.attrib"/>
+        <xs:attributeGroup ref="Common.attrib"/>
+    </xs:attributeGroup>
+    <xs:group name="momentabout.content">
+        <xs:sequence>
+            <xs:group ref="Content-expr.class"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="momentabout.type">
+        <xs:group maxOccurs="unbounded" minOccurs="1" ref="momentabout.content"/>
+        <xs:attributeGroup ref="momentabout.attlist"/>
+    </xs:complexType>
+    <xs:element name="momentabout" type="momentabout.type"/>
+    <!-- And the group of everything -->
+    <xs:group name="Content-statistics.class">
+        <xs:choice>
+            <xs:element ref="mean"/>
+            <xs:element ref="sdev"/>
+            <xs:element ref="variance"/>
+            <xs:element ref="median"/>
+            <xs:element ref="mode"/>
+            <xs:element ref="moment"/>
+            <xs:element ref="momentabout"/>
+        </xs:choice>
+    </xs:group>
+</xs:schema>

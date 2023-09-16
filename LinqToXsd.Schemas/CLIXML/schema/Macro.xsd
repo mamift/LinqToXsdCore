@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified"
+    targetNamespace="http://www.clixml.org/clix/1.0/Macro" 
+    xmlns:Macro="http://www.clixml.org/clix/1.0/Macro"
+    xmlns="http://www.clixml.org/clix/1.0/Macro" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="macroCall">
+        <xs:complexType>
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="macroVariable">
+                <xs:complexType>
+                    <xs:attribute name="name" type="xs:NMTOKEN" use="required"></xs:attribute>
+                    <xs:attribute name="value" type="xs:anySimpleType" use="required"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:NMTOKEN" use="required"/> 
+        </xs:complexType>
+    </xs:element>
+</xs:schema>    
