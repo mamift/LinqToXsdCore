@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.1
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.1
+	* Fixes a null-reference error in the XListVisualizable which can cause debugger enumeration to fail in Visual Studio on an `XTypedElement` list.
+	* The LinqToXsd code generator tool will now filter out XSDs that target v1.1 of XML Schema as .NET only supports v1.0.
+	* Fixes a code generation bug that can be thrown in rare cases when the `xs:NCName` type is used in a schema.
+	* The code generator will now generate a `value?.ToString()` on a property value setter when the property type is nullable.
+
 ## Version 3.4.0
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.0
