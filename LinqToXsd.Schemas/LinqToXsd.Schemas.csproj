@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <!-- Avoid being overrun by warnings -->
@@ -23,6 +23,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp" Version="1.13.2">
@@ -86,11 +96,6 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\Office 2003 Reference schemas\Office 2003 Reference schemas.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Search\Microsoft Search.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
-      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">
