@@ -7,8 +7,10 @@
     <EmbeddedResource Include="3dps-core.xsd" />
     <EmbeddedResource Include="3dps-info.xsd" />
     <EmbeddedResource Include="3dps-info.xsd.config" />
+    <EmbeddedResource Include="3dps-info.xsd.cs" />
     <EmbeddedResource Include="3dps-scene.xsd" />
     <EmbeddedResource Include="3dps-scene.xsd.config" />
+    <EmbeddedResource Include="3dps-scene.xsd.cs" />
     <EmbeddedResource Include="3dps-view.xsd" />
     <EmbeddedResource Include="ReadMe-3dps-1_0_0.txt" />
     <EmbeddedResource Include="examples\FeatureInfoResponse.xml" />
