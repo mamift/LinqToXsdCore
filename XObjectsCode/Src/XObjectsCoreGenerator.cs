@@ -87,10 +87,7 @@ namespace Xml.Schema.Linq
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
 
-            var xmlReader = XmlReader.Create(xsdFilePath, new XmlReaderSettings {
-                DtdProcessing = DtdProcessing.Parse,
-                CloseInput = true
-            });
+            var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
 
             using (xmlReader) {
                 var schemaSet = xmlReader.ToXmlSchemaSet();
@@ -203,11 +200,15 @@ namespace Xml.Schema.Linq
         public static Dictionary<string, TextWriter> Generate(IEnumerable<string> schemaFiles)
         {
             // xsd file paths are keys, the FileInfo's to their config files are values
-            var dictOfSchemasAndTheirConfigs = schemaFiles.Select(s => new KeyValuePair<string, FileInfo>(s,
-                                                               new FileInfo($"{s}.config")))
+            var dictOfSchemasAndTheirConfigs = schemaFiles.Select(xsdFilePath => new KeyValuePair<string, FileInfo>(xsdFilePath,
+                                                               new FileInfo($"{xsdFilePath}.config")))
                                                            .ToDictionary(k => k.Key, v => v.Value);
-            return dictOfSchemasAndTheirConfigs
-                .Where(kvp => kvp.Value.Exists)
+
+
+            var excludeV11Xsds = dictOfSchemasAndTheirConfigs
+                .Where(kvp => kvp.Value.Exists && new FileInfo(kvp.Key).GetXmlSchemaVersion() != XmlSchemaVersion.Version1_1).ToList();
+
+            return excludeV11Xsds
                 .SelectMany(kvp => Generate(kvp.Key, kvp.Value.FullName))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
