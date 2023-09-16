@@ -148,7 +148,7 @@ namespace Xml.Schema.Linq.Tests
             //var fs = GetFileSystemForAssemblyName("MSBuild");
             //fs.CopyToRealFileSystem(Environment.CurrentDirectory);
 
-            var names = new[] { "XSD", "XQueryX", "XMLSpec", "Windows", "UK CabinetOffice", "TraML", "ThermoML", "MSBuild" };
+            var names = new[] { "XSD", "XQueryX", "XMLSpec", "Windows", "TraML", "ThermoML", "MSBuild", "Atom", "AbstractTypeTest" };
             foreach (var mockFileSystem in GetFileSystemForAssemblyNames(names)) {
                 mockFileSystem.CopyToRealFileSystem(Environment.CurrentDirectory);
             }
