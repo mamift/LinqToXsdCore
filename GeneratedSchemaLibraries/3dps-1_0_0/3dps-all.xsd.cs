@@ -19,10 +19,12 @@ namespace OpenGis.Ows {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using www.w3.org.XML.Item1998.@namespace;
+    using OpenGis.ThreeDps.Xml1998;
     using OpenGis.ThreeDps.Scene;
-    using www.w3.org.Item1999.xlink;
+    using OpenGis.ThreeDps.Xlink;
     using OpenGis.ThreeDps.Core;
+    using OpenGis.ThreeDps.Info;
+    using OpenGis.ThreeDps.View;
     
     
     public abstract partial class AbstractMetaData : XTypedElement, IXMetaData {
@@ -2538,13 +2540,13 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType? type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType? type {
             get {
                 XAttribute x = this.Attribute(typeXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -2631,13 +2633,13 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 XAttribute x = this.Attribute(actuateXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.actuateType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.actuateType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(actuateXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -6709,13 +6711,13 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 XAttribute x = this.Attribute(actuateXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.actuateType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.actuateType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(actuateXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -8620,13 +8622,13 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType? type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType? type {
             get {
                 XAttribute x = this.Attribute(typeXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -8713,13 +8715,13 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 XAttribute x = this.Attribute(actuateXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.actuateType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.actuateType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(actuateXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -9285,7 +9287,7 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType? type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType? type {
             get {
                 return this.ContentField.type;
             }
@@ -9369,7 +9371,7 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 return this.ContentField.actuate;
             }
@@ -12737,7 +12739,7 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType? type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType? type {
             get {
                 return this.ContentField.type;
             }
@@ -12821,7 +12823,7 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 return this.ContentField.actuate;
             }
@@ -13372,7 +13374,7 @@ namespace OpenGis.Ows {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 return this.ContentField.actuate;
             }
@@ -16138,12 +16140,12 @@ namespace OpenGis.Ows {
             typeDictionary.Add(System.Xml.Linq.XName.Get("OnlineResourceType", "http://www.opengis.net/ows/2.0"), typeof(global::OpenGis.Ows.OnlineResourceType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("TelephoneType", "http://www.opengis.net/ows/2.0"), typeof(global::OpenGis.Ows.TelephoneType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("AddressType", "http://www.opengis.net/ows/2.0"), typeof(global::OpenGis.Ows.AddressType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("simple", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.simple));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("extended", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.extended));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("titleEltType", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.titleEltType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("resourceType", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.resourceType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("locatorType", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.locatorType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("arcType", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.arcType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("simple", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.simple));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("extended", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.extended));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("titleEltType", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.titleEltType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("resourceType", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.resourceType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("locatorType", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.locatorType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("arcType", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.arcType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("AbstractGetPortrayalType", "http://www.opengis.net/3dps/1.0/core"), typeof(global::OpenGis.ThreeDps.Core.AbstractGetPortrayalType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("CapabilitiesType", "http://www.opengis.net/3dps/1.0/core"), typeof(global::OpenGis.ThreeDps.Core.CapabilitiesType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("RequestBaseType", "http://www.opengis.net/3dps/1.0/core"), typeof(global::OpenGis.ThreeDps.Core.RequestBaseType));
@@ -16161,6 +16163,22 @@ namespace OpenGis.Ows {
             typeDictionary.Add(System.Xml.Linq.XName.Get("StyleType", "http://www.opengis.net/3dps/1.0/core"), typeof(global::OpenGis.ThreeDps.Core.StyleType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("Position2DType", "http://www.opengis.net/3dps/1.0/core"), typeof(global::OpenGis.ThreeDps.Core.Position2DType));
             typeDictionary.Add(System.Xml.Linq.XName.Get("OWSContentsBaseRestrictionType", "http://www.opengis.net/3dps/1.0/core"), typeof(global::OpenGis.ThreeDps.Core.OWSContentsBaseRestrictionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("InfoLayerExtensionType", "http://www.opengis.net/3dps/1.0/info"), typeof(global::OpenGis.ThreeDps.Info.InfoLayerExtensionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("AbstractGetFeatureInfoType", "http://www.opengis.net/3dps/1.0/info"), typeof(global::OpenGis.ThreeDps.Info.AbstractGetFeatureInfoType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("GetFeatureInfoByRayType", "http://www.opengis.net/3dps/1.0/info"), typeof(global::OpenGis.ThreeDps.Info.GetFeatureInfoByRayType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("GetFeatureInfoByPositionType", "http://www.opengis.net/3dps/1.0/info"), typeof(global::OpenGis.ThreeDps.Info.GetFeatureInfoByPositionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("GetFeatureInfoByObjectIdType", "http://www.opengis.net/3dps/1.0/info"), typeof(global::OpenGis.ThreeDps.Info.GetFeatureInfoByObjectIdType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ViewLayerExtensionType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.ViewLayerExtensionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("GetViewType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.GetViewType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("PortrayalListType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.PortrayalListType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("PerspectiveProjectionType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.PerspectiveProjectionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ViewPortrayalCapabilitiesExtensionType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.ViewPortrayalCapabilitiesExtensionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("OrthographicProjectionType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.OrthographicProjectionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ProjectionBaseType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.ProjectionBaseType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ImageLayerType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.ImageLayerType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("AvailableProjectionType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.AvailableProjectionType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("ProjectionParameterType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.ProjectionParameterType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("PortrayalType", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.PortrayalType));
         }
         
         private static void BuildElementDictionary() {
@@ -16223,10 +16241,13 @@ namespace OpenGis.Ows {
             elementDictionary.Add(System.Xml.Linq.XName.Get("PositionName", "http://www.opengis.net/ows/2.0"), typeof(global::OpenGis.Ows.PositionName));
             elementDictionary.Add(System.Xml.Linq.XName.Get("Role", "http://www.opengis.net/ows/2.0"), typeof(global::OpenGis.Ows.Role));
             elementDictionary.Add(System.Xml.Linq.XName.Get("ContactInfo", "http://www.opengis.net/ows/2.0"), typeof(global::OpenGis.Ows.ContactInfo));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("title", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.title));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("resource", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.resource));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("locator", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.locator));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("arc", "http://www.w3.org/1999/xlink"), typeof(global::www.w3.org.Item1999.xlink.arc));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("title", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.title));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("resource", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.resource));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("locator", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.locator));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("arc", "http://www.w3.org/1999/xlink"), typeof(global::OpenGis.ThreeDps.Xlink.arc));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Projection", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.Projection));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("PerspectiveProjection", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.PerspectiveProjection));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("OrthographicProjection", "http://www.opengis.net/3dps/1.0/view"), typeof(global::OpenGis.ThreeDps.View.OrthographicProjection));
         }
         
         private static void BuildWrapperDictionary() {
@@ -16265,10 +16286,13 @@ namespace OpenGis.Ows {
             wrapperDictionary.Add(typeof(OpenGis.Ows.PointOfContact), typeof(global::OpenGis.Ows.ResponsiblePartyType));
             wrapperDictionary.Add(typeof(OpenGis.Ows.Role), typeof(global::OpenGis.Ows.CodeType));
             wrapperDictionary.Add(typeof(OpenGis.Ows.ContactInfo), typeof(global::OpenGis.Ows.ContactType));
-            wrapperDictionary.Add(typeof(www.w3.org.Item1999.xlink.title), typeof(global::www.w3.org.Item1999.xlink.titleEltType));
-            wrapperDictionary.Add(typeof(www.w3.org.Item1999.xlink.resource), typeof(global::www.w3.org.Item1999.xlink.resourceType));
-            wrapperDictionary.Add(typeof(www.w3.org.Item1999.xlink.locator), typeof(global::www.w3.org.Item1999.xlink.locatorType));
-            wrapperDictionary.Add(typeof(www.w3.org.Item1999.xlink.arc), typeof(global::www.w3.org.Item1999.xlink.arcType));
+            wrapperDictionary.Add(typeof(OpenGis.ThreeDps.Xlink.title), typeof(global::OpenGis.ThreeDps.Xlink.titleEltType));
+            wrapperDictionary.Add(typeof(OpenGis.ThreeDps.Xlink.resource), typeof(global::OpenGis.ThreeDps.Xlink.resourceType));
+            wrapperDictionary.Add(typeof(OpenGis.ThreeDps.Xlink.locator), typeof(global::OpenGis.ThreeDps.Xlink.locatorType));
+            wrapperDictionary.Add(typeof(OpenGis.ThreeDps.Xlink.arc), typeof(global::OpenGis.ThreeDps.Xlink.arcType));
+            wrapperDictionary.Add(typeof(OpenGis.ThreeDps.View.Projection), typeof(global::OpenGis.ThreeDps.View.ProjectionBaseType));
+            wrapperDictionary.Add(typeof(OpenGis.ThreeDps.View.PerspectiveProjection), typeof(global::OpenGis.ThreeDps.View.PerspectiveProjectionType));
+            wrapperDictionary.Add(typeof(OpenGis.ThreeDps.View.OrthographicProjection), typeof(global::OpenGis.ThreeDps.View.OrthographicProjectionType));
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
@@ -16935,13 +16959,19 @@ namespace OpenGis.Ows {
 
 		public global::OpenGis.ThreeDps.Scene.SceneLayerExtension SceneLayerExtension {  get {return rootObject as global::OpenGis.ThreeDps.Scene.SceneLayerExtension; } }
 
-		public global::www.w3.org.Item1999.xlink.title title1 {  get {return rootObject as global::www.w3.org.Item1999.xlink.title; } }
+		public global::OpenGis.ThreeDps.Xlink.title title1 {  get {return rootObject as global::OpenGis.ThreeDps.Xlink.title; } }
 
-		public global::www.w3.org.Item1999.xlink.resource resource1 {  get {return rootObject as global::www.w3.org.Item1999.xlink.resource; } }
+		public global::OpenGis.ThreeDps.Xlink.resource resource1 {  get {return rootObject as global::OpenGis.ThreeDps.Xlink.resource; } }
 
-		public global::www.w3.org.Item1999.xlink.locator locator {  get {return rootObject as global::www.w3.org.Item1999.xlink.locator; } }
+		public global::OpenGis.ThreeDps.Xlink.locator locator {  get {return rootObject as global::OpenGis.ThreeDps.Xlink.locator; } }
 
-		public global::www.w3.org.Item1999.xlink.arc arc {  get {return rootObject as global::www.w3.org.Item1999.xlink.arc; } }
+		public global::OpenGis.ThreeDps.Xlink.arc arc {  get {return rootObject as global::OpenGis.ThreeDps.Xlink.arc; } }
+
+		public global::OpenGis.ThreeDps.View.Projection Projection {  get {return rootObject as global::OpenGis.ThreeDps.View.Projection; } }
+
+		public global::OpenGis.ThreeDps.View.PerspectiveProjection PerspectiveProjection {  get {return rootObject as global::OpenGis.ThreeDps.View.PerspectiveProjection; } }
+
+		public global::OpenGis.ThreeDps.View.OrthographicProjection OrthographicProjection {  get {return rootObject as global::OpenGis.ThreeDps.View.OrthographicProjection; } }
         
         private XRoot() {
         }
@@ -17241,22 +17271,37 @@ namespace OpenGis.Ows {
             this.rootObject = root;
         }
         
-        public XRoot(global::www.w3.org.Item1999.xlink.title root) {
+        public XRoot(global::OpenGis.ThreeDps.Xlink.title root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
-        public XRoot(global::www.w3.org.Item1999.xlink.resource root) {
+        public XRoot(global::OpenGis.ThreeDps.Xlink.resource root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
-        public XRoot(global::www.w3.org.Item1999.xlink.locator root) {
+        public XRoot(global::OpenGis.ThreeDps.Xlink.locator root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
-        public XRoot(global::www.w3.org.Item1999.xlink.arc root) {
+        public XRoot(global::OpenGis.ThreeDps.Xlink.arc root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        public XRoot(global::OpenGis.ThreeDps.View.Projection root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        public XRoot(global::OpenGis.ThreeDps.View.PerspectiveProjection root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        public XRoot(global::OpenGis.ThreeDps.View.OrthographicProjection root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
@@ -17371,7 +17416,7 @@ namespace OpenGis.Ows {
         }
     }
 }
-namespace www.w3.org.XML.Item1998.@namespace {
+namespace OpenGis.ThreeDps.Xml1998 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -18151,7 +18196,7 @@ namespace OpenGis.ThreeDps.Scene {
         }
     }
 }
-namespace www.w3.org.Item1999.xlink {
+namespace OpenGis.ThreeDps.Xlink {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -18375,13 +18420,13 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType? type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType? type {
             get {
                 XAttribute x = this.Attribute(typeXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -18468,13 +18513,13 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 XAttribute x = this.Attribute(actuateXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.actuateType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.actuateType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(actuateXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -18726,10 +18771,10 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 XAttribute x = this.Attribute(typeXName);
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -18860,10 +18905,10 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 XAttribute x = this.Attribute(typeXName);
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -18984,10 +19029,10 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 XAttribute x = this.Attribute(typeXName);
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -19167,10 +19212,10 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 XAttribute x = this.Attribute(typeXName);
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -19382,10 +19427,10 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 XAttribute x = this.Attribute(typeXName);
-                return ((www.w3.org.Item1999.xlink.typeType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.typeType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.typeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(typeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -19442,13 +19487,13 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 XAttribute x = this.Attribute(actuateXName);
                 if ((x == null)) {
                     return null;
                 }
-                return ((www.w3.org.Item1999.xlink.actuateType)(Enum.Parse(typeof(www.w3.org.Item1999.xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((OpenGis.ThreeDps.Xlink.actuateType)(Enum.Parse(typeof(OpenGis.ThreeDps.Xlink.actuateType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
             }
             set {
                 this.SetAttribute(actuateXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
@@ -19579,7 +19624,7 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 return this.ContentField.type;
             }
@@ -19724,7 +19769,7 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 return this.ContentField.type;
             }
@@ -19898,7 +19943,7 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 return this.ContentField.type;
             }
@@ -20090,7 +20135,7 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.typeType type {
+        public virtual OpenGis.ThreeDps.Xlink.typeType type {
             get {
                 return this.ContentField.type;
             }
@@ -20146,7 +20191,7 @@ namespace www.w3.org.Item1999.xlink {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual www.w3.org.Item1999.xlink.actuateType? actuate {
+        public virtual OpenGis.ThreeDps.Xlink.actuateType? actuate {
             get {
                 return this.ContentField.actuate;
             }
@@ -23128,6 +23173,3236 @@ namespace OpenGis.ThreeDps.Core {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+    }
+}
+namespace OpenGis.ThreeDps.Info {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Linq;
+    using System.Diagnostics;
+    using System.Xml;
+    using System.Xml.Schema;
+    using System.Xml.Linq;
+    using Xml.Schema.Linq;
+    using OpenGis.Ows;
+    
+    
+    public partial class InfoLayerExtensionType : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName queryableXName = System.Xml.Linq.XName.Get("queryable", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InfoLayerExtensionType", "http://www.opengis.net/3dps/1.0/info");
+        
+		public static explicit operator InfoLayerExtensionType(XElement xe) { return XTypedServices.ToXTypedElement<InfoLayerExtensionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public InfoLayerExtensionType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Boolean? queryable {
+            get {
+                XAttribute x = this.Attribute(queryableXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetAttribute(queryableXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InfoLayerExtensionType>(this);
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?)
+    /// </para>
+    /// </summary>
+    public abstract partial class AbstractGetFeatureInfoType : global::OpenGis.ThreeDps.Core.RequestBaseType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName LayersXName = System.Xml.Linq.XName.Get("Layers", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FeatureCountXName = System.Xml.Linq.XName.Get("FeatureCount", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName IdOnlyXName = System.Xml.Linq.XName.Get("IdOnly", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FormatXName = System.Xml.Linq.XName.Get("Format", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ExceptionsXName = System.Xml.Linq.XName.Get("Exceptions", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractGetFeatureInfoType", "http://www.opengis.net/3dps/1.0/info");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator AbstractGetFeatureInfoType(XElement xe) {  return (AbstractGetFeatureInfoType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static AbstractGetFeatureInfoType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LayersXName), new NamedContentModelEntity(FeatureCountXName), new NamedContentModelEntity(IdOnlyXName), new NamedContentModelEntity(FormatXName), new NamedContentModelEntity(ExceptionsXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?)
+        /// </para>
+        /// </summary>
+        public AbstractGetFeatureInfoType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?)
+        /// </para>
+        /// </summary>
+        public virtual string Layers {
+            get {
+                XElement x = this.GetElement(LayersXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(LayersXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?)
+        /// </para>
+        /// </summary>
+        public virtual System.Decimal? FeatureCount {
+            get {
+                XElement x = this.GetElement(FeatureCountXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
+            }
+            set {
+                this.SetElement(FeatureCountXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?)
+        /// </para>
+        /// </summary>
+        public virtual System.Boolean? IdOnly {
+            get {
+                XElement x = this.GetElement(IdOnlyXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(IdOnlyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?)
+        /// </para>
+        /// </summary>
+        public virtual string Format {
+            get {
+                XElement x = this.GetElement(FormatXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElementWithValidation(FormatXName, value, "Format", global::OpenGis.Ows.MimeType.TypeDefinition);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?)
+        /// </para>
+        /// </summary>
+        public virtual string Exceptions {
+            get {
+                XElement x = this.GetElement(ExceptionsXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                if (value == null) {
+                    this.SetElement(ExceptionsXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                }
+                else {
+                    this.SetElementWithValidation(ExceptionsXName, value, "Exceptions", global::OpenGis.Ows.MimeType.TypeDefinition);
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LayersXName, typeof(string));
+            localElementDictionary.Add(FeatureCountXName, typeof(decimal));
+            localElementDictionary.Add(IdOnlyXName, typeof(bool));
+            localElementDictionary.Add(FormatXName, typeof(string));
+            localElementDictionary.Add(ExceptionsXName, typeof(string));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Height, Width, Projection, ImagePosition)
+    /// </para>
+    /// </summary>
+    public partial class GetFeatureInfoByRayType : global::OpenGis.ThreeDps.Info.AbstractGetFeatureInfoType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName CRSXName = System.Xml.Linq.XName.Get("CRS", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName HeightXName = System.Xml.Linq.XName.Get("Height", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName WidthXName = System.Xml.Linq.XName.Get("Width", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ProjectionXName = System.Xml.Linq.XName.Get("Projection", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ImagePositionXName = System.Xml.Linq.XName.Get("ImagePosition", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GetFeatureInfoByRayType", "http://www.opengis.net/3dps/1.0/info");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator GetFeatureInfoByRayType(XElement xe) { return XTypedServices.ToXTypedElement<GetFeatureInfoByRayType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static GetFeatureInfoByRayType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LayersXName), new NamedContentModelEntity(FeatureCountXName), new NamedContentModelEntity(IdOnlyXName), new NamedContentModelEntity(FormatXName), new NamedContentModelEntity(ExceptionsXName), new NamedContentModelEntity(CRSXName), new NamedContentModelEntity(HeightXName), new NamedContentModelEntity(WidthXName), new NamedContentModelEntity(ProjectionXName), new NamedContentModelEntity(ImagePositionXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Height, Width, Projection, ImagePosition)
+        /// </para>
+        /// </summary>
+        public GetFeatureInfoByRayType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Height, Width, Projection, ImagePosition)
+        /// </para>
+        /// </summary>
+        public virtual System.Uri CRS {
+            get {
+                XElement x = this.GetElement(CRSXName);
+                return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
+            }
+            set {
+                this.SetElement(CRSXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Height, Width, Projection, ImagePosition)
+        /// </para>
+        /// </summary>
+        public virtual decimal Height {
+            get {
+                XElement x = this.GetElement(HeightXName);
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
+            }
+            set {
+                this.SetElement(HeightXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Height, Width, Projection, ImagePosition)
+        /// </para>
+        /// </summary>
+        public virtual decimal Width {
+            get {
+                XElement x = this.GetElement(WidthXName);
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
+            }
+            set {
+                this.SetElement(WidthXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.PositiveInteger).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Height, Width, Projection, ImagePosition)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.View.ProjectionBaseType Projection {
+            get {
+                XElement x = this.GetElement(ProjectionXName);
+                return ((OpenGis.ThreeDps.View.ProjectionBaseType)(x));
+            }
+            set {
+                this.SetElement(ProjectionXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Height, Width, Projection, ImagePosition)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position2DType ImagePosition {
+            get {
+                XElement x = this.GetElement(ImagePositionXName);
+                return ((OpenGis.ThreeDps.Core.Position2DType)(x));
+            }
+            set {
+                this.SetElement(ImagePositionXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GetFeatureInfoByRayType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LayersXName, typeof(string));
+            localElementDictionary.Add(FeatureCountXName, typeof(decimal));
+            localElementDictionary.Add(IdOnlyXName, typeof(bool));
+            localElementDictionary.Add(FormatXName, typeof(string));
+            localElementDictionary.Add(ExceptionsXName, typeof(string));
+            localElementDictionary.Add(CRSXName, typeof(System.Uri));
+            localElementDictionary.Add(HeightXName, typeof(decimal));
+            localElementDictionary.Add(WidthXName, typeof(decimal));
+            localElementDictionary.Add(ProjectionXName, typeof(OpenGis.ThreeDps.View.ProjectionBaseType));
+            localElementDictionary.Add(ImagePositionXName, typeof(OpenGis.ThreeDps.Core.Position2DType));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Coordinate, Tolerance?)
+    /// </para>
+    /// </summary>
+    public partial class GetFeatureInfoByPositionType : global::OpenGis.ThreeDps.Info.AbstractGetFeatureInfoType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName CRSXName = System.Xml.Linq.XName.Get("CRS", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName CoordinateXName = System.Xml.Linq.XName.Get("Coordinate", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ToleranceXName = System.Xml.Linq.XName.Get("Tolerance", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GetFeatureInfoByPositionType", "http://www.opengis.net/3dps/1.0/info");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator GetFeatureInfoByPositionType(XElement xe) { return XTypedServices.ToXTypedElement<GetFeatureInfoByPositionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static GetFeatureInfoByPositionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LayersXName), new NamedContentModelEntity(FeatureCountXName), new NamedContentModelEntity(IdOnlyXName), new NamedContentModelEntity(FormatXName), new NamedContentModelEntity(ExceptionsXName), new NamedContentModelEntity(CRSXName), new NamedContentModelEntity(CoordinateXName), new NamedContentModelEntity(ToleranceXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Coordinate, Tolerance?)
+        /// </para>
+        /// </summary>
+        public GetFeatureInfoByPositionType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Coordinate, Tolerance?)
+        /// </para>
+        /// </summary>
+        public virtual System.Uri CRS {
+            get {
+                XElement x = this.GetElement(CRSXName);
+                return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
+            }
+            set {
+                this.SetElement(CRSXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Coordinate, Tolerance?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType Coordinate {
+            get {
+                XElement x = this.GetElement(CoordinateXName);
+                return ((OpenGis.ThreeDps.Core.Position3DType)(x));
+            }
+            set {
+                this.SetElement(CoordinateXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, CRS, Coordinate, Tolerance?)
+        /// </para>
+        /// </summary>
+        public virtual System.Single? Tolerance {
+            get {
+                XElement x = this.GetElement(ToleranceXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<float>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float).Datatype);
+            }
+            set {
+                this.SetElement(ToleranceXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GetFeatureInfoByPositionType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LayersXName, typeof(string));
+            localElementDictionary.Add(FeatureCountXName, typeof(decimal));
+            localElementDictionary.Add(IdOnlyXName, typeof(bool));
+            localElementDictionary.Add(FormatXName, typeof(string));
+            localElementDictionary.Add(ExceptionsXName, typeof(string));
+            localElementDictionary.Add(CRSXName, typeof(System.Uri));
+            localElementDictionary.Add(CoordinateXName, typeof(OpenGis.ThreeDps.Core.Position3DType));
+            localElementDictionary.Add(ToleranceXName, typeof(float));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, ObjectId+)
+    /// </para>
+    /// </summary>
+    public partial class GetFeatureInfoByObjectIdType : global::OpenGis.ThreeDps.Info.AbstractGetFeatureInfoType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ObjectIdXName = System.Xml.Linq.XName.Get("ObjectId", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<System.Uri> ObjectIdField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GetFeatureInfoByObjectIdType", "http://www.opengis.net/3dps/1.0/info");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator GetFeatureInfoByObjectIdType(XElement xe) { return XTypedServices.ToXTypedElement<GetFeatureInfoByObjectIdType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static GetFeatureInfoByObjectIdType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LayersXName), new NamedContentModelEntity(FeatureCountXName), new NamedContentModelEntity(IdOnlyXName), new NamedContentModelEntity(FormatXName), new NamedContentModelEntity(ExceptionsXName), new NamedContentModelEntity(ObjectIdXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, ObjectId+)
+        /// </para>
+        /// </summary>
+        public GetFeatureInfoByObjectIdType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (Layers, FeatureCount?, IdOnly?, Format, Exceptions?, ObjectId+)
+        /// </para>
+        /// </summary>
+        public virtual IList<System.Uri> ObjectId {
+            get {
+                if ((this.ObjectIdField == null)) {
+                    this.ObjectIdField = new XSimpleList<System.Uri>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype, ObjectIdXName);
+                }
+                return this.ObjectIdField;
+            }
+            set {
+                if ((value == null)) {
+                    this.ObjectIdField = null;
+                }
+                else {
+                    if ((this.ObjectIdField == null)) {
+                        this.ObjectIdField = XSimpleList<System.Uri>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype, value, ObjectIdXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.Uri>(this.ObjectIdField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GetFeatureInfoByObjectIdType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LayersXName, typeof(string));
+            localElementDictionary.Add(FeatureCountXName, typeof(decimal));
+            localElementDictionary.Add(IdOnlyXName, typeof(bool));
+            localElementDictionary.Add(FormatXName, typeof(string));
+            localElementDictionary.Add(ExceptionsXName, typeof(string));
+            localElementDictionary.Add(ObjectIdXName, typeof(System.Uri));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+}
+namespace OpenGis.ThreeDps.View {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Linq;
+    using System.Diagnostics;
+    using System.Xml;
+    using System.Xml.Schema;
+    using System.Xml.Linq;
+    using Xml.Schema.Linq;
+    using OpenGis.Ows;
+    
+    
+    public partial class ViewLayerExtensionType : XTypedElement, IXMetaData {
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ViewLayerExtensionType", "http://www.opengis.net/3dps/1.0/view");
+        
+		public static explicit operator ViewLayerExtensionType(XElement xe) { return XTypedServices.ToXTypedElement<ViewLayerExtensionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public ViewLayerExtensionType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ViewLayerExtensionType>(this);
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (CRS, BoundingBox, SpatialSelection?, Layers, Styles?, Background?, LODs?, LODSelection?, OverallStyles?, DeliveryOptions*, Exceptions?, BackgroundColor?, TransparentBackground?, Portrayals)
+    /// </para>
+    /// </summary>
+    public partial class GetViewType : global::OpenGis.ThreeDps.Core.AbstractGetPortrayalType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName BackgroundColorXName = System.Xml.Linq.XName.Get("BackgroundColor", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName TransparentBackgroundXName = System.Xml.Linq.XName.Get("TransparentBackground", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName PortrayalsXName = System.Xml.Linq.XName.Get("Portrayals", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GetViewType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator GetViewType(XElement xe) { return XTypedServices.ToXTypedElement<GetViewType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static GetViewType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CRSXName), new NamedContentModelEntity(BoundingBoxXName), new NamedContentModelEntity(SpatialSelectionXName), new NamedContentModelEntity(LayersXName), new NamedContentModelEntity(StylesXName), new NamedContentModelEntity(BackgroundXName), new NamedContentModelEntity(LODsXName), new NamedContentModelEntity(LODSelectionXName), new NamedContentModelEntity(OverallStylesXName), new NamedContentModelEntity(DeliveryOptionsXName), new NamedContentModelEntity(ExceptionsXName), new NamedContentModelEntity(BackgroundColorXName), new NamedContentModelEntity(TransparentBackgroundXName), new NamedContentModelEntity(PortrayalsXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (CRS, BoundingBox, SpatialSelection?, Layers, Styles?, Background?, LODs?, LODSelection?, OverallStyles?, DeliveryOptions*, Exceptions?, BackgroundColor?, TransparentBackground?, Portrayals)
+        /// </para>
+        /// </summary>
+        public GetViewType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (CRS, BoundingBox, SpatialSelection?, Layers, Styles?, Background?, LODs?, LODSelection?, OverallStyles?, DeliveryOptions*, Exceptions?, BackgroundColor?, TransparentBackground?, Portrayals)
+        /// </para>
+        /// </summary>
+        public virtual string BackgroundColor {
+            get {
+                XElement x = this.GetElement(BackgroundColorXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(BackgroundColorXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (CRS, BoundingBox, SpatialSelection?, Layers, Styles?, Background?, LODs?, LODSelection?, OverallStyles?, DeliveryOptions*, Exceptions?, BackgroundColor?, TransparentBackground?, Portrayals)
+        /// </para>
+        /// </summary>
+        public virtual System.Boolean? TransparentBackground {
+            get {
+                XElement x = this.GetElement(TransparentBackgroundXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(TransparentBackgroundXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (CRS, BoundingBox, SpatialSelection?, Layers, Styles?, Background?, LODs?, LODSelection?, OverallStyles?, DeliveryOptions*, Exceptions?, BackgroundColor?, TransparentBackground?, Portrayals)
+        /// </para>
+        /// </summary>
+        public virtual PortrayalListType Portrayals {
+            get {
+                XElement x = this.GetElement(PortrayalsXName);
+                return ((PortrayalListType)(x));
+            }
+            set {
+                this.SetElement(PortrayalsXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GetViewType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(CRSXName, typeof(System.Uri));
+            localElementDictionary.Add(BoundingBoxXName, typeof(OpenGis.Ows.BoundingBoxType));
+            localElementDictionary.Add(SpatialSelectionXName, typeof(string));
+            localElementDictionary.Add(LayersXName, typeof(string));
+            localElementDictionary.Add(StylesXName, typeof(string));
+            localElementDictionary.Add(BackgroundXName, typeof(string));
+            localElementDictionary.Add(LODsXName, typeof(string));
+            localElementDictionary.Add(LODSelectionXName, typeof(string));
+            localElementDictionary.Add(OverallStylesXName, typeof(string));
+            localElementDictionary.Add(DeliveryOptionsXName, typeof(string));
+            localElementDictionary.Add(ExceptionsXName, typeof(string));
+            localElementDictionary.Add(BackgroundColorXName, typeof(string));
+            localElementDictionary.Add(TransparentBackgroundXName, typeof(bool));
+            localElementDictionary.Add(PortrayalsXName, typeof(PortrayalListType));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Portrayal+)
+    /// </para>
+    /// </summary>
+    public partial class PortrayalListType : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName PortrayalXName = System.Xml.Linq.XName.Get("Portrayal", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PortrayalType> PortrayalField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PortrayalListType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator PortrayalListType(XElement xe) { return XTypedServices.ToXTypedElement<PortrayalListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static PortrayalListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PortrayalXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Portrayal+)
+        /// </para>
+        /// </summary>
+        public PortrayalListType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (Portrayal+)
+        /// </para>
+        /// </summary>
+        public virtual IList<PortrayalType> Portrayal {
+            get {
+                if ((this.PortrayalField == null)) {
+                    this.PortrayalField = new XTypedList<PortrayalType>(this, LinqToXsdTypeManager.Instance, PortrayalXName);
+                }
+                return this.PortrayalField;
+            }
+            set {
+                if ((value == null)) {
+                    this.PortrayalField = null;
+                }
+                else {
+                    if ((this.PortrayalField == null)) {
+                        this.PortrayalField = XTypedList<PortrayalType>.Initialize(this, LinqToXsdTypeManager.Instance, value, PortrayalXName);
+                    }
+                    else {
+                        XTypedServices.SetList<PortrayalType>(this.PortrayalField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PortrayalListType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PortrayalXName, typeof(PortrayalType));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+    /// </para>
+    /// </summary>
+    public partial class PerspectiveProjectionType : global::OpenGis.ThreeDps.View.ProjectionBaseType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName POCXName = System.Xml.Linq.XName.Get("POC", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName POIXName = System.Xml.Linq.XName.Get("POI", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName UPXName = System.Xml.Linq.XName.Get("UP", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FOVXXName = System.Xml.Linq.XName.Get("FOVX", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FOVYXName = System.Xml.Linq.XName.Get("FOVY", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName NearPlaneXName = System.Xml.Linq.XName.Get("NearPlane", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FarPlaneXName = System.Xml.Linq.XName.Get("FarPlane", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PerspectiveProjectionType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator PerspectiveProjectionType(XElement xe) { return XTypedServices.ToXTypedElement<PerspectiveProjectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static PerspectiveProjectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentifierXName), new NamedContentModelEntity(POCXName), new NamedContentModelEntity(POIXName), new NamedContentModelEntity(UPXName), new NamedContentModelEntity(FOVXXName), new NamedContentModelEntity(FOVYXName), new NamedContentModelEntity(NearPlaneXName), new NamedContentModelEntity(FarPlaneXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public PerspectiveProjectionType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POC {
+            get {
+                XElement x = this.GetElement(POCXName);
+                return ((OpenGis.ThreeDps.Core.Position3DType)(x));
+            }
+            set {
+                this.SetElement(POCXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POI {
+            get {
+                XElement x = this.GetElement(POIXName);
+                return ((OpenGis.ThreeDps.Core.Position3DType)(x));
+            }
+            set {
+                this.SetElement(POIXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType UP {
+            get {
+                XElement x = this.GetElement(UPXName);
+                return ((OpenGis.ThreeDps.Core.Position3DType)(x));
+            }
+            set {
+                this.SetElement(UPXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FOVX {
+            get {
+                XElement x = this.GetElement(FOVXXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(FOVXXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FOVY {
+            get {
+                XElement x = this.GetElement(FOVYXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(FOVYXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? NearPlane {
+            get {
+                XElement x = this.GetElement(NearPlaneXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(NearPlaneXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FarPlane {
+            get {
+                XElement x = this.GetElement(FarPlaneXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(FarPlaneXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PerspectiveProjectionType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IdentifierXName, typeof(OpenGis.Ows.Identifier));
+            localElementDictionary.Add(POCXName, typeof(OpenGis.ThreeDps.Core.Position3DType));
+            localElementDictionary.Add(POIXName, typeof(OpenGis.ThreeDps.Core.Position3DType));
+            localElementDictionary.Add(UPXName, typeof(OpenGis.ThreeDps.Core.Position3DType));
+            localElementDictionary.Add(FOVXXName, typeof(double));
+            localElementDictionary.Add(FOVYXName, typeof(double));
+            localElementDictionary.Add(NearPlaneXName, typeof(double));
+            localElementDictionary.Add(FarPlaneXName, typeof(double));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (farPlaneHint, nearPlaneHint, supportsMultipleViews, AvailableImageLayer*, AvailableProjection*)
+    /// </para>
+    /// </summary>
+    public partial class ViewPortrayalCapabilitiesExtensionType : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName farPlaneHintXName = System.Xml.Linq.XName.Get("farPlaneHint", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName nearPlaneHintXName = System.Xml.Linq.XName.Get("nearPlaneHint", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName supportsMultipleViewsXName = System.Xml.Linq.XName.Get("supportsMultipleViews", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName AvailableImageLayerXName = System.Xml.Linq.XName.Get("AvailableImageLayer", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ImageLayerType> AvailableImageLayerField;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName AvailableProjectionXName = System.Xml.Linq.XName.Get("AvailableProjection", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<AvailableProjectionType> AvailableProjectionField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ViewPortrayalCapabilitiesExtensionType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator ViewPortrayalCapabilitiesExtensionType(XElement xe) { return XTypedServices.ToXTypedElement<ViewPortrayalCapabilitiesExtensionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static ViewPortrayalCapabilitiesExtensionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(farPlaneHintXName), new NamedContentModelEntity(nearPlaneHintXName), new NamedContentModelEntity(supportsMultipleViewsXName), new NamedContentModelEntity(AvailableImageLayerXName), new NamedContentModelEntity(AvailableProjectionXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (farPlaneHint, nearPlaneHint, supportsMultipleViews, AvailableImageLayer*, AvailableProjection*)
+        /// </para>
+        /// </summary>
+        public ViewPortrayalCapabilitiesExtensionType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (farPlaneHint, nearPlaneHint, supportsMultipleViews, AvailableImageLayer*, AvailableProjection*)
+        /// </para>
+        /// </summary>
+        public virtual double farPlaneHint {
+            get {
+                XElement x = this.GetElement(farPlaneHintXName);
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(farPlaneHintXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (farPlaneHint, nearPlaneHint, supportsMultipleViews, AvailableImageLayer*, AvailableProjection*)
+        /// </para>
+        /// </summary>
+        public virtual double nearPlaneHint {
+            get {
+                XElement x = this.GetElement(nearPlaneHintXName);
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(nearPlaneHintXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (farPlaneHint, nearPlaneHint, supportsMultipleViews, AvailableImageLayer*, AvailableProjection*)
+        /// </para>
+        /// </summary>
+        public virtual bool supportsMultipleViews {
+            get {
+                XElement x = this.GetElement(supportsMultipleViewsXName);
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetElement(supportsMultipleViewsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (farPlaneHint, nearPlaneHint, supportsMultipleViews, AvailableImageLayer*, AvailableProjection*)
+        /// </para>
+        /// </summary>
+        public virtual IList<ImageLayerType> AvailableImageLayer {
+            get {
+                if ((this.AvailableImageLayerField == null)) {
+                    this.AvailableImageLayerField = new XTypedList<ImageLayerType>(this, LinqToXsdTypeManager.Instance, AvailableImageLayerXName);
+                }
+                return this.AvailableImageLayerField;
+            }
+            set {
+                if ((value == null)) {
+                    this.AvailableImageLayerField = null;
+                }
+                else {
+                    if ((this.AvailableImageLayerField == null)) {
+                        this.AvailableImageLayerField = XTypedList<ImageLayerType>.Initialize(this, LinqToXsdTypeManager.Instance, value, AvailableImageLayerXName);
+                    }
+                    else {
+                        XTypedServices.SetList<ImageLayerType>(this.AvailableImageLayerField, value);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (farPlaneHint, nearPlaneHint, supportsMultipleViews, AvailableImageLayer*, AvailableProjection*)
+        /// </para>
+        /// </summary>
+        public virtual IList<AvailableProjectionType> AvailableProjection {
+            get {
+                if ((this.AvailableProjectionField == null)) {
+                    this.AvailableProjectionField = new XTypedList<AvailableProjectionType>(this, LinqToXsdTypeManager.Instance, AvailableProjectionXName);
+                }
+                return this.AvailableProjectionField;
+            }
+            set {
+                if ((value == null)) {
+                    this.AvailableProjectionField = null;
+                }
+                else {
+                    if ((this.AvailableProjectionField == null)) {
+                        this.AvailableProjectionField = XTypedList<AvailableProjectionType>.Initialize(this, LinqToXsdTypeManager.Instance, value, AvailableProjectionXName);
+                    }
+                    else {
+                        XTypedServices.SetList<AvailableProjectionType>(this.AvailableProjectionField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ViewPortrayalCapabilitiesExtensionType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(farPlaneHintXName, typeof(double));
+            localElementDictionary.Add(nearPlaneHintXName, typeof(double));
+            localElementDictionary.Add(supportsMultipleViewsXName, typeof(bool));
+            localElementDictionary.Add(AvailableImageLayerXName, typeof(ImageLayerType));
+            localElementDictionary.Add(AvailableProjectionXName, typeof(AvailableProjectionType));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+    /// </para>
+    /// </summary>
+    public partial class OrthographicProjectionType : global::OpenGis.ThreeDps.View.ProjectionBaseType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName POCXName = System.Xml.Linq.XName.Get("POC", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName POIXName = System.Xml.Linq.XName.Get("POI", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName UPXName = System.Xml.Linq.XName.Get("UP", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName LeftXName = System.Xml.Linq.XName.Get("Left", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName RightXName = System.Xml.Linq.XName.Get("Right", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName BottomXName = System.Xml.Linq.XName.Get("Bottom", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName TopXName = System.Xml.Linq.XName.Get("Top", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName NearPlaneXName = System.Xml.Linq.XName.Get("NearPlane", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FarPlaneXName = System.Xml.Linq.XName.Get("FarPlane", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OrthographicProjectionType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator OrthographicProjectionType(XElement xe) { return XTypedServices.ToXTypedElement<OrthographicProjectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static OrthographicProjectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentifierXName), new NamedContentModelEntity(POCXName), new NamedContentModelEntity(POIXName), new NamedContentModelEntity(UPXName), new NamedContentModelEntity(LeftXName), new NamedContentModelEntity(RightXName), new NamedContentModelEntity(BottomXName), new NamedContentModelEntity(TopXName), new NamedContentModelEntity(NearPlaneXName), new NamedContentModelEntity(FarPlaneXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public OrthographicProjectionType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POC {
+            get {
+                XElement x = this.GetElement(POCXName);
+                return ((OpenGis.ThreeDps.Core.Position3DType)(x));
+            }
+            set {
+                this.SetElement(POCXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POI {
+            get {
+                XElement x = this.GetElement(POIXName);
+                return ((OpenGis.ThreeDps.Core.Position3DType)(x));
+            }
+            set {
+                this.SetElement(POIXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType UP {
+            get {
+                XElement x = this.GetElement(UPXName);
+                return ((OpenGis.ThreeDps.Core.Position3DType)(x));
+            }
+            set {
+                this.SetElement(UPXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Left {
+            get {
+                XElement x = this.GetElement(LeftXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(LeftXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Right {
+            get {
+                XElement x = this.GetElement(RightXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(RightXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Bottom {
+            get {
+                XElement x = this.GetElement(BottomXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(BottomXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Top {
+            get {
+                XElement x = this.GetElement(TopXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(TopXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? NearPlane {
+            get {
+                XElement x = this.GetElement(NearPlaneXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(NearPlaneXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FarPlane {
+            get {
+                XElement x = this.GetElement(FarPlaneXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+            set {
+                this.SetElement(FarPlaneXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<OrthographicProjectionType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IdentifierXName, typeof(OpenGis.Ows.Identifier));
+            localElementDictionary.Add(POCXName, typeof(OpenGis.ThreeDps.Core.Position3DType));
+            localElementDictionary.Add(POIXName, typeof(OpenGis.ThreeDps.Core.Position3DType));
+            localElementDictionary.Add(UPXName, typeof(OpenGis.ThreeDps.Core.Position3DType));
+            localElementDictionary.Add(LeftXName, typeof(double));
+            localElementDictionary.Add(RightXName, typeof(double));
+            localElementDictionary.Add(BottomXName, typeof(double));
+            localElementDictionary.Add(TopXName, typeof(double));
+            localElementDictionary.Add(NearPlaneXName, typeof(double));
+            localElementDictionary.Add(FarPlaneXName, typeof(double));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Identifier)
+    /// </para>
+    /// </summary>
+    public partial class ProjectionBaseType : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName IdentifierXName = System.Xml.Linq.XName.Get("Identifier", "http://www.opengis.net/ows/2.0");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProjectionBaseType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator ProjectionBaseType(XElement xe) { return XTypedServices.ToXTypedElement<ProjectionBaseType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static ProjectionBaseType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentifierXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Identifier)
+        /// </para>
+        /// </summary>
+        public ProjectionBaseType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.Ows.Identifier Identifier {
+            get {
+                XElement x = this.GetElement(IdentifierXName);
+                return ((OpenGis.Ows.Identifier)(x));
+            }
+            set {
+                this.SetElement(IdentifierXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProjectionBaseType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IdentifierXName, typeof(OpenGis.Ows.Identifier));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, AvailableFormat+)
+    /// </para>
+    /// </summary>
+    public partial class ImageLayerType : global::OpenGis.Ows.DescriptionType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName IdentifierXName = System.Xml.Linq.XName.Get("Identifier", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName AvailableFormatXName = System.Xml.Linq.XName.Get("AvailableFormat", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> AvailableFormatField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ImageLayerType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator ImageLayerType(XElement xe) { return XTypedServices.ToXTypedElement<ImageLayerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static ImageLayerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TitleXName), new NamedContentModelEntity(AbstractXName), new NamedContentModelEntity(KeywordsXName), new NamedContentModelEntity(IdentifierXName), new NamedContentModelEntity(AvailableFormatXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, AvailableFormat+)
+        /// </para>
+        /// </summary>
+        public ImageLayerType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, AvailableFormat+)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.Ows.CodeType Identifier {
+            get {
+                XElement x = this.GetElement(IdentifierXName);
+                return ((OpenGis.Ows.CodeType)(x));
+            }
+            set {
+                this.SetElement(IdentifierXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, AvailableFormat+)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> AvailableFormat {
+            get {
+                if ((this.AvailableFormatField == null)) {
+                    this.AvailableFormatField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, AvailableFormatXName);
+                }
+                return this.AvailableFormatField;
+            }
+            set {
+                if ((value == null)) {
+                    this.AvailableFormatField = null;
+                }
+                else {
+                    if ((this.AvailableFormatField == null)) {
+                        this.AvailableFormatField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, AvailableFormatXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.AvailableFormatField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ImageLayerType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TitleXName, typeof(OpenGis.Ows.Title));
+            localElementDictionary.Add(AbstractXName, typeof(OpenGis.Ows.Abstract));
+            localElementDictionary.Add(KeywordsXName, typeof(OpenGis.Ows.Keywords));
+            localElementDictionary.Add(IdentifierXName, typeof(OpenGis.Ows.CodeType));
+            localElementDictionary.Add(AvailableFormatXName, typeof(string));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, ProjectionParameter*)
+    /// </para>
+    /// </summary>
+    public partial class AvailableProjectionType : global::OpenGis.Ows.DescriptionType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName IdentifierXName = System.Xml.Linq.XName.Get("Identifier", "http://www.opengis.net/ows/2.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ProjectionParameterXName = System.Xml.Linq.XName.Get("ProjectionParameter", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProjectionParameterType> ProjectionParameterField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AvailableProjectionType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator AvailableProjectionType(XElement xe) { return XTypedServices.ToXTypedElement<AvailableProjectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static AvailableProjectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TitleXName), new NamedContentModelEntity(AbstractXName), new NamedContentModelEntity(KeywordsXName), new NamedContentModelEntity(IdentifierXName), new NamedContentModelEntity(ProjectionParameterXName));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, ProjectionParameter*)
+        /// </para>
+        /// </summary>
+        public AvailableProjectionType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, ProjectionParameter*)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.Ows.Identifier Identifier {
+            get {
+                XElement x = this.GetElement(IdentifierXName);
+                return ((OpenGis.Ows.Identifier)(x));
+            }
+            set {
+                this.SetElement(IdentifierXName, value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (Title*, Abstract*, Keywords*, Identifier, ProjectionParameter*)
+        /// </para>
+        /// </summary>
+        public virtual IList<ProjectionParameterType> ProjectionParameter {
+            get {
+                if ((this.ProjectionParameterField == null)) {
+                    this.ProjectionParameterField = new XTypedList<ProjectionParameterType>(this, LinqToXsdTypeManager.Instance, ProjectionParameterXName);
+                }
+                return this.ProjectionParameterField;
+            }
+            set {
+                if ((value == null)) {
+                    this.ProjectionParameterField = null;
+                }
+                else {
+                    if ((this.ProjectionParameterField == null)) {
+                        this.ProjectionParameterField = XTypedList<ProjectionParameterType>.Initialize(this, LinqToXsdTypeManager.Instance, value, ProjectionParameterXName);
+                    }
+                    else {
+                        XTypedServices.SetList<ProjectionParameterType>(this.ProjectionParameterField, value);
+                    }
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AvailableProjectionType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TitleXName, typeof(OpenGis.Ows.Title));
+            localElementDictionary.Add(AbstractXName, typeof(OpenGis.Ows.Abstract));
+            localElementDictionary.Add(KeywordsXName, typeof(OpenGis.Ows.Keywords));
+            localElementDictionary.Add(IdentifierXName, typeof(OpenGis.Ows.Identifier));
+            localElementDictionary.Add(ProjectionParameterXName, typeof(ProjectionParameterType));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: ((AllowedValues | AnyValue | NoValues | ValuesReference), DefaultValue?, Meaning?, DataType?, (UOM | ReferenceSystem)?, Metadata*)
+    /// </para>
+    /// </summary>
+    public partial class ProjectionParameterType : global::OpenGis.Ows.DomainType, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName requiredXName = System.Xml.Linq.XName.Get("required", "");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProjectionParameterType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator ProjectionParameterType(XElement xe) { return XTypedServices.ToXTypedElement<ProjectionParameterType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static ProjectionParameterType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(AllowedValuesXName), new NamedContentModelEntity(AnyValueXName), new NamedContentModelEntity(NoValuesXName), new NamedContentModelEntity(ValuesReferenceXName)), new NamedContentModelEntity(DefaultValueXName), new NamedContentModelEntity(MeaningXName), new NamedContentModelEntity(DataTypeXName), new ChoiceContentModelEntity(new NamedContentModelEntity(UOMXName), new NamedContentModelEntity(ReferenceSystemXName)), new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("Metadata", "http://www.opengis.net/ows/2.0"), System.Xml.Linq.XName.Get("AdditionalParameters", "http://www.opengis.net/ows/2.0")));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: ((AllowedValues | AnyValue | NoValues | ValuesReference), DefaultValue?, Meaning?, DataType?, (UOM | ReferenceSystem)?, Metadata*)
+        /// </para>
+        /// </summary>
+        public ProjectionParameterType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.Boolean? required {
+            get {
+                XAttribute x = this.Attribute(requiredXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+            set {
+                this.SetAttribute(requiredXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProjectionParameterType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AllowedValuesXName, typeof(OpenGis.Ows.AllowedValues));
+            localElementDictionary.Add(AnyValueXName, typeof(OpenGis.Ows.AnyValue));
+            localElementDictionary.Add(NoValuesXName, typeof(OpenGis.Ows.NoValues));
+            localElementDictionary.Add(ValuesReferenceXName, typeof(OpenGis.Ows.ValuesReference));
+            localElementDictionary.Add(DefaultValueXName, typeof(OpenGis.Ows.DefaultValue));
+            localElementDictionary.Add(MeaningXName, typeof(OpenGis.Ows.Meaning));
+            localElementDictionary.Add(DataTypeXName, typeof(OpenGis.Ows.DataType));
+            localElementDictionary.Add(UOMXName, typeof(OpenGis.Ows.UOM));
+            localElementDictionary.Add(ReferenceSystemXName, typeof(OpenGis.Ows.ReferenceSystem));
+            localElementDictionary.Add(MetadataXName, typeof(OpenGis.Ows.Metadata));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+    /// </para>
+    /// </summary>
+    public partial class PortrayalType : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName WidthXName = System.Xml.Linq.XName.Get("Width", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<int> WidthField;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName HeightXName = System.Xml.Linq.XName.Get("Height", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<int> HeightField;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ImageLayersXName = System.Xml.Linq.XName.Get("ImageLayers", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName FormatsXName = System.Xml.Linq.XName.Get("Formats", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName QualitiesXName = System.Xml.Linq.XName.Get("Qualities", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName ProjectionXName = System.Xml.Linq.XName.Get("Projection", "http://www.opengis.net/3dps/1.0/view");
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PortrayalType", "http://www.opengis.net/3dps/1.0/view");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+		public static explicit operator PortrayalType(XElement xe) { return XTypedServices.ToXTypedElement<PortrayalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        static PortrayalType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(WidthXName), new NamedContentModelEntity(HeightXName), new NamedContentModelEntity(ImageLayersXName), new NamedContentModelEntity(FormatsXName), new NamedContentModelEntity(QualitiesXName), new SubstitutedContentModelEntity(System.Xml.Linq.XName.Get("Projection", "http://www.opengis.net/3dps/1.0/view"), System.Xml.Linq.XName.Get("PerspectiveProjection", "http://www.opengis.net/3dps/1.0/view"), System.Xml.Linq.XName.Get("OrthographicProjection", "http://www.opengis.net/3dps/1.0/view")));
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+        /// </para>
+        /// </summary>
+        public PortrayalType() {
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+        /// </para>
+        /// </summary>
+        public virtual IList<int> Width {
+            get {
+                if ((this.WidthField == null)) {
+                    this.WidthField = new XSimpleList<int>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, WidthXName);
+                }
+                return this.WidthField;
+            }
+            set {
+                if ((value == null)) {
+                    this.WidthField = null;
+                }
+                else {
+                    if ((this.WidthField == null)) {
+                        this.WidthField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, value, WidthXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.Int32>(this.WidthField, value);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+        /// </para>
+        /// </summary>
+        public virtual IList<int> Height {
+            get {
+                if ((this.HeightField == null)) {
+                    this.HeightField = new XSimpleList<int>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, HeightXName);
+                }
+                return this.HeightField;
+            }
+            set {
+                if ((value == null)) {
+                    this.HeightField = null;
+                }
+                else {
+                    if ((this.HeightField == null)) {
+                        this.HeightField = XSimpleList<int>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, value, HeightXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.Int32>(this.HeightField, value);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+        /// </para>
+        /// </summary>
+        public virtual string ImageLayers {
+            get {
+                XElement x = this.GetElement(ImageLayersXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(ImageLayersXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+        /// </para>
+        /// </summary>
+        public virtual string Formats {
+            get {
+                XElement x = this.GetElement(FormatsXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(FormatsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+        /// </para>
+        /// </summary>
+        public virtual string Qualities {
+            get {
+                XElement x = this.GetElement(QualitiesXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElement(QualitiesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Substitution members: Projection, PerspectiveProjection, OrthographicProjection
+        /// </para>
+        /// <para>
+        /// Regular expression: (Width*, Height*, ImageLayers, Formats, Qualities, Projection)
+        /// </para>
+        /// </summary>
+        public virtual Projection Projection {
+            get {
+                XTypedElement x = XTypedServices.ToSubstitutedXTypedElement(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("Projection", "http://www.opengis.net/3dps/1.0/view"), System.Xml.Linq.XName.Get("PerspectiveProjection", "http://www.opengis.net/3dps/1.0/view"), System.Xml.Linq.XName.Get("OrthographicProjection", "http://www.opengis.net/3dps/1.0/view"));
+                return ((Projection)(x));
+            }
+            set {
+                this.SetElement(ProjectionXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PortrayalType>(this);
+        }
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(WidthXName, typeof(int));
+            localElementDictionary.Add(HeightXName, typeof(int));
+            localElementDictionary.Add(ImageLayersXName, typeof(string));
+            localElementDictionary.Add(FormatsXName, typeof(string));
+            localElementDictionary.Add(QualitiesXName, typeof(string));
+            localElementDictionary.Add(ProjectionXName, typeof(Projection));
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+    }
+    
+    public partial class Projection : XTypedElement, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private ProjectionBaseType ContentField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Projection", "http://www.opengis.net/3dps/1.0/view");
+        
+		public static explicit operator Projection(XElement xe) {  return (Projection)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        protected Projection(bool setNull) {
+        }
+        
+        public Projection() {
+            SetInnerType(new ProjectionBaseType());
+        }
+        
+        public Projection(ProjectionBaseType content) {
+            SetInnerType(content);
+        }
+        
+        public override XElement Untyped {
+            get {
+                return base.Untyped;
+            }
+            set {
+                base.Untyped = value;
+                if ((this.ContentField != null)) {
+                    this.ContentField.Untyped = value;
+                }
+            }
+        }
+        
+        public virtual ProjectionBaseType Content {
+            get {
+                return ContentField;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.Ows.Identifier Identifier {
+            get {
+                return this.ContentField.Identifier;
+            }
+            set {
+                this.ContentField.Identifier = value;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
+                return schemaMetaData.LocalElementsDictionary;
+            }
+        }
+        
+        XTypedElement IXMetaData.Content {
+            get {
+                return this.Content;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
+        
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static Projection Load(string xmlFile) {
+            return ((Projection)(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
+        }
+        
+        public static Projection Load(System.IO.TextReader xmlFile) {
+            return ((Projection)(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
+        }
+        
+        public static Projection Parse(string xml) {
+            return ((Projection)(XTypedServices.ToXTypedElement(XElement.Parse(xml), LinqToXsdTypeManager.Instance)));
+        }
+        
+        public override XTypedElement Clone() {
+            return new Projection(((ProjectionBaseType)(this.Content.Clone())));
+        }
+        
+        private void SetInnerType(ProjectionBaseType ContentField) {
+            this.ContentField = ((ProjectionBaseType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        protected virtual void SetSubstitutionMember(ProjectionBaseType ContentField) {
+            this.ContentField = ContentField;
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+    }
+    
+    public partial class PerspectiveProjection : global::OpenGis.ThreeDps.View.Projection, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private PerspectiveProjectionType ContentField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PerspectiveProjection", "http://www.opengis.net/3dps/1.0/view");
+        
+		public static explicit operator PerspectiveProjection(XElement xe) { return XTypedServices.ToXTypedElement<PerspectiveProjection, PerspectiveProjectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public PerspectiveProjection() : 
+                base(true) {
+            SetInnerType(new PerspectiveProjectionType());
+        }
+        
+        public PerspectiveProjection(PerspectiveProjectionType content) : 
+                base(true) {
+            SetInnerType(content);
+        }
+        
+        public override XElement Untyped {
+            get {
+                return base.Untyped;
+            }
+            set {
+                base.Untyped = value;
+                this.ContentField.Untyped = value;
+            }
+        }
+        
+        public new virtual PerspectiveProjectionType Content {
+            get {
+                return ContentField;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POC {
+            get {
+                return this.ContentField.POC;
+            }
+            set {
+                this.ContentField.POC = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POI {
+            get {
+                return this.ContentField.POI;
+            }
+            set {
+                this.ContentField.POI = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType UP {
+            get {
+                return this.ContentField.UP;
+            }
+            set {
+                this.ContentField.UP = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FOVX {
+            get {
+                return this.ContentField.FOVX;
+            }
+            set {
+                this.ContentField.FOVX = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FOVY {
+            get {
+                return this.ContentField.FOVY;
+            }
+            set {
+                this.ContentField.FOVY = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? NearPlane {
+            get {
+                return this.ContentField.NearPlane;
+            }
+            set {
+                this.ContentField.NearPlane = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, FOVX?, FOVY?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FarPlane {
+            get {
+                return this.ContentField.FarPlane;
+            }
+            set {
+                this.ContentField.FarPlane = value;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
+                return schemaMetaData.LocalElementsDictionary;
+            }
+        }
+        
+        XTypedElement IXMetaData.Content {
+            get {
+                return this.Content;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public new static PerspectiveProjection Load(string xmlFile) {
+            return XTypedServices.Load<PerspectiveProjection, PerspectiveProjectionType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static PerspectiveProjection Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<PerspectiveProjection, PerspectiveProjectionType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public new static PerspectiveProjection Parse(string xml) {
+            return XTypedServices.Parse<PerspectiveProjection, PerspectiveProjectionType>(xml, LinqToXsdTypeManager.Instance);
+        }
+        
+        public override XTypedElement Clone() {
+            return new PerspectiveProjection(((PerspectiveProjectionType)(this.Content.Clone())));
+        }
+        
+        private void SetInnerType(PerspectiveProjectionType ContentField) {
+            this.ContentField = ((PerspectiveProjectionType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+            base.SetSubstitutionMember(ContentField);
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+    }
+    
+    public partial class OrthographicProjection : global::OpenGis.ThreeDps.View.Projection, IXMetaData {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private OrthographicProjectionType ContentField;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OrthographicProjection", "http://www.opengis.net/3dps/1.0/view");
+        
+		public static explicit operator OrthographicProjection(XElement xe) { return XTypedServices.ToXTypedElement<OrthographicProjection, OrthographicProjectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public OrthographicProjection() : 
+                base(true) {
+            SetInnerType(new OrthographicProjectionType());
+        }
+        
+        public OrthographicProjection(OrthographicProjectionType content) : 
+                base(true) {
+            SetInnerType(content);
+        }
+        
+        public override XElement Untyped {
+            get {
+                return base.Untyped;
+            }
+            set {
+                base.Untyped = value;
+                this.ContentField.Untyped = value;
+            }
+        }
+        
+        public new virtual OrthographicProjectionType Content {
+            get {
+                return ContentField;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POC {
+            get {
+                return this.ContentField.POC;
+            }
+            set {
+                this.ContentField.POC = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType POI {
+            get {
+                return this.ContentField.POI;
+            }
+            set {
+                this.ContentField.POI = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual OpenGis.ThreeDps.Core.Position3DType UP {
+            get {
+                return this.ContentField.UP;
+            }
+            set {
+                this.ContentField.UP = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Left {
+            get {
+                return this.ContentField.Left;
+            }
+            set {
+                this.ContentField.Left = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Right {
+            get {
+                return this.ContentField.Right;
+            }
+            set {
+                this.ContentField.Right = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Bottom {
+            get {
+                return this.ContentField.Bottom;
+            }
+            set {
+                this.ContentField.Bottom = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? Top {
+            get {
+                return this.ContentField.Top;
+            }
+            set {
+                this.ContentField.Top = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? NearPlane {
+            get {
+                return this.ContentField.NearPlane;
+            }
+            set {
+                this.ContentField.NearPlane = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Identifier, POC, POI, UP, Left?, Right?, Bottom?, Top?, NearPlane?, FarPlane?)
+        /// </para>
+        /// </summary>
+        public virtual System.Double? FarPlane {
+            get {
+                return this.ContentField.FarPlane;
+            }
+            set {
+                this.ContentField.FarPlane = value;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
+                return schemaMetaData.LocalElementsDictionary;
+            }
+        }
+        
+        XTypedElement IXMetaData.Content {
+            get {
+                return this.Content;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+        
+        public new static OrthographicProjection Load(string xmlFile) {
+            return XTypedServices.Load<OrthographicProjection, OrthographicProjectionType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static OrthographicProjection Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<OrthographicProjection, OrthographicProjectionType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public new static OrthographicProjection Parse(string xml) {
+            return XTypedServices.Parse<OrthographicProjection, OrthographicProjectionType>(xml, LinqToXsdTypeManager.Instance);
+        }
+        
+        public override XTypedElement Clone() {
+            return new OrthographicProjection(((OrthographicProjectionType)(this.Content.Clone())));
+        }
+        
+        private void SetInnerType(OrthographicProjectionType ContentField) {
+            this.ContentField = ((OrthographicProjectionType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+            base.SetSubstitutionMember(ContentField);
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+    }
+    
+    public partial class XRootNamespace {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+
+		public Projection Projection {  get {return rootObject as Projection; } }
+
+		public PerspectiveProjection PerspectiveProjection {  get {return rootObject as PerspectiveProjection; } }
+
+		public OrthographicProjection OrthographicProjection {  get {return rootObject as OrthographicProjection; } }
+        
+        private XRootNamespace() {
+        }
+        
+        public XRootNamespace(Projection root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        public XRootNamespace(PerspectiveProjection root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        public XRootNamespace(OrthographicProjection root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public static XRootNamespace Load(string xmlFile) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(xmlFile);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(string xmlFile, LoadOptions options) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(xmlFile, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(TextReader textReader) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(textReader);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(TextReader textReader, LoadOptions options) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(textReader, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(XmlReader xmlReader) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(xmlReader);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Parse(string text) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Parse(text);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Parse(string text, LoadOptions options) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Parse(text, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public virtual void Save(string fileName) {
+            doc.Save(fileName);
+        }
+        
+        public virtual void Save(TextWriter textWriter) {
+            doc.Save(textWriter);
+        }
+        
+        public virtual void Save(XmlWriter writer) {
+            doc.Save(writer);
+        }
+        
+        public virtual void Save(TextWriter textWriter, SaveOptions options) {
+            doc.Save(textWriter, options);
+        }
+        
+        public virtual void Save(string fileName, SaveOptions options) {
+            doc.Save(fileName, options);
         }
     }
 }

@@ -4,13 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="3dps-all.xsd" />
+    <EmbeddedResource Include="3dps-all.xsd.config" />
+    <EmbeddedResource Include="3dps-all.xsd.cs" />
     <EmbeddedResource Include="3dps-core.xsd" />
     <EmbeddedResource Include="3dps-info.xsd" />
-    <EmbeddedResource Include="3dps-info.xsd.config" />
-    <EmbeddedResource Include="3dps-info.xsd.cs" />
     <EmbeddedResource Include="3dps-scene.xsd" />
-    <EmbeddedResource Include="3dps-scene.xsd.config" />
-    <EmbeddedResource Include="3dps-scene.xsd.cs" />
     <EmbeddedResource Include="3dps-view.xsd" />
     <EmbeddedResource Include="ReadMe-3dps-1_0_0.txt" />
     <EmbeddedResource Include="examples\FeatureInfoResponse.xml" />
@@ -37,11 +36,11 @@
     <EmbeddedResource Include="obj\Release\netstandard2.0\3dps-1_0_0.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="3dps-all.xsd" />
+    <None Remove="3dps-all.xsd.config" />
     <None Remove="3dps-core.xsd" />
     <None Remove="3dps-info.xsd" />
-    <None Remove="3dps-info.xsd.config" />
     <None Remove="3dps-scene.xsd" />
-    <None Remove="3dps-scene.xsd.config" />
     <None Remove="3dps-view.xsd" />
     <None Remove="ReadMe-3dps-1_0_0.txt" />
     <None Remove="examples\FeatureInfoResponse.xml" />

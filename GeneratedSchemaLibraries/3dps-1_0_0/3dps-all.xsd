@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.opengis.net/3dps/1.0">
+
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/scene" schemaLocation="3dps-scene.xsd"/>
+    <xs:import namespace="http://www.opengis.net/3dps/1.0/info" schemaLocation="3dps-info.xsd"/>
+</xs:schema>
