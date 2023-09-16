@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified" xml:lang="EN"
            targetNamespace="http://www.w3.org/2001/XMLSchema"
-           version="1.0">
+           version="1.1">
  <xs:annotation>
   <xs:documentation>
     Part 1 version: structures.xsd (rec-20120405)
