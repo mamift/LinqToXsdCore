@@ -4,38 +4,59 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="3dps-all.xsd" />
+    <EmbeddedResource Include="3dps-all.xsd.config" />
+    <EmbeddedResource Include="3dps-all.xsd.cs" />
     <EmbeddedResource Include="3dps-core.xsd" />
     <EmbeddedResource Include="3dps-info.xsd" />
-    <EmbeddedResource Include="3dps-info.xsd.config" />
     <EmbeddedResource Include="3dps-scene.xsd" />
-    <EmbeddedResource Include="3dps-scene.xsd.config" />
     <EmbeddedResource Include="3dps-view.xsd" />
-    <EmbeddedResource Include="ows19115subset.xsd" />
-    <EmbeddedResource Include="owsCommon.xsd" />
-    <EmbeddedResource Include="owsContents.xsd" />
-    <EmbeddedResource Include="owsDataIdentification.xsd" />
-    <EmbeddedResource Include="owsDomainType.xsd" />
     <EmbeddedResource Include="ReadMe-3dps-1_0_0.txt" />
-    <EmbeddedResource Include="xlink.xsd" />
-    <EmbeddedResource Include="xml.xsd" />
     <EmbeddedResource Include="examples\FeatureInfoResponse.xml" />
+    <EmbeddedResource Include="ows\ows19115subset.xsd" />
+    <EmbeddedResource Include="ows\owsAdditionalParameters.xsd" />
+    <EmbeddedResource Include="ows\owsAll.xsd" />
+    <EmbeddedResource Include="ows\owsCommon.xsd" />
+    <EmbeddedResource Include="ows\owsContents.xsd" />
+    <EmbeddedResource Include="ows\owsDataIdentification.xsd" />
+    <EmbeddedResource Include="ows\owsDomainType.xsd" />
+    <EmbeddedResource Include="ows\owsExceptionReport.xsd" />
+    <EmbeddedResource Include="ows\owsGetCapabilities.xsd" />
+    <EmbeddedResource Include="ows\owsGetResourceByID.xsd" />
+    <EmbeddedResource Include="ows\owsInputOutputData.xsd" />
+    <EmbeddedResource Include="ows\owsManifest.xsd" />
+    <EmbeddedResource Include="ows\owsOperationsMetadata.xsd" />
+    <EmbeddedResource Include="ows\owsServiceIdentification.xsd" />
+    <EmbeddedResource Include="ows\owsServiceProvider.xsd" />
+    <EmbeddedResource Include="ows\xlink.xsd" />
+    <EmbeddedResource Include="ows\xml.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="3dps-all.xsd" />
+    <None Remove="3dps-all.xsd.config" />
     <None Remove="3dps-core.xsd" />
     <None Remove="3dps-info.xsd" />
-    <None Remove="3dps-info.xsd.config" />
     <None Remove="3dps-scene.xsd" />
-    <None Remove="3dps-scene.xsd.config" />
     <None Remove="3dps-view.xsd" />
-    <None Remove="ows19115subset.xsd" />
-    <None Remove="owsCommon.xsd" />
-    <None Remove="owsContents.xsd" />
-    <None Remove="owsDataIdentification.xsd" />
-    <None Remove="owsDomainType.xsd" />
     <None Remove="ReadMe-3dps-1_0_0.txt" />
-    <None Remove="xlink.xsd" />
-    <None Remove="xml.xsd" />
     <None Remove="examples\FeatureInfoResponse.xml" />
+    <None Remove="ows\ows19115subset.xsd" />
+    <None Remove="ows\owsAdditionalParameters.xsd" />
+    <None Remove="ows\owsAll.xsd" />
+    <None Remove="ows\owsCommon.xsd" />
+    <None Remove="ows\owsContents.xsd" />
+    <None Remove="ows\owsDataIdentification.xsd" />
+    <None Remove="ows\owsDomainType.xsd" />
+    <None Remove="ows\owsExceptionReport.xsd" />
+    <None Remove="ows\owsGetCapabilities.xsd" />
+    <None Remove="ows\owsGetResourceByID.xsd" />
+    <None Remove="ows\owsInputOutputData.xsd" />
+    <None Remove="ows\owsManifest.xsd" />
+    <None Remove="ows\owsOperationsMetadata.xsd" />
+    <None Remove="ows\owsServiceIdentification.xsd" />
+    <None Remove="ows\owsServiceProvider.xsd" />
+    <None Remove="ows\xlink.xsd" />
+    <None Remove="ows\xml.xsd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
