@@ -30,10 +30,6 @@
     <EmbeddedResource Include="ows\owsServiceProvider.xsd" />
     <EmbeddedResource Include="ows\xlink.xsd" />
     <EmbeddedResource Include="ows\xml.xsd" />
-    <EmbeddedResource Include="bin\Release\netstandard2.0\3dps-1_0_0.xml" />
-    <EmbeddedResource Include="bin\Release\netstandard2.0\XObjectsCore.xml" />
-    <EmbeddedResource Include="obj\Debug\netstandard2.0\3dps-1_0_0.csproj.FileListAbsolute.txt" />
-    <EmbeddedResource Include="obj\Release\netstandard2.0\3dps-1_0_0.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="3dps-all.xsd" />
@@ -61,10 +57,6 @@
     <None Remove="ows\owsServiceProvider.xsd" />
     <None Remove="ows\xlink.xsd" />
     <None Remove="ows\xml.xsd" />
-    <None Remove="bin\Release\netstandard2.0\3dps-1_0_0.xml" />
-    <None Remove="bin\Release\netstandard2.0\XObjectsCore.xml" />
-    <None Remove="obj\Debug\netstandard2.0\3dps-1_0_0.csproj.FileListAbsolute.txt" />
-    <None Remove="obj\Release\netstandard2.0\3dps-1_0_0.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
