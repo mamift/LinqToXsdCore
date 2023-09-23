@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Schema;
-
+using Xml.Schema.Linq.Extensions;
 using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
@@ -553,31 +553,19 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (IsUnion)
             {
-                if (xNameParm)
-                {
-                    setStatements.Add(
-                        CodeDomHelper.CreateMethodCall(
-                            CodeDomHelper.This(),
-                            setMethodName,
-                            CodeDomHelper.SetValue(),
-                            new CodePrimitiveExpression(this.propertyName),
-                            CodeDomHelper.This(),
-                            xNameExpression,
-                            GetSimpleTypeClassExpression())
-                    );
-                }
-                else
-                {
-                    setStatements.Add(
-                        CodeDomHelper.CreateMethodCall(
-                            CodeDomHelper.This(),
-                            setMethodName,
-                            CodeDomHelper.SetValue(),
-                            new CodePrimitiveExpression(this.propertyName),
-                            CodeDomHelper.This(),
-                            GetSimpleTypeClassExpression())
-                    );
-                }
+                var codeExpressionParams = new List<CodeExpression>() {
+                    CodeDomHelper.SetValue(),
+                    new CodePrimitiveExpression(this.propertyName),
+                    CodeDomHelper.This(),
+                    xNameParm ? xNameExpression : null,
+                    GetSimpleTypeClassExpression()
+                };
+
+                var codeMethodInvokeExpression = CodeDomHelper.CreateMethodCall(
+                    targetOBject: CodeDomHelper.This(),
+                    methodName: setMethodName,
+                    parameters: codeExpressionParams.ToNoDefaultArray());
+                setStatements.Add(codeMethodInvokeExpression);
             }
             else if (validation)
             {
