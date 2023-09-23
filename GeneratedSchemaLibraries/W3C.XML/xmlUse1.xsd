@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xs:element name="langUseTest">
+        <xs:complexType>
+            <xs:attribute ref="xml:lang"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="spaceUseTest">
+        <xs:complexType>
+            <xs:attribute ref="xml:space"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="baseUseTest">
+        <xs:complexType>
+            <xs:attribute ref="xml:base"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="idUseTest">
+        <xs:complexType>
+            <xs:attribute ref="xml:id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attrGroupTest">
+        <xs:complexType>
+            <xs:attributeGroup ref="xml:specialAttrs"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
