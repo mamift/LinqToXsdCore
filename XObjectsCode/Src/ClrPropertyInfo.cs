@@ -565,6 +565,7 @@ namespace Xml.Schema.Linq.CodeGen
                     targetOBject: CodeDomHelper.This(),
                     methodName: setMethodName,
                     parameters: codeExpressionParams.ToNoDefaultArray());
+
                 setStatements.Add(codeMethodInvokeExpression);
             }
             else if (validation)
@@ -1047,6 +1048,16 @@ namespace Xml.Schema.Linq.CodeGen
                         Constants.GetBuiltInSimpleType,
                         CodeDomHelper.CreateFieldReference(Constants.XmlTypeCode, typeRef.TypeCodeString)),
                     Constants.Datatype);
+        }
+
+        protected CodeExpression GetFullyQualifiedSimpleTypeClassExpression(string namespacePrefix)
+        {
+            throw new NotImplementedException();
+            if (namespacePrefix == null) throw new ArgumentNullException(nameof(namespacePrefix));
+            Debug.Assert(this.simpleTypeClrTypeName != null);
+
+            return CodeDomHelper.CreateFieldReference(
+                this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
         }
 
         protected CodeExpression GetSimpleTypeClassExpression()
