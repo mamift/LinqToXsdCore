@@ -109,7 +109,7 @@ namespace Xml.Schema.Linq.Tests
             var allProcessableXsds =
                 Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(AllTestFiles, xsdsToProcess);
 
-            var failingXsds = new List<IFileInfo>(allProcessableXsds.Capacity);
+            var failingXsds = new List<(IFileInfo file, Exception exception)>(allProcessableXsds.Capacity);
 
             var toProcess = randomSubset > 0 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
 
@@ -117,7 +117,7 @@ namespace Xml.Schema.Linq.Tests
                 var generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
 
                 if (generateResult.IsT1) {
-                    failingXsds.Add(xsd);
+                    failingXsds.Add((xsd, generateResult.AsT1));
                     continue;
                 }
 
@@ -146,7 +146,7 @@ namespace Xml.Schema.Linq.Tests
             }
 
             if (failingXsds.Any()) {
-                var failingList = GeneralExtensionMethods.ToDelimitedString(failingXsds.Select(f => f.FullName), ",");
+                var failingList = GeneralExtensionMethods.ToDelimitedString(failingXsds.Select(f => f.file.FullName), ",");
                 throw new Exception("The following XSDs failed to generate code: " + failingList);
             }
         }
