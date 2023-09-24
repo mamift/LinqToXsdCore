@@ -1004,7 +1004,7 @@ namespace Xml.Schema.Linq.CodeGen
             SchemaOrigin typeRefOrigin = SchemaOrigin.Fragment;
             bool isTypeRef = false;
             //Anonymous types have a non null XmlSchemaAttribute.SchemaType value
-            bool isAnonymous = attribute.SchemaType != null;
+            bool isAnonymous = attribute.SchemaType != null; //|| attribute.SchemaTypeName.IsEmpty;
             XmlSchemaObject schemaObject = schemaType;
 
             ClrTypeReference typeRef = BuildTypeReference(schemaObject, schemaTypeName, isAnonymous, true);
