@@ -14,6 +14,7 @@
     <PackAsTool>true</PackAsTool>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
+    <RootNamespace>LinqToXsd</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
