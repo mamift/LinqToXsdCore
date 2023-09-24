@@ -558,7 +558,7 @@ namespace Xml.Schema.Linq.CodeGen
                     new CodePrimitiveExpression(this.propertyName),
                     CodeDomHelper.This(),
                     xNameParm ? xNameExpression : null,
-                    GetSimpleTypeClassExpression()
+                    GetSimpleTypeClassExpression(IsUnion)
                 };
 
                 var codeMethodInvokeExpression = CodeDomHelper.CreateMethodCall(
@@ -566,6 +566,10 @@ namespace Xml.Schema.Linq.CodeGen
                     methodName: setMethodName,
                     parameters: codeExpressionParams.ToNoDefaultArray());
 
+                #if DEBUG
+                var invokeExpressionString = codeMethodInvokeExpression.ToCodeString();
+                Debug.Assert(invokeExpressionString != null);
+                #endif
                 setStatements.Add(codeMethodInvokeExpression);
             }
             else if (validation)
@@ -811,7 +815,7 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
                         Constants.ParseUnionValue,
                         returnValueExp,
-                        GetSimpleTypeClassExpression());
+                        GetSimpleTypeClassExpression(IsUnion));
                 }
                 else
                 {
@@ -1049,7 +1053,7 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeDomHelper.CreateFieldReference(Constants.XmlTypeCode, typeRef.TypeCodeString)),
                     Constants.Datatype);
         }
-
+        
         protected CodeExpression GetFullyQualifiedSimpleTypeClassExpression(string namespacePrefix)
         {
             throw new NotImplementedException();
@@ -1060,12 +1064,28 @@ namespace Xml.Schema.Linq.CodeGen
                 this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
         }
 
-        protected CodeExpression GetSimpleTypeClassExpression()
+        protected CodeExpression GetSimpleTypeClassExpression(bool disambiguateWhenPropertyAndTypeNameAreTheSame = false)
         {
             Debug.Assert(this.simpleTypeClrTypeName != null);
 
-            return CodeDomHelper.CreateFieldReference(
-                this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
+            var areTheSameAndShouldDisambiguate = false;
+            if (disambiguateWhenPropertyAndTypeNameAreTheSame) {
+                if (this.propertyName == this.simpleTypeClrTypeName) {
+                    areTheSameAndShouldDisambiguate = true;
+                }
+            }
+
+            var typeName = areTheSameAndShouldDisambiguate
+                ? $"global::{this.settings.GetClrNamespace(PropertyNs)}.{this.simpleTypeClrTypeName}"
+                : this.simpleTypeClrTypeName;
+            var codeFieldReferenceExpression = CodeDomHelper.CreateFieldReference(typeName, Constants.SimpleTypeDefInnerType);
+
+            #if DEBUG
+            var str = codeFieldReferenceExpression.ToCodeString();
+            Debug.Assert(str != null);
+            #endif
+
+            return codeFieldReferenceExpression;
         }
 
         private void CreateXNameField(CodeTypeDeclaration typeDecl)
