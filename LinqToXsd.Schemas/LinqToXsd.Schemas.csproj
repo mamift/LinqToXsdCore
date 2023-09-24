@@ -24,11 +24,11 @@
   <ItemGroup>
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
   </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
+  <!--<ItemGroup Condition="$(TargetFramework) == 'net6.0'">
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
     </ProjectReference>
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
