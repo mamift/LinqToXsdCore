@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <!-- Avoid being overrun by warnings -->
@@ -64,7 +64,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\LegalRuleML\LegalRuleML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\MetaLEX\MetaLEX.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Project 2007\Microsoft Project 2007.csproj" />
-    <ProjectReference Include="..\GeneratedSchemaLibraries\MSBuild\MSBuild.csproj" />
+    <!-- <ProjectReference Include="..\GeneratedSchemaLibraries\MSBuild\MSBuild.csproj" /> -->
     <ProjectReference Include="..\GeneratedSchemaLibraries\Multi-namespaces\Multi-namespaces.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\mzIdentML\mzIdentML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\mzML\mzML.csproj" />
