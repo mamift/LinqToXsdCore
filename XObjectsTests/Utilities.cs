@@ -78,8 +78,9 @@ namespace Xml.Schema.Linq.Tests
                 .Select(attr => attr.Value);
 
             var theXDocsReferencedByImportOrInclude = from xDoc in xDocs
-                where filesReferredToInImportAndIncludeElements.Any(file =>
-                    string.Equals(file, xDoc.Key.FullName, StringComparison.InvariantCultureIgnoreCase))
+                where filesReferredToInImportAndIncludeElements.Any(file => {
+                    return string.Equals(file, xDoc.Key.Name, StringComparison.CurrentCultureIgnoreCase);
+                })
                 select xDoc;
 
             return theXDocsReferencedByImportOrInclude.ToDictionary(key => key.Key, kvp => kvp.Value);
@@ -100,25 +101,6 @@ namespace Xml.Schema.Linq.Tests
             var files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(f => mfs.FileInfo.New(f)).ToList();
             var filteredFiles = dirs.SelectMany(d =>
                 new MockDirectoryInfo(mfs, d).GetFiles(filter, SearchOption.AllDirectories).Select(f => f)).ToList();
-            files.AddRange(filteredFiles);
-            return files;
-        }
-
-
-        public static List<MockFileData> ResolveFileAndFolderPathsToMockFiles(MockFileSystem mfs, 
-            IEnumerable<string> sequenceOfFileAndOrFolderPaths, string filter = "*.*")
-        {
-            if (sequenceOfFileAndOrFolderPaths == null) throw new ArgumentNullException(nameof(sequenceOfFileAndOrFolderPaths));
-
-            var enumeratedFileAndOrFolderPaths = sequenceOfFileAndOrFolderPaths.ToList();
-
-            if (!enumeratedFileAndOrFolderPaths.Any())
-                throw new InvalidOperationException("There are no file or folder paths present in the enumerable!");
-
-            var dirs = enumeratedFileAndOrFolderPaths.Where(sf => mfs.GetFile(sf).Attributes.HasFlag(FileAttributes.Directory)).ToArray();
-            List<MockFileData> files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(f => mfs.GetFile(f)).ToList();
-            var filteredFiles = dirs.SelectMany(d => 
-                new MockDirectoryInfo(mfs, d).GetFiles(filter, SearchOption.AllDirectories).Select(f => new MockFileData(f.OpenRead().ReadAsString()))).ToList();
             files.AddRange(filteredFiles);
             return files;
         }
