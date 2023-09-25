@@ -599,7 +599,7 @@ namespace Xml.Schema.Linq.CodeGen
                                 }
                             }
 
-                            ClrPropertyInfo propertyInfo = BuildProperty(elem, fromBaseType);
+                            ClrPropertyInfo propertyInfo = BuildPropertyForElement(elem, fromBaseType);
                             regEx.Append(propertyInfo.PropertyName);
                             regEx.Append(propertyInfo.OccurenceString);
                             //Add to parent
@@ -928,7 +928,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        private ClrPropertyInfo BuildProperty(XmlSchemaElement elem, bool fromBaseType)
+        private ClrPropertyInfo BuildPropertyForElement(XmlSchemaElement elem, bool fromBaseType)
         {
             string identifierName = localSymbolTable.AddLocalElement(elem);
 
