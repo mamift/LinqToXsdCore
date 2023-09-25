@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.CSharp;
@@ -13,6 +14,26 @@ namespace Xml.Schema.Linq.Extensions
 {
     public static class CodeDomExtensions
     {
+        public static bool HasXNameFieldForProperty(this CodeTypeDeclaration typeDeclaration, ClrBasePropertyInfo property)
+        {
+            var hasXNameFieldForProperty = false;
+
+#if DEBUG
+            var str = typeDeclaration.ToCodeString();
+            Debug.Assert(str.IsNotEmpty());
+#endif
+
+            foreach (var member in typeDeclaration.Members) {
+                if (member is CodeMemberField field) {
+                    var propertyXnameFieldName = property.PropertyName + "XName";
+                    hasXNameFieldForProperty = string.Equals(field.Name, propertyXnameFieldName, StringComparison.CurrentCulture);
+                    if (hasXNameFieldForProperty) break;
+                }
+            }
+
+            return hasXNameFieldForProperty;
+        }
+
         /// <summary>
         /// Compares that the current <see cref="ClrTypeReference"/> is equivalent to the given CodeDOM <see cref="CodeTypeReference"/>.
         /// <para>This methods assumes that the <paramref name="codeTypeReference"/> has the namespace in the <see cref="CodeTypeReference.BaseType"/>.</para>

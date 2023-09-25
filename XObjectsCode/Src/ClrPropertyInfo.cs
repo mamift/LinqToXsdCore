@@ -51,6 +51,10 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             this.xNameExpression = new CodeFieldReferenceExpression(null, NameGenerator.ChangeClrName(propertyName, NameOptions.MakeXName));
+            #if DEBUG
+            var xNameExpressionString = xNameExpression.ToCodeString();
+            Debug.Assert(xNameExpressionString.IsNotEmpty());
+            #endif
         }
 
         public void Reset()
@@ -440,8 +444,7 @@ namespace Xml.Schema.Linq.CodeGen
             else
             {
                 contentModelExpression.Parameters.Add(
-                    new CodeObjectCreateExpression(Constants.NamedContentModelEntity,
-                        xNameExpression));
+                    new CodeObjectCreateExpression(Constants.NamedContentModelEntity, xNameExpression));
             }
         }
 
@@ -1088,7 +1091,7 @@ namespace Xml.Schema.Linq.CodeGen
             return codeFieldReferenceExpression;
         }
 
-        private void CreateXNameField(CodeTypeDeclaration typeDecl)
+        public void CreateXNameField(CodeTypeDeclaration typeDecl)
         {
             // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
             var field = new CodeMemberField("readonly System.Xml.Linq.XName", NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeXName))
