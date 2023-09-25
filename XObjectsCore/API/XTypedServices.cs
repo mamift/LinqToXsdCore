@@ -513,12 +513,15 @@ namespace Xml.Schema.Linq
 
         internal static T ParseValue<T>(string value, XElement element, XmlSchemaDatatype datatype)
         {
+#if NET6_0_OR_GREATER
             // Using XmlSchemaDatatype.ChangeType would return a DateTime for those two
+
             if (typeof(T) == typeof(DateOnly))
                 return (T)(object)DateOnly.Parse(value, CultureInfo.InvariantCulture);
 
             if (typeof(T) == typeof(TimeOnly))
                 return (T)(object)TimeOnly.Parse(value, CultureInfo.InvariantCulture);
+#endif
 
             if (datatype.TypeCode == XmlTypeCode.AnyAtomicType && value is T)
             {
@@ -600,13 +603,15 @@ namespace Xml.Schema.Linq
 
                 case XmlTypeCode.AnyAtomicType when value is string str:
                     return str;
-                    
+
+#if NET6_0_OR_GREATER
                 case XmlTypeCode.Date when value is DateOnly d:
                     return d.ToString("o", CultureInfo.InvariantCulture);
 
                 case XmlTypeCode.Time when value is TimeOnly t:
                     // ToString("o") works too, but it always print the milliseconds, which are often not required
                     return t.ToString("HH':'mm':'ss.FFFFFFF", CultureInfo.InvariantCulture);
+#endif
 
                 default:
                     return (string)datatype.ChangeType(value, typeOfString);

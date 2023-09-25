@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>$(RootNamespace).Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -29,7 +28,7 @@
     <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" />
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" />
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
-      <!-- <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework> -->
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
 
