@@ -146,8 +146,12 @@ namespace Xml.Schema.Linq.Tests
             }
 
             if (failingXsds.Any()) {
-                var failingList = GeneralExtensionMethods.ToDelimitedString(failingXsds.Select(f => f.file.FullName), ",");
-                throw new Exception("The following XSDs failed to generate code: " + failingList);
+                foreach (var pair in failingXsds) {
+                    var file = pair.file.FullName;
+                    TestContext.Out.WriteLine($"{file} failed to generated code.");
+
+                    throw pair.exception;
+                }
             }
         }
 
