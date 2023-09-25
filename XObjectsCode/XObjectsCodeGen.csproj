@@ -21,12 +21,6 @@
     <PackageReference Include="System.CodeDom" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
-    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
-      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
-    </ProjectReference>
-  </ItemGroup>
-
   <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
