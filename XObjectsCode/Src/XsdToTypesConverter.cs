@@ -1011,8 +1011,9 @@ namespace Xml.Schema.Linq.CodeGen
 
             SchemaOrigin typeRefOrigin = SchemaOrigin.Fragment;
             bool isTypeRef = false;
-            //Anonymous types have a non null XmlSchemaAttribute.SchemaType value
-            bool isAnonymous = attribute.SchemaType != null; //|| attribute.SchemaTypeName.IsEmpty;
+            bool isAnonymous = attribute.SchemaType != null || (!attribute.AttributeSchemaType.IsGlobal() &&
+                                                                !attribute.AttributeSchemaType.IsBuiltInSimpleType());
+
             XmlSchemaObject schemaObject = schemaType;
 
             ClrTypeReference typeRef = BuildTypeReference(schemaObject, schemaTypeName, isAnonymous, true);
@@ -1026,6 +1027,11 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.ClrNamespace = clrNs;
             propertyInfo.IsNew = isNew;
             propertyInfo.VerifyRequired = configSettings.VerifyRequired;
+            
+            if (attribute.DefinesInlineEnum() && isAnonymous) {
+                // does not work when the containing type does not have the enum definition already defined, returns string values like '.Enum' which does not compile
+                // UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
+            }
 
             SetFixedDefaultValue(attribute, propertyInfo);
             return propertyInfo;

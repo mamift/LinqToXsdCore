@@ -8,18 +8,22 @@ namespace XObjects
 {
     public static class XmlSchemaExtensions
     {
-        public static bool IsInlineDefinedEnum(this XmlSchemaAttribute attribute)
+        /// <summary>
+        /// Returns true or false if the current <paramref name="attribute"/> defines an inline enumeration of values.
+        /// </summary>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        public static bool DefinesInlineEnum(this XmlSchemaAttribute attribute)
         {
             if (!attribute.AttributeSchemaType.IsEnum()) return false;
 
             var xmlSchemaSimpleTypeRestriction = attribute.AttributeSchemaType.Content as XmlSchemaSimpleTypeRestriction;
-            var facets = xmlSchemaSimpleTypeRestriction?.Facets.Cast<XmlSchemaObject>();
+            var facets = xmlSchemaSimpleTypeRestriction?.Facets.Cast<XmlSchemaFacet>();
             var isInlineEnum = attribute.AttributeSchemaType.IsEnum() &&
                                attribute.AttributeSchemaType.IsDerivedByRestriction() &&
                                (facets?.Any()).GetValueOrDefault();
             return isInlineEnum;
         }
-
 
         /// <summary>
         /// Returns either the <see cref="XmlSchemaObject"/> that is the named parent of the current one or
