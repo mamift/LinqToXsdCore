@@ -1068,6 +1068,10 @@ namespace Xml.Schema.Linq.CodeGen
         private void UpdateTypeRefForInlineAnonymousEnum(XmlSchemaAttribute attribute, ClrTypeInfo containingType,
             ClrTypeReference typeRef, ClrPropertyInfo propertyInfo)
         {
+            if (typeRef.Name.IsEmpty())
+                throw new InvalidOperationException($"The given {nameof(ClrTypeReference)} must already have a filled in name. " +
+                                                    $"Without one this will produce uncompilable code.");
+
             typeRef.Name += "Enum";
             if (typeRef.ClrFullTypeName.IsNullOrEmpty()) {
                 var typeScopedResolutionString = containingType?.GetNestedTypeScopedResolutionString();
