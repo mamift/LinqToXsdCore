@@ -26,12 +26,21 @@
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj">
-      <!-- <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework> -->
-    </ProjectReference>
-    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'net6.0'">
       <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
+    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
 
