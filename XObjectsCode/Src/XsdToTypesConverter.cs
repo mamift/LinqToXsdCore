@@ -786,7 +786,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 Debug.Assert(derivedAttribute.AttributeSchemaType !=
                              null); //For use=prohibited, without derivation it doesnt mean anything, hence attribute should be compiled
-                ClrBasePropertyInfo propertyInfo = BuildProperty(derivedAttribute, false, false);
+                ClrBasePropertyInfo propertyInfo = BuildPropertyForAttribute(derivedAttribute, false, false);
                 BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                 typeInfo.AddMember(propertyInfo);
             }
@@ -807,13 +807,13 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     // Its the one copied from the base
                     // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=3064
-                    ClrBasePropertyInfo propertyInfo = BuildProperty(derivedAttribute, typeInfo.IsDerived, false, typeInfo);
+                    ClrBasePropertyInfo propertyInfo = BuildPropertyForAttribute(derivedAttribute, typeInfo.IsDerived, false, typeInfo);
                     BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                     typeInfo.AddMember(propertyInfo);
                 }
                 else
                 {
-                    ClrBasePropertyInfo propertyInfo = BuildProperty(derivedAttribute, false, baseAttribute != null, typeInfo);
+                    ClrBasePropertyInfo propertyInfo = BuildPropertyForAttribute(derivedAttribute, false, baseAttribute != null, typeInfo);
                     BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                     typeInfo.AddMember(propertyInfo);
                 }
@@ -988,7 +988,15 @@ namespace Xml.Schema.Linq.CodeGen
             //Place it in the element's namespace, maybe element's parent type's namespace?
         }
 
-        private ClrPropertyInfo BuildProperty(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew,
+        /// <summary>
+        /// Builds a property for the given <see cref="XmlSchemaAttribute"/>
+        /// </summary>
+        /// <param name="attribute"></param>
+        /// <param name="fromBaseType"></param>
+        /// <param name="isNew"></param>
+        /// <param name="containingType"></param>
+        /// <returns></returns>
+        private ClrPropertyInfo BuildPropertyForAttribute(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew,
             ClrTypeInfo containingType = null)
         {
             string identifierName = localSymbolTable.AddAttribute(attribute);
@@ -1023,7 +1031,9 @@ namespace Xml.Schema.Linq.CodeGen
             return propertyInfo;
         }
 
-        private ClrPropertyInfo BuildPropertyForAttribute(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew, ClrTypeInfo containingType = null)
+        [Obsolete("Contains bugs for enum code generation, use " + nameof(BuildPropertyForAttribute))]
+        private ClrPropertyInfo BuildPropertyForAttributeWithInlineEnum(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew, 
+            ClrTypeInfo containingType = null)
         {
             string schemaName = attribute.QualifiedName.Name;
             string schemaNs = attribute.QualifiedName.Namespace;
