@@ -1023,54 +1023,53 @@ namespace Xml.Schema.Linq.CodeGen
             return propertyInfo;
         }
 
-        //private ClrPropertyInfo BuildProperty(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew, ClrTypeInfo containingType = null)
-        //{
-        //    string schemaName = attribute.QualifiedName.Name;
-        //    string schemaNs = attribute.QualifiedName.Namespace;
+        private ClrPropertyInfo BuildPropertyForAttribute(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew, ClrTypeInfo containingType = null)
+        {
+            string schemaName = attribute.QualifiedName.Name;
+            string schemaNs = attribute.QualifiedName.Namespace;
 
-        //    string propertyName = localSymbolTable.AddAttribute(attribute);
-        //    ClrPropertyInfo propertyInfo = new ClrPropertyInfo(propertyName, schemaNs, schemaName, GetOccurence(attribute), configSettings);
-        //    propertyInfo.Origin = SchemaOrigin.Attribute;
-        //    propertyInfo.FromBaseType = fromBaseType;
-        //    propertyInfo.IsNew = isNew;
-        //    propertyInfo.VerifyRequired = configSettings.VerifyRequired;
+            string propertyName = localSymbolTable.AddAttribute(attribute);
+            ClrPropertyInfo propertyInfo = new ClrPropertyInfo(propertyName, schemaNs, schemaName, GetOccurence(attribute), configSettings);
+            propertyInfo.Origin = SchemaOrigin.Attribute;
+            propertyInfo.FromBaseType = fromBaseType;
+            propertyInfo.IsNew = isNew;
+            propertyInfo.VerifyRequired = configSettings.VerifyRequired;
 
-        //    XmlSchemaSimpleType schemaType = attribute.AttributeSchemaType;
-        //    var isInlineEnum = attribute.AttributeSchemaType.IsEnum() && attribute.AttributeSchemaType.IsDerivedByRestriction() &&
-        //                                ((attribute.AttributeSchemaType.Content as XmlSchemaSimpleTypeRestriction)?.Facets
-        //                                 .Cast<XmlSchemaObject>().Any() ?? false);
-        //    var isAnonymous = !attribute.AttributeSchemaType.IsGlobal() &&
-        //                       !attribute.AttributeSchemaType.IsBuiltInSimpleType();
+            XmlSchemaSimpleType schemaType = attribute.AttributeSchemaType;
+            var isInlineEnum = attribute.AttributeSchemaType.IsEnum() && attribute.AttributeSchemaType.IsDerivedByRestriction() &&
+                                        ((attribute.AttributeSchemaType.Content as XmlSchemaSimpleTypeRestriction)?.Facets
+                                         .Cast<XmlSchemaObject>().Any() ?? false);
+            var isAnonymous = !attribute.AttributeSchemaType.IsGlobal() &&
+                               !attribute.AttributeSchemaType.IsBuiltInSimpleType();
 
-        //    var qName = schemaType.QualifiedName;
-        //    if (qName.IsEmpty)
-        //    {
-        //        qName = attribute.QualifiedName;
-        //    }
+            var qName = schemaType.QualifiedName;
+            if (qName.IsEmpty) qName = attribute.QualifiedName;
 
-        //    // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=4106
-        //    ClrTypeReference typeRef =
-        //        BuildTypeReference(schemaType, qName, isAnonymous, true);
-        //    if (isInlineEnum && isAnonymous)
-        //    {
-        //        typeRef.Name += "Enum";
-        //        if (typeRef.ClrFullTypeName.IsNullOrEmpty())
-        //        {
-        //            var typeScopedResolutionString = containingType?.GetNestedTypeScopedResolutionString();
-        //            if (typeScopedResolutionString.IsNullOrEmpty())
-        //            { // if this is empty, then take the referencing element
-        //                var closestNamedParent = attribute.GetClosestNamedParent().GetPotentialName();
-        //                typeScopedResolutionString = closestNamedParent;
-        //            }
+            ClrTypeReference typeRef = BuildTypeReference(schemaType, qName, isAnonymous, true);
+            if (isInlineEnum && isAnonymous) {
+                UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
+            }
+            propertyInfo.TypeReference = typeRef;
+            Debug.Assert(schemaType.Datatype != null);
+            SetFixedDefaultValue(attribute, propertyInfo);
+            return propertyInfo;
+        }
 
-        //            typeRef.UpdateClrFullTypeName(propertyInfo, null, typeScopedResolutionString);
-        //        }
-        //    }
-        //    propertyInfo.TypeReference = typeRef;
-        //    Debug.Assert(schemaType.Datatype != null);
-        //    SetFixedDefaultValue(attribute, propertyInfo);
-        //    return propertyInfo;
-        //}
+        private void UpdateTypeRefForInlineAnonymousEnum(XmlSchemaAttribute attribute, ClrTypeInfo containingType,
+            ClrTypeReference typeRef, ClrPropertyInfo propertyInfo)
+        {
+            typeRef.Name += "Enum";
+            if (typeRef.ClrFullTypeName.IsNullOrEmpty()) {
+                var typeScopedResolutionString = containingType?.GetNestedTypeScopedResolutionString();
+                if (typeScopedResolutionString.IsNullOrEmpty()) {
+                    // if this is empty, then take the referencing element
+                    var closestNamedParent = attribute.GetClosestNamedParent().GetPotentialName();
+                    typeScopedResolutionString = closestNamedParent;
+                }
+
+                typeRef.UpdateClrFullEnumTypeName(propertyInfo, null, typeScopedResolutionString);
+            }
+        }
 
         private ClrWildCardPropertyInfo BuildAnyProperty(XmlSchemaAny any, bool addToTypeDef)
         {
