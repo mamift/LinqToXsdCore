@@ -148,9 +148,10 @@ namespace Xml.Schema.Linq.Tests
             if (failingXsds.Any()) {
                 foreach (var pair in failingXsds) {
                     var file = pair.file.FullName;
-                    TestContext.Out.WriteLine($"{file} failed to generated code.");
+                    var message = $"{file} failed to generated code.";
+                    TestContext.Out.WriteLine(message);
 
-                    throw pair.exception;
+                    throw new LinqToXsdException(message, pair.exception);
                 }
             }
         }
