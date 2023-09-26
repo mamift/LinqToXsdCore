@@ -6,7 +6,7 @@
     "W3C XSD": {
       "commandName": "Project",
       "commandLineArgs": "gen \"W3C XMLSchema v1.xsd\" -a",
-      "workingDirectory": "C:\\Users\\mmiftah\\source\\Projects\\LinqToXsdCore\\GeneratedSchemaLibraries\\XSD",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XSD",
       "hotReloadEnabled": false
     },
     "XMLSpec": {
@@ -18,7 +18,7 @@
     "LinqToXsdConfiguration": {
       "commandName": "Project",
       "commandLineArgs": "gen \"LinqToXsdConfiguration.xsd\" -a",
-      "workingDirectory": "C:\\Users\\mmiftah\\source\\Projects\\LinqToXsdCore\\XObjectsCode\\Configuration",
+      "workingDirectory": "..\\..\\XObjectsCode\\Configuration",
       "hotReloadEnabled": false
     },
     "MSBuild": {
