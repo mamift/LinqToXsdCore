@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
@@ -49,7 +50,7 @@ namespace Xml.Schema.Linq.Tests
                 var xsdText = new StreamReader(xsd.OpenRead()).ReadToEnd();
                 Assert.IsNotNull(xsdText);
                 Assert.IsFalse(string.IsNullOrWhiteSpace(xsdText));
-                xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}", UriKind.Absolute), xsd.OpenRead());
+                xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}", UriKind.Absolute), xsd);
             }
 
             var xmlReaderSettings = new XmlReaderSettings() {
@@ -137,6 +138,9 @@ namespace Xml.Schema.Linq.Tests
         {
             var mockFs = new MockFileSystem();
             foreach (var assembly in assemblies) {
+                if (assembly.GetName().Name!.Contains("GelML")) {
+                    //Debugger.Break();
+                }
                 var fileData = GetAssemblyTextFilesDictionary(assembly);
                 foreach (var kvp in fileData) {
                     var possibleExistingPath = kvp.Key;
@@ -307,9 +311,8 @@ namespace Xml.Schema.Linq.Tests
             var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
 
             foreach (var xsd in additionalXsds) {
-                var fileStream = xsd.OpenRead();
                 var uri = new Uri($"{xsd.Name}", UriKind.Relative);
-                xmlPreloadedResolver.Add(uri, fileStream);
+                xmlPreloadedResolver.Add(uri, xsd);
             }
 
             var xmlReaderSettings = new XmlReaderSettings() {
