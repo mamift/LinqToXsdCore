@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net6.0;netframework472</TargetFrameworks>
     <RootNamespace>$(RootNamespace).Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -24,11 +25,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
-    <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" />
-    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" />
-    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+    <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'net6.0'">
       <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+    <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'netframework472'">
+      <SetTargetFramework>TargetFramework=netframework472</SetTargetFramework>
+    </ProjectReference>
+    
+    <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
+    
+    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'net6.0'">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'netframework472'">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'net6.0'">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'netframework472'">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
 
