@@ -64,7 +64,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\LegalRuleML\LegalRuleML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\MetaLEX\MetaLEX.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Project 2007\Microsoft Project 2007.csproj" />
-     <ProjectReference Include="..\GeneratedSchemaLibraries\MSBuild\MSBuild.csproj" /> 
+    <ProjectReference Include="..\GeneratedSchemaLibraries\MSBuild\MSBuild.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Multi-namespaces\Multi-namespaces.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\mzIdentML\mzIdentML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\mzML\mzML.csproj" />
@@ -96,6 +96,10 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\Office 2003 Reference schemas\Office 2003 Reference schemas.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Search\Microsoft Search.csproj" />
     <!-- <ProjectReference Include="..\GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj" /> -->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\CityGML\CityGML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OGC-misc\OGC-misc.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\W3C.XML\W3C.XML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\BITS-2.0-XSD\BITS-2.0-XSD.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">
