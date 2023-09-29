@@ -9,7 +9,6 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
-    <Version>3.4.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
