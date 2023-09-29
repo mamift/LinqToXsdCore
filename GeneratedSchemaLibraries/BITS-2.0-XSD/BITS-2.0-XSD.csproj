@@ -16,7 +16,6 @@
     <EmbeddedResource Include="standard-modules\mathml3\mathml3-strict-content.xsd" />
     <EmbeddedResource Include="standard-modules\mathml3\mathml3.xsd" />
     <EmbeddedResource Include="standard-modules\mathml3\module-ali.xsd" />
-    <EmbeddedResource Include="obj\Debug\netstandard2.0\BITS-2.0-XSD.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="BITS-book2-elements.xsd" />
@@ -31,7 +30,6 @@
     <None Remove="standard-modules\mathml3\mathml3-strict-content.xsd" />
     <None Remove="standard-modules\mathml3\mathml3.xsd" />
     <None Remove="standard-modules\mathml3\module-ali.xsd" />
-    <None Remove="obj\Debug\netstandard2.0\BITS-2.0-XSD.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
