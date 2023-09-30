@@ -513,27 +513,21 @@ namespace Xml.Schema.Linq
 
         internal static T ParseValue<T>(string value, XElement element, XmlSchemaDatatype datatype)
         {
-#if NET6_0_OR_GREATER
-            // Using XmlSchemaDatatype.ChangeType would return a DateTime for those two
-
-            if (typeof(T) == typeof(DateOnly))
-                return (T)(object)DateOnly.Parse(value, CultureInfo.InvariantCulture);
-
-            if (typeof(T) == typeof(TimeOnly))
-                return (T)(object)TimeOnly.Parse(value, CultureInfo.InvariantCulture);
-#endif
-
-            if (datatype.TypeCode == XmlTypeCode.AnyAtomicType && value is T)
-            {
-                return (T) (value as object);
+            // Using XmlSchemaDatatype.ChangeType would return a DateTime for 
+            // xs:Date and xs:Time
+            switch (datatype.TypeCode) {
+                case XmlTypeCode.Date:
+                    return (T)(object)DateOnly.Parse(value, CultureInfo.InvariantCulture);
+                case XmlTypeCode.Time:
+                    return (T)(object)TimeOnly.Parse(value, CultureInfo.InvariantCulture);
+                case XmlTypeCode.AnyAtomicType when value is T:
+                    return (T)(value as object);
+                case XmlTypeCode.QName:
+                case XmlTypeCode.NCName:
+                    return (T) datatype.ParseValue(value, NameTable, new XNamespaceResolver(element));
+                default:
+                    return (T) datatype.ChangeType(value, typeof(T));
             }
-
-            if (datatype.TypeCode == XmlTypeCode.QName || datatype.TypeCode == XmlTypeCode.NCName)
-            {
-                return (T) datatype.ParseValue(value, NameTable, new XNamespaceResolver(element));
-            }
-
-            return (T) datatype.ChangeType(value, typeof(T));
         }
 
         internal static NameTable NameTable
@@ -603,15 +597,13 @@ namespace Xml.Schema.Linq
 
                 case XmlTypeCode.AnyAtomicType when value is string str:
                     return str;
-
-#if NET6_0_OR_GREATER
+                    
                 case XmlTypeCode.Date when value is DateOnly d:
                     return d.ToString("o", CultureInfo.InvariantCulture);
 
                 case XmlTypeCode.Time when value is TimeOnly t:
                     // ToString("o") works too, but it always print the milliseconds, which are often not required
                     return t.ToString("HH':'mm':'ss.FFFFFFF", CultureInfo.InvariantCulture);
-#endif
 
                 default:
                     return (string)datatype.ChangeType(value, typeOfString);

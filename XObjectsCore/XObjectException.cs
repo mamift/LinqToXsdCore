@@ -14,6 +14,11 @@ namespace Xml.Schema.Linq
         {
         }
 
+        public LinqToXsdException(string message, Exception innerException) : base(message)
+        {
+            InnerException = innerException;
+        }
+
         public LinqToXsdException() : base()
         {
         }
@@ -23,6 +28,8 @@ namespace Xml.Schema.Linq
                                                           + "\". Possible reason: " + reason)
         {
         }
+
+        public Exception InnerException { get; set; }
 
         protected static string CreateMessage(string facetName, string facetValue, string value)
         {

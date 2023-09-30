@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReadMe.txt" />
+    <EmbeddedResource Include="3.0\core.xsd" />
+    <EmbeddedResource Include="appearance\3.0\appearance.xsd" />
+    <EmbeddedResource Include="bridge\3.0\bridge.xsd" />
+    <EmbeddedResource Include="building\3.0\building.xsd" />
+    <EmbeddedResource Include="cityfurniture\3.0\cityFurniture.xsd" />
+    <EmbeddedResource Include="cityobjectgroup\3.0\cityObjectGroup.xsd" />
+    <EmbeddedResource Include="codelistmetadata\3.0\codeListMetaData.xsd" />
+    <EmbeddedResource Include="construction\3.0\construction.xsd" />
+    <EmbeddedResource Include="dynamizer\3.0\dynamizer.xsd" />
+    <EmbeddedResource Include="generics\3.0\generics.xsd" />
+    <EmbeddedResource Include="landuse\3.0\landUse.xsd" />
+    <EmbeddedResource Include="pointcloud\3.0\pointCloud.xsd" />
+    <EmbeddedResource Include="relief\3.0\relief.xsd" />
+    <EmbeddedResource Include="transportation\3.0\transportation.xsd" />
+    <EmbeddedResource Include="tunnel\3.0\tunnel.xsd" />
+    <EmbeddedResource Include="vegetation\3.0\vegetation.xsd" />
+    <EmbeddedResource Include="versioning\3.0\versioning.xsd" />
+    <EmbeddedResource Include="waterbody\3.0\waterBody.xsd" />
+    <EmbeddedResource Include="xAL\3.0\CommonTypes.xsd" />
+    <EmbeddedResource Include="xAL\3.0\OASIS_COPYRIGHT_NOTICE.txt" />
+    <EmbeddedResource Include="xAL\3.0\ReadMe-xAL-3_0.txt" />
+    <EmbeddedResource Include="xAL\3.0\xAL-types.xsd" />
+    <EmbeddedResource Include="xAL\3.0\xAL.xsd" />
+    <EmbeddedResource Include="obj\Debug\netstandard2.0\CityGML.csproj.FileListAbsolute.txt" />
+    <EmbeddedResource Include="profiles\base\3.0\CityGML.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ReadMe.txt" />
+    <None Remove="3.0\core.xsd" />
+    <None Remove="appearance\3.0\appearance.xsd" />
+    <None Remove="bridge\3.0\bridge.xsd" />
+    <None Remove="building\3.0\building.xsd" />
+    <None Remove="cityfurniture\3.0\cityFurniture.xsd" />
+    <None Remove="cityobjectgroup\3.0\cityObjectGroup.xsd" />
+    <None Remove="codelistmetadata\3.0\codeListMetaData.xsd" />
+    <None Remove="construction\3.0\construction.xsd" />
+    <None Remove="dynamizer\3.0\dynamizer.xsd" />
+    <None Remove="generics\3.0\generics.xsd" />
+    <None Remove="landuse\3.0\landUse.xsd" />
+    <None Remove="pointcloud\3.0\pointCloud.xsd" />
+    <None Remove="relief\3.0\relief.xsd" />
+    <None Remove="transportation\3.0\transportation.xsd" />
+    <None Remove="tunnel\3.0\tunnel.xsd" />
+    <None Remove="vegetation\3.0\vegetation.xsd" />
+    <None Remove="versioning\3.0\versioning.xsd" />
+    <None Remove="waterbody\3.0\waterBody.xsd" />
+    <None Remove="xAL\3.0\CommonTypes.xsd" />
+    <None Remove="xAL\3.0\OASIS_COPYRIGHT_NOTICE.txt" />
+    <None Remove="xAL\3.0\ReadMe-xAL-3_0.txt" />
+    <None Remove="xAL\3.0\xAL-types.xsd" />
+    <None Remove="xAL\3.0\xAL.xsd" />
+    <None Remove="profiles\base\3.0\CityGML.xsd" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
@@ -49,7 +50,7 @@ namespace Xml.Schema.Linq.Tests
                 var xsdText = new StreamReader(xsd.OpenRead()).ReadToEnd();
                 Assert.IsNotNull(xsdText);
                 Assert.IsFalse(string.IsNullOrWhiteSpace(xsdText));
-                xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}", UriKind.Absolute), xsd.OpenRead());
+                xmlPreloadedResolver.Add(new Uri($"file://{xsd.FullName}", UriKind.Absolute), xsd);
             }
 
             var xmlReaderSettings = new XmlReaderSettings() {
@@ -75,11 +76,12 @@ namespace Xml.Schema.Linq.Tests
             var filesReferredToInImportAndIncludeElements = importAndIncludeElements
                 .SelectMany(iie => iie.Attributes(schemaLocationXName))
                 .Distinct(new XAttributeValueEqualityComparer())
-                .Select(attr => attr.Value);
+                .Select(attr => attr.Value.Replace("/", ".").Replace("\\", "."));
 
             var theXDocsReferencedByImportOrInclude = from xDoc in xDocs
-                where filesReferredToInImportAndIncludeElements.Any(file =>
-                    string.Equals(file, xDoc.Key.FullName, StringComparison.InvariantCultureIgnoreCase))
+                where filesReferredToInImportAndIncludeElements.Any(file => {
+                    return string.Equals(file, xDoc.Key.Name, StringComparison.CurrentCultureIgnoreCase);
+                })
                 select xDoc;
 
             return theXDocsReferencedByImportOrInclude.ToDictionary(key => key.Key, kvp => kvp.Value);
@@ -100,25 +102,6 @@ namespace Xml.Schema.Linq.Tests
             var files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(f => mfs.FileInfo.New(f)).ToList();
             var filteredFiles = dirs.SelectMany(d =>
                 new MockDirectoryInfo(mfs, d).GetFiles(filter, SearchOption.AllDirectories).Select(f => f)).ToList();
-            files.AddRange(filteredFiles);
-            return files;
-        }
-
-
-        public static List<MockFileData> ResolveFileAndFolderPathsToMockFiles(MockFileSystem mfs, 
-            IEnumerable<string> sequenceOfFileAndOrFolderPaths, string filter = "*.*")
-        {
-            if (sequenceOfFileAndOrFolderPaths == null) throw new ArgumentNullException(nameof(sequenceOfFileAndOrFolderPaths));
-
-            var enumeratedFileAndOrFolderPaths = sequenceOfFileAndOrFolderPaths.ToList();
-
-            if (!enumeratedFileAndOrFolderPaths.Any())
-                throw new InvalidOperationException("There are no file or folder paths present in the enumerable!");
-
-            var dirs = enumeratedFileAndOrFolderPaths.Where(sf => mfs.GetFile(sf).Attributes.HasFlag(FileAttributes.Directory)).ToArray();
-            List<MockFileData> files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(f => mfs.GetFile(f)).ToList();
-            var filteredFiles = dirs.SelectMany(d => 
-                new MockDirectoryInfo(mfs, d).GetFiles(filter, SearchOption.AllDirectories).Select(f => new MockFileData(f.OpenRead().ReadAsString()))).ToList();
             files.AddRange(filteredFiles);
             return files;
         }
@@ -155,6 +138,9 @@ namespace Xml.Schema.Linq.Tests
         {
             var mockFs = new MockFileSystem();
             foreach (var assembly in assemblies) {
+                if (assembly.GetName().Name!.Contains("GelML")) {
+                    //Debugger.Break();
+                }
                 var fileData = GetAssemblyTextFilesDictionary(assembly);
                 foreach (var kvp in fileData) {
                     var possibleExistingPath = kvp.Key;
@@ -325,9 +311,8 @@ namespace Xml.Schema.Linq.Tests
             var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
 
             foreach (var xsd in additionalXsds) {
-                var fileStream = xsd.OpenRead();
                 var uri = new Uri($"{xsd.Name}", UriKind.Relative);
-                xmlPreloadedResolver.Add(uri, fileStream);
+                xmlPreloadedResolver.Add(uri, xsd);
             }
 
             var xmlReaderSettings = new XmlReaderSettings() {
@@ -454,7 +439,16 @@ namespace Xml.Schema.Linq.Tests
                 // do not reference LinqToXsd.Schemas.dll as this assembly already contains the types we are currently compiling.
                 var excludedFileNames = new string[] { "LinqToXsd.Schemas.dll" };
 
-                var referencePaths = ((string)AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES")!)
+                var appCtxData = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
+                
+                #if !NET6_0
+                if (appCtxData == null) {
+                    var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+                    appCtxData = assemblies.Select(a => a.Location).ToDelimitedString(Path.PathSeparator);
+                }
+                #endif
+
+                var referencePaths = appCtxData
                     .Split(Path.PathSeparator)
                     .Where(path => !excludedFileNames.Contains(Path.GetFileName(path)))
                     .OrderBy(_ => _)

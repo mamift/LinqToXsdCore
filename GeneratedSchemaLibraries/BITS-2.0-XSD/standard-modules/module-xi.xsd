@@ -1,0 +1,51 @@
+<?xml-stylesheet href="xsd.xsl" type="text/xsl"?>
+<xsd:schema xmlns:mtl="http://www.mulberrytech.com/taglib"
+            xmlns:c="http://www.w3.org/ns/xproc-step"
+            xmlns:xi="http://www.w3.org/2001/XInclude"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.w3.org/2001/XInclude"><!--* Allow references to unqualified names *-->
+   <!--<xsd:import/>-->
+   <!--* Some imports may need to be added manually *-->
+   <xsd:element name="fallback">
+      <xsd:annotation>
+         <xsd:documentation>
+            <div xmlns="http://www.w3.org/1999/xhtml">
+               <h3>Xinclude Fallback</h3>
+            </div>
+         </xsd:documentation>
+      </xsd:annotation>
+      <!--<xsd:complexType mixed="true">
+         <xsd:group ref="fallback-model" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:complexType>-->
+   </xsd:element>
+   <xsd:element name="include">
+      <xsd:annotation>
+         <xsd:documentation>
+            <div xmlns="http://www.w3.org/1999/xhtml">
+               <h3>Xinclude</h3>
+            </div>
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+         <!--<xsd:group ref="include-model"/>-->
+         <xsd:attribute name="accept" use="optional" type="xsd:string"/>
+         <xsd:attribute name="accept-language" use="optional" type="xsd:string"/>
+         <xsd:attribute name="encoding" use="optional" type="xsd:string"/>
+         <xsd:attribute name="href" use="optional" type="xsd:string"/>
+         <xsd:attribute name="parse" use="optional" default="xml">
+            <xsd:simpleType>
+               <xsd:annotation>
+                  <xsd:documentation/>
+               </xsd:annotation>
+               <xsd:restriction base="xsd:NMTOKEN">
+                  <xsd:enumeration value="text"/>
+                  <xsd:enumeration value="xml"/>
+               </xsd:restriction>
+            </xsd:simpleType>
+         </xsd:attribute>
+         <xsd:attribute name="xpointer" use="optional" type="xsd:string"/>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:annotation/>
+</xsd:schema>
+

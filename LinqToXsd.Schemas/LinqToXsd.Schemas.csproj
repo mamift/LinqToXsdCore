@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <!-- Avoid being overrun by warnings -->
@@ -96,6 +96,10 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\Office 2003 Reference schemas\Office 2003 Reference schemas.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Microsoft Search\Microsoft Search.csproj" />
     <!-- <ProjectReference Include="..\GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj" /> -->
+    <ProjectReference Include="..\GeneratedSchemaLibraries\CityGML\CityGML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\OGC-misc\OGC-misc.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\W3C.XML\W3C.XML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\BITS-2.0-XSD\BITS-2.0-XSD.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="AbstractTypeTest\abstracttest.xsd">

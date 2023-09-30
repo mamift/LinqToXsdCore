@@ -887,6 +887,10 @@ namespace Xml.Schema.Linq.CodeGen
                     //Create Method impl
                     getContentModelMethod = CodeDomHelper.CreateInterfaceImplMethod(Constants.GetContentModel,
                         Constants.IXMetaData, cmType, Constants.ContentModelMember);
+#if DEBUG
+                    var str = declItemsInfo.contentModelExpression.ToCodeString();
+                    Debug.Assert(str.IsNotEmpty());
+#endif
                 }
                 else
                 {

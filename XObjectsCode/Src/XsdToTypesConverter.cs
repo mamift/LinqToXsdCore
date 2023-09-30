@@ -599,7 +599,7 @@ namespace Xml.Schema.Linq.CodeGen
                                 }
                             }
 
-                            ClrPropertyInfo propertyInfo = BuildProperty(elem, fromBaseType);
+                            ClrPropertyInfo propertyInfo = BuildPropertyForElement(elem, fromBaseType);
                             regEx.Append(propertyInfo.PropertyName);
                             regEx.Append(propertyInfo.OccurenceString);
                             //Add to parent
@@ -786,7 +786,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 Debug.Assert(derivedAttribute.AttributeSchemaType !=
                              null); //For use=prohibited, without derivation it doesnt mean anything, hence attribute should be compiled
-                ClrBasePropertyInfo propertyInfo = BuildProperty(derivedAttribute, false, false);
+                ClrBasePropertyInfo propertyInfo = BuildPropertyForAttribute(derivedAttribute, false, false);
                 BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                 typeInfo.AddMember(propertyInfo);
             }
@@ -807,13 +807,13 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     // Its the one copied from the base
                     // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=3064
-                    ClrBasePropertyInfo propertyInfo = BuildProperty(derivedAttribute, typeInfo.IsDerived, false, typeInfo);
+                    ClrBasePropertyInfo propertyInfo = BuildPropertyForAttribute(derivedAttribute, typeInfo.IsDerived, false, typeInfo);
                     BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                     typeInfo.AddMember(propertyInfo);
                 }
                 else
                 {
-                    ClrBasePropertyInfo propertyInfo = BuildProperty(derivedAttribute, false, baseAttribute != null, typeInfo);
+                    ClrBasePropertyInfo propertyInfo = BuildPropertyForAttribute(derivedAttribute, false, baseAttribute != null, typeInfo);
                     BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                     typeInfo.AddMember(propertyInfo);
                 }
@@ -928,7 +928,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        private ClrPropertyInfo BuildProperty(XmlSchemaElement elem, bool fromBaseType)
+        private ClrPropertyInfo BuildPropertyForElement(XmlSchemaElement elem, bool fromBaseType)
         {
             string identifierName = localSymbolTable.AddLocalElement(elem);
 
@@ -988,7 +988,15 @@ namespace Xml.Schema.Linq.CodeGen
             //Place it in the element's namespace, maybe element's parent type's namespace?
         }
 
-        private ClrPropertyInfo BuildProperty(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew,
+        /// <summary>
+        /// Builds a property for the given <see cref="XmlSchemaAttribute"/>
+        /// </summary>
+        /// <param name="attribute"></param>
+        /// <param name="fromBaseType"></param>
+        /// <param name="isNew"></param>
+        /// <param name="containingType"></param>
+        /// <returns></returns>
+        private ClrPropertyInfo BuildPropertyForAttribute(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew,
             ClrTypeInfo containingType = null)
         {
             string identifierName = localSymbolTable.AddAttribute(attribute);
@@ -1003,8 +1011,9 @@ namespace Xml.Schema.Linq.CodeGen
 
             SchemaOrigin typeRefOrigin = SchemaOrigin.Fragment;
             bool isTypeRef = false;
-            //Anonymous types have a non null XmlSchemaAttribute.SchemaType value
-            bool isAnonymous = attribute.SchemaType != null;
+            bool isAnonymous = attribute.SchemaType != null || (!attribute.AttributeSchemaType.IsGlobal() &&
+                                                                !attribute.AttributeSchemaType.IsBuiltInSimpleType());
+
             XmlSchemaObject schemaObject = schemaType;
 
             ClrTypeReference typeRef = BuildTypeReference(schemaObject, schemaTypeName, isAnonymous, true);
@@ -1018,59 +1027,69 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.ClrNamespace = clrNs;
             propertyInfo.IsNew = isNew;
             propertyInfo.VerifyRequired = configSettings.VerifyRequired;
+            
+            if (attribute.DefinesInlineEnum() && isAnonymous) {
+                // does not work when the containing type does not have the enum definition already defined, returns string values like '.Enum' which does not compile
+                // UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
+            }
 
             SetFixedDefaultValue(attribute, propertyInfo);
             return propertyInfo;
         }
 
-        //private ClrPropertyInfo BuildProperty(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew, ClrTypeInfo containingType = null)
-        //{
-        //    string schemaName = attribute.QualifiedName.Name;
-        //    string schemaNs = attribute.QualifiedName.Namespace;
+        [Obsolete("Contains bugs for enum code generation, use " + nameof(BuildPropertyForAttribute))]
+        private ClrPropertyInfo BuildPropertyForAttributeWithInlineEnum(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew, 
+            ClrTypeInfo containingType = null)
+        {
+            string schemaName = attribute.QualifiedName.Name;
+            string schemaNs = attribute.QualifiedName.Namespace;
 
-        //    string propertyName = localSymbolTable.AddAttribute(attribute);
-        //    ClrPropertyInfo propertyInfo = new ClrPropertyInfo(propertyName, schemaNs, schemaName, GetOccurence(attribute), configSettings);
-        //    propertyInfo.Origin = SchemaOrigin.Attribute;
-        //    propertyInfo.FromBaseType = fromBaseType;
-        //    propertyInfo.IsNew = isNew;
-        //    propertyInfo.VerifyRequired = configSettings.VerifyRequired;
+            string propertyName = localSymbolTable.AddAttribute(attribute);
+            ClrPropertyInfo propertyInfo = new ClrPropertyInfo(propertyName, schemaNs, schemaName, GetOccurence(attribute), configSettings);
+            propertyInfo.Origin = SchemaOrigin.Attribute;
+            propertyInfo.FromBaseType = fromBaseType;
+            propertyInfo.IsNew = isNew;
+            propertyInfo.VerifyRequired = configSettings.VerifyRequired;
 
-        //    XmlSchemaSimpleType schemaType = attribute.AttributeSchemaType;
-        //    var isInlineEnum = attribute.AttributeSchemaType.IsEnum() && attribute.AttributeSchemaType.IsDerivedByRestriction() &&
-        //                                ((attribute.AttributeSchemaType.Content as XmlSchemaSimpleTypeRestriction)?.Facets
-        //                                 .Cast<XmlSchemaObject>().Any() ?? false);
-        //    var isAnonymous = !attribute.AttributeSchemaType.IsGlobal() &&
-        //                       !attribute.AttributeSchemaType.IsBuiltInSimpleType();
+            XmlSchemaSimpleType schemaType = attribute.AttributeSchemaType;
+            var isInlineEnum = attribute.AttributeSchemaType.IsEnum() && attribute.AttributeSchemaType.IsDerivedByRestriction() &&
+                                        ((attribute.AttributeSchemaType.Content as XmlSchemaSimpleTypeRestriction)?.Facets
+                                         .Cast<XmlSchemaObject>().Any() ?? false);
+            var isAnonymous = !attribute.AttributeSchemaType.IsGlobal() &&
+                               !attribute.AttributeSchemaType.IsBuiltInSimpleType();
 
-        //    var qName = schemaType.QualifiedName;
-        //    if (qName.IsEmpty)
-        //    {
-        //        qName = attribute.QualifiedName;
-        //    }
+            var qName = schemaType.QualifiedName;
+            if (qName.IsEmpty) qName = attribute.QualifiedName;
 
-        //    // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=4106
-        //    ClrTypeReference typeRef =
-        //        BuildTypeReference(schemaType, qName, isAnonymous, true);
-        //    if (isInlineEnum && isAnonymous)
-        //    {
-        //        typeRef.Name += "Enum";
-        //        if (typeRef.ClrFullTypeName.IsNullOrEmpty())
-        //        {
-        //            var typeScopedResolutionString = containingType?.GetNestedTypeScopedResolutionString();
-        //            if (typeScopedResolutionString.IsNullOrEmpty())
-        //            { // if this is empty, then take the referencing element
-        //                var closestNamedParent = attribute.GetClosestNamedParent().GetPotentialName();
-        //                typeScopedResolutionString = closestNamedParent;
-        //            }
+            ClrTypeReference typeRef = BuildTypeReference(schemaType, qName, isAnonymous, true);
+            if (isInlineEnum && isAnonymous) {
+                UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
+            }
+            propertyInfo.TypeReference = typeRef;
+            Debug.Assert(schemaType.Datatype != null);
+            SetFixedDefaultValue(attribute, propertyInfo);
+            return propertyInfo;
+        }
 
-        //            typeRef.UpdateClrFullTypeName(propertyInfo, null, typeScopedResolutionString);
-        //        }
-        //    }
-        //    propertyInfo.TypeReference = typeRef;
-        //    Debug.Assert(schemaType.Datatype != null);
-        //    SetFixedDefaultValue(attribute, propertyInfo);
-        //    return propertyInfo;
-        //}
+        private void UpdateTypeRefForInlineAnonymousEnum(XmlSchemaAttribute attribute, ClrTypeInfo containingType,
+            ClrTypeReference typeRef, ClrPropertyInfo propertyInfo)
+        {
+            if (typeRef.Name.IsEmpty())
+                throw new InvalidOperationException($"The given {nameof(ClrTypeReference)} must already have a filled in name. " +
+                                                    $"Without one this will produce uncompilable code.");
+
+            typeRef.Name += "Enum";
+            if (typeRef.ClrFullTypeName.IsNullOrEmpty()) {
+                var typeScopedResolutionString = containingType?.GetNestedTypeScopedResolutionString();
+                if (typeScopedResolutionString.IsNullOrEmpty()) {
+                    // if this is empty, then take the referencing element
+                    var closestNamedParent = attribute.GetClosestNamedParent().GetPotentialName();
+                    typeScopedResolutionString = closestNamedParent;
+                }
+
+                typeRef.UpdateClrFullEnumTypeName(propertyInfo, null, typeScopedResolutionString);
+            }
+        }
 
         private ClrWildCardPropertyInfo BuildAnyProperty(XmlSchemaAny any, bool addToTypeDef)
         {

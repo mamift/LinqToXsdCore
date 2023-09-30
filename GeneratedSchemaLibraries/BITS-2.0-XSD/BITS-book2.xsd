@@ -1,0 +1,51 @@
+<?xml-stylesheet href="xsd.xsl" type="text/xsl"?>
+<xsd:schema xmlns:mtl="http://www.mulberrytech.com/taglib"
+            xmlns:c="http://www.w3.org/ns/xproc-step"
+            xmlns:mml="http://www.w3.org/1998/Math/MathML"
+            xmlns:xi="http://www.w3.org/2001/XInclude"
+            xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:dxdy="http://mulberrytech.com/2014/dxdy"
+              xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"
+              class="bodytext">
+              <h1>MODULE: BITS-book2.dtd in XSD form (driver file)</h1>
+              <h2>MODEL: BITS DTD with only XHTML Tables</h2>
+              <h2>VERSION:  2.0</h2>
+              <h2>DATE:     January 2016</h2>
+              <p>BITS Book DTD with only XHTML Tables</p>
+              <dl>
+                <dt>SYSTEM</dt>
+                <dd>
+                  <p>Book Interchange Tag Suite</p>
+               </dd>
+                <dt>PURPOSE</dt>
+                <dd>
+                  <p>Driver file: include and import all other schema documents</p>
+               </dd>
+                <dt>CREATED FOR</dt>
+                <dd>
+                  <p>NLM/NCBI</p> 
+               </dd>
+                
+              </dl>
+            </div>
+      </xsd:documentation>
+   </xsd:annotation>
+   <xsd:import namespace="http://www.w3.org/1999/xlink"
+               schemaLocation="standard-modules/xlink.xsd"/>
+   <xsd:import namespace="http://www.w3.org/1998/Math/MathML"
+               schemaLocation="standard-modules/mathml3/mathml3.xsd"/>
+   <xsd:import namespace="http://www.w3.org/2001/XInclude"
+               schemaLocation="standard-modules/module-xi.xsd"/>
+   <xsd:import namespace="http://www.niso.org/schemas/ali/1.0/"
+               schemaLocation="module-ali.xsd"/>
+   <xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+               schemaLocation="standard-modules/xml.xsd"/>
+   <xsd:include schemaLocation="BITS-book2-elements.xsd"/>
+</xsd:schema>
+

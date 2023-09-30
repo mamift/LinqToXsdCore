@@ -1,0 +1,37 @@
+{
+  "profiles": {
+    "LinqToXsd": {
+      "commandName": "Project"
+    },
+    "W3C XSD": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"W3C XMLSchema v1.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XSD",
+      "hotReloadEnabled": false
+    },
+    "XMLSpec": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"xmlspec.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XMLSpec",
+      "hotReloadEnabled": false
+    },
+    "LinqToXsdConfiguration": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"LinqToXsdConfiguration.xsd\" -a",
+      "workingDirectory": "..\\..\\XObjectsCode\\Configuration",
+      "hotReloadEnabled": false
+    },
+    "MSBuild": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"Microsoft.Build.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\MSBuild",
+      "hotReloadEnabled": false
+    },
+    "Microsoft Search": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"Microsoft.Search.Query.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Microsoft Search",
+      "hotReloadEnabled": false
+    }
+  }
+}

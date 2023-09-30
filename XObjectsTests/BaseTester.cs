@@ -12,7 +12,7 @@ namespace Xml.Schema.Linq.Tests;
 
 public class BaseTester
 {
-    protected List<Assembly> TestAssembliesLoaded { get; private set; } = null!;
+    public List<Assembly> TestAssembliesLoaded { get; protected set; } = null!;
     public MockFileSystem AllTestFiles { get; protected set; } = null!;
 
     [SetUp]
