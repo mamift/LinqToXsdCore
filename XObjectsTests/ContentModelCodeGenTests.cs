@@ -45,6 +45,7 @@ namespace Xml.Schema.Linq.Tests
             method = type.Members.OfType<MethodDeclarationSyntax>().SingleOrDefault(meth => meth.Identifier.Text == "GetContentModel");
             Assert.IsNotNull(method);
         }
+
         [Test]
         public void T2_ContentModelShouldBeGeneratedForComplexGrouping()
         {

@@ -439,7 +439,16 @@ namespace Xml.Schema.Linq.Tests
                 // do not reference LinqToXsd.Schemas.dll as this assembly already contains the types we are currently compiling.
                 var excludedFileNames = new string[] { "LinqToXsd.Schemas.dll" };
 
-                var referencePaths = ((string)AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES")!)
+                var appCtxData = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
+                
+                #if !NET6_0
+                if (appCtxData == null) {
+                    var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+                    appCtxData = assemblies.Select(a => a.Location).ToDelimitedString(Path.PathSeparator);
+                }
+                #endif
+
+                var referencePaths = appCtxData
                     .Split(Path.PathSeparator)
                     .Where(path => !excludedFileNames.Contains(Path.GetFileName(path)))
                     .OrderBy(_ => _)
