@@ -1,5 +1,14 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.2
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.2
+	* Fixed a code generation bug (exhibited in XmlSpec schema (xmlspec.xsd)) when the simple type enum for xlink:type attribute was not being generated.
+	* Fixed a code generation bug whereby the wrong type name was referenced when the property name and type name were the same, and the XML schema did not have [Element Form Default="qualified"] set and the property type was reflecting an XSD union type (like the xml:lang attribute) (exhibited in 'W3C XMLSchema v1.xsd').
+	* Fixes a code generation bug with certain XName fields (that are only referenced in the static constructor of a type) were not getting created.
+	* Backported .NET 6 `DateOnly` and `TimeOnly` type serialisation for `xs:date` and `xs:time` types to .NET Standard 2.0 using [Portable.System.DateTimeOnly](https://www.nuget.org/packages/Portable.System.DateTimeOnly); there remains a .NET 6 version and a .NET Standard 2.0 version of the XObjectsCore and LinqToXsd nuget packages, but are now functionaly the same.
+
+
 ## Version 3.4.1
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.1

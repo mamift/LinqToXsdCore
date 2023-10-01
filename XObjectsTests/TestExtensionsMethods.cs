@@ -186,7 +186,7 @@ namespace Xml.Schema.Linq.Tests
                 if (largestNumber != null) largestNumber++;
                 var str = debugStrings[i];
 
-                var outputPath = Path.Join(tc.WorkDirectory, caller + "_debug" + incrementor + ".log");
+                var outputPath = Path.Combine(tc.WorkDirectory, caller + "_debug" + incrementor + ".log");
                 File.WriteAllText(outputPath, str);
             }
         }

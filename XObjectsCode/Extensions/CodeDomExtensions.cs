@@ -3,15 +3,37 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.CSharp;
+using OneOf;
 using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq.Extensions
 {
     public static class CodeDomExtensions
     {
+        public static bool HasXNameFieldForProperty(this CodeTypeDeclaration typeDeclaration, ClrBasePropertyInfo property)
+        {
+            var hasXNameFieldForProperty = false;
+
+#if DEBUG
+            var str = typeDeclaration.ToCodeString();
+            Debug.Assert(str.IsNotEmpty());
+#endif
+
+            foreach (var member in typeDeclaration.Members) {
+                if (member is CodeMemberField field) {
+                    var propertyXnameFieldName = property.PropertyName + "XName";
+                    hasXNameFieldForProperty = string.Equals(field.Name, propertyXnameFieldName, StringComparison.CurrentCulture);
+                    if (hasXNameFieldForProperty) break;
+                }
+            }
+
+            return hasXNameFieldForProperty;
+        }
+
         /// <summary>
         /// Compares that the current <see cref="ClrTypeReference"/> is equivalent to the given CodeDOM <see cref="CodeTypeReference"/>.
         /// <para>This methods assumes that the <paramref name="codeTypeReference"/> has the namespace in the <see cref="CodeTypeReference.BaseType"/>.</para>
@@ -33,22 +55,93 @@ namespace Xml.Schema.Linq.Extensions
 
             return string.Equals(clrTypeReference.ClrFullTypeName, codeTypeReference.BaseType);
         }
+        
+        private static string ToCodeStringInternal(
+            this OneOf<CodeCompileUnit, CodeExpression, CodeTypeMember, CodeNamespace, CodeStatement, CodeTypeDeclaration> codeDomObjects,
+            CodeGeneratorOptions options = null)
+        {
+            var stringWriter = ToStringWriterInternal(codeDomObjects, options);
+            var stringBuilder = stringWriter.GetStringBuilder();
+            return stringBuilder.ToString();
+        }
+        
+        private static StringWriter ToStringWriterInternal(
+            this OneOf<CodeCompileUnit, CodeExpression, CodeTypeMember, CodeNamespace, CodeStatement, CodeTypeDeclaration> codeDomObjects,
+            CodeGeneratorOptions options = null)
+        {
+            var stringWriter = new StringWriter();
+
+            var provider = new CSharpCodeProvider();
+            var theOptions = options ?? new CodeGeneratorOptions {
+                VerbatimOrder = true
+            };
+
+            codeDomObjects.Match(
+                codeCompileUnit => {
+                    provider.GenerateCodeFromCompileUnit(codeCompileUnit, stringWriter, theOptions);
+                    return stringWriter;
+                },
+                codeExpression => {
+                    provider.GenerateCodeFromExpression(codeExpression, stringWriter, theOptions);
+                    return stringWriter;
+                },
+                codeTypeMember => {
+                    provider.GenerateCodeFromMember(codeTypeMember, stringWriter, theOptions);
+                    return stringWriter;
+                },
+                codeNamespace => {
+                    provider.GenerateCodeFromNamespace(codeNamespace, stringWriter, theOptions);
+                    return stringWriter;
+                },
+                codeStatement => {
+                    provider.GenerateCodeFromStatement(codeStatement, stringWriter, theOptions);
+                    return stringWriter;
+                },
+                codeTypeDeclaration => {
+                    provider.GenerateCodeFromType(codeTypeDeclaration, stringWriter, theOptions);
+                    return stringWriter;
+                });
+
+            return stringWriter;
+        }
+
+        public static StringWriter ToStringWriter(this CodeTypeDeclaration codeTypeDeclaration) => ToStringWriterInternal(codeTypeDeclaration);
+        public static string ToCodeString(this CodeTypeDeclaration codeTypeDeclaration) => ToCodeStringInternal(codeTypeDeclaration);
+
+        /// <summary>
+        /// Generates code string from the current <see cref="CodeExpression"/>.
+        /// </summary>
+        /// <param name="statement"></param>
+        /// <returns></returns>
+        public static StringWriter ToStringWriter(this CodeStatement statement) => ToStringWriterInternal(statement);
+        public static string ToCodeString(this CodeStatement statement) => ToCodeStringInternal(statement);
+
+        /// <summary>
+        /// Generates code string from the current <see cref="CodeNamespace"/>.
+        /// </summary>
+        /// <param name="codeNamespace"></param>
+        /// <returns></returns>
+        public static StringWriter ToStringWriter(this CodeNamespace codeNamespace) => ToStringWriterInternal(codeNamespace);
+        public static string ToCodeString(this CodeNamespace codeNamespace) => ToCodeStringInternal(codeNamespace);
+
+        public static StringWriter ToStringWriter(this CodeTypeMember codeTypeMember) => ToStringWriterInternal(codeTypeMember);
+        public static string ToCodeString(this CodeTypeMember codeTypeMember) => ToCodeStringInternal(codeTypeMember);
+
+        /// <summary>
+        /// Generates code string from the current <see cref="CodeExpression"/>.
+        /// </summary>
+        /// <param name="codeExpression"></param>
+        /// <returns></returns>
+        public static StringWriter ToStringWriter(this CodeExpression codeExpression) => ToStringWriterInternal(codeExpression);
+        public static string ToCodeString(this CodeExpression codeExpression) => ToCodeStringInternal(codeExpression);
 
         /// <summary>
         /// Generates code string from the current <see cref="CodeCompileUnit"/>.
         /// </summary>
         /// <param name="ccu"></param>
         /// <returns></returns>
-        public static StringWriter ToStringWriter(this CodeCompileUnit ccu)
-        {
-            var stringWriter = new StringWriter();
-
-            var provider = new CSharpCodeProvider();
-            var codeGeneratorOptions = new CodeGeneratorOptions();
-            provider.GenerateCodeFromCompileUnit(ccu, stringWriter, codeGeneratorOptions);
-
-            return stringWriter;
-        }
+        public static StringWriter ToStringWriter(this CodeCompileUnit ccu) => ToStringWriterInternal(ccu);
+        public static string ToCodeString(this CodeCompileUnit ccu) => ToCodeStringInternal(ccu);
         
         /// <summary>
         /// Creates individual <see cref="StringWriter"/>s for each <see cref="CodeTypeDeclaration"/> in each

@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netframework472</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <Description>A command line tool that facilitates generating code from an XSD; also generates configuration files to control code generation. Do not include this nuget package as a dependency in shipping applications or libraries; use the code it generates in a shipping library or app and include a dependency on the XObjectsCore nuget package. Can be installed via 'dotnet tool install LinqToXsdCore --global', and then invoked via 'linqtoxsd'. Original Authors: Microsoft Corporation.</Description>
     <PackageReadmeFile>RELEASENOTES.md</PackageReadmeFile>
+    <RuntimeIdentifiers>win7-x64;win7-x86</RuntimeIdentifiers>
   </PropertyGroup>
 
   <!-- This is for use as a global dotnet tool -->
@@ -14,6 +15,7 @@
     <PackAsTool>true</PackAsTool>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
+    <RootNamespace>LinqToXsd</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,7 +27,16 @@
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
+    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework) != 'net6.0'">
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>

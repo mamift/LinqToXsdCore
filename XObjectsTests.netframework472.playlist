@@ -1,0 +1,558 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="XObjectsTests (net472)" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="Xml.Schema.Linq.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="CodeDomExtensionsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeDomExtensionsTests.TestIsEquivalentTypeReference" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestIsEquivalentTypeReference" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="CodeGenerationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeGenerationTests.AtomNoVoidTypeOfExpressionsInLinqToXsdTypeManagerBuildWrapperDictionaryMethodTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AtomNoVoidTypeOfExpressionsInLinqToXsdTypeManagerBuildWrapperDictionaryMethodTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeGenerationTests.DebuggerBrowsableAttributesGeneratedTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DebuggerBrowsableAttributesGeneratedTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeGenerationTests.EnumAtNamespaceLevelGenerationTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EnumAtNamespaceLevelGenerationTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeGenerationTests.NamespaceCodeGenerationConventionTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NamespaceCodeGenerationConventionTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeGenerationTests.NoVoidTypeDefReferencesInAnyStatementsInClrPropertiesTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NoVoidTypeDefReferencesInAnyStatementsInClrPropertiesTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeGenerationTests.NoVoidTypeOfExpressionsInGeneratedCode" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;1707_ISYBAU_XML_Schema&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;AbstractTypeTest&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;AkomaNtoso&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;AkomaNtoso30-CSD13-D2f&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;AspNetSiteMaps&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Atom&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;ContentModelTest&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;CityGML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;EnumsTest&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;EnzymeML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;GelML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;GS1&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;HL-7&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;HR-XML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;LegalRuleML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;MetaLEX&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Microsoft Search&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Multi-namespaces&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;mzIdentML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;mzML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;mzQuantML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;NameMangled&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;NHS CDS&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;OcmContracts&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Office 2003 Reference schemas&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;OfficeOpenXML-XMLSchema-Strict&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;OfficeOpenXML-XMLSchema-Transitional&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;OFMX&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;OGC-misc&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;OPC&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;OpenPackagingConventions-XMLSchema&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Opml&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Pubmed&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Rss&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;SBML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;SharePoint2010&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;SWRL&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;ThermoML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Toy schemas&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;TraML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;UK CabinetOffice&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;Windows&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;W3C.XML&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;XMLSpec&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;XQueryX&quot;)" />
+                        <Property Name="DisplayName" Value="NoVoidTypeOfExpressionsInGeneratedCode(&quot;XSD&quot;)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CodeGenerationTests.TestXNameGetInvocationsAreFullyQualified" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestXNameGetInvocationsAreFullyQualified" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="CommandLineInterfaceTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CommandLineInterfaceTests.TestGenerateCodeFromSingleDirectoryWithAutoConfig" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestGenerateCodeFromSingleDirectoryWithAutoConfig" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CommandLineInterfaceTests.TestGenerateCodeFromSingleFileWithAutoConfig" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestGenerateCodeFromSingleFileWithAutoConfig" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CommandLineInterfaceTests.TestGenerateConfigurationFilesFromFolder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestGenerateConfigurationFilesFromFolder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.CommandLineInterfaceTests.TestGenerateConfigurationFilesFromFolderAndMergeOutput" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestGenerateConfigurationFilesFromFolderAndMergeOutput" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ConfigurationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ConfigurationTests.TestExampleNamespaceElementsArePresentInExampleConfig" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestExampleNamespaceElementsArePresentInExampleConfig" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ConfigurationTests.TestHelpfulCommentsArePresent" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestHelpfulCommentsArePresent" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ConfigurationTests.TestThatConfigHasDefaultNamespaceMappingForXsdWithNoTargetNamespace" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestThatConfigHasDefaultNamespaceMappingForXsdWithNoTargetNamespace" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ContentModelCodeGenTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ContentModelCodeGenTests.T1_ContentModelShouldInheritBaseContentModelForTypeInheritedByRestriction" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T1_ContentModelShouldInheritBaseContentModelForTypeInheritedByRestriction" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ContentModelCodeGenTests.T2_ContentModelShouldBeGeneratedForComplexGrouping" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T2_ContentModelShouldBeGeneratedForComplexGrouping" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ContentModelRuntimeTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ContentModelRuntimeTests.T1_SimpleChoice" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T1_SimpleChoice" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ContentModelRuntimeTests.T2_SequenceWithChoice" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T2_SequenceWithChoice" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ContentModelRuntimeTests.T3_ChoiceWithSequence" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T3_ChoiceWithSequence" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ContentModelRuntimeTests.T4_DeepChoiceTree" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T4_DeepChoiceTree" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.ContentModelRuntimeTests.T5_DeepSequenceTree" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T5_DeepSequenceTree" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DateOnlyTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.DateOnlyTests.DateOnlyTypesCanRoundtrip" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DateOnlyTypesCanRoundtrip" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="EnumsCodeGenTest" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.EnumsCodeGenTest.T1_UseGlobalEnumForGlobalEnumElement" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T1_UseGlobalEnumForGlobalEnumElement" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.EnumsCodeGenTest.T2_UseGlobalEnumForGlobalEnumAttribute" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T2_UseGlobalEnumForGlobalEnumAttribute" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.EnumsCodeGenTest.T3_UseNestedEnumForNestedEnumElement" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T3_UseNestedEnumForNestedEnumElement" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.EnumsCodeGenTest.T4_UseNestedEnumForNestedEnumAttribute" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T4_UseNestedEnumForNestedEnumAttribute" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.EnumsCodeGenTest.T5_DoNotRedefineDerivedNestedEnumAttribute" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="T5_DoNotRedefineDerivedNestedEnumAttribute" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="OpmlApiUseTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.OpmlApiUseTests.TestUseOfUnknownType" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestUseOfUnknownType" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="PubmedCodeGenerationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.PubmedCodeGenerationTests.TestEfetchPubmedSchemaCodeGenerates" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestEfetchPubmedSchemaCodeGenerates" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="WssApiUseTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssApiUseTests.TestUseOfDesignerTypeEnum1" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestUseOfDesignerTypeEnum1" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssApiUseTests.TestUseOfDesignerTypeEnum2" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestUseOfDesignerTypeEnum2" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="WssXsdCodeGenerationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.ClassesWithInlineEnumsGenerationTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ClassesWithInlineEnumsGenerationTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.DuplicateInlineDeclaredEnumsActuallyHaveDifferingMembersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DuplicateInlineDeclaredEnumsActuallyHaveDifferingMembersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.DuplicateInlineDeclaredEnumsAllowedTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DuplicateInlineDeclaredEnumsAllowedTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.GenerateInlineDeclaredEnumsTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GenerateInlineDeclaredEnumsTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.GeneratedXRootClassTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GeneratedXRootClassTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.TypesGeneratedCountTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TypesGeneratedCountTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.TypesThatInheritFromXTypedElementTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TypesThatInheritFromXTypedElementTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.WssXsdCodeGenerationTests.TypesThatInheritFromXTypedElementTestAndTheirMembers" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TypesThatInheritFromXTypedElementTestAndTheirMembers" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="XQueryXApiUseTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.XQueryXApiUseTests.TestFunctionalConstructorOfTypeWithInnerEnumTypeBadValue" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestFunctionalConstructorOfTypeWithInnerEnumTypeBadValue" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.XQueryXApiUseTests.TestFunctionalConstructorOfTypeWithInnerEnumTypeGoodValue" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestFunctionalConstructorOfTypeWithInnerEnumTypeGoodValue" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="XsdCodeUseTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.XsdCodeUseTests.SchemaLangSetValueTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SchemaLangSetValueTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.XsdCodeUseTests.SchemaLangUseTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SchemaLangUseTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="Xml.Schema.Linq.Tests.API" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="XListTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XListTests.TestXListEnumerateTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestXListEnumerateTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="XTypedElementTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedElementTests.TestAncestorIsRootElement" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestAncestorIsRootElement" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedElementTests.TestAncestorOfRecursiveChild" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestAncestorOfRecursiveChild" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedElementTests.TestInternalTypeConstruction" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestInternalTypeConstruction" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedElementTests.TestInternalTypeConversion" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestInternalTypeConversion" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedElementTests.TestPublicTypeConstruction" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestPublicTypeConstruction" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedElementTests.TestPublicTypeConversion" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestPublicTypeConversion" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedElementTests.TestXsiTypeAddedToAmbiguousElementNames" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestXsiTypeAddedToAmbiguousElementNames" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="XTypedServicesTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedServicesTests.TestAnyAtomicTypeConversionFromString" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestAnyAtomicTypeConversionFromString" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedServicesTests.TestAnyAtomicTypeConversionToTWhereTIsString" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestAnyAtomicTypeConversionToTWhereTIsString" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.API.XTypedServicesTests.TestBooleanParsing" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestBooleanParsing" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="Xml.Schema.Linq.Tests.Extensions" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="CodeDomExtensionTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.CodeDomExtensionTests.IsEquivalentEnumDeclarationTestFalse" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="IsEquivalentEnumDeclarationTestFalse" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.CodeDomExtensionTests.IsEquivalentEnumDeclarationTestMembersCount" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="IsEquivalentEnumDeclarationTestMembersCount" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.CodeDomExtensionTests.IsEquivalentEnumDeclarationTestTrue" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="IsEquivalentEnumDeclarationTestTrue" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.CodeDomExtensionTests.ToClassStringWritersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ToClassStringWritersTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="IDictionaryExtensionsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.IDictionaryExtensionsTests.IsEqualsNegativeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="IsEqualsNegativeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.IDictionaryExtensionsTests.IsEqualsPositiveTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="IsEqualsPositiveTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="XmlSchemaExtensionsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.XmlSchemaExtensionsTests.TestGetClosestNamedParent1" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestGetClosestNamedParent1" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.XmlSchemaExtensionsTests.TestGetClosestNamedParent2" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestGetClosestNamedParent2" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Xml.Schema.Linq.Tests.Extensions.XmlSchemaExtensionsTests.TestGetClosestNamedParent3" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TestGetClosestNamedParent3" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
