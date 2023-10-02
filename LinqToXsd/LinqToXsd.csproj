@@ -12,7 +12,7 @@
   <PropertyGroup>
     <PackageId>$(PackageId)Core</PackageId>
     <ToolCommandName>$(MSBuildProjectName)</ToolCommandName>
-    <PackAsTool>true</PackAsTool>
+    <PackAsTool Condition="$(TargetFramework) != 'netframework472'">true</PackAsTool>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
     <RootNamespace>LinqToXsd</RootNamespace>
