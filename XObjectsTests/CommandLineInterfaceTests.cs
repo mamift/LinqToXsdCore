@@ -125,13 +125,18 @@ namespace Xml.Schema.Linq.Tests
 
             var genConfigResult = LinqToXsd.Program.Main(new[] { "config", "-e", _copyOfSchemasFolder.FullName });
             Assert.IsTrue(genConfigResult == 0);
-            Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd.config", SearchOption.AllDirectories));
+            var genConfigFiles = _copyOfSchemasFolder.GetFiles("*.xsd.config", SearchOption.AllDirectories);
+            Assert.IsNotEmpty(genConfigFiles);
 
             var directoryName = Path.GetDirectoryName(msBuildXsd.FullName);
             var genCodeResult = LinqToXsd.Program.Main(new[] {"gen", directoryName, "-a"});
 
             Assert.IsTrue(genCodeResult == 0);
-            Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd.cs", SearchOption.AllDirectories));
+            var allGeneratedXsdCsFiles = _copyOfSchemasFolder.GetFiles("*.xsd.cs", SearchOption.AllDirectories);
+            Assert.IsNotEmpty(allGeneratedXsdCsFiles);
+
+            var allGeneratedCsFiles = _copyOfSchemasFolder.GetFiles("*.cs", SearchOption.AllDirectories);
+            Assert.IsNotEmpty(allGeneratedCsFiles);
 
             var generatedCsFile = _copyOfSchemasFolder.GetFiles($"{microsoftBuildXsd}.cs", SearchOption.AllDirectories);
 
