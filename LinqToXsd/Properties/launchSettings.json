@@ -32,6 +32,12 @@
       "commandLineArgs": "gen \"Microsoft.Search.Query.xsd\" -a",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\Microsoft Search",
       "hotReloadEnabled": false
+    },
+    "W3C XML": {
+      "commandName": "Project",
+      "commandLineArgs": "config \"xmlUse1.xsd\" -e",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\W3C.XML",
+      "hotReloadEnabled": false
     }
   }
 }
