@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
 
@@ -35,6 +36,15 @@ namespace Xml.Schema.Linq
 
             var firstNamespaceElement = descendants.FirstOrDefault(d => d.Name.LocalName == nameof(Namespace));
             firstNamespaceElement?.AddBeforeSelf(visibilityComment);
+
+            var rootNamespace = doc.Root.Name.Namespace;
+            var codeGenEl = descendants.Find(e => e.Name == XName.Get("CodeGeneration", rootNamespace.NamespaceName));
+            if (codeGenEl != null) {
+                var splitByEl = new SplitCodeFiles {
+                    By = SplitCodeFiles.ByEnum.Namespace
+                };
+                codeGenEl.Add(splitByEl.Untyped.ToXComment());
+            }
 
             return doc;
         }
@@ -155,9 +165,6 @@ namespace Xml.Schema.Linq
                 },
                 CodeGeneration = new CodeGeneration {
                     NullableReferences = false,
-                    SplitCodeFiles = new SplitCodeFiles {
-                        By = SplitCodeFiles.ByEnum.Namespace,
-                    },
                     UseDateOnly = false,
                     UseTimeOnly = false,
                 },
@@ -181,7 +188,7 @@ namespace Xml.Schema.Linq
             var blank = GetBlankConfigurationInstance();
             var newNamespace = Namespace.New("http://www.microsoft.com/xml/schema/linq", "Xml.Schema.Linq");
             blank.Namespaces.Namespace.Add(newNamespace);
-
+            
             return blank;
         }
     }

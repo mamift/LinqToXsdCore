@@ -36,6 +36,7 @@ namespace Xml.Schema.Linq
             Dictionary<string, XmlReader> schemaReaders, IProgress<string> progress = null)
         {
             var egConfig = Configuration.GetBlankConfigurationInstance();
+            egConfig.AddHelpfulComments();
             var outputWasGiven = possibleOutputFile.IsNotEmpty();
 
             if (foldersWereGiven) {
