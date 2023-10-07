@@ -120,6 +120,16 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
+        /// Returns configuration XML as an <see cref="XDocument"/> instance by reading an XSD schema file from an <see cref="XDocument"/> instance and creating default values.
+        /// </summary>
+        /// <returns></returns>
+        public static XDocument LoadForSchema(XDocument doc)
+        {
+            var configForXsd = Configuration.LoadForSchema(doc);
+            return configForXsd.AddHelpfulComments();
+        }
+
+        /// <summary>
         /// Returns configuration XML as an <see cref="XDocument"/> instance by reading an existing XSD schema and creating default values.
         /// </summary>
         /// <param name="filePath"></param>

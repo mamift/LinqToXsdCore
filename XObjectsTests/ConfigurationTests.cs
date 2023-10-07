@@ -8,16 +8,9 @@ using Rss;
 
 namespace Xml.Schema.Linq.Tests
 {
-    public class ConfigurationTests
+    public class ConfigurationTests: BaseTester
     {
-        public MockFileSystem TestFiles { get; set; }
-
-        [SetUp]
-        public void Setup()
-        {
-            TestFiles = Utilities.GetAssemblyFileSystem(typeof(RssChannel).Assembly);
-        }
-
+        
         [Test]
         public void TestExampleNamespaceElementsArePresentInExampleConfig()
         {
@@ -41,9 +34,29 @@ namespace Xml.Schema.Linq.Tests
         }
 
         [Test]
+        public void TestSplitByElementIsCommentedOut()
+        {
+            var w3cXmlFiles = AllTestFiles.AllFiles.Where(f => f.StartsWith("W3C")).ToList();
+            var rssSchema = XDocument.Parse(AllTestFiles.GetFile(@"W3CXML\xmlUse1.xsd").TextContents);
+            var loaded = ConfigurationProvider.LoadForSchema(rssSchema);
+
+            var codeGenEl = loaded.Descendants(XName.Get(nameof(CodeGeneration), loaded.Root.Name.NamespaceName)).ToList();
+
+            Assert.IsNotEmpty(codeGenEl);
+
+            var comment = codeGenEl.DescendantNodes().First(c => c is XComment);
+
+            Assert.IsNotNull(comment);
+
+            var commentString = comment.ToString();
+
+            Assert.True(commentString.Contains("<SplitCodeFiles"));
+        }
+
+        [Test]
         public void TestThatConfigHasDefaultNamespaceMappingForXsdWithNoTargetNamespace()
         {
-            var rssSchema = XDocument.Parse(TestFiles.GetFile(@"Rss\rss-2_0.xsd").TextContents);
+            var rssSchema = XDocument.Parse(AllTestFiles.GetFile(@"Rss\rss-2_0.xsd").TextContents);
             var loaded = Configuration.LoadForSchema(rssSchema);
 
             var namespaceEl = loaded.Namespaces.Namespace.First();
