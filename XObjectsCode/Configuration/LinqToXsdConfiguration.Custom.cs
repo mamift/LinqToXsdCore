@@ -124,7 +124,7 @@ namespace Xml.Schema.Linq
                                                                       attr.Name == XName.Get("targetNamespace")).ToList();
 
             var importElements = xDoc.Root.Elements(XName.Get("import", XmlSchemaNamespace)).ToList();
-            var importedNamespaces = importElements.Select(i => i.Attribute(XName.Get("namespace"))).ToList();
+            var importedNamespaces = importElements.Select(i => i.Attribute(XName.Get("namespace"))).Where(f => f != null).ToList();
 
             var theXsdNamespace = namespaceAttrs.Where(attr => attr.Name.LocalName == XName.Get("xs") && attr.Value == XmlSchemaNamespace)
                 .ToList();

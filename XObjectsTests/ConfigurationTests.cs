@@ -10,7 +10,6 @@ namespace Xml.Schema.Linq.Tests
 {
     public class ConfigurationTests: BaseTester
     {
-        
         [Test]
         public void TestExampleNamespaceElementsArePresentInExampleConfig()
         {
@@ -33,24 +32,33 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(comments.Any());
         }
 
-        [Test]
-        public void TestSplitByElementIsCommentedOut()
+        [Test, TestCaseSource(nameof(GetReferencedAssembliesNames))]
+        public void TestSplitByElementIsCommentedOut(string assemblyName)
         {
-            var w3cXmlFiles = AllTestFiles.AllFiles.Where(f => f.StartsWith("W3C")).ToList();
-            var rssSchema = XDocument.Parse(AllTestFiles.GetFile(@"W3CXML\xmlUse1.xsd").TextContents);
-            var loaded = ConfigurationProvider.LoadForSchema(rssSchema);
+            var xsdsToProcess = GetFileSystemForAssemblyName(assemblyName).AllFiles.Where(f => f.EndsWith(".xsd"))
+                .ToList();
 
-            var codeGenEl = loaded.Descendants(XName.Get(nameof(CodeGeneration), loaded.Root.Name.NamespaceName)).ToList();
+            if (!xsdsToProcess.Any()) {
+                Assert.Warn("Nothing to test for " + assemblyName);
+                return;
+            }
 
-            Assert.IsNotEmpty(codeGenEl);
+            foreach (var xsd in xsdsToProcess) {
+                var rssSchema = XDocument.Parse(AllTestFiles.GetFile(xsd).TextContents);
+                var loaded = ConfigurationProvider.LoadForSchema(rssSchema);
 
-            var comment = codeGenEl.DescendantNodes().First(c => c is XComment);
+                var codeGenEl = loaded.Descendants(XName.Get(nameof(CodeGeneration), loaded.Root.Name.NamespaceName)).ToList();
 
-            Assert.IsNotNull(comment);
+                Assert.IsNotEmpty(codeGenEl);
 
-            var commentString = comment.ToString();
+                var comment = codeGenEl.DescendantNodes().First(c => c is XComment);
 
-            Assert.True(commentString.Contains("<SplitCodeFiles"));
+                Assert.IsNotNull(comment);
+
+                var commentString = comment.ToString();
+
+                Assert.True(commentString.Contains("<SplitCodeFiles"));
+            }
         }
 
         [Test]

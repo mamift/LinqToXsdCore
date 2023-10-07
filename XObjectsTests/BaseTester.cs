@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
@@ -18,16 +19,28 @@ public class BaseTester
     [SetUp]
     public void Setup()
     {
-        var current = Assembly.GetExecutingAssembly();
-        var location = new DirectoryInfo(Path.GetDirectoryName(current.Location)!);
-        var allDlls = location.GetFileSystemInfos("*.dll", SearchOption.AllDirectories);
-        var testDlls = allDlls.Where(a => !(a.Name.Contains("System.") || a.Name.Contains("Microsoft.") || a.Name.Contains("MoreLinq") || a.Name.Contains("LinqToXsd") || 
-                                            a.Name.Contains("nunit") || a.Name.Contains("Fasterflect"))).ToList();
-        var referencedAssemblies = testDlls.OrderBy(a => a.FullName).ToList();
+        var referencedAssemblies = GetReferencedAssemblies();
 
         TestAssembliesLoaded = referencedAssemblies.Select(name => Assembly.LoadFile(name.FullName)).ToList();
             
         AllTestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
+    }
+
+    public static List<FileSystemInfo> GetReferencedAssemblies()
+    {
+        var current = Assembly.GetExecutingAssembly();
+        var location = new DirectoryInfo(Path.GetDirectoryName(current.Location)!);
+        var allDlls = location.GetFileSystemInfos("*.dll", SearchOption.AllDirectories);
+        var testDlls = allDlls.Where(a => !(a.Name.Contains("System.") || a.Name.Contains("Microsoft.") ||
+                                            a.Name.Contains("MoreLinq") || a.Name.Contains("LinqToXsd") ||
+                                            a.Name.Contains("nunit") || a.Name.Contains("Fasterflect"))).ToList();
+        var referencedAssemblies = testDlls.OrderBy(a => a.FullName).ToList();
+        return referencedAssemblies;
+    }
+
+    public static IEnumerable<string> GetReferencedAssembliesNames()
+    {
+        return GetReferencedAssemblies().Select(f => f.Name);
     }
 
     public IEnumerable<MockFileSystem> GetFileSystemForAssemblyNames(IEnumerable<string> assemblyNames)
@@ -39,7 +52,7 @@ public class BaseTester
 
     public MockFileSystem GetFileSystemForAssemblyName(string assemblyName)
     {
-        Assembly fileSystemForAssemblyName = TestAssembliesLoaded.Single(a => a.GetName().Name == assemblyName);
+        Assembly fileSystemForAssemblyName = TestAssembliesLoaded.Single(a => a.GetName().Name == assemblyName || a.ManifestModule.Name == assemblyName);
         return Utilities.GetAssemblyFileSystem(fileSystemForAssemblyName);
     }
 
