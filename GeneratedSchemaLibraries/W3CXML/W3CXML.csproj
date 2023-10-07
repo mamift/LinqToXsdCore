@@ -4,10 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Default.cs" />
+    <EmbeddedResource Include="www.w3.org.XML.Item1998.@namespace.cs" />
     <EmbeddedResource Include="xml.xsd" />
+    <EmbeddedResource Include="xmlUse1.xsd" />
+    <EmbeddedResource Include="xmlUse1.xsd.config" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="xml.xsd" />
+    <None Remove="xmlUse1.xsd" />
+    <None Remove="xmlUse1.xsd.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">

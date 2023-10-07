@@ -98,7 +98,7 @@
     <!-- <ProjectReference Include="..\GeneratedSchemaLibraries\3dps-1_0_0\3dps-1_0_0.csproj" /> -->
     <ProjectReference Include="..\GeneratedSchemaLibraries\CityGML\CityGML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\OGC-misc\OGC-misc.csproj" />
-    <ProjectReference Include="..\GeneratedSchemaLibraries\W3C.XML\W3C.XML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\W3CXML\W3CXML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\BITS-2.0-XSD\BITS-2.0-XSD.csproj" />
   </ItemGroup>
 </Project>
