@@ -44,7 +44,7 @@ namespace Xml.Schema.Linq.Extensions
 
             var filesReferredToInImportAndIncludeElements = importAndIncludeElements
                                                             .SelectMany(iie => iie.Attributes(schemaLocationXName))
-                                                            .Distinct(new XAttributeValueEqualityComparer())
+                                                            .Distinct(XAttributeValueEqualityComparer.Default)
                                                             .Select(attr => attr.Value);
 
             var theXDocsReferencedByImportOrInclude = from xDoc in xDocs

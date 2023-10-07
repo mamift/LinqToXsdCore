@@ -41,8 +41,14 @@
     },
     "W3C XML Config": {
       "commandName": "Project",
-      "commandLineArgs": "config \"xmlUse1.xsd\" -e",
+      "commandLineArgs": "config -e \"xmlUse1.xsd\"",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\W3C.XML",
+      "hotReloadEnabled": false
+    },
+    "W3C XSD Config": {
+      "commandName": "Project",
+      "commandLineArgs": "config \"W3C XMLSchema v1.xsd\" -e",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XSD",
       "hotReloadEnabled": false
     }
   }

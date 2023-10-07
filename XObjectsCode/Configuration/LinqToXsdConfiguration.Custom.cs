@@ -12,6 +12,8 @@ namespace Xml.Schema.Linq
 {
     internal partial class Configuration
     {
+        private const string XmlSchemaNamespace = "http://www.w3.org/2001/XMLSchema";
+
         /// <summary>
         /// Adds helpful XML comments if there are <see cref="Xml.Schema.Linq.Namespaces" /> and <see cref="Namespace"/> elements present,
         /// and returns the current <see cref="Configuration"/> instance as a regular <see cref="XDocument"/> which can then be output
@@ -109,17 +111,21 @@ namespace Xml.Schema.Linq
             var egConfig = GetBlankConfigurationInstance();
 
             var namespaceAttrs = xDoc.Root.Attributes().Where(attr => attr.IsNamespaceDeclaration ||
-                                                                      attr.Name == XName.Get("targetNamespace"))
-                                     .ToArray();
-            var theXsdNamespace = namespaceAttrs
-                                  .Where(attr => attr.Name.LocalName == XName.Get("xs") &&
-                                                 attr.Value == "http://www.w3.org/2001/XMLSchema").ToArray();
+                                                                      attr.Name == XName.Get("targetNamespace")).ToList();
 
-            var namespacesToRead = namespaceAttrs.Except(theXsdNamespace).ToList();
+            var importElements = xDoc.Root.Elements(XName.Get("import", XmlSchemaNamespace)).ToList();
+            var importedNamespaces = importElements.Select(i => i.Attribute(XName.Get("namespace"))).ToList();
+
+            var theXsdNamespace = namespaceAttrs.Where(attr => attr.Name.LocalName == XName.Get("xs") && attr.Value == XmlSchemaNamespace)
+                .ToList();
+
+            var namespacesToRead = namespaceAttrs.Except(theXsdNamespace).Union(importedNamespaces)
+                .Distinct(XAttributeValueEqualityComparer.Default).ToList();
+
             // an empty list means the schema has no default target namespace. we'll add a default mapping anyway
             if (!namespacesToRead.Any()) {
                 var defaultNamespace = new Namespace {
-                    DefaultVisibility = GeneratedTypesVisibility.Public.ToKeyword(), 
+                    DefaultVisibility = GeneratedTypesVisibility.Public.ToKeyword(),
                     Clr = "Default"
                 };
                 var defaultNamespaceEl = (XElement)defaultNamespace;
@@ -127,7 +133,7 @@ namespace Xml.Schema.Linq
                 egConfig.Namespaces.Namespace.Add(defaultNamespace);
             }
 
-            foreach (var udn in namespacesToRead.Distinct(new XAttributeValueEqualityComparer())) {
+            foreach (var udn in namespacesToRead.Distinct(XAttributeValueEqualityComparer.Default)) {
                 var uriToClrNamespaceValue =
                     Regex.Replace(udn.Value.Replace("https", "").Replace("http", ""), @"[\W]+", ".").Trim('.');
                 var newNamespace = Namespace.New(udn.Value, uriToClrNamespaceValue);

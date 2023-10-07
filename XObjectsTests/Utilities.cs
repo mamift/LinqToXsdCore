@@ -75,7 +75,7 @@ namespace Xml.Schema.Linq.Tests
 
             var filesReferredToInImportAndIncludeElements = importAndIncludeElements
                 .SelectMany(iie => iie.Attributes(schemaLocationXName))
-                .Distinct(new XAttributeValueEqualityComparer())
+                .Distinct(XAttributeValueEqualityComparer.Default)
                 .Select(attr => attr.Value.Replace("/", ".").Replace("\\", "."));
 
             var theXDocsReferencedByImportOrInclude = from xDoc in xDocs
