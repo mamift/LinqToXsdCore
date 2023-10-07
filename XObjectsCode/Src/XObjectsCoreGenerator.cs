@@ -85,7 +85,7 @@ namespace Xml.Schema.Linq
         public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, LinqToXsdSettings settings = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
-            if (settings == null) settings = new LinqToXsdSettings();
+            settings ??= new LinqToXsdSettings();
 
             var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
 
@@ -95,17 +95,23 @@ namespace Xml.Schema.Linq
                 var xsdFolder = Path.GetDirectoryName(xsdFilePath);
 
                 return Generate(schemaSet, settings)
-                    .Select(x =>
-                    {
+                    .Select(x => {
                         // When SplitCodeFiles by Namespace is configured,
                         // Generate() returns a tuple (clrNamespace, writer) per CLR namespace that we need to map to a file.
                         // Otherwise, Generate() returns a single (null, writer) tuple.
-                        var filename = string.IsNullOrEmpty(x.clrNamespace)
-                            ? xsdFilePath
-                            : settings.NamespaceFileMap.TryGetValue(x.clrNamespace, out string nsFile)
-                            ? Path.Combine(xsdFolder, nsFile)
-                            : throw new LinqToXsdException(
-                                $"CLR namespace {x.clrNamespace} has no output file configured, which is required when using SplitCodeFiles by Namespace configuration.");
+                        string filename;
+                        if (string.IsNullOrEmpty(x.clrNamespace)) {
+                            filename = xsdFilePath;
+                        }
+                        else if (settings.NamespaceFileMap.TryGetValue(x.clrNamespace, out string nsFile)) {
+                            filename = Path.Combine(xsdFolder, nsFile);
+                        }
+                        else {
+                            if (string.IsNullOrEmpty(x.clrNamespace)) {
+                                throw new LinqToXsdException("SplitCodeFiles by Namespace  cannot be used for a blank CLR namespace.");
+                            }
+                            filename = x.clrNamespace + ".cs";
+                        }
 
                         return (filename, x.writer);
                     });

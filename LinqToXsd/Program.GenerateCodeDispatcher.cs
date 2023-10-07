@@ -22,8 +22,7 @@ namespace LinqToXsd
                 var possibleOutputFolder = options.Output;
 
                 PrintLn($"Outputting {textWriters.Count} files...".Gray());
-                foreach (var kvp in textWriters)
-                {
+                foreach (var kvp in textWriters) {
                     var outputFilename = Path.GetFileName(kvp.Key);
                     if (!outputFilename.EndsWith(".cs"))
                         outputFilename += ".cs";
@@ -35,9 +34,10 @@ namespace LinqToXsd
                             : Path.GetFullPath(outputFilename);
 
                     var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
+                    if (string.IsNullOrEmpty(fullPathOfContainingDir))
+                        fullPathOfContainingDir = Environment.CurrentDirectory;
 
-                    if (!Directory.Exists(fullPathOfContainingDir))
-                    {
+                    if (!Directory.Exists(fullPathOfContainingDir)) {
                         PrintLn($"Creating directory: {fullPathOfContainingDir}".Yellow());
                         Directory.CreateDirectory(fullPathOfContainingDir);
                     }

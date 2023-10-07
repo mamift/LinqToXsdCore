@@ -35,6 +35,12 @@
     },
     "W3C XML": {
       "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\W3C.XML",
+      "hotReloadEnabled": false
+    },
+    "W3C XML Config": {
+      "commandName": "Project",
       "commandLineArgs": "config \"xmlUse1.xsd\" -e",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\W3C.XML",
       "hotReloadEnabled": false

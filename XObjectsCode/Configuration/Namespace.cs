@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
 
@@ -32,7 +33,8 @@ namespace Xml.Schema.Linq
             return new Namespace {
                 DefaultVisibility = visibility.ToKeyword(),
                 Schema = possibleSchemaUriInstance,
-                Clr = clrNamespace
+                Clr = clrNamespace,
+                File = clrNamespace + ".cs"
             };
         }
     }

@@ -150,8 +150,12 @@ namespace Xml.Schema.Linq
             foreach (var ns in namespaces.Elements(XName.Get("Namespace", Constants.TypedXLinqNs)))
             {
                 var file = ns.Attribute(XName.Get("File"))?.Value;
-                if (file == null) continue;
                 var clrNs = ns.Attribute(XName.Get("Clr"))?.Value;
+
+                if (string.IsNullOrEmpty(file)) {
+                    if (string.IsNullOrEmpty(clrNs)) continue;
+                    file = clrNs + ".cs";
+                }
                 NamespaceFileMap.Add(clrNs, file);
             }
         }
