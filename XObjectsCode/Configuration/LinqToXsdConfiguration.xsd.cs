@@ -23,7 +23,7 @@ namespace Xml.Schema.Linq {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
+    /// Regular expression: (CodeGeneration, Namespaces, Validation?, Transformation?)
     /// </para>
     /// </summary>
     internal partial class Configuration : XTypedElement, IXMetaData {
@@ -35,10 +35,6 @@ namespace Xml.Schema.Linq {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly System.Xml.Linq.XName NamespacesXName = System.Xml.Linq.XName.Get("Namespaces", "http://www.microsoft.com/xml/schema/linq");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NullableReferencesXName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -60,12 +56,12 @@ namespace Xml.Schema.Linq {
         
         static Configuration() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CodeGenerationXName), new NamedContentModelEntity(NamespacesXName), new NamedContentModelEntity(NullableReferencesXName), new NamedContentModelEntity(ValidationXName), new NamedContentModelEntity(TransformationXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CodeGenerationXName), new NamedContentModelEntity(NamespacesXName), new NamedContentModelEntity(ValidationXName), new NamedContentModelEntity(TransformationXName));
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal Configuration() {
@@ -76,7 +72,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual CodeGeneration CodeGeneration {
@@ -94,7 +90,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual Namespaces Namespaces {
@@ -112,28 +108,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
-        /// </para>
-        /// </summary>
-        internal virtual NullableReferences NullableReferences {
-            get {
-                XElement x = this.GetElement(NullableReferencesXName);
-                if ((x == null)) {
-                    return null;
-                }
-                return ((NullableReferences)(x));
-            }
-            set {
-                this.SetElement(NullableReferencesXName, value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// <para>
-        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual Validation Validation {
@@ -151,7 +126,7 @@ namespace Xml.Schema.Linq {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
+        /// Regular expression: (CodeGeneration, Namespaces, Validation?, Transformation?)
         /// </para>
         /// </summary>
         internal virtual Transformation Transformation {
@@ -223,7 +198,6 @@ namespace Xml.Schema.Linq {
         private static void BuildElementDictionary() {
             localElementDictionary.Add(CodeGenerationXName, typeof(CodeGeneration));
             localElementDictionary.Add(NamespacesXName, typeof(Namespaces));
-            localElementDictionary.Add(NullableReferencesXName, typeof(NullableReferences));
             localElementDictionary.Add(ValidationXName, typeof(Validation));
             localElementDictionary.Add(TransformationXName, typeof(Transformation));
         }
@@ -1098,87 +1072,6 @@ namespace Xml.Schema.Linq {
         }
     }
     
-    internal partial class NullableReferences : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq");
-        
-		public static explicit operator NullableReferences(XElement xe) { return XTypedServices.ToXTypedElement<NullableReferences>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        internal NullableReferences() {
-        }
-        
-        internal NullableReferences(bool content) {
-            this.TypedValue = content;
-        }
-        
-        internal virtual bool TypedValue {
-            get {
-                XElement x = this.Untyped;
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
-            }
-            set {
-                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        internal void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        internal void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        internal void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        internal static NullableReferences Load(string xmlFile) {
-            return XTypedServices.Load<NullableReferences>(xmlFile);
-        }
-        
-        internal static NullableReferences Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<NullableReferences>(xmlFile);
-        }
-        
-        internal static NullableReferences Parse(string xml) {
-            return XTypedServices.Parse<NullableReferences>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<NullableReferences>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
     internal partial class VerifyRequired : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1328,7 +1221,6 @@ namespace Xml.Schema.Linq {
             elementDictionary.Add(System.Xml.Linq.XName.Get("Validation", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Validation));
             elementDictionary.Add(System.Xml.Linq.XName.Get("Transformation", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Transformation));
             elementDictionary.Add(System.Xml.Linq.XName.Get("Deanonymize", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.Deanonymize));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("NullableReferences", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.NullableReferences));
             elementDictionary.Add(System.Xml.Linq.XName.Get("VerifyRequired", "http://www.microsoft.com/xml/schema/linq"), typeof(global::Xml.Schema.Linq.VerifyRequired));
         }
         
@@ -1363,8 +1255,6 @@ namespace Xml.Schema.Linq {
 		internal Transformation Transformation {  get {return rootObject as Transformation; } }
 
 		internal Deanonymize Deanonymize {  get {return rootObject as Deanonymize; } }
-
-		internal NullableReferences NullableReferences {  get {return rootObject as NullableReferences; } }
 
 		internal VerifyRequired VerifyRequired {  get {return rootObject as VerifyRequired; } }
         
@@ -1402,11 +1292,6 @@ namespace Xml.Schema.Linq {
         }
         
         internal XRootNamespace(Deanonymize root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRootNamespace(NullableReferences root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
@@ -1549,8 +1434,6 @@ namespace Xml.Schema.Linq {
 
 		internal global::Xml.Schema.Linq.Deanonymize Deanonymize {  get {return rootObject as global::Xml.Schema.Linq.Deanonymize; } }
 
-		internal global::Xml.Schema.Linq.NullableReferences NullableReferences {  get {return rootObject as global::Xml.Schema.Linq.NullableReferences; } }
-
 		internal global::Xml.Schema.Linq.VerifyRequired VerifyRequired {  get {return rootObject as global::Xml.Schema.Linq.VerifyRequired; } }
         
         private XRoot() {
@@ -1587,11 +1470,6 @@ namespace Xml.Schema.Linq {
         }
         
         internal XRoot(global::Xml.Schema.Linq.Deanonymize root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        internal XRoot(global::Xml.Schema.Linq.NullableReferences root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }

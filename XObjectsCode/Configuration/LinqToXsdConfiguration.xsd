@@ -10,7 +10,6 @@
       <xs:sequence>
         <xs:element ref="linq:CodeGeneration"/>
         <xs:element ref="linq:Namespaces"/>
-        <xs:element ref="linq:NullableReferences" minOccurs="0"/>
         <xs:element ref="linq:Validation" minOccurs="0"/>
         <xs:element ref="linq:Transformation" minOccurs="0"/>
       </xs:sequence>
@@ -40,10 +39,14 @@
               <xs:simpleType>
                 <xs:restriction base="xs:string">
                   <xs:enumeration value="Class">
-                    <xs:annotation><xs:documentation>Split the generated code into individual files by class.</xs:documentation></xs:annotation>
+                    <xs:annotation>
+                      <xs:documentation>Split the generated code into individual files by class.</xs:documentation>
+                    </xs:annotation>
                   </xs:enumeration>
                   <xs:enumeration value="Namespace">
-                    <xs:annotation><xs:documentation>Split the generated code into individual files by namespace.</xs:documentation></xs:annotation>
+                    <xs:annotation>
+                      <xs:documentation>Split the generated code into individual files by namespace.</xs:documentation>
+                    </xs:annotation>
                   </xs:enumeration>
                 </xs:restriction>
               </xs:simpleType>
@@ -95,11 +98,6 @@
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>
-  </xs:element>
-  <xs:element name="NullableReferences" type="xs:boolean" default="0">
-    <xs:annotation>
-      <xs:documentation>Generates C# 8 nullable references. [Obsolete, use CodeGeneration/NullableReferences instead.]</xs:documentation>
-    </xs:annotation>
   </xs:element>
   <xs:element name="Validation">
     <xs:annotation>

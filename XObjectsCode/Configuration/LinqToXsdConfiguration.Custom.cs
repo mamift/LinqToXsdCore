@@ -147,7 +147,14 @@ namespace Xml.Schema.Linq
                 Namespaces = new Namespaces {
                     Namespace = new List<Namespace>()
                 },
-                NullableReferences = new NullableReferences(false),
+                CodeGeneration = new CodeGeneration {
+                    NullableReferences = false,
+                    SplitCodeFiles = new SplitCodeFiles {
+                        By = SplitCodeFiles.ByEnum.Namespace,
+                    },
+                    UseDateOnly = false,
+                    UseTimeOnly = false,
+                },
                 Transformation = new Transformation {
                     Deanonymize = new Deanonymize {
                         strict = false
@@ -155,7 +162,7 @@ namespace Xml.Schema.Linq
                 },
                 Validation = new Validation {
                     VerifyRequired = new VerifyRequired(false)
-                },
+                }
             };
         }
 
