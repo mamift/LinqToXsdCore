@@ -100,5 +100,6 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\OGC-misc\OGC-misc.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\W3CXML\W3CXML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\BITS-2.0-XSD\BITS-2.0-XSD.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\DublinCore\DublinCore.csproj" />
   </ItemGroup>
 </Project>

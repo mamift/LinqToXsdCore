@@ -143,6 +143,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "W3CXML", "GeneratedSchemaLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BITS-2.0-XSD", "GeneratedSchemaLibraries\BITS-2.0-XSD\BITS-2.0-XSD.csproj", "{8C9DDAB1-466F-4831-8DC1-AE011E319A7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinCore", "GeneratedSchemaLibraries\DublinCore\DublinCore.csproj", "{B57956CE-DD12-4211-8FCE-F6D2A9B888EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -401,6 +403,10 @@ Global
 		{8C9DDAB1-466F-4831-8DC1-AE011E319A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C9DDAB1-466F-4831-8DC1-AE011E319A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C9DDAB1-466F-4831-8DC1-AE011E319A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B57956CE-DD12-4211-8FCE-F6D2A9B888EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57956CE-DD12-4211-8FCE-F6D2A9B888EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57956CE-DD12-4211-8FCE-F6D2A9B888EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57956CE-DD12-4211-8FCE-F6D2A9B888EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -464,6 +470,7 @@ Global
 		{9C2305AD-BD42-4E90-A1A1-45CBC76B54E7} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{693E134D-F1F6-476C-BBEC-8D09D8B01B0E} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{8C9DDAB1-466F-4831-8DC1-AE011E319A7E} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{B57956CE-DD12-4211-8FCE-F6D2A9B888EE} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {515FF9D5-932D-4E95-A20B-E2A06A52858F}

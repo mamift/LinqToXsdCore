@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dublincore.org_schemas_xmls_qdc_dc.xsd" />
+    <EmbeddedResource Include="dublincore.org_schemas_xmls_qdc_dc.xsd.config" />
+    <EmbeddedResource Include="simpledc20021212.xsd" />
+    <EmbeddedResource Include="simpledc20021212.xsd.config" />
+    <EmbeddedResource Include="simpledc20021212.xsd.cs" />
+    <EmbeddedResource Include="xml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dublincore.org_schemas_xmls_qdc_dc.xsd" />
+    <None Remove="dublincore.org_schemas_xmls_qdc_dc.xsd.config" />
+    <None Remove="simpledc20021212.xsd" />
+    <None Remove="simpledc20021212.xsd.config" />
+    <None Remove="simpledc20021212.xsd.cs" />
+    <None Remove="xml.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

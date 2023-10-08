@@ -50,6 +50,18 @@
       "commandLineArgs": "config \"W3C XMLSchema v1.xsd\" -e",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\XSD",
       "hotReloadEnabled": false
+    },
+    "config e .": {
+      "commandName": "Project",
+      "commandLineArgs": "config . -e",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\DublinCore",
+      "hotReloadEnabled": false
+    },
+    "gen a .": {
+      "commandName": "Project",
+      "commandLineArgs": "gen . -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\DublinCore",
+      "hotReloadEnabled": false
     }
   }
 }
