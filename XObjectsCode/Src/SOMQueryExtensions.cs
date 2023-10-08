@@ -229,6 +229,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 Debug.Assert(type.DerivedBy == XmlSchemaDerivationMethod.Restriction);
                 XmlSchemaSimpleType baseType = type.BaseXmlSchemaType as XmlSchemaSimpleType;
+                if (baseType is null) return Array.Empty<XmlSchemaSimpleType>();
                 return baseType.GetUnionMemberTypes();
             }
         }

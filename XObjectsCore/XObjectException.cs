@@ -9,17 +9,16 @@ namespace Xml.Schema.Linq
 {
     public class LinqToXsdException : Exception
     {
+        public LinqToXsdException() : base()
+        {
+        }
+
         public LinqToXsdException(string errorMsg)
             : base(errorMsg)
         {
         }
 
-        public LinqToXsdException(string message, Exception innerException) : base(message)
-        {
-            InnerException = innerException;
-        }
-
-        public LinqToXsdException() : base()
+        public LinqToXsdException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
@@ -28,9 +27,7 @@ namespace Xml.Schema.Linq
                                                           + "\". Possible reason: " + reason)
         {
         }
-
-        public Exception InnerException { get; set; }
-
+        
         protected static string CreateMessage(string facetName, string facetValue, string value)
         {
             return "The Given Value " + value + " Violates Restrictions: "
