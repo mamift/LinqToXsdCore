@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace W3C.Xml.Ns {
+namespace W3C.XmlNs2 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace W3C.Xml.Ns {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using Purl.Dc.Elements;
+    using Purl.SimpleDc.Elements;
     
     
     public sealed class lang {
@@ -34,7 +34,7 @@ namespace W3C.Xml.Ns {
                                     ""}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve))});
     }
 }
-namespace Purl.Dc.Elements {
+namespace Purl.SimpleDc.Elements {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace Purl.Dc.Elements {
     using System.Xml.Schema;
     using System.Xml.Linq;
     using Xml.Schema.Linq;
-    using W3C.Xml.Ns;
+    using W3C.XmlNs2;
     
     
     public partial class elementType : XTypedElement, IXMetaData {
@@ -86,10 +86,10 @@ namespace Purl.Dc.Elements {
         public virtual object lang {
             get {
                 XAttribute x = this.Attribute(langXName);
-                return XTypedServices.ParseUnionValue(x, global::W3C.Xml.Ns.lang.TypeDefinition);
+                return XTypedServices.ParseUnionValue(x, global::W3C.XmlNs2.lang.TypeDefinition);
             }
             set {
-                this.SetUnionAttribute(value, "lang", this, langXName, global::W3C.Xml.Ns.lang.TypeDefinition);
+                this.SetUnionAttribute(value, "lang", this, langXName, global::W3C.XmlNs2.lang.TypeDefinition);
             }
         }
         
@@ -2049,47 +2049,47 @@ namespace Purl.Dc.Elements {
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("elementType", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.elementType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("elementType", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.elementType));
         }
         
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("title", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.title));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("creator", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.creator));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("subject", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.subject));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("description", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.description));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("publisher", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.publisher));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("contributor", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.contributor));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("date", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.date));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("type", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.type));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("format", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.format));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("identifier", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.identifier));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("source", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.source));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("language", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.language));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("relation", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.relation));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("coverage", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.coverage));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("rights", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.Dc.Elements.rights));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("title", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.title));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("creator", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.creator));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("subject", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.subject));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("description", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.description));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("publisher", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.publisher));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("contributor", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.contributor));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("date", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.date));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("type", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.type));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("format", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.format));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("identifier", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.identifier));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("source", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.source));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("language", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.language));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("relation", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.relation));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("coverage", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.coverage));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("rights", "http://purl.org/dc/elements/1.1/"), typeof(global::Purl.SimpleDc.Elements.rights));
         }
         
         private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
         
         private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.title), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.creator), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.subject), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.description), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.publisher), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.contributor), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.date), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.type), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.format), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.identifier), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.source), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.language), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.relation), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.coverage), typeof(global::Purl.Dc.Elements.elementType));
-            wrapperDictionary.Add(typeof(Purl.Dc.Elements.rights), typeof(global::Purl.Dc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.title), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.creator), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.subject), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.description), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.publisher), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.contributor), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.date), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.type), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.format), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.identifier), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.source), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.language), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.relation), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.coverage), typeof(global::Purl.SimpleDc.Elements.elementType));
+            wrapperDictionary.Add(typeof(Purl.SimpleDc.Elements.rights), typeof(global::Purl.SimpleDc.Elements.elementType));
         }
         
         private static XmlSchemaSet schemaSet;
@@ -2510,124 +2510,124 @@ namespace Purl.Dc.Elements {
             }
         }
         
-        public XRoot(global::Purl.Dc.Elements.title root) {
+        public XRoot(global::Purl.SimpleDc.Elements.title root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.title title {  get {return rootObject as global::Purl.Dc.Elements.title; } }
+		public global::Purl.SimpleDc.Elements.title title {  get {return rootObject as global::Purl.SimpleDc.Elements.title; } }
         
-        public XRoot(global::Purl.Dc.Elements.creator root) {
+        public XRoot(global::Purl.SimpleDc.Elements.creator root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.creator creator {  get {return rootObject as global::Purl.Dc.Elements.creator; } }
+		public global::Purl.SimpleDc.Elements.creator creator {  get {return rootObject as global::Purl.SimpleDc.Elements.creator; } }
         
-        public XRoot(global::Purl.Dc.Elements.subject root) {
+        public XRoot(global::Purl.SimpleDc.Elements.subject root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.subject subject {  get {return rootObject as global::Purl.Dc.Elements.subject; } }
+		public global::Purl.SimpleDc.Elements.subject subject {  get {return rootObject as global::Purl.SimpleDc.Elements.subject; } }
         
-        public XRoot(global::Purl.Dc.Elements.description root) {
+        public XRoot(global::Purl.SimpleDc.Elements.description root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.description description {  get {return rootObject as global::Purl.Dc.Elements.description; } }
+		public global::Purl.SimpleDc.Elements.description description {  get {return rootObject as global::Purl.SimpleDc.Elements.description; } }
         
-        public XRoot(global::Purl.Dc.Elements.publisher root) {
+        public XRoot(global::Purl.SimpleDc.Elements.publisher root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.publisher publisher {  get {return rootObject as global::Purl.Dc.Elements.publisher; } }
+		public global::Purl.SimpleDc.Elements.publisher publisher {  get {return rootObject as global::Purl.SimpleDc.Elements.publisher; } }
         
-        public XRoot(global::Purl.Dc.Elements.contributor root) {
+        public XRoot(global::Purl.SimpleDc.Elements.contributor root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.contributor contributor {  get {return rootObject as global::Purl.Dc.Elements.contributor; } }
+		public global::Purl.SimpleDc.Elements.contributor contributor {  get {return rootObject as global::Purl.SimpleDc.Elements.contributor; } }
         
-        public XRoot(global::Purl.Dc.Elements.date root) {
+        public XRoot(global::Purl.SimpleDc.Elements.date root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.date date {  get {return rootObject as global::Purl.Dc.Elements.date; } }
+		public global::Purl.SimpleDc.Elements.date date {  get {return rootObject as global::Purl.SimpleDc.Elements.date; } }
         
-        public XRoot(global::Purl.Dc.Elements.type root) {
+        public XRoot(global::Purl.SimpleDc.Elements.type root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.type type {  get {return rootObject as global::Purl.Dc.Elements.type; } }
+		public global::Purl.SimpleDc.Elements.type type {  get {return rootObject as global::Purl.SimpleDc.Elements.type; } }
         
-        public XRoot(global::Purl.Dc.Elements.format root) {
+        public XRoot(global::Purl.SimpleDc.Elements.format root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.format format {  get {return rootObject as global::Purl.Dc.Elements.format; } }
+		public global::Purl.SimpleDc.Elements.format format {  get {return rootObject as global::Purl.SimpleDc.Elements.format; } }
         
-        public XRoot(global::Purl.Dc.Elements.identifier root) {
+        public XRoot(global::Purl.SimpleDc.Elements.identifier root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.identifier identifier {  get {return rootObject as global::Purl.Dc.Elements.identifier; } }
+		public global::Purl.SimpleDc.Elements.identifier identifier {  get {return rootObject as global::Purl.SimpleDc.Elements.identifier; } }
         
-        public XRoot(global::Purl.Dc.Elements.source root) {
+        public XRoot(global::Purl.SimpleDc.Elements.source root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.source source {  get {return rootObject as global::Purl.Dc.Elements.source; } }
+		public global::Purl.SimpleDc.Elements.source source {  get {return rootObject as global::Purl.SimpleDc.Elements.source; } }
         
-        public XRoot(global::Purl.Dc.Elements.language root) {
+        public XRoot(global::Purl.SimpleDc.Elements.language root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.language language {  get {return rootObject as global::Purl.Dc.Elements.language; } }
+		public global::Purl.SimpleDc.Elements.language language {  get {return rootObject as global::Purl.SimpleDc.Elements.language; } }
         
-        public XRoot(global::Purl.Dc.Elements.relation root) {
+        public XRoot(global::Purl.SimpleDc.Elements.relation root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.relation relation {  get {return rootObject as global::Purl.Dc.Elements.relation; } }
+		public global::Purl.SimpleDc.Elements.relation relation {  get {return rootObject as global::Purl.SimpleDc.Elements.relation; } }
         
-        public XRoot(global::Purl.Dc.Elements.coverage root) {
+        public XRoot(global::Purl.SimpleDc.Elements.coverage root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.coverage coverage {  get {return rootObject as global::Purl.Dc.Elements.coverage; } }
+		public global::Purl.SimpleDc.Elements.coverage coverage {  get {return rootObject as global::Purl.SimpleDc.Elements.coverage; } }
         
-        public XRoot(global::Purl.Dc.Elements.rights root) {
+        public XRoot(global::Purl.SimpleDc.Elements.rights root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::Purl.Dc.Elements.rights rights {  get {return rootObject as global::Purl.Dc.Elements.rights; } }
+		public global::Purl.SimpleDc.Elements.rights rights {  get {return rootObject as global::Purl.SimpleDc.Elements.rights; } }
     }
 }
