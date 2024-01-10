@@ -280,6 +280,7 @@ public partial class ClrTypeReference
             {
                 XmlTypeCode.Date when settings.UseDateOnly => "System.DateOnly",
                 XmlTypeCode.Time when settings.UseTimeOnly => "System.TimeOnly",
+                XmlTypeCode.DateTime when settings.UseDateTimeOffset => "System.DateTimeOffset",
                 _ => schemaType.ValueType.ToString(),
             };
         }

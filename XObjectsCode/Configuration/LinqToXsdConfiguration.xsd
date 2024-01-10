@@ -29,6 +29,11 @@
             <xs:documentation>Generate .net 6 TimeOnly type for xs:time</xs:documentation>
           </xs:annotation>
         </xs:element>
+        <xs:element name="UseDateTimeOffset" type="xs:boolean" default="false">
+          <xs:annotation>
+            <xs:documentation>Generate DateTimeOffset type for xs:dateTime</xs:documentation>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="NullableReferences" type="xs:boolean" default="false">
           <xs:annotation>
             <xs:documentation>Generates C# 8 nullable references.</xs:documentation>
