@@ -53,7 +53,7 @@ namespace Xml.Schema.Linq
 
         // Cast XTypedElement subtypes to XElement
         // GetUntyped() is preferred within XTypedElement,
-        // to avoid calling into virtual functions from within 
+        // to avoid calling into virtual functions from within
         // constructor call stacks
         public virtual XElement Untyped
         {
@@ -211,7 +211,7 @@ namespace Xml.Schema.Linq
         internal void SetElement(XName name, object value, bool addToExisting, XmlSchemaDatatype datatype, Type elementBaseType)
         {
             XElement parentElement = this.GetUntyped();
-            CheckXsiNil(parentElement);
+            RemoveXsiNil(parentElement);
             if (value == null)
             {
                 //Delete existing node
@@ -253,11 +253,17 @@ namespace Xml.Schema.Linq
             }
         }
 
-        private void CheckXsiNil(XElement parentElement)
+        private static readonly XName XsiNilName = XName.Get("nil", XmlSchema.InstanceNamespace);
+
+        protected static bool IsXsiNil(XElement element)
         {
-            XAttribute xsiNil = parentElement.Attributes(XName.Get("nil", XmlSchema.InstanceNamespace))
-                                             .FirstOrDefault();
-            if (xsiNil != null && xsiNil.Value == "true")
+            return element.Attribute(XsiNilName)?.Value == "true";
+        }
+
+        private static void RemoveXsiNil(XElement parentElement)
+        {
+            var xsiNil = parentElement.Attribute(XsiNilName);
+            if (xsiNil?.Value == "true")
             {
                 //Since we are adding content
                 xsiNil.Remove();

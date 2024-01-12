@@ -114,7 +114,7 @@ namespace Xml.Schema.Linq
         private void FSMSetElement(XName name, object value, bool addToExisting, XmlSchemaDatatype datatype)
         {
             XElement parentElement = this.GetUntyped();
-            CheckXsiNil(parentElement);
+            RemoveXsiNil(parentElement);
             if (value == null)
             {
                 //Delete existing node

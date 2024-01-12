@@ -47,7 +47,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (this.IsOptional)
             {
-                this.propertyFlags |= PropertyFlags.IsNullable;
+                this.propertyFlags |= PropertyFlags.CanBeAbsent;
             }
 
             this.xNameExpression = new CodeFieldReferenceExpression(null, NameGenerator.ChangeClrName(propertyName, NameOptions.MakeXName));
@@ -160,16 +160,37 @@ namespace Xml.Schema.Linq.CodeGen
 
         public override bool IsNullable
         {
-            get { return (propertyFlags & PropertyFlags.IsNullable) != 0 && fixedDefaultValue == null; }
+            get { return (CanBeAbsent && fixedDefaultValue == null) || IsNillable; }
+        }
+
+        public bool CanBeAbsent
+        {
+            get { return (propertyFlags & PropertyFlags.CanBeAbsent) != 0; }
             set
             {
                 if (value)
                 {
-                    propertyFlags |= PropertyFlags.IsNullable;
+                    propertyFlags |= PropertyFlags.CanBeAbsent;
                 }
                 else
                 {
-                    propertyFlags &= ~PropertyFlags.IsNullable;
+                    propertyFlags &= ~PropertyFlags.CanBeAbsent;
+                }
+            }
+        }
+
+        public bool IsNillable
+        {
+            get { return (propertyFlags & PropertyFlags.IsNillable) != 0; }
+            set
+            {
+                if (value)
+                {
+                    propertyFlags |= PropertyFlags.IsNillable;
+                }
+                else
+                {
+                    propertyFlags &= ~PropertyFlags.IsNillable;
                 }
             }
         }
@@ -802,6 +823,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             getStatements.Add(GetValueMethodCall());
             CheckOccurrence(getStatements);
+            CheckNillable(getStatements);
             CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
             if (!IsRef && typeRef.IsSimpleType)
             {
@@ -873,7 +895,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             Debug.Assert(!this.IsList);
             CodeStatement returnStatement = null;
-            if (IsNullable && DefaultValue == null)
+            if (CanBeAbsent && DefaultValue == null)
             {
                 if (typeRef.IsValueType)
                 {
@@ -899,6 +921,21 @@ namespace Xml.Schema.Linq.CodeGen
                             CodeBinaryOperatorType.IdentityEquality,
                             new CodePrimitiveExpression(null)),
                         returnStatement));
+            }
+        }
+
+        private void CheckNillable(CodeStatementCollection getStatements)
+        {
+            if (IsNillable)
+            {
+                getStatements.Add(
+                    new CodeConditionStatement(
+                        new CodeMethodInvokeExpression(
+                            new CodeTypeReferenceExpression("XTypedElement"),
+                            "IsXsiNil",
+                            new CodeVariableReferenceExpression("x")),
+                        new CodeMethodReturnStatement(new CodePrimitiveExpression(null))
+                        ));
             }
         }
 
@@ -1056,7 +1093,7 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeDomHelper.CreateFieldReference(Constants.XmlTypeCode, typeRef.TypeCodeString)),
                     Constants.Datatype);
         }
-        
+
         protected CodeExpression GetFullyQualifiedSimpleTypeClassExpression(string namespacePrefix)
         {
             throw new NotImplementedException();
@@ -1197,26 +1234,6 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeDomHelper.CreateFieldReference(null,
                             NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField))));
             }
-        }
-
-        private CodeStatement CreateDefaultValueAssignStmt(object value)
-        {
-            return new CodeAssignStatement(
-                CodeDomHelper.CreateFieldReference(null, propertyName),
-                CodeDomHelper.CreateFieldReference(null,
-                    NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)));
-        }
-
-        private CodeStatement[] ToStmtArray(CodeStatementCollection collection)
-        {
-            CodeStatement[] stmts = new CodeStatement[collection.Count];
-
-            for (int i = 0; i < collection.Count; i++)
-            {
-                stmts[i] = collection[i];
-            }
-
-            return stmts;
         }
     }
 }
