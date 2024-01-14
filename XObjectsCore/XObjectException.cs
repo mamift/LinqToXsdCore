@@ -14,9 +14,8 @@ namespace Xml.Schema.Linq
         {
         }
 
-        public LinqToXsdException(string message, Exception innerException) : base(message)
+        public LinqToXsdException(string message, Exception innerException) : base(message, innerException)
         {
-            InnerException = innerException;
         }
 
         public LinqToXsdException() : base()
@@ -24,48 +23,43 @@ namespace Xml.Schema.Linq
         }
 
         public LinqToXsdException(string propertyName, string reason) :
-            base("Failed to set value on the property \"" + propertyName
-                                                          + "\". Possible reason: " + reason)
+            base($"Failed to set value on the property \"{propertyName}\". Possible reason: {reason}")
         {
         }
 
-        public Exception InnerException { get; set; }
 
         protected static string CreateMessage(string facetName, string facetValue, string value)
         {
-            return "The Given Value " + value + " Violates Restrictions: "
-                   + facetName + " = " + facetValue;
+            return $"The Given Value {value} Violates Restrictions: {facetName} = {facetValue}";
         }
 
         protected static string ConvertIEnumToString(IEnumerable value)
         {
-            StringBuilder strBuilder = new StringBuilder();
+            var strBuilder = new StringBuilder();
+            strBuilder.Append('(');
             foreach (object o in value)
             {
-                if (strBuilder.Length != 0)
+                if (strBuilder.Length > 1)
                     strBuilder.Append(' ');
 
-                strBuilder.Append((o is IEnumerable && !(o is string))
-                    ? ConvertIEnumToString(o as IEnumerable)
+                strBuilder.Append(o is IEnumerable e and not string
+                    ? ConvertIEnumToString(e)
                     : o.ToString());
             }
-
-            strBuilder.Insert(0, '(');
             strBuilder.Append(')');
 
             return strBuilder.ToString();
         }
 
-        protected static string CreateMessage(string facetName,
-            object facetValue,
-            object value)
+        protected static string CreateMessage(string facetName, object facetValue, object value)
         {
-            return CreateMessage(facetName,
-                (facetValue is IEnumerable && !(facetValue is string))
-                    ? ConvertIEnumToString(facetValue as IEnumerable)
+            return CreateMessage(
+                facetName,
+                facetValue is IEnumerable e1 and not string
+                    ? ConvertIEnumToString(e1)
                     : facetValue.ToString(),
-                (value is IEnumerable && !(facetValue is string))
-                    ? ConvertIEnumToString(value as IEnumerable)
+                value is IEnumerable e2 and not string
+                    ? ConvertIEnumToString(e2)
                     : value.ToString());
         }
     }
@@ -98,7 +92,7 @@ namespace Xml.Schema.Linq
 
         private static List<string> GetMemberTypeCodes(UnionSimpleTypeValidator typeDef)
         {
-            List<string> codes = new List<string>();
+            var codes = new List<string>(typeDef.MemberTypes.Length);
 
             foreach (SimpleTypeValidator type in typeDef.MemberTypes)
             {
