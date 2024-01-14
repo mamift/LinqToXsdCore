@@ -635,7 +635,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     setStatements.Add(new CodeConditionStatement(
                         new CodeSnippetExpression("value == null"),
-                        new[] { new CodeExpressionStatement(CreatePlainSetCall(setMethodName, "null", xNameParm)) },
+                        new[] { new CodeExpressionStatement(CreatePlainSetCall(setMethodName, IsNillable ? "XsiNilAttribute" : "null", xNameParm)) },
                         new[] { new CodeExpressionStatement(setWithValidation) }
                     ));
                 }
@@ -646,15 +646,15 @@ namespace Xml.Schema.Linq.CodeGen
             }
             else
             {
-                string valueExpr;
-                if (IsEnum) {
-                    if (propertyOrigin == SchemaOrigin.Element) {
-                        valueExpr = "value";
-                    } else {
-                        valueExpr = IsNullable ? "value?.ToString()" : "value.ToString()";
-                    }
-                } else {
-                    valueExpr = "value";
+                string valueExpr = !IsEnum || propertyOrigin == SchemaOrigin.Element
+                    ? "value"
+                    : IsNullable 
+                        ? "value?.ToString()"
+                        : "value.ToString()";
+                
+                if (IsNillable)
+                {
+                    valueExpr += " ?? XsiNilAttribute";
                 }
 
                 var setter = CreatePlainSetCall(setMethodName, valueExpr, xNameParm);
@@ -1103,11 +1103,11 @@ namespace Xml.Schema.Linq.CodeGen
         protected CodeExpression GetFullyQualifiedSimpleTypeClassExpression(string namespacePrefix)
         {
             throw new NotImplementedException();
-            if (namespacePrefix == null) throw new ArgumentNullException(nameof(namespacePrefix));
-            Debug.Assert(this.simpleTypeClrTypeName != null);
+            // if (namespacePrefix == null) throw new ArgumentNullException(nameof(namespacePrefix));
+            // Debug.Assert(this.simpleTypeClrTypeName != null);
 
-            return CodeDomHelper.CreateFieldReference(
-                this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
+            // return CodeDomHelper.CreateFieldReference(
+            //     this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
         }
 
         protected CodeExpression GetSimpleTypeClassExpression(bool disambiguateWhenPropertyAndTypeNameAreTheSame = false)

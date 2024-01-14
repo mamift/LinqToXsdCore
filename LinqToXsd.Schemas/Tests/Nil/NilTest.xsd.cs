@@ -88,7 +88,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 return XTypedServices.ParseValue<System.String?>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElement(RequiredRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetElement(RequiredRefXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -113,7 +113,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 return XTypedServices.ParseValue<int>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
             set {
-                this.SetElement(RequiredValXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
+                this.SetElement(RequiredValXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
         
@@ -138,7 +138,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 return ((ValueHolder?)(x));
             }
             set {
-                this.SetElement(RequiredElXName, value);
+                this.SetElement(RequiredElXName, value ?? XsiNilAttribute);
             }
         }
         
@@ -166,7 +166,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 return XTypedServices.ParseValue<System.String?>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElement(OptionalRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetElement(OptionalRefXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -194,7 +194,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 return XTypedServices.ParseValue<int>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
             set {
-                this.SetElement(OptionalValXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
+                this.SetElement(OptionalValXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
         
@@ -222,7 +222,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 return ((ValueHolder?)(x));
             }
             set {
-                this.SetElement(OptionalElXName, value);
+                this.SetElement(OptionalElXName, value ?? XsiNilAttribute);
             }
         }
         

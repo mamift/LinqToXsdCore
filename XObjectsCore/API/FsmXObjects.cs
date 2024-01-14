@@ -113,18 +113,41 @@ namespace Xml.Schema.Linq
 
         private void FSMSetElement(XName name, object value, bool addToExisting, XmlSchemaDatatype datatype)
         {
-            XElement parentElement = this.GetUntyped();
-            RemoveXsiNil(parentElement);
             if (value == null)
             {
                 //Delete existing node
                 DeleteChild(name);
+                return;
             }
-            else if (datatype != null)
+
+            XElement parentElement = GetUntyped();
+            RemoveXsiNil(parentElement);
+
+            // Handle setting xsi:nil="true"
+            if (ReferenceEquals(value, XsiNilAttribute))
             {
-                //Simple typed element
-                XElement pos = this.GetElement(name); //Find out the matching element
-                if (pos == null)
+                if (GetElement(name) is not {} pos)
+                {
+                    //happens for incomplete content, or choice
+                    parentElement.Add(new XElement(name, XsiNilAttribute));
+                }
+                else if (addToExisting)
+                {
+                    pos.AddAfterSelf(new XElement(name, XsiNilAttribute));
+                }
+                else
+                {
+                    pos.RemoveAll();
+                    pos.Add(XsiNilAttribute);
+                }
+                return;
+            }
+
+            //Simple typed element
+            if (datatype != null)
+            {            
+                //Find out the matching element
+                if (GetElement(name) is not {} pos)
                 {
                     //happens for incomplete content, or choice
                     parentElement.Add(new XElement(name, XTypedServices.GetXmlString(value, datatype, parentElement)));
@@ -141,18 +164,16 @@ namespace Xml.Schema.Linq
             }
             else
             {
-                Type elementBaseType = null;
-                IXMetaData schemaMetaData = this as IXMetaData;
-                if (!schemaMetaData.LocalElementsDictionary.TryGetValue(name, out elementBaseType))
+                IXMetaData schemaMetaData = this;
+                if (!schemaMetaData.LocalElementsDictionary.TryGetValue(name, out var elementBaseType))
                 {
                     elementBaseType = value.GetType();
                 }
                 
                 //Setting XTypedElement
-                XTypedElement xObj = value as XTypedElement;
-                XElement newElement = XTypedServices.GetXElement(xObj, name, elementBaseType);
-                XElement pos = this.GetElement(name); //Find the matching element
-                if (pos == null)
+                XElement newElement = XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType);
+                //Find the matching element
+                if (GetElement(name) is not {} pos)
                 {
                     //happens for incomplete content, or choice
                     parentElement.Add(newElement);

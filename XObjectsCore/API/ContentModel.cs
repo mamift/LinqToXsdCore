@@ -49,45 +49,40 @@ namespace Xml.Schema.Linq
                 parentElement.Add(newElement);
                 return newElement;
             }
+            else if (parentElement.Element(name) is not {} existingElement)
+            {
+                var newElement = GetNewElement(name, value, datatype, parentElement, elementBaseType);
+                parentElement.Add(newElement);
+                return newElement;
+            }
+            else if (ReferenceEquals(value, XTypedElement.XsiNilAttribute))
+            {
+                existingElement.RemoveAll();
+                existingElement.Add(XTypedElement.XsiNilAttribute);
+                return existingElement;
+            }
+            else if (datatype != null)
+            {
+                //Update simple type value
+                existingElement.Value = XTypedServices.GetXmlString(value, datatype, existingElement);
+                return existingElement;
+            }
             else
             {
-                var existingElement = parentElement.Element(name);
-                if (existingElement == null)
-                {
-                    var newElement = GetNewElement(name, value, datatype, parentElement, elementBaseType);
-                    parentElement.Add(newElement);
-                    return newElement;
-                }
-                else if (datatype != null)
-                {
-                    //Update simple type value
-                    existingElement.Value = XTypedServices.GetXmlString(value, datatype, existingElement);
-                    return existingElement;
-                }
-                else
-                {
-                    var element = XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType);
-                    existingElement.AddBeforeSelf(element);
-                    existingElement.Remove();
-                    return element;
-                }
+                var element = XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType);
+                existingElement.AddBeforeSelf(element);
+                existingElement.Remove();
+                return element;
             }
         }
 
         private XElement GetNewElement(XName name, object value, XmlSchemaDatatype datatype, XElement parentElement, Type elementBaseType)
         {
-            XElement newElement = null;
-            if (datatype != null)
-            {
-                string stringValue = XTypedServices.GetXmlString(value, datatype, parentElement);
-                newElement = new XElement(name, stringValue);
-            }
-            else
-            {
-                newElement = XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType);
-            }
-
-            return newElement;
+            return ReferenceEquals(value, XTypedElement.XsiNilAttribute)
+                ? new XElement(name, XTypedElement.XsiNilAttribute)
+                : datatype != null 
+                ? new XElement(name, XTypedServices.GetXmlString(value, datatype, parentElement))
+                : new XElement(name, XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType));
         }
     }
 }

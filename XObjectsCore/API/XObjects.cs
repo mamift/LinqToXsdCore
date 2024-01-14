@@ -2,18 +2,25 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Xml;
 using System.Xml.Schema;
-using System.Xml.Linq;
-using System.Linq;
-using System.Diagnostics;
 using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace Xml.Schema.Linq
 {
     //Class that represents xs:anyType, the root of the schema type system
     public partial class XTypedElement : IXMetaData, IXTyped, IXmlSerializable
     {
+        private static readonly XName XsiNilName = XName.Get("nil", XmlSchema.InstanceNamespace);
+        // Well-known singleton instance of XAttribute for xsi:nil="true"
+        // This can be passed as a magic value to AddElementToParent() to set the appropriate
+        // element <Element xsi:nil="true">, regardless of actual datatype.
+        // It's typed as `object` because the codegen for setters is `value ?? XsiNilAttribute`
+        // which wouldn't work between types `string value` and `XAttribute` for example.
+        protected internal static readonly object XsiNilAttribute = new XAttribute(XsiNilName, "true");
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XElement xElement = null;
 
@@ -150,7 +157,8 @@ namespace Xml.Schema.Linq
             element.SetAttributeValue(name, stringValue);
         }
 
-        protected void SetElement(XName name, XTypedElement typedElement)
+        //Set XTypedElement, or XsiNilAttribute
+        protected void SetElement(XName name, object typedElement)
         {
             if (ValidationStates == null)
             {
@@ -210,8 +218,6 @@ namespace Xml.Schema.Linq
 
         internal void SetElement(XName name, object value, bool addToExisting, XmlSchemaDatatype datatype, Type elementBaseType)
         {
-            XElement parentElement = this.GetUntyped();
-            RemoveXsiNil(parentElement);
             if (value == null)
             {
                 //Delete existing node
@@ -220,9 +226,11 @@ namespace Xml.Schema.Linq
             }
             else
             {
-                IXMetaData schemaMetaData = this as IXMetaData; //Get parent's content model
-                Debug.Assert(schemaMetaData != null);
-                ContentModelEntity cm = GetParentContentModel(this as IXMetaData, name);
+                XElement parentElement = GetUntyped();
+                RemoveXsiNil(parentElement);
+
+                IXMetaData schemaMetaData = this; //Get parent's content model
+                ContentModelEntity cm = GetParentContentModel(schemaMetaData, name);
 
                 if (elementBaseType == null)
                 {
@@ -232,11 +240,10 @@ namespace Xml.Schema.Linq
                     }
                 }
 
-
                 cm.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
             }
 
-            ContentModelEntity GetParentContentModel(IXMetaData schemaMetaData, XName xname)
+            static ContentModelEntity GetParentContentModel(IXMetaData schemaMetaData, XName xname)
             {
                 Debug.Assert(schemaMetaData != null);
                 ContentModelEntity cmRoot = schemaMetaData.GetContentModel();
@@ -253,11 +260,9 @@ namespace Xml.Schema.Linq
             }
         }
 
-        private static readonly XName XsiNilName = XName.Get("nil", XmlSchema.InstanceNamespace);
-
         protected static bool IsXsiNil(XElement element)
         {
-            return element.Attribute(XsiNilName)?.Value == "true";
+            return element?.Attribute(XsiNilName)?.Value == "true";
         }
 
         private static void RemoveXsiNil(XElement parentElement)
