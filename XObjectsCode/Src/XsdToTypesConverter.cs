@@ -464,6 +464,10 @@ namespace Xml.Schema.Linq.CodeGen
                 text += "required";
             }
 
+            if (propertyInfo.IsNillable)
+            {
+                text += ", nillable";
+            }
 
             if (propertyInfo.IsStar ||
                 propertyInfo.IsPlus)
@@ -601,6 +605,10 @@ namespace Xml.Schema.Linq.CodeGen
 
                             ClrPropertyInfo propertyInfo = BuildPropertyForElement(elem, fromBaseType);
                             regEx.Append(propertyInfo.PropertyName);
+                            if (propertyInfo.IsNillable)
+                            {
+                                regEx.Append("<nil>");
+                            }
                             regEx.Append(propertyInfo.OccurenceString);
                             //Add to parent
                             if (currentGroupingInfo == null)

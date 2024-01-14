@@ -312,19 +312,27 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        private string QualifiedType => typeRef.IsLocalType && !typeRef.IsSimpleType
+            ? parentTypeFullName + "." + clrTypeName
+            : clrTypeName;
+
+        private string NullableType => IsNillable && (settings.NullableReferences || typeRef.IsValueType)
+            ? QualifiedType + "?"
+            : QualifiedType;
+
         private XCodeTypeReference CreateReturnType(string typeName)
         {
+            if (IsList || !IsRef && IsSchemaList)
+            {
+                return CreateListReturnType(NullableType);
+            }
+
             string fullTypeName = typeName;
             if (typeRef.IsLocalType && !typeRef.IsSimpleType)
             {
                 //For simple types, return type is always XSD -> CLR mapping
                 fullTypeName = parentTypeFullName + "." + typeName;
-            }
-
-            if (IsList || !IsRef && IsSchemaList)
-            {
-                return CreateListReturnType(fullTypeName);
-            }
+            }            
 
             if (!IsRef && IsNullable && (settings.NullableReferences || typeRef.IsValueType))
             {
@@ -769,7 +777,7 @@ namespace Xml.Schema.Linq.CodeGen
                             new CodeExpressionStatement(
                                 new CodeMethodInvokeExpression(
                                     new CodeTypeReferenceExpression("XTypedServices"),
-                                    Constants.SetList + "<" + clrTypeName + ">",
+                                    Constants.SetList + "<" + NullableType + ">",
                                     listFieldRef,
                                     GetListSetStatementValueExpr()))
                         })
@@ -897,11 +905,9 @@ namespace Xml.Schema.Linq.CodeGen
             CodeStatement returnStatement = null;
             if (CanBeAbsent && DefaultValue == null)
             {
-                if (typeRef.IsValueType)
-                {
-                    //Need to return T?, since parseValue handles only T, checking for null
-                    returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
-                }
+                // For value types, this is needed to return T?, since ParseValue return T.
+                // It's not mandatory for ref types but it's more consistent and performant to do it always.
+                returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
             }
             else if (VerifyRequired)
             {
@@ -997,7 +1003,7 @@ namespace Xml.Schema.Linq.CodeGen
                 listName = Constants.XTypedList;
             }
 
-            return new CodeTypeReference(listName, new CodeTypeReference(clrTypeName));
+            return new CodeTypeReference(listName, new CodeTypeReference(NullableType));
         }
 
         private CodeExpression[] GetListParameters(bool set, bool constructor)
