@@ -13,14 +13,6 @@ namespace Xml.Schema.Linq
     //Class that represents xs:anyType, the root of the schema type system
     public partial class XTypedElement : IXMetaData, IXTyped, IXmlSerializable
     {
-        internal static readonly XName XsiNilName = XName.Get("nil", XmlSchema.InstanceNamespace);
-        // Well-known singleton instance of XAttribute for xsi:nil="true"
-        // This can be passed as a magic value to AddElementToParent() to set the appropriate
-        // element <Element xsi:nil="true">, regardless of actual datatype.
-        // It's typed as `object` because the codegen for setters is `value ?? XsiNilAttribute`
-        // which wouldn't work between types `string value` and `XAttribute` for example.
-        protected internal static readonly object XsiNilAttribute = new XAttribute(XsiNilName, "true");
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XElement xElement = null;
 
@@ -157,9 +149,11 @@ namespace Xml.Schema.Linq
             element.SetAttributeValue(name, stringValue);
         }
 
-        //Set XTypedElement, or XsiNilAttribute
+        // Set XTypedElement or XNil.Value
         protected void SetElement(XName name, object typedElement)
         {
+            Debug.Assert(typedElement is XTypedElement || ReferenceEquals(typedElement, XNil.Value));
+            
             if (ValidationStates == null)
             {
                 Debug.Assert(name != null);
@@ -227,7 +221,7 @@ namespace Xml.Schema.Linq
             else
             {
                 XElement parentElement = GetUntyped();
-                RemoveXsiNil(parentElement);
+                parentElement.RemoveXsiNil();
 
                 IXMetaData schemaMetaData = this; //Get parent's content model
                 ContentModelEntity cm = GetParentContentModel(schemaMetaData, name);
@@ -257,21 +251,6 @@ namespace Xml.Schema.Linq
                 {
                     return cmRoot;
                 }
-            }
-        }
-
-        protected internal static bool IsXsiNil(XElement element)
-        {
-            return element?.Attribute(XsiNilName)?.Value == "true";
-        }
-
-        private static void RemoveXsiNil(XElement parentElement)
-        {
-            var xsiNil = parentElement.Attribute(XsiNilName);
-            if (xsiNil?.Value == "true")
-            {
-                //Since we are adding content
-                xsiNil.Remove();
             }
         }
 

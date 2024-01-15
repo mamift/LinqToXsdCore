@@ -55,16 +55,15 @@ namespace Xml.Schema.Linq
                 parentElement.Add(newElement);
                 return newElement;
             }
-            else if (ReferenceEquals(value, XTypedElement.XsiNilAttribute))
+            else if (ReferenceEquals(value, XNil.Value))
             {
-                existingElement.RemoveAll();
-                existingElement.Add(XTypedElement.XsiNilAttribute);
+                existingElement.SetXsiNil();
                 return existingElement;
             }
             else if (datatype != null)
             {
                 //Update simple type value
-                existingElement.Attribute(XTypedElement.XsiNilName)?.Remove();
+                existingElement.RemoveXsiNil();
                 existingElement.Value = XTypedServices.GetXmlString(value, datatype, existingElement);
                 return existingElement;
             }
@@ -79,8 +78,8 @@ namespace Xml.Schema.Linq
 
         private XElement GetNewElement(XName name, object value, XmlSchemaDatatype datatype, XElement parentElement, Type elementBaseType)
         {
-            return ReferenceEquals(value, XTypedElement.XsiNilAttribute)
-                ? new XElement(name, XTypedElement.XsiNilAttribute)
+            return ReferenceEquals(value, XNil.Value)
+                ? XNil.Element(name)
                 : datatype != null 
                 ? new XElement(name, XTypedServices.GetXmlString(value, datatype, parentElement))
                 : new XElement(name, XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType));

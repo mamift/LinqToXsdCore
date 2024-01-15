@@ -30,17 +30,12 @@ namespace Xml.Schema.Linq
         {
         }
 
-        private XElement CreateNilElement()
-        {
-            return new XElement(itemXName, XTypedElement.XsiNilAttribute);
-        }
-
         public int IndexOf(T value)
         {
             if (value == null)
             {
                 return supportsXsiNil
-                    ? EnumerateElements().FindIndex(XTypedElement.IsXsiNil)
+                    ? EnumerateElements().FindIndex(XNil.IsXsiNil)
                     : throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
             }
 
@@ -201,17 +196,15 @@ namespace Xml.Schema.Linq
                 : !supportsXsiNil
                     ? throw new ArgumentNullException(nameof(value), "Argument value should not be null.")
                     : createNew
-                        ? CreateNilElement()
-                        : EnumerateElements().FirstOrDefault(XTypedElement.IsXsiNil);
+                        ? XNil.Element(itemXName)
+                        : EnumerateElements().FirstOrDefault(XNil.IsXsiNil);
         }
 
         protected abstract XElement ElementForImpl(T value, bool createNew);
 
         protected T ValueOf(XElement element)
         {
-            return XTypedElement.IsXsiNil(element)
-                ? default
-                : ValueOfImpl(element);
+            return element.IsXsiNil() ? default : ValueOfImpl(element);
         }
 
         protected abstract T ValueOfImpl(XElement element);
@@ -224,12 +217,11 @@ namespace Xml.Schema.Linq
                 {
                     throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
                 }
-                element.RemoveAll();
-                element.Add(XTypedElement.XsiNilAttribute);
+                element.SetXsiNil();
             }
             else
             {
-                element.Attribute(XTypedElement.XsiNilName)?.Remove();
+                element.RemoveXsiNil();
                 UpdateElement(element, value);
             }
         }

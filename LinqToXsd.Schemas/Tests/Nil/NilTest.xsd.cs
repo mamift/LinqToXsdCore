@@ -82,13 +82,13 @@ namespace LinqToXsd.Schemas.Test.NilTest {
         public virtual System.String? RequiredRef {
             get {
                 XElement x = this.GetElement(RequiredRefXName);
-                if (XTypedElement.IsXsiNil(x)) {
+                if (x.IsXsiNil()) {
                     return null;
                 }
                 return XTypedServices.ParseValue<System.String?>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElement(RequiredRefXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetElement(RequiredRefXName, value ?? XNil.Value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -107,13 +107,13 @@ namespace LinqToXsd.Schemas.Test.NilTest {
         public virtual System.Int32? RequiredVal {
             get {
                 XElement x = this.GetElement(RequiredValXName);
-                if (XTypedElement.IsXsiNil(x)) {
+                if (x.IsXsiNil()) {
                     return null;
                 }
                 return XTypedServices.ParseValue<int>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
             set {
-                this.SetElement(RequiredValXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
+                this.SetElement(RequiredValXName, value ?? XNil.Value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
         
@@ -132,13 +132,13 @@ namespace LinqToXsd.Schemas.Test.NilTest {
         public virtual ValueHolder? RequiredEl {
             get {
                 XElement x = this.GetElement(RequiredElXName);
-                if (XTypedElement.IsXsiNil(x)) {
+                if (x.IsXsiNil()) {
                     return null;
                 }
                 return ((ValueHolder?)(x));
             }
             set {
-                this.SetElement(RequiredElXName, value ?? XsiNilAttribute);
+                this.SetElement(RequiredElXName, value ?? XNil.Value);
             }
         }
         
@@ -160,13 +160,13 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 if ((x == null)) {
                     return null;
                 }
-                if (XTypedElement.IsXsiNil(x)) {
+                if (x.IsXsiNil()) {
                     return null;
                 }
                 return XTypedServices.ParseValue<System.String?>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElement(OptionalRefXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetElement(OptionalRefXName, value ?? XNil.Value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -188,13 +188,13 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 if ((x == null)) {
                     return null;
                 }
-                if (XTypedElement.IsXsiNil(x)) {
+                if (x.IsXsiNil()) {
                     return null;
                 }
                 return XTypedServices.ParseValue<int>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
             set {
-                this.SetElement(OptionalValXName, value ?? XsiNilAttribute, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
+                this.SetElement(OptionalValXName, value ?? XNil.Value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
             }
         }
         
@@ -216,13 +216,13 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 if ((x == null)) {
                     return null;
                 }
-                if (XTypedElement.IsXsiNil(x)) {
+                if (x.IsXsiNil()) {
                     return null;
                 }
                 return ((ValueHolder?)(x));
             }
             set {
-                this.SetElement(OptionalElXName, value ?? XsiNilAttribute);
+                this.SetElement(OptionalElXName, value ?? XNil.Value);
             }
         }
         

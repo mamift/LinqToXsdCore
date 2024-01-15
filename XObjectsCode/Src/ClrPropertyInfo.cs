@@ -635,7 +635,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     setStatements.Add(new CodeConditionStatement(
                         new CodeSnippetExpression("value == null"),
-                        new[] { new CodeExpressionStatement(CreatePlainSetCall(setMethodName, IsNillable ? "XsiNilAttribute" : "null", xNameParm)) },
+                        new[] { new CodeExpressionStatement(CreatePlainSetCall(setMethodName, IsNillable ? "XNil.Value" : "null", xNameParm)) },
                         new[] { new CodeExpressionStatement(setWithValidation) }
                     ));
                 }
@@ -654,7 +654,7 @@ namespace Xml.Schema.Linq.CodeGen
                 
                 if (IsNillable)
                 {
-                    valueExpr += " ?? XsiNilAttribute";
+                    valueExpr += " ?? XNil.Value";
                 }
 
                 var setter = CreatePlainSetCall(setMethodName, valueExpr, xNameParm);
@@ -937,11 +937,11 @@ namespace Xml.Schema.Linq.CodeGen
                 getStatements.Add(
                     new CodeConditionStatement(
                         new CodeMethodInvokeExpression(
-                            new CodeTypeReferenceExpression("XTypedElement"),
-                            "IsXsiNil",
-                            new CodeVariableReferenceExpression("x")),
+                            new CodeVariableReferenceExpression("x"),
+                            "IsXsiNil"),
                         new CodeMethodReturnStatement(new CodePrimitiveExpression(null))
-                        ));
+                    )
+                );
             }
         }
 

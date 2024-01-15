@@ -121,24 +121,23 @@ namespace Xml.Schema.Linq
             }
 
             XElement parentElement = GetUntyped();
-            RemoveXsiNil(parentElement);
+            parentElement.RemoveXsiNil();
 
             // Handle setting xsi:nil="true"
-            if (ReferenceEquals(value, XsiNilAttribute))
+            if (ReferenceEquals(value, XNil.Value))
             {
                 if (GetElement(name) is not {} pos)
                 {
                     //happens for incomplete content, or choice
-                    parentElement.Add(new XElement(name, XsiNilAttribute));
+                    parentElement.Add(XNil.Element(name));
                 }
                 else if (addToExisting)
                 {
-                    pos.AddAfterSelf(new XElement(name, XsiNilAttribute));
+                    pos.AddAfterSelf(XNil.Element(name));
                 }
                 else
                 {
-                    pos.RemoveAll();
-                    pos.Add(XsiNilAttribute);
+                    pos.SetXsiNil();
                 }
                 return;
             }
@@ -159,7 +158,7 @@ namespace Xml.Schema.Linq
                 else
                 {
                     //Update value in place
-                    pos.Attribute(XTypedElement.XsiNilName)?.Remove();
+                    pos.RemoveXsiNil();
                     pos.Value = XTypedServices.GetXmlString(value, datatype, pos);
                 }
             }
