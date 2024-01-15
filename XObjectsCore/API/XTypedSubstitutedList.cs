@@ -38,20 +38,20 @@ namespace Xml.Schema.Linq
             return element.Equals(newElement);
         }
 
-        protected override XElement GetElementForValue(T value, bool createNew)
+        protected override XElement ElementForImpl(T value, bool createNew)
         {
             return value.Untyped;
         }
 
-        protected override T GetValueForElement(XElement element)
+        protected override T ValueOfImpl(XElement element)
         {
             //Cast to T should succeed since T is the type of the head and the members are all derived from the head
             return (T) XTypedServices.ToXTypedElement(element, typeManager); //Use auto-typing for subst members
         }
 
-        protected override void UpdateElement(XElement oldElement, T value)
+        protected override void UpdateElementImpl(XElement oldElement, T value)
         {
-            oldElement.AddBeforeSelf(GetElementForValue(value, true));
+            oldElement.AddBeforeSelf(ElementForImpl(value, true));
             oldElement.Remove();
         }
     }

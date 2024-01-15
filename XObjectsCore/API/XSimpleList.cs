@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
@@ -22,42 +23,23 @@ namespace Xml.Schema.Linq
         protected override bool IsEqual(XElement element, T value)
         {
             string stringValue = element.Value;
-            if (schemaDatatype.ChangeType(stringValue, typeof(T)).Equals(value))
-            {
-                return true;
-            }
-
-            return false;
+            return schemaDatatype.ChangeType(stringValue, typeof(T)).Equals(value);
         }
 
-        protected override XElement GetElementForValue(T value, bool createNew)
+        protected override XElement ElementForImpl(T value, bool createNew)
         {
-            if (createNew)
-            {
-                return new XElement(itemXName, XTypedServices.GetXmlString(value, schemaDatatype, containerElement));
-            }
-
-            XElement current;
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
-            {
-                current = listElementsEnumerator.Current;
-                if (IsEqual(current, value))
-                {
-                    return current;
-                }
-            }
-
-            return null;
+            return createNew
+                ? new XElement(itemXName, XTypedServices.GetXmlString(value, schemaDatatype, containerElement))
+                : EnumerateElements().FirstOrDefault(x => IsEqual(x, value));
         }
 
-        protected override T GetValueForElement(XElement element)
+        protected override T ValueOfImpl(XElement element)
         {
             string stringValue = element.Value;
             return (T) schemaDatatype.ChangeType(stringValue, typeof(T));
         }
 
-        protected override void UpdateElement(XElement oldElement, T value)
+        protected override void UpdateElementImpl(XElement oldElement, T value)
         {
             oldElement.Value = XTypedServices.GetXmlString(value, schemaDatatype, oldElement);
         }

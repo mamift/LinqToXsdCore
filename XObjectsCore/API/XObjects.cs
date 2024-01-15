@@ -13,7 +13,7 @@ namespace Xml.Schema.Linq
     //Class that represents xs:anyType, the root of the schema type system
     public partial class XTypedElement : IXMetaData, IXTyped, IXmlSerializable
     {
-        private static readonly XName XsiNilName = XName.Get("nil", XmlSchema.InstanceNamespace);
+        internal static readonly XName XsiNilName = XName.Get("nil", XmlSchema.InstanceNamespace);
         // Well-known singleton instance of XAttribute for xsi:nil="true"
         // This can be passed as a magic value to AddElementToParent() to set the appropriate
         // element <Element xsi:nil="true">, regardless of actual datatype.
@@ -260,7 +260,7 @@ namespace Xml.Schema.Linq
             }
         }
 
-        protected static bool IsXsiNil(XElement element)
+        protected internal static bool IsXsiNil(XElement element)
         {
             return element?.Attribute(XsiNilName)?.Value == "true";
         }

@@ -159,6 +159,7 @@ namespace Xml.Schema.Linq
                 else
                 {
                     //Update value in place
+                    pos.Attribute(XTypedElement.XsiNilName)?.Remove();
                     pos.Value = XTypedServices.GetXmlString(value, datatype, pos);
                 }
             }

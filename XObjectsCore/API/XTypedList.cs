@@ -45,21 +45,21 @@ namespace Xml.Schema.Linq
             return element.Equals(newElement);
         }
 
-        protected override XElement GetElementForValue(T value, bool createNew)
+        protected override XElement ElementForImpl(T value, bool createNew)
         {
             XElement element = value.Untyped;
             element.Name = itemXName;
             return element;
         }
 
-        protected override T GetValueForElement(XElement element)
+        protected override T ValueOfImpl(XElement element)
         {
             return XTypedServices.ToXTypedElement<T>(element, typeManager);
         }
 
-        protected override void UpdateElement(XElement oldElement, T value)
+        protected override void UpdateElementImpl(XElement oldElement, T value)
         {
-            oldElement.AddBeforeSelf(GetElementForValue(value, true));
+            oldElement.AddBeforeSelf(ElementForImpl(value, true));
             oldElement.Remove();
         }
     }

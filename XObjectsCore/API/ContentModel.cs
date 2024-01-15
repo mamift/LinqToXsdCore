@@ -64,6 +64,7 @@ namespace Xml.Schema.Linq
             else if (datatype != null)
             {
                 //Update simple type value
+                existingElement.Attribute(XTypedElement.XsiNilName)?.Remove();
                 existingElement.Value = XTypedServices.GetXmlString(value, datatype, existingElement);
                 return existingElement;
             }
