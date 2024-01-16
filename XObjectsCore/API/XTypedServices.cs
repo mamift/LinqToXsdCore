@@ -633,7 +633,7 @@ namespace Xml.Schema.Linq
             }
 
             //Does this need a type qualifier?
-            if (xObj.GetType() != elementBaseType)
+            if (xObj.GetType() != elementBaseType && !newElement.IsXsiNil())
             {
                 //Don't overwrite anything explicitly added
                 var xsiType = (string)newElement.Attribute(XName.Get("type", XmlSchema.InstanceNamespace));

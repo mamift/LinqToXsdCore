@@ -272,7 +272,7 @@ namespace Xml.Schema.Linq
             {
                 // This is not the right XTypedElement subclass, but it doesn't matter for AddElementInPosition,
                 // which only extracts the untyped XElement from it.
-                // Metadata is also lost, but xsi:type isn't meaningful with xsi:nil so it doesn't matter.
+                // Metadata is also lost, but xsi:type isn't sent when xsi:nil is present, so it doesn't matter.
                 var typedElement = new XTypedElement(XNil.Element(name));
                 return Root.AddElementInPosition(name, parentElement, addToExisting, typedElement, elementBaseType);
             }

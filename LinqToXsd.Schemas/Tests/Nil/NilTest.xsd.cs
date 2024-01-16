@@ -245,7 +245,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
         public virtual IList<System.String?> ListRef {
             get {
                 if ((this.ListRefField == null)) {
-                    this.ListRefField = new XSimpleList<System.String?>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, ListRefXName);
+                    this.ListRefField = new XSimpleList<System.String?>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, ListRefXName) { SupportsXsiNil = true };
                 }
                 return this.ListRefField;
             }
@@ -255,7 +255,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 }
                 else {
                     if ((this.ListRefField == null)) {
-                        this.ListRefField = XSimpleList<System.String?>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, ListRefXName);
+                        this.ListRefField = XSimpleList<System.String?>.InitializeNillable(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, ListRefXName);
                     }
                     else {
                         XTypedServices.SetList<System.String?>(this.ListRefField, value);
@@ -283,7 +283,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
         public virtual IList<System.Int32?> ListVal {
             get {
                 if ((this.ListValField == null)) {
-                    this.ListValField = new XSimpleList<System.Int32?>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, ListValXName);
+                    this.ListValField = new XSimpleList<System.Int32?>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, ListValXName) { SupportsXsiNil = true };
                 }
                 return this.ListValField;
             }
@@ -293,7 +293,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 }
                 else {
                     if ((this.ListValField == null)) {
-                        this.ListValField = XSimpleList<System.Int32?>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, value, ListValXName);
+                        this.ListValField = XSimpleList<System.Int32?>.InitializeNillable(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype, value, ListValXName);
                     }
                     else {
                         XTypedServices.SetList<System.Int32?>(this.ListValField, value);
@@ -321,7 +321,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
         public virtual IList<ValueHolder?> ListEl {
             get {
                 if ((this.ListElField == null)) {
-                    this.ListElField = new XTypedList<ValueHolder?>(this, LinqToXsdTypeManager.Instance, ListElXName);
+                    this.ListElField = new XTypedList<ValueHolder?>(this, LinqToXsdTypeManager.Instance, ListElXName) { SupportsXsiNil = true };
                 }
                 return this.ListElField;
             }
@@ -331,7 +331,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
                 }
                 else {
                     if ((this.ListElField == null)) {
-                        this.ListElField = XTypedList<ValueHolder?>.Initialize(this, LinqToXsdTypeManager.Instance, value, ListElXName);
+                        this.ListElField = XTypedList<ValueHolder?>.InitializeNillable(this, LinqToXsdTypeManager.Instance, value, ListElXName);
                     }
                     else {
                         XTypedServices.SetList<ValueHolder?>(this.ListElField, value);

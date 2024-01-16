@@ -2,6 +2,7 @@ using LinqToXsd.Schemas.Test.NilTest;
 using NUnit.Framework;
 using System;
 using System.IO;
+using System.Xml.Linq;
 
 namespace Xml.Schema.Linq.Tests
 {
@@ -10,8 +11,6 @@ namespace Xml.Schema.Linq.Tests
         [Test]
         public void Serialize()
         {
-            // Serialize document
-
             var doc = new Root
             {
                 OptionalEl = null,
@@ -24,22 +23,24 @@ namespace Xml.Schema.Linq.Tests
                 ListRef = { null },
                 ListVal = { null },
             };
+            // Add root namespace prefix for predictability.
+            // It works without this, but there's a namespace declaration on each child element,
+            // with somewhat unpredictable names.
+            doc.Untyped.Add(new XAttribute(XNamespace.Xmlns + "xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+
             var writer = new StringWriter();
             doc.Save(writer);
             var xml = writer.ToString();
-
-            // Verify DateOnly types are serialized into the expected format
-            Assert.IsTrue(xml.Contains("<OptionalEl xsi:nil=\"true\">"), "OptionalEl incorrectly serialized");
-
-            // // Parse document
-            // doc = Root.Parse(xml);
-
-            // // Verify everything has round-tripped
-            // Assert.AreEqual(doc.adate, new DateOnly(2023, 06, 30));
-            // Assert.AreEqual(doc.atime, new TimeOnly(14, 39));
-            // Assert.AreEqual(doc.edate, new DateOnly(2023, 12, 25));
-            // Assert.AreEqual(doc.etime, new TimeOnly(8, 15, 22));
-            // Assert.AreEqual(doc.edatetime, new DateTime(2023, 06, 30, 14, 39, 00));
+            
+            Assert.IsTrue(xml.Contains("<OptionalEl xsi:nil=\"true\" />"), "OptionalEl incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<OptionalRef xsi:nil=\"true\" />"), "OptionalRef incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<OptionalVal xsi:nil=\"true\" />"), "OptionalVal incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<RequiredEl xsi:nil=\"true\" />"), "RequiredEl incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<RequiredRef xsi:nil=\"true\" />"), "RequiredRef incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<RequiredVal xsi:nil=\"true\" />"), "RequiredVal incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<ListEl xsi:nil=\"true\" />"), "ListEl incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<ListRef xsi:nil=\"true\" />"), "ListRef incorrectly serialized");
+            Assert.IsTrue(xml.Contains("<ListVal xsi:nil=\"true\" />"), "ListVal incorrectly serialized");
         }
     }
 }
