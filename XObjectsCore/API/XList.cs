@@ -14,9 +14,9 @@ namespace Xml.Schema.Linq
         internal XElement containerElement;
         internal XName itemXName; //Name of head in case of substitution group
         internal XName[] namesInList;
-        
+
         public bool SupportsXsiNil { get; init; }
-        
+
         protected XList(XTypedElement container, params XName[] names)
         {
             this.container = container;
@@ -74,17 +74,25 @@ namespace Xml.Schema.Linq
         {
             if (value == null)
             {
-                throw new ArgumentNullException("Argument value should not be null.");
-            }
-
-            XElement element = ElementFor(value, false);
-            if (element != null && element.Parent == containerElement)
-            {
+                if (!SupportsXsiNil)
+                {
+                    throw new ArgumentNullException("Argument value should not be null.");
+                }
+                XElement element = EnumerateElements().FirstOrDefault(XNil.IsXsiNil);
                 element?.Remove();
-                return true;
+                return element != null;
             }
+            else
+            {
+                XElement element = ElementFor(value, false);
+                if (element != null && element.Parent == containerElement)
+                {
+                    element?.Remove();
+                    return true;
+                }
 
-            return false;
+                return false;
+            }
         }
 
         public void Add(T value)
@@ -144,7 +152,7 @@ namespace Xml.Schema.Linq
             {
                 throw new ArgumentException(nameof(valuesArray));
             }
-            
+
             foreach (var element in EnumerateElements())
             {
                 if (index > valuesArray.Length)
@@ -197,7 +205,7 @@ namespace Xml.Schema.Linq
         protected abstract bool IsEqual(XElement element, T value);
 
         protected XElement ElementFor(T value, bool createNew)
-        {            
+        {
             return value != null
                 ? ElementForImpl(value, createNew)
                 : !SupportsXsiNil
@@ -229,7 +237,7 @@ namespace Xml.Schema.Linq
             else
             {
                 element.RemoveXsiNil();
-                UpdateElement(element, value);
+                UpdateElementImpl(element, value);
             }
         }
 
@@ -245,7 +253,7 @@ namespace Xml.Schema.Linq
             return null;
         }
 
-        protected IEnumerable<T> EnumerateValues() 
+        protected IEnumerable<T> EnumerateValues()
             => EnumerateElements().Select(ValueOf);
 
         protected IEnumerable<XElement> EnumerateElements()
@@ -287,7 +295,7 @@ namespace Xml.Schema.Linq
                 yield return elem;
             }
         }
-    
+
         protected void InitializeFrom(IEnumerable<T> values)
         {
             Clear();

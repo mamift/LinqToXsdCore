@@ -178,7 +178,7 @@ namespace Xml.Schema.Linq
                 }
             }
 
-            //Either its the first element being added or Scanned the whole list, end of list reached         
+            //Either its the first element being added or Scanned the whole list, end of list reached
             editAction = EditAction.Append;
             return instanceElem;
         }
@@ -214,6 +214,7 @@ namespace Xml.Schema.Linq
 
                 case EditAction.Update:
                     Debug.Assert(elementMarker != null);
+                    elementMarker.RemoveXsiNil();
                     elementMarker.Value = XTypedServices.GetXmlString(value, datatype, elementMarker);
                     break;
 

@@ -144,7 +144,7 @@ namespace Xml.Schema.Linq
 
             //Simple typed element
             if (datatype != null)
-            {            
+            {
                 //Find out the matching element
                 if (GetElement(name) is not {} pos)
                 {
@@ -169,7 +169,7 @@ namespace Xml.Schema.Linq
                 {
                     elementBaseType = value.GetType();
                 }
-                
+
                 //Setting XTypedElement
                 XElement newElement = XTypedServices.GetXElement(value as XTypedElement, name, elementBaseType);
                 //Find the matching element

@@ -9,7 +9,7 @@
 		<xs:sequence>
 			<xs:element name="Value" type="xs:string" />
 		</xs:sequence>
-	</xs:complexType>					
+	</xs:complexType>
 
 	<xs:element name="Root">
 		<xs:complexType>
