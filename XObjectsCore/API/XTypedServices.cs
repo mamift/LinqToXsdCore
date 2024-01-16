@@ -366,7 +366,7 @@ namespace Xml.Schema.Linq
 
         public static void SetList<T>(IList<T> list, IList<T> value)
         {
-            if ((object) list == (object) value)
+            if (ReferenceEquals(list, value))
             {
                 //set property to itself, do nothing
                 return;

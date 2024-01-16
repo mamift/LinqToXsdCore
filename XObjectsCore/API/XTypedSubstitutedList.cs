@@ -13,16 +13,25 @@ namespace Xml.Schema.Linq
             this.typeManager = typeManager;
         }
 
-        public static XTypedSubstitutedList<T> Initialize(XTypedElement container, ILinqToXsdTypeManager typeManager,
-            IEnumerable<T> typedObjects, params XName[] itemXNames)
+        public static XTypedSubstitutedList<T> InitializeNillable(
+            XTypedElement container, 
+            ILinqToXsdTypeManager typeManager,
+            IEnumerable<T> typedObjects,
+            params XName[] itemXNames)
         {
-            XTypedSubstitutedList<T> typedList = new XTypedSubstitutedList<T>(container, typeManager, itemXNames);
-            typedList.Clear();
-            foreach (T typedItem in typedObjects)
-            {
-                typedList.Add(typedItem);
-            }
+            var typedList = new XTypedSubstitutedList<T>(container, typeManager, itemXNames) { SupportsXsiNil = true };
+            typedList.InitializeFrom(typedObjects);
+            return typedList;
+        }
 
+        public static XTypedSubstitutedList<T> Initialize(
+            XTypedElement container, 
+            ILinqToXsdTypeManager typeManager,
+            IEnumerable<T> typedObjects, 
+            params XName[] itemXNames)
+        {
+            var typedList = new XTypedSubstitutedList<T>(container, typeManager, itemXNames);
+            typedList.InitializeFrom(typedObjects);
             return typedList;
         }
 

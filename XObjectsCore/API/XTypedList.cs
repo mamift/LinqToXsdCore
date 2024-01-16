@@ -15,25 +15,41 @@ namespace Xml.Schema.Linq
             this.typeManager = typeManager;
         }
 
-        public static XTypedList<T> CopyFromWithValidation(IEnumerable<T> typedObjects, XTypedElement container,
-            XName itemXName, ILinqToXsdTypeManager typeManager, string propertyName, SimpleTypeValidator typeDef)
+        public static XTypedList<T> CopyFromWithValidation(
+            IEnumerable<T> typedObjects, 
+            XTypedElement container,
+            XName itemXName, 
+            ILinqToXsdTypeManager typeManager, 
+            string propertyName = null, 
+            SimpleTypeValidator typeDef = null,
+            bool supportsXsiNil = false)
         {
-            return Initialize(container, typeManager, typedObjects, itemXName);
-        }
-
-        public static XTypedList<T> Initialize(XTypedElement container, ILinqToXsdTypeManager typeManager,
-            IEnumerable<T> typedObjects, XName itemXName)
-        {
-            XTypedList<T> typedList = new XTypedList<T>(container, typeManager, itemXName);
-            typedList.Clear();
-            foreach (T typedItem in typedObjects)
-            {
-                typedList.Add(typedItem);
-            }
-
+            var typedList = new XTypedList<T>(container, typeManager, itemXName) { SupportsXsiNil = supportsXsiNil };
+            typedList.InitializeFrom(typedObjects);
             return typedList;
         }
 
+        public static XTypedList<T> InitializeNillable(
+            XTypedElement container,
+            ILinqToXsdTypeManager typeManager,
+            IEnumerable<T> typedObjects, 
+            XName itemXName)
+        {
+            var typedList = new XTypedList<T>(container, typeManager, itemXName) { SupportsXsiNil = true };
+            typedList.InitializeFrom(typedObjects);
+            return typedList;
+        }
+
+        public static XTypedList<T> Initialize(
+            XTypedElement container, 
+            ILinqToXsdTypeManager typeManager,
+            IEnumerable<T> typedObjects, 
+            XName itemXName)
+        {
+            var typedList = new XTypedList<T>(container, typeManager, itemXName);
+            typedList.InitializeFrom(typedObjects);
+            return typedList;
+        }
         public override void Add(T value)
         {
             container.SetElement(itemXName, value, true, null);

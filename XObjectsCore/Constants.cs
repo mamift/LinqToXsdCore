@@ -20,6 +20,7 @@ namespace Xml.Schema.Linq.CodeGen
         public const string BuildWrapperDictionary = "BuildWrapperDictionary";
         public const string GetRootType = "GetRootType";
         public const string Initialize = "Initialize";
+        public const string InitializeNillable = "InitializeNillable";
         public const string SetList = "SetList";
 
         //XTypedElement Method calls

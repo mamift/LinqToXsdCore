@@ -14,27 +14,22 @@ namespace Xml.Schema.Linq
         internal XElement containerElement;
         internal XName itemXName; //Name of head in case of substitution group
         internal XName[] namesInList;
-        private readonly bool supportsXsiNil;
         
-        protected XList(XTypedElement container, bool supportsXsiNil, params XName[] names)
+        public bool SupportsXsiNil { get; init; }
+        
+        protected XList(XTypedElement container, params XName[] names)
         {
             this.container = container;
-            this.supportsXsiNil = supportsXsiNil;
             this.containerElement = container.Untyped;
             namesInList = names;
             itemXName = names[names.Length - 1]; //Head is the last element name in the list
-        }
-
-        protected XList(XTypedElement container, params XName[] names)
-            : this(container, false, names)
-        {
         }
 
         public int IndexOf(T value)
         {
             if (value == null)
             {
-                return supportsXsiNil
+                return SupportsXsiNil
                     ? EnumerateElements().FindIndex(XNil.IsXsiNil)
                     : throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
             }
@@ -44,7 +39,7 @@ namespace Xml.Schema.Linq
 
         public void Insert(int index, T value)
         {
-            if (value == null && !supportsXsiNil)
+            if (value == null && !SupportsXsiNil)
             {
                 throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
             }
@@ -193,7 +188,7 @@ namespace Xml.Schema.Linq
         {            
             return value != null
                 ? ElementForImpl(value, createNew)
-                : !supportsXsiNil
+                : !SupportsXsiNil
                     ? throw new ArgumentNullException(nameof(value), "Argument value should not be null.")
                     : createNew
                         ? XNil.Element(itemXName)
@@ -213,7 +208,7 @@ namespace Xml.Schema.Linq
         {
             if (value == null)
             {
-                if (!supportsXsiNil)
+                if (!SupportsXsiNil)
                 {
                     throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
                 }
@@ -279,6 +274,12 @@ namespace Xml.Schema.Linq
                 if (elem == null) yield break;
                 yield return elem;
             }
+        }
+    
+        protected void InitializeFrom(IEnumerable<T> values)
+        {
+            Clear();
+            foreach (T value in values) Add(value);
         }
     }
 }

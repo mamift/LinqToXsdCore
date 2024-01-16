@@ -497,7 +497,7 @@ namespace Xml.Schema.Linq.CodeGen
                                 NameGenerator.ChangeClrName(propertyName, NameOptions.MakeField)),
                             new CodeMethodInvokeExpression(
                                 new CodeTypeReferenceExpression(listType),
-                                Constants.Initialize,
+                                IsNillable ? Constants.InitializeNillable : Constants.Initialize,
                                 GetListParameters(true /*set*/, true /*constructor*/))
                         ));
                 }
@@ -705,6 +705,17 @@ namespace Xml.Schema.Linq.CodeGen
 
             var listFieldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), listName);
 
+            CodeExpression newListExpr = new CodeObjectCreateExpression(
+                listType,
+                GetListParameters(false /*set*/, false /*constructor*/)
+            );
+            if (IsNillable)
+            {
+                newListExpr = new CodeSnippetExpression(
+                    newListExpr.ToCodeString() + " { SupportsXsiNil = true }"
+                );
+            }
+
             getStatements.Add(
                 new CodeConditionStatement(
                     new CodeBinaryOperatorExpression(
@@ -712,12 +723,8 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeBinaryOperatorType.IdentityEquality,
                         new CodePrimitiveExpression(null)
                     ),
-                    new CodeAssignStatement(
-                        listFieldRef,
-                        new CodeObjectCreateExpression(
-                            listType,
-                            GetListParameters(false /*set*/, false /*constructor*/)
-                        ))));
+                    new CodeAssignStatement(listFieldRef, newListExpr)
+                ));
 
             if (IsEnum)
             {
@@ -768,7 +775,7 @@ namespace Xml.Schema.Linq.CodeGen
                                 listFieldRef,
                                 new CodeMethodInvokeExpression(
                                     new CodeTypeReferenceExpression(listType),
-                                    Constants.Initialize,
+                                    IsNillable ? Constants.InitializeNillable : Constants.Initialize,
                                     GetListParameters(true /*set*/, false /*constructor*/))
                             )
                         },
@@ -852,7 +859,7 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else
                 {
-                    string parseMethodName = null;
+                    string parseMethodName;
                     CodeExpression simpleTypeExpression = GetSchemaDatatypeExpression();
                     if (IsSchemaList)
                     {

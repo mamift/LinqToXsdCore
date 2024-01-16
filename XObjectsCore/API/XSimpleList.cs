@@ -44,22 +44,39 @@ namespace Xml.Schema.Linq
             oldElement.Value = XTypedServices.GetXmlString(value, schemaDatatype, oldElement);
         }
 
-        public static XSimpleList<T> CopyFromWithValidation(IEnumerable<T> values, XTypedElement container,
-            XName itemXName, XmlSchemaDatatype dataType, string propertyName, SimpleTypeValidator typeDef)
+        public static XSimpleList<T> CopyFromWithValidation(
+            IEnumerable<T> values, 
+            XTypedElement container,
+            XName itemXName, 
+            XmlSchemaDatatype dataType, 
+            string propertyName = null, 
+            SimpleTypeValidator typeDef = null, 
+            bool supportsXsiNil = false)
         {
-            return Initialize(container, dataType, values, itemXName);
+            var simpleList = new XSimpleList<T>(container, dataType, itemXName) { SupportsXsiNil = supportsXsiNil };
+            simpleList.InitializeFrom(values);
+            return simpleList;            
         }
 
-        public static XSimpleList<T> Initialize(XTypedElement container, XmlSchemaDatatype dataType,
-            IEnumerable<T> values, XName itemXName)
+        public static XSimpleList<T> InitializeNillable(
+            XTypedElement container, 
+            XmlSchemaDatatype dataType,
+            IEnumerable<T> values,
+            XName itemXName)
         {
-            XSimpleList<T> simpleList = new XSimpleList<T>(container, dataType, itemXName);
-            simpleList.Clear();
-            foreach (T value in values)
-            {
-                simpleList.Add(value);
-            }
+            var simpleList = new XSimpleList<T>(container, dataType, itemXName) { SupportsXsiNil = true };
+            simpleList.InitializeFrom(values);
+            return simpleList;
+        }
 
+        public static XSimpleList<T> Initialize(
+            XTypedElement container, 
+            XmlSchemaDatatype dataType,
+            IEnumerable<T> values, 
+            XName itemXName)
+        {
+            var simpleList = new XSimpleList<T>(container, dataType, itemXName);
+            simpleList.InitializeFrom(values);
             return simpleList;
         }
     }
