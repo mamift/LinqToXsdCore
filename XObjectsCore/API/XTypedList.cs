@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -50,8 +51,9 @@ namespace Xml.Schema.Linq
             typedList.InitializeFrom(typedObjects);
             return typedList;
         }
-        public override void Add(T value)
-        {
+
+        protected override void AddImpl(T value)
+        {            
             container.SetElement(itemXName, value, true, null);
         }
 

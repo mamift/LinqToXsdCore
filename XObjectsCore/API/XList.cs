@@ -87,11 +87,23 @@ namespace Xml.Schema.Linq
             return false;
         }
 
-        public virtual void Add(T value)
+        public void Add(T value)
         {
-            XElement element = ElementFor(value, true);
-            container.SetElement(element.Name, value, true, null);
+            if (value == null)
+            {
+                if (!SupportsXsiNil)
+                {
+                    throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
+                }
+                container.SetElement(itemXName, XNil.Value, true, null);
+            }
+            else
+            {
+                AddImpl(value);
+            }
         }
+
+        protected abstract void AddImpl(T value);
 
         public void Clear()
         {

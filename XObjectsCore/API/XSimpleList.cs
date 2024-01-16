@@ -15,7 +15,7 @@ namespace Xml.Schema.Linq
             this.schemaDatatype = dataType;
         }
 
-        public override void Add(T value)
+        protected override void AddImpl(T value)
         {
             container.SetElement(itemXName, value, true, schemaDatatype);
         }

@@ -35,7 +35,7 @@ namespace Xml.Schema.Linq
             return typedList;
         }
 
-        public override void Add(T value)
+        protected override void AddImpl(T value)
         {
             XName itemXName = value.Untyped.Name;
             container.SetElement(itemXName, value, true, null);
