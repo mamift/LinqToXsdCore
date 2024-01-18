@@ -59,6 +59,7 @@ namespace Xml.Schema.Linq
 
             UseDateOnly = codegenElement?.Element(XName.Get("UseDateOnly", Constants.TypedXLinqNs))?.Value == "true";
             UseTimeOnly = codegenElement?.Element(XName.Get("UseTimeOnly", Constants.TypedXLinqNs))?.Value == "true";
+            UseDateTimeOffset = codegenElement?.Element(XName.Get("UseDateTimeOffset", Constants.TypedXLinqNs))?.Value == "true";
 
             var splitFilesElement = codegenElement?.Element(XName.Get("SplitCodeFiles", Constants.TypedXLinqNs));
             SplitFilesByNamespace = splitFilesElement?.Attribute("By")?.Value == "Namespace";
@@ -112,6 +113,7 @@ namespace Xml.Schema.Linq
 
         public bool UseDateOnly { get; set; }
         public bool UseTimeOnly { get; set; }
+        public bool UseDateTimeOffset { get; set; }
 
         public bool NullableReferences { get; set; }
 

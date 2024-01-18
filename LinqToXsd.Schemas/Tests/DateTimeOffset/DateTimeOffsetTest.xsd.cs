@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LinqToXsd.Schemas.Test.DateOnlyTest {
+namespace LinqToXsd.Schemas.Test.DateTimeOffsetTest {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -23,171 +23,10 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (edatetime, edate, etime)
+    /// Regular expression: (edatetime)
     /// </para>
     /// </summary>
     public partial class root : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName edatetimeXName = System.Xml.Linq.XName.Get("e-datetime", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName edateXName = System.Xml.Linq.XName.Get("e-date", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName etimeXName = System.Xml.Linq.XName.Get("e-time", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName adateXName = System.Xml.Linq.XName.Get("a-date", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName atimeXName = System.Xml.Linq.XName.Get("a-time", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("root", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-		public static explicit operator root(XElement xe) { return XTypedServices.ToXTypedElement<root>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static root() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(edatetimeXName), new NamedContentModelEntity(edateXName), new NamedContentModelEntity(etimeXName));
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Regular expression: (edatetime, edate, etime)
-        /// </para>
-        /// </summary>
-        public root() {
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (edatetime, edate, etime)
-        /// </para>
-        /// </summary>
-        public virtual System.DateTime edatetime {
-            get {
-                XElement x = this.GetElement(edatetimeXName);
-                return XTypedServices.ParseValue<System.DateTime>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
-            }
-            set {
-                this.SetElement(edatetimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (edatetime, edate, etime)
-        /// </para>
-        /// </summary>
-        public virtual System.DateOnly edate {
-            get {
-                XElement x = this.GetElement(edateXName);
-                return XTypedServices.ParseValue<System.DateOnly>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date).Datatype);
-            }
-            set {
-                this.SetElement(edateXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date).Datatype);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (edatetime, edate, etime)
-        /// </para>
-        /// </summary>
-        public virtual System.TimeOnly etime {
-            get {
-                XElement x = this.GetElement(etimeXName);
-                return XTypedServices.ParseValue<System.TimeOnly>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
-            }
-            set {
-                this.SetElement(etimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// </summary>
-        public virtual System.DateOnly? adate {
-            get {
-                XAttribute x = this.Attribute(adateXName);
-                if ((x == null)) {
-                    return null;
-                }
-                return XTypedServices.ParseValue<System.DateOnly>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date).Datatype);
-            }
-            set {
-                this.SetAttribute(adateXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date).Datatype);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// </summary>
-        public virtual System.TimeOnly? atime {
-            get {
-                XAttribute x = this.Attribute(atimeXName);
-                if ((x == null)) {
-                    return null;
-                }
-                return XTypedServices.ParseValue<System.TimeOnly>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
-            }
-            set {
-                this.SetAttribute(atimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -213,36 +52,126 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
             return XTypedServices.Parse<root>(xml);
         }
         
+		public static explicit operator root(XElement xe) { return XTypedServices.ToXTypedElement<root>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<root>(this);
         }
         
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(edatetimeXName, typeof(System.DateTime));
-            localElementDictionary.Add(edateXName, typeof(System.DateOnly));
-            localElementDictionary.Add(etimeXName, typeof(System.TimeOnly));
+        /// <summary>
+        /// <para>
+        /// Regular expression: (edatetime)
+        /// </para>
+        /// </summary>
+        public root() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName edatetimeXName = System.Xml.Linq.XName.Get("e-datetime", "http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (edatetime)
+        /// </para>
+        /// </summary>
+        public virtual System.DateTimeOffset edatetime {
+            get {
+                XElement x = this.GetElement(edatetimeXName);
+                return XTypedServices.ParseValue<System.DateTimeOffset>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
+            }
+            set {
+                this.SetElement(edatetimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName adatetimeXName = System.Xml.Linq.XName.Get("a-datetime", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual System.DateTimeOffset? adatetime {
+            get {
+                XAttribute x = this.Attribute(adatetimeXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<System.DateTimeOffset>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
+            }
+            set {
+                this.SetAttribute(adatetimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("root", "http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd");
+        
+        static root() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(edatetimeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(edatetimeXName, typeof(System.DateTimeOffset));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
-        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildElementDictionary();
-        }
-        
         private LinqToXsdTypeManager() {
         }
+        
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("root", "http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.DateTimeOffsetTest.root));
+        }
+        
+        private static XmlSchemaSet schemaSet;
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
@@ -255,6 +184,10 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
             set {
                 schemaSet = value;
             }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
         }
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
@@ -275,22 +208,21 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
             }
         }
         
+        static LinqToXsdTypeManager() {
+            BuildElementDictionary();
+        }
+        
+        public static System.Type GetRootType() {
+            return elementDictionary[System.Xml.Linq.XName.Get("root", "http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
         public static LinqToXsdTypeManager Instance {
             get {
                 return typeManagerSingleton;
             }
-        }
-        
-        private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("root", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.DateOnlyTest.root));
-        }
-        
-        protected internal static void AddSchemas(XmlSchemaSet schemas) {
-            schemas.Add(schemaSet);
-        }
-        
-        public static System.Type GetRootType() {
-            return elementDictionary[System.Xml.Linq.XName.Get("root", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd")];
         }
     }
     
@@ -302,27 +234,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public root root1 {  get {return rootObject as root; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(root root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -421,26 +333,6 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::LinqToXsd.Schemas.Test.DateOnlyTest.root root1 {  get {return rootObject as global::LinqToXsd.Schemas.Test.DateOnlyTest.root; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::LinqToXsd.Schemas.Test.DateOnlyTest.root root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -452,6 +344,26 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(root root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public root root1 {  get {return rootObject as root; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -550,5 +462,25 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::LinqToXsd.Schemas.Test.DateTimeOffsetTest.root root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::LinqToXsd.Schemas.Test.DateTimeOffsetTest.root root1 {  get {return rootObject as global::LinqToXsd.Schemas.Test.DateTimeOffsetTest.root; } }
     }
 }
