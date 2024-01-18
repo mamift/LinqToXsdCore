@@ -4,6 +4,7 @@
     <TargetFrameworks>net6.0;netframework472</TargetFrameworks>
     <RootNamespace>$(RootNamespace).Tests</RootNamespace>
     <IsPackable>false</IsPackable>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
