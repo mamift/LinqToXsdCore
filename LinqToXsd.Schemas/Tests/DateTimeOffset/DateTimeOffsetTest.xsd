@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+    targetNamespace="http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd"
+    xmlns="http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    elementFormDefault="qualified"
+>
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="e-datetime" type="xs:dateTime" />
+            </xs:sequence>
+            <xs:attribute name="a-datetime" type="xs:dateTime" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

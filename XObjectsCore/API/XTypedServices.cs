@@ -513,8 +513,12 @@ namespace Xml.Schema.Linq
 
         internal static T ParseValue<T>(string value, XElement element, XmlSchemaDatatype datatype)
         {
-            // Using XmlSchemaDatatype.ChangeType would return a DateTime for 
-            // xs:Date and xs:Time
+            // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType) 
+            // does not support DateOnly or TimeOnly as target types (introduced later, in .NET 6.0).
+            // After parsing, DateOnly and TimeOnly can be cast to DateTime (only other valid T type).
+            //
+            // When parsing XmlTypeCode.DateTime, both DateTime and DateTimeOffset 
+            // are supported target types for XmlDateTimeConverter.
             switch (datatype.TypeCode) {
                 case XmlTypeCode.Date:
                     return (T)(object)DateOnly.Parse(value, CultureInfo.InvariantCulture);
