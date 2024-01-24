@@ -228,7 +228,7 @@ namespace Xml.Schema.Linq
             {
                 try
                 {
-                    parsedString = (string) DataType.ChangeType(value, XTypedServices.typeOfString);
+                    parsedString = XTypedServices.GetXmlString(value, DataType, null);
                 }
                 catch (Exception e)
                 {
@@ -241,19 +241,15 @@ namespace Xml.Schema.Linq
 
         private Exception TryMatchAtomicType(object value, NameTable nameTable, XNamespaceResolver resolver)
         {
-            XmlSchemaDatatype datatype = DataType;
-            XmlTypeCode typeCode = datatype.TypeCode;
-            Exception exception = null;
             try
             {
-                datatype.ChangeType(value, DataType.ValueType, resolver);
+                XTypedServices.TryConvert(value, DataType, resolver);
+                return null;
             }
             catch (Exception e)
             {
-                exception = e;
+                return e;
             }
-
-            return exception;
         }
 
         internal override Exception TryParseValue(object value,
@@ -270,18 +266,16 @@ namespace Xml.Schema.Linq
             {
                 if (RestrictionFacets != null && RestrictionFacets.HasLexicalFacets)
                 {
-                    string parsedString = null;
-                    e = TryParseString(value, nameTable, resolver, out parsedString);
-                    if (e == null)
-                        e = facetsChecker.CheckLexicalFacets(ref parsedString, value, nameTable, resolver, this);
+                    e = TryParseString(value, nameTable, resolver, out var parsedString)
+                        ?? facetsChecker.CheckLexicalFacets(ref parsedString, value, nameTable, resolver, this);
                 }
 
-                if (e == null) e = facetsChecker.CheckValueFacets(value, this);
+                e ??= facetsChecker.CheckValueFacets(value, this);
 
                 if (e == null)
                 {
                     matchingType = this;
-                    typedValue = DataType.ChangeType(value, this.DataType.ValueType);
+                    typedValue = XTypedServices.Convert(value, DataType);
                 }
 
                 return e;

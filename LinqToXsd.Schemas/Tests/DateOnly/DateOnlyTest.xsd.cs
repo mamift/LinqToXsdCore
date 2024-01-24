@@ -23,7 +23,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (edatetime, edate, etime)
+    /// Regular expression: (edatetime, edate, etime, vdate, vtime)
     /// </para>
     /// </summary>
     public partial class root : XTypedElement, IXMetaData {
@@ -60,7 +60,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (edatetime, edate, etime)
+        /// Regular expression: (edatetime, edate, etime, vdate, vtime)
         /// </para>
         /// </summary>
         public root() {
@@ -75,7 +75,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (edatetime, edate, etime)
+        /// Regular expression: (edatetime, edate, etime, vdate, vtime)
         /// </para>
         /// </summary>
         public virtual System.DateTime edatetime {
@@ -97,7 +97,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (edatetime, edate, etime)
+        /// Regular expression: (edatetime, edate, etime, vdate, vtime)
         /// </para>
         /// </summary>
         public virtual System.DateOnly edate {
@@ -119,7 +119,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (edatetime, edate, etime)
+        /// Regular expression: (edatetime, edate, etime, vdate, vtime)
         /// </para>
         /// </summary>
         public virtual System.TimeOnly etime {
@@ -129,6 +129,50 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
             }
             set {
                 this.SetElement(etimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName vdateXName = System.Xml.Linq.XName.Get("v-date", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (edatetime, edate, etime, vdate, vtime)
+        /// </para>
+        /// </summary>
+        public virtual System.DateOnly vdate {
+            get {
+                XElement x = this.GetElement(vdateXName);
+                return XTypedServices.ParseValue<System.DateOnly>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date).Datatype);
+            }
+            set {
+                this.SetElementWithValidation(vdateXName, value, "vdate", global::LinqToXsd.Schemas.Test.DateOnlyTest.Post2kDate.TypeDefinition);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName vtimeXName = System.Xml.Linq.XName.Get("v-time", "http://linqtoxsd.schemas.org/test/dateonly-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (edatetime, edate, etime, vdate, vtime)
+        /// </para>
+        /// </summary>
+        public virtual System.TimeOnly vtime {
+            get {
+                XElement x = this.GetElement(vtimeXName);
+                return XTypedServices.ParseValue<System.TimeOnly>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
+            }
+            set {
+                this.SetElementWithValidation(vtimeXName, value, "vtime", global::LinqToXsd.Schemas.Test.DateOnlyTest.HoursTime.TypeDefinition);
             }
         }
         
@@ -180,7 +224,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         
         static root() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(edatetimeXName), new NamedContentModelEntity(edateXName), new NamedContentModelEntity(etimeXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(edatetimeXName), new NamedContentModelEntity(edateXName), new NamedContentModelEntity(etimeXName), new NamedContentModelEntity(vdateXName), new NamedContentModelEntity(vtimeXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -190,6 +234,8 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
             localElementDictionary.Add(edatetimeXName, typeof(System.DateTime));
             localElementDictionary.Add(edateXName, typeof(System.DateOnly));
             localElementDictionary.Add(etimeXName, typeof(System.TimeOnly));
+            localElementDictionary.Add(vdateXName, typeof(System.DateOnly));
+            localElementDictionary.Add(vtimeXName, typeof(System.TimeOnly));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -226,6 +272,25 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public sealed class Post2kDate {
+        
+        private Post2kDate() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.DateTime(630822816000000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+    }
+    
+    public sealed class HoursTime {
+        
+        private HoursTime() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
+                        "\\d{2}:00:00"}, 0, XmlSchemaWhiteSpace.Collapse));
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {

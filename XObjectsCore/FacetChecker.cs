@@ -671,13 +671,12 @@ namespace Xml.Schema.Linq
     {
         internal override Exception CheckValueFacets(object value, SimpleTypeValidator type)
         {
-            if (type.RestrictionFacets == null || !type.RestrictionFacets.HasValueFacets)
+            if (type.RestrictionFacets is null or { HasValueFacets: false })
             {
                 return null;
             }
 
-            XmlSchemaDatatype datatype = type.DataType;
-            DateTime dateTimeValue = (DateTime) datatype.ChangeType(value, typeof(DateTime));
+            DateTime dateTimeValue = XTypedServices.Convert<DateTime>(value, type.DataType);
             return CheckValueFacets(dateTimeValue, type);
         }
 
@@ -696,7 +695,7 @@ namespace Xml.Schema.Linq
             {
                 ArrayList enums = facets.Enumeration;
 
-                if (!MatchEnumeration(value, enums, datatype))
+                if (!MatchEnumeration(value, enums))
                 {
                     return new LinqToXsdFacetException(RestrictionFlags.Enumeration,
                         facets.Enumeration,
@@ -707,7 +706,7 @@ namespace Xml.Schema.Linq
 
             if ((flags & RestrictionFlags.MinInclusive) != 0)
             {
-                if (DateTime.Compare(value, (DateTime) datatype.ChangeType(facets.MinInclusive, typeof(DateTime))) < 0)
+                if (DateTime.Compare(value, XTypedServices.Convert<DateTime>(facets.MinInclusive, datatype)) < 0)
                 {
                     return new LinqToXsdFacetException(RestrictionFlags.MinInclusive, facets.MinInclusive, value);
                 }
@@ -715,7 +714,7 @@ namespace Xml.Schema.Linq
 
             if ((flags & RestrictionFlags.MinExclusive) != 0)
             {
-                if (DateTime.Compare(value, (DateTime) datatype.ChangeType(facets.MinExclusive, typeof(DateTime))) <= 0)
+                if (DateTime.Compare(value, XTypedServices.Convert<DateTime>(facets.MinExclusive, datatype)) <= 0)
                 {
                     return new LinqToXsdFacetException(RestrictionFlags.MinExclusive, facets.MinInclusive, value);
                 }
@@ -723,7 +722,7 @@ namespace Xml.Schema.Linq
 
             if ((flags & RestrictionFlags.MaxExclusive) != 0)
             {
-                if (DateTime.Compare(value, (DateTime) datatype.ChangeType(facets.MaxExclusive, typeof(DateTime))) >= 0)
+                if (DateTime.Compare(value, XTypedServices.Convert<DateTime>(facets.MaxExclusive, datatype)) >= 0)
                 {
                     return new LinqToXsdFacetException(RestrictionFlags.MaxExclusive, facets.MaxExclusive, value);
                 }
@@ -731,7 +730,7 @@ namespace Xml.Schema.Linq
 
             if ((flags & RestrictionFlags.MaxInclusive) != 0)
             {
-                if (DateTime.Compare(value, (DateTime) datatype.ChangeType(facets.MaxInclusive, typeof(DateTime))) > 0)
+                if (DateTime.Compare(value, XTypedServices.Convert<DateTime>(facets.MaxInclusive, datatype)) > 0)
                 {
                     return new LinqToXsdFacetException(RestrictionFlags.MaxInclusive, facets.MaxInclusive, value);
                 }
@@ -743,10 +742,10 @@ namespace Xml.Schema.Linq
 
         internal override bool MatchEnumeration(object value, ArrayList enumeration, XmlSchemaDatatype datatype)
         {
-            return MatchEnumeration((DateTime) datatype.ChangeType(value, typeof(DateTime)), enumeration, datatype);
+            return MatchEnumeration(XTypedServices.Convert<DateTime>(value, datatype), enumeration);
         }
 
-        private bool MatchEnumeration(DateTime value, ArrayList enumeration, XmlSchemaDatatype datatype)
+        private bool MatchEnumeration(DateTime value, ArrayList enumeration)
         {
             foreach (DateTime correctValue in enumeration)
             {
@@ -781,21 +780,16 @@ namespace Xml.Schema.Linq
 
         internal override Exception CheckValueFacets(object value, SimpleTypeValidator type)
         {
-            if (type.RestrictionFacets == null || !type.RestrictionFacets.HasValueFacets)
+            if (type.RestrictionFacets is null or { HasValueFacets: false })
             {
                 return null;
             }
 
             XmlSchemaDatatype datatype = type.DataType;
-            string stringValue = null;
-            if (type.DataType.TypeCode == XmlTypeCode.AnyUri)
-            {
-                stringValue = ((Uri) datatype.ChangeType(value, typeof(Uri))).OriginalString;
-            }
-            else
-            {
-                stringValue = (string) datatype.ChangeType(value, XTypedServices.typeOfString);
-            }
+
+            string stringValue = datatype.TypeCode == XmlTypeCode.AnyUri
+                ? ((Uri) datatype.ChangeType(value, typeof(Uri))).OriginalString
+                : XTypedServices.GetXmlString(value, datatype, null);
 
             return CheckValueFacets(stringValue, type);
         }
@@ -865,8 +859,7 @@ namespace Xml.Schema.Linq
 
         internal override bool MatchEnumeration(object value, ArrayList enumeration, XmlSchemaDatatype datatype)
         {
-            return MatchEnumeration((string) datatype.ChangeType(value, XTypedServices.typeOfString), enumeration,
-                datatype);
+            return MatchEnumeration(XTypedServices.GetXmlString(value, datatype, null), enumeration, datatype);
         }
 
         private bool MatchEnumeration(string value, ArrayList enumeration, XmlSchemaDatatype datatype)

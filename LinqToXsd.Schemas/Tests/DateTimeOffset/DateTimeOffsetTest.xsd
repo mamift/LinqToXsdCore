@@ -9,6 +9,9 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="e-datetime" type="xs:dateTime" />
+                <!-- test deserialization of xs:date and xs:time when UseDateOnly = false -->
+                <xs:element name="e-date" type="xs:date" />
+                <xs:element name="e-time" type="xs:time" />
             </xs:sequence>
             <xs:attribute name="a-datetime" type="xs:dateTime" />
         </xs:complexType>
