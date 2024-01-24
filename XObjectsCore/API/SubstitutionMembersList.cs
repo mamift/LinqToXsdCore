@@ -29,22 +29,18 @@ namespace Xml.Schema.Linq
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator) GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        internal IEnumerator<XElement> FSMGetEnumerator()
+        internal IEnumerable<XElement> FSMGetEnumerator()
         {
             IEnumerator<XElement> enumerator = container.Untyped.Elements().GetEnumerator();
-            XElement elem = null;
             container.StartFsm();
-            do
+            while (true)
             {
-                elem = container.ExecuteFSMSubGroup(enumerator, namesInList);
-                if (elem != null) yield return elem;
-                else yield break;
-            } while (elem != null);
+                XElement elem = container.ExecuteFSMSubGroup(enumerator, namesInList);
+                if (elem == null) yield break;
+                yield return elem;
+            }
         }
     }
 }

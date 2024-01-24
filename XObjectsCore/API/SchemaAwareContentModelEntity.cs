@@ -178,7 +178,7 @@ namespace Xml.Schema.Linq
                 }
             }
 
-            //Either its the first element being added or Scanned the whole list, end of list reached         
+            //Either its the first element being added or Scanned the whole list, end of list reached
             editAction = EditAction.Append;
             return instanceElem;
         }
@@ -214,6 +214,7 @@ namespace Xml.Schema.Linq
 
                 case EditAction.Update:
                     Debug.Assert(elementMarker != null);
+                    elementMarker.RemoveXsiNil();
                     elementMarker.Value = XTypedServices.GetXmlString(value, datatype, elementMarker);
                     break;
 
@@ -240,8 +241,7 @@ namespace Xml.Schema.Linq
                     name.LocalName);
             }
 
-            EditAction editAction = EditAction.None;
-            XElement elementMarker = FindElementPosition(namedEntity, parentElement, addToExisting, out editAction);
+            XElement elementMarker = FindElementPosition(namedEntity, parentElement, addToExisting, out var editAction);
 
             XElement newElement = XTypedServices.GetXElement(xObj, name, elementBaseType);
             Debug.Assert(xObj != null);
@@ -268,13 +268,22 @@ namespace Xml.Schema.Linq
             XmlSchemaDatatype datatype, Type elementBaseType)
         {
             Debug.Assert(value != null);
-            if (datatype != null)
+
+            if (ReferenceEquals(value, XNil.Value))
             {
-                return this.Root.AddValueInPosition(name, parentElement, addToExisting, value, datatype);
+                // This is not the right XTypedElement subclass, but it doesn't matter for AddElementInPosition,
+                // which only extracts the untyped XElement from it.
+                // Metadata is also lost, but xsi:type isn't sent when xsi:nil is present, so it doesn't matter.
+                var typedElement = new XTypedElement(XNil.Element(name));
+                return Root.AddElementInPosition(name, parentElement, addToExisting, typedElement, elementBaseType);
+            }
+            else if (datatype != null)
+            {
+                return Root.AddValueInPosition(name, parentElement, addToExisting, value, datatype);
             }
             else
             {
-                return this.Root.AddElementInPosition(name, parentElement, addToExisting, value as XTypedElement, elementBaseType);
+                return Root.AddElementInPosition(name, parentElement, addToExisting, value as XTypedElement, elementBaseType);
             }
         }
 

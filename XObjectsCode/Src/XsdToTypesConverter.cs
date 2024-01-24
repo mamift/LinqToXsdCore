@@ -147,18 +147,18 @@ namespace Xml.Schema.Linq.CodeGen
                     bool hasBaseContentType = headElement != null && headElement.ElementSchemaType == schemaType;
                     ClrWrapperTypeInfo wtypeInfo = new ClrWrapperTypeInfo(hasBaseContentType);
                     ClrTypeReference typeDef = BuildTypeReference(schemaType, schemaType.QualifiedName, false, true);
-                    //Save the fixed/default value of the element                    
+                    //Save the fixed/default value of the element
                     wtypeInfo.InnerType = typeDef;
                     typeInfo = wtypeInfo;
                     typeInfo.baseType =
-                        headElement; //If element is member of substitutionGroup, add derivation step                    
+                        headElement; //If element is member of substitutionGroup, add derivation step
                 }
                 else
                 {
                     ClrContentTypeInfo ctypeInfo = new ClrContentTypeInfo();
                     localSymbolTable.Init(symbol.identifierName);
                     ctypeInfo.baseType =
-                        headElement; //If element is member of substitutionGroup, add derivation step                    
+                        headElement; //If element is member of substitutionGroup, add derivation step
                     BuildProperties(elem, schemaType, ctypeInfo);
                     BuildNestedTypes(ctypeInfo);
                     typeInfo = ctypeInfo;
@@ -464,6 +464,10 @@ namespace Xml.Schema.Linq.CodeGen
                 text += "required";
             }
 
+            if (propertyInfo.IsNillable)
+            {
+                text += ", nillable";
+            }
 
             if (propertyInfo.IsStar ||
                 propertyInfo.IsPlus)
@@ -601,6 +605,10 @@ namespace Xml.Schema.Linq.CodeGen
 
                             ClrPropertyInfo propertyInfo = BuildPropertyForElement(elem, fromBaseType);
                             regEx.Append(propertyInfo.PropertyName);
+                            if (propertyInfo.IsNillable)
+                            {
+                                regEx.Append("<nil>");
+                            }
                             regEx.Append(propertyInfo.OccurenceString);
                             //Add to parent
                             if (currentGroupingInfo == null)
@@ -757,8 +765,8 @@ namespace Xml.Schema.Linq.CodeGen
         private void SetPropertyFlags(ClrPropertyInfo propertyInfo, GroupingInfo currentGroupingInfo,
             XmlSchemaType propertyType)
         {
-            propertyInfo.IsNullable |= currentGroupingInfo.ContentModelType == ContentModelType.Choice ||
-                                       currentGroupingInfo.IsOptional;
+            propertyInfo.CanBeAbsent |= currentGroupingInfo.ContentModelType == ContentModelType.Choice ||
+                                        currentGroupingInfo.IsOptional;
             propertyInfo.VerifyRequired = configSettings.VerifyRequired;
 
             if (currentGroupingInfo.IsRepeating)
@@ -975,6 +983,7 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.FromBaseType = fromBaseType;
             propertyInfo.TypeReference = typeRef;
             propertyInfo.ClrNamespace = clrNs;
+            propertyInfo.IsNillable = elem.IsNillable;
 
             //SetFixedDefaultValue(elem, propertyInfo);
 
@@ -1027,46 +1036,12 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.ClrNamespace = clrNs;
             propertyInfo.IsNew = isNew;
             propertyInfo.VerifyRequired = configSettings.VerifyRequired;
-            
+
             if (attribute.DefinesInlineEnum() && isAnonymous) {
                 // does not work when the containing type does not have the enum definition already defined, returns string values like '.Enum' which does not compile
                 // UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
             }
 
-            SetFixedDefaultValue(attribute, propertyInfo);
-            return propertyInfo;
-        }
-
-        [Obsolete("Contains bugs for enum code generation, use " + nameof(BuildPropertyForAttribute))]
-        private ClrPropertyInfo BuildPropertyForAttributeWithInlineEnum(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew, 
-            ClrTypeInfo containingType = null)
-        {
-            string schemaName = attribute.QualifiedName.Name;
-            string schemaNs = attribute.QualifiedName.Namespace;
-
-            string propertyName = localSymbolTable.AddAttribute(attribute);
-            ClrPropertyInfo propertyInfo = new ClrPropertyInfo(propertyName, schemaNs, schemaName, GetOccurence(attribute), configSettings);
-            propertyInfo.Origin = SchemaOrigin.Attribute;
-            propertyInfo.FromBaseType = fromBaseType;
-            propertyInfo.IsNew = isNew;
-            propertyInfo.VerifyRequired = configSettings.VerifyRequired;
-
-            XmlSchemaSimpleType schemaType = attribute.AttributeSchemaType;
-            var isInlineEnum = attribute.AttributeSchemaType.IsEnum() && attribute.AttributeSchemaType.IsDerivedByRestriction() &&
-                                        ((attribute.AttributeSchemaType.Content as XmlSchemaSimpleTypeRestriction)?.Facets
-                                         .Cast<XmlSchemaObject>().Any() ?? false);
-            var isAnonymous = !attribute.AttributeSchemaType.IsGlobal() &&
-                               !attribute.AttributeSchemaType.IsBuiltInSimpleType();
-
-            var qName = schemaType.QualifiedName;
-            if (qName.IsEmpty) qName = attribute.QualifiedName;
-
-            ClrTypeReference typeRef = BuildTypeReference(schemaType, qName, isAnonymous, true);
-            if (isInlineEnum && isAnonymous) {
-                UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
-            }
-            propertyInfo.TypeReference = typeRef;
-            Debug.Assert(schemaType.Datatype != null);
             SetFixedDefaultValue(attribute, propertyInfo);
             return propertyInfo;
         }

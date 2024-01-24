@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
+using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq
 {
@@ -13,6 +14,8 @@ namespace Xml.Schema.Linq
         internal XElement containerElement;
         internal XName itemXName; //Name of head in case of substitution group
         internal XName[] namesInList;
+
+        public bool SupportsXsiNil { get; init; }
 
         protected XList(XTypedElement container, params XName[] names)
         {
@@ -26,24 +29,25 @@ namespace Xml.Schema.Linq
         {
             if (value == null)
             {
-                throw new ArgumentNullException("Argument value should not be null.");
+                return SupportsXsiNil
+                    ? EnumerateElements().FindIndex(XNil.IsXsiNil)
+                    : throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
             }
 
-            return GetIndexOf(value);
+            return EnumerateElements().FindIndex(x => IsEqual(x, value));
         }
 
         public void Insert(int index, T value)
         {
-            if (value == null)
+            if (value == null && !SupportsXsiNil)
             {
-                throw new ArgumentNullException("Argument value should not be null.");
+                throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
             }
 
-            int count = 0;
-            XElement prevElement = GetElementAt(index, out count);
+            XElement prevElement = GetElementAt(index, out int count);
             if (index < 0 || index > count)
             {
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             }
 
             if (index == count)
@@ -55,16 +59,14 @@ namespace Xml.Schema.Linq
             else
             {
                 Debug.Assert(prevElement != null);
-                XElement elementToAdd = GetElementForValue(value, true);
-                prevElement.AddBeforeSelf(elementToAdd);
+                prevElement.AddBeforeSelf(ElementFor(value, true));
             }
         }
 
         public void RemoveAt(int index)
         {
-            int count = 0;
-            XElement elementToRemove = GetElementAt(index, out count);
-            Debug.Assert(elementToRemove != null);
+            XElement elementToRemove = GetElementAt(index, out int _)
+                ?? throw new ArgumentOutOfRangeException(nameof(index));
             elementToRemove.Remove();
         }
 
@@ -72,37 +74,48 @@ namespace Xml.Schema.Linq
         {
             if (value == null)
             {
-                throw new ArgumentNullException("Argument value should not be null.");
+                if (!SupportsXsiNil)
+                {
+                    throw new ArgumentNullException("Argument value should not be null.");
+                }
+                XElement element = EnumerateElements().FirstOrDefault(XNil.IsXsiNil);
+                element?.Remove();
+                return element != null;
             }
-
-            XElement element = GetElementForValue(value, false);
-            XElement x = containerElement.Elements(element.Name).Where(e => e == element).FirstOrDefault();
-            if (x != null)
+            else
             {
-                //Found it in the list
-                element.Remove();
-                return true;
+                XElement element = ElementFor(value, false);
+                if (element != null && element.Parent == containerElement)
+                {
+                    element?.Remove();
+                    return true;
+                }
+
+                return false;
             }
-
-            return false;
         }
 
-        public virtual void Add(T value)
+        public void Add(T value)
         {
-            XElement element = GetElementForValue(value, true);
-            container.SetElement(element.Name, value, true, null);
+            if (value == null)
+            {
+                if (!SupportsXsiNil)
+                {
+                    throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
+                }
+                container.SetElement(itemXName, XNil.Value, true, null);
+            }
+            else
+            {
+                AddImpl(value);
+            }
         }
+
+        protected abstract void AddImpl(T value);
 
         public void Clear()
         {
-            ArrayList elementArray = new ArrayList();
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
-            {
-                elementArray.Add(listElementsEnumerator.Current);
-            }
-
-            foreach (XElement listElement in elementArray)
+            foreach (XElement listElement in EnumerateElements().ToList())
             {
                 listElement.Remove();
             }
@@ -112,180 +125,149 @@ namespace Xml.Schema.Linq
         {
             get
             {
-                int count = 0;
-                XElement element = GetElementAt(index, out count);
-                return GetValueForElement(element);
+                XElement element = GetElementAt(index, out int _);
+                return ValueOf(element);
             }
             set
             {
-                int count = 0;
-                XElement oldElement = GetElementAt(index, out count);
+                XElement oldElement = GetElementAt(index, out int _);
                 Debug.Assert(oldElement != null);
                 UpdateElement(oldElement, value);
             }
         }
 
-        public void CopyTo(T[] valuesArray, int arrayIndex)
+        public void CopyTo(T[] valuesArray, int index)
         {
             if (valuesArray == null)
             {
-                throw new ArgumentNullException("Argument valuesArray should not be null.");
+                throw new ArgumentNullException(nameof(valuesArray), "Argument valuesArray should not be null.");
             }
 
-            if (arrayIndex < 0)
+            if (index < 0)
             {
-                throw new ArgumentOutOfRangeException("arrayIndex");
+                throw new ArgumentOutOfRangeException(nameof(index));
             }
 
-            if (valuesArray.Rank != 1 || (arrayIndex >= valuesArray.Length))
+            if (valuesArray.Rank != 1 || (index >= valuesArray.Length))
             {
-                throw new ArgumentException("valuesArray");
+                throw new ArgumentException(nameof(valuesArray));
             }
 
-            int index = arrayIndex;
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
+            foreach (var element in EnumerateElements())
             {
                 if (index > valuesArray.Length)
                 {
-                    throw new ArgumentException("valuesArray");
+                    throw new ArgumentException(nameof(valuesArray));
                 }
 
-                valuesArray[index++] = GetValueForElement(listElementsEnumerator.Current);
+                valuesArray[index++] = ValueOf(element);
             }
         }
 
-        void ICountAndCopy.CopyTo(Array valuesArray, int arrayIndex)
+        void ICountAndCopy.CopyTo(Array valuesArray, int index)
         {
             if (valuesArray == null)
             {
-                throw new ArgumentNullException("Argument valuesArray should not be null.");
+                throw new ArgumentNullException(nameof(valuesArray), "Argument valuesArray should not be null.");
             }
 
-            if (arrayIndex < 0)
+            if (index < 0)
             {
-                throw new ArgumentOutOfRangeException("arrayIndex");
+                throw new ArgumentOutOfRangeException(nameof(index));
             }
 
-            if (valuesArray.Rank != 1 || (arrayIndex >= valuesArray.Length))
+            if (valuesArray.Rank != 1 || (index >= valuesArray.Length))
             {
-                throw new ArgumentException("valuesArray");
+                throw new ArgumentException(nameof(valuesArray));
             }
 
-            int index = arrayIndex;
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
+            foreach (var element in EnumerateElements())
             {
                 if (index > valuesArray.Length)
                 {
-                    throw new ArgumentException("valuesArray");
+                    throw new ArgumentException(nameof(valuesArray));
                 }
 
-                valuesArray.SetValue(GetValueForElement(listElementsEnumerator.Current), index++);
+                valuesArray.SetValue(ValueOf(element), index++);
             }
         }
 
+        public int Count => EnumerateElements().Count();
 
-        public int Count
-        {
-            get
-            {
-                int count = 0;
-                IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-                while (listElementsEnumerator.MoveNext())
-                {
-                    count++;
-                }
+        public bool IsReadOnly => false;
 
-                return count;
-            }
-        }
+        public bool Contains(T value) => EnumerateElements().Any(x => IsEqual(x, value));
 
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
+        public IEnumerator<T> GetEnumerator() => EnumerateValues().GetEnumerator();
 
-        public bool Contains(T value)
-        {
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
-            {
-                if (IsEqual(listElementsEnumerator.Current, value))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
-            {
-                yield return GetValueForElement(listElementsEnumerator.Current);
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         protected abstract bool IsEqual(XElement element, T value);
 
-        protected abstract XElement GetElementForValue(T value, bool createNew);
+        protected XElement ElementFor(T value, bool createNew)
+        {
+            return value != null
+                ? ElementForImpl(value, createNew)
+                : !SupportsXsiNil
+                    ? throw new ArgumentNullException(nameof(value), "Argument value should not be null.")
+                    : createNew
+                        ? XNil.Element(itemXName)
+                        : EnumerateElements().FirstOrDefault(XNil.IsXsiNil);
+        }
 
-        protected abstract T GetValueForElement(XElement element);
+        protected abstract XElement ElementForImpl(T value, bool createNew);
 
-        protected abstract void UpdateElement(XElement oldElement, T value);
+        protected T ValueOf(XElement element)
+        {
+            return element.IsXsiNil() ? default : ValueOfImpl(element);
+        }
+
+        protected abstract T ValueOfImpl(XElement element);
+
+        protected void UpdateElement(XElement element, T value)
+        {
+            if (value == null)
+            {
+                if (!SupportsXsiNil)
+                {
+                    throw new ArgumentNullException(nameof(value), "Argument value should not be null.");
+                }
+                element.SetXsiNil();
+            }
+            else
+            {
+                element.RemoveXsiNil();
+                UpdateElementImpl(element, value);
+            }
+        }
+
+        protected abstract void UpdateElementImpl(XElement oldElement, T value);
 
         protected XElement GetElementAt(int index, out int count)
         {
             count = 0;
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
+            foreach (var element in EnumerateElements())
             {
-                if (count++ == index)
-                {
-                    return listElementsEnumerator.Current;
-                }
+                if (count++ == index) return element;
             }
-
             return null;
         }
 
-        protected int GetIndexOf(T value)
-        {
-            int currentIndex = 0;
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
-            {
-                if (IsEqual(listElementsEnumerator.Current, value))
-                {
-                    return currentIndex;
-                }
+        protected IEnumerable<T> EnumerateValues()
+            => EnumerateElements().Select(ValueOf);
 
-                currentIndex++;
-            }
-
-            return -1;
-        }
-
-        protected IEnumerator<XElement> GetListElementsEnumerator()
+        protected IEnumerable<XElement> EnumerateElements()
         {
             if (container.ValidationStates == null)
             {
                 if (namesInList.Length == 1)
                 {
-                    return containerElement.Elements(itemXName).GetEnumerator();
+                    return containerElement.Elements(itemXName);
                 }
                 else
                 {
                     //Need to enumerate through all members of the subst group
-                    return new SubstitutionMembersList(container, namesInList).GetEnumerator();
+                    return new SubstitutionMembersList(container, namesInList);
                 }
             }
             else
@@ -302,18 +284,22 @@ namespace Xml.Schema.Linq
             }
         }
 
-        private IEnumerator<XElement> FSMGetEnumerator()
+        private IEnumerable<XElement> FSMGetEnumerator()
         {
             IEnumerator<XElement> enumerator = containerElement.Elements().GetEnumerator();
-            XElement elem = null;
             container.StartFsm();
-
-            do
+            while (true)
             {
-                elem = container.ExecuteFSM(enumerator, itemXName, null);
-                if (elem != null) yield return elem;
-                else yield break;
-            } while (elem != null);
+                XElement elem = container.ExecuteFSM(enumerator, itemXName, null);
+                if (elem == null) yield break;
+                yield return elem;
+            }
+        }
+
+        protected void InitializeFrom(IEnumerable<T> values)
+        {
+            Clear();
+            foreach (T value in values) Add(value);
         }
     }
 }

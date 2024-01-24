@@ -2,12 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Xml;
 using System.Xml.Schema;
-using System.Xml.Linq;
-using System.Linq;
-using System.Diagnostics;
 using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace Xml.Schema.Linq
 {
@@ -53,7 +52,7 @@ namespace Xml.Schema.Linq
 
         // Cast XTypedElement subtypes to XElement
         // GetUntyped() is preferred within XTypedElement,
-        // to avoid calling into virtual functions from within 
+        // to avoid calling into virtual functions from within
         // constructor call stacks
         public virtual XElement Untyped
         {
@@ -150,8 +149,11 @@ namespace Xml.Schema.Linq
             element.SetAttributeValue(name, stringValue);
         }
 
-        protected void SetElement(XName name, XTypedElement typedElement)
+        // Set XTypedElement or XNil.Value
+        protected void SetElement(XName name, object typedElement)
         {
+            Debug.Assert(typedElement is XTypedElement || ReferenceEquals(typedElement, XNil.Value));
+            
             if (ValidationStates == null)
             {
                 Debug.Assert(name != null);
@@ -210,8 +212,6 @@ namespace Xml.Schema.Linq
 
         internal void SetElement(XName name, object value, bool addToExisting, XmlSchemaDatatype datatype, Type elementBaseType)
         {
-            XElement parentElement = this.GetUntyped();
-            CheckXsiNil(parentElement);
             if (value == null)
             {
                 //Delete existing node
@@ -220,9 +220,11 @@ namespace Xml.Schema.Linq
             }
             else
             {
-                IXMetaData schemaMetaData = this as IXMetaData; //Get parent's content model
-                Debug.Assert(schemaMetaData != null);
-                ContentModelEntity cm = GetParentContentModel(this as IXMetaData, name);
+                XElement parentElement = GetUntyped();
+                parentElement.RemoveXsiNil();
+
+                IXMetaData schemaMetaData = this; //Get parent's content model
+                ContentModelEntity cm = GetParentContentModel(schemaMetaData, name);
 
                 if (elementBaseType == null)
                 {
@@ -232,11 +234,10 @@ namespace Xml.Schema.Linq
                     }
                 }
 
-
                 cm.AddElementToParent(name, value, parentElement, addToExisting, datatype, elementBaseType);
             }
 
-            ContentModelEntity GetParentContentModel(IXMetaData schemaMetaData, XName xname)
+            static ContentModelEntity GetParentContentModel(IXMetaData schemaMetaData, XName xname)
             {
                 Debug.Assert(schemaMetaData != null);
                 ContentModelEntity cmRoot = schemaMetaData.GetContentModel();
@@ -250,17 +251,6 @@ namespace Xml.Schema.Linq
                 {
                     return cmRoot;
                 }
-            }
-        }
-
-        private void CheckXsiNil(XElement parentElement)
-        {
-            XAttribute xsiNil = parentElement.Attributes(XName.Get("nil", XmlSchema.InstanceNamespace))
-                                             .FirstOrDefault();
-            if (xsiNil != null && xsiNil.Value == "true")
-            {
-                //Since we are adding content
-                xsiNil.Remove();
             }
         }
 

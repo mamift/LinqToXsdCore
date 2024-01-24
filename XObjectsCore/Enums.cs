@@ -156,7 +156,8 @@ namespace Xml.Schema.Linq.CodeGen
         HasDefaultValue = 0x08,
         IsNew = 0x10,
         IsList = 0x20,
-        IsNullable = 0x40, //For nullability of valueTypes
+        CanBeAbsent = 0x40,
         VerifyRequired = 0x80,
+        IsNillable = 0x100,
     }
 }

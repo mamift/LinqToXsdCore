@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
@@ -14,7 +15,7 @@ namespace Xml.Schema.Linq
             this.schemaDatatype = dataType;
         }
 
-        public override void Add(T value)
+        protected override void AddImpl(T value)
         {
             container.SetElement(itemXName, value, true, schemaDatatype);
         }
@@ -22,62 +23,60 @@ namespace Xml.Schema.Linq
         protected override bool IsEqual(XElement element, T value)
         {
             string stringValue = element.Value;
-            if (schemaDatatype.ChangeType(stringValue, typeof(T)).Equals(value))
-            {
-                return true;
-            }
-
-            return false;
+            return schemaDatatype.ChangeType(stringValue, typeof(T)).Equals(value);
         }
 
-        protected override XElement GetElementForValue(T value, bool createNew)
+        protected override XElement ElementForImpl(T value, bool createNew)
         {
-            if (createNew)
-            {
-                return new XElement(itemXName, XTypedServices.GetXmlString(value, schemaDatatype, containerElement));
-            }
-
-            XElement current;
-            IEnumerator<XElement> listElementsEnumerator = GetListElementsEnumerator();
-            while (listElementsEnumerator.MoveNext())
-            {
-                current = listElementsEnumerator.Current;
-                if (IsEqual(current, value))
-                {
-                    return current;
-                }
-            }
-
-            return null;
+            return createNew
+                ? new XElement(itemXName, XTypedServices.GetXmlString(value, schemaDatatype, containerElement))
+                : EnumerateElements().FirstOrDefault(x => IsEqual(x, value));
         }
 
-        protected override T GetValueForElement(XElement element)
+        protected override T ValueOfImpl(XElement element)
         {
             string stringValue = element.Value;
             return (T) schemaDatatype.ChangeType(stringValue, typeof(T));
         }
 
-        protected override void UpdateElement(XElement oldElement, T value)
+        protected override void UpdateElementImpl(XElement oldElement, T value)
         {
             oldElement.Value = XTypedServices.GetXmlString(value, schemaDatatype, oldElement);
         }
 
-        public static XSimpleList<T> CopyFromWithValidation(IEnumerable<T> values, XTypedElement container,
-            XName itemXName, XmlSchemaDatatype dataType, string propertyName, SimpleTypeValidator typeDef)
+        public static XSimpleList<T> CopyFromWithValidation(
+            IEnumerable<T> values, 
+            XTypedElement container,
+            XName itemXName, 
+            XmlSchemaDatatype dataType, 
+            string propertyName = null, 
+            SimpleTypeValidator typeDef = null, 
+            bool supportsXsiNil = false)
         {
-            return Initialize(container, dataType, values, itemXName);
+            var simpleList = new XSimpleList<T>(container, dataType, itemXName) { SupportsXsiNil = supportsXsiNil };
+            simpleList.InitializeFrom(values);
+            return simpleList;            
         }
 
-        public static XSimpleList<T> Initialize(XTypedElement container, XmlSchemaDatatype dataType,
-            IEnumerable<T> values, XName itemXName)
+        public static XSimpleList<T> InitializeNillable(
+            XTypedElement container, 
+            XmlSchemaDatatype dataType,
+            IEnumerable<T> values,
+            XName itemXName)
         {
-            XSimpleList<T> simpleList = new XSimpleList<T>(container, dataType, itemXName);
-            simpleList.Clear();
-            foreach (T value in values)
-            {
-                simpleList.Add(value);
-            }
+            var simpleList = new XSimpleList<T>(container, dataType, itemXName) { SupportsXsiNil = true };
+            simpleList.InitializeFrom(values);
+            return simpleList;
+        }
 
+        public static XSimpleList<T> Initialize(
+            XTypedElement container, 
+            XmlSchemaDatatype dataType,
+            IEnumerable<T> values, 
+            XName itemXName)
+        {
+            var simpleList = new XSimpleList<T>(container, dataType, itemXName);
+            simpleList.InitializeFrom(values);
             return simpleList;
         }
     }
