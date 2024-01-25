@@ -280,37 +280,10 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public override XCodeTypeReference ReturnType
-        {
-            get
-            {
-                if (returnType == null)
-                {
-                    if (IsEnum)
-                    {
-                        returnType = CreateReturnType(typeRef.ClrFullTypeName);
-
-                    }
-                    else
-                    {
-                        returnType = CreateReturnType(clrTypeName);
-                    }
-                }
-
-                return returnType;
-            }
-        }
+            => returnType ??= CreateReturnType(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
 
         public override XCodeTypeReference DefaultValueType
-        {
-            get
-            {
-                if (defaultValueType == null)
-                {
-                    defaultValueType = CreateReturnType(clrTypeName);
-                }
-                return defaultValueType;
-            }
-        }
+            => defaultValueType ??= CreateReturnType(clrTypeName);
 
         private string QualifiedType => typeRef.IsLocalType && !typeRef.IsSimpleType
             ? parentTypeFullName + "." + clrTypeName
@@ -324,7 +297,13 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (IsList || !IsRef && IsSchemaList)
             {
-                return CreateListReturnType(NullableType);
+                var listType = (IsEnum, IsNillable) switch
+                {
+                    (true, true) => typeRef.ClrFullTypeName + "?",
+                    (true, false) => typeRef.ClrFullTypeName,
+                    _ => NullableType,
+                };
+                return CreateListReturnType(listType);
             }
 
             string fullTypeName = typeName;
@@ -332,7 +311,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 //For simple types, return type is always XSD -> CLR mapping
                 fullTypeName = parentTypeFullName + "." + typeName;
-            }            
+            }
 
             if (!IsRef && IsNullable && (settings.NullableReferences || typeRef.IsValueType))
             {
@@ -648,10 +627,10 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 string valueExpr = !IsEnum || propertyOrigin == SchemaOrigin.Element
                     ? "value"
-                    : IsNullable 
+                    : IsNullable
                         ? "value?.ToString()"
                         : "value.ToString()";
-                
+
                 if (IsNillable)
                 {
                     valueExpr += " ?? XNil.Value";
