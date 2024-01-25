@@ -1,8 +1,4 @@
 # XObjectsCode
-This Shared project contains the code for the XObjects project that forms the majority of the code-base of LinqToXsd.
+This project contains the code generation logic that enables most of the functionality of the **LinqToXsd**-tool. While a separate project, it is tightly linked to **XObjectsCore** as the generated code needs to call into the **XObjectsCore**  API surface. It used to be a part of **XObjectsCore** but was split out so as to keep the **XObjectsCore** library as small as possible as it is a mandatory dependency for client libraries.
 
-## Folder layout
-* Src 
-    - Contains all the legacy code for the original LinqToXsd project from the [codeplex archive](https://archive.codeplex.com/?p=linqtoxsd). Aside from formatting changes (using ReSharper), such as splitting out all `class`es and `struct`s into their own separate files, it for the time being largely remains untouched.
-* Extensions
-	- Contains extension method classes that were added after the port to .NET Core.
+It is meant to be consumed by the **LinqToXsd** global tool and not meant to be used by users of the **LinqToXsd** tool or added to client libraries. You probably want to add **[XObjectsCore](https://www.nuget.org/packages/XObjectsCore)** to your library.
