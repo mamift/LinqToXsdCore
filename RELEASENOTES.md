@@ -4,9 +4,9 @@
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.3
 * https://www.nuget.org/packages/XObjectsCore/3.4.3
-  * This release adds support for nillable elements, (where elements may have the following attribute `xsd:nil="true"` to indicate they are of a nil value, rather than just omit the element entirely). 
-* https://www.nuget.org/packages/XObjectsCodeGen/3.2.3 (XObjectsCodeGen is used by XObjectsCore and LinqToXsdCore internally).
-  * This release of XObjectsCodeGen adds support for nillable elements described above.
+  * This release adds support for nillable elements, (where elements may have the following attribute `xsd:nil="true"` to indicate they are of nil value; which is an alternate way of modelling optional elements, rather than just omit the element entirely). See [GitHub PR60](https://github.com/mamift/LinqToXsdCore/pull/60).
+* https://www.nuget.org/packages/XObjectsCodeGen/3.2.3 (XObjectsCodeGen is an internal dependency used by XObjectsCore and LinqToXsdCore and is not meant to be used in shipping libraries).
+  * This release of XObjectsCodeGen has been updated to accommodate support for nillable elements described above.
 
 ## Version 3.4.2
 Nuget packages:
@@ -14,7 +14,7 @@ Nuget packages:
 	* Fixed a code generation bug (exhibited in XmlSpec schema (xmlspec.xsd)) when the simple type enum for xlink:type attribute was not being generated.
 	* Fixed a code generation bug whereby the wrong type name was referenced when the property name and type name were the same, and the XML schema did not have [Element Form Default="qualified"] set and the property type was reflecting an XSD union type (like the xml:lang attribute) (exhibited in 'W3C XMLSchema v1.xsd').
 	* Fixes a code generation bug with certain XName fields (that are only referenced in the static constructor of a type) were not getting created.
-	* Backported .NET 6 `DateOnly` and `TimeOnly` type serialisation for `xs:date` and `xs:time` types to .NET Standard 2.0 using [Portable.System.DateTimeOnly](https://www.nuget.org/packages/Portable.System.DateTimeOnly); there remains a .NET 6 version and a .NET Standard 2.0 version of the XObjectsCore and LinqToXsd nuget packages, but are now functionaly the same.
+	* Backported .NET 6 `DateOnly` and `TimeOnly` type serialisation for `xs:date` and `xs:time` types to .NET Standard 2.0 using [Portable.System.DateTimeOnly](https://www.nuget.org/packages/Portable.System.DateTimeOnly); there remains a .NET 6 version and a .NET Standard 2.0 version of the XObjectsCore and LinqToXsd nuget packages, but are now functionally the same.
 
 
 ## Version 3.4.1
@@ -23,7 +23,7 @@ Nuget packages:
 	* Fixes a null-reference error in the XListVisualizable which can cause debugger enumeration to fail in Visual Studio on an `XTypedElement` list.
 	* The LinqToXsd code generator tool will now filter out XSDs that target v1.1 of XML Schema as .NET only supports v1.0.
 	* Fixes a code generation bug that can be thrown in rare cases when the `xs:NCName` type is used in a schema.
-	* The code generator will now generate a `value?.ToString()` on a property value setter when the property type is nullable.
+	* The code generator will now generate a `value?.ToString()` expression on a property value setter when the property type is nullable.
 
 ## Version 3.4.0
 Nuget packages:
