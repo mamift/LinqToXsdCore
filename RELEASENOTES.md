@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.3
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.3
+* https://www.nuget.org/packages/XObjectsCore/3.4.3
+  * This release adds support for nillable elements, (where elements may have the following attribute `xsd:nil="true"` to indicate they are of a nil value, rather than just omit the element entirely). 
+* https://www.nuget.org/packages/XObjectsCodeGen/3.2.3 (XObjectsCodeGen is used by XObjectsCore and LinqToXsdCore internally).
+  * This release of XObjectsCodeGen adds support for nillable elements described above.
+
 ## Version 3.4.2
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.2
