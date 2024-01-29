@@ -1,5 +1,14 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.4
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.4
+* https://www.nuget.org/packages/XObjectsCore/3.4.4
+  * Fixes an issue wtih simple types that add restrictions to `xs:date` or `xs:time` would not work with UseDateOnly or UseTimeOnly. See [GitHub PR61](https://github.com/mamift/LinqToXsdCore/pull/61).
+  * Fixes a regression (**InvalidCastException**) when parsing `xs:date` or `xs:time` into a good old DateTime.
+* https://www.nuget.org/packages/XObjectsCodeGen/3.2.4 (XObjectsCodeGen is an internal dependency used by XObjectsCore and LinqToXsdCore and is not meant to be used in shipping libraries).
+  * Fixes an issue with generated C# model for lists of enums which does not compile because the type of the property is generated incorrectly as `List<string>` instead of `List<TEnum>`.
+
 ## Version 3.4.3
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.3
