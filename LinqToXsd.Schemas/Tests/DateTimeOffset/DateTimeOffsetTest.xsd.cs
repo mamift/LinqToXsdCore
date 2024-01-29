@@ -23,7 +23,7 @@ namespace LinqToXsd.Schemas.Test.DateTimeOffsetTest {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (edatetime)
+    /// Regular expression: (edatetime, edate, etime)
     /// </para>
     /// </summary>
     public partial class root : XTypedElement, IXMetaData {
@@ -60,7 +60,7 @@ namespace LinqToXsd.Schemas.Test.DateTimeOffsetTest {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (edatetime)
+        /// Regular expression: (edatetime, edate, etime)
         /// </para>
         /// </summary>
         public root() {
@@ -75,7 +75,7 @@ namespace LinqToXsd.Schemas.Test.DateTimeOffsetTest {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (edatetime)
+        /// Regular expression: (edatetime, edate, etime)
         /// </para>
         /// </summary>
         public virtual System.DateTimeOffset edatetime {
@@ -85,6 +85,50 @@ namespace LinqToXsd.Schemas.Test.DateTimeOffsetTest {
             }
             set {
                 this.SetElement(edatetimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName edateXName = System.Xml.Linq.XName.Get("e-date", "http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (edatetime, edate, etime)
+        /// </para>
+        /// </summary>
+        public virtual System.DateTime edate {
+            get {
+                XElement x = this.GetElement(edateXName);
+                return XTypedServices.ParseValue<System.DateTime>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date).Datatype);
+            }
+            set {
+                this.SetElement(edateXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly System.Xml.Linq.XName etimeXName = System.Xml.Linq.XName.Get("e-time", "http://linqtoxsd.schemas.org/test/datetimeoffset-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (edatetime, edate, etime)
+        /// </para>
+        /// </summary>
+        public virtual System.DateTime etime {
+            get {
+                XElement x = this.GetElement(etimeXName);
+                return XTypedServices.ParseValue<System.DateTime>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
+            }
+            set {
+                this.SetElement(etimeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time).Datatype);
             }
         }
         
@@ -114,7 +158,7 @@ namespace LinqToXsd.Schemas.Test.DateTimeOffsetTest {
         
         static root() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(edatetimeXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(edatetimeXName), new NamedContentModelEntity(edateXName), new NamedContentModelEntity(etimeXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -122,6 +166,8 @@ namespace LinqToXsd.Schemas.Test.DateTimeOffsetTest {
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(edatetimeXName, typeof(System.DateTimeOffset));
+            localElementDictionary.Add(edateXName, typeof(System.DateTime));
+            localElementDictionary.Add(etimeXName, typeof(System.DateTime));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

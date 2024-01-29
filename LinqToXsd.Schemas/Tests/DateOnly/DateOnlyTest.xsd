@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema
+<xs:schema 
     targetNamespace="http://linqtoxsd.schemas.org/test/dateonly-test.xsd"
     xmlns="http://linqtoxsd.schemas.org/test/dateonly-test.xsd"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     elementFormDefault="qualified"
 >
-  <xs:element name="root">
-	<xs:complexType>
-	    <xs:sequence>
-		  <xs:element name="e-datetime" type="xs:dateTime" />
-		  <xs:element name="e-date" type="xs:date" />
-		  <xs:element name="e-time" type="xs:time" />
-	    </xs:sequence>
-      <xs:attribute name="a-date" type="xs:date" />
-	  <xs:attribute name="a-time" type="xs:time" />
-	</xs:complexType>
-  </xs:element>
+    <xs:simpleType name="Post2kDate">
+        <xs:restriction base="xs:date">
+            <xs:minInclusive value="2000-01-01" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="HoursTime">
+        <xs:restriction base="xs:time">
+            <xs:pattern value="\d{2}:00:00" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="e-datetime" type="xs:dateTime" />
+                <xs:element name="e-date" type="xs:date" />
+                <xs:element name="e-time" type="xs:time" />
+                <xs:element name="v-date" type="Post2kDate" />
+                <xs:element name="v-time" type="HoursTime" />
+            </xs:sequence>
+            <xs:attribute name="a-date" type="xs:date" />
+            <xs:attribute name="a-time" type="xs:time" />
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
