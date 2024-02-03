@@ -16,7 +16,6 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
     <RootNamespace>LinqToXsd</RootNamespace>
-    <PackageVersion>$(Version)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
