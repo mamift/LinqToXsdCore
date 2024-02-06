@@ -100,19 +100,17 @@ namespace Xml.Schema.Linq.CodeGen
         {
             GenerateConstructorCode(property);
             property.AddToType(decl, annotations, visibility);
-            if (!declItems.hasElementWildCards) {
-                // this inner if statement checks if the type has an XName field for the property arg above
-                // and will create it if it does not exist.
-                if (property is ClrPropertyInfo prop) {
-                    bool didAddXNameFieldForProp = false;
-                    if (!decl.HasXNameFieldForProperty(property)) {
+            if (!declItems.hasElementWildCards)
+            {
+                if (property is ClrPropertyInfo prop)
+                {
+                    // Checks if the type has an XName field for the property and will create it if it does not exist.
+                    // Properties inherited don't need a declaration as there's an accessible declaration in parent class.
+                    if (!prop.FromBaseType && !decl.HasXNameFieldForProperty(property))
+                    {
                         prop.CreateXNameField(decl);
-                        didAddXNameFieldForProp = true;
-                    }
 
-                    if (didAddXNameFieldForProp) {
-                        var nowHasXNameField = decl.HasXNameFieldForProperty(prop);
-                        Debug.Assert(nowHasXNameField);
+                        Debug.Assert(decl.HasXNameFieldForProperty(prop));
                     }
                 }
                 property.AddToContentModel(contentModelExpression);
@@ -224,7 +222,7 @@ namespace Xml.Schema.Linq.CodeGen
 
     internal class DefaultPropertyBuilder : TypePropertyBuilder
     {
-        internal DefaultPropertyBuilder(CodeTypeDeclaration decl, CodeTypeDeclItems declItems, 
+        internal DefaultPropertyBuilder(CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
             GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public) : base(decl, declItems, visibility)
         {
         }

@@ -1125,7 +1125,7 @@ namespace Xml.Schema.Linq.CodeGen
             // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
             var field = new CodeMemberField("readonly System.Xml.Linq.XName", NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeXName))
             {
-                Attributes = MemberAttributes.Assembly | MemberAttributes.Static | (IsNew ? MemberAttributes.New : 0),
+                Attributes = MemberAttributes.FamilyOrAssembly | MemberAttributes.Static | (IsNew ? MemberAttributes.New : 0),
                 InitExpression = CodeDomHelper.XNameGetExpression(schemaName, propertyNs),
                 CustomAttributes = {
                     new CodeAttributeDeclaration("DebuggerBrowsable", new CodeAttributeArgument(new CodeSnippetExpression("DebuggerBrowsableState.Never"))),
