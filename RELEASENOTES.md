@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.5
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.5
+* https://www.nuget.org/packages/XObjectsCodeGen/3.2.5 (XObjectsCodeGen is an internal dependency used by LinqToXsdCore and is not meant to be used in shipping libraries).
+  * The code generator will no longer generate  static `XName` fields for inherited properties. See [GitHUb PR65](https://github.com/mamift/LinqToXsdCore/pull/65).
+
 ## Version 3.4.4
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.4
