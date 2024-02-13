@@ -1,7 +1,5 @@
 <Project>
   <PropertyGroup>
-    <Version>3.4.5</Version>
-    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
-    <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
+    <Version>3.4.4</Version>
   </PropertyGroup>
 </Project>
