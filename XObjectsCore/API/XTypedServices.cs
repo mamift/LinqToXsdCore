@@ -513,11 +513,11 @@ namespace Xml.Schema.Linq
 
         internal static T ParseValue<T>(string value, XElement element, XmlSchemaDatatype datatype)
         {
-            // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType) 
+            // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType)
             // does not support DateOnly or TimeOnly as target types (introduced later, in .NET 6.0).
             // After parsing, DateOnly and TimeOnly can be cast to DateTime (only other valid T type).
             //
-            // When parsing XmlTypeCode.DateTime, both DateTime and DateTimeOffset 
+            // When parsing XmlTypeCode.DateTime, both DateTime and DateTimeOffset
             // are supported target types for XmlDateTimeConverter.
             switch (datatype.TypeCode) {
                 case XmlTypeCode.Date when typeof(T) == typeof(DateOnly):
@@ -601,7 +601,7 @@ namespace Xml.Schema.Linq
 
                 case XmlTypeCode.AnyAtomicType when value is string str:
                     return str;
-                    
+
                 case XmlTypeCode.Date when value is DateOnly d:
                     return d.ToString("o", CultureInfo.InvariantCulture);
 
@@ -622,6 +622,7 @@ namespace Xml.Schema.Linq
             {
                 case XmlTypeCode.Date when value is DateOnly:
                 case XmlTypeCode.Time when value is TimeOnly:
+                case XmlTypeCode.DateTime when value is DateTimeOffset:
                     return;
                 default:
                     datatype.ChangeType(value, datatype.ValueType, resolver);
@@ -631,19 +632,22 @@ namespace Xml.Schema.Linq
 
         internal static object Convert(object value, XmlSchemaDatatype datatype)
         {
-            // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType) 
-            // does not support DateOnly or TimeOnly as source types (introduced later, in .NET 6.0).
             return value switch
             {
+                // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType)
+                // does not support DateOnly or TimeOnly as source types (introduced later, in .NET 6.0).
                 DateOnly d when datatype.TypeCode == XmlTypeCode.Date => d,
                 TimeOnly t when datatype.TypeCode == XmlTypeCode.Time => t,
+                // XmlDateTimeConverter always converts DateTimeOffset into DateTime,
+                // which defeats the purpose of using DateTimeOffset to control the timezone.
+                DateTimeOffset dto when datatype.TypeCode == XmlTypeCode.DateTime => dto,
                 _ => datatype.ChangeType(value, datatype.ValueType),
             };
         }
 
         internal static T Convert<T>(object value, XmlSchemaDatatype datatype)
         {
-            // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType) 
+            // XmlDateTimeConverter (used internally by XmlSchemaDatatype.ChangeType)
             // does not support DateOnly or TimeOnly as source types (introduced later, in .NET 6.0).
             return value switch
             {

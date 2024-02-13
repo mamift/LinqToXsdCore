@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.6
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.6
+* https://www.nuget.org/packages/XObjectsCore/3.4.6
+  * Fixed a bug where Timezone info was lost (conversions from DateTimeOffset to DateTime no longer occur). 
+
 ## Version 3.4.5
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.5
