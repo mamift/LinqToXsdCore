@@ -3,7 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <Description>The $(MSBuildProjectName) provides code generation facilities, and is consumed by the LinqToXsdCore command line tool; use the LinqToXsdCore tool to generate code, and link to the XObjectsCore nuget package to consume the generated code in your shipping app or library. Original Authors: Microsoft Corporation.</Description>
-    <Version>3.2.4</Version>
+    <Version>3.2.6</Version>
+    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+    <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
   </PropertyGroup>
 
   <PropertyGroup>
