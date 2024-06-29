@@ -80,6 +80,16 @@ Essentially LinqToXsd generates an in memory model of the XSD schema as opposed 
 
 To get a more technical explanation of what LinqToXsd provides, please see the [wiki](https://github.com/mamift/LinqToXsdCore/wiki).
 
+## Unsupported features compared to xsd.exe
+
+There are some things that LinqToXsd does not support compared to `xsd.exe`:
+
+* No [System.ComponentModel.DataAnnotations](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netstandard-2.0) attribute decorations.
+* No built-in [INotifyPropertyChanged](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?view=netstandard-2.1) interface implementation: this needs to be implemented on your own.
+* No selective element code generation; this tool generates code for the entire XSD, and not parts of it.
+* No legacy [LINQ to Dataset](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/linq-to-dataset) support.
+* No multi-language code generation; only supports C# code generation.
+
 ### Things not supported in this .NET Core port
 
 * No assembly generation - due to a dependency on CodeDOM, no direct code-generation (i.e. emitting .DLL files) is supported. CodeDOM for .NET Core does not support this on any platform [(even Windows)](https://github.com/dotnet/corefx/issues/12180).
