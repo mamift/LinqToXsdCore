@@ -399,6 +399,9 @@ namespace Xml.Schema.Linq
             return ParseValue<T>(attribute.Value, attribute.Parent, datatype);
         }
 
+        // Kept for backward compatibility with code generated in previous versions.
+        // Current generator does not use this method anymore, as attributes with default properties
+        // have `if (attr == null) return defaultValue` directly in getter to workaround enum parsing.
         public static T ParseValue<T>(XAttribute attribute, XmlSchemaDatatype datatype, T defaultValue)
         {
             if (attribute == null)

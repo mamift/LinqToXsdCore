@@ -12,7 +12,6 @@ public abstract class ClrBasePropertyInfo : ContentInfo
 
     protected bool hasSet;
     protected XCodeTypeReference returnType;
-    protected XCodeTypeReference defaultValueType;
     protected bool isVirtual;
     protected bool isOverride;
 
@@ -21,10 +20,9 @@ public abstract class ClrBasePropertyInfo : ContentInfo
 
     public ClrBasePropertyInfo()
     {
-        this.IsVirtual = false;
-        this.isOverride = false;
-        this.returnType = null;
-        this.defaultValueType = null;
+        IsVirtual = false;
+        isOverride = false;
+        returnType = null;
         annotations = new List<ClrAnnotation>();
     }
 
@@ -92,12 +90,6 @@ public abstract class ClrBasePropertyInfo : ContentInfo
     {
         get { return returnType; }
         set { returnType = value; }
-    }
-
-    public virtual XCodeTypeReference DefaultValueType
-    {
-        get { return defaultValueType; }
-        set { defaultValueType = value; }
     }
 
     public virtual string ClrTypeName

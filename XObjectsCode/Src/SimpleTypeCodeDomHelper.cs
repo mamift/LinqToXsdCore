@@ -405,7 +405,7 @@ namespace Xml.Schema.Linq.CodeGen
                 new CodePrimitiveExpression(value.ToString()));
         }
 
-        internal static CodeExpression CreateValueExpression(string builtInType, string strValue)
+        internal static CodeExpression CreateValueExpression(string builtInType, string strValue, bool isEnum)
         {
             int dot = builtInType.LastIndexOf('.');
             Debug.Assert(dot != -1);
@@ -415,6 +415,10 @@ namespace Xml.Schema.Linq.CodeGen
             if (localType == "String" || localType == "Object")
             {
                 return new CodePrimitiveExpression(strValue);
+            }
+            else if (isEnum)
+            {
+                return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(builtInType), strValue);
             }
             else if (localType == "Uri")
             {
@@ -426,30 +430,30 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal static CodeArrayCreateExpression CreateFixedDefaultArrayValueInit(string baseType, string value)
+        internal static CodeArrayCreateExpression CreateFixedDefaultArrayValueInit(string baseType, string value, bool isEnum)
         {
-            CodeArrayCreateExpression array = new CodeArrayCreateExpression(baseType);
+            var array = new CodeArrayCreateExpression(baseType);
             foreach (string s in value.Split(' '))
             {
-                array.Initializers.Add(CreateValueExpression(baseType, s));
+                array.Initializers.Add(CreateValueExpression(baseType, s, isEnum));
             }
 
             return array;
         }
 
-        internal static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value)
+        internal static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value, bool isEnum)
         {
             string baseType = type.BaseType;
             if (baseType.Contains("Nullable"))
             {
                 Debug.Assert(type.TypeArguments.Count == 1);
                 baseType = type.TypeArguments[0].BaseType;
-                return CreateValueExpression(baseType, value);
+                return CreateValueExpression(baseType, value, isEnum);
             }
             else if (type.ArrayRank != 0)
             {
                 baseType = type.ArrayElementType.BaseType;
-                return CreateFixedDefaultArrayValueInit(baseType, value);
+                return CreateFixedDefaultArrayValueInit(baseType, value, isEnum);
             }
             else if (baseType.Contains("List"))
             {
@@ -457,10 +461,10 @@ namespace Xml.Schema.Linq.CodeGen
                 Debug.Assert(type.TypeArguments.Count == 1);
 
                 baseType = type.TypeArguments[0].BaseType;
-                return CreateFixedDefaultArrayValueInit(baseType, value);
+                return CreateFixedDefaultArrayValueInit(baseType, value, isEnum);
             }
 
-            return CreateValueExpression(baseType, value);
+            return CreateValueExpression(baseType, value, isEnum);
         }
     }
 }
