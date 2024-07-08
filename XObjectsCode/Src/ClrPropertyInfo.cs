@@ -806,23 +806,23 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             // Fixed attributes always have the same value, whether they're present or not.
-            // Fixed elements are treated in GetElementDefaultValue, if they are present.
-            // An optional, missing element should still be interpreted as null even if it has a fixed value when present.
             if (FixedValue != null && propertyOrigin == SchemaOrigin.Attribute)
             {
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(null,
-                            NameGenerator.ChangeClrName(this.propertyName, NameOptions.MakeFixedValueField)
-                        ))
-                );
+                ReturnFixedValue(getStatements);
                 return;
             }
 
             getStatements.Add(GetValueMethodCall());
             CheckOccurrence(getStatements);
             CheckNillable(getStatements);
-            GetElementFixedOrDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
+            // Fixed elements always have the same value, _when they're present._
+            // If they're optional they can still be absent and read as null, which is handled in CheckOccurence
+            if (FixedValue != null && propertyOrigin != SchemaOrigin.Attribute)
+            {
+                ReturnFixedValue(getStatements);
+                return;
+            }
+            GetElementDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
             CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
             CodeExpression returnExp;
             if (!IsRef && typeRef.IsSimpleType)
@@ -943,32 +943,43 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private void GetElementFixedOrDefaultValue(CodeStatementCollection getStatements)
+        private void ReturnFixedValue(CodeStatementCollection getStatements)
         {
-            // Default/fixed values of attributes are already handled previously based on attribute presence
-            if (propertyOrigin == SchemaOrigin.Attribute) return;
+            getStatements.Add(
+                new CodeMethodReturnStatement(
+                    new CodeFieldReferenceExpression(
+                        null,
+                        NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField)
+                    )
+                )
+            );
+        }
 
-            var fieldNaming =
-                DefaultValue != null ? NameOptions.MakeDefaultValueField :
-                FixedValue != null ? NameOptions.MakeFixedValueField :
-                NameOptions.None;
-            if (fieldNaming == NameOptions.None) return;
+        private void GetElementDefaultValue(CodeStatementCollection getStatements)
+        {
+            // Default values of attributes are already handled previously based on attribute presence
+            if (propertyOrigin == SchemaOrigin.Attribute || DefaultValue == null) return;
 
             var x = new CodeVariableReferenceExpression("x");
 
-            // Default/fixed values only apply when element is present, if `x != null`
-            var condition = new CodeBinaryOperatorExpression(x, CodeBinaryOperatorType.IdentityInequality, new CodePrimitiveExpression(null));
-            // In addition, default value applies if element is empty, if `x != null && x.IsEmpty`
-            if (fieldNaming == NameOptions.MakeDefaultValueField)
-                condition = new(condition, CodeBinaryOperatorType.BooleanAnd, new CodeFieldReferenceExpression(x, "IsEmpty"));
-
+            // Default values apply when element is present and empty.
+            // Technically at this point x should be != null thanks to CheckOccurence but let's not crash with NRE if we're reading malformed XML.
+            // `if (x != null && x.IsEmpty) return defaultValue;`
             getStatements.Add(
                 new CodeConditionStatement(
-                    condition,
+                    new CodeBinaryOperatorExpression(
+                        new CodeBinaryOperatorExpression(
+                            x,
+                            CodeBinaryOperatorType.IdentityInequality,
+                            new CodePrimitiveExpression(null)
+                        ),
+                        CodeBinaryOperatorType.BooleanAnd,
+                        new CodeFieldReferenceExpression(x, "IsEmpty")
+                    ),
                     new CodeMethodReturnStatement(
                         new CodeFieldReferenceExpression(
                             null,
-                            NameGenerator.ChangeClrName(propertyName, fieldNaming)
+                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
                         )
                     )
                 )
