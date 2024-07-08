@@ -159,7 +159,14 @@ namespace Xml.Schema.Linq.CodeGen
 
         public override bool IsNullable
         {
-            get { return (CanBeAbsent && fixedDefaultValue == null) || IsNillable; }
+            get
+            {
+                return
+                    // Elements can be absent and must be read as null even when they have a default value
+                    // Absent attributes will take their default value when they have one
+                    (CanBeAbsent && (propertyOrigin != SchemaOrigin.Attribute || fixedDefaultValue == null))
+                    || IsNillable;
+            }
         }
 
         public bool CanBeAbsent
@@ -798,7 +805,10 @@ namespace Xml.Schema.Linq.CodeGen
                 return;
             }
 
-            if (FixedValue != null)
+            // Fixed attributes always have the same value, whether they're present or not.
+            // Fixed elements are treated in GetElementDefaultValue, if they are present.
+            // An optional, missing element should still be interpreted as null even if it has a fixed value when present.
+            if (FixedValue != null && propertyOrigin == SchemaOrigin.Attribute)
             {
                 getStatements.Add(
                     new CodeMethodReturnStatement(
@@ -812,7 +822,7 @@ namespace Xml.Schema.Linq.CodeGen
             getStatements.Add(GetValueMethodCall());
             CheckOccurrence(getStatements);
             CheckNillable(getStatements);
-            GetDefaultValue(getStatements);
+            GetElementFixedOrDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
             CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
             CodeExpression returnExp;
             if (!IsRef && typeRef.IsSimpleType)
@@ -933,28 +943,36 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private void GetDefaultValue(CodeStatementCollection getStatements)
+        private void GetElementFixedOrDefaultValue(CodeStatementCollection getStatements)
         {
-            if (DefaultValue != null && propertyOrigin != SchemaOrigin.Attribute)
-            {
-                var x = new CodeVariableReferenceExpression("x");
+            // Default/fixed values of attributes are already handled previously based on attribute presence
+            if (propertyOrigin == SchemaOrigin.Attribute) return;
 
-                getStatements.Add(
-                    new CodeConditionStatement(
-                        new CodeBinaryOperatorExpression(
-                            new CodeBinaryOperatorExpression(x, CodeBinaryOperatorType.IdentityInequality, new CodePrimitiveExpression(null)),
-                            CodeBinaryOperatorType.BooleanAnd,
-                            new CodeFieldReferenceExpression(x, "IsEmpty")
-                        ),
-                        new CodeMethodReturnStatement(
-                            new CodeFieldReferenceExpression(
-                                null,
-                                NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
-                            )
+            var fieldNaming =
+                DefaultValue != null ? NameOptions.MakeDefaultValueField :
+                FixedValue != null ? NameOptions.MakeFixedValueField :
+                NameOptions.None;
+            if (fieldNaming == NameOptions.None) return;
+
+            var x = new CodeVariableReferenceExpression("x");
+
+            // Default/fixed values only apply when element is present, if `x != null`
+            var condition = new CodeBinaryOperatorExpression(x, CodeBinaryOperatorType.IdentityInequality, new CodePrimitiveExpression(null));
+            // In addition, default value applies if element is empty, if `x != null && x.IsEmpty`
+            if (fieldNaming == NameOptions.MakeDefaultValueField)
+                condition = new(condition, CodeBinaryOperatorType.BooleanAnd, new CodeFieldReferenceExpression(x, "IsEmpty"));
+
+            getStatements.Add(
+                new CodeConditionStatement(
+                    condition,
+                    new CodeMethodReturnStatement(
+                        new CodeFieldReferenceExpression(
+                            null,
+                            NameGenerator.ChangeClrName(propertyName, fieldNaming)
                         )
                     )
-                );
-            }
+                )
+            );
         }
 
         private void AddSetStatements(CodeStatementCollection setStatements)
@@ -1202,29 +1220,55 @@ namespace Xml.Schema.Linq.CodeGen
 
         protected void AddFixedValueChecking(CodeStatementCollection setStatements)
         {
-            if (FixedValue != null)
+            if (FixedValue == null) return;
+
+            // The set value must match the property fixed value.
+
+            CodeExpression fixedValueExpr =
+                new CodeFieldReferenceExpression(null,
+                    NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField));
+
+            var valueExpr = new CodePropertySetValueReferenceExpression();
+
+            // Note the condition is opposite, because CodeDOM doesn't have unary negation...
+            // so we're doing `if (value == fixed) { /* ok */ } else throw`
+            CodeExpression condition = CodeDomHelper.CreateMethodCall(
+                fixedValueExpr,
+                Constants.EqualityCheck,
+                valueExpr);
+
+            // If the property is an optional element, setting it to null is also acceptable: it removes the element from document.
+            // So we're checking `if (value == fixed || value == null) ...`
+            // On principle, setting attributes to null can also make sense as it would remove the XAttribute from document,
+            // but that doesn't mesh well with the type system (attributes with default/fixed values are never nullable,
+            // which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
+            // This is really an edge case and can be achieved by removing the XAttribute from Untyped.
+            if (IsNullable)
             {
-                CodeExpression fixedValueExpr =
-                    new CodeFieldReferenceExpression(null,
-                        NameGenerator.ChangeClrName(this.propertyName, NameOptions.MakeFixedValueField));
-                setStatements.Add(
-                    new CodeConditionStatement(
-                        CodeDomHelper.CreateMethodCall(
-                            fixedValueExpr,
-                            Constants.EqualityCheck,
-                            new CodePropertySetValueReferenceExpression()
-                        ),
-                        new CodeStatement[] { },
-                        new CodeStatement[]
-                        {
-                            new CodeThrowExceptionStatement(
-                                new CodeObjectCreateExpression(typeof(LinqToXsdFixedValueException),
-                                    new CodePropertySetValueReferenceExpression(),
-                                    fixedValueExpr))
-                        }
+                condition = new CodeBinaryOperatorExpression(
+                    condition,
+                    CodeBinaryOperatorType.BooleanOr,
+                    new CodeBinaryOperatorExpression(
+                        valueExpr,
+                        CodeBinaryOperatorType.IdentityEquality,
+                        new CodePrimitiveExpression(null)
                     )
                 );
             }
+
+            setStatements.Add(
+                new CodeConditionStatement(
+                    condition,
+                    new CodeStatement[] { },
+                    new CodeStatement[]
+                    {
+                        new CodeThrowExceptionStatement(
+                            new CodeObjectCreateExpression(typeof(LinqToXsdFixedValueException),
+                                new CodePropertySetValueReferenceExpression(),
+                                fixedValueExpr))
+                    }
+                )
+            );
         }
     }
 }

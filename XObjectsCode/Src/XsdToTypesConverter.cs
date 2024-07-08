@@ -1195,7 +1195,11 @@ namespace Xml.Schema.Linq.CodeGen
         private void SetFixedDefaultValue(XmlSchemaElement element, ClrPropertyInfo propertyInfo)
         {
             //saves fixed/default value in the corresponding property
+
+            if ((element.FixedValue ?? element.DefaultValue) == null) return;
             //Currently only consider fixed/default values for simple types
+            if (element.ElementSchemaType is XmlSchemaComplexType) return;
+
             if (element.RefName != null && !element.RefName.IsEmpty)
             {
                 var globalEl = (XmlSchemaElement)schemas.GlobalElements[element.RefName];

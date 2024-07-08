@@ -8,6 +8,7 @@ using System.CodeDom;
 using System.Reflection;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -444,10 +445,15 @@ namespace Xml.Schema.Linq.CodeGen
         internal static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value, bool isEnum)
         {
             string baseType = type.BaseType;
-            if (baseType.Contains("Nullable"))
+            if (Regex.IsMatch(baseType, @"\bNullable\b"))
             {
                 Debug.Assert(type.TypeArguments.Count == 1);
                 baseType = type.TypeArguments[0].BaseType;
+                return CreateValueExpression(baseType, value, isEnum);
+            }
+            else if (baseType.EndsWith("?"))
+            {
+                baseType = baseType.Substring(0, baseType.Length - 1);
                 return CreateValueExpression(baseType, value, isEnum);
             }
             else if (type.ArrayRank != 0)
@@ -455,7 +461,7 @@ namespace Xml.Schema.Linq.CodeGen
                 baseType = type.ArrayElementType.BaseType;
                 return CreateFixedDefaultArrayValueInit(baseType, value, isEnum);
             }
-            else if (baseType.Contains("List"))
+            else if (Regex.IsMatch(baseType, @"\bList\b"))
             {
                 //Create sth like: new List<string>(new string[] { });
                 Debug.Assert(type.TypeArguments.Count == 1);
