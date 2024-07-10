@@ -409,9 +409,10 @@ namespace Xml.Schema.Linq.CodeGen
         internal static CodeExpression CreateValueExpression(string builtInType, string strValue, bool isEnum)
         {
             int dot = builtInType.LastIndexOf('.');
-            Debug.Assert(dot != -1);
 
-            string localType = builtInType.Substring(dot + 1);
+            string localType = dot < 0 ? builtInType : builtInType.Substring(dot + 1);
+
+            Debug.Assert(dot != -1 || isEnum);  // Enums are local types that may be simple names
 
             if (localType == "String" || localType == "Object")
             {
@@ -445,7 +446,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value, bool isEnum)
         {
             string baseType = type.BaseType;
-            if (Regex.IsMatch(baseType, @"\bNullable\b"))
+            if (Regex.IsMatch(baseType, @"\bNullable`1"))
             {
                 Debug.Assert(type.TypeArguments.Count == 1);
                 baseType = type.TypeArguments[0].BaseType;
@@ -461,7 +462,7 @@ namespace Xml.Schema.Linq.CodeGen
                 baseType = type.ArrayElementType.BaseType;
                 return CreateFixedDefaultArrayValueInit(baseType, value, isEnum);
             }
-            else if (Regex.IsMatch(baseType, @"\bList\b"))
+            else if (Regex.IsMatch(baseType, @"\bI?List`1"))
             {
                 //Create sth like: new List<string>(new string[] { });
                 Debug.Assert(type.TypeArguments.Count == 1);
