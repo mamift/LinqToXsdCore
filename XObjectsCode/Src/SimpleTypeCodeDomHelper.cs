@@ -8,6 +8,7 @@ using System.CodeDom;
 using System.Reflection;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -405,16 +406,21 @@ namespace Xml.Schema.Linq.CodeGen
                 new CodePrimitiveExpression(value.ToString()));
         }
 
-        internal static CodeExpression CreateValueExpression(string builtInType, string strValue)
+        internal static CodeExpression CreateValueExpression(string builtInType, string strValue, bool isEnum)
         {
             int dot = builtInType.LastIndexOf('.');
-            Debug.Assert(dot != -1);
 
-            string localType = builtInType.Substring(dot + 1);
+            string localType = dot < 0 ? builtInType : builtInType.Substring(dot + 1);
+
+            Debug.Assert(dot != -1 || isEnum);  // Enums are local types that may be simple names
 
             if (localType == "String" || localType == "Object")
             {
                 return new CodePrimitiveExpression(strValue);
+            }
+            else if (isEnum)
+            {
+                return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(builtInType), strValue);
             }
             else if (localType == "Uri")
             {
@@ -426,41 +432,46 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal static CodeArrayCreateExpression CreateFixedDefaultArrayValueInit(string baseType, string value)
+        internal static CodeArrayCreateExpression CreateFixedDefaultArrayValueInit(string baseType, string value, bool isEnum)
         {
-            CodeArrayCreateExpression array = new CodeArrayCreateExpression(baseType);
+            var array = new CodeArrayCreateExpression(baseType);
             foreach (string s in value.Split(' '))
             {
-                array.Initializers.Add(CreateValueExpression(baseType, s));
+                array.Initializers.Add(CreateValueExpression(baseType, s, isEnum));
             }
 
             return array;
         }
 
-        internal static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value)
+        internal static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value, bool isEnum)
         {
             string baseType = type.BaseType;
-            if (baseType.Contains("Nullable"))
+            if (Regex.IsMatch(baseType, @"\bNullable`1"))
             {
                 Debug.Assert(type.TypeArguments.Count == 1);
                 baseType = type.TypeArguments[0].BaseType;
-                return CreateValueExpression(baseType, value);
+                return CreateValueExpression(baseType, value, isEnum);
+            }
+            else if (baseType.EndsWith("?"))
+            {
+                baseType = baseType.Substring(0, baseType.Length - 1);
+                return CreateValueExpression(baseType, value, isEnum);
             }
             else if (type.ArrayRank != 0)
             {
                 baseType = type.ArrayElementType.BaseType;
-                return CreateFixedDefaultArrayValueInit(baseType, value);
+                return CreateFixedDefaultArrayValueInit(baseType, value, isEnum);
             }
-            else if (baseType.Contains("List"))
+            else if (Regex.IsMatch(baseType, @"\bI?List`1"))
             {
                 //Create sth like: new List<string>(new string[] { });
                 Debug.Assert(type.TypeArguments.Count == 1);
 
                 baseType = type.TypeArguments[0].BaseType;
-                return CreateFixedDefaultArrayValueInit(baseType, value);
+                return CreateFixedDefaultArrayValueInit(baseType, value, isEnum);
             }
 
-            return CreateValueExpression(baseType, value);
+            return CreateValueExpression(baseType, value, isEnum);
         }
     }
 }

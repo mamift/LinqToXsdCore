@@ -37,7 +37,6 @@ namespace Xml.Schema.Linq.CodeGen
             this.schemaName = schemaName;
             this.hasSet = true;
             this.returnType = null;
-            this.defaultValueType = null;
             this.clrTypeName = null;
             this.occursInSchema = occursInSchema;
             if (this.occursInSchema > Occurs.ZeroOrOne)
@@ -160,7 +159,14 @@ namespace Xml.Schema.Linq.CodeGen
 
         public override bool IsNullable
         {
-            get { return (CanBeAbsent && fixedDefaultValue == null) || IsNillable; }
+            get
+            {
+                return
+                    // Elements can be absent and must be read as null even when they have a default value
+                    // Absent attributes will take their default value when they have one
+                    (CanBeAbsent && (propertyOrigin != SchemaOrigin.Attribute || fixedDefaultValue == null))
+                    || IsNillable;
+            }
         }
 
         public bool CanBeAbsent
@@ -281,9 +287,6 @@ namespace Xml.Schema.Linq.CodeGen
 
         public override XCodeTypeReference ReturnType
             => returnType ??= CreateReturnType(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
-
-        public override XCodeTypeReference DefaultValueType
-            => defaultValueType ??= CreateReturnType(clrTypeName);
 
         private string QualifiedType => typeRef.IsLocalType && !typeRef.IsSimpleType
             ? parentTypeFullName + "." + clrTypeName
@@ -802,27 +805,30 @@ namespace Xml.Schema.Linq.CodeGen
                 return;
             }
 
-            CodeExpression returnExp = null;
-
-            if (FixedValue != null)
+            // Fixed attributes always have the same value, whether they're present or not.
+            if (FixedValue != null && propertyOrigin == SchemaOrigin.Attribute)
             {
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(null,
-                            NameGenerator.ChangeClrName(this.propertyName, NameOptions.MakeFixedValueField)
-                        ))
-                );
+                ReturnFixedValue(getStatements);
                 return;
             }
 
             getStatements.Add(GetValueMethodCall());
             CheckOccurrence(getStatements);
             CheckNillable(getStatements);
+            // Fixed elements always have the same value, _when they're present._
+            // If they're optional they can still be absent and read as null, which is handled in CheckOccurence
+            if (FixedValue != null && propertyOrigin != SchemaOrigin.Attribute)
+            {
+                ReturnFixedValue(getStatements);
+                return;
+            }
+            GetElementDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
             CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
+            CodeExpression returnExp;
             if (!IsRef && typeRef.IsSimpleType)
             {
                 //for referencing properties, directly create the object of referenced type
-                CodeTypeReference parseType = DefaultValueType;
+                CodeTypeReference parseType = ReturnType;
                 if (typeRef.IsValueType && IsNullable)
                 {
                     parseType = new CodeTypeReference(clrTypeName);
@@ -862,15 +868,7 @@ namespace Xml.Schema.Linq.CodeGen
                         returnValueExp,
                         simpleTypeExpression);
 
-                    if (DefaultValue != null)
-                    {
-                        ((CodeMethodInvokeExpression) returnExp).Parameters.Add(
-                            new CodeFieldReferenceExpression(null,
-                                NameGenerator.ChangeClrName(this.propertyName,
-                                    NameOptions.MakeDefaultValueField)));
-                    }
-
-                    if (this.IsEnum)
+                    if (IsEnum)
                     {
                         // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
                         returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.ClrFullTypeName, returnExp);
@@ -889,11 +887,25 @@ namespace Xml.Schema.Linq.CodeGen
         {
             Debug.Assert(!this.IsList);
             CodeStatement returnStatement = null;
-            if (CanBeAbsent && DefaultValue == null)
+            if (CanBeAbsent)
             {
-                // For value types, this is needed to return T?, since ParseValue return T.
-                // It's not mandatory for ref types but it's more consistent and performant to do it always.
-                returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
+                // Absent attributes return their default value (if any).
+                // Note that absent elements return null, only empty elements return their default value (per xsd specs).
+                if (DefaultValue != null && propertyOrigin == SchemaOrigin.Attribute)
+                {
+                    returnStatement = new CodeMethodReturnStatement(
+                        new CodeFieldReferenceExpression(
+                            null,
+                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
+                        )
+                    );
+                }
+                else
+                {
+                    // For value types, this is needed to return T?, since ParseValue return T.
+                    // It's not mandatory for ref types but it's more consistent and performant to do it always.
+                    returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
+                }
             }
             else if (VerifyRequired)
             {
@@ -929,6 +941,49 @@ namespace Xml.Schema.Linq.CodeGen
                     )
                 );
             }
+        }
+
+        private void ReturnFixedValue(CodeStatementCollection getStatements)
+        {
+            getStatements.Add(
+                new CodeMethodReturnStatement(
+                    new CodeFieldReferenceExpression(
+                        null,
+                        NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField)
+                    )
+                )
+            );
+        }
+
+        private void GetElementDefaultValue(CodeStatementCollection getStatements)
+        {
+            // Default values of attributes are already handled previously based on attribute presence
+            if (propertyOrigin == SchemaOrigin.Attribute || DefaultValue == null) return;
+
+            var x = new CodeVariableReferenceExpression("x");
+
+            // Default values apply when element is present and empty.
+            // Technically at this point x should be != null thanks to CheckOccurence but let's not crash with NRE if we're reading malformed XML.
+            // `if (x != null && x.IsEmpty) return defaultValue;`
+            getStatements.Add(
+                new CodeConditionStatement(
+                    new CodeBinaryOperatorExpression(
+                        new CodeBinaryOperatorExpression(
+                            x,
+                            CodeBinaryOperatorType.IdentityInequality,
+                            new CodePrimitiveExpression(null)
+                        ),
+                        CodeBinaryOperatorType.BooleanAnd,
+                        new CodeFieldReferenceExpression(x, "IsEmpty")
+                    ),
+                    new CodeMethodReturnStatement(
+                        new CodeFieldReferenceExpression(
+                            null,
+                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
+                        )
+                    )
+                )
+            );
         }
 
         private void AddSetStatements(CodeStatementCollection setStatements)
@@ -1149,83 +1204,82 @@ namespace Xml.Schema.Linq.CodeGen
 
         protected void CreateFixedDefaultValue(CodeTypeDeclaration typeDecl)
         {
-            if (fixedDefaultValue != null)
-            {
-                //Add Fixed/Default value wrapping field
-                CodeMemberField fixedOrDefaultField = null;
-                CodeTypeReference returnType = DefaultValueType;
-                if (this.unionDefaultType != null)
-                {
-                    returnType = new CodeTypeReference(unionDefaultType.ToString());
-                }
+            if (fixedDefaultValue == null) return;
+            // Add Fixed/Default value wrapping field
 
-                if (FixedValue != null)
-                {
-                    fixedOrDefaultField = new CodeMemberField(returnType,
-                        NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeFixedValueField));
-                }
-                else // if (DefaultValue != null)
-                {
-                    fixedOrDefaultField = new CodeMemberField(returnType,
-                        NameGenerator.ChangeClrName(PropertyName, NameOptions.MakeDefaultValueField));
-                }
+            CodeTypeReference returnType = unionDefaultType != null
+                ? new CodeTypeReference(unionDefaultType.ToString())
+                : ReturnType;
 
-                CodeDomHelper.AddBrowseNever(fixedOrDefaultField);
-                fixedOrDefaultField.Attributes = (fixedOrDefaultField.Attributes & ~MemberAttributes.AccessMask &
-                                                  ~MemberAttributes.ScopeMask)
-                                                 | MemberAttributes.Private | MemberAttributes.Static;
+            var fieldName = NameGenerator.ChangeClrName(
+                PropertyName,
+                FixedValue != null ? NameOptions.MakeFixedValueField : NameOptions.MakeDefaultValueField /* DefaultValue != null */);
 
-                fixedOrDefaultField.InitExpression =
-                    SimpleTypeCodeDomHelper.CreateFixedDefaultValueExpression(returnType, fixedDefaultValue);
-                typeDecl.Members.Add(fixedOrDefaultField);
-            }
+            var fixedOrDefaultField = new CodeMemberField(returnType, fieldName);
+            CodeDomHelper.AddBrowseNever(fixedOrDefaultField);
+
+            fixedOrDefaultField.Attributes =
+                (fixedOrDefaultField.Attributes & ~MemberAttributes.AccessMask & ~MemberAttributes.ScopeMask)
+                | MemberAttributes.Private
+                | MemberAttributes.Static;
+
+            fixedOrDefaultField.InitExpression =
+                SimpleTypeCodeDomHelper.CreateFixedDefaultValueExpression(returnType, fixedDefaultValue, IsEnum);
+
+            typeDecl.Members.Add(fixedOrDefaultField);
         }
 
         protected void AddFixedValueChecking(CodeStatementCollection setStatements)
         {
-            if (FixedValue != null)
+            if (FixedValue == null) return;
+
+            // The set value must match the property fixed value.
+
+            CodeExpression fixedValueExpr =
+                new CodeFieldReferenceExpression(null,
+                    NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField));
+
+            var valueExpr = new CodePropertySetValueReferenceExpression();
+
+            // Note the condition is opposite, because CodeDOM doesn't have unary negation...
+            // so we're doing `if (value == fixed) { /* ok */ } else throw`
+            CodeExpression condition = CodeDomHelper.CreateMethodCall(
+                fixedValueExpr,
+                Constants.EqualityCheck,
+                valueExpr);
+
+            // If the property is an optional element, setting it to null is also acceptable: it removes the element from document.
+            // So we're checking `if (value == fixed || value == null) ...`
+            // On principle, setting attributes to null can also make sense as it would remove the XAttribute from document,
+            // but that doesn't mesh well with the type system (attributes with default/fixed values are never nullable,
+            // which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
+            // This is really an edge case and can be achieved by removing the XAttribute from Untyped.
+            if (IsNullable)
             {
-                CodeExpression fixedValueExpr =
-                    new CodeFieldReferenceExpression(null,
-                        NameGenerator.ChangeClrName(this.propertyName, NameOptions.MakeFixedValueField));
-                setStatements.Add(
-                    new CodeConditionStatement(
-                        CodeDomHelper.CreateMethodCall(
-                            new CodePropertySetValueReferenceExpression(),
-                            Constants.EqualityCheck,
-                            fixedValueExpr
-                        ),
-                        new CodeStatement[] { },
-                        new CodeStatement[]
-                        {
-                            new CodeThrowExceptionStatement(
-                                new CodeObjectCreateExpression(typeof(LinqToXsdFixedValueException),
-                                    new CodePropertySetValueReferenceExpression(),
-                                    fixedValueExpr))
-                        }
+                condition = new CodeBinaryOperatorExpression(
+                    condition,
+                    CodeBinaryOperatorType.BooleanOr,
+                    new CodeBinaryOperatorExpression(
+                        valueExpr,
+                        CodeBinaryOperatorType.IdentityEquality,
+                        new CodePrimitiveExpression(null)
                     )
                 );
             }
-        }
 
-        public virtual void InsertDefaultFixedValueInDefaultCtor(CodeConstructor ctor)
-        {
-            if (this.FixedValue != null)
-            {
-                ctor.Statements.Add(
-                    new CodeAssignStatement(
-                        CodeDomHelper.CreateFieldReference(null, propertyName),
-                        CodeDomHelper.CreateFieldReference(null,
-                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField))));
-            }
-            else if (DefaultValue != null)
-            {
-                ctor.Statements.Add(
-                    new CodeAssignStatement(
-                        CodeDomHelper.CreateFieldReference(null, propertyName),
-                        CodeDomHelper.CreateFieldReference(null,
-                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField))));
-            }
+            setStatements.Add(
+                new CodeConditionStatement(
+                    condition,
+                    new CodeStatement[] { },
+                    new CodeStatement[]
+                    {
+                        new CodeThrowExceptionStatement(
+                            new CodeObjectCreateExpression(typeof(LinqToXsdFixedValueException),
+                                new CodePropertySetValueReferenceExpression(),
+                                fixedValueExpr))
+                    }
+                )
+            );
         }
     }
 }

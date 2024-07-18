@@ -32,6 +32,24 @@
       "commandLineArgs": "gen \"Microsoft.Search.Query.xsd\" -a",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\Microsoft Search",
       "hotReloadEnabled": false
+    },
+    "AIXM": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"AIXM_Features.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\AIXM\\aixm-5.1.1",
+      "hotReloadEnabled": false
+    },
+    "Pubmed": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"efetch-pubmed.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Pubmed",
+      "hotReloadEnabled": false
+    },
+    "Windows": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"windowsTaskSched.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Windows",
+      "hotReloadEnabled": false
     }
   }
 }

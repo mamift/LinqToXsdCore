@@ -985,7 +985,7 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.ClrNamespace = clrNs;
             propertyInfo.IsNillable = elem.IsNillable;
 
-            //SetFixedDefaultValue(elem, propertyInfo);
+            SetFixedDefaultValue(elem, propertyInfo);
 
             if (substitutionMembers != null)
             {
@@ -1188,6 +1188,41 @@ namespace Xml.Schema.Linq.CodeGen
                     propertyInfo.unionDefaultType = attribute
                                                     .AttributeSchemaType.Datatype
                                                     .ParseValue(value, new NameTable(), null).GetType();
+                }
+            }
+        }
+
+        private void SetFixedDefaultValue(XmlSchemaElement element, ClrPropertyInfo propertyInfo)
+        {
+            //saves fixed/default value in the corresponding property
+
+            if ((element.FixedValue ?? element.DefaultValue) == null) return;
+            //Currently only consider fixed/default values for simple types
+            if (element.ElementSchemaType is XmlSchemaComplexType) return;
+
+            if (element.RefName != null && !element.RefName.IsEmpty)
+            {
+                var globalEl = (XmlSchemaElement)schemas.GlobalElements[element.RefName];
+                propertyInfo.FixedValue = globalEl.FixedValue;
+                propertyInfo.DefaultValue = globalEl.DefaultValue;
+            }
+            else
+            {
+                propertyInfo.FixedValue = element.FixedValue;
+                propertyInfo.DefaultValue = element.DefaultValue;
+            }
+
+            if (element.ElementSchemaType.DerivedBy == XmlSchemaDerivationMethod.Union)
+            {
+                string value = propertyInfo.FixedValue;
+                if (value == null)
+                    value = propertyInfo.DefaultValue;
+                if (value != null)
+                {
+                    propertyInfo.unionDefaultType = element
+                        .ElementSchemaType.Datatype
+                        .ParseValue(value, new NameTable(), null)
+                        .GetType();
                 }
             }
         }
