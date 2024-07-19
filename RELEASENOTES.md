@@ -4,7 +4,7 @@
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.7
 * https://www.nuget.org/packages/XObjectsCore/3.4.7
-  * Fixed a bug with fixed enum values being generated as string, resulting in uncompilable code
+  * Fixed a bug with fixed enum values being generated as string, resulting in uncompilable code, see [#68](https://github.com/mamift/LinqToXsdCore/issues/68).
 
 ## Version 3.4.6
 Nuget packages:
