@@ -72,6 +72,8 @@ Even if there isn't a native XSD, you can infer an XSD from an existing XML file
 
 ### How does this compare to xsd.exe?
 
+The first most important difference is that `xsd.exe` will generate code  that leverages the old-school [XmlDocument](https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=netstandard-2.1) API. **LinqToXsdCore** will generate code that uses the newer [XDocument](https://learn.microsoft.com/en-us/dotnet/api/system.xml.linq.xdocument?view=netstandard-2.1)-based API under the `System.Xml.Linq` namespace.
+
 LinqToXsd, ends up providing something very similar to the C# code-generation facilities that [`xsd.exe`](https://docs.microsoft.com/en-us/dotnet/standard/serialization/xml-schema-definition-tool-xsd-exe) provides. The main difference between the two is that LinqToXsd takes a code-generation, in-memory model and LINQ-only approach where as `xsd.exe` provides several legacy facilities such as XDR to XSD, XSD to [DataSet](https://docs.microsoft.com/en-us/dotnet/api/system.data.dataset), direct assembly generation, and can even do the reverse of what LinqToXsd does and generate an XSD from CLR types.
 
 LinqToXsd also tries very closely to model XSD constraints and compositors (sequence, choice, all, substitution groups) and user defined types as much as possible, including simple and complex types, both named and anonymous. A key distinction is that LinqToXsd models XML elements and types with generated C# classes to build 'XML Objects', transposing XSD semantics in a CLR, object-oriented way. These XML objects inherit from the base class `XTypedElement`. 
