@@ -1,0 +1,2130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mif="urn:hl7-org:v3/mif" targetNamespace="urn:hl7-org:v3" xmlns="urn:hl7-org:v3">
+   <xsd:annotation>
+      <xsd:documentation> $Id: Vocabulary.xml,v 1.1<xsd:complexType>
+         <xsd:choice minOccurs="0">
+            <xsd:group ref="Organization"/>
+         </xsd:choice>
+         <xsd:attribute name="nullFlavor" type="NullFlavor" use="optional"/>
+      </xsd:complexType>05/08/25 11:33:46 mcraig Exp $ 
+RoseTree XML to Schema: $Id: VocabXMLtoXSD.xsl,v 1.6 2005/05/24 00:14:18 lmckenzi Exp $</xsd:documentation>
+   </xsd:annotation>
+   <xsd:include schemaLocation="datatypes.xsd"/>
+   <xsd:simpleType name="Classes">
+      <xsd:restriction base="cs"/>
+   </xsd:simpleType>
+   <xsd:annotation>
+      <xsd:documentation>The following types are used internally in data types</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType name="AddressPartType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10642 (C-0-D10642-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="AdditionalLocator DeliveryAddressLine StreetAddressLine">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CAR"/>
+               <xsd:enumeration value="CEN"/>
+               <xsd:enumeration value="CNT"/>
+               <xsd:enumeration value="CPA"/>
+               <xsd:enumeration value="CTY"/>
+               <xsd:enumeration value="DEL"/>
+               <xsd:enumeration value="POB"/>
+               <xsd:enumeration value="PRE"/>
+               <xsd:enumeration value="STA"/>
+               <xsd:enumeration value="ZIP"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="AdditionalLocator">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10651 (C-0-D10642-V10651-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ADL"/>
+         <xsd:enumeration value="UNID"/>
+         <xsd:enumeration value="UNIT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="DeliveryAddressLine">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V17887 (C-0-D10642-V17887-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DAL"/>
+         <xsd:enumeration value="DINST"/>
+         <xsd:enumeration value="DINSTA"/>
+         <xsd:enumeration value="DINSTQ"/>
+         <xsd:enumeration value="DMOD"/>
+         <xsd:enumeration value="DMODID"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="StreetAddressLine">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V14822 (C-0-D10642-V14822-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="BuildingNumber StreetName">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="SAL"/>
+               <xsd:enumeration value="DIR"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="BuildingNumber">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10649 (C-0-D10642-V14822-V10649-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="BNR"/>
+         <xsd:enumeration value="BNN"/>
+         <xsd:enumeration value="BNS"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="StreetName">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10648 (C-0-D10642-V14822-V10648-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="STR"/>
+         <xsd:enumeration value="STB"/>
+         <xsd:enumeration value="STTYP"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="CalendarCycle">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10684 (C-0-D10684-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="CalendarCycleOneLetter CalendarCycleTwoLetter"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="CalendarCycleOneLetter">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10701 (C-0-D10684-V10701-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="D"/>
+         <xsd:enumeration value="H"/>
+         <xsd:enumeration value="J"/>
+         <xsd:enumeration value="M"/>
+         <xsd:enumeration value="N"/>
+         <xsd:enumeration value="S"/>
+         <xsd:enumeration value="W"/>
+         <xsd:enumeration value="Y"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="CalendarCycleTwoLetter">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10685 (C-0-D10684-V10685-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="GregorianCalendarCycle">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CD"/>
+               <xsd:enumeration value="CH"/>
+               <xsd:enumeration value="CM"/>
+               <xsd:enumeration value="CN"/>
+               <xsd:enumeration value="CS"/>
+               <xsd:enumeration value="CW"/>
+               <xsd:enumeration value="CY"/>
+               <xsd:enumeration value="DM"/>
+               <xsd:enumeration value="DW"/>
+               <xsd:enumeration value="DY"/>
+               <xsd:enumeration value="HD"/>
+               <xsd:enumeration value="MY"/>
+               <xsd:enumeration value="NH"/>
+               <xsd:enumeration value="SN"/>
+               <xsd:enumeration value="WY"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="GregorianCalendarCycle">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10758 (C-0-D10684-V10685-V10758-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="CompressionAlgorithm">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10620 (C-0-D10620-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DF"/>
+         <xsd:enumeration value="GZ"/>
+         <xsd:enumeration value="Z"/>
+         <xsd:enumeration value="ZL"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="Currency">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D17388 (C-0-D17388-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ARS"/>
+         <xsd:enumeration value="AUD"/>
+         <xsd:enumeration value="BRL"/>
+         <xsd:enumeration value="CAD"/>
+         <xsd:enumeration value="CHF"/>
+         <xsd:enumeration value="CLF"/>
+         <xsd:enumeration value="CNY"/>
+         <xsd:enumeration value="DEM"/>
+         <xsd:enumeration value="ESP"/>
+         <xsd:enumeration value="EUR"/>
+         <xsd:enumeration value="FIM"/>
+         <xsd:enumeration value="FRF"/>
+         <xsd:enumeration value="GBP"/>
+         <xsd:enumeration value="ILS"/>
+         <xsd:enumeration value="INR"/>
+         <xsd:enumeration value="JPY"/>
+         <xsd:enumeration value="KRW"/>
+         <xsd:enumeration value="MXN"/>
+         <xsd:enumeration value="NLG"/>
+         <xsd:enumeration value="NZD"/>
+         <xsd:enumeration value="PHP"/>
+         <xsd:enumeration value="RUR"/>
+         <xsd:enumeration value="THB"/>
+         <xsd:enumeration value="TRL"/>
+         <xsd:enumeration value="TWD"/>
+         <xsd:enumeration value="USD"/>
+         <xsd:enumeration value="ZAR"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityNamePartQualifier">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D15888 (C-0-D15888-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="OrganizationNamePartQualifier PersonNamePartQualifier"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="OrganizationNamePartQualifier">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V15889 (C-0-D15888-V15889-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="LS"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="PersonNamePartQualifier">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10659 (C-0-D15888-V10659-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="PersonNamePartAffixTypes PersonNamePartChangeQualifier PersonNamePartMiscQualifier">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="IN"/>
+               <xsd:enumeration value="TITLE"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="PersonNamePartAffixTypes">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10666 (C-0-D15888-V10659-V10666-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AC"/>
+         <xsd:enumeration value="NB"/>
+         <xsd:enumeration value="PR"/>
+         <xsd:enumeration value="VV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="PersonNamePartChangeQualifier">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10660 (C-0-D15888-V10659-V10660-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AD"/>
+         <xsd:enumeration value="BR"/>
+         <xsd:enumeration value="SP"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="PersonNamePartMiscQualifier">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10671 (C-0-D15888-V10659-V10671-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="CL"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityNamePartType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D15880 (C-0-D15880-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="x_OrganizationNamePartType x_PersonNamePartType">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="DEL"/>
+               <xsd:enumeration value="FAM"/>
+               <xsd:enumeration value="GIV"/>
+               <xsd:enumeration value="PFX"/>
+               <xsd:enumeration value="SFX"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_OrganizationNamePartType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V15881 (C-0-D15880-V15881-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DEL"/>
+         <xsd:enumeration value="PFX"/>
+         <xsd:enumeration value="SFX"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_PersonNamePartType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10653 (C-0-D15880-V10653-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DEL"/>
+         <xsd:enumeration value="FAM"/>
+         <xsd:enumeration value="GIV"/>
+         <xsd:enumeration value="PFX"/>
+         <xsd:enumeration value="SFX"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityNameUse">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D15913 (C-0-D15913-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityNameSearchUse NameRepresentationUse OrganizationNameUse PersonNameUse">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="C"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="OrganizationNameUse">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V15914 (C-0-D15913-V15914-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityNameSearchUse NameRepresentationUse">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="C"/>
+               <xsd:enumeration value="L"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="PersonNameUse">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V200 (C-0-D15913-V200-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityNameSearchUse NamePseudonymUse NameRepresentationUse">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="A"/>
+               <xsd:enumeration value="ASGN"/>
+               <xsd:enumeration value="C"/>
+               <xsd:enumeration value="I"/>
+               <xsd:enumeration value="L"/>
+               <xsd:enumeration value="R"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityNameSearchUse">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19619 (C-0-D15913-V200-V19619-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SRCH"/>
+         <xsd:enumeration value="PHON"/>
+         <xsd:enumeration value="SNDX"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="NamePseudonymUse">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19591 (C-0-D15913-V200-V19591-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="P"/>
+         <xsd:enumeration value="A"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="IntegrityCheckAlgorithm">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D17385 (C-0-D17385-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SHA-1"/>
+         <xsd:enumeration value="SHA-256"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="MediaType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D14824 (C-0-D14824-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ApplicationMediaType AudioMediaType ImageMediaType ModelMediaType MultipartMediaType TextMediaType VideoMediaType"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="ApplicationMediaType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14832 (C-0-D14824-V14832-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="application/dicom"/>
+         <xsd:enumeration value="application/msword"/>
+         <xsd:enumeration value="application/pdf"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="AudioMediaType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14835 (C-0-D14824-V14835-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="audio/basic"/>
+         <xsd:enumeration value="audio/k32adpcm"/>
+         <xsd:enumeration value="audio/mpeg"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ImageMediaType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14839 (C-0-D14824-V14839-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="image/g3fax"/>
+         <xsd:enumeration value="image/gif"/>
+         <xsd:enumeration value="image/jpeg"/>
+         <xsd:enumeration value="image/png"/>
+         <xsd:enumeration value="image/tiff"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ModelMediaType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14848 (C-0-D14824-V14848-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="model/vrml"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="MultipartMediaType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14850 (C-0-D14824-V14850-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="multipart/x-hl7-cda-level1"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="TextMediaType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14825 (C-0-D14824-V14825-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="text/html"/>
+         <xsd:enumeration value="text/plain"/>
+         <xsd:enumeration value="text/rtf"/>
+         <xsd:enumeration value="text/sgml"/>
+         <xsd:enumeration value="text/x-hl7-ft"/>
+         <xsd:enumeration value="text/xml"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="VideoMediaType">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14845 (C-0-D14824-V14845-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="video/mpeg"/>
+         <xsd:enumeration value="video/x-avi"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="PostalAddressUse">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10637 (C-0-D10637-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="AddressUse NameRepresentationUse">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="PHYS"/>
+               <xsd:enumeration value="PST"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="NameRepresentationUse">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V17860 (C-0-D10637-V17860-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ABC"/>
+         <xsd:enumeration value="IDE"/>
+         <xsd:enumeration value="SYL"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ProbabilityDistributionType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10747 (C-0-D10747-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="B"/>
+         <xsd:enumeration value="E"/>
+         <xsd:enumeration value="F"/>
+         <xsd:enumeration value="G"/>
+         <xsd:enumeration value="LN"/>
+         <xsd:enumeration value="N"/>
+         <xsd:enumeration value="T"/>
+         <xsd:enumeration value="U"/>
+         <xsd:enumeration value="X2"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="SetOperator">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D17416 (C-0-D17416-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="A"/>
+         <xsd:enumeration value="E"/>
+         <xsd:enumeration value="H"/>
+         <xsd:enumeration value="I"/>
+         <xsd:enumeration value="P"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="TelecommunicationAddressUse">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D201 (C-0-D201-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="AddressUse">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="AS"/>
+               <xsd:enumeration value="EC"/>
+               <xsd:enumeration value="MC"/>
+               <xsd:enumeration value="PG"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="AddressUse">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V190 (C-0-D201-V190-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="HomeAddressUse WorkPlaceAddressUse">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="BAD"/>
+               <xsd:enumeration value="TMP"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="HomeAddressUse">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10628 (C-0-D201-V190-V10628-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="H"/>
+         <xsd:enumeration value="HP"/>
+         <xsd:enumeration value="HV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="WorkPlaceAddressUse">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19613 (C-0-D201-V190-V19613-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="WP"/>
+         <xsd:enumeration value="DIR"/>
+         <xsd:enumeration value="PUB"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="TimingEvent">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10706 (C-0-D10706-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AC"/>
+         <xsd:enumeration value="ACD"/>
+         <xsd:enumeration value="ACM"/>
+         <xsd:enumeration value="ACV"/>
+         <xsd:enumeration value="HS"/>
+         <xsd:enumeration value="IC"/>
+         <xsd:enumeration value="ICD"/>
+         <xsd:enumeration value="ICM"/>
+         <xsd:enumeration value="ICV"/>
+         <xsd:enumeration value="PC"/>
+         <xsd:enumeration value="PCD"/>
+         <xsd:enumeration value="PCM"/>
+         <xsd:enumeration value="PCV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="URLScheme">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D14866 (C-0-D14866-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="fax"/>
+         <!--<xsd:enumeration value="file"/>-->
+         <!--<xsd:enumeration value="ftp"/>-->
+         <xsd:enumeration value="http"/>
+         <xsd:enumeration value="mailto"/>
+         <!--<xsd:enumeration value="mllp"/>-->
+         <!--<xsd:enumeration value="modem"/>-->
+         <!--<xsd:enumeration value="nfs"/>-->
+         <xsd:enumeration value="tel"/>
+         <!--<xsd:enumeration value="telnet"/>-->
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:annotation>
+      <xsd:documentation>The following types are used for structural RIM attributes</xsd:documentation>
+   </xsd:annotation>
+   <xsd:simpleType name="ActClass">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D11527 (C-0-D11527-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClassRoot"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassRoot">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V13856 (C-0-D11527-V13856-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClassContract ActClassControlAct ActClassObservation ActClassSupply ActContainer x_ActClassDocumentEntryAct x_ActClassDocumentEntryOrganizer">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="ACT"/>
+               <xsd:enumeration value="ACCM"/>
+               <xsd:enumeration value="ACCT"/>
+               <xsd:enumeration value="ACSN"/>
+               <xsd:enumeration value="ADJUD"/>
+               <xsd:enumeration value="CONS"/>
+               <xsd:enumeration value="CONTREG"/>
+               <xsd:enumeration value="CTTEVENT"/>
+               <xsd:enumeration value="DISPACT"/>
+               <xsd:enumeration value="ENC"/>
+               <xsd:enumeration value="INC"/>
+               <xsd:enumeration value="INFRM"/>
+               <xsd:enumeration value="INVE"/>
+               <xsd:enumeration value="LIST"/>
+               <xsd:enumeration value="MPROT"/>
+               <xsd:enumeration value="PCPR"/>
+               <xsd:enumeration value="PROC"/>
+               <xsd:enumeration value="REG"/>
+               <xsd:enumeration value="REV"/>
+               <xsd:enumeration value="SBADM"/>
+               <xsd:enumeration value="SPCTRT"/>
+               <xsd:enumeration value="SUBST"/>
+               <xsd:enumeration value="TRNS"/>
+               <xsd:enumeration value="VERIF"/>
+               <xsd:enumeration value="XACT"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassContract">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V14002 (C-0-D11527-V13856-V14002-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClassFinancialContract">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CNTRCT"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassFinancialContract">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V14003 (C-0-D11527-V13856-V14002-V14003-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="FCNTRCT"/>
+         <xsd:enumeration value="COV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassControlAct">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11534 (C-0-D11527-V13856-V11534-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="CACT"/>
+         <xsd:enumeration value="ACTN"/>
+         <xsd:enumeration value="INFO"/>
+         <xsd:enumeration value="STC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassObservation">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11529 (C-0-D11527-V13856-V11529-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClassCondition ActClassObservationSeries ActClassROI">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="OBS"/>
+               <xsd:enumeration value="ALRT"/>
+               <xsd:enumeration value="CLNTRL"/>
+               <xsd:enumeration value="CNOD"/>
+               <xsd:enumeration value="DGIMG"/>
+               <xsd:enumeration value="INVSTG"/>
+               <xsd:enumeration value="SPCOBS"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassCondition">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19580 (C-0-D11527-V13856-V11529-V19580-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClassPublicHealthCase">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="COND"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassPublicHealthCase">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11530 (C-0-D11527-V13856-V11529-V19580-V11530-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="CASE"/>
+         <xsd:enumeration value="OUTB"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassObservationSeries">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V18875 (C-0-D11527-V13856-V11529-V18875-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="OBSSER"/>
+         <xsd:enumeration value="OBSCOR"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassROI">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V17893 (C-0-D11527-V13856-V11529-V17893-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ROIBND"/>
+         <xsd:enumeration value="ROIOVL"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassSupply">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11535 (C-0-D11527-V13856-V11535-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SPLY"/>
+         <xsd:enumeration value="DIET"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActContainer">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19445 (C-0-D11527-V13856-V19445-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClassComposition ActClassEntry ActClassExtract ActClassOrganizer">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="FOLDER"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassComposition">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19442 (C-0-D11527-V13856-V19445-V19442-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClassDocument">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="COMPOSITION"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassDocument">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V18938 (C-0-D11527-V13856-V19445-V19442-V18938-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActClinicalDocument">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="DOC"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClinicalDocument">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V13948 (C-0-D11527-V13856-V19445-V19442-V18938-V13948-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DOCCLIN"/>
+         <xsd:enumeration value="CDALVLONE"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassEntry">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19444 (C-0-D11527-V13856-V19445-V19444-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ENTRY"/>
+         <xsd:enumeration value="BATTERY"/>
+         <xsd:enumeration value="CLUSTER"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassExtract">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19441 (C-0-D11527-V13856-V19445-V19441-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="EXTRACT"/>
+         <xsd:enumeration value="EHR"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActClassOrganizer">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19443 (C-0-D11527-V13856-V19445-V19443-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ORGANIZER"/>
+         <xsd:enumeration value="CATEGORY"/>
+         <xsd:enumeration value="DOCBODY"/>
+         <xsd:enumeration value="DOCSECT"/>
+         <xsd:enumeration value="TOPIC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActClassDocumentEntryAct">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19604 (C-0-D11527-V13856-V19604-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ACT"/>
+         <xsd:enumeration value="ACCM"/>
+         <xsd:enumeration value="CONS"/>
+         <xsd:enumeration value="CTTEVENT"/>
+         <xsd:enumeration value="INC"/>
+         <xsd:enumeration value="INFRM"/>
+         <xsd:enumeration value="PCPR"/>
+         <xsd:enumeration value="REG"/>
+         <xsd:enumeration value="SPCTRT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActClassDocumentEntryOrganizer">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19603 (C-0-D11527-V13856-V19603-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="BATTERY"/>
+         <xsd:enumeration value="CLUSTER"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActMood">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10196 (C-0-D10196-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActMoodCompletionTrack ActMoodPredicate x_ActMoodDefEvn x_ActMoodDefEvnRqoPrmsPrp x_ActMoodDocumentObservation x_ActMoodEvnOrdPrmsPrp x_ActMoodIntentEvent x_ActMoodOrdPrms x_ActMoodOrdPrmsEvn x_ActMoodRqoPrpAptArq x_DocumentActMood x_DocumentEncounterMood x_DocumentProcedureMood x_DocumentSubstanceMood"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActMoodCompletionTrack">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10197 (C-0-D10196-V10197-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActMoodIntent">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="DEF"/>
+               <xsd:enumeration value="EVN"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActMoodPredicate">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10202 (C-0-D10196-V10202-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="EVN.CRT"/>
+         <xsd:enumeration value="GOL"/>
+         <xsd:enumeration value="OPT"/>
+         <xsd:enumeration value="PERM"/>
+         <xsd:enumeration value="PERMRQ"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodDefEvn">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19375 (C-0-D10196-V19375-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DEF"/>
+         <xsd:enumeration value="EVN"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodDefEvnRqoPrmsPrp">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19371 (C-0-D10196-V19371-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DEF"/>
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodDocumentObservation">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V18943 (C-0-D10196-V18943-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="INT"/>
+         <xsd:enumeration value="DEF"/>
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="GOL"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodEvnOrdPrmsPrp">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V18965 (C-0-D10196-V18965-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodIntentEvent">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V16742 (C-0-D10196-V16742-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActMoodIntent">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="EVN"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActMoodIntent">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10199 (C-0-D10196-V16742-V10199-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="INT"/>
+         <xsd:enumeration value="APT"/>
+         <xsd:enumeration value="ARQ"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+         <xsd:enumeration value="SLOT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodOrdPrms">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V16735 (C-0-D10196-V16735-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodOrdPrmsEvn">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V16730 (C-0-D10196-V16730-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActMoodRqoPrpAptArq">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19372 (C-0-D10196-V19372-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="APT"/>
+         <xsd:enumeration value="ARQ"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_DocumentActMood">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19458 (C-0-D10196-V19458-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="INT"/>
+         <xsd:enumeration value="APT"/>
+         <xsd:enumeration value="ARQ"/>
+         <xsd:enumeration value="DEF"/>
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_DocumentEncounterMood">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19459 (C-0-D10196-V19459-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="INT"/>
+         <xsd:enumeration value="APT"/>
+         <xsd:enumeration value="ARQ"/>
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_DocumentProcedureMood">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19460 (C-0-D10196-V19460-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="INT"/>
+         <xsd:enumeration value="APT"/>
+         <xsd:enumeration value="ARQ"/>
+         <xsd:enumeration value="DEF"/>
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_DocumentSubstanceMood">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19461 (C-0-D10196-V19461-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="INT"/>
+         <xsd:enumeration value="EVN"/>
+         <xsd:enumeration value="PRMS"/>
+         <xsd:enumeration value="PRP"/>
+         <xsd:enumeration value="RQO"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10317 (C-0-D10317-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActRelationshipConditional ActRelationshipHasComponent ActRelationshipOutcome ActRelationshipPertains ActRelationshipSequel x_ActRelationshipDocument x_ActRelationshipEntry x_ActRelationshipEntryRelationship x_ActRelationshipExternalReference x_ActRelationshipPatientTransport x_ActRelationshipPertinentInfo"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipConditional">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V18977 (C-0-D10317-V18977-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActRelationshipReason">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CIND"/>
+               <xsd:enumeration value="PRCN"/>
+               <xsd:enumeration value="TRIG"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipReason">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19376 (C-0-D10317-V18977-V19376-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="RSON"/>
+         <xsd:enumeration value="MITGT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipHasComponent">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10318 (C-0-D10317-V10318-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="COMP"/>
+         <xsd:enumeration value="ARR"/>
+         <xsd:enumeration value="CTRLV"/>
+         <xsd:enumeration value="DEP"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipOutcome">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10324 (C-0-D10317-V10324-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActRelationshipObjective">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="OUTC"/>
+               <xsd:enumeration value="GOAL"/>
+               <xsd:enumeration value="RISK"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipObjective">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19625 (C-0-D10317-V10324-V19625-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="OBJC"/>
+         <xsd:enumeration value="OBJF"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipPertains">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10329 (C-0-D10317-V10329-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActRelationshipAccounting TemporallyPertains hasSupport">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="PERT"/>
+               <xsd:enumeration value="AUTH"/>
+               <xsd:enumeration value="CAUS"/>
+               <xsd:enumeration value="COVBY"/>
+               <xsd:enumeration value="DRIV"/>
+               <xsd:enumeration value="EXPL"/>
+               <xsd:enumeration value="ITEMSLOC"/>
+               <xsd:enumeration value="LIMIT"/>
+               <xsd:enumeration value="MFST"/>
+               <xsd:enumeration value="NAME"/>
+               <xsd:enumeration value="PREV"/>
+               <xsd:enumeration value="REFR"/>
+               <xsd:enumeration value="REFV"/>
+               <xsd:enumeration value="SUBJ"/>
+               <xsd:enumeration value="SUMM"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipAccounting">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14900 (C-0-D10317-V10329-V14900-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActRelationshipCostTracking ActRelationshipPosting">
+         <xsd:simpleType>
+            <xsd:restriction base="cs"/>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipCostTracking">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19618 (C-0-D10317-V10329-V14900-V19618-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="CHRG"/>
+         <xsd:enumeration value="COST"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipPosting">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19617 (C-0-D10317-V10329-V14900-V19617-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="CREDIT"/>
+         <xsd:enumeration value="DEBIT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="TemporallyPertains">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19590 (C-0-D10317-V10329-V19590-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SAS"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="hasSupport">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10330 (C-0-D10317-V10329-V10330-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SPRT"/>
+         <xsd:enumeration value="SPRTBND"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipSequel">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10337 (C-0-D10317-V10337-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ActRelationshipExcerpt ActRelationshipFulfills ActRelationshipReplacement">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="SEQL"/>
+               <xsd:enumeration value="APND"/>
+               <xsd:enumeration value="DOC"/>
+               <xsd:enumeration value="ELNK"/>
+               <xsd:enumeration value="GEN"/>
+               <xsd:enumeration value="GEVL"/>
+               <xsd:enumeration value="INST"/>
+               <xsd:enumeration value="MTCH"/>
+               <xsd:enumeration value="OPTN"/>
+               <xsd:enumeration value="REV"/>
+               <xsd:enumeration value="UPDT"/>
+               <xsd:enumeration value="XFRM"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipExcerpt">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V18660 (C-0-D10317-V10337-V18660-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="XCRPT"/>
+         <xsd:enumeration value="VRXCRPT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipFulfills">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10342 (C-0-D10317-V10337-V10342-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="FLFS"/>
+         <xsd:enumeration value="OCCR"/>
+         <xsd:enumeration value="OREF"/>
+         <xsd:enumeration value="SCH"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ActRelationshipReplacement">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10338 (C-0-D10317-V10337-V10338-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="RPLC"/>
+         <xsd:enumeration value="SUCC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActRelationshipDocument">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V11610 (C-0-D10317-V11610-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="RPLC"/>
+         <xsd:enumeration value="APND"/>
+         <xsd:enumeration value="XFRM"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActRelationshipEntry">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19446 (C-0-D10317-V19446-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="COMP"/>
+         <xsd:enumeration value="DRIV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActRelationshipEntryRelationship">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19447 (C-0-D10317-V19447-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="XCRPT"/>
+         <xsd:enumeration value="COMP"/>
+         <xsd:enumeration value="RSON"/>
+         <xsd:enumeration value="SPRT"/>
+         <xsd:enumeration value="CAUS"/>
+         <xsd:enumeration value="GEVL"/>
+         <xsd:enumeration value="MFST"/>
+         <xsd:enumeration value="REFR"/>
+         <xsd:enumeration value="SAS"/>
+         <xsd:enumeration value="SUBJ"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActRelationshipExternalReference">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19000 (C-0-D10317-V19000-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="XCRPT"/>
+         <xsd:enumeration value="RPLC"/>
+         <xsd:enumeration value="SPRT"/>
+         <xsd:enumeration value="ELNK"/>
+         <xsd:enumeration value="REFR"/>
+         <xsd:enumeration value="SUBJ"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActRelationshipPatientTransport">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19005 (C-0-D10317-V19005-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ARR"/>
+         <xsd:enumeration value="DEP"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ActRelationshipPertinentInfo">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19562 (C-0-D10317-V19562-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SPRT"/>
+         <xsd:enumeration value="CAUS"/>
+         <xsd:enumeration value="MFST"/>
+         <xsd:enumeration value="REFR"/>
+         <xsd:enumeration value="SUBJ"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="CommunicationFunctionType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D16031 (C-0-D16031-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="RCV"/>
+         <xsd:enumeration value="RSP"/>
+         <xsd:enumeration value="SND"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ContextControl">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D16478 (C-0-D16478-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ContextControlAdditive ContextControlNonPropagating ContextControlOverriding ContextControlPropagating"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="ContextControlAdditive">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V18934 (C-0-D16478-V18934-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AN"/>
+         <xsd:enumeration value="AP"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ContextControlNonPropagating">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V18937 (C-0-D16478-V18937-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AN"/>
+         <xsd:enumeration value="ON"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ContextControlOverriding">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V18935 (C-0-D16478-V18935-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ON"/>
+         <xsd:enumeration value="OP"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ContextControlPropagating">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V18936 (C-0-D16478-V18936-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AP"/>
+         <xsd:enumeration value="OP"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClass">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10882 (C-0-D10882-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityClassRoot x_EntityClassDocumentReceiving x_EntityClassPersonOrOrgReceiving"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassRoot">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V13922 (C-0-D10882-V13922-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityClassLivingSubject EntityClassMaterial EntityClassOrganization EntityClassPlace">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="ENT"/>
+               <xsd:enumeration value="HCE"/>
+               <xsd:enumeration value="RGRP"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassLivingSubject">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10884 (C-0-D10882-V13922-V10884-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityClassNonPersonLivingSubject">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="LIV"/>
+               <xsd:enumeration value="PSN"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassNonPersonLivingSubject">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11621 (C-0-D10882-V13922-V10884-V11621-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="NLIV"/>
+         <xsd:enumeration value="ANM"/>
+         <xsd:enumeration value="MIC"/>
+         <xsd:enumeration value="PLNT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassMaterial">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10883 (C-0-D10882-V13922-V10883-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityClassManufacturedMaterial">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="MAT"/>
+               <xsd:enumeration value="CHEM"/>
+               <xsd:enumeration value="FOOD"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassManufacturedMaterial">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V13934 (C-0-D10882-V13922-V10883-V13934-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityClassContainer EntityClassDevice">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="MMAT"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassContainer">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11622 (C-0-D10882-V13922-V10883-V13934-V11622-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="CONT"/>
+         <xsd:enumeration value="HOLD"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassDevice">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11623 (C-0-D10882-V13922-V10883-V13934-V11623-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DEV"/>
+         <xsd:enumeration value="CER"/>
+         <xsd:enumeration value="MODDV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassPlace">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10892 (C-0-D10882-V13922-V10892-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PLC"/>
+         <xsd:enumeration value="CITY"/>
+         <xsd:enumeration value="COUNTRY"/>
+         <xsd:enumeration value="COUNTY"/>
+         <xsd:enumeration value="PROVINCE"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_EntityClassDocumentReceiving">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19462 (C-0-D10882-V19462-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityClassOrganization">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="HCE"/>
+               <xsd:enumeration value="PSN"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_EntityClassPersonOrOrgReceiving">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19463 (C-0-D10882-V19463-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityClassOrganization">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="PSN"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityClassOrganization">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10889 (C-0-D10882-V19463-V10889-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="State">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="ORG"/>
+               <xsd:enumeration value="PUB"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="State">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19455 (C-0-D10882-V19463-V10889-V19455-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="STATE"/>
+         <xsd:enumeration value="NAT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityDeterminer">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10878 (C-0-D10878-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="EntityDeterminerDetermined x_DeterminerInstanceKind">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="INSTANCE"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="EntityDeterminerDetermined">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10879 (C-0-D10878-V10879-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="KIND"/>
+         <xsd:enumeration value="QUANTIFIED_KIND"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_DeterminerInstanceKind">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19647 (C-0-D10878-V19647-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="KIND"/>
+         <xsd:enumeration value="INSTANCE"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="NullFlavor">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10609 (C-0-D10609-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="NoInformation">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="NP"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="NoInformation">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10610 (C-0-D10609-V10610-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="Other Unknown">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="NI"/>
+               <xsd:enumeration value="MSK"/>
+               <xsd:enumeration value="NA"/>
+               <xsd:enumeration value="INV"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="Other">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10616 (C-0-D10609-V10610-V10616-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="OTH"/>
+         <xsd:enumeration value="NINF"/>
+         <xsd:enumeration value="PINF"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="Unknown">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10612 (C-0-D10609-V10610-V10612-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="AskedButUnknown">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="UNK"/>
+               <xsd:enumeration value="NASK"/>
+               <xsd:enumeration value="TRC"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="AskedButUnknown">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10614 (C-0-D10609-V10610-V10612-V10614-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ASKU"/>
+         <xsd:enumeration value="NAV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D10901 (C-0-D10901-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ParticipationAncillary ParticipationIndirectTarget ParticipationInformationGenerator ParticipationInformationRecipient ParticipationPhysicalPerformer ParticipationTargetDirect ParticipationTargetLocation ParticipationVerifier x_EncounterParticipant x_EncounterPerformerParticipation x_InformationRecipient x_ParticipationAuthorPerformer x_ParticipationEntVrf x_ParticipationPrfEntVrf x_ParticipationVrfRespSprfWit x_ServiceEventPerformer">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CST"/>
+               <xsd:enumeration value="RESP"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationAncillary">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10247 (C-0-D10901-V10247-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ADM"/>
+         <xsd:enumeration value="ATND"/>
+         <xsd:enumeration value="CALLBCK"/>
+         <xsd:enumeration value="CON"/>
+         <xsd:enumeration value="DIS"/>
+         <xsd:enumeration value="ESC"/>
+         <xsd:enumeration value="REF"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationIndirectTarget">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19032 (C-0-D10901-V19032-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="IND"/>
+         <xsd:enumeration value="BEN"/>
+         <xsd:enumeration value="COV"/>
+         <xsd:enumeration value="HLD"/>
+         <xsd:enumeration value="RCT"/>
+         <xsd:enumeration value="RCV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationInformationGenerator">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10251 (C-0-D10901-V10251-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AUT"/>
+         <xsd:enumeration value="ENT"/>
+         <xsd:enumeration value="INF"/>
+         <xsd:enumeration value="WIT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationInformationRecipient">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10263 (C-0-D10901-V10263-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="IRCP"/>
+         <xsd:enumeration value="NOT"/>
+         <xsd:enumeration value="PRCP"/>
+         <xsd:enumeration value="REFB"/>
+         <xsd:enumeration value="REFT"/>
+         <xsd:enumeration value="TRC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationPhysicalPerformer">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10248 (C-0-D10901-V10248-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PRF"/>
+         <xsd:enumeration value="DIST"/>
+         <xsd:enumeration value="PPRF"/>
+         <xsd:enumeration value="SPRF"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationTargetDirect">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10286 (C-0-D10901-V10286-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="ParticipationTargetDevice ParticipationTargetSubject">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="DIR"/>
+               <xsd:enumeration value="BBY"/>
+               <xsd:enumeration value="CSM"/>
+               <xsd:enumeration value="DON"/>
+               <xsd:enumeration value="PRD"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationTargetDevice">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10298 (C-0-D10901-V10286-V10298-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DEV"/>
+         <xsd:enumeration value="NRD"/>
+         <xsd:enumeration value="RDV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationTargetSubject">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19584 (C-0-D10901-V10286-V19584-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SBJ"/>
+         <xsd:enumeration value="SPC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationTargetLocation">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10302 (C-0-D10901-V10302-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="LOC"/>
+         <xsd:enumeration value="DST"/>
+         <xsd:enumeration value="ELOC"/>
+         <xsd:enumeration value="ORG"/>
+         <xsd:enumeration value="RML"/>
+         <xsd:enumeration value="VIA"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ParticipationVerifier">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10259 (C-0-D10901-V10259-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="VRF"/>
+         <xsd:enumeration value="AUTHEN"/>
+         <xsd:enumeration value="LA"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_EncounterParticipant">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19605 (C-0-D10901-V19605-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ADM"/>
+         <xsd:enumeration value="ATND"/>
+         <xsd:enumeration value="CON"/>
+         <xsd:enumeration value="DIS"/>
+         <xsd:enumeration value="REF"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_EncounterPerformerParticipation">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V16764 (C-0-D10901-V16764-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PRF"/>
+         <xsd:enumeration value="CON"/>
+         <xsd:enumeration value="SPRF"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_InformationRecipient">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19366 (C-0-D10901-V19366-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PRCP"/>
+         <xsd:enumeration value="TRC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ParticipationAuthorPerformer">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19080 (C-0-D10901-V19080-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PRF"/>
+         <xsd:enumeration value="AUT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ParticipationEntVrf">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19600 (C-0-D10901-V19600-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="VRF"/>
+         <xsd:enumeration value="ENT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ParticipationPrfEntVrf">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19601 (C-0-D10901-V19601-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PRF"/>
+         <xsd:enumeration value="VRF"/>
+         <xsd:enumeration value="ENT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ParticipationVrfRespSprfWit">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19083 (C-0-D10901-V19083-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="VRF"/>
+         <xsd:enumeration value="RESP"/>
+         <xsd:enumeration value="SPRF"/>
+         <xsd:enumeration value="WIT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_ServiceEventPerformer">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19606 (C-0-D10901-V19606-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PRF"/>
+         <xsd:enumeration value="PPRF"/>
+         <xsd:enumeration value="SPRF"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClass">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D11555 (C-0-D11555-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassRoot"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassRoot">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V13940 (C-0-D11555-V13940-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassAssociative RoleClassOntological RoleClassPartitive x_DocumentEntrySubject x_DocumentSubject x_InformationRecipientRole x_RoleClassAccommodationRequestor x_RoleClassCoverage x_RoleClassCoverageInvoice x_RoleClassCredentialedEntity x_RoleClassPayeePolicyRelationship">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="ROL"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassAssociative">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19313 (C-0-D11555-V13940-V19313-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassMutualRelationship RoleClassPassive">
+         <xsd:simpleType>
+            <xsd:restriction base="cs"/>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassMutualRelationship">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19316 (C-0-D11555-V13940-V19313-V19316-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassRelationshipFormal">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CAREGIVER"/>
+               <xsd:enumeration value="PRS"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassRelationshipFormal">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10416 (C-0-D11555-V13940-V19313-V19316-V10416-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="LicensedEntityRole RoleClassAgent RoleClassEmployee RoleClassInvestigationSubject">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CIT"/>
+               <xsd:enumeration value="COVPTY"/>
+               <xsd:enumeration value="CRINV"/>
+               <xsd:enumeration value="CRSPNSR"/>
+               <xsd:enumeration value="GUAR"/>
+               <xsd:enumeration value="PAT"/>
+               <xsd:enumeration value="PAYEE"/>
+               <xsd:enumeration value="PAYOR"/>
+               <xsd:enumeration value="POLHOLD"/>
+               <xsd:enumeration value="QUAL"/>
+               <xsd:enumeration value="SPNSR"/>
+               <xsd:enumeration value="STD"/>
+               <xsd:enumeration value="UNDWRT"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassAgent">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V14006 (C-0-D11555-V13940-V19313-V19316-V10416-V14006-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassAssignedEntity">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="AGNT"/>
+               <xsd:enumeration value="GUARD"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassAssignedEntity">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11595 (C-0-D11555-V13940-V19313-V19316-V10416-V14006-V11595-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassContact">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="ASSIGNED"/>
+               <xsd:enumeration value="COMPAR"/>
+               <xsd:enumeration value="SGNOFF"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassContact">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V12205 (C-0-D11555-V13940-V19313-V19316-V10416-V14006-V11595-V12205-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="CON"/>
+         <xsd:enumeration value="ECON"/>
+         <xsd:enumeration value="NOK"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassEmployee">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11569 (C-0-D11555-V13940-V19313-V19316-V10416-V11569-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="EMP"/>
+         <xsd:enumeration value="MIL"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassInvestigationSubject">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19587 (C-0-D11555-V13940-V19313-V19316-V10416-V19587-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="INVSBJ"/>
+         <xsd:enumeration value="CASESBJ"/>
+         <xsd:enumeration value="RESBJ"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassPassive">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19105 (C-0-D11555-V13940-V19313-V19105-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassDistributedMaterial RoleClassManufacturedProduct RoleClassServiceDeliveryLocation">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="ACCESS"/>
+               <xsd:enumeration value="BIRTHPL"/>
+               <xsd:enumeration value="EXPR"/>
+               <xsd:enumeration value="HLD"/>
+               <xsd:enumeration value="HLTHCHRT"/>
+               <xsd:enumeration value="IDENT"/>
+               <xsd:enumeration value="MNT"/>
+               <xsd:enumeration value="OWN"/>
+               <xsd:enumeration value="RGPR"/>
+               <xsd:enumeration value="TERR"/>
+               <xsd:enumeration value="WRTE"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassDistributedMaterial">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10418 (C-0-D11555-V13940-V19313-V19105-V10418-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="DST"/>
+         <xsd:enumeration value="RET"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassManufacturedProduct">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11580 (C-0-D11555-V13940-V19313-V19105-V11580-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="MANU"/>
+         <xsd:enumeration value="THER"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassServiceDeliveryLocation">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V16927 (C-0-D11555-V13940-V19313-V19105-V16927-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SDLOC"/>
+         <xsd:enumeration value="DSDLOC"/>
+         <xsd:enumeration value="ISDLOC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassOntological">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10428 (C-0-D11555-V13940-V10428-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassIsSpeciesEntity">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="INST"/>
+               <xsd:enumeration value="SUBS"/>
+               <xsd:enumeration value="SUBY"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassIsSpeciesEntity">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10441 (C-0-D11555-V13940-V10428-V10441-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="GEN"/>
+         <xsd:enumeration value="GRIC"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassPartitive">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V10429 (C-0-D11555-V13940-V10429-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassIngredientEntity RoleClassLocatedEntity RoleClassSpecimen">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="CONT"/>
+               <xsd:enumeration value="MBR"/>
+               <xsd:enumeration value="PART"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassIngredientEntity">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V10430 (C-0-D11555-V13940-V10429-V10430-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RoleClassInactiveIngredient">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="INGR"/>
+               <xsd:enumeration value="ACTI"/>
+               <xsd:enumeration value="ACTM"/>
+               <xsd:enumeration value="ADTV"/>
+               <xsd:enumeration value="BASE"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassInactiveIngredient">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19089 (C-0-D11555-V13940-V10429-V10430-V19089-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="IACT"/>
+         <xsd:enumeration value="COLR"/>
+         <xsd:enumeration value="FLVR"/>
+         <xsd:enumeration value="PRSV"/>
+         <xsd:enumeration value="STBL"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassLocatedEntity">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V16815 (C-0-D11555-V13940-V10429-V16815-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="LOCE"/>
+         <xsd:enumeration value="STOR"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleClassSpecimen">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V11591 (C-0-D11555-V13940-V10429-V11591-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SPEC"/>
+         <xsd:enumeration value="ALQT"/>
+         <xsd:enumeration value="ISLT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_DocumentEntrySubject">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19367 (C-0-D11555-V13940-V19367-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="SPEC"/>
+         <xsd:enumeration value="PAT"/>
+         <xsd:enumeration value="PRS"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_DocumentSubject">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19368 (C-0-D11555-V13940-V19368-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PAT"/>
+         <xsd:enumeration value="PRS"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_InformationRecipientRole">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V16772 (C-0-D11555-V13940-V16772-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="ASSIGNED"/>
+         <xsd:enumeration value="HLTHCHRT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_RoleClassAccommodationRequestor">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19382 (C-0-D11555-V13940-V19382-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="AGNT"/>
+         <xsd:enumeration value="PAT"/>
+         <xsd:enumeration value="PROV"/>
+         <xsd:enumeration value="PRS"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_RoleClassCoverage">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14008 (C-0-D11555-V13940-V14008-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="COVPTY"/>
+         <xsd:enumeration value="POLHOLD"/>
+         <xsd:enumeration value="SPNSR"/>
+         <xsd:enumeration value="UNDWRT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_RoleClassCoverageInvoice">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V14013 (C-0-D11555-V13940-V14013-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="PAYEE"/>
+         <xsd:enumeration value="PAYOR"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_RoleClassCredentialedEntity">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V16930 (C-0-D11555-V13940-V16930-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="LicensedEntityRole">
+         <xsd:simpleType>
+            <xsd:restriction base="cs">
+               <xsd:enumeration value="ASSIGNED"/>
+               <xsd:enumeration value="QUAL"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:union>
+   </xsd:simpleType>
+   <xsd:simpleType name="LicensedEntityRole">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V16773 (C-0-D11555-V13940-V16930-V16773-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="LIC"/>
+         <xsd:enumeration value="NOT"/>
+         <xsd:enumeration value="PROV"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="x_RoleClassPayeePolicyRelationship">
+      <xsd:annotation>
+         <xsd:documentation>abstDomain: V19395 (C-0-D11555-V13940-V19395-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="COVPTY"/>
+         <xsd:enumeration value="GUAR"/>
+         <xsd:enumeration value="POLHOLD"/>
+         <xsd:enumeration value="PROV"/>
+         <xsd:enumeration value="PRS"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RoleLinkType">
+      <xsd:annotation>
+         <xsd:documentation>vocSet: D11603 (C-0-D11603-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:union memberTypes="RelatedLinkType"/>
+   </xsd:simpleType>
+   <xsd:simpleType name="RelatedLinkType">
+      <xsd:annotation>
+         <xsd:documentation>specDomain: V19615 (C-0-D11603-V19615-cpt)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="cs">
+         <xsd:enumeration value="REL"/>
+         <xsd:enumeration value="BACKUP"/>
+         <xsd:enumeration value="DIRAUTH"/>
+         <xsd:enumeration value="INDAUTH"/>
+         <xsd:enumeration value="PART"/>
+         <xsd:enumeration value="REPL"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+</xsd:schema>

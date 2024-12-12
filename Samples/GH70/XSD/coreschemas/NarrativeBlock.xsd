@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!-- $Id: NarrativeBlock.xsd,v 1.4 2005/04/17 03:13:19 lmckenzi Exp $ -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v3" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+   <xsd:complexType name="StrucDoc.Text" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.Content"/>
+         <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+         <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+         <xsd:element name="renderMultiMedia" type="StrucDoc.RenderMultiMedia"/>
+         <xsd:element name="paragraph" type="StrucDoc.Paragraph"/>
+         <xsd:element name="list" type="StrucDoc.List"/>
+         <xsd:element name="table" type="StrucDoc.Table"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="mediaType" type="xsd:string" fixed="text/x-hl7-text+xml"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Title" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.TitleContent"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+         <xsd:element name="footnote" type="StrucDoc.TitleFootnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="mediaType" type="xsd:string" fixed="text/x-hl7-title+xml"/>
+   </xsd:complexType><!-- DELETE THIS, we don't need to define a global element for text
+	<xsd:element name="text" type="text"/>
+ -->
+   <xsd:complexType name="StrucDoc.Br"/>
+   <xsd:complexType name="StrucDoc.Caption" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Col">
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="span" type="xsd:string" default="1"/>
+      <xsd:attribute name="width" type="xsd:string"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Colgroup">
+      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="col" type="StrucDoc.Col"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="span" type="xsd:string" default="1"/>
+      <xsd:attribute name="width" type="xsd:string"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Content" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.Content"/>
+         <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+         <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+         <xsd:element name="renderMultiMedia" type="StrucDoc.RenderMultiMedia"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="revised">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="insert"/>
+               <xsd:enumeration value="delete"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.TitleContent" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.TitleContent"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+         <xsd:element name="footnote" type="StrucDoc.TitleFootnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Footnote" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.Content"/>
+         <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+         <xsd:element name="renderMultiMedia" type="StrucDoc.RenderMultiMedia"/>
+         <xsd:element name="paragraph" type="StrucDoc.Paragraph"/>
+         <xsd:element name="list" type="StrucDoc.List"/>
+         <xsd:element name="table" type="StrucDoc.Table"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.TitleFootnote" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.TitleContent"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.FootnoteRef">
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="IDREF" type="xsd:IDREF" use="required"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Item" mixed="true">
+      <xsd:sequence>
+         <xsd:element name="caption" type="StrucDoc.Caption" minOccurs="0"/>
+         <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="content" type="StrucDoc.Content"/>
+            <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+            <xsd:element name="sub" type="StrucDoc.Sub"/>
+            <xsd:element name="sup" type="StrucDoc.Sup"/>
+            <xsd:element name="br" type="StrucDoc.Br"/>
+            <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+            <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+            <xsd:element name="renderMultiMedia" type="StrucDoc.RenderMultiMedia"/>
+            <xsd:element name="paragraph" type="StrucDoc.Paragraph"/>
+            <xsd:element name="list" type="StrucDoc.List"/>
+            <xsd:element name="table" type="StrucDoc.Table"/>
+         </xsd:choice>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.LinkHtml" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+      </xsd:choice>
+      <xsd:attribute name="name" type="xsd:string"/>
+      <xsd:attribute name="href" type="xsd:string"/>
+      <xsd:attribute name="rel" type="xsd:string"/>
+      <xsd:attribute name="rev" type="xsd:string"/>
+      <xsd:attribute name="title" type="xsd:string"/>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.List">
+      <xsd:sequence>
+         <xsd:element name="caption" type="StrucDoc.Caption" minOccurs="0"/>
+         <xsd:element name="item" type="StrucDoc.Item" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="listType" default="unordered">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="ordered"/>
+               <xsd:enumeration value="unordered"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Paragraph" mixed="true">
+      <xsd:sequence>
+         <xsd:element name="caption" type="StrucDoc.Caption" minOccurs="0"/>
+         <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="content" type="StrucDoc.Content"/>
+            <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+            <xsd:element name="sub" type="StrucDoc.Sub"/>
+            <xsd:element name="sup" type="StrucDoc.Sup"/>
+            <xsd:element name="br" type="StrucDoc.Br"/>
+            <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+            <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+            <xsd:element name="renderMultiMedia" type="StrucDoc.RenderMultiMedia"/>
+         </xsd:choice>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.RenderMultiMedia">
+      <xsd:sequence>
+         <xsd:element name="caption" type="StrucDoc.Caption" minOccurs="0"/>
+      </xsd:sequence>
+      <xsd:attribute name="referencedObject" type="xsd:IDREFS" use="required"/>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Sub" mixed="true"/>
+   <xsd:complexType name="StrucDoc.Sup" mixed="true"/>
+   <xsd:complexType name="StrucDoc.Table">
+      <xsd:sequence>
+         <xsd:element name="caption" type="StrucDoc.Caption" minOccurs="0"/>
+         <xsd:choice>
+            <xsd:element name="col" type="StrucDoc.Col" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="colgroup" type="StrucDoc.Colgroup" minOccurs="0" maxOccurs="unbounded"/>
+         </xsd:choice>
+         <xsd:element name="thead" type="StrucDoc.Thead" minOccurs="0"/>
+         <xsd:element name="tfoot" type="StrucDoc.Tfoot" minOccurs="0"/>
+         <xsd:element name="tbody" type="StrucDoc.Tbody" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="summary" type="xsd:string"/>
+      <xsd:attribute name="width" type="xsd:string"/>
+      <xsd:attribute name="border" type="xsd:string"/>
+      <xsd:attribute name="frame">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="void"/>
+               <xsd:enumeration value="above"/>
+               <xsd:enumeration value="below"/>
+               <xsd:enumeration value="hsides"/>
+               <xsd:enumeration value="lhs"/>
+               <xsd:enumeration value="rhs"/>
+               <xsd:enumeration value="vsides"/>
+               <xsd:enumeration value="box"/>
+               <xsd:enumeration value="border"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="rules">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="none"/>
+               <xsd:enumeration value="groups"/>
+               <xsd:enumeration value="rows"/>
+               <xsd:enumeration value="cols"/>
+               <xsd:enumeration value="all"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="cellspacing" type="xsd:string"/>
+      <xsd:attribute name="cellpadding" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Tbody">
+      <xsd:sequence maxOccurs="unbounded">
+         <xsd:element name="tr" type="StrucDoc.Tr"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Td" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.Content"/>
+         <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+         <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+         <xsd:element name="renderMultiMedia" type="StrucDoc.RenderMultiMedia"/>
+         <xsd:element name="paragraph" type="StrucDoc.Paragraph"/>
+         <xsd:element name="list" type="StrucDoc.List"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="abbr" type="xsd:string"/>
+      <xsd:attribute name="axis" type="xsd:string"/>
+      <xsd:attribute name="headers" type="xsd:IDREFS"/>
+      <xsd:attribute name="scope">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="row"/>
+               <xsd:enumeration value="col"/>
+               <xsd:enumeration value="rowgroup"/>
+               <xsd:enumeration value="colgroup"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="rowspan" type="xsd:string" default="1"/>
+      <xsd:attribute name="colspan" type="xsd:string" default="1"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Tfoot">
+      <xsd:sequence maxOccurs="unbounded">
+         <xsd:element name="tr" type="StrucDoc.Tr"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Th" mixed="true">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="content" type="StrucDoc.Content"/>
+         <xsd:element name="linkHtml" type="StrucDoc.LinkHtml"/>
+         <xsd:element name="sub" type="StrucDoc.Sub"/>
+         <xsd:element name="sup" type="StrucDoc.Sup"/>
+         <xsd:element name="br" type="StrucDoc.Br"/>
+         <xsd:element name="footnote" type="StrucDoc.Footnote"/>
+         <xsd:element name="footnoteRef" type="StrucDoc.FootnoteRef"/>
+         <xsd:element name="renderMultiMedia" type="StrucDoc.RenderMultiMedia"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="abbr" type="xsd:string"/>
+      <xsd:attribute name="axis" type="xsd:string"/>
+      <xsd:attribute name="headers" type="xsd:IDREFS"/>
+      <xsd:attribute name="scope">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="row"/>
+               <xsd:enumeration value="col"/>
+               <xsd:enumeration value="rowgroup"/>
+               <xsd:enumeration value="colgroup"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="rowspan" type="xsd:string" default="1"/>
+      <xsd:attribute name="colspan" type="xsd:string" default="1"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Thead">
+      <xsd:sequence maxOccurs="unbounded">
+         <xsd:element name="tr" type="StrucDoc.Tr"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType name="StrucDoc.Tr">
+      <xsd:choice maxOccurs="unbounded">
+         <xsd:element name="th" type="StrucDoc.Th"/>
+         <xsd:element name="td" type="StrucDoc.Td"/>
+      </xsd:choice>
+      <xsd:attribute name="ID" type="xsd:ID"/>
+      <xsd:attribute name="language" type="xsd:NMTOKEN"/>
+      <xsd:attribute name="styleCode" type="xsd:NMTOKENS"/>
+      <xsd:attribute name="align">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="left"/>
+               <xsd:enumeration value="center"/>
+               <xsd:enumeration value="right"/>
+               <xsd:enumeration value="justify"/>
+               <xsd:enumeration value="char"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="char" type="xsd:string"/>
+      <xsd:attribute name="charoff" type="xsd:string"/>
+      <xsd:attribute name="valign">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:NMTOKEN">
+               <xsd:enumeration value="top"/>
+               <xsd:enumeration value="middle"/>
+               <xsd:enumeration value="bottom"/>
+               <xsd:enumeration value="baseline"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+</xsd:schema>
