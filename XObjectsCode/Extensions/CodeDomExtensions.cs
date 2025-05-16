@@ -361,6 +361,20 @@ namespace Xml.Schema.Linq.Extensions
             return isEquivalentEnumDeclaration;
         }
 
+        /// <summary>
+        /// Retrieves all members of the specified <see cref="CodeTypeDeclaration"/> and its base types.
+        /// </summary>
+        /// <remarks>This method combines the members of the provided <paramref
+        /// name="codeTypeDeclaration"/> with the members of its base types, traversing the inheritance hierarchy. The
+        /// base type members are resolved using the provided <paramref name="getCodeNamespace"/> and <paramref
+        /// name="getCodeTypeDeclaration"/> functions.</remarks>
+        /// <param name="codeTypeDeclaration">The <see cref="CodeTypeDeclaration"/> whose members and base type members are to be retrieved.</param>
+        /// <param name="getCodeNamespace">A function that retrieves a <see cref="CodeNamespace"/> by its name. This is used to resolve namespaces for
+        /// base types.</param>
+        /// <param name="getCodeTypeDeclaration">A function that retrieves a <see cref="CodeTypeDeclaration"/> from a <see cref="CodeNamespace"/> by its
+        /// name. This is used to resolve the type declarations of base types.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="CodeTypeMember"/> containing the members of the specified type
+        /// and its base types.</returns>
         public static IEnumerable<CodeTypeMember> GetSelfAndBaseMembers(this CodeTypeDeclaration codeTypeDeclaration,
             Func<string, CodeNamespace> getCodeNamespace,
             Func<string, CodeNamespace, CodeTypeDeclaration> getCodeTypeDeclaration)
