@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 using Xml.Schema.Linq.CodeGen;
 
@@ -422,7 +421,7 @@ namespace Xml.Schema.Linq.Extensions
                 var typeDecl      = getCodeTypeDeclaration(typeName, codeNamespace);
                 return typeDecl.Members.Cast<CodeTypeMember>();
             }
-            return [];
+            return Enumerable.Empty<CodeTypeMember>();
         }
     }
 }
