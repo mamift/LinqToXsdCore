@@ -427,6 +427,30 @@ namespace Xml.Schema.Linq.Tests
             }
         }
 
+        public static string GetDirectoryNameOfFolderAbove(string startFromDir, string folderName)
+        {
+            var currentDir = GetParentDirectoryName(startFromDir);
+            while (currentDir != null)
+            {
+                var name = Directory
+                    .EnumerateDirectories(currentDir, folderName)
+                    .SingleOrDefault();
+
+                if (name != null)
+                {
+                    return name;
+                }
+
+                currentDir = GetParentDirectoryName(currentDir);
+            }
+            return null;
+        }
+
+        public static string GetParentDirectoryName(string path)
+        {
+            return Path.GetDirectoryName(path.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+        }
+
         private static readonly Lazy<CSharpCompilation> Compilation = new(() =>
         {
             var options = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
@@ -436,8 +460,13 @@ namespace Xml.Schema.Linq.Tests
 
             static IEnumerable<string> GetReferencePaths()
             {
-                // do not reference LinqToXsd.Schemas.dll as this assembly already contains the types we are currently compiling.
-                var excludedFileNames = new string[] { "LinqToXsd.Schemas.dll" };
+                // do not reference 'GeneratedSchemaLibraries' as they potentially contains the types we are currently compiling.
+                // assume that the assemblies have the same name as the folder they are in.
+                var generatedSchemasRootDir = GetDirectoryNameOfFolderAbove(AppContext.BaseDirectory, "GeneratedSchemaLibraries");
+                var excludedFileNames = Directory
+                    .EnumerateDirectories(generatedSchemasRootDir, "*", SearchOption.TopDirectoryOnly)
+                    .Select(path => Path.GetFileName(path))
+                    .ToArray();
 
                 var appCtxData = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
                 
@@ -450,7 +479,7 @@ namespace Xml.Schema.Linq.Tests
 
                 var referencePaths = appCtxData
                     .Split(Path.PathSeparator)
-                    .Where(path => !excludedFileNames.Contains(Path.GetFileName(path)))
+                    .Where(path => !excludedFileNames.Contains(Path.GetFileNameWithoutExtension(path)))
                     .OrderBy(_ => _)
                     .ToArray();
 
