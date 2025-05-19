@@ -8,6 +8,7 @@
       "GeneratedSchemaLibraries\\AkomaNtoso\\AkomaNtoso.csproj",
       "GeneratedSchemaLibraries\\AspNetSiteMaps\\AspNetSiteMaps.csproj",
       "GeneratedSchemaLibraries\\Atom\\Atom.csproj",
+      "GeneratedSchemaLibraries\\BasePropsTest\\BasePropsTest.csproj",
       "GeneratedSchemaLibraries\\ContentModelTest\\ContentModelTest.csproj",
       "GeneratedSchemaLibraries\\EnumsTest\\EnumsTest.csproj",
       "GeneratedSchemaLibraries\\EnzymeML\\EnzymeML.csproj",

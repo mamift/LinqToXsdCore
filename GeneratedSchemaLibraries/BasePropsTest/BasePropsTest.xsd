@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://linqtoxsd.schemas.org/test/base-props-types.xsd"
+    xmlns="http://linqtoxsd.schemas.org/test/base-props-types.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+>
+  <xs:complexType name="BaseContextType">
+    <xs:sequence>
+      <xs:element name="BaseProp" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaseType">
+    <xs:sequence>
+      <xs:element name="BaseContext" type="BaseContextType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContentType">
+    <xs:complexContent>
+      <xs:extension base="BaseType">
+        <xs:sequence>
+          <xs:element name="ContentProp" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Wrapper" type="ContentType"/>
+</xs:schema>

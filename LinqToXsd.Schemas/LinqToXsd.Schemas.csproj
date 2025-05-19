@@ -49,6 +49,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso30-CSD13-D2f\AkomaNtoso30-CSD13-D2f.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\AspNetSiteMaps\AspNetSiteMaps.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Atom\Atom.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\BasePropsTest\BasePropsTest.csproj" />
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\CellML\CellML.csproj" />-->
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\Chem eStandards\Chem eStandards.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\ContentModelTest\ContentModelTest.csproj" />
