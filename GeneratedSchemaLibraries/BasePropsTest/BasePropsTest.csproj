@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BasePropsTest.xsd" />
+    <None Remove="BasePropsTest.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="BasePropsTest.xsd" />
+    <EmbeddedResource Include="BasePropsTest.xsd.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>

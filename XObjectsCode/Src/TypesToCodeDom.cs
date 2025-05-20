@@ -518,9 +518,14 @@ namespace Xml.Schema.Linq.CodeGen
                             //If the wrapped type is xs:anyType, no forwarding properties to create
                             wrappingPropertyInfo = new ClrWrappingPropertyInfo();
 
-                            foreach (CodeTypeMember member in innerTypeDecl.Members)
+                            //Get all properties from the inner type and its base types
+                            var memberProperties = innerTypeDecl
+                                .GetSelfAndBaseMembers(GetCodeNamespace, GetCodeTypeDeclaration)
+                                .OfType<CodeMemberProperty>()
+                                .ToArray();
+
+                            foreach (CodeMemberProperty memberProperty in memberProperties)
                             {
-                                CodeMemberProperty memberProperty = member as CodeMemberProperty;
                                 if (ForwardProperty(memberProperty))
                                 {
                                     //Do not forward over TypeManager, SchemaName etc

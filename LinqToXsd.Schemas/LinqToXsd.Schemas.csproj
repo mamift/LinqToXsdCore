@@ -35,11 +35,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="PolySharp" Version="1.14.1">
+    <PackageReference Include="PolySharp" Version="1.15.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Portable.System.DateTimeOnly" Version="7.0.1" />
+    <PackageReference Include="Portable.System.DateTimeOnly" Version="7.0.1" Condition="$(TargetFramework) == 'netstandard2.0'" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeneratedSchemaLibraries\1707_ISYBAU_XML_Schema\1707_ISYBAU_XML_Schema.csproj" />
@@ -49,6 +49,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\AkomaNtoso30-CSD13-D2f\AkomaNtoso30-CSD13-D2f.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\AspNetSiteMaps\AspNetSiteMaps.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\Atom\Atom.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\BasePropsTest\BasePropsTest.csproj" />
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\CellML\CellML.csproj" />-->
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\Chem eStandards\Chem eStandards.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\ContentModelTest\ContentModelTest.csproj" />
