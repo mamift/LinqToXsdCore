@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.8
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.8
+* https://www.nuget.org/packages/XObjectsCore/3.4.8
+  * Added new code generation facility: Base type properties of the content type are not generated in wrapper types; see [#74](https://github.com/mamift/LinqToXsdCore/issues/74).
+
 ## Version 3.4.7
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.7
