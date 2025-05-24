@@ -365,77 +365,91 @@ namespace Xml.Schema.Linq.Extensions
         /// Retrieves all members of the specified <see cref="CodeTypeDeclaration"/> and its base types.
         /// </summary>
         /// <remarks>This method combines the members of the provided <paramref
-        /// name="codeTypeDeclaration"/> with the members of its base types, traversing the inheritance hierarchy. The
+        /// name="typeDecl"/> with the members of its base types, traversing the inheritance hierarchy. The
         /// base type members are resolved using the provided <paramref name="getCodeNamespace"/> and <paramref
         /// name="getCodeTypeDeclaration"/> functions.</remarks>
-        /// <param name="codeTypeDeclaration">The <see cref="CodeTypeDeclaration"/> whose members and base type members are to be retrieved.</param>
+        /// <param name="typeDecl">The <see cref="CodeTypeDeclaration"/> whose members and base type members are to be retrieved.</param>
         /// <param name="getCodeNamespace">A function that retrieves a <see cref="CodeNamespace"/> by its name. This is used to resolve namespaces for
         /// base types.</param>
         /// <param name="getCodeTypeDeclaration">A function that retrieves a <see cref="CodeTypeDeclaration"/> from a <see cref="CodeNamespace"/> by its
         /// name. This is used to resolve the type declarations of base types.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="CodeTypeMember"/> containing the members of the specified type
         /// and its base types.</returns>
-        public static IEnumerable<CodeTypeMember> GetSelfAndBaseMembers(this CodeTypeDeclaration codeTypeDeclaration,
+        public static IEnumerable<CodeTypeMember> GetSelfAndBaseMembers(this CodeTypeDeclaration typeDecl,
             Func<string, CodeNamespace> getCodeNamespace,
             Func<string, CodeNamespace, CodeTypeDeclaration> getCodeTypeDeclaration)
         {
-            var members = codeTypeDeclaration.Members.Cast<CodeTypeMember>();
-            var baseMembers = codeTypeDeclaration.BaseTypes
-                .OfType<CodeTypeReference>()
-                .SelectMany(codeTypeDeclaration => codeTypeDeclaration.GetMembers(getCodeNamespace, getCodeTypeDeclaration));
-            return members.Concat(baseMembers);
+            var members = GetSelfAndBaseClasses(typeDecl, getCodeNamespace, getCodeTypeDeclaration)
+                .SelectMany(typeDecl => typeDecl.Members.Cast<CodeTypeMember>())
+                .ToArray();
+            return members;
         }
 
         /// <summary>
-        /// Retrieves all members from the base types of the specified <see cref="CodeTypeDeclaration"/>.
+        /// Retrieves the specified type and all of its base classes in a hierarchical order, starting from the type
+        /// itself.
         /// </summary>
-        /// <remarks>This method traverses the base types of the given <see cref="CodeTypeDeclaration"/>
-        /// and retrieves their members using the provided functions for resolving namespaces and type
-        /// declarations.</remarks>
-        /// <param name="codeTypeDeclaration">The <see cref="CodeTypeDeclaration"/> whose base type members are to be retrieved.</param>
+        /// <remarks>This method uses the provided functions to resolve the base class of each type in the
+        /// hierarchy.  If a type does not have a base class, the enumeration ends.</remarks>
+        /// <param name="typeDecl">The <see cref="CodeTypeDeclaration"/> representing the type for which to retrieve the hierarchy.</param>
         /// <param name="getCodeNamespace">A function that takes a namespace name as input and returns the corresponding <see cref="CodeNamespace"/>.</param>
         /// <param name="getCodeTypeDeclaration">A function that takes a type name and a <see cref="CodeNamespace"/> as input and returns the corresponding
         /// <see cref="CodeTypeDeclaration"/>.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="CodeTypeMember"/> representing the members of all base types
-        /// of the specified <see cref="CodeTypeDeclaration"/>.</returns>
-        public static IEnumerable<CodeTypeMember> GetBaseMembers(this CodeTypeDeclaration codeTypeDeclaration,
+        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="CodeTypeDeclaration"/> objects, starting with the specified
+        /// type and followed by its base classes in order of inheritance.</returns>
+        public static IEnumerable<CodeTypeDeclaration> GetSelfAndBaseClasses(this CodeTypeDeclaration typeDecl,
             Func<string, CodeNamespace> getCodeNamespace,
             Func<string, CodeNamespace, CodeTypeDeclaration> getCodeTypeDeclaration)
         {
-            return codeTypeDeclaration.BaseTypes
-                .OfType<CodeTypeReference>()
-                .SelectMany(codeTypeDeclaration => codeTypeDeclaration.GetMembers(getCodeNamespace, getCodeTypeDeclaration));
-        }
-
-        /// <summary>
-        /// Retrieves the members of a specified type represented by a <see cref="CodeTypeReference"/>.
-        /// </summary>
-        /// <remarks>This method resolves the type's namespace and name from the <paramref
-        /// name="typeRef"/> and uses the provided delegate functions to retrieve the corresponding <see
-        /// cref="CodeNamespace"/> and <see cref="CodeTypeDeclaration"/>. It then returns the members of the resolved
-        /// type.</remarks>
-        /// <param name="typeRef">The <see cref="CodeTypeReference"/> representing the type whose members are to be retrieved.</param>
-        /// <param name="getCodeNamespace">A function that takes a namespace name as input and returns the corresponding <see cref="CodeNamespace"/>.</param>
-        /// <param name="getCodeTypeDeclaration">A function that takes a type name and a <see cref="CodeNamespace"/> as input and returns the corresponding
-        /// <see cref="CodeTypeDeclaration"/>.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="CodeTypeMember"/> objects representing the members of the
-        /// specified type. If the type cannot be resolved, an empty collection is returned.</returns>
-        public static IEnumerable<CodeTypeMember> GetMembers(this CodeTypeReference typeRef,
-            Func<string, CodeNamespace> getCodeNamespace,
-            Func<string, CodeNamespace, CodeTypeDeclaration> getCodeTypeDeclaration)
-        {
-            var baseTypeFullName = typeRef.BaseType;
-            var lastDotPos = baseTypeFullName.LastIndexOf('.');
-            if (lastDotPos > 0)
+            yield return typeDecl;
+            var baseType = typeDecl.GetBaseClass(getCodeNamespace, getCodeTypeDeclaration);
+            while (baseType != null)
             {
-                var globalSepPos  = baseTypeFullName.LastIndexOf(':') + 1;
-                var @namespace    = baseTypeFullName.Substring(globalSepPos, lastDotPos - globalSepPos);
-                var typeName      = baseTypeFullName.Substring(lastDotPos + 1);
-                var codeNamespace = getCodeNamespace(@namespace);
-                var typeDecl      = getCodeTypeDeclaration(typeName, codeNamespace);
-                return typeDecl.Members.Cast<CodeTypeMember>();
+                yield return baseType;
+                baseType = baseType.GetBaseClass(getCodeNamespace, getCodeTypeDeclaration);
             }
-            return Enumerable.Empty<CodeTypeMember>();
+        }
+
+        /// <summary>
+        /// Retrieves the base class of the specified <see cref="CodeTypeDeclaration"/> if it exists.
+        /// </summary>
+        /// <remarks>This method resolves the base class by examining the <see
+        /// cref="CodeTypeDeclaration.BaseTypes"/> collection  and using the provided functions to locate the
+        /// corresponding type declaration. Only base types that are classes  are considered.</remarks>
+        /// <param name="codeTypeDeclaration">The <see cref="CodeTypeDeclaration"/> for which to find the base class.</param>
+        /// <param name="getCodeNamespace">A function that takes a namespace name as input and returns the corresponding <see cref="CodeNamespace"/>.</param>
+        /// <param name="getCodeTypeDeclaration">A function that takes a type name and a <see cref="CodeNamespace"/> as input and returns the corresponding
+        /// <see cref="CodeTypeDeclaration"/>.</param>
+        /// <returns>The <see cref="CodeTypeDeclaration"/> representing the base class of the specified <paramref
+        /// name="codeTypeDeclaration"/>,  or <see langword="null"/> if no base class is found or the base type cannot
+        /// be resolved.</returns>
+        public static CodeTypeDeclaration GetBaseClass(this CodeTypeDeclaration codeTypeDeclaration,
+            Func<string, CodeNamespace> getCodeNamespace,
+            Func<string, CodeNamespace, CodeTypeDeclaration> getCodeTypeDeclaration)
+        {
+            var baseType = codeTypeDeclaration.BaseTypes
+                .OfType<CodeTypeReference>()
+                .Select(ToTypeDeclaration)
+                .Where(typeDecl => typeDecl != null && typeDecl.IsClass)
+                .FirstOrDefault();
+
+            return baseType;
+
+            CodeTypeDeclaration ToTypeDeclaration(CodeTypeReference typeRef)
+            {
+                var typeFullName = typeRef.BaseType;
+                var lastDotPos = typeFullName.LastIndexOf('.');
+                if (lastDotPos > 0)
+                {
+                    var globalSepPos  = typeFullName.LastIndexOf(':') + 1;
+                    var @namespace    = typeFullName.Substring(globalSepPos, lastDotPos - globalSepPos);
+                    var typeName      = typeFullName.Substring(lastDotPos + 1);
+                    var codeNamespace = getCodeNamespace(@namespace);
+                    var typeDecl      = getCodeTypeDeclaration(typeName, codeNamespace);
+                    return typeDecl;
+                }
+                return null;
+            }
         }
     }
 }

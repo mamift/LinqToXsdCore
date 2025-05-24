@@ -5,19 +5,26 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified"
 >
-  <xs:complexType name="BaseContextType">
+
+  <xs:complexType name="Base1Type">
     <xs:sequence>
-      <xs:element name="BaseProp" type="xs:string" />
+      <xs:element name="Base1Prop" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="BaseType">
-    <xs:sequence>
-      <xs:element name="BaseContext" type="BaseContextType"/>
-    </xs:sequence>
+
+  <xs:complexType name="Base2Type">
+    <xs:complexContent>
+      <xs:extension base="Base1Type">
+        <xs:sequence>
+          <xs:element name="Base2Prop" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+
   <xs:complexType name="ContentType">
     <xs:complexContent>
-      <xs:extension base="BaseType">
+      <xs:extension base="Base2Type">
         <xs:sequence>
           <xs:element name="ContentProp" type="xs:string"/>
         </xs:sequence>
