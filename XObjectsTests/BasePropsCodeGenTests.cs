@@ -33,11 +33,13 @@ namespace Xml.Schema.Linq.Tests
         }
 
         [Test]
-        public void T1_WrapperShouldDeclarePropertyOfBaseOfContentType()
+        public void T1_WrapperShouldDeclarePropertiesOfBasesOfContentType()
         {
             var type   = GeneratedTypes.Single(type => type.Identifier.Text == "Wrapper");
-            var prop = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "BaseContext");
-            Assert.IsNotNull(prop);
+            var prop1 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Base1Prop");
+            var prop2 = type.Members.OfType<PropertyDeclarationSyntax>().SingleOrDefault(prop => prop.Identifier.Text == "Base2Prop");
+            Assert.IsNotNull(prop1);
+            Assert.IsNotNull(prop2);
         }
     }
 }

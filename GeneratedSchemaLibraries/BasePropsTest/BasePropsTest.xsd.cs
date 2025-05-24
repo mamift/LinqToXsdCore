@@ -23,59 +23,59 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (BaseProp)
+    /// Regular expression: (Base1Prop)
     /// </para>
     /// </summary>
-    public partial class BaseContextType : XTypedElement, IXMetaData {
+    public partial class Base1Type : XTypedElement, IXMetaData {
         
-		public static explicit operator BaseContextType(XElement xe) { return XTypedServices.ToXTypedElement<BaseContextType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Base1Type(XElement xe) { return XTypedServices.ToXTypedElement<Base1Type>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<BaseContextType>(this);
+            return XTypedServices.CloneXTypedElement<Base1Type>(this);
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (BaseProp)
+        /// Regular expression: (Base1Prop)
         /// </para>
         /// </summary>
-        public BaseContextType() {
+        public Base1Type() {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName BasePropXName = System.Xml.Linq.XName.Get("BaseProp", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
+        protected internal static readonly System.Xml.Linq.XName Base1PropXName = System.Xml.Linq.XName.Get("Base1Prop", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
         
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (BaseProp)
+        /// Regular expression: (Base1Prop)
         /// </para>
         /// </summary>
-        public virtual string BaseProp {
+        public virtual string Base1Prop {
             get {
-                XElement x = this.GetElement(BasePropXName);
+                XElement x = this.GetElement(Base1PropXName);
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElement(BasePropXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetElement(Base1PropXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseContextType", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Base1Type", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
         
-        static BaseContextType() {
+        static Base1Type() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(BasePropXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(Base1PropXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            localElementDictionary.Add(BasePropXName, typeof(string));
+            localElementDictionary.Add(Base1PropXName, typeof(string));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -116,59 +116,60 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (BaseContext)
+    /// Regular expression: (Base1Prop, Base2Prop)
     /// </para>
     /// </summary>
-    public partial class BaseType : XTypedElement, IXMetaData {
+    public partial class Base2Type : global::LinqToXsd.Schemas.Test.BasePropsTypes.Base1Type, IXMetaData {
         
-		public static explicit operator BaseType(XElement xe) { return XTypedServices.ToXTypedElement<BaseType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+		public static explicit operator Base2Type(XElement xe) { return XTypedServices.ToXTypedElement<Base2Type>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<BaseType>(this);
+            return XTypedServices.CloneXTypedElement<Base2Type>(this);
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (BaseContext)
+        /// Regular expression: (Base1Prop, Base2Prop)
         /// </para>
         /// </summary>
-        public BaseType() {
+        public Base2Type() {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName BaseContextXName = System.Xml.Linq.XName.Get("BaseContext", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
+        protected internal static readonly System.Xml.Linq.XName Base2PropXName = System.Xml.Linq.XName.Get("Base2Prop", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
         
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (BaseContext)
+        /// Regular expression: (Base1Prop, Base2Prop)
         /// </para>
         /// </summary>
-        public virtual BaseContextType BaseContext {
+        public virtual string Base2Prop {
             get {
-                XElement x = this.GetElement(BaseContextXName);
-                return ((BaseContextType)(x));
+                XElement x = this.GetElement(Base2PropXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
-                this.SetElement(BaseContextXName, value);
+                this.SetElement(Base2PropXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseType", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Base2Type", "http://linqtoxsd.schemas.org/test/base-props-types.xsd");
         
-        static BaseType() {
+        static Base2Type() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(BaseContextXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(Base1PropXName), new NamedContentModelEntity(Base2PropXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            localElementDictionary.Add(BaseContextXName, typeof(BaseContextType));
+            localElementDictionary.Add(Base1PropXName, typeof(string));
+            localElementDictionary.Add(Base2PropXName, typeof(string));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -209,10 +210,10 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (BaseContext, ContentProp)
+    /// Regular expression: (Base1Prop, Base2Prop, ContentProp)
     /// </para>
     /// </summary>
-    public partial class ContentType : global::LinqToXsd.Schemas.Test.BasePropsTypes.BaseType, IXMetaData {
+    public partial class ContentType : global::LinqToXsd.Schemas.Test.BasePropsTypes.Base2Type, IXMetaData {
         
 		public static explicit operator ContentType(XElement xe) { return XTypedServices.ToXTypedElement<ContentType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -222,7 +223,7 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (BaseContext, ContentProp)
+        /// Regular expression: (Base1Prop, Base2Prop, ContentProp)
         /// </para>
         /// </summary>
         public ContentType() {
@@ -237,7 +238,7 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (BaseContext, ContentProp)
+        /// Regular expression: (Base1Prop, Base2Prop, ContentProp)
         /// </para>
         /// </summary>
         public virtual string ContentProp {
@@ -254,14 +255,15 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
         
         static ContentType() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(BaseContextXName), new NamedContentModelEntity(ContentPropXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(Base1PropXName), new NamedContentModelEntity(Base2PropXName), new NamedContentModelEntity(ContentPropXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            localElementDictionary.Add(BaseContextXName, typeof(BaseContextType));
+            localElementDictionary.Add(Base1PropXName, typeof(string));
+            localElementDictionary.Add(Base2PropXName, typeof(string));
             localElementDictionary.Add(ContentPropXName, typeof(string));
         }
         
@@ -370,7 +372,7 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (BaseContext, ContentProp)
+        /// Regular expression: (Base1Prop, Base2Prop, ContentProp)
         /// </para>
         /// </summary>
         public virtual string ContentProp {
@@ -387,15 +389,32 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (BaseContext)
+        /// Regular expression: (Base1Prop, Base2Prop)
         /// </para>
         /// </summary>
-        public virtual BaseContextType BaseContext {
+        public virtual string Base2Prop {
             get {
-                return this.ContentField.BaseContext;
+                return this.ContentField.Base2Prop;
             }
             set {
-                this.ContentField.BaseContext = value;
+                this.ContentField.Base2Prop = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Base1Prop)
+        /// </para>
+        /// </summary>
+        public virtual string Base1Prop {
+            get {
+                return this.ContentField.Base1Prop;
+            }
+            set {
+                this.ContentField.Base1Prop = value;
             }
         }
         
@@ -448,8 +467,8 @@ namespace LinqToXsd.Schemas.Test.BasePropsTypes {
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseContextType", "http://linqtoxsd.schemas.org/test/base-props-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.BasePropsTypes.BaseContextType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseType", "http://linqtoxsd.schemas.org/test/base-props-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.BasePropsTypes.BaseType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Base1Type", "http://linqtoxsd.schemas.org/test/base-props-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.BasePropsTypes.Base1Type));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Base2Type", "http://linqtoxsd.schemas.org/test/base-props-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.BasePropsTypes.Base2Type));
             typeDictionary.Add(System.Xml.Linq.XName.Get("ContentType", "http://linqtoxsd.schemas.org/test/base-props-types.xsd"), typeof(global::LinqToXsd.Schemas.Test.BasePropsTypes.ContentType));
         }
         
