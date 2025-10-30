@@ -13,6 +13,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MoreLinq;
 using NUnit.Framework;
 using Xml.Schema.Linq.Extensions;
+using Xml.Schema.Linq.Tests.Extensions;
 
 namespace Xml.Schema.Linq.Tests
 {
@@ -276,7 +277,11 @@ namespace Xml.Schema.Linq.Tests
             var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
             var root = tree.GetNamespaceRoot();
 
-            TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new [] { root.ToFullString() });
+            var ns = root.SortClassesByName();
+            File.WriteAllText("atom2.xsd.cs", ns.ToFullString());
+
+            var fullString = ns.ToFullString();
+            TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new [] { fullString });
 
             var allProperties = root.DescendantNodes().OfType<PropertyDeclarationSyntax>().ToList();
             var allFields = root.DescendantNodes().OfType<FieldDeclarationSyntax>().ToList();
