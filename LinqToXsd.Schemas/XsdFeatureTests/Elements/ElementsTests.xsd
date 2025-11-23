@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:linqtoxsd.schemas.elementtests" xmlns="urn:linqtoxsd.schemas.elementtests">
+
+    <xs:annotation>
+        <xs:documentation>Basic XSD that tests global elemnts, and the 3 compositors: all, sequence and choice. NO types.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="globalElement1">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="allLocalChildElement"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="globalElement2">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sequenceLocalChildElement"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="globalElement3">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="choiceLocalElement1"/>
+                <xs:element name="choiceLocalElement2"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

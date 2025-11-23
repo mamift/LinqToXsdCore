@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:linqtoxsd.schemas.ElementsWithComplexTypes"
+    xmlns="urn:linqtoxsd.schemas.ElementsWithComplexTypes">
+
+    <xs:element name="globalElement1">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="localElementAnonAllCt1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="ctle1"/>
+                        </xs:all>
+                        <xs:attribute name="allLocalAttr1"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="localElementAnonSeqCt2">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ctle2"/>
+                        </xs:sequence>
+                        <xs:attribute name="seqLocalAttr1"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="localElementAnonChoiceCt3">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="ctle3"/>
+                        </xs:choice>
+                        <xs:attribute name="choiceLocalAttr1"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="globalCt1">
+        <xs:sequence>
+            <xs:element name="gct1-le"/>
+        </xs:sequence>
+        <xs:attribute name="localAttr1"/>
+    </xs:complexType>
+    <xs:element name="globalElement2" type="globalCt1"/>
+</xs:schema>

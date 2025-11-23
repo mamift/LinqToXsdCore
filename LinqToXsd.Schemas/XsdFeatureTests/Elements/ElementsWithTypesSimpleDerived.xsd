@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:linqtoxsd.schemas.ElementsWithSimpleDerivedTypesTest"
+    xmlns="urn:linqtoxsd.schemas.ElementsWithTypesTest">
+
+    <xs:annotation>
+        <xs:documentation>Basic XSD that tests global elemnts, and the 3 compositors: all, sequence and choice, and includes local child elements of all simple derived types.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="globalElement1">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="allLocalElementNormalizedString" type="xs:normalizedString"/>
+                <xs:element name="allLocalElementToken" type="xs:token"/>
+                <xs:element name="allLocalElementLanguage" type="xs:language"/>
+                <xs:element name="allLocalElementNMTOKEN" type="xs:NMTOKEN"/>
+                <xs:element name="allLocalElementNMTOKENS" type="xs:NMTOKENS"/>
+                <xs:element name="allLocalElementName" type="xs:Name"/>
+                <xs:element name="allLocalElementNCName" type="xs:NCName"/>
+                <xs:element name="allLocalElementID" type="xs:ID"/>
+                <xs:element name="allLocalElementIDREF" type="xs:IDREF"/>
+                <xs:element name="allLocalElementIDREFS" type="xs:IDREFS"/>
+                <xs:element name="allLocalElementENTITY" type="xs:ENTITY"/>
+                <xs:element name="allLocalElementENTITIES" type="xs:ENTITIES"/>
+                <xs:element name="allLocalElementInteger" type="xs:integer"/>
+                <xs:element name="allLocalElementNonPositiveInteger" type="xs:nonPositiveInteger"/>
+                <xs:element name="allLocalElementNegativeInteger" type="xs:negativeInteger"/>
+                <xs:element name="allLocalElementLong" type="xs:long"/>
+                <xs:element name="allLocalElementInt" type="xs:int"/>
+                <xs:element name="allLocalElementShort" type="xs:short"/>
+                <xs:element name="allLocalElementByte" type="xs:byte"/>
+                <xs:element name="allLocalElementNonNegativeInteger" type="xs:nonNegativeInteger"/>
+                <xs:element name="allLocalElementUnsignedLong" type="xs:unsignedLong"/>
+                <xs:element name="allLocalElementUnsignedInt" type="xs:unsignedInt"/>
+                <xs:element name="allLocalElementUnsignedShort" type="xs:unsignedShort"/>
+                <xs:element name="allLocalElementUnsignedByte" type="xs:unsignedByte"/>
+                <xs:element name="allLocalElementPositiveInteger" type="xs:positiveInteger"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="globalElement2">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sequenceLocalElementNormalizedString" type="xs:normalizedString"/>
+                <xs:element name="sequenceLocalElementToken" type="xs:token"/>
+                <xs:element name="sequenceLocalElementLanguage" type="xs:language"/>
+                <xs:element name="sequenceLocalElementNMTOKEN" type="xs:NMTOKEN"/>
+                <xs:element name="sequenceLocalElementNMTOKENS" type="xs:NMTOKENS"/>
+                <xs:element name="sequenceLocalElementName" type="xs:Name"/>
+                <xs:element name="sequenceLocalElementNCName" type="xs:NCName"/>
+                <xs:element name="sequenceLocalElementID" type="xs:ID"/>
+                <xs:element name="sequenceLocalElementIDREF" type="xs:IDREF"/>
+                <xs:element name="sequenceLocalElementIDREFS" type="xs:IDREFS"/>
+                <xs:element name="sequenceLocalElementENTITY" type="xs:ENTITY"/>
+                <xs:element name="sequenceLocalElementENTITIES" type="xs:ENTITIES"/>
+                <xs:element name="sequenceLocalElementInteger" type="xs:integer"/>
+                <xs:element name="sequenceLocalElementNonPositiveInteger"
+                    type="xs:nonPositiveInteger"/>
+                <xs:element name="sequenceLocalElementNegativeInteger" type="xs:negativeInteger"/>
+                <xs:element name="sequenceLocalElementLong" type="xs:long"/>
+                <xs:element name="sequenceLocalElementInt" type="xs:int"/>
+                <xs:element name="sequenceLocalElementShort" type="xs:short"/>
+                <xs:element name="sequenceLocalElementByte" type="xs:byte"/>
+                <xs:element name="sequenceLocalElementNonNegativeInteger"
+                    type="xs:nonNegativeInteger"/>
+                <xs:element name="sequenceLocalElementUnsignedLong" type="xs:unsignedLong"/>
+                <xs:element name="sequenceLocalElementUnsignedInt" type="xs:unsignedInt"/>
+                <xs:element name="sequenceLocalElementUnsignedShort" type="xs:unsignedShort"/>
+                <xs:element name="sequenceLocalElementUnsignedByte" type="xs:unsignedByte"/>
+                <xs:element name="sequenceLocalElementPositiveInteger" type="xs:positiveInteger"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="globalElement3">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="choiceLocalElementNormalizedString" type="xs:normalizedString"/>
+                <xs:element name="choiceLocalElementToken" type="xs:token"/>
+                <xs:element name="choiceLocalElementLanguage" type="xs:language"/>
+                <xs:element name="choiceLocalElementNMTOKEN" type="xs:NMTOKEN"/>
+                <xs:element name="choiceLocalElementNMTOKENS" type="xs:NMTOKENS"/>
+                <xs:element name="choiceLocalElementName" type="xs:Name"/>
+                <xs:element name="choiceLocalElementNCName" type="xs:NCName"/>
+                <xs:element name="choiceLocalElementID" type="xs:ID"/>
+                <xs:element name="choiceLocalElementIDREF" type="xs:IDREF"/>
+                <xs:element name="choiceLocalElementIDREFS" type="xs:IDREFS"/>
+                <xs:element name="choiceLocalElementENTITY" type="xs:ENTITY"/>
+                <xs:element name="choiceLocalElementENTITIES" type="xs:ENTITIES"/>
+                <xs:element name="choiceLocalElementInteger" type="xs:integer"/>
+                <xs:element name="choiceLocalElementNonPositiveInteger" type="xs:nonPositiveInteger"/>
+                <xs:element name="choiceLocalElementNegativeInteger" type="xs:negativeInteger"/>
+                <xs:element name="choiceLocalElementLong" type="xs:long"/>
+                <xs:element name="choiceLocalElementInt" type="xs:int"/>
+                <xs:element name="choiceLocalElementShort" type="xs:short"/>
+                <xs:element name="choiceLocalElementByte" type="xs:byte"/>
+                <xs:element name="choiceLocalElementNonNegativeInteger" type="xs:nonNegativeInteger"/>
+                <xs:element name="choiceLocalElementUnsignedLong" type="xs:unsignedLong"/>
+                <xs:element name="choiceLocalElementUnsignedInt" type="xs:unsignedInt"/>
+                <xs:element name="choiceLocalElementUnsignedShort" type="xs:unsignedShort"/>
+                <xs:element name="choiceLocalElementUnsignedByte" type="xs:unsignedByte"/>
+                <xs:element name="choiceLocalElementPositiveInteger" type="xs:positiveInteger"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

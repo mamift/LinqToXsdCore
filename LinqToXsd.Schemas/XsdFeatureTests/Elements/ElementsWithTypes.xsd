@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:linqtoxsd.schemas.ElementsWithTypesTest"
+    xmlns="urn:linqtoxsd.schemas.ElementsWithTypesTest">
+
+    <xs:annotation>
+        <xs:documentation>Basic XSD that tests global elemnts, and the 3 compositors: all, sequence and choice, and includes local child elements of all simple types.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="globalElement1">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="allLocalChildElementString" type="xs:string"/>
+                <xs:element name="allLocalChildElementBoolean" type="xs:boolean"/>
+                <xs:element name="allLocalChildElementFloat" type="xs:float"/>
+                <xs:element name="allLocalChildElementDouble" type="xs:double"/>
+                <xs:element name="allLocalChildElementDecimal" type="xs:decimal"/>
+                <xs:element name="allLocalChildElementDuration" type="xs:duration"/>
+                <xs:element name="allLocalChildElementDatetime" type="xs:dateTime"/>
+                <xs:element name="allLocalChildElementTime" type="xs:time"/>
+                <xs:element name="allLocalChildElementDate" type="xs:date"/>
+                <xs:element name="allLocalChildElementGyearmonth" type="xs:gYearMonth"/>
+                <xs:element name="allLocalChildElementGyear" type="xs:gYear"/>
+                <xs:element name="allLocalChildElementGmonthday" type="xs:gMonthDay"/>
+                <xs:element name="allLocalChildElementGday" type="xs:gDay"/>
+                <xs:element name="allLocalChildElementGmonth" type="xs:gMonth"/>
+                <xs:element name="allLocalChildElementHexbinary" type="xs:hexBinary"/>
+                <xs:element name="allLocalChildElementBase64binary" type="xs:base64Binary"/>
+                <xs:element name="allLocalChildElementAnyuri" type="xs:anyURI"/>
+                <xs:element name="allLocalChildElementQname" type="xs:QName"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="globalElement2">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sequenceLocalElementString" type="xs:string"/>
+                <xs:element name="sequenceLocalElementBoolean" type="xs:boolean"/>
+                <xs:element name="sequenceLocalElementFloat" type="xs:float"/>
+                <xs:element name="sequenceLocalElementDouble" type="xs:double"/>
+                <xs:element name="sequenceLocalElementDecimal" type="xs:decimal"/>
+                <xs:element name="sequenceLocalElementDuration" type="xs:duration"/>
+                <xs:element name="sequenceLocalElementDatetime" type="xs:dateTime"/>
+                <xs:element name="sequenceLocalElementTime" type="xs:time"/>
+                <xs:element name="sequenceLocalElementDate" type="xs:date"/>
+                <xs:element name="sequenceLocalElementGyearmonth" type="xs:gYearMonth"/>
+                <xs:element name="sequenceLocalElementGyear" type="xs:gYear"/>
+                <xs:element name="sequenceLocalElementGmonthday" type="xs:gMonthDay"/>
+                <xs:element name="sequenceLocalElementGday" type="xs:gDay"/>
+                <xs:element name="sequenceLocalElementGmonth" type="xs:gMonth"/>
+                <xs:element name="sequenceLocalElementHexbinary" type="xs:hexBinary"/>
+                <xs:element name="sequenceLocalElementBase64binary" type="xs:base64Binary"/>
+                <xs:element name="sequenceLocalElementAnyuri" type="xs:anyURI"/>
+                <xs:element name="sequenceLocalElementQname" type="xs:QName"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="globalElement3">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="choiceLocalElementString" type="xs:string"/>
+                <xs:element name="choiceLocalElementBoolean" type="xs:boolean"/>
+                <xs:element name="choiceLocalElementFloat" type="xs:float"/>
+                <xs:element name="choiceLocalElementDouble" type="xs:double"/>
+                <xs:element name="choiceLocalElementDecimal" type="xs:decimal"/>
+                <xs:element name="choiceLocalElementDuration" type="xs:duration"/>
+                <xs:element name="choiceLocalElementDatetime" type="xs:dateTime"/>
+                <xs:element name="choiceLocalElementTime" type="xs:time"/>
+                <xs:element name="choiceLocalElementDate" type="xs:date"/>
+                <xs:element name="choiceLocalElementGyearmonth" type="xs:gYearMonth"/>
+                <xs:element name="choiceLocalElementGyear" type="xs:gYear"/>
+                <xs:element name="choiceLocalElementGmonthday" type="xs:gMonthDay"/>
+                <xs:element name="choiceLocalElementGday" type="xs:gDay"/>
+                <xs:element name="choiceLocalElementGmonth" type="xs:gMonth"/>
+                <xs:element name="choiceLocalElementHexbinary" type="xs:hexBinary"/>
+                <xs:element name="choiceLocalElementBase64binary" type="xs:base64Binary"/>
+                <xs:element name="choiceLocalElementAnyuri" type="xs:anyURI"/>
+                <xs:element name="choiceLocalElementQname" type="xs:QName"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
