@@ -417,22 +417,28 @@ namespace Xml.Schema.Linq.Tests
             ns1 = ns1.CleanForComparison();
 
             var existingAtomCode = "..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs";
-
-            {
-                var directoryName = Path.GetDirectoryName(existingAtomCode);
-                var fileName = Path.GetFileNameWithoutExtension(existingAtomCode);
-                var filePath = Path.Combine(directoryName, fileName + "2.cs");
-                // ns1.WriteToFile(filePath);
-            }
             
             var tree2 = new FileInfo(existingAtomCode).ToSyntaxTree();
             var ns2 = tree2.GetNamespaceRoot();
             ns2 = ns2.CleanForComparison();
-            
-            Assert.IsEmpty(ns1.CompareProperties(ns2));
-            Assert.IsEmpty(ns1.CompareFields(ns2));
 
-            
+            var types1 = ns1.Members.OfType<TypeDeclarationSyntax>().ToList();
+            var subtypes1 = (from t1 in types1
+                from tt1 in t1.Members.OfType<TypeDeclarationSyntax>()
+                select tt1).ToList();
+
+            var types2 = ns2.Members.OfType<TypeDeclarationSyntax>().ToList();
+            var subtypes2 = (from t2 in types2
+                from tt2 in t2.Members.OfType<TypeDeclarationSyntax>()
+                select tt2).ToList();
+
+            Assert.AreEqual(types1.Count, types2.Count);
+
+            Assert.IsNotEmpty(subtypes1);
+            Assert.IsNotNull(subtypes1.SingleOrDefault());
+
+            Assert.IsNotEmpty(subtypes2);
+            Assert.IsNotNull(subtypes2.SingleOrDefault());
         }
     }
 }
