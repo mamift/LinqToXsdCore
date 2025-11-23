@@ -12,6 +12,7 @@ General guidelines to follow:
 - Do not arbitrarily re-write existing code.
 - Write tests using the NUnit API. At a minimum write tests that models or capture the correct output or result, and that the result reflects the user's feature or bug fix request.
   - Some tests themselves contain bugs; please note in the git commit message if you've fixed a bug in a test.
+- Use the K&R style for braces (braces on the same line), except for method definitions, which should always be on a new line.
 
 # Specific LinqToXsdCore project guidance
 

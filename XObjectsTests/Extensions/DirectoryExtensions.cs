@@ -1,6 +1,8 @@
 ﻿#nullable enable
 using System;
 using System.IO;
+using System.Linq;
+using tr = W3C.XMLSpec.tr;
 
 namespace Xml.Schema.Linq.Tests.Extensions;
 
@@ -20,18 +22,20 @@ public static class DirectoryExtensions
     /// <exception cref="ArgumentNullException"/>
     /// <exception cref="ArgumentException"/>
     /// <exception cref="DirectoryNotFoundException"/>
-    public static DirectoryInfo AscendToFolder(DirectoryInfo startingDirectory, string ancestorFolderName)
+    public static DirectoryInfo AscendToFolder(this DirectoryInfo startingDirectory, string ancestorFolderName)
     {
         if (startingDirectory == null) throw new ArgumentNullException(nameof(startingDirectory));
         if (string.IsNullOrWhiteSpace(ancestorFolderName)) throw new ArgumentException("Folder name must be supplied.", nameof(ancestorFolderName));
 
         var current = startingDirectory;
-        while (current != null)
-        {
-            if (string.Equals(current.Name, ancestorFolderName, StringComparison.OrdinalIgnoreCase))
-            {
+        while (current != null) {
+            if (string.Equals(current.Name, ancestorFolderName, StringComparison.OrdinalIgnoreCase)) {
                 // Return a fresh instance (optional; current itself would also be fine).
                 return new DirectoryInfo(current.FullName);
+            }
+            var possibleExistingAtCurrentLevelAsSubdirs = current.EnumerateDirectories(ancestorFolderName).ToList();
+            if (possibleExistingAtCurrentLevelAsSubdirs.Any()) {
+                return possibleExistingAtCurrentLevelAsSubdirs.Single(e => e.Name == ancestorFolderName);
             }
             current = current.Parent;
         }
@@ -56,24 +60,21 @@ public static class DirectoryExtensions
     /// <exception cref="ArgumentException"/>
     /// <exception cref="InvalidOperationException">Thrown when startingDirectory has no subdirectories.</exception>
     /// <exception cref="DirectoryNotFoundException">Thrown when the descendant folder is not found.</exception>
-    public static DirectoryInfo DescendToFolder(DirectoryInfo startingDirectory, string descendantFolderName)
+    public static DirectoryInfo DescendToFolder(this DirectoryInfo startingDirectory, string descendantFolderName)
     {
         if (startingDirectory == null) throw new ArgumentNullException(nameof(startingDirectory));
         if (string.IsNullOrWhiteSpace(descendantFolderName)) throw new ArgumentException("Folder name must be supplied.", nameof(descendantFolderName));
         if (!startingDirectory.Exists) throw new DirectoryNotFoundException($"Starting directory does not exist: '{startingDirectory.FullName}'.");
 
         // Quick check for absence of any subdirectories.
-        using (var enumerator = startingDirectory.EnumerateDirectories().GetEnumerator())
-        {
-            if (!enumerator.MoveNext())
-            {
+        using (var enumerator = startingDirectory.EnumerateDirectories().GetEnumerator()) {
+            if (!enumerator.MoveNext()) {
                 throw new InvalidOperationException($"Directory '{startingDirectory.FullName}' has no subdirectories to descend into.");
             }
         }
 
         DirectoryInfo? result = DepthFirst(startingDirectory, descendantFolderName);
-        if (result == null)
-        {
+        if (result == null) {
             throw new DirectoryNotFoundException(
                 $"Descendant folder '{descendantFolderName}' was not found below '{startingDirectory.FullName}'.");
         }
@@ -82,10 +83,8 @@ public static class DirectoryExtensions
 
         static DirectoryInfo? DepthFirst(DirectoryInfo current, string targetName)
         {
-            foreach (var dir in SafeEnumerateDirectories(current))
-            {
-                if (string.Equals(dir.Name, targetName, StringComparison.OrdinalIgnoreCase))
-                {
+            foreach (var dir in SafeEnumerateDirectories(current)) {
+                if (string.Equals(dir.Name, targetName, StringComparison.OrdinalIgnoreCase)) {
                     return new DirectoryInfo(dir.FullName);
                 }
 
@@ -97,19 +96,21 @@ public static class DirectoryExtensions
 
         static DirectoryInfo[] SafeEnumerateDirectories(DirectoryInfo directory)
         {
-            try
-            {
+            try {
                 return directory.GetDirectories();
-            }
-            catch (UnauthorizedAccessException)
-            {
+            } catch (UnauthorizedAccessException) {
                 // Skip directories we cannot access.
                 return Array.Empty<DirectoryInfo>();
-            }
-            catch (DirectoryNotFoundException)
-            {
+            } catch (DirectoryNotFoundException) {
                 return Array.Empty<DirectoryInfo>();
             }
         }
+    }
+
+    public static FileInfo FindFileRecursively(this DirectoryInfo dir, string fileName)
+    {
+        return dir.GetFiles(fileName, new EnumerationOptions() {
+            RecurseSubdirectories = true
+        }).Single();
     }
 }
