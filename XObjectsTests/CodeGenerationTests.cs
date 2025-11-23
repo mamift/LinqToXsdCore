@@ -412,33 +412,33 @@ namespace Xml.Schema.Linq.Tests
         {
             var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
 
-            var tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
-            var ns1 = tree1.GetNamespaceRoot();
-            ns1 = ns1.CleanForComparison();
+            var newTree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
+            var newNs = newTree.GetNamespaceRoot();
+            newNs = newNs.CleanForComparison();
 
             var existingAtomCode = "..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs";
             
-            var tree2 = new FileInfo(existingAtomCode).ToSyntaxTree();
-            var ns2 = tree2.GetNamespaceRoot();
-            ns2 = ns2.CleanForComparison();
+            var treeFromExisting = new FileInfo(existingAtomCode).ToSyntaxTree();
+            var existingNs = treeFromExisting.GetNamespaceRoot();
+            existingNs = existingNs.CleanForComparison();
 
-            var types1 = ns1.Members.OfType<TypeDeclarationSyntax>().ToList();
-            var subtypes1 = (from t1 in types1
+            var newTypes = newNs.Members.OfType<TypeDeclarationSyntax>().ToList();
+            var newSubTypes = (from t1 in newTypes
                 from tt1 in t1.Members.OfType<TypeDeclarationSyntax>()
                 select tt1).ToList();
 
-            var types2 = ns2.Members.OfType<TypeDeclarationSyntax>().ToList();
-            var subtypes2 = (from t2 in types2
+            var existingTypes = existingNs.Members.OfType<TypeDeclarationSyntax>().ToList();
+            var existingSubtypes = (from t2 in existingTypes
                 from tt2 in t2.Members.OfType<TypeDeclarationSyntax>()
                 select tt2).ToList();
 
-            Assert.AreEqual(types1.Count, types2.Count);
+            Assert.AreEqual(newTypes.Count, existingTypes.Count);
 
-            Assert.IsNotEmpty(subtypes1);
-            Assert.IsNotNull(subtypes1.SingleOrDefault());
+            Assert.IsNotEmpty(newSubTypes);
+            Assert.IsNotNull(newSubTypes.SingleOrDefault());
 
-            Assert.IsNotEmpty(subtypes2);
-            Assert.IsNotNull(subtypes2.SingleOrDefault());
+            Assert.IsNotEmpty(existingSubtypes);
+            Assert.IsNotNull(existingSubtypes.SingleOrDefault());
         }
     }
 }
