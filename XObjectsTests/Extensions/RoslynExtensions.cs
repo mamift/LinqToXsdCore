@@ -5,30 +5,50 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-
+using Xml.Schema.Linq.Extensions;
 using NameAndMemberTuple = (string name, Microsoft.CodeAnalysis.CSharp.Syntax.MemberDeclarationSyntax member);
-using AttributeNameAndCount = System.Collections.Generic.List<(string attributeName, int count)>;
+using AttributeNameAndCountList = System.Collections.Generic.List<(string attributeName, int count)>;
+// using AttributeNameAndCountList = System.Collections.Generic.List<(string attributeName, int count)>;
 
 namespace Xml.Schema.Linq.Tests.Extensions;
 
 public static class RoslynExtensions
 {
-    public static List<(string name, AttributeNameAndCount?)> ExtractAllClassMembersWithAttributeCounts(this NamespaceDeclarationSyntax root)
+    public static List<(string name, string)> ExtractAllClassMembersWithAttributeCounts(this NamespaceDeclarationSyntax root)
     {
         var list = root.ExtractAllMembersWithAttributes();
 
         return list.ConvertAll(nm => {
-
-            List<(NameSyntax attributeName, int count)> attListAndCount = (from a in nm.member.AttributeLists
+            var attListAndCount = (from a in nm.member.AttributeLists
                 from attrSyntax in a.Attributes
-                let name = attrSyntax.Name
+                let name = (attrSyntax.Name as IdentifierNameSyntax)
                 let count = a.Attributes.Count(m => m.Name.Equals(name))
-                select (attributeName: name, count: count)).ToList();
+                orderby name.Identifier.ValueText
+                select (attributeName: name.Identifier.ValueText, count: count)).ToList();
 
-            return (nm.name, default(AttributeNameAndCount));
+            // return (nm.name, attListAndCount);
+            return (nm.name, $"{attListAndCount.ToDelimitedString(tuple => $"{tuple.attributeName}:{tuple.count}")}");
         });
+    }
+
+    public static List<(string name, string)> ExtractAllClassFieldsWithAttributeCounts(this NamespaceDeclarationSyntax root)
+    {
+        var list = root.ExtractAllMembersWithAttributes();
+
+        return list.Where(m => m.member is FieldDeclarationSyntax).Select(nm => {
+            var attListAndCount = (from a in nm.member.AttributeLists
+                from attrSyntax in a.Attributes
+                let name = (attrSyntax.Name as IdentifierNameSyntax)
+                let count = a.Attributes.Count(m => m.Name.Equals(name))
+                orderby name.Identifier.ValueText
+                select (attributeName: name.Identifier.ValueText, count: count)).ToList();
+
+            // return (nm.name, attListAndCount);
+            return (nm.name, $"{attListAndCount.ToDelimitedString(tuple => $"{tuple.attributeName}:{tuple.count}")}");
+        }).ToList();
     }
 
     public static List<NameAndMemberTuple> ExtractAllMembersWithAttributes(this NamespaceDeclarationSyntax root)
@@ -56,7 +76,7 @@ public static class RoslynExtensions
                     id = p.Identifier.ValueText + $"{cs.Identifier.ValueText}_Property";
                 }
                 else {
-                    throw new NotSupportedException();
+                    Debugger.Break();
                 }
 
                 list.Add((id, member));
@@ -66,8 +86,38 @@ public static class RoslynExtensions
         return list;
     }
 
+    public static List<NameAndMemberTuple> ExtractAllFieldsWithAttributes(this ClassDeclarationSyntax cs)
+    {
+        var list = new List<NameAndMemberTuple>();
+        foreach (MemberDeclarationSyntax member in cs.Members) {
+            if (member.AttributeLists.Any()) {
+                if (member is not FieldDeclarationSyntax f) continue;
+                var ids = f.Declaration.Variables.Select(v => v.Identifier);
+                var id = ids.First().ValueText + $"_{cs.Identifier.ValueText}_Field";
+                list.Add((id, member));
+            }
+        }
+
+        return list;
+    }
+
+    public static List<NameAndMemberTuple> ExtractAllPropertiesWithAttributes(this ClassDeclarationSyntax cs)
+    {
+        var list = new List<NameAndMemberTuple>();
+        foreach (MemberDeclarationSyntax member in cs.Members) {
+            if (member.AttributeLists.Any()) {
+                if (member is not PropertyDeclarationSyntax p) continue;
+                var id = p.Identifier.ValueText + $"_{cs.Identifier.ValueText}_Property";
+                list.Add((id, member));
+            }
+        }
+
+        return list;
+    }
+
     /// <summary>
     /// Performs the following steps to clean a namespace for comparison. 1) sort all types and their members by name. 2) remove all doc comments
+    /// 3) normalise whitespace.
     /// </summary>
     /// <param name="ns"></param>
     /// <returns></returns>
