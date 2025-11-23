@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Xml.Schema.Linq.Extensions;
@@ -121,6 +122,7 @@ public static class RoslynExtensions
     /// </summary>
     /// <param name="ns"></param>
     /// <returns></returns>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static NamespaceDeclarationSyntax CleanForComparison(this NamespaceDeclarationSyntax ns)
     {
         ns = ns.SortTypesByName();

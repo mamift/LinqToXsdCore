@@ -275,36 +275,13 @@ namespace Xml.Schema.Linq.Tests
             var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
 
             var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
-            var root = tree.GetNamespaceRoot();
+            var ns = tree.GetNamespaceRoot();
 
-            var ns1 = root.ExtractAllClassFieldsWithAttributeCounts();
-
-            // var ns1 = root.CleanForComparison();
-            // ns1.WriteToFile("atom2.xsd.cs");
-
-            var tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
-            var ns2 = tree2.GetNamespaceRoot();
-            var ns2List = ns2.ExtractAllClassFieldsWithAttributeCounts();
-
-            var comparisons = ns1.CompareObjects(ns2List);
-
-            Assert.IsEmpty(comparisons);
-            
-            // var ns2 = tree2.GetNamespaceRoot();
-            // ns2 = ns2.CleanForComparison();
-            // ns2.WriteToFile("atom-sorted.xsd.cs");
-
-            var fullString = root.ToFullString();
+            var fullString = ns.ToFullString();
             TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new [] { fullString });
 
-            var allProperties = root.GetAllPropertyDescendantAttributes();
-            var allFields = root.GetAllFieldDescendantAttributes();
-
-            var allFields2 = ns2.GetAllFieldDescendantAttributes();
-
-            var compareFields = allFields.CompareObjects(allFields2);
-
-            Assert.IsEmpty(compareFields);
+            var allProperties = ns.GetAllPropertyDescendantAttributes();
+            var allFields = ns.GetAllFieldDescendantAttributes();
 
             var allPropAttributeNames = allProperties.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
             var allFieldAttributeNames = allFields.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
@@ -326,6 +303,66 @@ namespace Xml.Schema.Linq.Tests
             var allNamesAreTheSame = propAndFieldAttrNames.All(s => s == debuggerBrowsableName || s == editorBrowsableName);
 
             Assert.IsTrue(allNamesAreTheSame);
+        }
+
+        [Test]
+        public void CompareGeneratedAttributesCurrentAndSavedCSharpSourceCode()
+        {
+            var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
+
+            var tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
+            var ns1 = tree1.GetNamespaceRoot();
+
+            var tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
+            var ns2 = tree2.GetNamespaceRoot();
+            
+            Assert.IsEmpty(ns1.CompareProperties(ns2));
+            Assert.IsEmpty(ns1.CompareFields(ns2));
+
+            var allProperties1 = ns1.GetAllPropertyDescendantAttributes();
+
+            var allFields1 = ns1.GetAllFieldDescendantAttributes();
+            var allFields2 = ns2.GetAllFieldDescendantAttributes();
+
+            var compareFields = allFields1.CompareObjects(allFields2);
+
+            Assert.IsEmpty(compareFields);
+        }
+
+        [Test]
+        public void CompareFieldSummariesForEntireNamespaces()
+        {
+            var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
+
+            var tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
+            var ns1 = tree1.GetNamespaceRoot();
+
+            var tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
+            var ns2 = tree2.GetNamespaceRoot();
+            
+            Assert.IsEmpty(ns1.CompareProperties(ns2));
+            Assert.IsEmpty(ns1.CompareFields(ns2));
+
+            var allFieldAttrs1 = ns1.GetAllFieldDescendantAttributes();
+            var allFieldAttrs2 = ns2.GetAllFieldDescendantAttributes();
+
+            var attrsAndFields = allFieldAttrs1.Select(a => 
+                (
+                    Attr: a, 
+                    FieldName: ((a.Parent as AttributeListSyntax)?.Parent as FieldDeclarationSyntax)?.Declaration.Variables.Select(v => v.Identifier.ValueText).Single()
+                )
+            ).ToList();
+
+            var grouped = (from af in attrsAndFields
+                group af by af.FieldName into afGroup
+                orderby afGroup.Key
+                select afGroup).ToList();
+                
+
+
+            var compareFields = allFieldAttrs1.CompareObjects(allFieldAttrs2);
+
+            Assert.IsEmpty(compareFields);
         }
     }
 }
