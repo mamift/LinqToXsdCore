@@ -15,6 +15,10 @@ public class BaseTester
     public List<Assembly> TestAssembliesLoaded { get; protected set; } = null!;
     public MockFileSystem AllTestFiles { get; protected set; } = null!;
 
+    /// <summary>
+    /// This setup method will tee-up some helpful reference data that are used in testing the code gen output.
+    /// <para>It will filter out assemblies that are not relevant for <see cref="TestAssembliesLoaded"/>.</para>
+    /// </summary>
     [SetUp]
     public void Setup()
     {

@@ -87,7 +87,6 @@ namespace Xml.Schema.Linq.Tests
             return theXDocsReferencedByImportOrInclude.ToDictionary(key => key.Key, kvp => kvp.Value);
         }
 
-
         public static List<IFileInfo> ResolveFileAndFolderPathsToMockFileInfos(MockFileSystem mfs, 
             IEnumerable<string> sequenceOfFileAndOrFolderPaths, string filter = "*.*")
         {
@@ -105,7 +104,6 @@ namespace Xml.Schema.Linq.Tests
             files.AddRange(filteredFiles);
             return files;
         }
-
 
         public static List<IFileInfo> ResolvePossibleFileAndFolderPathsToProcessableSchemas(MockFileSystem mfs,
             IEnumerable<string> filesOrFolders)

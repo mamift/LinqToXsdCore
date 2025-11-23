@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.CodeAnalysis;
@@ -347,8 +348,8 @@ namespace Xml.Schema.Linq.Tests
             {
                 var directoryName = Path.GetDirectoryName(existingAtomCode);
                 var fileName = Path.GetFileNameWithoutExtension(existingAtomCode);
-                // save the new one for comparison
-                var filePath = Path.Combine(directoryName, fileName + "2.csx");
+                // save the new one for comparison; file ext is csv to prevent hot reload from triggering during test debug
+                var filePath = Path.Combine(directoryName, fileName + ".2.csx");
                 ns1.WriteToFile(filePath);
                 ns2.WriteToFile(existingAtomCode);
             }
@@ -360,36 +361,49 @@ namespace Xml.Schema.Linq.Tests
             var allFieldAttrs2 = ns2.GetAllFieldDescendantAttributes();
 
             var attrsAndFields1 = SummariseFields(allFieldAttrs1);
-            
             var attrsAndFields2 = SummariseFields(allFieldAttrs2);
 
-            var grouped1 = (from af in attrsAndFields1
+            var groupedFields1 = (from af in attrsAndFields1
                 group af by af.FieldName into afGroup
                 orderby afGroup.Key
                 select afGroup).ToList();
             
-            var grouped2 = (from af in attrsAndFields2
+            var groupedFields2 = (from af in attrsAndFields2
                 group af by af.FieldName into afGroup
                 orderby afGroup.Key
                 select afGroup).ToList();
 
-            var counts1 = grouped1.Select(g => new { g.Key, Count = g.Count() }).ToList();
-            var counts2 = grouped2.Select(g => new { g.Key, Count = g.Count() }).ToList();
+            var fieldCounts1 = groupedFields1.Select(g => new { g.Key, Count = g.Count() }).ToList();
+            var fieldCounts2 = groupedFields2.Select(g => new { g.Key, Count = g.Count() }).ToList();
 
-            var regrouped1 = from af in grouped1.Where(g => g.Key == "DebuggerBrowsable")
+            var regrouped1 = from af in groupedFields1.Where(g => g.Key == "DebuggerBrowsable")
                     .SelectMany(g => g)
                 group af by af.FieldName into faf
                 select faf;
 
-            var regrouped2 = from af in grouped1.Where(g => g.Key == "DebuggerBrowsable")
+            var regrouped2 = from af in groupedFields1.Where(g => g.Key == "DebuggerBrowsable")
                     .SelectMany(g => g)
                 group af by af.FieldName into faf
                 select faf;
 
-            var compareCounts = counts1.CompareObjects(counts2);
+            var compareCounts = fieldCounts1.CompareObjects(fieldCounts2);
+            // test failure, but we need intelligent error messages at this point
+            if (compareCounts.Any()) {
+                var sb = new StringBuilder();
+                foreach (var compare in compareCounts) {
+                    var memberIndex = compare.MemberPath.StripToDigits().ParseInt();
+                    var theMember1 = fieldCounts1[memberIndex!.Value];
+                    var theMember2 = fieldCounts2[memberIndex!.Value!];
+                    Assert.AreEqual(theMember2.Key, theMember1.Key);
+                    sb.AppendLine($"FieldName: {theMember1.Key}, Count1: {theMember1.Count}, Count2: {theMember2.Count}");
+                }
+                
+                Assert.Fail("Mismatch between field counts! " + Environment.NewLine + sb + Environment.NewLine);
+            }
+            
             Assert.IsEmpty(compareCounts);
 
-            var compareFields = grouped1.CompareObjects(grouped2);
+            var compareFields = groupedFields1.CompareObjects(groupedFields2);
 
             Assert.IsEmpty(compareFields);
             
