@@ -190,6 +190,12 @@ namespace Xml.Schema.Linq.Tests
             return caller + "() failed; expected " + expected + ", got " + actual;
         }
         
+        /// <summary>
+        /// Runs the <see cref="XObjectsCoreGenerator"/> to generates C# code, as <see cref="SourceText"/> from a given XSD file name.
+        /// </summary>
+        /// <param name="xsdFileName"></param>
+        /// <param name="fs"></param>
+        /// <returns></returns>
         public static SourceText GenerateSourceText(string xsdFileName, IMockFileDataAccessor fs)
         {
             var possibleSettingsFilePath = $"{xsdFileName}.config";
@@ -300,12 +306,12 @@ namespace Xml.Schema.Linq.Tests
             return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs);
         }
         
-        public static XmlSchemaSet GetXmlSchemaSet(IFileInfo xsdFile, IMockFileDataAccessor fs)
+        public static XmlSchemaSet GetXmlSchemaSet(IFileInfo xsdFile, IMockFileDataAccessor fs = null)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
 
             var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
-            var directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
+            MockDirectoryInfo directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
             var additionalXsds = directoryInfo.GetFiles("*.xsd").Where(f => f.FullName != xsdFile.FullName).ToArray();
 
             var xmlPreloadedResolver = new MockXmlUrlResolver(fs);
@@ -329,7 +335,7 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs)
+        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs = null)
         {
             var schemaSet = GetXmlSchemaSet(xsdFile, mfs);
 
@@ -359,10 +365,29 @@ namespace Xml.Schema.Linq.Tests
         /// </summary>
         public static CSharpSyntaxTree GenerateSyntaxTree(FileInfo xsdFile)
         {
+            var schemaSet = GetXmlSchemaSet(xsdFile);
+
+            var sourceText = GenerateSourceText(schemaSet, xsdFile.FullName);
+            using var writer = new StreamWriter(xsdFile.FullName + ".cs");
+            sourceText.Write(writer);
+
+            var tree = CSharpSyntaxTree.ParseText(sourceText, CSharpParseOptions.Default);
+
+            return tree as CSharpSyntaxTree;
+        }
+
+        /// <summary>
+        /// Expects a real file from the physical file system.
+        /// </summary>
+        /// <param name="xsdFile"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static XmlSchemaSet GetXmlSchemaSet(FileInfo xsdFile)
+        {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
 
-            var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
-            var directoryInfo = new DirectoryInfo(folderWithAdditionalXsdFiles);
+            var directoryInfo = new DirectoryInfo(xsdFile.DirectoryName ?? throw new InvalidOperationException("Invalid dir for XSD file!"));
             var additionalXsds = directoryInfo.GetFiles("*.xsd");
 
             var xmlPreloadedResolver = new XmlPreloadedResolver();
@@ -375,16 +400,9 @@ namespace Xml.Schema.Linq.Tests
                 DtdProcessing = DtdProcessing.Ignore,
                 CloseInput = true
             };
-            var atomXsdSchemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
-                                            .ToXmlSchemaSet(xmlPreloadedResolver);
-
-            var sourceText = GenerateSourceText(atomXsdSchemaSet, xsdFile.FullName);
-            using var writer = new StreamWriter(xsdFile.FullName + ".cs");
-            sourceText.Write(writer);
-
-            var tree = CSharpSyntaxTree.ParseText(sourceText, CSharpParseOptions.Default);
-
-            return tree as CSharpSyntaxTree;
+            var schemaSet = XmlReader.Create(xsdFile.FullName, xmlReaderSettings)
+                .ToXmlSchemaSet(xmlPreloadedResolver);
+            return schemaSet;
         }
 
         /// <summary>

@@ -1,12 +1,42 @@
-﻿using System;
-using System.Linq;
+﻿#nullable enable
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Text;
+using Microsoft.CSharp;
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Xml.Schema.Linq.Tests.Extensions;
 
 public static class RoslynExtensions
 {
+    public static SourceText ToSourceText(this FileInfo csFile)
+    {
+        StreamReader text = csFile.OpenText();
+
+        return SourceText.From(text, (int)text.BaseStream.Length);
+    }
+
+    public static CSharpSyntaxTree ToSyntaxTree(this FileInfo csFile)
+    {
+        var source = csFile.ToSourceText();
+
+        SyntaxTree tree = CSharpSyntaxTree.ParseText(source, CSharpParseOptions.Default);
+
+        return (CSharpSyntaxTree)tree;
+    }
+
+    public static void WriteToFile(this NamespaceDeclarationSyntax ns, string filePath)
+    {
+        if (string.IsNullOrWhiteSpace(filePath)) throw new ArgumentNullException(nameof(filePath));
+
+        using var streamWriter = new StreamWriter(filePath);
+        ns.WriteTo(streamWriter);
+    }
+
     public static NamespaceDeclarationSyntax SortClassesByName(this NamespaceDeclarationSyntax ns)
     {
         // Sort only direct class members of the namespace by name (Ordinal),
