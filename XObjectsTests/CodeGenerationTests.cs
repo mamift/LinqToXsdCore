@@ -336,9 +336,22 @@ namespace Xml.Schema.Linq.Tests
 
             var tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
             var ns1 = tree1.GetNamespaceRoot();
+            ns1 = ns1.CleanForComparison();
 
-            var tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
+            var existingAtomCode = "..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs";
+            
+            var tree2 = new FileInfo(existingAtomCode).ToSyntaxTree();
             var ns2 = tree2.GetNamespaceRoot();
+            ns2 = ns2.CleanForComparison();
+            
+            {
+                var directoryName = Path.GetDirectoryName(existingAtomCode);
+                var fileName = Path.GetFileNameWithoutExtension(existingAtomCode);
+                // save the new one for comparison
+                var filePath = Path.Combine(directoryName, fileName + "2.csx");
+                ns1.WriteToFile(filePath);
+                ns2.WriteToFile(existingAtomCode);
+            }
             
             Assert.IsEmpty(ns1.CompareProperties(ns2));
             Assert.IsEmpty(ns1.CompareFields(ns2));
@@ -346,23 +359,80 @@ namespace Xml.Schema.Linq.Tests
             var allFieldAttrs1 = ns1.GetAllFieldDescendantAttributes();
             var allFieldAttrs2 = ns2.GetAllFieldDescendantAttributes();
 
-            var attrsAndFields = allFieldAttrs1.Select(a => 
-                (
-                    Attr: a, 
-                    FieldName: ((a.Parent as AttributeListSyntax)?.Parent as FieldDeclarationSyntax)?.Declaration.Variables.Select(v => v.Identifier.ValueText).Single()
-                )
-            ).ToList();
+            var attrsAndFields1 = SummariseFields(allFieldAttrs1);
+            
+            var attrsAndFields2 = SummariseFields(allFieldAttrs2);
 
-            var grouped = (from af in attrsAndFields
+            var grouped1 = (from af in attrsAndFields1
                 group af by af.FieldName into afGroup
                 orderby afGroup.Key
                 select afGroup).ToList();
-                
+            
+            var grouped2 = (from af in attrsAndFields2
+                group af by af.FieldName into afGroup
+                orderby afGroup.Key
+                select afGroup).ToList();
 
+            var counts1 = grouped1.Select(g => new { g.Key, Count = g.Count() }).ToList();
+            var counts2 = grouped2.Select(g => new { g.Key, Count = g.Count() }).ToList();
 
-            var compareFields = allFieldAttrs1.CompareObjects(allFieldAttrs2);
+            var regrouped1 = from af in grouped1.Where(g => g.Key == "DebuggerBrowsable")
+                    .SelectMany(g => g)
+                group af by af.FieldName into faf
+                select faf;
+
+            var regrouped2 = from af in grouped1.Where(g => g.Key == "DebuggerBrowsable")
+                    .SelectMany(g => g)
+                group af by af.FieldName into faf
+                select faf;
+
+            var compareCounts = counts1.CompareObjects(counts2);
+            Assert.IsEmpty(compareCounts);
+
+            var compareFields = grouped1.CompareObjects(grouped2);
 
             Assert.IsEmpty(compareFields);
+            
+            return;
+
+            static List<(string Attr, string FieldName)> SummariseFields(List<AttributeSyntax> attrs)
+            {
+                return attrs.Select(a =>
+                    (
+                        Attr: a.Name.ToFullString(), 
+                        FieldName: ((a.Parent as AttributeListSyntax)?.Parent as FieldDeclarationSyntax)?.Declaration.Variables.Select(v => v.Identifier.ValueText).Single()
+                    )
+                ).OrderByDescending(e => e.FieldName)
+                .ToList();
+            }
+        }
+
+        [Test]
+        public void ValidatorSubTypesExist()
+        {
+            var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
+
+            var tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
+            var ns1 = tree1.GetNamespaceRoot();
+            ns1 = ns1.CleanForComparison();
+
+            var existingAtomCode = "..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs";
+
+            {
+                var directoryName = Path.GetDirectoryName(existingAtomCode);
+                var fileName = Path.GetFileNameWithoutExtension(existingAtomCode);
+                var filePath = Path.Combine(directoryName, fileName + "2.cs");
+                // ns1.WriteToFile(filePath);
+            }
+            
+            var tree2 = new FileInfo(existingAtomCode).ToSyntaxTree();
+            var ns2 = tree2.GetNamespaceRoot();
+            ns2 = ns2.CleanForComparison();
+            
+            Assert.IsEmpty(ns1.CompareProperties(ns2));
+            Assert.IsEmpty(ns1.CompareFields(ns2));
+
+            
         }
     }
 }
