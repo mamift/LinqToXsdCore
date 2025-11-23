@@ -43,6 +43,14 @@ public static class DirectoryExtensions
         throw new DirectoryNotFoundException(
             $"Ancestor folder '{ancestorFolderName}' was not found starting from '{startingDirectory.FullName}'.");
     }
+
+    public static DirectoryInfo AscendToFolder(this string startingDirPath, string ancestorFolderName)
+    {
+        if (string.IsNullOrEmpty(startingDirPath)) throw new ArgumentNullException(nameof(startingDirPath));
+        
+        var startingDirectory = new DirectoryInfo(startingDirPath);
+        return startingDirectory.AscendToFolder(ancestorFolderName);
+    }
     
     /// <summary>
     /// Traverses downward (depth-first) from startingDirectory looking for a descendant folder

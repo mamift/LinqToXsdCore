@@ -339,19 +339,21 @@ namespace Xml.Schema.Linq.Tests
             var ns1 = tree1.GetNamespaceRoot();
             ns1 = ns1.CleanForComparison();
 
-            var existingAtomCode = "..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs";
-            
-            var tree2 = new FileInfo(existingAtomCode).ToSyntaxTree();
+            var existingCodeFile = "atom.xsd.cs";
+            var existingAtomCode = Environment.CurrentDirectory
+                .AscendToFolder("GeneratedSchemaLibraries").DescendToFolder("Atom").FindFileRecursively(existingCodeFile);
+
+            var tree2 = existingAtomCode.ToSyntaxTree();
             var ns2 = tree2.GetNamespaceRoot();
             ns2 = ns2.CleanForComparison();
             
             {
-                var directoryName = Path.GetDirectoryName(existingAtomCode);
-                var fileName = Path.GetFileNameWithoutExtension(existingAtomCode);
+                var directoryName = Path.GetDirectoryName(existingAtomCode.FullName);
+                var fileName = Path.GetFileNameWithoutExtension(existingAtomCode.FullName);
                 // save the new one for comparison; file ext is csv to prevent hot reload from triggering during test debug
-                var filePath = Path.Combine(directoryName, fileName + ".2.csx");
-                ns1.WriteToFile(filePath);
-                ns2.WriteToFile(existingAtomCode);
+                var comparisonFilePath = Path.Combine(directoryName!, fileName + ".2.csx");
+                ns1.WriteToFile(comparisonFilePath);
+                ns2.WriteToFile(existingAtomCode.FullName);
             }
             
             Assert.IsEmpty(ns1.CompareProperties(ns2));
@@ -430,9 +432,13 @@ namespace Xml.Schema.Linq.Tests
             var newNs = newTree.GetNamespaceRoot();
             newNs = newNs.CleanForComparison();
 
-            var existingAtomCode = "..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs";
-            
-            var treeFromExisting = new FileInfo(existingAtomCode).ToSyntaxTree();
+            var existingCodeFile = "atom.xsd.cs";
+            var existingAtomCsFilePath = new DirectoryInfo(Environment.CurrentDirectory)
+                .AscendToFolder("GeneratedSchemaLibraries").DescendToFolder("Atom").FindFileRecursively(existingCodeFile);
+
+            Assert.True(existingAtomCsFilePath.Exists, $"Can't find existing code generated for file: '{existingCodeFile}'");
+
+            var treeFromExisting = existingAtomCsFilePath.ToSyntaxTree();
             var existingNs = treeFromExisting.GetNamespaceRoot();
             existingNs = existingNs.CleanForComparison();
 
@@ -446,7 +452,8 @@ namespace Xml.Schema.Linq.Tests
                 from tt2 in t2.Members.OfType<TypeDeclarationSyntax>()
                 select tt2).ToList();
 
-            Assert.AreEqual(newTypes.Count, existingTypes.Count);
+            Assert.AreEqual(newTypes.Count, existingTypes.Count,
+                $"Type count mismatch between new code and existing code! New count: {newTypes.Count}, Existing count: {existingTypes.Count}");
 
             Assert.IsNotEmpty(newSubTypes);
             Assert.IsNotNull(newSubTypes.SingleOrDefault());
