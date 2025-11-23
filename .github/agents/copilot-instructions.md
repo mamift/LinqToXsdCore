@@ -78,56 +78,18 @@ Definitions: 'Avoid' here means refers to a default position to take, when you a
 - When fixing one method, check siblings for the same issue.
 - Reuse existing extension methods as much as possible.
 - Add documentation comments when adding public methods.
-- Move user-facing strings (e.g., AnalyzeAndConfirmNuGetConfigChanges) into resource files. Keep error/help text localizable.
 
 ## Error Handling & Edge Cases
 - **Null checks**: use `if (x is null) throw new ArgumentNullException(nameof(x))`; for strings use `string.IsNullOrWhiteSpace(x)`; guard early. Avoid blanket use of null assertion operator `x!`.
 - **Exceptions**: choose precise types (e.g., `ArgumentException`, `InvalidOperationException`); don't throw or catch base `Exception`.
 - **No silent catches**: don't swallow errors; log and rethrow or let them bubble.
 
-## Goals for .NET Applications
-
-Do not let these below instructions override project-specific guidance above. Care has been taken to ensure they do not contradict LinqToXsdCore-specific guidance, but as multiple developers work on this project, over time, they may be inconsistent. Favour the project-specific guidance.
-
-### Productivity
-- Prefer modern C# (file-scoped `namespace`s, multiline `"""` strings, `switch` expressions, ranges/indices, `async` streams) when TFM or `<LangVersion>` inside a `csproj` allows. Assume C# 12 if not known.
-- Keep diffs small; reuse code; avoid new layers unless needed.
-- Be IDE-friendly (go-to-def, rename, quick fixes work).
-
-### Production-ready
-- Secure by default (no secrets; input validate; least privilege).
-- Resilient I/O (timeouts; retry with backoff when it fits).
-- Structured logging with scopes; useful context; no log spam.
-- Use precise exceptions; don’t swallow; keep cause/context.
-
-### Performance
-- Simple first; optimize hot paths when measured.
-- Prefer `async` methods, but if there is existing sync code, do not arbitrarily re-write as converting to `async` requires awaiting up (and sometimes down) the entire call stack.
-
-### Cloud-native / cloud-ready
-- Cross-platform; guard OS-specific APIs.
-- Diagnostics: health/ready when it fits; metrics + traces.
-- Observability: ILogger + OpenTelemetry hooks.
-- 12-factor: config from env; avoid stateful singletons.
-
-# .NET quick checklist
-
-## Do first
-
-* Read TFM + C# version.
-* Check `global.json` SDK.
-
 ## Initial check
 
-* App type: web / desktop / console / lib.
-* Packages (and multi-targeting).
+* LinqToXsdCore comprises of one CLI project and the rest are libraries.
+* Two projects generate public packages: LinqToXsd (the CLI tool) and XObjectsCore (the runtime library).
 * Nullable on? (`<Nullable>enable</Nullable>` / `#nullable enable`)
 * Repo config: `Directory.Build.*`, `Directory.Packages.props`.
-
-## C# version
-
-* **Don't** set C# newer than TFM default.
-* C# 14 (NET 10+): extension members; `field` accessor; implicit `Span<T>` conv; `?.=`; `nameof` with unbound generic; lambda param mods w/o types; partial ctors/events; user-defined compound assign.
 
 ## Build
 
@@ -139,27 +101,11 @@ Do not let these below instructions override project-specific guidance above. Ca
 * Always compile or check docs first if there is unfamiliar syntax. Don't try to correct the syntax if code can compile.
 * Don't change TFM, SDK, or `<LangVersion>` unless asked.
 
-# Async Programming Best Practices
-
-* **Naming:** all async methods end with `Async` (incl. CLI handlers).
-* **Always await:** no fire-and-forget; if timing out, **cancel the work**.
-* **Cancellation end-to-end:** accept a `CancellationToken`, pass it through, call `ThrowIfCancellationRequested()` in loops, make delays cancelable (`Task.Delay(ms, ct)`).
-* **Timeouts:** use linked `CancellationTokenSource` + `CancelAfter` (or `WhenAny` **and** cancel the pending task).
-* **Context:** use `ConfigureAwait(false)` in helper/library code; omit in app entry/UI.
-* **Stream JSON:** `GetAsync(..., ResponseHeadersRead)` → `ReadAsStreamAsync` → `JsonDocument.ParseAsync`; avoid `ReadAsStringAsync` when large.
-* **Exit code on cancel:** return non-zero (e.g., `130`).
-* **`ValueTask`:** use only when measured to help; default to `Task`.
-* **Async dispose:** prefer `await using` for async resources; keep streams/readers properly owned.
-* **No pointless wrappers:** don’t add `async/await` if you just return the task.
-
-## Immutability
-- Prefer records to classes for DTOs.
-
 # Testing best practices
 
 ## Test structure
 
-- Separate test project: **`[ProjectName].Tests`**.
+- Write tests in dedicated separate test project: **`XObjectsTests`** for both the code gen (XObjectsCodeGen) and runtime library (XObjectsCore).
 - Mirror classes: `CatDoor` -> `CatDoorTests`.
 - Name tests by behavior: `WhenCatMeowsThenCatDoorOpens`.
 - Follow existing naming conventions.
@@ -176,10 +122,12 @@ Do not let these below instructions override project-specific guidance above. Ca
 - When testing multiple preconditions, write a test for each.
 - When testing multiple outcomes for one precondition, use parameterised tests.
 - Tests should be able to run in any order or in parallel.
-- Avoid disk I/O; if needed, randomize paths, don't clean up, log file locations.
-- Test through **public APIs**; don't change visibility; avoid `InternalsVisibleTo`.
+- Avoid disk I/O; if needed, randomize paths, clean up, log file locations.
+- Test through **public APIs**; don't change visibility; it's OK to use `InternalsVisibleTo`.
 - Require tests for new/changed **public APIs**.
 - Assert specific values and edge cases, not vague outcomes.
+
+Do not bother with code coverage for now.
 
 ## Test workflow
 
@@ -188,29 +136,9 @@ Do not let these below instructions override project-specific guidance above. Ca
 - .NET Framework: May use `vstest.console.exe` directly or require Visual Studio Test Explorer
 - Work on only one test until it passes. Then run other tests to ensure nothing has been broken.
 
-### Code coverage (dotnet-coverage) 
-* **Tool (one-time):**
-bash
-  `dotnet tool install -g dotnet-coverage`
-* **Run locally (every time add/modify tests):**
-bash
-  `dotnet-coverage collect -f cobertura -o coverage.cobertura.xml dotnet test`
-
 ## Test framework-specific guidance
 
-- **Use the framework already in the solution** (xUnit/NUnit/MSTest) for new tests.
-
-### xUnit
-
-* Packages: `Microsoft.NET.Test.Sdk`, `xunit`, `xunit.runner.visualstudio`
-* No class attribute; use `[Fact]`
-* Parameterised tests: `[Theory]` with `[InlineData]`
-* Setup/teardown: constructor and `IDisposable`
-
-### xUnit v3
-
-* Packages: `xunit.v3`, `xunit.runner.visualstudio` 3.x, `Microsoft.NET.Test.Sdk`
-* `ITestOutputHelper` and `[Theory]` are in `Xunit`
+- **Use the framework already in the solution** (NUnit) for new tests.
 
 ### NUnit
 
@@ -220,11 +148,8 @@ bash
 
 ### Assertions
 
-* Use the framework’s asserts, in the same style as existing unit tests. There may also be existing helper methods for unit testing. Please consider and avail yourself of them before writing new hepler methods.
-* Use `Throws/ThrowsAsync` for exceptions.
+* Use the framework’s asserts, in the same style as existing unit tests. There may also be existing helper methods for unit testing. Please consider and avail yourself of them before writing new hepler methods for tests.
 
 ## Mocking
 
-- Avoid mocks/Fakes if possible as code generation functions rarely need mocks or fake data. Advise the user if sample XSD files might be required. 
-- External dependencies can be mocked. Never mock code whose implementation is part of the solution under test.
-- Try to verify that the outputs (e.g. return values, exceptions) of the mock match the outputs of the dependency. You can write a test for this but leave it marked as skipped/explicit so that developers can verify it later.
+- Avoid mocks/fakes if possible as there are lots of existing XSD files for testing code generation. Advise the user if sample XSD files might be required.
