@@ -277,31 +277,37 @@ namespace Xml.Schema.Linq.Tests
             var tree = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
             var root = tree.GetNamespaceRoot();
 
-            var ns = root.SortClassesByName();
-            File.WriteAllText("atom2.xsd.cs", ns.ToFullString());
+            var ns1 = root.ExtractAllClassFieldsWithAttributeCounts();
 
-            var fullString = ns.ToFullString();
+            // var ns1 = root.CleanForComparison();
+            // ns1.WriteToFile("atom2.xsd.cs");
+
+            var tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
+            var ns2 = tree2.GetNamespaceRoot();
+            var ns2List = ns2.ExtractAllClassFieldsWithAttributeCounts();
+
+            var comparisons = ns1.CompareObjects(ns2List);
+
+            Assert.IsEmpty(comparisons);
+            
+            // var ns2 = tree2.GetNamespaceRoot();
+            // ns2 = ns2.CleanForComparison();
+            // ns2.WriteToFile("atom-sorted.xsd.cs");
+
+            var fullString = root.ToFullString();
             TestContext.CurrentContext.DumpDebugOutputToFile(debugStrings: new [] { fullString });
 
-            var allProperties = root.DescendantNodes().OfType<PropertyDeclarationSyntax>().ToList();
-            var allFields = root.DescendantNodes().OfType<FieldDeclarationSyntax>().ToList();
+            var allProperties = root.GetAllPropertyDescendantAttributes();
+            var allFields = root.GetAllFieldDescendantAttributes();
 
-            var allFieldsWithAttrs = (from field in allFields
-                                      where field.AttributeLists.Select(al => al.Attributes).Any()
-                                      select field).ToList();
+            var allFields2 = ns2.GetAllFieldDescendantAttributes();
 
-            var allPropertiesWithAttrs = (from p in allProperties
-                                          where p.AttributeLists.Select(al => al.Attributes).Any()
-                                          select p).ToList();
+            var compareFields = allFields.CompareObjects(allFields2);
 
-            var allPropsAttributes = allPropertiesWithAttrs
-                .SelectMany(p => p.AttributeLists.SelectMany(al => al.Attributes)).ToList();
+            Assert.IsEmpty(compareFields);
 
-            var allFieldAttributes = allFieldsWithAttrs
-                .SelectMany(f => f.AttributeLists.SelectMany(al => al.Attributes)).ToList();
-
-            var allPropAttributeNames = allPropsAttributes.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
-            var allFieldAttributeNames = allFieldAttributes.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
+            var allPropAttributeNames = allProperties.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
+            var allFieldAttributeNames = allFields.Select(a => ((IdentifierNameSyntax) a.Name).Identifier.Text).ToList();
 
             Assert.IsNotEmpty(allPropAttributeNames);
             Assert.IsNotEmpty(allFieldAttributeNames);
