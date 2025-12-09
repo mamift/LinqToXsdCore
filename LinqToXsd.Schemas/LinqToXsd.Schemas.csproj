@@ -24,9 +24,9 @@
   <ItemGroup>
     <Compile Remove="Schemas\Pubmed\collections.xsd.cs" />
   </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
+  <ItemGroup Condition="$(TargetFramework) != 'netstandard2.0'">
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
-      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
@@ -39,7 +39,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Portable.System.DateTimeOnly" Version="7.0.1" Condition="$(TargetFramework) == 'netstandard2.0'" />
+    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeneratedSchemaLibraries\1707_ISYBAU_XML_Schema\1707_ISYBAU_XML_Schema.csproj" />
