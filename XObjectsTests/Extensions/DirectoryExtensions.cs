@@ -117,8 +117,6 @@ public static class DirectoryExtensions
 
     public static FileInfo FindFileRecursively(this DirectoryInfo dir, string fileName)
     {
-        return dir.GetFiles(fileName, new EnumerationOptions() {
-            RecurseSubdirectories = true
-        }).Single();
+        return dir.GetFiles(fileName, SearchOption.AllDirectories).Single();
     }
 }
