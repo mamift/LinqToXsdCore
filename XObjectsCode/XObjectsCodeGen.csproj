@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
     <Description>The $(MSBuildProjectName) provides code generation facilities, and is consumed by the LinqToXsdCore command line tool; use the LinqToXsdCore tool to generate code, and link to the XObjectsCore nuget package to consume the generated code in your shipping app or library. Original Authors: Microsoft Corporation.</Description>
     <Version>3.2.6</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
@@ -23,9 +23,9 @@
     <PackageReference Include="System.CodeDom" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
+  <ItemGroup Condition="$(TargetFramework) == 'net8.0'">
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj">
-      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
 

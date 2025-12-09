@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;netframework472</TargetFrameworks>
+    <TargetFrameworks>net8.0;netframework472</TargetFrameworks>
     <RootNamespace>$(RootNamespace).Tests</RootNamespace>
     <IsPackable>false</IsPackable>
     <LangVersion>preview</LangVersion>
@@ -32,8 +32,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'net6.0'">
-      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'net8.0'">
+      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
     </ProjectReference>
     <ProjectReference Include="..\LinqToXsd\LinqToXsd.csproj" Condition="$(TargetFramework) == 'netframework472'">
       <SetTargetFramework>TargetFramework=netframework472</SetTargetFramework>
@@ -41,15 +41,15 @@
     
     <ProjectReference Include="..\LinqToXsd.Schemas\LinqToXsd.Schemas.csproj" />
     
-    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'net6.0'">
-      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'net8.0'">
+      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
     </ProjectReference>
     <ProjectReference Include="..\XObjectsCode\XObjectsCodeGen.csproj" Condition="$(TargetFramework) == 'netframework472'">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </ProjectReference>
 
-    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'net6.0'">
-      <SetTargetFramework>TargetFramework=net6.0</SetTargetFramework>
+    <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'net8.0'">
+      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
     </ProjectReference>
     <ProjectReference Include="..\XObjectsCore\XObjectsCore.csproj" Condition="$(TargetFramework) == 'netframework472'">
       <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
