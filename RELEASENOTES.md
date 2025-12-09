@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.12
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.12
+* https://www.nuget.org/packages/XObjectsCore/3.4.12
+  * [#79](https://github.com/mamift/LinqToXsdCore/pull/79).
+	* The LinqToXsd CLI tool now runs on .NET 7,8,9 and 10. Still supports .NET core 3.1, 5 and 6 and .NET Framework 4.7.2
+	* Fixes a bug occurring in the CLI tool when a directory with trailling quotes (' or ") is provided for the `gen -a path\` command.  
+
 ## Version 3.4.10
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.10
