@@ -11,10 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsTests", "XObjectsTe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E2B0371-0473-46A8-B096-ADF655B9D526}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		azure-pipelines.yml = azure-pipelines.yml
-		global.json = global.json
 		.github\agents\copilot-instructions.md = .github\agents\copilot-instructions.md
+		global.json = global.json
 		RELEASENOTES.md = RELEASENOTES.md
 		Version.props = Version.props
 		_config.yml = _config.yml
