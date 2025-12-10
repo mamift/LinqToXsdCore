@@ -46,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
     <None Update="invokeTest.ps1">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
