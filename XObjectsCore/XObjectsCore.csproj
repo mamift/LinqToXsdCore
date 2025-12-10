@@ -19,9 +19,14 @@
     <PackageReference Include="PolySharp" Version="1.15.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </PackageReference>
-    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'" />
-    <PackageReference Include="System.Memory" Version="4.6.3" Condition="$(TargetFramework) == 'netstandard2.0'" />
+	  <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+	  </PackageReference>
+	  <PackageReference Include="System.Memory" Version="4.6.3" Condition="$(TargetFramework) == 'netstandard2.0'">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+	  </PackageReference>
   </ItemGroup>
 
 </Project>

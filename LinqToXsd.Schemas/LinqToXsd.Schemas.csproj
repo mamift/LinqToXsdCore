@@ -38,8 +38,11 @@
     <PackageReference Include="PolySharp" Version="1.15.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
     </PackageReference>
-    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'" />
+	  <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" Condition="$(TargetFramework) == 'netstandard2.0'">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+	  </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeneratedSchemaLibraries\1707_ISYBAU_XML_Schema\1707_ISYBAU_XML_Schema.csproj" />
