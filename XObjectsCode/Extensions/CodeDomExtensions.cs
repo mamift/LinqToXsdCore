@@ -451,5 +451,45 @@ namespace Xml.Schema.Linq.Extensions
                 return null;
             }
         }
+
+        extension<TCodeObject>(CodeObject co) where TCodeObject: CodeObject
+        {
+            public string GetStringUserValueForKey(string key)
+            {
+                var value = co.UserData[key];
+                return value as string;
+            }
+
+            public void SetStringUserValueForKey(string key, string value)
+            {
+                co.UserData[key] = value;
+            }
+
+            public void SetParentInUserData(TCodeObject parent) 
+            {
+                co.UserData["Parent"] = parent;
+            }
+
+            public TCodeObject GetParentInUserData() 
+            {
+                return co.UserData["Parent"] as TCodeObject;
+            }
+        }
+
+        extension(CodeTypeDeclaration type)
+        {
+            public CodeNamespace Parent
+            {
+                get => type.GetParentInUserData<CodeNamespace>();
+                set => type.SetParentInUserData(value);
+            }
+
+            public IEnumerable<CodeMemberProperty> ChildProperties
+            {
+                get {
+                    return type.Members.OfType<CodeMemberProperty>();
+                }
+            }
+        }
     }
 }

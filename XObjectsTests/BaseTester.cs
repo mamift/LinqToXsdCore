@@ -5,6 +5,7 @@ using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Reflection;
+using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
 using Xml.Schema.Linq.Tests.Extensions;
 
@@ -32,6 +33,11 @@ public class BaseTester
         TestAssembliesLoaded = referencedAssemblies.Select(name => Assembly.LoadFile(name.FullName)).ToList();
             
         AllTestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
+    }
+
+    public CSharpSyntaxTree GenerateSyntaxTree(MockFileInfo mfi)
+    {
+        return Utilities.GenerateSyntaxTree(mfi, AllTestFiles);
     }
 
     public IEnumerable<MockFileSystem> GetFileSystemForAssemblyNames(IEnumerable<string> assemblyNames)
