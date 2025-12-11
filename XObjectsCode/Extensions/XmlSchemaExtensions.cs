@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Linq;
 using System.Xml.Schema;
+using Xml.Fxt;
+using Xml.Schema.Linq;
 using Xml.Schema.Linq.CodeGen;
 
 namespace XObjects
@@ -160,6 +165,45 @@ namespace XObjects
                 throw new NotSupportedException("Bad type!");
 
             return Convert.ToString(possibleNameValue);     
+        }
+
+        public static XDocument ToXDocument(this XmlSchema xs)
+        {
+            var stringWriter = new StringWriter();
+            xs.Write(stringWriter);
+            var xDocument = XDocument.Parse(stringWriter.ToString());
+            return xDocument;
+        }
+
+        public static List<XDocument> ToXDocuments(this XmlSchemaSet xs)
+        {
+            return xs.Schemas().Cast<XmlSchema>().Select(x => x.ToXDocument()).ToList();
+        }
+
+        /// <summary>
+        /// Merges the configurations of all schemas in the provided <see cref="XmlSchemaSet"/> into a single configuration.
+        /// </summary>
+        /// <param name="xs">The <see cref="XmlSchemaSet"/> containing the schemas to merge configurations for.</param>
+        /// <param name="startingConfig">
+        /// An optional starting <see cref="Configuration"/> to merge into. If not provided, an example configuration is used.
+        /// </param>
+        /// <returns>
+        /// A merged <see cref="Configuration"/> that combines namespace configurations from all schemas in the set.
+        /// </returns>
+        /// <remarks>
+        /// This method processes each schema in the <see cref="XmlSchemaSet"/>, converts it to an <see cref="XDocument"/>,
+        /// loads its configuration, and merges it into the starting configuration.
+        /// </remarks>
+        public static Configuration ToDefaultMergedConfiguration(this XmlSchemaSet xs, Configuration startingConfig = null)
+        {
+            var egConfig = startingConfig ?? (Configuration)ConfigurationProvider.ProvideExampleConfigurationXml();
+            var docs = xs.Schemas().Cast<XmlSchema>().Select(x => x.ToXDocument()).ToList();
+            var configs = docs.Select(d => Configuration.LoadForSchema(d));
+
+            Configuration mergedConfigOutput = configs.Aggregate(egConfig,
+                (theEgConfig, loadedConfig) => theEgConfig.MergeNamespaces(loadedConfig));
+
+            return mergedConfigOutput;
         }
     }
 }

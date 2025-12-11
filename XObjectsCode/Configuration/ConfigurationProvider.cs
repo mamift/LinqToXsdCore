@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using Xml.Schema.Linq.Extensions;
+// ReSharper disable CheckNamespace
 
 namespace Xml.Schema.Linq
 {
@@ -35,7 +36,7 @@ namespace Xml.Schema.Linq
         public static void GenerateConfigurationFiles(string possibleOutputFile, string[] inputFiles, bool foldersWereGiven,
             Dictionary<string, XmlReader> schemaReaders, IProgress<string> progress = null)
         {
-            var egConfig = Configuration.GetBlankConfigurationInstance();
+            Configuration egConfig = Configuration.GetBlankConfigurationInstance();
             var outputWasGiven = possibleOutputFile.IsNotEmpty();
 
             if (foldersWereGiven) {
@@ -74,7 +75,7 @@ namespace Xml.Schema.Linq
                 return;
             }
 
-            var mergedOutput = schemaReaders.Aggregate(egConfig, (theEgConfig, pair) => {
+            Configuration mergedOutput = schemaReaders.Aggregate(egConfig, (theEgConfig, pair) => {
                 var loadedForXsd = Configuration.LoadForSchema(XDocument.Load(pair.Value));
                 return theEgConfig.MergeNamespaces(loadedForXsd);
             });

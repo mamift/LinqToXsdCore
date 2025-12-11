@@ -171,5 +171,15 @@ namespace Xml.Schema.Linq
 
             return blank;
         }
+
+        public static implicit operator Configuration(XDocument doc)
+        {
+            return Configuration.Parse(doc.ToString(SaveOptions.None));
+        }
+
+        public static implicit operator XDocument(Configuration config)
+        {
+            return new XDocument(config.Untyped);
+        }
     }
 }
