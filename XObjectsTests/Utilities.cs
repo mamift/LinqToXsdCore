@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
@@ -212,8 +211,7 @@ namespace Xml.Schema.Linq.Tests
 
             // This method assumes SplitCodeFile is not used, so there's only a single writer per file.
             var writer = codeWriters.Single().writer;
-
-            return SourceText.From(writer.ToString());
+            return SourceText.From(writer.ToString()!);
         }
 
         /// <summary>
@@ -267,9 +265,9 @@ namespace Xml.Schema.Linq.Tests
         /// <param name="xmlSchemaSet"></param>
         /// <param name="xsdFileName">Required for loading any configuration files. Accepts relative and absolute.</param>
         /// <param name="mfs"></param>
+        /// <param name="settings"></param>
         /// <returns></returns>
-        public static SourceText GenerateSourceText(XmlSchemaSet xmlSchemaSet, string xsdFileName,
-            IMockFileDataAccessor mfs)
+        public static SourceText GenerateSourceText(XmlSchemaSet xmlSchemaSet, string xsdFileName, IMockFileDataAccessor mfs, LinqToXsdSettings? settings = null)
         {
             var possibleSettingsFile = $"{xsdFileName}.config";
             var fileExists = mfs.FileExists(possibleSettingsFile);
@@ -279,7 +277,7 @@ namespace Xml.Schema.Linq.Tests
 
             var ns = config.Namespaces.Untyped;
 
-            var settings = config.ToLinqToXsdSettings();
+            settings ??= config.ToLinqToXsdSettings();
             var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
             var writerText = code.Select(t => t.writer.ToString());
             var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
@@ -304,9 +302,10 @@ namespace Xml.Schema.Linq.Tests
             return GenerateSyntaxTree(new MockFileInfo(fs, xsdFile), fs);
         }
         
-        public static XmlSchemaSet GetXmlSchemaSet(IFileInfo xsdFile, IMockFileDataAccessor fs = null)
+        public static XmlSchemaSet GetXmlSchemaSet(IFileInfo xsdFile, IMockFileDataAccessor fs)
         {
             if (xsdFile == null) throw new ArgumentNullException(nameof(xsdFile));
+            if (fs == null) throw new ArgumentNullException(nameof(fs));
 
             var folderWithAdditionalXsdFiles = xsdFile.DirectoryName;
             MockDirectoryInfo directoryInfo = new MockDirectoryInfo(fs, folderWithAdditionalXsdFiles);
@@ -333,7 +332,7 @@ namespace Xml.Schema.Linq.Tests
         /// Generates C# code from a given <paramref name="xsdFile"/> and then returns the <see cref="CSharpSyntaxTree"/> of
         /// the generated code.
         /// </summary>
-        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs = null)
+        public static CSharpSyntaxTree GenerateSyntaxTree(IFileInfo xsdFile, IMockFileDataAccessor mfs)
         {
             var schemaSet = GetXmlSchemaSet(xsdFile, mfs);
 
@@ -344,7 +343,7 @@ namespace Xml.Schema.Linq.Tests
 
             var tree = CSharpSyntaxTree.ParseText(sourceText, CSharpParseOptions.Default);
 
-            return tree as CSharpSyntaxTree;
+            return (CSharpSyntaxTree)tree;
         }
 
         public static OneOf<CSharpSyntaxTree, Exception> GenerateSyntaxTreeOrError(IFileInfo xsdFile, IMockFileDataAccessor mfs)
