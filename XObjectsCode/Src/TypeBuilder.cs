@@ -399,8 +399,6 @@ namespace Xml.Schema.Linq.CodeGen
 
             // inconsistency w/ the wasy ApplyAnnotations are us
             ApplyAnnotations(simpleTypeDecl, typeInfo);
-            
-            simpleTypeDecl.UserData.Add("", "");
 
             return simpleTypeDecl;
         }
@@ -823,7 +821,6 @@ namespace Xml.Schema.Linq.CodeGen
             List<ClrAnnotation> annotations)
         {
             propertyBuilder = TypePropertyBuilder.Create(decl, declItemsInfo, DefaultVisibility);
-            var d = propertyInfo as ClrPropertyInfo;
             propertyBuilder.GenerateCode(propertyInfo, annotations);
         }
 
