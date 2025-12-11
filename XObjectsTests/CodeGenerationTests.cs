@@ -117,7 +117,7 @@ namespace Xml.Schema.Linq.Tests
         private void CheckTypeOfVoidExpressionsInGeneratedCode(IEnumerable<string> xsdsToProcess, int randomSubset = -1)
         {
             var allProcessableXsds =
-                Utilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(AllTestFiles, xsdsToProcess);
+                AllTestFiles.ResolvePossibleFileAndFolderPathsToProcessableSchemas(xsdsToProcess);
 
             var failingXsds = new List<(IFileInfo file, Exception exception)>(allProcessableXsds.Capacity);
 
