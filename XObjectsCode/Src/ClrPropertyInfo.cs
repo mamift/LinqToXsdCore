@@ -24,7 +24,7 @@ namespace Xml.Schema.Linq.CodeGen
         string clrTypeName;
         string clrNamespace;
         string fixedDefaultValue;
-        string simpleTypeClrTypeName;
+        internal string simpleTypeClrTypeName;
 
         ArrayList substitutionMembers;
 
@@ -1164,7 +1164,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         protected CodeExpression GetSimpleTypeClassExpression(bool disambiguateWhenPropertyAndTypeNameAreTheSame = false)
         {
-            Debug.Assert(this.simpleTypeClrTypeName != null);
+            //Debug.Assert(this.simpleTypeClrTypeName != null);
 
             var areTheSameAndShouldDisambiguate = false;
             if (disambiguateWhenPropertyAndTypeNameAreTheSame) {
@@ -1176,6 +1176,12 @@ namespace Xml.Schema.Linq.CodeGen
             var typeName = areTheSameAndShouldDisambiguate
                 ? $"global::{this.settings.GetClrNamespace(PropertyNs)}.{this.simpleTypeClrTypeName}"
                 : this.simpleTypeClrTypeName;
+
+            if (typeName.IsEmpty()) {
+                //Debugger.Break();
+                typeName = this.ReturnType.fullTypeName;
+            }
+            
             var codeFieldReferenceExpression = CodeDomHelper.CreateFieldReference(typeName, Constants.SimpleTypeDefInnerType);
 
             #if DEBUG

@@ -188,8 +188,9 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
+                    Debug.Assert(propertyInfo is not null);
                     propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-                    typeBuilder.CreateAttributeProperty(child as ClrPropertyInfo, null);
+                    typeBuilder.CreateAttributeProperty(propertyInfo, null);
                 }
                 else
                 {
