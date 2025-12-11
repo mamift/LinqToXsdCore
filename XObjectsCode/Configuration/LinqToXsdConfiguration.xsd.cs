@@ -26,7 +26,7 @@ namespace Xml.Schema.Linq {
     /// Regular expression: (CodeGeneration, Namespaces, NullableReferences?, Validation?, Transformation?)
     /// </para>
     /// </summary>
-    internal partial class Configuration : XTypedElement, IXMetaData {
+    public partial class Configuration : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]

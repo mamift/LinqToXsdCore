@@ -10,7 +10,7 @@ using XObjects;
 // ReSharper disable once CheckNamespace
 namespace Xml.Schema.Linq
 {
-    internal partial class Configuration
+    public partial class Configuration
     {
         /// <summary>
         /// Adds helpful XML comments if there are <see cref="Xml.Schema.Linq.Namespaces" /> and <see cref="Namespace"/> elements present,
