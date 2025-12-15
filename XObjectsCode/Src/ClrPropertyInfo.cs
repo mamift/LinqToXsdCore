@@ -401,6 +401,10 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             ParentTypeDeclaration ??= parentTypeDecl;
+            if (parentTypeDecl.HasParent<CodeNamespace>()) {
+                Debugger.Break();
+                // why?
+            }
 
             CreateXNameField(parentTypeDecl);
             CreateFixedDefaultValue(parentTypeDecl);
@@ -1184,9 +1188,30 @@ namespace Xml.Schema.Linq.CodeGen
                 }
             }
 
-            var typeName = areTheSameAndShouldDisambiguate
+            string typeName = null;
+            if (simpleTypeClrTypeName.IsEmpty()) {
+                Debugger.Break();
+
+                if (this.IsEnum) {
+                    if (this.ParentTypeDeclaration != null && this.ParentTypeDeclaration.HasParent<CodeNamespace>()) {
+                        var thisNamespace = this.ParentTypeDeclaration.GetParent<CodeNamespace>();
+                        if (thisNamespace is not null) {
+                            var possibleTypeValidatorClass = thisNamespace.SearchAllNestedTypesRecursively(e =>
+                                e is CodeTypeDeclaration ec && ec.Name.Contains(this.TypeReference.Name));
+
+                            if (possibleTypeValidatorClass is not null) {
+                                simpleTypeClrTypeName = possibleTypeValidatorClass.Name;
+                            }
+                        }
+                    }
+                }
+                typeName = this.ReturnType.fullTypeName;
+            }
+
+            typeName = areTheSameAndShouldDisambiguate
                 ? $"global::{this.settings.GetClrNamespace(PropertyNs)}.{this.simpleTypeClrTypeName}"
                 : this.simpleTypeClrTypeName;
+
             var codeFieldReferenceExpression = CodeDomHelper.CreateFieldReference(typeName, Constants.SimpleTypeDefInnerType);
 
             #if DEBUG
