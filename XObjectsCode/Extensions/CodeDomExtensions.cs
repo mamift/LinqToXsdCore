@@ -466,20 +466,67 @@ namespace Xml.Schema.Linq.Extensions
             type.SetParent(codeNs);
         }
 
+        public static List<CodeTypeDeclaration> FlattenAllNestedTypesRecursively(this CodeTypeDeclaration type, List<CodeTypeDeclaration>? typesList = null)
+        {
+            typesList ??= new List<CodeTypeDeclaration>();
+            List<CodeTypeDeclaration> nestedTypes = type.Members.OfType<CodeTypeDeclaration>().ToList();
+            if (nestedTypes.Count > 0) {
+                typesList.AddRange(nestedTypes);
+                foreach (var nestedType in nestedTypes) {
+                    nestedType.FlattenAllNestedTypesRecursively(typesList);
+                }
+            }
+
+            return typesList;
+        }
+
+        /// <summary>
+        /// Searches for a nested type with the specified name within the current <see cref="CodeTypeDeclaration"/> 
+        /// and all its nested types recursively.
+        /// </summary>
+        /// <param name="type">The current type.</param>
+        /// <param name="predicate">A searching predicate</param>
+        /// <returns>
+        /// The <see cref="CodeTypeMember"/> representing the nested type with the specified name, 
+        /// or <c>null</c> if no such type is found.
+        /// </returns>
+        public static CodeTypeMember? SearchAllNestedTypesRecursively(this CodeTypeDeclaration type, Func<CodeTypeMember, bool> predicate)
+        {
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            var thePossibleType = type.Members.Cast<CodeTypeMember>().SingleOrDefault(predicate);
+            if (thePossibleType is null) {
+                IEnumerable<CodeTypeDeclaration> nestedTypes = type.Members.OfType<CodeTypeDeclaration>();
+                foreach (var nestedType in nestedTypes) {
+                    thePossibleType = nestedType.SearchAllNestedTypesRecursively(predicate);
+                }
+            }
+
+            return thePossibleType;
+        }
+
+        public static CodeTypeMember? SearchAllNestedTypesRecursively(this CodeNamespace ns, Func<CodeTypeMember, bool> predicate)
+        {
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            foreach (var type in ns.Types.Cast<CodeTypeDeclaration>()) {
+                var thePossibleType = type.Members.Cast<CodeTypeMember>().SingleOrDefault(predicate);
+                if (thePossibleType is null) {
+                    IEnumerable<CodeTypeDeclaration> nestedTypes = type.Members.OfType<CodeTypeDeclaration>();
+                    foreach (var nestedType in nestedTypes) {
+                        thePossibleType = nestedType.SearchAllNestedTypesRecursively(predicate);
+                    }
+                }
+                else {
+                    return thePossibleType;
+                }
+            }
+
+            return null;
+        }
+
         extension<TCodeObject>(CodeObject co) where TCodeObject: CodeObject
         {
-            public string? GetStringUserValueForKey(string key)
-            {
-                var value = co.UserData[key];
-                return value as string;
-            }
-
-            public void SetStringUserValueForKey(string key, string value)
-            {
-                if (key == null) throw new ArgumentNullException(nameof(key));
-                co.UserData[key] = value ?? throw new ArgumentNullException(nameof(value));
-            }
-
             /// <summary>
             /// This is a strongly-typed convenience method to allow setting a parent for the current <see cref="CodeObject"/>.
             /// For things like <see cref="CodeTypeMember"/>s, you can use this to retain a reference
@@ -501,6 +548,11 @@ namespace Xml.Schema.Linq.Extensions
             public TCodeObject? GetParent() 
             {
                 return co.UserData["Parent"] as TCodeObject;
+            }
+
+            public bool HasParent()
+            {
+                return co.UserData["Parent"] is TCodeObject;
             }
         }
 
