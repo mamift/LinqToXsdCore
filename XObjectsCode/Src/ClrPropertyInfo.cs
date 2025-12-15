@@ -5,6 +5,7 @@ using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -27,6 +28,13 @@ namespace Xml.Schema.Linq.CodeGen
         string simpleTypeClrTypeName;
 
         ArrayList substitutionMembers;
+
+#nullable enable
+        /// <summary>
+        /// The enclosing <see cref="CodeTypeDeclaration"/> that this <see cref="ClrPropertyInfo"/> instance is a part of. 
+        /// </summary>
+        public CodeTypeDeclaration? ParentTypeDeclaration { get; set; }
+#nullable disable
 
         public ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
@@ -386,10 +394,13 @@ namespace Xml.Schema.Linq.CodeGen
         public override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
+            if (parentTypeDecl == null) throw new ArgumentNullException(nameof(parentTypeDecl));
             if (!ShouldGenerate)
             {
                 return null;
             }
+
+            ParentTypeDeclaration ??= parentTypeDecl;
 
             CreateXNameField(parentTypeDecl);
             CreateFixedDefaultValue(parentTypeDecl);
@@ -1164,7 +1175,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         protected CodeExpression GetSimpleTypeClassExpression(bool disambiguateWhenPropertyAndTypeNameAreTheSame = false)
         {
-            Debug.Assert(this.simpleTypeClrTypeName != null);
+            // Debug.Assert(this.simpleTypeClrTypeName != null);
 
             var areTheSameAndShouldDisambiguate = false;
             if (disambiguateWhenPropertyAndTypeNameAreTheSame) {
