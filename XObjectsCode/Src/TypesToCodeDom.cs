@@ -77,12 +77,13 @@ namespace Xml.Schema.Linq.CodeGen
                 else
                 {
                     codeNamespace = GetCodeNamespace(type.clrtypeNs);
+                    Debug.Assert(codeNamespace != null);
                     ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
                     if (stInfo != null)
                     {
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
                             var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
-                            codeNamespace.Types.Add(enumType);
+                            codeNamespace.AddTypeWithParentNamespace(enumType);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
                             if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
@@ -92,13 +93,13 @@ namespace Xml.Schema.Linq.CodeGen
                                 typeWithDuplicateEnum.Members.Remove(duplicateEnum);
                             }
                         }
-                        codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
+                        codeNamespace.AddTypeWithParentNamespace(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     }
                     else
                     {
                         CodeTypeDeclaration
                             decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
-                        codeNamespace.Types.Add(decl);
+                        codeNamespace.AddTypeWithParentNamespace(decl);
 
                         if (type.IsRootElement)
                         {
@@ -468,7 +469,7 @@ namespace Xml.Schema.Linq.CodeGen
                 xroot.Members.Add(CodeDomHelper.CreateXRootGetter(typeName, fqTypeName, lst, visibility));
             }
 
-            codeNamespace.Types.Add(xroot);
+            codeNamespace.AddTypeWithParentNamespace(xroot);
         }
 
         private void ProcessWrapperTypes()
@@ -560,7 +561,7 @@ namespace Xml.Schema.Linq.CodeGen
 
                 builder.ImplementInterfaces(settings.EnableServiceReference);
                 codeNamespace = GetCodeNamespace(typeInfo.clrtypeNs);
-                codeNamespace.Types.Add(builder.TypeDeclaration);
+                codeNamespace.AddTypeWithParentNamespace(builder.TypeDeclaration);
 
                 List<CodeTypeDeclaration> types;
                 codeNamespace = GetCodeNamespace(typeInfo.clrtypeNs);
@@ -598,7 +599,7 @@ namespace Xml.Schema.Linq.CodeGen
                     wrapperDictionaryStatements: wrapperDictionaryAddStatements,
                     visibility: typeVisibility);
 
-                rootCodeNamespace.Types.Add(typeManagerDeclaration);
+                rootCodeNamespace.AddTypeWithParentNamespace(typeManagerDeclaration);
                 //Add using statements in the rest of the namespaces for the root namespace to avoid error on TypeManager reference
                 //Add using statements in the root namespace for the rest of the namespaces to avoid errors while building type dictionaries
                 CodeNamespaceImport rootImport = new CodeNamespaceImport(rootCodeNamespace.Name);
