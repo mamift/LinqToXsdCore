@@ -1,4 +1,5 @@
-﻿using Microsoft.CSharp;
+﻿#nullable enable
+using Microsoft.CSharp;
 
 using OneOf;
 
@@ -452,9 +453,22 @@ namespace Xml.Schema.Linq.Extensions
             }
         }
 
+        /// <summary>
+        /// Adds a new <see cref="CodeTypeDeclaration"/> to the current namespace and also retain a reference to the parent <see cref="CodeNamespace"/> in the given
+        /// <paramref name="type"/>. This is set in the <see cref="CodeObject.UserData"/> dictionary; can be set with <see cref="SetParent{TCodeObject}"/>
+        /// and retrieved with <see cref="GetParent{TCodeObject}"/>.
+        /// </summary>
+        /// <param name="codeNs"></param>
+        /// <param name="type"></param>
+        public static void AddTypeWithParentNamespace(this CodeNamespace codeNs, CodeTypeDeclaration type)
+        {
+            codeNs.Types.Add(type);
+            type.SetParent(codeNs);
+        }
+
         extension<TCodeObject>(CodeObject co) where TCodeObject: CodeObject
         {
-            public string GetStringUserValueForKey(string key)
+            public string? GetStringUserValueForKey(string key)
             {
                 var value = co.UserData[key];
                 return value as string;
@@ -462,15 +476,29 @@ namespace Xml.Schema.Linq.Extensions
 
             public void SetStringUserValueForKey(string key, string value)
             {
-                co.UserData[key] = value;
+                if (key == null) throw new ArgumentNullException(nameof(key));
+                co.UserData[key] = value ?? throw new ArgumentNullException(nameof(value));
             }
 
-            public void SetParentInUserData(TCodeObject parent) 
+            /// <summary>
+            /// This is a strongly-typed convenience method to allow setting a parent for the current <see cref="CodeObject"/>.
+            /// For things like <see cref="CodeTypeMember"/>s, you can use this to retain a reference
+            /// to the parent <see cref="CodeNamespace"/> for instance.
+            /// </summary>
+            /// <param name="parent"></param>
+            /// <exception cref="ArgumentNullException"></exception>
+            public void SetParent(TCodeObject parent) 
             {
-                co.UserData["Parent"] = parent;
+                co.UserData["Parent"] = parent ?? throw new ArgumentNullException(nameof(parent));
             }
 
-            public TCodeObject GetParentInUserData() 
+            /// <summary>
+            /// This is a strongly-typed convenience method to allow getting a parent for the current <see cref="CodeObject"/>.
+            /// For things like <see cref="CodeTypeMember"/>s, you can use this to retain a reference
+            /// to the parent <see cref="CodeNamespace"/> for instance.
+            /// </summary>
+            /// <exception cref="ArgumentNullException"></exception>
+            public TCodeObject? GetParent() 
             {
                 return co.UserData["Parent"] as TCodeObject;
             }
@@ -478,16 +506,40 @@ namespace Xml.Schema.Linq.Extensions
 
         extension(CodeTypeDeclaration type)
         {
-            public CodeNamespace Parent
+            /// <summary>
+            /// Retain a reference to the parent <see cref="CodeNamespace"/> this type is meant to be enclosed in.
+            /// </summary>
+            public CodeNamespace? ParentNamespace
             {
-                get => type.GetParentInUserData<CodeNamespace>();
-                set => type.SetParentInUserData(value);
+                get => type.GetParent<CodeNamespace>();
+                set => type.SetParent(value!);
             }
 
             public IEnumerable<CodeMemberProperty> ChildProperties
             {
                 get {
                     return type.Members.OfType<CodeMemberProperty>();
+                }
+            }
+
+            public IEnumerable<CodeTypeDeclaration> ChildTypes
+            {
+                get {
+                    return type.Members.OfType<CodeTypeDeclaration>();
+                }
+            }
+            
+            public IEnumerable<CodeTypeDeclaration> ChildEnumDeclarations
+            {
+                get {
+                    return type.Members.OfType<CodeTypeDeclaration>().Where(e => e.IsEnum);
+                }
+            }
+            
+            public IEnumerable<CodeTypeDeclaration> ChildClassDeclarations
+            {
+                get {
+                    return type.Members.OfType<CodeTypeDeclaration>().Where(e => e.IsClass);
                 }
             }
         }
