@@ -41,7 +41,9 @@ public abstract partial class ContentInfo
         get { return contentType; }
     }
 
-
+#nullable enable
+    public ContentInfo? Parent { get; set; }
+#nullable disable
     public IEnumerable<ContentInfo> Children
     {
         get
@@ -72,6 +74,7 @@ public abstract partial class ContentInfo
         }
 
         lastChild = content;
+        content.Parent ??= this;
     }
 
     public string OccurenceString
