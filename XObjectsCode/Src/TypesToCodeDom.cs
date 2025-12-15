@@ -669,7 +669,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (typeBuilder == null)
             {
-                typeBuilder = new XTypedElementBuilder(settings);
+                typeBuilder = new XTypedElementBuilder(settings, codeNamespace);
             }
             else
             {

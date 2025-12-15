@@ -45,11 +45,12 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static CodeTypeDeclaration CreateTypeDeclaration(string clrTypeName, string innerType, 
-            GeneratedTypesVisibility generatedTypesVisibility = GeneratedTypesVisibility.Public)
+            GeneratedTypesVisibility generatedTypesVisibility = GeneratedTypesVisibility.Public, CodeNamespace parentNamespace = null)
         {
             CodeTypeDeclaration typeDecl = new CodeTypeDeclaration(clrTypeName);
             typeDecl.TypeAttributes = generatedTypesVisibility.ToTypeAttribute();
             typeDecl.IsPartial = true;
+            if (parentNamespace is not null) typeDecl.ParentNamespace = parentNamespace;
             return typeDecl;
         }
 

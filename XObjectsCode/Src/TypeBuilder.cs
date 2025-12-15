@@ -153,7 +153,7 @@ namespace Xml.Schema.Linq.CodeGen
             get { return null; }
         }
 
-        internal void CreateTypeDeclaration(ClrTypeInfo clrTypeInfo)
+        internal void CreateTypeDeclaration(ClrTypeInfo clrTypeInfo, CodeNamespace parentNamespace = null)
         {
             this.clrTypeInfo = clrTypeInfo;
             SetElementWildCardFlag(clrTypeInfo.HasElementWildCard);
@@ -163,7 +163,7 @@ namespace Xml.Schema.Linq.CodeGen
             string clrTypeName = clrTypeInfo.clrtypeName;
             SchemaOrigin typeOrigin = clrTypeInfo.typeOrigin;
 
-            CodeTypeDeclaration typeDecl = CodeDomHelper.CreateTypeDeclaration(clrTypeName, InnerType, DefaultVisibility);
+            CodeTypeDeclaration typeDecl = CodeDomHelper.CreateTypeDeclaration(clrTypeName, InnerType, DefaultVisibility, parentNamespace);
 
             if (clrTypeInfo.IsAbstract)
             {
@@ -737,9 +737,14 @@ namespace Xml.Schema.Linq.CodeGen
         TypePropertyBuilder propertyBuilder;
         CodeStatementCollection propertyDictionaryAddStatements;
 
+        /// <summary>
+        /// Allows logic to query adjacent types in the same namespace for the existence of other types.
+        /// </summary>
+        protected CodeNamespace ParentNamespace { get; }
 
-        internal XTypedElementBuilder(LinqToXsdSettings settings): base(settings)
+        internal XTypedElementBuilder(LinqToXsdSettings settings, CodeNamespace parentNamespace): base(settings)
         {
+            ParentNamespace = parentNamespace;
             InnerInit();
         }
 
@@ -783,7 +788,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void StartGrouping(GroupingInfo groupingInfo)
         {
             InitializeTables();
-            propertyBuilder = TypePropertyBuilder.Create(propertyBuilder as ContentModelPropertyBuilder, groupingInfo, decl, declItemsInfo, DefaultVisibility);
+            propertyBuilder = TypePropertyBuilder.Create(propertyBuilder as ContentModelPropertyBuilder, groupingInfo, decl, declItemsInfo, DefaultVisibility, ParentNamespace);
             propertyBuilder.StartCodeGen(); //Start the group's code gen, like setting up functional const etc
             propertyBuilderStack.Push(propertyBuilder);
         }
@@ -820,7 +825,7 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void CreateAttributeProperty(ClrBasePropertyInfo propertyInfo,
             List<ClrAnnotation> annotations)
         {
-            propertyBuilder = TypePropertyBuilder.Create(decl, declItemsInfo, DefaultVisibility);
+            propertyBuilder = TypePropertyBuilder.Create(decl, declItemsInfo, DefaultVisibility, ParentNamespace);
             propertyBuilder.GenerateCode(propertyInfo, annotations);
         }
 

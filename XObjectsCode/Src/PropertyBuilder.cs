@@ -15,12 +15,16 @@ namespace Xml.Schema.Linq.CodeGen
         protected CodeTypeDeclaration decl;
 
         protected GeneratedTypesVisibility visibility;
+        
+        protected CodeNamespace ParentNamespace { get; }
 
-        public TypePropertyBuilder(CodeTypeDeclaration decl, CodeTypeDeclItems declItems, GeneratedTypesVisibility visibility)
+        public TypePropertyBuilder(CodeTypeDeclaration decl, CodeTypeDeclItems declItems, GeneratedTypesVisibility visibility, 
+            CodeNamespace parentNamespace = null)
         {
             this.decl = decl;
             this.declItems = declItems;
             this.visibility = visibility;
+            ParentNamespace = parentNamespace;
         }
 
         public virtual void StartCodeGen()
@@ -43,19 +47,19 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static TypePropertyBuilder Create(ContentModelPropertyBuilder parentBuilder, GroupingInfo groupingInfo, CodeTypeDeclaration decl,
-            CodeTypeDeclItems declItems, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
+            CodeTypeDeclItems declItems, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null)
         {
             switch (groupingInfo.ContentModelType)
             {
                 case ContentModelType.None:
                 case ContentModelType.All:
-                    return new DefaultPropertyBuilder(decl, declItems, visibility);
+                    return new DefaultPropertyBuilder(decl, declItems, visibility, parentNs);
 
                 case ContentModelType.Sequence:
-                    return new SequencePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility);
+                    return new SequencePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility, parentNs);
 
                 case ContentModelType.Choice:
-                    return new ChoicePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility);
+                    return new ChoicePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility, parentNs);
 
                 default:
                     throw new InvalidOperationException();
@@ -63,9 +67,9 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static TypePropertyBuilder Create(CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null)
         {
-            return new DefaultPropertyBuilder(decl, declItems, visibility);
+            return new DefaultPropertyBuilder(decl, declItems, visibility, parentNs);
         }
     }
 
@@ -75,8 +79,8 @@ namespace Xml.Schema.Linq.CodeGen
         protected CodeObjectCreateExpression contentModelExpression;
 
         public ContentModelPropertyBuilder(ContentModelPropertyBuilder parentBuilder, GroupingInfo grouping, CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
-            GeneratedTypesVisibility visibility)
-            : base(decl, declItems, visibility)
+            GeneratedTypesVisibility visibility, CodeNamespace parentNs)
+            : base(decl, declItems, visibility, parentNs)
         {
             this.ParentBuilder = parentBuilder;
             this.grouping = grouping; //The grouping the contentmodelbuilder works on
@@ -144,9 +148,10 @@ namespace Xml.Schema.Linq.CodeGen
 
     internal class SequencePropertyBuilder : ContentModelPropertyBuilder
     {
-        public SequencePropertyBuilder(ContentModelPropertyBuilder parentBuilder, GroupingInfo grouping, CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public) :
-            base(parentBuilder, grouping, decl, declItems, visibility)
+        public SequencePropertyBuilder(ContentModelPropertyBuilder parentBuilder, GroupingInfo grouping,
+            CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null) :
+            base(parentBuilder, grouping, decl, declItems, visibility, parentNs)
         {
         }
 
@@ -163,9 +168,10 @@ namespace Xml.Schema.Linq.CodeGen
         bool hasDuplicateType;
         Dictionary<string, ClrBasePropertyInfo> propertyTypeNameTable;
 
-        public ChoicePropertyBuilder(ContentModelPropertyBuilder parentBuilder, GroupingInfo grouping, CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public) :
-            base(parentBuilder, grouping, decl, declItems, visibility)
+        public ChoicePropertyBuilder(ContentModelPropertyBuilder parentBuilder, GroupingInfo grouping,
+            CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null) :
+            base(parentBuilder, grouping, decl, declItems, visibility, parentNs)
         {
             flatChoice = !grouping.IsNested && !grouping.IsRepeating && !grouping.HasChildGroups;
             hasDuplicateType = false;
@@ -223,7 +229,7 @@ namespace Xml.Schema.Linq.CodeGen
     internal class DefaultPropertyBuilder : TypePropertyBuilder
     {
         internal DefaultPropertyBuilder(CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public) : base(decl, declItems, visibility)
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null) : base(decl, declItems, visibility, parentNs)
         {
         }
     }
