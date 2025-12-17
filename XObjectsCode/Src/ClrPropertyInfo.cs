@@ -401,11 +401,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             ParentTypeDeclaration ??= parentTypeDecl;
-            if (parentTypeDecl.HasParent<CodeNamespace>()) {
-                Debugger.Break();
-                // why?
-            }
-
+            
             CreateXNameField(parentTypeDecl);
             CreateFixedDefaultValue(parentTypeDecl);
             CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(ReturnType, hasSet, visibility.ToMemberAttribute());
