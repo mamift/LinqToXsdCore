@@ -63,12 +63,10 @@ namespace Xml.Schema.Linq.CodeGen
 
             nameMappings = binding.NameMappings;
             Debug.Assert(nameMappings != null);
-            foreach (ClrTypeInfo type in binding.Types)
-            {
-                if (type.IsWrapper)
-                {
-                    if (wrapperRootElements == null)
-                    {
+            for (int index = 0; index < binding.Types.Count; index++) {
+                ClrTypeInfo type = binding.Types[index];
+                if (type.IsWrapper) {
+                    if (wrapperRootElements == null) {
                         wrapperRootElements = new List<ClrWrapperTypeInfo>();
                     }
 
@@ -93,20 +91,18 @@ namespace Xml.Schema.Linq.CodeGen
                                 typeWithDuplicateEnum.Members.Remove(duplicateEnum);
                             }
                         }
+
                         codeNamespace.AddTypeWithParentNamespace(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     }
-                    else
-                    {
+                    else {
                         CodeTypeDeclaration
                             decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
                         codeNamespace.AddTypeWithParentNamespace(decl);
 
-                        if (type.IsRootElement)
-                        {
+                        if (type.IsRootElement) {
                             List<CodeTypeDeclaration> types;
 
-                            if (!xroots.TryGetValue(codeNamespace, out types))
-                            {
+                            if (!xroots.TryGetValue(codeNamespace, out types)) {
                                 types = new List<CodeTypeDeclaration>();
                                 xroots.Add(codeNamespace, types);
                             }
