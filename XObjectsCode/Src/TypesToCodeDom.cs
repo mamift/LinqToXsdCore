@@ -363,7 +363,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             LocalSymbolTable lst = new LocalSymbolTable();
 
-            CodeTypeDeclaration xroot = CodeDomHelper.CreateTypeDeclaration(rootName, null, visibility);
+            CodeTypeDeclaration xroot = CodeDomHelper.CreateTypeDeclaration(rootName, null, visibility, this.codeNamespace);
 
             //Create Methods
             CodeMemberField docField = CodeDomHelper.CreateMemberField("doc",
