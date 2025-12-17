@@ -1,0 +1,1 @@
+dotnet tool uninstall linqtoxsdcore --tool-path C:\Development\dotnet-tools\

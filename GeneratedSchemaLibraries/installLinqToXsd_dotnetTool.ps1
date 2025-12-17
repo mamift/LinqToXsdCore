@@ -1,0 +1,1 @@
+dotnet tool install linqtoxsdcore --add-source https://pkgs.dev.azure.com/mamift1/LinqToXsdCore/_packaging/LinqToXsdCore-Release/nuget/v3/index.json  --prerelease --tool-path C:\Development\dotnet-tools\
