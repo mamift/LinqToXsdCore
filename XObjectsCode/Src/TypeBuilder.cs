@@ -153,7 +153,7 @@ namespace Xml.Schema.Linq.CodeGen
             get { return null; }
         }
 
-        internal void CreateTypeDeclaration(ClrTypeInfo clrTypeInfo, CodeNamespace parentNamespace = null)
+        internal void CreateTypeDeclaration(ClrTypeInfo clrTypeInfo, CodeNamespace parentNamespace)
         {
             this.clrTypeInfo = clrTypeInfo;
             SetElementWildCardFlag(clrTypeInfo.HasElementWildCard);

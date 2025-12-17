@@ -134,7 +134,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Build type using TypeBuilder
             typeBuilder = GetTypeBuilder();
-            typeBuilder.CreateTypeDeclaration(typeInfo);
+            typeBuilder.CreateTypeDeclaration(typeInfo, this.codeNamespace);
             ProcessProperties(typeInfo.Content, typeInfo.Annotations);
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
             typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
@@ -493,7 +493,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     typedValPropertyInfo = InitializeTypedValuePropertyInfo(typeInfo, typedValPropertyInfo, innerType);
                     simpleTypeBuilder.Init(typedValPropertyInfo.ClrTypeName, innerType.IsSchemaList);
-                    simpleTypeBuilder.CreateTypeDeclaration(typeInfo);
+                    simpleTypeBuilder.CreateTypeDeclaration(typeInfo, this.codeNamespace);
                     simpleTypeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
                     typedValPropertyInfo.SetFixedDefaultValue(typeInfo);
                     simpleTypeBuilder.CreateProperty(typedValPropertyInfo, typeInfo.Annotations);
@@ -523,7 +523,7 @@ namespace Xml.Schema.Linq.CodeGen
 
                     currentNamespace = typeInfo.clrtypeNs;
                     wrapperBuilder.Init(innerTypeFullName, innerTypeNs, innerTypeAttributes);
-                    wrapperBuilder.CreateTypeDeclaration(typeInfo);
+                    wrapperBuilder.CreateTypeDeclaration(typeInfo, this.codeNamespace);
                     wrapperBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
                     wrapperBuilder.ApplyAnnotations(typeInfo);
                     wrapperBuilder.AddTypeToTypeManager(elementDictionaryAddStatements, wrapperDictionaryAddStatements);
