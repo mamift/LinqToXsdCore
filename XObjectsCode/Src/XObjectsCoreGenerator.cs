@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
@@ -47,8 +48,10 @@ namespace Xml.Schema.Linq
         /// </summary>
         /// <param name="xsdFilePaths"></param>
         /// <param name="settings"></param>
+        /// <param name="programObserver"></param>
         /// <returns></returns>
-        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> xsdFilePaths, LinqToXsdSettings settings)
+        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> xsdFilePaths,
+            LinqToXsdSettings settings, IWarnableObserver<string>? programObserver = null)
         {
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
 
@@ -67,7 +70,7 @@ namespace Xml.Schema.Linq
         /// <param name="linqToXsdSettingsFilePath"></param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, string linqToXsdSettingsFilePath = null)
+        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, string? linqToXsdSettingsFilePath = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             var settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath);
@@ -196,17 +199,24 @@ namespace Xml.Schema.Linq
         /// .config extension (i.e. schemaFileName.xsd.config). Will skip over XSDs that have no accompanying .config file.
         /// </summary>
         /// <param name="schemaFiles"></param>
+        /// <param name="observer"></param>
         /// <returns></returns>
-        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> schemaFiles)
+        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> schemaFiles,
+            IWarnableObserver<string>? observer = null)
         {
             // xsd file paths are keys, the FileInfo's to their config files are values
             var dictOfSchemasAndTheirConfigs = schemaFiles.Select(xsdFilePath => new KeyValuePair<string, FileInfo>(xsdFilePath,
                                                                new FileInfo($"{xsdFilePath}.config")))
                                                            .ToDictionary(k => k.Key, v => v.Value);
-
-
+            
             var excludeV11Xsds = dictOfSchemasAndTheirConfigs
                 .Where(kvp => kvp.Value.Exists && new FileInfo(kvp.Key).GetXmlSchemaVersion() != XmlSchemaVersion.Version1_1).ToList();
+
+            if (excludeV11Xsds.Count != dictOfSchemasAndTheirConfigs.Count) {
+                observer?.OnWarn("Found some XSD v1.1 schemas: this tool does not support XSD v1.1. and will ignore those.");
+            }
+
+            observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.Key), ';')}");
 
             return excludeV11Xsds
                 .SelectMany(kvp => Generate(kvp.Key, kvp.Value.FullName))

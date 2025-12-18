@@ -6,6 +6,7 @@ using System.Linq;
 using Alba.CsConsoleFormat.Fluent;
 using CommandLine;
 using Xml.Schema.Linq;
+using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Extensions;
 
 namespace LinqToXsd
@@ -18,6 +19,8 @@ namespace LinqToXsd
         {
             Console.WriteLine(s);
         });
+
+        public static IWarnableObserver<string> ProgramObserver { get; } = new LinqToXsdProgramObserver();
 
         public static bool IsConsolePresent
         {
@@ -157,9 +160,11 @@ namespace LinqToXsd
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
+            var schemaFilesList = generateOptions.SchemaFiles.ToList();
+
             var textWriters = generateOptions.AutoConfig
-                ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles)
-                : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings);
+                ? XObjectsCoreGenerator.Generate(schemaFilesList, ProgramObserver)
+                : XObjectsCoreGenerator.Generate(schemaFilesList, settings, ProgramObserver);
 
             if (generateOptions.Output.IsEmpty()) {
                 PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
