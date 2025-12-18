@@ -19,7 +19,7 @@ public class ClrPropertyTests: BaseTester
         var schemaSet = Utilities.GetXmlSchemaSet(abstractTestXsd, AllTestFiles);
         var defaultSettings = schemaSet.ToDefaultMergedConfiguration(config).ToLinqToXsdSettings();
         var xsdConverter = new XsdToTypesConverter(defaultSettings);
-        var mapping = xsdConverter.GenerateMapping(schemaSet);
+        ClrMappingInfo? mapping = xsdConverter.GenerateMapping(schemaSet);
 
         var codeGenerator = new CodeDomTypesGenerator(defaultSettings);
         var namespaces = codeGenerator.GenerateTypes(mapping).ToList();
@@ -29,5 +29,30 @@ public class ClrPropertyTests: BaseTester
         foreach (var type in mapping.Types) {
             
         }
+    }
+
+    [Test]
+    public void T2()
+    {
+        MockFileInfo akk = AllTestFiles.GetMockFileInfo(f => f.EndsWith("AkomaNtoso\\akomantoso30.xsd"));
+        MockFileInfo akkConfig = AllTestFiles.GetMockFileInfo(f => f.EndsWith("AkomaNtoso\\akomantoso30.xsd.config"));
+        var config = Configuration.Load(akkConfig.ToStreamReader());
+
+        var schemaSet = Utilities.GetXmlSchemaSet(akk, AllTestFiles);
+        var defaultSettings = schemaSet.ToDefaultMergedConfiguration(config).ToLinqToXsdSettings();
+        var xsdConverter = new XsdToTypesConverter(defaultSettings);
+        var mapping = xsdConverter.GenerateMapping(schemaSet);
+
+        var mappingXml = mapping.ToXml();
+
+        Assert.NotNull(mappingXml);
+
+        var date = mapping.Types.Find(e => e.schemaName == "date");
+
+        var typeRefs = from t in mapping.Types
+            select t;
+
+        var codeGenerator = new CodeDomTypesGenerator(defaultSettings);
+        var namespaces = codeGenerator.GenerateTypes(mapping).ToList();
     }
 }
