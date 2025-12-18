@@ -1192,7 +1192,8 @@ namespace Xml.Schema.Linq.CodeGen
 
             #if DEBUG
             var str = codeFieldReferenceExpression.ToCodeString();
-            Debug.Assert(str != null);
+            Debug.Assert(str.IsNotEmpty());
+            Debug.Assert(str.Contains("void.") == false, $"A void. type reference indicates that the mapping failed to generate a suitable {nameof(simpleTypeClrTypeName)} for the current {nameof(ClrPropertyInfo)}. This can happen due to the XSD type of the current property might be anonymous AND a union of multiple types. There are a few XSD type configurations that are not yet supported.");
             #endif
 
             return codeFieldReferenceExpression;

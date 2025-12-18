@@ -56,6 +56,12 @@
       "commandLineArgs": "gen \"windowsTaskSched.xsd\" -a",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\Windows",
       "hotReloadEnabled": false
+    },
+    "akomantoso30": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"akomantoso30.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\AkomaNtoso",
+      "hotReloadEnabled": false
     }
   }
 }
