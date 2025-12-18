@@ -19,7 +19,7 @@ public class LinqToXsdProgramObserver: IWarnableObserver<string>
         var original = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(error.ToString());
-        Console.BackgroundColor = original;
+        Console.ForegroundColor = original;
         errorCount++;
     }
 
@@ -37,7 +37,7 @@ public class LinqToXsdProgramObserver: IWarnableObserver<string>
         var original = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(value);
-        Console.BackgroundColor = original;
+        Console.ForegroundColor = original;
         warningCount++;
     }
 }
