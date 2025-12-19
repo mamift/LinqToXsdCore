@@ -34,7 +34,6 @@ namespace Xml.Schema.Linq.CodeGen
         /// The enclosing <see cref="CodeTypeDeclaration"/> that this <see cref="ClrPropertyInfo"/> instance is a part of. 
         /// </summary>
         public CodeTypeDeclaration? ParentTypeDeclaration { get; set; }
-#nullable disable
 
         public ClrPropertyInfo(string propertyName, string propertyNs, string schemaName, Occurs occursInSchema, LinqToXsdSettings settings)
         {
@@ -211,22 +210,22 @@ namespace Xml.Schema.Linq.CodeGen
 
         public override bool IsSchemaList
         {
-            get { return this.typeRef.IsSchemaList; }
+            get { return (this.typeRef?.IsSchemaList).GetValueOrDefault(); }
         }
 
         public override bool IsUnion
         {
-            get { return this.typeRef.IsUnion; }
+            get { return (this.typeRef?.IsUnion).GetValueOrDefault(); }
         }
 
         public override bool IsEnum
         {
-            get { return this.typeRef.IsEnum; }
+            get { return (this.typeRef?.IsEnum).GetValueOrDefault(); }
         }
 
         public bool Validation
         {
-            get { return this.typeRef.Validate && !IsRef; }
+            get { return (this.typeRef?.Validate).GetValueOrDefault() && !IsRef; }
         }
 
         public override bool FromBaseType
