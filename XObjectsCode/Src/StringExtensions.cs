@@ -1,9 +1,36 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable enable
+
+using System.Linq;
+using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.CodeGen
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// Equivalent to T-SQL COALESCE function for strings.
+        /// <seealso cref="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/coalesce-transact-sql?view=sql-server-ver17"/>
+        /// <para>Unlike the T-SQL function, this will use <see cref="string.IsNullOrWhiteSpace"/> for checking emptiness.</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="others"></param>
+        /// <returns></returns>
+        public static string? Coalesce(this string? str, params string?[] others)
+        {
+            var list = others.Concat([str]).ToList();
+
+            foreach (var item in list) {
+                if (item.IsEmpty()) {
+                    continue;
+                }
+
+                return item;
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Converts the first character of the given Unicode string to its uppercase equivalent using the casing rules of the invariant culture.
         /// </summary>

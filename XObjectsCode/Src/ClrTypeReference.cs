@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
 
@@ -316,5 +317,30 @@ public partial class ClrTypeReference
             }
             return this.Namespace;
         }
+    }
+
+    public XDocument ToXDoc()
+    {
+        return new XDocument(
+            new XElement(nameof(ClrTypeReference),
+                new XElement(nameof(Origin), Origin),
+                new XElement(nameof(Name), Name),
+                new XElement(nameof(ClrName), ClrName),
+                new XElement(nameof(Namespace), Namespace),
+                new XElement(nameof(ClrFullTypeName), ClrFullTypeName),
+                new XElement(nameof(TypeCodeString), TypeCodeString),
+                new XElement(nameof(IsValueType), IsValueType),
+                new XElement(nameof(IsLocalType), IsLocalType),
+                new XElement(nameof(IsSimpleType), IsSimpleType),
+                new XElement(nameof(Validate), Validate),
+                new XElement(nameof(IsTypeRef), IsTypeRef),
+                new XElement(nameof(IsSchemaList), IsSchemaList),
+                new XElement(nameof(IsUnion), IsUnion),
+                new XElement(nameof(IsEnum), IsEnum),
+                new XElement(nameof(IsAnyType), IsAnyType),
+                new XElement(nameof(IsNamedComplexType), IsNamedComplexType),
+                new XElement(nameof(SchemaObject), SchemaObject?.ToString()),
+                new XElement(nameof(LocalSuffix), LocalSuffix)
+            ));
     }
 }

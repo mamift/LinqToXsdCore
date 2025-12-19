@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using System.Xml.XPath;
 using ExtendedXmlSerializer;
 using ExtendedXmlSerializer.Configuration;
@@ -13,11 +14,22 @@ namespace Xml.Schema.Linq.Tests.Extensions;
 
 public static class GeneralExtensions
 {
+    public static string SerializeToXml<T>(this T thing)
+    {
+        var serializer = new XmlSerializer(typeof(T));
+        using var writer = new StringWriter();
+        serializer.Serialize(writer, thing);
+
+        return writer.ToString();
+    }
+
     public static string ToXml(this ClrMappingInfo mapping)
     {
         IExtendedXmlSerializer serializer = new ConfigurationContainer()
             .EnableAllConstructors()
             .EnableParameterizedContent()
+            .Type<ClrTypeReference>().Register().Serializer().Using(new ClrTypeRefSerializer())
+            .Type<ClrPropertyInfo>().Register().Serializer().Using(new ClrPropertyInfoSerializer())
             .Create();
 
         var stringWriter = new StringWriter();
@@ -37,7 +49,20 @@ public static class GeneralExtensions
 
         public void Write(IFormatWriter writer, ClrTypeReference instance)
         {
-            var xml = instance.ToXml();
+            var xml = instance.ToXDoc();
+            writer.Content(xml.ToString(SaveOptions.DisableFormatting));
+        }
+    }
+
+    public class ClrPropertyInfoSerializer : ISerializer<ClrPropertyInfo>
+    {
+        public ClrPropertyInfo Get(IFormatReader parameter)
+        {
+            throw new NotImplementedException();
+        }
+        public void Write(IFormatWriter writer, ClrPropertyInfo instance)
+        {
+            var xml = instance.ToXml(FormatOptions.None);
             writer.Content(xml);
         }
     }
