@@ -205,21 +205,26 @@ namespace Xml.Schema.Linq
             IWarnableObserver<string>? observer = null)
         {
             // xsd file paths are keys, the FileInfo's to their config files are values
-            var dictOfSchemasAndTheirConfigs = schemaFiles.Select(xsdFilePath => new KeyValuePair<string, FileInfo>(xsdFilePath,
-                                                               new FileInfo($"{xsdFilePath}.config")))
-                                                           .ToDictionary(k => k.Key, v => v.Value);
+            List<(FileInfo xsdFile, FileInfo configFile)> dictOfSchemasAndTheirConfigs = schemaFiles
+                .Select(xsdFilePath => {
+                    var configFile = new FileInfo($"{xsdFilePath}.config");
+                    var xsdFile = new FileInfo(xsdFilePath);
+                    return (xsdFile, configFile);
+                })
+                .ToList();
             
             var excludeV11Xsds = dictOfSchemasAndTheirConfigs
-                .Where(kvp => kvp.Value.Exists && new FileInfo(kvp.Key).GetXmlSchemaVersion() != XmlSchemaVersion.Version1_1).ToList();
+                .Where(filePairs => filePairs.xsdFile.Exists && filePairs.xsdFile.GetXmlSchemaVersion() != XmlSchemaVersion.Version1_1)
+                .ToList();
 
             if (excludeV11Xsds.Count != dictOfSchemasAndTheirConfigs.Count) {
                 observer?.OnWarn("Found some XSD v1.1 schemas: this tool does not support XSD v1.1. and will ignore those.");
             }
 
-            observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.Key), ';')}");
+            observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
 
             return excludeV11Xsds
-                .SelectMany(kvp => Generate(kvp.Key, kvp.Value.FullName))
+                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.xsdFile.FullName))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())
