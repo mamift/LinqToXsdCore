@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xsd:attributeGroup name="date">
+        <xsd:annotation>
+            <xsd:documentation>
+                <type>Attlist</type>
+                <name>date</name>
+                <comment>
+                    The attribute date is used to give a normalized value for a date according to the XSD syntax YYYY-MM-DD or a normalized value for a dateTime according to the XSD syntax YYYY-MM-DDThh:mm:ss(zzzz)</comment>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="date" use="required">
+            <xsd:simpleType>
+                <xsd:union memberTypes="xsd:date xsd:dateTime"/>
+            </xsd:simpleType>
+        </xsd:attribute>
+    </xsd:attributeGroup>
+    <xsd:element name="element1">
+        <xsd:complexType>
+            <xsd:attributeGroup ref="date"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

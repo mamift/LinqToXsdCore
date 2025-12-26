@@ -62,6 +62,12 @@
       "commandLineArgs": "gen \"akomantoso30.xsd\" -a",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\AkomaNtoso",
       "hotReloadEnabled": false
+    },
+    "StuDateTime": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"StuDateAndTime.xsd\" -a",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\SimpleTypeUnion",
+      "hotReloadEnabled": false
     }
   }
 }
