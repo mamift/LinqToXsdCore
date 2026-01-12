@@ -1,5 +1,6 @@
 ﻿using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+using System.Xml.Schema;
 using NUnit.Framework;
 using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.Tests.Extensions;
@@ -32,7 +33,7 @@ public class ClrPropertyTests: BaseTester
     }
 
     [Test]
-    public void T2()
+    public void TestSimpleTypeUnionMappingNames()
     {
         MockFileInfo akk = AllTestFiles.GetMockFileInfo(f => f.EndsWith("AkomaNtoso\\akomantoso30.xsd"));
         MockFileInfo akkConfig = AllTestFiles.GetMockFileInfo(f => f.EndsWith("AkomaNtoso\\akomantoso30.xsd.config"));
@@ -43,16 +44,30 @@ public class ClrPropertyTests: BaseTester
         var xsdConverter = new XsdToTypesConverter(defaultSettings);
         var mapping = xsdConverter.GenerateMapping(schemaSet);
 
-        var mappingXml = mapping.ToXml();
+        // the docDate has an attribute that is a simple type union of xsd:date & xsd:dateTime
+        ClrTypeInfo? docDateElMapping = mapping.Types.Single(t => t.schemaName == "docDate");
+        Assert.IsInstanceOf<ClrContentTypeInfo>(docDateElMapping);
 
-        Assert.NotNull(mappingXml);
+        var docDateElMappingContentInfo = (ClrContentTypeInfo)docDateElMapping;
 
-        var date = mapping.Types.Find(e => e.schemaName == "date");
+        var date1Attr = docDateElMappingContentInfo.Content.OfType<ClrPropertyInfo>()
+            .Single(a => a.Origin == SchemaOrigin.Attribute && a.PropertyName == "date1");
+        
+        Assert.True(date1Attr.IsUnion);
+        Assert.True(date1Attr.TypeReference.IsUnion);
+        var fullClrTypeName = date1Attr.TypeReference.GetClrFullTypeName("global::", mapping.NameMappings, defaultSettings, out var typeName);
 
-        var typeRefs = from t in mapping.Types
-            select t;
+        Assert.True(fullClrTypeName == typeof(object).FullName);
+        
+        var simpleTypeClrDefName = date1Attr.TypeReference.GetSimpleTypeClrTypeDefName("global::", mapping.NameMappings);
+        
+        Assert.True(simpleTypeClrDefName == "System.Object");
+        
+        Assert.True(date1Attr.TypeReference.SchemaObject is XmlSchemaSimpleType);
 
-        var codeGenerator = new CodeDomTypesGenerator(defaultSettings);
-        var namespaces = codeGenerator.GenerateTypes(mapping).ToList();
+        var union = date1Attr.TypeReference.SchemaObject as XmlSchemaSimpleType;
+        Assert.IsNotNull(union);
+        Assert.IsTrue(union!.Datatype!.Variety == XmlSchemaDatatypeVariety.Union);
+        Assert.IsTrue(union.Content is XmlSchemaSimpleTypeUnion);
     }
 }
