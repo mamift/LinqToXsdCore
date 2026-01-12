@@ -460,11 +460,19 @@ namespace XObjects
             if (type.Content is XmlSchemaSimpleTypeUnion union) {
                 string name = Constants.SimpleTypeUnionOfPrefix;
 
-                foreach (var memberType in union.GetUnionMemberTypes()) {
-                    name += memberType.Name;
+                XmlSchemaSimpleType[] types = union.GetUnionMemberTypes();
+
+                for (var i = 0; i < types.Length; i++) {
+                    string titleCasedTypeName = (types[i].Name ?? types[i].QualifiedName.Name).ToUpperFirstInvariant();
+                    if (i == 0) {
+                        name += $"{titleCasedTypeName}";
+                    }
+                    else {
+                        name += $"And{titleCasedTypeName}";
+                    }
                 }
 
-                Debug.Assert(name != Constants.SimpleTypeUnionOfPrefix);
+                Debug.Assert(name != Constants.SimpleTypeUnionOfPrefix, "Union had no member types!");
 
                 return name;
             }
