@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-
+using System.Reflection;
 using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq.Extensions
@@ -592,6 +592,17 @@ namespace Xml.Schema.Linq.Extensions
             {
                 get {
                     return type.Members.OfType<CodeTypeDeclaration>().Where(e => e.IsClass);
+                }
+            }
+
+            public void ChangeVisibility(TypeAttributes visibility)
+            {
+                if (!visibility.HasFlag(TypeAttributes.VisibilityMask)) {
+                    throw new InvalidOperationException("Requires the use of an enum value that affects type visibility!");
+                }
+
+                if (type.TypeAttributes.HasFlag(TypeAttributes.VisibilityMask)) {
+                    type.TypeAttributes = (type.TypeAttributes & ~TypeAttributes.VisibilityMask) | visibility;
                 }
             }
         }
