@@ -20,4 +20,11 @@
             <xsd:attributeGroup ref="date"/>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="element2AnonCType">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element name="subEl2" type="xsd:string"/>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>

@@ -35,9 +35,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Remove="XsdFeatureTests\Elements\ElementsTests.xsd" />
+    <None Remove="XsdFeatureTests\Elements\ElementsWithComplexTypes.xsd" />
+    <None Remove="XsdFeatureTests\Elements\ElementsWithTypes.xsd" />
+    <None Remove="XsdFeatureTests\Elements\ElementsWithTypesSimpleDerived.xsd" />
     <None Remove="XsdFeatureTests\SimpleTypeUnion\StuDateAndTime.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsTests.xsd" />
+    <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithComplexTypes.xsd" />
+    <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithTypes.xsd" />
+    <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithTypesSimpleDerived.xsd" />
     <EmbeddedResource Include="XsdFeatureTests\SimpleTypeUnion\StuDateAndTime.xsd" />
   </ItemGroup>
   <ItemGroup>
