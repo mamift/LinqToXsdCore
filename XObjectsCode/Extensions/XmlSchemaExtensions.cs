@@ -77,35 +77,35 @@ namespace XObjects
                 }
 
                 case XmlSchemaElement element: {
-                        if (element.ElementSchemaType is XmlSchemaSimpleType simpleType) {
-                            didAdd = simpleTypes.AddIfNotAlreadyExists(element, simpleType);
-                        } 
-                        else if (element.ElementSchemaType is XmlSchemaComplexType complexType) {
-                            foreach (var attr in complexType.AttributeUses.Values.Cast<XmlSchemaAttribute>()) {
-                                TraverseAllSimpleTypes(attr, ref simpleTypes, out breakOutOfLoop);
-                                if (breakOutOfLoop) return;
-                            }
-
-                            var childElements = complexType.LocalXsdElements()
-                                .Where(e => !ReferenceEquals(e, schemaObject))
-                                .ToList();
-                            
-                            foreach (var el in childElements) {
-                                TraverseAllSimpleTypes(el, ref simpleTypes, out breakOutOfLoop);
-                                if (breakOutOfLoop) return;
-                            }
-                        }
-                        else {
-                            if (element.ElementSchemaType is XmlSchemaComplexType { Particle: XmlSchemaGroupBase gb }) {
-                                foreach (var particle in gb.Items) {
-                                    TraverseAllSimpleTypes(particle, ref simpleTypes, out breakOutOfLoop);
-                                    if (breakOutOfLoop) return;
-                                }
-                            }
+                    if (element.ElementSchemaType is XmlSchemaSimpleType simpleType) {
+                        didAdd = simpleTypes.AddIfNotAlreadyExists(element, simpleType);
+                    } 
+                    else if (element.ElementSchemaType is XmlSchemaComplexType complexType) {
+                        foreach (var attr in complexType.AttributeUses.Values.Cast<XmlSchemaAttribute>()) {
+                            TraverseAllSimpleTypes(attr, ref simpleTypes, out breakOutOfLoop);
+                            if (breakOutOfLoop) return;
                         }
 
-                        break;
+                        var childElements = complexType.LocalXsdElements()
+                            .Where(e => !ReferenceEquals(e, schemaObject))
+                            .ToList();
+                        
+                        foreach (var el in childElements) {
+                            TraverseAllSimpleTypes(el, ref simpleTypes, out breakOutOfLoop);
+                            if (breakOutOfLoop) return;
+                        }
                     }
+                    else {
+                        if (element.ElementSchemaType is XmlSchemaComplexType { Particle: XmlSchemaGroupBase gb }) {
+                            foreach (var particle in gb.Items) {
+                                TraverseAllSimpleTypes(particle, ref simpleTypes, out breakOutOfLoop);
+                                if (breakOutOfLoop) return;
+                            }
+                        }
+                    }
+
+                    break;
+                }
 
                 case XmlSchemaComplexType complexType: {
                     foreach (var attribute in complexType.AttributeUses.Values.OfType<XmlSchemaAttribute>()) {
@@ -138,6 +138,75 @@ namespace XObjects
             }
 
             breakOutOfLoop = !didAdd;
+        }
+
+        /// <summary>
+        /// Retrieves all <see cref="XmlSchemaElement"/> instances from the provided <see cref="XmlSchemaSet"/>, 
+        /// including both global elements and recursively discovered child elements.
+        /// <para>
+        /// This method traverses the schema hierarchy to ensure all elements are collected, 
+        /// avoiding duplicates by using distinct filtering.
+        /// </para>
+        /// </summary>
+        /// <param name="set">The <see cref="XmlSchemaSet"/> from which to retrieve all elements.</param>
+        /// <returns>A list of all <see cref="XmlSchemaElement"/> instances found in the schema set.</returns>
+        public static List<XmlSchemaElement> RetrieveAllElements(this XmlSchemaSet set)
+        {
+            var globalElements = set.GlobalElements.Values.Cast<XmlSchemaElement>().ToList();
+            var containerList = new List<XmlSchemaElement>();
+
+            var allChildElements = from gEl in globalElements
+                let children = gEl.RetrieveChildElements(containerList)
+                from child in children
+                select child;
+
+            // due to the object graph in XSD, there seems to be no way to grab all elements recursively without using distinct()
+            return globalElements.Concat(allChildElements).Distinct().ToList();
+        }
+
+        
+        /// <summary>
+        /// Recursively retrieves all child elements of the specified <see cref="XmlSchemaElement"/>.
+        /// </summary>
+        /// <param name="el">The <see cref="XmlSchemaElement"/> whose child elements are to be retrieved.</param>
+        /// <param name="elements">
+        /// An optional list of <see cref="XmlSchemaElement"/> to store the retrieved child elements. 
+        /// If not provided, a new list will be created.
+        /// </param>
+        /// <returns>A list of <see cref="XmlSchemaElement"/> representing the child elements of the specified element.</returns>
+        /// <remarks>
+        /// This method traverses the content model of the specified element, including complex types with particles 
+        /// such as <see cref="XmlSchemaAll"/>, <see cref="XmlSchemaChoice"/>, and <see cref="XmlSchemaSequence"/>.
+        /// It ensures that each child element is added only once to the list.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the particle type of the complex type is not one of the supported types 
+        /// (<see cref="XmlSchemaAll"/>, <see cref="XmlSchemaChoice"/>, or <see cref="XmlSchemaSequence"/>).
+        /// </exception>
+        public static List<XmlSchemaElement> RetrieveChildElements(this XmlSchemaElement el, List<XmlSchemaElement>? elements = null)
+        {
+            elements ??= new List<XmlSchemaElement>();
+
+            // elements.AddIfNotAlreadyExists(el);
+            var contentType = el.ElementSchemaType.GetContentType();
+
+            if (contentType != XmlSchemaContentType.TextOnly && contentType != XmlSchemaContentType.Empty) {
+                if (el.ElementSchemaType is not XmlSchemaComplexType ct) return elements;
+
+                XmlSchemaObjectCollection items = ct.Particle switch {
+                    XmlSchemaAll all => all.Items,
+                    XmlSchemaChoice choice => choice.Items,
+                    XmlSchemaSequence sequence => sequence.Items,
+                    _ => throw new InvalidOperationException()
+                };
+
+                foreach (var childEl in items.OfType<XmlSchemaElement>()) {
+                    elements.AddIfNotAlreadyExists(childEl);
+                    childEl.RetrieveChildElements(elements);
+                }
+            }
+
+            return elements;
         }
 
         public static bool IsOfAnonymousType(this XmlSchemaAttribute attr)

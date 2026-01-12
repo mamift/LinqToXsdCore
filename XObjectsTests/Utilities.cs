@@ -50,10 +50,19 @@ namespace Xml.Schema.Linq.Tests
         {
             var mockFs = new MockFileSystem();
             foreach (var assembly in assemblies) {
-                if (assembly.GetName().Name!.Contains("GelML")) {
+                string? name = assembly.GetName().Name;
+                if (name!.Contains("GelML")) {
                     //Debugger.Break();
                 }
-                var fileData = GetAssemblyTextFilesDictionary(assembly);
+                Dictionary<string, MockFileData> fileData;
+                // the assembly name doens't match the namespace for this one 
+                if (assembly.FullName!.Contains("LinqToXsd.Schemas")) {
+                    fileData = GetAssemblyTextFilesDictionary(assembly, "Xml.Schema.Linq");
+                }
+                else {
+                    fileData = GetAssemblyTextFilesDictionary(assembly);
+                }
+                    
                 foreach (var kvp in fileData) {
                     var possibleExistingPath = kvp.Key;
 
@@ -77,18 +86,20 @@ namespace Xml.Schema.Linq.Tests
             return new MockFileSystem(GetAssemblyTextFilesDictionary(assembly));
         }
 
-        public static Dictionary<string, MockFileData> GetAssemblyTextFilesDictionary(Assembly assembly)
+        public static Dictionary<string, MockFileData> GetAssemblyTextFilesDictionary(Assembly assembly, string? customRootName = null)
         {
             var names = assembly.GetManifestResourceNames();
+            var info = names.Select(n => assembly.GetManifestResourceInfo(n)).ToList();
 
-            var rootName = assembly.GetName().Name + ".";
+            var rootName = (customRootName ?? assembly.GetName().Name) + ".";
             var replacementRegex = new Regex(rootName);
 
             var streams = names.Select(n => {
                 var rootNameReplaced = replacementRegex.Replace(n, rootName.Replace(".", "\\"), 1);
                 return (
                     name: rootNameReplaced,
-                    stream: assembly.GetManifestResourceStream(n));
+                    stream: assembly.GetManifestResourceStream(n)
+                );
             }).ToList();
 
             var contents = streams.Select(tu => (tu.name, data: new MockFileData(tu.stream.ReadAsString(dispose: true))))

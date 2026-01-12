@@ -51,5 +51,13 @@ namespace XObjects
             dictionary.Add(key, val);
             return true;
         }
+
+        public static bool AddIfNotAlreadyExists<TVal>(this List<TVal> list, TVal val)
+        {
+            bool contains = list.Contains(val);
+            if (contains) return false;
+            list.Add(val);
+            return true;
+        }
     }
 }

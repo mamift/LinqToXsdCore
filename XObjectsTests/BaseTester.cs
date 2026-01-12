@@ -33,7 +33,7 @@ public class BaseTester
         var testDlls = allDlls.Where(a => 
             !(
                 a.Name.Contains("System.") || a.Name.Contains("Microsoft.") || a.Name.Contains("MoreLinq") || a.Name.Contains("nunit") || a.Name.Contains("Fasterflect") ||
-                a.Name.Equals("LinqToXsd") || a.Name.Contains("XObjects")
+                a.Name.Equals("LinqToXsd.dll") || a.Name.Contains("XObjects")
             )
         ).ToList();
         var referencedAssemblies = testDlls.OrderBy(a => a.FullName).ToList();
