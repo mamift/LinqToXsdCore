@@ -1,6 +1,8 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
+#pragma warning disable IDE0130
 namespace Xml.Schema.Linq.CodeGen
+#pragma warning restore IDE0130
 {
     internal static class Constants
     {
