@@ -100,6 +100,21 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsNotEmpty(allElements);
         }
 
+        [Test, TestCase("StuDateAndTime.xsd")]
+        [TestCase("Elements.ElementsTests.xsd")]
+        [TestCase("Elements.ElementsWithComplexTypes.xsd")]
+        [TestCase("Elements.ElementsWithTypes.xsd")]
+        [TestCase("Elements.ElementsWithTypesSimpleDerived.xsd")]
+        public void RetrieveAllComplexTypeElementsTest(string endsWithFilePattern)
+        {
+            var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
+
+            var allElements = xsd.RetrieveAllComplexTypeElements();
+
+            Assert.NotNull(allElements);
+            Assert.IsNotEmpty(allElements);
+        }
+
         [Test, TestCase("StuDateAndTime.xsd"), TestCase("\\AkomaNtoso\\akomantoso30.xsd"), TestCase("Opml\\opml2.xsd")]
         public void TestRetrieveAllAnonymousSimpleTypes(string endsWithFilePattern)
         {

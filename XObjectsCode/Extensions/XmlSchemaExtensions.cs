@@ -160,8 +160,17 @@ namespace XObjects
                 from child in children
                 select child;
 
-            // due to the object graph in XSD, there seems to be no way to grab all elements recursively without using distinct()
+            // due to the object graph in XSD, there seems to be no way to grab all unique elements recursively without using distinct()
             return globalElements.Concat(allChildElements).Distinct().ToList();
+        }
+
+        public static List<XmlSchemaElement> RetrieveAllComplexTypeElements(this XmlSchemaSet set)
+        {
+            var allElements = set.RetrieveAllElements();
+
+            return allElements.Where(e => e.SchemaType is XmlSchemaComplexType ||
+                                          (e.ElementSchemaType is XmlSchemaComplexType && 
+                                           (!e.ElementSchemaType.IsBuiltIn() && e.ElementSchemaType.QualifiedName.Name != "anyType"))).ToList();
         }
 
         
@@ -193,19 +202,31 @@ namespace XObjects
             if (contentType != XmlSchemaContentType.TextOnly && contentType != XmlSchemaContentType.Empty) {
                 if (el.ElementSchemaType is not XmlSchemaComplexType ct) return elements;
 
-                XmlSchemaObjectCollection items = ct.Particle switch {
-                    XmlSchemaAll all => all.Items,
-                    XmlSchemaChoice choice => choice.Items,
-                    XmlSchemaSequence sequence => sequence.Items,
-                    _ => throw new InvalidOperationException()
-                };
+                XmlSchemaObjectCollection items;
+                switch (ct.Particle) {
+                    case XmlSchemaAll all:
+                        items = all.Items;
+                        break;
+                    case XmlSchemaChoice choice:
+                        items = choice.Items;
+                        break;
+                    case XmlSchemaSequence sequence:
+                        items = sequence.Items;
+                        break;
+                    default: 
+                        if (ct.QualifiedName is { Namespace: Constants.XSD, Name: "anyType" }) {
+                            goto exit;
+                        }
+
+                        throw new NotSupportedException();
+                }
 
                 foreach (var childEl in items.OfType<XmlSchemaElement>()) {
                     elements.AddIfNotAlreadyExists(childEl);
                     childEl.RetrieveChildElements(elements);
                 }
             }
-
+            exit:
             return elements;
         }
 
@@ -217,12 +238,25 @@ namespace XObjects
             );
         }
         
+        /// <summary>
+        /// Determines whether the specified <see cref="XmlSchemaElement"/> is of an anonymous <see cref="XmlSchemaType"/>.
+        /// Works for both simple and complex types.
+        /// </summary>
+        /// <param name="el">The <see cref="XmlSchemaElement"/> to evaluate.</param>
+        /// <returns>
+        /// <c>true</c> if the element's schema type is not null and is not a global or built-in simple type; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsOfAnonymousType(this XmlSchemaElement el)
         {
             return el.SchemaType != null && !(
                 (el.ElementSchemaType?.IsGlobal()).GetValueOrDefault() && 
                 (el.ElementSchemaType?.IsBuiltInSimpleType()).GetValueOrDefault()
             );
+        }
+
+        public static bool IsBuiltIn(this XmlSchemaType type)
+        {
+            return type.QualifiedName.Namespace == Constants.XSD;
         }
 
         /// <summary>
