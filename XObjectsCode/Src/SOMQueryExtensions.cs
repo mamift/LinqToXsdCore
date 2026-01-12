@@ -14,7 +14,7 @@ namespace Xml.Schema.Linq.CodeGen
     internal static class SOMQueryExtensions
     {
         //XmlSchemaType helpers
-        public static XmlSchemaContentType GetContentType(this XmlSchemaType schemaType)
+        public static XmlSchemaContentType GetContentType(this XmlSchemaType? schemaType)
         {
             if (schemaType == null)
             {

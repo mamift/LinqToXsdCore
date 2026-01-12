@@ -951,7 +951,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             SchemaOrigin typeRefOrigin = SchemaOrigin.Fragment;
             bool isTypeRef = false;
-            //Anonymous types have a non null XmlSchemaElement.SchemaType value
+            //Anonymous element types have a non null XmlSchemaElement.SchemaType value
             bool isAnonymous = elem.SchemaType != null;
             XmlSchemaObject schemaObject = schemaType;
 

@@ -181,7 +181,7 @@ namespace XObjects
         /// themselves unnamed, and it is the named ones that are helpful to know.</remarks>
         /// <param name="object"></param>
         /// <returns></returns>
-        public static XmlSchemaObject GetClosestNamedParent(this XmlSchemaObject @object)
+        public static XmlSchemaObject? GetClosestNamedParent(this XmlSchemaObject @object)
         {
             if (@object.Parent is XmlSchemaXPath xmlSchemaXPath) { return null; }
             if (@object.Parent is XmlSchema xmlSchema) { return null; }
