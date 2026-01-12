@@ -207,8 +207,7 @@ public partial class ClrTypeReference
 
     public string LocalSuffix => this.IsEnum ? Constants.LocalEnumSuffix : Constants.LocalTypeSuffix;
 
-    public string GetSimpleTypeClrTypeDefName(string parentTypeClrNs,
-        Dictionary<XmlSchemaObject, string> nameMappings)
+    public string GetSimpleTypeClrTypeDefName(string parentTypeClrNs, Dictionary<XmlSchemaObject, string> nameMappings)
     {
         Debug.Assert(this.IsSimpleType);
         string clrTypeName = null;
@@ -241,6 +240,11 @@ public partial class ClrTypeReference
         {
             //Namespace of the property's type is different than the namespace of the enclosing CLR Type
             clrTypeName = "global::" + typeNs + "." + clrTypeName;
+        }
+
+        // unfortunately this doesn't handle simple type unions
+        if (clrTypeName.IsEmpty() && key is XmlSchemaSimpleType { Content: XmlSchemaSimpleTypeUnion union }) {
+            clrTypeName = typeof(object).FullName;
         }
 
         return clrTypeName;
