@@ -1020,8 +1020,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             SchemaOrigin typeRefOrigin = SchemaOrigin.Fragment;
             bool isTypeRef = false;
-            bool isAnonymous = attribute.SchemaType != null || (!attribute.AttributeSchemaType.IsGlobal() &&
-                                                                !attribute.AttributeSchemaType.IsBuiltInSimpleType());
+            bool isAnonymous = attribute.IsOfAnonymousType();
 
             XmlSchemaObject schemaObject = schemaType;
 
