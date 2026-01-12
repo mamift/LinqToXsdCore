@@ -99,6 +99,13 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        public static bool IsBuiltInSimpleType(this XmlSchemaType type)
+        {
+            if (type is XmlSchemaSimpleType a) return a.IsBuiltInSimpleType();
+
+            return false;
+        }
+
         public static XmlSchemaSimpleType GetListItemType(this XmlSchemaSimpleType type)
         {
             Debug.Assert(type != null);

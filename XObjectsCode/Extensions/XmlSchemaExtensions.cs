@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -61,6 +62,11 @@ namespace XObjects
 
             bool didAdd = true;
             switch (schemaObject) {
+                case XmlSchemaAttribute attribute: {
+                    didAdd = simpleTypes.AddIfNotAlreadyExists(attribute, attribute.AttributeSchemaType);
+                    break;
+                }
+
                 case XmlSchemaElement element: {
                         if (element.ElementSchemaType is XmlSchemaSimpleType simpleType) {
                             didAdd = simpleTypes.AddIfNotAlreadyExists(element, simpleType);
@@ -92,12 +98,7 @@ namespace XObjects
                         break;
                     }
 
-                case XmlSchemaAttribute attribute: {
-                    didAdd = simpleTypes.AddIfNotAlreadyExists(attribute, attribute.AttributeSchemaType);
-                    break;
-                }
-
-                case XmlSchemaComplexType complexType:
+                case XmlSchemaComplexType complexType: {
                     foreach (var attribute in complexType.AttributeUses.Values.OfType<XmlSchemaAttribute>()) {
                         if (attribute.AttributeSchemaType is { } simpleType) {
                             didAdd = simpleTypes.AddIfNotAlreadyExists(attribute, simpleType);
@@ -110,18 +111,40 @@ namespace XObjects
                     }
 
                     break;
+                }
 
-                case XmlSchemaGroupBase groupBase when groupBase is XmlSchemaAll all:
-                    foreach (var item in all.Items) {
+                case XmlSchemaGroupBase groupBase: {
+                    OneOf<XmlSchemaAll, XmlSchemaSequence, XmlSchemaChoice> matchModel = default;
+                    if (groupBase is XmlSchemaAll all) { matchModel = all; }
+                    else if (groupBase is XmlSchemaSequence seq) { matchModel = seq; }
+                    else if (groupBase is XmlSchemaChoice choice) { matchModel = choice; }
+
+                    foreach (var item in matchModel.Match(a => a.Items, s => s.Items, c => c.Items)) {
                         TraverseAllSimpleTypes(item, ref simpleTypes, out breakOutOfLoop);
                         if (breakOutOfLoop) return;
                     }
 
                     break;
-                
+                }
             }
 
             breakOutOfLoop = !didAdd;
+        }
+
+        public static bool IsOfAnonymousType(this XmlSchemaAttribute attr)
+        {
+            return attr.SchemaType != null && !(
+                (attr.AttributeSchemaType?.IsGlobal()).GetValueOrDefault() && 
+                (attr.AttributeSchemaType?.IsBuiltInSimpleType()).GetValueOrDefault()
+            );
+        }
+        
+        public static bool IsOfAnonymousType(this XmlSchemaElement el)
+        {
+            return el.SchemaType != null && !(
+                (el.ElementSchemaType?.IsGlobal()).GetValueOrDefault() && 
+                (el.ElementSchemaType?.IsBuiltInSimpleType()).GetValueOrDefault()
+            );
         }
 
         /// <summary>

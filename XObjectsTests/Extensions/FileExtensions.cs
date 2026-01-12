@@ -20,7 +20,7 @@ public static class FileExtensions
         return XDocument.Load(fileInfo.ToStreamReader());
     }
     
-    public static XmlSchemaSet ReadAsXmlSchemaInstance(this IFileInfo fileInfo, XmlResolver resolver)
+    public static XmlSchemaSet ReadAsXmlSchemaSet(this IFileInfo fileInfo, XmlResolver resolver)
     {
         if (resolver == null) throw new ArgumentNullException(nameof(resolver));
         
@@ -29,6 +29,15 @@ public static class FileExtensions
         defaultXmlReaderSettings.XmlResolver = resolver;
         var reader = XmlReader.Create(sr, defaultXmlReaderSettings);
         var xsd = reader.ToXmlSchemaSet(resolver);
+
+        return xsd;
+    }
+
+    public static XmlSchemaSet ReadAsXmlSchemaDefinition(this IFileInfo fileInfo)
+    {
+        using var sr = new StreamReader(fileInfo.OpenRead());
+        var reader = XmlReader.Create(sr, Defaults.DefaultXmlReaderSettings);
+        var xsd = reader.ToXmlSchemaSet();
 
         return xsd;
     }

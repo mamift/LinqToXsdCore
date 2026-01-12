@@ -88,12 +88,12 @@ namespace Xml.Schema.Linq.Tests.Extensions
         {
             var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("Opml\\opml2.xsd"));
             Assert.NotNull(opmlFile);
-            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaSet(MockXmlFileResolver);
 
             var anonTypes = opmlXsd.RetrieveAllAnonymousSimpleTypes();
             
             Assert.NotNull(anonTypes);
-            Assert.IsEmpty(anonTypes);
+            Assert.IsNotEmpty(anonTypes);
         }
 
         [Test]
@@ -101,12 +101,12 @@ namespace Xml.Schema.Linq.Tests.Extensions
         {
             var file = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("StuDateAndTime.xsd"));
             Assert.NotNull(file);
-            var xsd = AllTestFiles.FileInfo.New(file).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+            var xsd = AllTestFiles.FileInfo.New(file).ReadAsXmlSchemaSet(MockXmlFileResolver);
 
             var anonTypes = xsd.RetrieveAllAnonymousSimpleTypes();
             
             Assert.NotNull(anonTypes);
-            Assert.IsEmpty(anonTypes);
+            Assert.IsNotEmpty(anonTypes);
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
         {
             var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("\\AkomaNtoso\\akomantoso30.xsd"));
             Assert.NotNull(opmlFile);
-            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaSet(MockXmlFileResolver);
 
             var anonUnionTypes = opmlXsd.RetrieveAllAnonymousSimpleUnionTypes();
             
@@ -127,7 +127,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
         {
             var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("\\AkomaNtoso\\akomantoso30.xsd"));
             Assert.NotNull(opmlFile);
-            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaSet(MockXmlFileResolver);
 
             var anonUnionTypes = opmlXsd.RetrieveAllSimpleTypes();
             
