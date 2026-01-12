@@ -263,6 +263,11 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
+        public static XmlSchemaSimpleType[] GetUnionMemberTypes(this XmlSchemaSimpleTypeUnion? unionContent)
+        {
+            return unionContent?.BaseMemberTypes ?? [];
+        }
+
         public static bool HasFacetRestrictions(this XmlSchemaSimpleType sst)
         {
             if (sst.IsDerivedByRestriction())

@@ -13,6 +13,8 @@ namespace Xml.Schema.Linq.CodeGen
         public static readonly string SystemTypeName = $"{nameof(System)}.{nameof(System.Type)}";
         public static readonly string SystemXmlLinqNamespaceQualifer = $"{nameof(System)}.{nameof(System.Xml)}.{nameof(System.Xml.Linq)}";
 
+        public const string SimpleTypeUnionOfPrefix = "SimpleUnionTypeOf";
+
         //Custom Attribute names
         public const string XElement = "XElement";
 

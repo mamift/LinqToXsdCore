@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -440,7 +441,7 @@ namespace XObjects
         /// This method processes each schema in the <see cref="XmlSchemaSet"/>, converts it to an <see cref="XDocument"/>,
         /// loads its configuration, and merges it into the starting configuration.
         /// </remarks>
-        public static Configuration ToDefaultMergedConfiguration(this XmlSchemaSet xs, Configuration startingConfig = null)
+        public static Configuration ToDefaultMergedConfiguration(this XmlSchemaSet xs, Configuration? startingConfig = null)
         {
             var egConfig = startingConfig ?? (Configuration)ConfigurationProvider.ProvideExampleConfigurationXml();
             var docs = xs.Schemas().Cast<XmlSchema>().Select(x => x.ToXDocument()).ToList();
@@ -450,6 +451,25 @@ namespace XObjects
                 (theEgConfig, loadedConfig) => theEgConfig.MergeNamespaces(loadedConfig));
 
             return mergedConfigOutput;
+        }
+
+        public static string? GenerateAdHocNameForSimpleUnionType(this XmlSchemaSimpleType type)
+        {
+            if (!type.IsOrHasUnion()) return null;
+
+            if (type.Content is XmlSchemaSimpleTypeUnion union) {
+                string name = Constants.SimpleTypeUnionOfPrefix;
+
+                foreach (var memberType in union.GetUnionMemberTypes()) {
+                    name += memberType.Name;
+                }
+
+                Debug.Assert(name != Constants.SimpleTypeUnionOfPrefix);
+
+                return name;
+            }
+
+            return null;
         }
     }
 }
