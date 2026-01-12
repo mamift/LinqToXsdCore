@@ -21,10 +21,9 @@ namespace XObjects
     {
         /// <summary>
         /// Goes through the current <see cref="XmlSchema"/> and retrieves from all element and attribute definitions, any anonymously defined simple types.
-        /// <para>Because these types are anonymous this method traverses the entire schema from top to bottom, inspecting the type of all elements and attributes.</para>
+        /// <para>Because these types are anonymous this method traverses the entire schema from top to bottom, inspecting the type of all elements and attributes. Causes memory spikes for some larger schemas.</para>
         /// </summary>
         /// <param name="schemaSet"></param>
-        /// 
         public static Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> RetrieveAllAnonymousSimpleTypes(this XmlSchemaSet schemaSet)
         {
             var simpleTypes = schemaSet.RetrieveAllSimpleTypes();
@@ -33,6 +32,11 @@ namespace XObjects
                 .ToDictionary(k => k.Key, v => v.Value);
         }
 
+        /// <summary>
+        /// Goes through the current <see cref="XmlSchema"/> and retrieves from all element and attribute definitions, any anonymously defined simple union types.
+        /// <para>Because these types are anonymous this method traverses the entire schema from top to bottom, inspecting the type of all elements and attributes. Causes memory spikes for some larger schemas.</para>
+        /// </summary>
+        /// <param name="schemaSet"></param>
         public static Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> RetrieveAllAnonymousSimpleUnionTypes(this XmlSchemaSet schemaSet)
         {
             var simpleTypes = schemaSet.RetrieveAllAnonymousSimpleTypes();
@@ -41,13 +45,18 @@ namespace XObjects
                 .ToDictionary(k => k.Key, v => v.Value);
         }
 
-        public static Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> RetrieveAllSimpleTypes(this XmlSchemaSet schemaset)
+        /// <summary>
+        /// Goes through the current <see cref="XmlSchema"/> and retrieves from all element and attribute definitions, all defined simple types.
+        /// <para>Because these types are anonymous this method traverses the entire schema from top to bottom, inspecting the type of all elements and attributes. Causes memory spikes for some larger schemas.</para>
+        /// </summary>
+        /// <param name="schemaSet"></param>
+        public static Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> RetrieveAllSimpleTypes(this XmlSchemaSet schemaSet)
         {
             var simpleTypesDictionary = new Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType>();
 
-            IEnumerable<XmlSchemaObject> allAttrsAndElements = schemaset.GlobalElements.Values.Cast<XmlSchemaObject>()
-                .Concat(schemaset.GlobalAttributes.Values.Cast<XmlSchemaObject>())
-                .Concat(schemaset.GlobalTypes.Values.Cast<XmlSchemaObject>());
+            IEnumerable<XmlSchemaObject> allAttrsAndElements = schemaSet.GlobalElements.Values.Cast<XmlSchemaObject>()
+                .Concat(schemaSet.GlobalAttributes.Values.Cast<XmlSchemaObject>())
+                .Concat(schemaSet.GlobalTypes.Values.Cast<XmlSchemaObject>());
 
             foreach (var item in allAttrsAndElements) {
                 TraverseAllSimpleTypes(item, ref simpleTypesDictionary, out _);

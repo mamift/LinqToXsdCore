@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Schema;
 using MoreLinq;
 using NUnit.Framework;
+using OneOf;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
 
@@ -54,7 +57,6 @@ namespace Xml.Schema.Linq.Tests.Extensions
                 .OfType<XmlSchemaElement>()
                 .First(e => e.Name == "URL");
 
-            
             var namedParent = urlElement.GetClosestNamedParent();
             Assert.IsNull(namedParent);
             Assert.IsTrue(urlElement.Parent is XmlSchema);
@@ -83,56 +85,45 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsTrue(((XmlSchemaAttribute) namedParentOfRandomFacet).Name == "PubModel");
         }
 
-        [Test]
-        public void TestRetrieveAllAnonymousSimpleTypes_OPML()
+        [Test, TestCase("StuDateAndTime.xsd"), TestCase("\\AkomaNtoso\\akomantoso30.xsd"), TestCase("Opml\\opml2.xsd")]
+        public void TestRetrieveAllAnonymousSimpleTypes(string endsWithFilePattern)
         {
-            var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("Opml\\opml2.xsd"));
-            Assert.NotNull(opmlFile);
-            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaSet(MockXmlFileResolver);
-
-            var anonTypes = opmlXsd.RetrieveAllAnonymousSimpleTypes();
-            
-            Assert.NotNull(anonTypes);
-            Assert.IsNotEmpty(anonTypes);
-        }
-
-        [Test]
-        public void TestRetrieveAllAnonymousSimpleTypes_StuDateAndTime()
-        {
-            var file = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("StuDateAndTime.xsd"));
-            Assert.NotNull(file);
-            var xsd = AllTestFiles.FileInfo.New(file).ReadAsXmlSchemaSet(MockXmlFileResolver);
+            var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
 
             var anonTypes = xsd.RetrieveAllAnonymousSimpleTypes();
-            
+
             Assert.NotNull(anonTypes);
             Assert.IsNotEmpty(anonTypes);
         }
 
-        [Test]
-        public void TestRetrieveAllAnonymousSimpleUnionTypes_AkomaNtoso()
+        [Test, TestCase("\\AkomaNtoso\\akomantoso30.xsd")]
+        [TestCase("StuDateAndTime.xsd")]
+        public void TestRetrieveAllAnonymousSimpleUnionTypes(string endsWithFilePattern)
         {
-            var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("\\AkomaNtoso\\akomantoso30.xsd"));
-            Assert.NotNull(opmlFile);
-            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaSet(MockXmlFileResolver);
+            var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
 
-            var anonUnionTypes = opmlXsd.RetrieveAllAnonymousSimpleUnionTypes();
-            
+            var anonUnionTypes = xsd.RetrieveAllAnonymousSimpleUnionTypes();
+
             Assert.NotNull(anonUnionTypes);
             Assert.IsNotEmpty(anonUnionTypes);
         }
 
-        [Test]
-        public void TestRetrieveAllSimpleTypes_AkomaNtoso()
+        [Test, TestCase("\\AkomaNtoso\\akomantoso30.xsd")]
+        public void TestRetrieveAllSimpleTypes(string endsWithFilePattern)
         {
-            var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("\\AkomaNtoso\\akomantoso30.xsd"));
-            Assert.NotNull(opmlFile);
-            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaSet(MockXmlFileResolver);
+            var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
 
-            var anonUnionTypes = opmlXsd.RetrieveAllSimpleTypes();
-            
-            Assert.NotNull(anonUnionTypes);
-            Assert.IsNotEmpty(anonUnionTypes);
+            Dictionary<OneOf<XmlSchemaElement, XmlSchemaAttribute, XmlQualifiedName>, XmlSchemaSimpleType> simpleTypes = xsd.RetrieveAllSimpleTypes();
+
+            Assert.NotNull(simpleTypes);
+            Assert.IsNotEmpty(simpleTypes);
+
+            var elementTypes = simpleTypes.Where(e => e.Key.IsT0).ToList();
+            var attrTypes = simpleTypes.Where(e => e.Key.IsT1).ToList();
+
+            if (!(attrTypes.Count > elementTypes.Count)) {
+                Assert.Warn("That's weird, a schema with more elements whose type is simple than attributes?!");
+            }
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Schema;
 using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
 using Xml.Schema.Linq.Tests.Extensions;
@@ -67,5 +70,14 @@ public class BaseTester
     public IFileInfo GetFile(string nonRootedPath)
     {
         return AllTestFiles.AllFiles.Where(f => f.EndsWith(nonRootedPath)).Select(f => AllTestFiles.FileInfo.New(f)).First();
+    }
+
+    public XmlSchemaSet GetTestFileAsXmlSchemaSet(string endsWithFilePattern)
+    {
+        if (endsWithFilePattern == null) throw new ArgumentNullException(nameof(endsWithFilePattern));
+
+        var file = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith(endsWithFilePattern));
+        Assert.NotNull(file);
+        return AllTestFiles.FileInfo.New(file).ReadAsXmlSchemaSet(MockXmlFileResolver);
     }
 }
