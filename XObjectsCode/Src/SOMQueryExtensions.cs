@@ -246,9 +246,9 @@ namespace Xml.Schema.Linq.CodeGen
         public static XmlSchemaSimpleType[] GetUnionMemberTypes(this XmlSchemaSimpleType type)
         {
             Debug.Assert(type != null);
-            Debug.Assert(type.Datatype.Variety == XmlSchemaDatatypeVariety.Union);
+            Debug.Assert(type.Datatype?.Variety == XmlSchemaDatatypeVariety.Union);
 
-            XmlSchemaSimpleTypeUnion unionContent = type.Content as XmlSchemaSimpleTypeUnion;
+            XmlSchemaSimpleTypeUnion? unionContent = type.Content as XmlSchemaSimpleTypeUnion;
 
             if (unionContent != null)
             {
