@@ -597,13 +597,29 @@ namespace Xml.Schema.Linq.Extensions
 
             public void ChangeVisibility(TypeAttributes visibility)
             {
-                if (!visibility.HasFlag(TypeAttributes.VisibilityMask)) {
+                if (!visibility.HasVisibilityMask()) {
                     throw new InvalidOperationException("Requires the use of an enum value that affects type visibility!");
                 }
 
-                if (type.TypeAttributes.HasFlag(TypeAttributes.VisibilityMask)) {
-                    type.TypeAttributes = (type.TypeAttributes & ~TypeAttributes.VisibilityMask) | visibility;
-                }
+                type.TypeAttributes = (type.TypeAttributes & ~TypeAttributes.VisibilityMask) | visibility;
+            }
+        }
+
+        public static bool HasVisibilityMask(this TypeAttributes ta)
+        {
+            TypeAttributes visibility = ta & TypeAttributes.VisibilityMask;
+            switch (visibility) {
+                case TypeAttributes.NotPublic:
+                case TypeAttributes.Public:
+                case TypeAttributes.NestedPublic:
+                case TypeAttributes.NestedPrivate:
+                case TypeAttributes.NestedFamANDAssem:
+                case TypeAttributes.NestedAssembly:
+                case TypeAttributes.NestedFamily:
+                case TypeAttributes.NestedFamORAssem:
+                    return true;
+
+                default: return false;
             }
         }
     }
