@@ -80,4 +80,13 @@ public class BaseTester
         Assert.NotNull(file);
         return AllTestFiles.FileInfo.New(file).ReadAsXmlSchemaSet(MockXmlFileResolver);
     }
+    
+    public XmlSchema GetTestFileAsXmlSchema(string endsWithFilePattern)
+    {
+        if (endsWithFilePattern == null) throw new ArgumentNullException(nameof(endsWithFilePattern));
+
+        var file = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith(endsWithFilePattern));
+        Assert.NotNull(file);
+        return AllTestFiles.FileInfo.New(file).ReadAsXmlSchema();
+    }
 }

@@ -14,13 +14,12 @@ namespace Xml.Schema.Linq.Tests.Extensions
     [TestFixture]
     public class XmlSchemaExtensionsTests: BaseTester
     {
-        private string xsdFilePathPubmed = @"Pubmed\efetch-pubmed.xsd";
+        private const string PubMedEFetchXsd = @"Pubmed\efetch-pubmed.xsd";
 
-        [Test]
-        public void TestGetClosestNamedParent1()
+        [Test, TestCase(PubMedEFetchXsd)]
+        public void TestGetClosestNamedParent1(string endsWithFilePattern)
         {
-            using var streamReader = GetFileStreamReader(xsdFilePathPubmed);
-            var xsd = XmlSchema.Read(streamReader, (sender, args) => { });
+            var xsd = GetTestFileAsXmlSchema(endsWithFilePattern);
 
             var urlElement = xsd.Items.Cast<XmlSchemaObject>()
                 .OfType<XmlSchemaElement>()
@@ -47,11 +46,10 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsTrue(parentElement.Name == "URL");
         }
 
-        [Test]
-        public void TestGetClosestNamedParent2()
+        [Test, TestCase(PubMedEFetchXsd)]
+        public void TestGetClosestNamedParent2(string endsWithFilePattern)
         {
-            using var streamReader = GetFileStreamReader(xsdFilePathPubmed);
-            var xsd = XmlSchema.Read(streamReader, (sender, args) => { });
+            var xsd = GetTestFileAsXmlSchema(endsWithFilePattern);
 
             var urlElement = xsd.Items.Cast<XmlSchemaObject>()
                 .OfType<XmlSchemaElement>()
@@ -62,11 +60,10 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsTrue(urlElement.Parent is XmlSchema);
         }
 
-        [Test]
-        public void TestGetClosestNamedParent3()
+        [Test, TestCase(PubMedEFetchXsd)]
+        public void TestGetClosestNamedParent3(string endsWithFilePattern)
         {
-            using var streamReader = GetFileStreamReader(xsdFilePathPubmed);
-            var xsd = XmlSchema.Read(streamReader, (sender, args) => { });
+            var xsd = GetTestFileAsXmlSchema(endsWithFilePattern);
 
             var articleType = xsd.Items.Cast<XmlSchemaObject>()
                 .OfType<XmlSchemaComplexType>()
@@ -126,8 +123,7 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsNotEmpty(anonTypes);
         }
 
-        [Test, TestCase("\\AkomaNtoso\\akomantoso30.xsd")]
-        [TestCase("StuDateAndTime.xsd")]
+        [Test, TestCase("\\AkomaNtoso\\akomantoso30.xsd"), TestCase("StuDateAndTime.xsd")]
         public void TestRetrieveAllAnonymousSimpleUnionTypes(string endsWithFilePattern)
         {
             var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);

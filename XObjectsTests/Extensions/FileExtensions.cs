@@ -33,11 +33,11 @@ public static class FileExtensions
         return xsd;
     }
 
-    public static XmlSchemaSet ReadAsXmlSchemaDefinition(this IFileInfo fileInfo)
+    public static XmlSchema ReadAsXmlSchema(this IFileInfo fileInfo)
     {
         using var sr = new StreamReader(fileInfo.OpenRead());
         var reader = XmlReader.Create(sr, Defaults.DefaultXmlReaderSettings);
-        var xsd = reader.ToXmlSchemaSet();
+        var xsd = reader.ToXmlSchema();
 
         return xsd;
     }
