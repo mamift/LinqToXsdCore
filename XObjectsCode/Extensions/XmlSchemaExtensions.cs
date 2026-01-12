@@ -160,7 +160,7 @@ namespace XObjects
                 from child in children
                 select child;
 
-            // due to the object graph in XSD, there seems to be no way to grab all unique elements recursively without using distinct()
+            // due to the object graph in XSD, there seems to be no way to grab all unique elements recursively in one go, necessitating using Distinct()
             return globalElements.Concat(allChildElements).Distinct().ToList();
         }
 

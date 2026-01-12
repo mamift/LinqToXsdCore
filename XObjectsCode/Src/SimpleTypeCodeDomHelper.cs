@@ -12,9 +12,9 @@ using System.Text.RegularExpressions;
 
 namespace Xml.Schema.Linq.CodeGen
 {
-    class SimpleTypeCodeDomHelper
+    public class SimpleTypeCodeDomHelper
     {
-        internal static CodeExpression CreateSimpleTypeDef(ClrSimpleTypeInfo typeInfo,
+        public static CodeExpression CreateSimpleTypeDef(ClrSimpleTypeInfo typeInfo,
             Dictionary<XmlSchemaObject, string> nameMappings,
             LinqToXsdSettings settings, bool memberOrItemType)
         {
@@ -34,7 +34,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal static CodeExpression MaterializeSimpleTypeDef(ClrSimpleTypeInfo typeInfo,
+        public static CodeExpression MaterializeSimpleTypeDef(ClrSimpleTypeInfo typeInfo,
             Dictionary<XmlSchemaObject, string> nameMappings,
             LinqToXsdSettings settings)
         {
@@ -82,7 +82,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        internal static CodeExpression CreateGetBuiltInSimpleType(XmlTypeCode typeCode)
+        public static CodeExpression CreateGetBuiltInSimpleType(XmlTypeCode typeCode)
         {
             return CodeDomHelper.CreateMethodCall(
                 new CodeTypeReferenceExpression("XmlSchemaType"),
@@ -406,7 +406,7 @@ namespace Xml.Schema.Linq.CodeGen
                 new CodePrimitiveExpression(value.ToString()));
         }
 
-        internal static CodeExpression CreateValueExpression(string builtInType, string strValue, bool isEnum)
+        public static CodeExpression CreateValueExpression(string builtInType, string strValue, bool isEnum)
         {
             int dot = builtInType.LastIndexOf('.');
 
@@ -432,7 +432,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        internal static CodeArrayCreateExpression CreateFixedDefaultArrayValueInit(string baseType, string value, bool isEnum)
+        public static CodeArrayCreateExpression CreateFixedDefaultArrayValueInit(string baseType, string value, bool isEnum)
         {
             var array = new CodeArrayCreateExpression(baseType);
             foreach (string s in value.Split(' '))
@@ -443,7 +443,7 @@ namespace Xml.Schema.Linq.CodeGen
             return array;
         }
 
-        internal static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value, bool isEnum)
+        public static CodeExpression CreateFixedDefaultValueExpression(CodeTypeReference type, string value, bool isEnum)
         {
             string baseType = type.BaseType;
             if (Regex.IsMatch(baseType, @"\bNullable`1"))
