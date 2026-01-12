@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Schema;
 using MoreLinq;
 using NUnit.Framework;
+using Xml.Schema.Linq.Extensions;
 using XObjects;
 
 namespace Xml.Schema.Linq.Tests.Extensions
@@ -80,6 +81,58 @@ namespace Xml.Schema.Linq.Tests.Extensions
             Assert.IsNotNull(namedParentOfRandomFacet);
             Assert.IsTrue(namedParentOfRandomFacet is XmlSchemaAttribute);
             Assert.IsTrue(((XmlSchemaAttribute) namedParentOfRandomFacet).Name == "PubModel");
+        }
+
+        [Test]
+        public void TestRetrieveAllAnonymousSimpleTypes_OPML()
+        {
+            var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("Opml\\opml2.xsd"));
+            Assert.NotNull(opmlFile);
+            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+
+            var anonTypes = opmlXsd.RetrieveAllAnonymousSimpleTypes();
+            
+            Assert.NotNull(anonTypes);
+            Assert.IsEmpty(anonTypes);
+        }
+
+        [Test]
+        public void TestRetrieveAllAnonymousSimpleTypes_StuDateAndTime()
+        {
+            var file = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("StuDateAndTime.xsd"));
+            Assert.NotNull(file);
+            var xsd = AllTestFiles.FileInfo.New(file).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+
+            var anonTypes = xsd.RetrieveAllAnonymousSimpleTypes();
+            
+            Assert.NotNull(anonTypes);
+            Assert.IsEmpty(anonTypes);
+        }
+
+        [Test]
+        public void TestRetrieveAllAnonymousSimpleUnionTypes_AkomaNtoso()
+        {
+            var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("\\AkomaNtoso\\akomantoso30.xsd"));
+            Assert.NotNull(opmlFile);
+            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+
+            var anonUnionTypes = opmlXsd.RetrieveAllAnonymousSimpleUnionTypes();
+            
+            Assert.NotNull(anonUnionTypes);
+            Assert.IsNotEmpty(anonUnionTypes);
+        }
+
+        [Test]
+        public void TestRetrieveAllSimpleTypes_AkomaNtoso()
+        {
+            var opmlFile = AllTestFiles.AllFiles.SingleOrDefault(f => f.EndsWith("\\AkomaNtoso\\akomantoso30.xsd"));
+            Assert.NotNull(opmlFile);
+            var opmlXsd = AllTestFiles.FileInfo.New(opmlFile).ReadAsXmlSchemaInstance(MockXmlFileResolver);
+
+            var anonUnionTypes = opmlXsd.RetrieveAllSimpleTypes();
+            
+            Assert.NotNull(anonUnionTypes);
+            Assert.IsNotEmpty(anonUnionTypes);
         }
     }
 }

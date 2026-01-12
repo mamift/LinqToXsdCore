@@ -1,4 +1,5 @@
 ﻿using System.CodeDom;
+using System.Collections.Generic;
 using System.Reflection;
 using Xml.Schema.Linq;
 
@@ -41,6 +42,14 @@ namespace XObjects
                 return GeneratedTypesVisibility.Internal;
 
             return GeneratedTypesVisibility.Public;
+        }
+
+        public static bool AddIfNotAlreadyExists<TKey, TVal>(this IDictionary<TKey, TVal> dictionary, TKey key, TVal val)
+        {
+            var contains = dictionary.ContainsKey(key);
+            if (contains) return false;
+            dictionary.Add(key, val);
+            return true;
         }
     }
 }

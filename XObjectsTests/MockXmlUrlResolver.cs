@@ -16,7 +16,7 @@ internal class ReflexiveXmlSchemaSet : XmlSchemaSet
 
 }
 
-internal class MockXmlUrlResolver : XmlResolver
+public class MockXmlUrlResolver : XmlResolver
 {
     private readonly IMockFileDataAccessor fs;
     private readonly Dictionary<Uri, IFileInfo> mappings = new();

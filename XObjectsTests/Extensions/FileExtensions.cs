@@ -1,6 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Abstractions;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
+using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq.Tests.Extensions;
 
@@ -14,5 +18,18 @@ public static class FileExtensions
     public static XDocument ToXDocument(this IFileInfo fileInfo)
     {
         return XDocument.Load(fileInfo.ToStreamReader());
+    }
+    
+    public static XmlSchemaSet ReadAsXmlSchemaInstance(this IFileInfo fileInfo, XmlResolver resolver)
+    {
+        if (resolver == null) throw new ArgumentNullException(nameof(resolver));
+        
+        using var sr = new StreamReader(fileInfo.OpenRead());
+        XmlReaderSettings defaultXmlReaderSettings = Defaults.DefaultXmlReaderSettings;
+        defaultXmlReaderSettings.XmlResolver = resolver;
+        var reader = XmlReader.Create(sr, defaultXmlReaderSettings);
+        var xsd = reader.ToXmlSchemaSet(resolver);
+
+        return xsd;
     }
 }

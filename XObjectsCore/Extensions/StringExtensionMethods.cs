@@ -11,7 +11,7 @@ namespace Xml.Schema.Linq.Extensions
         /// <param name="theString"></param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsEmpty(this string theString) => string.IsNullOrWhiteSpace(theString);
+        public static bool IsEmpty(this string? theString) => string.IsNullOrWhiteSpace(theString);
         
         /// <summary>
         /// Determines if a string is NOT <c>null</c>, empty or all whitespace. The inverse of <see cref="IsEmpty"/>.

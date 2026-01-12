@@ -3,16 +3,127 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Fxt;
 using Xml.Schema.Linq;
 using Xml.Schema.Linq.CodeGen;
+using Xml.Schema.Linq.Extensions;
+using OneOf;
 
 namespace XObjects
 {
+    using XElementOrAttrOrQName = OneOf<XmlSchemaElement, XmlSchemaAttribute, XmlQualifiedName>;
+    
     public static class XmlSchemaExtensions
     {
+        /// <summary>
+        /// Goes through the current <see cref="XmlSchema"/> and retrieves from all element and attribute definitions, any anonymously defined simple types.
+        /// <para>Because these types are anonymous this method traverses the entire schema from top to bottom, inspecting the type of all elements and attributes.</para>
+        /// </summary>
+        /// <param name="schemaSet"></param>
+        /// 
+        public static Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> RetrieveAllAnonymousSimpleTypes(this XmlSchemaSet schemaSet)
+        {
+            var simpleTypes = schemaSet.RetrieveAllSimpleTypes();
+
+            return simpleTypes.Where(st => st.Value.Name.IsEmpty())
+                .ToDictionary(k => k.Key, v => v.Value);
+        }
+
+        public static Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> RetrieveAllAnonymousSimpleUnionTypes(this XmlSchemaSet schemaSet)
+        {
+            var simpleTypes = schemaSet.RetrieveAllAnonymousSimpleTypes();
+
+            return simpleTypes.Where(st => st.Value.Content is XmlSchemaSimpleTypeUnion || st.Value.Datatype.Variety == XmlSchemaDatatypeVariety.Union)
+                .ToDictionary(k => k.Key, v => v.Value);
+        }
+
+        public static Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> RetrieveAllSimpleTypes(this XmlSchemaSet schemaset)
+        {
+            var simpleTypesDictionary = new Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType>();
+
+            IEnumerable<XmlSchemaObject> allAttrsAndElements = schemaset.GlobalElements.Values.Cast<XmlSchemaObject>()
+                .Concat(schemaset.GlobalAttributes.Values.Cast<XmlSchemaObject>())
+                .Concat(schemaset.GlobalTypes.Values.Cast<XmlSchemaObject>());
+
+            foreach (var item in allAttrsAndElements) {
+                TraverseAllSimpleTypes(item, ref simpleTypesDictionary, out _);
+            }
+
+            return simpleTypesDictionary;
+        }
+
+        private static void TraverseAllSimpleTypes(XmlSchemaObject schemaObject, ref Dictionary<XElementOrAttrOrQName, XmlSchemaSimpleType> simpleTypes, out bool breakOutOfLoop)
+        {
+            if (simpleTypes == null) throw new ArgumentNullException(nameof(simpleTypes));
+
+            bool didAdd = true;
+            switch (schemaObject) {
+                case XmlSchemaElement element: {
+                        if (element.ElementSchemaType is XmlSchemaSimpleType simpleType) {
+                            didAdd = simpleTypes.AddIfNotAlreadyExists(element, simpleType);
+                        } 
+                        else if (element.ElementSchemaType is XmlSchemaComplexType complexType) {
+                            foreach (var attr in complexType.AttributeUses.Values.Cast<XmlSchemaAttribute>()) {
+                                TraverseAllSimpleTypes(attr, ref simpleTypes, out breakOutOfLoop);
+                                if (breakOutOfLoop) return;
+                            }
+
+                            var childElements = complexType.LocalXsdElements()
+                                .Where(e => !ReferenceEquals(e, schemaObject))
+                                .ToList();
+                            
+                            foreach (var el in childElements) {
+                                TraverseAllSimpleTypes(el, ref simpleTypes, out breakOutOfLoop);
+                                if (breakOutOfLoop) return;
+                            }
+                        }
+                        else {
+                            if (element.ElementSchemaType is XmlSchemaComplexType { Particle: XmlSchemaGroupBase gb }) {
+                                foreach (var particle in gb.Items) {
+                                    TraverseAllSimpleTypes(particle, ref simpleTypes, out breakOutOfLoop);
+                                    if (breakOutOfLoop) return;
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+
+                case XmlSchemaAttribute attribute: {
+                    didAdd = simpleTypes.AddIfNotAlreadyExists(attribute, attribute.AttributeSchemaType);
+                    break;
+                }
+
+                case XmlSchemaComplexType complexType:
+                    foreach (var attribute in complexType.AttributeUses.Values.OfType<XmlSchemaAttribute>()) {
+                        if (attribute.AttributeSchemaType is { } simpleType) {
+                            didAdd = simpleTypes.AddIfNotAlreadyExists(attribute, simpleType);
+                        }
+                    }
+
+                    if (complexType.ContentTypeParticle != null) {
+                        TraverseAllSimpleTypes(complexType.ContentTypeParticle, ref simpleTypes, out breakOutOfLoop);
+                        if (breakOutOfLoop) return;
+                    }
+
+                    break;
+
+                case XmlSchemaGroupBase groupBase when groupBase is XmlSchemaAll all:
+                    foreach (var item in all.Items) {
+                        TraverseAllSimpleTypes(item, ref simpleTypes, out breakOutOfLoop);
+                        if (breakOutOfLoop) return;
+                    }
+
+                    break;
+                
+            }
+
+            breakOutOfLoop = !didAdd;
+        }
+
         /// <summary>
         /// Returns true or false if the current <paramref name="attribute"/> defines an inline enumeration of values.
         /// </summary>

@@ -15,6 +15,7 @@ public class BaseTester
 {
     public List<Assembly> TestAssembliesLoaded { get; protected set; } = null!;
     public MockFileSystem AllTestFiles { get; protected set; } = null!;
+    public MockXmlUrlResolver MockXmlFileResolver { get; protected set; } = null!;
 
     /// <summary>
     /// This setup method will tee-up some helpful reference data that are used in testing the code gen output.
@@ -26,13 +27,18 @@ public class BaseTester
         var current = Assembly.GetExecutingAssembly();
         var location = new DirectoryInfo(Path.GetDirectoryName(current.Location)!);
         var allDlls = location.GetFileSystemInfos("*.dll", SearchOption.AllDirectories);
-        var testDlls = allDlls.Where(a => !(a.Name.Contains("System.") || a.Name.Contains("Microsoft.") || a.Name.Contains("MoreLinq") || a.Name.Contains("LinqToXsd") || 
-                                            a.Name.Contains("nunit") || a.Name.Contains("Fasterflect"))).ToList();
+        var testDlls = allDlls.Where(a => 
+            !(
+                a.Name.Contains("System.") || a.Name.Contains("Microsoft.") || a.Name.Contains("MoreLinq") || a.Name.Contains("nunit") || a.Name.Contains("Fasterflect") ||
+                a.Name.Equals("LinqToXsd") || a.Name.Contains("XObjects")
+            )
+        ).ToList();
         var referencedAssemblies = testDlls.OrderBy(a => a.FullName).ToList();
 
         TestAssembliesLoaded = referencedAssemblies.Select(name => Assembly.LoadFile(name.FullName)).ToList();
             
         AllTestFiles = Utilities.GetAggregateMockFileSystem(TestAssembliesLoaded);
+        MockXmlFileResolver = new MockXmlUrlResolver(AllTestFiles);
     }
 
     public CSharpSyntaxTree GenerateSyntaxTree(MockFileInfo mfi)
