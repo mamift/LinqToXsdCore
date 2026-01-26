@@ -69,10 +69,15 @@
       "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\SimpleTypeUnion",
       "hotReloadEnabled": false
     },
-     "OPML": {
+    "OPML": {
       "commandName": "Project",
       "commandLineArgs": "gen . -a",
       "workingDirectory": "C:\\Projects\\GitHub\\LinqToXsdCore\\GeneratedSchemaLibraries\\Opml"
+    },
+    "ExpressionMedia": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Microsoft.Expression.Media.Catalog"
     }
   }
 }

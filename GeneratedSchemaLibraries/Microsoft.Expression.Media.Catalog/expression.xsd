@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD Version 3.1.0 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Microsoft.Expression.Media.Catalog" 
+  xmlns:e="urn:Microsoft.Expression.Media.Catalog">
+  <xs:element name="CatalogType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="e:Catalog"/>
+        <xs:element minOccurs="0" ref="e:CatalogComment"/>
+        <xs:element minOccurs="0" ref="e:UserFieldList"/>
+        <xs:element minOccurs="0" ref="e:MediaItemList"/>
+        <xs:element minOccurs="0" ref="e:SetList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Catalog">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Catalog"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Catalog">
+    <xs:attribute name="pathType" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="CatalogComment" type="xs:string"/>
+  <xs:element name="UserFieldList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="e:UserFieldDefinition"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserFieldDefinition" type="xs:string"/>
+  <xs:element name="MediaItemList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="e:MediaItem"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MediaItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="e:AssetProperties"/>
+        <xs:element minOccurs="0" ref="e:MediaProperties"/>
+        <xs:element minOccurs="0" ref="e:AnnotationFields"/>
+        <xs:element minOccurs="0" ref="e:UserFields"/>
+        <xs:element minOccurs="0" ref="e:MetaDataFields"/>
+        <xs:element minOccurs="0" ref="e:MovieTracks"/>
+        <xs:element minOccurs="0" ref="e:MovieChapterTracks"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Asset Properties -->
+  <xs:element name="AssetProperties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="e:Filename"/>
+        <xs:element ref="e:Filepath"/>
+        <xs:element ref="e:UniqueID"/>
+        <xs:element ref="e:Label"/>
+        <xs:element ref="e:Rating"/>
+        <xs:element ref="e:MediaType"/>
+        <xs:element ref="e:FileSize"/>
+        <xs:element ref="e:Created"/>
+        <xs:element ref="e:Modified"/>
+        <xs:element ref="e:Added"/>
+        <xs:element minOccurs="0" ref="e:Annotated"/>
+        <xs:element minOccurs="0" ref="e:ThumbnailSource"/>
+        <xs:element minOccurs="0" ref="e:VoiceRecordingSource"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Filename" type="xs:string"/>
+  <xs:element name="Filepath" type="xs:string"/>
+  <xs:element name="UniqueID" type="xs:string"/>
+  <xs:element name="Label" type="xs:string"/>
+  <xs:element name="Rating" type="xs:string"/>
+  <xs:element name="MediaType" type="xs:string"/>
+  <xs:element name="FileSize">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.FileSize"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.FileSize">
+    <xs:attribute name="unit" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Created" type="xs:string"/>
+  <xs:element name="Modified" type="xs:string"/>
+  <xs:element name="Added" type="xs:string"/>
+  <xs:element name="Annotated" type="xs:string"/>
+  <xs:element name="ThumbnailSource" type="xs:string"/>
+  <xs:element name="VoiceRecordingSource" type="xs:string"/>
+  <!-- Media Properties -->
+  <xs:element name="MediaProperties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="e:Width"/>
+        <xs:element minOccurs="0" ref="e:Height"/>
+        <xs:element minOccurs="0" ref="e:Resolution"/>
+        <xs:element minOccurs="0" ref="e:Depth"/>
+        <xs:element minOccurs="0" ref="e:ViewRotation"/>
+        <xs:element minOccurs="0" ref="e:SampleColor"/>
+        <xs:element minOccurs="0" ref="e:Pages"/>
+        <xs:element minOccurs="0" ref="e:Tracks"/>
+        <xs:element minOccurs="0" ref="e:Duration"/>
+        <xs:element minOccurs="0" ref="e:Channels"/>
+        <xs:element minOccurs="0" ref="e:SampleRate"/>
+        <xs:element minOccurs="0" ref="e:SampleSize"/>
+        <xs:element minOccurs="0" ref="e:AverageDataRate"/>
+        <xs:element minOccurs="0" ref="e:AverageFrameRate"/>
+        <xs:element minOccurs="0" ref="e:SpatialQuality"/>
+        <xs:element minOccurs="0" ref="e:ColorSpace"/>
+        <xs:element minOccurs="0" ref="e:Compression"/>
+        <xs:element minOccurs="0" ref="e:PrimaryEncoding"/>
+        <xs:element minOccurs="0" ref="e:ColorProfile"/>
+        <xs:element minOccurs="0" ref="e:CharacterCount"/>
+        <xs:element minOccurs="0" ref="e:ParagraphCount"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Width">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Width"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Width">
+    <xs:attribute name="unit" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Height">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Height"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Height">
+    <xs:attribute name="unit" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Resolution">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Resolution"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Resolution">
+    <xs:attribute name="unit" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Depth">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Depth"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Depth">
+    <xs:attribute name="unit" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="ViewRotation" type="xs:string"/>
+  <xs:element name="SampleColor" type="xs:string"/>
+  <xs:element name="Pages" type="xs:string"/>
+  <xs:element name="Tracks" type="xs:string"/>
+  <xs:element name="Duration" type="xs:string"/>
+  <xs:element name="Channels" type="xs:string"/>
+  <xs:element name="SampleRate" type="xs:string"/>
+  <xs:element name="SampleSize" type="xs:string"/>
+  <xs:element name="AverageDataRate" type="xs:string"/>
+  <xs:element name="AverageFrameRate" type="xs:string"/>
+  <xs:element name="SpatialQuality" type="xs:string"/>
+  <xs:element name="ColorSpace" type="xs:string"/>
+  <xs:element name="Compression" type="xs:string"/>
+  <xs:element name="PrimaryEncoding" type="xs:string"/>
+  <xs:element name="ColorProfile" type="xs:string"/>
+  <xs:element name="CharacterCount" type="xs:string"/>
+  <xs:element name="ParagraphCount" type="xs:string"/>
+  <!-- Annotation IPTC Fields -->
+  <xs:element name="AnnotationFields">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="e:Headline"/>
+        <xs:element minOccurs="0" ref="e:Product"/>
+        <xs:element minOccurs="0" ref="e:Classification"/>
+        <xs:element minOccurs="0" ref="e:IntellectualGenre"/>
+        <xs:element minOccurs="0" ref="e:Fixture"/>
+        <xs:element minOccurs="0" ref="e:EventDate"/>
+        <xs:element minOccurs="0" ref="e:Author"/>
+        <xs:element minOccurs="0" ref="e:AuthorTitle"/>
+        <xs:element minOccurs="0" ref="e:CreatorAddress"/>
+        <xs:element minOccurs="0" ref="e:CreatorCity"/>
+        <xs:element minOccurs="0" ref="e:CreatorState"/>
+        <xs:element minOccurs="0" ref="e:CreatorPostcode"/>
+        <xs:element minOccurs="0" ref="e:CreatorCountry"/>
+        <xs:element minOccurs="0" ref="e:CreatorPhone"/>
+        <xs:element minOccurs="0" ref="e:CreatorEmail"/>
+        <xs:element minOccurs="0" ref="e:CreatorURL"/>
+        <xs:element minOccurs="0" ref="e:Credit"/>
+        <xs:element minOccurs="0" ref="e:Source"/>
+        <xs:element minOccurs="0" ref="e:Copyright"/>
+        <xs:element minOccurs="0" ref="e:Transmission"/>
+        <xs:element minOccurs="0" ref="e:Rights"/>
+        <xs:element minOccurs="0" ref="e:URL"/>
+        <xs:element minOccurs="0" ref="e:Location"/>
+        <xs:element minOccurs="0" ref="e:City"/>
+        <xs:element minOccurs="0" ref="e:State"/>
+        <xs:element minOccurs="0" ref="e:Country"/>
+        <xs:element minOccurs="0" ref="e:CountryCode"/>
+        <xs:element minOccurs="0" ref="e:Instructions"/>
+        <xs:element minOccurs="0" ref="e:Status"/>
+        <xs:element minOccurs="0" ref="e:Writer"/>
+        <xs:element minOccurs="0" ref="e:Caption"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="e:People"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="e:Keyword"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="e:Category"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="e:Scene"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="e:SubjectReference"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Headline" type="xs:string"/>
+  <xs:element name="Product" type="xs:string"/>
+  <xs:element name="Classification" type="xs:string"/>
+  <xs:element name="IntellectualGenre" type="xs:string"/>
+  <xs:element name="Fixture" type="xs:string"/>
+  <xs:element name="EventDate" type="xs:string"/>
+  <xs:element name="Author" type="xs:string"/>
+  <xs:element name="AuthorTitle" type="xs:string"/>
+  <xs:element name="CreatorAddress" type="xs:string"/>
+  <xs:element name="CreatorCity" type="xs:string"/>
+  <xs:element name="CreatorState" type="xs:string"/>
+  <xs:element name="CreatorPostcode" type="xs:string"/>
+  <xs:element name="CreatorCountry" type="xs:string"/>
+  <xs:element name="CreatorPhone" type="xs:string"/>
+  <xs:element name="CreatorEmail" type="xs:string"/>
+  <xs:element name="CreatorURL" type="xs:string"/>
+  <xs:element name="Credit" type="xs:string"/>
+  <xs:element name="Source" type="xs:string"/>
+  <xs:element name="Copyright" type="xs:string"/>
+  <xs:element name="Transmission" type="xs:string"/>
+  <xs:element name="Rights" type="xs:string"/>
+  <xs:element name="URL" type="xs:string"/>
+  <xs:element name="Location" type="xs:string"/>
+  <xs:element name="City" type="xs:string"/>
+  <xs:element name="State" type="xs:string"/>
+  <xs:element name="Country" type="xs:string"/>
+  <xs:element name="CountryCode" type="xs:string"/>
+  <xs:element name="Instructions" type="xs:string"/>
+  <xs:element name="Status" type="xs:string"/>
+  <xs:element name="Writer" type="xs:string"/>
+  <xs:element name="Caption" type="xs:string"/>
+  <xs:element name="People" type="xs:string"/>
+  <xs:element name="Keyword" type="xs:string"/>
+  <xs:element name="Category" type="xs:string"/>
+  <xs:element name="Scene" type="xs:string"/>
+  <xs:element name="SubjectReference" type="xs:string"/>
+  <!-- Annotation User Fields -->
+  <xs:element name="UserFields">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="e:UserField_1"/>
+        <xs:element minOccurs="0" ref="e:UserField_2"/>
+        <xs:element minOccurs="0" ref="e:UserField_3"/>
+        <xs:element minOccurs="0" ref="e:UserField_4"/>
+        <xs:element minOccurs="0" ref="e:UserField_5"/>
+        <xs:element minOccurs="0" ref="e:UserField_6"/>
+        <xs:element minOccurs="0" ref="e:UserField_7"/>
+        <xs:element minOccurs="0" ref="e:UserField_8"/>
+        <xs:element minOccurs="0" ref="e:UserField_9"/>
+        <xs:element minOccurs="0" ref="e:UserField_10"/>
+        <xs:element minOccurs="0" ref="e:UserField_11"/>
+        <xs:element minOccurs="0" ref="e:UserField_12"/>
+        <xs:element minOccurs="0" ref="e:UserField_13"/>
+        <xs:element minOccurs="0" ref="e:UserField_14"/>
+        <xs:element minOccurs="0" ref="e:UserField_15"/>
+        <xs:element minOccurs="0" ref="e:UserField_16"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserField_1" type="xs:string"/>
+  <xs:element name="UserField_2" type="xs:string"/>
+  <xs:element name="UserField_3" type="xs:string"/>
+  <xs:element name="UserField_4" type="xs:string"/>
+  <xs:element name="UserField_5" type="xs:string"/>
+  <xs:element name="UserField_6" type="xs:string"/>
+  <xs:element name="UserField_7" type="xs:string"/>
+  <xs:element name="UserField_8" type="xs:string"/>
+  <xs:element name="UserField_9" type="xs:string"/>
+  <xs:element name="UserField_10" type="xs:string"/>
+  <xs:element name="UserField_11" type="xs:string"/>
+  <xs:element name="UserField_12" type="xs:string"/>
+  <xs:element name="UserField_13" type="xs:string"/>
+  <xs:element name="UserField_14" type="xs:string"/>
+  <xs:element name="UserField_15" type="xs:string"/>
+  <xs:element name="UserField_16" type="xs:string"/>
+  <!-- Meta Data -->
+  <xs:element name="MetaDataFields">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="e:Maker"/>
+        <xs:element minOccurs="0" ref="e:Model"/>
+        <xs:element minOccurs="0" ref="e:Software"/>
+        <xs:element minOccurs="0" ref="e:Format"/>
+        <xs:element minOccurs="0" ref="e:SourceURL"/>
+        <xs:element minOccurs="0" ref="e:ExifVersion"/>
+        <xs:element minOccurs="0" ref="e:CaptureDate"/>
+        <xs:element minOccurs="0" ref="e:ExposureProgram"/>
+        <xs:element minOccurs="0" ref="e:ISOSpeedRating"/>
+        <xs:element minOccurs="0" ref="e:ExposureBias"/>
+        <xs:element minOccurs="0" ref="e:ExposureTime"/>
+        <xs:element minOccurs="0" ref="e:Aperture"/>
+        <xs:element minOccurs="0" ref="e:SubjectDistance"/>
+        <xs:element minOccurs="0" ref="e:MeteringMode"/>
+        <xs:element minOccurs="0" ref="e:LightSource"/>
+        <xs:element minOccurs="0" ref="e:Flash"/>
+        <xs:element minOccurs="0" ref="e:FocalLength"/>
+        <xs:element minOccurs="0" ref="e:SensingMethod"/>
+        <xs:element minOccurs="0" ref="e:NoiseReduction"/>
+        <xs:element minOccurs="0" ref="e:Contrast"/>
+        <xs:element minOccurs="0" ref="e:Sharpness"/>
+        <xs:element minOccurs="0" ref="e:Saturation"/>
+        <xs:element minOccurs="0" ref="e:FocusMode"/>
+        <xs:element minOccurs="0" ref="e:DigitalZoom"/>
+        <xs:element minOccurs="0" ref="e:Lens"/>
+        <xs:element minOccurs="0" ref="e:Latitude"/>
+        <xs:element minOccurs="0" ref="e:Longitude"/>
+        <xs:element minOccurs="0" ref="e:Altitude"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Maker" type="xs:string"/>
+  <xs:element name="Model" type="xs:string"/>
+  <xs:element name="Software" type="xs:string"/>
+  <xs:element name="Format" type="xs:string"/>
+  <xs:element name="SourceURL" type="xs:string"/>
+  <xs:element name="ExifVersion" type="xs:string"/>
+  <xs:element name="CaptureDate" type="xs:string"/>
+  <xs:element name="ExposureProgram">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.ExposureProgram"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.ExposureProgram">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="ISOSpeedRating" type="xs:string"/>
+  <xs:element name="ExposureBias" type="xs:string"/>
+  <xs:element name="ExposureTime" type="xs:string"/>
+  <xs:element name="Aperture" type="xs:string"/>
+  <xs:element name="SubjectDistance" type="xs:string"/>
+  <xs:element name="MeteringMode">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.MeteringMode"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.MeteringMode">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="LightSource">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.LightSource"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.LightSource">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Flash">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Flash"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Flash">
+    <xs:attribute name="flash" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="FocalLength" type="xs:string"/>
+  <xs:element name="SensingMethod">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.SensingMethod"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.SensingMethod">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="NoiseReduction">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.NoiseReduction"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.NoiseReduction">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Contrast">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Contrast"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Contrast">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Sharpness">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Sharpness"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Sharpness">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Saturation">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.Saturation"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Saturation">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="FocusMode">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="e:attlist.FocusMode"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.FocusMode">
+    <xs:attribute name="strID" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="DigitalZoom" type="xs:string"/>
+  <xs:element name="Lens" type="xs:string"/>
+  <xs:element name="Latitude" type="xs:string"/>
+  <xs:element name="Longitude" type="xs:string"/>
+  <xs:element name="Altitude" type="xs:string"/>
+  <!-- Movie Tracks -->
+  <xs:element name="MovieTracks" type="e:MovieTrack"/>
+  <xs:complexType name="MovieTrack">
+    <xs:sequence>
+      <xs:element ref="e:MovieTrack"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MovieTrack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="e:TrackName"/>
+        <xs:element minOccurs="0" ref="e:TrackEncoding"/>
+        <xs:element minOccurs="0" ref="e:StartTime"/>
+        <xs:element minOccurs="0" ref="e:TrackDuration"/>
+        <xs:element minOccurs="0" ref="e:DataSize"/>
+        <xs:element minOccurs="0" ref="e:DataRate"/>
+        <xs:element minOccurs="0" ref="e:FPMS"/>
+        <xs:element minOccurs="0" ref="e:TrackType"/>
+        <xs:element minOccurs="0" ref="e:Chapter"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TrackName" type="xs:string"/>
+  <xs:element name="TrackEncoding" type="xs:string"/>
+  <xs:element name="StartTime" type="xs:string"/>
+  <xs:element name="TrackDuration" type="xs:string"/>
+  <xs:element name="DataSize" type="xs:string"/>
+  <xs:element name="DataRate" type="xs:string"/>
+  <xs:element name="FPMS" type="xs:string"/>
+  <xs:element name="TrackType" type="xs:string"/>
+  <xs:element name="Chapter" type="xs:string"/>
+  <!-- Movie Chapter Tracks -->
+  <xs:element name="MovieChapterTracks" type="e:MovieChapterTrack"/>
+  <xs:complexType name="MovieChapterTrack">
+    <xs:sequence>
+      <xs:element ref="e:MovieChapterTrack"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MovieChapterTrack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="e:ChapName"/>
+        <xs:element minOccurs="0" ref="e:Offset"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChapName" type="xs:string"/>
+  <xs:element name="Offset" type="xs:string"/>
+  <!-- Catalog Sets -->
+  <xs:element name="SetList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="e:Set"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Set">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="e:SetName"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="e:UniqueID"/>
+          <xs:element ref="e:Set"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetName" type="xs:string"/>
+</xs:schema>
