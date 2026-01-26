@@ -224,7 +224,7 @@ namespace Xml.Schema.Linq
             observer?.OnNext($"Schemas to process: {excludeV11Xsds.ToDelimitedString(e => Path.GetFileName(e.xsdFile.Name), ';')}");
 
             return excludeV11Xsds
-                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.xsdFile.FullName))
+                .SelectMany(pair => Generate(pair.xsdFile.FullName, pair.configFile.FullName))
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())
