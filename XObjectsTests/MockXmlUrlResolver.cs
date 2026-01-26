@@ -46,10 +46,9 @@ public class MockXmlUrlResolver : XmlResolver
         return base.GetEntityAsync(absoluteUri, role, ofObjectToReturn);
     }
 
-    public override Uri ResolveUri(Uri baseUri, string relativeUri)
+    public override Uri ResolveUri(Uri? baseUri, string? relativeUri)
     {
-        var str = baseUri.ToString();
-        var justTheFileName = Path.GetFileName(relativeUri);
+        var justTheFileName = Path.GetFileName(relativeUri) ?? throw new InvalidOperationException("Unable to find file name for relativeUri: " + relativeUri);
         var fsSearch = fs.AllFiles.Where(f => f.EndsWith(justTheFileName, StringComparison.CurrentCultureIgnoreCase));
         var mappingsSearch = mappings.Where(k => k.Key.OriginalString.EndsWith(relativeUri));
         var possibleMappingResult = mappingsSearch.FirstOrDefault();
