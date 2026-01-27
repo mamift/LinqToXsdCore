@@ -26,12 +26,19 @@ public partial class ClrTypeReference
         this.typeName = name;
         this.typeNs = ns;
         this.schemaObject = schemaObject;
+        this.typeRefOrigin = SchemaOrigin.Fragment;
 
-        XmlSchemaType schemaType = schemaObject as XmlSchemaType;
+        SetTypeRefFlags(anonymousType, setVariety);
+    }
+
+    private void SetTypeRefFlags(bool anonymousType, bool setVariety)
+    {
+        Debug.Assert(schemaObject != null);
+        XmlSchemaType schemaType = this.schemaObject as XmlSchemaType;
         if (schemaType == null)
         {
-            XmlSchemaElement elem = schemaObject as XmlSchemaElement;
-            typeRefFlags |= ClrTypeRefFlags.IsElementRef;
+            XmlSchemaElement elem = this.schemaObject as XmlSchemaElement;
+            this.typeRefFlags |= ClrTypeRefFlags.IsElementRef;
             schemaType = elem.ElementSchemaType;
         }
 
@@ -57,6 +64,7 @@ public partial class ClrTypeReference
             }
 
             typeRefFlags |= ClrTypeRefFlags.IsSimpleType;
+            Debug.Assert(datatype != null, nameof(datatype) + " != null");
             typeCodeString = datatype.TypeCodeString();
             if (datatype.ValueType.IsValueType)
             {
@@ -72,8 +80,6 @@ public partial class ClrTypeReference
         {
             typeRefFlags |= ClrTypeRefFlags.IsLocalType;
         }
-
-        this.typeRefOrigin = SchemaOrigin.Fragment;
     }
 
     private void SetVariety(XmlSchemaDatatype datatype)
