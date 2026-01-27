@@ -21,12 +21,12 @@ namespace Xml.Schema.Linq
         /// <summary>
         /// Creates a new instance of <see cref="LinqToXsdSettings"/>, optionally by loading from an XML file.
         /// </summary>
-        /// <param name="fromXmlFile">Null or empty value will simply return a default instance.</param>
+        /// <param name="fromXmlFile">Null, empty or non-existent file path value will simply return a default instance.</param>
         /// <returns></returns>
-        public static LinqToXsdSettings LoadLinqToXsdSettings(string fromXmlFile = null)
+        public static LinqToXsdSettings LoadLinqToXsdSettings(string? fromXmlFile = null)
         {
             var settings = new LinqToXsdSettings();
-            if (fromXmlFile.IsNotEmpty()) settings.Load(fromXmlFile);
+            if (fromXmlFile.IsNotEmpty() && File.Exists(fromXmlFile)) settings.Load(fromXmlFile);
 
             return settings;
         }
