@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Schema;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -26,7 +25,7 @@ public class ClrTypeInfoTests: BaseTester
     [Test, TestCase("StuDateAndTime.xsd")]
     public void CreateSimpleTypeForAnonymousSimpleTypeUnion(string endsWithFilePattern)
     {
-        var xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
+        XmlSchemaSet xsd = GetTestFileAsXmlSchemaSet(endsWithFilePattern);
 
         var anonUnionTypes = xsd.RetrieveAllAnonymousSimpleUnionTypes();
 
@@ -34,13 +33,17 @@ public class ClrTypeInfoTests: BaseTester
 
         foreach (var simpleType in anonUnionTypes) {
             //Assert.IsInstanceOf<XmlSchemaSimpleTypeUnion>(simpleType.Value);
-
+            // create the simple type from the XmlSchemaSimpleType
             ClrSimpleTypeInfo? type = ClrSimpleTypeInfo.CreateSimpleTypeInfo(simpleType.Value);
             Assert.NotNull(type);
-            
-            var unionTypeInfo = type as UnionSimpleTypeInfo;
+
+            // the method ClrSimpleTypeInfo.CreateSimpleTypeInfo(simpleType.Value) should return a UnionSimpleTypeInfo
             Assert.IsInstanceOf<UnionSimpleTypeInfo>(type);
+            var unionTypeInfo = type as UnionSimpleTypeInfo;
             Assert.True(unionTypeInfo != null);
+
+            //the name gets filled out later on
+            Assert.IsNull(unionTypeInfo!.clrtypeName);
 
             unionTypeInfo!.clrtypeName = simpleType.Value.GenerateAdHocNameForSimpleUnionType();
             Assert.IsNotNull(unionTypeInfo.clrtypeName);

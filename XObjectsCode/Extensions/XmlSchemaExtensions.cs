@@ -443,12 +443,10 @@ namespace XObjects
         /// </remarks>
         public static Configuration ToDefaultMergedConfiguration(this XmlSchemaSet xs, Configuration? startingConfig = null)
         {
-            var egConfig = startingConfig ?? (Configuration)ConfigurationProvider.ProvideExampleConfigurationXml();
-            var docs = xs.Schemas().Cast<XmlSchema>().Select(x => x.ToXDocument()).ToList();
-            var configs = docs.Select(d => Configuration.LoadForSchema(d));
-
-            Configuration mergedConfigOutput = configs.Aggregate(egConfig,
-                (theEgConfig, loadedConfig) => theEgConfig.MergeNamespaces(loadedConfig));
+            Configuration? egConfig = startingConfig ?? (Configuration)ConfigurationProvider.ProvideExampleConfigurationXml();
+            List<XDocument> docs = xs.Schemas().Cast<XmlSchema>().Select(x => x.ToXDocument()).ToList();
+            Configuration mergedConfigOutput = docs.Select(d => Configuration.LoadForSchema(d))
+                .Aggregate(egConfig, (theEgConfig, loadedConfig) => theEgConfig.MergeNamespaces(loadedConfig));
 
             return mergedConfigOutput;
         }
