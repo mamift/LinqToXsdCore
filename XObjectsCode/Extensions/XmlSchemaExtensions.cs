@@ -453,9 +453,10 @@ namespace XObjects
             return mergedConfigOutput;
         }
 
-        public static string? GenerateAdHocNameForSimpleUnionType(this XmlSchemaSimpleType type)
+        public static string? GenerateAdHocNameForSimpleUnionType(this XmlSchemaSimpleType? type)
         {
-            if (!type.IsOrHasUnion()) return null;
+            if (type?.IsOrHasUnion() != true) return null;
+            Debug.Assert(type != null, nameof(type) + " != null");
 
             if (type.Content is XmlSchemaSimpleTypeUnion union) {
                 string name = Constants.SimpleTypeUnionOfPrefix;
