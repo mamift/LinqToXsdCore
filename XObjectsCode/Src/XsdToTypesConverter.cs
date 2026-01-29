@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -1008,6 +1009,10 @@ namespace Xml.Schema.Linq.CodeGen
         private ClrPropertyInfo BuildPropertyForAttribute(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew,
             ClrTypeInfo containingType = null)
         {
+            // TODO: Continue from here
+            if (attribute.Name == "date") {
+                Debugger.Break();
+            }
             string identifierName = localSymbolTable.AddAttribute(attribute);
 
             XmlSchemaType schemaType = attribute.AttributeSchemaType;
