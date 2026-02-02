@@ -499,6 +499,7 @@ namespace Xml.Schema.Linq.Extensions
                 IEnumerable<CodeTypeDeclaration> nestedTypes = type.Members.OfType<CodeTypeDeclaration>();
                 foreach (var nestedType in nestedTypes) {
                     thePossibleType = nestedType.SearchAllNestedTypesRecursively(predicate);
+                    if (thePossibleType is not null) break;
                 }
             }
 
