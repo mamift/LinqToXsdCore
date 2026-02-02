@@ -366,7 +366,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, settings, out string refTypeName);
 
-            if ((Validation || IsUnion) || (this.IsEnum && typeRef.IsEnum))
+            if ((Validation || IsUnion) || IsEnum)
             {
                 this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespaceScope, nameMappings);
             }
