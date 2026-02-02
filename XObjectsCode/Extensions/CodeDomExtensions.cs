@@ -482,23 +482,33 @@ namespace Xml.Schema.Linq.Extensions
 
         /// <summary>
         /// Searches for a nested type with the specified name within the current <see cref="CodeTypeDeclaration"/> 
-        /// and all its nested types recursively.
+        /// and all its nested types recursively. Uses the LINQ method <see cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource})"/> to
+        /// return the possible match.
         /// </summary>
         /// <param name="type">The current type.</param>
         /// <param name="predicate">A searching predicate</param>
+        /// <param name="orderByPredicate">Pass another predicate to order the results if you anticipate <paramref name="predicate"/> will return more than one
+        /// result.</param>
         /// <returns>
         /// The <see cref="CodeTypeMember"/> representing the nested type with the specified name, 
         /// or <c>null</c> if no such type is found.
         /// </returns>
-        public static CodeTypeMember? SearchAllNestedTypesRecursively(this CodeTypeDeclaration type, Func<CodeTypeMember, bool> predicate)
+        public static CodeTypeMember? SearchAllNestedTypesRecursively(this CodeTypeDeclaration type, Func<CodeTypeMember, bool> predicate,
+            Func<CodeTypeMember, bool>? orderByPredicate = null)
         {
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-            var thePossibleType = type.Members.Cast<CodeTypeMember>().SingleOrDefault(predicate);
+            CodeTypeMember? thePossibleType = null;
+            IEnumerable<CodeTypeMember> candidates = type.Members.Cast<CodeTypeMember>().Where(predicate);
+            if (orderByPredicate is not null) {
+                candidates = candidates.OrderByDescending(orderByPredicate);
+            }
+            thePossibleType = candidates.FirstOrDefault();
+
             if (thePossibleType is null) {
                 IEnumerable<CodeTypeDeclaration> nestedTypes = type.Members.OfType<CodeTypeDeclaration>();
                 foreach (var nestedType in nestedTypes) {
-                    thePossibleType = nestedType.SearchAllNestedTypesRecursively(predicate);
+                    thePossibleType = nestedType.SearchAllNestedTypesRecursively(predicate, orderByPredicate);
                     if (thePossibleType is not null) break;
                 }
             }
