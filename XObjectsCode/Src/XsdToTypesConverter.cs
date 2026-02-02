@@ -1009,10 +1009,6 @@ namespace Xml.Schema.Linq.CodeGen
         private ClrPropertyInfo BuildPropertyForAttribute(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew,
             ClrTypeInfo containingType = null)
         {
-            // TODO: Continue from here
-            if (attribute.Name == "date") {
-                Debugger.Break();
-            }
             string identifierName = localSymbolTable.AddAttribute(attribute);
 
             XmlSchemaType schemaType = attribute.AttributeSchemaType;
@@ -1044,6 +1040,10 @@ namespace Xml.Schema.Linq.CodeGen
             if (attribute.DefinesInlineEnum() && isAnonymous) {
                 // does not work when the containing type does not have the enum definition already defined, returns string values like '.Enum' which does not compile
                 // UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
+            }
+
+            if (attribute.IsOfAnonymousType() && attribute.AttributeSchemaType.IsOrHasUnion()) {
+
             }
 
             SetFixedDefaultValue(attribute, propertyInfo);

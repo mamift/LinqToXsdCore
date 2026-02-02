@@ -1210,7 +1210,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (this.ParentTypeDeclaration != null && this.ParentTypeDeclaration.HasParent<CodeNamespace>()) {
                 var thisNamespace = this.ParentTypeDeclaration.GetParent<CodeNamespace>();
                 if (thisNamespace is not null) {
-                    var possibleTypeValidatorClass = thisNamespace.SearchAllNestedTypesRecursively(e =>
+                    var possibleTypeValidatorClass = thisNamespace.SearchForMemberRecursively(e =>
                         e is CodeTypeDeclaration ec && ec.Name.Contains(this.TypeReference.Name));
 
                     if (possibleTypeValidatorClass is not null) {

@@ -493,44 +493,47 @@ namespace Xml.Schema.Linq.Extensions
         /// The <see cref="CodeTypeMember"/> representing the nested type with the specified name, 
         /// or <c>null</c> if no such type is found.
         /// </returns>
-        public static CodeTypeMember? SearchAllNestedTypesRecursively(this CodeTypeDeclaration type, Func<CodeTypeMember, bool> predicate,
+        public static CodeTypeMember? SearchForMemberRecursively(this CodeTypeDeclaration type, Func<CodeTypeMember, bool> predicate,
             Func<CodeTypeMember, bool>? orderByPredicate = null)
         {
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
-            CodeTypeMember? thePossibleType = null;
+            CodeTypeMember? thePossibleTypeMember = null;
             IEnumerable<CodeTypeMember> candidates = type.Members.Cast<CodeTypeMember>().Where(predicate);
             if (orderByPredicate is not null) {
                 candidates = candidates.OrderByDescending(orderByPredicate);
             }
-            thePossibleType = candidates.FirstOrDefault();
+            thePossibleTypeMember = candidates.FirstOrDefault();
 
-            if (thePossibleType is null) {
+            if (thePossibleTypeMember is null) {
                 IEnumerable<CodeTypeDeclaration> nestedTypes = type.Members.OfType<CodeTypeDeclaration>();
                 foreach (var nestedType in nestedTypes) {
-                    thePossibleType = nestedType.SearchAllNestedTypesRecursively(predicate, orderByPredicate);
-                    if (thePossibleType is not null) break;
+                    thePossibleTypeMember = nestedType.SearchForMemberRecursively(predicate, orderByPredicate);
+                    if (thePossibleTypeMember is not null) break;
                 }
             }
 
-            return thePossibleType;
+            return thePossibleTypeMember;
         }
 
-        public static CodeTypeMember? SearchAllNestedTypesRecursively(this CodeNamespace ns, Func<CodeTypeMember, bool> predicate)
+        /// <summary>
+        /// At the namespace level, searches for a <see cref="CodeTypeMember"/> to match the given <paramref name="predicate"/> within all
+        /// child <see cref="CodeTypeDeclaration"/>s.
+        /// For each type, this invokes <see cref="SearchForMemberRecursively"/>
+        /// </summary>
+        /// <param name="ns"></param>
+        /// <param name="predicate"></param>
+        /// <param name="orderByPredicate"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static CodeTypeMember? SearchForMemberRecursively(this CodeNamespace ns, Func<CodeTypeMember, bool> predicate,
+            Func<CodeTypeMember, bool>? orderByPredicate = null)
         {
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
             foreach (var type in ns.Types.Cast<CodeTypeDeclaration>()) {
-                var thePossibleType = type.Members.Cast<CodeTypeMember>().SingleOrDefault(predicate);
-                if (thePossibleType is null) {
-                    IEnumerable<CodeTypeDeclaration> nestedTypes = type.Members.OfType<CodeTypeDeclaration>();
-                    foreach (var nestedType in nestedTypes) {
-                        thePossibleType = nestedType.SearchAllNestedTypesRecursively(predicate);
-                    }
-                }
-                else {
-                    return thePossibleType;
-                }
+                var possibleTypeMember = type.SearchForMemberRecursively(predicate, orderByPredicate);
+                if (possibleTypeMember is not null) return possibleTypeMember;
             }
 
             return null;
