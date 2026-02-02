@@ -153,25 +153,24 @@ namespace LinqToXsd
         /// <param name="generateOptions"></param>
         internal static void HandleGenerateCode(GenerateOptions generateOptions)
         {
-            var settingsFromFile = generateOptions.GetConfigInstance(ProgressReporter);
-            var settings = settingsFromFile ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
+            LinqToXsdSettings settingsFromFile = generateOptions.GetConfigInstance(ProgressReporter);
+            LinqToXsdSettings settings = settingsFromFile ?? XObjectsCoreGenerator.LoadLinqToXsdSettings();
             if (settingsFromFile != null)
                 PrintLn("Configuration file(s) loaded...".Gray());
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
-            var schemaFilesList = generateOptions.SchemaFiles.ToList();
-
-            var textWriters = generateOptions.AutoConfig
-                ? XObjectsCoreGenerator.Generate(schemaFilesList, ProgramObserver)
-                : XObjectsCoreGenerator.Generate(schemaFilesList, settings, ProgramObserver);
+            Dictionary<string, TextWriter> textWriters = generateOptions.AutoConfig
+                ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, ProgramObserver)
+                : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings, ProgramObserver);
 
             if (generateOptions.Output.IsEmpty()) {
                 PrintLn("No output directory given: defaulting to same directory as XSD file(s).".Gray());
                 generateOptions.Output = "-1";
             }
 
-            var hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
+            Debug.Assert(generateOptions.Output != null);
+            bool hasCsExt = Path.GetExtension(generateOptions.Output).EndsWith(".cs");
             // merge the output into a single file
             if (hasCsExt)
                 GenerateCodeDispatcher.HandleWriteOutputToSingleFile(generateOptions, textWriters);

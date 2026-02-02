@@ -44,7 +44,7 @@ namespace LinqToXsd
         /// CLI argument: The file or folder paths given at the CL.
         /// </summary>
         [Value(1, HelpText = FilesOrFoldersHelpText, Required = true)]
-        public virtual IEnumerable<string> FilesOrFolders
+        public virtual List<string> FilesOrFolders
         {
             get => filesOrFolders;
             set
@@ -62,7 +62,7 @@ namespace LinqToXsd
         /// Resolves the file or folder paths in <see cref="FilesOrFolders"/> property as just files, filtering to only include *.xsd files under
         /// any folder paths present.
         /// </summary>
-        public virtual IEnumerable<string> SchemaFiles
+        public virtual List<string> SchemaFiles
         {
             get
             {
