@@ -22,10 +22,10 @@ namespace LinqToXsd
         public override string Output { get; set; }
 
         /// <summary>
-        /// This overrides the base member to to set the <see cref="BaseAttribute.Required"/> to false.
+        /// This overrides the base member to set the <see cref="BaseAttribute.Required"/> to false.
         /// </summary>
         [Value(1, HelpText = FilesOrFoldersHelpText, Required = false)]
-        public override IEnumerable<string> FilesOrFolders
+        public override List<string> FilesOrFolders
         {
             get => base.FilesOrFolders;
             set => base.FilesOrFolders = value;
