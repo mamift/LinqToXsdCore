@@ -34,7 +34,7 @@ namespace LinqToXsd
         /// <returns></returns>
         public virtual bool FilesWereGiven => FileSystemUtilities.HasFilePaths(FilesOrFolders);
 
-        protected List<string> filesOrFolders = new List<string>();
+        protected string[] filesOrFolders = new string[0];
 
         protected Dictionary<string, XmlReader> schemaReaders = new Dictionary<string, XmlReader>();
 
@@ -44,7 +44,7 @@ namespace LinqToXsd
         /// CLI argument: The file or folder paths given at the CL.
         /// </summary>
         [Value(1, HelpText = FilesOrFoldersHelpText, Required = true)]
-        public virtual List<string> FilesOrFolders
+        public virtual IEnumerable<string> FilesOrFolders
         {
             get => filesOrFolders;
             set
@@ -54,7 +54,7 @@ namespace LinqToXsd
                                              .Select(v => v.Replace("\\", @"\"))
                                              .SelectMany(pf => pf.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                              .Select(v => v.TrimEnd(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar, '\'', '"')); // removes trailing slashes for directories
-                filesOrFolders = possibleUnparsedCommas.ToList();
+                filesOrFolders = possibleUnparsedCommas.ToArray();
             }
         }
 

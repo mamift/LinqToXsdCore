@@ -25,7 +25,7 @@ namespace LinqToXsd
         /// This overrides the base member to set the <see cref="BaseAttribute.Required"/> to false.
         /// </summary>
         [Value(1, HelpText = FilesOrFoldersHelpText, Required = false)]
-        public override List<string> FilesOrFolders
+        public override IEnumerable<string> FilesOrFolders
         {
             get => base.FilesOrFolders;
             set => base.FilesOrFolders = value;
