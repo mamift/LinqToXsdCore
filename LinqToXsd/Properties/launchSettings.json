@@ -78,6 +78,11 @@
       "commandName": "Project",
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\Microsoft.Expression.Media.Catalog"
+    },
+    "SharePoint 2010": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\SharePoint2010"
     }
   }
 }
