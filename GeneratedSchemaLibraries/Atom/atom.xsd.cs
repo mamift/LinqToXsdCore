@@ -33,27 +33,10 @@ namespace AtomSyndication {
     /// </summary>
     public partial class textType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("textType", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static FSM validationStates;
-        
 		public static explicit operator textType(XElement xe) { return XTypedServices.ToXTypedElement<textType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static textType() {
-            InitFSM();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<textType>(this);
         }
         
         /// <summary>
@@ -80,6 +63,31 @@ namespace AtomSyndication {
             }
         }
         
+        public enum TypeEnum {
+            
+            text,
+            
+            html,
+            
+            xhtml,
+        }
+        
+        public sealed class TypeEnumValidator {
+            
+            private TypeEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "text",
+                            "html",
+                            "xhtml"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -91,12 +99,21 @@ namespace AtomSyndication {
                 if ((x == null)) {
                     return null;
                 }
-                return ((AtomSyndication.textType.TypeEnum)(Enum.Parse(typeof(AtomSyndication.textType.TypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype))));
+                return ((AtomSyndication.textType.TypeEnum)(Enum.Parse(typeof(AtomSyndication.textType.TypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype, TypeEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(typeXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
+                if (value == null) {
+                    this.SetAttribute(typeXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(typeXName, value.ToString(), "type", TypeEnumValidator.TypeDefinition);
+                }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -106,12 +123,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -121,11 +145,35 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("textType", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
+        
+        FSM IXMetaData.GetValidationStates() {
+            return validationStates;
+        }
+        
+        private static void InitFSM() {
+            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
+            transitions.Add(1, new Transitions(new SingleTransition(new WildCard("http://www.w3.org/1999/xhtml", "http://www.w3.org/2005/Atom"), 2)));
+            validationStates = new FSM(1, new Set<int>(new int[] {
+                            2,
+                            1}), transitions);
+        }
+        
+        static textType() {
+            InitFSM();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -148,31 +196,6 @@ namespace AtomSyndication {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<textType>(this);
-        }
-        
-        FSM IXMetaData.GetValidationStates() {
-            return validationStates;
-        }
-        
-        private static void InitFSM() {
-            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
-            transitions.Add(1, new Transitions(new SingleTransition(new WildCard("http://www.w3.org/1999/xhtml", "http://www.w3.org/2005/Atom"), 2)));
-            validationStates = new FSM(1, new Set<int>(new int[] {
-                            2,
-                            1}), transitions);
-        }
-        
-        public enum TypeEnum {
-            
-            text,
-            
-            html,
-            
-            xhtml,
-        }
     }
     
     /// <summary>
@@ -187,48 +210,10 @@ namespace AtomSyndication {
     /// </summary>
     public partial class personType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> nameField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<uriType> uriField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName emailXName = System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> emailField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("personType", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static FSM validationStates;
-        
 		public static explicit operator personType(XElement xe) { return XTypedServices.ToXTypedElement<personType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static personType() {
-            BuildElementDictionary();
-            InitFSM();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<personType>(this);
         }
         
         /// <summary>
@@ -243,6 +228,13 @@ namespace AtomSyndication {
         /// </summary>
         public personType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> nameField;
         
         /// <summary>
         /// <para>
@@ -274,6 +266,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<uriType> uriField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -303,6 +302,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName emailXName = System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> emailField;
         
         /// <summary>
         /// <para>
@@ -345,6 +351,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -353,12 +363,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -368,6 +385,9 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
@@ -375,11 +395,49 @@ namespace AtomSyndication {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("personType", "http://www.w3.org/2005/Atom");
+        
+        static personType() {
+            BuildElementDictionary();
+            InitFSM();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(nameXName, typeof(string));
+            localElementDictionary.Add(uriXName, typeof(uriType));
+            localElementDictionary.Add(emailXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
+        
+        FSM IXMetaData.GetValidationStates() {
+            return validationStates;
+        }
+        
+        private static void InitFSM() {
+            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
+            transitions.Add(1, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
+            transitions.Add(2, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
+            transitions.Add(4, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
+            transitions.Add(6, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
+            transitions.Add(8, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
+            validationStates = new FSM(1, new Set<int>(new int[] {
+                            2,
+                            1,
+                            4,
+                            6,
+                            8}), transitions);
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -402,35 +460,6 @@ namespace AtomSyndication {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<personType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(nameXName, typeof(string));
-            localElementDictionary.Add(uriXName, typeof(uriType));
-            localElementDictionary.Add(emailXName, typeof(string));
-        }
-        
-        FSM IXMetaData.GetValidationStates() {
-            return validationStates;
-        }
-        
-        private static void InitFSM() {
-            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
-            transitions.Add(1, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
-            transitions.Add(2, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
-            transitions.Add(4, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
-            transitions.Add(6, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
-            transitions.Add(8, new Transitions(new SingleTransition(System.Xml.Linq.XName.Get("name", "http://www.w3.org/2005/Atom"), 2), new SingleTransition(System.Xml.Linq.XName.Get("uri", "http://www.w3.org/2005/Atom"), 4), new SingleTransition(System.Xml.Linq.XName.Get("email", "http://www.w3.org/2005/Atom"), 6), new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 8)));
-            validationStates = new FSM(1, new Set<int>(new int[] {
-                            2,
-                            1,
-                            4,
-                            6,
-                            8}), transitions);
-        }
     }
     
     /// <summary>
@@ -442,12 +471,12 @@ namespace AtomSyndication {
     /// </summary>
     public sealed class emailType {
         
+        private emailType() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NormalizedString), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "\\w+@(\\w+\\.)+\\w+"}, 0, XmlSchemaWhiteSpace.Replace));
-        
-        private emailType() {
-        }
     }
     
     /// <summary>
@@ -462,118 +491,10 @@ namespace AtomSyndication {
     /// </summary>
     public partial class feedType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName authorXName = System.Xml.Linq.XName.Get("author", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<personType> authorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<categoryType> categoryField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contributorXName = System.Xml.Linq.XName.Get("contributor", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<personType> contributorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName generatorXName = System.Xml.Linq.XName.Get("generator", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<generatorType> generatorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName iconXName = System.Xml.Linq.XName.Get("icon", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<iconType> iconField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<idType> idField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName linkXName = System.Xml.Linq.XName.Get("link", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<linkType> linkField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName logoXName = System.Xml.Linq.XName.Get("logo", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<logoType> logoField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rightsXName = System.Xml.Linq.XName.Get("rights", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> rightsField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName subtitleXName = System.Xml.Linq.XName.Get("subtitle", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> subtitleField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> titleField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName updatedXName = System.Xml.Linq.XName.Get("updated", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<dateTimeType> updatedField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName entryXName = System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<entryType> entryField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("feedType", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static FSM validationStates;
-        
 		public static explicit operator feedType(XElement xe) { return XTypedServices.ToXTypedElement<feedType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static feedType() {
-            BuildElementDictionary();
-            InitFSM();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<feedType>(this);
         }
         
         /// <summary>
@@ -588,6 +509,13 @@ namespace AtomSyndication {
         /// </summary>
         public feedType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName authorXName = System.Xml.Linq.XName.Get("author", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<personType> authorField;
         
         /// <summary>
         /// <para>
@@ -619,6 +547,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<categoryType> categoryField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating, choice
@@ -648,6 +583,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contributorXName = System.Xml.Linq.XName.Get("contributor", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<personType> contributorField;
         
         /// <summary>
         /// <para>
@@ -679,6 +621,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName generatorXName = System.Xml.Linq.XName.Get("generator", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<generatorType> generatorField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -708,6 +657,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName iconXName = System.Xml.Linq.XName.Get("icon", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<iconType> iconField;
         
         /// <summary>
         /// <para>
@@ -739,6 +695,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<idType> idField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -768,6 +731,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName linkXName = System.Xml.Linq.XName.Get("link", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<linkType> linkField;
         
         /// <summary>
         /// <para>
@@ -799,6 +769,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName logoXName = System.Xml.Linq.XName.Get("logo", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<logoType> logoField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -828,6 +805,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rightsXName = System.Xml.Linq.XName.Get("rights", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> rightsField;
         
         /// <summary>
         /// <para>
@@ -859,6 +843,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName subtitleXName = System.Xml.Linq.XName.Get("subtitle", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> subtitleField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -888,6 +879,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> titleField;
         
         /// <summary>
         /// <para>
@@ -919,6 +917,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName updatedXName = System.Xml.Linq.XName.Get("updated", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<dateTimeType> updatedField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -948,6 +953,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName entryXName = System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<entryType> entryField;
         
         /// <summary>
         /// <para>
@@ -990,6 +1002,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -998,12 +1014,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -1013,6 +1036,9 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
@@ -1020,37 +1046,15 @@ namespace AtomSyndication {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("feedType", "http://www.w3.org/2005/Atom");
+        
+        static feedType() {
+            BuildElementDictionary();
+            InitFSM();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<feedType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(authorXName, typeof(personType));
@@ -1067,6 +1071,16 @@ namespace AtomSyndication {
             localElementDictionary.Add(updatedXName, typeof(dateTimeType));
             localElementDictionary.Add(entryXName, typeof(entryType));
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
         
         FSM IXMetaData.GetValidationStates() {
             return validationStates;
@@ -1104,6 +1118,27 @@ namespace AtomSyndication {
                             25,
                             27}), transitions);
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -1118,111 +1153,10 @@ namespace AtomSyndication {
     /// </summary>
     public partial class entryType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName authorXName = System.Xml.Linq.XName.Get("author", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<personType> authorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<categoryType> categoryField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contentXName = System.Xml.Linq.XName.Get("content", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<contentType> contentField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contributorXName = System.Xml.Linq.XName.Get("contributor", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<personType> contributorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<idType> idField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName linkXName = System.Xml.Linq.XName.Get("link", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<linkType> linkField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName publishedXName = System.Xml.Linq.XName.Get("published", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<dateTimeType> publishedField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rightsXName = System.Xml.Linq.XName.Get("rights", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> rightsField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName sourceXName = System.Xml.Linq.XName.Get("source", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> sourceField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName summaryXName = System.Xml.Linq.XName.Get("summary", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> summaryField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> titleField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName updatedXName = System.Xml.Linq.XName.Get("updated", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<dateTimeType> updatedField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("entryType", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static FSM validationStates;
-        
 		public static explicit operator entryType(XElement xe) { return XTypedServices.ToXTypedElement<entryType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static entryType() {
-            BuildElementDictionary();
-            InitFSM();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<entryType>(this);
         }
         
         /// <summary>
@@ -1237,6 +1171,13 @@ namespace AtomSyndication {
         /// </summary>
         public entryType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName authorXName = System.Xml.Linq.XName.Get("author", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<personType> authorField;
         
         /// <summary>
         /// <para>
@@ -1268,6 +1209,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<categoryType> categoryField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating, choice
@@ -1297,6 +1245,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contentXName = System.Xml.Linq.XName.Get("content", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<contentType> contentField;
         
         /// <summary>
         /// <para>
@@ -1328,6 +1283,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contributorXName = System.Xml.Linq.XName.Get("contributor", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<personType> contributorField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating, choice
@@ -1357,6 +1319,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<idType> idField;
         
         /// <summary>
         /// <para>
@@ -1388,6 +1357,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName linkXName = System.Xml.Linq.XName.Get("link", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<linkType> linkField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating, choice
@@ -1417,6 +1393,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName publishedXName = System.Xml.Linq.XName.Get("published", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<dateTimeType> publishedField;
         
         /// <summary>
         /// <para>
@@ -1448,6 +1431,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rightsXName = System.Xml.Linq.XName.Get("rights", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> rightsField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -1477,6 +1467,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName sourceXName = System.Xml.Linq.XName.Get("source", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> sourceField;
         
         /// <summary>
         /// <para>
@@ -1508,6 +1505,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName summaryXName = System.Xml.Linq.XName.Get("summary", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> summaryField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -1538,6 +1542,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> titleField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -1567,6 +1578,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName updatedXName = System.Xml.Linq.XName.Get("updated", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<dateTimeType> updatedField;
         
         /// <summary>
         /// <para>
@@ -1609,6 +1627,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1617,12 +1639,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -1632,6 +1661,9 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
@@ -1639,37 +1671,15 @@ namespace AtomSyndication {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("entryType", "http://www.w3.org/2005/Atom");
+        
+        static entryType() {
+            BuildElementDictionary();
+            InitFSM();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<entryType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(authorXName, typeof(personType));
@@ -1685,6 +1695,16 @@ namespace AtomSyndication {
             localElementDictionary.Add(titleXName, typeof(textType));
             localElementDictionary.Add(updatedXName, typeof(dateTimeType));
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
         
         FSM IXMetaData.GetValidationStates() {
             return validationStates;
@@ -1720,6 +1740,27 @@ namespace AtomSyndication {
                             24,
                             25}), transitions);
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -1734,31 +1775,10 @@ namespace AtomSyndication {
     /// </summary>
     public partial class contentType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName srcXName = System.Xml.Linq.XName.Get("src", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("contentType", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static FSM validationStates;
-        
 		public static explicit operator contentType(XElement xe) { return XTypedServices.ToXTypedElement<contentType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static contentType() {
-            InitFSM();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<contentType>(this);
         }
         
         /// <summary>
@@ -1785,6 +1805,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1793,12 +1817,19 @@ namespace AtomSyndication {
         public virtual string type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(typeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName srcXName = System.Xml.Linq.XName.Get("src", "");
         
         /// <summary>
         /// <para>
@@ -1808,12 +1839,19 @@ namespace AtomSyndication {
         public virtual System.Uri src {
             get {
                 XAttribute x = this.Attribute(srcXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(srcXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -1823,12 +1861,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -1838,11 +1883,33 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("contentType", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
+        
+        FSM IXMetaData.GetValidationStates() {
+            return validationStates;
+        }
+        
+        private static void InitFSM() {
+            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
+            transitions.Add(1, new Transitions(new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 1)));
+            validationStates = new FSM(1, new Set<int>(1), transitions);
+        }
+        
+        static contentType() {
+            InitFSM();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1865,20 +1932,6 @@ namespace AtomSyndication {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<contentType>(this);
-        }
-        
-        FSM IXMetaData.GetValidationStates() {
-            return validationStates;
-        }
-        
-        private static void InitFSM() {
-            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
-            transitions.Add(1, new Transitions(new SingleTransition(new WildCard("##other", "http://www.w3.org/2005/Atom"), 1)));
-            validationStates = new FSM(1, new Set<int>(1), transitions);
-        }
     }
     
     /// <summary>
@@ -1890,29 +1943,11 @@ namespace AtomSyndication {
     /// </summary>
     public partial class categoryType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName termXName = System.Xml.Linq.XName.Get("term", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName schemeXName = System.Xml.Linq.XName.Get("scheme", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName labelXName = System.Xml.Linq.XName.Get("label", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("categoryType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator categoryType(XElement xe) { return XTypedServices.ToXTypedElement<categoryType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<categoryType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -1923,6 +1958,10 @@ namespace AtomSyndication {
         /// </summary>
         public categoryType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName termXName = System.Xml.Linq.XName.Get("term", "");
         
         /// <summary>
         /// <para>
@@ -1939,6 +1978,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName schemeXName = System.Xml.Linq.XName.Get("scheme", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1947,12 +1990,19 @@ namespace AtomSyndication {
         public virtual System.Uri scheme {
             get {
                 XAttribute x = this.Attribute(schemeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(schemeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName labelXName = System.Xml.Linq.XName.Get("label", "");
         
         /// <summary>
         /// <para>
@@ -1962,12 +2012,19 @@ namespace AtomSyndication {
         public virtual string label {
             get {
                 XAttribute x = this.Attribute(labelXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(labelXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -1977,12 +2034,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -1992,11 +2056,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("categoryType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2018,14 +2091,6 @@ namespace AtomSyndication {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<categoryType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -2038,29 +2103,11 @@ namespace AtomSyndication {
     /// </summary>
     public partial class generatorType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("generatorType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator generatorType(XElement xe) { return XTypedServices.ToXTypedElement<generatorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<generatorType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -2072,6 +2119,10 @@ namespace AtomSyndication {
         public generatorType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
         public virtual string TypedValue {
             get {
                 XElement x = this.Untyped;
@@ -2082,6 +2133,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2090,12 +2145,19 @@ namespace AtomSyndication {
         public virtual System.Uri uri {
             get {
                 XAttribute x = this.Attribute(uriXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(uriXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
         
         /// <summary>
         /// <para>
@@ -2105,12 +2167,19 @@ namespace AtomSyndication {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -2120,12 +2189,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -2135,11 +2211,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("generatorType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2161,14 +2246,6 @@ namespace AtomSyndication {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<generatorType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -2181,21 +2258,11 @@ namespace AtomSyndication {
     /// </summary>
     public partial class iconType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("iconType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator iconType(XElement xe) { return XTypedServices.ToXTypedElement<iconType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<iconType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -2207,6 +2274,10 @@ namespace AtomSyndication {
         public iconType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
         public virtual System.Uri TypedValue {
             get {
                 XElement x = this.Untyped;
@@ -2217,6 +2288,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2225,12 +2300,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -2240,11 +2322,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("iconType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2266,14 +2357,6 @@ namespace AtomSyndication {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<iconType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -2286,21 +2369,11 @@ namespace AtomSyndication {
     /// </summary>
     public partial class idType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("idType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator idType(XElement xe) { return XTypedServices.ToXTypedElement<idType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<idType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -2312,6 +2385,10 @@ namespace AtomSyndication {
         public idType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
         public virtual System.Uri TypedValue {
             get {
                 XElement x = this.Untyped;
@@ -2322,6 +2399,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2330,12 +2411,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -2345,11 +2433,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("idType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2372,14 +2469,6 @@ namespace AtomSyndication {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<idType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -2391,41 +2480,11 @@ namespace AtomSyndication {
     /// </summary>
     public partial class linkType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName hrefXName = System.Xml.Linq.XName.Get("href", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName relXName = System.Xml.Linq.XName.Get("rel", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName hreflangXName = System.Xml.Linq.XName.Get("hreflang", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("linkType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator linkType(XElement xe) { return XTypedServices.ToXTypedElement<linkType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<linkType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -2436,6 +2495,10 @@ namespace AtomSyndication {
         /// </summary>
         public linkType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName hrefXName = System.Xml.Linq.XName.Get("href", "");
         
         /// <summary>
         /// <para>
@@ -2452,6 +2515,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName relXName = System.Xml.Linq.XName.Get("rel", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2460,12 +2527,19 @@ namespace AtomSyndication {
         public virtual string rel {
             get {
                 XAttribute x = this.Attribute(relXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(relXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
         
         /// <summary>
         /// <para>
@@ -2475,12 +2549,19 @@ namespace AtomSyndication {
         public virtual string type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(typeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName hreflangXName = System.Xml.Linq.XName.Get("hreflang", "");
         
         /// <summary>
         /// <para>
@@ -2490,12 +2571,19 @@ namespace AtomSyndication {
         public virtual string hreflang {
             get {
                 XAttribute x = this.Attribute(hreflangXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
             }
             set {
                 this.SetAttribute(hreflangXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
         
         /// <summary>
         /// <para>
@@ -2505,12 +2593,19 @@ namespace AtomSyndication {
         public virtual string title {
             get {
                 XAttribute x = this.Attribute(titleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(titleXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName lengthXName = System.Xml.Linq.XName.Get("length", "");
         
         /// <summary>
         /// <para>
@@ -2530,6 +2625,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2538,12 +2637,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -2553,11 +2659,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("linkType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2579,14 +2694,6 @@ namespace AtomSyndication {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<linkType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -2599,21 +2706,11 @@ namespace AtomSyndication {
     /// </summary>
     public partial class logoType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("logoType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator logoType(XElement xe) { return XTypedServices.ToXTypedElement<logoType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<logoType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -2625,6 +2722,10 @@ namespace AtomSyndication {
         public logoType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
         public virtual System.Uri TypedValue {
             get {
                 XElement x = this.Untyped;
@@ -2635,6 +2736,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2643,12 +2748,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -2658,11 +2770,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("logoType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2684,14 +2805,6 @@ namespace AtomSyndication {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<logoType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -2707,111 +2820,10 @@ namespace AtomSyndication {
     /// </summary>
     public partial class sourceType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName authorXName = System.Xml.Linq.XName.Get("author", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<personType> authorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<categoryType> categoryField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contributorXName = System.Xml.Linq.XName.Get("contributor", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<personType> contributorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName generatorXName = System.Xml.Linq.XName.Get("generator", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<generatorType> generatorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName iconXName = System.Xml.Linq.XName.Get("icon", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<iconType> iconField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<idType> idField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName linkXName = System.Xml.Linq.XName.Get("link", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<linkType> linkField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName logoXName = System.Xml.Linq.XName.Get("logo", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<logoType> logoField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rightsXName = System.Xml.Linq.XName.Get("rights", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> rightsField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName subtitleXName = System.Xml.Linq.XName.Get("subtitle", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> subtitleField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<textType> titleField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName updatedXName = System.Xml.Linq.XName.Get("updated", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<dateTimeType> updatedField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("sourceType", "http://www.w3.org/2005/Atom");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static FSM validationStates;
-        
 		public static explicit operator sourceType(XElement xe) { return XTypedServices.ToXTypedElement<sourceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static sourceType() {
-            BuildElementDictionary();
-            InitFSM();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<sourceType>(this);
         }
         
         /// <summary>
@@ -2826,6 +2838,13 @@ namespace AtomSyndication {
         /// </summary>
         public sourceType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName authorXName = System.Xml.Linq.XName.Get("author", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<personType> authorField;
         
         /// <summary>
         /// <para>
@@ -2857,6 +2876,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<categoryType> categoryField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating, choice
@@ -2886,6 +2912,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contributorXName = System.Xml.Linq.XName.Get("contributor", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<personType> contributorField;
         
         /// <summary>
         /// <para>
@@ -2917,6 +2950,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName generatorXName = System.Xml.Linq.XName.Get("generator", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<generatorType> generatorField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -2946,6 +2986,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName iconXName = System.Xml.Linq.XName.Get("icon", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<iconType> iconField;
         
         /// <summary>
         /// <para>
@@ -2977,6 +3024,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<idType> idField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -3006,6 +3060,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName linkXName = System.Xml.Linq.XName.Get("link", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<linkType> linkField;
         
         /// <summary>
         /// <para>
@@ -3037,6 +3098,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName logoXName = System.Xml.Linq.XName.Get("logo", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<logoType> logoField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -3066,6 +3134,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rightsXName = System.Xml.Linq.XName.Get("rights", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> rightsField;
         
         /// <summary>
         /// <para>
@@ -3097,6 +3172,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName subtitleXName = System.Xml.Linq.XName.Get("subtitle", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> subtitleField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -3127,6 +3209,13 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<textType> titleField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -3156,6 +3245,13 @@ namespace AtomSyndication {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName updatedXName = System.Xml.Linq.XName.Get("updated", "http://www.w3.org/2005/Atom");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<dateTimeType> updatedField;
         
         /// <summary>
         /// <para>
@@ -3198,6 +3294,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3206,12 +3306,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -3221,6 +3328,9 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
@@ -3228,37 +3338,15 @@ namespace AtomSyndication {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("sourceType", "http://www.w3.org/2005/Atom");
+        
+        static sourceType() {
+            BuildElementDictionary();
+            InitFSM();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<sourceType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(authorXName, typeof(personType));
@@ -3274,6 +3362,16 @@ namespace AtomSyndication {
             localElementDictionary.Add(titleXName, typeof(textType));
             localElementDictionary.Add(updatedXName, typeof(dateTimeType));
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
         
         FSM IXMetaData.GetValidationStates() {
             return validationStates;
@@ -3309,28 +3407,43 @@ namespace AtomSyndication {
                             24,
                             25}), transitions);
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     public partial class uriType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("uriType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator uriType(XElement xe) { return XTypedServices.ToXTypedElement<uriType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<uriType>(this);
+        }
         
         public uriType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual System.Uri TypedValue {
             get {
@@ -3342,6 +3455,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3350,12 +3467,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -3365,11 +3489,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("uriType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3392,36 +3525,22 @@ namespace AtomSyndication {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<uriType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public partial class dateTimeType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("dateTimeType", "http://www.w3.org/2005/Atom");
-        
 		public static explicit operator dateTimeType(XElement xe) { return XTypedServices.ToXTypedElement<dateTimeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<dateTimeType>(this);
+        }
         
         public dateTimeType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual System.DateTime TypedValue {
             get {
@@ -3433,6 +3552,10 @@ namespace AtomSyndication {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName @baseXName = System.Xml.Linq.XName.Get("base", "http://www.w3.org/XML/1998/namespace");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3441,12 +3564,19 @@ namespace AtomSyndication {
         public virtual System.Uri @base {
             get {
                 XAttribute x = this.Attribute(@baseXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(@baseXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "http://www.w3.org/XML/1998/namespace");
         
         /// <summary>
         /// <para>
@@ -3456,11 +3586,20 @@ namespace AtomSyndication {
         public virtual string lang {
             get {
                 XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
             set {
                 this.SetAttribute(langXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("dateTimeType", "http://www.w3.org/2005/Atom");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3482,14 +3621,6 @@ namespace AtomSyndication {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<dateTimeType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -3502,12 +3633,38 @@ namespace AtomSyndication {
     /// </summary>
     public partial class feed : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private feedType ContentField;
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("feed", "http://www.w3.org/2005/Atom");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static feed Load(string xmlFile) {
+            return XTypedServices.Load<feed, feedType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static feed Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<feed, feedType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static feed Parse(string xml) {
+            return XTypedServices.Parse<feed, feedType>(xml, LinqToXsdTypeManager.Instance);
+        }
         
 		public static explicit operator feed(XElement xe) { return XTypedServices.ToXTypedElement<feed, feedType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return new feed(((feedType)(this.Content.Clone())));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private feedType ContentField;
         
         /// <summary>
         /// <para>
@@ -3518,17 +3675,6 @@ namespace AtomSyndication {
         /// </summary>
         public feed() {
             SetInnerType(new feedType());
-        }
-        
-        /// <summary>
-        /// <para>
-        /// 
-        ///                The Atom feed construct is defined in section 4.1.1 of the format spec.
-        ///            
-        /// </para>
-        /// </summary>
-        public feed(feedType content) {
-            SetInnerType(content);
         }
         
         public override XElement Untyped {
@@ -3545,6 +3691,22 @@ namespace AtomSyndication {
             get {
                 return ContentField;
             }
+        }
+        
+        private void SetInnerType(feedType ContentField) {
+            this.ContentField = ((feedType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// 
+        ///                The Atom feed construct is defined in section 4.1.1 of the format spec.
+        ///            
+        /// </para>
+        /// </summary>
+        public feed(feedType content) {
+            SetInnerType(content);
         }
         
         /// <summary>
@@ -3807,6 +3969,8 @@ namespace AtomSyndication {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("feed", "http://www.w3.org/2005/Atom");
+        
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
@@ -3818,6 +3982,10 @@ namespace AtomSyndication {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3840,6 +4008,16 @@ namespace AtomSyndication {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// 
+    ///                The Atom entry construct is defined in section 4.1.2 of the format spec.
+    ///            
+    /// </para>
+    /// </summary>
+    public partial class entry : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -3853,47 +4031,26 @@ namespace AtomSyndication {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        public static feed Load(string xmlFile) {
-            return XTypedServices.Load<feed, feedType>(xmlFile, LinqToXsdTypeManager.Instance);
+        public static entry Load(string xmlFile) {
+            return XTypedServices.Load<entry, entryType>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
-        public static feed Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<feed, feedType>(xmlFile, LinqToXsdTypeManager.Instance);
+        public static entry Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<entry, entryType>(xmlFile, LinqToXsdTypeManager.Instance);
         }
         
-        public static feed Parse(string xml) {
-            return XTypedServices.Parse<feed, feedType>(xml, LinqToXsdTypeManager.Instance);
+        public static entry Parse(string xml) {
+            return XTypedServices.Parse<entry, entryType>(xml, LinqToXsdTypeManager.Instance);
         }
+        
+		public static explicit operator entry(XElement xe) { return XTypedServices.ToXTypedElement<entry, entryType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
-            return new feed(((feedType)(this.Content.Clone())));
+            return new entry(((entryType)(this.Content.Clone())));
         }
-        
-        private void SetInnerType(feedType ContentField) {
-            this.ContentField = ((feedType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
-    /// <summary>
-    /// <para>
-    /// 
-    ///                The Atom entry construct is defined in section 4.1.2 of the format spec.
-    ///            
-    /// </para>
-    /// </summary>
-    public partial class entry : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private entryType ContentField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom");
-        
-		public static explicit operator entry(XElement xe) { return XTypedServices.ToXTypedElement<entry, entryType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         /// <summary>
         /// <para>
@@ -3904,17 +4061,6 @@ namespace AtomSyndication {
         /// </summary>
         public entry() {
             SetInnerType(new entryType());
-        }
-        
-        /// <summary>
-        /// <para>
-        /// 
-        ///                The Atom entry construct is defined in section 4.1.2 of the format spec.
-        ///            
-        /// </para>
-        /// </summary>
-        public entry(entryType content) {
-            SetInnerType(content);
         }
         
         public override XElement Untyped {
@@ -3931,6 +4077,22 @@ namespace AtomSyndication {
             get {
                 return ContentField;
             }
+        }
+        
+        private void SetInnerType(entryType ContentField) {
+            this.ContentField = ((entryType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// 
+        ///                The Atom entry construct is defined in section 4.1.2 of the format spec.
+        ///            
+        /// </para>
+        /// </summary>
+        public entry(entryType content) {
+            SetInnerType(content);
         }
         
         /// <summary>
@@ -4176,6 +4338,8 @@ namespace AtomSyndication {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom");
+        
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
@@ -4187,6 +4351,10 @@ namespace AtomSyndication {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4209,66 +4377,47 @@ namespace AtomSyndication {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static entry Load(string xmlFile) {
-            return XTypedServices.Load<entry, entryType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static entry Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<entry, entryType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static entry Parse(string xml) {
-            return XTypedServices.Parse<entry, entryType>(xml, LinqToXsdTypeManager.Instance);
-        }
-        
-        public override XTypedElement Clone() {
-            return new entry(((entryType)(this.Content.Clone())));
-        }
-        
-        private void SetInnerType(entryType ContentField) {
-            this.ContentField = ((entryType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
+        private LinqToXsdTypeManager() {
+        }
+        
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildTypeDictionary() {
+            typeDictionary.Add(System.Xml.Linq.XName.Get("textType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.textType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("personType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.personType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("feedType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.feedType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("entryType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.entryType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("contentType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.contentType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("categoryType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.categoryType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("generatorType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.generatorType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("iconType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.iconType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("idType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.idType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("linkType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.linkType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("logoType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.logoType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("sourceType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.sourceType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("uriType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.uriType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("dateTimeType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.dateTimeType));
+        }
         
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("feed", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.feed));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.entry));
+        }
+        
         private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
         
+        private static void BuildWrapperDictionary() {
+            wrapperDictionary.Add(typeof(AtomSyndication.feed), typeof(global::AtomSyndication.feedType));
+            wrapperDictionary.Add(typeof(AtomSyndication.entry), typeof(global::AtomSyndication.entryType));
+        }
+        
         private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
-        private LinqToXsdTypeManager() {
-        }
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
@@ -4281,6 +4430,10 @@ namespace AtomSyndication {
             set {
                 schemaSet = value;
             }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
         }
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
@@ -4301,45 +4454,23 @@ namespace AtomSyndication {
             }
         }
         
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
-        
-        private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("textType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.textType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("personType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.personType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("feedType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.feedType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("entryType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.entryType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("contentType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.contentType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("categoryType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.categoryType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("generatorType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.generatorType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("iconType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.iconType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("idType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.idType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("linkType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.linkType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("logoType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.logoType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("sourceType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.sourceType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("uriType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.uriType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("dateTimeType", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.dateTimeType));
-        }
-        
-        private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("feed", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.feed));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("entry", "http://www.w3.org/2005/Atom"), typeof(global::AtomSyndication.entry));
-        }
-        
-        private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(AtomSyndication.feed), typeof(global::AtomSyndication.feedType));
-            wrapperDictionary.Add(typeof(AtomSyndication.entry), typeof(global::AtomSyndication.entryType));
-        }
-        
-        protected internal static void AddSchemas(XmlSchemaSet schemas) {
-            schemas.Add(schemaSet);
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
         }
         
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("feed", "http://www.w3.org/2005/Atom")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -4351,34 +4482,7 @@ namespace AtomSyndication {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public feed feed {  get {return rootObject as feed; } }
-
-		public entry entry {  get {return rootObject as entry; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(feed root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(entry root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -4477,33 +4581,6 @@ namespace AtomSyndication {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::AtomSyndication.feed feed {  get {return rootObject as global::AtomSyndication.feed; } }
-
-		public global::AtomSyndication.entry entry {  get {return rootObject as global::AtomSyndication.entry; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::AtomSyndication.feed root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::AtomSyndication.entry root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -4515,6 +4592,34 @@ namespace AtomSyndication {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(feed root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public feed feed {  get {return rootObject as feed; } }
+        
+        public XRootNamespace(entry root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public entry entry {  get {return rootObject as entry; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -4613,5 +4718,33 @@ namespace AtomSyndication {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::AtomSyndication.feed root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::AtomSyndication.feed feed {  get {return rootObject as global::AtomSyndication.feed; } }
+        
+        public XRoot(global::AtomSyndication.entry root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::AtomSyndication.entry entry {  get {return rootObject as global::AtomSyndication.entry; } }
     }
 }
