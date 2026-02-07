@@ -50,12 +50,12 @@ namespace Xml.Schema.Linq.Tests
 
             Assert.IsNotNull(namespaceNode);
             Assert.IsNotEmpty(GeneratedTypes);
-            Assert.IsTrue(GeneratedTypes.Count == 399);
+            Assert.IsTrue(GeneratedTypes.Count == 403);
 
             var sealedTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.SealedKeyword)))
                                                .ToList();
             Assert.IsNotEmpty(sealedTypes);
-            Assert.IsTrue(sealedTypes.Count == 89);
+            Assert.IsTrue(sealedTypes.Count == 93);
 
             var partialTypes = GeneratedTypes.Where(t => t.Modifiers.Any(c => c.IsKind(SyntaxKind.PartialKeyword)) &&
                                                             t.Modifiers.All(c => !c.IsKind(SyntaxKind.SealedKeyword)))
