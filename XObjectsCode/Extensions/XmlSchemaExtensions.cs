@@ -233,9 +233,14 @@ namespace XObjects
 
         public static bool IsOfAnonymousType(this XmlSchemaAttribute attr)
         {
-            return attr.SchemaType != null && !(
-                (attr.AttributeSchemaType?.IsGlobal()).GetValueOrDefault() && 
-                (attr.AttributeSchemaType?.IsBuiltInSimpleType()).GetValueOrDefault()
+            return attr.SchemaType.IsAnonymous();
+        }
+
+        public static bool IsAnonymous(this XmlSchemaType? type)
+        {
+            return type != null && !(
+                (type?.IsGlobal()).GetValueOrDefault() && 
+                (type?.IsBuiltInSimpleType()).GetValueOrDefault()
             );
         }
         
@@ -249,10 +254,7 @@ namespace XObjects
         /// </returns>
         public static bool IsOfAnonymousType(this XmlSchemaElement el)
         {
-            return el.SchemaType != null && !(
-                (el.ElementSchemaType?.IsGlobal()).GetValueOrDefault() && 
-                (el.ElementSchemaType?.IsBuiltInSimpleType()).GetValueOrDefault()
-            );
+            return el.SchemaType != null && (el.ElementSchemaType.IsAnonymous());
         }
 
         public static bool IsBuiltIn(this XmlSchemaType type)
@@ -451,32 +453,39 @@ namespace XObjects
             return mergedConfigOutput;
         }
 
-        public static string? GenerateAdHocNameForSimpleUnionType(this XmlSchemaSimpleType? type)
+        public static string? GenerateAdHocNameForSimpleUnionType(this XmlSchemaSimpleType type)
         {
-            if (type?.IsOrHasUnion() != true) return null;
-            Debug.Assert(type != null, nameof(type) + " != null");
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (!type.IsOrHasUnion()) return null;
 
             if (type.Content is XmlSchemaSimpleTypeUnion union) {
-                string name = Constants.SimpleTypeUnionOfPrefix;
-
-                XmlSchemaSimpleType[] types = union.GetUnionMemberTypes();
-
-                for (var i = 0; i < types.Length; i++) {
-                    string titleCasedTypeName = (types[i].Name ?? types[i].QualifiedName.Name).ToUpperFirstInvariant();
-                    if (i == 0) {
-                        name += $"{titleCasedTypeName}";
-                    }
-                    else {
-                        name += $"And{titleCasedTypeName}";
-                    }
-                }
-
-                Debug.Assert(name != Constants.SimpleTypeUnionOfPrefix, "Union had no member types!");
-
-                return name;
+                return union.GenerateAdHocNameForSimpleUnionType();
             }
 
             return null;
+        }
+
+        public static string GenerateAdHocNameForSimpleUnionType(this XmlSchemaSimpleTypeUnion union)
+        {
+            string starterName = $"_{Constants.SimpleTypeUnionOfPrefix.ToLowerCaseFirstChar()}";
+
+            XmlSchemaSimpleType[] types = union.GetUnionMemberTypes();
+
+            var name = starterName;
+
+            for (var i = 0; i < types.Length; i++) {
+                string titleCasedTypeName = (types[i].Name ?? types[i].QualifiedName.Name).ToUpperFirstInvariant();
+                if (i == 0) {
+                    name += $"{titleCasedTypeName}";
+                }
+                else {
+                    name += $"And{titleCasedTypeName}";
+                }
+            }
+
+            Debug.Assert(name != starterName, "Union had no member types!");
+
+            return name;
         }
     }
 }
