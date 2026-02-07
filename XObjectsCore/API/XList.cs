@@ -15,7 +15,7 @@ namespace Xml.Schema.Linq
         internal XName itemXName; //Name of head in case of substitution group
         internal XName[] namesInList;
 
-        public bool SupportsXsiNil { get; init; }
+        public bool SupportsXsiNil { get; set; }
 
         protected XList(XTypedElement container, params XName[] names)
         {
