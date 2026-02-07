@@ -39,7 +39,7 @@ public class ClrPropertyTests: BaseTester
         
         var simpleTypeClrDefName = date1Attr.TypeReference.GetSimpleTypeClrTypeDefName("global::", mapping.NameMappings);
         
-        Assert.True(simpleTypeClrDefName == "System.Object");
+        Assert.True(simpleTypeClrDefName.StartsWith(Constants.SimpleTypeUnionOfPrefix.ToLowerCaseFirstChar()));
         
         Assert.True(date1Attr.TypeReference.SchemaObject is XmlSchemaSimpleType);
 
