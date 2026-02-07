@@ -174,6 +174,7 @@ namespace Xml.Schema.Linq.CodeGen
                 }
 
                 parentTypeDecl.Members.Add(decl);
+                decl.SetParent(parentTypeDecl);
             }
         }
 
