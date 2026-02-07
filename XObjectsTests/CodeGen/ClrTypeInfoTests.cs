@@ -34,7 +34,9 @@ public class ClrTypeInfoTests: BaseTester
         foreach (var simpleType in anonUnionTypes) {
             //Assert.IsInstanceOf<XmlSchemaSimpleTypeUnion>(simpleType.Value);
             // create the simple type from the XmlSchemaSimpleType
-            ClrSimpleTypeInfo? type = ClrSimpleTypeInfo.CreateSimpleTypeInfo(simpleType.Value);
+            XmlSchemaSimpleType xmlSimpleType = simpleType.Value;
+
+            ClrSimpleTypeInfo? type = ClrSimpleTypeInfo.CreateSimpleTypeInfo(xmlSimpleType);
             Assert.NotNull(type);
 
             // the method ClrSimpleTypeInfo.CreateSimpleTypeInfo(simpleType.Value) should return a UnionSimpleTypeInfo
@@ -45,7 +47,7 @@ public class ClrTypeInfoTests: BaseTester
             //the name gets filled out later on
             Assert.IsNull(unionTypeInfo!.clrtypeName);
 
-            unionTypeInfo!.clrtypeName = simpleType.Value.GenerateAdHocNameForSimpleUnionType();
+            unionTypeInfo!.clrtypeName = xmlSimpleType.GenerateAdHocNameForSimpleUnionType();
             Assert.IsNotNull(unionTypeInfo.clrtypeName);
             Assert.IsNotEmpty(unionTypeInfo.clrtypeName);
 

@@ -1,8 +1,13 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using System.Xml.Schema;
+#nullable enable
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
+using System.Xml.Schema;
+using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -99,6 +104,27 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return typeInfo;
+        }
+
+        /// <summary>
+        /// Creates a new 
+        /// </summary>
+        /// <param name="simpleType"></param>
+        /// <returns></returns>
+        public static ClrSimpleTypeInfo CreateSimpleTypeUnionAnonymousTypeInfo(XmlSchemaSimpleType simpleType)
+        {
+            ClrSimpleTypeInfo? type = ClrSimpleTypeInfo.CreateSimpleTypeInfo(simpleType);
+
+            Debug.Assert(type is UnionSimpleTypeInfo);
+            var unionTypeInfo = type as UnionSimpleTypeInfo;
+            
+            unionTypeInfo!.clrtypeName = simpleType.GenerateAdHocNameForSimpleUnionType();
+            unionTypeInfo.IsNested = true;
+            unionTypeInfo.IsSealed = true;
+            unionTypeInfo.IsAbstract = false;
+
+
+            return unionTypeInfo;
         }
 
         public void UpdateClrTypeName(Dictionary<XmlSchemaObject, string> nameMappings,

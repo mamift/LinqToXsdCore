@@ -6,6 +6,7 @@
     <Version>3.2.6</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
+	<LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>

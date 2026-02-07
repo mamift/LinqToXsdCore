@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen;
 
@@ -326,6 +327,57 @@ public partial class ClrTypeReference
                 return currentNamespaceScope;
             }
             return this.Namespace;
+        }
+    }
+
+#nullable enable
+    public bool IsForAnonymousXsdType
+    {
+        get {
+            return ((XmlSchemaType)schemaObject).IsAnonymous();
+        }
+    }
+
+    /// <summary>
+    /// When this type reference is for a <see cref="XmlSchemaSimpleTypeUnion"/>, this property returns all the member types.
+    /// </summary>
+    public XmlSchemaObject[]? UnionMemberTypes
+    {
+        get {
+            Debug.Assert(typeRefFlags.HasFlag(ClrTypeRefFlags.IsUnion));
+
+            if (schemaObject is XmlSchemaSimpleType { Content: XmlSchemaSimpleTypeUnion union }) {
+                XmlSchemaSimpleType[] xmlSchemaSimpleTypes = union.GetUnionMemberTypes();
+                return xmlSchemaSimpleTypes.Cast<XmlSchemaObject>().ToArray();
+            }
+
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// When this type reference is for a <see cref="XmlSchemaChoice"/> particle, this property returns all the possible choices.
+    /// </summary>
+    public XmlSchemaObject[]? ChoiceMemberTypes
+    {
+        get {
+            if (schemaObject is XmlSchemaComplexType type) {
+                if (type.ContentModel is XmlSchemaComplexContent complexContent) {
+                    if (complexContent.Content is XmlSchemaComplexContentRestriction complexContentRestriction) {
+                        if (complexContentRestriction.Particle is XmlSchemaChoice choice) {
+                            return choice.Items.Cast<XmlSchemaObject>().ToArray();
+                        }
+                    }
+
+                    if (complexContent.Content is XmlSchemaComplexContentExtension complexContentExtension) {
+                        if (complexContentExtension.Particle is XmlSchemaChoice choice) {
+                            return choice.Items.Cast<XmlSchemaObject>().ToArray();
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
     }
 

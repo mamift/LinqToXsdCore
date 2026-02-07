@@ -390,7 +390,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        public override CodeMemberProperty AddToType(CodeTypeDeclaration parentTypeDecl,
+        public override CodeMemberProperty? AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
             if (parentTypeDecl == null) throw new ArgumentNullException(nameof(parentTypeDecl));

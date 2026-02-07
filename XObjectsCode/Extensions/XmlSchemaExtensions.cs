@@ -467,7 +467,7 @@ namespace XObjects
 
         public static string GenerateAdHocNameForSimpleUnionType(this XmlSchemaSimpleTypeUnion union)
         {
-            string starterName = $"_{Constants.SimpleTypeUnionOfPrefix.ToLowerCaseFirstChar()}";
+            string starterName = $"{Constants.SimpleTypeUnionOfPrefix.ToLowerCaseFirstChar()}";
 
             XmlSchemaSimpleType[] types = union.GetUnionMemberTypes();
 

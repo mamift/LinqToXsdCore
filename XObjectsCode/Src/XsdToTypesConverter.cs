@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -825,6 +826,20 @@ namespace Xml.Schema.Linq.CodeGen
                     ClrBasePropertyInfo propertyInfo = BuildPropertyForAttribute(derivedAttribute, false, baseAttribute != null, typeInfo);
                     BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                     typeInfo.AddMember(propertyInfo);
+
+                    if (propertyInfo is ClrPropertyInfo {
+                            TypeReference: {
+                                IsForAnonymousXsdType: true, IsUnion: true, IsSimpleType: true, IsLocalType: true
+                            }
+                        } clrPropInfo)
+                    {
+                        var unionValidationType = ClrSimpleTypeInfo.CreateSimpleTypeUnionAnonymousTypeInfo((XmlSchemaSimpleType)clrPropInfo.TypeReference.SchemaObject);
+                        unionValidationType.Annotations.Add(new ClrAnnotation() {
+                            Section = "",
+                            Text = ""
+                        });
+                        typeInfo.NestedTypes.Add(unionValidationType);
+                    }
                 }
             }
         }
@@ -1023,9 +1038,7 @@ namespace Xml.Schema.Linq.CodeGen
             bool isTypeRef = false;
             bool isAnonymous = attribute.IsOfAnonymousType();
 
-            XmlSchemaObject schemaObject = schemaType;
-
-            ClrTypeReference typeRef = BuildTypeReference(schemaObject, schemaTypeName, isAnonymous, true);
+            ClrTypeReference typeRef = BuildTypeReference(schemaType, schemaTypeName, isAnonymous, true);
             typeRef.Origin = typeRefOrigin;
             typeRef.IsTypeRef = isTypeRef;
 
@@ -1042,8 +1055,8 @@ namespace Xml.Schema.Linq.CodeGen
                 // UpdateTypeRefForInlineAnonymousEnum(attribute, containingType, typeRef, propertyInfo);
             }
 
-            if (attribute.IsOfAnonymousType() && attribute.AttributeSchemaType.IsOrHasUnion()) {
-
+            if (attribute.IsOfAnonymousType() && attribute.AttributeSchemaType!.IsOrHasUnion()) {
+                
             }
 
             SetFixedDefaultValue(attribute, propertyInfo);
@@ -1079,14 +1092,22 @@ namespace Xml.Schema.Linq.CodeGen
             return property;
         }
 
-        private ClrTypeReference BuildTypeReference(XmlSchemaObject schemaObject, XmlQualifiedName typeQName,
-            bool anonymousType, bool setVariety)
+        private ClrTypeReference BuildTypeReference(XmlSchemaObject schemaObject, XmlQualifiedName typeQName, bool anonymousType, bool setVariety)
         {
             string typeName = typeQName.Name;
             string typeNs = typeQName.Namespace;
             if (!anonymousType)
             {
                 typeNs = configSettings.GetClrNamespace(typeNs);
+            }
+            else {
+                if (schemaObject is XmlSchemaSimpleType type) {
+                    Debug.Assert(typeQName.IsEmpty);
+
+                    if (type.Content is XmlSchemaSimpleTypeUnion union) {
+                        typeName = union.GenerateAdHocNameForSimpleUnionType();
+                    }
+                }
             }
 
             ClrTypeReference typeRef = new ClrTypeReference(typeName, typeNs, schemaObject, anonymousType, setVariety);

@@ -8,6 +8,16 @@ namespace Xml.Schema.Linq.CodeGen
 {
     public static class StringExtensions
     {
+        public static string ToLowerCaseFirstChar(this string str)
+        {
+            char[] asCharArray = str.ToArray();
+            char first = char.ToLower(asCharArray[0]);
+
+            asCharArray[0] = first;
+
+            return new string(asCharArray);
+        }
+
         /// <summary>
         /// Equivalent to T-SQL COALESCE function for strings.
         /// <seealso cref="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/coalesce-transact-sql?view=sql-server-ver17"/>
