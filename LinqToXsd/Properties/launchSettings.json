@@ -89,6 +89,12 @@
       "commandLineArgs": "gen \"akomantoso30.xsd\" -a",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\AkomaNtoso",
       "hotReloadEnabled": false
+    },
+    "ImportsXmlNamespace": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"ImportsXmlAttributes.xsd\" -a",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\ImportsXmlNamespace",
+      "hotReloadEnabled": false
     }
   }
 }

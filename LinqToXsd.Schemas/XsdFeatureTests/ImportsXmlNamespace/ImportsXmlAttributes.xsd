@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:LinqToXsd:Schemas:ImportsXmlAttributes"
+    xmlns="urn:LinqToXsd:Schemas:ImportsXmlAttributes">
+
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xs:element name="localAttributeGroupElementTest">
+        <xs:complexType>
+            <xs:attributeGroup ref="localAttrGroup"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attributeGroup name="localAttrGroup">
+        <xs:attribute ref="xml:base"/>
+        <xs:attribute ref="xml:id"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute ref="xml:space"/>
+    </xs:attributeGroup>
+    <xs:element name="importedAttributeGroupElementTest">
+        <xs:complexType>
+            <xs:attributeGroup ref="xml:specialAttrs"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -46,6 +46,12 @@
     <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithComplexTypes.xsd" />
     <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithTypes.xsd" />
     <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithTypesSimpleDerived.xsd" />
+    <EmbeddedResource Include="XsdFeatureTests\ImportsXmlNamespace\ImportsXmlAttributes.xsd.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XsdFeatureTests\ImportsXmlNamespace\xml.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="XsdFeatureTests\SimpleTypeUnion\StuDateAndTime.xsd" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +234,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Schemas\XSD\xml.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="XsdFeatureTests\ImportsXmlNamespace\ImportsXmlAttributes.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
