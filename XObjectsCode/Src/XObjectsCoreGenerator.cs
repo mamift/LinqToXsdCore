@@ -176,7 +176,7 @@ namespace Xml.Schema.Linq
             if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
             var xsdConverter = new XsdToTypesConverter(settings);
-            var mapping = xsdConverter.GenerateMapping(schemaSet);
+            ClrMappingInfo mapping = xsdConverter.GenerateMapping(schemaSet);
 
             var codeGenerator = new CodeDomTypesGenerator(settings);
             var namespaces = codeGenerator.GenerateTypes(mapping);

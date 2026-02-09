@@ -835,7 +835,12 @@ namespace Xml.Schema.Linq.CodeGen
                     {
                         // This is an internal validation class for simple anonymous union types (they have no name in XSD, but to validate union
                         // values in the C# setter code, we need something named).
-                        var unionValidationType = ClrSimpleTypeInfo.CreateSimpleTypeUnionAnonymousTypeInfo((XmlSchemaSimpleType)clrPropInfo.TypeReference.SchemaObject);
+                        var unionValidationType = ClrSimpleTypeInfo.CreateSimpleTypeUnionAnonymousTypeInfo
+                        (
+                            simpleType: (XmlSchemaSimpleType)clrPropInfo.TypeReference.SchemaObject,
+                            // because this is a nested class, this does not need namespace qualification (or even reference to the parent class)
+                            clrTypeNamespace: null
+                        );
                         unionValidationType.Annotations.Add(new ClrAnnotation() {
                             Section = "summary",
                             Text = "This is an internal validation class."
