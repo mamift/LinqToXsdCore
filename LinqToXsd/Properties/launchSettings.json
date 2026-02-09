@@ -83,6 +83,12 @@
       "commandName": "Project",
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\SharePoint2010"
+    },
+    "AkomaNtoso": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"akomantoso30.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\AkomaNtoso",
+      "hotReloadEnabled": false
     }
   }
 }
