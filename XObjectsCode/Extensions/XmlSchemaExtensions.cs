@@ -231,8 +231,17 @@ namespace XObjects
             return elements;
         }
 
+        /// <summary>
+        /// Checks the type of the provided <see cref="XmlSchemaAttribute"/> and returns true if it is an anonymous type,
+        /// meaning it is not a global type and not a built-in simple type.
+        /// </summary>
+        /// <param name="attr"></param>
+        /// <returns></returns>
         public static bool IsOfAnonymousType(this XmlSchemaAttribute attr)
         {
+            // the attr.AttributeSchemaType is the compiled type, which is always non-null,
+            // but the attr.SchemaType is the original local/anonymous type as defined in the schema,
+            // which is null if the type is referenced by name (a name means it's a global type)
             return attr.SchemaType.IsAnonymous();
         }
 
