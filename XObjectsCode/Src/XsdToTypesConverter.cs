@@ -827,6 +827,9 @@ namespace Xml.Schema.Linq.CodeGen
                     BuildAnnotationInformation(propertyInfo, derivedAttribute, false, false);
                     typeInfo.AddMember(propertyInfo);
 
+                    // this if block handles local, anonymous union types defined for attributes.
+                    // We need to generate a named type for them in order to validate the value in the setter code,
+                    // and we want to generate it as a nested type under the parent type (for the element) that owns the attribute.
                     if (propertyInfo is ClrPropertyInfo {
                             TypeReference: {
                                 IsForAnonymousXsdType: true, IsUnion: true, IsSimpleType: true, IsLocalType: true
