@@ -248,8 +248,8 @@ namespace XObjects
         public static bool IsAnonymous(this XmlSchemaType? type)
         {
             return type != null && !(
-                (type?.IsGlobal()).GetValueOrDefault() && 
-                (type?.IsBuiltInSimpleType()).GetValueOrDefault()
+                type.IsGlobal() &&
+                type.IsBuiltInSimpleType()
             );
         }
         
