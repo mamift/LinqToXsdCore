@@ -380,6 +380,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             string typeName = typeInfo is EnumSimpleTypeInfo ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
             var simpleTypeDecl = new CodeTypeDeclaration(typeName);
+            // might need special handling when typeInfo.clrtypeNs is null, but returning default Visibility (public) when clrtypeNs is null works for now
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
             //simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.NestedAssembly;

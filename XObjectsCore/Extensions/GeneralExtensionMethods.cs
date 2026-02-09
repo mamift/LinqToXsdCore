@@ -165,14 +165,10 @@ namespace Xml.Schema.Linq.Extensions
         public static TValue ValueForKey<TKey, TValue>(this IDictionary<TKey, TValue> tsDictionary, TKey key)
         {
             if (tsDictionary.Count == 0) return default(TValue);
-            if (!tsDictionary.ContainsKey(key)) return default(TValue);
+            if (EqualityComparer<TKey>.Default.Equals(default(TKey), key)) return default(TValue);
+            if (!tsDictionary.TryGetValue(key, out TValue forKey)) return default(TValue);
 
-            try {
-                return tsDictionary[key];
-            }
-            catch {
-                return default(TValue);
-            }
+            return forKey;
         }
     }
 }
