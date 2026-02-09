@@ -34,6 +34,9 @@ namespace Xml.Schema.Linq.CodeGen
         private static string CreateValidIdentifier(string value)
         {
             if (string.IsNullOrEmpty(value)) return value;
+            if (NameGenerator.IsKeyword(value)) {
+                return $"@{value}";
+            }
 
             var invalidChars = value
                 .GroupBy(char.GetUnicodeCategory)

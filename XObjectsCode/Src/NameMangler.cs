@@ -121,12 +121,12 @@ namespace Xml.Schema.Linq.CodeGen
         public static string MakeValidIdentifier(string identifierName)
         {
             identifierName = CodeIdentifier.MakeValid(identifierName);
-            if (isKeyword(identifierName))
+            if (IsKeyword(identifierName))
                 return "@" + identifierName;
             return identifierName;
         }
 
-        public static bool isKeyword(string identifier)
+        public static bool IsKeyword(string identifier)
         {
             return keywords.Contains(identifier);
         }
