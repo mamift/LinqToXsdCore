@@ -1,7 +1,8 @@
 {
   "profiles": {
     "LinqToXsd": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "gen -a C:\\Users\\mmiftah\\source\\Projects\\LinqToXsdCore\\GeneratedSchemaLibraries\\Atom\\atom.xsd"
     },
     "EnumInvalidChars": {
       "commandName": "Project",
@@ -95,6 +96,11 @@
       "commandLineArgs": "gen \"ImportsXmlAttributes.xsd\" -a",
       "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\ImportsXmlNamespace",
       "hotReloadEnabled": false
+    },
+    "XQueryX": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XQueryX"
     }
   }
 }
