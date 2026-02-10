@@ -302,7 +302,8 @@ public partial class ClrTypeReference
         return clrTypeName;
     }
 
-    internal string? UpdateClrFullEnumTypeName(ClrPropertyInfo property, string currentTypeScope, string currentNamespaceScope)
+    internal string? UpdateClrFullEnumTypeName(ClrPropertyInfo property, string currentTypeScope, string currentNamespaceScope,
+        bool nestedEnumClassCreated = false)
     {
         Debug.Assert(this.IsEnum);
 
@@ -315,7 +316,7 @@ public partial class ClrTypeReference
         else if (this.clrFullTypeName.IsEmpty())
         {
             //If the enum type is local (nested), use its parent type scope
-            if (property.TypeReference.IsLocalType)
+            if (property.TypeReference.IsLocalType || (property.TypeReference.IsForAnonymousXsdType || nestedEnumClassCreated))
                 this.clrFullTypeName = $"{currentTypeScope}.{this.ClrName ?? this.Name}";
             else
                 this.clrFullTypeName = $"{theClrNamespace}.{this.ClrName ?? this.Name}";
