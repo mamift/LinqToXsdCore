@@ -38,6 +38,10 @@ namespace Xml.Schema.Linq.CodeGen
                 return $"@{value}";
             }
 
+            if (value.Length == 1) {
+                return NameGenerator.ExpandSymbolToFullWord(value[0]);
+            }
+
             var invalidChars = value
                 .GroupBy(char.GetUnicodeCategory)
                 .Where(g => !ValidUnicodeCategories.Contains(g.Key))

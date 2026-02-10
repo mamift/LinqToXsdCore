@@ -130,6 +130,46 @@ namespace Xml.Schema.Linq.CodeGen
         {
             return keywords.Contains(identifier);
         }
+
+        public static string ExpandSymbolToFullWord(char ch)
+        {
+            if (!(char.IsSymbol(ch) || char.IsPunctuation(ch))) return ch.ToString();
+            return ch switch {
+                '!' => "ExclamationMark",
+                '?' => "QuestionMark",
+                '.' => "Period",
+                ',' => "Comma",
+                ';' => "Semicolon",
+                ':' => "Colon",
+                '\'' => "Apostrophe",
+                '"' => "QuotationMark",
+                '(' => "LeftParenthesis",
+                ')' => "RightParenthesis",
+                '[' => "LeftBracket",
+                ']' => "RightBracket",
+                '{' => "LeftBrace",
+                '}' => "RightBrace",
+                '-' => "Hyphen",
+                '_' => "Underscore",
+                '+' => "Plus",
+                '=' => "Equals",
+                '*' => "Asterisk",
+                '/' => "Slash",
+                '\\' => "Backslash",
+                '&' => "Ampersand",
+                '%' => "Percent",
+                '$' => "DollarSign",
+                '#' => "Hash",
+                '@' => "AtSymbol",
+                '^' => "Caret",
+                '~' => "Tilde",
+                '`' => "Backtick",
+                '<' => "LessThan",
+                '>' => "GreaterThan",
+                '|' => "Pipe",
+                _ => throw new InvalidOperationException($"__UnknownSymbol__PLEASE_IMPLEMENT_IN_{nameof(ExpandSymbolToFullWord)}_METHOD")
+            };
+        }
     }
 
     internal class SymbolEntry
