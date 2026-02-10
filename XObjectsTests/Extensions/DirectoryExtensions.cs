@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using tr = W3C.XMLSpec.tr;
 
 namespace Xml.Schema.Linq.Tests.Extensions;
 
