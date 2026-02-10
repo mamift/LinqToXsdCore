@@ -59,7 +59,7 @@ namespace Xml.Schema.Linq.Extensions
 
             return string.Equals(clrTypeReference.ClrFullTypeName, codeTypeReference.BaseType);
         }
-        
+
         private static string ToCodeStringInternal(
             this OneOf<CodeCompileUnit, CodeExpression, CodeTypeMember, CodeNamespace, CodeStatement, CodeTypeDeclaration> codeDomObjects,
             CodeGeneratorOptions options = null)
@@ -146,7 +146,195 @@ namespace Xml.Schema.Linq.Extensions
         /// <returns></returns>
         public static StringWriter ToStringWriter(this CodeCompileUnit ccu) => ToStringWriterInternal(ccu);
         public static string ToCodeString(this CodeCompileUnit ccu) => ToCodeStringInternal(ccu);
-        
+
+        public static string ToCodeString(this CompilerError ce) => ce.ToString();
+
+        public static string ToCodeString(this CodeAttributeArgument ce) => ce.ToCodeStringInternal();
+        private static string ToCodeStringInternal(this CodeAttributeArgument caa, CodeGeneratorOptions? options = null)
+        {
+            return $"{caa.Name} = {caa.Value.ToCodeString()}";
+        }
+
+        public static string ToCodeString(this CodeAttributeDeclaration ce) => ce.ToCodeStringInternal();
+        private static string ToCodeStringInternal(this CodeAttributeDeclaration caa, CodeGeneratorOptions? options = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ToCodeString(this CodeCatchClause ce) => ce.ToCodeStringInternal();
+        private static string ToCodeStringInternal(this CodeCatchClause caa, CodeGeneratorOptions? options = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ToCodeString(this CodeDirective ce) => ce.ToCodeStringInternal();
+        private static string ToCodeStringInternal(this CodeDirective caa, CodeGeneratorOptions? options = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ToCodeString(this CodeTypeParameter ce) => ce.ToCodeStringInternal();
+        private static string ToCodeStringInternal(this CodeTypeParameter caa, CodeGeneratorOptions? options = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ToCodeString(this CodeTypeReference ce) => ce.ToCodeStringInternal();
+        private static string ToCodeStringInternal(this CodeTypeReference caa, CodeGeneratorOptions? options = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static string ToCodeStringFromCollections(this CollectionBase collectionBase)
+        {
+            string codeString = collectionBase switch {
+                CompilerErrorCollection compilererrorcollection => compilererrorcollection.ToCodeString(),
+                CodeAttributeArgumentCollection codeattributeargumentcollection => codeattributeargumentcollection.ToCodeString(),
+                CodeAttributeDeclarationCollection codeattributedeclarationcollection => codeattributedeclarationcollection.ToCodeString(),
+                CodeCatchClauseCollection codecatchclausecollection => codecatchclausecollection.ToCodeString(),
+                CodeCommentStatementCollection codecommentstatementcollection => codecommentstatementcollection.ToCodeString(),
+                CodeDirectiveCollection codedirectivecollection => codedirectivecollection.ToCodeString(),
+                CodeExpressionCollection codeexpressioncollection => codeexpressioncollection.ToCodeString(),
+                CodeNamespaceCollection codenamespacecollection => codenamespacecollection.ToCodeString(),
+                CodeParameterDeclarationExpressionCollection codeparameterdeclarationexpressioncollection => codeparameterdeclarationexpressioncollection.ToCodeString(),
+                CodeStatementCollection codestatementcollection => codestatementcollection.ToCodeString(),
+                CodeTypeDeclarationCollection codetypedeclarationcollection => codetypedeclarationcollection.ToCodeString(),
+                CodeTypeMemberCollection codetypemembercollection => codetypemembercollection.ToCodeString(),
+                CodeTypeParameterCollection codetypeparametercollection => codetypeparametercollection.ToCodeString(),
+                CodeTypeReferenceCollection codetypereferencecollection => codetypereferencecollection.ToCodeString(),
+                _ => throw new NotSupportedException("Only CodeDOM collections supported")
+            };
+
+            return codeString;
+        }
+
+        public static string ToCodeString(this CompilerErrorCollection compilererrorcollection)
+        {
+            var str = "";
+            foreach (CompilerError element in compilererrorcollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeAttributeArgumentCollection codeattributeargumentcollection)
+        {
+            var str = "";
+            foreach (CodeAttributeArgument element in codeattributeargumentcollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeAttributeDeclarationCollection codeattributedeclarationcollection)
+        {
+            var str = "";
+            foreach (CodeAttributeDeclaration element in codeattributedeclarationcollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeCatchClauseCollection codecatchclausecollection)
+        {
+            var str = "";
+            foreach (CodeCatchClause element in codecatchclausecollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeCommentStatementCollection codecommentstatementcollection)
+        {
+            var str = "";
+            foreach (CodeCommentStatement element in codecommentstatementcollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeDirectiveCollection codedirectivecollection)
+        {
+            var str = "";
+            foreach (CodeDirective element in codedirectivecollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeExpressionCollection codeexpressioncollection)
+        {
+            var str = "";
+            foreach (CodeExpression element in codeexpressioncollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeNamespaceCollection codenamespacecollection)
+        {
+            var str = "";
+            foreach (CodeNamespace element in codenamespacecollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeParameterDeclarationExpressionCollection codeparameterdeclarationexpressioncollection)
+        {
+            var str = "";
+            foreach (CodeParameterDeclarationExpression element in codeparameterdeclarationexpressioncollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeStatementCollection codestatementcollection)
+        {
+            var str = "";
+            foreach (CodeStatement element in codestatementcollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeTypeDeclarationCollection codetypedeclarationcollection)
+        {
+            var str = "";
+            foreach (CodeTypeDeclaration element in codetypedeclarationcollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeTypeMemberCollection codetypemembercollection)
+        {
+            var str = "";
+            foreach (CodeTypeMember element in codetypemembercollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeTypeParameterCollection codetypeparametercollection)
+        {
+            var str = "";
+            foreach (CodeTypeParameter element in codetypeparametercollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+        public static string ToCodeString(this CodeTypeReferenceCollection codetypereferencecollection)
+        {
+            var str = "";
+            foreach (CodeTypeReference element in codetypereferencecollection) {
+                str += element.ToCodeString() + "\n";
+            }
+
+            return str;
+        }
+
         /// <summary>
         /// Creates individual <see cref="StringWriter"/>s for each <see cref="CodeTypeDeclaration"/> in each
         /// <see cref="CodeNamespace"/> in the <paramref name="current"/> <see cref="CodeCompileUnit"/>.
