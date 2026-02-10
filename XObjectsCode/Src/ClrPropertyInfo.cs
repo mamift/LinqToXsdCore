@@ -349,18 +349,20 @@ namespace Xml.Schema.Linq.CodeGen
             string currentTypeScope,
             string currentNamespaceScope,
             Dictionary<XmlSchemaObject, string> nameMappings,
-            Action<ClrTypeReference> createNestedEnumType)
+            Action<ClrTypeReference>? createNestedEnumType)
         {
             var typeRef = this.TypeReference;
+            var nestedEnumClassWasCreated = false;
             if (typeRef.IsEnum)
             {
                 if (string.IsNullOrEmpty(typeRef.Name))
                 {
                     typeRef.Name = $"{this.PropertyName.ToUpperFirstInvariant()}{Constants.LocalEnumSuffix}";
                 }
-                if (ShouldGenerate && typeRef.IsLocalType && createNestedEnumType != null)
+                if (ShouldGenerate && (typeRef.IsLocalType || this.typeRef.IsForAnonymousXsdType) && createNestedEnumType != null)
                 {
                     createNestedEnumType(typeRef);
+                    nestedEnumClassWasCreated = true;
                 }
             }
 
@@ -368,10 +370,19 @@ namespace Xml.Schema.Linq.CodeGen
 
             if ((Validation || IsUnion) || IsEnum)
             {
-                this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespaceScope, nameMappings);
+                // when a nested enum class is made, then the simpleTypeClrTypeName be the fullBy qualified name of the nested enum class (inc namespace);
+                // otherwise it will be the namespace
+                if (nestedEnumClassWasCreated) {
+                    Debug.Assert(currentTypeScope.StartsWith(currentNamespaceScope),
+                        "currentTypeScope should also start with the currentNamespaceScope!");
+                    this.simpleTypeClrTypeName += $"{typeRef.Name}";
+                }
+                else {
+                    this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespaceScope, nameMappings);
+                }
             }
 
-            this.parentTypeFullName = typeRef.IsEnum ? typeRef.UpdateClrFullEnumTypeName(this, currentTypeScope, currentNamespaceScope) : currentTypeScope;
+            this.parentTypeFullName = typeRef.IsEnum ? typeRef.UpdateClrFullEnumTypeName(this, currentTypeScope, currentNamespaceScope, nestedEnumClassWasCreated) : currentTypeScope;
         }
 
         public void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
@@ -582,7 +593,7 @@ namespace Xml.Schema.Linq.CodeGen
                     new CodePrimitiveExpression(this.propertyName),
                     CodeDomHelper.This(),
                     xNameParm ? xNameExpression : null,
-                    GetSimpleTypeClassExpression(IsUnion)
+                    GetSimpleTypeClassExpression(IsUnion || IsEnum)
                 };
 
                 var codeMethodInvokeExpression = CodeDomHelper.CreateMethodCall(
@@ -851,7 +862,7 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
                         Constants.ParseUnionValue,
                         returnValueExp,
-                        GetSimpleTypeClassExpression(IsUnion));
+                        GetSimpleTypeClassExpression(IsUnion || IsEnum));
                 }
                 else
                 {
@@ -1187,7 +1198,11 @@ namespace Xml.Schema.Linq.CodeGen
                 ? $"global::{this.settings.GetClrNamespace(PropertyNs)}.{this.simpleTypeClrTypeName}"
                 : this.simpleTypeClrTypeName;
 
-            var codeFieldReferenceExpression = CodeDomHelper.CreateFieldReference(typeName, Constants.SimpleTypeDefInnerType);
+            if (!disambiguateWhenPropertyAndTypeNameAreTheSame && (this.typeRef.IsEnum && (this.typeRef.IsForAnonymousXsdType || this.typeRef.IsLocalType))) {
+                typeName = typeName.Split('.').Last();
+            }
+
+            var codeFieldReferenceExpression = CodeDomHelper.CreateFieldReference(typeName + Constants.EnumValidator, Constants.SimpleTypeDefInnerType);
 
             #if DEBUG
             var str = codeFieldReferenceExpression.ToCodeString();
