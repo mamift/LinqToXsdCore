@@ -266,6 +266,7 @@ public static class RoslynExtensions
 
         using var streamWriter = new StreamWriter(filePath);
         ns.WriteTo(streamWriter);
+        streamWriter.Flush();
     }
 
     public static NamespaceDeclarationSyntax SortTypesByName(this NamespaceDeclarationSyntax ns)
