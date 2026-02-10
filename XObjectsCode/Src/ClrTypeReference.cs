@@ -14,8 +14,8 @@ public partial class ClrTypeReference
 {
     string typeName;
     string typeNs;
-    string clrName;
-    string clrFullTypeName;
+    string? clrName;
+    string? clrFullTypeName;
 
     string typeCodeString;
     XmlSchemaObject schemaObject;
@@ -112,7 +112,7 @@ public partial class ClrTypeReference
         }
     }
 
-    public string ClrName
+    public string? ClrName
     {
         get { return clrName; }
     }
@@ -251,7 +251,8 @@ public partial class ClrTypeReference
         }
 
         // unfortunately this doesn't handle simple type unions
-        if (clrTypeName.IsEmpty() && key is XmlSchemaSimpleType { Content: XmlSchemaSimpleTypeUnion union }) {
+        if (clrTypeName.IsEmpty() && key is XmlSchemaSimpleType { Content: XmlSchemaSimpleTypeUnion union }) 
+        {
             clrTypeName = typeof(object).FullName;
         }
 
@@ -301,7 +302,7 @@ public partial class ClrTypeReference
         return clrTypeName;
     }
 
-    internal string UpdateClrFullEnumTypeName(ClrPropertyInfo property, string currentTypeScope, string currentNamespaceScope)
+    internal string? UpdateClrFullEnumTypeName(ClrPropertyInfo property, string currentTypeScope, string currentNamespaceScope)
     {
         Debug.Assert(this.IsEnum);
 
@@ -311,7 +312,7 @@ public partial class ClrTypeReference
         {
             this.clrFullTypeName = this.clrName;
         }
-        else if (this.clrFullTypeName.IsEmpty()) 
+        else if (this.clrFullTypeName.IsEmpty())
         {
             //If the enum type is local (nested), use its parent type scope
             if (property.TypeReference.IsLocalType)
