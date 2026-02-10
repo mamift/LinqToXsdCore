@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -330,7 +331,6 @@ public partial class ClrTypeReference
         }
     }
 
-#nullable enable
     public bool IsForAnonymousXsdType
     {
         get {

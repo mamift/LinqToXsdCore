@@ -85,7 +85,7 @@ namespace Xml.Schema.Linq
         /// <param name="settings">If null, uses default or </param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, LinqToXsdSettings settings = null)
+        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, LinqToXsdSettings? settings = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             if (settings == null) settings = new LinqToXsdSettings();
@@ -93,9 +93,9 @@ namespace Xml.Schema.Linq
             var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
 
             using (xmlReader) {
-                var schemaSet = xmlReader.ToXmlSchemaSet();
+                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet();
 
-                var xsdFolder = Path.GetDirectoryName(xsdFilePath);
+                string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
 
                 return Generate(schemaSet, settings)
                     .Select(x =>
