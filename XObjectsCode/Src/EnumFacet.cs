@@ -39,7 +39,10 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             if (value.Length == 1) {
-                return NameGenerator.ExpandSymbolToFullWord(value[0]);
+                char ch = value[0];
+                if (char.IsSymbol(ch) || char.IsPunctuation(ch)) {
+                    return NameGenerator.ExpandSymbolToFullWord(value[0]);
+                }
             }
 
             var invalidChars = value
