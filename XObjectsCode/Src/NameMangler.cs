@@ -133,7 +133,6 @@ namespace Xml.Schema.Linq.CodeGen
 
         public static string ExpandSymbolToFullWord(char ch)
         {
-            if (!(char.IsSymbol(ch) || char.IsPunctuation(ch))) return ch.ToString();
             return ch switch {
                 '!' => "ExclamationMark",
                 '?' => "QuestionMark",
