@@ -77,7 +77,7 @@ public static class RoslynExtensions
                     id = p.Identifier.ValueText + $"{cs.Identifier.ValueText}_Property";
                 }
                 else {
-                    Debugger.Break();
+                    throw new NotImplementedException();
                 }
 
                 list.Add((id, member));
