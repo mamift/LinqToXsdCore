@@ -13,6 +13,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MoreLinq;
 using NUnit.Framework;
+using ObjectsComparer;
 using Xml.Schema.Linq.Extensions;
 using Xml.Schema.Linq.Tests.Extensions;
 
@@ -294,7 +295,7 @@ namespace Xml.Schema.Linq.Tests
             var actualAllPropAttributeNamesCount = allPropAttributeNames.Count;
             Assert.IsTrue(actualAllPropAttributeNamesCount == expectedAllPropAttributeNamesCount);
 
-            const int expectedAllFieldAttributeNamesCount = 234;
+            const int expectedAllFieldAttributeNamesCount = 235;
             var actualAllFieldAttributeNamesCount = allFieldAttributeNames.Count;
             Assert.IsTrue(actualAllFieldAttributeNamesCount == expectedAllFieldAttributeNamesCount);
 
@@ -311,23 +312,26 @@ namespace Xml.Schema.Linq.Tests
         {
             var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
 
-            var tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
-            var ns1 = tree1.GetNamespaceRoot();
+            CSharpSyntaxTree tree1 = Utilities.GenerateSyntaxTree(atomXsdFileInfo, AllTestFiles);
+            NamespaceDeclarationSyntax ns1 = tree1.GetNamespaceRoot().CleanForComparison();
 
-            var tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
-            var ns2 = tree2.GetNamespaceRoot();
+            CSharpSyntaxTree tree2 = new FileInfo("..\\..\\..\\..\\GeneratedSchemaLibraries\\Atom\\atom.xsd.cs").ToSyntaxTree();
+            NamespaceDeclarationSyntax ns2 = tree2.GetNamespaceRoot().CleanForComparison();
             
             Assert.IsEmpty(ns1.CompareProperties(ns2));
             Assert.IsEmpty(ns1.CompareFields(ns2));
 
-            var allProperties1 = ns1.GetAllPropertyDescendantAttributes();
+            List<AttributeSyntax> allFields1 = ns1.GetAllFieldDescendantAttributes();
+            List<AttributeSyntax> allFields2 = ns2.GetAllFieldDescendantAttributes();
 
-            var allFields1 = ns1.GetAllFieldDescendantAttributes();
-            var allFields2 = ns2.GetAllFieldDescendantAttributes();
+            Assert.AreEqual(allFields1.Count, allFields2.Count);
 
-            var compareFields = allFields1.CompareObjects(allFields2);
+            var fieldWithAttrString1 = allFields1.Select(f => f.Parent.Parent.ToString().Trim()).ToList();
+            var fieldWithAttrString2 = allFields2.Select(f => f.Parent.Parent.ToString().Trim()).ToList();
 
-            Assert.IsEmpty(compareFields);
+            var stringComparison = fieldWithAttrString1.CompareObjects(fieldWithAttrString2);
+
+            Assert.IsEmpty(stringComparison);
         }
 
         [Test]

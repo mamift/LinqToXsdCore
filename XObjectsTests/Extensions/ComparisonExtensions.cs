@@ -6,9 +6,9 @@ namespace Xml.Schema.Linq.Tests.Extensions;
 
 public static class ComparisonExtensions
 {
-    public static List<Difference> CompareObjects<T>(this IEnumerable<T> one, IEnumerable<T> others)
+    public static List<Difference> CompareObjects<T>(this IEnumerable<T> one, IEnumerable<T> others, ComparisonSettings? settings = null)
     {
-        var c = new Comparer(new ComparisonSettings() {
+        var c = new Comparer(settings ?? new ComparisonSettings() {
             EmptyAndNullEnumerablesEqual = true,
             RecursiveComparison = true,
         });
