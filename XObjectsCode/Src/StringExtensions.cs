@@ -28,7 +28,7 @@ namespace Xml.Schema.Linq.CodeGen
         /// <returns></returns>
         public static string? Coalesce(this string? str, params string?[] others)
         {
-            var list = others.Concat([str]).ToList();
+            var list = new[] { str }.Concat(others);
 
             foreach (var item in list) {
                 if (item.IsEmpty()) {

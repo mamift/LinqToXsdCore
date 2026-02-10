@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -165,7 +166,11 @@ namespace Xml.Schema.Linq.Extensions
         public static TValue ValueForKey<TKey, TValue>(this IDictionary<TKey, TValue> tsDictionary, TKey key)
         {
             if (tsDictionary.Count == 0) return default(TValue);
-            if (EqualityComparer<TKey>.Default.Equals(default(TKey), key)) return default(TValue);
+            if (!typeof(TKey).IsValueType) {
+                Debug.Assert(default(TKey) == null);
+                if (EqualityComparer<TKey>.Default.Equals(default(TKey), key)) return default(TValue);
+            }
+            
             if (!tsDictionary.TryGetValue(key, out TValue forKey)) return default(TValue);
 
             return forKey;

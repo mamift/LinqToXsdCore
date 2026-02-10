@@ -334,7 +334,7 @@ public partial class ClrTypeReference
     public bool IsForAnonymousXsdType
     {
         get {
-            return ((XmlSchemaType)schemaObject).IsAnonymous();
+            return (schemaObject as XmlSchemaType)?.IsAnonymous() == true;
         }
     }
 
