@@ -246,14 +246,14 @@ public static class RoslynExtensions
 
     public static SourceText ToSourceText(this FileInfo csFile)
     {
-        StreamReader text = csFile.OpenText();
+        using StreamReader text = csFile.OpenText();
 
         return SourceText.From(text, (int)text.BaseStream.Length);
     }
 
     public static CSharpSyntaxTree ToSyntaxTree(this FileInfo csFile)
     {
-        var source = csFile.ToSourceText();
+        SourceText source = csFile.ToSourceText();
 
         SyntaxTree tree = CSharpSyntaxTree.ParseText(source, CSharpParseOptions.Default);
 
