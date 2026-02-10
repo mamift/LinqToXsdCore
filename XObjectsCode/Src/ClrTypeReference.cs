@@ -311,12 +311,13 @@ public partial class ClrTypeReference
         {
             this.clrFullTypeName = this.clrName;
         }
-        else if (this.clrFullTypeName.IsEmpty())
+        else if (this.clrFullTypeName.IsEmpty()) 
         {
             //If the enum type is local (nested), use its parent type scope
-            this.clrFullTypeName = property.TypeReference.IsLocalType
-                ? $"{currentTypeScope}.{this.ClrName ?? this.Name}"
-                : $"{theClrNamespace}.{this.ClrName ?? this.Name}";
+            if (property.TypeReference.IsLocalType)
+                this.clrFullTypeName = $"{currentTypeScope}.{this.ClrName ?? this.Name}";
+            else
+                this.clrFullTypeName = $"{theClrNamespace}.{this.ClrName ?? this.Name}";
         }
         return this.clrFullTypeName;
 
