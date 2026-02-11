@@ -112,6 +112,17 @@ public partial class ClrTypeReference
         }
     }
 
+    public string FullName
+    {
+        get {
+            if (LocalSuffix.IsNotEmpty()) {
+                return Name + LocalSuffix;
+            }
+
+            return Name;
+        }
+    }
+
     public string? ClrName
     {
         get { return clrName; }
