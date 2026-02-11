@@ -93,7 +93,7 @@ $buildResults = New-Object System.Collections.Generic.List[BuildResult];
 $dnb = Get-Command dotnet
 
 Get-ChildItem -Attributes Directory | % {
-	if ($_ -contains "Microsoft Project 2007") { return; }
+	if ($_.Name -contains "Microsoft Project 2007") { return; }
 	$projects = [System.IO.Directory]::GetFiles($_.FullName, "*.csproj");
     $first = $projects[0];
 
