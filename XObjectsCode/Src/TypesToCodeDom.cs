@@ -80,7 +80,7 @@ namespace Xml.Schema.Linq.CodeGen
                     if (stInfo != null)
                     {
                         if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
-                            var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
+                            var enumType = TypeBuilder.CreateEnumType(enumTypeInfo.clrtypeName, enumTypeInfo.clrtypeNs, enumTypeInfo.InnerType, settings, stInfo);
                             codeNamespace.AddTypeWithParentNamespace(enumType);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
@@ -207,7 +207,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private void CreateNestedEnumWithValidatorType(ClrTypeReference typeRef)
+        private void CreateNestedEnumWithValidatorType(ClrTypeReference typeRef, ClrTypeReference clrTypeInfo)
         {
             if (typeRef == null) throw new ArgumentNullException(nameof(typeRef));
             var parentDecl = typeBuilder.TypeDeclaration;
@@ -218,20 +218,17 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             var innerType = typeRef.SchemaObject as XmlSchemaSimpleType;
-            Debug.Assert(innerType != null);
-            var visibilitySetting = this.settings.NamespaceTypesVisibilityMap.ValueForKey(typeRef.Namespace);
-            var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) {
-                IsEnum = true,
-                TypeAttributes = visibilitySetting.ToTypeAttribute()
+            Debug.Assert(innerType is not null);
+            var enumTypeInfo = new EnumSimpleTypeInfo(innerType) {
+                clrtypeName = typeRef.Name,
+                clrtypeNs = string.Empty,
+                IsNested = true
             };
-            foreach (var facet in innerType.GetEnumFacets()) {
-                enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet.Member));
-            }
 
-            enumTypeDecl.UserData[nameof(ClrTypeReference)] = typeRef;
-
+            Debug.Assert(innerType != null);
+            var enumTypeDecl = TypeBuilder.CreateEnumType(typeRef.Name, typeRef.Namespace, innerType, settings, null);
+            
             //Create enum validator type
-            var enumTypeInfo = new EnumSimpleTypeInfo(innerType) { clrtypeName = typeRef.Name, clrtypeNs = string.Empty };
             var enumValidatorDecl = TypeBuilder.CreateSimpleType(enumTypeInfo, nameMappings, settings);
 
             parentDecl.Members.Add(enumTypeDecl);
