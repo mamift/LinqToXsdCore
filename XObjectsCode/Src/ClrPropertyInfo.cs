@@ -1187,16 +1187,22 @@ namespace Xml.Schema.Linq.CodeGen
         {
             Debug.Assert(this.simpleTypeClrTypeName.IsNotEmpty());
             
-            var areTheSameAndShouldDisambiguate = false;
-            if (disambiguateWhenPropertyAndTypeNameAreTheSame) {
-                if (this.propertyName == this.simpleTypeClrTypeName) {
-                    areTheSameAndShouldDisambiguate = true;
-                }
-            }
+            bool areTheSameAndShouldDisambiguate = disambiguateWhenPropertyAndTypeNameAreTheSame || this.propertyName == this.simpleTypeClrTypeName;
 
-            string typeName = areTheSameAndShouldDisambiguate
-                ? $"global::{this.settings.GetClrNamespace(PropertyNs)}.{this.simpleTypeClrTypeName}"
-                : this.simpleTypeClrTypeName;
+            string typeName;
+            if (areTheSameAndShouldDisambiguate) 
+            {
+                string? possibleTypeNamespace = this.settings.GetClrNamespace(PropertyNs);
+                if (possibleTypeNamespace.IsEmpty())
+                {
+                    possibleTypeNamespace = this.parentTypeFullName;
+                }
+                typeName = $"global::{possibleTypeNamespace}.{this.simpleTypeClrTypeName}";
+            }
+            else 
+            {
+                typeName = this.simpleTypeClrTypeName;
+            }
 
             if (!disambiguateWhenPropertyAndTypeNameAreTheSame && (this.typeRef.IsEnum && (this.typeRef.IsForAnonymousXsdType || this.typeRef.IsLocalType))) {
                 typeName = typeName.Split('.').Last();
