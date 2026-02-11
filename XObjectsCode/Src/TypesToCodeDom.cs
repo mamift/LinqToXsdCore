@@ -187,7 +187,7 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
                     Debug.Assert(propertyInfo is not null);
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumWithValidatorType);
                     typeBuilder.CreateAttributeProperty(propertyInfo, null);
                 }
                 else
@@ -207,7 +207,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private void CreateNestedEnumType(ClrTypeReference typeRef)
+        private void CreateNestedEnumWithValidatorType(ClrTypeReference typeRef)
         {
             if (typeRef == null) throw new ArgumentNullException(nameof(typeRef));
             var parentDecl = typeBuilder.TypeDeclaration;
@@ -277,7 +277,7 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumWithValidatorType);
                     typeBuilder.CreateProperty(propertyInfo, annotations);
                 }
                 else if (child.ContentType == ContentType.WildCardProperty)
@@ -302,7 +302,7 @@ namespace Xml.Schema.Linq.CodeGen
                 if (child.ContentType == ContentType.Property)
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumWithValidatorType);
                     typeBuilder.CreateProperty(propertyInfo, annotations);
                 }
                 else if (child.ContentType == ContentType.WildCardProperty)
@@ -744,7 +744,7 @@ namespace Xml.Schema.Linq.CodeGen
                 existingTypedValPropertyInfo.IsNew = true;
             }
 
-            existingTypedValPropertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+            existingTypedValPropertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumWithValidatorType);
             return existingTypedValPropertyInfo;
         }
 
