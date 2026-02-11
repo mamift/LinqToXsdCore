@@ -349,7 +349,7 @@ namespace Xml.Schema.Linq.CodeGen
             string currentTypeScope,
             string currentNamespaceScope,
             Dictionary<XmlSchemaObject, string> nameMappings,
-            Action<ClrTypeReference>? createNestedEnumType)
+            Action<ClrTypeReference, ClrTypeReference>? createNestedEnumType)
         {
             var typeRef = this.TypeReference;
             var nestedEnumClassWasCreated = false;
@@ -361,7 +361,7 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 if (ShouldGenerate && (typeRef.IsLocalType || this.typeRef.IsForAnonymousXsdType) && createNestedEnumType != null)
                 {
-                    createNestedEnumType(typeRef);
+                    createNestedEnumType(typeRef, this.TypeReference);
                     nestedEnumClassWasCreated = true;
                 }
             }

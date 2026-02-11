@@ -1,5 +1,6 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
+#nullable enable
 using System;
 using System.Xml;
 using System.Xml.Schema;
@@ -404,23 +405,24 @@ namespace Xml.Schema.Linq.CodeGen
             return simpleTypeDecl;
         }
 
-        internal static CodeTypeDeclaration CreateEnumType(EnumSimpleTypeInfo typeInfo,
-            LinqToXsdSettings settings, ClrTypeInfo clrTypeInfo = null)
+        internal static CodeTypeDeclaration CreateEnumType(string clrTypeName, string clrTypeNs, XmlSchemaType innerType,
+            LinqToXsdSettings settings, ClrTypeInfo? clrTypeInfo = null)
         {
-            string typeName = typeInfo.clrtypeName;
-
-            var enumTypeDecl = new CodeTypeDeclaration(typeName) { IsEnum = true };
-            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
+            var enumTypeDecl = new CodeTypeDeclaration(clrTypeName) {
+                IsEnum = true
+            };
+            TypeAttributes typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(clrTypeNs).ToTypeAttribute();
             enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
-            foreach (var facet in typeInfo.InnerType.GetEnumFacets())
+            foreach (var facet in innerType.GetEnumFacets())
             {
-                enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet.Member));
+                enumTypeDecl.Members.Add(new CodeMemberField(clrTypeName, facet.Member));
             }
 
             if (clrTypeInfo != null)
+            {
                 enumTypeDecl.UserData[nameof(ClrTypeInfo)] = clrTypeInfo;
-
-            ApplyAnnotations(enumTypeDecl, typeInfo);
+                ApplyAnnotations(enumTypeDecl, clrTypeInfo);
+            }
 
             return enumTypeDecl;
         }
