@@ -593,7 +593,7 @@ namespace Xml.Schema.Linq.CodeGen
                     new CodePrimitiveExpression(this.propertyName),
                     CodeDomHelper.This(),
                     xNameParm ? xNameExpression : null,
-                    GetSimpleTypeClassExpression(IsUnion || IsEnum)
+                    GetSimpleTypeClassExpression(IsUnion)
                 };
 
                 var codeMethodInvokeExpression = CodeDomHelper.CreateMethodCall(
@@ -862,7 +862,7 @@ namespace Xml.Schema.Linq.CodeGen
                         CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
                         Constants.ParseUnionValue,
                         returnValueExp,
-                        GetSimpleTypeClassExpression(IsUnion || IsEnum));
+                        GetSimpleTypeClassExpression(IsUnion));
                 }
                 else
                 {
