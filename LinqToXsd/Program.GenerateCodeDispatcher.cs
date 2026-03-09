@@ -17,12 +17,12 @@ namespace LinqToXsd
             /// <summary>
             /// Writes generated code for to multiple output files, inferred by <see cref="GenerateOptions.Output"/>.
             /// </summary>
-            internal static void HandleWriteOutputToMultipleFiles(GenerateOptions options, Dictionary<string, TextWriter> textWriters)
+            internal static void HandleWriteOutputToMultipleFiles(GenerateOptions options, Dictionary<string, string> codeUnits)
             {
                 var possibleOutputFolder = options.Output;
 
-                PrintLn($"Outputting {textWriters.Count} files...".Gray());
-                foreach (var kvp in textWriters)
+                PrintLn($"Outputting {codeUnits.Count} files...".Gray());
+                foreach (var kvp in codeUnits)
                 {
                     var outputFilename = Path.GetFileName(kvp.Key);
                     if (!outputFilename.EndsWith(".cs"))
@@ -44,11 +44,10 @@ namespace LinqToXsd
 
                     PrintLn($"{kvp.Key} => {outputFilePath}".Gray());
 
-                    using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
-                    using (var fileWriter = new StreamWriter(outputFileStream))
-                    {
-                        fileWriter.Write(kvp.Value);
-                    }
+                    using var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite);
+                    using var fileWriter = new StreamWriter(outputFileStream);
+                    
+                    fileWriter.Write(kvp.Value);
                 }
             }
 
@@ -57,21 +56,20 @@ namespace LinqToXsd
             /// </summary>
             /// <param name="options"></param>
             /// <param name="textWriters"></param>
-            internal static void HandleWriteOutputToSingleFile(GenerateOptions options, Dictionary<string, TextWriter> textWriters)
+            internal static void HandleWriteOutputToSingleFile(GenerateOptions options, Dictionary<string, string> codeUnits)
             {
                 var outputFile = options.Output;
                 // add .cs extension to filename if it doesn't have it already.
                 var target = outputFile.EndsWith(".cs") ? outputFile : $"{outputFile}.cs";
 
                 var extractFileNameOnlyFunctor = new Func<string, string>(k => $"'{Path.GetFileName(k)}'");
-                PrintLn($"{textWriters.Keys.ToDelimitedString(extractFileNameOnlyFunctor).Yellow()}");
+                PrintLn($"{codeUnits.Keys.ToDelimitedString(extractFileNameOnlyFunctor).Yellow()}");
                 PrintLn($"\toutput to \n{target}");
 
-                using (var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite))
-                using (var fileWriter = new StreamWriter(fileStream, Encoding.UTF8))
-                {
-                    foreach (var kvp in textWriters) fileWriter.Write(kvp.Value);
-                }
+                using var fileStream = File.Open(target, FileMode.Create, FileAccess.ReadWrite);
+                using var fileWriter = new StreamWriter(fileStream, Encoding.UTF8);
+
+                foreach (var kvp in codeUnits) fileWriter.Write(kvp.Value);
             }
         }
     }

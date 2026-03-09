@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+{{- if Settings.NullableReferences }}
+#nullable enable annotations
+{{- end }}
 
 {{- for $ns in Namespaces }}
 

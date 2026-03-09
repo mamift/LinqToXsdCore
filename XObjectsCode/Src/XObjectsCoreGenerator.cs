@@ -4,7 +4,6 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -13,7 +12,6 @@ using Scriban.Runtime;
 using Xml.Schema.Linq.CodeGen;
 using Xml.Schema.Linq.CodeGen.Scriban;
 using Xml.Schema.Linq.Extensions;
-using XObjects;
 
 namespace Xml.Schema.Linq
 {
@@ -54,7 +52,7 @@ namespace Xml.Schema.Linq
         /// <param name="settings"></param>
         /// <param name="programObserver"></param>
         /// <returns></returns>
-        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> xsdFilePaths,
+        public static Dictionary<string, string> Generate(IEnumerable<string> xsdFilePaths,
             LinqToXsdSettings settings, IWarnableObserver<string>? programObserver = null)
         {
             if (xsdFilePaths == null) throw new ArgumentNullException(nameof(xsdFilePaths));
@@ -64,7 +62,7 @@ namespace Xml.Schema.Linq
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())
-                .ToDictionary(x => x.filename, x => x.writer);
+                .ToDictionary(x => x.filename, x => x.code);
         }
 
         /// <summary>
@@ -74,11 +72,10 @@ namespace Xml.Schema.Linq
         /// <param name="linqToXsdSettingsFilePath"></param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, string? linqToXsdSettingsFilePath = null)
+        public static IEnumerable<(string filename, string code)> Generate(string xsdFilePath, string? linqToXsdSettingsFilePath = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
             var settings = LoadLinqToXsdSettings(linqToXsdSettingsFilePath);
-
             return Generate(xsdFilePath, settings);
         }
 
@@ -89,34 +86,32 @@ namespace Xml.Schema.Linq
         /// <param name="settings">If null, uses default or </param>
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="xsdFilePath"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string filename, TextWriter writer)> Generate(string xsdFilePath, LinqToXsdSettings? settings = null)
+        public static IEnumerable<(string filename, string code)> Generate(string xsdFilePath, LinqToXsdSettings? settings = null)
         {
             if (xsdFilePath.IsEmpty()) throw new ArgumentNullException(nameof(xsdFilePath));
-            if (settings == null) settings = new LinqToXsdSettings();
+            settings ??= new LinqToXsdSettings();
 
-            var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
+            using var xmlReader = XmlReader.Create(xsdFilePath, Defaults.DefaultXmlReaderSettings);
 
-            using (xmlReader) {
-                XmlSchemaSet? schemaSet = xmlReader.ToXmlSchemaSet();
+            XmlSchemaSet schemaSet = xmlReader.ToXmlSchemaSet();
 
-                string? xsdFolder = Path.GetDirectoryName(xsdFilePath);
+            string xsdFolder = Path.GetDirectoryName(xsdFilePath)!;
 
-                return Generate(schemaSet, settings)
-                    .Select(x =>
-                    {
-                        // When SplitCodeFiles by Namespace is configured,
-                        // Generate() returns a tuple (clrNamespace, writer) per CLR namespace that we need to map to a file.
-                        // Otherwise, Generate() returns a single (null, writer) tuple.
-                        var filename = string.IsNullOrEmpty(x.clrNamespace)
-                            ? xsdFilePath
-                            : settings.NamespaceFileMap.TryGetValue(x.clrNamespace, out string nsFile)
+            return Generate(schemaSet, settings)
+                .Select(x =>
+                {
+                    // When SplitCodeFiles by Namespace is configured,
+                    // Generate() returns a tuple (clrNamespace, writer) per CLR namespace that we need to map to a file.
+                    // Otherwise, Generate() returns a single (null, writer) tuple.
+                    var filename = string.IsNullOrEmpty(x.clrNamespace)
+                        ? xsdFilePath
+                        : settings.NamespaceFileMap.TryGetValue(x.clrNamespace, out string? nsFile)
                             ? Path.Combine(xsdFolder, nsFile)
                             : throw new LinqToXsdException(
                                 $"CLR namespace {x.clrNamespace} has no output file configured, which is required when using SplitCodeFiles by Namespace configuration.");
 
-                        return (filename, x.writer);
-                    });
-            }
+                    return (filename, x.code);
+                });
         }
 
         /// <summary>
@@ -128,10 +123,9 @@ namespace Xml.Schema.Linq
         ///     Otherwise, one StringWriter per CLR namespace.
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string clrNamespace, TextWriter writer)> Generate(XmlSchemaSet schemaSet)
+        public static IEnumerable<(string? clrNamespace, string code)> Generate(XmlSchemaSet schemaSet)
         {
-            var settings = new LinqToXsdSettings();
-            return Generate(schemaSet, settings);
+            return Generate(schemaSet, new LinqToXsdSettings());
         }
 
         /// <summary>
@@ -145,24 +139,9 @@ namespace Xml.Schema.Linq
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string clrNamespace, TextWriter writer)> Generate(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string? clrNamespace, string code)> Generate(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
-            return GenerateCodeCompileUnits(schemaSet, settings)
-                .Select(x =>
-                {
-                    var writer = new StringWriter(new StringBuilder(x.code));
-
-                    // TODO: put directly in template
-                    if (settings.NullableReferences)
-                    {
-                        // HACK: CodeDom doesn't allow us to add #pragmas.
-                        // In <auto-generated> code, CS mandates a "#nullable enable" pragma.
-                        // So we add the pragma inside the generated text directly
-                        writer.InsertFilePragma("#nullable enable annotations");
-                    }
-
-                    return (x.clrNamespace, (TextWriter)writer);
-                });
+            return GenerateCodeCompileUnits(schemaSet, settings);
         }
 
         /// <summary>
@@ -176,7 +155,7 @@ namespace Xml.Schema.Linq
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string clrNamespace, string code)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string? clrNamespace, string code)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
             if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
@@ -189,8 +168,8 @@ namespace Xml.Schema.Linq
             var template = TemplateLoader.Load("file.scriban-cs");
             
             return settings.SplitFilesByNamespace
-                ? namespaces.GroupBy(ns => ns.Name).Select(g => (g.Key, BuildUnit(g)))
-                : new[] { ((string)null, BuildUnit(namespaces)) };
+                ? namespaces.GroupBy(ns => ns.Name).Select(g => ((string?)g.Key, BuildUnit(g)))
+                : [ (null, BuildUnit(namespaces)) ];
 
             // TODO: rename
             string BuildUnit(IEnumerable<CodeNamespace> namespaces)
@@ -219,7 +198,7 @@ namespace Xml.Schema.Linq
         /// <param name="schemaFiles"></param>
         /// <param name="observer"></param>
         /// <returns></returns>
-        public static Dictionary<string, TextWriter> Generate(IEnumerable<string> schemaFiles,
+        public static Dictionary<string, string> Generate(IEnumerable<string> schemaFiles,
             IWarnableObserver<string>? observer = null)
         {
             // xsd file paths are keys, the FileInfo's to their config files are values
@@ -246,15 +225,15 @@ namespace Xml.Schema.Linq
                 // Multiple XSD files may import the same namespace, e.g. in case of a shared schema.
                 // In this case we arbitrary keep the first occurence.
                 .Distinct(new FileNameComparer())
-                .ToDictionary(x => x.filename, x => x.writer);
+                .ToDictionary(x => x.filename, x => x.code);
         }
 
-        class FileNameComparer : IEqualityComparer<(string filename, TextWriter writer)>
+        class FileNameComparer : IEqualityComparer<(string filename, string code)>
         {
-            public bool Equals((string filename, TextWriter writer) x, (string filename, TextWriter writer) y)
+            public bool Equals((string filename, string code) x, (string filename, string code) y)
                 => x.filename == y.filename;
 
-            public int GetHashCode((string filename, TextWriter writer) obj)
+            public int GetHashCode((string filename, string code) obj)
                 => obj.filename?.GetHashCode() ?? 0;
         }
     }

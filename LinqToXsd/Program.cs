@@ -160,7 +160,7 @@ namespace LinqToXsd
 
             settings.EnableServiceReference = generateOptions.EnableServiceReference;
 
-            Dictionary<string, TextWriter> textWriters = generateOptions.AutoConfig
+            Dictionary<string, string> textWriters = generateOptions.AutoConfig
                 ? XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, ProgramObserver)
                 : XObjectsCoreGenerator.Generate(generateOptions.SchemaFiles, settings, ProgramObserver);
 
