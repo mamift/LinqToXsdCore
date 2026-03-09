@@ -15,76 +15,57 @@ namespace Xml.Schema.Linq.CodeGen
 {
     public class CodeDomTypesGenerator
     {
-        LinqToXsdSettings settings;
+        readonly LinqToXsdSettings settings;
         TypeBuilder typeBuilder;
-        TypeBuilder emptyTypeBuilder;
 
         XmlQualifiedName rootElementName = XmlQualifiedName.Empty;
         CodeNamespace codeNamespace;
 
-        Dictionary<string, CodeNamespace> codeNamespacesTable;
+        readonly Dictionary<string, CodeNamespace> codeNamespacesTable = new();
         Dictionary<XmlSchemaObject, string> nameMappings;
-        Dictionary<CodeNamespace, List<CodeTypeDeclaration>> xroots;
+        readonly Dictionary<CodeNamespace, List<CodeTypeDeclaration>> xroots = new();
         List<ClrWrapperTypeInfo> wrapperRootElements;
 
         string currentNamespace;
         string currentFullTypeName;
 
-        static CodeStatementCollection typeDictionaryAddStatements;
-        static CodeStatementCollection elementDictionaryAddStatements;
-        static CodeStatementCollection wrapperDictionaryAddStatements;
-
-        public CodeDomTypesGenerator(bool nameMangler2) :
-            this(new LinqToXsdSettings(nameMangler2))
-        {
-        }
+        readonly static CodeStatementCollection typeDictionaryAddStatements = new();
+        readonly static CodeStatementCollection elementDictionaryAddStatements = new();
+        readonly static CodeStatementCollection wrapperDictionaryAddStatements = new();
 
         public CodeDomTypesGenerator(LinqToXsdSettings settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException("Argument setttings should not be null.");
-            }
-
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
             this.settings = settings;
-            codeNamespacesTable = new Dictionary<string, CodeNamespace>();
-            xroots = new Dictionary<CodeNamespace, List<CodeTypeDeclaration>>();
-            typeDictionaryAddStatements = new CodeStatementCollection();
-            elementDictionaryAddStatements = new CodeStatementCollection();
-            wrapperDictionaryAddStatements = new CodeStatementCollection();
         }
 
         public IEnumerable<CodeNamespace> GenerateTypes(ClrMappingInfo binding)
         {
-            if (binding == null)
-            {
-                throw new ArgumentException("binding");
-            }
-
+            if (binding == null) throw new ArgumentNullException(nameof(binding));
             nameMappings = binding.NameMappings;
             Debug.Assert(nameMappings != null);
-            for (int index = 0; index < binding.Types.Count; index++) {
-                ClrTypeInfo type = binding.Types[index];
-                if (type.IsWrapper) {
-                    if (wrapperRootElements == null) {
-                        wrapperRootElements = new List<ClrWrapperTypeInfo>();
-                    }
 
-                    wrapperRootElements.Add(type as ClrWrapperTypeInfo);
+            for (int index = 0; index < binding.Types.Count; index++)
+            {
+                ClrTypeInfo type = binding.Types[index];
+                if (type.IsWrapper)
+                {
+                    wrapperRootElements ??=  [ type as ClrWrapperTypeInfo ];
                 }
                 else
                 {
                     codeNamespace = GetCodeNamespace(type.clrtypeNs);
                     Debug.Assert(codeNamespace != null);
-                    ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
-                    if (stInfo != null)
+                    if (type is ClrSimpleTypeInfo stInfo)
                     {
-                        if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
+                        if (stInfo is EnumSimpleTypeInfo enumTypeInfo)
+                        {
                             var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
                             codeNamespace.AddTypeWithParentNamespace(enumType);
                             var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
                             // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
-                            if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) {
+                            if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) 
+                            {
                                 var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
                                 var duplicateEnum = typeWithDuplicateEnum.Members.OfType<CodeTypeDeclaration>()
                                     .First(c => c.IsEqualEnumDeclaration(enumType));
@@ -95,14 +76,13 @@ namespace Xml.Schema.Linq.CodeGen
                         codeNamespace.AddTypeWithParentNamespace(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     }
                     else {
-                        CodeTypeDeclaration
-                            decl = ProcessType(type as ClrContentTypeInfo, null, true); //Sets current codeNamespace
+                        CodeTypeDeclaration decl = ProcessType(type as ClrContentTypeInfo, null, true); // Sets current codeNamespace
                         codeNamespace.AddTypeWithParentNamespace(decl);
 
-                        if (type.IsRootElement) {
-                            List<CodeTypeDeclaration> types;
-
-                            if (!xroots.TryGetValue(codeNamespace, out types)) {
+                        if (type.IsRootElement) 
+                        {
+                            if (!xroots.TryGetValue(codeNamespace, out var types)) 
+                            {
                                 types = new List<CodeTypeDeclaration>();
                                 xroots.Add(codeNamespace, types);
                             }
@@ -238,14 +218,6 @@ namespace Xml.Schema.Linq.CodeGen
             parentDecl.Members.Add(enumValidatorDecl);
         }
 
-        private IEnumerable<CodeTypeDeclaration> GetAllEnumsDefinedAlready()
-        {
-            var enumsUnderNamespace = codeNamespace.DescendentTypeScopedEnumDeclarations();
-            var enumsInOtherTypesUnderNamespace = codeNamespace.NamespaceScopedEnumDeclarations();
-            var enumsInCurrentType = typeBuilder.TypeDeclaration.Members.OfType<CodeTypeDeclaration>().Where(c => c.IsEnum);
-            return enumsUnderNamespace.Union(enumsInCurrentType).Union(enumsInOtherTypesUnderNamespace);
-        }
-
         private static bool EnumAlreadyExistsInParent(string clrEnumTypeName, CodeTypeDeclaration parent)
         {
             return parent.Members
@@ -253,20 +225,6 @@ namespace Xml.Schema.Linq.CodeGen
                 .Where(m => m.IsEnum)
                 .Select(m => m.Name)
                 .Contains(clrEnumTypeName);
-        }
-
-        private bool EqualEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
-        {
-            var allEnumsDefinedAlready = GetAllEnumsDefinedAlready();
-
-            return allEnumsDefinedAlready.EqualEnumDeclarationExists(ctd);
-        }
-
-        private bool EquivalentEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
-        {
-            var allEnumsDefinedAlready = GetAllEnumsDefinedAlready();
-
-            return allEnumsDefinedAlready.EquivalentEnumDeclarationExists(ctd);
         }
 
         private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
@@ -326,21 +284,19 @@ namespace Xml.Schema.Linq.CodeGen
             List<CodeTypeDeclaration> allTypes = new List<CodeTypeDeclaration>();
             List<CodeNamespace> allNamespaces = new List<CodeNamespace>();
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
-            CodeNamespace rootCodeNamespace = null;
-            if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out rootCodeNamespace))
+
+            if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out CodeNamespace rootCodeNamespace))
             {
                 //This might happen if the schema set has no global elements and only global types
-                rootCodeNamespace =
-                    codeNamespacesTable.Values.FirstOrDefault(); //then you can create a root tag with xsi:type
+                rootCodeNamespace = codeNamespacesTable.Values.FirstOrDefault(); // then you can create a root tag with xsi:type
                 // rootCodeNamespace may still be null  if schema has only simple typed global elements or simple types which we are ignoring for now
             }
 
-            //Build list of types that will need to be included
-            //in XRoot
+            //Build list of types that will need to be included in XRoot
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(rootClrNamespace);
             foreach (CodeNamespace codeNamespace in xroots.Keys)
             {
-                if (rootCodeNamespace == null) rootCodeNamespace = codeNamespace;
+                rootCodeNamespace ??= codeNamespace;
 
                 for (int i = 0; i < xroots[codeNamespace].Count; i++)
                 {
@@ -677,20 +633,6 @@ namespace Xml.Schema.Linq.CodeGen
             return typeBuilder;
         }
 
-        private TypeBuilder GetEmptyTypeBuilder()
-        {
-            if (emptyTypeBuilder == null)
-            {
-                emptyTypeBuilder = new XEmptyTypedElementBuilder(settings);
-            }
-            else
-            {
-                emptyTypeBuilder.Init();
-            }
-
-            return emptyTypeBuilder;
-        }
-
         private void SetFullTypeName(ClrTypeInfo typeInfo, string parentIdentifier)
         {
             if (parentIdentifier == null)
@@ -710,8 +652,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (baseTypeName != XmlQualifiedName.Empty)
             {
                 string clrNamespace = settings.GetClrNamespace(baseTypeName.Namespace);
-                string baseTypeIdentifier = null;
-                if (nameMappings.TryGetValue(typeInfo.baseType, out baseTypeIdentifier))
+                if (nameMappings.TryGetValue(typeInfo.baseType, out string baseTypeIdentifier))
                 {
                     typeInfo.baseTypeClrName = baseTypeIdentifier;
                     typeInfo.baseTypeClrNs = clrNamespace;
@@ -729,9 +670,15 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (existingTypedValPropertyInfo == null)
             {
-                existingTypedValPropertyInfo = new ClrPropertyInfo(Constants.SInnerTypePropertyName, string.Empty,
-                    Constants.SInnerTypePropertyName, Occurs.One, settings);
-                existingTypedValPropertyInfo.Origin = SchemaOrigin.Text;
+                existingTypedValPropertyInfo = new ClrPropertyInfo(
+                    Constants.SInnerTypePropertyName, 
+                    string.Empty,
+                    Constants.SInnerTypePropertyName, 
+                    Occurs.One, 
+                    settings) 
+                {                    
+                    Origin = SchemaOrigin.Text,
+                };
             }
             else
             {
@@ -751,9 +698,7 @@ namespace Xml.Schema.Linq.CodeGen
         private CodeNamespace GetCodeNamespace(string clrNamespace)
         {
             if (codeNamespace != null && codeNamespace.Name == clrNamespace)
-            {
                 return codeNamespace;
-            }
 
             if (!codeNamespacesTable.TryGetValue(clrNamespace, out CodeNamespace currentCodeNamespace))
             {

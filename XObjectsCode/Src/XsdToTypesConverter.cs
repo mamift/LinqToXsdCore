@@ -5,10 +5,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -37,11 +34,6 @@ namespace Xml.Schema.Linq.CodeGen
 
         Dictionary<XmlQualifiedName, ArrayList> substitutionGroups;
 
-        public XsdToTypesConverter(bool nameMangler2)
-            : this(new LinqToXsdSettings(nameMangler2))
-        {
-        }
-
         public XsdToTypesConverter(LinqToXsdSettings configSettings)
         {
             this.configSettings = configSettings;
@@ -54,10 +46,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         public ClrMappingInfo GenerateMapping(XmlSchemaSet schemas)
         {
-            if (schemas == null)
-            {
-                throw new ArgumentNullException("schemas");
-            }
+            if (schemas == null) throw new ArgumentNullException(nameof(schemas));
 
             schemas.ValidationEventHandler += new ValidationEventHandler(Validationcallback);
             if (!schemas.IsCompiled) schemas.Compile();
@@ -111,11 +100,9 @@ namespace Xml.Schema.Linq.CodeGen
             XmlSchemaElement head = schemas.GlobalElements[subsName] as XmlSchemaElement;
             if ((head.Block & XmlSchemaDerivationMethod.Substitution) == 0)
             {
-                ArrayList groupMembers = null;
-                if (!substitutionGroups.TryGetValue(subsName, out groupMembers))
+                if (!substitutionGroups.TryGetValue(subsName, out ArrayList groupMembers))
                 {
-                    groupMembers = new ArrayList();
-                    groupMembers.Add(head);
+                    groupMembers = new ArrayList() { head };
                     substitutionGroups.Add(subsName, groupMembers);
                 }
 
@@ -223,28 +210,28 @@ namespace Xml.Schema.Linq.CodeGen
             XmlSchemaSimpleType simpleType = st as XmlSchemaSimpleType;
             if (simpleType != null)
             {
-                this.AddSimpleType(simpleType.QualifiedName, simpleType);
+                AddSimpleType(simpleType.QualifiedName, simpleType);
             }
             else
             {
-                XmlSchemaComplexType ct = st as XmlSchemaComplexType;
-                if (ct != null && ct.TypeCode != XmlTypeCode.Item)
+                if (st is XmlSchemaComplexType ct && ct.TypeCode != XmlTypeCode.Item)
                 {
                     SymbolEntry symbol = symbolTable.AddType(ct.QualifiedName, ct);
                     string xsdNamespace = ct.QualifiedName.Namespace;
 
                     localSymbolTable.Init(symbol.identifierName);
 
-                    ClrContentTypeInfo typeInfo = new ClrContentTypeInfo();
-                    typeInfo.IsAbstract = ct.IsAbstract;
-                    typeInfo.IsSealed = ct.IsFinal();
-                    typeInfo.clrtypeName = symbol.identifierName;
-                    typeInfo.clrtypeNs = symbol.clrNamespace;
-                    typeInfo.schemaName = symbol.symbolName;
-                    typeInfo.schemaNs = xsdNamespace;
-
-                    typeInfo.typeOrigin = SchemaOrigin.Fragment;
-                    typeInfo.baseType = BaseType(ct);
+                    ClrContentTypeInfo typeInfo = new ClrContentTypeInfo 
+                    {
+                        IsAbstract = ct.IsAbstract,
+                        IsSealed = ct.IsFinal(),
+                        clrtypeName = symbol.identifierName,
+                        clrtypeNs = symbol.clrNamespace,
+                        schemaName = symbol.symbolName,
+                        schemaNs = xsdNamespace,
+                        typeOrigin = SchemaOrigin.Fragment,
+                        baseType = BaseType(ct)
+                    };
                     BuildProperties(null, ct, typeInfo);
                     BuildNestedTypes(typeInfo);
                     BuildAnnotationInformation(typeInfo, ct);
@@ -256,21 +243,14 @@ namespace Xml.Schema.Linq.CodeGen
         internal void TypesToTypes()
         {
             foreach (XmlSchemaType st in schemas.GlobalTypes.Values)
-            {
                 TypeToType(st);
-            }
         }
 
-        private void BuildProperties(XmlSchemaElement parentElement, XmlSchemaType schemaType,
-            ClrContentTypeInfo typeInfo)
+        private void BuildProperties(XmlSchemaElement parentElement, XmlSchemaType schemaType, ClrContentTypeInfo typeInfo)
         {
-            XmlSchemaComplexType ct = schemaType as XmlSchemaComplexType;
-            if (ct != null)
+            if (schemaType is XmlSchemaComplexType ct)
             {
-                if (ct.TypeCode == XmlTypeCode.Item)
-                {
-                    return;
-                }
+                if (ct.TypeCode == XmlTypeCode.Item) return;
 
                 XmlSchemaParticle particleToProperties = ct.ContentTypeParticle;
                 XmlSchemaComplexType baseType = ct.BaseXmlSchemaType as XmlSchemaComplexType;
@@ -297,13 +277,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else
                 {
-                    Debug.Assert(
-                        baseType != null); //ComplexType with complexContent is always derived from another complexType
-                    if (ct.IsDerivedByRestriction())
-                    {
-                        //Do not handle restrictions on complex content?
-                        return;
-                    }
+                    Debug.Assert(baseType != null); //ComplexType with complexContent is always derived from another complexType
+                    //Do not handle restrictions on complex content?
+                    if (ct.IsDerivedByRestriction()) return;
 
                     if (particleToProperties.GetParticleType() != ParticleType.Empty)
                     {
@@ -364,9 +340,7 @@ namespace Xml.Schema.Linq.CodeGen
                     }
                     else
                     {
-                        ClrContentTypeInfo nestedTypeInfo = new ClrContentTypeInfo() {
-                            Parent = typeInfo
-                        };
+                        ClrContentTypeInfo nestedTypeInfo = new() { Parent = typeInfo };
                         localSymbolTable.Init(at.identifier);
                         nestedTypeInfo.clrtypeName = at.identifier;
                         nestedTypeInfo.clrtypeNs = configSettings.GetClrNamespace(qname.Namespace);
@@ -405,9 +379,11 @@ namespace Xml.Schema.Linq.CodeGen
         private void AppendMessage(List<ClrAnnotation> annotations, string section, string message)
         {
             Debug.Assert(message.Length != 0 && section.Length != 0);
-            ClrAnnotation clrAnn = new ClrAnnotation();
-            clrAnn.Section = section;
-            clrAnn.Text = message;
+            var clrAnn = new ClrAnnotation 
+            {
+                Section = section,
+                Text = message,
+            };
             annotations.Add(clrAnn);
         }
 
@@ -415,8 +391,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             XmlSchemaAnnotated annotatedObject = schemaObject as XmlSchemaAnnotated;
 
-            if (annotatedObject != null &&
-                annotatedObject.Annotation != null)
+            if (annotatedObject?.Annotation != null)
             {
                 XmlNode[] markup;
                 foreach (XmlSchemaObject annot in annotatedObject.Annotation.Items)
