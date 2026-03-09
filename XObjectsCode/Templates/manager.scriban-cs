@@ -1,0 +1,67 @@
+public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
+    
+    private LinqToXsdTypeManager() {
+    }
+    
+    private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+    
+    private static void BuildElementDictionary() {
+        {{- for $el in $1 | element_types }}
+        elementDictionary.Add(System.Xml.Linq.XName.Get("{{ $el | local_name 'xName' }}", "{{ $el | namespace 'xName' }}"), typeof(global::{{ $1.Name }}.{{ $el.Name }}));
+        {{- end }}
+    }
+    
+    private static XmlSchemaSet schemaSet;
+    
+    XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+        get {
+            if ((schemaSet == null)) {
+                XmlSchemaSet tempSet = new XmlSchemaSet();
+                System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+            }
+            return schemaSet;
+        }
+        set {
+            schemaSet = value;
+        }
+    }
+    
+    protected internal static void AddSchemas(XmlSchemaSet schemas) {
+        schemas.Add(schemaSet);
+    }
+    
+    Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+        get {
+            return XTypedServices.EmptyDictionary;
+        }
+    }
+    
+    Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+        get {
+            return elementDictionary;
+        }
+    }
+    
+    Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+        get {
+            return XTypedServices.EmptyTypeMappingDictionary;
+        }
+    }
+    
+    static LinqToXsdTypeManager() {
+        BuildElementDictionary();
+    }
+    
+    public static System.Type GetRootType() {
+        return elementDictionary[System.Xml.Linq.XName.Get("{{ $1.Types[0] | local_name 'xName' }}", "{{ $1.Types[0] | namespace 'xName' }}")];
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+    
+    public static LinqToXsdTypeManager Instance {
+        get {
+            return typeManagerSingleton;
+        }
+    }
+}

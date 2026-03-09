@@ -4,10 +4,14 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using Scriban;
+using Scriban.Runtime;
 using Xml.Schema.Linq.CodeGen;
+using Xml.Schema.Linq.CodeGen.Scriban;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
 
@@ -146,8 +150,9 @@ namespace Xml.Schema.Linq
             return GenerateCodeCompileUnits(schemaSet, settings)
                 .Select(x =>
                 {
-                    var writer = x.unit.ToStringWriter();
+                    var writer = new StringWriter(new StringBuilder(x.code));
 
+                    // TODO: put directly in template
                     if (settings.NullableReferences)
                     {
                         // HACK: CodeDom doesn't allow us to add #pragmas.
@@ -171,7 +176,7 @@ namespace Xml.Schema.Linq
         /// </returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="schemaSet"/> is <see langword="null"/></exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="settings"/> is <see langword="null"/></exception>
-        public static IEnumerable<(string clrNamespace, CodeCompileUnit unit)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
+        public static IEnumerable<(string clrNamespace, string code)> GenerateCodeCompileUnits(XmlSchemaSet schemaSet, LinqToXsdSettings settings)
         {
             if (schemaSet == null) throw new ArgumentNullException(nameof(schemaSet));
             if (settings == null) throw new ArgumentNullException(nameof(settings));
@@ -181,16 +186,29 @@ namespace Xml.Schema.Linq
             var codeGenerator = new CodeDomTypesGenerator(settings);
             var namespaces = codeGenerator.GenerateTypes(mapping);
 
+            var template = TemplateLoader.Load("file.scriban-cs");
+            
             return settings.SplitFilesByNamespace
                 ? namespaces.GroupBy(ns => ns.Name).Select(g => (g.Key, BuildUnit(g)))
                 : new[] { ((string)null, BuildUnit(namespaces)) };
 
-            static CodeCompileUnit BuildUnit(IEnumerable<CodeNamespace> namespaces)
+            // TODO: rename
+            string BuildUnit(IEnumerable<CodeNamespace> namespaces)
             {
-                var ccu = new CodeCompileUnit();
-                foreach (var ns in namespaces)
-                    ccu.Namespaces.Add(ns);
-                return ccu;
+                var globals = new ScriptObject();
+                globals.Import(typeof(ScribanGlobals));
+                globals.Import(
+                    new { Settings = settings, Namespaces = namespaces.ToArray() }, 
+                    renamer: m => m.Name);
+
+                var context = new TemplateContext()
+                {
+                    MemberRenamer = m => m.Name,
+                    TemplateLoader = new TemplateLoader(),
+                };
+                context.PushGlobal(globals);
+
+                return template.Render(context);
             }
         }
 
