@@ -283,18 +283,19 @@ namespace Xml.Schema.Linq.CodeGen
             var allNamespaces = new List<CodeNamespace>();
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
 
-            if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out CNamespace rootCodeNamespace))
+            if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out CNamespace rootCNamespace))
             {
                 // This might happen if the schema set has no global elements and only global types
-                rootCodeNamespace = codeNamespacesTable.Values.FirstOrDefault(); // then you can create a root tag with xsi:type
-                // rootCodeNamespace may still be null  if schema has only simple typed global elements or simple types which we are ignoring for now
+                // then you can create a root tag with xsi:type
+                rootCNamespace = codeNamespacesTable.Values.FirstOrDefault(); 
+                // rootCodeNamespace may still be null if schema has only simple typed global elements or simple types which we are ignoring for now
             }
 
             // Build list of types that will need to be included in XRoot
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(rootClrNamespace);
             foreach (CNamespace codeNamespace in xroots.Keys)
             {
-                rootCodeNamespace ??= codeNamespace;
+                rootCNamespace ??= codeNamespace;
 
                 for (int i = 0; i < xroots[codeNamespace].Count; i++)
                 {
@@ -305,8 +306,8 @@ namespace Xml.Schema.Linq.CodeGen
                 CreateXRoot(codeNamespace.Dom, "XRootNamespace", xroots[codeNamespace], null, typeVisibility);
             }
 
-            if (rootCodeNamespace == null && xroots.Count == 0 && allTypes.Count == 0 && allNamespaces.Count == 0) return;
-            CreateXRoot(rootCodeNamespace.Dom, "XRoot", allTypes, allNamespaces, typeVisibility);
+            if (rootCNamespace == null && xroots.Count == 0 && allTypes.Count == 0 && allNamespaces.Count == 0) return;
+            CreateXRoot(rootCNamespace.Dom, "XRoot", allTypes, allNamespaces, typeVisibility);
         }
 
 

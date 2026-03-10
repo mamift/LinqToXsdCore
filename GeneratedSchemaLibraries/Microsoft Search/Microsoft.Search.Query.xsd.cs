@@ -5305,7 +5305,7 @@ namespace Microsoft.Search.Query.Schemas {
     
         public IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as IncludeHighConfidenceResults; } }
     }
-    
+
     public partial class XRoot {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

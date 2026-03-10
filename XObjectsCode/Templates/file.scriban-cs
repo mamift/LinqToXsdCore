@@ -41,6 +41,8 @@ namespace {{ $ns.Name }} {
 
     {{ include 'manager.scriban-cs' $ns }}
     
-    {{ include 'root.scriban-cs' $ns }}
+    {{ include 'root.scriban-cs' 'XRootNamespace' $ns '' }}
+
+    {{ include 'root.scriban-cs' 'XRoot' $ns 'global::' + $ns.Name + '.'  }}
 }
 {{ end }}
