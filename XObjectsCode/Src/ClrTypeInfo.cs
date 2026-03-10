@@ -263,12 +263,6 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        public bool IsRootElement
-        {
-            get { return typeOrigin == SchemaOrigin.Element; }
-        }
-
-
         public bool IsSubstitutionMember()
         {
             //types whose origin is element, If they have a base type its from being a member of a subst group

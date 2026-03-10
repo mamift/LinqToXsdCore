@@ -1,7 +1,6 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
-using System.Xml;
 using System.Xml.Schema;
 using System.Collections.Generic;
 using System.CodeDom;
@@ -92,14 +91,6 @@ namespace Xml.Schema.Linq.CodeGen
         protected virtual void SetElementWildCardFlag(bool hasAny)
         {
             //Do nothing by default
-        }
-
-        internal void AddTypeToTypeManager(CodeStatementCollection dictionaryStatements, string dictionaryName)
-        {
-            string typeRef = "global::" + clrTypeInfo.clrFullTypeName;
-            dictionaryStatements.Add(CodeDomHelper.CreateMethodCallFromField(dictionaryName, "Add",
-                CodeDomHelper.XNameGetExpression(clrTypeInfo.schemaName, clrTypeInfo.schemaNs),
-                CodeDomHelper.Typeof(typeRef)));
         }
 
         internal virtual void ImplementInterfaces(bool enableServiceReference)
@@ -297,7 +288,7 @@ namespace Xml.Schema.Linq.CodeGen
         private void ImplementIXmlSerializable()
         {
             string interfaceName = Constants.IXmlSerializable;
-            string typeManagerName = NameGenerator.GetServicesClassName();
+            string typeManagerName = Constants.LinqToXsdTypeManager;
             string methodName = clrTypeInfo.clrtypeName + "SchemaProvider";
             CodeMemberMethod schemaProviderMethod =
                 CodeDomHelper.CreateMethod(methodName, null, DefaultVisibility.ToMemberAttribute() | MemberAttributes.Static);
@@ -493,212 +484,6 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return typeDecl;
-        }
-
-        internal static CodeTypeDeclaration CreateTypeManager(XmlQualifiedName rootElementName,
-            bool enableServiceReference,
-            CodeStatementCollection typeDictionaryStatements,
-            CodeStatementCollection elementDictionaryStatements,
-            CodeStatementCollection wrapperDictionaryStatements,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            //Create the services type class and add members
-            string servicesClassName = NameGenerator.GetServicesClassName();
-            var memberVisibility = visibility.ToMemberAttribute();
-            CodeTypeDeclaration servicesTypeDecl = new CodeTypeDeclaration(servicesClassName) {
-                TypeAttributes = visibility.ToTypeAttribute()
-            };
-
-            //Create singleton
-            CodeMemberField singletonField = CodeDomHelper.CreateMemberField(Constants.TypeManagerSingletonField,
-                servicesClassName, true, MemberAttributes.Static | MemberAttributes.Private);
-            CodeMemberProperty singletonProperty = CodeDomHelper.CreateProperty(Constants.TypeManagerInstance, null,
-                singletonField, MemberAttributes.Static | memberVisibility, false);
-
-            MemberAttributes privateStatic = MemberAttributes.Private | MemberAttributes.Static;
-            //Create static constructor
-            CodeTypeConstructor staticServicesConstructor = new CodeTypeConstructor();
-
-            CodeTypeReference returnType = CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName);
-            CodeTypeReference wrapperReturnType = CodeDomHelper.CreateDictionaryType(Constants.SystemTypeName, Constants.SystemTypeName);
-
-            //Add private constructor so it cannot be instantiated
-            var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
-            servicesTypeDecl.Members.Add(privateConst);
-
-            //Create a dictionary of TypeName vs System.Type and the method to create it
-            CodeMemberProperty typeDictProperty = null;
-            if (typeDictionaryStatements.Count > 0)
-            {
-                typeDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalTypeDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType, Constants.TypeDictionaryField, MemberAttributes.Private);
-
-                CodeMemberField staticTypeDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.TypeDictionaryField, Constants.XNameType, Constants.SystemTypeName,
-                        MemberAttributes.Private);
-                CodeMemberMethod buildTypeDictionary =
-                    CodeDomHelper.CreateMethod(Constants.BuildTypeDictionary, null, privateStatic);
-                buildTypeDictionary.Statements.AddRange(typeDictionaryStatements);
-
-                staticServicesConstructor.Statements.Add(
-                    CodeDomHelper.CreateMethodCall(null, Constants.BuildTypeDictionary));
-                servicesTypeDecl.Members.Add(staticTypeDictionary);
-                servicesTypeDecl.Members.Add(buildTypeDictionary);
-            }
-            else
-            {
-                typeDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalTypeDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType, MemberAttributes.Private);
-                typeDictProperty.GetStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(
-                            new CodeTypeReferenceExpression(Constants.XTypedServices),
-                            Constants.EmptyDictionaryField)));
-            }
-
-            //Create a dictionary of ElementName Vs System.Type - For Auto typing and substitutionGroups
-            CodeMemberProperty elementDictProperty = null;
-            if (elementDictionaryStatements.Count > 0)
-            {
-                elementDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalElementDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType, Constants.ElementDictionaryField, MemberAttributes.Private);
-
-                CodeMemberField staticElementDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.ElementDictionaryField, Constants.XNameType, Constants.SystemTypeName,
-                        MemberAttributes.Private);
-                CodeMemberMethod buildElementDictionary =
-                    CodeDomHelper.CreateMethod(Constants.BuildElementDictionary, null, privateStatic);
-                buildElementDictionary.Statements.AddRange(elementDictionaryStatements);
-
-                staticServicesConstructor.Statements.Add(
-                    CodeDomHelper.CreateMethodCall(null, Constants.BuildElementDictionary));
-                servicesTypeDecl.Members.Add(staticElementDictionary);
-                servicesTypeDecl.Members.Add(buildElementDictionary);
-            }
-            else
-            {
-                elementDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.GlobalElementDictionary,
-                    Constants.ILinqToXsdTypeManager, returnType, MemberAttributes.Private);
-                elementDictProperty.GetStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(
-                            new CodeTypeReferenceExpression(Constants.XTypedServices),
-                            Constants.EmptyDictionaryField)));
-            }
-
-            //Create a dictionary of Wrapper Element Type Vs Wrapper Type - For Auto typing when casting from XElement to Type
-            CodeMemberProperty wrapperDictProperty = null;
-            if (wrapperDictionaryStatements.Count > 0)
-            {
-                wrapperDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.RootContentTypeMapping,
-                    Constants.ILinqToXsdTypeManager, wrapperReturnType, Constants.WrapperDictionaryField);
-
-                CodeMemberField staticWrapperDictionary =
-                    CodeDomHelper.CreateDictionaryField(Constants.WrapperDictionaryField, Constants.SystemTypeName, Constants.SystemTypeName,
-                        MemberAttributes.Private);
-                CodeMemberMethod buildWrapperDictionary =
-                    CodeDomHelper.CreateMethod(Constants.BuildWrapperDictionary, null, privateStatic);
-                buildWrapperDictionary.Statements.AddRange(wrapperDictionaryStatements);
-
-                staticServicesConstructor.Statements.Add(
-                    CodeDomHelper.CreateMethodCall(null, Constants.BuildWrapperDictionary));
-                servicesTypeDecl.Members.Add(staticWrapperDictionary);
-                servicesTypeDecl.Members.Add(buildWrapperDictionary);
-            }
-            else
-            {
-                wrapperDictProperty = CodeDomHelper.CreateInterfaceImplProperty(Constants.RootContentTypeMapping,
-                    Constants.ILinqToXsdTypeManager, wrapperReturnType);
-                wrapperDictProperty.GetStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(
-                            new CodeTypeReferenceExpression(Constants.XTypedServices),
-                            Constants.EmptyTypeMappingDictionary)));
-            }
-
-            //Implement IXmlSerializable AddSchemas method for the XmlSchemaProvider method and Schemas get set property for runtime access to schemas
-            //if (enableServiceReference) { //Since property is on the interface, it has to be implemented;
-            string schemaSetFieldName = "schemaSet";
-            CodeTypeReference schemaSetType = new CodeTypeReference("XmlSchemaSet");
-
-            CodeMemberField schemaSetField = new CodeMemberField(schemaSetType, schemaSetFieldName);
-            schemaSetField.Attributes = MemberAttributes.Private | MemberAttributes.Static;
-
-            //AddSchemas method
-            CodeMemberMethod addSchemasMethod = CodeDomHelper.CreateMethod("AddSchemas", null, MemberAttributes.FamilyOrAssembly | MemberAttributes.Static);
-            addSchemasMethod.Parameters.Add(new CodeParameterDeclarationExpression("XmlSchemaSet", "schemas"));
-            //schemas.Add(schemaSet);
-            addSchemasMethod.Statements.Add(CodeDomHelper.CreateMethodCall(
-                new CodeVariableReferenceExpression("schemas"), "Add",
-                new CodeFieldReferenceExpression(null, schemaSetFieldName)));
-
-
-            CodeTypeReferenceExpression interLockedType =
-                new CodeTypeReferenceExpression("System.Threading.Interlocked");
-
-            CodeMemberProperty schemaSetProperty =
-                CodeDomHelper.CreateInterfaceImplProperty("Schemas", Constants.ILinqToXsdTypeManager, schemaSetType, memberVisibility);
-            CodeFieldReferenceExpression schemaSetFieldRef = new CodeFieldReferenceExpression(null, schemaSetFieldName);
-
-            CodeDirectionExpression schemaSetParam = new CodeDirectionExpression(FieldDirection.Ref, schemaSetFieldRef);
-
-            schemaSetProperty.GetStatements.Add(
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression(schemaSetFieldRef,
-                        CodeBinaryOperatorType.IdentityEquality, new CodePrimitiveExpression(null)),
-                    new CodeVariableDeclarationStatement(schemaSetType, "tempSet",
-                        new CodeObjectCreateExpression(schemaSetType)),
-                    new CodeExpressionStatement(
-                        CodeDomHelper.CreateMethodCall(interLockedType, "CompareExchange",
-                            schemaSetParam,
-                            new CodeVariableReferenceExpression("tempSet"),
-                            new CodePrimitiveExpression(null)))));
-
-            schemaSetProperty.GetStatements.Add(
-                new CodeMethodReturnStatement(
-                    new CodeVariableReferenceExpression(schemaSetFieldName)));
-
-            //Setter
-            schemaSetProperty.SetStatements.Add(new CodeAssignStatement(schemaSetFieldRef,
-                new CodePropertySetValueReferenceExpression()));
-
-            servicesTypeDecl.Members.Add(schemaSetField);
-            servicesTypeDecl.Members.Add(schemaSetProperty);
-            servicesTypeDecl.Members.Add(addSchemasMethod);
-            //}
-            //Implement ILinqToXsdTypeManager
-            servicesTypeDecl.Members.Add(typeDictProperty);
-            servicesTypeDecl.Members.Add(elementDictProperty);
-            servicesTypeDecl.Members.Add(wrapperDictProperty);
-            servicesTypeDecl.BaseTypes.Add(Constants.ILinqToXsdTypeManager);
-
-
-            //Add a getter that will get the root type name
-            CodeMemberMethod getRootType = new CodeMemberMethod();
-            getRootType.Attributes = MemberAttributes.Static | memberVisibility;
-            getRootType.Name = Constants.GetRootType;
-            getRootType.ReturnType = new CodeTypeReference(Constants.SystemTypeName);
-            if (rootElementName.IsEmpty)
-            {
-                getRootType.Statements.Add(
-                    new CodeMethodReturnStatement(
-                        CodeDomHelper.Typeof("Xml.Schema.Linq.XTypedElement")));
-            }
-            else
-            {
-                getRootType.Statements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeIndexerExpression(
-                            CodeDomHelper.CreateFieldReference(null, Constants.ElementDictionaryField),
-                            CodeDomHelper.XNameGetExpression(rootElementName.Name,
-                                rootElementName.Namespace))));
-            }
-
-            servicesTypeDecl.Members.Add(staticServicesConstructor);
-            servicesTypeDecl.Members.Add(getRootType);
-            servicesTypeDecl.Members.Add(singletonField);
-            servicesTypeDecl.Members.Add(singletonProperty);
-            return servicesTypeDecl;
         }
 
         public override string ToString() => $"{nameof(TypeBuilder)} ({this.clrTypeInfo})";
@@ -1203,18 +988,6 @@ namespace Xml.Schema.Linq.CodeGen
         protected override void ImplementContentModelMetaData()
         {
             decl.Members.Add(DefaultContentModel()); //No direct element children return Default content model
-        }
-
-        internal void AddTypeToTypeManager(CodeStatementCollection elementDictionaryStatements,
-            CodeStatementCollection wrapperDictionaryStatements)
-        {
-            base.AddTypeToTypeManager(elementDictionaryStatements, Constants.ElementDictionaryField);
-            var innerTypeFullName = innerTypeName.Contains(innerTypeNs)
-                ? "global::" + innerTypeName
-                : "global::" + innerTypeNs + "." + innerTypeName;
-
-            wrapperDictionaryStatements.Add(CodeDomHelper.CreateMethodCallFromField(Constants.WrapperDictionaryField,
-                "Add", CodeDomHelper.Typeof(clrTypeInfo.clrFullTypeName), CodeDomHelper.Typeof(innerTypeFullName)));
         }
 
         private CodeMethodInvokeExpression SetNameMethodCall()

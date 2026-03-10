@@ -437,7 +437,7 @@ namespace Xml.Schema.Linq.CodeGen
         public static CodePropertyReferenceExpression SingletonTypeManager()
         {
             return new CodePropertyReferenceExpression(
-                new CodeTypeReferenceExpression(NameGenerator.GetServicesClassName()), Constants.TypeManagerInstance);
+                new CodeTypeReferenceExpression(Constants.LinqToXsdTypeManager), Constants.TypeManagerInstance);
         }
 
 
@@ -482,7 +482,7 @@ namespace Xml.Schema.Linq.CodeGen
             CodeSnippetTypeMember castMember = new CodeSnippetTypeMember();
             @namespace = @namespace.IsNotEmpty() ? $"{@namespace}." : "";
             var visibilityKeyword = visibility.ToKeyword();
-            var servicesClassName = @namespace + NameGenerator.GetServicesClassName();
+            var servicesClassName = @namespace + Constants.LinqToXsdTypeManager;
             if (useAutoTyping)
             {
                 castMember.Text = String.Concat($"\t\t{visibilityKeyword} static explicit operator ", typeT, "(XElement xe) {  ",

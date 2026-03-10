@@ -133,10 +133,25 @@ public static class XObjectsCoreGenerator
 
         string RenderCodeUnit(IEnumerable<CNamespace> namespaces)
         {
+            var nsArray = namespaces.ToArray();
+
             var globals = new ScriptObject();
             globals.Import(typeof(ScribanGlobals));
             globals.Import(
-                new { Settings = settings, Namespaces = namespaces.ToArray() }, 
+                new 
+                { 
+                    Settings = settings,
+                    TypeManager = new 
+                    {
+                        // TODO: when RootElement is a POCO model class, it should provide CNamespace more easily
+                        Namespace = nsArray.FirstOrDefault(ns => ns.Dom == codeGenerator.RootElement.ParentNamespace),
+                        RootElement = codeGenerator.RootElement,
+                        AllTypes = codeGenerator.AllTypes,
+                        AllElements = codeGenerator.AllElements,
+                        AllWrappers = codeGenerator.AllWrappers,
+                    },
+                    Namespaces = nsArray,
+                }, 
                 renamer: m => m.Name);
 
             var context = new TemplateContext()

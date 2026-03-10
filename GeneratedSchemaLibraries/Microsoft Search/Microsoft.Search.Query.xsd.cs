@@ -4825,7 +4825,7 @@ namespace Microsoft.Search.Query.Schemas {
             elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeRelevantResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeRelevantResults));
             elementDictionary.Add(System.Xml.Linq.XName.Get("IncludeHighConfidenceResults", "urn:Microsoft.Search.Query"), typeof(global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults));
         }
-        
+    
         private static XmlSchemaSet schemaSet;
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
