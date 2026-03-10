@@ -118,7 +118,7 @@ public partial class XRootNamespace {
         }
     }    
     
-    {{- for $el in $1 | element_types }}
+    {{- for $el in $1.Elements }}
 
     public XRootNamespace({{ $el.Name }} root) {
         this.doc = new XDocument(root.Untyped);
@@ -251,7 +251,7 @@ public partial class XRoot {
         }
     }
     
-    {{- for $el in $1 | element_types }}
+    {{- for $el in $1.Elements }}
 
     public XRoot(global::{{ $1.Name }}.{{ $el.Name }} root) {
         this.doc = new XDocument(root.Untyped);

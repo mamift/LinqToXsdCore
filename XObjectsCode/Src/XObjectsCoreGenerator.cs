@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +9,7 @@ using System.Xml.Schema;
 using Scriban;
 using Scriban.Runtime;
 using Xml.Schema.Linq.CodeGen;
+using Xml.Schema.Linq.CodeGen.Model;
 using Xml.Schema.Linq.CodeGen.Scriban;
 using Xml.Schema.Linq.Extensions;
 
@@ -131,7 +131,7 @@ public static class XObjectsCoreGenerator
             ? namespaces.GroupBy(ns => ns.Name).Select(g => ((string?)g.Key, RenderCodeUnit(g)))
             : [ (null, RenderCodeUnit(namespaces)) ];
 
-        string RenderCodeUnit(IEnumerable<CodeNamespace> namespaces)
+        string RenderCodeUnit(IEnumerable<CNamespace> namespaces)
         {
             var globals = new ScriptObject();
             globals.Import(typeof(ScribanGlobals));

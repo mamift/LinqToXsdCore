@@ -28,7 +28,7 @@ namespace {{ $ns.Name }} {
     using System.Xml.Linq;
     using Xml.Schema.Linq;
     
-    {{~ for $type in $ns | all_types ~}}
+    {{~ for $type in $ns.Types ~}}
     
     {{
         if $type | is_type_definition

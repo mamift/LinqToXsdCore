@@ -1,4 +1,5 @@
 #nullable enable 
+
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -230,17 +231,5 @@ static class ScribanGlobals
             "string" => "XmlTypeCode.String",
             _ => "TODO",
         };
-    }
-
-    public static IEnumerable<CodeTypeDeclaration> AllTypes(CodeNamespace ns)
-    {
-        return ns.Types
-            .Cast<CodeTypeDeclaration>()
-            .Where(x => x.Name is not ("XRootNamespace" or "XRoot" or "LinqToXsdTypeManager"));
-    }
-
-    public static IEnumerable<CodeTypeDeclaration> ElementTypes(CodeNamespace ns)
-    {
-        return AllTypes(ns).Where(x => !IsTypeDefinition(x));
     }
 }

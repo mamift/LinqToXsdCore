@@ -6,7 +6,7 @@ public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
     private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
     
     private static void BuildElementDictionary() {
-        {{- for $el in $1 | element_types }}
+        {{- for $el in $1.Elements }}
         elementDictionary.Add(System.Xml.Linq.XName.Get("{{ $el | local_name 'xName' }}", "{{ $el | namespace 'xName' }}"), typeof(global::{{ $1.Name }}.{{ $el.Name }}));
         {{- end }}
     }
@@ -53,7 +53,7 @@ public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
     }
     
     public static System.Type GetRootType() {
-        return elementDictionary[System.Xml.Linq.XName.Get("{{ $1.Types[0] | local_name 'xName' }}", "{{ $1.Types[0] | namespace 'xName' }}")];
+        return elementDictionary[System.Xml.Linq.XName.Get("{{ $1.RootType | local_name 'xName' }}", "{{ $1.RootType | namespace 'xName' }}")];
     }
     
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
