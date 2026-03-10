@@ -28,30 +28,34 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
     /// </summary>
     public partial class Action : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ActionInfoXName = System.Xml.Linq.XName.Get("ActionInfo", "http://example.org/AbstractTest");
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CommandsXName = System.Xml.Linq.XName.Get("Commands", "http://example.org/AbstractTest");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<BaseCommand> CommandsField;
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Action", "http://example.org/AbstractTest");
+        public static Action Load(string xmlFile) {
+            return XTypedServices.Load<Action>(xmlFile);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        public static Action Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Action>(xmlFile);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
+        public static Action Parse(string xml) {
+            return XTypedServices.Parse<Action>(xml);
+        }
         
 		public static explicit operator Action(XElement xe) { return XTypedServices.ToXTypedElement<Action>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Action() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ActionInfoXName), new NamedContentModelEntity(CommandsXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Action>(this);
         }
         
         /// <summary>
@@ -61,6 +65,10 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
         /// </summary>
         public Action() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ActionInfoXName = System.Xml.Linq.XName.Get("ActionInfo", "http://example.org/AbstractTest");
         
         /// <summary>
         /// <para>
@@ -79,6 +87,13 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
                 this.SetElement(ActionInfoXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CommandsXName = System.Xml.Linq.XName.Get("Commands", "http://example.org/AbstractTest");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<BaseCommand> CommandsField;
         
         /// <summary>
         /// <para>
@@ -110,11 +125,33 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Action", "http://example.org/AbstractTest");
+        
+        static Action() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ActionInfoXName), new NamedContentModelEntity(CommandsXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ActionInfoXName, typeof(BaseInfo));
+            localElementDictionary.Add(CommandsXName, typeof(BaseCommand));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -137,52 +174,23 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static Action Load(string xmlFile) {
-            return XTypedServices.Load<Action>(xmlFile);
-        }
-        
-        public static Action Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Action>(xmlFile);
-        }
-        
-        public static Action Parse(string xml) {
-            return XTypedServices.Parse<Action>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Action>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ActionInfoXName, typeof(BaseInfo));
-            localElementDictionary.Add(CommandsXName, typeof(BaseCommand));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class BaseInfo : XTypedElement, IXMetaData {
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseInfo", "http://example.org/AbstractTest");
-        
 		public static explicit operator BaseInfo(XElement xe) { return XTypedServices.ToXTypedElement<BaseInfo>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<BaseInfo>(this);
+        }
+        
         public BaseInfo() {
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseInfo", "http://example.org/AbstractTest");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -205,25 +213,21 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<BaseInfo>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public abstract partial class BaseCommand : XTypedElement, IXMetaData {
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseCommand", "http://example.org/AbstractTest");
         
 		public static explicit operator BaseCommand(XElement xe) {  return (BaseCommand)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public BaseCommand() {
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BaseCommand", "http://example.org/AbstractTest");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -244,24 +248,22 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public partial class UpdateCommand : global::LinqToXsd.Schemas.AbstractTypeTest.BaseCommand, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UpdateCommand", "http://example.org/AbstractTest");
-        
 		public static explicit operator UpdateCommand(XElement xe) { return XTypedServices.ToXTypedElement<UpdateCommand>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<UpdateCommand>(this);
+        }
         
         public UpdateCommand() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
         
         /// <summary>
         /// <para>
@@ -278,6 +280,8 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UpdateCommand", "http://example.org/AbstractTest");
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -298,24 +302,22 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<UpdateCommand>(this);
-        }
     }
     
     public partial class Record : global::LinqToXsd.Schemas.AbstractTypeTest.BaseInfo, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Record", "http://example.org/AbstractTest");
-        
 		public static explicit operator Record(XElement xe) { return XTypedServices.ToXTypedElement<Record>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Record>(this);
+        }
         
         public Record() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -332,6 +334,8 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Record", "http://example.org/AbstractTest");
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -352,30 +356,29 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Record>(this);
-        }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
+        private LinqToXsdTypeManager() {
+        }
+        
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildTypeDictionary() {
+            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseInfo", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.BaseInfo));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseCommand", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.BaseCommand));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("UpdateCommand", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.UpdateCommand));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Record", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.Record));
+        }
         
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Action", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.Action));
+        }
+        
         private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-        }
-        
-        private LinqToXsdTypeManager() {
-        }
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
@@ -388,6 +391,10 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
             set {
                 schemaSet = value;
             }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
         }
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
@@ -408,29 +415,22 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
             }
         }
         
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
-        
-        private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseInfo", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.BaseInfo));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("BaseCommand", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.BaseCommand));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("UpdateCommand", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.UpdateCommand));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Record", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.Record));
-        }
-        
-        private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Action", "http://example.org/AbstractTest"), typeof(global::LinqToXsd.Schemas.AbstractTypeTest.Action));
-        }
-        
-        protected internal static void AddSchemas(XmlSchemaSet schemas) {
-            schemas.Add(schemaSet);
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
         }
         
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("Action", "http://example.org/AbstractTest")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -442,27 +442,7 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public Action Action {  get {return rootObject as Action; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(Action root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -561,26 +541,6 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::LinqToXsd.Schemas.AbstractTypeTest.Action Action {  get {return rootObject as global::LinqToXsd.Schemas.AbstractTypeTest.Action; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::LinqToXsd.Schemas.AbstractTypeTest.Action root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -592,6 +552,26 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(Action root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Action Action {  get {return rootObject as Action; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -690,5 +670,25 @@ namespace LinqToXsd.Schemas.AbstractTypeTest {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::LinqToXsd.Schemas.AbstractTypeTest.Action root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::LinqToXsd.Schemas.AbstractTypeTest.Action Action {  get {return rootObject as global::LinqToXsd.Schemas.AbstractTypeTest.Action; } }
     }
 }

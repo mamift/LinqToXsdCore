@@ -91,6 +91,12 @@
       "workingDirectory": "..\\GeneratedSchemaLibraries\\AkomaNtoso",
       "hotReloadEnabled": false
     },
+    "AbstractTypeTest": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"abstracttest.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\AbstractTypeTest",
+      "hotReloadEnabled": false
+    },
     "ImportsXmlNamespace": {
       "commandName": "Project",
       "commandLineArgs": "gen \"ImportsXmlAttributes.xsd\" -a",
