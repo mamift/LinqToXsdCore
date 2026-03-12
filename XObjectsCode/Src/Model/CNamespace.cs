@@ -20,6 +20,9 @@ public class CNamespace(string name)
 
     public required string AccessModifier { get; init; }
 
+    // List of root elements in this namespace (also found in Types and Elements)
+    public List<CodeTypeDeclaration> Roots { get; } = [];
+
     public IEnumerable<CodeTypeDeclaration> Types => Dom.Types
         .Cast<CodeTypeDeclaration>()
         .Where(x => x.Name is not ("XRootNamespace" or "XRoot"));

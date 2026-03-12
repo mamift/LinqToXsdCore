@@ -1,4 +1,4 @@
-public partial class {{ $1 }} {
+{{ $ns.AccessModifier }} partial class {{ $XRoot }} {
     
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private XDocument doc;
@@ -6,11 +6,11 @@ public partial class {{ $1 }} {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private XTypedElement rootObject;
     
-    private {{ $1 }}() {
+    private {{ $XRoot }}() {
     }
     
-    public static {{ $1 }} Load(string xmlFile) {
-        {{ $1 }} root = new {{ $1 }}();
+    public static {{ $XRoot }} Load(string xmlFile) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
         root.doc = XDocument.Load(xmlFile);
         XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
         if ((typedRoot == null)) {
@@ -20,8 +20,8 @@ public partial class {{ $1 }} {
         return root;
     }
     
-    public static {{ $1 }} Load(string xmlFile, LoadOptions options) {
-        {{ $1 }} root = new {{ $1 }}();
+    public static {{ $XRoot }} Load(string xmlFile, LoadOptions options) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
         root.doc = XDocument.Load(xmlFile, options);
         XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
         if ((typedRoot == null)) {
@@ -31,8 +31,8 @@ public partial class {{ $1 }} {
         return root;
     }
     
-    public static {{ $1 }} Load(TextReader textReader) {
-        {{ $1 }} root = new {{ $1 }}();
+    public static {{ $XRoot }} Load(TextReader textReader) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
         root.doc = XDocument.Load(textReader);
         XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
         if ((typedRoot == null)) {
@@ -42,8 +42,8 @@ public partial class {{ $1 }} {
         return root;
     }
     
-    public static {{ $1 }} Load(TextReader textReader, LoadOptions options) {
-        {{ $1 }} root = new {{ $1 }}();
+    public static {{ $XRoot }} Load(TextReader textReader, LoadOptions options) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
         root.doc = XDocument.Load(textReader, options);
         XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
         if ((typedRoot == null)) {
@@ -53,8 +53,8 @@ public partial class {{ $1 }} {
         return root;
     }
     
-    public static {{ $1 }} Load(XmlReader xmlReader) {
-        {{ $1 }} root = new {{ $1 }}();
+    public static {{ $XRoot }} Load(XmlReader xmlReader) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
         root.doc = XDocument.Load(xmlReader);
         XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
         if ((typedRoot == null)) {
@@ -64,8 +64,8 @@ public partial class {{ $1 }} {
         return root;
     }
     
-    public static {{ $1 }} Parse(string text) {
-        {{ $1 }} root = new {{ $1 }}();
+    public static {{ $XRoot }} Parse(string text) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
         root.doc = XDocument.Parse(text);
         XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
         if ((typedRoot == null)) {
@@ -75,8 +75,8 @@ public partial class {{ $1 }} {
         return root;
     }
     
-    public static {{ $1 }} Parse(string text, LoadOptions options) {
-        {{ $1 }} root = new {{ $1 }}();
+    public static {{ $XRoot }} Parse(string text, LoadOptions options) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
         root.doc = XDocument.Parse(text, options);
         XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
         if ((typedRoot == null)) {
@@ -117,16 +117,18 @@ public partial class {{ $1 }} {
             return rootObject;
         }
     }    
-    
-    {{- for $el in $2.Elements }}
 
-    public {{ $1 }}({{ $3 }}{{ $el.Name }} root) {
+    {{- for $el in $ns.Roots }}
+
+    public {{ $XRoot }}({{ $prefix }}{{ $el.Name }} root) {
         this.doc = new XDocument(root.Untyped);
         this.rootObject = root;
     }
     
 
-    public {{ $3 }}{{ $el.Name }} {{ $el.Name }} {  get {return rootObject as {{ $3 }}{{ $el.Name }}; } }
+    {{~ ## TODO: prefix should actually be "global::($el.Namespace)." for XRoot. ~}}
+    {{~ ## TODO: name of this property should be suffixed with 1,2.. in case of (CI) collisions ~}}
+    public {{ $prefix }}{{ $el.Name }} {{ $el.Name }} {  get {return rootObject as {{ $prefix }}{{ $el.Name }}; } }
 
     {{- end }}
 }

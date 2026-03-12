@@ -39,10 +39,13 @@ namespace {{ $ns.Name }} {
     }}
     {{~ end ~}}
 
-    {{ include 'manager.scriban-cs' $ns }}
+    {{~ ## TODO: only render once in main root namespace ~}}
+    {{ include 'manager.scriban-cs' }}
     
-    {{ include 'root.scriban-cs' 'XRootNamespace' $ns '' }}
+    {{ include 'root.scriban-cs' XRoot:'XRootNamespace' prefix:'' }}
 
-    {{ include 'root.scriban-cs' 'XRoot' $ns 'global::' + $ns.Name + '.'  }}
+    {{~ ## TODO: only render once in main root namespace ~}}
+    {{~ ## TODO: should contain all roots from all namespaces ~}}
+    {{ include 'root.scriban-cs' XRoot:'XRoot' prefix:('global::' + $ns.Name + '.')  }}
 }
 {{ end }}
