@@ -23,8 +23,10 @@ namespace Xml.Schema.Linq.CodeGen
         // TODO: eventually remove
         XmlQualifiedName rootElementName = XmlQualifiedName.Empty;
         public CodeTypeDeclaration RootElement { get; private set; }
+        public IEnumerable<CodeTypeDeclaration> AllRoots => codeNamespacesTable.Values.SelectMany(ns => ns.Roots);
 
-        CNamespace cNamespace;
+        CNamespace cNamespace, rootNamespace;
+        public CNamespace RootNamespace => rootNamespace;
 
         readonly Dictionary<string, CNamespace> codeNamespacesTable = new();
         Dictionary<XmlSchemaObject, string> nameMappings;
@@ -289,34 +291,15 @@ namespace Xml.Schema.Linq.CodeGen
 
         private void CreateXRoots()
         {
-            // For the global XRoot structure, we union the lists of types
-            var allRoots = new List<CodeTypeDeclaration>();
-            var allNamespaces = new List<CodeNamespace>();
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
-
-            if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out CNamespace rootCNamespace))
+            if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out rootNamespace))
             {
                 // This might happen if the schema set has no global elements and only global types then you can create a root tag with xsi:type
-                rootCNamespace = codeNamespacesTable.Values.FirstOrDefault(); 
+                rootNamespace = codeNamespacesTable.Values.FirstOrDefault(); 
                 // rootCodeNamespace may still be null if schema has only simple typed global elements or simple types which we are ignoring for now
             }
-
-            // Build list of types that will need to be included in XRoot
-            foreach (var ns in codeNamespacesTable.Values)
-            {
-                rootCNamespace ??= ns;
-                if (ns.Roots.Count > 0) 
-                {
-                    allNamespaces.Add(ns.Dom);
-                    allRoots.AddRange(ns.Roots);
-                }
-            }
-
-            if (rootCNamespace == null && allNamespaces.Count == 0) return;
-// TODO: persist allRoots, allNamespaces somewhere?
-            // CreateXRoot(rootCNamespace.Dom, "XRoot", allRoots, allNamespaces);
+            // TODO: persist allRoots somewhere?
         }
-
 
         private void ProcessWrapperTypes()
         {

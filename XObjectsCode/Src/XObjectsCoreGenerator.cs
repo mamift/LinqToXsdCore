@@ -128,7 +128,7 @@ public static class XObjectsCoreGenerator
         var template = TemplateLoader.Load("file.scriban-cs");
         
         return settings.SplitFilesByNamespace
-            ? namespaces.GroupBy(ns => ns.Name).Select(g => ((string?)g.Key, RenderCodeUnit(g)))
+            ? from ns in namespaces select ((string?)ns.Name, RenderCodeUnit([ns]))
             : [ (null, RenderCodeUnit(namespaces)) ];
 
         string RenderCodeUnit(IEnumerable<CNamespace> namespaces)
@@ -141,16 +141,21 @@ public static class XObjectsCoreGenerator
                 new 
                 { 
                     Settings = settings,
-                    TypeManager = new 
+                    Namespaces = nsArray,
+                    TypeManager = new ScriptObject // So that we can make use of `with TypeManager` in manager.scriban-cs
                     {
                         // TODO: when RootElement is a POCO model class, it should provide CNamespace more easily
-                        Namespace = nsArray.FirstOrDefault(ns => ns.Dom == codeGenerator.RootElement.ParentNamespace),
-                        RootElement = codeGenerator.RootElement,
-                        AllTypes = codeGenerator.AllTypes,
-                        AllElements = codeGenerator.AllElements,
-                        AllWrappers = codeGenerator.AllWrappers,
+                        { "Namespace",nsArray.FirstOrDefault(ns => ns.Dom == codeGenerator.RootElement.ParentNamespace) },
+                        { "RootElement", codeGenerator.RootElement },
+                        { "AllTypes", codeGenerator.AllTypes },
+                        { "AllElements", codeGenerator.AllElements },
+                        { "AllWrappers", codeGenerator.AllWrappers },
                     },
-                    Namespaces = nsArray,
+                    XRoot = new 
+                    {
+                        Namespace = codeGenerator.RootNamespace,
+                        AllRoots = codeGenerator.AllRoots,
+                    },
                 }, 
                 renamer: m => m.Name);
 

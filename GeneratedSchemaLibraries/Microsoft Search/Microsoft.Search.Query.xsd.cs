@@ -4865,7 +4865,7 @@ namespace Microsoft.Search.Query.Schemas {
         
         static LinqToXsdTypeManager() {
             BuildElementDictionary();
-        }
+            }
         
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("QueryPacket", "urn:Microsoft.Search.Query")];
@@ -5005,7 +5005,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public QueryPacket QueryPacket {  get {return rootObject as QueryPacket; } }
     
@@ -5013,7 +5013,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public QueryId QueryId {  get {return rootObject as QueryId; } }
     
@@ -5021,7 +5021,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public Context Context {  get {return rootObject as Context; } }
     
@@ -5029,7 +5029,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public QueryText QueryText {  get {return rootObject as QueryText; } }
     
@@ -5037,7 +5037,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public Range Range {  get {return rootObject as Range; } }
     
@@ -5045,7 +5045,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public Properties Properties {  get {return rootObject as Properties; } }
     
@@ -5053,7 +5053,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public Property Property {  get {return rootObject as Property; } }
     
@@ -5061,7 +5061,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public SortByProperties SortByProperties {  get {return rootObject as SortByProperties; } }
     
@@ -5069,7 +5069,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public SortByProperty SortByProperty {  get {return rootObject as SortByProperty; } }
     
@@ -5077,7 +5077,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public RelevanceModel RelevanceModel {  get {return rootObject as RelevanceModel; } }
     
@@ -5085,7 +5085,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public TrimDuplicates TrimDuplicates {  get {return rootObject as TrimDuplicates; } }
     
@@ -5093,7 +5093,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public ResultProvider ResultProvider {  get {return rootObject as ResultProvider; } }
     
@@ -5101,7 +5101,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public ResubmitFlags ResubmitFlags {  get {return rootObject as ResubmitFlags; } }
     
@@ -5109,7 +5109,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public ResubmitFlag ResubmitFlag {  get {return rootObject as ResubmitFlag; } }
     
@@ -5117,7 +5117,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public EnableSpellcheck EnableSpellcheck {  get {return rootObject as EnableSpellcheck; } }
     
@@ -5125,7 +5125,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public UserContext UserContext {  get {return rootObject as UserContext; } }
     
@@ -5133,7 +5133,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public FindSimilar FindSimilar {  get {return rootObject as FindSimilar; } }
     
@@ -5141,7 +5141,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public SimilarType SimilarType {  get {return rootObject as SimilarType; } }
     
@@ -5149,7 +5149,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as IncludeRefinementResults; } }
     
@@ -5157,7 +5157,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public Refiners Refiners {  get {return rootObject as Refiners; } }
     
@@ -5165,7 +5165,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public RefinementFilters RefinementFilters {  get {return rootObject as RefinementFilters; } }
     
@@ -5173,7 +5173,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public StartAt StartAt {  get {return rootObject as StartAt; } }
     
@@ -5181,7 +5181,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public Count Count {  get {return rootObject as Count; } }
     
@@ -5189,7 +5189,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as ImplicitAndBehavior; } }
     
@@ -5197,7 +5197,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public EnableStemming EnableStemming {  get {return rootObject as EnableStemming; } }
     
@@ -5205,7 +5205,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as IncludeSpecialTermResults; } }
     
@@ -5213,7 +5213,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as PreQuerySuggestions; } }
     
@@ -5221,7 +5221,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as HighlightQuerySuggestions; } }
     
@@ -5229,7 +5229,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as CapitalizeFirstLetters; } }
     
@@ -5237,7 +5237,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public UserContextData UserContextData {  get {return rootObject as UserContextData; } }
     
@@ -5245,7 +5245,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public SimilarTo SimilarTo {  get {return rootObject as SimilarTo; } }
     
@@ -5253,7 +5253,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public SortSimilar SortSimilar {  get {return rootObject as SortSimilar; } }
     
@@ -5261,7 +5261,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public Refiner Refiner {  get {return rootObject as Refiner; } }
     
@@ -5269,7 +5269,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as MaxShallowRefinementHits; } }
     
@@ -5277,7 +5277,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public RefinementFilter RefinementFilter {  get {return rootObject as RefinementFilter; } }
     
@@ -5285,7 +5285,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as IgnoreAllNoiseQuery; } }
     
@@ -5293,7 +5293,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as IncludeRelevantResults; } }
     
@@ -5301,7 +5301,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as IncludeHighConfidenceResults; } }
     }
@@ -5430,7 +5430,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.QueryPacket QueryPacket {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryPacket; } }
     
@@ -5438,7 +5438,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.QueryId QueryId {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryId; } }
     
@@ -5446,7 +5446,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.Context Context {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Context; } }
     
@@ -5454,7 +5454,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.QueryText QueryText {  get {return rootObject as global::Microsoft.Search.Query.Schemas.QueryText; } }
     
@@ -5462,7 +5462,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.Range Range {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Range; } }
     
@@ -5470,7 +5470,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.Properties Properties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Properties; } }
     
@@ -5478,7 +5478,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.Property Property {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Property; } }
     
@@ -5486,7 +5486,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.SortByProperties SortByProperties {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperties; } }
     
@@ -5494,7 +5494,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.SortByProperty SortByProperty {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortByProperty; } }
     
@@ -5502,7 +5502,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.RelevanceModel RelevanceModel {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RelevanceModel; } }
     
@@ -5510,7 +5510,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.TrimDuplicates TrimDuplicates {  get {return rootObject as global::Microsoft.Search.Query.Schemas.TrimDuplicates; } }
     
@@ -5518,7 +5518,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.ResultProvider ResultProvider {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResultProvider; } }
     
@@ -5526,7 +5526,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.ResubmitFlags ResubmitFlags {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlags; } }
     
@@ -5534,7 +5534,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.ResubmitFlag ResubmitFlag {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ResubmitFlag; } }
     
@@ -5542,7 +5542,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.EnableSpellcheck EnableSpellcheck {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableSpellcheck; } }
     
@@ -5550,7 +5550,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.UserContext UserContext {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContext; } }
     
@@ -5558,7 +5558,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.FindSimilar FindSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.FindSimilar; } }
     
@@ -5566,7 +5566,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.SimilarType SimilarType {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarType; } }
     
@@ -5574,7 +5574,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.IncludeRefinementResults IncludeRefinementResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRefinementResults; } }
     
@@ -5582,7 +5582,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.Refiners Refiners {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiners; } }
     
@@ -5590,7 +5590,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.RefinementFilters RefinementFilters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilters; } }
     
@@ -5598,7 +5598,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.StartAt StartAt {  get {return rootObject as global::Microsoft.Search.Query.Schemas.StartAt; } }
     
@@ -5606,7 +5606,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.Count Count {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Count; } }
     
@@ -5614,7 +5614,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior ImplicitAndBehavior {  get {return rootObject as global::Microsoft.Search.Query.Schemas.ImplicitAndBehavior; } }
     
@@ -5622,7 +5622,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.EnableStemming EnableStemming {  get {return rootObject as global::Microsoft.Search.Query.Schemas.EnableStemming; } }
     
@@ -5630,7 +5630,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults IncludeSpecialTermResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeSpecialTermResults; } }
     
@@ -5638,7 +5638,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.PreQuerySuggestions PreQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.PreQuerySuggestions; } }
     
@@ -5646,7 +5646,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions HighlightQuerySuggestions {  get {return rootObject as global::Microsoft.Search.Query.Schemas.HighlightQuerySuggestions; } }
     
@@ -5654,7 +5654,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters CapitalizeFirstLetters {  get {return rootObject as global::Microsoft.Search.Query.Schemas.CapitalizeFirstLetters; } }
     
@@ -5662,7 +5662,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.UserContextData UserContextData {  get {return rootObject as global::Microsoft.Search.Query.Schemas.UserContextData; } }
     
@@ -5670,7 +5670,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.SimilarTo SimilarTo {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SimilarTo; } }
     
@@ -5678,7 +5678,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.SortSimilar SortSimilar {  get {return rootObject as global::Microsoft.Search.Query.Schemas.SortSimilar; } }
     
@@ -5686,7 +5686,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.Refiner Refiner {  get {return rootObject as global::Microsoft.Search.Query.Schemas.Refiner; } }
     
@@ -5694,7 +5694,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits MaxShallowRefinementHits {  get {return rootObject as global::Microsoft.Search.Query.Schemas.MaxShallowRefinementHits; } }
     
@@ -5702,7 +5702,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.RefinementFilter RefinementFilter {  get {return rootObject as global::Microsoft.Search.Query.Schemas.RefinementFilter; } }
     
@@ -5710,7 +5710,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery IgnoreAllNoiseQuery {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IgnoreAllNoiseQuery; } }
     
@@ -5718,7 +5718,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.IncludeRelevantResults IncludeRelevantResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeRelevantResults; } }
     
@@ -5726,7 +5726,7 @@ namespace Microsoft.Search.Query.Schemas {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
-        
+    
     
         public global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults IncludeHighConfidenceResults {  get {return rootObject as global::Microsoft.Search.Query.Schemas.IncludeHighConfidenceResults; } }
     }

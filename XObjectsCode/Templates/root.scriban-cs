@@ -116,19 +116,23 @@
         get {
             return rootObject;
         }
-    }    
+    }
 
-    {{- for $el in $ns.Roots }}
+    {{- 
+        # Elements in a namespace should already have unique names in model, but they could clash with local members above.
+        # When rendering XRoot (rather than XRootNamespace) elements from all namespaces are included and could clash with each other.
+        scope_init "doc" "rootObject" "Load" "Parse" "Save" "XDocument" "Root"
+        for $el in $roots
+    }}
 
     public {{ $XRoot }}({{ $prefix }}{{ $el.Name }} root) {
         this.doc = new XDocument(root.Untyped);
         this.rootObject = root;
     }
-    
+
 
     {{~ ## TODO: prefix should actually be "global::($el.Namespace)." for XRoot. ~}}
-    {{~ ## TODO: name of this property should be suffixed with 1,2.. in case of (CI) collisions ~}}
-    public {{ $prefix }}{{ $el.Name }} {{ $el.Name }} {  get {return rootObject as {{ $prefix }}{{ $el.Name }}; } }
+    public {{ $prefix }}{{ $el.Name }} {{ $el.Name | scope_rename }} {  get {return rootObject as {{ $prefix }}{{ $el.Name }}; } }
 
     {{- end }}
 }

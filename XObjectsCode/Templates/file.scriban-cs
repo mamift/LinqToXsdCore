@@ -39,13 +39,16 @@ namespace {{ $ns.Name }} {
     }}
     {{~ end ~}}
 
-    {{~ ## TODO: only render once in main root namespace ~}}
-    {{ include 'manager.scriban-cs' }}
+    {{ 
+        if TypeManager.Namespace == $ns; include 'manager.scriban-cs'; end
+    }}
     
-    {{ include 'root.scriban-cs' XRoot:'XRootNamespace' prefix:'' }}
+    {{ include 'root.scriban-cs' XRoot:'XRootNamespace' prefix:'' roots:$ns.Roots }}
 
-    {{~ ## TODO: only render once in main root namespace ~}}
-    {{~ ## TODO: should contain all roots from all namespaces ~}}
-    {{ include 'root.scriban-cs' XRoot:'XRoot' prefix:('global::' + $ns.Name + '.')  }}
+    {{ 
+        if XRoot.Namespace == $ns
+            include 'root.scriban-cs' XRoot:'XRoot' prefix:('global::' + $ns.Name + '.') roots:XRoot.AllRoots
+        end
+    }}
 }
 {{ end }}

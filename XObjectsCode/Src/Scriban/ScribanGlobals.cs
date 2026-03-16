@@ -1,5 +1,6 @@
 #nullable enable 
 
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace Xml.Schema.Linq.CodeGen.Scriban;
 
 static class ScribanGlobals
 {
+    private static Scope scope = new();
+    public static void ScopeInit(params string[] names) => scope = new Scope().Init(names);
+    public static string ScopeRename(string name) => scope.Add(name);
+
     public static void Comments(TemplateContext ctx, object target)
     {
         var comments = target switch

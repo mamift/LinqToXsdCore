@@ -1,38 +1,42 @@
-{{ TypeManager.Namespace.AccessModifier }} class LinqToXsdTypeManager : ILinqToXsdTypeManager {
+{{- 
+    with TypeManager
+-}}
+
+{{ Namespace.AccessModifier }} class LinqToXsdTypeManager : ILinqToXsdTypeManager {
     
     private LinqToXsdTypeManager() {
     }
 
-    {{- if !TypeManager.AllTypes.empty? }}
+    {{- if !AllTypes.empty? }}
 
     private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
     
     private static void BuildTypeDictionary() {
-        {{- for $type in TypeManager.AllTypes }}
+        {{- for $type in AllTypes }}
         typeDictionary.Add(System.Xml.Linq.XName.Get("{{ $type.XsdName }}", "{{ $type.XsdNs }}"), typeof(global::{{ $type.Name }}));
         {{- end }}
     }
 
     {{- end }}
 
-    {{- if !TypeManager.AllElements.empty? }}
+    {{- if !AllElements.empty? }}
     
     private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
     
     private static void BuildElementDictionary() {
-        {{- for $el in TypeManager.AllElements }}
+        {{- for $el in AllElements }}
         elementDictionary.Add(System.Xml.Linq.XName.Get("{{ $el.XsdName }}", "{{ $el.XsdNs }}"), typeof(global::{{ $el.Name }}));
         {{- end }}
     }
 
     {{- end }}
     
-    {{- if !TypeManager.AllWrappers.empty? }}
+    {{- if !AllWrappers.empty? }}
 
     private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
         
     private static void BuildWrapperDictionary() {
-        {{- for $wrapper in TypeManager.AllWrappers }}
+        {{- for $wrapper in AllWrappers }}
         wrapperDictionary.Add(typeof({{ $wrapper.Key }}), typeof(global::{{ $wrapper.Value }}));
         {{- end }}
     }
@@ -60,48 +64,36 @@
     
     Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
         get {
-            {{- if !TypeManager.AllTypes.empty? }}
-            return typeDictionary;
-            {{- else }}
-            return XTypedServices.EmptyDictionary;
-            {{- end }}
+            return {{ AllTypes.empty? ? "XTypedServices.EmptyDictionary" : "typeDictionary" }};
         }
     }
     
     Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
         get {
-            {{- if !TypeManager.AllElements.empty? }}
-            return elementDictionary;
-            {{- else }}
-            return XTypedServices.EmptyDictionary;
-            {{- end }}
+            return {{ AllElements.empty? ? "XTypedServices.EmptyDictionary" : "elementDictionary" }};
         }
     }
     
     Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
         get {
-            {{- if !TypeManager.AllWrappers.empty? }}
-            return wrapperDictionary;
-            {{- else }}
-            return XTypedServices.EmptyTypeMappingDictionary;
-            {{- end }}
+            return {{ AllWrappers.empty? ? "XTypedServices.EmptyTypeMappingDictionary" : "wrapperDictionary" }};
         }
     }
     
     static LinqToXsdTypeManager() {
-        {{- if !TypeManager.AllTypes.empty? }}
+        {{- if !AllTypes.empty? }}
         BuildTypeDictionary();
-        {{- end }}
-        {{- if !TypeManager.AllElements.empty? }}
+        {{ end -}}
+        {{- if !AllElements.empty? }}
         BuildElementDictionary();
-        {{- end }}
-        {{- if !TypeManager.AllWrappers.empty? }}
+        {{ end -}}
+        {{- if !AllWrappers.empty? }}
         BuildWrapperDictionary();
-        {{- end }}
+        {{ end -}}
     }
     
     public static System.Type GetRootType() {
-        {{- if TypeManager.RootElement }}
+        {{- if RootElement }}
         return elementDictionary[System.Xml.Linq.XName.Get("{{ TypeManager.RootElement | local_name 'xName' }}", "{{ TypeManager.RootElement | namespace 'xName' }}")];
         {{- else }}
         return typeof(Xml.Schema.Linq.XTypedElement);
@@ -117,3 +109,5 @@
         }
     }
 }
+
+{{- end # with TypeManager -}}
