@@ -11,7 +11,6 @@ using System.Reflection;
 using Xml.Schema.Linq.CodeGen.Model;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
-using Xml.Schema.Linq.Codegen.Model;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -36,6 +35,9 @@ namespace Xml.Schema.Linq.CodeGen
         string currentFullTypeName;
 
         public readonly List<CType> AllTypes = [];
+        // TODO: review naming, this is more an AllTypes than AllElements as it also contains wrapper classes for simple types
+        //       but then what's the difference with AllTypes above? is AllElements only the non-nested types? 
+        //       I guess I'll figure it out after migrating more code.
         public readonly List<CElement> AllElements = [];
         public readonly List<KeyValuePair<string, string>> AllWrappers = [];
 
@@ -69,7 +71,7 @@ namespace Xml.Schema.Linq.CodeGen
                     if (stInfo is EnumSimpleTypeInfo enumTypeInfo)
                     {
                         var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings, stInfo);
-                        ns.AddTypeWithParentNamespace(enumType);
+                        cNamespace.Add(enumType);
                         var enumsInOtherTypes = ns.DescendentTypeScopedEnumDeclarations();
                         // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
                         if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) 
@@ -81,13 +83,13 @@ namespace Xml.Schema.Linq.CodeGen
                         }
                     }
 
-                    var decl = TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings);
-                    ns.AddTypeWithParentNamespace(decl);
+                    // TODO: for EnumSimpleTypeInfo, the name of this class should be stInfo.clrtypeName + "Validator"
+                    cNamespace.Add(new CSimpleType(stInfo));
                 }
                 else 
                 {
                     var decl = ProcessType(type as ClrContentTypeInfo, null, true); // Sets current cNamespace
-                    ns.AddTypeWithParentNamespace(decl);
+                    cNamespace.Add(decl);
 
                     if (type.typeOrigin == SchemaOrigin.Element)
                     {
@@ -118,6 +120,9 @@ namespace Xml.Schema.Linq.CodeGen
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
             typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
             typeBuilder.ApplyAnnotations(typeInfo);
+
+            CodeTypeDeclaration builtType = typeBuilder.TypeDeclaration;
+            
             if (globalType)
             {
                 // TODO: these shouldn't be a new instances but the instance built above by TypeBuilder, when migrated
@@ -131,13 +136,13 @@ namespace Xml.Schema.Linq.CodeGen
                 else
                     AllElements.Add(new() 
                     {
+                        Dom = builtType,
                         Name = typeInfo.clrFullTypeName,
                         XsdName = typeInfo.schemaName,
                         XsdNs = typeInfo.schemaNs,
                     });
             }
 
-            CodeTypeDeclaration builtType = typeBuilder.TypeDeclaration;
             ProcessNestedTypes(typeInfo.NestedTypes, builtType, typeInfo.clrFullTypeName);
             return builtType;
         }
@@ -310,6 +315,7 @@ namespace Xml.Schema.Linq.CodeGen
             ClrPropertyInfo typedValPropertyInfo = null;
             foreach (ClrWrapperTypeInfo typeInfo in wrapperRootElements)
             {
+                CClass cType = null;
                 SetFullTypeName(typeInfo, null);
                 ClrTypeReference innerType = typeInfo.InnerType;
                 if (innerType.IsSimpleType)
@@ -323,9 +329,16 @@ namespace Xml.Schema.Linq.CodeGen
                     simpleTypeBuilder.ApplyAnnotations(typeInfo);
                     builder = simpleTypeBuilder;
 
+                    // cType = new CSimpleType(typeInfo)
+                    // {
+                    //   Dom = builder.TypeDeclaration,
+                    //   Name = typeInfo.clrtypeName,
+                    // };
+
                     // TODO: should not be a new instance but rather the one produced by code above, when migrated
                     AllElements.Add(new()
                     {
+                        Dom = builder.TypeDeclaration,
                         Name = typeInfo.clrFullTypeName,
                         XsdName = typeInfo.schemaName,
                         XsdNs = typeInfo.schemaNs,
@@ -359,6 +372,7 @@ namespace Xml.Schema.Linq.CodeGen
                     // TODO: shouldn't be a new instance but rather from wrapperBuilder when migrated
                     AllElements.Add(new() 
                     {
+                        Dom = wrapperBuilder.TypeDeclaration,
                         Name = typeInfo.clrFullTypeName,
                         XsdName = typeInfo.schemaName,
                         XsdNs = typeInfo.schemaNs,
@@ -401,7 +415,10 @@ namespace Xml.Schema.Linq.CodeGen
                 var decl = builder.TypeDeclaration;
 
                 cNamespace = GetCNamespace(typeInfo.clrtypeNs);
-                cNamespace.Dom.AddTypeWithParentNamespace(decl);
+                if (cType != null)
+                    cNamespace.Add(cType);
+                else
+                    cNamespace.Add(decl);   // TODO: remove at end of migration
                 cNamespace.Roots.Add(decl);
 
                 if (typeInfo.typeOrigin == SchemaOrigin.Element) 

@@ -1,0 +1,21 @@
+{{~ if !$1.Comments.empty? ~}}
+/// <summary>
+{{~ for $text in $1.Comments ~}}
+/// <para>
+/// {{ $text }}
+/// </para>
+{{~ end ~}}
+/// </summary>
+{{~ end ~}}
+{{ $1.Namespace.AccessModifier }} sealed class {{ $1.Name }} {
+    
+    private {{ $1.Name }}() {
+    }
+    
+    {{~ 
+        # TODO: review SimpleTypeCodeDomHelper.MaterializeSimpleTypeDef for the initializer. 
+        # It's different for atomic/list/union and picks the right type code and facets
+    ~}}
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null);
+}

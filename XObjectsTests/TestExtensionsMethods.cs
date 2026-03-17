@@ -131,42 +131,6 @@ namespace Xml.Schema.Linq.Tests
         }
 
         /// <summary>
-        /// Returns the <see cref="TextWriter"/> of the current <see cref="CodeTypeDeclaration"/>.
-        /// </summary>
-        /// <param name="codeObject"></param>
-        /// <param name="namespaceName"></param>
-        /// <returns></returns>
-        public static TextWriter ToTextWriter(this CodeTypeDeclaration codeObject, string namespaceName = null)
-        {
-            if (namespaceName == null) namespaceName = "DefaultCodeNamespace";
-
-            var ccu = new CodeCompileUnit();
-
-            var codeNamespace = new CodeNamespace(namespaceName);
-            codeNamespace.Types.Add(codeObject);
-            ccu.Namespaces.Add(codeNamespace);
-
-            return ccu.ToStringWriter();
-        }
-
-        /// <summary>
-        /// Returns all the current <paramref name="nodes"/> as a fully formatted string.
-        /// </summary>
-        /// <param name="nodes"></param>
-        /// <param name="delimiter"></param>
-        /// <returns></returns>
-        public static string ToFullString(this IEnumerable<SyntaxNode> nodes, string delimiter = "")
-        {
-            var sb = new StringBuilder();
-
-            foreach (var node in nodes) {
-                sb.Append(node.ToFullString() + delimiter);
-            }
-
-            return sb.ToString();
-        }
-
-        /// <summary>
         /// Dumps debug strings to the <see cref="TestContext.WorkDirectory"/>.
         /// </summary>
         /// <param name="tc"></param>

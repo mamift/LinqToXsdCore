@@ -94,11 +94,6 @@ static class ScribanGlobals
             .Any(x => x.Comment.Text.Contains("Occurrence: optional"));
     }
 
-    public static bool IsTypeDefinition(CodeTypeDeclaration type)
-    {
-        return type.TypeAttributes.HasFlag(TypeAttributes.Sealed);
-    }
-
     public static string? Validator(CodeTypeDeclaration type)
     {
         var statement = type.Members

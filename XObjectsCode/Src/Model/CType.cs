@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace Xml.Schema.Linq.Codegen.Model;
+namespace Xml.Schema.Linq.CodeGen.Model;
 
 /// <summary>
 /// Represents a class depicting an xsd type in generated code

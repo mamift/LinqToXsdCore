@@ -31,10 +31,10 @@ namespace {{ $ns.Name }} {
     {{~ for $type in $ns.Types ~}}
     
     {{
-        if $type | is_type_definition
-            include 'type.scriban-cs' $type
+        if $type.IsSimpleType
+            include 'simple-type.scriban-cs' $type
         else
-            include 'class.scriban-cs' $type
+            include 'class.scriban-cs' $type.Dom
         end
     }}
     {{~ end ~}}

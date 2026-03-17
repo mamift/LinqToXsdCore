@@ -610,19 +610,6 @@ namespace Xml.Schema.Linq.Extensions
             }
         }
 
-        /// <summary>
-        /// Adds a new <see cref="CodeTypeDeclaration"/> to the current namespace and also retain a reference to the parent <see cref="CodeNamespace"/> in the given
-        /// <paramref name="type"/>. This is set in the <see cref="CodeObject.UserData"/> dictionary; can be set with <see cref="SetParent{TCodeObject}"/>
-        /// and retrieved with <see cref="GetParent{TCodeObject}"/>.
-        /// </summary>
-        /// <param name="codeNs"></param>
-        /// <param name="type"></param>
-        public static void AddTypeWithParentNamespace(this CodeNamespace codeNs, CodeTypeDeclaration type)
-        {
-            codeNs.Types.Add(type);
-            type.SetParent(codeNs);
-        }
-
         public static List<CodeTypeDeclaration> FlattenAllNestedTypesRecursively(this CodeTypeDeclaration type, List<CodeTypeDeclaration>? typesList = null)
         {
             typesList ??= new List<CodeTypeDeclaration>();

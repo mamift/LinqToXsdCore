@@ -1,9 +1,0 @@
-{{ $1 | comments -}}
-public sealed class {{ $1.Name }} {
-    
-    private {{ $1.Name }}() {
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null);
-}
