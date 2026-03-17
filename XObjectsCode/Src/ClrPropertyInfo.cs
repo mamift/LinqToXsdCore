@@ -1198,32 +1198,6 @@ namespace Xml.Schema.Linq.CodeGen
             return codeFieldReferenceExpression;
         }
 
-#if DEBUG
-        /// <summary>
-        /// unfortuntely, this is a hack to fix a regression that left the <see cref="simpleTypeClrTypeName"/> field unset for certain enums.
-        /// examples of this error occuring: 'W3C XMLSchema v1.xsd' -> schema element -> attributeFormDefault attribute of type formChoice
-        /// </summary>
-        /// <returns></returns>
-        private bool SetSimpleTypeClrNameForEnum()
-        {
-            bool wasSet = false;
-            if (this.ParentTypeDeclaration != null && this.ParentTypeDeclaration.HasParent<CodeNamespace>()) {
-                var thisNamespace = this.ParentTypeDeclaration.GetParent<CodeNamespace>();
-                if (thisNamespace is not null) {
-                    var possibleTypeValidatorClass = thisNamespace.SearchForMemberRecursively(e =>
-                        e is CodeTypeDeclaration ec && ec.Name.Contains(this.TypeReference.Name));
-
-                    if (possibleTypeValidatorClass is not null) {
-                        simpleTypeClrTypeName = possibleTypeValidatorClass.Name;
-                        wasSet = true;
-                    }
-                }
-            }
-
-            return wasSet;
-        }
-#endif
-
         public void CreateXNameField(CodeTypeDeclaration typeDecl)
         {
             // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!

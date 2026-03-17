@@ -83,13 +83,13 @@
     static LinqToXsdTypeManager() {
         {{- if !AllTypes.empty? }}
         BuildTypeDictionary();
-        {{ end -}}
+        {{- end -}}
         {{- if !AllElements.empty? }}
         BuildElementDictionary();
-        {{ end -}}
+        {{- end -}}
         {{- if !AllWrappers.empty? }}
         BuildWrapperDictionary();
-        {{ end -}}
+        {{- end }}
     }
     
     public static System.Type GetRootType() {

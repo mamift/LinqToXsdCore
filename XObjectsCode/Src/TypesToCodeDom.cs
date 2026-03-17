@@ -30,7 +30,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         readonly Dictionary<string, CNamespace> codeNamespacesTable = new();
         Dictionary<XmlSchemaObject, string> nameMappings;
-        List<ClrWrapperTypeInfo> wrapperRootElements;
+        readonly List<ClrWrapperTypeInfo> wrapperRootElements = [];
 
         string currentNamespace;
         string currentFullTypeName;
@@ -56,7 +56,6 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (type.IsWrapper)
                 {
-                    wrapperRootElements ??= [];
                     wrapperRootElements.Add(type as ClrWrapperTypeInfo);
                     continue;
                 }
@@ -298,14 +297,11 @@ namespace Xml.Schema.Linq.CodeGen
                 rootNamespace = codeNamespacesTable.Values.FirstOrDefault(); 
                 // rootCodeNamespace may still be null if schema has only simple typed global elements or simple types which we are ignoring for now
             }
-            // TODO: persist allRoots somewhere?
         }
 
         private void ProcessWrapperTypes()
         {
-            // No Globalelements with global types
-            if (wrapperRootElements == null)
-                return;
+            if (wrapperRootElements.Count == 0) return;
 
             var wrapperBuilder = new XWrapperTypedElementBuilder(settings);
             var simpleTypeBuilder = new XSimpleTypedElementBuilder(settings);
@@ -417,7 +413,6 @@ namespace Xml.Schema.Linq.CodeGen
         {
 // TODO: Type manager inclusion and messing around usings
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
-            // var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(rootClrNamespace);
             if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out CNamespace rootCodeNamespace))
             {
                 // This might happen if the schema set has no global elements and only global types

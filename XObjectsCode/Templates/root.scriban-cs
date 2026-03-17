@@ -1,4 +1,4 @@
-{{ $ns.AccessModifier }} partial class {{ $XRoot }} {
+{{ $accessModifier }} partial class {{ $XRoot }} {
     
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private XDocument doc;

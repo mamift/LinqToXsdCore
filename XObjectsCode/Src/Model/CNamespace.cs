@@ -23,9 +23,7 @@ public class CNamespace(string name)
     // List of root elements in this namespace (also found in Types and Elements)
     public List<CodeTypeDeclaration> Roots { get; } = [];
 
-    public IEnumerable<CodeTypeDeclaration> Types => Dom.Types
-        .Cast<CodeTypeDeclaration>()
-        .Where(x => x.Name is not ("XRootNamespace" or "XRoot"));
+    public IEnumerable<CodeTypeDeclaration> Types => Dom.Types.Cast<CodeTypeDeclaration>();
 
     public IEnumerable<CodeTypeDeclaration> Elements => Types.Where(x => !x.TypeAttributes.HasFlag(TypeAttributes.Sealed));
 }

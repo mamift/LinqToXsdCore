@@ -720,11 +720,6 @@ namespace Xml.Schema.Linq.Extensions
             {
                 return co.UserData["Parent"] as TCodeObject;
             }
-
-            public bool HasParent()
-            {
-                return co.UserData["Parent"] is TCodeObject;
-            }
         }
 
         extension(CodeTypeDeclaration type)
@@ -736,34 +731,6 @@ namespace Xml.Schema.Linq.Extensions
             {
                 get => type.GetParent<CodeNamespace>();
                 set => type.SetParent(value!);
-            }
-
-            public IEnumerable<CodeMemberProperty> ChildProperties
-            {
-                get {
-                    return type.Members.OfType<CodeMemberProperty>();
-                }
-            }
-
-            public IEnumerable<CodeTypeDeclaration> ChildTypes
-            {
-                get {
-                    return type.Members.OfType<CodeTypeDeclaration>();
-                }
-            }
-            
-            public IEnumerable<CodeTypeDeclaration> ChildEnumDeclarations
-            {
-                get {
-                    return type.Members.OfType<CodeTypeDeclaration>().Where(e => e.IsEnum);
-                }
-            }
-            
-            public IEnumerable<CodeTypeDeclaration> ChildClassDeclarations
-            {
-                get {
-                    return type.Members.OfType<CodeTypeDeclaration>().Where(e => e.IsClass);
-                }
             }
 
             public void ChangeVisibility(TypeAttributes visibility)

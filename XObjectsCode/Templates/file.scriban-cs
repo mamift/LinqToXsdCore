@@ -43,11 +43,11 @@ namespace {{ $ns.Name }} {
         if TypeManager.Namespace == $ns; include 'manager.scriban-cs'; end
     }}
     
-    {{ include 'root.scriban-cs' XRoot:'XRootNamespace' prefix:'' roots:$ns.Roots }}
+    {{ include 'root.scriban-cs' XRoot:'XRootNamespace' prefix:'' roots:$ns.Roots accessModifier:$ns.AccessModifier }}
 
     {{ 
         if XRoot.Namespace == $ns
-            include 'root.scriban-cs' XRoot:'XRoot' prefix:('global::' + $ns.Name + '.') roots:XRoot.AllRoots
+            include 'root.scriban-cs' XRoot:'XRoot' prefix:('global::' + $ns.Name + '.') roots:XRoot.AllRoots accessModifier:$ns.AccessModifier
         end
     }}
 }
