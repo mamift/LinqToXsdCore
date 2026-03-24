@@ -37,10 +37,12 @@ namespace {{ $ns.Name }} {
             include 'class.scriban-cs' $type.Dom
         end
     }}
-    {{~ end ~}}
+    {{~ end # for $type ~}}
 
     {{ 
-        if TypeManager.Namespace == $ns; include 'manager.scriban-cs'; end
+        if TypeManager.Namespace == $ns
+            include 'manager.scriban-cs'; 
+        end
     }}
     
     {{ include 'root.scriban-cs' XRoot:'XRootNamespace' prefix:'' roots:$ns.Roots accessModifier:$ns.AccessModifier }}
@@ -51,4 +53,4 @@ namespace {{ $ns.Name }} {
         end
     }}
 }
-{{ end }}
+{{ end # for $ns }}
