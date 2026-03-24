@@ -10,8 +10,7 @@
 #nullable enable annotations
 {{- end }}
 
-{{- for $ns in Namespaces }}
-
+{{~ for $ns in Namespaces ~}}
 namespace {{ $ns.Name }} {
     using System;
     using System.Collections;
@@ -27,6 +26,20 @@ namespace {{ $ns.Name }} {
     {{~ end ~}}
     using System.Xml.Linq;
     using Xml.Schema.Linq;
+    {{
+        if TypeManager.Namespace == $ns     
+            # TypeManager namespace import all other namespaces
+            for $otherNs in Namespaces
+                if $otherNs != $ns
+                    "using " + $otherNs.Name + ";\n"
+                end
+            end
+        else
+            # Other namespaces import the TypeManager namespace
+            "using " + TypeManager.Namespace.Name + ";\n"
+        end
+        "\n"
+    -}}
     
     {{~ for $type in $ns.Types ~}}
     
@@ -37,20 +50,18 @@ namespace {{ $ns.Name }} {
             include 'class.scriban-cs' $type.Dom
         end
     }}
-    {{~ end # for $type ~}}
+    {{- end # for $type -}}
 
-    {{ 
-        if TypeManager.Namespace == $ns
-            include 'manager.scriban-cs'; 
-        end
-    }}
-    
+    {{- if TypeManager.Namespace == $ns }}
+    {{ include 'manager.scriban-cs'; }}
+    {{- end -}}
+
+    {{- if !$ns.Roots.empty? }}
     {{ include 'root.scriban-cs' XRoot:'XRootNamespace' prefix:'' roots:$ns.Roots accessModifier:$ns.AccessModifier }}
+    {{- end -}}
 
-    {{ 
-        if XRoot.Namespace == $ns
-            include 'root.scriban-cs' XRoot:'XRoot' prefix:('global::' + $ns.Name + '.') roots:XRoot.AllRoots accessModifier:$ns.AccessModifier
-        end
-    }}
+    {{- if XRoot.Namespace == $ns }}
+    {{ include 'root.scriban-cs' XRoot:'XRoot' prefix:('global::' + $ns.Name + '.') roots:XRoot.AllRoots accessModifier:$ns.AccessModifier }}
+    {{- end }}
 }
 {{ end # for $ns }}

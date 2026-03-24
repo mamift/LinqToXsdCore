@@ -100,7 +100,6 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             ProcessWrapperTypes();
-            CreateTypeManager();
             CreateXRoots();
 
             return codeNamespacesTable.Values;
@@ -423,34 +422,6 @@ namespace Xml.Schema.Linq.CodeGen
 
                 if (typeInfo.typeOrigin == SchemaOrigin.Element) 
                     UpdateRootElement(typeInfo, decl);
-            }
-        }
-
-        private void CreateTypeManager()
-        {
-// TODO: Type manager inclusion and messing around usings
-            string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
-            if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out CNamespace rootCodeNamespace))
-            {
-                // This might happen if the schema set has no global elements and only global types
-                // then you can create a root tag with xsi:type
-                rootCodeNamespace = codeNamespacesTable.Values.FirstOrDefault();
-            }
-
-            // It might be null if schema has only simple typed global elements or simple types which we are ignoring for now
-            if (rootCodeNamespace is { Dom: var ns })
-            {
-                // Add using statements in the rest of the namespaces for the root namespace to avoid error on TypeManager reference
-                // Add using statements in the root namespace for the rest of the namespaces to avoid errors while building type dictionaries
-                var rootImport = new CodeNamespaceImport(rootCodeNamespace.Name);
-                foreach (CNamespace cns in codeNamespacesTable.Values)
-                {
-                    if (cns != rootCodeNamespace && rootCodeNamespace.Name.Length > 0)
-                    {
-                        cns.Dom.Imports.Add(rootImport);
-                        ns.Imports.Add(new CodeNamespaceImport(cns.Name));
-                    }
-                }
             }
         }
 

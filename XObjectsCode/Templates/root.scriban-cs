@@ -1,3 +1,4 @@
+
 {{ $accessModifier }} partial class {{ $XRoot }} {
     
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]

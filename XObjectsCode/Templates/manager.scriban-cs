@@ -1,6 +1,4 @@
-{{- 
-    with TypeManager
--}}
+{{~ with TypeManager ~}}
 
 {{ Namespace.AccessModifier }} class LinqToXsdTypeManager : ILinqToXsdTypeManager {
     
