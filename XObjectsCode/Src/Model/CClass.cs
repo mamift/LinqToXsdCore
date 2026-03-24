@@ -45,6 +45,5 @@ public class CSimpleType(ClrSimpleTypeInfo info) : CClass
 
     public string Name => info.clrtypeName;
     
-    // TODO: can a.Text contain line breaks?
     public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 }

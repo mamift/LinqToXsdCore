@@ -12,9 +12,15 @@ namespace Xml.Schema.Linq.CodeGen.Scriban;
 
 static class ScribanGlobals
 {
+    // Temporary marker comment: in use for real
+
     private static Scope scope = new();
     public static void ScopeInit(params string[] names) => scope = new Scope().Init(names);
     public static string ScopeRename(string name) => scope.Add(name);
+
+    public static string NewlinePrefix(string text, string prefix) => text.Replace("\n", "\n" + prefix);
+
+    // Temporary marker comment: temporary helpers to adapt from CodeDom
 
     public static void Comments(TemplateContext ctx, object target)
     {
