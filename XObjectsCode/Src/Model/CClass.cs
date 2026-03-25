@@ -3,6 +3,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Schema;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
 
@@ -44,6 +45,10 @@ public class CSimpleType(ClrSimpleTypeInfo info) : CClass
     public override bool IsSimpleType => true;
 
     public string Name => info.clrtypeName;
+    public XmlSchemaDatatypeVariety Variety => info.Variety;
+    public XmlTypeCode XmlTypeCode => info.TypeCode;
+
+    public CompiledFacets Restrictions => info.RestrictionFacets;
     
     public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 }

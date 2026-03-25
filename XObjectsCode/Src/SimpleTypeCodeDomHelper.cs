@@ -200,9 +200,8 @@ namespace Xml.Schema.Linq.CodeGen
                 CodeArrayCreateExpression patternStrs = new CodeArrayCreateExpression();
                 patternStrs.CreateType = new CodeTypeReference(XTypedServices.typeOfString);
 
-                foreach (object o in facets.Patterns)
+                foreach (string str in facets.Patterns)
                 {
-                    string str = o.ToString();
                     patternStrs.Initializers.Add(new CodePrimitiveExpression(str));
                 }
 

@@ -12,10 +12,13 @@
     private {{ $1.Name }}() {
     }
     
-    {{~ 
-        # TODO: review SimpleTypeCodeDomHelper.MaterializeSimpleTypeDef for the initializer. 
-        # It's different for atomic/list/union and picks the right type code and facets
-    ~}}
+    {{~ # TODO: add 3rd parameter for lists and unions ~}}
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null);
+    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = {{ # no line break -}} 
+        new Xml.Schema.Linq.{{ $1.Variety }}SimpleTypeValidator( 
+        {{- #no line break -}}
+        XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.{{ $1.XmlTypeCode }}), {{
+            include 'restrictions.scriban-cs' $1.Restrictions
+        -}} 
+        );
 }

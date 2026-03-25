@@ -38,19 +38,16 @@ namespace {{ $ns.Name }} {
             # Other namespaces import the TypeManager namespace
             "using " + TypeManager.Namespace.Name + ";\n"
         end
-        "\n"
-    -}}
-    
-    {{~ for $type in $ns.Types ~}}
-    
-    {{
-        if $type.IsSimpleType
-            include 'simple-type.scriban-cs' $type
-        else
-            include 'class.scriban-cs' $type.Dom
+
+        for $type in $ns.Types
+            "\n\n"
+            if $type.IsSimpleType
+                include 'simple-type.scriban-cs' $type
+            else
+                include 'class.scriban-cs' $type.Dom
+            end
         end
-    }}
-    {{- end # for $type -}}
+    -}}
 
     {{- if TypeManager.Namespace == $ns }}
     {{ include 'manager.scriban-cs'; }}

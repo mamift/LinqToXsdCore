@@ -4,7 +4,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Scriban;
 
@@ -19,6 +19,16 @@ static class ScribanGlobals
     public static string ScopeRename(string name) => scope.Add(name);
 
     public static string NewlinePrefix(string text, string prefix) => text.Replace("\n", "\n" + prefix);
+
+    public static bool HasRestriction(CompiledFacets facets, RestrictionFlags test)
+        => facets.Flags.HasFlag(test);
+
+    public static string ValueLiteral(object value)
+    {
+        if (value is DateTime dt) return $"new System.DateTime({dt.Ticks})";
+        // For most types JSON serialization and C# agree on representation :)
+        return JsonSerializer.Serialize(value);
+    }
 
     // Temporary marker comment: temporary helpers to adapt from CodeDom
 

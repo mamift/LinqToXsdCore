@@ -1,0 +1,57 @@
+{{- 
+    if $1.Flags == 0
+        "null"
+        ret
+    end
+-}}
+
+new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)({{ $1.Flags + 0 }})), {{
+    if $1 | has_restriction "Enumeration"
+        "new object[] {"
+        "\n                    " # match previous CodeDom formatting for now :(
+            $1.Enumeration | array.join ", " @value_literal
+        "}"
+    else
+        "null"
+    end
+    ", "
+    
+    $1 | has_restriction "FractionDigits" ? $1.FractionDigits : 0
+    ", "
+
+    $1 | has_restriction "Length" ? $1.Length : 0
+    ", "
+
+    $1 | has_restriction "MaxExclusive" ? ($1.MaxExclusive | @value_literal) : "null"
+    ", "
+
+    $1 | has_restriction "MaxInclusive" ? ($1.MaxInclusive | @value_literal) : "null"
+    ", "
+
+    $1 | has_restriction "MaxLength" ? $1.MaxLength: 0
+    ", "
+
+    $1 | has_restriction "MinExclusive" ? ($1.MinExclusive | @value_literal) : "null"
+    ", "
+
+    $1 | has_restriction "MinInclusive" ? ($1.MinInclusive | @value_literal) : "null"
+    ", "
+
+    $1 | has_restriction "MinLength" ? $1.MinLength : 0
+    ", "
+
+    if $1 | has_restriction "Pattern"
+        "new string[] {"
+        "\n                    " # match previous CodeDom formatting for now :(
+        $1.Patterns | array.join ", " @string.literal
+        "}"
+    else
+        "null"
+    end
+    ", "
+
+    $1 | has_restriction "TotalDigits" ? $1.TotalDigits : 0
+    ", "
+
+    "XmlSchemaWhiteSpace." + $1.WhiteSpace
+}})

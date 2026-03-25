@@ -71,7 +71,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (simpleType != null)
             {
-                compiledFacets.compileFacets(simpleType);
+                compiledFacets.CompileFacets(simpleType);
             }
 
             return compiledFacets;
