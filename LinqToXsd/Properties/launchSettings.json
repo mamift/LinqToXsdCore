@@ -103,6 +103,12 @@
       "workingDirectory": "..\\GeneratedSchemaLibraries\\AbstractTypeTest",
       "hotReloadEnabled": false
     },
+    "DTSX": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"dtsx.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\DTSX",
+      "hotReloadEnabled": false
+    },
     "ImportsXmlNamespace": {
       "commandName": "Project",
       "commandLineArgs": "gen \"ImportsXmlAttributes.xsd\" -a",
