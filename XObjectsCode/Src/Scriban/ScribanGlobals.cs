@@ -57,12 +57,12 @@ static class ScribanGlobals
             .Where(x => !x.IsEnum && !x.Name.EndsWith("EnumValidator"));
     }
 
-    public static CodeTypeDeclaration EnumDecl(string enumName, CodeTypeDeclaration type)
+    public static CodeTypeDeclaration? EnumDecl(string enumName, CodeTypeDeclaration type)
     {
         enumName = enumName.TrimEnd('?');
         return type.Members
             .OfType<CodeTypeDeclaration>()
-            .First(x => x.IsEnum && x.Name == enumName);
+            .FirstOrDefault(x => x.IsEnum && x.Name == enumName);
     }
 
     public static CodeConstructor? Ctor(CodeTypeDeclaration type, int args = 0)

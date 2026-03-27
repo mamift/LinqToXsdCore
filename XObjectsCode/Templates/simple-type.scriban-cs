@@ -1,3 +1,23 @@
+{{- if $1.IsEnum -}}
+
+{{~ if !$1.Comments.empty? ~}}
+/// <summary>
+{{~ for $text in $1.Comments ~}}
+/// <para>
+/// {{ $text | newline_prefix '///' }}
+/// </para>
+{{~ end ~}}
+/// </summary>
+{{~ end ~}}
+{{ $1.Namespace.AccessModifier }} enum {{ $1.EnumName }} {
+{{ for $enumValue in $1.EnumValues ~}}
+
+    {{ $enumValue }},
+{{ end ~}}
+}
+
+{{ end # if IsEnum -}}
+
 {{~ if !$1.Comments.empty? ~}}
 /// <summary>
 {{~ for $text in $1.Comments ~}}
@@ -11,14 +31,9 @@
     
     private {{ $1.Name }}() {
     }
-    
-    {{~ # TODO: add 3rd parameter for lists and unions ~}}
+
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = {{ # no line break -}} 
-        new Xml.Schema.Linq.{{ $1.Variety }}SimpleTypeValidator( 
-        {{- #no line break -}}
-        XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.{{ $1.XmlTypeCode }}), {{
-            include 'restrictions.scriban-cs' $1.Restrictions
-        -}} 
-        );
+    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = {{ 
+        include 'simple-type-validator.scriban-cs' $1 
+    }};
 }

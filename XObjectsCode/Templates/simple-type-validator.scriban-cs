@@ -1,0 +1,31 @@
+{{~ 
+    func validator_reference
+        if $0.IsGlobal
+            $0.FullyQualifiedName + ".TypeDefinition"
+        else
+            include 'simple-type-validator.scriban-cs' $0
+        end
+    end
+~}}
+new Xml.Schema.Linq.{{ $1.Variety }}SimpleTypeValidator( 
+    {{- #no line break -}}
+    XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.{{ $1.XmlTypeCode }}), {{
+        include 'restrictions.scriban-cs' $1.Restrictions
+        
+        if $1.IsList
+            ", "
+            $1.ListItemType | validator_reference
+        end 
+
+        if $1.IsUnion
+            ", "
+            "new Xml.Schema.Linq.SimpleTypeValidator[] {\n"
+            for $unionType in $1.UnionTypes
+                "            "
+                $unionType | validator_reference
+                if !for.last; ",\n"; end
+            end
+            "}"
+        end
+    -}}
+)

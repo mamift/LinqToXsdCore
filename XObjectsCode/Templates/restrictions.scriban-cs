@@ -9,7 +9,7 @@ new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)({{ $1.
     if $1 | has_restriction "Enumeration"
         "new object[] {"
         "\n                    " # match previous CodeDom formatting for now :(
-            $1.Enumeration | array.join ", " @value_literal
+            $1.Enumeration | array.join ",\n                    " @value_literal
         "}"
     else
         "null"

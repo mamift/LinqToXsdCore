@@ -21,7 +21,7 @@ namespace Xml.Schema.Linq.CodeGen
             //If the enclosed member type or item type is a global named type, reuse the definition
             if (memberOrItemType && typeInfo.IsGlobal)
             {
-                typeInfo.UpdateClrTypeName(nameMappings, settings);
+                typeInfo.clrtypeName = typeInfo.FullyQualifiedName(nameMappings, settings);
                 var typeNameToUse = typeInfo.clrtypeName;
                 if (typeInfo is EnumSimpleTypeInfo) {
                     typeNameToUse += Constants.EnumValidator;

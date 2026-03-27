@@ -40,15 +40,44 @@ public class CElement : CClass
 /// <summary>
 /// Represents a class depicting an xsd simple type wrapper in generated code
 /// </summary>
-public class CSimpleType(ClrSimpleTypeInfo info) : CClass
+public class CSimpleType(
+    ClrSimpleTypeInfo info,
+    Dictionary<XmlSchemaObject, string> nameMappings,
+    LinqToXsdSettings settings)
+    : CClass
 {
     public override bool IsSimpleType => true;
 
-    public string Name => info.clrtypeName;
+    public bool IsGlobal => info.IsGlobal;
+
+    // For enums, the clrtypeName is used for `enum` declaration, 
+    // so suffix "Validator" is added to the simple type class holding the `TypeDefinition`.
+    public string Name { get; } = info.clrtypeName + (info is EnumSimpleTypeInfo ? "Validator" : "");
+
+    public string FullyQualifiedName { get; } = info.FullyQualifiedName(nameMappings, settings);
+
     public XmlSchemaDatatypeVariety Variety => info.Variety;
     public XmlTypeCode XmlTypeCode => info.TypeCode;
 
     public CompiledFacets Restrictions => info.RestrictionFacets;
     
     public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
+
+    public bool IsEnum => info is EnumSimpleTypeInfo;
+    public string EnumName => info.clrtypeName;
+    public IEnumerable<string> EnumValues 
+        => ((EnumSimpleTypeInfo)info).InnerType
+            .GetEnumFacets()
+            .Select(x => x.Member);
+
+    public bool IsList => info is ListSimpleTypeInfo;
+    public CSimpleType ListItemType => new CSimpleType(
+        ((ListSimpleTypeInfo)info).ItemType,
+        nameMappings,
+        settings);
+
+    public bool IsUnion => info is UnionSimpleTypeInfo;
+    public IEnumerable<CSimpleType> UnionTypes 
+        => ((UnionSimpleTypeInfo)info).MemberTypes
+            .Select(x => new CSimpleType(x, nameMappings, settings));
 }

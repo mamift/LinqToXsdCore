@@ -131,25 +131,14 @@ namespace Xml.Schema.Linq.CodeGen
             return unionTypeInfo;
         }
 
-        public void UpdateClrTypeName(Dictionary<XmlSchemaObject, string> nameMappings,
-            LinqToXsdSettings settings)
-        {
-            string identifier = null;
-            string typeName = innerType.QualifiedName.Name;
-            string clrNameSpace = settings.GetClrNamespace(innerType.QualifiedName.Namespace);
-            if (nameMappings.TryGetValue(innerType, out identifier))
-            {
-                clrtypeName = identifier;
-            }
-            else
-            {
-                clrtypeName = typeName;
-            }
+        public string FullyQualifiedName(Dictionary<XmlSchemaObject, string> nameMappings, LinqToXsdSettings settings)
+        {           
+            var name = nameMappings.TryGetValue(innerType, out string identifier)
+                ? identifier
+                : innerType.QualifiedName.Name;
 
-            if (clrNameSpace != string.Empty)
-            {
-                clrtypeName = clrNameSpace + "." + clrtypeName;
-            }
+            var clrNameSpace = settings.GetClrNamespace(innerType.QualifiedName.Namespace);
+            return clrNameSpace == "" ? name : clrNameSpace + "." + name;
         }
     }
 

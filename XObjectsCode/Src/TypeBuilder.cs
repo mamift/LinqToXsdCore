@@ -367,8 +367,10 @@ namespace Xml.Schema.Linq.CodeGen
 
         internal static CodeTypeDeclaration CreateSimpleType(ClrSimpleTypeInfo typeInfo,
             Dictionary<XmlSchemaObject, string> nameMappings,
-            LinqToXsdSettings settings)
+            LinqToXsdSettings settings)            
         {
+            // Fully implemented in simple-type.scriban-cs
+            
             string typeName = typeInfo is EnumSimpleTypeInfo ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
             var simpleTypeDecl = new CodeTypeDeclaration(typeName);
             // might need special handling when typeInfo.clrtypeNs is null, but returning default Visibility (public) when clrtypeNs is null works for now
@@ -393,27 +395,6 @@ namespace Xml.Schema.Linq.CodeGen
             ApplyAnnotations(simpleTypeDecl, typeInfo);
 
             return simpleTypeDecl;
-        }
-
-        internal static CodeTypeDeclaration CreateEnumType(EnumSimpleTypeInfo typeInfo,
-            LinqToXsdSettings settings, ClrTypeInfo clrTypeInfo = null)
-        {
-            string typeName = typeInfo.clrtypeName;
-
-            var enumTypeDecl = new CodeTypeDeclaration(typeName) { IsEnum = true };
-            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
-            enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
-            foreach (var facet in typeInfo.InnerType.GetEnumFacets())
-            {
-                enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet.Member));
-            }
-
-            if (clrTypeInfo != null)
-                enumTypeDecl.UserData[nameof(ClrTypeInfo)] = clrTypeInfo;
-
-            ApplyAnnotations(enumTypeDecl, typeInfo);
-
-            return enumTypeDecl;
         }
 
         internal void ApplyAnnotations(ClrTypeInfo typeInfo)
@@ -788,11 +769,6 @@ namespace Xml.Schema.Linq.CodeGen
                 declItemsInfo.propertyNameTypeTable = new Dictionary<string, CodeMemberProperty>();
             }
         }
-    }
-
-    internal class XEmptyTypedElementBuilder : TypeBuilder
-    {
-        public XEmptyTypedElementBuilder(LinqToXsdSettings settings) : base(settings) { }
     }
 
     internal class XSimpleTypedElementBuilder : TypeBuilder
