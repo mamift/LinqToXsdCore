@@ -27,6 +27,7 @@ namespace {{ $ns.Name }} {
     using System.Xml.Linq;
     using Xml.Schema.Linq;
     {{
+        # Extra usings
         if TypeManager.Namespace == $ns     
             # TypeManager namespace import all other namespaces
             for $otherNs in Namespaces
@@ -39,12 +40,13 @@ namespace {{ $ns.Name }} {
             "using " + TypeManager.Namespace.Name + ";\n"
         end
 
+        # Write all types
         for $type in $ns.Types
             "\n\n"
             if $type.IsSimpleType
                 include 'simple-type.scriban-cs' $type
             else
-                include 'class.scriban-cs' $type.Dom
+                include 'class.scriban-cs' $type
             end
         end
     -}}

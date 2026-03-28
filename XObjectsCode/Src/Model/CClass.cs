@@ -2,6 +2,7 @@
 
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Schema;
 
@@ -17,24 +18,33 @@ public abstract class CClass
 
     // This isn't great OOP design but Scriban doesn't have first-class support for OOP (no `is` operator)
     public virtual bool IsSimpleType => false;
+
+    [return: NotNullIfNotNull(nameof(name))]
+    protected static string? QualifiedName(string? ns, string? name, bool global = false)
+    {
+        if (name == null) return null;
+        var fqn = string.IsNullOrWhiteSpace(ns) ? name : ns + "." + name;
+        return global ? "global::" + fqn : fqn;
+    }
 }
 
 /// <summary>
 /// Represents a class depicting an xsd element in generated code
 /// </summary>
-public class CElement : CClass
+public class CElement(ClrContentTypeInfo info) : CClass
 {
-    // TODO: Temporary, remove after full migration
-    public required CodeTypeDeclaration Dom { get; init; }
-
-    /// <summary>Fully qualified C# generated class name</summary>
-    public required string Name { get; init; }
-
-    /// <summary>Tag namespace (from xsd)</summary>
-    public required string XsdNs { get; init; }
-
-    /// <summary>Tag name (from xsd)</summary>
-    public required string XsdName { get; init; }
+    public string XName => info.schemaName;
+    public string XNamespace => info.schemaNs;
+    public string Name => info.clrtypeName;
+    public string Fqn => QualifiedName(Namespace!.Name, Name);
+    public bool IsAbstract => info.IsAbstract;
+    public bool IsSealed => info.IsSealed;
+    public bool IsSubstitutionHead => info.IsSubstitutionHead;
+    public bool IsDerived => info.IsDerived;
+    public string BaseType => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";    
+    public bool HasSaveMethods => info.typeOrigin == SchemaOrigin.Element && !info.IsDerived;
+    public bool HasLoadMethods => info.typeOrigin == SchemaOrigin.Element;
+    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 }
 
 /// <summary>

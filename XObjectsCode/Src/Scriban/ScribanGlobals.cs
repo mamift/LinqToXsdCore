@@ -169,26 +169,6 @@ static class ScribanGlobals
         };
     }
 
-    public static string LocalName(CodeTypeDeclaration type, string name)
-    {
-        var init = type.Members
-            .OfType<CodeMemberField>()
-            .FirstOrDefault(x => x.Name == name)
-            ?.InitExpression as CodeMethodInvokeExpression;
-        if (init is null) return "TODO: review null";
-        return (string)(init.Parameters[0] as CodePrimitiveExpression)!.Value;
-    }
-
-    public static string Namespace(CodeTypeDeclaration type, string name)
-    {
-        var init = type.Members
-            .OfType<CodeMemberField>()
-            .FirstOrDefault(x => x.Name == name)
-            ?.InitExpression as CodeMethodInvokeExpression;
-        if (init is null) return "TODO: review null";
-        return (string)(init.Parameters[1] as CodePrimitiveExpression)!.Value;
-    }
-
     public static bool HasContentModel(CodeTypeDeclaration type)
     {
         return type.Members

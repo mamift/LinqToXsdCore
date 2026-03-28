@@ -37,16 +37,6 @@ namespace Xml.Schema.Linq.CodeGen
                 parameters);
         }
 
-        public static CodeTypeDeclaration CreateTypeDeclaration(string clrTypeName, string innerType, 
-            GeneratedTypesVisibility generatedTypesVisibility = GeneratedTypesVisibility.Public, CodeNamespace parentNamespace = null)
-        {
-            CodeTypeDeclaration typeDecl = new CodeTypeDeclaration(clrTypeName);
-            typeDecl.TypeAttributes = generatedTypesVisibility.ToTypeAttribute();
-            typeDecl.IsPartial = true;
-            if (parentNamespace is not null) typeDecl.ParentNamespace = parentNamespace;
-            return typeDecl;
-        }
-
         public static CodeAttributeDeclaration SchemaProviderAttribute(string typeName)
         {
             CodeAttributeDeclaration customAtt = new CodeAttributeDeclaration("XmlSchemaProviderAttribute");
@@ -363,30 +353,6 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return new CodeFieldReferenceExpression(targetObject, fieldName);
-        }
-
-        public static CodeSnippetTypeMember CreateCast(string typeT, string typeT1, bool useAutoTyping, string @namespace = "",
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            CodeSnippetTypeMember castMember = new CodeSnippetTypeMember();
-            @namespace = @namespace.IsNotEmpty() ? $"{@namespace}." : "";
-            var visibilityKeyword = visibility.ToKeyword();
-            var servicesClassName = @namespace + Constants.LinqToXsdTypeManager;
-            if (useAutoTyping)
-            {
-                castMember.Text = String.Concat($"\t\t{visibilityKeyword} static explicit operator ", typeT, "(XElement xe) {  ",
-                    "return (", typeT, ")", Constants.XTypedServices, ".ToXTypedElement(xe,",
-                    servicesClassName, ".Instance as ILinqToXsdTypeManager); }");
-            }
-            else
-            {
-                castMember.Text = String.Concat($"\t\t{visibilityKeyword} static explicit operator ", typeT,
-                    "(XElement xe) { return ", Constants.XTypedServices, ".ToXTypedElement<",
-                    GetInnerType(typeT, typeT1), ">(xe,", servicesClassName,
-                    ".Instance as ILinqToXsdTypeManager); }");
-            }
-
-            return castMember;
         }
 
         public static string GetInnerType(string wrappingType, string wrappedType)

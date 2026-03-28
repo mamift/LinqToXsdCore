@@ -144,8 +144,7 @@ public static class XObjectsCoreGenerator
                     Namespaces = nsArray,
                     TypeManager = new ScriptObject // So that we can make use of `with TypeManager` in manager.scriban-cs
                     {
-                        // TODO: when RootElement is a POCO model class, it should provide CNamespace more easily
-                        { "Namespace", nsArray.FirstOrDefault(ns => ns.Dom == codeGenerator.RootElement.ParentNamespace) },
+                        { "Namespace", codeGenerator.RootElement.Namespace },
                         { "RootElement", codeGenerator.RootElement },
                         { "AllTypes", codeGenerator.AllTypes },
                         { "AllElements", codeGenerator.AllElements },

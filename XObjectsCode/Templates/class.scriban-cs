@@ -1,6 +1,11 @@
-{{ $1 | comments -}}
-public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
-    {{~ if !$.isNested ~}}
+{{ include 'comments.scriban-cs' $1.Comments -}}
+{{
+    $1.Namespace.AccessModifier
+    $1.IsAbstract ? " abstract" : ""
+    $1.IsSealed ? " sealed" : ""
+}} partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
+
+    {{- if $1.HasSaveMethods }}
 
     public void Save(string xmlFile) {
         XTypedServices.Save(xmlFile, Untyped);
@@ -13,211 +18,71 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
     public void Save(System.Xml.XmlWriter xmlWriter) {
         XTypedServices.Save(xmlWriter, Untyped);
     }
-    
+
+    {{- end -}}
+
+    {{-
+        if $1.HasLoadMethods
+            if $1.IsAbstract || $1.IsSubstitutionHead
+    }}
+
     public static {{ $1.Name }} Load(string xmlFile) {
-        return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+        return (({{ $1.Name }})XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance));
     }
-    
+
     public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
-        return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+        return (({{ $1.Name }})XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance));
     }
     
     public static {{ $1.Name }} Parse(string xml) {
+        return (({{ $1.Name }})XTypedServices.ToXTypedElement(XElement.Parse(xmlFile), LinqToXsdTypeManager.Instance));
+    }
+
+    {{~ # when InnerType, generic type <$1.Name> must adapted and a 2nd parameter with SingletonTypeManager must be added ~}}
+    {{~ 
+            else # if IsAbstract || IsSubstitutionHead 
+                $new = $1.IsDervived ? "new " : ""
+    }}
+
+    public static {{ $new -}} {{ $1.Name }} Load(string xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+    }
+
+    public static {{ $new -}} {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+    }
+    
+    public static {{ $new -}} {{ $1.Name }} Parse(string xml) {
         return XTypedServices.Parse<{{ $1.Name }}>(xml);
     }
-    {{~ end ~}}
-    
-    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-    
+
+    {{- 
+            end # if IsAbstract || IsSubstitutionHead
+        end # if HasLoadMethods 
+    }}
+
+    public static explicit operator {{ $1.Name }}(XElement xe) { {{
+        if $1.IsAbstract || $1.IsSubstitutionHead # match weird double-space in legacy code
+        }} return ({{ $1.Name }})XTypedServices.ToXTypedElement
+        {{- else # TODO: handle <$1.Name> for nested types -}}
+            return XTypedServices.ToXTypedElement<{{ $1.Name }}>
+        {{- end
+    -}}(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+
+    {{- if !$1.IsAbstract }}
+
     public override XTypedElement Clone() {
+        {{~ # TODO: return new $1(($1.InnerType)this.Content.Clone); when InnerType  ~}}
         return XTypedServices.CloneXTypedElement<{{ $1.Name }}>(this);
     }
+    {{- end }}
 
-    {{ $1 | ctor | comments -}}
+    {{ include 'comments.scriban-cs' $1.Comments -}}
     public {{ $1.Name }}() {
+        {{~ # TODO: review CreateDEfaultConstructor for Wrapper types ~}}
     }
 
-    {{- 
-        $simple = $1 | simple_type
-        if $simple != null
-            $validatorType = $1 | validator
-            $enumType = $simple | (regex.matches "Enum\\??$").empty? ? null : $simple | string.split "." | array.last
-            if $enumType
-    }}
-
-    {{ include 'enum.scriban-cs' 'TypedValue' ($enumType | enum_decl $1) $simple }}
-
-    {{- else # simple type but not an enum }}
-
-    {{- if ($1 | properties).empty? }}
-
-    {{ $1 | ctor 1 | comments -}}
-    public {{ $1.Name }}({{ $simple }} content) {
-        this.TypedValue = content;
-    }
-    {{- end }}
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-    
-    public virtual {{ $simple }} TypedValue {
-        get {
-            XElement x = this.Untyped;
-            return XTypedServices.ParseValue<{{ $simple }}>(x, XmlSchemaType.GetBuiltInSimpleType({{ $simple | xml_type_code }}).Datatype);
-        }
-        set {
-            {{~ if $validatorType == null ~}}
-            this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType({{ $simple | xml_type_code }}).Datatype);
-            {{~ else ~}}
-            this.SetValueWithValidation(value, "TypedValue", {{ $validatorType }}.TypeDefinition);
-            {{~ end ~}}
-        }
-    }
-    
-    {{- end # if $enumType }}
-
-    {{- end # if $simple }}
-
-    {{- for $prop in $1 | properties }}
-
-    {{- 
-        $propType = $prop.Type | type_name
-        $enumType = $propType | (regex.matches "Enum\\??$").empty? ? null : $propType | string.split "." | array.last
-        if $enumType
-    }}
-
-    {{ 
-        include 'enum.scriban-cs' $prop.Name ($enumType | enum_decl $1) $propType $prop ($prop | default_value $1)
-        continue
-        end 
-    }}
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    protected internal static readonly System.Xml.Linq.XName {{ $prop.Name }}XName = System.Xml.Linq.XName.Get("{{ $1 | local_name $prop.Name + 'XName' }}", "{{ $1 | namespace $prop.Name + 'XName' }}");
-
-    {{- 
-        $default = $prop | default_value $1
-        if $default 
-    }}
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private static {{ $prop.Type | type_name }} {{ $prop.Name }}DefaultValue = System.Xml.XmlConvert.{{ $default }};
-    {{- end }}
-
-    {{- if $prop | is_list }}
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private XTypedList<{{ $prop.Name }}> {{ $prop.Name }}Field;
-
-    {{- end }}
-
-    {{ $prop | comments -}}
-    public virtual {{ $prop.Type | type_name}} {{ $prop.Name }} {
-        {{- if $prop | is_list }}
-        get {
-            if ((this.{{ $prop.Name }}Field == null)) {
-                this.{{ $prop.Name }}Field = new XTypedList<{{ $prop.Name }}>(this, LinqToXsdTypeManager.Instance, {{ $prop.Name }}XName);
-            }
-            return this.{{ $prop.Name }}Field;
-        }
-        set {
-            if ((value == null)) {
-                this.{{ $prop.Name }}Field = null;
-            }
-            else {
-                if ((this.{{ $prop.Name }}Field == null)) {
-                    this.{{ $prop.Name }}Field = XTypedList<{{ $prop.Name }}>.Initialize(this, LinqToXsdTypeManager.Instance, value, {{ $prop.Name }}XName);
-                }
-                else {
-                    XTypedServices.SetList<{{ $prop.Name }}>(this.{{ $prop.Name }}Field, value);
-                }
-            }
-        }
-
-        {{- else if $prop | is_element }}
-        get {                
-            XElement x = this.GetElement({{ $prop.Name }}XName);
-            {{- if $prop | is_optional }}
-            if ((x == null)) {
-                return null;
-            }
-            {{- end }}
-            return (({{ $prop.Type | type_name }})(x));
-        }
-        set {
-            this.SetElement({{ $prop.Name }}XName, value);
-        }
-
-        {{- else }}
-        get {
-            XAttribute x = this.Attribute({{ $prop.Name }}XName);
-            {{- if $prop | is_optional }}
-            if ((x == null)) {
-                return {{ $default ? $prop.Name + "DefaultValue" : "null" }};
-            }
-            {{- end }}
-            return XTypedServices.ParseValue<{{ $prop.Type | type_name nullable: false }}>(x, XmlSchemaType.GetBuiltInSimpleType({{ $prop.Type | xml_type_code $prop.Name }}).Datatype);
-        }
-        set {
-            this.SetAttribute({{ $prop.Name }}XName, value, XmlSchemaType.GetBuiltInSimpleType({{ $prop.Type | xml_type_code $prop.Name }}).Datatype);
-        }
-
-        {{- end }}
-    }
-    {{- end }}
-
-    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1 | local_name 'xName' }}", "{{ $1 | namespace 'xName' }}");
-    
-    {{- if $1 | has_elements }}
-
-    static {{ $1.Name }}() {
-        BuildElementDictionary();
-        {{- if $1 | has_content_model }}
-        contentModel = new SequenceContentModelEntity(
-            {{- for $el in $1 | elements -}}
-            new NamedContentModelEntity({{ $el.Name }}XName)
-            {{- if !for.last; ', '; end -}}
-            {{- end -}}
-        );
-        {{- end }}
-    }
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-    
-    private static void BuildElementDictionary() {
-        {{- for $prop in $1 | elements }}
-        localElementDictionary.Add({{ $prop.Name }}XName, typeof({{ $prop.Type | type_name | list_element | string.split "." | array.last }}));
-        {{- end }}
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-        get {
-            return localElementDictionary;
-        }
-    }
-
-    {{- end }}
-    
-    {{- if $1 | has_content_model }}
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private static ContentModelEntity contentModel;
-    
-    ContentModelEntity IXMetaData.GetContentModel() {
-        return contentModel;
-    }
-
-    {{- else }}
-    
-    ContentModelEntity IXMetaData.GetContentModel() {
-        return ContentModelEntity.Default;
-    }
-
-    {{- end }}
+    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
     
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -226,23 +91,5 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
         }
     }
     
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    SchemaOrigin IXMetaData.TypeOrigin {
-        get {
-            return {{ if $.isNested -}} SchemaOrigin.Fragment {{- else -}} SchemaOrigin.Element {{- end }};
-        }
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    ILinqToXsdTypeManager IXMetaData.TypeManager {
-        get {
-            return LinqToXsdTypeManager.Instance;
-        }
-    }
-
-    {{- for $type in $1 | classes }}
-
-    {{ include 'class.scriban-cs' $type isNested: true }}
-
-    {{- end }}
+    {{ # TODO: continue work on IXMetadata }}
 }

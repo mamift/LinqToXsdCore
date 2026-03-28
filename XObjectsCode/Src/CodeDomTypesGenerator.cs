@@ -21,8 +21,8 @@ namespace Xml.Schema.Linq.CodeGen
 
         // TODO: eventually remove
         XmlQualifiedName rootElementName = XmlQualifiedName.Empty;
-        public CodeTypeDeclaration RootElement { get; private set; }
-        public IEnumerable<CodeTypeDeclaration> AllRoots => codeNamespacesTable.Values.SelectMany(ns => ns.Roots);
+        public CElement RootElement { get; private set; }
+        public IEnumerable<CElement> AllRoots => codeNamespacesTable.Values.SelectMany(ns => ns.Roots);
 
         CNamespace cNamespace, rootNamespace;
         public CNamespace RootNamespace => rootNamespace;
@@ -34,7 +34,7 @@ namespace Xml.Schema.Linq.CodeGen
         string currentNamespace;
         string currentFullTypeName;
 
-        public readonly List<CType> AllTypes = [];
+        public readonly List<CElement> AllTypes = [];
         // TODO: review naming, this is more an AllTypes than AllElements as it also contains wrapper classes for simple types
         //       but then what's the difference with AllTypes above? is AllElements only the non-nested types? 
         //       I guess I'll figure it out after migrating more code.
@@ -63,8 +63,7 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 
                 cNamespace = GetCNamespace(type.clrtypeNs);
-                Debug.Assert(cNamespace != null);
-                var ns = cNamespace.Dom;
+                Debug.Assert(cNamespace != null);                
 
                 if (type is ClrSimpleTypeInfo stInfo)
                 {
@@ -77,6 +76,7 @@ namespace Xml.Schema.Linq.CodeGen
 
                         // TODO: Figure out how where descendant enum declarations could be generated
                         //       and ensure template doesn't generate them twice.
+                        var ns = cNamespace.Dom;
                         var enumsInOtherTypes = ns.DescendentTypeScopedEnumDeclarations();
                         // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
                         if (enumsInOtherTypes.EqualEnumDeclarationExists(enumType)) 
@@ -92,21 +92,41 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else 
                 {
-                    var decl = ProcessType(type as ClrContentTypeInfo, null, true); // Sets current cNamespace
-                    cNamespace.Add(decl);
+                    var element = ProcessType2(type as ClrContentTypeInfo, null, true); // Sets current cNamespace as side-effet
+                    cNamespace.Add(element);
 
                     if (type.typeOrigin == SchemaOrigin.Element)
                     {
-                        cNamespace.Roots.Add(decl);
-                        UpdateRootElement(type, decl);
+                        cNamespace.Roots.Add(element);
+                        UpdateRootElement(type, element);
                     }
                 }
             }
 
             ProcessWrapperTypes();
-            CreateXRoots();
+            FindRootNamespace();
 
             return codeNamespacesTable.Values;
+        }
+
+        private CElement ProcessType2(ClrContentTypeInfo typeInfo, string parentIdentifier, bool globalType)
+        {
+            SetFullTypeName(typeInfo, parentIdentifier);
+
+            if (globalType)
+                currentNamespace = typeInfo.clrtypeNs;  // dependent on SetFullTypeName above
+
+            var element = new CElement(typeInfo);
+
+            if (globalType) 
+            {
+                if (typeInfo.typeOrigin == SchemaOrigin.Fragment)
+                    AllTypes.Add(element);
+                else
+                    AllElements.Add(element);
+            }
+
+            return element;
         }
 
         private CodeTypeDeclaration ProcessType(ClrContentTypeInfo typeInfo, string parentIdentifier, bool globalType)
@@ -114,36 +134,35 @@ namespace Xml.Schema.Linq.CodeGen
             SetFullTypeName(typeInfo, parentIdentifier);
 
             if (globalType)
-                currentNamespace = typeInfo.clrtypeNs;
+                currentNamespace = typeInfo.clrtypeNs;  // dependent on SetFullTypeName above
 
-            //Build type using TypeBuilder
+            // Build type using TypeBuilder
             typeBuilder = GetTypeBuilder();
             typeBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
             ProcessProperties(typeInfo.Content, typeInfo.Annotations);
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
             typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
-            typeBuilder.ApplyAnnotations(typeInfo);
 
             CodeTypeDeclaration builtType = typeBuilder.TypeDeclaration;
             
             if (globalType)
             {
                 // TODO: these shouldn't be a new instances but the instance built above by TypeBuilder, when migrated
-                if (typeInfo.typeOrigin == SchemaOrigin.Fragment)
-                    AllTypes.Add(new() 
-                    { 
-                        Name = typeInfo.clrFullTypeName, 
-                        XsdName = typeInfo.schemaName, 
-                        XsdNs = typeInfo.schemaNs,
-                    });
-                else
-                    AllElements.Add(new() 
-                    {
-                        Dom = builtType,
-                        Name = typeInfo.clrFullTypeName,
-                        XsdName = typeInfo.schemaName,
-                        XsdNs = typeInfo.schemaNs,
-                    });
+                // if (typeInfo.typeOrigin == SchemaOrigin.Fragment)
+                //     AllTypes.Add(new() 
+                //     { 
+                //         Name = typeInfo.clrFullTypeName, 
+                //         XsdName = typeInfo.schemaName, 
+                //         XsdNs = typeInfo.schemaNs,
+                //     });
+                // else
+                //     AllElements.Add(new() 
+                //     {
+                //         Dom = builtType,
+                //         Name = typeInfo.clrFullTypeName,
+                //         XsdName = typeInfo.schemaName,
+                //         XsdNs = typeInfo.schemaNs,
+                //     });
             }
 
             ProcessNestedTypes(typeInfo.NestedTypes, builtType, typeInfo.clrFullTypeName);
@@ -151,19 +170,18 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
 
-        private void ProcessNestedTypes(List<ClrTypeInfo> anonymousTypes, CodeTypeDeclaration parentTypeDecl,
-            string parentIdentifier)
+        private void ProcessNestedTypes(List<ClrTypeInfo> anonymousTypes, CodeTypeDeclaration parentTypeDecl, string parentIdentifier)
         {
             foreach (ClrTypeInfo nestedType in anonymousTypes)
             {
-                ClrSimpleTypeInfo stInfo = nestedType as ClrSimpleTypeInfo;
-                CodeTypeDeclaration decl = null;
-                if (stInfo != null)
-                {
-                    if (stInfo is EnumSimpleTypeInfo && EnumAlreadyExistsInParent(stInfo.clrtypeName, parentTypeDecl)) continue;
+                if (nestedType is EnumSimpleTypeInfo && EnumAlreadyExistsInParent(nestedType.clrtypeName, parentTypeDecl)) 
+                    continue;
 
-                    decl = TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings);
-                    //Anonymous simple types are private within the scope of the parent class
+                CodeTypeDeclaration decl = null;
+                if (nestedType is ClrSimpleTypeInfo simpleTypeInfo)
+                {
+                    decl = TypeBuilder.CreateSimpleType(simpleTypeInfo, nameMappings, settings);
+                    // Anonymous simple types are private within the scope of the parent class
                     decl.TypeAttributes = TypeAttributes.NestedPrivate;
                 }
                 else
@@ -240,9 +258,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             return parent.Members
                 .OfType<CodeTypeDeclaration>()
-                .Where(m => m.IsEnum)
-                .Select(m => m.Name)
-                .Contains(clrEnumTypeName);
+                .Any(m => m.IsEnum && m.Name == clrEnumTypeName);
         }
 
         private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
@@ -296,7 +312,7 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private void CreateXRoots()
+        private void FindRootNamespace()
         {
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
             if (!codeNamespacesTable.TryGetValue(rootClrNamespace, out rootNamespace))
@@ -339,13 +355,13 @@ namespace Xml.Schema.Linq.CodeGen
                     // };
 
                     // TODO: should not be a new instance but rather the one produced by code above, when migrated
-                    AllElements.Add(new()
-                    {
-                        Dom = builder.TypeDeclaration,
-                        Name = typeInfo.clrFullTypeName,
-                        XsdName = typeInfo.schemaName,
-                        XsdNs = typeInfo.schemaNs,
-                    });
+                    // AllElements.Add(new()
+                    // {
+                    //     Dom = builder.TypeDeclaration,
+                    //     Name = typeInfo.clrFullTypeName,
+                    //     XsdName = typeInfo.schemaName,
+                    //     XsdNs = typeInfo.schemaNs,
+                    // });
                 }
                 else
                 {
@@ -373,13 +389,13 @@ namespace Xml.Schema.Linq.CodeGen
                     wrapperBuilder.ApplyAnnotations(typeInfo);
 
                     // TODO: shouldn't be a new instance but rather from wrapperBuilder when migrated
-                    AllElements.Add(new() 
-                    {
-                        Dom = wrapperBuilder.TypeDeclaration,
-                        Name = typeInfo.clrFullTypeName,
-                        XsdName = typeInfo.schemaName,
-                        XsdNs = typeInfo.schemaNs,
-                    });
+                    // AllElements.Add(new() 
+                    // {
+                    //     Dom = wrapperBuilder.TypeDeclaration,
+                    //     Name = typeInfo.clrFullTypeName,
+                    //     XsdName = typeInfo.schemaName,
+                    //     XsdNs = typeInfo.schemaNs,
+                    // });
 
                     AllWrappers.Add(new(typeInfo.clrFullTypeName, innerTypeFullName));
 
@@ -418,14 +434,15 @@ namespace Xml.Schema.Linq.CodeGen
                 var decl = builder.TypeDeclaration;
 
                 cNamespace = GetCNamespace(typeInfo.clrtypeNs);
-                if (cType != null)
+                if (cType != null)  // TODO: temporary
+                {
                     cNamespace.Add(cType);
-                else
-                    cNamespace.Add(decl);   // TODO: remove at end of migration
-                cNamespace.Roots.Add(decl);
-
-                if (typeInfo.typeOrigin == SchemaOrigin.Element) 
-                    UpdateRootElement(typeInfo, decl);
+                    cNamespace.Roots.Add((CElement)cType);
+                    if (typeInfo.typeOrigin == SchemaOrigin.Element) 
+                        UpdateRootElement(typeInfo, (CElement)cType);
+                }
+                // else
+                //    cNamespace.Add(decl);   // TODO: remove at end of migration                
             }
         }
 
@@ -485,17 +502,11 @@ namespace Xml.Schema.Linq.CodeGen
 
         private void SetFullTypeName(ClrTypeInfo typeInfo, string parentIdentifier)
         {
-            if (parentIdentifier == null)
-            {
-                if (typeInfo.clrtypeNs == string.Empty)
-                    currentFullTypeName = typeInfo.clrtypeName;
-                else
-                    currentFullTypeName = typeInfo.clrtypeNs + "." + typeInfo.clrtypeName;
-            }
-            else
-            {
-                currentFullTypeName = parentIdentifier + "." + typeInfo.clrtypeName;
-            }
+            currentFullTypeName = parentIdentifier != null
+                ? parentIdentifier + "." + typeInfo.clrtypeName
+                : typeInfo.clrtypeNs != ""
+                    ? typeInfo.clrtypeNs + "." + typeInfo.clrtypeName
+                    : typeInfo.clrtypeName;
 
             typeInfo.clrFullTypeName = currentFullTypeName;
             XmlQualifiedName baseTypeName = typeInfo.BaseTypeName;
@@ -510,12 +521,10 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             if (typeInfo.typeOrigin == SchemaOrigin.Element && (rootElementName.IsEmpty || typeInfo.IsRoot))
-            {
                 rootElementName = new XmlQualifiedName(typeInfo.schemaName, typeInfo.schemaNs);
-            }
         }
 
-        private void UpdateRootElement(ClrTypeInfo info, CodeTypeDeclaration decl)
+        private void UpdateRootElement(ClrTypeInfo info, CElement decl)
         {
             // The last IsRoot element is assumed to be the schema root element
             // When there is no IsRoot element, then the first element in schema is the assumed root.

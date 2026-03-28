@@ -46,10 +46,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         internal virtual void CreateDefaultConstructor(List<ClrAnnotation> annotations)
-        {
-            decl.Members.Add(ApplyAnnotations(CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute()), annotations,
-                null));
-        }
+        { }
 
         internal virtual CodeConstructor CreateFunctionalConstructor(List<ClrAnnotation> annotations)
         {
@@ -113,27 +110,6 @@ namespace Xml.Schema.Linq.CodeGen
             InnerInit();
         }
 
-        protected virtual void AddBaseType()
-        {
-            //Set basetype
-            string baseTypeClrName = clrTypeInfo.baseTypeClrName;
-
-            if (baseTypeClrName != null)
-            {
-                string baseTypeClrNs = clrTypeInfo.baseTypeClrNs;
-                string baseTypeRef;
-                if (baseTypeClrNs.IsNotEmpty())
-                    baseTypeRef = "global::" + baseTypeClrNs + "." + baseTypeClrName;
-                else
-                    baseTypeRef = "global::" + baseTypeClrName;
-                decl.BaseTypes.Add(baseTypeRef);
-            }
-            else
-            {
-                decl.BaseTypes.Add(Constants.XTypedElement);
-            }
-        }
-
         protected virtual void ImplementContentModelMetaData()
         {
             decl.Members.Add(DefaultContentModel());
@@ -149,93 +125,7 @@ namespace Xml.Schema.Linq.CodeGen
             this.clrTypeInfo = clrTypeInfo;
             SetElementWildCardFlag(clrTypeInfo.HasElementWildCard);
 
-            string schemaName = clrTypeInfo.schemaName;
-            string schemaNs = clrTypeInfo.schemaNs;
-            string clrTypeName = clrTypeInfo.clrtypeName;
-            SchemaOrigin typeOrigin = clrTypeInfo.typeOrigin;
-
-            CodeTypeDeclaration typeDecl = CodeDomHelper.CreateTypeDeclaration(clrTypeName, InnerType, DefaultVisibility, parentNamespace);
-
-            if (clrTypeInfo.IsAbstract)
-            {
-                typeDecl.TypeAttributes |= TypeAttributes.Abstract;
-            }
-            else if (clrTypeInfo.IsSealed)
-            {
-                typeDecl.TypeAttributes |= TypeAttributes.Sealed;
-            }
-
-            decl = typeDecl;
-
-            AddBaseType();
-            CreateServicesMembers();
-            CreateDefaultConstructor(clrTypeInfo.Annotations);
-        }
-
-        internal void CreateServicesMembers()
-        {
-            string innerType = InnerType;
-            string clrTypeName = clrTypeInfo.clrtypeName;
-
-            bool useAutoTyping = clrTypeInfo.IsAbstract || clrTypeInfo.IsSubstitutionHead;
-            if (clrTypeInfo.typeOrigin == SchemaOrigin.Element)
-            {
-                //Disable load and parse for complex types
-                CodeTypeMember load = CodeDomHelper.CreateStaticMethod(
-                    "Load", clrTypeName, innerType, "xmlFile", "System.String", useAutoTyping, DefaultVisibility);
-                // http://linqtoxsd.codeplex.com/WorkItem/View.aspx?WorkItemId=4093
-                var loadReader = CodeDomHelper.CreateStaticMethod(
-                    "Load", clrTypeName, innerType, "xmlFile", "System.IO.TextReader", useAutoTyping, DefaultVisibility);
-                CodeTypeMember parse = CodeDomHelper.CreateStaticMethod("Parse", clrTypeName, innerType, "xml",
-                    "System.String", useAutoTyping, DefaultVisibility);
-                if (clrTypeInfo.IsDerived)
-                {
-                    load.Attributes |= MemberAttributes.New;
-                    parse.Attributes |= MemberAttributes.New;
-                }
-                else
-                {
-                    decl.Members.Add(CodeDomHelper.CreateSave("xmlFile", "System.String", DefaultVisibility));
-                    decl.Members.Add(CodeDomHelper.CreateSave("tw", "System.IO.TextWriter", DefaultVisibility));
-                    decl.Members.Add(CodeDomHelper.CreateSave("xmlWriter", "System.Xml.XmlWriter", DefaultVisibility));
-                }
-
-                decl.Members.Add(load);
-                decl.Members.Add(loadReader);
-                decl.Members.Add(parse);
-            }
-
-            CodeTypeMember cast = CodeDomHelper.CreateCast(clrTypeName, innerType, useAutoTyping); // dont pass default visibility; as operators must be public and static
-            decl.Members.Add(cast);
-
-            if (!clrTypeInfo.IsAbstract)
-            {
-                //Add Clone for non-abstract types
-                CodeMemberMethod clone = CodeDomHelper.CreateMethod("Clone",
-                    new CodeTypeReference(Constants.XTypedElement), MemberAttributes.Public | MemberAttributes.Override);
-                if (innerType == null)
-                {
-                    CodeMethodInvokeExpression callClone = CodeDomHelper.CreateMethodCall(
-                        new CodeTypeReferenceExpression(Constants.XTypedServices),
-                        "CloneXTypedElement<" + clrTypeName + ">", new CodeThisReferenceExpression());
-                    clone.Statements.Add(new CodeMethodReturnStatement(callClone));
-                }
-                else
-                {
-                    CodeMethodInvokeExpression callClone = CodeDomHelper.CreateMethodCall(
-                        new CodePropertyReferenceExpression(CodeDomHelper.This(), Constants.CInnerTypePropertyName),
-                        "Clone");
-                    clone.Statements.Add(
-                        new CodeMethodReturnStatement(
-                            new CodeObjectCreateExpression(
-                                clrTypeName,
-                                new CodeCastExpression(
-                                    new CodeTypeReference(innerType),
-                                    callClone))));
-                }
-
-                decl.Members.Add(clone);
-            }
+            decl =  new(clrTypeInfo.clrtypeName);
         }
 
         protected virtual void ImplementCommonIXMetaData()

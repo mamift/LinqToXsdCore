@@ -11,7 +11,7 @@
     
     private static void BuildTypeDictionary() {
         {{- for $type in AllTypes }}
-        typeDictionary.Add(System.Xml.Linq.XName.Get("{{ $type.XsdName }}", "{{ $type.XsdNs }}"), typeof(global::{{ $type.Name }}));
+        typeDictionary.Add(System.Xml.Linq.XName.Get("{{ $type.XName }}", "{{ $type.XNamespace }}"), typeof(global::{{ $type.Fqn }}));
         {{- end }}
     }
 
@@ -23,7 +23,7 @@
     
     private static void BuildElementDictionary() {
         {{- for $el in AllElements }}
-        elementDictionary.Add(System.Xml.Linq.XName.Get("{{ $el.XsdName }}", "{{ $el.XsdNs }}"), typeof(global::{{ $el.Name }}));
+        elementDictionary.Add(System.Xml.Linq.XName.Get("{{ $el.XName }}", "{{ $el.XNamespace }}"), typeof(global::{{ $el.Fqn }}));
         {{- end }}
     }
 
@@ -92,7 +92,7 @@
     
     public static System.Type GetRootType() {
         {{- if RootElement }}
-        return elementDictionary[System.Xml.Linq.XName.Get("{{ TypeManager.RootElement | local_name 'xName' }}", "{{ TypeManager.RootElement | namespace 'xName' }}")];
+        return elementDictionary[System.Xml.Linq.XName.Get("{{ TypeManager.RootElement.XName }}", "{{ TypeManager.RootElement.XNamespace }}")];
         {{- else }}
         return typeof(Xml.Schema.Linq.XTypedElement);
         {{- end }}
