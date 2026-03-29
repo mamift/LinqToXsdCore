@@ -470,26 +470,6 @@ namespace Xml.Schema.Linq.CodeGen
             return null;
         }
 
-        private void AddDefaultImports(CodeNamespace newCodeNamespace)
-        {
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.IO"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Linq"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Diagnostics"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Schema"));
-            if (settings.EnableServiceReference)
-            {
-                newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Serialization"));
-            }
-
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Linq"));
-            newCodeNamespace.Imports.Add(new CodeNamespaceImport("Xml.Schema.Linq"));
-        }
-
         private TypeBuilder GetTypeBuilder()
         {
             if (typeBuilder == null)
@@ -578,7 +558,6 @@ namespace Xml.Schema.Linq.CodeGen
                         .GetValueOrDefault(clrNamespace, GeneratedTypesVisibility.Public)
                         .ToKeyword(),
                 };
-                AddDefaultImports(currentCodeNamespace.Dom);
                 codeNamespacesTable.Add(clrNamespace, currentCodeNamespace);
             }
 

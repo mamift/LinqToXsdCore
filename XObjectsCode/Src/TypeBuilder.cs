@@ -90,13 +90,9 @@ namespace Xml.Schema.Linq.CodeGen
             //Do nothing by default
         }
 
-        internal virtual void ImplementInterfaces(bool enableServiceReference)
+        internal void ImplementInterfaces(bool enableServiceReference)
         {
             ImplementIXMetaData();
-            if (enableServiceReference)
-            {
-                ImplementIXmlSerializable();
-            }
         }
 
         protected void InnerInit()
@@ -173,63 +169,6 @@ namespace Xml.Schema.Linq.CodeGen
             typeManagerProperty.Attributes = MemberAttributes.FamilyOrAssembly;
             decl.Members.Add(CodeDomHelper.AddBrowseNever(typeManagerProperty));
             decl.BaseTypes.Add(interfaceName);
-        }
-
-        private void ImplementIXmlSerializable()
-        {
-            string interfaceName = Constants.IXmlSerializable;
-            string typeManagerName = Constants.LinqToXsdTypeManager;
-            string methodName = clrTypeInfo.clrtypeName + "SchemaProvider";
-            CodeMemberMethod schemaProviderMethod =
-                CodeDomHelper.CreateMethod(methodName, null, DefaultVisibility.ToMemberAttribute() | MemberAttributes.Static);
-
-            schemaProviderMethod.Parameters.Add(new CodeParameterDeclarationExpression("XmlSchemaSet", "schemas"));
-            schemaProviderMethod.Statements.Add(
-                //LinqtoXsdTypeManager.AddSchemas(schemas)
-                CodeDomHelper.CreateMethodCall(new CodeTypeReferenceExpression(typeManagerName),
-                    "AddSchemas", new CodeVariableReferenceExpression("schemas")));
-
-            CodeExpression qNameExp = new CodeObjectCreateExpression("XmlQualifiedName",
-                new CodePrimitiveExpression(clrTypeInfo.schemaName), new CodePrimitiveExpression(clrTypeInfo.schemaNs));
-
-            if (clrTypeInfo.typeOrigin == SchemaOrigin.Element)
-            {
-                schemaProviderMethod.Statements.Add(
-                    //XmlSchemaElement element = (XmlSchemaElement)schemas.GlobalElements[new XmlQualifiedName("orders", "http://tempuri/Orders.org")];
-                    new CodeVariableDeclarationStatement("XmlSchemaElement", "element",
-                        new CodeCastExpression("XmlSchemaElement",
-                            new CodeIndexerExpression(
-                                new CodePropertyReferenceExpression(
-                                    new CodeVariableReferenceExpression("schemas"),
-                                    "GlobalElements"), qNameExp))));
-
-                //if(element != null) { return element.ElementSchemaType; } else { return null;}
-                schemaProviderMethod.Statements.Add(
-                    new CodeConditionStatement(
-                        new CodeBinaryOperatorExpression(
-                            new CodeVariableReferenceExpression("element"),
-                            CodeBinaryOperatorType.IdentityInequality,
-                            new CodePrimitiveExpression(null)),
-                        new CodeMethodReturnStatement(
-                            new CodePropertyReferenceExpression(
-                                new CodeVariableReferenceExpression("element"),
-                                "ElementSchemaType"))));
-
-                schemaProviderMethod.Statements.Add(
-                    new CodeMethodReturnStatement(new CodePrimitiveExpression(null)));
-
-                schemaProviderMethod.ReturnType = new CodeTypeReference("XmlSchemaType");
-            }
-            else
-            {
-                schemaProviderMethod.ReturnType = new CodeTypeReference("XmlQualifiedName");
-                schemaProviderMethod.Statements.Add(
-                    new CodeMethodReturnStatement(qNameExp));
-            }
-
-            decl.CustomAttributes.Add(CodeDomHelper.SchemaProviderAttribute(clrTypeInfo.clrtypeName));
-            decl.BaseTypes.Add(interfaceName);
-            decl.Members.Add(schemaProviderMethod);
         }
 
         protected virtual void ImplementFSMMetaData()

@@ -13,10 +13,10 @@ namespace Xml.Schema.Linq.CodeGen.Model;
 /// </summary>
 public abstract class CClass
 {
-    /// <summary>Parent C# namespace</summary>
     public CNamespace? Namespace { get; set; }    
 
-    // This isn't great OOP design but Scriban doesn't have first-class support for OOP (no `is` operator)
+    // This isn't great OOP design but Scriban doesn't have first-class support for OOP (no `is` operator).
+    // Maybe it'd be cleaner to put the `is CSimpleType` behind a global function.
     public virtual bool IsSimpleType => false;
 
     [return: NotNullIfNotNull(nameof(name))]
@@ -59,6 +59,7 @@ public class CSimpleType(
     public override bool IsSimpleType => true;
 
     public bool IsGlobal => info.IsGlobal;
+    public SchemaOrigin Origin => info.typeOrigin;
 
     // For enums, the clrtypeName is used for `enum` declaration, 
     // so suffix "Validator" is added to the simple type class holding the `TypeDefinition`.

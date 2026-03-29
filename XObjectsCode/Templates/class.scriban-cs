@@ -1,9 +1,18 @@
 {{ include 'comments.scriban-cs' $1.Comments -}}
+{{- if Settings.EnableServiceReference }}
+[XmlSchemaProviderAttribute("{{$1.Name}}SchemaProvider")]
+{{ end -}}
 {{
     $1.Namespace.AccessModifier
     $1.IsAbstract ? " abstract" : ""
     $1.IsSealed ? " sealed" : ""
-}} partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
+    " partial class "
+    $1.Name
+    " : "
+    $1.BaseType
+    ", IXMetaData"
+    Settings.EnableServiceReference ? ", IXmlSerializable" : ""
+}} {
 
     {{- if $1.HasSaveMethods }}
 
@@ -92,4 +101,21 @@
     }
     
     {{ # TODO: continue work on IXMetadata }}
+    
+    {{- if Settings.EnableServiceReference }}
+
+    public static {{ $1.Origin == "Element" ? "XmlSchemaType" : "XmlQualifiedName" }} {{ $1.Name }}SchemaProvider() {
+        LinqToXsdTypeManager.AddSchemas(schemas);
+        {{~ if $1.Origin == "Element" ~}}
+        XmlSchemaElement element = (XmlSchemaElement)schemas.GlobalElements[new XmlQualifiedName({{ $1.XName | string.literal }}, {{ $1.XNamespace | string.literal }})];
+        if (element != null) { 
+            return element.ElementSchemaType; 
+        } 
+        return null;
+        {{~ else ~}}
+        return new XmlQualifiedName({{ $1.XName | string.literal }}, {{ $1.XNamespace | string.literal }});
+        {{~ end ~}}
+    }
+
+    {{- end }}
 }
