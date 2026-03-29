@@ -1190,14 +1190,12 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (attribute.AttributeSchemaType.DerivedBy == XmlSchemaDerivationMethod.Union)
             {
-                string value = propertyInfo.FixedValue;
-                if (value == null)
-                    value = propertyInfo.DefaultValue;
+                string value = propertyInfo.FixedValue ?? propertyInfo.DefaultValue;
                 if (value != null)
                 {
-                    propertyInfo.unionDefaultType = attribute
-                                                    .AttributeSchemaType.Datatype
-                                                    .ParseValue(value, new NameTable(), null).GetType();
+                    propertyInfo.unionDefaultType = attribute.AttributeSchemaType.Datatype
+                        .ParseValue(value, new NameTable(), null)
+                        .GetType();
                 }
             }
         }
@@ -1224,13 +1222,10 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (element.ElementSchemaType.DerivedBy == XmlSchemaDerivationMethod.Union)
             {
-                string value = propertyInfo.FixedValue;
-                if (value == null)
-                    value = propertyInfo.DefaultValue;
+                string value = propertyInfo.FixedValue ?? propertyInfo.DefaultValue;
                 if (value != null)
                 {
-                    propertyInfo.unionDefaultType = element
-                        .ElementSchemaType.Datatype
+                    propertyInfo.unionDefaultType = element.ElementSchemaType.Datatype
                         .ParseValue(value, new NameTable(), null)
                         .GetType();
                 }

@@ -30,6 +30,36 @@ static class ScribanGlobals
         return JsonSerializer.Serialize(value);
     }
 
+    public static string LocalName(string fqn)
+    {
+        int dot = fqn.LastIndexOf('.');
+        return dot < 0 ? fqn : fqn.Substring(dot + 1);
+    }
+
+    public static string Builtin(string type)
+    {
+        return type switch 
+        {
+            "System.Int16" => "short",
+            "System.Int32" => "int",
+            "System.Int64" => "long",
+            "System.String" => "string",
+            "System.Object" => "object",
+            "System.Boolean" => "bool",
+            "System.Void" => "void",
+            "System.Char" => "char",
+            "System.Byte" => "byte",
+            "System.UInt16" => "ushort",
+            "System.UInt32" => "uint",
+            "System.UInt64" => "ulong",
+            "System.SByte" => "sbyte",
+            "System.Single" => "float",
+            "System.Double" => "double",
+            "System.Decimal" => "decimal",
+            _ => type,
+        };
+    }
+
     // Temporary marker comment: temporary helpers to adapt from CodeDom
 
     public static void Comments(TemplateContext ctx, object target)

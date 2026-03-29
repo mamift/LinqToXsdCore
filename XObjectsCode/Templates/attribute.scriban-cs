@@ -1,0 +1,55 @@
+{{~
+    $new = $1.IsNew ? "new " : ""
+~}}
+
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+[EditorBrowsable(EditorBrowsableState.Never)]
+protected internal static readonly {{ $new -}} System.Xml.Linq.XName {{ $1.XNameField }} = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
+
+{{- if $1.FixedOrDefaultValue }}
+
+{{~ # TODO: built-in must be applied more thoroughly, incl. on generic inner types such as List<string> ~}}
+{{~ # TODO: review $1.Type for Union types, see. ClrPropertyInfo.CreateFixedDefaultValue ~}}
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
+    attr = $1 # funcs have their own local scope and non-global names won't resolve in parent scope :(
+
+    func make_value
+        $local_type = attr.FixedOrDefaultBaseType | local_name
+        if $local_type == "String" || $local_type == "Object"
+            $0 | string.literal
+        else if attr.IsEnum
+            attr.FixedOrDefaultBaseType + "." + $0
+        else if $local_type == "Uri"
+            "new Uri(" + ($0 | string.literal) + ")"
+        else
+            "System.Xml.XmlConvert.To" + $local_type + "(" + ($0 | string.literal) + ")"
+        end
+    end
+
+    if $1.IsFixedOrDefaultList
+        "new " + ($1.FixedOrDefaultBaseType | builtin) + "[] {\n        " 
+        $1.FixedOrDefaultValue | string.split ' ' | array.join ",\n        " @make_value
+        "}"
+    else
+        $1.FixedOrDefaultValue | make_value
+    end
+}};
+{{- end }}
+
+{{~ # TODO: continue review of ClrPropertyInfo.AddToType after CreateFixedDefaultValue ~}}
+{{ include 'comments.scriban-cs' $1.Comments -}}
+public virtual {{ $new -}} {{ $1.Type | builtin }} {{ $1.Name }} {
+    get {
+        XAttribute x = this.Attribute({{ $1.XNameField }});
+        {{- if $1.IsOptional }}
+        if ((x == null)) {
+            return {{ $1.FixedOrDefaultField ?? "null" }};
+        }
+        {{- end }}
+        return XTypedServices.ParseValue<{{ $1.Type | builtin }}>(x, XmlSchemaType.GetBuiltInSimpleType({{ $1.Type }}).Datatype);
+    }
+    set {
+        this.SetAttribute({{ $1.XNameField }}, value, XmlSchemaType.GetBuiltInSimpleType({{ $1.Type }}).Datatype);
+    }
+}

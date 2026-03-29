@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -295,6 +296,50 @@ namespace Xml.Schema.Linq.CodeGen
         public override XCodeTypeReference ReturnType
             => returnType ??= CreateReturnType(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
 
+        private string? returnTypeStr = null, returnTypeFqn = null;
+
+        // TODO: rename after getting rid of CodeDom ReturnType property above
+        public string ReturnTypeStr
+        {
+            get 
+            {
+                if (returnTypeStr == null)
+                    (returnTypeStr, returnTypeFqn) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+                return returnTypeStr;
+            }
+        }
+
+        public string? ReturnTypeFqn
+        {
+            get 
+            {
+                if (returnTypeStr == null)
+                    (returnTypeStr, returnTypeFqn) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+                return returnTypeFqn;
+            }            
+        }
+
+        private string? fixedOrDefaultBaseType = null;
+        private bool isFixedOrDefaultList;
+
+        public string FixedOrDefaultBaseType
+        {
+            get {
+                if (fixedOrDefaultBaseType == null)
+                    (fixedOrDefaultBaseType, isFixedOrDefaultList) = CreateFixedOrDefaultType(ReturnTypeStr);
+                return fixedOrDefaultBaseType;
+            }
+        }
+
+        public bool IsFixedOrDefaultList
+        {
+            get {
+                if (fixedOrDefaultBaseType == null)
+                    (fixedOrDefaultBaseType, isFixedOrDefaultList) = CreateFixedOrDefaultType(ReturnTypeStr);
+                return isFixedOrDefaultList;
+            }
+        }
+
         private string QualifiedType => typeRef.IsLocalType && !typeRef.IsSimpleType
             ? parentTypeFullName + "." + clrTypeName
             : clrTypeName;
@@ -302,6 +347,55 @@ namespace Xml.Schema.Linq.CodeGen
         private string NullableType => IsNillable && (settings.NullableReferences || typeRef.IsValueType)
             ? QualifiedType + "?"
             : QualifiedType;
+
+        private (string, string?) CreateReturnTypeStr(string typeName)
+        {
+            if (IsList || !IsRef && IsSchemaList)
+            {
+                var listType = (IsEnum, IsNillable) switch
+                {
+                    (true, true) => typeRef.ClrFullTypeName + "?",
+                    (true, false) => typeRef.ClrFullTypeName,
+                    _ => NullableType,
+                };
+                return (hasSet ? $"IList<{listType}>" : $"IEnumerable<{listType}>", null);
+            }
+
+            string fullTypeName = typeRef.IsLocalType && !typeRef.IsSimpleType
+                ? parentTypeFullName + "." + typeName
+                : typeName; // For simple types, return type is always XSD -> CLR mapping
+
+            if (!IsRef && IsNullable && (settings.NullableReferences || typeRef.IsValueType))
+                return (fullTypeName + "?", null);
+
+            return (typeName, fullTypeName);
+        }
+
+        private static bool RegexExtract(string text, string pattern, out string result)
+        {
+            var match = Regex.Match(text, pattern);
+            result = match.Success ? match.Groups[1].Value : "";
+            return match.Success;
+        }
+
+        private (string, bool) CreateFixedOrDefaultType(string typeName)
+        {
+            string baseType;
+
+            if (RegexExtract(typeName, @"\bNullable<([^,>]+)>$", out baseType)) // Nullable<T>
+                return (baseType, false);
+
+            if (typeName.EndsWith("?")) // T?
+                return (typeName[..^1], false);
+
+            if (RegexExtract(typeName, @"^(.+)\[\]$", out baseType))  // T[]
+                return (baseType, true);
+
+            if (RegexExtract(typeName, @"\bI?List<([^,>]+)>$", out baseType))   // IList<T>
+                return (baseType, true);
+
+            return (typeName, false);
+        }
 
         private XCodeTypeReference CreateReturnType(string typeName)
         {
@@ -366,7 +460,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, settings, out string refTypeName);
 
-            if ((Validation || IsUnion) || IsEnum)
+            if (Validation || IsUnion || IsEnum)
             {
                 this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespaceScope, nameMappings);
             }
@@ -393,6 +487,7 @@ namespace Xml.Schema.Linq.CodeGen
         public override CodeMemberProperty? AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
+            // TODO Scriban migration: done, remove when not referenced
             if (parentTypeDecl == null) throw new ArgumentNullException(nameof(parentTypeDecl));
             if (!ShouldGenerate)
             {

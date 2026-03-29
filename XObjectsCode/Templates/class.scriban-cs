@@ -91,8 +91,19 @@
         {{~ # TODO: review CreateDEfaultConstructor for Wrapper types ~}}
     }
 
+    {{-
+        for $content in $1.Content 
+            if $content.ContentType == "Property"
+    }}
+    {{ include 'attribute.scriban-cs' $content -}}
+    {{-     # TODO: else 'grouping'
+            end
+        end
+    }}
+
     private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
-    
+        
+    {{~ # TODO: CreateFunctionalConstructor }}
     {{~ # TODO: IXMetadata related to content (elements, contentmodel, FSM) ~}}
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     System.Xml.Linq.XName IXMetaData.SchemaName {

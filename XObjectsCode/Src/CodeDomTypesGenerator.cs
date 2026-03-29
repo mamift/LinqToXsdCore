@@ -118,6 +118,15 @@ namespace Xml.Schema.Linq.CodeGen
 
             var element = new CElement(typeInfo);
 
+            foreach (var content in typeInfo.Content) 
+            {
+                if (content is ClrPropertyInfo info)
+                {
+                    // TODO: review handling of createNestedEnumType action
+                    info.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, (_) => {});
+                }
+            }
+
             if (globalType) 
             {
                 if (typeInfo.typeOrigin == SchemaOrigin.Fragment)

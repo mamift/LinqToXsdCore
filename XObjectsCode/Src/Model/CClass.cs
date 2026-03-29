@@ -45,6 +45,12 @@ public class CElement(ClrContentTypeInfo info) : CClass
     public bool HasSaveMethods => info.typeOrigin == SchemaOrigin.Element && !info.IsDerived;
     public bool HasLoadMethods => info.typeOrigin == SchemaOrigin.Element;
     public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
+
+    public IEnumerable<CContent> Content => info.Content
+        .Where(x => x is not ClrPropertyInfo { ShouldGenerate: false })
+        .Select(x => x.ContentType == ContentType.Property 
+            ? new CAttribute((ClrPropertyInfo)x) as CContent
+            : new CGrouping(x));
 }
 
 /// <summary>
