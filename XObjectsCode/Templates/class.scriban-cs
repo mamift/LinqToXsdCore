@@ -93,6 +93,7 @@
 
     private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
     
+    {{~ # TODO: IXMetadata related to content (elements, contentmodel, FSM) ~}}
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     System.Xml.Linq.XName IXMetaData.SchemaName {
         get {
@@ -100,8 +101,20 @@
         }
     }
     
-    {{ # TODO: continue work on IXMetadata }}
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    SchemaOrigin IXMetaData.TypeOrigin {
+        get {
+            return SchemaOrigin.{{ $1.Origin }};
+        }
+    }
     
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    ILinqToXsdTypeManager IXMetaData.TypeManager {
+        get {
+            return LinqToXsdTypeManager.Instance;
+        }
+    }
+        
     {{- if Settings.EnableServiceReference }}
 
     public static {{ $1.Origin == "Element" ? "XmlSchemaType" : "XmlQualifiedName" }} {{ $1.Name }}SchemaProvider() {

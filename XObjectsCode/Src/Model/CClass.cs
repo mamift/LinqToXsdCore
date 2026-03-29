@@ -1,6 +1,5 @@
 #nullable enable
 
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -35,6 +34,7 @@ public class CElement(ClrContentTypeInfo info) : CClass
 {
     public string XName => info.schemaName;
     public string XNamespace => info.schemaNs;
+    public SchemaOrigin Origin => info.typeOrigin;
     public string Name => info.clrtypeName;
     public string Fqn => QualifiedName(Namespace!.Name, Name);
     public bool IsAbstract => info.IsAbstract;
@@ -59,7 +59,6 @@ public class CSimpleType(
     public override bool IsSimpleType => true;
 
     public bool IsGlobal => info.IsGlobal;
-    public SchemaOrigin Origin => info.typeOrigin;
 
     // For enums, the clrtypeName is used for `enum` declaration, 
     // so suffix "Validator" is added to the simple type class holding the `TypeDefinition`.

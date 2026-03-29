@@ -129,46 +129,12 @@ namespace Xml.Schema.Linq.CodeGen
             //Do nothing, this will inherit the LocalElementDictionary from XTypedElement which returns empty dict and Content which returns null
         }
 
-        public CodeMemberProperty CreateSchemaNameProperty(string schemaName, string schemaNs, MemberAttributes attributes)
-        {
-            // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
-            var field = new CodeMemberField("readonly System.Xml.Linq.XName", "xName")
-            {
-                Attributes = MemberAttributes.Private | MemberAttributes.Static,
-                InitExpression = CodeDomHelper.XNameGetExpression(schemaName, schemaNs),
-            };
-            decl.Members.Add(field);
-
-            CodeMemberProperty property = CodeDomHelper.CreateInterfaceImplProperty(Constants.SchemaName, Constants.IXMetaData,
-                new CodeTypeReference(Constants.XNameType), attributes);
-            property.GetStatements.Add(new CodeMethodReturnStatement(new CodeFieldReferenceExpression(null, "xName")));
-            return property;
-        }
-
         private void ImplementIXMetaData()
         {
-            string interfaceName = Constants.IXMetaData;
-
-            CodeMemberProperty schemaNameProperty =
-                CreateSchemaNameProperty(clrTypeInfo.schemaName, clrTypeInfo.schemaNs, DefaultVisibility.ToMemberAttribute());
-
+            // TODO: content-related metadata
             ImplementCommonIXMetaData();
             if (clrTypeInfo.HasElementWildCard) ImplementFSMMetaData();
             else ImplementContentModelMetaData();
-
-
-            CodeMemberProperty typeOriginProperty = 
-                CodeDomHelper.CreateTypeOriginProperty(clrTypeInfo.typeOrigin, DefaultVisibility.ToMemberAttribute());
-
-            CodeDomHelper.AddBrowseNever(schemaNameProperty);
-            CodeDomHelper.AddBrowseNever(typeOriginProperty);
-
-            decl.Members.Add(schemaNameProperty);
-            decl.Members.Add(typeOriginProperty);
-            var typeManagerProperty = CodeDomHelper.CreateTypeManagerProperty(DefaultVisibility.ToMemberAttribute());
-            typeManagerProperty.Attributes = MemberAttributes.FamilyOrAssembly;
-            decl.Members.Add(CodeDomHelper.AddBrowseNever(typeManagerProperty));
-            decl.BaseTypes.Add(interfaceName);
         }
 
         protected virtual void ImplementFSMMetaData()

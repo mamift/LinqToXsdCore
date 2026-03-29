@@ -156,18 +156,6 @@ namespace Xml.Schema.Linq.CodeGen
             return property;
         }
 
-        public static CodeMemberProperty CreateTypeOriginProperty(SchemaOrigin typeOrigin,
-            MemberAttributes visibility)
-        {
-            CodeTypeReference originType = new CodeTypeReference(Constants.Origin);
-            CodeMemberProperty property =
-                CreateInterfaceImplProperty(Constants.TypeOrigin, Constants.IXMetaData, originType, visibility);
-            property.GetStatements.Add(new CodeMethodReturnStatement(new CodeFieldReferenceExpression(
-                new CodeTypeReferenceExpression(originType),
-                typeOrigin == SchemaOrigin.Element ? "Element" : "Fragment")));
-            return property;
-        }
-
         public static CodeMemberMethod CreateMethod(string methodName,
             CodeTypeReference returnType, MemberAttributes methodAttributes)
         {
