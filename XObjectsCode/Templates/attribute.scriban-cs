@@ -35,21 +35,87 @@ private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
         $1.FixedOrDefaultValue | make_value
     end
 }};
+
 {{- end }}
 
 {{~ # TODO: continue review of ClrPropertyInfo.AddToType after CreateFixedDefaultValue ~}}
+{{~ # TODO: list getter/setter ~}}
 {{ include 'comments.scriban-cs' $1.Comments -}}
-public virtual {{ $new -}} {{ $1.Type | builtin }} {{ $1.Name }} {
+public {{ 
+    $1.IsOverride ? "override " : "virtual "
+    $new 
+    $1.Type | builtin
+}} {{ $1.Name }} {
     get {
-        XAttribute x = this.Attribute({{ $1.XNameField }});
-        {{- if $1.IsOptional }}
-        if ((x == null)) {
-            return {{ $1.FixedOrDefaultField ?? "null" }};
-        }
-        {{- end }}
-        return XTypedServices.ParseValue<{{ $1.Type | builtin }}>(x, XmlSchemaType.GetBuiltInSimpleType({{ $1.Type }}).Datatype);
+        {{
+            # TODO: substitution head
+
+            # Fixed attributes always have the same value, whether they're present or not 
+            if $1.FixedValue && $1.Origin == "Attribute"
+                "return " + $1.FixedOrDefaultField + ";\n"
+
+            else
+                case $1.Origin
+                    when "Attribute"
+                        "XAttribute x = this.Attribute(" + $1.XNameField + ");\n"
+                    when "Element"
+                        "XElement x = this.GetElement(" + $1.XNameField + ");\n"
+                    when "Text"
+                        "XElement x = this.Untyped;\n"
+                end
+
+                if $1.CanBeAbsent 
+                    "if ((x == null)) {\n"
+                    # Absent attributes return their default value (if any).
+                    # Note that absent elements return null, only empty elements return their default value (per xsd specs).
+                    if $1.DefaultValue && $1.Origin == "Attribute"
+                        "   return " + $1.FixedOrDefaultField + ";\n"
+                    else
+                        "   return null;\n"
+                    end
+                    "}\n"
+
+                else if $1.VerifyRequired
+                    "if ((x == null)) {\n"
+                    "   throw new LinqToXsdException(" + ("Missing required " + $1.Origin | string.literal) + ");\n"
+                    "}\n"
+                end
+
+                if $1.IsNillable
+                    "if (x.IsXsiNil) {\n"
+                    "   return null;\n"
+                    "}\n"
+                end
+
+                # Note attributes when fixed value have an exit above (they're always equal to fixed value).
+                # This applies only to elements, who enforce their fixed value only when _present._
+                # Missing elements are still null (handled above in CanBeAbsent).
+                if $1.FixedValue
+                    "return " + $1.FixedOrDefaultField + ";\n"
+                else
+                    # Attributes default value is applied based on their presence above
+                    if $1.DefaultValue && $1.Origin != "Attribute"
+                        "if (x != null && x.IsEmpty) {\n"
+                        "   return " + $1.FixedOrDefaultField + ";\n"
+                        "}\n"
+                    end
+
+                    # TODO: many different cases based on type, this is the simplest
+                    "return XTypedServices.ParseValue<" + ($1.Type | builtin)  + ">(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+                end
+            end
+        -}}
     }
+    {{~ if $1.HasSet ~}}
     set {
-        this.SetAttribute({{ $1.XNameField }}, value, XmlSchemaType.GetBuiltInSimpleType({{ $1.Type }}).Datatype);
+        {{
+            # TODO: temporary, review
+            if $1.Origin == "Element"
+                "this.SetElement(" + $1.XNameField + ", value);\n"
+            else
+                "this.SetAttribute(" + $1.XNameField + ", value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+            end
+        -}}        
     }
+    {{~ end ~}}
 }

@@ -36,19 +36,19 @@
     }}
 
     public static {{ $1.Name }} Load(string xmlFile) {
-        return (({{ $1.Name }})XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance));
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
     }
 
     public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
-        return (({{ $1.Name }})XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance));
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
     }
     
     public static {{ $1.Name }} Parse(string xml) {
-        return (({{ $1.Name }})XTypedServices.ToXTypedElement(XElement.Parse(xmlFile), LinqToXsdTypeManager.Instance));
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Parse(xml), LinqToXsdTypeManager.Instance)));
     }
 
-    {{~ # when InnerType, generic type <$1.Name> must adapted and a 2nd parameter with SingletonTypeManager must be added ~}}
-    {{~ 
+    {{- # TODO: when InnerType, generic type <$1.Name> must adapted and a 2nd parameter with SingletonTypeManager must be added ~}}
+    {{- 
             else # if IsAbstract || IsSubstitutionHead 
                 $new = $1.IsDervived ? "new " : ""
     }}
@@ -91,15 +91,9 @@
         {{~ # TODO: review CreateDEfaultConstructor for Wrapper types ~}}
     }
 
-    {{-
-        for $content in $1.Content 
-            if $content.ContentType == "Property"
-    }}
-    {{ include 'attribute.scriban-cs' $content -}}
-    {{-     # TODO: else 'grouping'
-            end
-        end
-    }}
+    {{- for $content in $1.Content }}
+    {{ include 'attribute.scriban-cs' $content }}
+    {{- end }}
 
     private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
         

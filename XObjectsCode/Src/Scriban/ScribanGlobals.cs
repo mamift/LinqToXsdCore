@@ -25,9 +25,15 @@ static class ScribanGlobals
 
     public static string ValueLiteral(object value)
     {
-        if (value is DateTime dt) return $"new System.DateTime({dt.Ticks})";
-        // For most types JSON serialization and C# agree on representation :)
-        return JsonSerializer.Serialize(value);
+        return value switch 
+        {
+            DateTime dt => $"new System.DateTime({dt.Ticks})",
+            TimeSpan ts => $"new TimeSpan({ts.Ticks})",
+            Uri uri => $"new Uri({JsonSerializer.Serialize(uri.OriginalString)})",
+            byte[] bytes => $"new byte[] { string.Join(", ", bytes) }",
+            // For most types JSON serialization and C# agree on representation :)
+            _ => JsonSerializer.Serialize(value),
+        };
     }
 
     public static string LocalName(string fqn)

@@ -46,11 +46,17 @@ public class CElement(ClrContentTypeInfo info) : CClass
     public bool HasLoadMethods => info.typeOrigin == SchemaOrigin.Element;
     public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 
-    public IEnumerable<CContent> Content => info.Content
-        .Where(x => x is not ClrPropertyInfo { ShouldGenerate: false })
-        .Select(x => x.ContentType == ContentType.Property 
-            ? new CAttribute((ClrPropertyInfo)x) as CContent
-            : new CGrouping(x));
+    public IEnumerable<CAttribute> Content => info.Content.SelectMany(FlattenContents);
+
+    private static IEnumerable<CAttribute> FlattenContents(ContentInfo info)
+    {
+        if (info.ContentType == ContentType.Property) 
+            return info is ClrPropertyInfo { ShouldGenerate: true } p ? [new CAttribute(p)] : [];
+        // TODO: flesh out processing of groupings, this is just to understand better the content model
+        if (info.ContentType == ContentType.Grouping) return info.Children.SelectMany(FlattenContents);
+        // TODO: wildcard
+        return [];
+    }
 }
 
 /// <summary>

@@ -606,35 +606,7 @@ namespace Xml.Schema.Linq.CodeGen
                 }
             }
         }
-
-        private CodeVariableDeclarationStatement GetValueMethodCall()
-        {
-            switch (propertyOrigin)
-            {
-                case SchemaOrigin.Element:
-                    return new CodeVariableDeclarationStatement(
-                        "XElement",
-                        "x",
-                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "GetElement", xNameExpression));
-
-                case SchemaOrigin.Attribute:
-                    return new CodeVariableDeclarationStatement(
-                        "XAttribute",
-                        "x",
-                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "Attribute", xNameExpression));
-
-                case SchemaOrigin.Text:
-                    return new CodeVariableDeclarationStatement(
-                        "XElement",
-                        "x",
-                        new CodePropertyReferenceExpression(CodeDomHelper.This(), Constants.Untyped));
-
-                case SchemaOrigin.None:
-                default:
-                    throw new InvalidOperationException();
-            }
-        }
-
+        
         private void AddSetValueMethodCall(CodeStatementCollection setStatements)
         {
             string setMethodName = "Set";
@@ -911,24 +883,24 @@ namespace Xml.Schema.Linq.CodeGen
                 return;
             }
 
-            // Fixed attributes always have the same value, whether they're present or not.
-            if (FixedValue != null && propertyOrigin == SchemaOrigin.Attribute)
-            {
-                ReturnFixedValue(getStatements);
-                return;
-            }
+            // // Fixed attributes always have the same value, whether they're present or not.
+            // if (FixedValue != null && propertyOrigin == SchemaOrigin.Attribute)
+            // {
+            //     ReturnFixedValue(getStatements);
+            //     return;
+            // }
 
-            getStatements.Add(GetValueMethodCall());
-            CheckOccurrence(getStatements);
-            CheckNillable(getStatements);
+            // getStatements.Add(GetValueMethodCall());
+            // CheckOccurrence(getStatements);
+            // CheckNillable(getStatements);
             // Fixed elements always have the same value, _when they're present._
             // If they're optional they can still be absent and read as null, which is handled in CheckOccurence
-            if (FixedValue != null && propertyOrigin != SchemaOrigin.Attribute)
-            {
-                ReturnFixedValue(getStatements);
-                return;
-            }
-            GetElementDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
+            // if (FixedValue != null && propertyOrigin != SchemaOrigin.Attribute)
+            // {
+            //     ReturnFixedValue(getStatements);
+            //     return;
+            // }
+            // GetElementDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
             CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
             CodeExpression returnExp;
             if (!IsRef && typeRef.IsSimpleType)
@@ -1001,106 +973,50 @@ namespace Xml.Schema.Linq.CodeGen
 
         private void CheckOccurrence(CodeStatementCollection getStatements)
         {
-            Debug.Assert(!this.IsList);
-            CodeStatement returnStatement = null;
-            if (CanBeAbsent)
-            {
-                // Absent attributes return their default value (if any).
-                // Note that absent elements return null, only empty elements return their default value (per xsd specs).
-                if (DefaultValue != null && propertyOrigin == SchemaOrigin.Attribute)
-                {
-                    returnStatement = new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(
-                            null,
-                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
-                        )
-                    );
-                }
-                else
-                {
-                    // For value types, this is needed to return T?, since ParseValue return T.
-                    // It's not mandatory for ref types but it's more consistent and performant to do it always.
-                    returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
-                }
-            }
-            else if (VerifyRequired)
-            {
-                Debug.Assert(this.occursInSchema == Occurs.One);
-                string origin = this.propertyOrigin == SchemaOrigin.Element ? "Element" :
-                    this.propertyOrigin == SchemaOrigin.Attribute ? "Attribute" : null;
-                returnStatement = new CodeThrowExceptionStatement(new CodeObjectCreateExpression(
-                    Constants.LinqToXsdException, new CodePrimitiveExpression("Missing required " + origin)));
-            }
+            // REVIEW: fully rewriten in scriban.
+            // Debug.Assert(!this.IsList);
+            // CodeStatement returnStatement = null;
+            // if (CanBeAbsent)
+            // {
+            //     // Absent attributes return their default value (if any).
+            //     // Note that absent elements return null, only empty elements return their default value (per xsd specs).
+            //     if (DefaultValue != null && propertyOrigin == SchemaOrigin.Attribute)
+            //     {
+            //         returnStatement = new CodeMethodReturnStatement(
+            //             new CodeFieldReferenceExpression(
+            //                 null,
+            //                 NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
+            //             )
+            //         );
+            //     }
+            //     else
+            //     {
+            //         // For value types, this is needed to return T?, since ParseValue return T.
+            //         // It's not mandatory for ref types but it's more consistent and performant to do it always.
+            //         returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
+            //     }
+            // }
+            // else if (VerifyRequired)
+            // {
+            //     Debug.Assert(this.occursInSchema == Occurs.One);
+            //     string origin = this.propertyOrigin == SchemaOrigin.Element ? "Element" :
+            //         this.propertyOrigin == SchemaOrigin.Attribute ? "Attribute" : null;
+            //     returnStatement = new CodeThrowExceptionStatement(new CodeObjectCreateExpression(
+            //         Constants.LinqToXsdException, new CodePrimitiveExpression("Missing required " + origin)));
+            // }
 
-            if (returnStatement != null)
-            {
-                getStatements.Add(
-                    new CodeConditionStatement(
-                        new CodeBinaryOperatorExpression(
-                            new CodeVariableReferenceExpression("x"),
-                            CodeBinaryOperatorType.IdentityEquality,
-                            new CodePrimitiveExpression(null)),
-                        returnStatement));
-            }
+            // if (returnStatement != null)
+            // {
+            //     getStatements.Add(
+            //         new CodeConditionStatement(
+            //             new CodeBinaryOperatorExpression(
+            //                 new CodeVariableReferenceExpression("x"),
+            //                 CodeBinaryOperatorType.IdentityEquality,
+            //                 new CodePrimitiveExpression(null)),
+            //             returnStatement));
+            // }
         }
 
-        private void CheckNillable(CodeStatementCollection getStatements)
-        {
-            if (IsNillable)
-            {
-                getStatements.Add(
-                    new CodeConditionStatement(
-                        new CodeMethodInvokeExpression(
-                            new CodeVariableReferenceExpression("x"),
-                            "IsXsiNil"),
-                        new CodeMethodReturnStatement(new CodePrimitiveExpression(null))
-                    )
-                );
-            }
-        }
-
-        private void ReturnFixedValue(CodeStatementCollection getStatements)
-        {
-            getStatements.Add(
-                new CodeMethodReturnStatement(
-                    new CodeFieldReferenceExpression(
-                        null,
-                        NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField)
-                    )
-                )
-            );
-        }
-
-        private void GetElementDefaultValue(CodeStatementCollection getStatements)
-        {
-            // Default values of attributes are already handled previously based on attribute presence
-            if (propertyOrigin == SchemaOrigin.Attribute || DefaultValue == null) return;
-
-            var x = new CodeVariableReferenceExpression("x");
-
-            // Default values apply when element is present and empty.
-            // Technically at this point x should be != null thanks to CheckOccurence but let's not crash with NRE if we're reading malformed XML.
-            // `if (x != null && x.IsEmpty) return defaultValue;`
-            getStatements.Add(
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression(
-                        new CodeBinaryOperatorExpression(
-                            x,
-                            CodeBinaryOperatorType.IdentityInequality,
-                            new CodePrimitiveExpression(null)
-                        ),
-                        CodeBinaryOperatorType.BooleanAnd,
-                        new CodeFieldReferenceExpression(x, "IsEmpty")
-                    ),
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(
-                            null,
-                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
-                        )
-                    )
-                )
-            );
-        }
 
         private void AddSetStatements(CodeStatementCollection setStatements)
         {
