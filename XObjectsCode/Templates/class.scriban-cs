@@ -92,7 +92,7 @@
     }
 
     {{- for $content in $1.Content }}
-    {{ include 'attribute.scriban-cs' $content }}
+    {{ include 'attribute.scriban-cs' $content $1 }}
     {{- end }}
 
     private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");

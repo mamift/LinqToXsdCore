@@ -25,16 +25,27 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
     public SchemaOrigin Origin => info.Origin;
     public string Name => info.PropertyName;
     public string Type => info.ReturnTypeStr;
+    public string ClrType => info.ClrTypeName;  // TODO: clarify naming and usage, seems to be the underlying type (e.g., without nullable)
+    public string ClrFullTypeName => info.TypeReference.ClrFullTypeName; // same name but different location than previous one?!?
+    public string SimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: true);
+    public string LocalSimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: false);
     public bool IsNew => info.IsNew;
     public bool IsOverride => info.IsOverride;
     public bool HasSet => info.HasSet;
+    public bool IsRef => info.IsRef;
+    public bool IsValueType => info.TypeReference.IsValueType;
+    public bool IsSimpleType => info.TypeReference.IsSimpleType;
     public bool IsEnum => info.IsEnum;
+    public bool IsUnion => info.IsUnion;
+    public bool IsList => info.IsList;
+    public bool IsSchemaList => info.IsSchemaList;
+    public bool IsNullable => info.IsNullable;      // Whether the C# type is nullable (both reference and value types)
     public bool IsNillable => info.IsNillable;      // Whether xs:nil is an acceptable value (e.g. can be used to override default value)
-    public bool CanBeAbsent => info.CanBeAbsent;    // Whether tag/attribute can be absent from document
+    public bool IsOptional => info.IsOptional;      // Whether element/attribute cardinality can be 0
+    public bool CanBeAbsent => info.CanBeAbsent;    // Whether tag/attribute is optional, or part of a choice
     public bool VerifyRequired => info.VerifyRequired;  // Throws when attempting to read a required but missing element or attribute
     public IEnumerable<string> Comments => info.Annotations.Select(x => x.Text);
     
-    public bool IsOptional => info.IsOptional;
     public string FixedValue => info.FixedValue;
     public string DefaultValue => info.DefaultValue;
     public string FixedOrDefaultValue => info.FixedValue ?? info.DefaultValue;

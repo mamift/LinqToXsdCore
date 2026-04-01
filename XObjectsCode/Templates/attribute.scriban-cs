@@ -40,7 +40,7 @@ private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
 
 {{~ # TODO: continue review of ClrPropertyInfo.AddToType after CreateFixedDefaultValue ~}}
 {{~ # TODO: list getter/setter ~}}
-{{ include 'comments.scriban-cs' $1.Comments -}}
+{{ include 'comments.scriban-cs' ($1.Comments | array.concat $2.Comments) -}}
 public {{ 
     $1.IsOverride ? "override " : "virtual "
     $new 
@@ -100,8 +100,25 @@ public {{
                         "}\n"
                     end
 
-                    # TODO: many different cases based on type, this is the simplest
-                    "return XTypedServices.ParseValue<" + ($1.Type | builtin)  + ">(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+                    if $1.IsRef || !$1.IsSimpleType
+                        "return ((" + $1.Type + ")(x));\n"
+                    else if $1.IsUnion
+                        "return XTypedServices.ParseUnionValue(x, " + $1.SimpleTypeDefinition + ");\n"
+                    else if $1.IsEnum
+                        "return ((" + $1.ClrFullTypeName + ")(Enum.Parse(typeof(" + $1.ClrFullTypeName + "), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype, " + $1.LocalSimpleTypeDefinition + "))));\n"
+                    else
+                        if $1.IsValueType && $1.IsNullable
+                            $parseMethod = "ParseValue"
+                            $parseType = $1.ClrType
+                        else if $1.IsSchemaList
+                            $parseMethod = "ParseListValue"
+                            $parseType = $1.ClrType
+                        else
+                            $parseMethod = "ParseValue"
+                            $parseType = $1.Type
+                        end
+                        "return XTypedServices." + $parseMethod + "<" + ($parseType | builtin)  + ">(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+                    end
                 end
             end
         -}}

@@ -901,74 +901,74 @@ namespace Xml.Schema.Linq.CodeGen
             //     return;
             // }
             // GetElementDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
-            CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
-            CodeExpression returnExp;
-            if (!IsRef && typeRef.IsSimpleType)
-            {
-                //for referencing properties, directly create the object of referenced type
-                CodeTypeReference parseType = ReturnType;
-                if (typeRef.IsValueType && IsNullable)
-                {
-                    parseType = new CodeTypeReference(clrTypeName);
-                }
+            // CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
+            // CodeExpression returnExp;
+            // if (!IsRef && typeRef.IsSimpleType)
+            // {
+            //     //for referencing properties, directly create the object of referenced type
+            //     CodeTypeReference parseType = ReturnType;
+            //     if (typeRef.IsValueType && IsNullable)
+            //     {
+            //         parseType = new CodeTypeReference(clrTypeName);
+            //     }
 
-                if (IsUnion)
-                {
-                    returnExp = CodeDomHelper.CreateMethodCall(
-                        CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
-                        Constants.ParseUnionValue,
-                        returnValueExp,
-                        GetSimpleTypeClassExpression(IsUnion));
-                }
-                else
-                {
-                    string parseMethodName;
-                    CodeExpression simpleTypeExpression = GetSchemaDatatypeExpression();
-                    if (IsSchemaList)
-                    {
-                        parseMethodName = Constants.ParseListValue;
-                        parseType = new CodeTypeReference(clrTypeName);
-                    }
-                    else
-                    {
-                        // XTypedServices.ParseValue<string>
-                        parseMethodName = Constants.ParseValue;
-                        if (IsEnum) {
-                            if (TypeReference.SchemaObject is XmlSchemaSimpleType simpleSchemaType) {
-                                parseType = new CodeTypeReference(simpleSchemaType.Datatype.ValueType);
-                            }
-                        }
-                    }
+            //     if (IsUnion)
+            //     {
+            //         returnExp = CodeDomHelper.CreateMethodCall(
+            //             CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
+            //             Constants.ParseUnionValue,
+            //             returnValueExp,
+            //             GetSimpleTypeClassExpression(IsUnion));
+            //     }
+            //     else
+            //     {
+            //         string parseMethodName;
+            //         CodeExpression simpleTypeExpression = GetSchemaDatatypeExpression();
+            //         if (IsSchemaList)
+            //         {
+            //             parseMethodName = Constants.ParseListValue;
+            //             parseType = new CodeTypeReference(clrTypeName);
+            //         }
+            //         else
+            //         {
+            //             // XTypedServices.ParseValue<string>
+            //             parseMethodName = Constants.ParseValue;
+            //             if (IsEnum) {
+            //                 if (TypeReference.SchemaObject is XmlSchemaSimpleType simpleSchemaType) {
+            //                     parseType = new CodeTypeReference(simpleSchemaType.Datatype.ValueType);
+            //                 }
+            //             }
+            //         }
 
-                    if (IsEnum)
-                    {
-                        // XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition)
-                        returnExp = CodeDomHelper.CreateMethodCall(
-                             CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),    // XTypedServices
-                             parseMethodName,                                                   // ParseValue
-                             returnValueExp,                                                    // x
-                             simpleTypeExpression,                                              // XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype
-                             GetSimpleTypeClassExpression());                                   // global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition
-                        // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
-                        returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.ClrFullTypeName, returnExp);
-                    }
-                    else
-                    {
-                        returnExp = CodeDomHelper.CreateGenericMethodCall(
-                            CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
-                            parseMethodName,
-                            parseType,
-                            returnValueExp,
-                            simpleTypeExpression);
-                    }
-                }
-            }
-            else
-            {
-                returnExp = new CodeCastExpression(ReturnType, returnValueExp);
-            }
+            //         if (IsEnum)
+            //         {
+            //             // XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition)
+            //             returnExp = CodeDomHelper.CreateMethodCall(
+            //                  CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),    // XTypedServices
+            //                  parseMethodName,                                                   // ParseValue
+            //                  returnValueExp,                                                    // x
+            //                  simpleTypeExpression,                                              // XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype
+            //                  GetSimpleTypeClassExpression());                                   // global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition
+            //             // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
+            //             returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.ClrFullTypeName, returnExp);
+            //         }
+            //         else
+            //         {
+            //             returnExp = CodeDomHelper.CreateGenericMethodCall(
+            //                 CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
+            //                 parseMethodName,
+            //                 parseType,
+            //                 returnValueExp,
+            //                 simpleTypeExpression);
+            //         }
+            //     }
+            // }
+            // else
+            // {
+            //     returnExp = new CodeCastExpression(ReturnType, returnValueExp);
+            // }
 
-            getStatements.Add(new CodeMethodReturnStatement(returnExp));
+            // getStatements.Add(new CodeMethodReturnStatement(returnExp));
         }
 
         private void CheckOccurrence(CodeStatementCollection getStatements)
@@ -1173,30 +1173,22 @@ namespace Xml.Schema.Linq.CodeGen
                     Constants.Datatype);
         }
 
-        protected CodeExpression GetFullyQualifiedSimpleTypeClassExpression(string namespacePrefix)
+        public string GetSimpleTypeDefinition(bool disambiguateProperty)
         {
-            throw new NotImplementedException();
-            // if (namespacePrefix == null) throw new ArgumentNullException(nameof(namespacePrefix));
-            // Debug.Assert(this.simpleTypeClrTypeName != null);
-
-            // return CodeDomHelper.CreateFieldReference(
-            //     this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
+            return disambiguateProperty && propertyName == simpleTypeClrTypeName
+                ? $"global::{settings.GetClrNamespace(PropertyNs)}.{simpleTypeClrTypeName}.TypeDefinition"
+                : $"{simpleTypeClrTypeName}.TypeDefinition";
         }
 
         protected CodeExpression GetSimpleTypeClassExpression(bool disambiguateWhenPropertyAndTypeNameAreTheSame = false)
         {
             Debug.Assert(this.simpleTypeClrTypeName.IsNotEmpty());
             
-            var areTheSameAndShouldDisambiguate = false;
-            if (disambiguateWhenPropertyAndTypeNameAreTheSame) {
-                if (this.propertyName == this.simpleTypeClrTypeName) {
-                    areTheSameAndShouldDisambiguate = true;
-                }
-            }
+            var areTheSameAndShouldDisambiguate = disambiguateWhenPropertyAndTypeNameAreTheSame && propertyName == simpleTypeClrTypeName;
 
             string typeName = areTheSameAndShouldDisambiguate
-                ? $"global::{this.settings.GetClrNamespace(PropertyNs)}.{this.simpleTypeClrTypeName}"
-                : this.simpleTypeClrTypeName;
+                ? $"global::{settings.GetClrNamespace(PropertyNs)}.{simpleTypeClrTypeName}"
+                : simpleTypeClrTypeName;
 
             var codeFieldReferenceExpression = CodeDomHelper.CreateFieldReference(typeName, Constants.SimpleTypeDefInnerType);
 
