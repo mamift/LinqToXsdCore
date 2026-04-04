@@ -40,7 +40,14 @@ private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
 
 {{~ # TODO: continue review of ClrPropertyInfo.AddToType after CreateFixedDefaultValue ~}}
 {{~ # TODO: list getter/setter ~}}
-{{ include 'comments.scriban-cs' ($1.Comments | array.concat $2.Comments) -}}
+{{ 
+    case $1.Origin 
+        when "Element"
+            include 'comments.scriban-cs' ($1.Comments | array.concat $2.Comments)
+        when "Attribute"
+            include 'comments.scriban-cs' $1.Comments
+    end
+-}}
 public {{ 
     $1.IsOverride ? "override " : "virtual "
     $new 
@@ -126,11 +133,82 @@ public {{
     {{~ if $1.HasSet ~}}
     set {
         {{
-            # TODO: temporary, review
-            if $1.Origin == "Element"
-                "this.SetElement(" + $1.XNameField + ", value);\n"
-            else
-                "this.SetAttribute(" + $1.XNameField + ", value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+            # FIXME: `if (value == fixed) {} else throw;` is backwards but to match legacy CodeDom generation
+            if $1.FixedValue
+                # If the property is an optional element, setting it to null is also acceptable: it removes the element from document.
+                # So we're checking `if (value == fixed || value == null) ...`
+                # On principle, setting attributes to null can also make sense as it would remove the XAttribute from document,
+                # but that doesn't mesh well with the type system (attributes with default/fixed values are never nullable,
+                # which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
+                # This is really an edge case and can be achieved by removing the XAttribute from Untyped.
+                if $1.IsNullable
+                    "if (value == " + $1.FixedValue + " || value == null) {\n"
+                else
+                    "if (value == " + $1.FixedValue + ") {\n"
+                end
+                "}\n"
+                "else {\n"
+                "    throw new LinqToXsdFixedValueException(value, " + $1.FixedValue + ");\n"
+                "}\n"
+            end
+
+            case $1.Origin
+                when "Element"
+                    $set_origin = "Element"
+                when "Attribute"
+                    $set_origin = "Attribute"
+                when "Text"
+                    $set_origin = "Value"
+            end
+
+            if $1.IsUnion
+               "this.SetUnion" + $set_origin + "(value, " 
+                    $1.Name + ", this, " 
+                    $1.Origin != "Text" ? $1.XNameField + ", " : ""
+                    $1.SimpleTypeDefinition
+               ");\n"
+            
+            else 
+                if $1.Origin == "Text"
+                    $plain_set = "this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+                else
+                    if $1.HasValidation
+                        # When using `SetXXXWithValidate` methods, normal `SetXXX` is only called for null values (see below)
+                        $value = $1.IsNillable ? "XNil.Value" : "null"
+                    else
+                        $value = $1.Origin == "Element" || !$1.IsEnum ? "value" : $1.IsNullable ? "value?.ToString()" : "value.ToString()"
+                        if $1.IsNillable
+                            $value = $value + " ?? XNil.Value"
+                        end
+                    end
+                    $set_method = (!$1.IsRef && $1.IsSchemaList ? "this.SetList" : "this.Set") + $set_origin
+                    $plain_set = $set_method + "(" + $1.XNameField + ", " + $value + (!$1.IsRef && $1.IsSimpleType ? ", XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype" : "") + ");\n"
+                end
+
+                if $1.HasValidation
+                    $value = $1.IsEnum ? "value.ToString()" : "value"
+                    if $1.Origin == "Text"
+                        $validation_set = "this.SetValueWithValidation(" + $value + ", " + ($1.Name | string.literal) + ", " + $1.LocalSimpleTypeDefinition + ");\n"
+                    else
+                        $validation_set = $set_method + "WithValidation(" + $1.XNameField + ", " + $value + ", " + ($1.Name | string.literal) + ", " + $1.LocalSimpleTypeDefinition + ");\n"
+                    end
+
+                    if ($1.IsNullable)
+                        # Skip validation when the set value is null. Also enum.ToString above would fail.
+                        # (Setting an optional element to null actually removes it from DOM.)
+                        "if (value == null) {\n"
+                        "    " + $plain_set
+                        "}\n"
+                        "else {\n"
+                        "    " + $validation_set
+                        "}\n"
+                    else
+                        $validation_set
+                    end
+
+                else
+                    $plain_set
+                end
             end
         -}}        
     }

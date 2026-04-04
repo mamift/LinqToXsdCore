@@ -218,7 +218,6 @@ public partial class ClrTypeReference
     public string GetSimpleTypeClrTypeDefName(string parentTypeClrNs, Dictionary<XmlSchemaObject, string> nameMappings)
     {
         Debug.Assert(this.IsSimpleType);
-        string clrTypeName = null;
         XmlSchemaObject key = schemaObject;
         if (IsTypeRef)
         {
@@ -227,17 +226,10 @@ public partial class ClrTypeReference
             Debug.Assert(key != null);
         }
 
-        string identifier = null;
-        if (nameMappings.TryGetValue(key, out identifier))
-        {
-            clrTypeName = identifier;
-        }
-        else
-        {
-            clrTypeName = typeName;
-        }
+        string clrTypeName = this.clrName = nameMappings.TryGetValue(key, out var identifier)
+            ? identifier
+            : typeName;
 
-        this.clrName = clrTypeName;
 
         if (IsEnum && !string.IsNullOrEmpty(clrTypeName))
         {
@@ -251,7 +243,7 @@ public partial class ClrTypeReference
         }
 
         // unfortunately this doesn't handle simple type unions
-        if (clrTypeName.IsEmpty() && key is XmlSchemaSimpleType { Content: XmlSchemaSimpleTypeUnion union }) 
+        if (clrTypeName.IsEmpty() && key is XmlSchemaSimpleType { Content: XmlSchemaSimpleTypeUnion }) 
         {
             clrTypeName = typeof(object).FullName;
         }
@@ -263,9 +255,9 @@ public partial class ClrTypeReference
         string parentTypeClrNs,
         Dictionary<XmlSchemaObject, string> nameMappings,
         LinqToXsdSettings settings,
-        out string refTypeName)
+        out string? refTypeName)
     {
-        string clrTypeName = null;
+        string clrTypeName;
         refTypeName = null;
         if (IsNamedComplexType || IsTypeRef)
         {
@@ -324,64 +316,13 @@ public partial class ClrTypeReference
 
         string EnsureNamespace()
         {
-            if (this.Namespace.IsNullOrEmpty())
-            {
-                if (currentNamespaceScope == null) throw new ArgumentNullException(nameof(currentNamespaceScope));
-                return currentNamespaceScope;
-            }
-            return this.Namespace;
+            return !this.Namespace.IsNullOrEmpty()
+                ? this.Namespace
+                : currentNamespaceScope ?? throw new ArgumentNullException(nameof(currentNamespaceScope));
         }
     }
 
-    public bool IsForAnonymousXsdType
-    {
-        get {
-            return (schemaObject as XmlSchemaType)?.IsAnonymous() == true;
-        }
-    }
-
-    /// <summary>
-    /// When this type reference is for a <see cref="XmlSchemaSimpleTypeUnion"/>, this property returns all the member types.
-    /// </summary>
-    public XmlSchemaObject[]? UnionMemberTypes
-    {
-        get {
-            Debug.Assert(typeRefFlags.HasFlag(ClrTypeRefFlags.IsUnion));
-
-            if (schemaObject is XmlSchemaSimpleType { Content: XmlSchemaSimpleTypeUnion union }) {
-                XmlSchemaSimpleType[] xmlSchemaSimpleTypes = union.GetUnionMemberTypes();
-                return xmlSchemaSimpleTypes.Cast<XmlSchemaObject>().ToArray();
-            }
-
-            return null;
-        }
-    }
-
-    /// <summary>
-    /// When this type reference is for a <see cref="XmlSchemaChoice"/> particle, this property returns all the possible choices.
-    /// </summary>
-    public XmlSchemaObject[]? ChoiceMemberTypes
-    {
-        get {
-            if (schemaObject is XmlSchemaComplexType type) {
-                if (type.ContentModel is XmlSchemaComplexContent complexContent) {
-                    if (complexContent.Content is XmlSchemaComplexContentRestriction complexContentRestriction) {
-                        if (complexContentRestriction.Particle is XmlSchemaChoice choice) {
-                            return choice.Items.Cast<XmlSchemaObject>().ToArray();
-                        }
-                    }
-
-                    if (complexContent.Content is XmlSchemaComplexContentExtension complexContentExtension) {
-                        if (complexContentExtension.Particle is XmlSchemaChoice choice) {
-                            return choice.Items.Cast<XmlSchemaObject>().ToArray();
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
-    }
+    public bool IsForAnonymousXsdType => (schemaObject as XmlSchemaType)?.IsAnonymous() == true;
 
     public XDocument ToXDoc()
     {
