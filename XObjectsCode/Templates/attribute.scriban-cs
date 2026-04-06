@@ -38,8 +38,84 @@ private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
 
 {{- end }}
 
-{{~ # TODO: continue review of ClrPropertyInfo.AddToType after CreateFixedDefaultValue ~}}
-{{~ # TODO: list getter/setter ~}}
+{{- 
+    # TODO: split this template in several parts
+    if $1.IsList
+        $list_type = $1.IsSubstitution ? "XTypedSubstitutedList<" : $1.IsSimpleType ? "XSimpleList<" : "XTypedList<"
+        $list_type = $list_type + $1.NullableType + ">"
+}}
+
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+private {{ $list_type }} {{ $1.Name }}Field;
+
+{{ 
+    case $1.Origin 
+        when "Element"
+            include 'comments.scriban-cs' ($1.Comments | array.concat $2.Comments)
+        when "Attribute"
+            include 'comments.scriban-cs' $1.Comments
+    end
+-}}
+{{- if Settings.NullableReferences }}
+[System.Diagnostics.CodeAnalysis.AllowNull()]
+{{ end -}}
+public {{ 
+    $1.IsOverride ? "override " : "virtual "
+    $new
+    $1.Type | builtin
+}} {{ $1.Name }} {
+    get {
+        {{- if $1.FixedValue }}
+        return {{ $1.FixedOrDefaultField }};
+        {{- else }}
+        if ((this.{{ $1.Name }}Field == null)) {
+            this.{{ $1.Name }}Field = new {{ $list_type }}(
+            {{- 
+                "this"
+                if $1.Substitution 
+                    ", LinqToXsdTypeManager.Instance"
+                    for $elem in $1.SubstitutionMembers 
+                        ", System.Xml.Linq.XName.Get("
+                        $elem.QualifiedName.Name | string.literal
+                        ", "
+                        $elem.QualifiedName.Namespace | string.literal
+                        ")"
+                    end
+                else if $1.IsSimpleType
+                    ", XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype"
+                    ", " + $1.XNameField
+                else
+                    ", LinqToXsdTypeManager.Instance"
+                    ", " + $1.XNameField
+                end
+                if $1.DefaultValue
+                    ", " + $1.DefaultValue
+                end
+                ")"
+                if $1.IsNillable
+                " { SupportsXsiNil = true }"
+                end
+            }};
+        }
+        {{- if $1.IsEnum }}
+        return this.{{ $1.Name }}Field.Select(item => ({{ $1.ClrFullTypeName }}) Enum.Parse(typeof({{ $1.ClrFullTypeName}}), item)).ToList();
+        {{- else }}
+        return this.{{ $1.Name }}Field;
+        {{- 
+            end # IsEnum
+            end # FixedValue 
+        }}
+    }
+    
+    {{- if $1.HasSet }}
+    set {
+        {{~ # TODO: AddListSetStatements ~}}
+    }
+    {{- end }}
+}
+
+{{- else # !IsList -}}
+
 {{ 
     case $1.Origin 
         when "Element"
@@ -214,3 +290,5 @@ public {{
     }
     {{~ end ~}}
 }
+
+{{- end # if IsList}}

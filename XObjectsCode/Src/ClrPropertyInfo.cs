@@ -28,8 +28,6 @@ namespace Xml.Schema.Linq.CodeGen
         string fixedDefaultValue;
         string simpleTypeClrTypeName;
 
-        ArrayList substitutionMembers;
-
 #nullable enable
         /// <summary>
         /// The enclosing <see cref="CodeTypeDeclaration"/> that this <see cref="ClrPropertyInfo"/> instance is a part of. 
@@ -120,16 +118,9 @@ namespace Xml.Schema.Linq.CodeGen
             set { typeRef = value; }
         }
 
-        public ArrayList SubstitutionMembers
-        {
-            get { return substitutionMembers; }
-            set { substitutionMembers = value; }
-        }
+        public List<XmlSchemaElement> SubstitutionMembers { get; set; }
 
-        public bool IsSubstitutionHead
-        {
-            get { return substitutionMembers != null; }
-        }
+        public bool IsSubstitutionHead => SubstitutionMembers != null;
 
         public SchemaOrigin Origin
         {
@@ -344,7 +335,7 @@ namespace Xml.Schema.Linq.CodeGen
             ? parentTypeFullName + "." + clrTypeName
             : clrTypeName;
 
-        private string NullableType => IsNillable && (settings.NullableReferences || typeRef.IsValueType)
+        public string NullableType => IsNillable && (settings.NullableReferences || typeRef.IsValueType)
             ? QualifiedType + "?"
             : QualifiedType;
 
@@ -497,20 +488,20 @@ namespace Xml.Schema.Linq.CodeGen
                 AddMemberField(listName, listType, parentTypeDecl);
 
                 //GetStatements
-                AddListGetStatements(clrProperty.GetStatements, listType, listName);
+                // AddListGetStatements(clrProperty.GetStatements, listType, listName);
                 if (hasSet)
                 {
                     AddListSetStatements(clrProperty.SetStatements, listType, listName);
                 }
 
-                if (settings.NullableReferences)
-                {
-                    clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
-                }
+                // if (settings.NullableReferences)
+                // {
+                //     clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
+                // }
             }
             else
             {
-                AddGetStatements(clrProperty.GetStatements);
+                // AddGetStatements(clrProperty.GetStatements);
                 // if (hasSet)
                 // {
                 //     AddSetStatements(clrProperty.SetStatements);
@@ -528,9 +519,9 @@ namespace Xml.Schema.Linq.CodeGen
             if (this.IsSubstitutionHead)
             {
                 //Need to add member names to content model
-                CodeExpression[] substParams = new CodeExpression[substitutionMembers.Count];
+                CodeExpression[] substParams = new CodeExpression[SubstitutionMembers.Count];
                 int i = 0;
-                foreach (XmlSchemaElement elem in substitutionMembers)
+                foreach (XmlSchemaElement elem in SubstitutionMembers)
                 {
                     substParams[i++] =
                         CodeDomHelper.XNameGetExpression(elem.QualifiedName.Name, elem.QualifiedName.Namespace);
@@ -587,60 +578,6 @@ namespace Xml.Schema.Linq.CodeGen
                             new CodeVariableReferenceExpression(propertyName)
                         ));
                 }
-            }
-        }
-
-        private void AddListGetStatements(CodeStatementCollection getStatements, CodeTypeReference listType,
-            string listName)
-        {
-            if (FixedValue != null)
-            {
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(null,
-                            NameGenerator.ChangeClrName(this.propertyName, NameOptions.MakeFixedValueField)
-                        ))
-                );
-                return;
-            }
-
-            var listFieldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), listName);
-
-            CodeExpression newListExpr = new CodeObjectCreateExpression(
-                listType,
-                GetListParameters(false /*set*/, false /*constructor*/)
-            );
-            if (IsNillable)
-            {
-                newListExpr = new CodeSnippetExpression(
-                    newListExpr.ToCodeString() + " { SupportsXsiNil = true }"
-                );
-            }
-
-            getStatements.Add(
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression(
-                        listFieldRef,
-                        CodeBinaryOperatorType.IdentityEquality,
-                        new CodePrimitiveExpression(null)
-                    ),
-                    new CodeAssignStatement(listFieldRef, newListExpr)
-                ));
-
-            if (IsEnum)
-            {
-                var lambdaExpr = new CodeSnippetExpression($"item => ({this.TypeReference.ClrFullTypeName}) Enum.Parse(typeof({this.TypeReference.ClrFullTypeName}), item)");
-                var selectExpr = CodeDomHelper.CreateMethodCall(listFieldRef, "Select", lambdaExpr);
-                var toListExpr = new CodeMethodInvokeExpression(selectExpr, "ToList");
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        toListExpr));
-            }
-            else
-            {
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        listFieldRef));
             }
         }
 
@@ -774,11 +711,11 @@ namespace Xml.Schema.Linq.CodeGen
         private void AddSubstGetStatements(CodeStatementCollection getStatements)
         {
             Debug.Assert(propertyOrigin == SchemaOrigin.Element);
-            CodeExpression[] substParams = new CodeExpression[substitutionMembers.Count + 2];
+            CodeExpression[] substParams = new CodeExpression[SubstitutionMembers.Count + 2];
             substParams[0] = CodeDomHelper.This();
             substParams[1] = CodeDomHelper.SingletonTypeManager();
             int i = 2;
-            foreach (XmlSchemaElement elem in substitutionMembers)
+            foreach (XmlSchemaElement elem in SubstitutionMembers)
             {
                 substParams[i++] =
                     CodeDomHelper.XNameGetExpression(elem.QualifiedName.Name, elem.QualifiedName.Namespace);
@@ -853,7 +790,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (this.IsSubstitutionHead)
             {
-                paramCount += substitutionMembers.Count;
+                paramCount += SubstitutionMembers.Count;
                 typeParam = CodeDomHelper.SingletonTypeManager();
             }
             else
@@ -882,7 +819,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (this.IsSubstitutionHead)
             {
-                foreach (XmlSchemaElement elem in substitutionMembers)
+                foreach (XmlSchemaElement elem in SubstitutionMembers)
                 {
                     listParameters[paramIndex++] =
                         CodeDomHelper.XNameGetExpression(elem.QualifiedName.Name, elem.QualifiedName.Namespace);

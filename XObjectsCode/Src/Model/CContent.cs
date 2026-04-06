@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
-using Microsoft.VisualBasic;
+using System.Xml.Schema;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
 
@@ -25,13 +25,14 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
     public SchemaOrigin Origin => info.Origin;
     public string Name => info.PropertyName;
     public string Type => info.ReturnTypeStr;
+    public string NullableType => info.NullableType; // One more type... this differs at least for lists where this is the element type
     public string ClrType => info.ClrTypeName;  // TODO: clarify naming and usage, seems to be the underlying type (e.g., without nullable)
-    public string ClrFullTypeName => info.TypeReference.ClrFullTypeName; // same name but different location than previous one?!?
+    public string ClrFullTypeName => info.TypeReference.ClrFullTypeName; // Yet another type, seems to be used for enums
     public string SimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: true);
     public string LocalSimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: false);
     public bool IsNew => info.IsNew;
     public bool IsOverride => info.IsOverride;
-    public bool HasSet => info.HasSet;
+    public bool HasSet => info.HasSet;    
     public bool IsRef => info.IsRef;
     public bool IsValueType => info.TypeReference.IsValueType;
     public bool IsSimpleType => info.TypeReference.IsSimpleType;
@@ -41,12 +42,15 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
     public bool IsSchemaList => info.IsSchemaList;
     public bool HasValidation => Origin == SchemaOrigin.Attribute ? IsEnum : info.Validation;
     public bool IsNullable => info.IsNullable;      // Whether the C# type is nullable (both reference and value types)
-    public bool IsNillable => info.IsNillable;      // Whether xs:nil is an acceptable value (e.g. can be used to override default value)
+    public bool IsNillable => info.IsNillable;      // Whether xs:nil is an acceptable value (on elements)
     public bool IsOptional => info.IsOptional;      // Whether element/attribute cardinality can be 0
-    public bool CanBeAbsent => info.CanBeAbsent;    // Whether tag/attribute is optional, or part of a choice
-    public bool VerifyRequired => info.VerifyRequired;  // Throws when attempting to read a required but missing element or attribute    
+    public bool CanBeAbsent => info.CanBeAbsent;    // Whether element/attribute is optional, or element is part of a choice
+    public bool VerifyRequired => info.VerifyRequired;  // Whether property should throw when attempting to read a missing required element or attribute
     public IEnumerable<string> Comments => info.Annotations.Select(x => x.Text);
     
+    public bool IsSubstitution => info.IsSubstitutionHead;
+    public List<XmlSchemaElement> SubstitutionMembers => info.SubstitutionMembers;
+
     public string FixedValue => info.FixedValue;
     public string DefaultValue => info.DefaultValue;
     public string FixedOrDefaultValue => info.FixedValue ?? info.DefaultValue;
