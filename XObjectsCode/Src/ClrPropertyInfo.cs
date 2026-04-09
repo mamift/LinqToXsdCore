@@ -2,10 +2,8 @@
 
 using System;
 using System.CodeDom;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
@@ -462,6 +460,7 @@ namespace Xml.Schema.Linq.CodeGen
         public override CodeMemberProperty? AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
+            // Scriban: done.
             if (parentTypeDecl == null) throw new ArgumentNullException(nameof(parentTypeDecl));
             if (!ShouldGenerate)
             {
@@ -480,33 +479,33 @@ namespace Xml.Schema.Linq.CodeGen
             //    clrProperty.Attributes |= MemberAttributes.New;
             //}
 
-            if (IsList)
-            {
+            // if (IsList)
+            // {
                 //Create collection type for list
-                CodeTypeReference listType = GetListType();
-                string listName = NameGenerator.ChangeClrName(propertyName, NameOptions.MakeField);
-                AddMemberField(listName, listType, parentTypeDecl);
+                // CodeTypeReference listType = GetListType();
+                // string listName = NameGenerator.ChangeClrName(propertyName, NameOptions.MakeField);
+                // AddMemberField(listName, listType, parentTypeDecl);
 
                 //GetStatements
                 // AddListGetStatements(clrProperty.GetStatements, listType, listName);
-                if (hasSet)
-                {
-                    AddListSetStatements(clrProperty.SetStatements, listType, listName);
-                }
+                // if (hasSet)
+                // {
+                //     AddListSetStatements(clrProperty.SetStatements, listType, listName);
+                // }
 
                 // if (settings.NullableReferences)
                 // {
                 //     clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
                 // }
-            }
-            else
-            {
+            // }
+            // else
+            // {
                 // AddGetStatements(clrProperty.GetStatements);
                 // if (hasSet)
                 // {
                 //     AddSetStatements(clrProperty.SetStatements);
                 // }
-            }
+            // }
 
             //ApplyAnnotations(clrProperty, annotations);
             // parentTypeDecl.Members.Add(clrProperty);
@@ -578,77 +577,6 @@ namespace Xml.Schema.Linq.CodeGen
                             new CodeVariableReferenceExpression(propertyName)
                         ));
                 }
-            }
-        }
-
-        private void AddListSetStatements(CodeStatementCollection setStatements, CodeTypeReference listType,
-            string listName)
-        {
-            AddFixedValueChecking(setStatements);
-
-            var listFieldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), listName);
-
-            CodeStatement[] trueStatements =
-                new CodeStatement[]
-                {
-                    new CodeAssignStatement( //True 1 Then
-                        listFieldRef,
-                        new CodePrimitiveExpression(null)
-                    )
-                };
-
-            CodeStatement[] falseStatements =
-                new CodeStatement[]
-                {
-                    new CodeConditionStatement( //False 1 Else if
-                        new CodeBinaryOperatorExpression( // Condition2
-                            listFieldRef,
-                            CodeBinaryOperatorType.IdentityEquality,
-                            new CodePrimitiveExpression(null)
-                        ),
-                        new CodeStatement[]
-                        {
-                            new CodeAssignStatement( //Then 2
-                                listFieldRef,
-                                new CodeMethodInvokeExpression(
-                                    new CodeTypeReferenceExpression(listType),
-                                    IsNillable ? Constants.InitializeNillable : Constants.Initialize,
-                                    GetListParameters(true /*set*/, false /*constructor*/))
-                            )
-                        },
-                        new CodeStatement[]
-                        {
-                            new CodeExpressionStatement(
-                                new CodeMethodInvokeExpression(
-                                    new CodeTypeReferenceExpression("XTypedServices"),
-                                    Constants.SetList + "<" + NullableType + ">",
-                                    listFieldRef,
-                                    GetListSetStatementValueExpr()))
-                        })
-                };
-
-            setStatements.Add(
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression( //if
-                        CodeDomHelper.SetValue(),
-                        CodeBinaryOperatorType.IdentityEquality,
-                        new CodePrimitiveExpression(null)
-                    ),
-                    trueStatements,
-                    falseStatements));
-        }
-
-        private CodeExpression GetListSetStatementValueExpr()
-        {
-            if (IsEnum)
-            {
-                var lambdaExpr = new CodeSnippetExpression("item => item.ToString()");
-                var selectExpr = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
-                return new CodeMethodInvokeExpression(selectExpr, "ToList");
-            }
-            else
-            {
-                return CodeDomHelper.SetValue();
             }
         }
 
@@ -733,15 +661,6 @@ namespace Xml.Schema.Linq.CodeGen
             getStatements.Add(
                 new CodeMethodReturnStatement(new CodeCastExpression(ReturnType,
                     new CodeVariableReferenceExpression("x"))));
-        }
-
-        private void AddMemberField(string memberName, CodeTypeReference memberType, CodeTypeDeclaration parentType)
-        {
-            // Construct private field
-            CodeMemberField mem = new CodeMemberField(memberType, memberName);
-            mem.Attributes = MemberAttributes.Private;
-            CodeDomHelper.AddBrowseNever(mem);
-            parentType.Members.Add(mem);
         }
 
         private CodeTypeReference GetListType()
@@ -864,19 +783,6 @@ namespace Xml.Schema.Linq.CodeGen
                 : $"{simpleTypeClrTypeName}.TypeDefinition";
         }
 
-        protected CodeExpression GetSimpleTypeClassExpression(bool disambiguateWhenPropertyAndTypeNameAreTheSame = false)
-        {
-            Debug.Assert(this.simpleTypeClrTypeName.IsNotEmpty());
-            
-            var areTheSameAndShouldDisambiguate = disambiguateWhenPropertyAndTypeNameAreTheSame && propertyName == simpleTypeClrTypeName;
-
-            string typeName = areTheSameAndShouldDisambiguate
-                ? $"global::{settings.GetClrNamespace(PropertyNs)}.{simpleTypeClrTypeName}"
-                : simpleTypeClrTypeName;
-
-            return CodeDomHelper.CreateFieldReference(typeName, Constants.SimpleTypeDefInnerType);
-        }
-
         public void CreateXNameField(CodeTypeDeclaration typeDecl)
         {
             // HACK: CodeDom doesn't model readonly fields... but it doesn't check the type either!
@@ -929,11 +835,6 @@ namespace Xml.Schema.Linq.CodeGen
                 SimpleTypeCodeDomHelper.CreateFixedDefaultValueExpression(returnType, fixedDefaultValue, IsEnum);
 
             typeDecl.Members.Add(fixedOrDefaultField);
-        }
-
-        protected void AddFixedValueChecking(CodeStatementCollection setStatements)
-        {
-            // Scriban: done
         }
     }
 }

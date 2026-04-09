@@ -89,7 +89,7 @@ public {{
                     ", " + $1.XNameField
                 end
                 if $1.DefaultValue
-                    ", " + $1.DefaultValue
+                    ", " + $1.FixedOrDefaultField
                 end
                 ")"
                 if $1.IsNillable
@@ -109,12 +109,71 @@ public {{
     
     {{- if $1.HasSet }}
     set {
-        {{~ # TODO: AddListSetStatements ~}}
+        {{ 
+            # FIXME: `if (value == fixed) {} else throw;` is backwards but to match legacy CodeDom generation
+            if $1.FixedValue
+                # If the property is an optional element, setting it to null is also acceptable: it removes the element from document.
+                # So we're checking `if (value == fixed || value == null) ...`
+                # On principle, setting attributes to null can also make sense as it would remove the XAttribute from document,
+                # but that doesn't mesh well with the type system (attributes with default/fixed values are never nullable,
+                # which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
+                # This is really an edge case and can be achieved by removing the XAttribute from Untyped.
+                if $1.IsNullable
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value) || value == null) {\n"
+                else
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value)) {\n"
+                end
+                "}\n"
+                "else {\n"
+                "    throw new Xml.Schema.Linq.LinqToXsdFixedValueException(value, " + $1.FixedOrDefaultField + ");\n"
+                "}\n"
+            end
+        -}}
+        if ((value == null)) {
+            this.{{ $1.Name }}Field = null;
+        }
+        else {
+            if ((this.{{ $1.Name }}Field == null)) {
+                this.{{ $1.Name }}Field = {{ $list_type }}.{{ $1.IsNillable ? "InitializeNillable" : "Initialize" }}(
+                {{- 
+                    "this"
+                    $value = $1.IsEnum ? "value.Select(item => item.ToString())" : "value"
+                    if $1.Substitution 
+                        ", LinqToXsdTypeManager.Instance"
+                        ", " + $value
+                        for $elem in $1.SubstitutionMembers 
+                            ", System.Xml.Linq.XName.Get("
+                            $elem.QualifiedName.Name | string.literal
+                            ", "
+                            $elem.QualifiedName.Namespace | string.literal
+                            ")"
+                        end
+                    else if $1.IsSimpleType
+                        ", XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype"
+                        ", " + $value
+                        ", " + $1.XNameField
+                    else
+                        ", LinqToXsdTypeManager.Instance"
+                        ", " + $value
+                        ", " + $1.XNameField
+                    end
+                }});
+            }
+            else {
+                XTypedServices.SetList<{{ $1.NullableType }}>(this.{{ $1.Name }}Field, {{
+                    if $1.IsEnum
+                        "value.Select(item => item.ToString()).ToList()"
+                    else
+                        "value"
+                    end
+                }});
+            }
+        }
     }
     {{- end }}
 }
 
-{{- else # !IsList -}}
+{{- else # !IsList }}
 
 {{ 
     case $1.Origin 
@@ -218,13 +277,13 @@ public {{
                 # which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
                 # This is really an edge case and can be achieved by removing the XAttribute from Untyped.
                 if $1.IsNullable
-                    "if (value == " + $1.FixedValue + " || value == null) {\n"
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value) || value == null) {\n"
                 else
-                    "if (value == " + $1.FixedValue + ") {\n"
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value)) {\n"
                 end
                 "}\n"
                 "else {\n"
-                "    throw new LinqToXsdFixedValueException(value, " + $1.FixedValue + ");\n"
+                "    throw new Xml.Schema.Linq.LinqToXsdFixedValueException(value, " + $1.FixedOrDefaultField + ");\n"
                 "}\n"
             end
 
