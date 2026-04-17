@@ -101,6 +101,16 @@
       "commandName": "Project",
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\XQueryX"
+    },
+    "XQueryX bug": {
+      "commandName": "Project",
+      "commandLineArgs": "gen xPathAxis_bug.xsd -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\XQueryX"
+    },
+    "AttributesListType": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\AttributesListType"
     }
   }
 }
