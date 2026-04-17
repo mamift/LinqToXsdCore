@@ -87,15 +87,16 @@ namespace Xml.Schema.Linq
             simpleList.InitializeFrom(values);
             return simpleList;
         }
-        
+
+#nullable enable
         public static XSimpleList<T> Initialize(
             XTypedElement container, 
             XmlSchemaDatatype dataType,
             IEnumerable<T> values, 
             XName itemXName, IList<T> defaultValues)
         {
-            var simpleList = Initialize(container, dataType, values, itemXName, defaultValues);
-            simpleList.InitializeFrom(values);
+            XSimpleList<T> simpleList = new(container, dataType, itemXName, defaultValues);
+            simpleList.InitializeFrom(values, defaultValues);
             return simpleList;
         }
     }

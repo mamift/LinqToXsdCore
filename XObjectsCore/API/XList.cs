@@ -301,5 +301,20 @@ namespace Xml.Schema.Linq
             Clear();
             foreach (T value in values) Add(value);
         }
+
+#nullable enable
+        protected void InitializeFrom(IEnumerable<T>? values, IList<T>? defaultValues)
+        {
+            if (values != null)
+            {
+                Clear();
+                foreach (T value in values) Add(value);
+            }
+
+            if (defaultValues != null && !this.Any())
+            {
+                foreach (T value in defaultValues) Add(value);
+            }
+        }
     }
 }
