@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  targetNamespace="urn:LinqToXsdCore:listExamples" xmlns="urn:LinqToXsdCore:listExamples">
 
   <xs:element name="person">
     <xs:complexType>
@@ -15,6 +16,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" minOccurs="0" ref="person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element default="firstName,middleName,lastName" maxOccurs="unbounded" minOccurs="0"
+          name="names" type="xs:string"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

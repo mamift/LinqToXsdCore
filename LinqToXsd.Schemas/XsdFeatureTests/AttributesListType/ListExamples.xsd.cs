@@ -7,596 +7,750 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Schema;
-using Xml.Schema.Linq;
-
-
-
-public partial class person : XTypedElement, IXMetaData {
+namespace urn.LinqToXsdCore.listExamples {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Linq;
+    using System.Diagnostics;
+    using System.Xml;
+    using System.Xml.Schema;
+    using System.Xml.Linq;
+    using Xml.Schema.Linq;
     
-    public void Save(string xmlFile) {
-        XTypedServices.Save(xmlFile, Untyped);
-    }
     
-    public void Save(System.IO.TextWriter tw) {
-        XTypedServices.Save(tw, Untyped);
-    }
-    
-    public void Save(System.Xml.XmlWriter xmlWriter) {
-        XTypedServices.Save(xmlWriter, Untyped);
-    }
-    
-    public static person Load(string xmlFile) {
-        return XTypedServices.Load<person>(xmlFile);
-    }
-    
-    public static person Load(System.IO.TextReader xmlFile) {
-        return XTypedServices.Load<person>(xmlFile);
-    }
-    
-    public static person Parse(string xml) {
-        return XTypedServices.Parse<person>(xml);
-    }
-    
+    public partial class person : XTypedElement, IXMetaData {
+        
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
+        
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static person Load(string xmlFile) {
+            return XTypedServices.Load<person>(xmlFile);
+        }
+        
+        public static person Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<person>(xmlFile);
+        }
+        
+        public static person Parse(string xml) {
+            return XTypedServices.Parse<person>(xml);
+        }
+        
 		public static explicit operator person(XElement xe) { return XTypedServices.ToXTypedElement<person>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-    
-    public override XTypedElement Clone() {
-        return XTypedServices.CloneXTypedElement<person>(this);
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<person>(this);
+        }
+        
+        public person() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName otherNamesXName = System.Xml.Linq.XName.Get("otherNames", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual IList<string> otherNames {
+            get {
+                XAttribute x = this.Attribute(otherNamesXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetListAttribute(otherNamesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName surnameXName = System.Xml.Linq.XName.Get("surname", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual string surname {
+            get {
+                XAttribute x = this.Attribute(surnameXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetAttribute(surnameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
-    
-    public person() {
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    protected internal static readonly System.Xml.Linq.XName otherNamesXName = System.Xml.Linq.XName.Get("otherNames", "");
     
     /// <summary>
     /// <para>
-    /// Occurrence: optional
+    /// Regular expression: (person*)
     /// </para>
     /// </summary>
-    public virtual IList<string> otherNames {
-        get {
-            XAttribute x = this.Attribute(otherNamesXName);
-            if ((x == null)) {
-                return null;
-            }
-            return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+    public partial class persons : XTypedElement, IXMetaData {
+        
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
         }
-        set {
-            this.SetListAttribute(otherNamesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+        
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
         }
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    protected internal static readonly System.Xml.Linq.XName surnameXName = System.Xml.Linq.XName.Get("surname", "");
-    
-    /// <summary>
-    /// <para>
-    /// Occurrence: optional
-    /// </para>
-    /// </summary>
-    public virtual string surname {
-        get {
-            XAttribute x = this.Attribute(surnameXName);
-            if ((x == null)) {
-                return null;
-            }
-            return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
         }
-        set {
-            this.SetAttribute(surnameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+        
+        public static persons Load(string xmlFile) {
+            return XTypedServices.Load<persons>(xmlFile);
         }
-    }
-    
-    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("person", "");
-    
-    ContentModelEntity IXMetaData.GetContentModel() {
-        return ContentModelEntity.Default;
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    System.Xml.Linq.XName IXMetaData.SchemaName {
-        get {
-            return xName;
+        
+        public static persons Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<persons>(xmlFile);
         }
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    SchemaOrigin IXMetaData.TypeOrigin {
-        get {
-            return SchemaOrigin.Element;
+        
+        public static persons Parse(string xml) {
+            return XTypedServices.Parse<persons>(xml);
         }
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    ILinqToXsdTypeManager IXMetaData.TypeManager {
-        get {
-            return LinqToXsdTypeManager.Instance;
-        }
-    }
-}
-
-/// <summary>
-/// <para>
-/// Regular expression: (person*)
-/// </para>
-/// </summary>
-public partial class persons : XTypedElement, IXMetaData {
-    
-    public void Save(string xmlFile) {
-        XTypedServices.Save(xmlFile, Untyped);
-    }
-    
-    public void Save(System.IO.TextWriter tw) {
-        XTypedServices.Save(tw, Untyped);
-    }
-    
-    public void Save(System.Xml.XmlWriter xmlWriter) {
-        XTypedServices.Save(xmlWriter, Untyped);
-    }
-    
-    public static persons Load(string xmlFile) {
-        return XTypedServices.Load<persons>(xmlFile);
-    }
-    
-    public static persons Load(System.IO.TextReader xmlFile) {
-        return XTypedServices.Load<persons>(xmlFile);
-    }
-    
-    public static persons Parse(string xml) {
-        return XTypedServices.Parse<persons>(xml);
-    }
-    
+        
 		public static explicit operator persons(XElement xe) { return XTypedServices.ToXTypedElement<persons>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-    
-    public override XTypedElement Clone() {
-        return XTypedServices.CloneXTypedElement<persons>(this);
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Regular expression: (person*)
-    /// </para>
-    /// </summary>
-    public persons() {
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    protected internal static readonly System.Xml.Linq.XName personXName = System.Xml.Linq.XName.Get("person", "");
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private XTypedList<person> personField;
-    
-    /// <summary>
-    /// <para>
-    /// Occurrence: optional, repeating
-    /// </para>
-    /// <para>
-    /// Regular expression: (person*)
-    /// </para>
-    /// </summary>
-    public virtual IList<person> person {
-        get {
-            if ((this.personField == null)) {
-                this.personField = new XTypedList<person>(this, LinqToXsdTypeManager.Instance, personXName);
-            }
-            return this.personField;
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<persons>(this);
         }
-        set {
-            if ((value == null)) {
-                this.personField = null;
-            }
-            else {
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (person*)
+        /// </para>
+        /// </summary>
+        public persons() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName personXName = System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<person> personField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (person*)
+        /// </para>
+        /// </summary>
+        public virtual IList<person> person {
+            get {
                 if ((this.personField == null)) {
-                    this.personField = XTypedList<person>.Initialize(this, LinqToXsdTypeManager.Instance, value, personXName);
+                    this.personField = new XTypedList<person>(this, LinqToXsdTypeManager.Instance, personXName);
+                }
+                return this.personField;
+            }
+            set {
+                if ((value == null)) {
+                    this.personField = null;
                 }
                 else {
-                    XTypedServices.SetList<person>(this.personField, value);
+                    if ((this.personField == null)) {
+                        this.personField = XTypedList<person>.Initialize(this, LinqToXsdTypeManager.Instance, value, personXName);
+                    }
+                    else {
+                        XTypedServices.SetList<person>(this.personField, value);
+                    }
                 }
             }
         }
-    }
-    
-    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("persons", "");
-    
-    static persons() {
-        BuildElementDictionary();
-        contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(personXName));
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-    
-    private static void BuildElementDictionary() {
-        localElementDictionary.Add(personXName, typeof(person));
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-        get {
-            return localElementDictionary;
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("persons", "urn:LinqToXsdCore:listExamples");
+        
+        static persons() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(personXName));
         }
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private static ContentModelEntity contentModel;
-    
-    ContentModelEntity IXMetaData.GetContentModel() {
-        return contentModel;
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    System.Xml.Linq.XName IXMetaData.SchemaName {
-        get {
-            return xName;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(personXName, typeof(person));
         }
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    SchemaOrigin IXMetaData.TypeOrigin {
-        get {
-            return SchemaOrigin.Element;
-        }
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    ILinqToXsdTypeManager IXMetaData.TypeManager {
-        get {
-            return LinqToXsdTypeManager.Instance;
-        }
-    }
-}
-
-public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
-    
-    private LinqToXsdTypeManager() {
-    }
-    
-    private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-    
-    private static void BuildElementDictionary() {
-        elementDictionary.Add(System.Xml.Linq.XName.Get("person", ""), typeof(global::person));
-        elementDictionary.Add(System.Xml.Linq.XName.Get("persons", ""), typeof(global::persons));
-    }
-    
-    private static XmlSchemaSet schemaSet;
-    
-    XmlSchemaSet ILinqToXsdTypeManager.Schemas {
-        get {
-            if ((schemaSet == null)) {
-                XmlSchemaSet tempSet = new XmlSchemaSet();
-                System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
             }
-            return schemaSet;
         }
-        set {
-            schemaSet = value;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
-    }
-    
-    protected internal static void AddSchemas(XmlSchemaSet schemas) {
-        schemas.Add(schemaSet);
-    }
-    
-    Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
-        get {
-            return XTypedServices.EmptyDictionary;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
         }
-    }
-    
-    Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
-        get {
-            return elementDictionary;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
         }
-    }
-    
-    Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
-        get {
-            return XTypedServices.EmptyTypeMappingDictionary;
-        }
-    }
-    
-    static LinqToXsdTypeManager() {
-        BuildElementDictionary();
-    }
-    
-    public static System.Type GetRootType() {
-        return elementDictionary[System.Xml.Linq.XName.Get("person", "")];
-    }
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-    
-    public static LinqToXsdTypeManager Instance {
-        get {
-            return typeManagerSingleton;
-        }
-    }
-}
-
-public partial class XRootNamespace {
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private XDocument doc;
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private XTypedElement rootObject;
-    
-    private XRootNamespace() {
-    }
-    
-    public static XRootNamespace Load(string xmlFile) {
-        XRootNamespace root = new XRootNamespace();
-        root.doc = XDocument.Load(xmlFile);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
-        }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRootNamespace Load(string xmlFile, LoadOptions options) {
-        XRootNamespace root = new XRootNamespace();
-        root.doc = XDocument.Load(xmlFile, options);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
-        }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRootNamespace Load(TextReader textReader) {
-        XRootNamespace root = new XRootNamespace();
-        root.doc = XDocument.Load(textReader);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
-        }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRootNamespace Load(TextReader textReader, LoadOptions options) {
-        XRootNamespace root = new XRootNamespace();
-        root.doc = XDocument.Load(textReader, options);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
-        }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRootNamespace Load(XmlReader xmlReader) {
-        XRootNamespace root = new XRootNamespace();
-        root.doc = XDocument.Load(xmlReader);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
-        }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRootNamespace Parse(string text) {
-        XRootNamespace root = new XRootNamespace();
-        root.doc = XDocument.Parse(text);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
-        }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRootNamespace Parse(string text, LoadOptions options) {
-        XRootNamespace root = new XRootNamespace();
-        root.doc = XDocument.Parse(text, options);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
-        }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public virtual void Save(string fileName) {
-        doc.Save(fileName);
-    }
-    
-    public virtual void Save(TextWriter textWriter) {
-        doc.Save(textWriter);
-    }
-    
-    public virtual void Save(XmlWriter writer) {
-        doc.Save(writer);
-    }
-    
-    public virtual void Save(TextWriter textWriter, SaveOptions options) {
-        doc.Save(textWriter, options);
-    }
-    
-    public virtual void Save(string fileName, SaveOptions options) {
-        doc.Save(fileName, options);
-    }
-    
-    public virtual XDocument XDocument {
-        get {
-            return doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
-    public virtual XTypedElement Root {
-        get {
-            return rootObject;
+    /// <summary>
+    /// <para>
+    /// Regular expression: (names*)
+    /// </para>
+    /// </summary>
+    public partial class name : XTypedElement, IXMetaData {
+        
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
+        
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static name Load(string xmlFile) {
+            return XTypedServices.Load<name>(xmlFile);
+        }
+        
+        public static name Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<name>(xmlFile);
+        }
+        
+        public static name Parse(string xml) {
+            return XTypedServices.Parse<name>(xml);
+        }
+        
+		public static explicit operator name(XElement xe) { return XTypedServices.ToXTypedElement<name>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<name>(this);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (names*)
+        /// </para>
+        /// </summary>
+        public name() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName namesXName = System.Xml.Linq.XName.Get("names", "urn:LinqToXsdCore:listExamples");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static IList<string> namesDefaultValue = new string[] {
+                "firstName,middleName,lastName"};
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> namesField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, repeating
+        /// </para>
+        /// <para>
+        /// Regular expression: (names*)
+        /// </para>
+        /// </summary>
+        public virtual IList<string> names {
+            get {
+                if ((this.namesField == null)) {
+                    this.namesField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, namesXName, namesDefaultValue);
+                }
+                return this.namesField;
+            }
+            set {
+                if ((value == null)) {
+                    this.namesField = null;
+                }
+                else {
+                    if ((this.namesField == null)) {
+                        this.namesField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, namesXName, namesDefaultValue);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.namesField, value);
+                    }
+                }
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("name", "urn:LinqToXsdCore:listExamples");
+        
+        static name() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(namesXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(namesXName, typeof(string));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
-    public XRootNamespace(person root) {
-        this.doc = new XDocument(root.Untyped);
-        this.rootObject = root;
+    public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
+        
+        private LinqToXsdTypeManager() {
+        }
+        
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples"), typeof(global::urn.LinqToXsdCore.listExamples.person));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("persons", "urn:LinqToXsdCore:listExamples"), typeof(global::urn.LinqToXsdCore.listExamples.persons));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("name", "urn:LinqToXsdCore:listExamples"), typeof(global::urn.LinqToXsdCore.listExamples.name));
+        }
+        
+        private static XmlSchemaSet schemaSet;
+        
+        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+            get {
+                if ((schemaSet == null)) {
+                    XmlSchemaSet tempSet = new XmlSchemaSet();
+                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+                }
+                return schemaSet;
+            }
+            set {
+                schemaSet = value;
+            }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+            get {
+                return XTypedServices.EmptyDictionary;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+            get {
+                return elementDictionary;
+            }
+        }
+        
+        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+            get {
+                return XTypedServices.EmptyTypeMappingDictionary;
+            }
+        }
+        
+        static LinqToXsdTypeManager() {
+            BuildElementDictionary();
+        }
+        
+        public static System.Type GetRootType() {
+            return elementDictionary[System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
+        }
     }
     
+    public partial class XRootNamespace {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRootNamespace() {
+        }
+        
+        public static XRootNamespace Load(string xmlFile) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(xmlFile);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(string xmlFile, LoadOptions options) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(xmlFile, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(TextReader textReader) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(textReader);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(TextReader textReader, LoadOptions options) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(textReader, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Load(XmlReader xmlReader) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Load(xmlReader);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Parse(string text) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Parse(text);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public static XRootNamespace Parse(string text, LoadOptions options) {
+            XRootNamespace root = new XRootNamespace();
+            root.doc = XDocument.Parse(text, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
+        }
+        
+        public virtual void Save(string fileName) {
+            doc.Save(fileName);
+        }
+        
+        public virtual void Save(TextWriter textWriter) {
+            doc.Save(textWriter);
+        }
+        
+        public virtual void Save(XmlWriter writer) {
+            doc.Save(writer);
+        }
+        
+        public virtual void Save(TextWriter textWriter, SaveOptions options) {
+            doc.Save(textWriter, options);
+        }
+        
+        public virtual void Save(string fileName, SaveOptions options) {
+            doc.Save(fileName, options);
+        }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRootNamespace(person root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
 
 		public person person {  get {return rootObject as person; } }
-    
-    public XRootNamespace(persons root) {
-        this.doc = new XDocument(root.Untyped);
-        this.rootObject = root;
-    }
-    
+        
+        public XRootNamespace(persons root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
 
 		public persons persons {  get {return rootObject as persons; } }
-}
+        
+        public XRootNamespace(name root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
 
-public partial class XRoot {
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private XDocument doc;
-    
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private XTypedElement rootObject;
-    
-    private XRoot() {
+		public name name {  get {return rootObject as name; } }
     }
     
-    public static XRoot Load(string xmlFile) {
-        XRoot root = new XRoot();
-        root.doc = XDocument.Load(xmlFile);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRoot Load(string xmlFile, LoadOptions options) {
-        XRoot root = new XRoot();
-        root.doc = XDocument.Load(xmlFile, options);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
+        
+        public static XRoot Load(string xmlFile) {
+            XRoot root = new XRoot();
+            root.doc = XDocument.Load(xmlFile);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
         }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRoot Load(TextReader textReader) {
-        XRoot root = new XRoot();
-        root.doc = XDocument.Load(textReader);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
+        
+        public static XRoot Load(string xmlFile, LoadOptions options) {
+            XRoot root = new XRoot();
+            root.doc = XDocument.Load(xmlFile, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
         }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRoot Load(TextReader textReader, LoadOptions options) {
-        XRoot root = new XRoot();
-        root.doc = XDocument.Load(textReader, options);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
+        
+        public static XRoot Load(TextReader textReader) {
+            XRoot root = new XRoot();
+            root.doc = XDocument.Load(textReader);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
         }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRoot Load(XmlReader xmlReader) {
-        XRoot root = new XRoot();
-        root.doc = XDocument.Load(xmlReader);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
+        
+        public static XRoot Load(TextReader textReader, LoadOptions options) {
+            XRoot root = new XRoot();
+            root.doc = XDocument.Load(textReader, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
         }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRoot Parse(string text) {
-        XRoot root = new XRoot();
-        root.doc = XDocument.Parse(text);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
+        
+        public static XRoot Load(XmlReader xmlReader) {
+            XRoot root = new XRoot();
+            root.doc = XDocument.Load(xmlReader);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
         }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public static XRoot Parse(string text, LoadOptions options) {
-        XRoot root = new XRoot();
-        root.doc = XDocument.Parse(text, options);
-        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
-        if ((typedRoot == null)) {
-            throw new LinqToXsdException("Invalid root element in xml document.");
+        
+        public static XRoot Parse(string text) {
+            XRoot root = new XRoot();
+            root.doc = XDocument.Parse(text);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
         }
-        root.rootObject = typedRoot;
-        return root;
-    }
-    
-    public virtual void Save(string fileName) {
-        doc.Save(fileName);
-    }
-    
-    public virtual void Save(TextWriter textWriter) {
-        doc.Save(textWriter);
-    }
-    
-    public virtual void Save(XmlWriter writer) {
-        doc.Save(writer);
-    }
-    
-    public virtual void Save(TextWriter textWriter, SaveOptions options) {
-        doc.Save(textWriter, options);
-    }
-    
-    public virtual void Save(string fileName, SaveOptions options) {
-        doc.Save(fileName, options);
-    }
-    
-    public virtual XDocument XDocument {
-        get {
-            return doc;
+        
+        public static XRoot Parse(string text, LoadOptions options) {
+            XRoot root = new XRoot();
+            root.doc = XDocument.Parse(text, options);
+            XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+            if ((typedRoot == null)) {
+                throw new LinqToXsdException("Invalid root element in xml document.");
+            }
+            root.rootObject = typedRoot;
+            return root;
         }
-    }
-    
-    public virtual XTypedElement Root {
-        get {
-            return rootObject;
+        
+        public virtual void Save(string fileName) {
+            doc.Save(fileName);
         }
-    }
-    
-    public XRoot(person root) {
-        this.doc = new XDocument(root.Untyped);
-        this.rootObject = root;
-    }
-    
+        
+        public virtual void Save(TextWriter textWriter) {
+            doc.Save(textWriter);
+        }
+        
+        public virtual void Save(XmlWriter writer) {
+            doc.Save(writer);
+        }
+        
+        public virtual void Save(TextWriter textWriter, SaveOptions options) {
+            doc.Save(textWriter, options);
+        }
+        
+        public virtual void Save(string fileName, SaveOptions options) {
+            doc.Save(fileName, options);
+        }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::urn.LinqToXsdCore.listExamples.person root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
 
-		public person person {  get {return rootObject as person; } }
-    
-    public XRoot(persons root) {
-        this.doc = new XDocument(root.Untyped);
-        this.rootObject = root;
-    }
-    
+		public global::urn.LinqToXsdCore.listExamples.person person {  get {return rootObject as global::urn.LinqToXsdCore.listExamples.person; } }
+        
+        public XRoot(global::urn.LinqToXsdCore.listExamples.persons root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
 
-		public persons persons {  get {return rootObject as persons; } }
+		public global::urn.LinqToXsdCore.listExamples.persons persons {  get {return rootObject as global::urn.LinqToXsdCore.listExamples.persons; } }
+        
+        public XRoot(global::urn.LinqToXsdCore.listExamples.name root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::urn.LinqToXsdCore.listExamples.name name {  get {return rootObject as global::urn.LinqToXsdCore.listExamples.name; } }
+    }
 }
