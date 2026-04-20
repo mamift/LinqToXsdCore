@@ -1,12 +1,19 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.13
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.13
+* https://www.nuget.org/packages/XObjectsCore/3.4.13
+  * [#86](https://github.com/mamift/LinqToXsdCore/pull/86).
+	* Fixes a bug whereby the XObjects API (`XSimpleList<T>`) did not include the requisite overload for allowing default values for elements of simple types.
+
 ## Version 3.4.12
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.12
 * https://www.nuget.org/packages/XObjectsCore/3.4.12
   * [#79](https://github.com/mamift/LinqToXsdCore/pull/79).
 	* The LinqToXsd CLI tool now runs on .NET 7,8,9 and 10. Still supports .NET core 3.1, 5 and 6 and .NET Framework 4.7.2
-	* Fixes a bug occurring in the CLI tool when a directory with trailling quotes (' or ") is provided for the `gen -a path\` command.  
+	* Fixes a bug occurring in the CLI tool when a directory with trailling quotes (' or ") is provided for the `gen -a path\` command.
 
 ## Version 3.4.10
 Nuget packages:
@@ -36,7 +43,7 @@ Nuget packages:
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.6
 * https://www.nuget.org/packages/XObjectsCore/3.4.6
-  * Fixed a bug where Timezone info was lost (conversions from DateTimeOffset to DateTime no longer occur). 
+  * Fixed a bug where Timezone info was lost (conversions from DateTimeOffset to DateTime no longer occur).
 
 ## Version 3.4.5
 Nuget packages:
@@ -124,7 +131,7 @@ Nuget packages:
 	* Fixes an error that occurs when attempting to pass null to a property that had validation logic in the property setter (see [GitHub PR28](https://github.com/mamift/LinqToXsdCore/pull/28)).
 * https://www.nuget.org/packages/XObjectsCodeGen/3.2.0
 	* The number of `XName` instantiations in generated code is now greatly reduced (see [GitHub PR23](https://github.com/mamift/LinqToXsdCore/pull/23)).
-	* Now includes an option for null-annotating generated code (see [GitHub PR29](https://github.com/mamift/LinqToXsdCore/pull/29)).	
+	* Now includes an option for null-annotating generated code (see [GitHub PR29](https://github.com/mamift/LinqToXsdCore/pull/29)).
 	* Enums in generated code are now properly generated as CLR value types (see [GitHub 21](https://github.com/mamift/LinqToXsdCore/pull/21)).
 	* Updated to fix ambiguous types where an element is a base type and a derrived type is used (see [GitHub 16](https://github.com/mamift/LinqToXsdCore/pull/16)).
 
@@ -158,48 +165,48 @@ Nuget packages:
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.11
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.10
-	* Avoid type name conflicts in generated code. 
+	* Avoid type name conflicts in generated code.
 	* Do not prefix an identifier with the '@' character when not needed.
 
 ## XObjectsCore 3.0.0.9
-Nuget packages: 
+Nuget packages:
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.9
 
 Added `XTypedElementEqualityComparer` and `XTypedElementDeepEqualityComparer` classes that implement `IEqualityComparer{T}` for the `XTypedElement` class.
 
 ## LinqToXsdCore 3.0.0.10 and XObjectsCore 3.0.0.8
-Nuget packages: 
+Nuget packages:
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.8
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.10
 
 Modified the behaviour of retrieving the value of an attribute, when the schema type is anyAtomicType (which is the default for attributes when no type is given). The value literal is now returned as a string (pre-existing behaviour would throw an exception saying that anyAtomicType is not a supported conversion to the CLR type 'string').
 
 ## XObjectsCore 3.0.0.7
-Nuget packages: 
+Nuget packages:
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.7
 	* Fixed a regression bug with previous release.
 
 ## LinqToXsdCore 3.0.0.9 and XObjectsCore 3.0.0.6
-Nuget packages: 
+Nuget packages:
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.6
 	* Fixed an issue when performing an explicit type conversion from XElement to its XTyped-equivalent when the XTyped-equivalent type was an internal class.
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.9
-	* Generating a new config file no longers includes the Xml.Schema.Linq schema namespace mapping. Also generating a new config file will generate a default namespace mapping when the XSD does not target a namespace. 
+	* Generating a new config file no longers includes the Xml.Schema.Linq schema namespace mapping. Also generating a new config file will generate a default namespace mapping when the XSD does not target a namespace.
 
 ## LinqToXsdCore 3.0.0.8
-Nuget packages: 
+Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.8
 	* Implemented saving merged output from multiple XSD files when generating a config file (using 'config -e' switch) using a folder as a source.
 
 ## XObjectsCore 3.0.0.5 and LinqToXsdCore 3.0.0.7
-Nuget packages: 
+Nuget packages:
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.5
 	* Reversed a change made that removed the virtual keyword on properties on generated types. Added a test for it.
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.7
 	* Dropped emitting errors to a custom handler. Was outputting red console text needlessly.
 
 ## XObjectsCore 3.0.0.4 and LinqToXsdCore 3.0.0.6
-Nuget packages: 
+Nuget packages:
 * https://www.nuget.org/packages/XObjectsCore/3.0.0.4
 * https://www.nuget.org/packages/LinqToXsdCore/3.0.0.6
 
