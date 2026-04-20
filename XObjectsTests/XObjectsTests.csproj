@@ -64,4 +64,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="XsdFeatureTests\" />
+  </ItemGroup>
+
 </Project>

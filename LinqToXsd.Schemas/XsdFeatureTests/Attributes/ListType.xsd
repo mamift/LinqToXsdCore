@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-  targetNamespace="urn:LinqToXsdCore:ListType" xmlns="urn:LinqToXsdCore:ListType">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:LinqToXsdCore:ListType"
+  xmlns="urn:LinqToXsdCore:ListType">
 
   <xs:element name="person">
     <xs:complexType>
