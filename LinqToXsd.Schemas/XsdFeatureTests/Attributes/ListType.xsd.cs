@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace urn.LinqToXsdCore.listExamples {
+namespace urn.LinqToXsdCore.ListType {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -100,7 +100,29 @@ namespace urn.LinqToXsdCore.listExamples {
             }
         }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples");
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName milestoneYearsXName = System.Xml.Linq.XName.Get("milestoneYears", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual IList<int> milestoneYears {
+            get {
+                XAttribute x = this.Attribute(milestoneYearsXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseListValue<int>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
+            }
+            set {
+                this.SetListAttribute(milestoneYearsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Int).Datatype);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:ListType");
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
@@ -175,7 +197,7 @@ namespace urn.LinqToXsdCore.listExamples {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName personXName = System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples");
+        protected internal static readonly System.Xml.Linq.XName personXName = System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:ListType");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<person> personField;
@@ -210,7 +232,7 @@ namespace urn.LinqToXsdCore.listExamples {
             }
         }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("persons", "urn:LinqToXsdCore:listExamples");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("persons", "urn:LinqToXsdCore:ListType");
         
         static persons() {
             BuildElementDictionary();
@@ -260,142 +282,6 @@ namespace urn.LinqToXsdCore.listExamples {
         }
     }
     
-    /// <summary>
-    /// <para>
-    /// Regular expression: (names*)
-    /// </para>
-    /// </summary>
-    public partial class name : XTypedElement, IXMetaData {
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static name Load(string xmlFile) {
-            return XTypedServices.Load<name>(xmlFile);
-        }
-        
-        public static name Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<name>(xmlFile);
-        }
-        
-        public static name Parse(string xml) {
-            return XTypedServices.Parse<name>(xml);
-        }
-        
-		public static explicit operator name(XElement xe) { return XTypedServices.ToXTypedElement<name>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<name>(this);
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Regular expression: (names*)
-        /// </para>
-        /// </summary>
-        public name() {
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal static readonly System.Xml.Linq.XName namesXName = System.Xml.Linq.XName.Get("names", "urn:LinqToXsdCore:listExamples");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static IList<string> namesDefaultValue = new string[] {
-                "firstName,middleName,lastName"};
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> namesField;
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional, repeating
-        /// </para>
-        /// <para>
-        /// Regular expression: (names*)
-        /// </para>
-        /// </summary>
-        public virtual IList<string> names {
-            get {
-                if ((this.namesField == null)) {
-                    this.namesField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, namesXName, namesDefaultValue);
-                }
-                return this.namesField;
-            }
-            set {
-                if ((value == null)) {
-                    this.namesField = null;
-                }
-                else {
-                    if ((this.namesField == null)) {
-                        this.namesField = XSimpleList<string>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value, namesXName, namesDefaultValue);
-                    }
-                    else {
-                        XTypedServices.SetList<System.String>(this.namesField, value);
-                    }
-                }
-            }
-        }
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("name", "urn:LinqToXsdCore:listExamples");
-        
-        static name() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(namesXName));
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(namesXName, typeof(string));
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-    }
-    
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
         private LinqToXsdTypeManager() {
@@ -404,9 +290,8 @@ namespace urn.LinqToXsdCore.listExamples {
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples"), typeof(global::urn.LinqToXsdCore.listExamples.person));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("persons", "urn:LinqToXsdCore:listExamples"), typeof(global::urn.LinqToXsdCore.listExamples.persons));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("name", "urn:LinqToXsdCore:listExamples"), typeof(global::urn.LinqToXsdCore.listExamples.name));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:ListType"), typeof(global::urn.LinqToXsdCore.ListType.person));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("persons", "urn:LinqToXsdCore:ListType"), typeof(global::urn.LinqToXsdCore.ListType.persons));
         }
         
         private static XmlSchemaSet schemaSet;
@@ -451,7 +336,7 @@ namespace urn.LinqToXsdCore.listExamples {
         }
         
         public static System.Type GetRootType() {
-            return elementDictionary[System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:listExamples")];
+            return elementDictionary[System.Xml.Linq.XName.Get("person", "urn:LinqToXsdCore:ListType")];
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -599,14 +484,6 @@ namespace urn.LinqToXsdCore.listExamples {
         
 
 		public persons persons {  get {return rootObject as persons; } }
-        
-        public XRootNamespace(name root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-
-		public name name {  get {return rootObject as name; } }
     }
     
     public partial class XRoot {
@@ -729,28 +606,20 @@ namespace urn.LinqToXsdCore.listExamples {
             }
         }
         
-        public XRoot(global::urn.LinqToXsdCore.listExamples.person root) {
+        public XRoot(global::urn.LinqToXsdCore.ListType.person root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::urn.LinqToXsdCore.listExamples.person person {  get {return rootObject as global::urn.LinqToXsdCore.listExamples.person; } }
+		public global::urn.LinqToXsdCore.ListType.person person {  get {return rootObject as global::urn.LinqToXsdCore.ListType.person; } }
         
-        public XRoot(global::urn.LinqToXsdCore.listExamples.persons root) {
+        public XRoot(global::urn.LinqToXsdCore.ListType.persons root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::urn.LinqToXsdCore.listExamples.persons persons {  get {return rootObject as global::urn.LinqToXsdCore.listExamples.persons; } }
-        
-        public XRoot(global::urn.LinqToXsdCore.listExamples.name root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-
-		public global::urn.LinqToXsdCore.listExamples.name name {  get {return rootObject as global::urn.LinqToXsdCore.listExamples.name; } }
+		public global::urn.LinqToXsdCore.ListType.persons persons {  get {return rootObject as global::urn.LinqToXsdCore.ListType.persons; } }
     }
 }
