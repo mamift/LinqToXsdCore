@@ -8,11 +8,23 @@ namespace Xml.Schema.Linq
     public class XSimpleList<T> : XList<T>
     {
         XmlSchemaDatatype schemaDatatype;
+#nullable enable
+        public IList<T>? DefaultValues { get; private set; }
+#nullable disable
 
         public XSimpleList(XTypedElement container, XmlSchemaDatatype dataType, XName itemXName) : base(container,
             itemXName)
         {
             this.schemaDatatype = dataType;
+        }
+
+        public XSimpleList(XTypedElement container, XmlSchemaDatatype dataType, XName itemXName, IList<T> defaultValues) : this(container, dataType, itemXName)
+        {
+            this.DefaultValues = defaultValues;
+            if (defaultValues != null && !EnumerateElements().Any())
+            {
+                InitializeFrom(defaultValues, defaultValues);
+            }
         }
 
         protected override void AddImpl(T value)
@@ -77,6 +89,18 @@ namespace Xml.Schema.Linq
         {
             var simpleList = new XSimpleList<T>(container, dataType, itemXName);
             simpleList.InitializeFrom(values);
+            return simpleList;
+        }
+
+#nullable enable
+        public static XSimpleList<T> Initialize(
+            XTypedElement container, 
+            XmlSchemaDatatype dataType,
+            IEnumerable<T>? values, 
+            XName itemXName, IList<T> defaultValues)
+        {
+            XSimpleList<T> simpleList = new(container, dataType, itemXName, defaultValues);
+            simpleList.InitializeFrom(values, defaultValues);
             return simpleList;
         }
     }

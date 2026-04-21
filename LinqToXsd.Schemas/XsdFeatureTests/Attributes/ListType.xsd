@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:LinqToXsdCore:ListType"
+  xmlns="urn:LinqToXsdCore:ListType">
+
+  <xs:element name="person">
+    <xs:complexType>
+      <xs:attribute name="otherNames">
+        <xs:simpleType>
+          <xs:list itemType="xs:string"/>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="surname" type="xs:string"/>
+      <xs:attribute name="milestoneYears">
+        <xs:simpleType>
+          <xs:list itemType="xs:int"/>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="persons">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
