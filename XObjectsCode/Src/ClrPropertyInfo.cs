@@ -1269,7 +1269,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             fixedOrDefaultField.Attributes =
                 (fixedOrDefaultField.Attributes & ~MemberAttributes.AccessMask & ~MemberAttributes.ScopeMask)
-                | MemberAttributes.Private
+                | MemberAttributes.FamilyAndAssembly
                 | MemberAttributes.Static;
 
             fixedOrDefaultField.InitExpression =

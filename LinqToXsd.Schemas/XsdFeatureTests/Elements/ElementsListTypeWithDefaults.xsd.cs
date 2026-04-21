@@ -71,7 +71,7 @@ namespace urn.LinqToXsdCore.Elements.ListTypeWithDefaults {
         protected internal static readonly System.Xml.Linq.XName namesXName = System.Xml.Linq.XName.Get("names", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static IList<string> namesDefaultValue = new string[] {
+        internal static IList<string> namesDefaultValue = new string[] {
                 "firstName",
                 "middleName",
                 "lastName"};

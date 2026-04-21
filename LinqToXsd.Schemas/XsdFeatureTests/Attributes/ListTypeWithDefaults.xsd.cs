@@ -105,7 +105,7 @@ namespace urn.LinqToXsdCore.ListTypeWithDefaults {
         protected internal static readonly System.Xml.Linq.XName milestoneYearsXName = System.Xml.Linq.XName.Get("milestoneYears", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static IList<int> milestoneYearsDefaultValue = new int[] {
+        internal static IList<int> milestoneYearsDefaultValue = new int[] {
                 System.Xml.XmlConvert.ToInt32("1"),
                 System.Xml.XmlConvert.ToInt32("2"),
                 System.Xml.XmlConvert.ToInt32("3"),
@@ -135,7 +135,7 @@ namespace urn.LinqToXsdCore.ListTypeWithDefaults {
         protected internal static readonly System.Xml.Linq.XName tagsXName = System.Xml.Linq.XName.Get("tags", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static IList<string> tagsDefaultValue = new string[] {
+        internal static IList<string> tagsDefaultValue = new string[] {
                 "human",
                 "bipedal"};
         
