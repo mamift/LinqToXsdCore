@@ -96,7 +96,7 @@ namespace Xml.Schema.Linq
         public static XSimpleList<T> Initialize(
             XTypedElement container, 
             XmlSchemaDatatype dataType,
-            IEnumerable<T> values, 
+            IEnumerable<T>? values, 
             XName itemXName, IList<T> defaultValues)
         {
             XSimpleList<T> simpleList = new(container, dataType, itemXName, defaultValues);
