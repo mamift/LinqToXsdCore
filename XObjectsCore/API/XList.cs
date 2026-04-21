@@ -310,8 +310,7 @@ namespace Xml.Schema.Linq
                 Clear();
                 foreach (T value in values) Add(value);
             }
-
-            if (defaultValues != null && !this.Any())
+            else if (defaultValues != null)
             {
                 foreach (T value in defaultValues) Add(value);
             }
