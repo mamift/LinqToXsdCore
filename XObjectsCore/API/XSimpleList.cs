@@ -21,6 +21,10 @@ namespace Xml.Schema.Linq
         public XSimpleList(XTypedElement container, XmlSchemaDatatype dataType, XName itemXName, IList<T> defaultValues) : this(container, dataType, itemXName)
         {
             this.DefaultValues = defaultValues;
+            if (defaultValues != null && !EnumerateElements().Any())
+            {
+                InitializeFrom(defaultValues, defaultValues);
+            }
         }
 
         protected override void AddImpl(T value)
