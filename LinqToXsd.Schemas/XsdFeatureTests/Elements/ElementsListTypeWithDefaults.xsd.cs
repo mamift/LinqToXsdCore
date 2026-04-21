@@ -72,7 +72,9 @@ namespace urn.LinqToXsdCore.Elements.ListTypeWithDefaults {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static IList<string> namesDefaultValue = new string[] {
-                "firstName,middleName,lastName"};
+                "firstName",
+                "middleName",
+                "lastName"};
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XSimpleList<string> namesField;
