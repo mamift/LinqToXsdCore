@@ -293,7 +293,7 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public override XCodeTypeReference ReturnType
-            => returnType ??= CreateReturnType(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+            => returnType ??= CreateReturnType(IsEnum && !IsRef ? typeRef.ClrFullTypeName : clrTypeName);
 
         private string QualifiedType => typeRef.IsLocalType && !typeRef.IsSimpleType
             ? parentTypeFullName + "." + clrTypeName
