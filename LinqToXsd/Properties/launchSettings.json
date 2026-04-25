@@ -128,6 +128,12 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\ThermoML",
       "hotReloadEnabled": false
+    },
+    "SWRL": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\SWRL",
+      "hotReloadEnabled": false
     }
   }
 }
