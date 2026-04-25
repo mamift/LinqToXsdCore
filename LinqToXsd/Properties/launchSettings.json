@@ -176,6 +176,18 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\OfficeOpenXML-XMLSchema-Strict",
       "hotReloadEnabled": false
+    },
+    "Office 2003 Reference schemas": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Office 2003 Reference schemas",
+      "hotReloadEnabled": false
+    },
+    "NHS CDS": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\NHS CDS",
+      "hotReloadEnabled": false
     }
   }
 }
