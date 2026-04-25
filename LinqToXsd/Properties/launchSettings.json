@@ -164,6 +164,18 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\OFMX",
       "hotReloadEnabled": false
+    },
+    "OfficeOpenXML-XMLSchema-Transitional": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OfficeOpenXML-XMLSchema-Transitional",
+      "hotReloadEnabled": false
+    },
+    "OfficeOpenXML-XMLSchema-Strict": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OfficeOpenXML-XMLSchema-Strict",
+      "hotReloadEnabled": false
     }
   }
 }
