@@ -224,6 +224,24 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\Multi-namespaces",
       "hotReloadEnabled": false
+    },
+    "Microsoft Project 2007": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Microsoft Project 2007",
+      "hotReloadEnabled": false
+    },
+    "MetaLEX": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\MetaLEX",
+      "hotReloadEnabled": false
+    },
+    "LegalRuleML basic": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\basic\\ruleml.xsd",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\LegalRuleML",
+      "hotReloadEnabled": false
     }
   }
 }
