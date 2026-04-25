@@ -134,6 +134,12 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\SWRL",
       "hotReloadEnabled": false
+    },
+    "SBML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\SBML",
+      "hotReloadEnabled": false
     }
   }
 }
