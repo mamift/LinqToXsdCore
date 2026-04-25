@@ -188,6 +188,42 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\NHS CDS",
       "hotReloadEnabled": false
+    },
+    "NestedChoiceTest": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\NestedChoiceTest",
+      "hotReloadEnabled": false
+    },
+    "NameMangled": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\NameMangled",
+      "hotReloadEnabled": false
+    },
+    "mzQuantML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\mzQuantML",
+      "hotReloadEnabled": false
+    },
+    "mzML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\mzML",
+      "hotReloadEnabled": false
+    },
+    "mzIdentML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\mzIdentML",
+      "hotReloadEnabled": false
+    },
+    "Multi-namespaces": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Multi-namespaces",
+      "hotReloadEnabled": false
     }
   }
 }
