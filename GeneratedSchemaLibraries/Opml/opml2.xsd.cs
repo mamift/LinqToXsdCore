@@ -28,31 +28,10 @@ namespace XObjectsTests.Schemas.Opml {
     /// </summary>
     public partial class OPML : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName headXName = System.Xml.Linq.XName.Get("head", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName bodyXName = System.Xml.Linq.XName.Get("body", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OPML", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator OPML(XElement xe) { return XTypedServices.ToXTypedElement<OPML>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static OPML() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(headXName), new NamedContentModelEntity(bodyXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<OPML>(this);
         }
         
         /// <summary>
@@ -62,6 +41,10 @@ namespace XObjectsTests.Schemas.Opml {
         /// </summary>
         public OPML() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName headXName = System.Xml.Linq.XName.Get("head", "");
         
         /// <summary>
         /// <para>
@@ -81,6 +64,10 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName bodyXName = System.Xml.Linq.XName.Get("body", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -99,19 +86,38 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string version {
+        public virtual XObjectsTests.Schemas.Opml.Version version {
             get {
                 XAttribute x = this.Attribute(versionXName);
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((XObjectsTests.Schemas.Opml.Version)(Enum.Parse(typeof(XObjectsTests.Schemas.Opml.Version), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::XObjectsTests.Schemas.Opml.VersionValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttributeWithValidation(versionXName, value.ToString(), "version", global::XObjectsTests.Schemas.Opml.VersionValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OPML", "");
+        
+        static OPML() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(headXName), new NamedContentModelEntity(bodyXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(headXName, typeof(Head));
+            localElementDictionary.Add(bodyXName, typeof(Body));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -119,6 +125,13 @@ namespace XObjectsTests.Schemas.Opml {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -141,19 +154,6 @@ namespace XObjectsTests.Schemas.Opml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<OPML>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(headXName, typeof(Head));
-            localElementDictionary.Add(bodyXName, typeof(Body));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -163,26 +163,10 @@ namespace XObjectsTests.Schemas.Opml {
     /// </summary>
     public partial class Body : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName outlineXName = System.Xml.Linq.XName.Get("outline", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<Outline> outlineField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Body", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator Body(XElement xe) { return XTypedServices.ToXTypedElement<Body>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Body() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(outlineXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Body>(this);
         }
         
         /// <summary>
@@ -192,6 +176,13 @@ namespace XObjectsTests.Schemas.Opml {
         /// </summary>
         public Body() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName outlineXName = System.Xml.Linq.XName.Get("outline", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<Outline> outlineField;
         
         /// <summary>
         /// <para>
@@ -223,11 +214,32 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Body", "");
+        
+        static Body() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(outlineXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(outlineXName, typeof(Outline));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -250,18 +262,6 @@ namespace XObjectsTests.Schemas.Opml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Body>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(outlineXName, typeof(Outline));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -271,71 +271,10 @@ namespace XObjectsTests.Schemas.Opml {
     /// </summary>
     public partial class Head : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName dateCreatedXName = System.Xml.Linq.XName.Get("dateCreated", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName dateModifiedXName = System.Xml.Linq.XName.Get("dateModified", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ownerNameXName = System.Xml.Linq.XName.Get("ownerName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ownerEmailXName = System.Xml.Linq.XName.Get("ownerEmail", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ownerIdXName = System.Xml.Linq.XName.Get("ownerId", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName docsXName = System.Xml.Linq.XName.Get("docs", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName expansionStateXName = System.Xml.Linq.XName.Get("expansionState", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName vertScrollStateXName = System.Xml.Linq.XName.Get("vertScrollState", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName windowTopXName = System.Xml.Linq.XName.Get("windowTop", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName windowLeftXName = System.Xml.Linq.XName.Get("windowLeft", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName windowBottomXName = System.Xml.Linq.XName.Get("windowBottom", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName windowRightXName = System.Xml.Linq.XName.Get("windowRight", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Head", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator Head(XElement xe) { return XTypedServices.ToXTypedElement<Head>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Head() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(titleXName), new NamedContentModelEntity(dateCreatedXName), new NamedContentModelEntity(dateModifiedXName), new NamedContentModelEntity(ownerNameXName), new NamedContentModelEntity(ownerEmailXName), new NamedContentModelEntity(ownerIdXName), new NamedContentModelEntity(docsXName), new NamedContentModelEntity(expansionStateXName), new NamedContentModelEntity(vertScrollStateXName), new NamedContentModelEntity(windowTopXName), new NamedContentModelEntity(windowLeftXName), new NamedContentModelEntity(windowBottomXName), new NamedContentModelEntity(windowRightXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Head>(this);
         }
         
         /// <summary>
@@ -345,6 +284,10 @@ namespace XObjectsTests.Schemas.Opml {
         /// </summary>
         public Head() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
         
         /// <summary>
         /// <para>
@@ -357,12 +300,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string title {
             get {
                 XElement x = this.GetElement(titleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(titleXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName dateCreatedXName = System.Xml.Linq.XName.Get("dateCreated", "");
         
         /// <summary>
         /// <para>
@@ -375,6 +325,9 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string dateCreated {
             get {
                 XElement x = this.GetElement(dateCreatedXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -387,6 +340,10 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName dateModifiedXName = System.Xml.Linq.XName.Get("dateModified", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -398,6 +355,9 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string dateModified {
             get {
                 XElement x = this.GetElement(dateModifiedXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -410,6 +370,10 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ownerNameXName = System.Xml.Linq.XName.Get("ownerName", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -421,12 +385,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string ownerName {
             get {
                 XElement x = this.GetElement(ownerNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(ownerNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ownerEmailXName = System.Xml.Linq.XName.Get("ownerEmail", "");
         
         /// <summary>
         /// <para>
@@ -439,6 +410,9 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string ownerEmail {
             get {
                 XElement x = this.GetElement(ownerEmailXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -451,6 +425,10 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ownerIdXName = System.Xml.Linq.XName.Get("ownerId", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -462,12 +440,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual System.Uri ownerId {
             get {
                 XElement x = this.GetElement(ownerIdXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetElement(ownerIdXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName docsXName = System.Xml.Linq.XName.Get("docs", "");
         
         /// <summary>
         /// <para>
@@ -480,12 +465,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual System.Uri docs {
             get {
                 XElement x = this.GetElement(docsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetElement(docsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName expansionStateXName = System.Xml.Linq.XName.Get("expansionState", "");
         
         /// <summary>
         /// <para>
@@ -498,12 +490,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string expansionState {
             get {
                 XElement x = this.GetElement(expansionStateXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(expansionStateXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName vertScrollStateXName = System.Xml.Linq.XName.Get("vertScrollState", "");
         
         /// <summary>
         /// <para>
@@ -526,6 +525,10 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName windowTopXName = System.Xml.Linq.XName.Get("windowTop", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -546,6 +549,10 @@ namespace XObjectsTests.Schemas.Opml {
                 this.SetElement(windowTopXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName windowLeftXName = System.Xml.Linq.XName.Get("windowLeft", "");
         
         /// <summary>
         /// <para>
@@ -568,6 +575,10 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName windowBottomXName = System.Xml.Linq.XName.Get("windowBottom", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -588,6 +599,10 @@ namespace XObjectsTests.Schemas.Opml {
                 this.SetElement(windowBottomXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName windowRightXName = System.Xml.Linq.XName.Get("windowRight", "");
         
         /// <summary>
         /// <para>
@@ -610,11 +625,44 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Head", "");
+        
+        static Head() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(titleXName), new NamedContentModelEntity(dateCreatedXName), new NamedContentModelEntity(dateModifiedXName), new NamedContentModelEntity(ownerNameXName), new NamedContentModelEntity(ownerEmailXName), new NamedContentModelEntity(ownerIdXName), new NamedContentModelEntity(docsXName), new NamedContentModelEntity(expansionStateXName), new NamedContentModelEntity(vertScrollStateXName), new NamedContentModelEntity(windowTopXName), new NamedContentModelEntity(windowLeftXName), new NamedContentModelEntity(windowBottomXName), new NamedContentModelEntity(windowRightXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(titleXName, typeof(string));
+            localElementDictionary.Add(dateCreatedXName, typeof(string));
+            localElementDictionary.Add(dateModifiedXName, typeof(string));
+            localElementDictionary.Add(ownerNameXName, typeof(string));
+            localElementDictionary.Add(ownerEmailXName, typeof(string));
+            localElementDictionary.Add(ownerIdXName, typeof(System.Uri));
+            localElementDictionary.Add(docsXName, typeof(System.Uri));
+            localElementDictionary.Add(expansionStateXName, typeof(string));
+            localElementDictionary.Add(vertScrollStateXName, typeof(decimal));
+            localElementDictionary.Add(windowTopXName, typeof(decimal));
+            localElementDictionary.Add(windowLeftXName, typeof(decimal));
+            localElementDictionary.Add(windowBottomXName, typeof(decimal));
+            localElementDictionary.Add(windowRightXName, typeof(decimal));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -637,30 +685,6 @@ namespace XObjectsTests.Schemas.Opml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Head>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(titleXName, typeof(string));
-            localElementDictionary.Add(dateCreatedXName, typeof(string));
-            localElementDictionary.Add(dateModifiedXName, typeof(string));
-            localElementDictionary.Add(ownerNameXName, typeof(string));
-            localElementDictionary.Add(ownerEmailXName, typeof(string));
-            localElementDictionary.Add(ownerIdXName, typeof(System.Uri));
-            localElementDictionary.Add(docsXName, typeof(System.Uri));
-            localElementDictionary.Add(expansionStateXName, typeof(string));
-            localElementDictionary.Add(vertScrollStateXName, typeof(decimal));
-            localElementDictionary.Add(windowTopXName, typeof(decimal));
-            localElementDictionary.Add(windowLeftXName, typeof(decimal));
-            localElementDictionary.Add(windowBottomXName, typeof(decimal));
-            localElementDictionary.Add(windowRightXName, typeof(decimal));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -670,84 +694,10 @@ namespace XObjectsTests.Schemas.Opml {
     /// </summary>
     public partial class Outline : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName outline1XName = System.Xml.Linq.XName.Get("outline", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<Outline> outline1Field;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName textXName = System.Xml.Linq.XName.Get("text", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName isCommentXName = System.Xml.Linq.XName.Get("isComment", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool isCommentDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName isBreakpointXName = System.Xml.Linq.XName.Get("isBreakpoint", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool isBreakpointDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName createdXName = System.Xml.Linq.XName.Get("created", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName descriptionXName = System.Xml.Linq.XName.Get("description", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName urlXName = System.Xml.Linq.XName.Get("url", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName htmlUrlXName = System.Xml.Linq.XName.Get("htmlUrl", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName xmlUrlXName = System.Xml.Linq.XName.Get("xmlUrl", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName languageXName = System.Xml.Linq.XName.Get("language", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Outline", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator Outline(XElement xe) { return XTypedServices.ToXTypedElement<Outline>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static Outline() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(outline1XName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<Outline>(this);
         }
         
         /// <summary>
@@ -757,6 +707,13 @@ namespace XObjectsTests.Schemas.Opml {
         /// </summary>
         public Outline() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName outline1XName = System.Xml.Linq.XName.Get("outline", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<Outline> outline1Field;
         
         /// <summary>
         /// <para>
@@ -788,6 +745,10 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName textXName = System.Xml.Linq.XName.Get("text", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -803,6 +764,13 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName isCommentXName = System.Xml.Linq.XName.Get("isComment", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static bool isCommentDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -811,12 +779,22 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual bool isComment {
             get {
                 XAttribute x = this.Attribute(isCommentXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, isCommentDefaultValue);
+                if ((x == null)) {
+                    return isCommentDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(isCommentXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName isBreakpointXName = System.Xml.Linq.XName.Get("isBreakpoint", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static bool isBreakpointDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -826,12 +804,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual bool isBreakpoint {
             get {
                 XAttribute x = this.Attribute(isBreakpointXName);
-                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype, isBreakpointDefaultValue);
+                if ((x == null)) {
+                    return isBreakpointDefaultValue;
+                }
+                return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetAttribute(isBreakpointXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName createdXName = System.Xml.Linq.XName.Get("created", "");
         
         /// <summary>
         /// <para>
@@ -841,12 +826,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string created {
             get {
                 XAttribute x = this.Attribute(createdXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(createdXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName categoryXName = System.Xml.Linq.XName.Get("category", "");
         
         /// <summary>
         /// <para>
@@ -856,12 +848,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string category {
             get {
                 XAttribute x = this.Attribute(categoryXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(categoryXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName descriptionXName = System.Xml.Linq.XName.Get("description", "");
         
         /// <summary>
         /// <para>
@@ -871,12 +870,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string description {
             get {
                 XAttribute x = this.Attribute(descriptionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(descriptionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName urlXName = System.Xml.Linq.XName.Get("url", "");
         
         /// <summary>
         /// <para>
@@ -886,12 +892,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual System.Uri url {
             get {
                 XAttribute x = this.Attribute(urlXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(urlXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName htmlUrlXName = System.Xml.Linq.XName.Get("htmlUrl", "");
         
         /// <summary>
         /// <para>
@@ -901,12 +914,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual System.Uri htmlUrl {
             get {
                 XAttribute x = this.Attribute(htmlUrlXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(htmlUrlXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName xmlUrlXName = System.Xml.Linq.XName.Get("xmlUrl", "");
         
         /// <summary>
         /// <para>
@@ -916,12 +936,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual System.Uri xmlUrl {
             get {
                 XAttribute x = this.Attribute(xmlUrlXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetAttribute(xmlUrlXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
         
         /// <summary>
         /// <para>
@@ -931,12 +958,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string title {
             get {
                 XAttribute x = this.Attribute(titleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(titleXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
         
         /// <summary>
         /// <para>
@@ -946,12 +980,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName languageXName = System.Xml.Linq.XName.Get("language", "");
         
         /// <summary>
         /// <para>
@@ -961,12 +1002,19 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual object language {
             get {
                 XAttribute x = this.Attribute(languageXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseUnionValue(x, global::XObjectsTests.Schemas.Opml.Language.TypeDefinition);
             }
             set {
                 this.SetUnionAttribute(value, "language", this, languageXName, global::XObjectsTests.Schemas.Opml.Language.TypeDefinition);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
         
         /// <summary>
         /// <para>
@@ -976,6 +1024,9 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual string type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -983,11 +1034,32 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Outline", "");
+        
+        static Outline() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(outline1XName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(outline1XName, typeof(Outline));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1010,50 +1082,38 @@ namespace XObjectsTests.Schemas.Opml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<Outline>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(outline1XName, typeof(Outline));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public sealed class RFC822Date {
+        
+        private RFC822Date() {
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "((Mon|Tue|Wed|Thu|Fri|Sat|Sun),\\s*)?\\d\\d?\\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|" +
                             "Oct|Nov|Dec)\\s+\\d\\d(\\d\\d)?\\s+\\d\\d:\\d\\d(:\\d\\d)?\\s+([+\\-]?\\d\\d\\d\\d|[A-Z]{2,3})"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private RFC822Date() {
-        }
     }
     
     public sealed class EmailAddress {
         
+        private EmailAddress() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "[a-zA-Z0-9_\\-][a-zA-Z0-9_.\\-]*@[a-zA-Z0-9_\\-][a-zA-Z0-9_.\\-]*"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private EmailAddress() {
-        }
     }
     
     public sealed class Language {
+        
+        private Language() {
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Language), null),
                     XObjectsTests.Schemas.Opml.UnknownValidator.TypeDefinition});
-        
-        private Language() {
-        }
     }
     
     public enum Unknown {
@@ -1063,40 +1123,69 @@ namespace XObjectsTests.Schemas.Opml {
     
     public sealed class UnknownValidator {
         
+        private UnknownValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "unknown"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private UnknownValidator() {
-        }
     }
     
-    public sealed class Version {
+    public enum Version {
+        
+        _1_0,
+        
+        _2_0,
+    }
+    
+    public sealed class VersionValidator {
+        
+        private VersionValidator() {
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                        "1.0",
-                        "2.0"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private Version() {
-        }
+                        "1.0:_1_0",
+                        "2.0:_2_0"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
     }
     
     public partial class opml : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private OPML ContentField;
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("opml", "");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static opml Load(string xmlFile) {
+            return XTypedServices.Load<opml, OPML>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static opml Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<opml, OPML>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static opml Parse(string xml) {
+            return XTypedServices.Parse<opml, OPML>(xml, LinqToXsdTypeManager.Instance);
+        }
         
 		public static explicit operator opml(XElement xe) { return XTypedServices.ToXTypedElement<opml, OPML>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        public opml() {
-            SetInnerType(new OPML());
+        public override XTypedElement Clone() {
+            return new opml(((OPML)(this.Content.Clone())));
         }
         
-        public opml(OPML content) {
-            SetInnerType(content);
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private OPML ContentField;
+        
+        public opml() {
+            SetInnerType(new OPML());
         }
         
         public override XElement Untyped {
@@ -1113,6 +1202,15 @@ namespace XObjectsTests.Schemas.Opml {
             get {
                 return ContentField;
             }
+        }
+        
+        private void SetInnerType(OPML ContentField) {
+            this.ContentField = ((OPML)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        public opml(OPML content) {
+            SetInnerType(content);
         }
         
         /// <summary>
@@ -1154,7 +1252,7 @@ namespace XObjectsTests.Schemas.Opml {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string version {
+        public virtual XObjectsTests.Schemas.Opml.Version version {
             get {
                 return this.ContentField.version;
             }
@@ -1162,6 +1260,8 @@ namespace XObjectsTests.Schemas.Opml {
                 this.ContentField.version = value;
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("opml", "");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
@@ -1174,6 +1274,10 @@ namespace XObjectsTests.Schemas.Opml {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1196,66 +1300,35 @@ namespace XObjectsTests.Schemas.Opml {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static opml Load(string xmlFile) {
-            return XTypedServices.Load<opml, OPML>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static opml Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<opml, OPML>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static opml Parse(string xml) {
-            return XTypedServices.Parse<opml, OPML>(xml, LinqToXsdTypeManager.Instance);
-        }
-        
-        public override XTypedElement Clone() {
-            return new opml(((OPML)(this.Content.Clone())));
-        }
-        
-        private void SetInnerType(OPML ContentField) {
-            this.ContentField = ((OPML)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
+        private LinqToXsdTypeManager() {
+        }
+        
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildTypeDictionary() {
+            typeDictionary.Add(System.Xml.Linq.XName.Get("OPML", ""), typeof(global::XObjectsTests.Schemas.Opml.OPML));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Body", ""), typeof(global::XObjectsTests.Schemas.Opml.Body));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Head", ""), typeof(global::XObjectsTests.Schemas.Opml.Head));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("Outline", ""), typeof(global::XObjectsTests.Schemas.Opml.Outline));
+        }
         
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("opml", ""), typeof(global::XObjectsTests.Schemas.Opml.opml));
+        }
+        
         private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
         
+        private static void BuildWrapperDictionary() {
+            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.Opml.opml), typeof(global::XObjectsTests.Schemas.Opml.OPML));
+        }
+        
         private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
-        private LinqToXsdTypeManager() {
-        }
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
@@ -1268,6 +1341,10 @@ namespace XObjectsTests.Schemas.Opml {
             set {
                 schemaSet = value;
             }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
         }
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
@@ -1288,33 +1365,23 @@ namespace XObjectsTests.Schemas.Opml {
             }
         }
         
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
-        
-        private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("OPML", ""), typeof(global::XObjectsTests.Schemas.Opml.OPML));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Body", ""), typeof(global::XObjectsTests.Schemas.Opml.Body));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Head", ""), typeof(global::XObjectsTests.Schemas.Opml.Head));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("Outline", ""), typeof(global::XObjectsTests.Schemas.Opml.Outline));
-        }
-        
-        private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("opml", ""), typeof(global::XObjectsTests.Schemas.Opml.opml));
-        }
-        
-        private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(XObjectsTests.Schemas.Opml.opml), typeof(global::XObjectsTests.Schemas.Opml.OPML));
-        }
-        
-        protected internal static void AddSchemas(XmlSchemaSet schemas) {
-            schemas.Add(schemaSet);
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
         }
         
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("opml", "")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -1326,27 +1393,7 @@ namespace XObjectsTests.Schemas.Opml {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public opml opml {  get {return rootObject as opml; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(opml root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -1445,26 +1492,6 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::XObjectsTests.Schemas.Opml.opml opml {  get {return rootObject as global::XObjectsTests.Schemas.Opml.opml; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::XObjectsTests.Schemas.Opml.opml root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -1476,6 +1503,26 @@ namespace XObjectsTests.Schemas.Opml {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(opml root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public opml opml {  get {return rootObject as opml; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -1574,5 +1621,25 @@ namespace XObjectsTests.Schemas.Opml {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::XObjectsTests.Schemas.Opml.opml root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::XObjectsTests.Schemas.Opml.opml opml {  get {return rootObject as global::XObjectsTests.Schemas.Opml.opml; } }
     }
 }
