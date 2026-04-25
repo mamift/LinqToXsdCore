@@ -116,6 +116,12 @@
       "commandLineArgs": "gen EnumsTest.xsd -a",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\EnumsTest",
       "hotReloadEnabled": false
+    },
+    "TraML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\TraML",
+      "hotReloadEnabled": false
     }
   }
 }
