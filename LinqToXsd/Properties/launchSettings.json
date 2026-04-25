@@ -25,7 +25,7 @@
     "LinqToXsdConfiguration": {
       "commandName": "Project",
       "commandLineArgs": "gen \"LinqToXsdConfiguration.xsd\" -a",
-      "workingDirectory": "..\\..\\XObjectsCode\\Configuration",
+      "workingDirectory": "..\\XObjectsCode\\Configuration",
       "hotReloadEnabled": false
     },
     "MSBuild": {
