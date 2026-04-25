@@ -140,6 +140,30 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\SBML",
       "hotReloadEnabled": false
+    },
+    "OpenPackagingConventions-XMLSchema": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OpenPackagingConventions-XMLSchema",
+      "hotReloadEnabled": false
+    },
+    "OPC": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\Ua\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OPC",
+      "hotReloadEnabled": false
+    },
+    "OGC-misc": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OGC-misc",
+      "hotReloadEnabled": false
+    },
+    "OFMX": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\OFMX",
+      "hotReloadEnabled": false
     }
   }
 }
