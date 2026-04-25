@@ -31,9 +31,9 @@ namespace Microsoft.Schemas.SharePoint {
         
         False,
         
-        _true,
+        @true,
         
-        _false,
+        @false,
     }
     
     public sealed class TRUEFALSEValidator {
@@ -47,8 +47,8 @@ namespace Microsoft.Schemas.SharePoint {
                         "FALSE",
                         "True",
                         "False",
-                        "true:_true",
-                        "false:_false"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+                        "true:@true",
+                        "false:@false"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
     }
     
     public sealed class UniqueIdentifier {
@@ -14636,7 +14636,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName AllowFreeFormXName = System.Xml.Linq.XName.Get("AllowFreeForm", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool AllowFreeFormDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool AllowFreeFormDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -14705,7 +14705,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName AutoCompleteXName = System.Xml.Linq.XName.Get("AutoComplete", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool AutoCompleteDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
+        internal static bool AutoCompleteDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -14730,7 +14730,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName AutoCompleteDelayXName = System.Xml.Linq.XName.Get("AutoCompleteDelay", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static decimal AutoCompleteDelayDefaultValue = System.Xml.XmlConvert.ToDecimal("100");
+        internal static decimal AutoCompleteDelayDefaultValue = System.Xml.XmlConvert.ToDecimal("100");
         
         /// <summary>
         /// <para>
@@ -14755,7 +14755,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName CacheMenuVersionsXName = System.Xml.Linq.XName.Get("CacheMenuVersions", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -14975,7 +14975,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateDynamicallyXName = System.Xml.Linq.XName.Get("PopulateDynamically", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -15022,7 +15022,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateOnlyOnceXName = System.Xml.Linq.XName.Get("PopulateOnlyOnce", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -16921,7 +16921,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName CacheMenuVersionsXName = System.Xml.Linq.XName.Get("CacheMenuVersions", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -17097,7 +17097,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateDynamicallyXName = System.Xml.Linq.XName.Get("PopulateDynamically", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -17144,7 +17144,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateOnlyOnceXName = System.Xml.Linq.XName.Get("PopulateOnlyOnce", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -17600,7 +17600,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName CacheMenuVersionsXName = System.Xml.Linq.XName.Get("CacheMenuVersions", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -17913,7 +17913,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateDynamicallyXName = System.Xml.Linq.XName.Get("PopulateDynamically", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -17960,7 +17960,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateOnlyOnceXName = System.Xml.Linq.XName.Get("PopulateOnlyOnce", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -20059,7 +20059,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName CacheMenuVersionsXName = System.Xml.Linq.XName.Get("CacheMenuVersions", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -21335,7 +21335,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateDynamicallyXName = System.Xml.Linq.XName.Get("PopulateDynamically", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -21382,7 +21382,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateOnlyOnceXName = System.Xml.Linq.XName.Get("PopulateOnlyOnce", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -22315,7 +22315,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName ScrollableXName = System.Xml.Linq.XName.Get("Scrollable", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool ScrollableDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool ScrollableDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -22384,7 +22384,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName DisplayModeXName = System.Xml.Linq.XName.Get("DisplayMode", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Microsoft.Schemas.SharePoint.DisplayModeType DisplayModeDefaultValue = Microsoft.Schemas.SharePoint.DisplayModeType.Menu;
+        internal static Microsoft.Schemas.SharePoint.DisplayModeType DisplayModeDefaultValue = Microsoft.Schemas.SharePoint.DisplayModeType.Menu;
         
         /// <summary>
         /// <para>
@@ -22822,7 +22822,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName CacheMenuVersionsXName = System.Xml.Linq.XName.Get("CacheMenuVersions", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -23039,7 +23039,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateDynamicallyXName = System.Xml.Linq.XName.Get("PopulateDynamically", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -23086,7 +23086,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateOnlyOnceXName = System.Xml.Linq.XName.Get("PopulateOnlyOnce", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -26719,7 +26719,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName CacheMenuVersionsXName = System.Xml.Linq.XName.Get("CacheMenuVersions", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool CacheMenuVersionsDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -27098,7 +27098,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateDynamicallyXName = System.Xml.Linq.XName.Get("PopulateDynamically", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateDynamicallyDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -27145,7 +27145,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName PopulateOnlyOnceXName = System.Xml.Linq.XName.Get("PopulateOnlyOnce", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool PopulateOnlyOnceDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -29841,7 +29841,7 @@ namespace Microsoft.Schemas.SharePoint {
             protected internal static readonly System.Xml.Linq.XName FunctionXName = System.Xml.Linq.XName.Get("Function", "");
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            private static bool FunctionDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+            internal static bool FunctionDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
             
             /// <summary>
             /// <para>
@@ -31913,7 +31913,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName FunctionNameXName = System.Xml.Linq.XName.Get("FunctionName", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string FunctionNameDefaultValue = "";
+        internal static string FunctionNameDefaultValue = "";
         
         /// <summary>
         /// <para>
@@ -31960,7 +31960,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName CreatesTaskXName = System.Xml.Linq.XName.Get("CreatesTask", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool CreatesTaskDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool CreatesTaskDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -32026,7 +32026,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName IsErrorXName = System.Xml.Linq.XName.Get("IsError", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool IsErrorDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool IsErrorDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -32051,7 +32051,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName ListModerationXName = System.Xml.Linq.XName.Get("ListModeration", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool ListModerationDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool ListModerationDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -32076,7 +32076,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName UsesCurrentItemXName = System.Xml.Linq.XName.Get("UsesCurrentItem", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool UsesCurrentItemDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool UsesCurrentItemDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -32240,7 +32240,7 @@ namespace Microsoft.Schemas.SharePoint {
         protected internal static readonly System.Xml.Linq.XName SandboxedFunctionXName = System.Xml.Linq.XName.Get("SandboxedFunction", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static bool SandboxedFunctionDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        internal static bool SandboxedFunctionDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -59710,9 +59710,9 @@ namespace Microsoft.Schemas.SharePoint {
         
         FALSE,
         
-        _true,
+        @true,
         
-        _false,
+        @false,
         
         _Resources_core_True_Unless_Jpn,
     }
@@ -59726,8 +59726,8 @@ namespace Microsoft.Schemas.SharePoint {
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "TRUE",
                         "FALSE",
-                        "true:_true",
-                        "false:_false",
+                        "true:@true",
+                        "false:@false",
                         "$Resources:core,True_Unless_Jpn:_Resources_core_True_Unless_Jpn"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
     }
     
@@ -63767,9 +63767,9 @@ namespace Microsoft.Schemas.SharePoint {
     
     public enum PropertyBagType {
         
-        _int,
+        @int,
         
-        _string,
+        @string,
         
         DateTime,
     }
@@ -63781,8 +63781,8 @@ namespace Microsoft.Schemas.SharePoint {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                        "int:_int",
-                        "string:_string",
+                        "int:@int",
+                        "string:@string",
                         "DateTime"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
     }
     
