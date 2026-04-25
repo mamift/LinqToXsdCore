@@ -4,12 +4,6 @@
       "commandName": "Project",
       "commandLineArgs": "gen -a C:\\Users\\mmiftah\\source\\Projects\\LinqToXsdCore\\GeneratedSchemaLibraries\\Atom\\atom.xsd"
     },
-    "EnumInvalidChars": {
-      "commandName": "Project",
-      "commandLineArgs": "gen EnumsTest.xsd -a",
-      "workingDirectory": "..\\GeneratedSchemaLibraries\\EnumsTest",
-      "hotReloadEnabled": false
-    },
     "W3C XSD": {
       "commandName": "Project",
       "commandLineArgs": "gen \"W3C XMLSchema v1.xsd\" -a",
@@ -116,6 +110,12 @@
       "commandName": "Project",
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\Elements"
+    },
+    "EnumTest": {
+      "commandName": "Project",
+      "commandLineArgs": "gen EnumsTest.xsd -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\EnumsTest",
+      "hotReloadEnabled": false
     }
   }
 }
