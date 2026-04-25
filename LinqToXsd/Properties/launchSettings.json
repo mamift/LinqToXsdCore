@@ -122,6 +122,12 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\TraML",
       "hotReloadEnabled": false
+    },
+    "ThermoML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\ThermoML",
+      "hotReloadEnabled": false
     }
   }
 }
