@@ -16,6 +16,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
     <RootNamespace>LinqToXsd</RootNamespace>
+	<PublishSingleFile Condition="$(TargetFramework) != 'netframework472'">true</PublishSingleFile>
+	<!-- <PublishTrimmed Condition="$(TargetFramework) != 'netframework472'">true</PublishTrimmed> -->
   </PropertyGroup>
 
   <ItemGroup>
