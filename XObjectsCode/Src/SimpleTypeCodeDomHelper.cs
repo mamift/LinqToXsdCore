@@ -420,7 +420,8 @@ namespace Xml.Schema.Linq.CodeGen
             }
             else if (isEnum)
             {
-                return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(builtInType), strValue);
+                var enumFacet = new EnumFacet(strValue);
+                return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(builtInType), enumFacet.Member);
             }
             else if (localType == "Uri")
             {
