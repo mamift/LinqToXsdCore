@@ -92,8 +92,8 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else 
                 {
-                    var element = ProcessType2(type as ClrContentTypeInfo, null, true); // Sets current cNamespace as side-effet
-                    cNamespace.Add(element);
+                    // TODO: no it doesn't set cNamespace? (anymore?)
+                    var element = ProcessType2(type as ClrContentTypeInfo, cNamespace); // Sets current cNamespace as side-effet
 
                     if (type.typeOrigin == SchemaOrigin.Element)
                     {
@@ -109,14 +109,16 @@ namespace Xml.Schema.Linq.CodeGen
             return codeNamespacesTable.Values;
         }
 
-        private CElement ProcessType2(ClrContentTypeInfo typeInfo, string parentIdentifier, bool globalType)
+        private CElement ProcessType2(ClrContentTypeInfo typeInfo, IHasTypes parent)
         {
-            SetFullTypeName(typeInfo, parentIdentifier);
+            bool globalType = parent is CNamespace;
+            SetFullTypeName(typeInfo, parent is CElement p ? p.Fqn : null);
 
             if (globalType)
                 currentNamespace = typeInfo.clrtypeNs;  // dependent on SetFullTypeName above
 
             var element = new CElement(typeInfo);
+            parent.Add(element);
 
             foreach (var content in typeInfo.Content) 
             {
@@ -135,7 +137,25 @@ namespace Xml.Schema.Linq.CodeGen
                     AllElements.Add(element);
             }
 
+            ProcessNestedTypes(typeInfo.NestedTypes, element);
+
             return element;
+        }
+
+        private void ProcessNestedTypes(List<ClrTypeInfo> anonymousTypes, CElement parent)
+        {
+            foreach (ClrTypeInfo nestedType in anonymousTypes) 
+            {
+                // TODO: check if enum is already declared
+                if (false && nestedType is EnumSimpleTypeInfo && EnumAlreadyExistsInParent(nestedType.clrtypeName, null)) // null -> [CodeTypeDeclaration]parentTypeDecl)) 
+                   continue;
+
+                CClass element;
+                if (nestedType is ClrSimpleTypeInfo simpleType) 
+                    parent.Add(new CSimpleType(simpleType, nameMappings, settings));
+                else
+                    element = ProcessType2(nestedType as ClrContentTypeInfo, parent);
+            }
         }
 
         private CodeTypeDeclaration ProcessType(ClrContentTypeInfo typeInfo, string parentIdentifier, bool globalType)
@@ -174,33 +194,8 @@ namespace Xml.Schema.Linq.CodeGen
                 //     });
             }
 
-            ProcessNestedTypes(typeInfo.NestedTypes, builtType, typeInfo.clrFullTypeName);
+            // ProcessNestedTypes(typeInfo.NestedTypes, builtType, typeInfo.clrFullTypeName);
             return builtType;
-        }
-
-
-        private void ProcessNestedTypes(List<ClrTypeInfo> anonymousTypes, CodeTypeDeclaration parentTypeDecl, string parentIdentifier)
-        {
-            foreach (ClrTypeInfo nestedType in anonymousTypes)
-            {
-                if (nestedType is EnumSimpleTypeInfo && EnumAlreadyExistsInParent(nestedType.clrtypeName, parentTypeDecl)) 
-                    continue;
-
-                CodeTypeDeclaration decl = null;
-                if (nestedType is ClrSimpleTypeInfo simpleTypeInfo)
-                {
-                    decl = TypeBuilder.CreateSimpleType(simpleTypeInfo, nameMappings, settings);
-                    // Anonymous simple types are private within the scope of the parent class
-                    decl.TypeAttributes = TypeAttributes.NestedPrivate;
-                }
-                else
-                {
-                    decl = ProcessType(nestedType as ClrContentTypeInfo, parentIdentifier, false);
-                }
-
-                parentTypeDecl.Members.Add(decl);
-                decl.SetParent(parentTypeDecl);
-            }
         }
 
         private void ProcessProperties(IEnumerable<ContentInfo> properties, List<ClrAnnotation> annotations)

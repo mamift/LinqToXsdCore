@@ -3,7 +3,7 @@
 [XmlSchemaProviderAttribute("{{$1.Name}}SchemaProvider")]
 {{ end -}}
 {{
-    $1.Namespace.AccessModifier
+    $1.Namespace?.AccessModifier ?? "public"
     $1.IsAbstract ? " abstract" : ""
     $1.IsSealed ? " sealed" : ""
     " partial class "
@@ -86,10 +86,21 @@
     }
     {{- end }}
 
-    {{ include 'comments.scriban-cs' $1.Comments -}}
+    {{ include 'comments.scriban-cs' $1.Comments ~}}
     public {{ $1.Name }}() {
         {{~ # TODO: review CreateDEfaultConstructor for Wrapper types ~}}
     }
+
+    {{- 
+        for $nested in $1.Types; 
+            # TODO: this loop is duplicated below for nested complex types, 
+            #       we should simplify as declaration order has no importance 
+            #       but for now I want to match legacy output 1:1
+            if !$nested.IsSimpleType; continue; end 
+    }}
+
+    {{ include 'simple-type.scriban-cs' $nested }}
+    {{- end }}
 
     {{- for $content in $1.Content }}
     {{ include 'attribute.scriban-cs' $content $1 }}
@@ -135,5 +146,16 @@
         {{~ end ~}}
     }
 
+    {{- end }}
+
+    {{- 
+        for $nested in $1.Types; 
+            # TODO: this loop is duplicated below for nested complex types, 
+            #       we should simplify as declaration order has no importance 
+            #       but for now I want to match legacy output 1:1
+            if $nested.IsSimpleType; continue; end 
+    }}
+
+    {{ include 'class.scriban-cs' $nested }}
     {{- end }}
 }

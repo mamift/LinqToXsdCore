@@ -12,7 +12,9 @@ namespace Xml.Schema.Linq.CodeGen.Model;
 /// </summary>
 public abstract class CClass
 {
-    public CNamespace? Namespace { get; set; }    
+    // Initially null until added to a namespace during processing.
+    // Remains null for nested types.
+    public CNamespace? Namespace { get; set; }
 
     // This isn't great OOP design but Scriban doesn't have first-class support for OOP (no `is` operator).
     // Maybe it'd be cleaner to put the `is CSimpleType` behind a global function.
@@ -30,7 +32,7 @@ public abstract class CClass
 /// <summary>
 /// Represents a class depicting an xsd element in generated code
 /// </summary>
-public class CElement(ClrContentTypeInfo info) : CClass
+public class CElement(ClrContentTypeInfo info) : CClass, IHasTypes
 {
     public string XName => info.schemaName;
     public string XNamespace => info.schemaNs;
@@ -47,6 +49,10 @@ public class CElement(ClrContentTypeInfo info) : CClass
     public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 
     public IEnumerable<CAttribute> Content => info.Content.SelectMany(FlattenContents);
+
+    public List<CClass> Types { get; } = [];
+
+    public void Add(CClass type) => Types.Add(type);
 
     private static IEnumerable<CAttribute> FlattenContents(ContentInfo info)
     {
@@ -83,7 +89,10 @@ public class CSimpleType(
 
     public CompiledFacets Restrictions => info.RestrictionFacets;
     
-    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
+    public IEnumerable<string> Comments 
+        => Namespace is null 
+        ? []    // no comments on nested simple types
+        : info.Annotations?.Select(a => a.Text) ?? [];
 
     public bool IsEnum => info is EnumSimpleTypeInfo;
     public string EnumName => info.clrtypeName;

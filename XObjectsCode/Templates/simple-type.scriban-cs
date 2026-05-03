@@ -1,7 +1,7 @@
 {{- if $1.IsEnum -}}
 
 {{ include 'comments.scriban-cs' $1.Comments -}}
-{{ $1.Namespace.AccessModifier }} enum {{ $1.EnumName }} {
+{{ $1.Namespace?.AccessModifier ?? "public" }} enum {{ $1.EnumName }} {
 {{ for $enumValue in $1.EnumValues ~}}
 
     {{ $enumValue }},
@@ -11,7 +11,7 @@
 {{ end # if IsEnum -}}
 
 {{ include 'comments.scriban-cs' $1.Comments -}}
-{{ $1.Namespace.AccessModifier }} sealed class {{ $1.Name }} {
+{{ $1.Namespace?.AccessModifier ?? "public" }} sealed class {{ $1.Name }} {
     
     private {{ $1.Name }}() {
     }

@@ -10,7 +10,7 @@ namespace Xml.Schema.Linq.CodeGen.Model;
 /// Represents a namespace in generated code, holding types.
 /// </summary>
 /// <param name="name">The CLR namespace name</param>
-public class CNamespace(string name)
+public class CNamespace(string name) : IHasTypes
 {
     // TODO: this is temporary to perform migration step-by-step. Must be removed.
     public required CodeNamespace Dom { get; init; }
@@ -24,11 +24,11 @@ public class CNamespace(string name)
 
     public List<CClass> Types { get; } = [];
 
-    public IEnumerable<CElement> Elements => Types.OfType<CElement>();
-
     public void Add(CClass type)
     {
-        type.Namespace = this;
         Types.Add(type);
+        type.Namespace = this;
     }
+
+    public IEnumerable<CElement> Elements => Types.OfType<CElement>();
 }
