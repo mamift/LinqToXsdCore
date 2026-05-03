@@ -2,8 +2,10 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Xml.Schema;
+using Microsoft.VisualBasic;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
 
@@ -111,4 +113,23 @@ public class CSimpleType(
     public IEnumerable<CSimpleType> UnionTypes 
         => ((UnionSimpleTypeInfo)info).MemberTypes
             .Select(x => new CSimpleType(x, nameMappings, settings));
+}
+
+public class CSimpleTypeWrapper(ClrWrapperTypeInfo info, ClrPropertyInfo propertyInfo) : CClass
+{
+    public override bool IsSimpleType => true;
+
+    public string XName => info.schemaName;
+    public string XNamespace => info.schemaNs;
+    public string Name => info.clrtypeName;
+    public string Fqn => QualifiedName(Namespace!.Name, Name);
+    public string WrappedName => info.InnerType.IsSchemaList 
+        ? $"IList<{propertyInfo.ClrTypeName}>" 
+        : propertyInfo.ClrTypeName;
+    public bool NeedsEnumParse => info.InnerType.IsEnum && !info.InnerType.IsEquivalentTo(info.clrtypeName);
+    public string EnumType => info.InnerType.ClrFullTypeName;
+    public CAttribute TypedValueProperty => new CAttribute(propertyInfo);
+    public bool HasWildcard => info.HasElementWildCard; // Unused?    
+    // public XmlTypeCode XmlTypeCode => info.InnerType.TypeCode;
+    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 }

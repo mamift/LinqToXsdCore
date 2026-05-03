@@ -51,9 +51,9 @@ private {{ $list_type }} {{ $1.Name }}Field;
 {{ 
     case $1.Origin 
         when "Element"
-            include 'comments.scriban-cs' ($1.Comments | array.concat $2.Comments)
+            $1.Comments | array.concat $2.Comments | comments '///'
         when "Attribute"
-            include 'comments.scriban-cs' $1.Comments
+            $1.Comments | comments '///'
     end
 -}}
 {{- if Settings.NullableReferences }}
@@ -178,9 +178,9 @@ public {{
 {{ 
     case $1.Origin 
         when "Element"
-            include 'comments.scriban-cs' ($1.Comments | array.concat $2.Comments)
+            $1.Comments | array.concat $2.Comments | comments
         when "Attribute"
-            include 'comments.scriban-cs' $1.Comments
+            $1.Comments | comments
     end
 -}}
 public {{ 
@@ -263,7 +263,7 @@ public {{
                     end
                 end
             end
-        -}}
+        }}
     }
     {{~ if $1.HasSet ~}}
     set {
@@ -345,7 +345,7 @@ public {{
                     $plain_set
                 end
             end
-        -}}        
+        }}
     }
     {{~ end ~}}
 }

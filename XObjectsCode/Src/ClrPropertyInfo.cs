@@ -443,7 +443,8 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 if (ShouldGenerate && typeRef.IsLocalType && createNestedEnumType != null)
                 {
-                    createNestedEnumType(typeRef);
+                    // TODO: this is CodeDom manipulation
+                    // createNestedEnumType(typeRef);
                 }
             }
 

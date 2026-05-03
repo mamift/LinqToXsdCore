@@ -1,9 +1,0 @@
-{{~ if !$1.empty? ~}}
-/// <summary>
-{{~ for $text in $1 ~}}
-/// <para>
-/// {{ $text | newline_prefix '///' }}
-/// </para>
-{{~ end ~}}
-/// </summary>
-{{ end ~}}

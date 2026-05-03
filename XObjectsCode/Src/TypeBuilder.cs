@@ -566,67 +566,9 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal class XSimpleTypedElementBuilder : TypeBuilder
-    {
-        string simpleTypeName;
-        bool isSchemaList;
-
-        public XSimpleTypedElementBuilder(LinqToXsdSettings settings) : base(settings) { }
-
-        internal void Init(string simpleTypeName, bool isSchemaList)
-        {
-            base.InnerInit();
-            this.simpleTypeName = simpleTypeName;
-            this.isSchemaList = isSchemaList;
-        }
-
-        internal override CodeConstructor CreateFunctionalConstructor(List<ClrAnnotation> annotations)
-        {
-            //Create Constructor that takes type to wrap
-            string parameterName = Constants.InnerTypeParamName;
-            CodeConstructor constructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
-            CodeTypeReference returnType = null;
-            if (isSchemaList)
-            {
-                returnType = new CodeTypeReference("IList", new CodeTypeReference(simpleTypeName));
-            }
-            else
-            {
-                returnType = new CodeTypeReference(simpleTypeName);
-            }
-
-            constructor.Parameters.Add(new CodeParameterDeclarationExpression(returnType, parameterName));
-
-            var thisTypedValuePropRef = new CodePropertyReferenceExpression(CodeDomHelper.This(), Constants.SInnerTypePropertyName);
-            var thisConstructorParamRef = new CodeVariableReferenceExpression(parameterName);
-            var codeAssignStatement = new CodeAssignStatement(thisTypedValuePropRef, thisConstructorParamRef);
-
-            if (clrTypeInfo is ClrWrapperTypeInfo wrapperTypeInfo) {
-                if (wrapperTypeInfo.InnerType.IsEnum && !wrapperTypeInfo.InnerType.IsEquivalentTypeReference(returnType)) {
-                    var castAsInnerTypeEnum =
-                        CodeDomHelper.CreateParseEnumCall(wrapperTypeInfo.InnerType.ClrFullTypeName, thisConstructorParamRef);
-
-                    codeAssignStatement = new CodeAssignStatement(thisTypedValuePropRef, castAsInnerTypeEnum);
-                }
-            }
-
-            constructor.Statements.Add(codeAssignStatement);
-
-            ApplyAnnotations(constructor, annotations, null);
-            decl.Members.Add(constructor);
-            return constructor;
-        }
-
-        internal override void CreateProperty(ClrBasePropertyInfo propertyInfo, List<ClrAnnotation> annotations)
-        {
-            propertyInfo.AddToType(this.decl, annotations, DefaultVisibility);
-        }
-    }
-
     internal class XWrapperTypedElementBuilder : TypeBuilder
     {
         string innerTypeName;
-        string innerTypeNs;
         string memberName;
         TypeAttributes innerTypeAttributes;
 
@@ -637,7 +579,6 @@ namespace Xml.Schema.Linq.CodeGen
             base.InnerInit();
             this.memberName = NameGenerator.ChangeClrName(Constants.CInnerTypePropertyName, NameOptions.MakeField);
             this.innerTypeName = innerTypeFullName;
-            this.innerTypeNs = innerTypeNs;
             this.innerTypeAttributes = innerTypeAttributes;
         }
 

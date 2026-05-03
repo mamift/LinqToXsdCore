@@ -322,6 +322,17 @@ public partial class ClrTypeReference
         }
     }
 
+    public bool IsEquivalentTo(string otherTypeName)
+    {        
+        if (otherTypeName.LastIndexOf('.') is var i && i >= 0) 
+        {
+            return string.Equals(otherTypeName.Substring(i + 1), ClrName, StringComparison.Ordinal)
+                && string.Equals(otherTypeName.Substring(0, i), Namespace, StringComparison.Ordinal);
+        }
+
+        return string.Equals(ClrFullTypeName, otherTypeName, StringComparison.Ordinal);
+    }
+
     public bool IsForAnonymousXsdType => (schemaObject as XmlSchemaType)?.IsAnonymous() == true;
 
     public XDocument ToXDoc()

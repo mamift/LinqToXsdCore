@@ -49,6 +49,15 @@ namespace {{ $ns.Name }} {
                 include 'class.scriban-cs' $type
             end
         end
+
+        # Write all wrapper types
+        for $type in $ns.Wrappers
+            "\n\n"
+            if $type.IsSimpleType
+                include 'simple-type-wrapper.scriban-cs' $type
+            # TODO: else
+            end
+        end
     -}}
 
     {{- if TypeManager.Namespace == $ns }}

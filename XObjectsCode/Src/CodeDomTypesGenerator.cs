@@ -21,8 +21,8 @@ namespace Xml.Schema.Linq.CodeGen
 
         // TODO: eventually remove
         XmlQualifiedName rootElementName = XmlQualifiedName.Empty;
-        public CElement RootElement { get; private set; }
-        public IEnumerable<CElement> AllRoots => codeNamespacesTable.Values.SelectMany(ns => ns.Roots);
+        public CClass RootElement { get; private set; }
+        public IEnumerable<CClass> AllRoots => codeNamespacesTable.Values.SelectMany(ns => ns.Roots);
 
         CNamespace cNamespace, rootNamespace;
         public CNamespace RootNamespace => rootNamespace;
@@ -34,11 +34,11 @@ namespace Xml.Schema.Linq.CodeGen
         string currentNamespace;
         string currentFullTypeName;
 
-        public readonly List<CElement> AllTypes = [];
+        public readonly List<CElement> AllTypes = [];        
         // TODO: review naming, this is more an AllTypes than AllElements as it also contains wrapper classes for simple types
         //       but then what's the difference with AllTypes above? is AllElements only the non-nested types? 
         //       I guess I'll figure it out after migrating more code.
-        public readonly List<CElement> AllElements = [];
+        public readonly List<CClass> AllElements = [];
         public readonly List<KeyValuePair<string, string>> AllWrappers = [];
 
         public CodeDomTypesGenerator(LinqToXsdSettings settings)
@@ -332,10 +332,6 @@ namespace Xml.Schema.Linq.CodeGen
             if (wrapperRootElements.Count == 0) return;
 
             var wrapperBuilder = new XWrapperTypedElementBuilder(settings);
-            var simpleTypeBuilder = new XSimpleTypedElementBuilder(settings);
-
-            TypeBuilder builder = null;
-            ClrPropertyInfo typedValPropertyInfo = null;
             foreach (ClrWrapperTypeInfo typeInfo in wrapperRootElements)
             {
                 CClass cType = null;
@@ -343,29 +339,14 @@ namespace Xml.Schema.Linq.CodeGen
                 ClrTypeReference innerType = typeInfo.InnerType;
                 if (innerType.IsSimpleType)
                 {
-                    typedValPropertyInfo = InitializeTypedValuePropertyInfo(typeInfo, typedValPropertyInfo, innerType);
-                    simpleTypeBuilder.Init(typedValPropertyInfo.ClrTypeName, innerType.IsSchemaList);
-                    simpleTypeBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
-                    simpleTypeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
-                    typedValPropertyInfo.SetFixedDefaultValue(typeInfo);
-                    simpleTypeBuilder.CreateProperty(typedValPropertyInfo, typeInfo.Annotations);
-                    simpleTypeBuilder.ApplyAnnotations(typeInfo);
-                    builder = simpleTypeBuilder;
-
-                    // cType = new CSimpleType(typeInfo)
-                    // {
-                    //   Dom = builder.TypeDeclaration,
-                    //   Name = typeInfo.clrtypeName,
-                    // };
-
-                    // TODO: should not be a new instance but rather the one produced by code above, when migrated
-                    // AllElements.Add(new()
-                    // {
-                    //     Dom = builder.TypeDeclaration,
-                    //     Name = typeInfo.clrFullTypeName,
-                    //     XsdName = typeInfo.schemaName,
-                    //     XsdNs = typeInfo.schemaNs,
-                    // });
+                    // TODO: this contains a `CreateNestedEnumType` that creates an enum Declaration,
+                    //       see TODO in ClrPropertyInfo.UpdateTypeReference
+                    var typedValueProperty = InitializeTypedValuePropertyInfo(typeInfo, innerType);
+                    typedValueProperty.SetFixedDefaultValue(typeInfo);
+                    // TODO review? Did it by example for now
+                    // simpleTypeBuilder.ImplementInterfaces(settings.EnableServiceReference);
+                    cType = new CSimpleTypeWrapper(typeInfo, typedValueProperty);
+                    AllElements.Add(cType);
                 }
                 else
                 {
@@ -430,23 +411,17 @@ namespace Xml.Schema.Linq.CodeGen
                             }
                         }
                     }
-
-                    builder = wrapperBuilder;
+                    wrapperBuilder.ImplementInterfaces(settings.EnableServiceReference);
                 }
-
-                builder.ImplementInterfaces(settings.EnableServiceReference);
-                var decl = builder.TypeDeclaration;
 
                 cNamespace = GetCNamespace(typeInfo.clrtypeNs);
                 if (cType != null)  // TODO: temporary
                 {
-                    cNamespace.Add(cType);
-                    cNamespace.Roots.Add((CElement)cType);
+                    cNamespace.AddWrapper(cType);
+                    cNamespace.Roots.Add(cType);
                     if (typeInfo.typeOrigin == SchemaOrigin.Element) 
-                        UpdateRootElement(typeInfo, (CElement)cType);
+                        UpdateRootElement(typeInfo, cType);
                 }
-                // else
-                //    cNamespace.Add(decl);   // TODO: remove at end of migration                
             }
         }
 
@@ -508,7 +483,7 @@ namespace Xml.Schema.Linq.CodeGen
                 rootElementName = new XmlQualifiedName(typeInfo.schemaName, typeInfo.schemaNs);
         }
 
-        private void UpdateRootElement(ClrTypeInfo info, CElement decl)
+        private void UpdateRootElement(ClrTypeInfo info, CClass decl)
         {
             // The last IsRoot element is assumed to be the schema root element
             // When there is no IsRoot element, then the first element in schema is the assumed root.
@@ -518,34 +493,22 @@ namespace Xml.Schema.Linq.CodeGen
                 RootElement ??= decl;
         }
 
-        private ClrPropertyInfo InitializeTypedValuePropertyInfo(ClrTypeInfo typeInfo,
-            ClrPropertyInfo existingTypedValPropertyInfo, ClrTypeReference innerType)
+        private ClrPropertyInfo InitializeTypedValuePropertyInfo(ClrTypeInfo typeInfo, ClrTypeReference innerType)
         {
-            if (existingTypedValPropertyInfo == null)
-            {
-                existingTypedValPropertyInfo = new ClrPropertyInfo(
-                    Constants.SInnerTypePropertyName, 
-                    string.Empty,
-                    Constants.SInnerTypePropertyName, 
-                    Occurs.One, 
-                    settings) 
-                {                    
-                    Origin = SchemaOrigin.Text,
-                };
-            }
-            else
-            {
-                existingTypedValPropertyInfo.Reset();
-            }
 
-            existingTypedValPropertyInfo.TypeReference = innerType;
-            if (typeInfo.IsSubstitutionMember())
-            {
-                existingTypedValPropertyInfo.IsNew = true;
-            }
-
-            existingTypedValPropertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-            return existingTypedValPropertyInfo;
+            var propInfo = new ClrPropertyInfo(
+                Constants.SInnerTypePropertyName, 
+                string.Empty,
+                Constants.SInnerTypePropertyName, 
+                Occurs.One, 
+                settings) 
+            {                    
+                Origin = SchemaOrigin.Text,
+                TypeReference = innerType,
+                IsNew = typeInfo.IsSubstitutionMember(),
+            };
+            propInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+            return propInfo;
         }
         
         private CNamespace GetCNamespace(string clrNamespace)

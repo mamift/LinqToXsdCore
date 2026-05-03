@@ -1,0 +1,74 @@
+{{ $1.Comments | comments '///' -}}
+{{ $1.Namespace.AccessModifier }} partial class {{ $1.Name }} : XTypedElement, IXMetaData {
+
+    public void Save(string xmlFile) {
+        XTypedServices.Save(xmlFile, Untyped);
+    }
+    
+    public void Save(System.IO.TextWriter tw) {
+        XTypedServices.Save(tw, Untyped);
+    }
+    
+    public void Save(System.Xml.XmlWriter xmlWriter) {
+        XTypedServices.Save(xmlWriter, Untyped);
+    }
+    
+    public static {{ $1.Name }} Load(string xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+    }
+    
+    public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+    }
+    
+    public static {{ $1.Name }} Parse(string xml) {
+        return XTypedServices.Parse<{{ $1.Name }}>(xml);
+    }
+    
+    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+    
+    public override XTypedElement Clone() {
+        return XTypedServices.CloneXTypedElement<{{ $1.Name }}>(this);
+    }
+
+    {{ $1.Comments | comments '///' -}}
+    public {{ $1.Name }}() {
+    }
+
+    {{ $1.Comments | comments '///' -}}
+    public {{ $1.Name }}({{ $1.WrappedName | builtin }} content) {
+        {{- if $1.NeedsEnumParse }}
+        this.TypedValue = ({{ $1.EnumType }})Enum.Parse<{{ $1.EnumType }}>(content);
+        {{- else }}
+        this.TypedValue = content;
+        {{- end }}
+    }
+    {{ include 'attribute.scriban-cs' $1.TypedValueProperty $1 }}
+
+    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.Name }}", "{{ $1.XNamespace }}");
+    
+    ContentModelEntity IXMetaData.GetContentModel() {
+        return ContentModelEntity.Default;
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    System.Xml.Linq.XName IXMetaData.SchemaName {
+        get {
+            return xName;
+        }
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    SchemaOrigin IXMetaData.TypeOrigin {
+        get {
+            return SchemaOrigin.Element;
+        }
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    ILinqToXsdTypeManager IXMetaData.TypeManager {
+        get {
+            return LinqToXsdTypeManager.Instance;
+        }
+    }
+}

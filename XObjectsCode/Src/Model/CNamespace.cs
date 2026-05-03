@@ -19,8 +19,7 @@ public class CNamespace(string name) : IHasTypes
 
     public required string AccessModifier { get; init; }
 
-    // List of root elements in this namespace (also found in Types and Elements)
-    public List<CElement> Roots { get; } = [];
+    public List<CClass> Roots { get; } = [];
 
     public List<CClass> Types { get; } = [];
 
@@ -30,5 +29,11 @@ public class CNamespace(string name) : IHasTypes
         type.Namespace = this;
     }
 
-    public IEnumerable<CElement> Elements => Types.OfType<CElement>();
+    public List<CClass> Wrappers { get; } = [];
+
+    public void AddWrapper(CClass wrapper)
+    {
+      Wrappers.Add(wrapper);
+      wrapper.Namespace = this;  
+    } 
 }

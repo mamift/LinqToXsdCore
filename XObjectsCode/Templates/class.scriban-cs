@@ -1,5 +1,5 @@
-{{ include 'comments.scriban-cs' $1.Comments -}}
-{{- if Settings.EnableServiceReference }}
+{{ $1.Comments | comments '///' -}}
+{{ if Settings.EnableServiceReference }}
 [XmlSchemaProviderAttribute("{{$1.Name}}SchemaProvider")]
 {{ end -}}
 {{
@@ -86,7 +86,7 @@
     }
     {{- end }}
 
-    {{ include 'comments.scriban-cs' $1.Comments ~}}
+    {{ $1.Comments | comments '///' -}}
     public {{ $1.Name }}() {
         {{~ # TODO: review CreateDEfaultConstructor for Wrapper types ~}}
     }
