@@ -1,0 +1,157 @@
+{{~ # TODO: comments ~}}
+/* TODO: complex type wrapper */
+public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
+    
+    public void Save(string xmlFile) {
+        XTypedServices.Save(xmlFile, Untyped);
+    }
+    
+    public void Save(System.IO.TextWriter tw) {
+        XTypedServices.Save(tw, Untyped);
+    }
+    
+    public void Save(System.Xml.XmlWriter xmlWriter) {
+        XTypedServices.Save(xmlWriter, Untyped);
+    }
+    
+    public static {{ $1.Name }} Load(string xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}, CodeType>(xmlFile, LinqToXsdTypeManager.Instance);
+    }
+    
+    public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}, CodeType>(xmlFile, LinqToXsdTypeManager.Instance);
+    }
+    
+    public static {{ $1.Name }} Parse(string xml) {
+        return XTypedServices.Parse<{{ $1.Name }}, CodeType>(xml, LinqToXsdTypeManager.Instance);
+    }
+    
+    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}, CodeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+    
+    public override XTypedElement Clone() {
+        return new {{ $1.Name }}(((CodeType)(this.Content.Clone())));
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private CodeType ContentField;
+    
+    /// <summary>
+    /// <para>
+    /// Name or code with an (optional) authority. If the
+    ///      codeSpace attribute is present, its value shall reference a dictionary,
+    ///      thesaurus, or authority for the name or code, such as the organisation
+    ///      who assigned the value, or the dictionary from which it is
+    ///      taken.
+    /// </para>
+    /// <para>
+    /// Type copied from basicTypes.xsd of GML 3 with
+    ///      documentation edited, for possible use outside the ServiceIdentification
+    ///      section of a service metadata document.
+    /// </para>
+    /// </summary>
+    public {{ $1.Name }}() {
+        SetInnerType(new CodeType());
+    }
+    
+    public override XElement Untyped {
+        get {
+            return base.Untyped;
+        }
+        set {
+            base.Untyped = value;
+            this.ContentField.Untyped = value;
+        }
+    }
+    
+    public virtual CodeType Content {
+        get {
+            return ContentField;
+        }
+    }
+    
+    private void SetInnerType(CodeType ContentField) {
+        this.ContentField = ((CodeType)(XTypedServices.GetCloneIfRooted(ContentField)));
+        XTypedServices.SetName(this, this.ContentField);
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Name or code with an (optional) authority. If the
+    ///      codeSpace attribute is present, its value shall reference a dictionary,
+    ///      thesaurus, or authority for the name or code, such as the organisation
+    ///      who assigned the value, or the dictionary from which it is
+    ///      taken.
+    /// </para>
+    /// <para>
+    /// Type copied from basicTypes.xsd of GML 3 with
+    ///      documentation edited, for possible use outside the ServiceIdentification
+    ///      section of a service metadata document.
+    /// </para>
+    /// </summary>
+    public Identifier(CodeType content) {
+        SetInnerType(content);
+    }
+    
+    public virtual string TypedValue {
+        get {
+            return this.ContentField.TypedValue;
+        }
+        set {
+            this.ContentField.TypedValue = value;
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Occurrence: optional
+    /// </para>
+    /// </summary>
+    public virtual System.Uri codeSpace {
+        get {
+            return this.ContentField.codeSpace;
+        }
+        set {
+            this.ContentField.codeSpace = value;
+        }
+    }
+    
+    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Identifier", "http://www.opengis.net/ows/2.0");
+    
+    Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+        get {
+            IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
+            return schemaMetaData.LocalElementsDictionary;
+        }
+    }
+    
+    XTypedElement IXMetaData.Content {
+        get {
+            return this.Content;
+        }
+    }
+    
+    ContentModelEntity IXMetaData.GetContentModel() {
+        return ContentModelEntity.Default;
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    System.Xml.Linq.XName IXMetaData.SchemaName {
+        get {
+            return xName;
+        }
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    SchemaOrigin IXMetaData.TypeOrigin {
+        get {
+            return SchemaOrigin.Element;
+        }
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    ILinqToXsdTypeManager IXMetaData.TypeManager {
+        get {
+            return LinqToXsdTypeManager.Instance;
+        }
+    }
+}

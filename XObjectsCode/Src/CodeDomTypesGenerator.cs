@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.CodeDom;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using Xml.Schema.Linq.CodeGen.Model;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -120,14 +119,7 @@ namespace Xml.Schema.Linq.CodeGen
             var element = new CElement(typeInfo);
             parent.Add(element);
 
-            foreach (var content in typeInfo.Content) 
-            {
-                if (content is ClrPropertyInfo info)
-                {
-                    // TODO: review handling of createNestedEnumType action
-                    info.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, (_) => {});
-                }
-            }
+            ProcessProperties(typeInfo);
 
             if (globalType) 
             {
@@ -150,11 +142,10 @@ namespace Xml.Schema.Linq.CodeGen
                 if (false && nestedType is EnumSimpleTypeInfo && EnumAlreadyExistsInParent(nestedType.clrtypeName, null)) // null -> [CodeTypeDeclaration]parentTypeDecl)) 
                    continue;
 
-                CClass element;
                 if (nestedType is ClrSimpleTypeInfo simpleType) 
                     parent.Add(new CSimpleType(simpleType, nameMappings, settings));
                 else
-                    element = ProcessType2(nestedType as ClrContentTypeInfo, parent);
+                    ProcessType2(nestedType as ClrContentTypeInfo, parent);
             }
         }
 
@@ -168,7 +159,7 @@ namespace Xml.Schema.Linq.CodeGen
             // Build type using TypeBuilder
             typeBuilder = GetTypeBuilder();
             typeBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
-            ProcessProperties(typeInfo.Content, typeInfo.Annotations);
+            //ProcessProperties(typeInfo.Content, typeInfo.Annotations);
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
             typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
 
@@ -198,31 +189,78 @@ namespace Xml.Schema.Linq.CodeGen
             return builtType;
         }
 
-        private void ProcessProperties(IEnumerable<ContentInfo> properties, List<ClrAnnotation> annotations)
+        private void ProcessProperties(ClrContentTypeInfo typeInfo)
         {
-            foreach (ContentInfo child in properties)
+            foreach (var child in typeInfo.Content) 
             {
-                //Child can either be a property directly for attributes or a grouping for content model,
-                if (child.ContentType == ContentType.Property)
+                // Child can either be a property directly for attributes or a grouping for content model
+                if (child is ClrPropertyInfo info)
                 {
-                    ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-                    Debug.Assert(propertyInfo is not null);
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-                    typeBuilder.CreateAttributeProperty(propertyInfo, null);
+                    // TODO: review handling of createNestedEnumType action
+                    info.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, (_) => {});
                 }
                 else
                 {
-                    GroupingInfo rootGroup = child as GroupingInfo;
+                    var rootGroup = child as GroupingInfo;
                     if (rootGroup.IsComplex)
                     {
-                        typeBuilder.StartGrouping(rootGroup);
-                        ProcessComplexGroupProperties(rootGroup, annotations);
-                        typeBuilder.EndGrouping();
+                        // typeBuilder.StartGrouping(rootGroup);
+                        ProcessComplexGroupProperties(rootGroup, typeInfo.Annotations);
+                        // typeBuilder.EndGrouping();
                     }
                     else
-                    {
-                        ProcessGroup(rootGroup, annotations);
-                    }
+                        ProcessGroup(rootGroup, typeInfo.Annotations);
+                }
+            }
+        }
+
+        private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
+        {
+            // typeBuilder.StartGrouping(grouping);
+            foreach (ContentInfo child in grouping.Children)
+            {
+                if (child.ContentType == ContentType.Property)
+                {
+                    ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+                    // typeBuilder.CreateProperty(propertyInfo, annotations);
+                }
+                else if (child.ContentType == ContentType.WildCardProperty)
+                {
+                    ClrWildCardPropertyInfo propertyInfo = child as ClrWildCardPropertyInfo;
+                    // typeBuilder.CreateProperty(propertyInfo, annotations);
+                }
+                else
+                {
+                    Debug.Assert(child.ContentType == ContentType.Grouping);
+                    ProcessGroup(child as GroupingInfo, annotations);
+                }
+            }
+
+            // typeBuilder.EndGrouping();
+        }
+
+        private void ProcessComplexGroupProperties(GroupingInfo grouping, List<ClrAnnotation> annotations)
+        {
+            foreach (ContentInfo child in grouping.Children)
+            {
+                if (child.ContentType == ContentType.Property)
+                {
+                    ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
+                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
+                    // typeBuilder.CreateProperty(propertyInfo, annotations);
+                }
+                else if (child.ContentType == ContentType.WildCardProperty)
+                {
+                    ClrWildCardPropertyInfo propertyInfo = child as ClrWildCardPropertyInfo;
+                    // typeBuilder.CreateProperty(propertyInfo, annotations);
+                }
+                else
+                {
+                    Debug.Assert(child.ContentType == ContentType.Grouping);
+                    // typeBuilder.StartGrouping(child as GroupingInfo);
+                    ProcessComplexGroupProperties(child as GroupingInfo, annotations);
+                    // typeBuilder.EndGrouping();
                 }
             }
         }
@@ -265,57 +303,6 @@ namespace Xml.Schema.Linq.CodeGen
                 .Any(m => m.IsEnum && m.Name == clrEnumTypeName);
         }
 
-        private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
-        {
-            typeBuilder.StartGrouping(grouping);
-            foreach (ContentInfo child in grouping.Children)
-            {
-                if (child.ContentType == ContentType.Property)
-                {
-                    ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-                    typeBuilder.CreateProperty(propertyInfo, annotations);
-                }
-                else if (child.ContentType == ContentType.WildCardProperty)
-                {
-                    ClrWildCardPropertyInfo propertyInfo = child as ClrWildCardPropertyInfo;
-                    typeBuilder.CreateProperty(propertyInfo, annotations);
-                }
-                else
-                {
-                    Debug.Assert(child.ContentType == ContentType.Grouping);
-                    ProcessGroup(child as GroupingInfo, annotations);
-                }
-            }
-
-            typeBuilder.EndGrouping();
-        }
-
-        private void ProcessComplexGroupProperties(GroupingInfo grouping, List<ClrAnnotation> annotations)
-        {
-            foreach (ContentInfo child in grouping.Children)
-            {
-                if (child.ContentType == ContentType.Property)
-                {
-                    ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
-                    propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-                    typeBuilder.CreateProperty(propertyInfo, annotations);
-                }
-                else if (child.ContentType == ContentType.WildCardProperty)
-                {
-                    ClrWildCardPropertyInfo propertyInfo = child as ClrWildCardPropertyInfo;
-                    typeBuilder.CreateProperty(propertyInfo, annotations);
-                }
-                else
-                {
-                    Debug.Assert(child.ContentType == ContentType.Grouping);
-                    typeBuilder.StartGrouping(child as GroupingInfo);
-                    ProcessComplexGroupProperties(child as GroupingInfo, annotations);
-                    typeBuilder.EndGrouping();
-                }
-            }
-        }
-
         private void FindRootNamespace()
         {
             string rootClrNamespace = settings.GetClrNamespace(rootElementName.Namespace);
@@ -350,84 +337,76 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else
                 {
-                    string innerTypeName = null;
                     string innerTypeFullName =
-                        innerType.GetClrFullTypeName(typeInfo.clrtypeNs, nameMappings, settings, out innerTypeName);
+                        innerType.GetClrFullTypeName(typeInfo.clrtypeNs, nameMappings, settings, out var innerTypeName);
                     string innerTypeNs = innerType.Namespace;
 
-                    CodeNamespace innerTypeCodeNamespace = GetCodeNamespace(innerTypeNs);
-                    CodeTypeDeclaration innerTypeDecl = GetCodeTypeDeclaration(innerTypeName, innerTypeCodeNamespace);
-                    TypeAttributes innerTypeAttributes = TypeAttributes.Class;
-                    if (innerTypeDecl != null)
+                    if (GetClass(innerTypeName, innerTypeNs) is not {} innerTypeClass 
+                        && innerTypeName != Constants.XTypedElement) 
                     {
-                        innerTypeAttributes = innerTypeDecl.TypeAttributes;
-                    }
-                    else if (innerTypeName != Constants.XTypedElement)
-                    {
-                        continue;
+                        continue;                        
                     }
 
                     currentNamespace = typeInfo.clrtypeNs;
-                    wrapperBuilder.Init(innerTypeFullName, innerTypeNs, innerTypeAttributes);
-                    wrapperBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
-                    wrapperBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
-                    wrapperBuilder.ApplyAnnotations(typeInfo);
+                    // TODO:
+                    // wrapperBuilder.Init(innerTypeFullName, innerTypeNs, innerTypeAttributes);
+                    // wrapperBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
+                    // wrapperBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
+                    // wrapperBuilder.ApplyAnnotations(typeInfo);
 
-                    // TODO: shouldn't be a new instance but rather from wrapperBuilder when migrated
-                    // AllElements.Add(new() 
+                    cType = new CElementWrapper(typeInfo);
+                    AllElements.Add(cType);
+                    AllWrappers.Add(new(typeInfo.clrFullTypeName, innerTypeNs + "." + innerTypeName));
+
+                    // TODO:
+                    // if (!typeInfo.HasBaseContentType)
                     // {
-                    //     Dom = wrapperBuilder.TypeDeclaration,
-                    //     Name = typeInfo.clrFullTypeName,
-                    //     XsdName = typeInfo.schemaName,
-                    //     XsdNs = typeInfo.schemaNs,
-                    // });
+                    //     //Add innerType properties only if the wrapper's type is not the same as the substitutionGroup head type
+                    //     ClrWrappingPropertyInfo wrappingPropertyInfo = null;
+                    //     //Create forwarding properties
+                    //     if (innerTypeName != Constants.XTypedElement)
+                    //     {
+                    //         //If the wrapped type is xs:anyType, no forwarding properties to create
+                    //         wrappingPropertyInfo = new ClrWrappingPropertyInfo();
 
-                    AllWrappers.Add(new(typeInfo.clrFullTypeName, innerTypeFullName));
+                    //         //Get all properties from the inner type and its base types
+                    //         var memberProperties = innerTypeDecl
+                    //             .GetSelfAndBaseMembers(GetCodeNamespace, GetCodeTypeDeclaration)
+                    //             .OfType<CodeMemberProperty>()
+                    //             .ToArray();
 
-                    if (!typeInfo.HasBaseContentType)
-                    {
-                        //Add innerType properties only if the wrapper's type is not the same as the substitutionGroup head type
-                        ClrWrappingPropertyInfo wrappingPropertyInfo = null;
-                        //Create forwarding properties
-                        if (innerTypeName != Constants.XTypedElement)
-                        {
-                            //If the wrapped type is xs:anyType, no forwarding properties to create
-                            wrappingPropertyInfo = new ClrWrappingPropertyInfo();
-
-                            //Get all properties from the inner type and its base types
-                            var memberProperties = innerTypeDecl
-                                .GetSelfAndBaseMembers(GetCodeNamespace, GetCodeTypeDeclaration)
-                                .OfType<CodeMemberProperty>()
-                                .ToArray();
-
-                            foreach (CodeMemberProperty memberProperty in memberProperties)
-                            {
-                                if (ForwardProperty(memberProperty))
-                                {
-                                    //Do not forward over TypeManager, SchemaName etc
-                                    wrappingPropertyInfo.Init(memberProperty);
-                                    wrapperBuilder.CreateProperty(wrappingPropertyInfo, typeInfo.Annotations);
-                                }
-                            }
-                        }
-                    }
-                    wrapperBuilder.ImplementInterfaces(settings.EnableServiceReference);
+                    //         foreach (CodeMemberProperty memberProperty in memberProperties)
+                    //         {
+                    //             if (ForwardProperty(memberProperty))
+                    //             {
+                    //                 //Do not forward over TypeManager, SchemaName etc
+                    //                 wrappingPropertyInfo.Init(memberProperty);
+                    //                 wrapperBuilder.CreateProperty(wrappingPropertyInfo, typeInfo.Annotations);
+                    //             }
+                    //         }
+                    //     }
+                    // }
+                    // wrapperBuilder.ImplementInterfaces(settings.EnableServiceReference);
                 }
 
                 cNamespace = GetCNamespace(typeInfo.clrtypeNs);
-                if (cType != null)  // TODO: temporary
-                {
-                    cNamespace.AddWrapper(cType);
-                    cNamespace.Roots.Add(cType);
-                    if (typeInfo.typeOrigin == SchemaOrigin.Element) 
-                        UpdateRootElement(typeInfo, cType);
-                }
+                cNamespace.AddWrapper(cType);
+                cNamespace.Roots.Add(cType);
+                if (typeInfo.typeOrigin == SchemaOrigin.Element) 
+                    UpdateRootElement(typeInfo, cType);
             }
         }
 
         private bool ForwardProperty(CodeMemberProperty property)
         {
             return property != null && property.ImplementationTypes.Count == 0; //Its not an interface impl (IXMetaData)
+        }
+
+        private CClass GetClass(string typeName, string ns)
+        {
+            return codeNamespacesTable.TryGetValue(ns, out var codeNs)
+                ? codeNs.Types.FirstOrDefault(x => x.Name == typeName)
+                : null;
         }
 
         private CodeTypeDeclaration GetCodeTypeDeclaration(string typeName, CodeNamespace innerTypeCodeNamespace)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Schema;
 using Microsoft.VisualBasic;
 
@@ -17,6 +18,8 @@ public abstract class CClass
     // Initially null until added to a namespace during processing.
     // Remains null for nested types.
     public CNamespace? Namespace { get; set; }
+
+    public abstract string Name { get; }
 
     // This isn't great OOP design but Scriban doesn't have first-class support for OOP (no `is` operator).
     // Maybe it'd be cleaner to put the `is CSimpleType` behind a global function.
@@ -39,7 +42,7 @@ public class CElement(ClrContentTypeInfo info) : CClass, IHasTypes
     public string XName => info.schemaName;
     public string XNamespace => info.schemaNs;
     public SchemaOrigin Origin => info.typeOrigin;
-    public string Name => info.clrtypeName;
+    public override string Name => info.clrtypeName;
     public string Fqn => QualifiedName(Namespace!.Name, Name);
     public bool IsAbstract => info.IsAbstract;
     public bool IsSealed => info.IsSealed;
@@ -61,10 +64,19 @@ public class CElement(ClrContentTypeInfo info) : CClass, IHasTypes
         if (info.ContentType == ContentType.Property) 
             return info is ClrPropertyInfo { ShouldGenerate: true } p ? [new CAttribute(p)] : [];
         // TODO: flesh out processing of groupings, this is just to understand better the content model
-        if (info.ContentType == ContentType.Grouping) return info.Children.SelectMany(FlattenContents);
+        if (info.ContentType == ContentType.Grouping) 
+            return info.Children.SelectMany(FlattenContents);
         // TODO: wildcard
         return [];
     }
+}
+
+public class CElementWrapper(ClrWrapperTypeInfo info) : CClass
+{
+    public string XName => info.schemaName;
+    public string XNamespace => info.schemaNs;
+    public override string Name => info.clrtypeName;
+    public string Fqn => QualifiedName(Namespace!.Name, Name);
 }
 
 /// <summary>
@@ -82,7 +94,7 @@ public class CSimpleType(
 
     // For enums, the clrtypeName is used for `enum` declaration, 
     // so suffix "Validator" is added to the simple type class holding the `TypeDefinition`.
-    public string Name { get; } = info.clrtypeName + (info is EnumSimpleTypeInfo ? "Validator" : "");
+    public override string Name { get; } = info.clrtypeName + (info is EnumSimpleTypeInfo ? "Validator" : "");
 
     public string FullyQualifiedName { get; } = info.FullyQualifiedName(nameMappings, settings);
 
@@ -121,7 +133,7 @@ public class CSimpleTypeWrapper(ClrWrapperTypeInfo info, ClrPropertyInfo propert
 
     public string XName => info.schemaName;
     public string XNamespace => info.schemaNs;
-    public string Name => info.clrtypeName;
+    public override string Name => info.clrtypeName;
     public string Fqn => QualifiedName(Namespace!.Name, Name);
     public string WrappedName => info.InnerType.IsSchemaList 
         ? $"IList<{propertyInfo.ClrTypeName}>" 

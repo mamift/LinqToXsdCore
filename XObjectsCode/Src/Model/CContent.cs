@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Xml.Schema;
+using Microsoft.VisualBasic;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
 

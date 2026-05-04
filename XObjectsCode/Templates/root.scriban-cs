@@ -124,6 +124,7 @@
         # When rendering XRoot (rather than XRootNamespace) elements from all namespaces are included and could clash with each other.
         scope_init "doc" "rootObject" "Load" "Parse" "Save" "XDocument" "Root"
         for $el in $roots
+            $prefix = $global ? "global::" + $el.Namespace.Name + "." : ""
     }}
 
     public {{ $XRoot }}({{ $prefix }}{{ $el.Name }} root) {

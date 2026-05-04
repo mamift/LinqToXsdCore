@@ -8,7 +8,6 @@ protected internal static readonly {{ $new -}} System.Xml.Linq.XName {{ $1.XName
 
 {{- if $1.FixedOrDefaultValue }}
 
-{{~ # TODO: built-in must be applied more thoroughly, incl. on generic inner types such as List<string> ~}}
 {{~ # TODO: review $1.Type for Union types, see. ClrPropertyInfo.CreateFixedDefaultValue ~}}
 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
@@ -42,7 +41,7 @@ private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
     # TODO: split this template in several parts
     if $1.IsList
         $list_type = $1.IsSubstitution ? "XTypedSubstitutedList<" : $1.IsSimpleType ? "XSimpleList<" : "XTypedList<"
-        $list_type = $list_type + $1.NullableType + ">"
+        $list_type = $list_type + ($1.NullableType | builtin) + ">"
 }}
 
 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -178,9 +177,9 @@ public {{
 {{ 
     case $1.Origin 
         when "Element"
-            $1.Comments | array.concat $2.Comments | comments
+            $1.Comments | array.concat $2.Comments | comments '///'
         when "Attribute"
-            $1.Comments | comments
+            $1.Comments | comments '///'
     end
 -}}
 public {{ 
@@ -263,7 +262,7 @@ public {{
                     end
                 end
             end
-        }}
+        ~}}
     }
     {{~ if $1.HasSet ~}}
     set {
@@ -345,7 +344,7 @@ public {{
                     $plain_set
                 end
             end
-        }}
+        ~}}
     }
     {{~ end ~}}
 }

@@ -160,7 +160,9 @@ public static class XObjectsCoreGenerator
 
             var context = new TemplateContext()
             {
+                LimitToString = 0,
                 LoopLimit = 0,
+                RecursiveLimit = 0,
                 MemberRenamer = m => m.Name,
                 TemplateLoader = new TemplateLoader(),
             };
