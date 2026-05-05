@@ -1,19 +1,29 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using NUnit.Framework;
+using Xml.Schema.Linq.Tests.Extensions;
 
 namespace Xml.Schema.Linq.Tests;
 
-internal class RoslynStreamingTests
+internal class RoslynCodeSplittingTests
 {
     [Test]
-    public void Prototype1()
+    public void PrototypeSplitByNamespaceAndClass()
     {
-        var filePath = @"C:\Development\devdrive\GitHub\LinqToXsdCore\GeneratedSchemaLibraries\Microsoft Project 2007\mspdi_pj12.xsd.cs";
+        DirectoryInfo schemaLibFolder = new DirectoryInfo(Environment.CurrentDirectory).AscendToFolder("GeneratedSchemaLibraries");
+        DirectoryInfo projectFolder = schemaLibFolder.DescendToFolder("Microsoft Project 2007");
+
+        var csFiles = projectFolder.GetFiles("mspdi_pj12.xsd.cs");
+
+        Assert.IsNotEmpty(csFiles);
+
+        var filePath = csFiles.First().FullName;
+
         using var stream = File.OpenRead(filePath);
         var sourceText = SourceText.From(stream, Encoding.UTF8);
         var tree = CSharpSyntaxTree.ParseText(sourceText);
@@ -25,13 +35,13 @@ internal class RoslynStreamingTests
         foreach (var member in root.Members) {
             if (member is BaseNamespaceDeclarationSyntax ns) {
                 foreach (var typeMember in ns.Members.OfType<BaseTypeDeclarationSyntax>()) {
-                    var outputFile = $"{typeMember.Identifier.Text}.cs";
+                    string outputFile = Path.Combine(projectFolder.FullName, $"{typeMember.Identifier.Text}.cs");
                     var content = $"{usings}\nnamespace {ns.Name};\n\n{typeMember.ToFullString()}";
                     File.WriteAllText(outputFile, content);
                 }
             }
             else if (member is BaseTypeDeclarationSyntax type) {
-                var outputFile = $"{type.Identifier.Text}.cs";
+                string outputFile = Path.Combine(projectFolder.FullName, $"{type.Identifier.Text}.cs");
                 var content = $"{usings}\n{type.ToFullString()}";
                 File.WriteAllText(outputFile, content);
             }
