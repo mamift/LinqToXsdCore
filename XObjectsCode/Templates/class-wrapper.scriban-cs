@@ -1,5 +1,4 @@
-{{~ # TODO: comments ~}}
-/* TODO: complex type wrapper */
+{{ $1.Comments | comments '///' -}}
 public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
     
     public void Save(string xmlFile) {
@@ -15,42 +14,29 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
     }
     
     public static {{ $1.Name }} Load(string xmlFile) {
-        return XTypedServices.Load<{{ $1.Name }}, CodeType>(xmlFile, LinqToXsdTypeManager.Instance);
+        return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
     }
     
     public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
-        return XTypedServices.Load<{{ $1.Name }}, CodeType>(xmlFile, LinqToXsdTypeManager.Instance);
+        return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
     }
     
     public static {{ $1.Name }} Parse(string xml) {
-        return XTypedServices.Parse<{{ $1.Name }}, CodeType>(xml, LinqToXsdTypeManager.Instance);
+        return XTypedServices.Parse<{{ $1.Name }}, {{ $1.WrappedName }}>(xml, LinqToXsdTypeManager.Instance);
     }
     
-    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}, CodeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}, {{ $1.WrappedName }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
     
     public override XTypedElement Clone() {
-        return new {{ $1.Name }}(((CodeType)(this.Content.Clone())));
+        return new {{ $1.Name }}((({{ $1.WrappedName }})(this.Content.Clone())));
     }
     
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private CodeType ContentField;
+    private {{ $1.WrappedName }} ContentField;
     
-    /// <summary>
-    /// <para>
-    /// Name or code with an (optional) authority. If the
-    ///      codeSpace attribute is present, its value shall reference a dictionary,
-    ///      thesaurus, or authority for the name or code, such as the organisation
-    ///      who assigned the value, or the dictionary from which it is
-    ///      taken.
-    /// </para>
-    /// <para>
-    /// Type copied from basicTypes.xsd of GML 3 with
-    ///      documentation edited, for possible use outside the ServiceIdentification
-    ///      section of a service metadata document.
-    /// </para>
-    /// </summary>
+    {{ $1.Comments | comments '///' -}}
     public {{ $1.Name }}() {
-        SetInnerType(new CodeType());
+        SetInnerType(new {{ $1.WrappedName }}());
     }
     
     public override XElement Untyped {
@@ -63,59 +49,37 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
         }
     }
     
-    public virtual CodeType Content {
+    public virtual {{ $1.WrappedName }} Content {
         get {
             return ContentField;
         }
     }
     
-    private void SetInnerType(CodeType ContentField) {
-        this.ContentField = ((CodeType)(XTypedServices.GetCloneIfRooted(ContentField)));
+    private void SetInnerType({{ $1.WrappedName }} ContentField) {
+        this.ContentField = (({{ $1.WrappedName }})(XTypedServices.GetCloneIfRooted(ContentField)));
         XTypedServices.SetName(this, this.ContentField);
     }
     
-    /// <summary>
-    /// <para>
-    /// Name or code with an (optional) authority. If the
-    ///      codeSpace attribute is present, its value shall reference a dictionary,
-    ///      thesaurus, or authority for the name or code, such as the organisation
-    ///      who assigned the value, or the dictionary from which it is
-    ///      taken.
-    /// </para>
-    /// <para>
-    /// Type copied from basicTypes.xsd of GML 3 with
-    ///      documentation edited, for possible use outside the ServiceIdentification
-    ///      section of a service metadata document.
-    /// </para>
-    /// </summary>
-    public Identifier(CodeType content) {
+    {{ $1.Comments | comments '///' -}}
+    public {{ $1.Name }}({{ $1.WrappedName }} content) {
         SetInnerType(content);
     }
+
+    {{- for $content in $1.Content }}
     
-    public virtual string TypedValue {
+    {{~ # TODO: elements with FSM should include regex comment ~}}
+    {{ $content.Comments | comments '///' -}}
+    public virtual {{ $content.Type | builtin }} {{ $content.Name }} {
         get {
-            return this.ContentField.TypedValue;
+            return this.ContentField.{{ $content.Name }};
         }
         set {
-            this.ContentField.TypedValue = value;
+            this.ContentField.{{ $content.Name }} = value;
         }
     }
+    {{- end }}
     
-    /// <summary>
-    /// <para>
-    /// Occurrence: optional
-    /// </para>
-    /// </summary>
-    public virtual System.Uri codeSpace {
-        get {
-            return this.ContentField.codeSpace;
-        }
-        set {
-            this.ContentField.codeSpace = value;
-        }
-    }
-    
-    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Identifier", "http://www.opengis.net/ows/2.0");
+    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
     
     Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
         get {

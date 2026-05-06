@@ -159,8 +159,9 @@ namespace Xml.Schema.Linq.CodeGen
             // Build type using TypeBuilder
             typeBuilder = GetTypeBuilder();
             typeBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
-            //ProcessProperties(typeInfo.Content, typeInfo.Annotations);
+            //ProcessProperties(typeInfo.Content, typeInfo.Annotations);            
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
+            // TODO: only FSM left to do in ImplementInterfaces            
             typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
 
             CodeTypeDeclaration builtType = typeBuilder.TypeDeclaration;
@@ -205,16 +206,16 @@ namespace Xml.Schema.Linq.CodeGen
                     if (rootGroup.IsComplex)
                     {
                         // typeBuilder.StartGrouping(rootGroup);
-                        ProcessComplexGroupProperties(rootGroup, typeInfo.Annotations);
+                        ProcessComplexGroupProperties(rootGroup, typeInfo);
                         // typeBuilder.EndGrouping();
                     }
                     else
-                        ProcessGroup(rootGroup, typeInfo.Annotations);
+                        ProcessGroup(rootGroup, typeInfo);
                 }
             }
         }
 
-        private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
+        private void ProcessGroup(GroupingInfo grouping, ClrContentTypeInfo typeInfo)
         {
             // typeBuilder.StartGrouping(grouping);
             foreach (ContentInfo child in grouping.Children)
@@ -223,24 +224,24 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
                     propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-                    // typeBuilder.CreateProperty(propertyInfo, annotations);
+                    propertyInfo.UpdateGroupProperty(typeInfo);
                 }
                 else if (child.ContentType == ContentType.WildCardProperty)
                 {
                     ClrWildCardPropertyInfo propertyInfo = child as ClrWildCardPropertyInfo;
-                    // typeBuilder.CreateProperty(propertyInfo, annotations);
+                    propertyInfo.UpdateGroupProperty(typeInfo);
                 }
                 else
                 {
                     Debug.Assert(child.ContentType == ContentType.Grouping);
-                    ProcessGroup(child as GroupingInfo, annotations);
+                    ProcessGroup(child as GroupingInfo, typeInfo);
                 }
             }
 
             // typeBuilder.EndGrouping();
         }
 
-        private void ProcessComplexGroupProperties(GroupingInfo grouping, List<ClrAnnotation> annotations)
+        private void ProcessComplexGroupProperties(GroupingInfo grouping, ClrContentTypeInfo typeInfo)
         {
             foreach (ContentInfo child in grouping.Children)
             {
@@ -248,18 +249,19 @@ namespace Xml.Schema.Linq.CodeGen
                 {
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
                     propertyInfo.UpdateTypeReference(currentFullTypeName, currentNamespace, nameMappings, CreateNestedEnumType);
-                    // typeBuilder.CreateProperty(propertyInfo, annotations);
+                    propertyInfo.UpdateGroupProperty(typeInfo);
                 }
                 else if (child.ContentType == ContentType.WildCardProperty)
                 {
                     ClrWildCardPropertyInfo propertyInfo = child as ClrWildCardPropertyInfo;
                     // typeBuilder.CreateProperty(propertyInfo, annotations);
+                    propertyInfo.UpdateGroupProperty(typeInfo);
                 }
                 else
                 {
                     Debug.Assert(child.ContentType == ContentType.Grouping);
                     // typeBuilder.StartGrouping(child as GroupingInfo);
-                    ProcessComplexGroupProperties(child as GroupingInfo, annotations);
+                    ProcessComplexGroupProperties(child as GroupingInfo, typeInfo);
                     // typeBuilder.EndGrouping();
                 }
             }
@@ -342,7 +344,9 @@ namespace Xml.Schema.Linq.CodeGen
                     string innerTypeNs = innerType.Namespace;
 
                     if (GetClass(innerTypeName, innerTypeNs) is not {} innerTypeClass 
-                        && innerTypeName != Constants.XTypedElement) 
+                        // TODO: adjust following code is innerType is XTypedElement
+                        // && innerTypeName != Constants.XTypedElement
+                    )
                     {
                         continue;                        
                     }
@@ -354,7 +358,8 @@ namespace Xml.Schema.Linq.CodeGen
                     // wrapperBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
                     // wrapperBuilder.ApplyAnnotations(typeInfo);
 
-                    cType = new CElementWrapper(typeInfo);
+
+                    cType = new CElementWrapper(typeInfo, innerTypeClass);
                     AllElements.Add(cType);
                     AllWrappers.Add(new(typeInfo.clrFullTypeName, innerTypeNs + "." + innerTypeName));
 

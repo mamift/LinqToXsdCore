@@ -93,9 +93,9 @@
 
     {{- 
         for $nested in $1.Types; 
-            # TODO: this loop is duplicated below for nested complex types, 
-            #       we should simplify as declaration order has no importance 
-            #       but for now I want to match legacy output 1:1
+            # FIXME: this loop is duplicated below for nested complex types, 
+            #        we should simplify as declaration order has no importance 
+            #        but for now I want to match legacy output 1:1
             if !$nested.IsSimpleType; continue; end 
     }}
 
@@ -108,8 +108,74 @@
 
     private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
         
-    {{~ # TODO: CreateFunctionalConstructor }}
-    {{~ # TODO: IXMetadata related to content (elements, contentmodel, FSM) ~}}
+    {{- if !$1.LocalElements.empty? || $1.ContentModel == 'Sequence' || $1.ContentModel == 'Choice' }}
+
+    static {{ $1.Name }}() {
+        {{- if !$1.LocalElements.empty? }}
+        BuildElementDictionary();
+        {{- end }}
+        {{- if $1.ContentModel == 'Sequence' }}        
+        contentModel = new SequenceContentModelEntity({{            
+            for $x in $1.ContentModelElements
+                if !for.first; ", "; end
+                "new NamedContentModelEntity("
+                $x
+                ")"
+            end
+        }});
+        {{- else if $1.ContentModel == 'Choice' }}
+        contentModel = new ChoiceContentModelEntity({{            
+            for $x in $1.ContentModelElements
+                if !for.first; ", "; end
+                "new NamedContentModelEntity("
+                $x
+                ")"
+            end
+        }});
+        {{- end }}
+    }
+    {{- end }}
+
+    {{- if !$1.LocalElements.empty? }}
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+    
+    private static void BuildElementDictionary() {
+        {{- for $attr in $1.LocalElements }}
+        localElementDictionary.Add({{ $attr.XNameField }}, typeof({{ $attr.ClrType | builtin }}));
+        {{- end }}
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+        get {
+            return localElementDictionary;
+        }
+    }
+
+    {{- end }}
+    
+    {{- if $1.ContentModel == 'Sequence' || $1.ContentModel == 'Choice' }}
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private static ContentModelEntity contentModel;
+        
+    ContentModelEntity IXMetaData.GetContentModel() {
+        return contentModel;
+    }    
+
+    {{- else if !$1.IsDerived }}
+
+    ContentModelEntity IXMetaData.GetContentModel() {
+        return ContentModelEntity.Default;
+    }
+
+    {{- 
+        # else IsDerived: probably derived by restriction, use base content model 
+        end # if ContentModel
+    }}
+
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     System.Xml.Linq.XName IXMetaData.SchemaName {
         get {
@@ -150,9 +216,9 @@
 
     {{- 
         for $nested in $1.Types; 
-            # TODO: this loop is duplicated below for nested complex types, 
-            #       we should simplify as declaration order has no importance 
-            #       but for now I want to match legacy output 1:1
+            # FIXME: this loop is duplicated above for nested simple types, 
+            #        we should simplify as declaration order has no importance 
+            #        but for now I want to match legacy output 1:1
             if $nested.IsSimpleType; continue; end 
     }}
 

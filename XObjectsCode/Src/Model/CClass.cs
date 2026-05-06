@@ -52,8 +52,20 @@ public class CElement(ClrContentTypeInfo info) : CClass, IHasTypes
     public bool HasSaveMethods => info.typeOrigin == SchemaOrigin.Element && !info.IsDerived;
     public bool HasLoadMethods => info.typeOrigin == SchemaOrigin.Element;
     public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
+    public IEnumerable<string> RegexComments 
+        => info.Annotations?
+            .Where(a => a.Section == "summaryRegEx")
+            .Select(a => a.Text) 
+            ?? [];
 
     public IEnumerable<CAttribute> Content => info.Content.SelectMany(FlattenContents);
+    public ContentModelType ContentModel => info.Content.OfType<GroupingInfo>().FirstOrDefault()?.ContentModelType ?? ContentModelType.None;
+    public IEnumerable<string> ContentModelElements => info.Content.OfType<GroupingInfo>().FirstOrDefault() is {} g 
+        ? g.Children.OfType<ClrPropertyInfo>().Select(p => new CAttribute(p).XNameField)
+        : [];
+
+    public IEnumerable<CAttribute> LocalElements => Content.Where(x => x.IsLocalElement);
+
 
     public List<CClass> Types { get; } = [];
 
@@ -71,12 +83,16 @@ public class CElement(ClrContentTypeInfo info) : CClass, IHasTypes
     }
 }
 
-public class CElementWrapper(ClrWrapperTypeInfo info) : CClass
+public class CElementWrapper(ClrWrapperTypeInfo info, CClass wrapped) : CClass
 {
     public string XName => info.schemaName;
     public string XNamespace => info.schemaNs;
     public override string Name => info.clrtypeName;
     public string Fqn => QualifiedName(Namespace!.Name, Name);
+    public string WrappedName => wrapped.Name;
+    public IEnumerable<CAttribute> Content => wrapped is CElement e ? e.Content : [];
+
+    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 }
 
 /// <summary>

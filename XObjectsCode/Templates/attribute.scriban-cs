@@ -50,7 +50,7 @@ private {{ $list_type }} {{ $1.Name }}Field;
 {{ 
     case $1.Origin 
         when "Element"
-            $1.Comments | array.concat $2.Comments | comments '///'
+            $1.Comments | array.concat $2.RegexComments | comments '///'
         when "Attribute"
             $1.Comments | comments '///'
     end
@@ -177,7 +177,7 @@ public {{
 {{ 
     case $1.Origin 
         when "Element"
-            $1.Comments | array.concat $2.Comments | comments '///'
+            $1.Comments | array.concat $2.RegexComments | comments '///'
         when "Attribute"
             $1.Comments | comments '///'
     end

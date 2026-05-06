@@ -40,6 +40,9 @@ static class ScribanGlobals
     {
         if (type is null) return null;
 
+        // FIXME: it would just be nicer to remove this, but I'm matching the legacy generation 1:1 for now
+        if (type.EndsWith("?")) return type;
+
         return Regex.Replace(
             type,
              @"\bSystem\.[A-Za-z0-9]+",

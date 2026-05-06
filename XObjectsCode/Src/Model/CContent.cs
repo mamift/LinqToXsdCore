@@ -31,6 +31,7 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
     public string ClrFullTypeName => info.TypeReference.ClrFullTypeName; // Yet another type, seems to be used for enums
     public string SimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: true);
     public string LocalSimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: false);
+    public bool IsLocalElement => info.IsLocalElement;
     public bool IsNew => info.IsNew;
     public bool IsOverride => info.IsOverride;
     public bool HasSet => info.HasSet;    

@@ -132,9 +132,9 @@ namespace Xml.Schema.Linq.CodeGen
         private void ImplementIXMetaData()
         {
             // TODO: content-related metadata
-            ImplementCommonIXMetaData();
+            // ImplementCommonIXMetaData();
             if (clrTypeInfo.HasElementWildCard) ImplementFSMMetaData();
-            else ImplementContentModelMetaData();
+            // else ImplementContentModelMetaData();
         }
 
         protected virtual void ImplementFSMMetaData()
@@ -414,73 +414,61 @@ namespace Xml.Schema.Linq.CodeGen
 
         public override string ToString() => $"{nameof(XTypedElementBuilder)} ({this.clrTypeInfo})";
 
-        protected override void ImplementCommonIXMetaData()
-        {
-            CodeMemberProperty localElementDictionary = null;
-            if (HasElementProperties)
-            {
-                CreateStaticConstructor();
-                localElementDictionary = BuildLocalElementDictionary();
-                declItemsInfo.staticConstructor.Statements.Add(
-                    CodeDomHelper.CreateMethodCall(null, "BuildElementDictionary"));
-                decl.Members.Add(localElementDictionary);
-            }
-        }
-
         protected override void ImplementContentModelMetaData()
         {
-            CodeMemberMethod getContentModelMethod = null;
+// Scriban: done
+//             CodeMemberMethod getContentModelMethod = null;
 
-            if (HasElementProperties)
-            {
-                if (declItemsInfo.contentModelExpression != null)
-                {
-                    //Create static constr for the content model of the type
-                    CodeTypeReference cmType = new CodeTypeReference(Constants.ContentModelType);
+//             if (HasElementProperties)
+//             {
+//                 if (declItemsInfo.contentModelExpression != null)
+//                 {
+//                     //Create static constr for the content model of the type
+//                     CodeTypeReference cmType = new CodeTypeReference(Constants.ContentModelType);
 
-                    declItemsInfo.staticConstructor.Statements
-                                 .Add( // contentModel = new Sequence/Choice/AllContentModel(...);
-                                     new CodeAssignStatement(
-                                         new CodeVariableReferenceExpression(Constants.ContentModelMember),
-                                         declItemsInfo.contentModelExpression));
+//                     declItemsInfo.staticConstructor.Statements
+//                                  .Add( // contentModel = new Sequence/Choice/AllContentModel(...);
+//                                      new CodeAssignStatement(
+//                                          new CodeVariableReferenceExpression(Constants.ContentModelMember),
+//                                          declItemsInfo.contentModelExpression));
 
-                    //Add static field to store the constructed content model
-                    CodeMemberField contentModelField = new CodeMemberField(cmType, Constants.ContentModelMember);
-                    CodeDomHelper.AddBrowseNever(contentModelField);
-                    contentModelField.Attributes = MemberAttributes.Private | MemberAttributes.Static;
+//                     //Add static field to store the constructed content model
+//                     CodeMemberField contentModelField = new CodeMemberField(cmType, Constants.ContentModelMember);
+//                     CodeDomHelper.AddBrowseNever(contentModelField);
+//                     contentModelField.Attributes = MemberAttributes.Private | MemberAttributes.Static;
 
-                    decl.Members.Add(contentModelField);
+//                     decl.Members.Add(contentModelField);
 
-                    //Create Method impl
-                    getContentModelMethod = CodeDomHelper.CreateInterfaceImplMethod(Constants.GetContentModel,
-                        Constants.IXMetaData, cmType, Constants.ContentModelMember);
-#if DEBUG
-                    var str = declItemsInfo.contentModelExpression.ToCodeString();
-                    Debug.Assert(str.IsNotEmpty());
-#endif
-                }
-                else
-                {
-                    //Return Default content model
-                    getContentModelMethod = DefaultContentModel();
-                }
-            }
-            else
-            {
-                //No element children per schema
-                if (this.clrTypeInfo.IsDerived)
-                {
-                    //Probably derived by restriction, use base content model
-                    return;
-                }
-                else
-                {
-                    //Return Default content model
-                    getContentModelMethod = DefaultContentModel();
-                }
-            }
+//                     //Create Method impl
+//                     getContentModelMethod = CodeDomHelper.CreateInterfaceImplMethod(Constants.GetContentModel,
+//                         Constants.IXMetaData, cmType, Constants.ContentModelMember);
+// #if DEBUG
+//                     var str = declItemsInfo.contentModelExpression.ToCodeString();
+//                     Debug.Assert(str.IsNotEmpty());
+// #endif
+//                 }
+//                 else
+//                 {
+//                     //Return Default content model
+//                     getContentModelMethod = DefaultContentModel();
+//                 }
+//             }
+//             else
+//             {
+//                 //No element children per schema
+//                 if (this.clrTypeInfo.IsDerived)
+//                 {
+//                     //Probably derived by restriction, use base content model
+//                     return;
+//                 }
+//                 else
+//                 {
+//                     //Return Default content model
+//                     getContentModelMethod = DefaultContentModel();
+//                 }
+//             }
 
-            decl.Members.Add(getContentModelMethod);
+//             decl.Members.Add(getContentModelMethod);
         }
 
         protected override void ImplementFSMMetaData()
@@ -519,31 +507,6 @@ namespace Xml.Schema.Linq.CodeGen
         private bool HasElementProperties
         {
             get { return propertyDictionaryAddStatements != null && propertyDictionaryAddStatements.Count > 0; }
-        }
-
-        private CodeMemberProperty BuildLocalElementDictionary()
-        {
-            CodeMemberProperty localDictionaryProperty = CodeDomHelper.CreateInterfaceImplProperty(
-                Constants.LocalElementsDictionary, Constants.IXMetaData,
-                CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName));
-
-            //new override for derived classes
-            CodeMemberField localDictionaryField =
-                CodeDomHelper.CreateDictionaryField(Constants.LocalElementDictionaryField, Constants.XNameType, Constants.SystemTypeName, MemberAttributes.Private);
-            CodeMemberMethod localDictionaryMethod = CodeDomHelper.CreateMethod(Constants.BuildElementDictionary, null, MemberAttributes.Private | MemberAttributes.Static);
-            localDictionaryMethod.Statements.AddRange(propertyDictionaryAddStatements);
-
-            decl.Members.Add(localDictionaryField);
-            decl.Members.Add(localDictionaryMethod);
-            localDictionaryProperty.GetStatements.Add(
-                new CodeMethodReturnStatement(
-                    CodeDomHelper.CreateFieldReference(null,
-                        Constants.LocalElementDictionaryField)));
-
-
-            CodeDomHelper.AddBrowseNever(localDictionaryProperty);
-            CodeDomHelper.AddBrowseNever(localDictionaryField);
-            return localDictionaryProperty;
         }
 
         private void InitializeTables()
