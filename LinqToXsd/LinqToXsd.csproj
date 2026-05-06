@@ -12,12 +12,12 @@
     <PackageId>$(PackageId)Core</PackageId>
     <ToolCommandName>$(MSBuildProjectName)</ToolCommandName>
     <PackAsTool Condition="$(TargetFramework) != 'netframework472'">true</PackAsTool>
-	<IsPackable Condition="$(TargetFramework) != 'netframework472'">true</IsPackable>
+	  <IsPackable Condition="$(TargetFramework) != 'netframework472'">true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DebugType>embedded</DebugType>
     <RootNamespace>LinqToXsd</RootNamespace>
-	<PublishSingleFile Condition="$(TargetFramework) != 'netframework472'">true</PublishSingleFile>
-	<!-- <PublishTrimmed Condition="$(TargetFramework) != 'netframework472'">true</PublishTrimmed> -->
+	  <PublishSingleFile Condition="$(TargetFramework) != 'netframework472'">true</PublishSingleFile>
+	  <!-- <PublishTrimmed Condition="$(TargetFramework) != 'netframework472'">true</PublishTrimmed> -->
   </PropertyGroup>
 
   <ItemGroup>
