@@ -1,11 +1,18 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.14
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.14
+* https://www.nuget.org/packages/XObjectsCore/3.4.14
+  * [#87](https://github.com/mamift/LinqToXsdCore/pull/87).
+	* Fixes a code generation bug which did not properly generate the return type on a property getter when an element was of an XML Schema simple type with enumerations (this bug affected XSD string types like xs:string and xs:NMTOKEN, but should fix it for all simple enum types). Affected code generation for XQueryX.xsd.
+
 ## Version 3.4.13
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.13
 * https://www.nuget.org/packages/XObjectsCore/3.4.13
   * [#86](https://github.com/mamift/LinqToXsdCore/pull/86).
-	* Fixes a bug whereby the XObjects API (`XSimpleList<T>`) did not include the requisite overload for allowing default values for elements of simple types.
+  * Fixes a bug whereby the XObjects API (`XSimpleList<T>`) did not include the requisite overload for allowing default values for elements of simple types.
 
 ## Version 3.4.12
 Nuget packages:
