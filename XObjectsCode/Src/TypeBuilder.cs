@@ -574,37 +574,37 @@ namespace Xml.Schema.Linq.CodeGen
                         new CodeObjectCreateExpression("InvalidOperationException")));
             }
 
-            CodeConstructor dummyConstructor = null;
-            if (clrTypeInfo.IsSubstitutionHead)
-            {
-                //Add dummy constructor that derived classes can call
-                dummyConstructor = CodeDomHelper.CreateConstructor(MemberAttributes.Family);
-                dummyConstructor.Parameters.Add(new CodeParameterDeclarationExpression("System.Boolean", "setNull"));
-                decl.Members.Add(dummyConstructor);
-            }
+            // CodeConstructor dummyConstructor = null;
+            // if (clrTypeInfo.IsSubstitutionHead)
+            // {
+            //     //Add dummy constructor that derived classes can call
+            //     dummyConstructor = CodeDomHelper.CreateConstructor(MemberAttributes.Family);
+            //     dummyConstructor.Parameters.Add(new CodeParameterDeclarationExpression("System.Boolean", "setNull"));
+            //     decl.Members.Add(dummyConstructor);
+            // }
 
-            if (clrTypeInfo.IsSubstitutionMember())
-            {
-                //Always call the dummy constructor of head from a member
-                emptyConstructor.BaseConstructorArgs.Add(new CodePrimitiveExpression(true));
-                if (dummyConstructor != null)
-                {
-                    dummyConstructor.BaseConstructorArgs.Add(new CodePrimitiveExpression(true));
-                }
-            }
+            // if (clrTypeInfo.IsSubstitutionMember())
+            // {
+            //     //Always call the dummy constructor of head from a member
+            //     emptyConstructor.BaseConstructorArgs.Add(new CodePrimitiveExpression(true));
+            //     if (dummyConstructor != null)
+            //     {
+            //         dummyConstructor.BaseConstructorArgs.Add(new CodePrimitiveExpression(true));
+            //     }
+            // }
 
-            ApplyAnnotations(emptyConstructor, annotations, null);
+            // ApplyAnnotations(emptyConstructor, annotations, null);
 
             decl.Members.Add(typeField);
             decl.Members.Add(emptyConstructor);
-            decl.Members.Add(CreateUntypedProperty(fieldRef));
-            decl.Members.Add(InnerTypeProperty());
-            decl.Members.Add(SetInnerType());
-            if (clrTypeInfo.IsSubstitutionHead)
-            {
-                //Add method to set base type field in the head type from the derived members
-                decl.Members.Add(SetSubstitutionMember());
-            }
+            // decl.Members.Add(CreateUntypedProperty(fieldRef));
+            // decl.Members.Add(InnerTypeProperty());
+            // decl.Members.Add(SetInnerType());
+            // if (clrTypeInfo.IsSubstitutionHead)
+            // {
+            //     //Add method to set base type field in the head type from the derived members
+            //     decl.Members.Add(SetSubstitutionMember());
+            // }
         }
 
         internal override CodeConstructor CreateFunctionalConstructor(List<ClrAnnotation> annotations)
@@ -660,127 +660,127 @@ namespace Xml.Schema.Linq.CodeGen
             decl.Members.Add(contentProperty);
         }
 
-        protected override void ImplementContentModelMetaData()
-        {
-            decl.Members.Add(DefaultContentModel()); //No direct element children return Default content model
-        }
+        // protected override void ImplementContentModelMetaData()
+        // {
+        //     decl.Members.Add(DefaultContentModel()); //No direct element children return Default content model
+        // }
 
-        private CodeMethodInvokeExpression SetNameMethodCall()
-        {
-            return new CodeMethodInvokeExpression(
-                new CodeTypeReferenceExpression(Constants.XTypedServices),
-                "SetName",
-                CodeDomHelper.This(),
-                CodeDomHelper.CreateFieldReference("this", memberName));
-        }
+        // private CodeMethodInvokeExpression SetNameMethodCall()
+        // {
+        //     return new CodeMethodInvokeExpression(
+        //         new CodeTypeReferenceExpression(Constants.XTypedServices),
+        //         "SetName",
+        //         CodeDomHelper.This(),
+        //         CodeDomHelper.CreateFieldReference("this", memberName));
+        // }
 
-        private CodeMemberProperty CreateUntypedProperty(CodeFieldReferenceExpression fieldRef)
-        {
-            //Create new XElement property so that the setter can set the wrapped object XElement as well
-            CodeMemberProperty xElementProperty =
-                CodeDomHelper.CreateProperty(new CodeTypeReference(Constants.XElement), true, MemberAttributes.Public); // because this is an override, it should not obey DefaultVisibility
-            xElementProperty.Name = Constants.Untyped;
-            xElementProperty.Attributes |= MemberAttributes.Override;
+        // private CodeMemberProperty CreateUntypedProperty(CodeFieldReferenceExpression fieldRef)
+        // {
+        //     //Create new XElement property so that the setter can set the wrapped object XElement as well
+        //     CodeMemberProperty xElementProperty =
+        //         CodeDomHelper.CreateProperty(new CodeTypeReference(Constants.XElement), true, MemberAttributes.Public); // because this is an override, it should not obey DefaultVisibility
+        //     xElementProperty.Name = Constants.Untyped;
+        //     xElementProperty.Attributes |= MemberAttributes.Override;
 
-            CodePropertyReferenceExpression baseUntyped =
-                new CodePropertyReferenceExpression(new CodeBaseReferenceExpression(), Constants.Untyped);
-            xElementProperty.GetStatements.Add(
-                new CodeMethodReturnStatement(baseUntyped));
+        //     CodePropertyReferenceExpression baseUntyped =
+        //         new CodePropertyReferenceExpression(new CodeBaseReferenceExpression(), Constants.Untyped);
+        //     xElementProperty.GetStatements.Add(
+        //         new CodeMethodReturnStatement(baseUntyped));
 
-            xElementProperty.SetStatements.Add(
-                new CodeAssignStatement(
-                    baseUntyped,
-                    CodeDomHelper.SetValue()));
+        //     xElementProperty.SetStatements.Add(
+        //         new CodeAssignStatement(
+        //             baseUntyped,
+        //             CodeDomHelper.SetValue()));
 
-            if (clrTypeInfo.IsSubstitutionHead)
-            {
-                xElementProperty.SetStatements.Add(
-                    new CodeConditionStatement(
-                        new CodeBinaryOperatorExpression(
-                            fieldRef,
-                            CodeBinaryOperatorType.IdentityInequality,
-                            new CodePrimitiveExpression(null)),
-                        new CodeAssignStatement(
-                            new CodePropertyReferenceExpression(fieldRef, Constants.Untyped),
-                            CodeDomHelper.SetValue())));
-            }
-            else
-            {
-                //Field will always be non-null
-                xElementProperty.SetStatements.Add(
-                    new CodeAssignStatement(
-                        new CodePropertyReferenceExpression(fieldRef, Constants.Untyped),
-                        CodeDomHelper.SetValue()));
-            }
+        //     if (clrTypeInfo.IsSubstitutionHead)
+        //     {
+        //         xElementProperty.SetStatements.Add(
+        //             new CodeConditionStatement(
+        //                 new CodeBinaryOperatorExpression(
+        //                     fieldRef,
+        //                     CodeBinaryOperatorType.IdentityInequality,
+        //                     new CodePrimitiveExpression(null)),
+        //                 new CodeAssignStatement(
+        //                     new CodePropertyReferenceExpression(fieldRef, Constants.Untyped),
+        //                     CodeDomHelper.SetValue())));
+        //     }
+        //     else
+        //     {
+        //         //Field will always be non-null
+        //         xElementProperty.SetStatements.Add(
+        //             new CodeAssignStatement(
+        //                 new CodePropertyReferenceExpression(fieldRef, Constants.Untyped),
+        //                 CodeDomHelper.SetValue()));
+        //     }
 
-            return xElementProperty;
-        }
+        //     return xElementProperty;
+        // }
 
-        private CodeMemberProperty InnerTypeProperty()
-        {
-            //Create InnerType Property of type T  to go with the inner type field
-            CodeMemberProperty innerTypeProperty = CodeDomHelper.CreateProperty(Constants.CInnerTypePropertyName,
-                new CodeTypeReference(innerTypeName), DefaultVisibility.ToMemberAttribute());
-            innerTypeProperty.HasSet = false;
-            if (clrTypeInfo.IsSubstitutionMember())
-            {
-                innerTypeProperty.Attributes |= MemberAttributes.New;
-            }
+        // private CodeMemberProperty InnerTypeProperty()
+        // {
+        //     //Create InnerType Property of type T  to go with the inner type field
+        //     CodeMemberProperty innerTypeProperty = CodeDomHelper.CreateProperty(Constants.CInnerTypePropertyName,
+        //         new CodeTypeReference(innerTypeName), DefaultVisibility.ToMemberAttribute());
+        //     innerTypeProperty.HasSet = false;
+        //     if (clrTypeInfo.IsSubstitutionMember())
+        //     {
+        //         innerTypeProperty.Attributes |= MemberAttributes.New;
+        //     }
 
-            innerTypeProperty.GetStatements.Add(
-                new CodeMethodReturnStatement(
-                    CodeDomHelper.CreateFieldReference(null, memberName)));
-            return innerTypeProperty;
-        }
+        //     innerTypeProperty.GetStatements.Add(
+        //         new CodeMethodReturnStatement(
+        //             CodeDomHelper.CreateFieldReference(null, memberName)));
+        //     return innerTypeProperty;
+        // }
 
-        private CodeMemberMethod SetSubstitutionMember()
-        {
-            //This is for setting base type fields from types representing substitutionGroup members
-            CodeMemberMethod setSubstMember =
-                CodeDomHelper.CreateMethod(Constants.SetSubstitutionMember, null, MemberAttributes.Family);
-            setSubstMember.Parameters.Add(
-                new CodeParameterDeclarationExpression(
-                    new CodeTypeReference(innerTypeName), memberName));
-            setSubstMember.Statements.Add(
-                new CodeAssignStatement(
-                    CodeDomHelper.CreateFieldReference("this", memberName),
-                    new CodeVariableReferenceExpression(memberName)));
+        // private CodeMemberMethod SetSubstitutionMember()
+        // {
+        //     //This is for setting base type fields from types representing substitutionGroup members
+        //     CodeMemberMethod setSubstMember =
+        //         CodeDomHelper.CreateMethod(Constants.SetSubstitutionMember, null, MemberAttributes.Family);
+        //     setSubstMember.Parameters.Add(
+        //         new CodeParameterDeclarationExpression(
+        //             new CodeTypeReference(innerTypeName), memberName));
+        //     setSubstMember.Statements.Add(
+        //         new CodeAssignStatement(
+        //             CodeDomHelper.CreateFieldReference("this", memberName),
+        //             new CodeVariableReferenceExpression(memberName)));
 
-            if (clrTypeInfo.IsSubstitutionMember())
-            {
-                //Add base.SetSubstitutionMember() method if this class itself is a member of another subst group
-                setSubstMember.Statements.Add(CodeDomHelper.CreateMethodCall(new CodeBaseReferenceExpression(),
-                    Constants.SetSubstitutionMember, new CodeVariableReferenceExpression(memberName)));
-            }
+        //     if (clrTypeInfo.IsSubstitutionMember())
+        //     {
+        //         //Add base.SetSubstitutionMember() method if this class itself is a member of another subst group
+        //         setSubstMember.Statements.Add(CodeDomHelper.CreateMethodCall(new CodeBaseReferenceExpression(),
+        //             Constants.SetSubstitutionMember, new CodeVariableReferenceExpression(memberName)));
+        //     }
 
-            return setSubstMember;
-        }
+        //     return setSubstMember;
+        // }
 
-        private CodeMemberMethod SetInnerType()
-        {
-            CodeMemberMethod setInnerType =
-                CodeDomHelper.CreateMethod(Constants.SetInnerType, null, MemberAttributes.Private);
-            setInnerType.Parameters.Add(
-                new CodeParameterDeclarationExpression(
-                    new CodeTypeReference(innerTypeName), memberName));
-            setInnerType.Statements.Add(
-                new CodeAssignStatement(
-                    CodeDomHelper.CreateFieldReference("this", memberName),
-                    new CodeCastExpression(
-                        innerTypeName,
-                        new CodeMethodInvokeExpression(
-                            new CodeTypeReferenceExpression(Constants.XTypedServices),
-                            "GetCloneIfRooted",
-                            new CodeVariableReferenceExpression(memberName)))));
+        // private CodeMemberMethod SetInnerType()
+        // {
+        //     // CodeMemberMethod setInnerType =
+        //     //     CodeDomHelper.CreateMethod(Constants.SetInnerType, null, MemberAttributes.Private);
+        //     // setInnerType.Parameters.Add(
+        //     //     new CodeParameterDeclarationExpression(
+        //     //         new CodeTypeReference(innerTypeName), memberName));
+        //     // setInnerType.Statements.Add(
+        //     //     new CodeAssignStatement(
+        //     //         CodeDomHelper.CreateFieldReference("this", memberName),
+        //     //         new CodeCastExpression(
+        //     //             innerTypeName,
+        //     //             new CodeMethodInvokeExpression(
+        //     //                 new CodeTypeReferenceExpression(Constants.XTypedServices),
+        //     //                 "GetCloneIfRooted",
+        //     //                 new CodeVariableReferenceExpression(memberName)))));
 
-            setInnerType.Statements.Add(SetNameMethodCall()); //SetName(); 
-            if (clrTypeInfo.IsSubstitutionMember())
-            {
-                setInnerType.Statements.Add(CodeDomHelper.CreateMethodCall(new CodeBaseReferenceExpression(),
-                    Constants.SetSubstitutionMember, new CodeVariableReferenceExpression(memberName)));
-            }
+        //     // setInnerType.Statements.Add(SetNameMethodCall()); //SetName(); 
+        //     // if (clrTypeInfo.IsSubstitutionMember())
+        //     // {
+        //     //     setInnerType.Statements.Add(CodeDomHelper.CreateMethodCall(new CodeBaseReferenceExpression(),
+        //     //         Constants.SetSubstitutionMember, new CodeVariableReferenceExpression(memberName)));
+        //     // }
 
-            return setInnerType;
-        }
+        //     // return setInnerType;
+        // }
     }
 }

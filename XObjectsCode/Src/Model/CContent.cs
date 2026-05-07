@@ -41,13 +41,14 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
     public bool IsEnum => info.IsEnum;
     public bool IsUnion => info.IsUnion;
     public bool IsList => info.IsList;
-    public bool IsSchemaList => info.IsSchemaList;
+    public bool IsSchemaList => info.IsSchemaList;    
     public bool HasValidation => Origin == SchemaOrigin.Attribute ? IsEnum : info.Validation;
     public bool IsNullable => info.IsNullable;      // Whether the C# type is nullable (both reference and value types)
     public bool IsNillable => info.IsNillable;      // Whether xs:nil is an acceptable value (on elements)
     public bool IsOptional => info.IsOptional;      // Whether element/attribute cardinality can be 0
     public bool CanBeAbsent => info.CanBeAbsent;    // Whether element/attribute is optional, or element is part of a choice
     public bool VerifyRequired => info.VerifyRequired;  // Whether property should throw when attempting to read a missing required element or attribute
+    public bool ShouldGenerate => info.ShouldGenerate;
     public IEnumerable<string> Comments => info.Annotations.Select(x => x.Text);
     
     public bool IsSubstitution => info.IsSubstitutionHead;

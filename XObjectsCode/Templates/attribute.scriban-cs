@@ -4,7 +4,7 @@
 
 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 [EditorBrowsable(EditorBrowsableState.Never)]
-protected internal static readonly {{ $new -}} System.Xml.Linq.XName {{ $1.XNameField }} = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
+protected internal {{ $new -}} static readonly System.Xml.Linq.XName {{ $1.XNameField }} = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
 
 {{- if $1.FixedOrDefaultValue }}
 
@@ -59,8 +59,8 @@ private {{ $list_type }} {{ $1.Name }}Field;
 [System.Diagnostics.CodeAnalysis.AllowNull()]
 {{ end -}}
 public {{ 
-    $1.IsOverride ? "override " : "virtual "
     $new
+    $1.IsOverride ? "override " : "virtual "
     $1.Type | builtin
 }} {{ $1.Name }} {
     get {
@@ -71,7 +71,7 @@ public {{
             this.{{ $1.Name }}Field = new {{ $list_type }}(
             {{- 
                 "this"
-                if $1.Substitution 
+                if $1.IsSubstitution 
                     ", LinqToXsdTypeManager.Instance"
                     for $elem in $1.SubstitutionMembers 
                         ", System.Xml.Linq.XName.Get("
@@ -137,7 +137,7 @@ public {{
                 {{- 
                     "this"
                     $value = $1.IsEnum ? "value.Select(item => item.ToString())" : "value"
-                    if $1.Substitution 
+                    if $1.IsSubstitution 
                         ", LinqToXsdTypeManager.Instance"
                         ", " + $value
                         for $elem in $1.SubstitutionMembers 
@@ -183,26 +183,36 @@ public {{
     end
 -}}
 public {{ 
-    $1.IsOverride ? "override " : "virtual "
     $new 
+    $1.IsOverride ? "override " : "virtual "
     $1.Type | builtin
 }} {{ $1.Name }} {
     get {
         {{
-            # TODO: substitution head
-
             # Fixed attributes always have the same value, whether they're present or not 
             if $1.FixedValue && $1.Origin == "Attribute"
                 "return " + $1.FixedOrDefaultField + ";\n"
 
             else
-                case $1.Origin
-                    when "Attribute"
-                        "XAttribute x = this.Attribute(" + $1.XNameField + ");\n"
-                    when "Element"
-                        "XElement x = this.GetElement(" + $1.XNameField + ");\n"
-                    when "Text"
-                        "XElement x = this.Untyped;\n"
+                if $1.IsSubstitution
+                    "XTypedElement x = XTypedServices.ToSubstitutedXTypedElement(this, LinqToXsdTypeManager.Instance"
+                    for $elem in $1.SubstitutionMembers 
+                        ", System.Xml.Linq.XName.Get("
+                        $elem.QualifiedName.Name | string.literal
+                        ", "
+                        $elem.QualifiedName.Namespace | string.literal
+                        ")"
+                    end
+                    ");\n"
+                else
+                    case $1.Origin
+                        when "Attribute"
+                            "XAttribute x = this.Attribute(" + $1.XNameField + ");\n"
+                        when "Element"
+                            "XElement x = this.GetElement(" + $1.XNameField + ");\n"
+                        when "Text"
+                            "XElement x = this.Untyped;\n"
+                    end
                 end
 
                 if $1.CanBeAbsent 
@@ -297,7 +307,7 @@ public {{
 
             if $1.IsUnion
                "this.SetUnion" + $set_origin + "(value, " 
-                    $1.Name + ", this, " 
+                    $1.XName | string.literal + ", this, " 
                     $1.Origin != "Text" ? $1.XNameField + ", " : ""
                     $1.SimpleTypeDefinition
                ");\n"

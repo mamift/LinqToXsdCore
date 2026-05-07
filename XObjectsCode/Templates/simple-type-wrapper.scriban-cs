@@ -1,5 +1,7 @@
 {{ $1.Comments | comments '///' -}}
-{{ $1.Namespace.AccessModifier }} partial class {{ $1.Name }} : XTypedElement, IXMetaData {
+{{ $1.Namespace.AccessModifier }} partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
+
+    {{- if $1.HasSaveMethods }}
 
     public void Save(string xmlFile) {
         XTypedServices.Save(xmlFile, Untyped);
@@ -13,7 +15,11 @@
         XTypedServices.Save(xmlWriter, Untyped);
     }
     
-    public static {{ $1.Name }} Load(string xmlFile) {
+    {{- end }}
+
+    {{- $new = $1.IsDerived ? "new " : "" }}
+
+    public {{ $new -}} static {{ $1.Name }} Load(string xmlFile) {
         return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
     }
     
@@ -21,7 +27,7 @@
         return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
     }
     
-    public static {{ $1.Name }} Parse(string xml) {
+    public {{ $new -}} static {{ $1.Name }} Parse(string xml) {
         return XTypedServices.Parse<{{ $1.Name }}>(xml);
     }
     

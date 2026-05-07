@@ -50,18 +50,19 @@
     {{- # TODO: when InnerType, generic type <$1.Name> must adapted and a 2nd parameter with SingletonTypeManager must be added ~}}
     {{- 
             else # if IsAbstract || IsSubstitutionHead 
-                $new = $1.IsDervived ? "new " : ""
+                $new = $1.IsDerived ? "new " : ""
     }}
 
-    public static {{ $new -}} {{ $1.Name }} Load(string xmlFile) {
+    public {{ $new -}} static {{ $1.Name }} Load(string xmlFile) {
         return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
     }
 
-    public static {{ $new -}} {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
+    {{~ # FIXME: $new missing here, but I'm matching legacy 1:1 codegen for now ~}}
+    public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
         return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
     }
     
-    public static {{ $new -}} {{ $1.Name }} Parse(string xml) {
+    public {{ $new -}} static {{ $1.Name }} Parse(string xml) {
         return XTypedServices.Parse<{{ $1.Name }}>(xml);
     }
 
@@ -106,32 +107,52 @@
     {{ include 'attribute.scriban-cs' $content $1 }}
     {{- end }}
 
-    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
+    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get({{ $1.XName | string.literal }}, {{ $1.XNamespace | string.literal }});
         
-    {{- if !$1.LocalElements.empty? || $1.ContentModel == 'Sequence' || $1.ContentModel == 'Choice' }}
+    {{- if !$1.LocalElements.empty? || $1.HasGroups }}
 
     static {{ $1.Name }}() {
         {{- if !$1.LocalElements.empty? }}
         BuildElementDictionary();
         {{- end }}
-        {{- if $1.ContentModel == 'Sequence' }}        
-        contentModel = new SequenceContentModelEntity({{            
-            for $x in $1.ContentModelElements
-                if !for.first; ", "; end
-                "new NamedContentModelEntity("
-                $x
-                ")"
-            end
-        }});
-        {{- else if $1.ContentModel == 'Choice' }}
-        contentModel = new ChoiceContentModelEntity({{            
-            for $x in $1.ContentModelElements
-                if !for.first; ", "; end
-                "new NamedContentModelEntity("
-                $x
-                ")"
-            end
-        }});
+        {{- 
+            if $1.HasGroups
+                func entity
+                    case $0.Type
+                        when 'Sequence'
+                            "new SequenceContentModelEntity("
+                            for $c in $0.Children
+                                if !for.first; ", "; end
+                                $c | entity
+                            end
+                            ")"
+                            
+                        when 'Choice'
+                            "new ChoiceContentModelEntity("
+                            for $c in $0.Children
+                                if !for.first; ", "; end
+                                $c | entity
+                            end
+                            ")"
+
+                        when 'Named'
+                            "new NamedContentModelEntity(" + $0.XNameField + ")"
+
+                        when 'Substituted'
+                            "new SubstitutedContentModelEntity("
+                            for $s in $0.SubstitutionMembers
+                                if !for.first; ", "; end
+                                'System.Xml.Linq.XName.Get(' 
+                                $s.QualifiedName.Name | string.literal
+                                ', '
+                                $s.QualifiedName.Namespace | string.literal 
+                                ')'
+                            end
+                            ")"
+                    end
+                end
+        }}
+        contentModel = {{ $1.Group | entity }};
         {{- end }}
     }
     {{- end }}
@@ -156,7 +177,7 @@
 
     {{- end }}
     
-    {{- if $1.ContentModel == 'Sequence' || $1.ContentModel == 'Choice' }}
+    {{- if $1.HasGroups }}
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private static ContentModelEntity contentModel;

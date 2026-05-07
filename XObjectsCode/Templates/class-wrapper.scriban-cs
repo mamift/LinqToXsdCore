@@ -1,6 +1,8 @@
 {{ $1.Comments | comments '///' -}}
-public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
+public partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
     
+    {{- if $1.HasSaveMethods }}
+
     public void Save(string xmlFile) {
         XTypedServices.Save(xmlFile, Untyped);
     }
@@ -13,7 +15,11 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
         XTypedServices.Save(xmlWriter, Untyped);
     }
     
-    public static {{ $1.Name }} Load(string xmlFile) {
+    {{- end }}
+
+    {{- $new = $1.IsSubstitutionMember ? "new " : "" }}
+
+    public {{ $new -}} static {{ $1.Name }} Load(string xmlFile) {
         return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
     }
     
@@ -21,7 +27,7 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
         return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
     }
     
-    public static {{ $1.Name }} Parse(string xml) {
+    public {{ $new -}} static {{ $1.Name }} Parse(string xml) {
         return XTypedServices.Parse<{{ $1.Name }}, {{ $1.WrappedName }}>(xml, LinqToXsdTypeManager.Instance);
     }
     
@@ -30,12 +36,20 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
     public override XTypedElement Clone() {
         return new {{ $1.Name }}((({{ $1.WrappedName }})(this.Content.Clone())));
     }
-    
+
+    {{- if $1.IsSubstitutionHead }}
+
+    protected {{ $1.Name }}(bool setNull) {{- if $1.IsSubstitutionMember }} :
+            base(true) {{- end }} {
+    }
+    {{- end }}
+
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private {{ $1.WrappedName }} ContentField;
-    
+
     {{ $1.Comments | comments '///' -}}
-    public {{ $1.Name }}() {
+    public {{ $1.Name }}() {{- if $1.IsSubstitutionMember }} :
+            base(true) {{- end }} {
         SetInnerType(new {{ $1.WrappedName }}());
     }
     
@@ -45,11 +59,18 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
         }
         set {
             base.Untyped = value;
+            {{- if $1.IsSubstitutionHead }}
+            if ((this.ContentField != null)) {
+                this.ContentField.Untyped = value;
+            }
+            {{- else }}
             this.ContentField.Untyped = value;
+            {{- end }}
         }
     }
     
-    public virtual {{ $1.WrappedName }} Content {
+    {{~ # TODO: not totally sure about other $new but this one is $1.IsSubstitutionHead ~}}
+    public {{ $new -}} virtual {{ $1.WrappedName }} Content {
         get {
             return ContentField;
         }
@@ -58,17 +79,32 @@ public partial class {{ $1.Name }} : XTypedElement, IXMetaData {
     private void SetInnerType({{ $1.WrappedName }} ContentField) {
         this.ContentField = (({{ $1.WrappedName }})(XTypedServices.GetCloneIfRooted(ContentField)));
         XTypedServices.SetName(this, this.ContentField);
+        {{- if $1.IsSubstitutionMember }}
+        base.SetSubstitutionMember(ContentField);
+        {{- end }}
     }
-    
+
+    {{- if $1.IsSubstitutionHead }}
+
+    protected virtual void SetSubstitutionMember({{ $1.WrappedName }} ContentField) {
+        this.ContentField = ContentField;
+        {{- if $1.IsSubstitutionMember }}
+        base.SetSubstitutionMember(ContentField);
+        {{- end }}
+    }
+
+    {{- end }}
+
     {{ $1.Comments | comments '///' -}}
-    public {{ $1.Name }}({{ $1.WrappedName }} content) {
+    public {{ $1.Name }}({{ $1.WrappedName }} content) {{- if $1.IsSubstitutionMember }} :
+            base(true) {{- end }} {
         SetInnerType(content);
     }
 
     {{- for $content in $1.Content }}
     
     {{~ # TODO: elements with FSM should include regex comment ~}}
-    {{ $content.Comments | comments '///' -}}
+    {{ $content.Comments | array.concat $1.RegexComments | comments '///' -}}
     public virtual {{ $content.Type | builtin }} {{ $content.Name }} {
         get {
             return this.ContentField.{{ $content.Name }};
