@@ -91,10 +91,34 @@
       "workingDirectory": "..\\GeneratedSchemaLibraries\\AkomaNtoso",
       "hotReloadEnabled": false
     },
+    "3dps": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"3dps-all.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\3dps-1_0_0",
+      "hotReloadEnabled": false
+    },
+    "AbstractTypeTest": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"abstracttest.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\AbstractTypeTest",
+      "hotReloadEnabled": false
+    },
+    "DTSX": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"dtsx.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\DTSX",
+      "hotReloadEnabled": false
+    },
     "ImportsXmlNamespace": {
       "commandName": "Project",
       "commandLineArgs": "gen \"ImportsXmlAttributes.xsd\" -a",
       "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\ImportsXmlNamespace",
+      "hotReloadEnabled": false
+    },
+    "LandXML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"LandXML-1.2.xsd\" -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\LandXML\\v1.2",
       "hotReloadEnabled": false
     },
     "XQueryX": {

@@ -127,6 +127,8 @@ public abstract class ClrBasePropertyInfo : ContentInfo
         set { throw new InvalidOperationException(); }
     }
 
+    public bool IsLocalElement { get; private set; }
+
     public List<ClrAnnotation> Annotations
     {
         get { return annotations; }
@@ -146,6 +148,15 @@ public abstract class ClrBasePropertyInfo : ContentInfo
     public virtual CodeExpression GetXName()
     {
         return CodeDomHelper.XNameGetExpression(SchemaName, PropertyNs);
+    }
+
+    public void UpdateGroupProperty(ClrTypeInfo clrTypeInfo)
+    {
+        if (clrTypeInfo.InlineBaseType && FromBaseType)
+            IsNew = true;
+
+        if (ContentType == ContentType.Property && !IsDuplicate)
+            IsLocalElement = true;
     }
 
     public override string ToString() => this.propertyName;

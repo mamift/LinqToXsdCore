@@ -15,7 +15,7 @@ namespace XObjects
         /// <param name="gtv"></param>
         /// <returns></returns>
         public static TypeAttributes ToTypeAttribute(this GeneratedTypesVisibility gtv) => 
-            gtv.HasFlag(GeneratedTypesVisibility.Internal) || gtv == GeneratedTypesVisibility.Internal ? TypeAttributes.NestedAssembly : TypeAttributes.Public;
+            gtv.HasFlag(GeneratedTypesVisibility.Internal) ? TypeAttributes.NestedAssembly : TypeAttributes.Public;
 
         /// <summary>
         /// Converts <see cref="GeneratedTypesVisibility"/> to an appropriate <see cref="MemberAttributes"/> instance.

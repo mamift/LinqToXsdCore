@@ -1,0 +1,111 @@
+{{~ with TypeManager ~}}
+
+{{ Namespace.AccessModifier }} class LinqToXsdTypeManager : ILinqToXsdTypeManager {
+    
+    private LinqToXsdTypeManager() {
+    }
+
+    {{- if !AllTypes.empty? }}
+
+    private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+    
+    private static void BuildTypeDictionary() {
+        {{- for $type in AllTypes }}
+        typeDictionary.Add(System.Xml.Linq.XName.Get("{{ $type.XName }}", "{{ $type.XNamespace }}"), typeof(global::{{ $type.Fqn }}));
+        {{- end }}
+    }
+
+    {{- end }}
+
+    {{- if !AllElements.empty? }}
+    
+    private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+    
+    private static void BuildElementDictionary() {
+        {{- for $el in AllElements }}
+        elementDictionary.Add(System.Xml.Linq.XName.Get("{{ $el.XName }}", "{{ $el.XNamespace }}"), typeof(global::{{ $el.Fqn }}));
+        {{- end }}
+    }
+
+    {{- end }}
+    
+    {{- if !AllWrappers.empty? }}
+
+    private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
+        
+    private static void BuildWrapperDictionary() {
+        {{- for $wrapper in AllWrappers }}
+        wrapperDictionary.Add(typeof({{ $wrapper.Key }}), typeof(global::{{ $wrapper.Value }}));
+        {{- end }}
+    }
+
+    {{- end }}
+
+    private static XmlSchemaSet schemaSet;
+    
+    XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+        get {
+            if ((schemaSet == null)) {
+                XmlSchemaSet tempSet = new XmlSchemaSet();
+                System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+            }
+            return schemaSet;
+        }
+        set {
+            schemaSet = value;
+        }
+    }
+    
+    protected internal static void AddSchemas(XmlSchemaSet schemas) {
+        schemas.Add(schemaSet);
+    }
+    
+    Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+        get {
+            return {{ AllTypes.empty? ? "XTypedServices.EmptyDictionary" : "typeDictionary" }};
+        }
+    }
+    
+    Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+        get {
+            return {{ AllElements.empty? ? "XTypedServices.EmptyDictionary" : "elementDictionary" }};
+        }
+    }
+    
+    Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+        get {
+            return {{ AllWrappers.empty? ? "XTypedServices.EmptyTypeMappingDictionary" : "wrapperDictionary" }};
+        }
+    }
+    
+    static LinqToXsdTypeManager() {
+        {{- if !AllTypes.empty? }}
+        BuildTypeDictionary();
+        {{- end -}}
+        {{- if !AllElements.empty? }}
+        BuildElementDictionary();
+        {{- end -}}
+        {{- if !AllWrappers.empty? }}
+        BuildWrapperDictionary();
+        {{- end }}
+    }
+    
+    public static System.Type GetRootType() {
+        {{- if RootElement }}
+        return elementDictionary[System.Xml.Linq.XName.Get("{{ TypeManager.RootElement.XName }}", "{{ TypeManager.RootElement.XNamespace }}")];
+        {{- else }}
+        return typeof(Xml.Schema.Linq.XTypedElement);
+        {{- end }}
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+    
+    public static LinqToXsdTypeManager Instance {
+        get {
+            return typeManagerSingleton;
+        }
+    }
+}
+
+{{- end # with TypeManager -}}

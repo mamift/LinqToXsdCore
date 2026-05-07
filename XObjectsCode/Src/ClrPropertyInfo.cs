@@ -2,10 +2,9 @@
 
 using System;
 using System.CodeDom;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -26,8 +25,6 @@ namespace Xml.Schema.Linq.CodeGen
         string clrNamespace;
         string fixedDefaultValue;
         string simpleTypeClrTypeName;
-
-        ArrayList substitutionMembers;
 
 #nullable enable
         /// <summary>
@@ -119,16 +116,9 @@ namespace Xml.Schema.Linq.CodeGen
             set { typeRef = value; }
         }
 
-        public ArrayList SubstitutionMembers
-        {
-            get { return substitutionMembers; }
-            set { substitutionMembers = value; }
-        }
+        public List<XmlSchemaElement> SubstitutionMembers { get; set; }
 
-        public bool IsSubstitutionHead
-        {
-            get { return substitutionMembers != null; }
-        }
+        public bool IsSubstitutionHead => SubstitutionMembers != null;
 
         public SchemaOrigin Origin
         {
@@ -295,13 +285,106 @@ namespace Xml.Schema.Linq.CodeGen
         public override XCodeTypeReference ReturnType
             => returnType ??= CreateReturnType(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
 
+        private string? returnTypeStr = null, returnTypeFqn = null;
+
+        // TODO: rename after getting rid of CodeDom ReturnType property above
+        public string ReturnTypeStr
+        {
+            get 
+            {
+                if (returnTypeStr == null)
+                    (returnTypeStr, returnTypeFqn) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+                return returnTypeStr;
+            }
+        }
+
+        public string? ReturnTypeFqn
+        {
+            get 
+            {
+                if (returnTypeStr == null)
+                    (returnTypeStr, returnTypeFqn) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+                return returnTypeFqn;
+            }            
+        }
+
+        private string? fixedOrDefaultBaseType = null;
+        private bool isFixedOrDefaultList;
+
+        public string FixedOrDefaultBaseType
+        {
+            get {
+                if (fixedOrDefaultBaseType == null)
+                    (fixedOrDefaultBaseType, isFixedOrDefaultList) = CreateFixedOrDefaultType(ReturnTypeStr);
+                return fixedOrDefaultBaseType;
+            }
+        }
+
+        public bool IsFixedOrDefaultList
+        {
+            get {
+                if (fixedOrDefaultBaseType == null)
+                    (fixedOrDefaultBaseType, isFixedOrDefaultList) = CreateFixedOrDefaultType(ReturnTypeStr);
+                return isFixedOrDefaultList;
+            }
+        }
+
         private string QualifiedType => typeRef.IsLocalType && !typeRef.IsSimpleType
             ? parentTypeFullName + "." + clrTypeName
             : clrTypeName;
 
-        private string NullableType => IsNillable && (settings.NullableReferences || typeRef.IsValueType)
+        public string NullableType => IsNillable && (settings.NullableReferences || typeRef.IsValueType)
             ? QualifiedType + "?"
             : QualifiedType;
+
+        private (string, string?) CreateReturnTypeStr(string typeName)
+        {
+            if (IsList || !IsRef && IsSchemaList)
+            {
+                var listType = (IsEnum, IsNillable) switch
+                {
+                    (true, true) => typeRef.ClrFullTypeName + "?",
+                    (true, false) => typeRef.ClrFullTypeName,
+                    _ => NullableType,
+                };
+                return (hasSet ? $"IList<{listType}>" : $"IEnumerable<{listType}>", null);
+            }
+
+            string fullTypeName = typeRef.IsLocalType && !typeRef.IsSimpleType
+                ? parentTypeFullName + "." + typeName
+                : typeName; // For simple types, return type is always XSD -> CLR mapping
+
+            if (!IsRef && IsNullable && (settings.NullableReferences || typeRef.IsValueType))
+                return (fullTypeName + "?", null);
+
+            return (typeName, fullTypeName);
+        }
+
+        private static bool RegexExtract(string text, string pattern, out string result)
+        {
+            var match = Regex.Match(text, pattern);
+            result = match.Success ? match.Groups[1].Value : "";
+            return match.Success;
+        }
+
+        private (string, bool) CreateFixedOrDefaultType(string typeName)
+        {
+            string baseType;
+
+            if (RegexExtract(typeName, @"\bNullable<([^,>]+)>$", out baseType)) // Nullable<T>
+                return (baseType, false);
+
+            if (typeName.EndsWith("?")) // T?
+                return (typeName[..^1], false);
+
+            if (RegexExtract(typeName, @"^(.+)\[\]$", out baseType))  // T[]
+                return (baseType, true);
+
+            if (RegexExtract(typeName, @"\bI?List<([^,>]+)>$", out baseType))   // IList<T>
+                return (baseType, true);
+
+            return (typeName, false);
+        }
 
         private XCodeTypeReference CreateReturnType(string typeName)
         {
@@ -360,13 +443,14 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 if (ShouldGenerate && typeRef.IsLocalType && createNestedEnumType != null)
                 {
-                    createNestedEnumType(typeRef);
+                    // TODO: this is CodeDom manipulation
+                    // createNestedEnumType(typeRef);
                 }
             }
 
             this.clrTypeName = typeRef.GetClrFullTypeName(currentNamespaceScope, nameMappings, settings, out string refTypeName);
 
-            if ((Validation || IsUnion) || IsEnum)
+            if (Validation || IsUnion || IsEnum)
             {
                 this.simpleTypeClrTypeName = typeRef.GetSimpleTypeClrTypeDefName(currentNamespaceScope, nameMappings);
             }
@@ -374,25 +458,10 @@ namespace Xml.Schema.Linq.CodeGen
             this.parentTypeFullName = typeRef.IsEnum ? typeRef.UpdateClrFullEnumTypeName(this, currentTypeScope, currentNamespaceScope) : currentTypeScope;
         }
 
-        public void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
-        {
-            if (isVirtual)
-            {
-                clrProperty.Attributes =
-                    ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
-                     visibility);
-            }
-            else if (isOverride)
-            {
-                clrProperty.Attributes =
-                    ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
-                     MemberAttributes.Public | MemberAttributes.Override);
-            }
-        }
-
         public override CodeMemberProperty? AddToType(CodeTypeDeclaration parentTypeDecl,
             List<ClrAnnotation> annotations, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
         {
+            // Scriban: done.
             if (parentTypeDecl == null) throw new ArgumentNullException(nameof(parentTypeDecl));
             if (!ShouldGenerate)
             {
@@ -401,46 +470,46 @@ namespace Xml.Schema.Linq.CodeGen
 
             ParentTypeDeclaration ??= parentTypeDecl;
             
-            CreateXNameField(parentTypeDecl);
-            CreateFixedDefaultValue(parentTypeDecl);
+            // CreateXNameField(parentTypeDecl);
+            // CreateFixedDefaultValue(parentTypeDecl);
             CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(ReturnType, hasSet, visibility.ToMemberAttribute());
-            clrProperty.Name = propertyName;
-            SetPropertyAttributes(clrProperty, visibility.ToMemberAttribute());
-            if (IsNew)
-            {
-                clrProperty.Attributes |= MemberAttributes.New;
-            }
+            // clrProperty.Name = propertyName;
+            // SetPropertyAttributes(clrProperty, visibility.ToMemberAttribute());
+            // if (IsNew)
+            // {
+            //    clrProperty.Attributes |= MemberAttributes.New;
+            //}
 
-            if (IsList)
-            {
+            // if (IsList)
+            // {
                 //Create collection type for list
-                CodeTypeReference listType = GetListType();
-                string listName = NameGenerator.ChangeClrName(propertyName, NameOptions.MakeField);
-                AddMemberField(listName, listType, parentTypeDecl);
+                // CodeTypeReference listType = GetListType();
+                // string listName = NameGenerator.ChangeClrName(propertyName, NameOptions.MakeField);
+                // AddMemberField(listName, listType, parentTypeDecl);
 
                 //GetStatements
-                AddListGetStatements(clrProperty.GetStatements, listType, listName);
-                if (hasSet)
-                {
-                    AddListSetStatements(clrProperty.SetStatements, listType, listName);
-                }
+                // AddListGetStatements(clrProperty.GetStatements, listType, listName);
+                // if (hasSet)
+                // {
+                //     AddListSetStatements(clrProperty.SetStatements, listType, listName);
+                // }
 
-                if (settings.NullableReferences)
-                {
-                    clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
-                }
-            }
-            else
-            {
-                AddGetStatements(clrProperty.GetStatements);
-                if (hasSet)
-                {
-                    AddSetStatements(clrProperty.SetStatements);
-                }
-            }
+                // if (settings.NullableReferences)
+                // {
+                //     clrProperty.CustomAttributes.Add(new CodeAttributeDeclaration("System.Diagnostics.CodeAnalysis.AllowNull"));
+                // }
+            // }
+            // else
+            // {
+                // AddGetStatements(clrProperty.GetStatements);
+                // if (hasSet)
+                // {
+                //     AddSetStatements(clrProperty.SetStatements);
+                // }
+            // }
 
-            ApplyAnnotations(clrProperty, annotations);
-            parentTypeDecl.Members.Add(clrProperty);
+            //ApplyAnnotations(clrProperty, annotations);
+            // parentTypeDecl.Members.Add(clrProperty);
             return clrProperty;
         }
 
@@ -450,9 +519,9 @@ namespace Xml.Schema.Linq.CodeGen
             if (this.IsSubstitutionHead)
             {
                 //Need to add member names to content model
-                CodeExpression[] substParams = new CodeExpression[substitutionMembers.Count];
+                CodeExpression[] substParams = new CodeExpression[SubstitutionMembers.Count];
                 int i = 0;
-                foreach (XmlSchemaElement elem in substitutionMembers)
+                foreach (XmlSchemaElement elem in SubstitutionMembers)
                 {
                     substParams[i++] =
                         CodeDomHelper.XNameGetExpression(elem.QualifiedName.Name, elem.QualifiedName.Namespace);
@@ -512,515 +581,70 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        private CodeVariableDeclarationStatement GetValueMethodCall()
-        {
-            switch (propertyOrigin)
-            {
-                case SchemaOrigin.Element:
-                    return new CodeVariableDeclarationStatement(
-                        "XElement",
-                        "x",
-                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "GetElement", xNameExpression));
-
-                case SchemaOrigin.Attribute:
-                    return new CodeVariableDeclarationStatement(
-                        "XAttribute",
-                        "x",
-                        CodeDomHelper.CreateMethodCall(CodeDomHelper.This(), "Attribute", xNameExpression));
-
-                case SchemaOrigin.Text:
-                    return new CodeVariableDeclarationStatement(
-                        "XElement",
-                        "x",
-                        new CodePropertyReferenceExpression(CodeDomHelper.This(), Constants.Untyped));
-
-                case SchemaOrigin.None:
-                default:
-                    throw new InvalidOperationException();
-            }
-        }
-
-        private void AddSetValueMethodCall(CodeStatementCollection setStatements)
-        {
-            string setMethodName = "Set";
-            if (!IsRef && IsSchemaList)
-            {
-                setMethodName = "SetList";
-            }
-            else if (IsUnion)
-            {
-                setMethodName = "SetUnion";
-            }
-
-            bool validation = Validation;
-            bool xNameParm = true;
-            switch (propertyOrigin)
-            {
-                case SchemaOrigin.Element:
-                    setMethodName += "Element";
-                    break;
-
-                case SchemaOrigin.Attribute:
-                    validation = this.IsEnum;
-                    setMethodName += "Attribute";
-                    break;
-
-                case SchemaOrigin.Text:
-                    setMethodName += "Value";
-                    xNameParm = false;
-                    break;
-
-                case SchemaOrigin.None:
-                default:
-                    throw new InvalidOperationException();
-            }
-
-            if (IsUnion)
-            {
-                var codeExpressionParams = new List<CodeExpression>() {
-                    CodeDomHelper.SetValue(),
-                    new CodePrimitiveExpression(this.propertyName),
-                    CodeDomHelper.This(),
-                    xNameParm ? xNameExpression : null,
-                    GetSimpleTypeClassExpression(IsUnion)
-                };
-
-                var codeMethodInvokeExpression = CodeDomHelper.CreateMethodCall(
-                    targetOBject: CodeDomHelper.This(),
-                    methodName: setMethodName,
-                    parameters: codeExpressionParams.ToNoDefaultArray());
-
-                #if DEBUG
-                var invokeExpressionString = codeMethodInvokeExpression.ToCodeString();
-                Debug.Assert(invokeExpressionString != null);
-                #endif
-                setStatements.Add(codeMethodInvokeExpression);
-            }
-            else if (validation)
-            {
-                var valueExpr = new CodeSnippetExpression(IsEnum ? "value.ToString()" : "value");
-                CodeMethodInvokeExpression setWithValidation;
-                if (xNameParm)
-                {
-                    var setValue = CodeDomHelper.SetValue();
-                    // this.SetElementWithValidation(<PropertyName>XName, <valueExpr>, "<PropertyName>", global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition);
-                    setWithValidation = CodeDomHelper.CreateMethodCall(
-                        CodeDomHelper.This(),                       // this
-                        setMethodName + "WithValidation",           // SetElementWithValidation
-                        xNameExpression,                            // <PropertyName>XName
-                        valueExpr,
-                        new CodePrimitiveExpression(PropertyName),  // "<PropertyName>"
-                        GetSimpleTypeClassExpression());            // global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition
-                }
-                else
-                {
-                    setWithValidation = CodeDomHelper.CreateMethodCall(
-                        CodeDomHelper.This(),
-                        setMethodName + "WithValidation",
-                        valueExpr,
-                        new CodePrimitiveExpression(PropertyName),
-                        GetSimpleTypeClassExpression());
-                }
-
-                // Skip validation when the set value is null. Also enum.ToString above would fail.
-                // (Setting an optional element to null actually removes it from DOM.)
-                if (IsNullable)
-                {
-                    setStatements.Add(new CodeConditionStatement(
-                        new CodeSnippetExpression("value == null"),
-                        new[] { new CodeExpressionStatement(CreatePlainSetCall(setMethodName, IsNillable ? "XNil.Value" : "null", xNameParm)) },
-                        new[] { new CodeExpressionStatement(setWithValidation) }
-                    ));
-                }
-                else
-                {
-                    setStatements.Add(setWithValidation);
-                }
-            }
-            else
-            {
-                string valueExpr = !IsEnum || propertyOrigin == SchemaOrigin.Element
-                    ? "value"
-                    : IsNullable
-                        ? "value?.ToString()"
-                        : "value.ToString()";
-
-                if (IsNillable)
-                {
-                    valueExpr += " ?? XNil.Value";
-                }
-
-                var setter = CreatePlainSetCall(setMethodName, valueExpr, xNameParm);
-                setStatements.Add(setter);
-            }
-        }
-
-        private CodeExpression CreatePlainSetCall(string setMethodName, string valueExpr, bool xNameParm)
-        {
-            if (xNameParm)
-            {
-                var methodCall = CodeDomHelper.CreateMethodCall(
-                    CodeDomHelper.This(),
-                    setMethodName,
-                    xNameExpression,
-                    new CodeSnippetExpression(valueExpr)
-                );
-                if (!IsRef && typeRef.IsSimpleType)
-                {
-                    methodCall.Parameters.Add(GetSchemaDatatypeExpression());
-                }
-                return methodCall;
-            }
-            else
-            {
-                return CodeDomHelper.CreateMethodCall(
-                    CodeDomHelper.This(),
-                    setMethodName,
-                    new CodeSnippetExpression(valueExpr),
-                    GetSchemaDatatypeExpression()
-                );
-            }
-        }
-
-        private void AddListGetStatements(CodeStatementCollection getStatements, CodeTypeReference listType,
-            string listName)
-        {
-            if (FixedValue != null)
-            {
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(null,
-                            NameGenerator.ChangeClrName(this.propertyName, NameOptions.MakeFixedValueField)
-                        ))
-                );
-                return;
-            }
-
-            var listFieldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), listName);
-
-            CodeExpression newListExpr = new CodeObjectCreateExpression(
-                listType,
-                GetListParameters(false /*set*/, false /*constructor*/)
-            );
-            if (IsNillable)
-            {
-                newListExpr = new CodeSnippetExpression(
-                    newListExpr.ToCodeString() + " { SupportsXsiNil = true }"
-                );
-            }
-
-            getStatements.Add(
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression(
-                        listFieldRef,
-                        CodeBinaryOperatorType.IdentityEquality,
-                        new CodePrimitiveExpression(null)
-                    ),
-                    new CodeAssignStatement(listFieldRef, newListExpr)
-                ));
-
-            if (IsEnum)
-            {
-                var lambdaExpr = new CodeSnippetExpression($"item => ({this.TypeReference.ClrFullTypeName}) Enum.Parse(typeof({this.TypeReference.ClrFullTypeName}), item)");
-                var selectExpr = CodeDomHelper.CreateMethodCall(listFieldRef, "Select", lambdaExpr);
-                var toListExpr = new CodeMethodInvokeExpression(selectExpr, "ToList");
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        toListExpr));
-            }
-            else
-            {
-                getStatements.Add(
-                    new CodeMethodReturnStatement(
-                        listFieldRef));
-            }
-        }
-
-
-        private void AddListSetStatements(CodeStatementCollection setStatements, CodeTypeReference listType,
-            string listName)
-        {
-            AddFixedValueChecking(setStatements);
-
-            var listFieldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), listName);
-
-            CodeStatement[] trueStatements =
-                new CodeStatement[]
-                {
-                    new CodeAssignStatement( //True 1 Then
-                        listFieldRef,
-                        new CodePrimitiveExpression(null)
-                    )
-                };
-
-            CodeStatement[] falseStatements =
-                new CodeStatement[]
-                {
-                    new CodeConditionStatement( //False 1 Else if
-                        new CodeBinaryOperatorExpression( // Condition2
-                            listFieldRef,
-                            CodeBinaryOperatorType.IdentityEquality,
-                            new CodePrimitiveExpression(null)
-                        ),
-                        new CodeStatement[]
-                        {
-                            new CodeAssignStatement( //Then 2
-                                listFieldRef,
-                                new CodeMethodInvokeExpression(
-                                    new CodeTypeReferenceExpression(listType),
-                                    IsNillable ? Constants.InitializeNillable : Constants.Initialize,
-                                    GetListParameters(true /*set*/, false /*constructor*/))
-                            )
-                        },
-                        new CodeStatement[]
-                        {
-                            new CodeExpressionStatement(
-                                new CodeMethodInvokeExpression(
-                                    new CodeTypeReferenceExpression("XTypedServices"),
-                                    Constants.SetList + "<" + NullableType + ">",
-                                    listFieldRef,
-                                    GetListSetStatementValueExpr()))
-                        })
-                };
-
-            setStatements.Add(
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression( //if
-                        CodeDomHelper.SetValue(),
-                        CodeBinaryOperatorType.IdentityEquality,
-                        new CodePrimitiveExpression(null)
-                    ),
-                    trueStatements,
-                    falseStatements));
-        }
-
-        private CodeExpression GetListSetStatementValueExpr()
-        {
-            if (IsEnum)
-            {
-                var lambdaExpr = new CodeSnippetExpression("item => item.ToString()");
-                var selectExpr = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
-                return new CodeMethodInvokeExpression(selectExpr, "ToList");
-            }
-            else
-            {
-                return CodeDomHelper.SetValue();
-            }
-        }
-
         private void AddGetStatements(CodeStatementCollection getStatements)
         {
+            // TODO:
             if (IsSubstitutionHead)
             {
                 AddSubstGetStatements(getStatements);
                 return;
             }
-
-            // Fixed attributes always have the same value, whether they're present or not.
-            if (FixedValue != null && propertyOrigin == SchemaOrigin.Attribute)
-            {
-                ReturnFixedValue(getStatements);
-                return;
-            }
-
-            getStatements.Add(GetValueMethodCall());
-            CheckOccurrence(getStatements);
-            CheckNillable(getStatements);
-            // Fixed elements always have the same value, _when they're present._
-            // If they're optional they can still be absent and read as null, which is handled in CheckOccurence
-            if (FixedValue != null && propertyOrigin != SchemaOrigin.Attribute)
-            {
-                ReturnFixedValue(getStatements);
-                return;
-            }
-            GetElementDefaultValue(getStatements);  // Attribute default value is handled in CheckOccurence
-            CodeVariableReferenceExpression returnValueExp = new CodeVariableReferenceExpression("x");
-            CodeExpression returnExp;
-            if (!IsRef && typeRef.IsSimpleType)
-            {
-                //for referencing properties, directly create the object of referenced type
-                CodeTypeReference parseType = ReturnType;
-                if (typeRef.IsValueType && IsNullable)
-                {
-                    parseType = new CodeTypeReference(clrTypeName);
-                }
-
-                if (IsUnion)
-                {
-                    returnExp = CodeDomHelper.CreateMethodCall(
-                        CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
-                        Constants.ParseUnionValue,
-                        returnValueExp,
-                        GetSimpleTypeClassExpression(IsUnion));
-                }
-                else
-                {
-                    string parseMethodName;
-                    CodeExpression simpleTypeExpression = GetSchemaDatatypeExpression();
-                    if (IsSchemaList)
-                    {
-                        parseMethodName = Constants.ParseListValue;
-                        parseType = new CodeTypeReference(clrTypeName);
-                    }
-                    else
-                    {
-                        // XTypedServices.ParseValue<string>
-                        parseMethodName = Constants.ParseValue;
-                        if (IsEnum) {
-                            if (TypeReference.SchemaObject is XmlSchemaSimpleType simpleSchemaType) {
-                                parseType = new CodeTypeReference(simpleSchemaType.Datatype.ValueType);
-                            }
-                        }
-                    }
-
-                    if (IsEnum)
-                    {
-                        // XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition)
-                        returnExp = CodeDomHelper.CreateMethodCall(
-                             CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),    // XTypedServices
-                             parseMethodName,                                                   // ParseValue
-                             returnValueExp,                                                    // x
-                             simpleTypeExpression,                                              // XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype
-                             GetSimpleTypeClassExpression());                                   // global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition
-                        // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
-                        returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.ClrFullTypeName, returnExp);
-                    }
-                    else
-                    {
-                        returnExp = CodeDomHelper.CreateGenericMethodCall(
-                            CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
-                            parseMethodName,
-                            parseType,
-                            returnValueExp,
-                            simpleTypeExpression);
-                    }
-                }
-            }
-            else
-            {
-                returnExp = new CodeCastExpression(ReturnType, returnValueExp);
-            }
-
-            getStatements.Add(new CodeMethodReturnStatement(returnExp));
         }
 
         private void CheckOccurrence(CodeStatementCollection getStatements)
         {
-            Debug.Assert(!this.IsList);
-            CodeStatement returnStatement = null;
-            if (CanBeAbsent)
-            {
-                // Absent attributes return their default value (if any).
-                // Note that absent elements return null, only empty elements return their default value (per xsd specs).
-                if (DefaultValue != null && propertyOrigin == SchemaOrigin.Attribute)
-                {
-                    returnStatement = new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(
-                            null,
-                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
-                        )
-                    );
-                }
-                else
-                {
-                    // For value types, this is needed to return T?, since ParseValue return T.
-                    // It's not mandatory for ref types but it's more consistent and performant to do it always.
-                    returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
-                }
-            }
-            else if (VerifyRequired)
-            {
-                Debug.Assert(this.occursInSchema == Occurs.One);
-                string origin = this.propertyOrigin == SchemaOrigin.Element ? "Element" :
-                    this.propertyOrigin == SchemaOrigin.Attribute ? "Attribute" : null;
-                returnStatement = new CodeThrowExceptionStatement(new CodeObjectCreateExpression(
-                    Constants.LinqToXsdException, new CodePrimitiveExpression("Missing required " + origin)));
-            }
+            // Scriban: done
+            // Debug.Assert(!this.IsList);
+            // CodeStatement returnStatement = null;
+            // if (CanBeAbsent)
+            // {
+            //     // Absent attributes return their default value (if any).
+            //     // Note that absent elements return null, only empty elements return their default value (per xsd specs).
+            //     if (DefaultValue != null && propertyOrigin == SchemaOrigin.Attribute)
+            //     {
+            //         returnStatement = new CodeMethodReturnStatement(
+            //             new CodeFieldReferenceExpression(
+            //                 null,
+            //                 NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
+            //             )
+            //         );
+            //     }
+            //     else
+            //     {
+            //         // For value types, this is needed to return T?, since ParseValue return T.
+            //         // It's not mandatory for ref types but it's more consistent and performant to do it always.
+            //         returnStatement = new CodeMethodReturnStatement(new CodePrimitiveExpression(null));
+            //     }
+            // }
+            // else if (VerifyRequired)
+            // {
+            //     Debug.Assert(this.occursInSchema == Occurs.One);
+            //     string origin = this.propertyOrigin == SchemaOrigin.Element ? "Element" :
+            //         this.propertyOrigin == SchemaOrigin.Attribute ? "Attribute" : null;
+            //     returnStatement = new CodeThrowExceptionStatement(new CodeObjectCreateExpression(
+            //         Constants.LinqToXsdException, new CodePrimitiveExpression("Missing required " + origin)));
+            // }
 
-            if (returnStatement != null)
-            {
-                getStatements.Add(
-                    new CodeConditionStatement(
-                        new CodeBinaryOperatorExpression(
-                            new CodeVariableReferenceExpression("x"),
-                            CodeBinaryOperatorType.IdentityEquality,
-                            new CodePrimitiveExpression(null)),
-                        returnStatement));
-            }
-        }
-
-        private void CheckNillable(CodeStatementCollection getStatements)
-        {
-            if (IsNillable)
-            {
-                getStatements.Add(
-                    new CodeConditionStatement(
-                        new CodeMethodInvokeExpression(
-                            new CodeVariableReferenceExpression("x"),
-                            "IsXsiNil"),
-                        new CodeMethodReturnStatement(new CodePrimitiveExpression(null))
-                    )
-                );
-            }
-        }
-
-        private void ReturnFixedValue(CodeStatementCollection getStatements)
-        {
-            getStatements.Add(
-                new CodeMethodReturnStatement(
-                    new CodeFieldReferenceExpression(
-                        null,
-                        NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField)
-                    )
-                )
-            );
-        }
-
-        private void GetElementDefaultValue(CodeStatementCollection getStatements)
-        {
-            // Default values of attributes are already handled previously based on attribute presence
-            if (propertyOrigin == SchemaOrigin.Attribute || DefaultValue == null) return;
-
-            var x = new CodeVariableReferenceExpression("x");
-
-            // Default values apply when element is present and empty.
-            // Technically at this point x should be != null thanks to CheckOccurence but let's not crash with NRE if we're reading malformed XML.
-            // `if (x != null && x.IsEmpty) return defaultValue;`
-            getStatements.Add(
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression(
-                        new CodeBinaryOperatorExpression(
-                            x,
-                            CodeBinaryOperatorType.IdentityInequality,
-                            new CodePrimitiveExpression(null)
-                        ),
-                        CodeBinaryOperatorType.BooleanAnd,
-                        new CodeFieldReferenceExpression(x, "IsEmpty")
-                    ),
-                    new CodeMethodReturnStatement(
-                        new CodeFieldReferenceExpression(
-                            null,
-                            NameGenerator.ChangeClrName(propertyName, NameOptions.MakeDefaultValueField)
-                        )
-                    )
-                )
-            );
-        }
-
-        private void AddSetStatements(CodeStatementCollection setStatements)
-        {
-            AddFixedValueChecking(setStatements);
-            AddSetValueMethodCall(setStatements);
+            // if (returnStatement != null)
+            // {
+            //     getStatements.Add(
+            //         new CodeConditionStatement(
+            //             new CodeBinaryOperatorExpression(
+            //                 new CodeVariableReferenceExpression("x"),
+            //                 CodeBinaryOperatorType.IdentityEquality,
+            //                 new CodePrimitiveExpression(null)),
+            //             returnStatement));
+            // }
         }
 
         private void AddSubstGetStatements(CodeStatementCollection getStatements)
         {
             Debug.Assert(propertyOrigin == SchemaOrigin.Element);
-            CodeExpression[] substParams = new CodeExpression[substitutionMembers.Count + 2];
+            CodeExpression[] substParams = new CodeExpression[SubstitutionMembers.Count + 2];
             substParams[0] = CodeDomHelper.This();
             substParams[1] = CodeDomHelper.SingletonTypeManager();
             int i = 2;
-            foreach (XmlSchemaElement elem in substitutionMembers)
+            foreach (XmlSchemaElement elem in SubstitutionMembers)
             {
                 substParams[i++] =
                     CodeDomHelper.XNameGetExpression(elem.QualifiedName.Name, elem.QualifiedName.Namespace);
@@ -1038,15 +662,6 @@ namespace Xml.Schema.Linq.CodeGen
             getStatements.Add(
                 new CodeMethodReturnStatement(new CodeCastExpression(ReturnType,
                     new CodeVariableReferenceExpression("x"))));
-        }
-
-        private void AddMemberField(string memberName, CodeTypeReference memberType, CodeTypeDeclaration parentType)
-        {
-            // Construct private field
-            CodeMemberField mem = new CodeMemberField(memberType, memberName);
-            mem.Attributes = MemberAttributes.Private;
-            CodeDomHelper.AddBrowseNever(mem);
-            parentType.Members.Add(mem);
         }
 
         private CodeTypeReference GetListType()
@@ -1095,7 +710,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (this.IsSubstitutionHead)
             {
-                paramCount += substitutionMembers.Count;
+                paramCount += SubstitutionMembers.Count;
                 typeParam = CodeDomHelper.SingletonTypeManager();
             }
             else
@@ -1124,7 +739,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (this.IsSubstitutionHead)
             {
-                foreach (XmlSchemaElement elem in substitutionMembers)
+                foreach (XmlSchemaElement elem in SubstitutionMembers)
                 {
                     listParameters[paramIndex++] =
                         CodeDomHelper.XNameGetExpression(elem.QualifiedName.Name, elem.QualifiedName.Namespace);
@@ -1162,67 +777,12 @@ namespace Xml.Schema.Linq.CodeGen
                     Constants.Datatype);
         }
 
-        protected CodeExpression GetFullyQualifiedSimpleTypeClassExpression(string namespacePrefix)
+        public string GetSimpleTypeDefinition(bool disambiguateProperty)
         {
-            throw new NotImplementedException();
-            // if (namespacePrefix == null) throw new ArgumentNullException(nameof(namespacePrefix));
-            // Debug.Assert(this.simpleTypeClrTypeName != null);
-
-            // return CodeDomHelper.CreateFieldReference(
-            //     this.simpleTypeClrTypeName, Constants.SimpleTypeDefInnerType);
+            return disambiguateProperty && propertyName == simpleTypeClrTypeName
+                ? $"global::{settings.GetClrNamespace(PropertyNs)}.{simpleTypeClrTypeName}.TypeDefinition"
+                : $"{simpleTypeClrTypeName}.TypeDefinition";
         }
-
-        protected CodeExpression GetSimpleTypeClassExpression(bool disambiguateWhenPropertyAndTypeNameAreTheSame = false)
-        {
-            Debug.Assert(this.simpleTypeClrTypeName.IsNotEmpty());
-            
-            var areTheSameAndShouldDisambiguate = false;
-            if (disambiguateWhenPropertyAndTypeNameAreTheSame) {
-                if (this.propertyName == this.simpleTypeClrTypeName) {
-                    areTheSameAndShouldDisambiguate = true;
-                }
-            }
-
-            string typeName = areTheSameAndShouldDisambiguate
-                ? $"global::{this.settings.GetClrNamespace(PropertyNs)}.{this.simpleTypeClrTypeName}"
-                : this.simpleTypeClrTypeName;
-
-            var codeFieldReferenceExpression = CodeDomHelper.CreateFieldReference(typeName, Constants.SimpleTypeDefInnerType);
-
-            #if DEBUG
-            var str = codeFieldReferenceExpression.ToCodeString();
-            Debug.Assert(str.IsNotEmpty());
-            Debug.Assert(str.Contains("void.") == false, $"A void. type reference indicates that the mapping failed to generate a suitable {nameof(simpleTypeClrTypeName)} for the current {nameof(ClrPropertyInfo)}. This can happen due to the XSD type of the current property might be anonymous AND a union of multiple types. There are a few XSD type configurations that are not yet supported.");
-            #endif
-
-            return codeFieldReferenceExpression;
-        }
-
-#if DEBUG
-        /// <summary>
-        /// unfortuntely, this is a hack to fix a regression that left the <see cref="simpleTypeClrTypeName"/> field unset for certain enums.
-        /// examples of this error occuring: 'W3C XMLSchema v1.xsd' -> schema element -> attributeFormDefault attribute of type formChoice
-        /// </summary>
-        /// <returns></returns>
-        private bool SetSimpleTypeClrNameForEnum()
-        {
-            bool wasSet = false;
-            if (this.ParentTypeDeclaration != null && this.ParentTypeDeclaration.HasParent<CodeNamespace>()) {
-                var thisNamespace = this.ParentTypeDeclaration.GetParent<CodeNamespace>();
-                if (thisNamespace is not null) {
-                    var possibleTypeValidatorClass = thisNamespace.SearchForMemberRecursively(e =>
-                        e is CodeTypeDeclaration ec && ec.Name.Contains(this.TypeReference.Name));
-
-                    if (possibleTypeValidatorClass is not null) {
-                        simpleTypeClrTypeName = possibleTypeValidatorClass.Name;
-                        wasSet = true;
-                    }
-                }
-            }
-
-            return wasSet;
-        }
-#endif
 
         public void CreateXNameField(CodeTypeDeclaration typeDecl)
         {
@@ -1276,59 +836,6 @@ namespace Xml.Schema.Linq.CodeGen
                 SimpleTypeCodeDomHelper.CreateFixedDefaultValueExpression(returnType, fixedDefaultValue, IsEnum);
 
             typeDecl.Members.Add(fixedOrDefaultField);
-        }
-
-        protected void AddFixedValueChecking(CodeStatementCollection setStatements)
-        {
-            if (FixedValue == null) return;
-
-            // The set value must match the property fixed value.
-
-            CodeExpression fixedValueExpr =
-                new CodeFieldReferenceExpression(null,
-                    NameGenerator.ChangeClrName(propertyName, NameOptions.MakeFixedValueField));
-
-            var valueExpr = new CodePropertySetValueReferenceExpression();
-
-            // Note the condition is opposite, because CodeDOM doesn't have unary negation...
-            // so we're doing `if (value == fixed) { /* ok */ } else throw`
-            CodeExpression condition = CodeDomHelper.CreateMethodCall(
-                fixedValueExpr,
-                Constants.EqualityCheck,
-                valueExpr);
-
-            // If the property is an optional element, setting it to null is also acceptable: it removes the element from document.
-            // So we're checking `if (value == fixed || value == null) ...`
-            // On principle, setting attributes to null can also make sense as it would remove the XAttribute from document,
-            // but that doesn't mesh well with the type system (attributes with default/fixed values are never nullable,
-            // which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
-            // This is really an edge case and can be achieved by removing the XAttribute from Untyped.
-            if (IsNullable)
-            {
-                condition = new CodeBinaryOperatorExpression(
-                    condition,
-                    CodeBinaryOperatorType.BooleanOr,
-                    new CodeBinaryOperatorExpression(
-                        valueExpr,
-                        CodeBinaryOperatorType.IdentityEquality,
-                        new CodePrimitiveExpression(null)
-                    )
-                );
-            }
-
-            setStatements.Add(
-                new CodeConditionStatement(
-                    condition,
-                    new CodeStatement[] { },
-                    new CodeStatement[]
-                    {
-                        new CodeThrowExceptionStatement(
-                            new CodeObjectCreateExpression(typeof(LinqToXsdFixedValueException),
-                                new CodePropertySetValueReferenceExpression(),
-                                fixedValueExpr))
-                    }
-                )
-            );
         }
     }
 }

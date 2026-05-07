@@ -1,0 +1,140 @@
+
+{{ $accessModifier }} partial class {{ $XRoot }} {
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private XDocument doc;
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private XTypedElement rootObject;
+    
+    private {{ $XRoot }}() {
+    }
+    
+    public static {{ $XRoot }} Load(string xmlFile) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
+        root.doc = XDocument.Load(xmlFile);
+        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+        if ((typedRoot == null)) {
+            throw new LinqToXsdException("Invalid root element in xml document.");
+        }
+        root.rootObject = typedRoot;
+        return root;
+    }
+    
+    public static {{ $XRoot }} Load(string xmlFile, LoadOptions options) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
+        root.doc = XDocument.Load(xmlFile, options);
+        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+        if ((typedRoot == null)) {
+            throw new LinqToXsdException("Invalid root element in xml document.");
+        }
+        root.rootObject = typedRoot;
+        return root;
+    }
+    
+    public static {{ $XRoot }} Load(TextReader textReader) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
+        root.doc = XDocument.Load(textReader);
+        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+        if ((typedRoot == null)) {
+            throw new LinqToXsdException("Invalid root element in xml document.");
+        }
+        root.rootObject = typedRoot;
+        return root;
+    }
+    
+    public static {{ $XRoot }} Load(TextReader textReader, LoadOptions options) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
+        root.doc = XDocument.Load(textReader, options);
+        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+        if ((typedRoot == null)) {
+            throw new LinqToXsdException("Invalid root element in xml document.");
+        }
+        root.rootObject = typedRoot;
+        return root;
+    }
+    
+    public static {{ $XRoot }} Load(XmlReader xmlReader) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
+        root.doc = XDocument.Load(xmlReader);
+        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+        if ((typedRoot == null)) {
+            throw new LinqToXsdException("Invalid root element in xml document.");
+        }
+        root.rootObject = typedRoot;
+        return root;
+    }
+    
+    public static {{ $XRoot }} Parse(string text) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
+        root.doc = XDocument.Parse(text);
+        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+        if ((typedRoot == null)) {
+            throw new LinqToXsdException("Invalid root element in xml document.");
+        }
+        root.rootObject = typedRoot;
+        return root;
+    }
+    
+    public static {{ $XRoot }} Parse(string text, LoadOptions options) {
+        {{ $XRoot }} root = new {{ $XRoot }}();
+        root.doc = XDocument.Parse(text, options);
+        XTypedElement typedRoot = XTypedServices.ToXTypedElement(root.doc.Root, LinqToXsdTypeManager.Instance);
+        if ((typedRoot == null)) {
+            throw new LinqToXsdException("Invalid root element in xml document.");
+        }
+        root.rootObject = typedRoot;
+        return root;
+    }
+    
+    public virtual void Save(string fileName) {
+        doc.Save(fileName);
+    }
+    
+    public virtual void Save(TextWriter textWriter) {
+        doc.Save(textWriter);
+    }
+    
+    public virtual void Save(XmlWriter writer) {
+        doc.Save(writer);
+    }
+    
+    public virtual void Save(TextWriter textWriter, SaveOptions options) {
+        doc.Save(textWriter, options);
+    }
+    
+    public virtual void Save(string fileName, SaveOptions options) {
+        doc.Save(fileName, options);
+    }
+    
+    public virtual XDocument XDocument {
+        get {
+            return doc;
+        }
+    }
+    
+    public virtual XTypedElement Root {
+        get {
+            return rootObject;
+        }
+    }
+
+    {{- 
+        # Elements in a namespace should already have unique names in model, but they could clash with local members above.
+        # When rendering XRoot (rather than XRootNamespace) elements from all namespaces are included and could clash with each other.
+        scope_init "doc" "rootObject" "Load" "Parse" "Save" "XDocument" "Root"
+        for $el in $roots
+            $prefix = $global ? "global::" + $el.Namespace.Name + "." : ""
+    }}
+
+    public {{ $XRoot }}({{ $prefix }}{{ $el.Name }} root) {
+        this.doc = new XDocument(root.Untyped);
+        this.rootObject = root;
+    }
+
+
+    {{~ ## TODO: prefix should actually be "global::($el.Namespace)." for XRoot. ~}}
+    public {{ $prefix }}{{ $el.Name }} {{ $el.Name | scope_rename }} {  get {return rootObject as {{ $prefix }}{{ $el.Name }}; } }
+
+    {{- end }}
+}

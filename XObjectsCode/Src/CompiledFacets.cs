@@ -1,248 +1,132 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
 using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq
 {
-    public class CompiledFacets
+    public class CompiledFacets(XmlSchemaDatatype dt)
     {
-        RestrictionFlags flags;
+        public XmlSchemaWhiteSpace WhiteSpace { get; private set; } = dt.GetBuiltInWSFacet();
 
-        int length;
-        int minLength;
-        int maxLength;
-        object maxInclusive;
-        object maxExclusive;
-        object minInclusive;
-        object minExclusive;
-        int totalDigits;
-        int fractionDigits;
-        ArrayList patterns;
-        ArrayList enumerations;
-        XmlSchemaWhiteSpace whiteSpace;
+        public RestrictionFlags Flags { get; private set; }
 
-        public CompiledFacets(XmlSchemaDatatype dt)
-        {
-            whiteSpace = dt.GetBuiltInWSFacet();
-        }
+        public int Length { get; private set; }
+        public int MinLength { get; private set; }
+        public int MaxLength { get; private set; }
+        
+        public List<string> Patterns { get; private set; }
 
-        public int Length
-        {
-            get { return length; }
-        }
+        public List<object> Enumeration { get; private set; }
 
-        public int MinLength
-        {
-            get { return minLength; }
-        }
+        public object MaxInclusive { get; private set; }
+        public object MaxExclusive { get; private set; }
+        public object MinInclusive { get; private set; }
+        public object MinExclusive { get; private set; }
 
-        public int MaxLength
-        {
-            get { return maxLength; }
-        }
+        public int TotalDigits { get; private set; }
+        public int FractionDigits { get; private set; }
 
-        public ArrayList Patterns
-        {
-            get { return patterns; }
-        }
-
-        public ArrayList Enumeration
-        {
-            get { return enumerations; }
-        }
-
-        public XmlSchemaWhiteSpace WhiteSpace
-        {
-            get { return whiteSpace; }
-        }
-
-        public object MaxInclusive
-        {
-            get { return maxInclusive; }
-        }
-
-        public object MaxExclusive
-        {
-            get { return maxExclusive; }
-        }
-
-        public object MinInclusive
-        {
-            get { return minInclusive; }
-        }
-
-        public object MinExclusive
-        {
-            get { return minExclusive; }
-        }
-
-        public int TotalDigits
-        {
-            get { return totalDigits; }
-        }
-
-        public int FractionDigits
-        {
-            get { return fractionDigits; }
-        }
-
-        public RestrictionFlags Flags
-        {
-            get { return flags; }
-        }
-
-        public void compileFacets(XmlSchemaSimpleType simpleType)
+        public void CompileFacets(XmlSchemaSimpleType simpleType)
         {
             var isEnum = simpleType.IsEnum();
             XmlSchemaSimpleType type = simpleType;
-            XmlSchemaSimpleType enumSimpleType = null; //simpletype that has most restricted enums.
-            flags = 0;
+            XmlSchemaSimpleType enumSimpleType = null; // simpletype that has most restricted enums.
+            Flags = 0;
             while (type != null &&
-                   !String.Equals(type.QualifiedName.Namespace, Constants.XSD, StringComparison.Ordinal))
+                   !string.Equals(type.QualifiedName.Namespace, Constants.XSD, StringComparison.Ordinal))
             {
-                XmlSchemaSimpleTypeRestriction simpleTypeRestriction = type.Content as XmlSchemaSimpleTypeRestriction;
-                if (simpleTypeRestriction != null)
+                if (type.Content is XmlSchemaSimpleTypeRestriction { Facets: var facets })
                 {
-                    foreach (XmlSchemaFacet facet in simpleTypeRestriction.Facets)
+                    foreach (XmlSchemaFacet facet in facets)
                     {
-                        if (facet is XmlSchemaMinLengthFacet)
+                        switch (facet) 
                         {
-                            if ((flags & RestrictionFlags.MinLength) == 0)
-                            {
-                                minLength = XmlConvert.ToInt32(facet.Value);
-                                flags |= RestrictionFlags.MinLength;
-                            }
-                        }
-                        else if (facet is XmlSchemaMaxLengthFacet)
-                        {
-                            if ((flags & RestrictionFlags.MaxLength) == 0)
-                            {
-                                maxLength = XmlConvert.ToInt32(facet.Value);
-                                flags |= RestrictionFlags.MaxLength;
-                            }
-                        }
-                        else if (facet is XmlSchemaLengthFacet)
-                        {
-                            if ((flags & RestrictionFlags.Length) == 0)
-                            {
-                                length = XmlConvert.ToInt32(facet.Value);
-                                flags |= RestrictionFlags.Length;
-                            }
-                        }
-                        else if (facet is XmlSchemaEnumerationFacet)
-                        {
-                            if (enumSimpleType == null)
-                            {
-                                enumerations = new ArrayList();
-                                flags |= RestrictionFlags.Enumeration;
-                                enumSimpleType = type;
-                            }
-                            else if (enumSimpleType != type)
-                            {
-                                continue;
-                            }
+                            case XmlSchemaMinLengthFacet when !Flags.HasFlag(RestrictionFlags.MinLength):
+                                Flags |= RestrictionFlags.MinLength;
+                                MinLength = XmlConvert.ToInt32(facet.Value);
+                                break;
 
-                            NameTable nameTable = null;
-                            // if datatype is NCName then a null nametable causes an exception
-                            if (type.BaseXmlSchemaType.Datatype.TypeCode == XmlTypeCode.NCName) {
-                                nameTable = new NameTable();
-                            }
-                            var value = type.BaseXmlSchemaType.Datatype.ParseValue(s: facet.Value, nameTable: nameTable, nsmgr: null);
-                            if (isEnum)
-                            {
-                                var enumFacet = new EnumFacet(value.ToString());
-                                enumerations.Add(enumFacet.ToString());
-                            }
-                            else
-                            {
-                                enumerations.Add(value);
-                            }
-                        }
-                        else if (facet is XmlSchemaPatternFacet)
-                        {
-                            if (patterns == null)
-                            {
-                                patterns = new ArrayList();
-                                flags |= RestrictionFlags.Pattern;
-                            }
+                            case XmlSchemaMaxLengthFacet when !Flags.HasFlag(RestrictionFlags.MaxLength):
+                                Flags |= RestrictionFlags.MaxLength;
+                                MaxLength = XmlConvert.ToInt32(facet.Value);
+                                break;
 
-                            patterns.Add(facet.Value);
-                        }
-                        else if (facet is XmlSchemaMaxInclusiveFacet)
-                        {
-                            if ((flags & RestrictionFlags.MaxInclusive) == 0)
-                            {
-                                maxInclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
-                                flags |= RestrictionFlags.MaxInclusive;
-                            }
-                        }
-                        else if (facet is XmlSchemaMaxExclusiveFacet)
-                        {
-                            if ((flags & RestrictionFlags.MaxExclusive) == 0)
-                            {
-                                maxExclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
-                                flags |= RestrictionFlags.MaxExclusive;
-                            }
-                        }
-                        else if (facet is XmlSchemaMinExclusiveFacet)
-                        {
-                            if ((flags & RestrictionFlags.MinExclusive) == 0)
-                            {
-                                minExclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
-                                flags |= RestrictionFlags.MinExclusive;
-                            }
-                        }
-                        else if (facet is XmlSchemaMinInclusiveFacet)
-                        {
-                            if ((flags & RestrictionFlags.MinInclusive) == 0)
-                            {
-                                minInclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
-                                flags |= RestrictionFlags.MinInclusive;
-                            }
-                        }
-                        else if (facet is XmlSchemaFractionDigitsFacet)
-                        {
-                            if ((flags & RestrictionFlags.FractionDigits) == 0)
-                            {
-                                fractionDigits = XmlConvert.ToInt32(facet.Value);
-                                flags |= RestrictionFlags.FractionDigits;
-                            }
-                        }
-                        else if (facet is XmlSchemaTotalDigitsFacet)
-                        {
-                            if ((flags & RestrictionFlags.TotalDigits) == 0)
-                            {
-                                totalDigits = XmlConvert.ToInt32(facet.Value);
-                                flags |= RestrictionFlags.TotalDigits;
-                            }
-                        }
-                        else if (facet is XmlSchemaWhiteSpaceFacet)
-                        {
-                            if ((flags & RestrictionFlags.WhiteSpace) == 0)
-                            {
-                                if (facet.Value == "preserve")
-                                {
-                                    whiteSpace = XmlSchemaWhiteSpace.Preserve;
-                                }
-                                else if (facet.Value == "replace")
-                                {
-                                    whiteSpace = XmlSchemaWhiteSpace.Replace;
-                                }
-                                else if (facet.Value == "collapse")
-                                {
-                                    whiteSpace = XmlSchemaWhiteSpace.Collapse;
+                            case XmlSchemaLengthFacet when !Flags.HasFlag(RestrictionFlags.Length):
+                                Flags |= RestrictionFlags.Length;
+                                Length = XmlConvert.ToInt32(facet.Value);
+                                break;
+
+                            case XmlSchemaEnumerationFacet: {
+                                    if (enumSimpleType == null)
+                                        enumSimpleType = type;
+                                    else if (enumSimpleType != type)
+                                        continue;
+
+                                    Flags |= RestrictionFlags.Enumeration;
+                                    Enumeration ??= [];
+
+                                    // if datatype is NCName then a null nametable causes an exception
+                                    var nameTable = type.BaseXmlSchemaType.Datatype.TypeCode == XmlTypeCode.NCName
+                                        ? new NameTable()
+                                        : null;
+
+                                    var value = type.BaseXmlSchemaType.Datatype.ParseValue(s: facet.Value, nameTable: nameTable, nsmgr: null);
+
+                                    Enumeration.Add(isEnum
+                                        ? EnumFacet.Stringify(value)
+                                        : value);
+                                    break;
                                 }
 
-                                flags |= RestrictionFlags.WhiteSpace;
-                            }
-                        }
-                        else
-                        {
-                            continue;
+                            case XmlSchemaPatternFacet:
+                                Flags |= RestrictionFlags.Pattern;
+                                Patterns ??= [];
+                                Patterns.Add(facet.Value);
+                                break;
+
+                            case XmlSchemaMaxInclusiveFacet when !Flags.HasFlag(RestrictionFlags.MaxInclusive):
+                                Flags |= RestrictionFlags.MaxInclusive;
+                                MaxInclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
+                                break;
+
+                            case XmlSchemaMaxExclusiveFacet when !Flags.HasFlag(RestrictionFlags.MaxExclusive):
+                                Flags |= RestrictionFlags.MaxExclusive;
+                                MaxExclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
+                                break;
+
+                            case XmlSchemaMinExclusiveFacet when !Flags.HasFlag(RestrictionFlags.MinExclusive):
+                                Flags |= RestrictionFlags.MinExclusive;
+                                MinExclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
+                                break;
+
+                            case XmlSchemaMinInclusiveFacet when !Flags.HasFlag(RestrictionFlags.MinInclusive):
+                                Flags |= RestrictionFlags.MinInclusive;
+                                MinInclusive = type.BaseXmlSchemaType.Datatype.ParseValue(facet.Value, null, null);
+                                break;
+
+                            case XmlSchemaFractionDigitsFacet when !Flags.HasFlag(RestrictionFlags.FractionDigits):
+                                Flags |= RestrictionFlags.FractionDigits;
+                                FractionDigits = XmlConvert.ToInt32(facet.Value);
+                                break;
+
+                            case XmlSchemaTotalDigitsFacet when !Flags.HasFlag(RestrictionFlags.TotalDigits):
+                                Flags |= RestrictionFlags.TotalDigits;
+                                TotalDigits = XmlConvert.ToInt32(facet.Value);
+                                break;
+
+                            case XmlSchemaWhiteSpaceFacet when !Flags.HasFlag(RestrictionFlags.WhiteSpace):
+                                Flags |= RestrictionFlags.WhiteSpace;
+                                WhiteSpace = facet.Value switch {
+                                    "preserve" => XmlSchemaWhiteSpace.Preserve,
+                                    "replace" => XmlSchemaWhiteSpace.Replace,
+                                    "collapse" => XmlSchemaWhiteSpace.Collapse,
+                                    _ => WhiteSpace,
+                                };
+                                break;
                         }
                     }
                 }

@@ -21,7 +21,7 @@ namespace Xml.Schema.Linq.CodeGen
             //If the enclosed member type or item type is a global named type, reuse the definition
             if (memberOrItemType && typeInfo.IsGlobal)
             {
-                typeInfo.UpdateClrTypeName(nameMappings, settings);
+                typeInfo.clrtypeName = typeInfo.FullyQualifiedName(nameMappings, settings);
                 var typeNameToUse = typeInfo.clrtypeName;
                 if (typeInfo is EnumSimpleTypeInfo) {
                     typeNameToUse += Constants.EnumValidator;
@@ -200,9 +200,8 @@ namespace Xml.Schema.Linq.CodeGen
                 CodeArrayCreateExpression patternStrs = new CodeArrayCreateExpression();
                 patternStrs.CreateType = new CodeTypeReference(XTypedServices.typeOfString);
 
-                foreach (object o in facets.Patterns)
+                foreach (string str in facets.Patterns)
                 {
-                    string str = o.ToString();
                     patternStrs.Initializers.Add(new CodePrimitiveExpression(str));
                 }
 

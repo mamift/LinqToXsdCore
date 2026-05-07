@@ -1,0 +1,157 @@
+{{ $1.Comments | comments '///' -}}
+public partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
+    
+    {{- if $1.HasSaveMethods }}
+
+    public void Save(string xmlFile) {
+        XTypedServices.Save(xmlFile, Untyped);
+    }
+    
+    public void Save(System.IO.TextWriter tw) {
+        XTypedServices.Save(tw, Untyped);
+    }
+    
+    public void Save(System.Xml.XmlWriter xmlWriter) {
+        XTypedServices.Save(xmlWriter, Untyped);
+    }
+    
+    {{- end }}
+
+    {{- $new = $1.IsSubstitutionMember ? "new " : "" }}
+
+    public {{ $new -}} static {{ $1.Name }} Load(string xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
+    }
+    
+    public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
+        return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
+    }
+    
+    public {{ $new -}} static {{ $1.Name }} Parse(string xml) {
+        return XTypedServices.Parse<{{ $1.Name }}, {{ $1.WrappedName }}>(xml, LinqToXsdTypeManager.Instance);
+    }
+    
+    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}, {{ $1.WrappedName }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+    
+    public override XTypedElement Clone() {
+        return new {{ $1.Name }}((({{ $1.WrappedName }})(this.Content.Clone())));
+    }
+
+    {{- if $1.IsSubstitutionHead }}
+
+    protected {{ $1.Name }}(bool setNull) {{- if $1.IsSubstitutionMember }} :
+            base(true) {{- end }} {
+    }
+    {{- end }}
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private {{ $1.WrappedName }} ContentField;
+
+    {{ $1.Comments | comments '///' -}}
+    public {{ $1.Name }}() {{- if $1.IsSubstitutionMember }} :
+            base(true) {{- end }} {
+        SetInnerType(new {{ $1.WrappedName }}());
+    }
+    
+    public override XElement Untyped {
+        get {
+            return base.Untyped;
+        }
+        set {
+            base.Untyped = value;
+            {{- if $1.IsSubstitutionHead }}
+            if ((this.ContentField != null)) {
+                this.ContentField.Untyped = value;
+            }
+            {{- else }}
+            this.ContentField.Untyped = value;
+            {{- end }}
+        }
+    }
+    
+    {{~ # TODO: not totally sure about other $new but this one is $1.IsSubstitutionHead ~}}
+    public {{ $new -}} virtual {{ $1.WrappedName }} Content {
+        get {
+            return ContentField;
+        }
+    }
+    
+    private void SetInnerType({{ $1.WrappedName }} ContentField) {
+        this.ContentField = (({{ $1.WrappedName }})(XTypedServices.GetCloneIfRooted(ContentField)));
+        XTypedServices.SetName(this, this.ContentField);
+        {{- if $1.IsSubstitutionMember }}
+        base.SetSubstitutionMember(ContentField);
+        {{- end }}
+    }
+
+    {{- if $1.IsSubstitutionHead }}
+
+    protected virtual void SetSubstitutionMember({{ $1.WrappedName }} ContentField) {
+        this.ContentField = ContentField;
+        {{- if $1.IsSubstitutionMember }}
+        base.SetSubstitutionMember(ContentField);
+        {{- end }}
+    }
+
+    {{- end }}
+
+    {{ $1.Comments | comments '///' -}}
+    public {{ $1.Name }}({{ $1.WrappedName }} content) {{- if $1.IsSubstitutionMember }} :
+            base(true) {{- end }} {
+        SetInnerType(content);
+    }
+
+    {{- for $content in $1.Content }}
+    
+    {{~ # TODO: elements with FSM should include regex comment ~}}
+    {{ $content.Comments | array.concat $1.RegexComments | comments '///' -}}
+    public virtual {{ $content.Type | builtin }} {{ $content.Name }} {
+        get {
+            return this.ContentField.{{ $content.Name }};
+        }
+        set {
+            this.ContentField.{{ $content.Name }} = value;
+        }
+    }
+    {{- end }}
+    
+    private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
+    
+    Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+        get {
+            IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
+            return schemaMetaData.LocalElementsDictionary;
+        }
+    }
+    
+    XTypedElement IXMetaData.Content {
+        get {
+            return this.Content;
+        }
+    }
+    
+    ContentModelEntity IXMetaData.GetContentModel() {
+        return ContentModelEntity.Default;
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    System.Xml.Linq.XName IXMetaData.SchemaName {
+        get {
+            return xName;
+        }
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    SchemaOrigin IXMetaData.TypeOrigin {
+        get {
+            return SchemaOrigin.Element;
+        }
+    }
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    ILinqToXsdTypeManager IXMetaData.TypeManager {
+        get {
+            return LinqToXsdTypeManager.Instance;
+        }
+    }
+}

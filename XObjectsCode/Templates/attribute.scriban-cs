@@ -1,0 +1,362 @@
+{{~
+    $new = $1.IsNew ? "new " : ""
+~}}
+
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+[EditorBrowsable(EditorBrowsableState.Never)]
+protected internal {{ $new -}} static readonly System.Xml.Linq.XName {{ $1.XNameField }} = System.Xml.Linq.XName.Get("{{ $1.XName }}", "{{ $1.XNamespace }}");
+
+{{- if $1.FixedOrDefaultValue }}
+
+{{~ # TODO: review $1.Type for Union types, see. ClrPropertyInfo.CreateFixedDefaultValue ~}}
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
+    attr = $1 # funcs have their own local scope and non-global names won't resolve in parent scope :(
+
+    func make_value
+        $local_type = attr.FixedOrDefaultBaseType | local_name
+        if $local_type == "String" || $local_type == "Object"
+            $0 | string.literal
+        else if attr.IsEnum
+            attr.FixedOrDefaultBaseType + "." + $0
+        else if $local_type == "Uri"
+            "new Uri(" + ($0 | string.literal) + ")"
+        else
+            "System.Xml.XmlConvert.To" + $local_type + "(" + ($0 | string.literal) + ")"
+        end
+    end
+
+    if $1.IsFixedOrDefaultList
+        "new " + ($1.FixedOrDefaultBaseType | builtin) + "[] {\n        " 
+        $1.FixedOrDefaultValue | string.split ' ' | array.join ",\n        " @make_value
+        "}"
+    else
+        $1.FixedOrDefaultValue | make_value
+    end
+}};
+
+{{- end }}
+
+{{- 
+    # TODO: split this template in several parts
+    if $1.IsList
+        $list_type = $1.IsSubstitution ? "XTypedSubstitutedList<" : $1.IsSimpleType ? "XSimpleList<" : "XTypedList<"
+        $list_type = $list_type + ($1.NullableType | builtin) + ">"
+}}
+
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+private {{ $list_type }} {{ $1.Name }}Field;
+
+{{ 
+    case $1.Origin 
+        when "Element"
+            $1.Comments | array.concat $2.RegexComments | comments '///'
+        when "Attribute"
+            $1.Comments | comments '///'
+    end
+-}}
+{{- if Settings.NullableReferences }}
+[System.Diagnostics.CodeAnalysis.AllowNull()]
+{{ end -}}
+public {{ 
+    $new
+    $1.IsOverride ? "override " : "virtual "
+    $1.Type | builtin
+}} {{ $1.Name }} {
+    get {
+        {{- if $1.FixedValue }}
+        return {{ $1.FixedOrDefaultField }};
+        {{- else }}
+        if ((this.{{ $1.Name }}Field == null)) {
+            this.{{ $1.Name }}Field = new {{ $list_type }}(
+            {{- 
+                "this"
+                if $1.IsSubstitution 
+                    ", LinqToXsdTypeManager.Instance"
+                    for $elem in $1.SubstitutionMembers 
+                        ", System.Xml.Linq.XName.Get("
+                        $elem.QualifiedName.Name | string.literal
+                        ", "
+                        $elem.QualifiedName.Namespace | string.literal
+                        ")"
+                    end
+                else if $1.IsSimpleType
+                    ", XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype"
+                    ", " + $1.XNameField
+                else
+                    ", LinqToXsdTypeManager.Instance"
+                    ", " + $1.XNameField
+                end
+                if $1.DefaultValue
+                    ", " + $1.FixedOrDefaultField
+                end
+                ")"
+                if $1.IsNillable
+                " { SupportsXsiNil = true }"
+                end
+            }};
+        }
+        {{- if $1.IsEnum }}
+        return this.{{ $1.Name }}Field.Select(item => ({{ $1.ClrFullTypeName }}) Enum.Parse(typeof({{ $1.ClrFullTypeName}}), item)).ToList();
+        {{- else }}
+        return this.{{ $1.Name }}Field;
+        {{- 
+            end # IsEnum
+            end # FixedValue 
+        }}
+    }
+    
+    {{- if $1.HasSet }}
+    set {
+        {{ 
+            # FIXME: `if (value == fixed) {} else throw;` is backwards but to match legacy CodeDom generation
+            if $1.FixedValue
+                # If the property is an optional element, setting it to null is also acceptable: it removes the element from document.
+                # So we're checking `if (value == fixed || value == null) ...`
+                # On principle, setting attributes to null can also make sense as it would remove the XAttribute from document,
+                # but that doesn't mesh well with the type system (attributes with default/fixed values are never nullable,
+                # which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
+                # This is really an edge case and can be achieved by removing the XAttribute from Untyped.
+                if $1.IsNullable
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value) || value == null) {\n"
+                else
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value)) {\n"
+                end
+                "}\n"
+                "else {\n"
+                "    throw new Xml.Schema.Linq.LinqToXsdFixedValueException(value, " + $1.FixedOrDefaultField + ");\n"
+                "}\n"
+            end
+        -}}
+        if ((value == null)) {
+            this.{{ $1.Name }}Field = null;
+        }
+        else {
+            if ((this.{{ $1.Name }}Field == null)) {
+                this.{{ $1.Name }}Field = {{ $list_type }}.{{ $1.IsNillable ? "InitializeNillable" : "Initialize" }}(
+                {{- 
+                    "this"
+                    $value = $1.IsEnum ? "value.Select(item => item.ToString())" : "value"
+                    if $1.IsSubstitution 
+                        ", LinqToXsdTypeManager.Instance"
+                        ", " + $value
+                        for $elem in $1.SubstitutionMembers 
+                            ", System.Xml.Linq.XName.Get("
+                            $elem.QualifiedName.Name | string.literal
+                            ", "
+                            $elem.QualifiedName.Namespace | string.literal
+                            ")"
+                        end
+                    else if $1.IsSimpleType
+                        ", XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype"
+                        ", " + $value
+                        ", " + $1.XNameField
+                    else
+                        ", LinqToXsdTypeManager.Instance"
+                        ", " + $value
+                        ", " + $1.XNameField
+                    end
+                }});
+            }
+            else {
+                XTypedServices.SetList<{{ $1.NullableType }}>(this.{{ $1.Name }}Field, {{
+                    if $1.IsEnum
+                        "value.Select(item => item.ToString()).ToList()"
+                    else
+                        "value"
+                    end
+                }});
+            }
+        }
+    }
+    {{- end }}
+}
+
+{{- else # !IsList }}
+
+{{ 
+    case $1.Origin 
+        when "Element"
+            $1.Comments | array.concat $2.RegexComments | comments '///'
+        when "Attribute"
+            $1.Comments | comments '///'
+    end
+-}}
+public {{ 
+    $new 
+    $1.IsOverride ? "override " : "virtual "
+    $1.Type | builtin
+}} {{ $1.Name }} {
+    get {
+        {{
+            # Fixed attributes always have the same value, whether they're present or not 
+            if $1.FixedValue && $1.Origin == "Attribute"
+                "return " + $1.FixedOrDefaultField + ";\n"
+
+            else
+                if $1.IsSubstitution
+                    "XTypedElement x = XTypedServices.ToSubstitutedXTypedElement(this, LinqToXsdTypeManager.Instance"
+                    for $elem in $1.SubstitutionMembers 
+                        ", System.Xml.Linq.XName.Get("
+                        $elem.QualifiedName.Name | string.literal
+                        ", "
+                        $elem.QualifiedName.Namespace | string.literal
+                        ")"
+                    end
+                    ");\n"
+                else
+                    case $1.Origin
+                        when "Attribute"
+                            "XAttribute x = this.Attribute(" + $1.XNameField + ");\n"
+                        when "Element"
+                            "XElement x = this.GetElement(" + $1.XNameField + ");\n"
+                        when "Text"
+                            "XElement x = this.Untyped;\n"
+                    end
+                end
+
+                if $1.CanBeAbsent 
+                    "if ((x == null)) {\n"
+                    # Absent attributes return their default value (if any).
+                    # Note that absent elements return null, only empty elements return their default value (per xsd specs).
+                    if $1.DefaultValue && $1.Origin == "Attribute"
+                        "   return " + $1.FixedOrDefaultField + ";\n"
+                    else
+                        "   return null;\n"
+                    end
+                    "}\n"
+
+                else if $1.VerifyRequired
+                    "if ((x == null)) {\n"
+                    "   throw new LinqToXsdException(" + ("Missing required " + $1.Origin | string.literal) + ");\n"
+                    "}\n"
+                end
+
+                if $1.IsNillable
+                    "if (x.IsXsiNil) {\n"
+                    "   return null;\n"
+                    "}\n"
+                end
+
+                # Note attributes when fixed value have an exit above (they're always equal to fixed value).
+                # This applies only to elements, who enforce their fixed value only when _present._
+                # Missing elements are still null (handled above in CanBeAbsent).
+                if $1.FixedValue
+                    "return " + $1.FixedOrDefaultField + ";\n"
+                else
+                    # Attributes default value is applied based on their presence above
+                    if $1.DefaultValue && $1.Origin != "Attribute"
+                        "if (x != null && x.IsEmpty) {\n"
+                        "   return " + $1.FixedOrDefaultField + ";\n"
+                        "}\n"
+                    end
+
+                    if $1.IsRef || !$1.IsSimpleType
+                        "return ((" + $1.Type + ")(x));\n"
+                    else if $1.IsUnion
+                        "return XTypedServices.ParseUnionValue(x, " + $1.SimpleTypeDefinition + ");\n"
+                    else if $1.IsEnum
+                        "return ((" + $1.ClrFullTypeName + ")(Enum.Parse(typeof(" + $1.ClrFullTypeName + "), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype, " + $1.LocalSimpleTypeDefinition + "))));\n"
+                    else
+                        if $1.IsValueType && $1.IsNullable
+                            $parseMethod = "ParseValue"
+                            $parseType = $1.ClrType
+                        else if $1.IsSchemaList
+                            $parseMethod = "ParseListValue"
+                            $parseType = $1.ClrType
+                        else
+                            $parseMethod = "ParseValue"
+                            $parseType = $1.Type
+                        end
+                        "return XTypedServices." + $parseMethod + "<" + ($parseType | builtin)  + ">(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+                    end
+                end
+            end
+        ~}}
+    }
+    {{~ if $1.HasSet ~}}
+    set {
+        {{
+            # FIXME: `if (value == fixed) {} else throw;` is backwards but to match legacy CodeDom generation
+            if $1.FixedValue
+                # If the property is an optional element, setting it to null is also acceptable: it removes the element from document.
+                # So we're checking `if (value == fixed || value == null) ...`
+                # On principle, setting attributes to null can also make sense as it would remove the XAttribute from document,
+                # but that doesn't mesh well with the type system (attributes with default/fixed values are never nullable,
+                # which would still be workable on Ref types with [AllowNull] on property, but we can't assign null to a value type setter.
+                # This is really an edge case and can be achieved by removing the XAttribute from Untyped.
+                if $1.IsNullable
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value) || value == null) {\n"
+                else
+                    "if (" + $1.FixedOrDefaultField + ".Equals(value)) {\n"
+                end
+                "}\n"
+                "else {\n"
+                "    throw new Xml.Schema.Linq.LinqToXsdFixedValueException(value, " + $1.FixedOrDefaultField + ");\n"
+                "}\n"
+            end
+
+            case $1.Origin
+                when "Element"
+                    $set_origin = "Element"
+                when "Attribute"
+                    $set_origin = "Attribute"
+                when "Text"
+                    $set_origin = "Value"
+            end
+
+            if $1.IsUnion
+               "this.SetUnion" + $set_origin + "(value, " 
+                    $1.XName | string.literal + ", this, " 
+                    $1.Origin != "Text" ? $1.XNameField + ", " : ""
+                    $1.SimpleTypeDefinition
+               ");\n"
+            
+            else 
+                if $1.Origin == "Text"
+                    $plain_set = "this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype);\n"
+                else
+                    if $1.HasValidation
+                        # When using `SetXXXWithValidate` methods, normal `SetXXX` is only called for null values (see below)
+                        $value = $1.IsNillable ? "XNil.Value" : "null"
+                    else
+                        $value = $1.Origin == "Element" || !$1.IsEnum ? "value" : $1.IsNullable ? "value?.ToString()" : "value.ToString()"
+                        if $1.IsNillable
+                            $value = $value + " ?? XNil.Value"
+                        end
+                    end
+                    $set_method = (!$1.IsRef && $1.IsSchemaList ? "this.SetList" : "this.Set") + $set_origin
+                    $plain_set = $set_method + "(" + $1.XNameField + ", " + $value + (!$1.IsRef && $1.IsSimpleType ? ", XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode." + $1.XTypeCode + ").Datatype" : "") + ");\n"
+                end
+
+                if $1.HasValidation
+                    $value = $1.IsEnum ? "value.ToString()" : "value"
+                    if $1.Origin == "Text"
+                        $validation_set = "this.SetValueWithValidation(" + $value + ", " + ($1.Name | string.literal) + ", " + $1.LocalSimpleTypeDefinition + ");\n"
+                    else
+                        $validation_set = $set_method + "WithValidation(" + $1.XNameField + ", " + $value + ", " + ($1.Name | string.literal) + ", " + $1.LocalSimpleTypeDefinition + ");\n"
+                    end
+
+                    if ($1.IsNullable)
+                        # Skip validation when the set value is null. Also enum.ToString above would fail.
+                        # (Setting an optional element to null actually removes it from DOM.)
+                        "if (value == null) {\n"
+                        "    " + $plain_set
+                        "}\n"
+                        "else {\n"
+                        "    " + $validation_set
+                        "}\n"
+                    else
+                        $validation_set
+                    end
+
+                else
+                    $plain_set
+                end
+            end
+        ~}}
+    }
+    {{~ end ~}}
+}
+
+{{- end # if IsList}}

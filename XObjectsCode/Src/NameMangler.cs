@@ -83,11 +83,6 @@ namespace Xml.Schema.Linq.CodeGen
             return clrName;
         }
 
-        public static string GetServicesClassName()
-        {
-            return Constants.LinqToXsdTypeManager;
-        }
-
         public static string MakeValidCLRNamespace(string xsdNamespace, bool nameMangler2)
         {
             if (xsdNamespace == null || xsdNamespace == string.Empty)

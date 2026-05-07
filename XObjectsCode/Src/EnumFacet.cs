@@ -18,29 +18,35 @@ namespace Xml.Schema.Linq.CodeGen
     /// </remarks>
     public class EnumFacet
     {
+        public static string Stringify(object value) 
+            => new EnumFacet(value.ToString()).ToString();
+
         public EnumFacet(string value)
         {
-            this.Value   = value;
-            this.IsValid = string.IsNullOrWhiteSpace(value) || CodeDomHelper.CodeProvider.IsValidIdentifier(value);
-            this.Member  = this.IsValid ? value : CreateValidIdentifier(value);
+            Value   = value;
+            IsValid = string.IsNullOrWhiteSpace(value) || CodeDomHelper.CodeProvider.IsValidIdentifier(value);
+            Member  = IsValid ? value : CreateValidIdentifier(value);
         }
 
         public string   Value   { get; }
         public bool     IsValid { get; }
         public string   Member  { get; }
 
-        public override string ToString() => this.IsValid ? this.Value : $"{this.Value}:{this.Member}";
+        public override string ToString() => IsValid ? Value : $"{Value}:{Member}";
 
         private static string CreateValidIdentifier(string value)
         {
             if (string.IsNullOrEmpty(value)) return value;
-            if (NameGenerator.IsKeyword(value)) {
+            if (NameGenerator.IsKeyword(value)) 
+            {
                 return $"@{value}";
             }
 
-            if (value.Length == 1) {
+            if (value.Length == 1) 
+            {
                 char ch = value[0];
-                if (char.IsSymbol(ch) || char.IsPunctuation(ch)) {
+                if (char.IsSymbol(ch) || char.IsPunctuation(ch)) 
+                {
                     return NameGenerator.ExpandSymbolToFullWord(value[0]);
                 }
             }
@@ -66,8 +72,8 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         // allows letter (Lu, Ll, Lt, Lm, or Nl), digit (Nd), connecting (Pc), combining (Mn or Mc), and formatting (Cf) categories
-        private static readonly UnicodeCategory[] ValidUnicodeCategories = new UnicodeCategory[]
-        {
+        private static readonly UnicodeCategory[] ValidUnicodeCategories = 
+        [
             UnicodeCategory.UppercaseLetter,
             UnicodeCategory.LowercaseLetter,
             UnicodeCategory.TitlecaseLetter,
@@ -78,6 +84,6 @@ namespace Xml.Schema.Linq.CodeGen
             UnicodeCategory.LetterNumber,
             UnicodeCategory.Format,
             UnicodeCategory.ConnectorPunctuation,
-        };
+        ];
     }
 }

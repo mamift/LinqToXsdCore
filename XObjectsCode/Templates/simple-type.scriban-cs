@@ -1,0 +1,23 @@
+{{- if $1.IsEnum -}}
+
+{{ $1.Comments | comments '///' -}}
+{{ $1.Namespace?.AccessModifier ?? "public" }} enum {{ $1.EnumName }} {
+{{ for $enumValue in $1.EnumValues ~}}
+
+    {{ $enumValue }},
+{{ end ~}}
+}
+
+{{ end # if IsEnum -}}
+
+{{ $1.Comments | comments '///' -}}
+{{ $1.Namespace?.AccessModifier ?? "public" }} sealed class {{ $1.Name }} {
+    
+    private {{ $1.Name }}() {
+    }
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = {{ 
+        include 'simple-type-validator.scriban-cs' $1 
+    }};
+}

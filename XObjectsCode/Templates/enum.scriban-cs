@@ -1,0 +1,60 @@
+public enum {{ $2.Name }} {
+    {{~ for $value in $2 | enum_values ~}}
+
+    {{ $value }},
+    {{~ end ~}}
+}
+
+public sealed class {{ $2.Name }}Validator {
+
+    private {{ $2.Name }}Validator() {
+    }
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+        {{ $2 | enum_values | array.join ",\n" do; ret '"' + $0 + '"'; end -}}
+        }, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+}
+
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+[EditorBrowsable(EditorBrowsableState.Never)]
+protected internal static readonly System.Xml.Linq.XName {{ $1 }}XName = System.Xml.Linq.XName.Get("{{ $1 }}", "");
+
+{{- if $5 }}
+
+[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+private static {{ $3 }} {{ $1 }}DefaultValue = {{ $3 }}.{{ $5 }};
+{{- end }}
+
+{{ $4 | comments ~}}
+public virtual {{ $3 }} {{ $1 }} {
+    {{~ if $1 == "TypedValue" ~}}
+    get {
+        XElement x = this.Untyped;
+        return (({{ $3 }})(Enum.Parse(typeof({{ $3 }}), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, {{ $2.Name }}Validator.TypeDefinition))));
+    }
+    set {
+        this.SetValueWithValidation(value.ToString(), "{{ $1 }}", {{ $2.Name }}Validator.TypeDefinition);
+    }
+    {{~ else ~}}
+    get {
+        XAttribute x = this.Attribute({{ $1 }}XName);
+        if ((x == null)) {
+            return {{ $5 ? $1 + "DefaultValue" : "null" }};
+        }
+        return (({{ $3 | string.remove_last "?" }})(Enum.Parse(typeof({{ $3 | string.remove_last "?" }}), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, {{ $2.Name }}Validator.TypeDefinition))));
+    }
+    set {
+        {{~ if $3 | string.ends_with "?" ~}}
+        if (value == null) {
+            this.SetAttribute({{ $1 }}XName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+        }
+        else {
+            this.SetAttributeWithValidation({{ $1 }}XName, value.ToString(), "{{ $1 }}", {{ $2.Name }}Validator.TypeDefinition);    
+        }
+        {{~ else ~}}
+        this.SetAttributeWithValidation({{ $1 }}XName, value.ToString(), "{{ $1 }}", {{ $2.Name }}Validator.TypeDefinition);
+        {{~ end ~}}
+    }    
+    {{~ end ~}}
+}

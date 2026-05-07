@@ -37,23 +37,6 @@ namespace Xml.Schema.Linq.CodeGen
                 parameters);
         }
 
-        public static CodeIndexerExpression CreateIndexerExpression(string target, string key)
-        {
-            return new CodeIndexerExpression(
-                new CodeVariableReferenceExpression(target),
-                new CodePrimitiveExpression(key));
-        }
-
-        public static CodeTypeDeclaration CreateTypeDeclaration(string clrTypeName, string innerType, 
-            GeneratedTypesVisibility generatedTypesVisibility = GeneratedTypesVisibility.Public, CodeNamespace parentNamespace = null)
-        {
-            CodeTypeDeclaration typeDecl = new CodeTypeDeclaration(clrTypeName);
-            typeDecl.TypeAttributes = generatedTypesVisibility.ToTypeAttribute();
-            typeDecl.IsPartial = true;
-            if (parentNamespace is not null) typeDecl.ParentNamespace = parentNamespace;
-            return typeDecl;
-        }
-
         public static CodeAttributeDeclaration SchemaProviderAttribute(string typeName)
         {
             CodeAttributeDeclaration customAtt = new CodeAttributeDeclaration("XmlSchemaProviderAttribute");
@@ -132,50 +115,6 @@ namespace Xml.Schema.Linq.CodeGen
             return constructor;
         }
 
-        public static CodeMemberProperty CreateProperty(string propertyName, string propertyType, CodeMemberField field,
-            MemberAttributes attributes, bool hasSet)
-        {
-            //Build simple get set that returns and accepts fieldName
-            CodeTypeReference returnType = null;
-            if (propertyType != null)
-            {
-                returnType = new CodeTypeReference(propertyType);
-            }
-            else
-            {
-                returnType = field.Type;
-            }
-
-            CodeMemberProperty valueProperty = CreateProperty(propertyName, returnType, attributes);
-            valueProperty.GetStatements.Add(
-                new CodeMethodReturnStatement(
-                    CreateFieldReference(null, field.Name)));
-
-            if (hasSet)
-            {
-                //Set field = value
-                CodeExpression rightExpression = null;
-                if (field.Type.BaseType != returnType.BaseType)
-                {
-                    //cast RHS to field's type
-                    rightExpression = new CodeCastExpression(
-                        field.Type,
-                        SetValue());
-                }
-                else
-                {
-                    rightExpression = SetValue();
-                }
-
-                valueProperty.SetStatements.Add(
-                    new CodeAssignStatement(
-                        CreateFieldReference("this", field.Name),
-                        rightExpression));
-            }
-
-            return valueProperty;
-        }
-
         public static CodeMemberProperty CreateProperty(string propertyName, CodeTypeReference propertyType,
             MemberAttributes attributes)
         {
@@ -200,16 +139,6 @@ namespace Xml.Schema.Linq.CodeGen
         }
 
         public static CodeMemberProperty CreateInterfaceImplProperty(string propertyName, string interfaceName,
-            CodeTypeReference returnType, string fieldName, MemberAttributes attributes = MemberAttributes.Public)
-        {
-            CodeMemberProperty interfaceProperty = CreateInterfaceImplProperty(propertyName, interfaceName, returnType, attributes);
-            interfaceProperty.GetStatements.Add(
-                new CodeMethodReturnStatement(
-                    new CodeVariableReferenceExpression(fieldName)));
-            return interfaceProperty;
-        }
-
-        public static CodeMemberProperty CreateInterfaceImplProperty(string propertyName, string interfaceName,
             CodeTypeReference returnType, MemberAttributes attributes = MemberAttributes.Public)
         {
             CodeMemberProperty interfaceProperty = CreateProperty(propertyName, returnType, attributes);
@@ -218,34 +147,12 @@ namespace Xml.Schema.Linq.CodeGen
             return interfaceProperty;
         }
 
-        public static CodeMemberMethod CreateInterfaceImplMethod(string methodName, string interfaceName,
-            MemberAttributes attributes = MemberAttributes.Public)
-        {
-            CodeMemberMethod interfaceMethod = CreateMethod(methodName, null, attributes);
-            CodeTypeReference interfaceType = new CodeTypeReference(interfaceName);
-            interfaceMethod.PrivateImplementationType = interfaceType;
-            interfaceMethod.ImplementationTypes.Add(interfaceType);
-            return interfaceMethod;
-        }
-
         public static CodeMemberProperty CreateTypeManagerProperty(MemberAttributes attributes)
         {
             CodeMemberProperty property = CreateInterfaceImplProperty(Constants.TypeManager, Constants.IXMetaData,
                 new CodeTypeReference(Constants.ILinqToXsdTypeManager));
             property.Attributes = attributes;
             property.GetStatements.Add(new CodeMethodReturnStatement(SingletonTypeManager()));
-            return property;
-        }
-
-        public static CodeMemberProperty CreateTypeOriginProperty(SchemaOrigin typeOrigin,
-            MemberAttributes visibility)
-        {
-            CodeTypeReference originType = new CodeTypeReference(Constants.Origin);
-            CodeMemberProperty property =
-                CreateInterfaceImplProperty(Constants.TypeOrigin, Constants.IXMetaData, originType, visibility);
-            property.GetStatements.Add(new CodeMethodReturnStatement(new CodeFieldReferenceExpression(
-                new CodeTypeReferenceExpression(originType),
-                typeOrigin == SchemaOrigin.Element ? "Element" : "Fragment")));
             return property;
         }
 
@@ -338,41 +245,6 @@ namespace Xml.Schema.Linq.CodeGen
             return field;
         }
 
-        public static CodeMemberField CreateGenericMemberField(string memberName,
-            string typeName,
-            string[] typeStrParams,
-            MemberAttributes attributes,
-            bool init)
-        {
-            CodeTypeReference[] typeParams = new CodeTypeReference[typeStrParams.Length];
-            int index = 0;
-            foreach (string str in typeStrParams)
-            {
-                typeParams[index++] = new CodeTypeReference(str);
-            }
-
-            return CreateGenericMemberField(memberName, typeName, typeParams, attributes, init);
-        }
-
-
-        public static CodeMemberField CreateGenericMemberField(string memberName,
-            string typeName,
-            CodeTypeReference[] typeParams,
-            MemberAttributes attributes,
-            bool init)
-        {
-            CodeTypeReference typeRef = new CodeTypeReference(typeName, typeParams);
-            CodeMemberField field = new CodeMemberField(typeRef, memberName);
-            AddBrowseNever(field);
-            field.Attributes = attributes;
-            if (init)
-            {
-                field.InitExpression = new CodeObjectCreateExpression(typeRef);
-            }
-
-            return field;
-        }
-
         public static CodeTypeOfExpression Typeof(string typeName)
         {
             return new CodeTypeOfExpression(typeName);
@@ -437,7 +309,7 @@ namespace Xml.Schema.Linq.CodeGen
         public static CodePropertyReferenceExpression SingletonTypeManager()
         {
             return new CodePropertyReferenceExpression(
-                new CodeTypeReferenceExpression(NameGenerator.GetServicesClassName()), Constants.TypeManagerInstance);
+                new CodeTypeReferenceExpression(Constants.LinqToXsdTypeManager), Constants.TypeManagerInstance);
         }
 
 
@@ -469,158 +341,6 @@ namespace Xml.Schema.Linq.CodeGen
             }
 
             return new CodeFieldReferenceExpression(targetObject, fieldName);
-        }
-
-        public static string CreateGenericMethodName(string methodName, string typeName)
-        {
-            return String.Concat(methodName, "<", typeName, ">");
-        }
-
-        public static CodeSnippetTypeMember CreateCast(string typeT, string typeT1, bool useAutoTyping, string @namespace = "",
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            CodeSnippetTypeMember castMember = new CodeSnippetTypeMember();
-            @namespace = @namespace.IsNotEmpty() ? $"{@namespace}." : "";
-            var visibilityKeyword = visibility.ToKeyword();
-            var servicesClassName = @namespace + NameGenerator.GetServicesClassName();
-            if (useAutoTyping)
-            {
-                castMember.Text = String.Concat($"\t\t{visibilityKeyword} static explicit operator ", typeT, "(XElement xe) {  ",
-                    "return (", typeT, ")", Constants.XTypedServices, ".ToXTypedElement(xe,",
-                    servicesClassName, ".Instance as ILinqToXsdTypeManager); }");
-            }
-            else
-            {
-                castMember.Text = String.Concat($"\t\t{visibilityKeyword} static explicit operator ", typeT,
-                    "(XElement xe) { return ", Constants.XTypedServices, ".ToXTypedElement<",
-                    GetInnerType(typeT, typeT1), ">(xe,", servicesClassName,
-                    ".Instance as ILinqToXsdTypeManager); }");
-            }
-
-            return castMember;
-        }
-
-
-        public static CodeSnippetTypeMember CreateXRootGetter(string typeName, string fqTypeName, LocalSymbolTable lst, 
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            string symbolName = lst.AddMember(typeName);
-            CodeSnippetTypeMember castMember = new CodeSnippetTypeMember();
-            
-            castMember.Text = String.Concat("\r\n", $"\t\t{visibility.ToKeyword()} ", fqTypeName, " ", symbolName, " {  get {",
-                "return rootObject as ", fqTypeName, "; } }");
-            return castMember;
-        }
-
-        public static CodeMemberMethod CreateXRootMethod(string returnType, string methodName, string[][] paramList, 
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            CodeTypeReference xRootType = new CodeTypeReference(returnType);
-
-            CodeMemberMethod staticMethod = new CodeMemberMethod();
-            staticMethod.Name = methodName;
-            staticMethod.Attributes = visibility.ToMemberAttribute() | MemberAttributes.Static;
-            staticMethod.ReturnType = xRootType;
-            CodeExpression[] parameterExp = new CodeExpression[paramList.Length];
-
-            for (int i = 0; i < paramList.Length; i++)
-            {
-                string[] paramRef = paramList[i];
-                // index 0 is the type name and index 1 is the parameter name
-                staticMethod.Parameters.Add(CreateParameter(paramRef[1], paramRef[0]));
-                parameterExp[i] = new CodeVariableReferenceExpression(paramRef[1]);
-            }
-
-            CodeExpression rootExp = new CodeVariableReferenceExpression("root");
-            CodeExpression doc = new CodeFieldReferenceExpression(rootExp, "doc");
-
-            staticMethod.Statements.Add( //XRoot root = new XRoot;
-                new CodeVariableDeclarationStatement(xRootType, "root",
-                    new CodeObjectCreateExpression(xRootType)));
-
-            staticMethod.Statements.Add( //root.doc = XDocument.Load(xmlFile);
-                new CodeAssignStatement(
-                    doc,
-                    CreateMethodCall(new CodeTypeReferenceExpression("XDocument"), methodName,
-                        parameterExp)));
-
-            staticMethod.Statements.Add( //XTypedElement typedRoot = XTypedServices.ToXTypedElement(....)
-                new CodeVariableDeclarationStatement(
-                    Constants.XTypedElement,
-                    "typedRoot",
-                    CreateMethodCall(
-                        new CodeTypeReferenceExpression(Constants.XTypedServices),
-                        Constants.ToXTypedElement,
-                        new CodePropertyReferenceExpression(doc, "Root"),
-                        CodeDomHelper.SingletonTypeManager())));
-
-            staticMethod.Statements.Add( //if(typedRoot == null)
-                new CodeConditionStatement(
-                    new CodeBinaryOperatorExpression(
-                        new CodeVariableReferenceExpression("typedRoot"),
-                        CodeBinaryOperatorType.IdentityEquality,
-                        new CodePrimitiveExpression(null)
-                    ),
-                    new CodeThrowExceptionStatement(
-                        new CodeObjectCreateExpression(Constants.LinqToXsdException,
-                            new CodePrimitiveExpression("Invalid root element in xml document."))
-                    )));
-
-            staticMethod.Statements.Add( //root.rootObject = typedRoot
-                new CodeAssignStatement(
-                    new CodeFieldReferenceExpression(rootExp, "rootObject"),
-                    new CodeVariableReferenceExpression("typedRoot")));
-
-            staticMethod.Statements.Add( //return root;
-                new CodeMethodReturnStatement(rootExp));
-
-            return staticMethod;
-        }
-
-        public static CodeMemberMethod CreateXRootSave(string[][] paramList, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            CodeMemberMethod staticMethod = new CodeMemberMethod();
-            staticMethod.Name = "Save";
-            staticMethod.Attributes = visibility.ToMemberAttribute();
-            CodeExpression[] parameterExp = new CodeExpression[paramList.Length];
-
-            for (int i = 0; i < paramList.Length; i++)
-            {
-                string[] paramRef = paramList[i];
-                // index 0 is the type name and index 1 is the parameter name
-                staticMethod.Parameters.Add(CreateParameter(paramRef[1], paramRef[0]));
-                parameterExp[i] = new CodeVariableReferenceExpression(paramRef[1]);
-            }
-
-            CodeExpression doc = new CodeVariableReferenceExpression("doc");
-
-            staticMethod.Statements.Add( //root.doc = XDocument.Save(...);
-                CreateMethodCall(doc, "Save", parameterExp));
-
-            return staticMethod;
-        }
-
-
-        public static CodeConstructor CreateXRootFunctionalConstructor(string typeName, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
-        {
-            CodeConstructor constructor = CodeDomHelper.CreateConstructor(visibility.ToMemberAttribute());
-            constructor.Parameters.Add(new CodeParameterDeclarationExpression(new CodeTypeReference(typeName), "root"));
-
-            constructor.Statements.Add(
-                new CodeAssignStatement(
-                    new CodeFieldReferenceExpression(This(), "doc"),
-                    new CodeObjectCreateExpression(
-                        "XDocument",
-                        new CodePropertyReferenceExpression(
-                            new CodeVariableReferenceExpression("root"),
-                            Constants.Untyped))));
-
-            constructor.Statements.Add(
-                new CodeAssignStatement(
-                    new CodeFieldReferenceExpression(This(), "rootObject"),
-                    new CodeVariableReferenceExpression("root")));
-
-            return constructor;
         }
 
         public static string GetInnerType(string wrappingType, string wrappedType)

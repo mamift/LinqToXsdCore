@@ -5,10 +5,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -35,12 +32,7 @@ namespace Xml.Schema.Linq.CodeGen
         //properties in an object derivation hierary.(Virtual OR Override)
         Dictionary<XmlSchemaType, ClrPropertyInfo> textPropInheritanceTracker;
 
-        Dictionary<XmlQualifiedName, ArrayList> substitutionGroups;
-
-        public XsdToTypesConverter(bool nameMangler2)
-            : this(new LinqToXsdSettings(nameMangler2))
-        {
-        }
+        private readonly Dictionary<XmlQualifiedName, List<XmlSchemaElement>> substitutionGroups = new();
 
         public XsdToTypesConverter(LinqToXsdSettings configSettings)
         {
@@ -49,15 +41,11 @@ namespace Xml.Schema.Linq.CodeGen
             localSymbolTable = new LocalSymbolTable();
             binding = new ClrMappingInfo();
             textPropInheritanceTracker = new Dictionary<XmlSchemaType, ClrPropertyInfo>();
-            substitutionGroups = new Dictionary<XmlQualifiedName, ArrayList>();
         }
 
         public ClrMappingInfo GenerateMapping(XmlSchemaSet schemas)
         {
-            if (schemas == null)
-            {
-                throw new ArgumentNullException("schemas");
-            }
+            if (schemas == null) throw new ArgumentNullException(nameof(schemas));
 
             schemas.ValidationEventHandler += new ValidationEventHandler(Validationcallback);
             if (!schemas.IsCompiled) schemas.Compile();
@@ -111,11 +99,9 @@ namespace Xml.Schema.Linq.CodeGen
             XmlSchemaElement head = schemas.GlobalElements[subsName] as XmlSchemaElement;
             if ((head.Block & XmlSchemaDerivationMethod.Substitution) == 0)
             {
-                ArrayList groupMembers = null;
-                if (!substitutionGroups.TryGetValue(subsName, out groupMembers))
+                if (!substitutionGroups.TryGetValue(subsName, out var groupMembers))
                 {
-                    groupMembers = new ArrayList();
-                    groupMembers.Add(head);
+                    groupMembers = [ head ];
                     substitutionGroups.Add(subsName, groupMembers);
                 }
 
@@ -223,28 +209,28 @@ namespace Xml.Schema.Linq.CodeGen
             XmlSchemaSimpleType simpleType = st as XmlSchemaSimpleType;
             if (simpleType != null)
             {
-                this.AddSimpleType(simpleType.QualifiedName, simpleType);
+                AddSimpleType(simpleType.QualifiedName, simpleType);
             }
             else
             {
-                XmlSchemaComplexType ct = st as XmlSchemaComplexType;
-                if (ct != null && ct.TypeCode != XmlTypeCode.Item)
+                if (st is XmlSchemaComplexType ct && ct.TypeCode != XmlTypeCode.Item)
                 {
                     SymbolEntry symbol = symbolTable.AddType(ct.QualifiedName, ct);
                     string xsdNamespace = ct.QualifiedName.Namespace;
 
                     localSymbolTable.Init(symbol.identifierName);
 
-                    ClrContentTypeInfo typeInfo = new ClrContentTypeInfo();
-                    typeInfo.IsAbstract = ct.IsAbstract;
-                    typeInfo.IsSealed = ct.IsFinal();
-                    typeInfo.clrtypeName = symbol.identifierName;
-                    typeInfo.clrtypeNs = symbol.clrNamespace;
-                    typeInfo.schemaName = symbol.symbolName;
-                    typeInfo.schemaNs = xsdNamespace;
-
-                    typeInfo.typeOrigin = SchemaOrigin.Fragment;
-                    typeInfo.baseType = BaseType(ct);
+                    ClrContentTypeInfo typeInfo = new ClrContentTypeInfo 
+                    {
+                        IsAbstract = ct.IsAbstract,
+                        IsSealed = ct.IsFinal(),
+                        clrtypeName = symbol.identifierName,
+                        clrtypeNs = symbol.clrNamespace,
+                        schemaName = symbol.symbolName,
+                        schemaNs = xsdNamespace,
+                        typeOrigin = SchemaOrigin.Fragment,
+                        baseType = BaseType(ct)
+                    };
                     BuildProperties(null, ct, typeInfo);
                     BuildNestedTypes(typeInfo);
                     BuildAnnotationInformation(typeInfo, ct);
@@ -256,21 +242,14 @@ namespace Xml.Schema.Linq.CodeGen
         internal void TypesToTypes()
         {
             foreach (XmlSchemaType st in schemas.GlobalTypes.Values)
-            {
                 TypeToType(st);
-            }
         }
 
-        private void BuildProperties(XmlSchemaElement parentElement, XmlSchemaType schemaType,
-            ClrContentTypeInfo typeInfo)
+        private void BuildProperties(XmlSchemaElement parentElement, XmlSchemaType schemaType, ClrContentTypeInfo typeInfo)
         {
-            XmlSchemaComplexType ct = schemaType as XmlSchemaComplexType;
-            if (ct != null)
+            if (schemaType is XmlSchemaComplexType ct)
             {
-                if (ct.TypeCode == XmlTypeCode.Item)
-                {
-                    return;
-                }
+                if (ct.TypeCode == XmlTypeCode.Item) return;
 
                 XmlSchemaParticle particleToProperties = ct.ContentTypeParticle;
                 XmlSchemaComplexType baseType = ct.BaseXmlSchemaType as XmlSchemaComplexType;
@@ -297,13 +276,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else
                 {
-                    Debug.Assert(
-                        baseType != null); //ComplexType with complexContent is always derived from another complexType
-                    if (ct.IsDerivedByRestriction())
-                    {
-                        //Do not handle restrictions on complex content?
-                        return;
-                    }
+                    Debug.Assert(baseType != null); //ComplexType with complexContent is always derived from another complexType
+                    //Do not handle restrictions on complex content?
+                    if (ct.IsDerivedByRestriction()) return;
 
                     if (particleToProperties.GetParticleType() != ParticleType.Empty)
                     {
@@ -364,9 +339,7 @@ namespace Xml.Schema.Linq.CodeGen
                     }
                     else
                     {
-                        ClrContentTypeInfo nestedTypeInfo = new ClrContentTypeInfo() {
-                            Parent = typeInfo
-                        };
+                        ClrContentTypeInfo nestedTypeInfo = new() { Parent = typeInfo };
                         localSymbolTable.Init(at.identifier);
                         nestedTypeInfo.clrtypeName = at.identifier;
                         nestedTypeInfo.clrtypeNs = configSettings.GetClrNamespace(qname.Namespace);
@@ -405,9 +378,11 @@ namespace Xml.Schema.Linq.CodeGen
         private void AppendMessage(List<ClrAnnotation> annotations, string section, string message)
         {
             Debug.Assert(message.Length != 0 && section.Length != 0);
-            ClrAnnotation clrAnn = new ClrAnnotation();
-            clrAnn.Section = section;
-            clrAnn.Text = message;
+            var clrAnn = new ClrAnnotation 
+            {
+                Section = section,
+                Text = message,
+            };
             annotations.Add(clrAnn);
         }
 
@@ -415,8 +390,7 @@ namespace Xml.Schema.Linq.CodeGen
         {
             XmlSchemaAnnotated annotatedObject = schemaObject as XmlSchemaAnnotated;
 
-            if (annotatedObject != null &&
-                annotatedObject.Annotation != null)
+            if (annotatedObject?.Annotation != null)
             {
                 XmlNode[] markup;
                 foreach (XmlSchemaObject annot in annotatedObject.Annotation.Items)
@@ -981,17 +955,14 @@ namespace Xml.Schema.Linq.CodeGen
             bool isAnonymous = elem.SchemaType != null;
             XmlSchemaObject schemaObject = schemaType;
 
-            ArrayList substitutionMembers = null;
             if (elem.IsGlobal())
             {
-                substitutionMembers = IsSubstitutionGroupHead(elem);
-                schemaTypeName = elem.QualifiedName;
+                isAnonymous = false;
                 isTypeRef = true;
                 typeRefOrigin = SchemaOrigin.Element;
-                schemaObject =
-                    schemas.GlobalElements
-                        [schemaTypeName]; //For ref, get the element decl SOM object, as nameMappings are keyed off the SOM object
-                isAnonymous = false;
+                schemaTypeName = elem.QualifiedName;
+                //For ref, get the element decl SOM object, as nameMappings are keyed off the SOM object
+                schemaObject = schemas.GlobalElements[schemaTypeName];
             }
 
             ClrTypeReference typeRef = BuildTypeReference(schemaObject, schemaTypeName, isAnonymous, true);
@@ -1003,20 +974,17 @@ namespace Xml.Schema.Linq.CodeGen
                 localSymbolTable.AddAnonymousType(identifierName, elem, typeRef);
             }
 
-            ClrPropertyInfo propertyInfo =
-                new ClrPropertyInfo(identifierName, schemaNs, schemaName, GetOccurence(elem), configSettings);
-            propertyInfo.Origin = SchemaOrigin.Element;
-            propertyInfo.FromBaseType = fromBaseType;
-            propertyInfo.TypeReference = typeRef;
-            propertyInfo.ClrNamespace = clrNs;
-            propertyInfo.IsNillable = elem.IsNillable;
+            var propertyInfo = new ClrPropertyInfo(identifierName, schemaNs, schemaName, GetOccurence(elem), configSettings)
+            {
+                Origin = SchemaOrigin.Element,
+                FromBaseType = fromBaseType,
+                TypeReference = typeRef,
+                ClrNamespace = clrNs,
+                IsNillable = elem.IsNillable,
+                SubstitutionMembers = elem.IsGlobal() ? IsSubstitutionGroupHead(elem) : null,
+            };
 
             SetFixedDefaultValue(elem, propertyInfo);
-
-            if (substitutionMembers != null)
-            {
-                propertyInfo.SubstitutionMembers = substitutionMembers;
-            }
 
             //BuildAnnotationInformation(propertyInfo, elem);
             return propertyInfo;
@@ -1031,7 +999,10 @@ namespace Xml.Schema.Linq.CodeGen
         /// <param name="isNew"></param>
         /// <param name="containingType"></param>
         /// <returns></returns>
-        private ClrPropertyInfo BuildPropertyForAttribute(XmlSchemaAttribute attribute, bool fromBaseType, bool isNew,
+        private ClrPropertyInfo BuildPropertyForAttribute(
+            XmlSchemaAttribute attribute, 
+            bool fromBaseType, 
+            bool isNew,
             ClrTypeInfo containingType = null)
         {
             string identifierName = localSymbolTable.AddAttribute(attribute);
@@ -1178,12 +1149,9 @@ namespace Xml.Schema.Linq.CodeGen
             return attribute.Use == XmlSchemaUse.Required ? Occurs.One : Occurs.ZeroOrOne;
         }
 
-        private ArrayList IsSubstitutionGroupHead(XmlSchemaElement element)
+        private List<XmlSchemaElement> IsSubstitutionGroupHead(XmlSchemaElement element)
         {
-            XmlQualifiedName elementName = element.QualifiedName;
-            ArrayList memberList;
-            substitutionGroups.TryGetValue(elementName, out memberList);
-            return memberList;
+            return substitutionGroups.GetValueOrDefault(element.QualifiedName, null);
         }
 
         private void Validationcallback(object sender, ValidationEventArgs args)
@@ -1215,14 +1183,12 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (attribute.AttributeSchemaType.DerivedBy == XmlSchemaDerivationMethod.Union)
             {
-                string value = propertyInfo.FixedValue;
-                if (value == null)
-                    value = propertyInfo.DefaultValue;
+                string value = propertyInfo.FixedValue ?? propertyInfo.DefaultValue;
                 if (value != null)
                 {
-                    propertyInfo.unionDefaultType = attribute
-                                                    .AttributeSchemaType.Datatype
-                                                    .ParseValue(value, new NameTable(), null).GetType();
+                    propertyInfo.unionDefaultType = attribute.AttributeSchemaType.Datatype
+                        .ParseValue(value, new NameTable(), null)
+                        .GetType();
                 }
             }
         }
@@ -1249,13 +1215,10 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (element.ElementSchemaType.DerivedBy == XmlSchemaDerivationMethod.Union)
             {
-                string value = propertyInfo.FixedValue;
-                if (value == null)
-                    value = propertyInfo.DefaultValue;
+                string value = propertyInfo.FixedValue ?? propertyInfo.DefaultValue;
                 if (value != null)
                 {
-                    propertyInfo.unionDefaultType = element
-                        .ElementSchemaType.Datatype
+                    propertyInfo.unionDefaultType = element.ElementSchemaType.Datatype
                         .ParseValue(value, new NameTable(), null)
                         .GetType();
                 }

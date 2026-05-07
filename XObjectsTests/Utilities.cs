@@ -127,17 +127,14 @@ namespace Xml.Schema.Linq.Tests
             var possibleSettings = new MockFileInfo(fs, possibleSettingsFilePath);
             var schemaSet = GetXmlSchemaSet(xsdFile, fs);
 
-            IEnumerable<(string filename, TextWriter writer)> codeWriters;
-            if (possibleSettings.Exists) {
-                LinqToXsdSettings settings = XObjectsCoreGenerator.LoadLinqToXsdSettings(XDocument.Load(possibleSettings.OpenRead()));
-                codeWriters = XObjectsCoreGenerator.Generate(schemaSet, settings);
-            } else {
-                codeWriters = XObjectsCoreGenerator.Generate(schemaSet);
-            }
+            var settings = possibleSettings.Exists 
+                ? new LinqToXsdSettings().Load(XDocument.Load(possibleSettings.OpenRead())) 
+                : null;
+
+            IEnumerable<(string? filename, string code)> codeUnits = XObjectsCoreGenerator.Generate(schemaSet, settings);
 
             // This method assumes SplitCodeFile is not used, so there's only a single writer per file.
-            var writer = codeWriters.Single().writer;
-            return SourceText.From(writer.ToString()!);
+            return SourceText.From(codeUnits.Single().code);
         }
 
         /// <summary>
@@ -150,14 +147,12 @@ namespace Xml.Schema.Linq.Tests
         public static SourceText GenerateSourceText(string xsdFileName)
         {
             var possibleSettingsFile = $"{xsdFileName}.config";
-            var codeWriters = File.Exists(possibleSettingsFile)
-                ? XObjectsCoreGenerator.Generate(xsdFileName, possibleSettingsFile)
-                : XObjectsCoreGenerator.Generate(xsdFileName, default(string));
+            var codeWriters = XObjectsCoreGenerator.Generate(
+                xsdFileName, 
+                File.Exists(possibleSettingsFile) ? possibleSettingsFile : null);
 
             // This method assumes SplitCodeFile is not used, so there's only a single writer per file.
-            var writer = codeWriters.Single().writer;
-
-            return SourceText.From(writer.ToString());
+            return SourceText.From(codeWriters.Single().code);
         }
 
         /// <summary>
@@ -176,9 +171,8 @@ namespace Xml.Schema.Linq.Tests
                 : Configuration.GetBlankConfigurationInstance();
 
             var settings = config.ToLinqToXsdSettings();
-            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
-            var writerText = code.Select(t => t.writer.ToString());
-            var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
+            var codeUnits = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings).Select(t => t.code);
+            var delimitedByNewLines = codeUnits.ToDelimitedString(Environment.NewLine);
 
             return SourceText.From(delimitedByNewLines);
         }
@@ -204,9 +198,8 @@ namespace Xml.Schema.Linq.Tests
             var ns = config.Namespaces.Untyped;
 
             settings ??= config.ToLinqToXsdSettings();
-            var code = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings);
-            var writerText = code.Select(t => t.writer.ToString());
-            var delimitedByNewLines = writerText.ToDelimitedString(Environment.NewLine);
+            var codeUnits = XObjectsCoreGenerator.Generate(xmlSchemaSet, settings).Select(t => t.code);
+            var delimitedByNewLines = codeUnits.ToDelimitedString(Environment.NewLine);
 
             return SourceText.From(delimitedByNewLines);
         }
