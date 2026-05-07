@@ -102,6 +102,11 @@ public partial class element1 : XTypedElement, IXMetaData {
         }
     }
     
+    /// <summary>
+    /// <para>
+    /// This is an internal validation class.
+    /// </para>
+    /// </summary>
     private class simpleUnionTypeOfDateAndDateTime {
         
         private simpleUnionTypeOfDateAndDateTime() {

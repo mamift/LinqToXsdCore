@@ -28,30 +28,34 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class MedlineCitationSet : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MedlineCitationXName = System.Xml.Linq.XName.Get("MedlineCitation", "http://www.ncbi.nlm.nih.gov/eutils");
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<MedlineCitationType> MedlineCitationField;
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DeleteCitationXName = System.Xml.Linq.XName.Get("DeleteCitation", "http://www.ncbi.nlm.nih.gov/eutils");
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineCitationSet", "http://www.ncbi.nlm.nih.gov/eutils");
+        public static MedlineCitationSet Load(string xmlFile) {
+            return XTypedServices.Load<MedlineCitationSet>(xmlFile);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        public static MedlineCitationSet Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<MedlineCitationSet>(xmlFile);
+        }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
+        public static MedlineCitationSet Parse(string xml) {
+            return XTypedServices.Parse<MedlineCitationSet>(xml);
+        }
         
 		public static explicit operator MedlineCitationSet(XElement xe) { return XTypedServices.ToXTypedElement<MedlineCitationSet>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MedlineCitationSet() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MedlineCitationXName), new NamedContentModelEntity(DeleteCitationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MedlineCitationSet>(this);
         }
         
         /// <summary>
@@ -61,6 +65,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public MedlineCitationSet() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MedlineCitationXName = System.Xml.Linq.XName.Get("MedlineCitation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<MedlineCitationType> MedlineCitationField;
         
         /// <summary>
         /// <para>
@@ -92,6 +103,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DeleteCitationXName = System.Xml.Linq.XName.Get("DeleteCitation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -103,6 +118,9 @@ namespace PubMed.Eutils {
         public virtual DeleteCitationType DeleteCitation {
             get {
                 XElement x = this.GetElement(DeleteCitationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((DeleteCitationType)(x));
             }
             set {
@@ -110,11 +128,33 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineCitationSet", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static MedlineCitationSet() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MedlineCitationXName), new NamedContentModelEntity(DeleteCitationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(MedlineCitationXName, typeof(MedlineCitationType));
+            localElementDictionary.Add(DeleteCitationXName, typeof(DeleteCitationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -137,6 +177,14 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (PubmedArticle*)
+    /// </para>
+    /// </summary>
+    public partial class PubmedArticleSet : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -150,59 +198,22 @@ namespace PubMed.Eutils {
             XTypedServices.Save(xmlWriter, Untyped);
         }
         
-        public static MedlineCitationSet Load(string xmlFile) {
-            return XTypedServices.Load<MedlineCitationSet>(xmlFile);
+        public static PubmedArticleSet Load(string xmlFile) {
+            return XTypedServices.Load<PubmedArticleSet>(xmlFile);
         }
         
-        public static MedlineCitationSet Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<MedlineCitationSet>(xmlFile);
+        public static PubmedArticleSet Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<PubmedArticleSet>(xmlFile);
         }
         
-        public static MedlineCitationSet Parse(string xml) {
-            return XTypedServices.Parse<MedlineCitationSet>(xml);
+        public static PubmedArticleSet Parse(string xml) {
+            return XTypedServices.Parse<PubmedArticleSet>(xml);
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MedlineCitationSet>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(MedlineCitationXName, typeof(MedlineCitationType));
-            localElementDictionary.Add(DeleteCitationXName, typeof(DeleteCitationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Regular expression: (PubmedArticle*)
-    /// </para>
-    /// </summary>
-    public partial class PubmedArticleSet : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PubmedArticleXName = System.Xml.Linq.XName.Get("PubmedArticle", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PubmedArticleType> PubmedArticleField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubmedArticleSet", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
         
 		public static explicit operator PubmedArticleSet(XElement xe) { return XTypedServices.ToXTypedElement<PubmedArticleSet>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PubmedArticleSet() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PubmedArticleXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PubmedArticleSet>(this);
         }
         
         /// <summary>
@@ -212,6 +223,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public PubmedArticleSet() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PubmedArticleXName = System.Xml.Linq.XName.Get("PubmedArticle", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PubmedArticleType> PubmedArticleField;
         
         /// <summary>
         /// <para>
@@ -243,6 +261,20 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubmedArticleSet", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PubmedArticleSet() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PubmedArticleXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PubmedArticleXName, typeof(PubmedArticleType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
@@ -251,129 +283,11 @@ namespace PubMed.Eutils {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static PubmedArticleSet Load(string xmlFile) {
-            return XTypedServices.Load<PubmedArticleSet>(xmlFile);
-        }
-        
-        public static PubmedArticleSet Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<PubmedArticleSet>(xmlFile);
-        }
-        
-        public static PubmedArticleSet Parse(string xml) {
-            return XTypedServices.Parse<PubmedArticleSet>(xml);
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PubmedArticleSet>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PubmedArticleXName, typeof(PubmedArticleType));
-        }
+        private static ContentModelEntity contentModel;
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
         }
-    }
-    
-    public partial class URL : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypeXName = System.Xml.Linq.XName.Get("Type", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("URL", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator URL(XElement xe) { return XTypedServices.ToXTypedElement<URL>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public URL() {
-        }
-        
-        public virtual string TypedValue {
-            get {
-                XElement x = this.Untyped;
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-            set {
-                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// </summary>
-        public virtual PubMed.Eutils.URL.LangEnum? lang {
-            get {
-                XAttribute x = this.Attribute(langXName);
-                if ((x == null)) {
-                    return null;
-                }
-                return ((PubMed.Eutils.URL.LangEnum)(Enum.Parse(typeof(PubMed.Eutils.URL.LangEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
-            }
-            set {
-                this.SetAttribute(langXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// </summary>
-        public virtual PubMed.Eutils.URL.TypeEnum? Type {
-            get {
-                XAttribute x = this.Attribute(TypeXName);
-                if ((x == null)) {
-                    return null;
-                }
-                return ((PubMed.Eutils.URL.TypeEnum)(Enum.Parse(typeof(PubMed.Eutils.URL.TypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
-            }
-            set {
-                this.SetAttribute(TypeXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
-            }
-        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -395,6 +309,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class URL : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -420,12 +337,27 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<URL>(xml);
         }
         
+		public static explicit operator URL(XElement xe) { return XTypedServices.ToXTypedElement<URL>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<URL>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public URL() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
+        public virtual string TypedValue {
+            get {
+                XElement x = this.Untyped;
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
         }
         
         public enum LangEnum {
@@ -519,6 +451,86 @@ namespace PubMed.Eutils {
             ZH,
         }
         
+        public sealed class LangEnumValidator {
+            
+            private LangEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "AF",
+                            "AR",
+                            "AZ",
+                            "BG",
+                            "CS",
+                            "DA",
+                            "DE",
+                            "EN",
+                            "EL",
+                            "ES",
+                            "FA",
+                            "FI",
+                            "FR",
+                            "HE",
+                            "HU",
+                            "HY",
+                            "IN",
+                            "IS",
+                            "IT",
+                            "IW",
+                            "JA",
+                            "KA",
+                            "KO",
+                            "LT",
+                            "MK",
+                            "ML",
+                            "NL",
+                            "NO",
+                            "PL",
+                            "PT",
+                            "PS",
+                            "RO",
+                            "RU",
+                            "SL",
+                            "SK",
+                            "SQ",
+                            "SR",
+                            "SV",
+                            "SW",
+                            "TH",
+                            "TR",
+                            "UK",
+                            "VI",
+                            "ZH"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName langXName = System.Xml.Linq.XName.Get("lang", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual PubMed.Eutils.URL.LangEnum? lang {
+            get {
+                XAttribute x = this.Attribute(langXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((PubMed.Eutils.URL.LangEnum)(Enum.Parse(typeof(PubMed.Eutils.URL.LangEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, LangEnumValidator.TypeDefinition))));
+            }
+            set {
+                if (value == null) {
+                    this.SetAttribute(langXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(langXName, value.ToString(), "lang", LangEnumValidator.TypeDefinition);
+                }
+            }
+        }
+        
         public enum TypeEnum {
             
             FullText,
@@ -529,6 +541,73 @@ namespace PubMed.Eutils {
             
             summary,
         }
+        
+        public sealed class TypeEnumValidator {
+            
+            private TypeEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "FullText",
+                            "Summary",
+                            "fulltext",
+                            "summary"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypeXName = System.Xml.Linq.XName.Get("Type", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual PubMed.Eutils.URL.TypeEnum? Type {
+            get {
+                XAttribute x = this.Attribute(TypeXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((PubMed.Eutils.URL.TypeEnum)(Enum.Parse(typeof(PubMed.Eutils.URL.TypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, TypeEnumValidator.TypeDefinition))));
+            }
+            set {
+                if (value == null) {
+                    this.SetAttribute(TypeXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(TypeXName, value.ToString(), "Type", TypeEnumValidator.TypeDefinition);
+                }
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("URL", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -538,27 +617,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class AbstractType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AbstractTextXName = System.Xml.Linq.XName.Get("AbstractText", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CopyrightInformationXName = System.Xml.Linq.XName.Get("CopyrightInformation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AbstractType(XElement xe) { return XTypedServices.ToXTypedElement<AbstractType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AbstractType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AbstractTextXName), new NamedContentModelEntity(CopyrightInformationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AbstractType>(this);
         }
         
         /// <summary>
@@ -568,6 +630,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public AbstractType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AbstractTextXName = System.Xml.Linq.XName.Get("AbstractText", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -587,6 +653,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CopyrightInformationXName = System.Xml.Linq.XName.Get("CopyrightInformation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -598,6 +668,9 @@ namespace PubMed.Eutils {
         public virtual CopyrightInformation CopyrightInformation {
             get {
                 XElement x = this.GetElement(CopyrightInformationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((CopyrightInformation)(x));
             }
             set {
@@ -605,11 +678,33 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static AbstractType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AbstractTextXName), new NamedContentModelEntity(CopyrightInformationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AbstractTextXName, typeof(AbstractText));
+            localElementDictionary.Add(CopyrightInformationXName, typeof(CopyrightInformation));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -632,19 +727,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AbstractType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(AbstractTextXName, typeof(AbstractText));
-            localElementDictionary.Add(CopyrightInformationXName, typeof(CopyrightInformation));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -654,26 +736,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class AccessionNumberListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AccessionNumberXName = System.Xml.Linq.XName.Get("AccessionNumber", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<AccessionNumber> AccessionNumberField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AccessionNumberListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AccessionNumberListType(XElement xe) { return XTypedServices.ToXTypedElement<AccessionNumberListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AccessionNumberListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AccessionNumberXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AccessionNumberListType>(this);
         }
         
         /// <summary>
@@ -683,6 +749,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public AccessionNumberListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AccessionNumberXName = System.Xml.Linq.XName.Get("AccessionNumber", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<AccessionNumber> AccessionNumberField;
         
         /// <summary>
         /// <para>
@@ -714,11 +787,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AccessionNumberListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static AccessionNumberListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AccessionNumberXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AccessionNumberXName, typeof(AccessionNumber));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -741,18 +835,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AccessionNumberListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(AccessionNumberXName, typeof(AccessionNumber));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -762,84 +844,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class ArticleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName JournalXName = System.Xml.Linq.XName.Get("Journal", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ArticleTitleXName = System.Xml.Linq.XName.Get("ArticleTitle", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PaginationXName = System.Xml.Linq.XName.Get("Pagination", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ELocationIDXName = System.Xml.Linq.XName.Get("ELocationID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ELocationIDType> ELocationIDField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AbstractXName = System.Xml.Linq.XName.Get("Abstract", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AuthorListXName = System.Xml.Linq.XName.Get("AuthorList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LanguageXName = System.Xml.Linq.XName.Get("Language", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<Language> LanguageField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataBankListXName = System.Xml.Linq.XName.Get("DataBankList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GrantListXName = System.Xml.Linq.XName.Get("GrantList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PublicationTypeListXName = System.Xml.Linq.XName.Get("PublicationTypeList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName VernacularTitleXName = System.Xml.Linq.XName.Get("VernacularTitle", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ArticleDateXName = System.Xml.Linq.XName.Get("ArticleDate", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ArticleDateType> ArticleDateField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PubModelXName = System.Xml.Linq.XName.Get("PubModel", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ArticleType(XElement xe) { return XTypedServices.ToXTypedElement<ArticleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ArticleType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(JournalXName), new NamedContentModelEntity(ArticleTitleXName), new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(PaginationXName), new NamedContentModelEntity(ELocationIDXName)), new NamedContentModelEntity(ELocationIDXName)), new NamedContentModelEntity(AbstractXName), new NamedContentModelEntity(AffiliationXName), new NamedContentModelEntity(AuthorListXName), new NamedContentModelEntity(LanguageXName), new NamedContentModelEntity(DataBankListXName), new NamedContentModelEntity(GrantListXName), new NamedContentModelEntity(PublicationTypeListXName), new NamedContentModelEntity(VernacularTitleXName), new NamedContentModelEntity(ArticleDateXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ArticleType>(this);
         }
         
         /// <summary>
@@ -849,6 +857,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public ArticleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName JournalXName = System.Xml.Linq.XName.Get("Journal", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -868,6 +880,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ArticleTitleXName = System.Xml.Linq.XName.Get("ArticleTitle", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -886,6 +902,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PaginationXName = System.Xml.Linq.XName.Get("Pagination", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -900,12 +920,22 @@ namespace PubMed.Eutils {
         public virtual PaginationType Pagination {
             get {
                 XElement x = this.GetElement(PaginationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((PaginationType)(x));
             }
             set {
                 this.SetElement(PaginationXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ELocationIDXName = System.Xml.Linq.XName.Get("ELocationID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ELocationIDType> ELocationIDField;
         
         /// <summary>
         /// <para>
@@ -940,6 +970,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AbstractXName = System.Xml.Linq.XName.Get("Abstract", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -951,12 +985,19 @@ namespace PubMed.Eutils {
         public virtual AbstractType Abstract {
             get {
                 XElement x = this.GetElement(AbstractXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((AbstractType)(x));
             }
             set {
                 this.SetElement(AbstractXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -969,12 +1010,19 @@ namespace PubMed.Eutils {
         public virtual Affiliation Affiliation {
             get {
                 XElement x = this.GetElement(AffiliationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Affiliation)(x));
             }
             set {
                 this.SetElement(AffiliationXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AuthorListXName = System.Xml.Linq.XName.Get("AuthorList", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -987,12 +1035,22 @@ namespace PubMed.Eutils {
         public virtual AuthorListType AuthorList {
             get {
                 XElement x = this.GetElement(AuthorListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((AuthorListType)(x));
             }
             set {
                 this.SetElement(AuthorListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LanguageXName = System.Xml.Linq.XName.Get("Language", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<Language> LanguageField;
         
         /// <summary>
         /// <para>
@@ -1024,6 +1082,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataBankListXName = System.Xml.Linq.XName.Get("DataBankList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1035,12 +1097,19 @@ namespace PubMed.Eutils {
         public virtual DataBankListType DataBankList {
             get {
                 XElement x = this.GetElement(DataBankListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((DataBankListType)(x));
             }
             set {
                 this.SetElement(DataBankListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GrantListXName = System.Xml.Linq.XName.Get("GrantList", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1053,12 +1122,19 @@ namespace PubMed.Eutils {
         public virtual GrantListType GrantList {
             get {
                 XElement x = this.GetElement(GrantListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((GrantListType)(x));
             }
             set {
                 this.SetElement(GrantListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PublicationTypeListXName = System.Xml.Linq.XName.Get("PublicationTypeList", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1078,6 +1154,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName VernacularTitleXName = System.Xml.Linq.XName.Get("VernacularTitle", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1089,12 +1169,22 @@ namespace PubMed.Eutils {
         public virtual VernacularTitle VernacularTitle {
             get {
                 XElement x = this.GetElement(VernacularTitleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((VernacularTitle)(x));
             }
             set {
                 this.SetElement(VernacularTitleXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ArticleDateXName = System.Xml.Linq.XName.Get("ArticleDate", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ArticleDateType> ArticleDateField;
         
         /// <summary>
         /// <para>
@@ -1126,19 +1216,73 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum PubModelEnum {
+            
+            Print,
+            
+            Print_Electronic,
+            
+            Electronic,
+            
+            Electronic_Print,
+        }
+        
+        public sealed class PubModelEnumValidator {
+            
+            private PubModelEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Print",
+                            "Print-Electronic:Print_Electronic",
+                            "Electronic",
+                            "Electronic-Print:Electronic_Print"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PubModelXName = System.Xml.Linq.XName.Get("PubModel", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string PubModel {
+        public virtual PubMed.Eutils.ArticleType.PubModelEnum PubModel {
             get {
                 XAttribute x = this.Attribute(PubModelXName);
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                return ((PubMed.Eutils.ArticleType.PubModelEnum)(Enum.Parse(typeof(PubMed.Eutils.ArticleType.PubModelEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, PubModelEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(PubModelXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(PubModelXName, value.ToString(), "PubModel", PubModelEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static ArticleType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(JournalXName), new NamedContentModelEntity(ArticleTitleXName), new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(PaginationXName), new NamedContentModelEntity(ELocationIDXName)), new NamedContentModelEntity(ELocationIDXName)), new NamedContentModelEntity(AbstractXName), new NamedContentModelEntity(AffiliationXName), new NamedContentModelEntity(AuthorListXName), new NamedContentModelEntity(LanguageXName), new NamedContentModelEntity(DataBankListXName), new NamedContentModelEntity(GrantListXName), new NamedContentModelEntity(PublicationTypeListXName), new NamedContentModelEntity(VernacularTitleXName), new NamedContentModelEntity(ArticleDateXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(JournalXName, typeof(JournalType));
+            localElementDictionary.Add(ArticleTitleXName, typeof(ArticleTitle));
+            localElementDictionary.Add(PaginationXName, typeof(PaginationType));
+            localElementDictionary.Add(ELocationIDXName, typeof(ELocationIDType));
+            localElementDictionary.Add(AbstractXName, typeof(AbstractType));
+            localElementDictionary.Add(AffiliationXName, typeof(Affiliation));
+            localElementDictionary.Add(AuthorListXName, typeof(AuthorListType));
+            localElementDictionary.Add(LanguageXName, typeof(Language));
+            localElementDictionary.Add(DataBankListXName, typeof(DataBankListType));
+            localElementDictionary.Add(GrantListXName, typeof(GrantListType));
+            localElementDictionary.Add(PublicationTypeListXName, typeof(PublicationTypeListType));
+            localElementDictionary.Add(VernacularTitleXName, typeof(VernacularTitle));
+            localElementDictionary.Add(ArticleDateXName, typeof(ArticleDateType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1146,6 +1290,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1168,30 +1319,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ArticleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(JournalXName, typeof(JournalType));
-            localElementDictionary.Add(ArticleTitleXName, typeof(ArticleTitle));
-            localElementDictionary.Add(PaginationXName, typeof(PaginationType));
-            localElementDictionary.Add(ELocationIDXName, typeof(ELocationIDType));
-            localElementDictionary.Add(AbstractXName, typeof(AbstractType));
-            localElementDictionary.Add(AffiliationXName, typeof(Affiliation));
-            localElementDictionary.Add(AuthorListXName, typeof(AuthorListType));
-            localElementDictionary.Add(LanguageXName, typeof(Language));
-            localElementDictionary.Add(DataBankListXName, typeof(DataBankListType));
-            localElementDictionary.Add(GrantListXName, typeof(GrantListType));
-            localElementDictionary.Add(PublicationTypeListXName, typeof(PublicationTypeListType));
-            localElementDictionary.Add(VernacularTitleXName, typeof(VernacularTitle));
-            localElementDictionary.Add(ArticleDateXName, typeof(ArticleDateType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1201,38 +1328,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class ArticleDateType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DateTypeXName = System.Xml.Linq.XName.Get("DateType", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string DateTypeFixedValue = "Electronic";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleDateType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ArticleDateType(XElement xe) { return XTypedServices.ToXTypedElement<ArticleDateType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ArticleDateType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ArticleDateType>(this);
         }
         
         /// <summary>
@@ -1242,6 +1341,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public ArticleDateType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1261,6 +1364,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -1278,6 +1385,10 @@ namespace PubMed.Eutils {
                 this.SetElement(MonthXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1297,6 +1408,13 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DateTypeXName = System.Xml.Linq.XName.Get("DateType", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static string DateTypeFixedValue = "Electronic";
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1307,13 +1425,29 @@ namespace PubMed.Eutils {
                 return DateTypeFixedValue;
             }
             set {
-                if (value.Equals(DateTypeFixedValue)) {
+                if (DateTypeFixedValue.Equals(value)) {
                 }
                 else {
                     throw new Xml.Schema.Linq.LinqToXsdFixedValueException(value, DateTypeFixedValue);
                 }
                 this.SetAttribute(DateTypeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleDateType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static ArticleDateType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(YearXName, typeof(Year));
+            localElementDictionary.Add(MonthXName, typeof(Month));
+            localElementDictionary.Add(DayXName, typeof(Day));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1324,6 +1458,13 @@ namespace PubMed.Eutils {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
                 return xName;
@@ -1343,41 +1484,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ArticleDateType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(YearXName, typeof(Year));
-            localElementDictionary.Add(MonthXName, typeof(Month));
-            localElementDictionary.Add(DayXName, typeof(Day));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class ArticleIdType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdTypeXName = System.Xml.Linq.XName.Get("IdType", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string IdTypeDefaultValue = "pubmed";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleIdType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator ArticleIdType(XElement xe) { return XTypedServices.ToXTypedElement<ArticleIdType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ArticleIdType>(this);
+        }
         
         public ArticleIdType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -1387,50 +1509,6 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// </summary>
-        public virtual PubMed.Eutils.ArticleIdType.IdTypeEnum IdType {
-            get {
-                XAttribute x = this.Attribute(IdTypeXName);
-                return ((PubMed.Eutils.ArticleIdType.IdTypeEnum)(Enum.Parse(typeof(PubMed.Eutils.ArticleIdType.IdTypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, IdTypeDefaultValue))));
-            }
-            set {
-                this.SetAttribute(IdTypeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ArticleIdType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
         
         public enum IdTypeEnum {
@@ -1455,6 +1533,77 @@ namespace PubMed.Eutils {
             
             pmcid,
         }
+        
+        public sealed class IdTypeEnumValidator {
+            
+            private IdTypeEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "doi",
+                            "pii",
+                            "pmcpid",
+                            "pmpid",
+                            "pmc",
+                            "mid",
+                            "sici",
+                            "pubmed",
+                            "medline",
+                            "pmcid"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdTypeXName = System.Xml.Linq.XName.Get("IdType", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.ArticleIdType.IdTypeEnum IdTypeDefaultValue = PubMed.Eutils.ArticleIdType.IdTypeEnum.pubmed;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual PubMed.Eutils.ArticleIdType.IdTypeEnum IdType {
+            get {
+                XAttribute x = this.Attribute(IdTypeXName);
+                if ((x == null)) {
+                    return IdTypeDefaultValue;
+                }
+                return ((PubMed.Eutils.ArticleIdType.IdTypeEnum)(Enum.Parse(typeof(PubMed.Eutils.ArticleIdType.IdTypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, IdTypeEnumValidator.TypeDefinition))));
+            }
+            set {
+                this.SetAttributeWithValidation(IdTypeXName, value.ToString(), "IdType", IdTypeEnumValidator.TypeDefinition);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleIdType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -1464,26 +1613,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class ArticleIdListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ArticleIdXName = System.Xml.Linq.XName.Get("ArticleId", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ArticleIdType> ArticleIdField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleIdListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ArticleIdListType(XElement xe) { return XTypedServices.ToXTypedElement<ArticleIdListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ArticleIdListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ArticleIdXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ArticleIdListType>(this);
         }
         
         /// <summary>
@@ -1493,6 +1626,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public ArticleIdListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ArticleIdXName = System.Xml.Linq.XName.Get("ArticleId", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ArticleIdType> ArticleIdField;
         
         /// <summary>
         /// <para>
@@ -1524,11 +1664,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleIdListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static ArticleIdListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ArticleIdXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ArticleIdXName, typeof(ArticleIdType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1551,18 +1712,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ArticleIdListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ArticleIdXName, typeof(ArticleIdType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1572,53 +1721,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class AuthorType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LastNameXName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ForeNameXName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InitialsXName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SuffixXName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NameIDXName = System.Xml.Linq.XName.Get("NameID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<NameIDType> NameIDField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CollectiveNameXName = System.Xml.Linq.XName.Get("CollectiveName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValidYNXName = System.Xml.Linq.XName.Get("ValidYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string ValidYNDefaultValue = "Y";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuthorType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AuthorType(XElement xe) { return XTypedServices.ToXTypedElement<AuthorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AuthorType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(LastNameXName), new NamedContentModelEntity(ForeNameXName), new NamedContentModelEntity(InitialsXName), new NamedContentModelEntity(SuffixXName), new NamedContentModelEntity(NameIDXName)), new SequenceContentModelEntity(new NamedContentModelEntity(CollectiveNameXName), new NamedContentModelEntity(NameIDXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AuthorType>(this);
         }
         
         /// <summary>
@@ -1628,6 +1734,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public AuthorType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LastNameXName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1643,12 +1753,19 @@ namespace PubMed.Eutils {
         public virtual LastName LastName {
             get {
                 XElement x = this.GetElement(LastNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((LastName)(x));
             }
             set {
                 this.SetElement(LastNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ForeNameXName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1664,12 +1781,19 @@ namespace PubMed.Eutils {
         public virtual ForeName ForeName {
             get {
                 XElement x = this.GetElement(ForeNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ForeName)(x));
             }
             set {
                 this.SetElement(ForeNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InitialsXName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1685,12 +1809,19 @@ namespace PubMed.Eutils {
         public virtual Initials Initials {
             get {
                 XElement x = this.GetElement(InitialsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Initials)(x));
             }
             set {
                 this.SetElement(InitialsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SuffixXName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -1706,12 +1837,22 @@ namespace PubMed.Eutils {
         public virtual Suffix Suffix {
             get {
                 XElement x = this.GetElement(SuffixXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Suffix)(x));
             }
             set {
                 this.SetElement(SuffixXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NameIDXName = System.Xml.Linq.XName.Get("NameID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<NameIDType> NameIDField;
         
         /// <summary>
         /// <para>
@@ -1746,6 +1887,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CollectiveNameXName = System.Xml.Linq.XName.Get("CollectiveName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -1760,12 +1905,40 @@ namespace PubMed.Eutils {
         public virtual CollectiveName CollectiveName {
             get {
                 XElement x = this.GetElement(CollectiveNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((CollectiveName)(x));
             }
             set {
                 this.SetElement(CollectiveNameXName, value);
             }
         }
+        
+        public enum ValidYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class ValidYNEnumValidator {
+            
+            private ValidYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValidYNXName = System.Xml.Linq.XName.Get("ValidYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.AuthorType.ValidYNEnum ValidYNDefaultValue = PubMed.Eutils.AuthorType.ValidYNEnum.Y;
         
         /// <summary>
         /// <para>
@@ -1775,11 +1948,33 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.AuthorType.ValidYNEnum ValidYN {
             get {
                 XAttribute x = this.Attribute(ValidYNXName);
-                return ((PubMed.Eutils.AuthorType.ValidYNEnum)(Enum.Parse(typeof(PubMed.Eutils.AuthorType.ValidYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ValidYNDefaultValue))));
+                if ((x == null)) {
+                    return ValidYNDefaultValue;
+                }
+                return ((PubMed.Eutils.AuthorType.ValidYNEnum)(Enum.Parse(typeof(PubMed.Eutils.AuthorType.ValidYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ValidYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(ValidYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(ValidYNXName, value.ToString(), "ValidYN", ValidYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuthorType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static AuthorType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(LastNameXName), new NamedContentModelEntity(ForeNameXName), new NamedContentModelEntity(InitialsXName), new NamedContentModelEntity(SuffixXName), new NamedContentModelEntity(NameIDXName)), new SequenceContentModelEntity(new NamedContentModelEntity(CollectiveNameXName), new NamedContentModelEntity(NameIDXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LastNameXName, typeof(LastName));
+            localElementDictionary.Add(ForeNameXName, typeof(ForeName));
+            localElementDictionary.Add(InitialsXName, typeof(Initials));
+            localElementDictionary.Add(SuffixXName, typeof(Suffix));
+            localElementDictionary.Add(NameIDXName, typeof(NameIDType));
+            localElementDictionary.Add(CollectiveNameXName, typeof(CollectiveName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1787,6 +1982,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1809,30 +2011,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AuthorType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(LastNameXName, typeof(LastName));
-            localElementDictionary.Add(ForeNameXName, typeof(ForeName));
-            localElementDictionary.Add(InitialsXName, typeof(Initials));
-            localElementDictionary.Add(SuffixXName, typeof(Suffix));
-            localElementDictionary.Add(NameIDXName, typeof(NameIDType));
-            localElementDictionary.Add(CollectiveNameXName, typeof(CollectiveName));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum ValidYNEnum {
-            
-            Y,
-            
-            N,
-        }
     }
     
     /// <summary>
@@ -1842,33 +2020,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class AuthorListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AuthorXName = System.Xml.Linq.XName.Get("Author", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<AuthorType> AuthorField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CompleteYNXName = System.Xml.Linq.XName.Get("CompleteYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string CompleteYNDefaultValue = "Y";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuthorListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AuthorListType(XElement xe) { return XTypedServices.ToXTypedElement<AuthorListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AuthorListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AuthorXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AuthorListType>(this);
         }
         
         /// <summary>
@@ -1878,6 +2033,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public AuthorListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AuthorXName = System.Xml.Linq.XName.Get("Author", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<AuthorType> AuthorField;
         
         /// <summary>
         /// <para>
@@ -1909,6 +2071,31 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum CompleteYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class CompleteYNEnumValidator {
+            
+            private CompleteYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CompleteYNXName = System.Xml.Linq.XName.Get("CompleteYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.AuthorListType.CompleteYNEnum CompleteYNDefaultValue = PubMed.Eutils.AuthorListType.CompleteYNEnum.Y;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1917,11 +2104,28 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.AuthorListType.CompleteYNEnum CompleteYN {
             get {
                 XAttribute x = this.Attribute(CompleteYNXName);
-                return ((PubMed.Eutils.AuthorListType.CompleteYNEnum)(Enum.Parse(typeof(PubMed.Eutils.AuthorListType.CompleteYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, CompleteYNDefaultValue))));
+                if ((x == null)) {
+                    return CompleteYNDefaultValue;
+                }
+                return ((PubMed.Eutils.AuthorListType.CompleteYNEnum)(Enum.Parse(typeof(PubMed.Eutils.AuthorListType.CompleteYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, CompleteYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(CompleteYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(CompleteYNXName, value.ToString(), "CompleteYN", CompleteYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuthorListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static AuthorListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AuthorXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AuthorXName, typeof(AuthorType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1929,6 +2133,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1951,25 +2162,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AuthorListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(AuthorXName, typeof(AuthorType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum CompleteYNEnum {
-            
-            Y,
-            
-            N,
-        }
     }
     
     /// <summary>
@@ -1979,27 +2171,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class ChemicalType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RegistryNumberXName = System.Xml.Linq.XName.Get("RegistryNumber", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NameOfSubstanceXName = System.Xml.Linq.XName.Get("NameOfSubstance", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChemicalType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ChemicalType(XElement xe) { return XTypedServices.ToXTypedElement<ChemicalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ChemicalType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RegistryNumberXName), new NamedContentModelEntity(NameOfSubstanceXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ChemicalType>(this);
         }
         
         /// <summary>
@@ -2009,6 +2184,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public ChemicalType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RegistryNumberXName = System.Xml.Linq.XName.Get("RegistryNumber", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -2028,6 +2207,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NameOfSubstanceXName = System.Xml.Linq.XName.Get("NameOfSubstance", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -2046,11 +2229,33 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChemicalType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static ChemicalType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RegistryNumberXName), new NamedContentModelEntity(NameOfSubstanceXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RegistryNumberXName, typeof(RegistryNumber));
+            localElementDictionary.Add(NameOfSubstanceXName, typeof(NameOfSubstance));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2073,19 +2278,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ChemicalType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RegistryNumberXName, typeof(RegistryNumber));
-            localElementDictionary.Add(NameOfSubstanceXName, typeof(NameOfSubstance));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2095,26 +2287,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class ChemicalListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ChemicalXName = System.Xml.Linq.XName.Get("Chemical", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ChemicalType> ChemicalField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChemicalListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ChemicalListType(XElement xe) { return XTypedServices.ToXTypedElement<ChemicalListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ChemicalListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ChemicalXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ChemicalListType>(this);
         }
         
         /// <summary>
@@ -2124,6 +2300,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public ChemicalListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ChemicalXName = System.Xml.Linq.XName.Get("Chemical", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ChemicalType> ChemicalField;
         
         /// <summary>
         /// <para>
@@ -2155,11 +2338,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ChemicalListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static ChemicalListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ChemicalXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ChemicalXName, typeof(ChemicalType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2182,18 +2386,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ChemicalListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ChemicalXName, typeof(ChemicalType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2203,35 +2395,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class CommentsCorrectionsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RefSourceXName = System.Xml.Linq.XName.Get("RefSource", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PMIDXName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NoteXName = System.Xml.Linq.XName.Get("Note", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RefTypeXName = System.Xml.Linq.XName.Get("RefType", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CommentsCorrectionsType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator CommentsCorrectionsType(XElement xe) { return XTypedServices.ToXTypedElement<CommentsCorrectionsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static CommentsCorrectionsType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RefSourceXName), new NamedContentModelEntity(PMIDXName), new NamedContentModelEntity(NoteXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CommentsCorrectionsType>(this);
         }
         
         /// <summary>
@@ -2241,6 +2408,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public CommentsCorrectionsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RefSourceXName = System.Xml.Linq.XName.Get("RefSource", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -2260,6 +2431,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PMIDXName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2271,12 +2446,19 @@ namespace PubMed.Eutils {
         public virtual PMID PMID {
             get {
                 XElement x = this.GetElement(PMIDXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((PMID)(x));
             }
             set {
                 this.SetElement(PMIDXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NoteXName = System.Xml.Linq.XName.Get("Note", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -2289,68 +2471,14 @@ namespace PubMed.Eutils {
         public virtual Note Note {
             get {
                 XElement x = this.GetElement(NoteXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Note)(x));
             }
             set {
                 this.SetElement(NoteXName, value);
             }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// </summary>
-        public virtual PubMed.Eutils.CommentsCorrectionsType.RefTypeEnum RefType {
-            get {
-                XAttribute x = this.Attribute(RefTypeXName);
-                return ((PubMed.Eutils.CommentsCorrectionsType.RefTypeEnum)(Enum.Parse(typeof(PubMed.Eutils.CommentsCorrectionsType.RefTypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
-            }
-            set {
-                this.SetAttribute(RefTypeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CommentsCorrectionsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RefSourceXName, typeof(RefSource));
-            localElementDictionary.Add(PMIDXName, typeof(PMID));
-            localElementDictionary.Add(NoteXName, typeof(Note));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
         
         public enum RefTypeEnum {
@@ -2389,6 +2517,102 @@ namespace PubMed.Eutils {
             
             Cites,
         }
+        
+        public sealed class RefTypeEnumValidator {
+            
+            private RefTypeEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "CommentOn",
+                            "CommentIn",
+                            "ErratumIn",
+                            "ErratumFor",
+                            "PartialRetractionIn",
+                            "PartialRetractionOf",
+                            "RepublishedFrom",
+                            "RepublishedIn",
+                            "RetractionOf",
+                            "RetractionIn",
+                            "UpdateIn",
+                            "UpdateOf",
+                            "SummaryForPatientsIn",
+                            "OriginalReportIn",
+                            "ReprintOf",
+                            "ReprintIn",
+                            "Cites"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RefTypeXName = System.Xml.Linq.XName.Get("RefType", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual PubMed.Eutils.CommentsCorrectionsType.RefTypeEnum RefType {
+            get {
+                XAttribute x = this.Attribute(RefTypeXName);
+                return ((PubMed.Eutils.CommentsCorrectionsType.RefTypeEnum)(Enum.Parse(typeof(PubMed.Eutils.CommentsCorrectionsType.RefTypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, RefTypeEnumValidator.TypeDefinition))));
+            }
+            set {
+                this.SetAttributeWithValidation(RefTypeXName, value.ToString(), "RefType", RefTypeEnumValidator.TypeDefinition);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CommentsCorrectionsType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static CommentsCorrectionsType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RefSourceXName), new NamedContentModelEntity(PMIDXName), new NamedContentModelEntity(NoteXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RefSourceXName, typeof(RefSource));
+            localElementDictionary.Add(PMIDXName, typeof(PMID));
+            localElementDictionary.Add(NoteXName, typeof(Note));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -2398,26 +2622,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class CommentsCorrectionsListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CommentsCorrectionsXName = System.Xml.Linq.XName.Get("CommentsCorrections", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CommentsCorrectionsType> CommentsCorrectionsField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CommentsCorrectionsListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator CommentsCorrectionsListType(XElement xe) { return XTypedServices.ToXTypedElement<CommentsCorrectionsListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static CommentsCorrectionsListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CommentsCorrectionsXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CommentsCorrectionsListType>(this);
         }
         
         /// <summary>
@@ -2427,6 +2635,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public CommentsCorrectionsListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CommentsCorrectionsXName = System.Xml.Linq.XName.Get("CommentsCorrections", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CommentsCorrectionsType> CommentsCorrectionsField;
         
         /// <summary>
         /// <para>
@@ -2458,11 +2673,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CommentsCorrectionsListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static CommentsCorrectionsListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CommentsCorrectionsXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(CommentsCorrectionsXName, typeof(CommentsCorrectionsType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2485,18 +2721,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CommentsCorrectionsListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(CommentsCorrectionsXName, typeof(CommentsCorrectionsType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2506,27 +2730,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class DataBankType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataBankNameXName = System.Xml.Linq.XName.Get("DataBankName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AccessionNumberListXName = System.Xml.Linq.XName.Get("AccessionNumberList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataBankType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DataBankType(XElement xe) { return XTypedServices.ToXTypedElement<DataBankType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DataBankType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataBankNameXName), new NamedContentModelEntity(AccessionNumberListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DataBankType>(this);
         }
         
         /// <summary>
@@ -2536,6 +2743,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public DataBankType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataBankNameXName = System.Xml.Linq.XName.Get("DataBankName", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -2555,6 +2766,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AccessionNumberListXName = System.Xml.Linq.XName.Get("AccessionNumberList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2566,6 +2781,9 @@ namespace PubMed.Eutils {
         public virtual AccessionNumberListType AccessionNumberList {
             get {
                 XElement x = this.GetElement(AccessionNumberListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((AccessionNumberListType)(x));
             }
             set {
@@ -2573,11 +2791,33 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataBankType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static DataBankType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataBankNameXName), new NamedContentModelEntity(AccessionNumberListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DataBankNameXName, typeof(DataBankName));
+            localElementDictionary.Add(AccessionNumberListXName, typeof(AccessionNumberListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2600,19 +2840,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DataBankType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DataBankNameXName, typeof(DataBankName));
-            localElementDictionary.Add(AccessionNumberListXName, typeof(AccessionNumberListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2622,33 +2849,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class DataBankListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataBankXName = System.Xml.Linq.XName.Get("DataBank", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<DataBankType> DataBankField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CompleteYNXName = System.Xml.Linq.XName.Get("CompleteYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string CompleteYNDefaultValue = "Y";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataBankListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DataBankListType(XElement xe) { return XTypedServices.ToXTypedElement<DataBankListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DataBankListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataBankXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DataBankListType>(this);
         }
         
         /// <summary>
@@ -2658,6 +2862,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public DataBankListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataBankXName = System.Xml.Linq.XName.Get("DataBank", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<DataBankType> DataBankField;
         
         /// <summary>
         /// <para>
@@ -2689,6 +2900,31 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum CompleteYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class CompleteYNEnumValidator {
+            
+            private CompleteYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CompleteYNXName = System.Xml.Linq.XName.Get("CompleteYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.DataBankListType.CompleteYNEnum CompleteYNDefaultValue = PubMed.Eutils.DataBankListType.CompleteYNEnum.Y;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2697,11 +2933,28 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.DataBankListType.CompleteYNEnum CompleteYN {
             get {
                 XAttribute x = this.Attribute(CompleteYNXName);
-                return ((PubMed.Eutils.DataBankListType.CompleteYNEnum)(Enum.Parse(typeof(PubMed.Eutils.DataBankListType.CompleteYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, CompleteYNDefaultValue))));
+                if ((x == null)) {
+                    return CompleteYNDefaultValue;
+                }
+                return ((PubMed.Eutils.DataBankListType.CompleteYNEnum)(Enum.Parse(typeof(PubMed.Eutils.DataBankListType.CompleteYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, CompleteYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(CompleteYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(CompleteYNXName, value.ToString(), "CompleteYN", CompleteYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataBankListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static DataBankListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataBankXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DataBankXName, typeof(DataBankType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2709,6 +2962,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2730,25 +2990,6 @@ namespace PubMed.Eutils {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DataBankListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DataBankXName, typeof(DataBankType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum CompleteYNEnum {
-            
-            Y,
-            
-            N,
         }
     }
     
@@ -2759,31 +3000,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class DateCompletedType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DateCompletedType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DateCompletedType(XElement xe) { return XTypedServices.ToXTypedElement<DateCompletedType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DateCompletedType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DateCompletedType>(this);
         }
         
         /// <summary>
@@ -2794,6 +3014,10 @@ namespace PubMed.Eutils {
         public DateCompletedType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -2811,6 +3035,10 @@ namespace PubMed.Eutils {
                 this.SetElement(YearXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -2830,6 +3058,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -2848,11 +3080,34 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DateCompletedType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static DateCompletedType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(YearXName, typeof(Year));
+            localElementDictionary.Add(MonthXName, typeof(Month));
+            localElementDictionary.Add(DayXName, typeof(Day));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2874,20 +3129,6 @@ namespace PubMed.Eutils {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DateCompletedType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(YearXName, typeof(Year));
-            localElementDictionary.Add(MonthXName, typeof(Month));
-            localElementDictionary.Add(DayXName, typeof(Day));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -2898,31 +3139,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class DateCreatedType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DateCreatedType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DateCreatedType(XElement xe) { return XTypedServices.ToXTypedElement<DateCreatedType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DateCreatedType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DateCreatedType>(this);
         }
         
         /// <summary>
@@ -2933,6 +3153,10 @@ namespace PubMed.Eutils {
         public DateCreatedType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -2950,6 +3174,10 @@ namespace PubMed.Eutils {
                 this.SetElement(YearXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -2969,6 +3197,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -2987,11 +3219,34 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DateCreatedType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static DateCreatedType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(YearXName, typeof(Year));
+            localElementDictionary.Add(MonthXName, typeof(Month));
+            localElementDictionary.Add(DayXName, typeof(Day));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3013,20 +3268,6 @@ namespace PubMed.Eutils {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DateCreatedType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(YearXName, typeof(Year));
-            localElementDictionary.Add(MonthXName, typeof(Month));
-            localElementDictionary.Add(DayXName, typeof(Day));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -3037,31 +3278,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class DateRevisedType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DateRevisedType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DateRevisedType(XElement xe) { return XTypedServices.ToXTypedElement<DateRevisedType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DateRevisedType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DateRevisedType>(this);
         }
         
         /// <summary>
@@ -3071,6 +3291,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public DateRevisedType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -3090,6 +3314,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -3107,6 +3335,10 @@ namespace PubMed.Eutils {
                 this.SetElement(MonthXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -3126,11 +3358,34 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DateRevisedType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static DateRevisedType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(YearXName, typeof(Year));
+            localElementDictionary.Add(MonthXName, typeof(Month));
+            localElementDictionary.Add(DayXName, typeof(Day));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3153,20 +3408,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DateRevisedType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(YearXName, typeof(Year));
-            localElementDictionary.Add(MonthXName, typeof(Month));
-            localElementDictionary.Add(DayXName, typeof(Day));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3176,26 +3417,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class DeleteCitationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PMIDXName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<PMID> PMIDField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DeleteCitationType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DeleteCitationType(XElement xe) { return XTypedServices.ToXTypedElement<DeleteCitationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DeleteCitationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PMIDXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DeleteCitationType>(this);
         }
         
         /// <summary>
@@ -3205,6 +3430,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public DeleteCitationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PMIDXName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<PMID> PMIDField;
         
         /// <summary>
         /// <para>
@@ -3236,11 +3468,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DeleteCitationType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static DeleteCitationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PMIDXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PMIDXName, typeof(PMID));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3263,39 +3516,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DeleteCitationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PMIDXName, typeof(PMID));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class DescriptorNameType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MajorTopicYNXName = System.Xml.Linq.XName.Get("MajorTopicYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string MajorTopicYNDefaultValue = "N";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DescriptorNameType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator DescriptorNameType(XElement xe) { return XTypedServices.ToXTypedElement<DescriptorNameType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DescriptorNameType>(this);
+        }
         
         public DescriptorNameType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -3306,6 +3542,31 @@ namespace PubMed.Eutils {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        public enum MajorTopicYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class MajorTopicYNEnumValidator {
+            
+            private MajorTopicYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MajorTopicYNXName = System.Xml.Linq.XName.Get("MajorTopicYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.DescriptorNameType.MajorTopicYNEnum MajorTopicYNDefaultValue = PubMed.Eutils.DescriptorNameType.MajorTopicYNEnum.N;
         
         /// <summary>
         /// <para>
@@ -3315,11 +3576,20 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.DescriptorNameType.MajorTopicYNEnum MajorTopicYN {
             get {
                 XAttribute x = this.Attribute(MajorTopicYNXName);
-                return ((PubMed.Eutils.DescriptorNameType.MajorTopicYNEnum)(Enum.Parse(typeof(PubMed.Eutils.DescriptorNameType.MajorTopicYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, MajorTopicYNDefaultValue))));
+                if ((x == null)) {
+                    return MajorTopicYNDefaultValue;
+                }
+                return ((PubMed.Eutils.DescriptorNameType.MajorTopicYNEnum)(Enum.Parse(typeof(PubMed.Eutils.DescriptorNameType.MajorTopicYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, MajorTopicYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(MajorTopicYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(MajorTopicYNXName, value.ToString(), "MajorTopicYN", MajorTopicYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DescriptorNameType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3342,46 +3612,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DescriptorNameType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
-        public enum MajorTopicYNEnum {
-            
-            Y,
-            
-            N,
-        }
     }
     
     public partial class ELocationIDType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EIdTypeXName = System.Xml.Linq.XName.Get("EIdType", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValidYNXName = System.Xml.Linq.XName.Get("ValidYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string ValidYNDefaultValue = "Y";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ELocationIDType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator ELocationIDType(XElement xe) { return XTypedServices.ToXTypedElement<ELocationIDType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ELocationIDType>(this);
+        }
         
         public ELocationIDType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -3393,6 +3639,28 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum EIdTypeEnum {
+            
+            doi,
+            
+            pii,
+        }
+        
+        public sealed class EIdTypeEnumValidator {
+            
+            private EIdTypeEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "doi",
+                            "pii"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EIdTypeXName = System.Xml.Linq.XName.Get("EIdType", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -3401,12 +3669,37 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.ELocationIDType.EIdTypeEnum EIdType {
             get {
                 XAttribute x = this.Attribute(EIdTypeXName);
-                return ((PubMed.Eutils.ELocationIDType.EIdTypeEnum)(Enum.Parse(typeof(PubMed.Eutils.ELocationIDType.EIdTypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((PubMed.Eutils.ELocationIDType.EIdTypeEnum)(Enum.Parse(typeof(PubMed.Eutils.ELocationIDType.EIdTypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, EIdTypeEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(EIdTypeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(EIdTypeXName, value.ToString(), "EIdType", EIdTypeEnumValidator.TypeDefinition);
             }
         }
+        
+        public enum ValidYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class ValidYNEnumValidator {
+            
+            private ValidYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValidYNXName = System.Xml.Linq.XName.Get("ValidYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.ELocationIDType.ValidYNEnum ValidYNDefaultValue = PubMed.Eutils.ELocationIDType.ValidYNEnum.Y;
         
         /// <summary>
         /// <para>
@@ -3416,11 +3709,20 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.ELocationIDType.ValidYNEnum ValidYN {
             get {
                 XAttribute x = this.Attribute(ValidYNXName);
-                return ((PubMed.Eutils.ELocationIDType.ValidYNEnum)(Enum.Parse(typeof(PubMed.Eutils.ELocationIDType.ValidYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ValidYNDefaultValue))));
+                if ((x == null)) {
+                    return ValidYNDefaultValue;
+                }
+                return ((PubMed.Eutils.ELocationIDType.ValidYNEnum)(Enum.Parse(typeof(PubMed.Eutils.ELocationIDType.ValidYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ValidYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(ValidYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(ValidYNXName, value.ToString(), "ValidYN", ValidYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ELocationIDType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3442,28 +3744,6 @@ namespace PubMed.Eutils {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ELocationIDType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
-        public enum EIdTypeEnum {
-            
-            doi,
-            
-            pii,
-        }
-        
-        public enum ValidYNEnum {
-            
-            Y,
-            
-            N,
         }
     }
     
@@ -3474,26 +3754,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class GeneSymbolListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GeneSymbolXName = System.Xml.Linq.XName.Get("GeneSymbol", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<GeneSymbol> GeneSymbolField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GeneSymbolListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator GeneSymbolListType(XElement xe) { return XTypedServices.ToXTypedElement<GeneSymbolListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static GeneSymbolListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(GeneSymbolXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GeneSymbolListType>(this);
         }
         
         /// <summary>
@@ -3503,6 +3767,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public GeneSymbolListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GeneSymbolXName = System.Xml.Linq.XName.Get("GeneSymbol", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<GeneSymbol> GeneSymbolField;
         
         /// <summary>
         /// <para>
@@ -3534,11 +3805,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GeneSymbolListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static GeneSymbolListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(GeneSymbolXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(GeneSymbolXName, typeof(GeneSymbol));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3561,39 +3853,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<GeneSymbolListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(GeneSymbolXName, typeof(GeneSymbol));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class GeneralNoteType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OwnerXName = System.Xml.Linq.XName.Get("Owner", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string OwnerDefaultValue = "NLM";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GeneralNoteType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator GeneralNoteType(XElement xe) { return XTypedServices.ToXTypedElement<GeneralNoteType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GeneralNoteType>(this);
+        }
         
         public GeneralNoteType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -3603,50 +3878,6 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// </summary>
-        public virtual PubMed.Eutils.GeneralNoteType.OwnerEnum Owner {
-            get {
-                XAttribute x = this.Attribute(OwnerXName);
-                return ((PubMed.Eutils.GeneralNoteType.OwnerEnum)(Enum.Parse(typeof(PubMed.Eutils.GeneralNoteType.OwnerEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, OwnerDefaultValue))));
-            }
-            set {
-                this.SetAttribute(OwnerXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<GeneralNoteType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
         
         public enum OwnerEnum {
@@ -3663,6 +3894,73 @@ namespace PubMed.Eutils {
             
             HMD,
         }
+        
+        public sealed class OwnerEnumValidator {
+            
+            private OwnerEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "NLM",
+                            "NASA",
+                            "PIP",
+                            "KIE",
+                            "HSR",
+                            "HMD"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OwnerXName = System.Xml.Linq.XName.Get("Owner", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.GeneralNoteType.OwnerEnum OwnerDefaultValue = PubMed.Eutils.GeneralNoteType.OwnerEnum.NLM;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual PubMed.Eutils.GeneralNoteType.OwnerEnum Owner {
+            get {
+                XAttribute x = this.Attribute(OwnerXName);
+                if ((x == null)) {
+                    return OwnerDefaultValue;
+                }
+                return ((PubMed.Eutils.GeneralNoteType.OwnerEnum)(Enum.Parse(typeof(PubMed.Eutils.GeneralNoteType.OwnerEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, OwnerEnumValidator.TypeDefinition))));
+            }
+            set {
+                this.SetAttributeWithValidation(OwnerXName, value.ToString(), "Owner", OwnerEnumValidator.TypeDefinition);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GeneralNoteType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -3672,35 +3970,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class GrantType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GrantIDXName = System.Xml.Linq.XName.Get("GrantID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AcronymXName = System.Xml.Linq.XName.Get("Acronym", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AgencyXName = System.Xml.Linq.XName.Get("Agency", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CountryXName = System.Xml.Linq.XName.Get("Country", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GrantType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator GrantType(XElement xe) { return XTypedServices.ToXTypedElement<GrantType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static GrantType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(GrantIDXName), new NamedContentModelEntity(AcronymXName), new NamedContentModelEntity(AgencyXName), new NamedContentModelEntity(CountryXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GrantType>(this);
         }
         
         /// <summary>
@@ -3710,6 +3983,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public GrantType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GrantIDXName = System.Xml.Linq.XName.Get("GrantID", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -3722,12 +3999,19 @@ namespace PubMed.Eutils {
         public virtual GrantID GrantID {
             get {
                 XElement x = this.GetElement(GrantIDXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((GrantID)(x));
             }
             set {
                 this.SetElement(GrantIDXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AcronymXName = System.Xml.Linq.XName.Get("Acronym", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -3740,12 +4024,19 @@ namespace PubMed.Eutils {
         public virtual Acronym Acronym {
             get {
                 XElement x = this.GetElement(AcronymXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Acronym)(x));
             }
             set {
                 this.SetElement(AcronymXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AgencyXName = System.Xml.Linq.XName.Get("Agency", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -3765,6 +4056,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CountryXName = System.Xml.Linq.XName.Get("Country", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -3783,11 +4078,35 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GrantType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static GrantType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(GrantIDXName), new NamedContentModelEntity(AcronymXName), new NamedContentModelEntity(AgencyXName), new NamedContentModelEntity(CountryXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(GrantIDXName, typeof(GrantID));
+            localElementDictionary.Add(AcronymXName, typeof(Acronym));
+            localElementDictionary.Add(AgencyXName, typeof(Agency));
+            localElementDictionary.Add(CountryXName, typeof(Country));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3810,21 +4129,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<GrantType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(GrantIDXName, typeof(GrantID));
-            localElementDictionary.Add(AcronymXName, typeof(Acronym));
-            localElementDictionary.Add(AgencyXName, typeof(Agency));
-            localElementDictionary.Add(CountryXName, typeof(Country));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3834,33 +4138,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class GrantListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GrantXName = System.Xml.Linq.XName.Get("Grant", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<GrantType> GrantField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CompleteYNXName = System.Xml.Linq.XName.Get("CompleteYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string CompleteYNDefaultValue = "Y";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GrantListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator GrantListType(XElement xe) { return XTypedServices.ToXTypedElement<GrantListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static GrantListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(GrantXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GrantListType>(this);
         }
         
         /// <summary>
@@ -3870,6 +4151,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public GrantListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GrantXName = System.Xml.Linq.XName.Get("Grant", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<GrantType> GrantField;
         
         /// <summary>
         /// <para>
@@ -3901,6 +4189,31 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum CompleteYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class CompleteYNEnumValidator {
+            
+            private CompleteYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CompleteYNXName = System.Xml.Linq.XName.Get("CompleteYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.GrantListType.CompleteYNEnum CompleteYNDefaultValue = PubMed.Eutils.GrantListType.CompleteYNEnum.Y;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3909,11 +4222,28 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.GrantListType.CompleteYNEnum CompleteYN {
             get {
                 XAttribute x = this.Attribute(CompleteYNXName);
-                return ((PubMed.Eutils.GrantListType.CompleteYNEnum)(Enum.Parse(typeof(PubMed.Eutils.GrantListType.CompleteYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, CompleteYNDefaultValue))));
+                if ((x == null)) {
+                    return CompleteYNDefaultValue;
+                }
+                return ((PubMed.Eutils.GrantListType.CompleteYNEnum)(Enum.Parse(typeof(PubMed.Eutils.GrantListType.CompleteYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, CompleteYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(CompleteYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(CompleteYNXName, value.ToString(), "CompleteYN", CompleteYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GrantListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static GrantListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(GrantXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(GrantXName, typeof(GrantType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3921,6 +4251,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3943,25 +4280,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<GrantListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(GrantXName, typeof(GrantType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum CompleteYNEnum {
-            
-            Y,
-            
-            N,
-        }
     }
     
     /// <summary>
@@ -3971,26 +4289,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class HistoryType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PubMedPubDateXName = System.Xml.Linq.XName.Get("PubMedPubDate", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PubMedPubDateType> PubMedPubDateField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("HistoryType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator HistoryType(XElement xe) { return XTypedServices.ToXTypedElement<HistoryType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static HistoryType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PubMedPubDateXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<HistoryType>(this);
         }
         
         /// <summary>
@@ -4000,6 +4302,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public HistoryType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PubMedPubDateXName = System.Xml.Linq.XName.Get("PubMedPubDate", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PubMedPubDateType> PubMedPubDateField;
         
         /// <summary>
         /// <para>
@@ -4031,11 +4340,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("HistoryType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static HistoryType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PubMedPubDateXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PubMedPubDateXName, typeof(PubMedPubDateType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4058,36 +4388,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<HistoryType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PubMedPubDateXName, typeof(PubMedPubDateType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class ISSNType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IssnType1XName = System.Xml.Linq.XName.Get("IssnType", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ISSNType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator ISSNType(XElement xe) { return XTypedServices.ToXTypedElement<ISSNType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ISSNType>(this);
+        }
         
         public ISSNType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -4099,6 +4415,28 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum IssnType1Enum {
+            
+            Electronic,
+            
+            Print,
+        }
+        
+        public sealed class IssnType1EnumValidator {
+            
+            private IssnType1EnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Electronic",
+                            "Print"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IssnType1XName = System.Xml.Linq.XName.Get("IssnType", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -4107,11 +4445,17 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.ISSNType.IssnType1Enum IssnType1 {
             get {
                 XAttribute x = this.Attribute(IssnType1XName);
-                return ((PubMed.Eutils.ISSNType.IssnType1Enum)(Enum.Parse(typeof(PubMed.Eutils.ISSNType.IssnType1Enum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((PubMed.Eutils.ISSNType.IssnType1Enum)(Enum.Parse(typeof(PubMed.Eutils.ISSNType.IssnType1Enum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, IssnType1EnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(IssnType1XName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(IssnType1XName, value.ToString(), "IssnType1", IssnType1EnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ISSNType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4134,21 +4478,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ISSNType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
-        public enum IssnType1Enum {
-            
-            Electronic,
-            
-            Print,
-        }
     }
     
     /// <summary>
@@ -4158,53 +4487,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class InvestigatorType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LastNameXName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ForeNameXName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InitialsXName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SuffixXName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NameIDXName = System.Xml.Linq.XName.Get("NameID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<NameIDType> NameIDField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValidYNXName = System.Xml.Linq.XName.Get("ValidYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string ValidYNDefaultValue = "Y";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InvestigatorType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InvestigatorType(XElement xe) { return XTypedServices.ToXTypedElement<InvestigatorType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InvestigatorType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LastNameXName), new NamedContentModelEntity(ForeNameXName), new NamedContentModelEntity(InitialsXName), new NamedContentModelEntity(SuffixXName), new NamedContentModelEntity(NameIDXName), new NamedContentModelEntity(AffiliationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InvestigatorType>(this);
         }
         
         /// <summary>
@@ -4214,6 +4500,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public InvestigatorType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LastNameXName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4233,6 +4523,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ForeNameXName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -4244,12 +4538,19 @@ namespace PubMed.Eutils {
         public virtual ForeName ForeName {
             get {
                 XElement x = this.GetElement(ForeNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ForeName)(x));
             }
             set {
                 this.SetElement(ForeNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InitialsXName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4262,12 +4563,19 @@ namespace PubMed.Eutils {
         public virtual Initials Initials {
             get {
                 XElement x = this.GetElement(InitialsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Initials)(x));
             }
             set {
                 this.SetElement(InitialsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SuffixXName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4280,12 +4588,22 @@ namespace PubMed.Eutils {
         public virtual Suffix Suffix {
             get {
                 XElement x = this.GetElement(SuffixXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Suffix)(x));
             }
             set {
                 this.SetElement(SuffixXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NameIDXName = System.Xml.Linq.XName.Get("NameID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<NameIDType> NameIDField;
         
         /// <summary>
         /// <para>
@@ -4317,6 +4635,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -4328,12 +4650,40 @@ namespace PubMed.Eutils {
         public virtual Affiliation Affiliation {
             get {
                 XElement x = this.GetElement(AffiliationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Affiliation)(x));
             }
             set {
                 this.SetElement(AffiliationXName, value);
             }
         }
+        
+        public enum ValidYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class ValidYNEnumValidator {
+            
+            private ValidYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValidYNXName = System.Xml.Linq.XName.Get("ValidYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.InvestigatorType.ValidYNEnum ValidYNDefaultValue = PubMed.Eutils.InvestigatorType.ValidYNEnum.Y;
         
         /// <summary>
         /// <para>
@@ -4343,11 +4693,33 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.InvestigatorType.ValidYNEnum ValidYN {
             get {
                 XAttribute x = this.Attribute(ValidYNXName);
-                return ((PubMed.Eutils.InvestigatorType.ValidYNEnum)(Enum.Parse(typeof(PubMed.Eutils.InvestigatorType.ValidYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ValidYNDefaultValue))));
+                if ((x == null)) {
+                    return ValidYNDefaultValue;
+                }
+                return ((PubMed.Eutils.InvestigatorType.ValidYNEnum)(Enum.Parse(typeof(PubMed.Eutils.InvestigatorType.ValidYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, ValidYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(ValidYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(ValidYNXName, value.ToString(), "ValidYN", ValidYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InvestigatorType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static InvestigatorType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LastNameXName), new NamedContentModelEntity(ForeNameXName), new NamedContentModelEntity(InitialsXName), new NamedContentModelEntity(SuffixXName), new NamedContentModelEntity(NameIDXName), new NamedContentModelEntity(AffiliationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LastNameXName, typeof(LastName));
+            localElementDictionary.Add(ForeNameXName, typeof(ForeName));
+            localElementDictionary.Add(InitialsXName, typeof(Initials));
+            localElementDictionary.Add(SuffixXName, typeof(Suffix));
+            localElementDictionary.Add(NameIDXName, typeof(NameIDType));
+            localElementDictionary.Add(AffiliationXName, typeof(Affiliation));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4355,6 +4727,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4377,30 +4756,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InvestigatorType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(LastNameXName, typeof(LastName));
-            localElementDictionary.Add(ForeNameXName, typeof(ForeName));
-            localElementDictionary.Add(InitialsXName, typeof(Initials));
-            localElementDictionary.Add(SuffixXName, typeof(Suffix));
-            localElementDictionary.Add(NameIDXName, typeof(NameIDType));
-            localElementDictionary.Add(AffiliationXName, typeof(Affiliation));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum ValidYNEnum {
-            
-            Y,
-            
-            N,
-        }
     }
     
     /// <summary>
@@ -4410,26 +4765,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class InvestigatorListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InvestigatorXName = System.Xml.Linq.XName.Get("Investigator", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<InvestigatorType> InvestigatorField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InvestigatorListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InvestigatorListType(XElement xe) { return XTypedServices.ToXTypedElement<InvestigatorListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InvestigatorListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InvestigatorXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InvestigatorListType>(this);
         }
         
         /// <summary>
@@ -4439,6 +4778,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public InvestigatorListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InvestigatorXName = System.Xml.Linq.XName.Get("Investigator", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<InvestigatorType> InvestigatorField;
         
         /// <summary>
         /// <para>
@@ -4470,11 +4816,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InvestigatorListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static InvestigatorListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InvestigatorXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(InvestigatorXName, typeof(InvestigatorType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4497,18 +4864,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InvestigatorListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(InvestigatorXName, typeof(InvestigatorType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4518,35 +4873,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class JournalType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ISSNXName = System.Xml.Linq.XName.Get("ISSN", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName JournalIssueXName = System.Xml.Linq.XName.Get("JournalIssue", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TitleXName = System.Xml.Linq.XName.Get("Title", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ISOAbbreviationXName = System.Xml.Linq.XName.Get("ISOAbbreviation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("JournalType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator JournalType(XElement xe) { return XTypedServices.ToXTypedElement<JournalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static JournalType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ISSNXName), new NamedContentModelEntity(JournalIssueXName), new NamedContentModelEntity(TitleXName), new NamedContentModelEntity(ISOAbbreviationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<JournalType>(this);
         }
         
         /// <summary>
@@ -4556,6 +4886,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public JournalType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ISSNXName = System.Xml.Linq.XName.Get("ISSN", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4568,12 +4902,19 @@ namespace PubMed.Eutils {
         public virtual ISSNType ISSN {
             get {
                 XElement x = this.GetElement(ISSNXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ISSNType)(x));
             }
             set {
                 this.SetElement(ISSNXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName JournalIssueXName = System.Xml.Linq.XName.Get("JournalIssue", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4593,6 +4934,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TitleXName = System.Xml.Linq.XName.Get("Title", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -4604,12 +4949,19 @@ namespace PubMed.Eutils {
         public virtual Title Title {
             get {
                 XElement x = this.GetElement(TitleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Title)(x));
             }
             set {
                 this.SetElement(TitleXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ISOAbbreviationXName = System.Xml.Linq.XName.Get("ISOAbbreviation", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4622,6 +4974,9 @@ namespace PubMed.Eutils {
         public virtual ISOAbbreviation ISOAbbreviation {
             get {
                 XElement x = this.GetElement(ISOAbbreviationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ISOAbbreviation)(x));
             }
             set {
@@ -4629,11 +4984,35 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("JournalType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static JournalType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ISSNXName), new NamedContentModelEntity(JournalIssueXName), new NamedContentModelEntity(TitleXName), new NamedContentModelEntity(ISOAbbreviationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ISSNXName, typeof(ISSNType));
+            localElementDictionary.Add(JournalIssueXName, typeof(JournalIssueType));
+            localElementDictionary.Add(TitleXName, typeof(Title));
+            localElementDictionary.Add(ISOAbbreviationXName, typeof(ISOAbbreviation));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4656,21 +5035,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<JournalType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ISSNXName, typeof(ISSNType));
-            localElementDictionary.Add(JournalIssueXName, typeof(JournalIssueType));
-            localElementDictionary.Add(TitleXName, typeof(Title));
-            localElementDictionary.Add(ISOAbbreviationXName, typeof(ISOAbbreviation));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4680,35 +5044,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class JournalIssueType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName VolumeXName = System.Xml.Linq.XName.Get("Volume", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IssueXName = System.Xml.Linq.XName.Get("Issue", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PubDateXName = System.Xml.Linq.XName.Get("PubDate", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CitedMediumXName = System.Xml.Linq.XName.Get("CitedMedium", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("JournalIssueType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator JournalIssueType(XElement xe) { return XTypedServices.ToXTypedElement<JournalIssueType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static JournalIssueType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(VolumeXName), new NamedContentModelEntity(IssueXName), new NamedContentModelEntity(PubDateXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<JournalIssueType>(this);
         }
         
         /// <summary>
@@ -4718,6 +5057,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public JournalIssueType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName VolumeXName = System.Xml.Linq.XName.Get("Volume", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4730,12 +5073,19 @@ namespace PubMed.Eutils {
         public virtual Volume Volume {
             get {
                 XElement x = this.GetElement(VolumeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Volume)(x));
             }
             set {
                 this.SetElement(VolumeXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IssueXName = System.Xml.Linq.XName.Get("Issue", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4748,12 +5098,19 @@ namespace PubMed.Eutils {
         public virtual Issue Issue {
             get {
                 XElement x = this.GetElement(IssueXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Issue)(x));
             }
             set {
                 this.SetElement(IssueXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PubDateXName = System.Xml.Linq.XName.Get("PubDate", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -4773,6 +5130,28 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum CitedMediumEnum {
+            
+            Internet,
+            
+            Print,
+        }
+        
+        public sealed class CitedMediumEnumValidator {
+            
+            private CitedMediumEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Internet",
+                            "Print"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CitedMediumXName = System.Xml.Linq.XName.Get("CitedMedium", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -4781,11 +5160,27 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.JournalIssueType.CitedMediumEnum CitedMedium {
             get {
                 XAttribute x = this.Attribute(CitedMediumXName);
-                return ((PubMed.Eutils.JournalIssueType.CitedMediumEnum)(Enum.Parse(typeof(PubMed.Eutils.JournalIssueType.CitedMediumEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((PubMed.Eutils.JournalIssueType.CitedMediumEnum)(Enum.Parse(typeof(PubMed.Eutils.JournalIssueType.CitedMediumEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, CitedMediumEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(CitedMediumXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(CitedMediumXName, value.ToString(), "CitedMedium", CitedMediumEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("JournalIssueType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static JournalIssueType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(VolumeXName), new NamedContentModelEntity(IssueXName), new NamedContentModelEntity(PubDateXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(VolumeXName, typeof(Volume));
+            localElementDictionary.Add(IssueXName, typeof(Issue));
+            localElementDictionary.Add(PubDateXName, typeof(PubDateType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4793,6 +5188,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4815,48 +5217,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<JournalIssueType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(VolumeXName, typeof(Volume));
-            localElementDictionary.Add(IssueXName, typeof(Issue));
-            localElementDictionary.Add(PubDateXName, typeof(PubDateType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum CitedMediumEnum {
-            
-            Internet,
-            
-            Print,
-        }
     }
     
     public partial class KeywordType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MajorTopicYNXName = System.Xml.Linq.XName.Get("MajorTopicYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string MajorTopicYNDefaultValue = "N";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("KeywordType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator KeywordType(XElement xe) { return XTypedServices.ToXTypedElement<KeywordType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<KeywordType>(this);
+        }
         
         public KeywordType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -4868,6 +5244,31 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum MajorTopicYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class MajorTopicYNEnumValidator {
+            
+            private MajorTopicYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MajorTopicYNXName = System.Xml.Linq.XName.Get("MajorTopicYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.KeywordType.MajorTopicYNEnum MajorTopicYNDefaultValue = PubMed.Eutils.KeywordType.MajorTopicYNEnum.N;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -4876,11 +5277,20 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.KeywordType.MajorTopicYNEnum MajorTopicYN {
             get {
                 XAttribute x = this.Attribute(MajorTopicYNXName);
-                return ((PubMed.Eutils.KeywordType.MajorTopicYNEnum)(Enum.Parse(typeof(PubMed.Eutils.KeywordType.MajorTopicYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, MajorTopicYNDefaultValue))));
+                if ((x == null)) {
+                    return MajorTopicYNDefaultValue;
+                }
+                return ((PubMed.Eutils.KeywordType.MajorTopicYNEnum)(Enum.Parse(typeof(PubMed.Eutils.KeywordType.MajorTopicYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, MajorTopicYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(MajorTopicYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(MajorTopicYNXName, value.ToString(), "MajorTopicYN", MajorTopicYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("KeywordType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4903,21 +5313,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<KeywordType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
-        public enum MajorTopicYNEnum {
-            
-            Y,
-            
-            N,
-        }
     }
     
     /// <summary>
@@ -4927,33 +5322,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class KeywordListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName KeywordXName = System.Xml.Linq.XName.Get("Keyword", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<KeywordType> KeywordField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OwnerXName = System.Xml.Linq.XName.Get("Owner", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string OwnerDefaultValue = "NLM";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("KeywordListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator KeywordListType(XElement xe) { return XTypedServices.ToXTypedElement<KeywordListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static KeywordListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(KeywordXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<KeywordListType>(this);
         }
         
         /// <summary>
@@ -4963,6 +5335,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public KeywordListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName KeywordXName = System.Xml.Linq.XName.Get("Keyword", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<KeywordType> KeywordField;
         
         /// <summary>
         /// <para>
@@ -4994,6 +5373,40 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum OwnerEnum {
+            
+            NLM,
+            
+            NASA,
+            
+            PIP,
+            
+            KIE,
+            
+            NOTNLM,
+        }
+        
+        public sealed class OwnerEnumValidator {
+            
+            private OwnerEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "NLM",
+                            "NASA",
+                            "PIP",
+                            "KIE",
+                            "NOTNLM"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OwnerXName = System.Xml.Linq.XName.Get("Owner", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.KeywordListType.OwnerEnum OwnerDefaultValue = PubMed.Eutils.KeywordListType.OwnerEnum.NLM;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5002,11 +5415,28 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.KeywordListType.OwnerEnum Owner {
             get {
                 XAttribute x = this.Attribute(OwnerXName);
-                return ((PubMed.Eutils.KeywordListType.OwnerEnum)(Enum.Parse(typeof(PubMed.Eutils.KeywordListType.OwnerEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, OwnerDefaultValue))));
+                if ((x == null)) {
+                    return OwnerDefaultValue;
+                }
+                return ((PubMed.Eutils.KeywordListType.OwnerEnum)(Enum.Parse(typeof(PubMed.Eutils.KeywordListType.OwnerEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, OwnerEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(OwnerXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(OwnerXName, value.ToString(), "Owner", OwnerEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("KeywordListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static KeywordListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(KeywordXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(KeywordXName, typeof(KeywordType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5014,6 +5444,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5036,31 +5473,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<KeywordListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(KeywordXName, typeof(KeywordType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum OwnerEnum {
-            
-            NLM,
-            
-            NASA,
-            
-            PIP,
-            
-            KIE,
-            
-            NOTNLM,
-        }
     }
     
     /// <summary>
@@ -5070,124 +5482,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class MedlineCitationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PMIDXName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DateCreatedXName = System.Xml.Linq.XName.Get("DateCreated", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DateCompletedXName = System.Xml.Linq.XName.Get("DateCompleted", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DateRevisedXName = System.Xml.Linq.XName.Get("DateRevised", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ArticleXName = System.Xml.Linq.XName.Get("Article", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MedlineJournalInfoXName = System.Xml.Linq.XName.Get("MedlineJournalInfo", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ChemicalListXName = System.Xml.Linq.XName.Get("ChemicalList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CitationSubsetXName = System.Xml.Linq.XName.Get("CitationSubset", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<CitationSubset> CitationSubsetField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CommentsCorrectionsListXName = System.Xml.Linq.XName.Get("CommentsCorrectionsList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GeneSymbolListXName = System.Xml.Linq.XName.Get("GeneSymbolList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MeshHeadingListXName = System.Xml.Linq.XName.Get("MeshHeadingList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NumberOfReferencesXName = System.Xml.Linq.XName.Get("NumberOfReferences", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PersonalNameSubjectListXName = System.Xml.Linq.XName.Get("PersonalNameSubjectList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OtherIDXName = System.Xml.Linq.XName.Get("OtherID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<OtherIDType> OtherIDField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OtherAbstractXName = System.Xml.Linq.XName.Get("OtherAbstract", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<OtherAbstractType> OtherAbstractField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName KeywordListXName = System.Xml.Linq.XName.Get("KeywordList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<KeywordListType> KeywordListField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SpaceFlightMissionXName = System.Xml.Linq.XName.Get("SpaceFlightMission", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<SpaceFlightMission> SpaceFlightMissionField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InvestigatorListXName = System.Xml.Linq.XName.Get("InvestigatorList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GeneralNoteXName = System.Xml.Linq.XName.Get("GeneralNote", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<GeneralNoteType> GeneralNoteField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OwnerXName = System.Xml.Linq.XName.Get("Owner", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string OwnerDefaultValue = "NLM";
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StatusXName = System.Xml.Linq.XName.Get("Status", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineCitationType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MedlineCitationType(XElement xe) { return XTypedServices.ToXTypedElement<MedlineCitationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MedlineCitationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PMIDXName), new NamedContentModelEntity(DateCreatedXName), new NamedContentModelEntity(DateCompletedXName), new NamedContentModelEntity(DateRevisedXName), new NamedContentModelEntity(ArticleXName), new NamedContentModelEntity(MedlineJournalInfoXName), new NamedContentModelEntity(ChemicalListXName), new NamedContentModelEntity(CitationSubsetXName), new NamedContentModelEntity(CommentsCorrectionsListXName), new NamedContentModelEntity(GeneSymbolListXName), new NamedContentModelEntity(MeshHeadingListXName), new NamedContentModelEntity(NumberOfReferencesXName), new NamedContentModelEntity(PersonalNameSubjectListXName), new NamedContentModelEntity(OtherIDXName), new NamedContentModelEntity(OtherAbstractXName), new NamedContentModelEntity(KeywordListXName), new NamedContentModelEntity(SpaceFlightMissionXName), new NamedContentModelEntity(InvestigatorListXName), new NamedContentModelEntity(GeneralNoteXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MedlineCitationType>(this);
         }
         
         /// <summary>
@@ -5197,6 +5495,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public MedlineCitationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PMIDXName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5216,6 +5518,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DateCreatedXName = System.Xml.Linq.XName.Get("DateCreated", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -5234,6 +5540,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DateCompletedXName = System.Xml.Linq.XName.Get("DateCompleted", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5245,12 +5555,19 @@ namespace PubMed.Eutils {
         public virtual DateCompletedType DateCompleted {
             get {
                 XElement x = this.GetElement(DateCompletedXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((DateCompletedType)(x));
             }
             set {
                 this.SetElement(DateCompletedXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DateRevisedXName = System.Xml.Linq.XName.Get("DateRevised", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5263,12 +5580,19 @@ namespace PubMed.Eutils {
         public virtual DateRevisedType DateRevised {
             get {
                 XElement x = this.GetElement(DateRevisedXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((DateRevisedType)(x));
             }
             set {
                 this.SetElement(DateRevisedXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ArticleXName = System.Xml.Linq.XName.Get("Article", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5288,6 +5612,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MedlineJournalInfoXName = System.Xml.Linq.XName.Get("MedlineJournalInfo", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -5306,6 +5634,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ChemicalListXName = System.Xml.Linq.XName.Get("ChemicalList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5317,12 +5649,22 @@ namespace PubMed.Eutils {
         public virtual ChemicalListType ChemicalList {
             get {
                 XElement x = this.GetElement(ChemicalListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ChemicalListType)(x));
             }
             set {
                 this.SetElement(ChemicalListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CitationSubsetXName = System.Xml.Linq.XName.Get("CitationSubset", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<CitationSubset> CitationSubsetField;
         
         /// <summary>
         /// <para>
@@ -5354,6 +5696,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CommentsCorrectionsListXName = System.Xml.Linq.XName.Get("CommentsCorrectionsList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5365,12 +5711,19 @@ namespace PubMed.Eutils {
         public virtual CommentsCorrectionsListType CommentsCorrectionsList {
             get {
                 XElement x = this.GetElement(CommentsCorrectionsListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((CommentsCorrectionsListType)(x));
             }
             set {
                 this.SetElement(CommentsCorrectionsListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GeneSymbolListXName = System.Xml.Linq.XName.Get("GeneSymbolList", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5383,12 +5736,19 @@ namespace PubMed.Eutils {
         public virtual GeneSymbolListType GeneSymbolList {
             get {
                 XElement x = this.GetElement(GeneSymbolListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((GeneSymbolListType)(x));
             }
             set {
                 this.SetElement(GeneSymbolListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MeshHeadingListXName = System.Xml.Linq.XName.Get("MeshHeadingList", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5401,12 +5761,19 @@ namespace PubMed.Eutils {
         public virtual MeshHeadingListType MeshHeadingList {
             get {
                 XElement x = this.GetElement(MeshHeadingListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((MeshHeadingListType)(x));
             }
             set {
                 this.SetElement(MeshHeadingListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NumberOfReferencesXName = System.Xml.Linq.XName.Get("NumberOfReferences", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5419,12 +5786,19 @@ namespace PubMed.Eutils {
         public virtual NumberOfReferences NumberOfReferences {
             get {
                 XElement x = this.GetElement(NumberOfReferencesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((NumberOfReferences)(x));
             }
             set {
                 this.SetElement(NumberOfReferencesXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PersonalNameSubjectListXName = System.Xml.Linq.XName.Get("PersonalNameSubjectList", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5437,12 +5811,22 @@ namespace PubMed.Eutils {
         public virtual PersonalNameSubjectListType PersonalNameSubjectList {
             get {
                 XElement x = this.GetElement(PersonalNameSubjectListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((PersonalNameSubjectListType)(x));
             }
             set {
                 this.SetElement(PersonalNameSubjectListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OtherIDXName = System.Xml.Linq.XName.Get("OtherID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<OtherIDType> OtherIDField;
         
         /// <summary>
         /// <para>
@@ -5474,6 +5858,13 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OtherAbstractXName = System.Xml.Linq.XName.Get("OtherAbstract", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<OtherAbstractType> OtherAbstractField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -5503,6 +5894,13 @@ namespace PubMed.Eutils {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName KeywordListXName = System.Xml.Linq.XName.Get("KeywordList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<KeywordListType> KeywordListField;
         
         /// <summary>
         /// <para>
@@ -5534,6 +5932,13 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SpaceFlightMissionXName = System.Xml.Linq.XName.Get("SpaceFlightMission", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<SpaceFlightMission> SpaceFlightMissionField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -5564,6 +5969,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InvestigatorListXName = System.Xml.Linq.XName.Get("InvestigatorList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5575,12 +5984,22 @@ namespace PubMed.Eutils {
         public virtual InvestigatorListType InvestigatorList {
             get {
                 XElement x = this.GetElement(InvestigatorListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((InvestigatorListType)(x));
             }
             set {
                 this.SetElement(InvestigatorListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GeneralNoteXName = System.Xml.Linq.XName.Get("GeneralNote", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<GeneralNoteType> GeneralNoteField;
         
         /// <summary>
         /// <para>
@@ -5612,6 +6031,46 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum OwnerEnum {
+            
+            NLM,
+            
+            NASA,
+            
+            PIP,
+            
+            KIE,
+            
+            HSR,
+            
+            HMD,
+            
+            NOTNLM,
+        }
+        
+        public sealed class OwnerEnumValidator {
+            
+            private OwnerEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "NLM",
+                            "NASA",
+                            "PIP",
+                            "KIE",
+                            "HSR",
+                            "HMD",
+                            "NOTNLM"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OwnerXName = System.Xml.Linq.XName.Get("Owner", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.MedlineCitationType.OwnerEnum OwnerDefaultValue = PubMed.Eutils.MedlineCitationType.OwnerEnum.NLM;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5620,59 +6079,77 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.MedlineCitationType.OwnerEnum Owner {
             get {
                 XAttribute x = this.Attribute(OwnerXName);
-                return ((PubMed.Eutils.MedlineCitationType.OwnerEnum)(Enum.Parse(typeof(PubMed.Eutils.MedlineCitationType.OwnerEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, OwnerDefaultValue))));
+                if ((x == null)) {
+                    return OwnerDefaultValue;
+                }
+                return ((PubMed.Eutils.MedlineCitationType.OwnerEnum)(Enum.Parse(typeof(PubMed.Eutils.MedlineCitationType.OwnerEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, OwnerEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(OwnerXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(OwnerXName, value.ToString(), "Owner", OwnerEnumValidator.TypeDefinition);
             }
         }
+        
+        public enum StatusEnum {
+            
+            Completed,
+            
+            In_Process,
+            
+            PubMed_not_MEDLINE,
+            
+            In_Data_Review,
+            
+            Publisher,
+            
+            MEDLINE,
+            
+            OLDMEDLINE,
+        }
+        
+        public sealed class StatusEnumValidator {
+            
+            private StatusEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Completed",
+                            "In-Process:In_Process",
+                            "PubMed-not-MEDLINE:PubMed_not_MEDLINE",
+                            "In-Data-Review:In_Data_Review",
+                            "Publisher",
+                            "MEDLINE",
+                            "OLDMEDLINE"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StatusXName = System.Xml.Linq.XName.Get("Status", "");
         
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string Status {
+        public virtual PubMed.Eutils.MedlineCitationType.StatusEnum Status {
             get {
                 XAttribute x = this.Attribute(StatusXName);
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                return ((PubMed.Eutils.MedlineCitationType.StatusEnum)(Enum.Parse(typeof(PubMed.Eutils.MedlineCitationType.StatusEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, StatusEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(StatusXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(StatusXName, value.ToString(), "Status", StatusEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineCitationType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static MedlineCitationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PMIDXName), new NamedContentModelEntity(DateCreatedXName), new NamedContentModelEntity(DateCompletedXName), new NamedContentModelEntity(DateRevisedXName), new NamedContentModelEntity(ArticleXName), new NamedContentModelEntity(MedlineJournalInfoXName), new NamedContentModelEntity(ChemicalListXName), new NamedContentModelEntity(CitationSubsetXName), new NamedContentModelEntity(CommentsCorrectionsListXName), new NamedContentModelEntity(GeneSymbolListXName), new NamedContentModelEntity(MeshHeadingListXName), new NamedContentModelEntity(NumberOfReferencesXName), new NamedContentModelEntity(PersonalNameSubjectListXName), new NamedContentModelEntity(OtherIDXName), new NamedContentModelEntity(OtherAbstractXName), new NamedContentModelEntity(KeywordListXName), new NamedContentModelEntity(SpaceFlightMissionXName), new NamedContentModelEntity(InvestigatorListXName), new NamedContentModelEntity(GeneralNoteXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MedlineCitationType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(PMIDXName, typeof(PMID));
@@ -5696,151 +6173,18 @@ namespace PubMed.Eutils {
             localElementDictionary.Add(GeneralNoteXName, typeof(GeneralNoteType));
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        public enum OwnerEnum {
-            
-            NLM,
-            
-            NASA,
-            
-            PIP,
-            
-            KIE,
-            
-            HSR,
-            
-            HMD,
-            
-            NOTNLM,
-        }
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
-    /// </para>
-    /// </summary>
-    public partial class MedlineJournalInfoType : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CountryXName = System.Xml.Linq.XName.Get("Country", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MedlineTAXName = System.Xml.Linq.XName.Get("MedlineTA", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NlmUniqueIDXName = System.Xml.Linq.XName.Get("NlmUniqueID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ISSNLinkingXName = System.Xml.Linq.XName.Get("ISSNLinking", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineJournalInfoType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-		public static explicit operator MedlineJournalInfoType(XElement xe) { return XTypedServices.ToXTypedElement<MedlineJournalInfoType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static MedlineJournalInfoType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CountryXName), new NamedContentModelEntity(MedlineTAXName), new NamedContentModelEntity(NlmUniqueIDXName), new NamedContentModelEntity(ISSNLinkingXName));
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
-        /// </para>
-        /// </summary>
-        public MedlineJournalInfoType() {
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// <para>
-        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
-        /// </para>
-        /// </summary>
-        public virtual Country Country {
-            get {
-                XElement x = this.GetElement(CountryXName);
-                return ((Country)(x));
-            }
-            set {
-                this.SetElement(CountryXName, value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
-        /// </para>
-        /// </summary>
-        public virtual MedlineTA MedlineTA {
-            get {
-                XElement x = this.GetElement(MedlineTAXName);
-                return ((MedlineTA)(x));
-            }
-            set {
-                this.SetElement(MedlineTAXName, value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// <para>
-        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
-        /// </para>
-        /// </summary>
-        public virtual NlmUniqueID NlmUniqueID {
-            get {
-                XElement x = this.GetElement(NlmUniqueIDXName);
-                return ((NlmUniqueID)(x));
-            }
-            set {
-                this.SetElement(NlmUniqueIDXName, value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// <para>
-        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
-        /// </para>
-        /// </summary>
-        public virtual ISSNLinking ISSNLinking {
-            get {
-                XElement x = this.GetElement(ISSNLinkingXName);
-                return ((ISSNLinking)(x));
-            }
-            set {
-                this.SetElement(ISSNLinkingXName, value);
-            }
-        }
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5863,10 +6207,135 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
+    /// </para>
+    /// </summary>
+    public partial class MedlineJournalInfoType : XTypedElement, IXMetaData {
+        
+		public static explicit operator MedlineJournalInfoType(XElement xe) { return XTypedServices.ToXTypedElement<MedlineJournalInfoType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<MedlineJournalInfoType>(this);
         }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
+        /// </para>
+        /// </summary>
+        public MedlineJournalInfoType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CountryXName = System.Xml.Linq.XName.Get("Country", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
+        /// </para>
+        /// </summary>
+        public virtual Country Country {
+            get {
+                XElement x = this.GetElement(CountryXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((Country)(x));
+            }
+            set {
+                this.SetElement(CountryXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MedlineTAXName = System.Xml.Linq.XName.Get("MedlineTA", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
+        /// </para>
+        /// </summary>
+        public virtual MedlineTA MedlineTA {
+            get {
+                XElement x = this.GetElement(MedlineTAXName);
+                return ((MedlineTA)(x));
+            }
+            set {
+                this.SetElement(MedlineTAXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NlmUniqueIDXName = System.Xml.Linq.XName.Get("NlmUniqueID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
+        /// </para>
+        /// </summary>
+        public virtual NlmUniqueID NlmUniqueID {
+            get {
+                XElement x = this.GetElement(NlmUniqueIDXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((NlmUniqueID)(x));
+            }
+            set {
+                this.SetElement(NlmUniqueIDXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ISSNLinkingXName = System.Xml.Linq.XName.Get("ISSNLinking", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Country?, MedlineTA, NlmUniqueID?, ISSNLinking?)
+        /// </para>
+        /// </summary>
+        public virtual ISSNLinking ISSNLinking {
+            get {
+                XElement x = this.GetElement(ISSNLinkingXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((ISSNLinking)(x));
+            }
+            set {
+                this.SetElement(ISSNLinkingXName, value);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineJournalInfoType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static MedlineJournalInfoType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CountryXName), new NamedContentModelEntity(MedlineTAXName), new NamedContentModelEntity(NlmUniqueIDXName), new NamedContentModelEntity(ISSNLinkingXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(CountryXName, typeof(Country));
@@ -5875,8 +6344,39 @@ namespace PubMed.Eutils {
             localElementDictionary.Add(ISSNLinkingXName, typeof(ISSNLinking));
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
@@ -5887,30 +6387,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class MeshHeadingType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DescriptorNameXName = System.Xml.Linq.XName.Get("DescriptorName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName QualifierNameXName = System.Xml.Linq.XName.Get("QualifierName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QualifierNameType> QualifierNameField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MeshHeadingType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MeshHeadingType(XElement xe) { return XTypedServices.ToXTypedElement<MeshHeadingType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MeshHeadingType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DescriptorNameXName), new NamedContentModelEntity(QualifierNameXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MeshHeadingType>(this);
         }
         
         /// <summary>
@@ -5920,6 +6400,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public MeshHeadingType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DescriptorNameXName = System.Xml.Linq.XName.Get("DescriptorName", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -5938,6 +6422,13 @@ namespace PubMed.Eutils {
                 this.SetElement(DescriptorNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName QualifierNameXName = System.Xml.Linq.XName.Get("QualifierName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QualifierNameType> QualifierNameField;
         
         /// <summary>
         /// <para>
@@ -5969,11 +6460,33 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MeshHeadingType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static MeshHeadingType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DescriptorNameXName), new NamedContentModelEntity(QualifierNameXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DescriptorNameXName, typeof(DescriptorNameType));
+            localElementDictionary.Add(QualifierNameXName, typeof(QualifierNameType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5996,19 +6509,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MeshHeadingType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DescriptorNameXName, typeof(DescriptorNameType));
-            localElementDictionary.Add(QualifierNameXName, typeof(QualifierNameType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6018,26 +6518,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class MeshHeadingListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MeshHeadingXName = System.Xml.Linq.XName.Get("MeshHeading", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<MeshHeadingType> MeshHeadingField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MeshHeadingListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MeshHeadingListType(XElement xe) { return XTypedServices.ToXTypedElement<MeshHeadingListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MeshHeadingListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MeshHeadingXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MeshHeadingListType>(this);
         }
         
         /// <summary>
@@ -6047,6 +6531,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public MeshHeadingListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MeshHeadingXName = System.Xml.Linq.XName.Get("MeshHeading", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<MeshHeadingType> MeshHeadingField;
         
         /// <summary>
         /// <para>
@@ -6078,11 +6569,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MeshHeadingListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static MeshHeadingListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MeshHeadingXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(MeshHeadingXName, typeof(MeshHeadingType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6105,36 +6617,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MeshHeadingListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(MeshHeadingXName, typeof(MeshHeadingType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class NameIDType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SourceXName = System.Xml.Linq.XName.Get("Source", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NameIDType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator NameIDType(XElement xe) { return XTypedServices.ToXTypedElement<NameIDType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<NameIDType>(this);
+        }
         
         public NameIDType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -6144,50 +6642,6 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// </summary>
-        public virtual PubMed.Eutils.NameIDType.SourceEnum Source {
-            get {
-                XAttribute x = this.Attribute(SourceXName);
-                return ((PubMed.Eutils.NameIDType.SourceEnum)(Enum.Parse(typeof(PubMed.Eutils.NameIDType.SourceEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
-            }
-            set {
-                this.SetAttribute(SourceXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<NameIDType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
         
         public enum SourceEnum {
@@ -6200,6 +6654,65 @@ namespace PubMed.Eutils {
             
             ISO,
         }
+        
+        public sealed class SourceEnumValidator {
+            
+            private SourceEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "NCBI",
+                            "Publisher",
+                            "NISO",
+                            "ISO"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SourceXName = System.Xml.Linq.XName.Get("Source", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual PubMed.Eutils.NameIDType.SourceEnum Source {
+            get {
+                XAttribute x = this.Attribute(SourceXName);
+                return ((PubMed.Eutils.NameIDType.SourceEnum)(Enum.Parse(typeof(PubMed.Eutils.NameIDType.SourceEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, SourceEnumValidator.TypeDefinition))));
+            }
+            set {
+                this.SetAttributeWithValidation(SourceXName, value.ToString(), "Source", SourceEnumValidator.TypeDefinition);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NameIDType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -6209,30 +6722,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class ObjectType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ParamXName = System.Xml.Linq.XName.Get("Param", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ParamType> ParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypeXName = System.Xml.Linq.XName.Get("Type", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ObjectType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ObjectType(XElement xe) { return XTypedServices.ToXTypedElement<ObjectType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ObjectType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ObjectType>(this);
         }
         
         /// <summary>
@@ -6242,6 +6735,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public ObjectType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ParamXName = System.Xml.Linq.XName.Get("Param", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ParamType> ParamField;
         
         /// <summary>
         /// <para>
@@ -6273,6 +6773,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypeXName = System.Xml.Linq.XName.Get("Type", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -6288,11 +6792,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ObjectType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static ObjectType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ParamXName, typeof(ParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6315,18 +6840,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ObjectType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ParamXName, typeof(ParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6336,26 +6849,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class ObjectListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ObjectXName = System.Xml.Linq.XName.Get("Object", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ObjectType> ObjectField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ObjectListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ObjectListType(XElement xe) { return XTypedServices.ToXTypedElement<ObjectListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ObjectListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ObjectXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ObjectListType>(this);
         }
         
         /// <summary>
@@ -6365,6 +6862,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public ObjectListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ObjectXName = System.Xml.Linq.XName.Get("Object", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ObjectType> ObjectField;
         
         /// <summary>
         /// <para>
@@ -6396,11 +6900,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ObjectListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static ObjectListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ObjectXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ObjectXName, typeof(ObjectType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6423,18 +6948,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ObjectListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ObjectXName, typeof(ObjectType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6444,31 +6957,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class OtherAbstractType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AbstractTextXName = System.Xml.Linq.XName.Get("AbstractText", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CopyrightInformationXName = System.Xml.Linq.XName.Get("CopyrightInformation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypeXName = System.Xml.Linq.XName.Get("Type", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OtherAbstractType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator OtherAbstractType(XElement xe) { return XTypedServices.ToXTypedElement<OtherAbstractType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static OtherAbstractType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AbstractTextXName), new NamedContentModelEntity(CopyrightInformationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<OtherAbstractType>(this);
         }
         
         /// <summary>
@@ -6478,6 +6970,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public OtherAbstractType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AbstractTextXName = System.Xml.Linq.XName.Get("AbstractText", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -6497,6 +6993,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CopyrightInformationXName = System.Xml.Linq.XName.Get("CopyrightInformation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -6508,67 +7008,14 @@ namespace PubMed.Eutils {
         public virtual CopyrightInformation CopyrightInformation {
             get {
                 XElement x = this.GetElement(CopyrightInformationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((CopyrightInformation)(x));
             }
             set {
                 this.SetElement(CopyrightInformationXName, value);
             }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// </summary>
-        public virtual PubMed.Eutils.OtherAbstractType.TypeEnum Type {
-            get {
-                XAttribute x = this.Attribute(TypeXName);
-                return ((PubMed.Eutils.OtherAbstractType.TypeEnum)(Enum.Parse(typeof(PubMed.Eutils.OtherAbstractType.TypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
-            }
-            set {
-                this.SetAttribute(TypeXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<OtherAbstractType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(AbstractTextXName, typeof(AbstractText));
-            localElementDictionary.Add(CopyrightInformationXName, typeof(CopyrightInformation));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
         
         public enum TypeEnum {
@@ -6585,48 +7032,68 @@ namespace PubMed.Eutils {
             
             Publisher,
         }
-    }
-    
-    public partial class OtherIDType : XTypedElement, IXMetaData {
+        
+        public sealed class TypeEnumValidator {
+            
+            private TypeEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "AAMC",
+                            "AIDS",
+                            "KIE",
+                            "PIP",
+                            "NASA",
+                            "Publisher"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SourceXName = System.Xml.Linq.XName.Get("Source", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OtherIDType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator OtherIDType(XElement xe) { return XTypedServices.ToXTypedElement<OtherIDType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public OtherIDType() {
-        }
-        
-        public virtual string TypedValue {
-            get {
-                XElement x = this.Untyped;
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-            set {
-                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-        }
+        protected internal static readonly System.Xml.Linq.XName TypeXName = System.Xml.Linq.XName.Get("Type", "");
         
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual PubMed.Eutils.OtherIDType.SourceEnum Source {
+        public virtual PubMed.Eutils.OtherAbstractType.TypeEnum Type {
             get {
-                XAttribute x = this.Attribute(SourceXName);
-                return ((PubMed.Eutils.OtherIDType.SourceEnum)(Enum.Parse(typeof(PubMed.Eutils.OtherIDType.SourceEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                XAttribute x = this.Attribute(TypeXName);
+                return ((PubMed.Eutils.OtherAbstractType.TypeEnum)(Enum.Parse(typeof(PubMed.Eutils.OtherAbstractType.TypeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, TypeEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(SourceXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(TypeXName, value.ToString(), "Type", TypeEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OtherAbstractType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static OtherAbstractType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AbstractTextXName), new NamedContentModelEntity(CopyrightInformationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AbstractTextXName, typeof(AbstractText));
+            localElementDictionary.Add(CopyrightInformationXName, typeof(CopyrightInformation));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6649,13 +7116,31 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class OtherIDType : XTypedElement, IXMetaData {
+        
+		public static explicit operator OtherIDType(XElement xe) { return XTypedServices.ToXTypedElement<OtherIDType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<OtherIDType>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public OtherIDType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
+        public virtual string TypedValue {
+            get {
+                XElement x = this.Untyped;
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
         }
         
         public enum SourceEnum {
@@ -6682,6 +7167,72 @@ namespace PubMed.Eutils {
             
             NLM,
         }
+        
+        public sealed class SourceEnumValidator {
+            
+            private SourceEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "NASA",
+                            "KIE",
+                            "PIP",
+                            "POP",
+                            "ARPL",
+                            "CPC",
+                            "IND",
+                            "CPFH",
+                            "CLML",
+                            "NRCBL",
+                            "NLM"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SourceXName = System.Xml.Linq.XName.Get("Source", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// </summary>
+        public virtual PubMed.Eutils.OtherIDType.SourceEnum Source {
+            get {
+                XAttribute x = this.Attribute(SourceXName);
+                return ((PubMed.Eutils.OtherIDType.SourceEnum)(Enum.Parse(typeof(PubMed.Eutils.OtherIDType.SourceEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, SourceEnumValidator.TypeDefinition))));
+            }
+            set {
+                this.SetAttributeWithValidation(SourceXName, value.ToString(), "Source", SourceEnumValidator.TypeDefinition);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OtherIDType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
     }
     
     /// <summary>
@@ -6691,34 +7242,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PaginationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StartPageXName = System.Xml.Linq.XName.Get("StartPage", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EndPageXName = System.Xml.Linq.XName.Get("EndPage", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MedlinePgnXName = System.Xml.Linq.XName.Get("MedlinePgn", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<MedlinePgn> MedlinePgnField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PaginationType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PaginationType(XElement xe) { return XTypedServices.ToXTypedElement<PaginationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PaginationType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(StartPageXName), new NamedContentModelEntity(EndPageXName), new NamedContentModelEntity(MedlinePgnXName)), new NamedContentModelEntity(MedlinePgnXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PaginationType>(this);
         }
         
         /// <summary>
@@ -6728,6 +7255,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public PaginationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StartPageXName = System.Xml.Linq.XName.Get("StartPage", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -6743,12 +7274,19 @@ namespace PubMed.Eutils {
         public virtual StartPage StartPage {
             get {
                 XElement x = this.GetElement(StartPageXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((StartPage)(x));
             }
             set {
                 this.SetElement(StartPageXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EndPageXName = System.Xml.Linq.XName.Get("EndPage", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -6764,12 +7302,22 @@ namespace PubMed.Eutils {
         public virtual EndPage EndPage {
             get {
                 XElement x = this.GetElement(EndPageXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((EndPage)(x));
             }
             set {
                 this.SetElement(EndPageXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MedlinePgnXName = System.Xml.Linq.XName.Get("MedlinePgn", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<MedlinePgn> MedlinePgnField;
         
         /// <summary>
         /// <para>
@@ -6804,11 +7352,34 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PaginationType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PaginationType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(StartPageXName), new NamedContentModelEntity(EndPageXName), new NamedContentModelEntity(MedlinePgnXName)), new NamedContentModelEntity(MedlinePgnXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(StartPageXName, typeof(StartPage));
+            localElementDictionary.Add(EndPageXName, typeof(EndPage));
+            localElementDictionary.Add(MedlinePgnXName, typeof(MedlinePgn));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6831,38 +7402,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PaginationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(StartPageXName, typeof(StartPage));
-            localElementDictionary.Add(EndPageXName, typeof(EndPage));
-            localElementDictionary.Add(MedlinePgnXName, typeof(MedlinePgn));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class ParamType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NameXName = System.Xml.Linq.XName.Get("Name", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator ParamType(XElement xe) { return XTypedServices.ToXTypedElement<ParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ParamType>(this);
+        }
         
         public ParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -6873,6 +7428,10 @@ namespace PubMed.Eutils {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NameXName = System.Xml.Linq.XName.Get("Name", "");
         
         /// <summary>
         /// <para>
@@ -6889,6 +7448,12 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -6909,14 +7474,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ParamType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -6926,35 +7483,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PersonalNameSubjectType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LastNameXName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ForeNameXName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InitialsXName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SuffixXName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonalNameSubjectType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PersonalNameSubjectType(XElement xe) { return XTypedServices.ToXTypedElement<PersonalNameSubjectType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PersonalNameSubjectType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LastNameXName), new NamedContentModelEntity(ForeNameXName), new NamedContentModelEntity(InitialsXName), new NamedContentModelEntity(SuffixXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PersonalNameSubjectType>(this);
         }
         
         /// <summary>
@@ -6964,6 +7496,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public PersonalNameSubjectType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LastNameXName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -6983,6 +7519,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ForeNameXName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -6994,12 +7534,19 @@ namespace PubMed.Eutils {
         public virtual ForeName ForeName {
             get {
                 XElement x = this.GetElement(ForeNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ForeName)(x));
             }
             set {
                 this.SetElement(ForeNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InitialsXName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7012,12 +7559,19 @@ namespace PubMed.Eutils {
         public virtual Initials Initials {
             get {
                 XElement x = this.GetElement(InitialsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Initials)(x));
             }
             set {
                 this.SetElement(InitialsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SuffixXName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7030,6 +7584,9 @@ namespace PubMed.Eutils {
         public virtual Suffix Suffix {
             get {
                 XElement x = this.GetElement(SuffixXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Suffix)(x));
             }
             set {
@@ -7037,11 +7594,35 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonalNameSubjectType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PersonalNameSubjectType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LastNameXName), new NamedContentModelEntity(ForeNameXName), new NamedContentModelEntity(InitialsXName), new NamedContentModelEntity(SuffixXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LastNameXName, typeof(LastName));
+            localElementDictionary.Add(ForeNameXName, typeof(ForeName));
+            localElementDictionary.Add(InitialsXName, typeof(Initials));
+            localElementDictionary.Add(SuffixXName, typeof(Suffix));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7064,21 +7645,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PersonalNameSubjectType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(LastNameXName, typeof(LastName));
-            localElementDictionary.Add(ForeNameXName, typeof(ForeName));
-            localElementDictionary.Add(InitialsXName, typeof(Initials));
-            localElementDictionary.Add(SuffixXName, typeof(Suffix));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7088,26 +7654,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PersonalNameSubjectListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PersonalNameSubjectXName = System.Xml.Linq.XName.Get("PersonalNameSubject", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PersonalNameSubjectType> PersonalNameSubjectField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonalNameSubjectListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PersonalNameSubjectListType(XElement xe) { return XTypedServices.ToXTypedElement<PersonalNameSubjectListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PersonalNameSubjectListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PersonalNameSubjectXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PersonalNameSubjectListType>(this);
         }
         
         /// <summary>
@@ -7117,6 +7667,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public PersonalNameSubjectListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PersonalNameSubjectXName = System.Xml.Linq.XName.Get("PersonalNameSubject", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PersonalNameSubjectType> PersonalNameSubjectField;
         
         /// <summary>
         /// <para>
@@ -7148,11 +7705,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonalNameSubjectListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PersonalNameSubjectListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PersonalNameSubjectXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PersonalNameSubjectXName, typeof(PersonalNameSubjectType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7175,18 +7753,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PersonalNameSubjectListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PersonalNameSubjectXName, typeof(PersonalNameSubjectType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7196,39 +7762,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PubDateType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SeasonXName = System.Xml.Linq.XName.Get("Season", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MedlineDateXName = System.Xml.Linq.XName.Get("MedlineDate", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubDateType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PubDateType(XElement xe) { return XTypedServices.ToXTypedElement<PubDateType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PubDateType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName)), new NamedContentModelEntity(SeasonXName))), new NamedContentModelEntity(MedlineDateXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PubDateType>(this);
         }
         
         /// <summary>
@@ -7238,6 +7775,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public PubDateType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7253,12 +7794,19 @@ namespace PubMed.Eutils {
         public virtual Year Year {
             get {
                 XElement x = this.GetElement(YearXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Year)(x));
             }
             set {
                 this.SetElement(YearXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7274,12 +7822,19 @@ namespace PubMed.Eutils {
         public virtual Month Month {
             get {
                 XElement x = this.GetElement(MonthXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Month)(x));
             }
             set {
                 this.SetElement(MonthXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7295,12 +7850,19 @@ namespace PubMed.Eutils {
         public virtual Day Day {
             get {
                 XElement x = this.GetElement(DayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Day)(x));
             }
             set {
                 this.SetElement(DayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SeasonXName = System.Xml.Linq.XName.Get("Season", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7316,12 +7878,19 @@ namespace PubMed.Eutils {
         public virtual Season Season {
             get {
                 XElement x = this.GetElement(SeasonXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Season)(x));
             }
             set {
                 this.SetElement(SeasonXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MedlineDateXName = System.Xml.Linq.XName.Get("MedlineDate", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7334,6 +7903,9 @@ namespace PubMed.Eutils {
         public virtual MedlineDate MedlineDate {
             get {
                 XElement x = this.GetElement(MedlineDateXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((MedlineDate)(x));
             }
             set {
@@ -7341,11 +7913,36 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubDateType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PubDateType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new ChoiceContentModelEntity(new SequenceContentModelEntity(new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName)), new NamedContentModelEntity(SeasonXName))), new NamedContentModelEntity(MedlineDateXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(YearXName, typeof(Year));
+            localElementDictionary.Add(MonthXName, typeof(Month));
+            localElementDictionary.Add(DayXName, typeof(Day));
+            localElementDictionary.Add(SeasonXName, typeof(Season));
+            localElementDictionary.Add(MedlineDateXName, typeof(MedlineDate));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7368,22 +7965,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PubDateType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(YearXName, typeof(Year));
-            localElementDictionary.Add(MonthXName, typeof(Month));
-            localElementDictionary.Add(DayXName, typeof(Day));
-            localElementDictionary.Add(SeasonXName, typeof(Season));
-            localElementDictionary.Add(MedlineDateXName, typeof(MedlineDate));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7393,47 +7974,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PubMedPubDateType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName HourXName = System.Xml.Linq.XName.Get("Hour", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MinuteXName = System.Xml.Linq.XName.Get("Minute", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SecondXName = System.Xml.Linq.XName.Get("Second", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PubStatusXName = System.Xml.Linq.XName.Get("PubStatus", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubMedPubDateType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PubMedPubDateType(XElement xe) { return XTypedServices.ToXTypedElement<PubMedPubDateType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PubMedPubDateType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName), new SequenceContentModelEntity(new NamedContentModelEntity(HourXName), new SequenceContentModelEntity(new NamedContentModelEntity(MinuteXName), new NamedContentModelEntity(SecondXName))));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PubMedPubDateType>(this);
         }
         
         /// <summary>
@@ -7443,6 +7987,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public PubMedPubDateType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName YearXName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7462,6 +8010,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthXName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -7479,6 +8031,10 @@ namespace PubMed.Eutils {
                 this.SetElement(MonthXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7498,6 +8054,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName HourXName = System.Xml.Linq.XName.Get("Hour", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -7512,12 +8072,19 @@ namespace PubMed.Eutils {
         public virtual Hour Hour {
             get {
                 XElement x = this.GetElement(HourXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Hour)(x));
             }
             set {
                 this.SetElement(HourXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MinuteXName = System.Xml.Linq.XName.Get("Minute", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7533,12 +8100,19 @@ namespace PubMed.Eutils {
         public virtual Minute Minute {
             get {
                 XElement x = this.GetElement(MinuteXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Minute)(x));
             }
             set {
                 this.SetElement(MinuteXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SecondXName = System.Xml.Linq.XName.Get("Second", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7554,6 +8128,9 @@ namespace PubMed.Eutils {
         public virtual Second Second {
             get {
                 XElement x = this.GetElement(SecondXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((Second)(x));
             }
             set {
@@ -7561,19 +8138,102 @@ namespace PubMed.Eutils {
             }
         }
         
+        public enum PubStatusEnum {
+            
+            received,
+            
+            accepted,
+            
+            epublish,
+            
+            ppublish,
+            
+            revised,
+            
+            aheadofprint,
+            
+            retracted,
+            
+            pmc,
+            
+            pmcr,
+            
+            pubmed,
+            
+            pubmedr,
+            
+            premedline,
+            
+            medline,
+            
+            medliner,
+            
+            entrez,
+            
+            pmc_release,
+        }
+        
+        public sealed class PubStatusEnumValidator {
+            
+            private PubStatusEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "received",
+                            "accepted",
+                            "epublish",
+                            "ppublish",
+                            "revised",
+                            "aheadofprint",
+                            "retracted",
+                            "pmc",
+                            "pmcr",
+                            "pubmed",
+                            "pubmedr",
+                            "premedline",
+                            "medline",
+                            "medliner",
+                            "entrez",
+                            "pmc-release:pmc_release"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PubStatusXName = System.Xml.Linq.XName.Get("PubStatus", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string PubStatus {
+        public virtual PubMed.Eutils.PubMedPubDateType.PubStatusEnum PubStatus {
             get {
                 XAttribute x = this.Attribute(PubStatusXName);
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                return ((PubMed.Eutils.PubMedPubDateType.PubStatusEnum)(Enum.Parse(typeof(PubMed.Eutils.PubMedPubDateType.PubStatusEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, PubStatusEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(PubStatusXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(PubStatusXName, value.ToString(), "PubStatus", PubStatusEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubMedPubDateType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PubMedPubDateType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(YearXName), new NamedContentModelEntity(MonthXName), new NamedContentModelEntity(DayXName), new SequenceContentModelEntity(new NamedContentModelEntity(HourXName), new SequenceContentModelEntity(new NamedContentModelEntity(MinuteXName), new NamedContentModelEntity(SecondXName))));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(YearXName, typeof(Year));
+            localElementDictionary.Add(MonthXName, typeof(Month));
+            localElementDictionary.Add(DayXName, typeof(Day));
+            localElementDictionary.Add(HourXName, typeof(Hour));
+            localElementDictionary.Add(MinuteXName, typeof(Minute));
+            localElementDictionary.Add(SecondXName, typeof(Second));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7581,6 +8241,13 @@ namespace PubMed.Eutils {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7603,23 +8270,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PubMedPubDateType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(YearXName, typeof(Year));
-            localElementDictionary.Add(MonthXName, typeof(Month));
-            localElementDictionary.Add(DayXName, typeof(Day));
-            localElementDictionary.Add(HourXName, typeof(Hour));
-            localElementDictionary.Add(MinuteXName, typeof(Minute));
-            localElementDictionary.Add(SecondXName, typeof(Second));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7629,26 +8279,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PublicationTypeListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PublicationTypeXName = System.Xml.Linq.XName.Get("PublicationType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<PublicationType> PublicationTypeField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationTypeListType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PublicationTypeListType(XElement xe) { return XTypedServices.ToXTypedElement<PublicationTypeListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PublicationTypeListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PublicationTypeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PublicationTypeListType>(this);
         }
         
         /// <summary>
@@ -7658,6 +8292,13 @@ namespace PubMed.Eutils {
         /// </summary>
         public PublicationTypeListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PublicationTypeXName = System.Xml.Linq.XName.Get("PublicationType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<PublicationType> PublicationTypeField;
         
         /// <summary>
         /// <para>
@@ -7689,11 +8330,32 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationTypeListType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PublicationTypeListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PublicationTypeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PublicationTypeXName, typeof(PublicationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7716,18 +8378,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PublicationTypeListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PublicationTypeXName, typeof(PublicationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7737,27 +8387,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PubmedArticleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MedlineCitationXName = System.Xml.Linq.XName.Get("MedlineCitation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PubmedDataXName = System.Xml.Linq.XName.Get("PubmedData", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubmedArticleType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PubmedArticleType(XElement xe) { return XTypedServices.ToXTypedElement<PubmedArticleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PubmedArticleType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MedlineCitationXName), new NamedContentModelEntity(PubmedDataXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PubmedArticleType>(this);
         }
         
         /// <summary>
@@ -7767,6 +8400,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public PubmedArticleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MedlineCitationXName = System.Xml.Linq.XName.Get("MedlineCitation", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7779,12 +8416,19 @@ namespace PubMed.Eutils {
         public virtual MedlineCitationType MedlineCitation {
             get {
                 XElement x = this.GetElement(MedlineCitationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((MedlineCitationType)(x));
             }
             set {
                 this.SetElement(MedlineCitationXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PubmedDataXName = System.Xml.Linq.XName.Get("PubmedData", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7797,6 +8441,9 @@ namespace PubMed.Eutils {
         public virtual PubmedDataType PubmedData {
             get {
                 XElement x = this.GetElement(PubmedDataXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((PubmedDataType)(x));
             }
             set {
@@ -7804,11 +8451,33 @@ namespace PubMed.Eutils {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubmedArticleType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PubmedArticleType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MedlineCitationXName), new NamedContentModelEntity(PubmedDataXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(MedlineCitationXName, typeof(MedlineCitationType));
+            localElementDictionary.Add(PubmedDataXName, typeof(PubmedDataType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7831,19 +8500,6 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PubmedArticleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(MedlineCitationXName, typeof(MedlineCitationType));
-            localElementDictionary.Add(PubmedDataXName, typeof(PubmedDataType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7853,35 +8509,10 @@ namespace PubMed.Eutils {
     /// </summary>
     public partial class PubmedDataType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName HistoryXName = System.Xml.Linq.XName.Get("History", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PublicationStatusXName = System.Xml.Linq.XName.Get("PublicationStatus", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ArticleIdListXName = System.Xml.Linq.XName.Get("ArticleIdList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ObjectListXName = System.Xml.Linq.XName.Get("ObjectList", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubmedDataType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PubmedDataType(XElement xe) { return XTypedServices.ToXTypedElement<PubmedDataType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PubmedDataType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(HistoryXName), new NamedContentModelEntity(PublicationStatusXName), new NamedContentModelEntity(ArticleIdListXName), new NamedContentModelEntity(ObjectListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PubmedDataType>(this);
         }
         
         /// <summary>
@@ -7891,6 +8522,10 @@ namespace PubMed.Eutils {
         /// </summary>
         public PubmedDataType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName HistoryXName = System.Xml.Linq.XName.Get("History", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7903,12 +8538,19 @@ namespace PubMed.Eutils {
         public virtual HistoryType History {
             get {
                 XElement x = this.GetElement(HistoryXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((HistoryType)(x));
             }
             set {
                 this.SetElement(HistoryXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PublicationStatusXName = System.Xml.Linq.XName.Get("PublicationStatus", "http://www.ncbi.nlm.nih.gov/eutils");
         
         /// <summary>
         /// <para>
@@ -7928,6 +8570,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ArticleIdListXName = System.Xml.Linq.XName.Get("ArticleIdList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -7946,6 +8592,10 @@ namespace PubMed.Eutils {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ObjectListXName = System.Xml.Linq.XName.Get("ObjectList", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -7957,11 +8607,31 @@ namespace PubMed.Eutils {
         public virtual ObjectListType ObjectList {
             get {
                 XElement x = this.GetElement(ObjectListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ObjectListType)(x));
             }
             set {
                 this.SetElement(ObjectListXName, value);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PubmedDataType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        static PubmedDataType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(HistoryXName), new NamedContentModelEntity(PublicationStatusXName), new NamedContentModelEntity(ArticleIdListXName), new NamedContentModelEntity(ObjectListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(HistoryXName, typeof(HistoryType));
+            localElementDictionary.Add(PublicationStatusXName, typeof(PublicationStatus));
+            localElementDictionary.Add(ArticleIdListXName, typeof(ArticleIdListType));
+            localElementDictionary.Add(ObjectListXName, typeof(ObjectListType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7972,6 +8642,13 @@ namespace PubMed.Eutils {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
                 return xName;
@@ -7991,42 +8668,22 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PubmedDataType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(HistoryXName, typeof(HistoryType));
-            localElementDictionary.Add(PublicationStatusXName, typeof(PublicationStatus));
-            localElementDictionary.Add(ArticleIdListXName, typeof(ArticleIdListType));
-            localElementDictionary.Add(ObjectListXName, typeof(ObjectListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class QualifierNameType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MajorTopicYNXName = System.Xml.Linq.XName.Get("MajorTopicYN", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string MajorTopicYNDefaultValue = "N";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("QualifierNameType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
 		public static explicit operator QualifierNameType(XElement xe) { return XTypedServices.ToXTypedElement<QualifierNameType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<QualifierNameType>(this);
+        }
         
         public QualifierNameType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8037,6 +8694,31 @@ namespace PubMed.Eutils {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        public enum MajorTopicYNEnum {
+            
+            Y,
+            
+            N,
+        }
+        
+        public sealed class MajorTopicYNEnumValidator {
+            
+            private MajorTopicYNEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "Y",
+                            "N"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MajorTopicYNXName = System.Xml.Linq.XName.Get("MajorTopicYN", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static PubMed.Eutils.QualifierNameType.MajorTopicYNEnum MajorTopicYNDefaultValue = PubMed.Eutils.QualifierNameType.MajorTopicYNEnum.N;
         
         /// <summary>
         /// <para>
@@ -8046,11 +8728,20 @@ namespace PubMed.Eutils {
         public virtual PubMed.Eutils.QualifierNameType.MajorTopicYNEnum MajorTopicYN {
             get {
                 XAttribute x = this.Attribute(MajorTopicYNXName);
-                return ((PubMed.Eutils.QualifierNameType.MajorTopicYNEnum)(Enum.Parse(typeof(PubMed.Eutils.QualifierNameType.MajorTopicYNEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, MajorTopicYNDefaultValue))));
+                if ((x == null)) {
+                    return MajorTopicYNDefaultValue;
+                }
+                return ((PubMed.Eutils.QualifierNameType.MajorTopicYNEnum)(Enum.Parse(typeof(PubMed.Eutils.QualifierNameType.MajorTopicYNEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, MajorTopicYNEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(MajorTopicYNXName, value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                this.SetAttributeWithValidation(MajorTopicYNXName, value.ToString(), "MajorTopicYN", MajorTopicYNEnumValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("QualifierNameType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8073,70 +8764,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<QualifierNameType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
-        public enum MajorTopicYNEnum {
-            
-            Y,
-            
-            N,
-        }
     }
     
     public partial class AbstractText : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractText", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator AbstractText(XElement xe) { return XTypedServices.ToXTypedElement<AbstractText>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public AbstractText() {
-        }
-        
-        public AbstractText(string content) {
-            this.TypedValue = content;
-        }
-        
-        public virtual string TypedValue {
-            get {
-                XElement x = this.Untyped;
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-            set {
-                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8162,31 +8792,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<AbstractText>(xml);
         }
         
+		public static explicit operator AbstractText(XElement xe) { return XTypedServices.ToXTypedElement<AbstractText>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<AbstractText>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public AbstractText() {
         }
-    }
-    
-    public partial class AccessionNumber : XTypedElement, IXMetaData {
+        
+        public AbstractText(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AccessionNumber", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator AccessionNumber(XElement xe) { return XTypedServices.ToXTypedElement<AccessionNumber>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public AccessionNumber() {
-        }
-        
-        public AccessionNumber(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8196,6 +8817,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractText", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8218,6 +8845,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class AccessionNumber : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8243,31 +8873,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<AccessionNumber>(xml);
         }
         
+		public static explicit operator AccessionNumber(XElement xe) { return XTypedServices.ToXTypedElement<AccessionNumber>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<AccessionNumber>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public AccessionNumber() {
         }
-    }
-    
-    public partial class Acronym : XTypedElement, IXMetaData {
+        
+        public AccessionNumber(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Acronym", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Acronym(XElement xe) { return XTypedServices.ToXTypedElement<Acronym>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Acronym() {
-        }
-        
-        public Acronym(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8277,6 +8898,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AccessionNumber", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8299,6 +8926,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Acronym : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8324,31 +8954,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Acronym>(xml);
         }
         
+		public static explicit operator Acronym(XElement xe) { return XTypedServices.ToXTypedElement<Acronym>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Acronym>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Acronym() {
         }
-    }
-    
-    public partial class Affiliation : XTypedElement, IXMetaData {
+        
+        public Acronym(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Affiliation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Affiliation(XElement xe) { return XTypedServices.ToXTypedElement<Affiliation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Affiliation() {
-        }
-        
-        public Affiliation(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8358,6 +8979,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Acronym", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8380,6 +9007,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Affiliation : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8405,31 +9035,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Affiliation>(xml);
         }
         
+		public static explicit operator Affiliation(XElement xe) { return XTypedServices.ToXTypedElement<Affiliation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Affiliation>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Affiliation() {
         }
-    }
-    
-    public partial class Agency : XTypedElement, IXMetaData {
+        
+        public Affiliation(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Agency", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Agency(XElement xe) { return XTypedServices.ToXTypedElement<Agency>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Agency() {
-        }
-        
-        public Agency(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8439,6 +9060,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Affiliation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8461,6 +9088,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Agency : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8486,31 +9116,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Agency>(xml);
         }
         
+		public static explicit operator Agency(XElement xe) { return XTypedServices.ToXTypedElement<Agency>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Agency>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Agency() {
         }
-    }
-    
-    public partial class ArticleTitle : XTypedElement, IXMetaData {
+        
+        public Agency(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleTitle", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator ArticleTitle(XElement xe) { return XTypedServices.ToXTypedElement<ArticleTitle>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public ArticleTitle() {
-        }
-        
-        public ArticleTitle(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8520,6 +9141,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Agency", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8542,6 +9169,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class ArticleTitle : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8567,31 +9197,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<ArticleTitle>(xml);
         }
         
+		public static explicit operator ArticleTitle(XElement xe) { return XTypedServices.ToXTypedElement<ArticleTitle>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ArticleTitle>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public ArticleTitle() {
         }
-    }
-    
-    public partial class CitationSubset : XTypedElement, IXMetaData {
+        
+        public ArticleTitle(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CitationSubset", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator CitationSubset(XElement xe) { return XTypedServices.ToXTypedElement<CitationSubset>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public CitationSubset() {
-        }
-        
-        public CitationSubset(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8601,6 +9222,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ArticleTitle", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8623,6 +9250,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class CitationSubset : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8648,31 +9278,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<CitationSubset>(xml);
         }
         
+		public static explicit operator CitationSubset(XElement xe) { return XTypedServices.ToXTypedElement<CitationSubset>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<CitationSubset>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public CitationSubset() {
         }
-    }
-    
-    public partial class CollectiveName : XTypedElement, IXMetaData {
+        
+        public CitationSubset(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CollectiveName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator CollectiveName(XElement xe) { return XTypedServices.ToXTypedElement<CollectiveName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public CollectiveName() {
-        }
-        
-        public CollectiveName(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8682,6 +9303,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CitationSubset", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8704,6 +9331,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class CollectiveName : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8729,31 +9359,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<CollectiveName>(xml);
         }
         
+		public static explicit operator CollectiveName(XElement xe) { return XTypedServices.ToXTypedElement<CollectiveName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<CollectiveName>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public CollectiveName() {
         }
-    }
-    
-    public partial class CopyrightInformation : XTypedElement, IXMetaData {
+        
+        public CollectiveName(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CopyrightInformation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator CopyrightInformation(XElement xe) { return XTypedServices.ToXTypedElement<CopyrightInformation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public CopyrightInformation() {
-        }
-        
-        public CopyrightInformation(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8763,6 +9384,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CollectiveName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8785,6 +9412,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class CopyrightInformation : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8810,31 +9440,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<CopyrightInformation>(xml);
         }
         
+		public static explicit operator CopyrightInformation(XElement xe) { return XTypedServices.ToXTypedElement<CopyrightInformation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<CopyrightInformation>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public CopyrightInformation() {
         }
-    }
-    
-    public partial class Country : XTypedElement, IXMetaData {
+        
+        public CopyrightInformation(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Country", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Country(XElement xe) { return XTypedServices.ToXTypedElement<Country>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Country() {
-        }
-        
-        public Country(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8844,6 +9465,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CopyrightInformation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8866,6 +9493,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Country : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8891,31 +9521,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Country>(xml);
         }
         
+		public static explicit operator Country(XElement xe) { return XTypedServices.ToXTypedElement<Country>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Country>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Country() {
         }
-    }
-    
-    public partial class DataBankName : XTypedElement, IXMetaData {
+        
+        public Country(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataBankName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator DataBankName(XElement xe) { return XTypedServices.ToXTypedElement<DataBankName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public DataBankName() {
-        }
-        
-        public DataBankName(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -8925,6 +9546,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Country", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8947,6 +9574,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class DataBankName : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -8972,31 +9602,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<DataBankName>(xml);
         }
         
+		public static explicit operator DataBankName(XElement xe) { return XTypedServices.ToXTypedElement<DataBankName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<DataBankName>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public DataBankName() {
         }
-    }
-    
-    public partial class Day : XTypedElement, IXMetaData {
+        
+        public DataBankName(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Day(XElement xe) { return XTypedServices.ToXTypedElement<Day>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Day() {
-        }
-        
-        public Day(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9006,6 +9627,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataBankName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9028,6 +9655,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Day : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9053,31 +9683,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Day>(xml);
         }
         
+		public static explicit operator Day(XElement xe) { return XTypedServices.ToXTypedElement<Day>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Day>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Day() {
         }
-    }
-    
-    public partial class EndPage : XTypedElement, IXMetaData {
+        
+        public Day(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EndPage", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator EndPage(XElement xe) { return XTypedServices.ToXTypedElement<EndPage>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public EndPage() {
-        }
-        
-        public EndPage(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9087,6 +9708,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Day", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9109,6 +9736,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class EndPage : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9134,31 +9764,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<EndPage>(xml);
         }
         
+		public static explicit operator EndPage(XElement xe) { return XTypedServices.ToXTypedElement<EndPage>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<EndPage>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public EndPage() {
         }
-    }
-    
-    public partial class ForeName : XTypedElement, IXMetaData {
+        
+        public EndPage(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator ForeName(XElement xe) { return XTypedServices.ToXTypedElement<ForeName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public ForeName() {
-        }
-        
-        public ForeName(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9168,6 +9789,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EndPage", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9190,6 +9817,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class ForeName : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9215,31 +9845,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<ForeName>(xml);
         }
         
+		public static explicit operator ForeName(XElement xe) { return XTypedServices.ToXTypedElement<ForeName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ForeName>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public ForeName() {
         }
-    }
-    
-    public partial class GeneSymbol : XTypedElement, IXMetaData {
+        
+        public ForeName(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GeneSymbol", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator GeneSymbol(XElement xe) { return XTypedServices.ToXTypedElement<GeneSymbol>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public GeneSymbol() {
-        }
-        
-        public GeneSymbol(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9249,6 +9870,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ForeName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9271,6 +9898,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class GeneSymbol : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9296,31 +9926,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<GeneSymbol>(xml);
         }
         
+		public static explicit operator GeneSymbol(XElement xe) { return XTypedServices.ToXTypedElement<GeneSymbol>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<GeneSymbol>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public GeneSymbol() {
         }
-    }
-    
-    public partial class GrantID : XTypedElement, IXMetaData {
+        
+        public GeneSymbol(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GrantID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator GrantID(XElement xe) { return XTypedServices.ToXTypedElement<GrantID>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public GrantID() {
-        }
-        
-        public GrantID(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9330,6 +9951,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GeneSymbol", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9352,6 +9979,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class GrantID : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9377,31 +10007,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<GrantID>(xml);
         }
         
+		public static explicit operator GrantID(XElement xe) { return XTypedServices.ToXTypedElement<GrantID>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<GrantID>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public GrantID() {
         }
-    }
-    
-    public partial class Hour : XTypedElement, IXMetaData {
+        
+        public GrantID(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Hour", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Hour(XElement xe) { return XTypedServices.ToXTypedElement<Hour>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Hour() {
-        }
-        
-        public Hour(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9411,6 +10032,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GrantID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9433,6 +10060,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Hour : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9458,31 +10088,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Hour>(xml);
         }
         
+		public static explicit operator Hour(XElement xe) { return XTypedServices.ToXTypedElement<Hour>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Hour>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Hour() {
         }
-    }
-    
-    public partial class ISOAbbreviation : XTypedElement, IXMetaData {
+        
+        public Hour(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ISOAbbreviation", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator ISOAbbreviation(XElement xe) { return XTypedServices.ToXTypedElement<ISOAbbreviation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public ISOAbbreviation() {
-        }
-        
-        public ISOAbbreviation(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9492,6 +10113,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Hour", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9514,6 +10141,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class ISOAbbreviation : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9539,31 +10169,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<ISOAbbreviation>(xml);
         }
         
+		public static explicit operator ISOAbbreviation(XElement xe) { return XTypedServices.ToXTypedElement<ISOAbbreviation>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ISOAbbreviation>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public ISOAbbreviation() {
         }
-    }
-    
-    public partial class ISSNLinking : XTypedElement, IXMetaData {
+        
+        public ISOAbbreviation(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ISSNLinking", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator ISSNLinking(XElement xe) { return XTypedServices.ToXTypedElement<ISSNLinking>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public ISSNLinking() {
-        }
-        
-        public ISSNLinking(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9573,6 +10194,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ISOAbbreviation", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9595,6 +10222,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class ISSNLinking : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9620,31 +10250,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<ISSNLinking>(xml);
         }
         
+		public static explicit operator ISSNLinking(XElement xe) { return XTypedServices.ToXTypedElement<ISSNLinking>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ISSNLinking>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public ISSNLinking() {
         }
-    }
-    
-    public partial class Initials : XTypedElement, IXMetaData {
+        
+        public ISSNLinking(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Initials(XElement xe) { return XTypedServices.ToXTypedElement<Initials>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Initials() {
-        }
-        
-        public Initials(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9654,6 +10275,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ISSNLinking", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9676,6 +10303,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Initials : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9701,31 +10331,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Initials>(xml);
         }
         
+		public static explicit operator Initials(XElement xe) { return XTypedServices.ToXTypedElement<Initials>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Initials>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Initials() {
         }
-    }
-    
-    public partial class Issue : XTypedElement, IXMetaData {
+        
+        public Initials(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Issue", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Issue(XElement xe) { return XTypedServices.ToXTypedElement<Issue>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Issue() {
-        }
-        
-        public Issue(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9735,6 +10356,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Initials", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9757,6 +10384,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Issue : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9782,31 +10412,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Issue>(xml);
         }
         
+		public static explicit operator Issue(XElement xe) { return XTypedServices.ToXTypedElement<Issue>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Issue>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Issue() {
         }
-    }
-    
-    public partial class Language : XTypedElement, IXMetaData {
+        
+        public Issue(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Language", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Language(XElement xe) { return XTypedServices.ToXTypedElement<Language>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Language() {
-        }
-        
-        public Language(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9816,6 +10437,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Issue", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9838,6 +10465,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Language : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9863,31 +10493,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Language>(xml);
         }
         
+		public static explicit operator Language(XElement xe) { return XTypedServices.ToXTypedElement<Language>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Language>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Language() {
         }
-    }
-    
-    public partial class LastName : XTypedElement, IXMetaData {
+        
+        public Language(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator LastName(XElement xe) { return XTypedServices.ToXTypedElement<LastName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public LastName() {
-        }
-        
-        public LastName(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9897,6 +10518,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Language", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9919,6 +10546,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class LastName : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -9944,31 +10574,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<LastName>(xml);
         }
         
+		public static explicit operator LastName(XElement xe) { return XTypedServices.ToXTypedElement<LastName>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<LastName>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public LastName() {
         }
-    }
-    
-    public partial class MedlineDate : XTypedElement, IXMetaData {
+        
+        public LastName(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineDate", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator MedlineDate(XElement xe) { return XTypedServices.ToXTypedElement<MedlineDate>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public MedlineDate() {
-        }
-        
-        public MedlineDate(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -9978,6 +10599,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("LastName", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10000,6 +10627,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class MedlineDate : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10025,31 +10655,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<MedlineDate>(xml);
         }
         
+		public static explicit operator MedlineDate(XElement xe) { return XTypedServices.ToXTypedElement<MedlineDate>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<MedlineDate>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public MedlineDate() {
         }
-    }
-    
-    public partial class MedlinePgn : XTypedElement, IXMetaData {
+        
+        public MedlineDate(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlinePgn", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator MedlinePgn(XElement xe) { return XTypedServices.ToXTypedElement<MedlinePgn>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public MedlinePgn() {
-        }
-        
-        public MedlinePgn(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10059,6 +10680,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineDate", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10081,6 +10708,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class MedlinePgn : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10106,31 +10736,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<MedlinePgn>(xml);
         }
         
+		public static explicit operator MedlinePgn(XElement xe) { return XTypedServices.ToXTypedElement<MedlinePgn>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<MedlinePgn>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public MedlinePgn() {
         }
-    }
-    
-    public partial class MedlineTA : XTypedElement, IXMetaData {
+        
+        public MedlinePgn(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineTA", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator MedlineTA(XElement xe) { return XTypedServices.ToXTypedElement<MedlineTA>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public MedlineTA() {
-        }
-        
-        public MedlineTA(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10140,6 +10761,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlinePgn", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10162,6 +10789,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class MedlineTA : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10187,31 +10817,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<MedlineTA>(xml);
         }
         
+		public static explicit operator MedlineTA(XElement xe) { return XTypedServices.ToXTypedElement<MedlineTA>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<MedlineTA>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public MedlineTA() {
         }
-    }
-    
-    public partial class Minute : XTypedElement, IXMetaData {
+        
+        public MedlineTA(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Minute", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Minute(XElement xe) { return XTypedServices.ToXTypedElement<Minute>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Minute() {
-        }
-        
-        public Minute(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10221,6 +10842,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MedlineTA", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10243,6 +10870,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Minute : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10268,31 +10898,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Minute>(xml);
         }
         
+		public static explicit operator Minute(XElement xe) { return XTypedServices.ToXTypedElement<Minute>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Minute>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Minute() {
         }
-    }
-    
-    public partial class Month : XTypedElement, IXMetaData {
+        
+        public Minute(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Month(XElement xe) { return XTypedServices.ToXTypedElement<Month>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Month() {
-        }
-        
-        public Month(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10302,6 +10923,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Minute", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10324,6 +10951,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Month : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10349,31 +10979,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Month>(xml);
         }
         
+		public static explicit operator Month(XElement xe) { return XTypedServices.ToXTypedElement<Month>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Month>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Month() {
         }
-    }
-    
-    public partial class NameOfSubstance : XTypedElement, IXMetaData {
+        
+        public Month(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NameOfSubstance", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator NameOfSubstance(XElement xe) { return XTypedServices.ToXTypedElement<NameOfSubstance>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public NameOfSubstance() {
-        }
-        
-        public NameOfSubstance(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10383,6 +11004,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Month", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10405,6 +11032,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class NameOfSubstance : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10430,31 +11060,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<NameOfSubstance>(xml);
         }
         
+		public static explicit operator NameOfSubstance(XElement xe) { return XTypedServices.ToXTypedElement<NameOfSubstance>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<NameOfSubstance>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public NameOfSubstance() {
         }
-    }
-    
-    public partial class NlmUniqueID : XTypedElement, IXMetaData {
+        
+        public NameOfSubstance(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NlmUniqueID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator NlmUniqueID(XElement xe) { return XTypedServices.ToXTypedElement<NlmUniqueID>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public NlmUniqueID() {
-        }
-        
-        public NlmUniqueID(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10464,6 +11085,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NameOfSubstance", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10486,6 +11113,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class NlmUniqueID : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10511,31 +11141,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<NlmUniqueID>(xml);
         }
         
+		public static explicit operator NlmUniqueID(XElement xe) { return XTypedServices.ToXTypedElement<NlmUniqueID>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<NlmUniqueID>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public NlmUniqueID() {
         }
-    }
-    
-    public partial class Note : XTypedElement, IXMetaData {
+        
+        public NlmUniqueID(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Note", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Note(XElement xe) { return XTypedServices.ToXTypedElement<Note>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Note() {
-        }
-        
-        public Note(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10545,6 +11166,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NlmUniqueID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10567,6 +11194,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Note : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10592,31 +11222,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Note>(xml);
         }
         
+		public static explicit operator Note(XElement xe) { return XTypedServices.ToXTypedElement<Note>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Note>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Note() {
         }
-    }
-    
-    public partial class NumberOfReferences : XTypedElement, IXMetaData {
+        
+        public Note(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NumberOfReferences", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator NumberOfReferences(XElement xe) { return XTypedServices.ToXTypedElement<NumberOfReferences>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public NumberOfReferences() {
-        }
-        
-        public NumberOfReferences(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10626,6 +11247,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Note", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10648,6 +11275,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class NumberOfReferences : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10673,31 +11303,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<NumberOfReferences>(xml);
         }
         
+		public static explicit operator NumberOfReferences(XElement xe) { return XTypedServices.ToXTypedElement<NumberOfReferences>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<NumberOfReferences>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public NumberOfReferences() {
         }
-    }
-    
-    public partial class PMID : XTypedElement, IXMetaData {
+        
+        public NumberOfReferences(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator PMID(XElement xe) { return XTypedServices.ToXTypedElement<PMID>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public PMID() {
-        }
-        
-        public PMID(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10707,6 +11328,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NumberOfReferences", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10729,6 +11356,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class PMID : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10754,31 +11384,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<PMID>(xml);
         }
         
+		public static explicit operator PMID(XElement xe) { return XTypedServices.ToXTypedElement<PMID>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<PMID>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public PMID() {
         }
-    }
-    
-    public partial class PublicationStatus : XTypedElement, IXMetaData {
+        
+        public PMID(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationStatus", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator PublicationStatus(XElement xe) { return XTypedServices.ToXTypedElement<PublicationStatus>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public PublicationStatus() {
-        }
-        
-        public PublicationStatus(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10788,6 +11409,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PMID", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10810,6 +11437,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class PublicationStatus : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10835,31 +11465,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<PublicationStatus>(xml);
         }
         
+		public static explicit operator PublicationStatus(XElement xe) { return XTypedServices.ToXTypedElement<PublicationStatus>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<PublicationStatus>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public PublicationStatus() {
         }
-    }
-    
-    public partial class PublicationType : XTypedElement, IXMetaData {
+        
+        public PublicationStatus(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationType", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator PublicationType(XElement xe) { return XTypedServices.ToXTypedElement<PublicationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public PublicationType() {
-        }
-        
-        public PublicationType(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10869,6 +11490,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationStatus", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10891,6 +11518,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class PublicationType : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10916,31 +11546,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<PublicationType>(xml);
         }
         
+		public static explicit operator PublicationType(XElement xe) { return XTypedServices.ToXTypedElement<PublicationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<PublicationType>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public PublicationType() {
         }
-    }
-    
-    public partial class RefSource : XTypedElement, IXMetaData {
+        
+        public PublicationType(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RefSource", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator RefSource(XElement xe) { return XTypedServices.ToXTypedElement<RefSource>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public RefSource() {
-        }
-        
-        public RefSource(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -10950,6 +11571,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PublicationType", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10972,6 +11599,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class RefSource : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -10997,31 +11627,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<RefSource>(xml);
         }
         
+		public static explicit operator RefSource(XElement xe) { return XTypedServices.ToXTypedElement<RefSource>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<RefSource>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public RefSource() {
         }
-    }
-    
-    public partial class RegistryNumber : XTypedElement, IXMetaData {
+        
+        public RefSource(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RegistryNumber", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator RegistryNumber(XElement xe) { return XTypedServices.ToXTypedElement<RegistryNumber>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public RegistryNumber() {
-        }
-        
-        public RegistryNumber(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11031,6 +11652,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RefSource", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11053,6 +11680,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class RegistryNumber : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11078,31 +11708,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<RegistryNumber>(xml);
         }
         
+		public static explicit operator RegistryNumber(XElement xe) { return XTypedServices.ToXTypedElement<RegistryNumber>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<RegistryNumber>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public RegistryNumber() {
         }
-    }
-    
-    public partial class Season : XTypedElement, IXMetaData {
+        
+        public RegistryNumber(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Season", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Season(XElement xe) { return XTypedServices.ToXTypedElement<Season>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Season() {
-        }
-        
-        public Season(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11112,6 +11733,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RegistryNumber", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11134,6 +11761,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Season : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11159,31 +11789,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Season>(xml);
         }
         
+		public static explicit operator Season(XElement xe) { return XTypedServices.ToXTypedElement<Season>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Season>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Season() {
         }
-    }
-    
-    public partial class Second : XTypedElement, IXMetaData {
+        
+        public Season(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Second", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Second(XElement xe) { return XTypedServices.ToXTypedElement<Second>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Second() {
-        }
-        
-        public Second(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11193,6 +11814,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Season", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11215,6 +11842,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Second : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11240,31 +11870,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Second>(xml);
         }
         
+		public static explicit operator Second(XElement xe) { return XTypedServices.ToXTypedElement<Second>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Second>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Second() {
         }
-    }
-    
-    public partial class SpaceFlightMission : XTypedElement, IXMetaData {
+        
+        public Second(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpaceFlightMission", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator SpaceFlightMission(XElement xe) { return XTypedServices.ToXTypedElement<SpaceFlightMission>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public SpaceFlightMission() {
-        }
-        
-        public SpaceFlightMission(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11274,6 +11895,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Second", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11296,6 +11923,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class SpaceFlightMission : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11321,31 +11951,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<SpaceFlightMission>(xml);
         }
         
+		public static explicit operator SpaceFlightMission(XElement xe) { return XTypedServices.ToXTypedElement<SpaceFlightMission>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<SpaceFlightMission>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public SpaceFlightMission() {
         }
-    }
-    
-    public partial class StartPage : XTypedElement, IXMetaData {
+        
+        public SpaceFlightMission(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("StartPage", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator StartPage(XElement xe) { return XTypedServices.ToXTypedElement<StartPage>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public StartPage() {
-        }
-        
-        public StartPage(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11355,6 +11976,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SpaceFlightMission", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11377,6 +12004,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class StartPage : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11402,31 +12032,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<StartPage>(xml);
         }
         
+		public static explicit operator StartPage(XElement xe) { return XTypedServices.ToXTypedElement<StartPage>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<StartPage>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public StartPage() {
         }
-    }
-    
-    public partial class Suffix : XTypedElement, IXMetaData {
+        
+        public StartPage(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Suffix(XElement xe) { return XTypedServices.ToXTypedElement<Suffix>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Suffix() {
-        }
-        
-        public Suffix(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11436,6 +12057,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("StartPage", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11458,6 +12085,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Suffix : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11483,31 +12113,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Suffix>(xml);
         }
         
+		public static explicit operator Suffix(XElement xe) { return XTypedServices.ToXTypedElement<Suffix>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Suffix>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Suffix() {
         }
-    }
-    
-    public partial class Title : XTypedElement, IXMetaData {
+        
+        public Suffix(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Title", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Title(XElement xe) { return XTypedServices.ToXTypedElement<Title>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Title() {
-        }
-        
-        public Title(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11517,6 +12138,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Suffix", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11539,6 +12166,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Title : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11564,31 +12194,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Title>(xml);
         }
         
+		public static explicit operator Title(XElement xe) { return XTypedServices.ToXTypedElement<Title>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Title>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Title() {
         }
-    }
-    
-    public partial class VernacularTitle : XTypedElement, IXMetaData {
+        
+        public Title(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("VernacularTitle", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator VernacularTitle(XElement xe) { return XTypedServices.ToXTypedElement<VernacularTitle>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public VernacularTitle() {
-        }
-        
-        public VernacularTitle(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11598,6 +12219,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Title", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11620,6 +12247,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class VernacularTitle : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11645,31 +12275,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<VernacularTitle>(xml);
         }
         
+		public static explicit operator VernacularTitle(XElement xe) { return XTypedServices.ToXTypedElement<VernacularTitle>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<VernacularTitle>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public VernacularTitle() {
         }
-    }
-    
-    public partial class Volume : XTypedElement, IXMetaData {
+        
+        public VernacularTitle(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Volume", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Volume(XElement xe) { return XTypedServices.ToXTypedElement<Volume>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Volume() {
-        }
-        
-        public Volume(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11679,6 +12300,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("VernacularTitle", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11701,6 +12328,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Volume : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11726,31 +12356,22 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Volume>(xml);
         }
         
+		public static explicit operator Volume(XElement xe) { return XTypedServices.ToXTypedElement<Volume>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Volume>(this);
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
+        public Volume() {
         }
-    }
-    
-    public partial class Year : XTypedElement, IXMetaData {
+        
+        public Volume(string content) {
+            this.TypedValue = content;
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
-        
-		public static explicit operator Year(XElement xe) { return XTypedServices.ToXTypedElement<Year>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Year() {
-        }
-        
-        public Year(string content) {
-            this.TypedValue = content;
-        }
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -11760,6 +12381,12 @@ namespace PubMed.Eutils {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Volume", "http://www.ncbi.nlm.nih.gov/eutils");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11782,6 +12409,9 @@ namespace PubMed.Eutils {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Year : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -11807,70 +12437,67 @@ namespace PubMed.Eutils {
             return XTypedServices.Parse<Year>(xml);
         }
         
+		public static explicit operator Year(XElement xe) { return XTypedServices.ToXTypedElement<Year>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Year>(this);
         }
         
+        public Year() {
+        }
+        
+        public Year(string content) {
+            this.TypedValue = content;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
+        public virtual string TypedValue {
+            get {
+                XElement x = this.Untyped;
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils");
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
-        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-        }
-        
         private LinqToXsdTypeManager() {
         }
         
-        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
-            get {
-                if ((schemaSet == null)) {
-                    XmlSchemaSet tempSet = new XmlSchemaSet();
-                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
-                }
-                return schemaSet;
-            }
-            set {
-                schemaSet = value;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
-            get {
-                return typeDictionary;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
-            get {
-                return elementDictionary;
-            }
-        }
-        
-        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
-            get {
-                return XTypedServices.EmptyTypeMappingDictionary;
-            }
-        }
-        
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
             typeDictionary.Add(System.Xml.Linq.XName.Get("AbstractType", "http://www.ncbi.nlm.nih.gov/eutils"), typeof(global::PubMed.Eutils.AbstractType));
@@ -11926,6 +12553,8 @@ namespace PubMed.Eutils {
             typeDictionary.Add(System.Xml.Linq.XName.Get("QualifierNameType", "http://www.ncbi.nlm.nih.gov/eutils"), typeof(global::PubMed.Eutils.QualifierNameType));
         }
         
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
         private static void BuildElementDictionary() {
             elementDictionary.Add(System.Xml.Linq.XName.Get("MedlineCitationSet", "http://www.ncbi.nlm.nih.gov/eutils"), typeof(global::PubMed.Eutils.MedlineCitationSet));
             elementDictionary.Add(System.Xml.Linq.XName.Get("PubmedArticleSet", "http://www.ncbi.nlm.nih.gov/eutils"), typeof(global::PubMed.Eutils.PubmedArticleSet));
@@ -11978,12 +12607,59 @@ namespace PubMed.Eutils {
             elementDictionary.Add(System.Xml.Linq.XName.Get("Year", "http://www.ncbi.nlm.nih.gov/eutils"), typeof(global::PubMed.Eutils.Year));
         }
         
+        private static XmlSchemaSet schemaSet;
+        
+        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+            get {
+                if ((schemaSet == null)) {
+                    XmlSchemaSet tempSet = new XmlSchemaSet();
+                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+                }
+                return schemaSet;
+            }
+            set {
+                schemaSet = value;
+            }
+        }
+        
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
             schemas.Add(schemaSet);
         }
         
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+            get {
+                return typeDictionary;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+            get {
+                return elementDictionary;
+            }
+        }
+        
+        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+            get {
+                return XTypedServices.EmptyTypeMappingDictionary;
+            }
+        }
+        
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+        }
+        
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("MedlineCitationSet", "http://www.ncbi.nlm.nih.gov/eutils")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -11995,363 +12671,7 @@ namespace PubMed.Eutils {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public MedlineCitationSet MedlineCitationSet {  get {return rootObject as MedlineCitationSet; } }
-
-		public PubmedArticleSet PubmedArticleSet {  get {return rootObject as PubmedArticleSet; } }
-
-		public URL URL {  get {return rootObject as URL; } }
-
-		public AbstractText AbstractText {  get {return rootObject as AbstractText; } }
-
-		public AccessionNumber AccessionNumber {  get {return rootObject as AccessionNumber; } }
-
-		public Acronym Acronym {  get {return rootObject as Acronym; } }
-
-		public Affiliation Affiliation {  get {return rootObject as Affiliation; } }
-
-		public Agency Agency {  get {return rootObject as Agency; } }
-
-		public ArticleTitle ArticleTitle {  get {return rootObject as ArticleTitle; } }
-
-		public CitationSubset CitationSubset {  get {return rootObject as CitationSubset; } }
-
-		public CollectiveName CollectiveName {  get {return rootObject as CollectiveName; } }
-
-		public CopyrightInformation CopyrightInformation {  get {return rootObject as CopyrightInformation; } }
-
-		public Country Country {  get {return rootObject as Country; } }
-
-		public DataBankName DataBankName {  get {return rootObject as DataBankName; } }
-
-		public Day Day {  get {return rootObject as Day; } }
-
-		public EndPage EndPage {  get {return rootObject as EndPage; } }
-
-		public ForeName ForeName {  get {return rootObject as ForeName; } }
-
-		public GeneSymbol GeneSymbol {  get {return rootObject as GeneSymbol; } }
-
-		public GrantID GrantID {  get {return rootObject as GrantID; } }
-
-		public Hour Hour {  get {return rootObject as Hour; } }
-
-		public ISOAbbreviation ISOAbbreviation {  get {return rootObject as ISOAbbreviation; } }
-
-		public ISSNLinking ISSNLinking {  get {return rootObject as ISSNLinking; } }
-
-		public Initials Initials {  get {return rootObject as Initials; } }
-
-		public Issue Issue {  get {return rootObject as Issue; } }
-
-		public Language Language {  get {return rootObject as Language; } }
-
-		public LastName LastName {  get {return rootObject as LastName; } }
-
-		public MedlineDate MedlineDate {  get {return rootObject as MedlineDate; } }
-
-		public MedlinePgn MedlinePgn {  get {return rootObject as MedlinePgn; } }
-
-		public MedlineTA MedlineTA {  get {return rootObject as MedlineTA; } }
-
-		public Minute Minute {  get {return rootObject as Minute; } }
-
-		public Month Month {  get {return rootObject as Month; } }
-
-		public NameOfSubstance NameOfSubstance {  get {return rootObject as NameOfSubstance; } }
-
-		public NlmUniqueID NlmUniqueID {  get {return rootObject as NlmUniqueID; } }
-
-		public Note Note {  get {return rootObject as Note; } }
-
-		public NumberOfReferences NumberOfReferences {  get {return rootObject as NumberOfReferences; } }
-
-		public PMID PMID {  get {return rootObject as PMID; } }
-
-		public PublicationStatus PublicationStatus {  get {return rootObject as PublicationStatus; } }
-
-		public PublicationType PublicationType {  get {return rootObject as PublicationType; } }
-
-		public RefSource RefSource {  get {return rootObject as RefSource; } }
-
-		public RegistryNumber RegistryNumber {  get {return rootObject as RegistryNumber; } }
-
-		public Season Season {  get {return rootObject as Season; } }
-
-		public Second Second {  get {return rootObject as Second; } }
-
-		public SpaceFlightMission SpaceFlightMission {  get {return rootObject as SpaceFlightMission; } }
-
-		public StartPage StartPage {  get {return rootObject as StartPage; } }
-
-		public Suffix Suffix {  get {return rootObject as Suffix; } }
-
-		public Title Title {  get {return rootObject as Title; } }
-
-		public VernacularTitle VernacularTitle {  get {return rootObject as VernacularTitle; } }
-
-		public Volume Volume {  get {return rootObject as Volume; } }
-
-		public Year Year {  get {return rootObject as Year; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(MedlineCitationSet root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(PubmedArticleSet root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(URL root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(AbstractText root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(AccessionNumber root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Acronym root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Affiliation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Agency root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(ArticleTitle root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(CitationSubset root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(CollectiveName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(CopyrightInformation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Country root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(DataBankName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Day root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(EndPage root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(ForeName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(GeneSymbol root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(GrantID root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Hour root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(ISOAbbreviation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(ISSNLinking root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Initials root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Issue root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Language root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(LastName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(MedlineDate root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(MedlinePgn root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(MedlineTA root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Minute root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Month root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(NameOfSubstance root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(NlmUniqueID root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Note root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(NumberOfReferences root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(PMID root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(PublicationStatus root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(PublicationType root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(RefSource root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(RegistryNumber root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Season root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Second root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(SpaceFlightMission root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(StartPage root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Suffix root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Title root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(VernacularTitle root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Volume root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Year root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -12450,362 +12770,6 @@ namespace PubMed.Eutils {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::PubMed.Eutils.MedlineCitationSet MedlineCitationSet {  get {return rootObject as global::PubMed.Eutils.MedlineCitationSet; } }
-
-		public global::PubMed.Eutils.PubmedArticleSet PubmedArticleSet {  get {return rootObject as global::PubMed.Eutils.PubmedArticleSet; } }
-
-		public global::PubMed.Eutils.URL URL {  get {return rootObject as global::PubMed.Eutils.URL; } }
-
-		public global::PubMed.Eutils.AbstractText AbstractText {  get {return rootObject as global::PubMed.Eutils.AbstractText; } }
-
-		public global::PubMed.Eutils.AccessionNumber AccessionNumber {  get {return rootObject as global::PubMed.Eutils.AccessionNumber; } }
-
-		public global::PubMed.Eutils.Acronym Acronym {  get {return rootObject as global::PubMed.Eutils.Acronym; } }
-
-		public global::PubMed.Eutils.Affiliation Affiliation {  get {return rootObject as global::PubMed.Eutils.Affiliation; } }
-
-		public global::PubMed.Eutils.Agency Agency {  get {return rootObject as global::PubMed.Eutils.Agency; } }
-
-		public global::PubMed.Eutils.ArticleTitle ArticleTitle {  get {return rootObject as global::PubMed.Eutils.ArticleTitle; } }
-
-		public global::PubMed.Eutils.CitationSubset CitationSubset {  get {return rootObject as global::PubMed.Eutils.CitationSubset; } }
-
-		public global::PubMed.Eutils.CollectiveName CollectiveName {  get {return rootObject as global::PubMed.Eutils.CollectiveName; } }
-
-		public global::PubMed.Eutils.CopyrightInformation CopyrightInformation {  get {return rootObject as global::PubMed.Eutils.CopyrightInformation; } }
-
-		public global::PubMed.Eutils.Country Country {  get {return rootObject as global::PubMed.Eutils.Country; } }
-
-		public global::PubMed.Eutils.DataBankName DataBankName {  get {return rootObject as global::PubMed.Eutils.DataBankName; } }
-
-		public global::PubMed.Eutils.Day Day {  get {return rootObject as global::PubMed.Eutils.Day; } }
-
-		public global::PubMed.Eutils.EndPage EndPage {  get {return rootObject as global::PubMed.Eutils.EndPage; } }
-
-		public global::PubMed.Eutils.ForeName ForeName {  get {return rootObject as global::PubMed.Eutils.ForeName; } }
-
-		public global::PubMed.Eutils.GeneSymbol GeneSymbol {  get {return rootObject as global::PubMed.Eutils.GeneSymbol; } }
-
-		public global::PubMed.Eutils.GrantID GrantID {  get {return rootObject as global::PubMed.Eutils.GrantID; } }
-
-		public global::PubMed.Eutils.Hour Hour {  get {return rootObject as global::PubMed.Eutils.Hour; } }
-
-		public global::PubMed.Eutils.ISOAbbreviation ISOAbbreviation {  get {return rootObject as global::PubMed.Eutils.ISOAbbreviation; } }
-
-		public global::PubMed.Eutils.ISSNLinking ISSNLinking {  get {return rootObject as global::PubMed.Eutils.ISSNLinking; } }
-
-		public global::PubMed.Eutils.Initials Initials {  get {return rootObject as global::PubMed.Eutils.Initials; } }
-
-		public global::PubMed.Eutils.Issue Issue {  get {return rootObject as global::PubMed.Eutils.Issue; } }
-
-		public global::PubMed.Eutils.Language Language {  get {return rootObject as global::PubMed.Eutils.Language; } }
-
-		public global::PubMed.Eutils.LastName LastName {  get {return rootObject as global::PubMed.Eutils.LastName; } }
-
-		public global::PubMed.Eutils.MedlineDate MedlineDate {  get {return rootObject as global::PubMed.Eutils.MedlineDate; } }
-
-		public global::PubMed.Eutils.MedlinePgn MedlinePgn {  get {return rootObject as global::PubMed.Eutils.MedlinePgn; } }
-
-		public global::PubMed.Eutils.MedlineTA MedlineTA {  get {return rootObject as global::PubMed.Eutils.MedlineTA; } }
-
-		public global::PubMed.Eutils.Minute Minute {  get {return rootObject as global::PubMed.Eutils.Minute; } }
-
-		public global::PubMed.Eutils.Month Month {  get {return rootObject as global::PubMed.Eutils.Month; } }
-
-		public global::PubMed.Eutils.NameOfSubstance NameOfSubstance {  get {return rootObject as global::PubMed.Eutils.NameOfSubstance; } }
-
-		public global::PubMed.Eutils.NlmUniqueID NlmUniqueID {  get {return rootObject as global::PubMed.Eutils.NlmUniqueID; } }
-
-		public global::PubMed.Eutils.Note Note {  get {return rootObject as global::PubMed.Eutils.Note; } }
-
-		public global::PubMed.Eutils.NumberOfReferences NumberOfReferences {  get {return rootObject as global::PubMed.Eutils.NumberOfReferences; } }
-
-		public global::PubMed.Eutils.PMID PMID {  get {return rootObject as global::PubMed.Eutils.PMID; } }
-
-		public global::PubMed.Eutils.PublicationStatus PublicationStatus {  get {return rootObject as global::PubMed.Eutils.PublicationStatus; } }
-
-		public global::PubMed.Eutils.PublicationType PublicationType {  get {return rootObject as global::PubMed.Eutils.PublicationType; } }
-
-		public global::PubMed.Eutils.RefSource RefSource {  get {return rootObject as global::PubMed.Eutils.RefSource; } }
-
-		public global::PubMed.Eutils.RegistryNumber RegistryNumber {  get {return rootObject as global::PubMed.Eutils.RegistryNumber; } }
-
-		public global::PubMed.Eutils.Season Season {  get {return rootObject as global::PubMed.Eutils.Season; } }
-
-		public global::PubMed.Eutils.Second Second {  get {return rootObject as global::PubMed.Eutils.Second; } }
-
-		public global::PubMed.Eutils.SpaceFlightMission SpaceFlightMission {  get {return rootObject as global::PubMed.Eutils.SpaceFlightMission; } }
-
-		public global::PubMed.Eutils.StartPage StartPage {  get {return rootObject as global::PubMed.Eutils.StartPage; } }
-
-		public global::PubMed.Eutils.Suffix Suffix {  get {return rootObject as global::PubMed.Eutils.Suffix; } }
-
-		public global::PubMed.Eutils.Title Title {  get {return rootObject as global::PubMed.Eutils.Title; } }
-
-		public global::PubMed.Eutils.VernacularTitle VernacularTitle {  get {return rootObject as global::PubMed.Eutils.VernacularTitle; } }
-
-		public global::PubMed.Eutils.Volume Volume {  get {return rootObject as global::PubMed.Eutils.Volume; } }
-
-		public global::PubMed.Eutils.Year Year {  get {return rootObject as global::PubMed.Eutils.Year; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::PubMed.Eutils.MedlineCitationSet root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.PubmedArticleSet root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.URL root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.AbstractText root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.AccessionNumber root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Acronym root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Affiliation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Agency root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.ArticleTitle root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.CitationSubset root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.CollectiveName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.CopyrightInformation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Country root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.DataBankName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Day root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.EndPage root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.ForeName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.GeneSymbol root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.GrantID root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Hour root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.ISOAbbreviation root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.ISSNLinking root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Initials root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Issue root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Language root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.LastName root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.MedlineDate root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.MedlinePgn root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.MedlineTA root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Minute root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Month root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.NameOfSubstance root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.NlmUniqueID root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Note root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.NumberOfReferences root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.PMID root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.PublicationStatus root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.PublicationType root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.RefSource root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.RegistryNumber root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Season root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Second root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.SpaceFlightMission root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.StartPage root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Suffix root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Title root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.VernacularTitle root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Volume root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::PubMed.Eutils.Year root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -12817,6 +12781,410 @@ namespace PubMed.Eutils {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(MedlineCitationSet root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public MedlineCitationSet MedlineCitationSet {  get {return rootObject as MedlineCitationSet; } }
+        
+        public XRootNamespace(PubmedArticleSet root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public PubmedArticleSet PubmedArticleSet {  get {return rootObject as PubmedArticleSet; } }
+        
+        public XRootNamespace(URL root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public URL URL {  get {return rootObject as URL; } }
+        
+        public XRootNamespace(AbstractText root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public AbstractText AbstractText {  get {return rootObject as AbstractText; } }
+        
+        public XRootNamespace(AccessionNumber root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public AccessionNumber AccessionNumber {  get {return rootObject as AccessionNumber; } }
+        
+        public XRootNamespace(Acronym root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Acronym Acronym {  get {return rootObject as Acronym; } }
+        
+        public XRootNamespace(Affiliation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Affiliation Affiliation {  get {return rootObject as Affiliation; } }
+        
+        public XRootNamespace(Agency root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Agency Agency {  get {return rootObject as Agency; } }
+        
+        public XRootNamespace(ArticleTitle root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public ArticleTitle ArticleTitle {  get {return rootObject as ArticleTitle; } }
+        
+        public XRootNamespace(CitationSubset root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public CitationSubset CitationSubset {  get {return rootObject as CitationSubset; } }
+        
+        public XRootNamespace(CollectiveName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public CollectiveName CollectiveName {  get {return rootObject as CollectiveName; } }
+        
+        public XRootNamespace(CopyrightInformation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public CopyrightInformation CopyrightInformation {  get {return rootObject as CopyrightInformation; } }
+        
+        public XRootNamespace(Country root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Country Country {  get {return rootObject as Country; } }
+        
+        public XRootNamespace(DataBankName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public DataBankName DataBankName {  get {return rootObject as DataBankName; } }
+        
+        public XRootNamespace(Day root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Day Day {  get {return rootObject as Day; } }
+        
+        public XRootNamespace(EndPage root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public EndPage EndPage {  get {return rootObject as EndPage; } }
+        
+        public XRootNamespace(ForeName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public ForeName ForeName {  get {return rootObject as ForeName; } }
+        
+        public XRootNamespace(GeneSymbol root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public GeneSymbol GeneSymbol {  get {return rootObject as GeneSymbol; } }
+        
+        public XRootNamespace(GrantID root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public GrantID GrantID {  get {return rootObject as GrantID; } }
+        
+        public XRootNamespace(Hour root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Hour Hour {  get {return rootObject as Hour; } }
+        
+        public XRootNamespace(ISOAbbreviation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public ISOAbbreviation ISOAbbreviation {  get {return rootObject as ISOAbbreviation; } }
+        
+        public XRootNamespace(ISSNLinking root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public ISSNLinking ISSNLinking {  get {return rootObject as ISSNLinking; } }
+        
+        public XRootNamespace(Initials root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Initials Initials {  get {return rootObject as Initials; } }
+        
+        public XRootNamespace(Issue root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Issue Issue {  get {return rootObject as Issue; } }
+        
+        public XRootNamespace(Language root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Language Language {  get {return rootObject as Language; } }
+        
+        public XRootNamespace(LastName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public LastName LastName {  get {return rootObject as LastName; } }
+        
+        public XRootNamespace(MedlineDate root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public MedlineDate MedlineDate {  get {return rootObject as MedlineDate; } }
+        
+        public XRootNamespace(MedlinePgn root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public MedlinePgn MedlinePgn {  get {return rootObject as MedlinePgn; } }
+        
+        public XRootNamespace(MedlineTA root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public MedlineTA MedlineTA {  get {return rootObject as MedlineTA; } }
+        
+        public XRootNamespace(Minute root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Minute Minute {  get {return rootObject as Minute; } }
+        
+        public XRootNamespace(Month root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Month Month {  get {return rootObject as Month; } }
+        
+        public XRootNamespace(NameOfSubstance root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public NameOfSubstance NameOfSubstance {  get {return rootObject as NameOfSubstance; } }
+        
+        public XRootNamespace(NlmUniqueID root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public NlmUniqueID NlmUniqueID {  get {return rootObject as NlmUniqueID; } }
+        
+        public XRootNamespace(Note root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Note Note {  get {return rootObject as Note; } }
+        
+        public XRootNamespace(NumberOfReferences root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public NumberOfReferences NumberOfReferences {  get {return rootObject as NumberOfReferences; } }
+        
+        public XRootNamespace(PMID root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public PMID PMID {  get {return rootObject as PMID; } }
+        
+        public XRootNamespace(PublicationStatus root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public PublicationStatus PublicationStatus {  get {return rootObject as PublicationStatus; } }
+        
+        public XRootNamespace(PublicationType root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public PublicationType PublicationType {  get {return rootObject as PublicationType; } }
+        
+        public XRootNamespace(RefSource root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public RefSource RefSource {  get {return rootObject as RefSource; } }
+        
+        public XRootNamespace(RegistryNumber root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public RegistryNumber RegistryNumber {  get {return rootObject as RegistryNumber; } }
+        
+        public XRootNamespace(Season root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Season Season {  get {return rootObject as Season; } }
+        
+        public XRootNamespace(Second root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Second Second {  get {return rootObject as Second; } }
+        
+        public XRootNamespace(SpaceFlightMission root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public SpaceFlightMission SpaceFlightMission {  get {return rootObject as SpaceFlightMission; } }
+        
+        public XRootNamespace(StartPage root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public StartPage StartPage {  get {return rootObject as StartPage; } }
+        
+        public XRootNamespace(Suffix root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Suffix Suffix {  get {return rootObject as Suffix; } }
+        
+        public XRootNamespace(Title root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Title Title {  get {return rootObject as Title; } }
+        
+        public XRootNamespace(VernacularTitle root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public VernacularTitle VernacularTitle {  get {return rootObject as VernacularTitle; } }
+        
+        public XRootNamespace(Volume root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Volume Volume {  get {return rootObject as Volume; } }
+        
+        public XRootNamespace(Year root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Year Year {  get {return rootObject as Year; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -12915,5 +13283,409 @@ namespace PubMed.Eutils {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::PubMed.Eutils.MedlineCitationSet root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.MedlineCitationSet MedlineCitationSet {  get {return rootObject as global::PubMed.Eutils.MedlineCitationSet; } }
+        
+        public XRoot(global::PubMed.Eutils.PubmedArticleSet root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.PubmedArticleSet PubmedArticleSet {  get {return rootObject as global::PubMed.Eutils.PubmedArticleSet; } }
+        
+        public XRoot(global::PubMed.Eutils.URL root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.URL URL {  get {return rootObject as global::PubMed.Eutils.URL; } }
+        
+        public XRoot(global::PubMed.Eutils.AbstractText root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.AbstractText AbstractText {  get {return rootObject as global::PubMed.Eutils.AbstractText; } }
+        
+        public XRoot(global::PubMed.Eutils.AccessionNumber root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.AccessionNumber AccessionNumber {  get {return rootObject as global::PubMed.Eutils.AccessionNumber; } }
+        
+        public XRoot(global::PubMed.Eutils.Acronym root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Acronym Acronym {  get {return rootObject as global::PubMed.Eutils.Acronym; } }
+        
+        public XRoot(global::PubMed.Eutils.Affiliation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Affiliation Affiliation {  get {return rootObject as global::PubMed.Eutils.Affiliation; } }
+        
+        public XRoot(global::PubMed.Eutils.Agency root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Agency Agency {  get {return rootObject as global::PubMed.Eutils.Agency; } }
+        
+        public XRoot(global::PubMed.Eutils.ArticleTitle root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.ArticleTitle ArticleTitle {  get {return rootObject as global::PubMed.Eutils.ArticleTitle; } }
+        
+        public XRoot(global::PubMed.Eutils.CitationSubset root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.CitationSubset CitationSubset {  get {return rootObject as global::PubMed.Eutils.CitationSubset; } }
+        
+        public XRoot(global::PubMed.Eutils.CollectiveName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.CollectiveName CollectiveName {  get {return rootObject as global::PubMed.Eutils.CollectiveName; } }
+        
+        public XRoot(global::PubMed.Eutils.CopyrightInformation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.CopyrightInformation CopyrightInformation {  get {return rootObject as global::PubMed.Eutils.CopyrightInformation; } }
+        
+        public XRoot(global::PubMed.Eutils.Country root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Country Country {  get {return rootObject as global::PubMed.Eutils.Country; } }
+        
+        public XRoot(global::PubMed.Eutils.DataBankName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.DataBankName DataBankName {  get {return rootObject as global::PubMed.Eutils.DataBankName; } }
+        
+        public XRoot(global::PubMed.Eutils.Day root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Day Day {  get {return rootObject as global::PubMed.Eutils.Day; } }
+        
+        public XRoot(global::PubMed.Eutils.EndPage root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.EndPage EndPage {  get {return rootObject as global::PubMed.Eutils.EndPage; } }
+        
+        public XRoot(global::PubMed.Eutils.ForeName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.ForeName ForeName {  get {return rootObject as global::PubMed.Eutils.ForeName; } }
+        
+        public XRoot(global::PubMed.Eutils.GeneSymbol root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.GeneSymbol GeneSymbol {  get {return rootObject as global::PubMed.Eutils.GeneSymbol; } }
+        
+        public XRoot(global::PubMed.Eutils.GrantID root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.GrantID GrantID {  get {return rootObject as global::PubMed.Eutils.GrantID; } }
+        
+        public XRoot(global::PubMed.Eutils.Hour root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Hour Hour {  get {return rootObject as global::PubMed.Eutils.Hour; } }
+        
+        public XRoot(global::PubMed.Eutils.ISOAbbreviation root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.ISOAbbreviation ISOAbbreviation {  get {return rootObject as global::PubMed.Eutils.ISOAbbreviation; } }
+        
+        public XRoot(global::PubMed.Eutils.ISSNLinking root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.ISSNLinking ISSNLinking {  get {return rootObject as global::PubMed.Eutils.ISSNLinking; } }
+        
+        public XRoot(global::PubMed.Eutils.Initials root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Initials Initials {  get {return rootObject as global::PubMed.Eutils.Initials; } }
+        
+        public XRoot(global::PubMed.Eutils.Issue root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Issue Issue {  get {return rootObject as global::PubMed.Eutils.Issue; } }
+        
+        public XRoot(global::PubMed.Eutils.Language root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Language Language {  get {return rootObject as global::PubMed.Eutils.Language; } }
+        
+        public XRoot(global::PubMed.Eutils.LastName root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.LastName LastName {  get {return rootObject as global::PubMed.Eutils.LastName; } }
+        
+        public XRoot(global::PubMed.Eutils.MedlineDate root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.MedlineDate MedlineDate {  get {return rootObject as global::PubMed.Eutils.MedlineDate; } }
+        
+        public XRoot(global::PubMed.Eutils.MedlinePgn root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.MedlinePgn MedlinePgn {  get {return rootObject as global::PubMed.Eutils.MedlinePgn; } }
+        
+        public XRoot(global::PubMed.Eutils.MedlineTA root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.MedlineTA MedlineTA {  get {return rootObject as global::PubMed.Eutils.MedlineTA; } }
+        
+        public XRoot(global::PubMed.Eutils.Minute root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Minute Minute {  get {return rootObject as global::PubMed.Eutils.Minute; } }
+        
+        public XRoot(global::PubMed.Eutils.Month root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Month Month {  get {return rootObject as global::PubMed.Eutils.Month; } }
+        
+        public XRoot(global::PubMed.Eutils.NameOfSubstance root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.NameOfSubstance NameOfSubstance {  get {return rootObject as global::PubMed.Eutils.NameOfSubstance; } }
+        
+        public XRoot(global::PubMed.Eutils.NlmUniqueID root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.NlmUniqueID NlmUniqueID {  get {return rootObject as global::PubMed.Eutils.NlmUniqueID; } }
+        
+        public XRoot(global::PubMed.Eutils.Note root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Note Note {  get {return rootObject as global::PubMed.Eutils.Note; } }
+        
+        public XRoot(global::PubMed.Eutils.NumberOfReferences root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.NumberOfReferences NumberOfReferences {  get {return rootObject as global::PubMed.Eutils.NumberOfReferences; } }
+        
+        public XRoot(global::PubMed.Eutils.PMID root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.PMID PMID {  get {return rootObject as global::PubMed.Eutils.PMID; } }
+        
+        public XRoot(global::PubMed.Eutils.PublicationStatus root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.PublicationStatus PublicationStatus {  get {return rootObject as global::PubMed.Eutils.PublicationStatus; } }
+        
+        public XRoot(global::PubMed.Eutils.PublicationType root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.PublicationType PublicationType {  get {return rootObject as global::PubMed.Eutils.PublicationType; } }
+        
+        public XRoot(global::PubMed.Eutils.RefSource root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.RefSource RefSource {  get {return rootObject as global::PubMed.Eutils.RefSource; } }
+        
+        public XRoot(global::PubMed.Eutils.RegistryNumber root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.RegistryNumber RegistryNumber {  get {return rootObject as global::PubMed.Eutils.RegistryNumber; } }
+        
+        public XRoot(global::PubMed.Eutils.Season root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Season Season {  get {return rootObject as global::PubMed.Eutils.Season; } }
+        
+        public XRoot(global::PubMed.Eutils.Second root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Second Second {  get {return rootObject as global::PubMed.Eutils.Second; } }
+        
+        public XRoot(global::PubMed.Eutils.SpaceFlightMission root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.SpaceFlightMission SpaceFlightMission {  get {return rootObject as global::PubMed.Eutils.SpaceFlightMission; } }
+        
+        public XRoot(global::PubMed.Eutils.StartPage root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.StartPage StartPage {  get {return rootObject as global::PubMed.Eutils.StartPage; } }
+        
+        public XRoot(global::PubMed.Eutils.Suffix root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Suffix Suffix {  get {return rootObject as global::PubMed.Eutils.Suffix; } }
+        
+        public XRoot(global::PubMed.Eutils.Title root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Title Title {  get {return rootObject as global::PubMed.Eutils.Title; } }
+        
+        public XRoot(global::PubMed.Eutils.VernacularTitle root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.VernacularTitle VernacularTitle {  get {return rootObject as global::PubMed.Eutils.VernacularTitle; } }
+        
+        public XRoot(global::PubMed.Eutils.Volume root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Volume Volume {  get {return rootObject as global::PubMed.Eutils.Volume; } }
+        
+        public XRoot(global::PubMed.Eutils.Year root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::PubMed.Eutils.Year Year {  get {return rootObject as global::PubMed.Eutils.Year; } }
     }
 }

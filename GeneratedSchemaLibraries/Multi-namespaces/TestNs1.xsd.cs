@@ -30,79 +30,6 @@ namespace urn.test.namespace1 {
     /// </summary>
     public partial class ItsNotRight : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ButItsOkXName = System.Xml.Linq.XName.Get("ButItsOk", "urn:test:namespace1");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-		public static explicit operator ItsNotRight(XElement xe) { return XTypedServices.ToXTypedElement<ItsNotRight>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static ItsNotRight() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ButItsOkXName));
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Regular expression: (ButItsOk)
-        /// </para>
-        /// </summary>
-        public ItsNotRight() {
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (ButItsOk)
-        /// </para>
-        /// </summary>
-        public virtual XTypedElement ButItsOk {
-            get {
-                XElement x = this.GetElement(ButItsOkXName);
-                return ((XTypedElement)(x));
-            }
-            set {
-                this.SetElement(ButItsOkXName, value);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
         }
@@ -127,113 +54,54 @@ namespace urn.test.namespace1 {
             return XTypedServices.Parse<ItsNotRight>(xml);
         }
         
+		public static explicit operator ItsNotRight(XElement xe) { return XTypedServices.ToXTypedElement<ItsNotRight>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<ItsNotRight>(this);
         }
         
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ButItsOkXName, typeof(XTypedElement));
+        /// <summary>
+        /// <para>
+        /// Regular expression: (ButItsOk)
+        /// </para>
+        /// </summary>
+        public ItsNotRight() {
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ButItsOkXName = System.Xml.Linq.XName.Get("ButItsOk", "urn:test:namespace1");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (ButItsOk)
+        /// </para>
+        /// </summary>
+        public virtual XTypedElement ButItsOk {
+            get {
+                XElement x = this.GetElement(ButItsOkXName);
+                return ((XTypedElement)(x));
+            }
+            set {
+                this.SetElement(ButItsOkXName, value);
+            }
         }
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
-    /// </para>
-    /// </summary>
-    public partial class Combined : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TestElement1XName = System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1");
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1");
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ItsNotRightXName = System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TestElement2XName = System.Xml.Linq.XName.Get("TestElement2", "urn:test:namespace2");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Combined", "urn:test:namespace1");
+        static ItsNotRight() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ButItsOkXName));
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-		public static explicit operator Combined(XElement xe) { return XTypedServices.ToXTypedElement<Combined>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static Combined() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TestElement1XName), new NamedContentModelEntity(ItsNotRightXName), new NamedContentModelEntity(TestElement2XName));
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
-        /// </para>
-        /// </summary>
-        public Combined() {
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
-        /// </para>
-        /// </summary>
-        public virtual TestElement1 TestElement1 {
-            get {
-                XElement x = this.GetElement(TestElement1XName);
-                return ((TestElement1)(x));
-            }
-            set {
-                this.SetElement(TestElement1XName, value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
-        /// </para>
-        /// </summary>
-        public virtual ItsNotRight ItsNotRight {
-            get {
-                XElement x = this.GetElement(ItsNotRightXName);
-                return ((ItsNotRight)(x));
-            }
-            set {
-                this.SetElement(ItsNotRightXName, value);
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
-        /// </para>
-        /// </summary>
-        public virtual urn.test.namespace2.TestElement2 TestElement2 {
-            get {
-                XElement x = this.GetElement(TestElement2XName);
-                return ((urn.test.namespace2.TestElement2)(x));
-            }
-            set {
-                this.SetElement(TestElement2XName, value);
-            }
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ButItsOkXName, typeof(XTypedElement));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -241,6 +109,13 @@ namespace urn.test.namespace1 {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -263,6 +138,14 @@ namespace urn.test.namespace1 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
+    /// </para>
+    /// </summary>
+    public partial class Combined : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -288,9 +171,95 @@ namespace urn.test.namespace1 {
             return XTypedServices.Parse<Combined>(xml);
         }
         
+		public static explicit operator Combined(XElement xe) { return XTypedServices.ToXTypedElement<Combined>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<Combined>(this);
         }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
+        /// </para>
+        /// </summary>
+        public Combined() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TestElement1XName = System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
+        /// </para>
+        /// </summary>
+        public virtual TestElement1 TestElement1 {
+            get {
+                XElement x = this.GetElement(TestElement1XName);
+                return ((TestElement1)(x));
+            }
+            set {
+                this.SetElement(TestElement1XName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ItsNotRightXName = System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
+        /// </para>
+        /// </summary>
+        public virtual ItsNotRight ItsNotRight {
+            get {
+                XElement x = this.GetElement(ItsNotRightXName);
+                return ((ItsNotRight)(x));
+            }
+            set {
+                this.SetElement(ItsNotRightXName, value);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TestElement2XName = System.Xml.Linq.XName.Get("TestElement2", "urn:test:namespace2");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (TestElement1, ItsNotRight, TestElement2)
+        /// </para>
+        /// </summary>
+        public virtual urn.test.namespace2.TestElement2 TestElement2 {
+            get {
+                XElement x = this.GetElement(TestElement2XName);
+                return ((urn.test.namespace2.TestElement2)(x));
+            }
+            set {
+                this.SetElement(TestElement2XName, value);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Combined", "urn:test:namespace1");
+        
+        static Combined() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(TestElement1XName), new NamedContentModelEntity(ItsNotRightXName), new NamedContentModelEntity(TestElement2XName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(TestElement1XName, typeof(TestElement1));
@@ -298,117 +267,18 @@ namespace urn.test.namespace1 {
             localElementDictionary.Add(TestElement2XName, typeof(urn.test.namespace2.TestElement2));
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-    }
-    
-    public partial class TElement1 : XTypedElement, IXMetaData {
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TElement1", "urn:test:namespace1");
-        
-		public static explicit operator TElement1(XElement xe) { return XTypedServices.ToXTypedElement<TElement1>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public TElement1() {
-        }
-        
-        public virtual string TypedValue {
-            get {
-                XElement x = this.Untyped;
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-            set {
-                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TElement1>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
-    public partial class TestElement1 : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private TElement1 ContentField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1");
-        
-		public static explicit operator TestElement1(XElement xe) { return XTypedServices.ToXTypedElement<TestElement1, TElement1>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public TestElement1() {
-            SetInnerType(new TElement1());
-        }
-        
-        public TestElement1(TElement1 content) {
-            SetInnerType(content);
-        }
-        
-        public override XElement Untyped {
-            get {
-                return base.Untyped;
-            }
-            set {
-                base.Untyped = value;
-                this.ContentField.Untyped = value;
-            }
-        }
-        
-        public virtual TElement1 Content {
-            get {
-                return ContentField;
-            }
-        }
-        
-        public virtual string TypedValue {
-            get {
-                return this.ContentField.TypedValue;
-            }
-            set {
-                this.ContentField.TypedValue = value;
-            }
-        }
-        
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
-                IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
-                return schemaMetaData.LocalElementsDictionary;
+                return localElementDictionary;
             }
         }
         
-        XTypedElement IXMetaData.Content {
-            get {
-                return this.Content;
-            }
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -431,6 +301,62 @@ namespace urn.test.namespace1 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class TElement1 : XTypedElement, IXMetaData {
+        
+		public static explicit operator TElement1(XElement xe) { return XTypedServices.ToXTypedElement<TElement1>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TElement1>(this);
+        }
+        
+        public TElement1() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
+        
+        public virtual string TypedValue {
+            get {
+                XElement x = this.Untyped;
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TElement1", "urn:test:namespace1");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
+        }
+    }
+    
+    public partial class TestElement1 : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -456,8 +382,33 @@ namespace urn.test.namespace1 {
             return XTypedServices.Parse<TestElement1, TElement1>(xml, LinqToXsdTypeManager.Instance);
         }
         
+		public static explicit operator TestElement1(XElement xe) { return XTypedServices.ToXTypedElement<TestElement1, TElement1>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return new TestElement1(((TElement1)(this.Content.Clone())));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private TElement1 ContentField;
+        
+        public TestElement1() {
+            SetInnerType(new TElement1());
+        }
+        
+        public override XElement Untyped {
+            get {
+                return base.Untyped;
+            }
+            set {
+                base.Untyped = value;
+                this.ContentField.Untyped = value;
+            }
+        }
+        
+        public virtual TElement1 Content {
+            get {
+                return ContentField;
+            }
         }
         
         private void SetInnerType(TElement1 ContentField) {
@@ -465,32 +416,88 @@ namespace urn.test.namespace1 {
             XTypedServices.SetName(this, this.ContentField);
         }
         
+        public TestElement1(TElement1 content) {
+            SetInnerType(content);
+        }
+        
+        public virtual string TypedValue {
+            get {
+                return this.ContentField.TypedValue;
+            }
+            set {
+                this.ContentField.TypedValue = value;
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1");
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
+                return schemaMetaData.LocalElementsDictionary;
+            }
+        }
+        
+        XTypedElement IXMetaData.Content {
+            get {
+                return this.Content;
+            }
+        }
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
+        private LinqToXsdTypeManager() {
+        }
+        
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildTypeDictionary() {
+            typeDictionary.Add(System.Xml.Linq.XName.Get("TElement1", "urn:test:namespace1"), typeof(global::urn.test.namespace1.TElement1));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("TElement2", "urn:test:namespace2"), typeof(global::urn.test.namespace2.TElement2));
+        }
         
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1"), typeof(global::urn.test.namespace1.ItsNotRight));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Combined", "urn:test:namespace1"), typeof(global::urn.test.namespace1.Combined));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("TestElement2", "urn:test:namespace2"), typeof(global::urn.test.namespace2.TestElement2));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1"), typeof(global::urn.test.namespace1.TestElement1));
+        }
+        
         private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
         
+        private static void BuildWrapperDictionary() {
+            wrapperDictionary.Add(typeof(urn.test.namespace1.TestElement1), typeof(global::urn.test.namespace1.TElement1));
+        }
+        
         private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
-        private LinqToXsdTypeManager() {
-        }
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
@@ -503,6 +510,10 @@ namespace urn.test.namespace1 {
             set {
                 schemaSet = value;
             }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
         }
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
@@ -523,34 +534,23 @@ namespace urn.test.namespace1 {
             }
         }
         
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
-        
-        private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("TElement1", "urn:test:namespace1"), typeof(global::urn.test.namespace1.TElement1));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("TElement2", "urn:test:namespace2"), typeof(global::urn.test.namespace2.TElement2));
-        }
-        
-        private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1"), typeof(global::urn.test.namespace1.ItsNotRight));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Combined", "urn:test:namespace1"), typeof(global::urn.test.namespace1.Combined));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("TestElement2", "urn:test:namespace2"), typeof(global::urn.test.namespace2.TestElement2));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("TestElement1", "urn:test:namespace1"), typeof(global::urn.test.namespace1.TestElement1));
-        }
-        
-        private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(urn.test.namespace1.TestElement1), typeof(global::urn.test.namespace1.TElement1));
-        }
-        
-        protected internal static void AddSchemas(XmlSchemaSet schemas) {
-            schemas.Add(schemaSet);
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
         }
         
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("ItsNotRight", "urn:test:namespace1")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -562,41 +562,7 @@ namespace urn.test.namespace1 {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public ItsNotRight ItsNotRight {  get {return rootObject as ItsNotRight; } }
-
-		public Combined Combined {  get {return rootObject as Combined; } }
-
-		public TestElement1 TestElement1 {  get {return rootObject as TestElement1; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(ItsNotRight root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Combined root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(TestElement1 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -695,47 +661,6 @@ namespace urn.test.namespace1 {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::urn.test.namespace1.ItsNotRight ItsNotRight {  get {return rootObject as global::urn.test.namespace1.ItsNotRight; } }
-
-		public global::urn.test.namespace1.Combined Combined {  get {return rootObject as global::urn.test.namespace1.Combined; } }
-
-		public global::urn.test.namespace1.TestElement1 TestElement1 {  get {return rootObject as global::urn.test.namespace1.TestElement1; } }
-
-		public global::urn.test.namespace2.TestElement2 TestElement2 {  get {return rootObject as global::urn.test.namespace2.TestElement2; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::urn.test.namespace1.ItsNotRight root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::urn.test.namespace1.Combined root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::urn.test.namespace1.TestElement1 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::urn.test.namespace2.TestElement2 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -747,6 +672,42 @@ namespace urn.test.namespace1 {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(ItsNotRight root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public ItsNotRight ItsNotRight {  get {return rootObject as ItsNotRight; } }
+        
+        public XRootNamespace(Combined root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Combined Combined {  get {return rootObject as Combined; } }
+        
+        public XRootNamespace(TestElement1 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public TestElement1 TestElement1 {  get {return rootObject as TestElement1; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -845,6 +806,50 @@ namespace urn.test.namespace1 {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::urn.test.namespace1.ItsNotRight root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::urn.test.namespace1.ItsNotRight ItsNotRight {  get {return rootObject as global::urn.test.namespace1.ItsNotRight; } }
+        
+        public XRoot(global::urn.test.namespace1.Combined root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::urn.test.namespace1.Combined Combined {  get {return rootObject as global::urn.test.namespace1.Combined; } }
+        
+        public XRoot(global::urn.test.namespace1.TestElement1 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::urn.test.namespace1.TestElement1 TestElement1 {  get {return rootObject as global::urn.test.namespace1.TestElement1; } }
+        
+        public XRoot(global::urn.test.namespace2.TestElement2 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::urn.test.namespace2.TestElement2 TestElement2 {  get {return rootObject as global::urn.test.namespace2.TestElement2; } }
     }
 }
 namespace urn.test.namespace2 {
@@ -863,34 +868,6 @@ namespace urn.test.namespace2 {
     
     
     public partial class TestElement2 : XTypedElement, IXMetaData {
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TestElement2", "urn:test:namespace2");
-        
-		public static explicit operator TestElement2(XElement xe) { return XTypedServices.ToXTypedElement<TestElement2>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public TestElement2() {
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -916,27 +893,57 @@ namespace urn.test.namespace2 {
             return XTypedServices.Parse<TestElement2>(xml);
         }
         
+		public static explicit operator TestElement2(XElement xe) { return XTypedServices.ToXTypedElement<TestElement2>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<TestElement2>(this);
         }
         
+        public TestElement2() {
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TestElement2", "urn:test:namespace2");
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
     public partial class TElement2 : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TElement2", "urn:test:namespace2");
-        
 		public static explicit operator TElement2(XElement xe) { return XTypedServices.ToXTypedElement<TElement2>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<TElement2>(this);
+        }
         
         public TElement2() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -946,6 +953,12 @@ namespace urn.test.namespace2 {
             set {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("TElement2", "urn:test:namespace2");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -968,14 +981,6 @@ namespace urn.test.namespace2 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<TElement2>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public partial class XRootNamespace {
@@ -986,27 +991,7 @@ namespace urn.test.namespace2 {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public TestElement2 TestElement2 {  get {return rootObject as TestElement2; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(TestElement2 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -1105,5 +1090,25 @@ namespace urn.test.namespace2 {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRootNamespace(TestElement2 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public TestElement2 TestElement2 {  get {return rootObject as TestElement2; } }
     }
 }

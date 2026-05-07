@@ -119,7 +119,7 @@ namespace Xml.Schema.Linq
             // an empty list means the schema has no default target namespace. we'll add a default mapping anyway
             if (!namespacesToRead.Any()) {
                 var defaultNamespace = new Namespace {
-                    DefaultVisibility = GeneratedTypesVisibility.Public.ToKeyword(), 
+                    DefaultVisibility = GeneratedTypesVisibility.Public.ToNamespaceEnum(), 
                     Clr = "Default"
                 };
                 var defaultNamespaceEl = (XElement)defaultNamespace;

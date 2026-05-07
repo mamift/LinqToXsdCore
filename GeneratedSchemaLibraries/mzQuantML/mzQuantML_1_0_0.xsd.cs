@@ -31,108 +31,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class MzQuantMLType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CvListXName = System.Xml.Linq.XName.Get("CvList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProviderXName = System.Xml.Linq.XName.Get("Provider", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AuditCollectionXName = System.Xml.Linq.XName.Get("AuditCollection", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AnalysisSummaryXName = System.Xml.Linq.XName.Get("AnalysisSummary", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InputFilesXName = System.Xml.Linq.XName.Get("InputFiles", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SoftwareListXName = System.Xml.Linq.XName.Get("SoftwareList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataProcessingListXName = System.Xml.Linq.XName.Get("DataProcessingList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BibliographicReferenceXName = System.Xml.Linq.XName.Get("BibliographicReference", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<BibliographicReferenceType> BibliographicReferenceField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AssayListXName = System.Xml.Linq.XName.Get("AssayList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StudyVariableListXName = System.Xml.Linq.XName.Get("StudyVariableList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RatioListXName = System.Xml.Linq.XName.Get("RatioList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinGroupListXName = System.Xml.Linq.XName.Get("ProteinGroupList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinListXName = System.Xml.Linq.XName.Get("ProteinList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideConsensusListXName = System.Xml.Linq.XName.Get("PeptideConsensusList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PeptideConsensusListType> PeptideConsensusListField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SmallMoleculeListXName = System.Xml.Linq.XName.Get("SmallMoleculeList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FeatureListXName = System.Xml.Linq.XName.Get("FeatureList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<FeatureListType> FeatureListField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName creationDateXName = System.Xml.Linq.XName.Get("creationDate", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzQuantMLType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MzQuantMLType(XElement xe) { return XTypedServices.ToXTypedElement<MzQuantMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MzQuantMLType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CvListXName), new NamedContentModelEntity(ProviderXName), new NamedContentModelEntity(AuditCollectionXName), new NamedContentModelEntity(AnalysisSummaryXName), new NamedContentModelEntity(InputFilesXName), new NamedContentModelEntity(SoftwareListXName), new NamedContentModelEntity(DataProcessingListXName), new NamedContentModelEntity(BibliographicReferenceXName), new NamedContentModelEntity(AssayListXName), new NamedContentModelEntity(StudyVariableListXName), new NamedContentModelEntity(RatioListXName), new NamedContentModelEntity(ProteinGroupListXName), new NamedContentModelEntity(ProteinListXName), new NamedContentModelEntity(PeptideConsensusListXName), new NamedContentModelEntity(SmallMoleculeListXName), new NamedContentModelEntity(FeatureListXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MzQuantMLType>(this);
         }
         
         /// <summary>
@@ -145,6 +47,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public MzQuantMLType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CvListXName = System.Xml.Linq.XName.Get("CvList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -164,6 +70,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProviderXName = System.Xml.Linq.XName.Get("Provider", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -175,12 +85,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual ProviderType Provider {
             get {
                 XElement x = this.GetElement(ProviderXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProviderType)(x));
             }
             set {
                 this.SetElement(ProviderXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AuditCollectionXName = System.Xml.Linq.XName.Get("AuditCollection", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -193,12 +110,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual AuditCollectionType AuditCollection {
             get {
                 XElement x = this.GetElement(AuditCollectionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((AuditCollectionType)(x));
             }
             set {
                 this.SetElement(AuditCollectionXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnalysisSummaryXName = System.Xml.Linq.XName.Get("AnalysisSummary", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -221,6 +145,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InputFilesXName = System.Xml.Linq.XName.Get("InputFiles", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -238,6 +166,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetElement(InputFilesXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SoftwareListXName = System.Xml.Linq.XName.Get("SoftwareList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -257,6 +189,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataProcessingListXName = System.Xml.Linq.XName.Get("DataProcessingList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -274,6 +210,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetElement(DataProcessingListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BibliographicReferenceXName = System.Xml.Linq.XName.Get("BibliographicReference", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<BibliographicReferenceType> BibliographicReferenceField;
         
         /// <summary>
         /// <para>
@@ -305,6 +248,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AssayListXName = System.Xml.Linq.XName.Get("AssayList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -323,6 +270,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StudyVariableListXName = System.Xml.Linq.XName.Get("StudyVariableList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -334,12 +285,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual StudyVariableListType StudyVariableList {
             get {
                 XElement x = this.GetElement(StudyVariableListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((StudyVariableListType)(x));
             }
             set {
                 this.SetElement(StudyVariableListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RatioListXName = System.Xml.Linq.XName.Get("RatioList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -352,12 +310,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual RatioListType RatioList {
             get {
                 XElement x = this.GetElement(RatioListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RatioListType)(x));
             }
             set {
                 this.SetElement(RatioListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinGroupListXName = System.Xml.Linq.XName.Get("ProteinGroupList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -370,12 +335,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual ProteinGroupListType ProteinGroupList {
             get {
                 XElement x = this.GetElement(ProteinGroupListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProteinGroupListType)(x));
             }
             set {
                 this.SetElement(ProteinGroupListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinListXName = System.Xml.Linq.XName.Get("ProteinList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -388,12 +360,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual ProteinListType ProteinList {
             get {
                 XElement x = this.GetElement(ProteinListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ProteinListType)(x));
             }
             set {
                 this.SetElement(ProteinListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideConsensusListXName = System.Xml.Linq.XName.Get("PeptideConsensusList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PeptideConsensusListType> PeptideConsensusListField;
         
         /// <summary>
         /// <para>
@@ -425,6 +407,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SmallMoleculeListXName = System.Xml.Linq.XName.Get("SmallMoleculeList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -436,12 +422,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual SmallMoleculeListType SmallMoleculeList {
             get {
                 XElement x = this.GetElement(SmallMoleculeListXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((SmallMoleculeListType)(x));
             }
             set {
                 this.SetElement(SmallMoleculeListXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FeatureListXName = System.Xml.Linq.XName.Get("FeatureList", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<FeatureListType> FeatureListField;
         
         /// <summary>
         /// <para>
@@ -473,6 +469,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName creationDateXName = System.Xml.Linq.XName.Get("creationDate", "");
+        
         /// <summary>
         /// <para>
         /// The date on which the file was produced.
@@ -494,6 +494,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// The version of the schema this instance document refers to, in the format x.y.z. Changes to z should not affect prevent instance documents from validating. 
@@ -511,6 +515,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -530,6 +538,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        
         /// <summary>
         /// <para>
         /// Optional name for the file or experiment.
@@ -541,6 +553,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -548,11 +563,47 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzQuantMLType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static MzQuantMLType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CvListXName), new NamedContentModelEntity(ProviderXName), new NamedContentModelEntity(AuditCollectionXName), new NamedContentModelEntity(AnalysisSummaryXName), new NamedContentModelEntity(InputFilesXName), new NamedContentModelEntity(SoftwareListXName), new NamedContentModelEntity(DataProcessingListXName), new NamedContentModelEntity(BibliographicReferenceXName), new NamedContentModelEntity(AssayListXName), new NamedContentModelEntity(StudyVariableListXName), new NamedContentModelEntity(RatioListXName), new NamedContentModelEntity(ProteinGroupListXName), new NamedContentModelEntity(ProteinListXName), new NamedContentModelEntity(PeptideConsensusListXName), new NamedContentModelEntity(SmallMoleculeListXName), new NamedContentModelEntity(FeatureListXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(CvListXName, typeof(CvListType));
+            localElementDictionary.Add(ProviderXName, typeof(ProviderType));
+            localElementDictionary.Add(AuditCollectionXName, typeof(AuditCollectionType));
+            localElementDictionary.Add(AnalysisSummaryXName, typeof(ParamListType));
+            localElementDictionary.Add(InputFilesXName, typeof(InputFilesType));
+            localElementDictionary.Add(SoftwareListXName, typeof(SoftwareListType));
+            localElementDictionary.Add(DataProcessingListXName, typeof(DataProcessingListType));
+            localElementDictionary.Add(BibliographicReferenceXName, typeof(BibliographicReferenceType));
+            localElementDictionary.Add(AssayListXName, typeof(AssayListType));
+            localElementDictionary.Add(StudyVariableListXName, typeof(StudyVariableListType));
+            localElementDictionary.Add(RatioListXName, typeof(RatioListType));
+            localElementDictionary.Add(ProteinGroupListXName, typeof(ProteinGroupListType));
+            localElementDictionary.Add(ProteinListXName, typeof(ProteinListType));
+            localElementDictionary.Add(PeptideConsensusListXName, typeof(PeptideConsensusListType));
+            localElementDictionary.Add(SmallMoleculeListXName, typeof(SmallMoleculeListType));
+            localElementDictionary.Add(FeatureListXName, typeof(FeatureListType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -575,33 +626,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MzQuantMLType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(CvListXName, typeof(CvListType));
-            localElementDictionary.Add(ProviderXName, typeof(ProviderType));
-            localElementDictionary.Add(AuditCollectionXName, typeof(AuditCollectionType));
-            localElementDictionary.Add(AnalysisSummaryXName, typeof(ParamListType));
-            localElementDictionary.Add(InputFilesXName, typeof(InputFilesType));
-            localElementDictionary.Add(SoftwareListXName, typeof(SoftwareListType));
-            localElementDictionary.Add(DataProcessingListXName, typeof(DataProcessingListType));
-            localElementDictionary.Add(BibliographicReferenceXName, typeof(BibliographicReferenceType));
-            localElementDictionary.Add(AssayListXName, typeof(AssayListType));
-            localElementDictionary.Add(StudyVariableListXName, typeof(StudyVariableListType));
-            localElementDictionary.Add(RatioListXName, typeof(RatioListType));
-            localElementDictionary.Add(ProteinGroupListXName, typeof(ProteinGroupListType));
-            localElementDictionary.Add(ProteinListXName, typeof(ProteinListType));
-            localElementDictionary.Add(PeptideConsensusListXName, typeof(PeptideConsensusListType));
-            localElementDictionary.Add(SmallMoleculeListXName, typeof(SmallMoleculeListType));
-            localElementDictionary.Add(FeatureListXName, typeof(FeatureListType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -614,26 +638,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class CvListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CvXName = System.Xml.Linq.XName.Get("Cv", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CvType> CvField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CvListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator CvListType(XElement xe) { return XTypedServices.ToXTypedElement<CvListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static CvListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CvXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CvListType>(this);
         }
         
         /// <summary>
@@ -646,6 +654,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public CvListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CvXName = System.Xml.Linq.XName.Get("Cv", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CvType> CvField;
         
         /// <summary>
         /// <para>
@@ -677,11 +692,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CvListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static CvListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(CvXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(CvXName, typeof(CvType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -704,18 +740,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CvListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(CvXName, typeof(CvType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -728,48 +752,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class InputFilesType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RawFilesGroupXName = System.Xml.Linq.XName.Get("RawFilesGroup", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<RawFilesGroupType> RawFilesGroupField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MethodFilesXName = System.Xml.Linq.XName.Get("MethodFiles", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdentificationFilesXName = System.Xml.Linq.XName.Get("IdentificationFiles", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SearchDatabaseXName = System.Xml.Linq.XName.Get("SearchDatabase", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SearchDatabaseType> SearchDatabaseField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SourceFileXName = System.Xml.Linq.XName.Get("SourceFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SourceFileType> SourceFileField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputFilesType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator InputFilesType(XElement xe) { return XTypedServices.ToXTypedElement<InputFilesType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static InputFilesType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RawFilesGroupXName), new NamedContentModelEntity(MethodFilesXName), new NamedContentModelEntity(IdentificationFilesXName), new NamedContentModelEntity(SearchDatabaseXName), new NamedContentModelEntity(SourceFileXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<InputFilesType>(this);
         }
         
         /// <summary>
@@ -782,6 +768,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public InputFilesType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RawFilesGroupXName = System.Xml.Linq.XName.Get("RawFilesGroup", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<RawFilesGroupType> RawFilesGroupField;
         
         /// <summary>
         /// <para>
@@ -813,6 +806,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MethodFilesXName = System.Xml.Linq.XName.Get("MethodFiles", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -824,12 +821,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual MethodFilesType MethodFiles {
             get {
                 XElement x = this.GetElement(MethodFilesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((MethodFilesType)(x));
             }
             set {
                 this.SetElement(MethodFilesXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdentificationFilesXName = System.Xml.Linq.XName.Get("IdentificationFiles", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -842,12 +846,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IdentificationFilesType IdentificationFiles {
             get {
                 XElement x = this.GetElement(IdentificationFilesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((IdentificationFilesType)(x));
             }
             set {
                 this.SetElement(IdentificationFilesXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SearchDatabaseXName = System.Xml.Linq.XName.Get("SearchDatabase", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SearchDatabaseType> SearchDatabaseField;
         
         /// <summary>
         /// <para>
@@ -879,6 +893,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SourceFileXName = System.Xml.Linq.XName.Get("SourceFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SourceFileType> SourceFileField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -909,11 +930,36 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("InputFilesType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static InputFilesType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RawFilesGroupXName), new NamedContentModelEntity(MethodFilesXName), new NamedContentModelEntity(IdentificationFilesXName), new NamedContentModelEntity(SearchDatabaseXName), new NamedContentModelEntity(SourceFileXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RawFilesGroupXName, typeof(RawFilesGroupType));
+            localElementDictionary.Add(MethodFilesXName, typeof(MethodFilesType));
+            localElementDictionary.Add(IdentificationFilesXName, typeof(IdentificationFilesType));
+            localElementDictionary.Add(SearchDatabaseXName, typeof(SearchDatabaseType));
+            localElementDictionary.Add(SourceFileXName, typeof(SourceFileType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -936,22 +982,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<InputFilesType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RawFilesGroupXName, typeof(RawFilesGroupType));
-            localElementDictionary.Add(MethodFilesXName, typeof(MethodFilesType));
-            localElementDictionary.Add(IdentificationFilesXName, typeof(IdentificationFilesType));
-            localElementDictionary.Add(SearchDatabaseXName, typeof(SearchDatabaseType));
-            localElementDictionary.Add(SourceFileXName, typeof(SourceFileType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -964,42 +994,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class SearchDatabaseType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.ExternalDataType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DatabaseNameXName = System.Xml.Linq.XName.Get("DatabaseName", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName releaseDateXName = System.Xml.Linq.XName.Get("releaseDate", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName numDatabaseEntriesXName = System.Xml.Linq.XName.Get("numDatabaseEntries", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchDatabaseType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SearchDatabaseType(XElement xe) { return XTypedServices.ToXTypedElement<SearchDatabaseType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SearchDatabaseType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new NamedContentModelEntity(DatabaseNameXName), new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SearchDatabaseType>(this);
         }
         
         /// <summary>
@@ -1012,6 +1010,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public SearchDatabaseType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DatabaseNameXName = System.Xml.Linq.XName.Get("DatabaseName", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -1033,6 +1035,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetElement(DatabaseNameXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -1067,6 +1076,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// The version of the database.
@@ -1078,12 +1091,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName releaseDateXName = System.Xml.Linq.XName.Get("releaseDate", "");
         
         /// <summary>
         /// <para>
@@ -1106,6 +1126,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName numDatabaseEntriesXName = System.Xml.Linq.XName.Get("numDatabaseEntries", "");
+        
         /// <summary>
         /// <para>
         /// The total number of entries in the database.
@@ -1127,11 +1151,35 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SearchDatabaseType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static SearchDatabaseType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new NamedContentModelEntity(DatabaseNameXName), new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+            localElementDictionary.Add(DatabaseNameXName, typeof(ParamType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1153,21 +1201,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SearchDatabaseType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-            localElementDictionary.Add(DatabaseNameXName, typeof(ParamType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -1181,19 +1214,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class SourceFileType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.ExternalDataType, IXMetaData {
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SourceFileType(XElement xe) { return XTypedServices.ToXTypedElement<SourceFileType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SourceFileType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SourceFileType>(this);
         }
         
         /// <summary>
@@ -1207,11 +1231,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public SourceFileType() {
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SourceFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static SourceFileType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1234,19 +1280,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SourceFileType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1259,26 +1292,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class StudyVariableListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StudyVariableXName = System.Xml.Linq.XName.Get("StudyVariable", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<StudyVariableType> StudyVariableField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("StudyVariableListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator StudyVariableListType(XElement xe) { return XTypedServices.ToXTypedElement<StudyVariableListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static StudyVariableListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(StudyVariableXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<StudyVariableListType>(this);
         }
         
         /// <summary>
@@ -1291,6 +1308,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public StudyVariableListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StudyVariableXName = System.Xml.Linq.XName.Get("StudyVariable", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<StudyVariableType> StudyVariableField;
         
         /// <summary>
         /// <para>
@@ -1322,11 +1346,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("StudyVariableListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static StudyVariableListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(StudyVariableXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(StudyVariableXName, typeof(StudyVariableType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1349,18 +1394,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<StudyVariableListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(StudyVariableXName, typeof(StudyVariableType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1370,25 +1403,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class CvType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName fullNameXName = System.Xml.Linq.XName.Get("fullName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CvType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator CvType(XElement xe) { return XTypedServices.ToXTypedElement<CvType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CvType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -1397,6 +1416,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public CvType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName fullNameXName = System.Xml.Linq.XName.Get("fullName", "");
         
         /// <summary>
         /// <para>
@@ -1416,6 +1439,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// The version of the CV.
@@ -1427,12 +1454,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string version {
             get {
                 XAttribute x = this.Attribute(versionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(versionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName uriXName = System.Xml.Linq.XName.Get("uri", "");
         
         /// <summary>
         /// <para>
@@ -1452,6 +1486,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier of this cv within the document to be referenced by cvParam elements.
@@ -1468,6 +1506,12 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             set {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CvType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1490,14 +1534,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CvType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -1510,26 +1546,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class RatioListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RatioXName = System.Xml.Linq.XName.Get("Ratio", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<RatioType> RatioField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RatioListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RatioListType(XElement xe) { return XTypedServices.ToXTypedElement<RatioListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RatioListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RatioXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RatioListType>(this);
         }
         
         /// <summary>
@@ -1542,6 +1562,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public RatioListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RatioXName = System.Xml.Linq.XName.Get("Ratio", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<RatioType> RatioField;
         
         /// <summary>
         /// <para>
@@ -1573,11 +1600,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RatioListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static RatioListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RatioXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RatioXName, typeof(RatioType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1600,18 +1648,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RatioListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RatioXName, typeof(RatioType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1624,69 +1660,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ProteinGroupListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinGroupXName = System.Xml.Linq.XName.Get("ProteinGroup", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProteinGroupType> ProteinGroupField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> AssayQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinGroupListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinGroupListType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinGroupListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinGroupListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinGroupXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinGroupListType>(this);
         }
         
         /// <summary>
@@ -1699,6 +1676,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ProteinGroupListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinGroupXName = System.Xml.Linq.XName.Get("ProteinGroup", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProteinGroupType> ProteinGroupField;
         
         /// <summary>
         /// <para>
@@ -1729,6 +1713,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -1763,6 +1754,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> AssayQuantLayerField;
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about protein groups related to different assays i.e. the column index MUST refer to Assays defined in the file.  
@@ -1795,6 +1793,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -1829,6 +1834,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about protein groups related to different ratios i.e. the column index MUST refer to Ratio elements defined in the file.
@@ -1843,12 +1852,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual RatioQuantLayerType RatioQuantLayer {
             get {
                 XElement x = this.GetElement(RatioQuantLayerXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RatioQuantLayerType)(x));
             }
             set {
                 this.SetElement(RatioQuantLayerXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -1883,6 +1902,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -1916,6 +1942,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -1934,11 +1964,38 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinGroupListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ProteinGroupListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinGroupXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ProteinGroupXName, typeof(ProteinGroupType));
+            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
+            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1961,24 +2018,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinGroupListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ProteinGroupXName, typeof(ProteinGroupType));
-            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
-            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1991,69 +2030,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ProteinListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinXName = System.Xml.Linq.XName.Get("Protein", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProteinType> ProteinField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> AssayQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinListType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinListType>(this);
         }
         
         /// <summary>
@@ -2066,6 +2046,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ProteinListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinXName = System.Xml.Linq.XName.Get("Protein", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProteinType> ProteinField;
         
         /// <summary>
         /// <para>
@@ -2096,6 +2083,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -2130,6 +2124,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> AssayQuantLayerField;
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about proteins related to different assays i.e. the column index MUST refer to Assays defined in the file.  
@@ -2162,6 +2163,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -2196,6 +2204,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about proteins related to different ratios i.e. the column index MUST refer to Ratio elements defined in the file.
@@ -2210,12 +2222,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual RatioQuantLayerType RatioQuantLayer {
             get {
                 XElement x = this.GetElement(RatioQuantLayerXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RatioQuantLayerType)(x));
             }
             set {
                 this.SetElement(RatioQuantLayerXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -2250,6 +2272,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -2283,6 +2312,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -2301,11 +2334,38 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ProteinListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ProteinXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ProteinXName, typeof(ProteinType));
+            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
+            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2328,24 +2388,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ProteinXName, typeof(ProteinType));
-            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
-            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2358,55 +2400,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ProteinGroupType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdentificationRefXName = System.Xml.Linq.XName.Get("IdentificationRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<IdentificationRefType> IdentificationRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProteinRefXName = System.Xml.Linq.XName.Get("ProteinRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProteinRefType> ProteinRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinGroupType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinGroupType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinGroupType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinGroupType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentificationRefXName), new NamedContentModelEntity(ProteinRefXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinGroupType>(this);
         }
         
         /// <summary>
@@ -2419,6 +2416,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ProteinGroupType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdentificationRefXName = System.Xml.Linq.XName.Get("IdentificationRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<IdentificationRefType> IdentificationRefField;
         
         /// <summary>
         /// <para>
@@ -2453,6 +2457,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProteinRefXName = System.Xml.Linq.XName.Get("ProteinRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProteinRefType> ProteinRefField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, repeating
@@ -2483,6 +2494,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -2516,6 +2534,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -2548,6 +2573,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -2567,6 +2596,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
+        
         /// <summary>
         /// <para>
         /// The search database from which this protein group was identified
@@ -2585,11 +2618,35 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinGroupType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ProteinGroupType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentificationRefXName), new NamedContentModelEntity(ProteinRefXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IdentificationRefXName, typeof(IdentificationRefType));
+            localElementDictionary.Add(ProteinRefXName, typeof(ProteinRefType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2612,21 +2669,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinGroupType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(IdentificationRefXName, typeof(IdentificationRefType));
-            localElementDictionary.Add(ProteinRefXName, typeof(ProteinRefType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2639,37 +2681,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ProteinRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName protein_refXName = System.Xml.Linq.XName.Get("protein_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinRefType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinRefType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinRefType>(this);
         }
         
         /// <summary>
@@ -2682,6 +2697,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ProteinRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -2716,6 +2738,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -2749,6 +2778,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName protein_refXName = System.Xml.Linq.XName.Get("protein_ref", "");
+        
         /// <summary>
         /// <para>
         /// Reference to one of the proteins within the ProteinList.
@@ -2767,11 +2800,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ProteinRefType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2794,19 +2849,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinRefType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2819,56 +2861,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ProteinType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdentificationRefXName = System.Xml.Linq.XName.Get("IdentificationRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<IdentificationRefType> IdentificationRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideConsensus_refsXName = System.Xml.Linq.XName.Get("PeptideConsensus_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProteinType(XElement xe) { return XTypedServices.ToXTypedElement<ProteinType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProteinType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentificationRefXName), new NamedContentModelEntity(PeptideConsensus_refsXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProteinType>(this);
         }
         
         /// <summary>
@@ -2881,6 +2877,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ProteinType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdentificationRefXName = System.Xml.Linq.XName.Get("IdentificationRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<IdentificationRefType> IdentificationRefField;
         
         /// <summary>
         /// <para>
@@ -2915,6 +2918,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideConsensus_refsXName = System.Xml.Linq.XName.Get("PeptideConsensus_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// The peptides on which the quantitative protein values in the QuantLayer(s) are based. Note this should not be used to report all peptides that can support the protein identification, only quantitation.
@@ -2929,12 +2936,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> PeptideConsensus_refs {
             get {
                 XElement x = this.GetElement(PeptideConsensus_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetListElement(PeptideConsensus_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -2969,6 +2986,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -3002,6 +3026,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -3019,6 +3047,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
         
         /// <summary>
         /// <para>
@@ -3038,6 +3070,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
+        
         /// <summary>
         /// <para>
         /// The search database from which this protein was identified
@@ -3056,11 +3092,35 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProteinType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ProteinType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentificationRefXName), new NamedContentModelEntity(PeptideConsensus_refsXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IdentificationRefXName, typeof(IdentificationRefType));
+            localElementDictionary.Add(PeptideConsensus_refsXName, typeof(string));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3083,21 +3143,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProteinType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(IdentificationRefXName, typeof(IdentificationRefType));
-            localElementDictionary.Add(PeptideConsensus_refsXName, typeof(string));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3107,17 +3152,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class IdentificationRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName id_refsXName = System.Xml.Linq.XName.Get("id_refs", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName identificationFile_refXName = System.Xml.Linq.XName.Get("identificationFile_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentificationRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator IdentificationRefType(XElement xe) { return XTypedServices.ToXTypedElement<IdentificationRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<IdentificationRefType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -3126,6 +3165,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public IdentificationRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName id_refsXName = System.Xml.Linq.XName.Get("id_refs", "");
         
         /// <summary>
         /// <para>
@@ -3145,6 +3188,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName identificationFile_refXName = System.Xml.Linq.XName.Get("identificationFile_ref", "");
+        
         /// <summary>
         /// <para>
         /// Reference to the IdentificationFile object in this file.
@@ -3161,6 +3208,12 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             set {
                 this.SetAttribute(identificationFile_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentificationRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3183,14 +3236,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<IdentificationRefType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -3200,25 +3245,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class EvidenceRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName assay_refsXName = System.Xml.Linq.XName.Get("assay_refs", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName id_refsXName = System.Xml.Linq.XName.Get("id_refs", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName identificationFile_refXName = System.Xml.Linq.XName.Get("identificationFile_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName feature_refXName = System.Xml.Linq.XName.Get("feature_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EvidenceRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator EvidenceRefType(XElement xe) { return XTypedServices.ToXTypedElement<EvidenceRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<EvidenceRefType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -3227,6 +3258,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public EvidenceRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName assay_refsXName = System.Xml.Linq.XName.Get("assay_refs", "");
         
         /// <summary>
         /// <para>
@@ -3246,6 +3281,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName id_refsXName = System.Xml.Linq.XName.Get("id_refs", "");
+        
         /// <summary>
         /// <para>
         /// One or more reference to the unique identifiers for objects identifying the relevant Peptide in an external file. This attribute MUST be present if an identificationFile_ref is given.
@@ -3257,12 +3296,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> id_refs {
             get {
                 XAttribute x = this.Attribute(id_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetListAttribute(id_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName identificationFile_refXName = System.Xml.Linq.XName.Get("identificationFile_ref", "");
         
         /// <summary>
         /// <para>
@@ -3275,12 +3321,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string identificationFile_ref {
             get {
                 XAttribute x = this.Attribute(identificationFile_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(identificationFile_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName feature_refXName = System.Xml.Linq.XName.Get("feature_ref", "");
         
         /// <summary>
         /// <para>
@@ -3300,6 +3353,12 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("EvidenceRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -3320,14 +3379,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<EvidenceRefType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -3337,17 +3388,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class DBIdentificationRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName id_refXName = System.Xml.Linq.XName.Get("id_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DBIdentificationRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator DBIdentificationRefType(XElement xe) { return XTypedServices.ToXTypedElement<DBIdentificationRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DBIdentificationRefType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -3356,6 +3401,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public DBIdentificationRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName id_refXName = System.Xml.Linq.XName.Get("id_ref", "");
         
         /// <summary>
         /// <para>
@@ -3375,6 +3424,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
+        
         /// <summary>
         /// <para>
         /// Reference to the SearchDatabase object in this file from which this identification was made.
@@ -3391,6 +3444,12 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             set {
                 this.SetAttribute(searchDatabase_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DBIdentificationRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3413,14 +3472,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DBIdentificationRefType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -3433,73 +3484,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class PeptideConsensusListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideConsensusXName = System.Xml.Linq.XName.Get("PeptideConsensus", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PeptideConsensusType> PeptideConsensusField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> AssayQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName finalResultXName = System.Xml.Linq.XName.Get("finalResult", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideConsensusListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PeptideConsensusListType(XElement xe) { return XTypedServices.ToXTypedElement<PeptideConsensusListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PeptideConsensusListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideConsensusXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PeptideConsensusListType>(this);
         }
         
         /// <summary>
@@ -3512,6 +3500,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public PeptideConsensusListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideConsensusXName = System.Xml.Linq.XName.Get("PeptideConsensus", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PeptideConsensusType> PeptideConsensusField;
         
         /// <summary>
         /// <para>
@@ -3542,6 +3537,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -3576,6 +3578,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> AssayQuantLayerField;
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about peptides related to different assays i.e. the column index MUST refer to Assays defined in the file.  
@@ -3608,6 +3617,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -3642,6 +3658,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about peptides related to different ratios i.e. the column index MUST refer to Ratio elements defined in the file.  
@@ -3656,12 +3676,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual RatioQuantLayerType RatioQuantLayer {
             get {
                 XElement x = this.GetElement(RatioQuantLayerXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RatioQuantLayerType)(x));
             }
             set {
                 this.SetElement(RatioQuantLayerXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -3696,6 +3726,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -3729,6 +3766,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -3746,6 +3787,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName finalResultXName = System.Xml.Linq.XName.Get("finalResult", "");
         
         /// <summary>
         /// <para>
@@ -3765,11 +3810,38 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideConsensusListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static PeptideConsensusListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideConsensusXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PeptideConsensusXName, typeof(PeptideConsensusType));
+            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
+            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3792,24 +3864,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PeptideConsensusListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PeptideConsensusXName, typeof(PeptideConsensusType));
-            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
-            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -3822,69 +3876,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class SmallMoleculeListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SmallMoleculeXName = System.Xml.Linq.XName.Get("SmallMolecule", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SmallMoleculeType> SmallMoleculeField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> AssayQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SmallMoleculeListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SmallMoleculeListType(XElement xe) { return XTypedServices.ToXTypedElement<SmallMoleculeListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SmallMoleculeListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SmallMoleculeXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SmallMoleculeListType>(this);
         }
         
         /// <summary>
@@ -3897,6 +3892,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public SmallMoleculeListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SmallMoleculeXName = System.Xml.Linq.XName.Get("SmallMolecule", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SmallMoleculeType> SmallMoleculeField;
         
         /// <summary>
         /// <para>
@@ -3927,6 +3929,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GlobalQuantLayerXName = System.Xml.Linq.XName.Get("GlobalQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<GlobalQuantLayerType> GlobalQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -3961,6 +3970,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AssayQuantLayerXName = System.Xml.Linq.XName.Get("AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> AssayQuantLayerField;
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about small molecules related to different assays i.e. the column index MUST refer to Assays defined in the file.
@@ -3993,6 +4009,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> StudyVariableQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -4027,6 +4050,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RatioQuantLayerXName = System.Xml.Linq.XName.Get("RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about small molecules related to different ratios i.e. the column index MUST refer to Ratio elements defined in the file. 
@@ -4041,12 +4068,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual RatioQuantLayerType RatioQuantLayer {
             get {
                 XElement x = this.GetElement(RatioQuantLayerXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RatioQuantLayerType)(x));
             }
             set {
                 this.SetElement(RatioQuantLayerXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4081,6 +4118,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -4114,6 +4158,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -4132,11 +4180,38 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SmallMoleculeListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static SmallMoleculeListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SmallMoleculeXName), new NamedContentModelEntity(GlobalQuantLayerXName), new NamedContentModelEntity(AssayQuantLayerXName), new NamedContentModelEntity(StudyVariableQuantLayerXName), new NamedContentModelEntity(RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SmallMoleculeXName, typeof(SmallMoleculeType));
+            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
+            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4159,24 +4234,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SmallMoleculeListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SmallMoleculeXName, typeof(SmallMoleculeType));
-            localElementDictionary.Add(GlobalQuantLayerXName, typeof(GlobalQuantLayerType));
-            localElementDictionary.Add(AssayQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(StudyVariableQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(RatioQuantLayerXName, typeof(RatioQuantLayerType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4189,63 +4246,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class PeptideConsensusType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeptideSequenceXName = System.Xml.Linq.XName.Get("PeptideSequence", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ModificationType> ModificationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EvidenceRefXName = System.Xml.Linq.XName.Get("EvidenceRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<EvidenceRefType> EvidenceRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName chargeXName = System.Xml.Linq.XName.Get("charge", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideConsensusType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PeptideConsensusType(XElement xe) { return XTypedServices.ToXTypedElement<PeptideConsensusType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PeptideConsensusType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideSequenceXName), new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(EvidenceRefXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PeptideConsensusType>(this);
         }
         
         /// <summary>
@@ -4258,6 +4262,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public PeptideConsensusType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeptideSequenceXName = System.Xml.Linq.XName.Get("PeptideSequence", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -4273,6 +4281,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string PeptideSequence {
             get {
                 XElement x = this.GetElement(PeptideSequenceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -4284,6 +4295,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ModificationType> ModificationField;
         
         /// <summary>
         /// <para>
@@ -4315,6 +4333,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EvidenceRefXName = System.Xml.Linq.XName.Get("EvidenceRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<EvidenceRefType> EvidenceRefField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, repeating
@@ -4344,6 +4369,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4378,6 +4410,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -4411,6 +4450,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -4428,6 +4471,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName chargeXName = System.Xml.Linq.XName.Get("charge", "");
         
         /// <summary>
         /// <para>
@@ -4447,6 +4494,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
+        
         /// <summary>
         /// <para>
         /// The search database from which this peptide was identified
@@ -4458,6 +4509,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string searchDatabase_ref {
             get {
                 XAttribute x = this.Attribute(searchDatabase_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -4465,11 +4519,36 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PeptideConsensusType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static PeptideConsensusType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PeptideSequenceXName), new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(EvidenceRefXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PeptideSequenceXName, typeof(string));
+            localElementDictionary.Add(ModificationXName, typeof(ModificationType));
+            localElementDictionary.Add(EvidenceRefXName, typeof(EvidenceRefType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4492,22 +4571,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PeptideConsensusType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PeptideSequenceXName, typeof(string));
-            localElementDictionary.Add(ModificationXName, typeof(ModificationType));
-            localElementDictionary.Add(EvidenceRefXName, typeof(EvidenceRefType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4520,55 +4583,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class SmallMoleculeType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SmallMolModificationType> ModificationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DBIdentificationRefXName = System.Xml.Linq.XName.Get("DBIdentificationRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<DBIdentificationRefType> DBIdentificationRefField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName Feature_refsXName = System.Xml.Linq.XName.Get("Feature_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SmallMoleculeType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SmallMoleculeType(XElement xe) { return XTypedServices.ToXTypedElement<SmallMoleculeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SmallMoleculeType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(DBIdentificationRefXName), new NamedContentModelEntity(Feature_refsXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SmallMoleculeType>(this);
         }
         
         /// <summary>
@@ -4581,6 +4599,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public SmallMoleculeType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SmallMolModificationType> ModificationField;
         
         /// <summary>
         /// <para>
@@ -4611,6 +4636,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DBIdentificationRefXName = System.Xml.Linq.XName.Get("DBIdentificationRef", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<DBIdentificationRefType> DBIdentificationRefField;
         
         /// <summary>
         /// <para>
@@ -4645,6 +4677,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName Feature_refsXName = System.Xml.Linq.XName.Get("Feature_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Optional references to features on which quantification values about the SmallMolecule in the QuantLayer were based.
@@ -4659,12 +4695,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> Feature_refs {
             get {
                 XElement x = this.GetElement(Feature_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetListElement(Feature_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4698,6 +4744,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
         
         /// <summary>
         /// <para>
@@ -4732,6 +4785,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -4750,11 +4807,36 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SmallMoleculeType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static SmallMoleculeType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ModificationXName), new NamedContentModelEntity(DBIdentificationRefXName), new NamedContentModelEntity(Feature_refsXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ModificationXName, typeof(SmallMolModificationType));
+            localElementDictionary.Add(DBIdentificationRefXName, typeof(DBIdentificationRefType));
+            localElementDictionary.Add(Feature_refsXName, typeof(string));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4777,22 +4859,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SmallMoleculeType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ModificationXName, typeof(SmallMolModificationType));
-            localElementDictionary.Add(DBIdentificationRefXName, typeof(DBIdentificationRefType));
-            localElementDictionary.Add(Feature_refsXName, typeof(string));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -4805,42 +4871,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ModificationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ModificationType(XElement xe) { return XTypedServices.ToXTypedElement<ModificationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ModificationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ModificationType>(this);
         }
         
         /// <summary>
@@ -4853,6 +4887,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ModificationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -4886,6 +4927,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
         
         /// <summary>
         /// <para>
@@ -4908,6 +4953,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
+        
         /// <summary>
         /// <para>
         /// Specification of the residue (amino acid) on which the modification occurs. If multiple values are given, it is assumed that the exact residue modified is unknown i.e. the modification is to ONE of the residues listed. Multiple residues would usually only be specified for PMF data. For N or C terminal modifications, the residue attribute should be omitted.
@@ -4919,12 +4968,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> residues {
             get {
                 XAttribute x = this.Attribute(residuesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetListAttribute(residuesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
         
         /// <summary>
         /// <para>
@@ -4947,6 +5003,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
+        
         /// <summary>
         /// <para>
         /// Atomic mass delta when assuming only the most common isotope of elements in Daltons. 
@@ -4968,11 +5028,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModificationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ModificationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4995,18 +5076,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ModificationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5019,34 +5088,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class SmallMolModificationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SmallMolModificationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SmallMolModificationType(XElement xe) { return XTypedServices.ToXTypedElement<SmallMolModificationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SmallMolModificationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SmallMolModificationType>(this);
         }
         
         /// <summary>
@@ -5059,6 +5104,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public SmallMolModificationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -5092,6 +5144,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName avgMassDeltaXName = System.Xml.Linq.XName.Get("avgMassDelta", "");
         
         /// <summary>
         /// <para>
@@ -5115,6 +5171,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName monoisotopicMassDeltaXName = System.Xml.Linq.XName.Get("monoisotopicMassDelta", "");
+        
         /// <summary>
         /// <para>
         /// Atomic mass delta when assuming only the most common isotope of
@@ -5137,11 +5197,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SmallMolModificationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static SmallMolModificationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5164,18 +5245,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SmallMolModificationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5188,35 +5257,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class QuantLayerType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataTypeXName = System.Xml.Linq.XName.Get("DataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ColumnIndexXName = System.Xml.Linq.XName.Get("ColumnIndex", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataMatrixXName = System.Xml.Linq.XName.Get("DataMatrix", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("QuantLayerType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator QuantLayerType(XElement xe) { return XTypedServices.ToXTypedElement<QuantLayerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static QuantLayerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataTypeXName), new NamedContentModelEntity(ColumnIndexXName), new NamedContentModelEntity(DataMatrixXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<QuantLayerType>(this);
         }
         
         /// <summary>
@@ -5229,6 +5273,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public QuantLayerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataTypeXName = System.Xml.Linq.XName.Get("DataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -5251,6 +5299,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ColumnIndexXName = System.Xml.Linq.XName.Get("ColumnIndex", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Space separated unique identifiers for each column of data, MUST refer to an object in the file i.e. StudyVariable or Assay, depending on the context where the QuantLayer resides.
@@ -5272,6 +5324,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataMatrixXName = System.Xml.Linq.XName.Get("DataMatrix", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -5289,6 +5345,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetElement(DataMatrixXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -5308,11 +5368,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("QuantLayerType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static QuantLayerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataTypeXName), new NamedContentModelEntity(ColumnIndexXName), new NamedContentModelEntity(DataMatrixXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DataTypeXName, typeof(cvParamRefType));
+            localElementDictionary.Add(ColumnIndexXName, typeof(string));
+            localElementDictionary.Add(DataMatrixXName, typeof(DataMatrixType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5335,20 +5418,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<QuantLayerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DataTypeXName, typeof(cvParamRefType));
-            localElementDictionary.Add(ColumnIndexXName, typeof(string));
-            localElementDictionary.Add(DataMatrixXName, typeof(DataMatrixType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5361,31 +5430,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class RatioQuantLayerType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ColumnIndexXName = System.Xml.Linq.XName.Get("ColumnIndex", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataMatrixXName = System.Xml.Linq.XName.Get("DataMatrix", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RatioQuantLayerType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RatioQuantLayerType(XElement xe) { return XTypedServices.ToXTypedElement<RatioQuantLayerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RatioQuantLayerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ColumnIndexXName), new NamedContentModelEntity(DataMatrixXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RatioQuantLayerType>(this);
         }
         
         /// <summary>
@@ -5398,6 +5446,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public RatioQuantLayerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ColumnIndexXName = System.Xml.Linq.XName.Get("ColumnIndex", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -5420,6 +5472,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataMatrixXName = System.Xml.Linq.XName.Get("DataMatrix", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -5437,6 +5493,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetElement(DataMatrixXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -5456,11 +5516,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RatioQuantLayerType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static RatioQuantLayerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ColumnIndexXName), new NamedContentModelEntity(DataMatrixXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ColumnIndexXName, typeof(string));
+            localElementDictionary.Add(DataMatrixXName, typeof(DataMatrixType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5483,19 +5565,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RatioQuantLayerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ColumnIndexXName, typeof(string));
-            localElementDictionary.Add(DataMatrixXName, typeof(DataMatrixType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5508,31 +5577,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class GlobalQuantLayerType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ColumnDefinitionXName = System.Xml.Linq.XName.Get("ColumnDefinition", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataMatrixXName = System.Xml.Linq.XName.Get("DataMatrix", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GlobalQuantLayerType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator GlobalQuantLayerType(XElement xe) { return XTypedServices.ToXTypedElement<GlobalQuantLayerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static GlobalQuantLayerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ColumnDefinitionXName), new NamedContentModelEntity(DataMatrixXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GlobalQuantLayerType>(this);
         }
         
         /// <summary>
@@ -5545,6 +5593,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public GlobalQuantLayerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ColumnDefinitionXName = System.Xml.Linq.XName.Get("ColumnDefinition", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -5567,6 +5619,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataMatrixXName = System.Xml.Linq.XName.Get("DataMatrix", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -5584,6 +5640,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetElement(DataMatrixXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -5603,11 +5663,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GlobalQuantLayerType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static GlobalQuantLayerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ColumnDefinitionXName), new NamedContentModelEntity(DataMatrixXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ColumnDefinitionXName, typeof(ColumnDefinitionType));
+            localElementDictionary.Add(DataMatrixXName, typeof(DataMatrixType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5630,19 +5712,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<GlobalQuantLayerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ColumnDefinitionXName, typeof(ColumnDefinitionType));
-            localElementDictionary.Add(DataMatrixXName, typeof(DataMatrixType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5655,26 +5724,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ColumnDefinitionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ColumnXName = System.Xml.Linq.XName.Get("Column", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ColumnType> ColumnField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ColumnDefinitionType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ColumnDefinitionType(XElement xe) { return XTypedServices.ToXTypedElement<ColumnDefinitionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ColumnDefinitionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ColumnXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ColumnDefinitionType>(this);
         }
         
         /// <summary>
@@ -5687,6 +5740,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ColumnDefinitionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ColumnXName = System.Xml.Linq.XName.Get("Column", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ColumnType> ColumnField;
         
         /// <summary>
         /// <para>
@@ -5718,11 +5778,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ColumnDefinitionType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ColumnDefinitionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ColumnXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ColumnXName, typeof(ColumnType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5745,18 +5826,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ColumnDefinitionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ColumnXName, typeof(ColumnType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5769,27 +5838,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ColumnType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataTypeXName = System.Xml.Linq.XName.Get("DataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName indexXName = System.Xml.Linq.XName.Get("index", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ColumnType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ColumnType(XElement xe) { return XTypedServices.ToXTypedElement<ColumnType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ColumnType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataTypeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ColumnType>(this);
         }
         
         /// <summary>
@@ -5802,6 +5854,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ColumnType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataTypeXName = System.Xml.Linq.XName.Get("DataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -5824,6 +5880,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName indexXName = System.Xml.Linq.XName.Get("index", "");
+        
         /// <summary>
         /// <para>
         /// The column position within the data matrix - incrementing positive integers starting from zero.
@@ -5842,11 +5902,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ColumnType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ColumnType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataTypeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DataTypeXName, typeof(cvParamRefType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5869,18 +5950,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ColumnType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DataTypeXName, typeof(cvParamRefType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5893,26 +5962,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class DataMatrixType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RowXName = System.Xml.Linq.XName.Get("Row", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<RowType> RowField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataMatrixType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DataMatrixType(XElement xe) { return XTypedServices.ToXTypedElement<DataMatrixType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DataMatrixType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RowXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DataMatrixType>(this);
         }
         
         /// <summary>
@@ -5925,6 +5978,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public DataMatrixType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RowXName = System.Xml.Linq.XName.Get("Row", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<RowType> RowField;
         
         /// <summary>
         /// <para>
@@ -5956,11 +6016,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataMatrixType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static DataMatrixType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RowXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RowXName, typeof(RowType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5983,18 +6064,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DataMatrixType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RowXName, typeof(RowType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6004,17 +6073,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class RowType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName object_refXName = System.Xml.Linq.XName.Get("object_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RowType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator RowType(XElement xe) { return XTypedServices.ToXTypedElement<RowType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RowType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -6023,6 +6086,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public RowType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual IList<object> TypedValue {
             get {
@@ -6033,6 +6100,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetListValueWithValidation(value, "TypedValue", global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.listOfDoublesOrNulls.TypeDefinition);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName object_refXName = System.Xml.Linq.XName.Get("object_ref", "");
         
         /// <summary>
         /// <para>
@@ -6052,6 +6123,12 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RowType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -6072,14 +6149,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RowType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -6092,45 +6161,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class StudyVariableType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName Assay_refsXName = System.Xml.Linq.XName.Get("Assay_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("StudyVariableType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator StudyVariableType(XElement xe) { return XTypedServices.ToXTypedElement<StudyVariableType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static StudyVariableType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(Assay_refsXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<StudyVariableType>(this);
         }
         
         /// <summary>
@@ -6143,6 +6177,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public StudyVariableType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -6177,6 +6218,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -6210,6 +6258,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName Assay_refsXName = System.Xml.Linq.XName.Get("Assay_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Reference to the assays that are contained within this study variable.
@@ -6231,6 +6283,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -6249,6 +6305,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        
         /// <summary>
         /// <para>
         /// A human readable name for the study variable.
@@ -6260,6 +6320,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -6267,11 +6330,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("StudyVariableType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static StudyVariableType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(Assay_refsXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(Assay_refsXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6294,20 +6380,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<StudyVariableType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(Assay_refsXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6320,30 +6392,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class AssayListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AssayXName = System.Xml.Linq.XName.Get("Assay", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<AssayType> AssayField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AssayListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AssayListType(XElement xe) { return XTypedServices.ToXTypedElement<AssayListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AssayListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AssayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AssayListType>(this);
         }
         
         /// <summary>
@@ -6356,6 +6408,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public AssayListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AssayXName = System.Xml.Linq.XName.Get("Assay", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<AssayType> AssayField;
         
         /// <summary>
         /// <para>
@@ -6387,6 +6446,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -6405,11 +6468,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AssayListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static AssayListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(AssayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(AssayXName, typeof(AssayType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6432,18 +6516,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AssayListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(AssayXName, typeof(AssayType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6456,53 +6528,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class AssayType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LabelXName = System.Xml.Linq.XName.Get("Label", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdentificationFile_refsXName = System.Xml.Linq.XName.Get("IdentificationFile_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rawFilesGroup_refXName = System.Xml.Linq.XName.Get("rawFilesGroup_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AssayType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AssayType(XElement xe) { return XTypedServices.ToXTypedElement<AssayType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AssayType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LabelXName), new NamedContentModelEntity(IdentificationFile_refsXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AssayType>(this);
         }
         
         /// <summary>
@@ -6515,6 +6544,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public AssayType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LabelXName = System.Xml.Linq.XName.Get("Label", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -6534,6 +6567,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdentificationFile_refsXName = System.Xml.Linq.XName.Get("IdentificationFile_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// One or more identification files used within this assay.
@@ -6548,12 +6585,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> IdentificationFile_refs {
             get {
                 XElement x = this.GetElement(IdentificationFile_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetListElement(IdentificationFile_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -6588,6 +6635,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -6621,6 +6675,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -6639,6 +6697,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        
         /// <summary>
         /// <para>
         /// Human readable name for the assay.
@@ -6650,12 +6712,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(nameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rawFilesGroup_refXName = System.Xml.Linq.XName.Get("rawFilesGroup_ref", "");
         
         /// <summary>
         /// <para>
@@ -6668,6 +6737,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string rawFilesGroup_ref {
             get {
                 XAttribute x = this.Attribute(rawFilesGroup_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -6675,11 +6747,35 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AssayType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static AssayType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LabelXName), new NamedContentModelEntity(IdentificationFile_refsXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LabelXName, typeof(LabelType));
+            localElementDictionary.Add(IdentificationFile_refsXName, typeof(string));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6702,21 +6798,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AssayType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(LabelXName, typeof(LabelType));
-            localElementDictionary.Add(IdentificationFile_refsXName, typeof(string));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6729,44 +6810,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class RawFilesGroupType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RawFileXName = System.Xml.Linq.XName.Get("RawFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<RawFileType> RawFileField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RawFilesGroupType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RawFilesGroupType(XElement xe) { return XTypedServices.ToXTypedElement<RawFilesGroupType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RawFilesGroupType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RawFileXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RawFilesGroupType>(this);
         }
         
         /// <summary>
@@ -6779,6 +6826,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public RawFilesGroupType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RawFileXName = System.Xml.Linq.XName.Get("RawFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<RawFileType> RawFileField;
         
         /// <summary>
         /// <para>
@@ -6810,6 +6864,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -6843,6 +6904,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -6875,6 +6943,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -6894,11 +6966,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RawFilesGroupType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static RawFilesGroupType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RawFileXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RawFileXName, typeof(RawFileType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6921,20 +7016,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RawFilesGroupType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RawFileXName, typeof(RawFileType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6947,37 +7028,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class RawFileType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.ExternalDataType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName methodFile_refXName = System.Xml.Linq.XName.Get("methodFile_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RawFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RawFileType(XElement xe) { return XTypedServices.ToXTypedElement<RawFileType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RawFileType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RawFileType>(this);
         }
         
         /// <summary>
@@ -6990,6 +7044,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public RawFileType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -7024,6 +7085,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -7057,6 +7125,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName methodFile_refXName = System.Xml.Linq.XName.Get("methodFile_ref", "");
+        
         /// <summary>
         /// <para>
         /// An optional reference to a methods file used in association with a raw file, for example a TraML file used for SRM analysis.
@@ -7068,6 +7140,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string methodFile_ref {
             get {
                 XAttribute x = this.Attribute(methodFile_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -7075,11 +7150,35 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RawFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static RawFileType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7102,21 +7201,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RawFileType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7129,26 +7213,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class IdentificationFilesType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdentificationFileXName = System.Xml.Linq.XName.Get("IdentificationFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<IdentificationFileType> IdentificationFileField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentificationFilesType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator IdentificationFilesType(XElement xe) { return XTypedServices.ToXTypedElement<IdentificationFilesType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static IdentificationFilesType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentificationFileXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<IdentificationFilesType>(this);
         }
         
         /// <summary>
@@ -7161,6 +7229,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public IdentificationFilesType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdentificationFileXName = System.Xml.Linq.XName.Get("IdentificationFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<IdentificationFileType> IdentificationFileField;
         
         /// <summary>
         /// <para>
@@ -7192,11 +7267,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentificationFilesType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static IdentificationFilesType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(IdentificationFileXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IdentificationFileXName, typeof(IdentificationFileType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7219,18 +7315,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<IdentificationFilesType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(IdentificationFileXName, typeof(IdentificationFileType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7243,37 +7327,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class IdentificationFileType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.ExternalDataType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentificationFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator IdentificationFileType(XElement xe) { return XTypedServices.ToXTypedElement<IdentificationFileType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static IdentificationFileType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<IdentificationFileType>(this);
         }
         
         /// <summary>
@@ -7286,6 +7343,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public IdentificationFileType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -7320,6 +7384,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -7353,6 +7424,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName searchDatabase_refXName = System.Xml.Linq.XName.Get("searchDatabase_ref", "");
+        
         /// <summary>
         /// <para>
         /// Reference to the SearchDatabase object in this file from which this identification was made.
@@ -7364,6 +7439,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string searchDatabase_ref {
             get {
                 XAttribute x = this.Attribute(searchDatabase_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -7371,11 +7449,35 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentificationFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static IdentificationFileType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7398,21 +7500,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<IdentificationFileType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7425,26 +7512,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class MethodFilesType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MethodFileXName = System.Xml.Linq.XName.Get("MethodFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<MethodFileType> MethodFileField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MethodFilesType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MethodFilesType(XElement xe) { return XTypedServices.ToXTypedElement<MethodFilesType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MethodFilesType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MethodFileXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MethodFilesType>(this);
         }
         
         /// <summary>
@@ -7457,6 +7528,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public MethodFilesType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MethodFileXName = System.Xml.Linq.XName.Get("MethodFile", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<MethodFileType> MethodFileField;
         
         /// <summary>
         /// <para>
@@ -7488,11 +7566,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MethodFilesType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static MethodFilesType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MethodFileXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(MethodFileXName, typeof(MethodFileType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7514,18 +7613,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MethodFilesType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(MethodFileXName, typeof(MethodFileType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -7539,19 +7626,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class MethodFileType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.ExternalDataType, IXMetaData {
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MethodFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator MethodFileType(XElement xe) { return XTypedServices.ToXTypedElement<MethodFileType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static MethodFileType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<MethodFileType>(this);
         }
         
         /// <summary>
@@ -7565,11 +7643,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public MethodFileType() {
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MethodFileType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static MethodFileType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7592,19 +7692,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<MethodFileType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7617,26 +7704,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class LabelType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ModParamType> ModificationField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("LabelType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator LabelType(XElement xe) { return XTypedServices.ToXTypedElement<LabelType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static LabelType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ModificationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<LabelType>(this);
         }
         
         /// <summary>
@@ -7649,6 +7720,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public LabelType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ModificationXName = System.Xml.Linq.XName.Get("Modification", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ModParamType> ModificationField;
         
         /// <summary>
         /// <para>
@@ -7680,11 +7758,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("LabelType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static LabelType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ModificationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ModificationXName, typeof(ModParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7707,18 +7806,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<LabelType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ModificationXName, typeof(ModParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7731,47 +7818,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class RatioType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RatioCalculationXName = System.Xml.Linq.XName.Get("RatioCalculation", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NumeratorDataTypeXName = System.Xml.Linq.XName.Get("NumeratorDataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DenominatorDataTypeXName = System.Xml.Linq.XName.Get("DenominatorDataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName numerator_refXName = System.Xml.Linq.XName.Get("numerator_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName denominator_refXName = System.Xml.Linq.XName.Get("denominator_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RatioType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RatioType(XElement xe) { return XTypedServices.ToXTypedElement<RatioType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RatioType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RatioCalculationXName), new NamedContentModelEntity(NumeratorDataTypeXName), new NamedContentModelEntity(DenominatorDataTypeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RatioType>(this);
         }
         
         /// <summary>
@@ -7784,6 +7834,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public RatioType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RatioCalculationXName = System.Xml.Linq.XName.Get("RatioCalculation", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -7799,12 +7853,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual ParamListType RatioCalculation {
             get {
                 XElement x = this.GetElement(RatioCalculationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParamListType)(x));
             }
             set {
                 this.SetElement(RatioCalculationXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NumeratorDataTypeXName = System.Xml.Linq.XName.Get("NumeratorDataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -7827,6 +7888,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DenominatorDataTypeXName = System.Xml.Linq.XName.Get("DenominatorDataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Type of data used for the denominator of the ratio e.g. cvParam = "Intensity|RawAbundance|NormalisedAbundance|PeptideCount|ConfidenceScore|Anova|MaxFoldChange|...."
@@ -7848,6 +7913,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName numerator_refXName = System.Xml.Linq.XName.Get("numerator_ref", "");
+        
         /// <summary>
         /// <para>
         /// Reference to a StudyVariable or an Assay.
@@ -7865,6 +7934,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(numerator_refXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName denominator_refXName = System.Xml.Linq.XName.Get("denominator_ref", "");
         
         /// <summary>
         /// <para>
@@ -7884,6 +7957,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -7902,6 +7979,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        
         /// <summary>
         /// <para>
         /// Optional name for the ratio.
@@ -7913,6 +7994,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -7920,11 +8004,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RatioType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static RatioType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RatioCalculationXName), new NamedContentModelEntity(NumeratorDataTypeXName), new NamedContentModelEntity(DenominatorDataTypeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RatioCalculationXName, typeof(ParamListType));
+            localElementDictionary.Add(NumeratorDataTypeXName, typeof(cvParamRefType));
+            localElementDictionary.Add(DenominatorDataTypeXName, typeof(cvParamRefType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7947,20 +8054,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RatioType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RatioCalculationXName, typeof(ParamListType));
-            localElementDictionary.Add(NumeratorDataTypeXName, typeof(cvParamRefType));
-            localElementDictionary.Add(DenominatorDataTypeXName, typeof(cvParamRefType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -7973,73 +8066,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class FeatureListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FeatureXName = System.Xml.Linq.XName.Get("Feature", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<FeatureType> FeatureField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FeatureQuantLayerXName = System.Xml.Linq.XName.Get("FeatureQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<GlobalQuantLayerType> FeatureQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MS2AssayQuantLayerXName = System.Xml.Linq.XName.Get("MS2AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> MS2AssayQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MS2StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("MS2StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<QuantLayerType> MS2StudyVariableQuantLayerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MS2RatioQuantLayerXName = System.Xml.Linq.XName.Get("MS2RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rawFilesGroup_refXName = System.Xml.Linq.XName.Get("rawFilesGroup_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FeatureListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator FeatureListType(XElement xe) { return XTypedServices.ToXTypedElement<FeatureListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static FeatureListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FeatureXName), new NamedContentModelEntity(FeatureQuantLayerXName), new NamedContentModelEntity(MS2AssayQuantLayerXName), new NamedContentModelEntity(MS2StudyVariableQuantLayerXName), new NamedContentModelEntity(MS2RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FeatureListType>(this);
         }
         
         /// <summary>
@@ -8052,6 +8082,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public FeatureListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FeatureXName = System.Xml.Linq.XName.Get("Feature", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<FeatureType> FeatureField;
         
         /// <summary>
         /// <para>
@@ -8082,6 +8119,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FeatureQuantLayerXName = System.Xml.Linq.XName.Get("FeatureQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<GlobalQuantLayerType> FeatureQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -8116,6 +8160,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MS2AssayQuantLayerXName = System.Xml.Linq.XName.Get("MS2AssayQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> MS2AssayQuantLayerField;
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about MS2 features (e.g. iTRAQ) related to different assays i.e. the column index MUST refer to Assays defined in the file.
@@ -8148,6 +8199,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MS2StudyVariableQuantLayerXName = System.Xml.Linq.XName.Get("MS2StudyVariableQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<QuantLayerType> MS2StudyVariableQuantLayerField;
         
         /// <summary>
         /// <para>
@@ -8182,6 +8240,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MS2RatioQuantLayerXName = System.Xml.Linq.XName.Get("MS2RatioQuantLayer", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Quant layer for reporting data values about MS2 features (e.g. iTRAQ) related to different ratios i.e. the column index MUST refer to Ratio elements defined in the file.
@@ -8196,12 +8258,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual RatioQuantLayerType MS2RatioQuantLayer {
             get {
                 XElement x = this.GetElement(MS2RatioQuantLayerXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((RatioQuantLayerType)(x));
             }
             set {
                 this.SetElement(MS2RatioQuantLayerXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -8236,6 +8308,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -8268,6 +8347,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rawFilesGroup_refXName = System.Xml.Linq.XName.Get("rawFilesGroup_ref", "");
         
         /// <summary>
         /// <para>
@@ -8287,6 +8370,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -8305,11 +8392,38 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FeatureListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static FeatureListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FeatureXName), new NamedContentModelEntity(FeatureQuantLayerXName), new NamedContentModelEntity(MS2AssayQuantLayerXName), new NamedContentModelEntity(MS2StudyVariableQuantLayerXName), new NamedContentModelEntity(MS2RatioQuantLayerXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FeatureXName, typeof(FeatureType));
+            localElementDictionary.Add(FeatureQuantLayerXName, typeof(GlobalQuantLayerType));
+            localElementDictionary.Add(MS2AssayQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(MS2StudyVariableQuantLayerXName, typeof(QuantLayerType));
+            localElementDictionary.Add(MS2RatioQuantLayerXName, typeof(RatioQuantLayerType));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8332,24 +8446,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FeatureListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(FeatureXName, typeof(FeatureType));
-            localElementDictionary.Add(FeatureQuantLayerXName, typeof(GlobalQuantLayerType));
-            localElementDictionary.Add(MS2AssayQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(MS2StudyVariableQuantLayerXName, typeof(QuantLayerType));
-            localElementDictionary.Add(MS2RatioQuantLayerXName, typeof(RatioQuantLayerType));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8362,65 +8458,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class FeatureType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MassTraceXName = System.Xml.Linq.XName.Get("MassTrace", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rtXName = System.Xml.Linq.XName.Get("rt", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName mzXName = System.Xml.Linq.XName.Get("mz", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName chargeXName = System.Xml.Linq.XName.Get("charge", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName chromatogram_refsXName = System.Xml.Linq.XName.Get("chromatogram_refs", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName spectrum_refsXName = System.Xml.Linq.XName.Get("spectrum_refs", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName rawFile_refXName = System.Xml.Linq.XName.Get("rawFile_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FeatureType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator FeatureType(XElement xe) { return XTypedServices.ToXTypedElement<FeatureType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static FeatureType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MassTraceXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FeatureType>(this);
         }
         
         /// <summary>
@@ -8433,6 +8474,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public FeatureType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MassTraceXName = System.Xml.Linq.XName.Get("MassTrace", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -8448,12 +8493,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<double> MassTrace {
             get {
                 XElement x = this.GetElement(MassTraceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<double>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
             }
             set {
                 this.SetListElement(MassTraceXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -8488,6 +8543,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -8521,6 +8583,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// Unique identifier for the feature.
@@ -8538,6 +8604,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rtXName = System.Xml.Linq.XName.Get("rt", "");
         
         /// <summary>
         /// <para>
@@ -8557,6 +8627,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName mzXName = System.Xml.Linq.XName.Get("mz", "");
+        
         /// <summary>
         /// <para>
         /// The monoisotopic peak on the mass over charge axis in daltons over charge.
@@ -8574,6 +8648,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(mzXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName chargeXName = System.Xml.Linq.XName.Get("charge", "");
         
         /// <summary>
         /// <para>
@@ -8593,6 +8671,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName chromatogram_refsXName = System.Xml.Linq.XName.Get("chromatogram_refs", "");
+        
         /// <summary>
         /// <para>
         /// The identifier(s) of the chromatogram from which this feature was detected, for example required for SRM analyses. Multiple values can be provided separated by spaces following the XSD:IDREFS style.
@@ -8604,12 +8686,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string chromatogram_refs {
             get {
                 XAttribute x = this.Attribute(chromatogram_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(chromatogram_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName spectrum_refsXName = System.Xml.Linq.XName.Get("spectrum_refs", "");
         
         /// <summary>
         /// <para>
@@ -8622,12 +8711,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string spectrum_refs {
             get {
                 XAttribute x = this.Attribute(spectrum_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(spectrum_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName rawFile_refXName = System.Xml.Linq.XName.Get("rawFile_ref", "");
         
         /// <summary>
         /// <para>
@@ -8640,6 +8736,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string rawFile_ref {
             get {
                 XAttribute x = this.Attribute(rawFile_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -8647,11 +8746,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FeatureType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static FeatureType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(MassTraceXName), new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(MassTraceXName, typeof(double));
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8674,20 +8796,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FeatureType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(MassTraceXName, typeof(double));
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8700,31 +8808,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ModParamType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName massDeltaXName = System.Xml.Linq.XName.Get("massDelta", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ModParamType(XElement xe) { return XTypedServices.ToXTypedElement<ModParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ModParamType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ModParamType>(this);
         }
         
         /// <summary>
@@ -8737,6 +8824,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ModParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -8759,6 +8850,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName massDeltaXName = System.Xml.Linq.XName.Get("massDelta", "");
+        
         /// <summary>
         /// <para>
         /// The mass delta of the modification in Daltons
@@ -8780,6 +8875,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName residuesXName = System.Xml.Linq.XName.Get("residues", "");
+        
         /// <summary>
         /// <para>
         /// The residue(s) to which the modification has been applied.
@@ -8791,6 +8890,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> residues {
             get {
                 XAttribute x = this.Attribute(residuesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -8798,11 +8900,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ModParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ModParamType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8825,18 +8948,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ModParamType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8849,26 +8960,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class DataProcessingListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataProcessingXName = System.Xml.Linq.XName.Get("DataProcessing", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<DataProcessingType> DataProcessingField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataProcessingListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DataProcessingListType(XElement xe) { return XTypedServices.ToXTypedElement<DataProcessingListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DataProcessingListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataProcessingXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DataProcessingListType>(this);
         }
         
         /// <summary>
@@ -8881,6 +8976,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public DataProcessingListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataProcessingXName = System.Xml.Linq.XName.Get("DataProcessing", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<DataProcessingType> DataProcessingField;
         
         /// <summary>
         /// <para>
@@ -8912,11 +9014,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataProcessingListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static DataProcessingListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DataProcessingXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DataProcessingXName, typeof(DataProcessingType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -8939,18 +9062,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DataProcessingListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DataProcessingXName, typeof(DataProcessingType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -8963,46 +9074,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class DataProcessingType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName InputObject_refsXName = System.Xml.Linq.XName.Get("InputObject_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OutputObject_refsXName = System.Xml.Linq.XName.Get("OutputObject_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProcessingMethodXName = System.Xml.Linq.XName.Get("ProcessingMethod", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ProcessingMethodType> ProcessingMethodField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName software_refXName = System.Xml.Linq.XName.Get("software_ref", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName orderXName = System.Xml.Linq.XName.Get("order", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataProcessingType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator DataProcessingType(XElement xe) { return XTypedServices.ToXTypedElement<DataProcessingType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static DataProcessingType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputObject_refsXName), new NamedContentModelEntity(OutputObject_refsXName), new NamedContentModelEntity(ProcessingMethodXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<DataProcessingType>(this);
         }
         
         /// <summary>
@@ -9015,6 +9090,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public DataProcessingType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InputObject_refsXName = System.Xml.Linq.XName.Get("InputObject_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -9030,12 +9109,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> InputObject_refs {
             get {
                 XElement x = this.GetElement(InputObject_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetListElement(InputObject_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OutputObject_refsXName = System.Xml.Linq.XName.Get("OutputObject_refs", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -9051,12 +9137,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual IList<string> OutputObject_refs {
             get {
                 XElement x = this.GetElement(OutputObject_refsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseListValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetListElement(OutputObject_refsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProcessingMethodXName = System.Xml.Linq.XName.Get("ProcessingMethod", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<ProcessingMethodType> ProcessingMethodField;
         
         /// <summary>
         /// <para>
@@ -9088,6 +9184,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
+        
         /// <summary>
         /// <para>
         /// The unique identifier for the object within the file.
@@ -9105,6 +9205,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName software_refXName = System.Xml.Linq.XName.Get("software_ref", "");
         
         /// <summary>
         /// <para>
@@ -9124,6 +9228,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName orderXName = System.Xml.Linq.XName.Get("order", "");
+        
         /// <summary>
         /// <para>
         /// This attributes allows a series of consecutive steps to be placed in the correct order, start counting from 1.
@@ -9142,11 +9250,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("DataProcessingType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static DataProcessingType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(InputObject_refsXName), new NamedContentModelEntity(OutputObject_refsXName), new NamedContentModelEntity(ProcessingMethodXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(InputObject_refsXName, typeof(string));
+            localElementDictionary.Add(OutputObject_refsXName, typeof(string));
+            localElementDictionary.Add(ProcessingMethodXName, typeof(ProcessingMethodType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9169,20 +9300,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<DataProcessingType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(InputObject_refsXName, typeof(string));
-            localElementDictionary.Add(OutputObject_refsXName, typeof(string));
-            localElementDictionary.Add(ProcessingMethodXName, typeof(ProcessingMethodType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9195,37 +9312,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ProcessingMethodType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName orderXName = System.Xml.Linq.XName.Get("order", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProcessingMethodType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProcessingMethodType(XElement xe) { return XTypedServices.ToXTypedElement<ProcessingMethodType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProcessingMethodType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProcessingMethodType>(this);
         }
         
         /// <summary>
@@ -9238,6 +9328,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ProcessingMethodType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -9272,6 +9369,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -9305,6 +9409,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName orderXName = System.Xml.Linq.XName.Get("order", "");
+        
         /// <summary>
         /// <para>
         /// This attributes allows a series of consecutive steps to be placed in the correct order, start counting from 1.
@@ -9323,11 +9431,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProcessingMethodType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ProcessingMethodType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9350,19 +9480,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProcessingMethodType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9375,26 +9492,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class SoftwareListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SoftwareXName = System.Xml.Linq.XName.Get("Software", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SoftwareType> SoftwareField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SoftwareListType(XElement xe) { return XTypedServices.ToXTypedElement<SoftwareListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SoftwareListType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SoftwareXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SoftwareListType>(this);
         }
         
         /// <summary>
@@ -9407,6 +9508,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public SoftwareListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SoftwareXName = System.Xml.Linq.XName.Get("Software", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<SoftwareType> SoftwareField;
         
         /// <summary>
         /// <para>
@@ -9438,11 +9546,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static SoftwareListType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(SoftwareXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(SoftwareXName, typeof(SoftwareType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9465,18 +9594,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SoftwareListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(SoftwareXName, typeof(SoftwareType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9489,41 +9606,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class SoftwareType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator SoftwareType(XElement xe) { return XTypedServices.ToXTypedElement<SoftwareType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static SoftwareType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<SoftwareType>(this);
         }
         
         /// <summary>
@@ -9536,6 +9622,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public SoftwareType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -9570,6 +9663,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -9602,6 +9702,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -9621,6 +9725,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
         /// <summary>
         /// <para>
         /// The software version.
@@ -9639,11 +9747,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("SoftwareType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static SoftwareType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9666,70 +9796,57 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<SoftwareType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public sealed class listOfDoubles {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), null));
-        
         private listOfDoubles() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), null));
     }
     
     public sealed class listOfDoublesOrNulls {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.doubleOrNullType.TypeDefinition);
-        
         private listOfDoublesOrNulls() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.doubleOrNullType.TypeDefinition);
     }
     
     public sealed class doubleOrNullType {
+        
+        private doubleOrNullType() {
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Double), null),
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "null"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse))});
-        
-        private doubleOrNullType() {
-        }
+                                    "null:@null"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse))});
     }
     
     public sealed class integerOrNullType {
+        
+        private integerOrNullType() {
+        }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Integer), null),
                     new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Token), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-                                    "null"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse))});
-        
-        private integerOrNullType() {
-        }
+                                    "null:@null"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse))});
     }
     
     public sealed class listOfIDs {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id), null));
-        
         private listOfIDs() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id), null));
     }
     
     /// <summary>
@@ -9742,23 +9859,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class cvParamRefType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvParamRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator cvParamRefType(XElement xe) { return XTypedServices.ToXTypedElement<cvParamRefType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static cvParamRefType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<cvParamRefType>(this);
         }
         
         /// <summary>
@@ -9771,6 +9875,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public cvParamRefType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -9790,11 +9898,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("cvParamRefType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static cvParamRefType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -9817,18 +9946,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<cvParamRefType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -9838,17 +9955,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class CVParamType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.AbstractParamType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvRefXName = System.Xml.Linq.XName.Get("cvRef", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CVParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator CVParamType(XElement xe) { return XTypedServices.ToXTypedElement<CVParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<CVParamType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -9857,6 +9968,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public CVParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvRefXName = System.Xml.Linq.XName.Get("cvRef", "");
         
         /// <summary>
         /// <para>
@@ -9876,6 +9991,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName accessionXName = System.Xml.Linq.XName.Get("accession", "");
+        
         /// <summary>
         /// <para>
         /// The accession or ID number of this CV term in the source CV. 
@@ -9893,6 +10012,8 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 this.SetAttribute(accessionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("CVParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -9914,10 +10035,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<CVParamType>(this);
-        }
     }
     
     /// <summary>
@@ -9926,28 +10043,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </para>
     /// </summary>
     public abstract partial class AbstractParamType : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
 		public static explicit operator AbstractParamType(XElement xe) {  return (AbstractParamType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -9958,6 +10053,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public AbstractParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -9977,6 +10076,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName valueXName = System.Xml.Linq.XName.Get("value", "");
+        
         /// <summary>
         /// <para>
         /// The user-entered value of the parameter.
@@ -9988,12 +10091,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string value {
             get {
                 XAttribute x = this.Attribute(valueXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(valueXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitAccessionXName = System.Xml.Linq.XName.Get("unitAccession", "");
         
         /// <summary>
         /// <para>
@@ -10006,12 +10116,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string unitAccession {
             get {
                 XAttribute x = this.Attribute(unitAccessionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitAccessionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitNameXName = System.Xml.Linq.XName.Get("unitName", "");
         
         /// <summary>
         /// <para>
@@ -10024,12 +10141,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string unitName {
             get {
                 XAttribute x = this.Attribute(unitNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName unitCvRefXName = System.Xml.Linq.XName.Get("unitCvRef", "");
         
         /// <summary>
         /// <para>
@@ -10042,11 +10166,20 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string unitCvRef {
             get {
                 XAttribute x = this.Attribute(unitCvRefXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(unitCvRefXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10069,10 +10202,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -10082,13 +10211,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class UserParamType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.AbstractParamType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator UserParamType(XElement xe) { return XTypedServices.ToXTypedElement<UserParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<UserParamType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -10097,6 +10224,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public UserParamType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName typeXName = System.Xml.Linq.XName.Get("type", "");
         
         /// <summary>
         /// <para>
@@ -10109,12 +10240,17 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string type {
             get {
                 XAttribute x = this.Attribute(typeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(typeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("UserParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -10135,10 +10271,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<UserParamType>(this);
         }
     }
     
@@ -10152,33 +10284,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ParamListType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ParamListType(XElement xe) { return XTypedServices.ToXTypedElement<ParamListType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ParamListType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ParamListType>(this);
         }
         
         /// <summary>
@@ -10191,6 +10300,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ParamListType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -10222,6 +10338,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -10252,11 +10375,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamListType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ParamListType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10278,19 +10423,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ParamListType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -10304,27 +10436,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ParamType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ParamType(XElement xe) { return XTypedServices.ToXTypedElement<ParamType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ParamType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ParamType>(this);
         }
         
         /// <summary>
@@ -10338,13 +10453,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public ParamType() {
         }
         
-        public ParamType(CVParamType cvParam) {
-            this.cvParam = cvParam;
-        }
-        
-        public ParamType(UserParamType userParam) {
-            this.userParam = userParam;
-        }
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -10357,12 +10468,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual CVParamType cvParam {
             get {
                 XElement x = this.GetElement(cvParamXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((CVParamType)(x));
             }
             set {
                 this.SetElement(cvParamXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -10375,6 +10493,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual UserParamType userParam {
             get {
                 XElement x = this.GetElement(userParamXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((UserParamType)(x));
             }
             set {
@@ -10382,11 +10503,41 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        public ParamType(CVParamType cvParam) {
+            this.cvParam = cvParam;
+        }
+        
+        public ParamType(UserParamType userParam) {
+            this.userParam = userParam;
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParamType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ParamType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10409,19 +10560,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ParamType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10434,31 +10572,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ExternalDataType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ExternalFormatDocumentationXName = System.Xml.Linq.XName.Get("ExternalFormatDocumentation", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FileFormatXName = System.Xml.Linq.XName.Get("FileFormat", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ExternalDataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ExternalDataType(XElement xe) { return XTypedServices.ToXTypedElement<ExternalDataType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ExternalDataType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ExternalDataType>(this);
         }
         
         /// <summary>
@@ -10471,6 +10588,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ExternalDataType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ExternalFormatDocumentationXName = System.Xml.Linq.XName.Get("ExternalFormatDocumentation", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -10486,12 +10607,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual System.Uri ExternalFormatDocumentation {
             get {
                 XElement x = this.GetElement(ExternalFormatDocumentationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetElement(ExternalFormatDocumentationXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FileFormatXName = System.Xml.Linq.XName.Get("FileFormat", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -10504,12 +10632,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual FileFormatType FileFormat {
             get {
                 XElement x = this.GetElement(FileFormatXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((FileFormatType)(x));
             }
             set {
                 this.SetElement(FileFormatXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName locationXName = System.Xml.Linq.XName.Get("location", "");
         
         /// <summary>
         /// <para>
@@ -10529,11 +10664,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ExternalDataType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ExternalDataType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ExternalFormatDocumentationXName), new NamedContentModelEntity(FileFormatXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
+            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10556,19 +10713,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ExternalDataType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExternalFormatDocumentationXName, typeof(System.Uri));
-            localElementDictionary.Add(FileFormatXName, typeof(FileFormatType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10581,23 +10725,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class FileFormatType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FileFormatType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator FileFormatType(XElement xe) { return XTypedServices.ToXTypedElement<FileFormatType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static FileFormatType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<FileFormatType>(this);
         }
         
         /// <summary>
@@ -10610,6 +10741,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public FileFormatType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -10632,11 +10767,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("FileFormatType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static FileFormatType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10659,18 +10815,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<FileFormatType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10683,27 +10827,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ProviderType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProviderType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ProviderType(XElement xe) { return XTypedServices.ToXTypedElement<ProviderType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ProviderType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ProviderType>(this);
         }
         
         /// <summary>
@@ -10716,6 +10843,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ProviderType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ContactRoleXName = System.Xml.Linq.XName.Get("ContactRole", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -10731,12 +10862,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual ContactRoleType ContactRole {
             get {
                 XElement x = this.GetElement(ContactRoleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ContactRoleType)(x));
             }
             set {
                 this.SetElement(ContactRoleXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName analysisSoftware_refXName = System.Xml.Linq.XName.Get("analysisSoftware_ref", "");
         
         /// <summary>
         /// <para>
@@ -10749,6 +10887,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string analysisSoftware_ref {
             get {
                 XAttribute x = this.Attribute(analysisSoftware_refXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
@@ -10756,11 +10897,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ProviderType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ProviderType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ContactRoleXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10783,18 +10945,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ProviderType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ContactRoleXName, typeof(ContactRoleType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -10807,38 +10957,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class PersonType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.AbstractContactType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<AffiliationType> AffiliationField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName lastNameXName = System.Xml.Linq.XName.Get("lastName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName firstNameXName = System.Xml.Linq.XName.Get("firstName", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName midInitialsXName = System.Xml.Linq.XName.Get("midInitials", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator PersonType(XElement xe) { return XTypedServices.ToXTypedElement<PersonType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static PersonType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(AffiliationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<PersonType>(this);
         }
         
         /// <summary>
@@ -10851,6 +10973,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public PersonType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AffiliationXName = System.Xml.Linq.XName.Get("Affiliation", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<AffiliationType> AffiliationField;
         
         /// <summary>
         /// <para>
@@ -10885,6 +11014,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName lastNameXName = System.Xml.Linq.XName.Get("lastName", "");
+        
         /// <summary>
         /// <para>
         /// The Person's last/family name.
@@ -10896,12 +11029,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string lastName {
             get {
                 XAttribute x = this.Attribute(lastNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(lastNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName firstNameXName = System.Xml.Linq.XName.Get("firstName", "");
         
         /// <summary>
         /// <para>
@@ -10914,12 +11054,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string firstName {
             get {
                 XAttribute x = this.Attribute(firstNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(firstNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName midInitialsXName = System.Xml.Linq.XName.Get("midInitials", "");
         
         /// <summary>
         /// <para>
@@ -10932,6 +11079,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string midInitials {
             get {
                 XAttribute x = this.Attribute(midInitialsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -10939,11 +11089,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("PersonType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static PersonType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(AffiliationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(AffiliationXName, typeof(AffiliationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -10966,34 +11139,22 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<PersonType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(AffiliationXName, typeof(AffiliationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class AffiliationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AffiliationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator AffiliationType(XElement xe) { return XTypedServices.ToXTypedElement<AffiliationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AffiliationType>(this);
+        }
         
         public AffiliationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
         
         /// <summary>
         /// <para>
@@ -11013,6 +11174,12 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AffiliationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -11032,14 +11199,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AffiliationType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -11053,23 +11212,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class OrganizationType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.AbstractContactType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ParentOrganizationXName = System.Xml.Linq.XName.Get("ParentOrganization", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OrganizationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator OrganizationType(XElement xe) { return XTypedServices.ToXTypedElement<OrganizationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static OrganizationType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(ParentOrganizationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<OrganizationType>(this);
         }
         
         /// <summary>
@@ -11083,6 +11229,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public OrganizationType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ParentOrganizationXName = System.Xml.Linq.XName.Get("ParentOrganization", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -11094,6 +11244,9 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual ParentOrganizationType ParentOrganization {
             get {
                 XElement x = this.GetElement(ParentOrganizationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((ParentOrganizationType)(x));
             }
             set {
@@ -11101,11 +11254,34 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("OrganizationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static OrganizationType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)), new NamedContentModelEntity(ParentOrganizationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+            localElementDictionary.Add(ParentOrganizationXName, typeof(ParentOrganizationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11128,20 +11304,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<OrganizationType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-            localElementDictionary.Add(ParentOrganizationXName, typeof(ParentOrganizationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -11151,13 +11313,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ParentOrganizationType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParentOrganizationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator ParentOrganizationType(XElement xe) { return XTypedServices.ToXTypedElement<ParentOrganizationType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ParentOrganizationType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -11166,6 +11326,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ParentOrganizationType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName organization_refXName = System.Xml.Linq.XName.Get("organization_ref", "");
         
         /// <summary>
         /// <para>
@@ -11185,6 +11349,12 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ParentOrganizationType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -11205,14 +11375,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ParentOrganizationType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -11225,34 +11387,7 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public abstract partial class AbstractContactType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CVParamType> cvParamField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<UserParamType> userParamField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractContactType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AbstractContactType(XElement xe) {  return (AbstractContactType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static AbstractContactType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
-        }
         
         /// <summary>
         /// <para>
@@ -11264,6 +11399,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public AbstractContactType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<CVParamType> cvParamField;
         
         /// <summary>
         /// <para>
@@ -11298,6 +11440,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName userParamXName = System.Xml.Linq.XName.Get("userParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<UserParamType> userParamField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -11331,11 +11480,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AbstractContactType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static AbstractContactType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(cvParamXName), new NamedContentModelEntity(userParamXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+            localElementDictionary.Add(userParamXName, typeof(UserParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11358,15 +11529,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-            localElementDictionary.Add(userParamXName, typeof(UserParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -11381,27 +11543,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class ContactRoleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RoleXName = System.Xml.Linq.XName.Get("Role", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName contact_refXName = System.Xml.Linq.XName.Get("contact_ref", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactRoleType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator ContactRoleType(XElement xe) { return XTypedServices.ToXTypedElement<ContactRoleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static ContactRoleType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RoleXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<ContactRoleType>(this);
         }
         
         /// <summary>
@@ -11416,6 +11561,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public ContactRoleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RoleXName = System.Xml.Linq.XName.Get("Role", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -11435,6 +11584,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName contact_refXName = System.Xml.Linq.XName.Get("contact_ref", "");
+        
         /// <summary>
         /// <para>
         /// When a ContactRole is used, it specifies which Contact the role is associated with. 
@@ -11453,11 +11606,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("ContactRoleType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static ContactRoleType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(RoleXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RoleXName, typeof(RoleType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11480,18 +11654,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<ContactRoleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RoleXName, typeof(RoleType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -11505,23 +11667,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class RoleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RoleType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator RoleType(XElement xe) { return XTypedServices.ToXTypedElement<RoleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static RoleType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<RoleType>(this);
         }
         
         /// <summary>
@@ -11535,6 +11684,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public RoleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName cvParamXName = System.Xml.Linq.XName.Get("cvParam", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         /// <summary>
         /// <para>
@@ -11557,11 +11710,32 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("RoleType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static RoleType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(cvParamXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -11584,18 +11758,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<RoleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(cvParamXName, typeof(CVParamType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -11605,49 +11767,11 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class BibliographicReferenceType : global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.IdentifiableType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName authorsXName = System.Xml.Linq.XName.Get("authors", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName publicationXName = System.Xml.Linq.XName.Get("publication", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName publisherXName = System.Xml.Linq.XName.Get("publisher", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName editorXName = System.Xml.Linq.XName.Get("editor", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName yearXName = System.Xml.Linq.XName.Get("year", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName volumeXName = System.Xml.Linq.XName.Get("volume", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName issueXName = System.Xml.Linq.XName.Get("issue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName pagesXName = System.Xml.Linq.XName.Get("pages", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName doiXName = System.Xml.Linq.XName.Get("doi", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BibliographicReferenceType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
 		public static explicit operator BibliographicReferenceType(XElement xe) { return XTypedServices.ToXTypedElement<BibliographicReferenceType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<BibliographicReferenceType>(this);
+        }
         
         /// <summary>
         /// <para>
@@ -11656,6 +11780,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public BibliographicReferenceType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName authorsXName = System.Xml.Linq.XName.Get("authors", "");
         
         /// <summary>
         /// <para>
@@ -11668,12 +11796,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string authors {
             get {
                 XAttribute x = this.Attribute(authorsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(authorsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName publicationXName = System.Xml.Linq.XName.Get("publication", "");
         
         /// <summary>
         /// <para>
@@ -11686,12 +11821,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string publication {
             get {
                 XAttribute x = this.Attribute(publicationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(publicationXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName publisherXName = System.Xml.Linq.XName.Get("publisher", "");
         
         /// <summary>
         /// <para>
@@ -11704,12 +11846,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string publisher {
             get {
                 XAttribute x = this.Attribute(publisherXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(publisherXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName editorXName = System.Xml.Linq.XName.Get("editor", "");
         
         /// <summary>
         /// <para>
@@ -11722,12 +11871,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string editor {
             get {
                 XAttribute x = this.Attribute(editorXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(editorXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName yearXName = System.Xml.Linq.XName.Get("year", "");
         
         /// <summary>
         /// <para>
@@ -11750,6 +11906,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName volumeXName = System.Xml.Linq.XName.Get("volume", "");
+        
         /// <summary>
         /// <para>
         /// The volume name or number.
@@ -11761,12 +11921,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string volume {
             get {
                 XAttribute x = this.Attribute(volumeXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(volumeXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName issueXName = System.Xml.Linq.XName.Get("issue", "");
         
         /// <summary>
         /// <para>
@@ -11779,12 +11946,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string issue {
             get {
                 XAttribute x = this.Attribute(issueXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(issueXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName pagesXName = System.Xml.Linq.XName.Get("pages", "");
         
         /// <summary>
         /// <para>
@@ -11797,12 +11971,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string pages {
             get {
                 XAttribute x = this.Attribute(pagesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(pagesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName titleXName = System.Xml.Linq.XName.Get("title", "");
         
         /// <summary>
         /// <para>
@@ -11815,12 +11996,19 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string title {
             get {
                 XAttribute x = this.Attribute(titleXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(titleXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName doiXName = System.Xml.Linq.XName.Get("doi", "");
         
         /// <summary>
         /// <para>
@@ -11833,12 +12021,17 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string doi {
             get {
                 XAttribute x = this.Attribute(doiXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(doiXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("BibliographicReferenceType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -11860,10 +12053,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<BibliographicReferenceType>(this);
-        }
     }
     
     /// <summary>
@@ -11876,33 +12065,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class AuditCollectionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PersonXName = System.Xml.Linq.XName.Get("Person", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<PersonType> PersonField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OrganizationXName = System.Xml.Linq.XName.Get("Organization", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<OrganizationType> OrganizationField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuditCollectionType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator AuditCollectionType(XElement xe) { return XTypedServices.ToXTypedElement<AuditCollectionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static AuditCollectionType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PersonXName), new NamedContentModelEntity(OrganizationXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<AuditCollectionType>(this);
         }
         
         /// <summary>
@@ -11915,6 +12081,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public AuditCollectionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PersonXName = System.Xml.Linq.XName.Get("Person", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<PersonType> PersonField;
         
         /// <summary>
         /// <para>
@@ -11946,6 +12119,13 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OrganizationXName = System.Xml.Linq.XName.Get("Organization", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<OrganizationType> OrganizationField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, repeating
@@ -11976,11 +12156,33 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("AuditCollectionType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        static AuditCollectionType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PersonXName), new NamedContentModelEntity(OrganizationXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PersonXName, typeof(PersonType));
+            localElementDictionary.Add(OrganizationXName, typeof(OrganizationType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -12003,19 +12205,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<AuditCollectionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PersonXName, typeof(PersonType));
-            localElementDictionary.Add(OrganizationXName, typeof(OrganizationType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -12024,16 +12213,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </para>
     /// </summary>
     public abstract partial class IdentifiableType : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentifiableType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
         
 		public static explicit operator IdentifiableType(XElement xe) {  return (IdentifiableType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
@@ -12044,6 +12223,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public IdentifiableType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -12063,6 +12246,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
+        
         /// <summary>
         /// <para>
         /// The potentially ambiguous common identifier, such as a human-readable name for the instance. 
@@ -12074,11 +12261,20 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual string name {
             get {
                 XAttribute x = this.Attribute(nameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetAttribute(nameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("IdentifiableType", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -12101,76 +12297,72 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public sealed class versionRegex {
         
+        private versionRegex() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "(1\\.0\\.\\d+)"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private versionRegex() {
-        }
     }
     
     public sealed class listOfIntegers {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.integerOrNullType.TypeDefinition);
-        
         private listOfIntegers() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.integerOrNullType.TypeDefinition);
     }
     
     public sealed class listOfFloats {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null));
-        
         private listOfFloats() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Float), null));
     }
     
     public sealed class listOfStrings {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null));
-        
         private listOfStrings() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null));
     }
     
     public sealed class listOfChars {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.chars.TypeDefinition);
-        
         private listOfChars() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.ListSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), null, psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.chars.TypeDefinition);
     }
     
     public sealed class chars {
         
+        private chars() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]{1}"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private chars() {
-        }
     }
     
     public sealed class sequence {
         
+        private sequence() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]*"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private sequence() {
-        }
     }
     
     /// <summary>
@@ -12180,12 +12372,38 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
     /// </summary>
     public partial class MzQuantML : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private MzQuantMLType ContentField;
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzQuantML", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static MzQuantML Load(string xmlFile) {
+            return XTypedServices.Load<MzQuantML, MzQuantMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static MzQuantML Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<MzQuantML, MzQuantMLType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static MzQuantML Parse(string xml) {
+            return XTypedServices.Parse<MzQuantML, MzQuantMLType>(xml, LinqToXsdTypeManager.Instance);
+        }
         
 		public static explicit operator MzQuantML(XElement xe) { return XTypedServices.ToXTypedElement<MzQuantML, MzQuantMLType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return new MzQuantML(((MzQuantMLType)(this.Content.Clone())));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private MzQuantMLType ContentField;
         
         /// <summary>
         /// <para>
@@ -12194,15 +12412,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         /// </summary>
         public MzQuantML() {
             SetInnerType(new MzQuantMLType());
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Root element of the instance document.
-        /// </para>
-        /// </summary>
-        public MzQuantML(MzQuantMLType content) {
-            SetInnerType(content);
         }
         
         public override XElement Untyped {
@@ -12219,6 +12428,20 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return ContentField;
             }
+        }
+        
+        private void SetInnerType(MzQuantMLType ContentField) {
+            this.ContentField = ((MzQuantMLType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Root element of the instance document.
+        /// </para>
+        /// </summary>
+        public MzQuantML(MzQuantMLType content) {
+            SetInnerType(content);
         }
         
         /// <summary>
@@ -12564,6 +12787,8 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("MzQuantML", "http://psidev.info/psi/pi/mzQuantML/1.0.0");
+        
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
@@ -12575,6 +12800,10 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -12597,103 +12826,14 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static MzQuantML Load(string xmlFile) {
-            return XTypedServices.Load<MzQuantML, MzQuantMLType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static MzQuantML Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<MzQuantML, MzQuantMLType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static MzQuantML Parse(string xml) {
-            return XTypedServices.Parse<MzQuantML, MzQuantMLType>(xml, LinqToXsdTypeManager.Instance);
-        }
-        
-        public override XTypedElement Clone() {
-            return new MzQuantML(((MzQuantMLType)(this.Content.Clone())));
-        }
-        
-        private void SetInnerType(MzQuantMLType ContentField) {
-            this.ContentField = ((MzQuantMLType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
-        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
-        
-        private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
         private LinqToXsdTypeManager() {
         }
         
-        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
-            get {
-                if ((schemaSet == null)) {
-                    XmlSchemaSet tempSet = new XmlSchemaSet();
-                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
-                }
-                return schemaSet;
-            }
-            set {
-                schemaSet = value;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
-            get {
-                return typeDictionary;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
-            get {
-                return elementDictionary;
-            }
-        }
-        
-        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
-            get {
-                return wrapperDictionary;
-            }
-        }
-        
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
             typeDictionary.Add(System.Xml.Linq.XName.Get("MzQuantMLType", "http://psidev.info/psi/pi/mzQuantML/1.0.0"), typeof(global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantMLType));
@@ -12765,20 +12905,72 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             typeDictionary.Add(System.Xml.Linq.XName.Get("IdentifiableType", "http://psidev.info/psi/pi/mzQuantML/1.0.0"), typeof(global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.IdentifiableType));
         }
         
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
         private static void BuildElementDictionary() {
             elementDictionary.Add(System.Xml.Linq.XName.Get("MzQuantML", "http://psidev.info/psi/pi/mzQuantML/1.0.0"), typeof(global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML));
         }
         
+        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
+        
         private static void BuildWrapperDictionary() {
             wrapperDictionary.Add(typeof(psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML), typeof(global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantMLType));
+        }
+        
+        private static XmlSchemaSet schemaSet;
+        
+        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+            get {
+                if ((schemaSet == null)) {
+                    XmlSchemaSet tempSet = new XmlSchemaSet();
+                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+                }
+                return schemaSet;
+            }
+            set {
+                schemaSet = value;
+            }
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
             schemas.Add(schemaSet);
         }
         
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+            get {
+                return typeDictionary;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+            get {
+                return elementDictionary;
+            }
+        }
+        
+        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+            get {
+                return wrapperDictionary;
+            }
+        }
+        
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
+        }
+        
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("MzQuantML", "http://psidev.info/psi/pi/mzQuantML/1.0.0")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -12790,27 +12982,7 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public MzQuantML MzQuantML {  get {return rootObject as MzQuantML; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(MzQuantML root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -12909,26 +13081,6 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML MzQuantML {  get {return rootObject as global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -12940,6 +13092,26 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(MzQuantML root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public MzQuantML MzQuantML {  get {return rootObject as MzQuantML; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -13038,5 +13210,25 @@ namespace psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0 {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML MzQuantML {  get {return rootObject as global::psidev.info.psi.pi.mzQuantML.Item1.Item0.Item0.MzQuantML; } }
     }
 }

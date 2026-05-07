@@ -32,8 +32,19 @@ namespace XObjects
         /// </summary>
         /// <param name="gtv"></param>
         /// <returns></returns>
-        public static string ToKeyword(this GeneratedTypesVisibility gtv) =>
-            gtv.HasFlag(GeneratedTypesVisibility.Internal) || gtv == GeneratedTypesVisibility.Internal ? "internal" : "public";
+        public static string ToKeyword(this GeneratedTypesVisibility gtv)
+        {
+            return gtv.HasFlag(GeneratedTypesVisibility.Internal) || gtv == GeneratedTypesVisibility.Internal
+                ? "internal"
+                : "public";
+        }
+
+        public static Namespace.DefaultVisibilityEnum ToNamespaceEnum(this GeneratedTypesVisibility gtv)
+        {
+            return gtv.HasFlag(GeneratedTypesVisibility.Internal) || gtv == GeneratedTypesVisibility.Internal
+                ? Namespace.DefaultVisibilityEnum.@internal
+                : Namespace.DefaultVisibilityEnum.@public;
+        }
 
         public static GeneratedTypesVisibility ToGeneratedTypesVisibility(this MemberAttributes ma)
         {

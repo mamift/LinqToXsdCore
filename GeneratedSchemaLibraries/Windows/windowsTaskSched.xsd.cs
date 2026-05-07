@@ -23,30 +23,30 @@ namespace Microsoft.Windows.Mit.Task {
     
     public sealed class nonEmptyString {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(2)), null, 0, 0, null, null, 0, null, null, 1, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
         private nonEmptyString() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(2)), null, 0, 0, null, null, 0, null, null, 1, null, 0, XmlSchemaWhiteSpace.Preserve));
     }
     
     public sealed class pathType {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(6)), null, 0, 0, null, null, 260, null, null, 1, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
         private pathType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(6)), null, 0, 0, null, null, 260, null, null, 1, null, 0, XmlSchemaWhiteSpace.Preserve));
     }
     
     public sealed class versionType {
         
+        private versionType() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "\\d+(\\.\\d+){1,3}"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private versionType() {
-        }
     }
     
     /// <summary>
@@ -56,46 +56,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class taskType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RegistrationInfoXName = System.Xml.Linq.XName.Get("RegistrationInfo", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TriggersXName = System.Xml.Linq.XName.Get("Triggers", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SettingsXName = System.Xml.Linq.XName.Get("Settings", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataXName = System.Xml.Linq.XName.Get("Data", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PrincipalsXName = System.Xml.Linq.XName.Get("Principals", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ActionsXName = System.Xml.Linq.XName.Get("Actions", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static string versionFixedValue = "1.3";
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("taskType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator taskType(XElement xe) { return XTypedServices.ToXTypedElement<taskType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static taskType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<taskType>(this);
         }
         
         /// <summary>
@@ -105,6 +69,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public taskType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RegistrationInfoXName = System.Xml.Linq.XName.Get("RegistrationInfo", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -117,12 +85,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual registrationInfoType RegistrationInfo {
             get {
                 XElement x = this.GetElement(RegistrationInfoXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((registrationInfoType)(x));
             }
             set {
                 this.SetElement(RegistrationInfoXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TriggersXName = System.Xml.Linq.XName.Get("Triggers", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -135,12 +110,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual triggersType Triggers {
             get {
                 XElement x = this.GetElement(TriggersXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((triggersType)(x));
             }
             set {
                 this.SetElement(TriggersXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SettingsXName = System.Xml.Linq.XName.Get("Settings", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -153,12 +135,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual settingsType Settings {
             get {
                 XElement x = this.GetElement(SettingsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((settingsType)(x));
             }
             set {
                 this.SetElement(SettingsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataXName = System.Xml.Linq.XName.Get("Data", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -171,12 +160,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual dataType Data {
             get {
                 XElement x = this.GetElement(DataXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((dataType)(x));
             }
             set {
                 this.SetElement(DataXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PrincipalsXName = System.Xml.Linq.XName.Get("Principals", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -189,12 +185,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual principalsType Principals {
             get {
                 XElement x = this.GetElement(PrincipalsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((principalsType)(x));
             }
             set {
                 this.SetElement(PrincipalsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ActionsXName = System.Xml.Linq.XName.Get("Actions", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -214,6 +217,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName versionXName = System.Xml.Linq.XName.Get("version", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static string versionFixedValue = "1.3";
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -224,7 +234,7 @@ namespace Microsoft.Windows.Mit.Task {
                 return versionFixedValue;
             }
             set {
-                if (value.Equals(versionFixedValue)) {
+                if (versionFixedValue.Equals(value)) {
                 }
                 else {
                     throw new Xml.Schema.Linq.LinqToXsdFixedValueException(value, versionFixedValue);
@@ -233,11 +243,33 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("taskType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static taskType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(RegistrationInfoXName, typeof(registrationInfoType));
+            localElementDictionary.Add(TriggersXName, typeof(triggersType));
+            localElementDictionary.Add(SettingsXName, typeof(settingsType));
+            localElementDictionary.Add(DataXName, typeof(dataType));
+            localElementDictionary.Add(PrincipalsXName, typeof(principalsType));
+            localElementDictionary.Add(ActionsXName, typeof(actionsType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -260,23 +292,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<taskType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(RegistrationInfoXName, typeof(registrationInfoType));
-            localElementDictionary.Add(TriggersXName, typeof(triggersType));
-            localElementDictionary.Add(SettingsXName, typeof(settingsType));
-            localElementDictionary.Add(DataXName, typeof(dataType));
-            localElementDictionary.Add(PrincipalsXName, typeof(principalsType));
-            localElementDictionary.Add(ActionsXName, typeof(actionsType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -286,47 +301,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class registrationInfoType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName URIXName = System.Xml.Linq.XName.Get("URI", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SecurityDescriptorXName = System.Xml.Linq.XName.Get("SecurityDescriptor", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SourceXName = System.Xml.Linq.XName.Get("Source", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DateXName = System.Xml.Linq.XName.Get("Date", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AuthorXName = System.Xml.Linq.XName.Get("Author", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName VersionXName = System.Xml.Linq.XName.Get("Version", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DescriptionXName = System.Xml.Linq.XName.Get("Description", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DocumentationXName = System.Xml.Linq.XName.Get("Documentation", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("registrationInfoType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator registrationInfoType(XElement xe) { return XTypedServices.ToXTypedElement<registrationInfoType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static registrationInfoType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<registrationInfoType>(this);
         }
         
         /// <summary>
@@ -336,6 +314,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public registrationInfoType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName URIXName = System.Xml.Linq.XName.Get("URI", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -348,12 +330,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual System.Uri URI {
             get {
                 XElement x = this.GetElement(URIXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<System.Uri>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
             set {
                 this.SetElement(URIXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyUri).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SecurityDescriptorXName = System.Xml.Linq.XName.Get("SecurityDescriptor", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -366,12 +355,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string SecurityDescriptor {
             get {
                 XElement x = this.GetElement(SecurityDescriptorXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(SecurityDescriptorXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SourceXName = System.Xml.Linq.XName.Get("Source", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -384,12 +380,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Source {
             get {
                 XElement x = this.GetElement(SourceXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(SourceXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DateXName = System.Xml.Linq.XName.Get("Date", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -412,6 +415,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AuthorXName = System.Xml.Linq.XName.Get("Author", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -423,12 +430,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Author {
             get {
                 XElement x = this.GetElement(AuthorXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(AuthorXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName VersionXName = System.Xml.Linq.XName.Get("Version", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -441,12 +455,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Version {
             get {
                 XElement x = this.GetElement(VersionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(VersionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DescriptionXName = System.Xml.Linq.XName.Get("Description", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -459,12 +480,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Description {
             get {
                 XElement x = this.GetElement(DescriptionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(DescriptionXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DocumentationXName = System.Xml.Linq.XName.Get("Documentation", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -477,6 +505,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Documentation {
             get {
                 XElement x = this.GetElement(DocumentationXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -484,11 +515,35 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("registrationInfoType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static registrationInfoType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(URIXName, typeof(System.Uri));
+            localElementDictionary.Add(SecurityDescriptorXName, typeof(string));
+            localElementDictionary.Add(SourceXName, typeof(string));
+            localElementDictionary.Add(DateXName, typeof(System.DateTime));
+            localElementDictionary.Add(AuthorXName, typeof(string));
+            localElementDictionary.Add(VersionXName, typeof(string));
+            localElementDictionary.Add(DescriptionXName, typeof(string));
+            localElementDictionary.Add(DocumentationXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -511,25 +566,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<registrationInfoType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(URIXName, typeof(System.Uri));
-            localElementDictionary.Add(SecurityDescriptorXName, typeof(string));
-            localElementDictionary.Add(SourceXName, typeof(string));
-            localElementDictionary.Add(DateXName, typeof(System.DateTime));
-            localElementDictionary.Add(AuthorXName, typeof(string));
-            localElementDictionary.Add(VersionXName, typeof(string));
-            localElementDictionary.Add(DescriptionXName, typeof(string));
-            localElementDictionary.Add(DocumentationXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -539,75 +575,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class triggersType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BootTriggerXName = System.Xml.Linq.XName.Get("BootTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<bootTriggerType> BootTriggerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RegistrationTriggerXName = System.Xml.Linq.XName.Get("RegistrationTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<registrationTriggerType> RegistrationTriggerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdleTriggerXName = System.Xml.Linq.XName.Get("IdleTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<idleTriggerType> IdleTriggerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TimeTriggerXName = System.Xml.Linq.XName.Get("TimeTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<timeTriggerType> TimeTriggerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EventTriggerXName = System.Xml.Linq.XName.Get("EventTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<eventTriggerType> EventTriggerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LogonTriggerXName = System.Xml.Linq.XName.Get("LogonTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<logonTriggerType> LogonTriggerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SessionStateChangeTriggerXName = System.Xml.Linq.XName.Get("SessionStateChangeTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<sessionStateChangeTriggerType> SessionStateChangeTriggerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CalendarTriggerXName = System.Xml.Linq.XName.Get("CalendarTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<calendarTriggerType> CalendarTriggerField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("triggersType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator triggersType(XElement xe) { return XTypedServices.ToXTypedElement<triggersType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static triggersType() {
-            BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(BootTriggerXName), new NamedContentModelEntity(RegistrationTriggerXName), new NamedContentModelEntity(IdleTriggerXName), new NamedContentModelEntity(TimeTriggerXName), new NamedContentModelEntity(EventTriggerXName), new NamedContentModelEntity(LogonTriggerXName), new NamedContentModelEntity(SessionStateChangeTriggerXName), new NamedContentModelEntity(CalendarTriggerXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<triggersType>(this);
         }
         
         /// <summary>
@@ -617,6 +588,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public triggersType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BootTriggerXName = System.Xml.Linq.XName.Get("BootTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<bootTriggerType> BootTriggerField;
         
         /// <summary>
         /// <para>
@@ -648,6 +626,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RegistrationTriggerXName = System.Xml.Linq.XName.Get("RegistrationTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<registrationTriggerType> RegistrationTriggerField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -677,6 +662,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdleTriggerXName = System.Xml.Linq.XName.Get("IdleTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<idleTriggerType> IdleTriggerField;
         
         /// <summary>
         /// <para>
@@ -708,6 +700,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TimeTriggerXName = System.Xml.Linq.XName.Get("TimeTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<timeTriggerType> TimeTriggerField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -737,6 +736,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EventTriggerXName = System.Xml.Linq.XName.Get("EventTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<eventTriggerType> EventTriggerField;
         
         /// <summary>
         /// <para>
@@ -768,6 +774,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LogonTriggerXName = System.Xml.Linq.XName.Get("LogonTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<logonTriggerType> LogonTriggerField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -797,6 +810,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SessionStateChangeTriggerXName = System.Xml.Linq.XName.Get("SessionStateChangeTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<sessionStateChangeTriggerType> SessionStateChangeTriggerField;
         
         /// <summary>
         /// <para>
@@ -828,6 +848,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CalendarTriggerXName = System.Xml.Linq.XName.Get("CalendarTrigger", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<calendarTriggerType> CalendarTriggerField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional, choice
@@ -858,11 +885,39 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("triggersType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static triggersType() {
+            BuildElementDictionary();
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(BootTriggerXName), new NamedContentModelEntity(RegistrationTriggerXName), new NamedContentModelEntity(IdleTriggerXName), new NamedContentModelEntity(TimeTriggerXName), new NamedContentModelEntity(EventTriggerXName), new NamedContentModelEntity(LogonTriggerXName), new NamedContentModelEntity(SessionStateChangeTriggerXName), new NamedContentModelEntity(CalendarTriggerXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(BootTriggerXName, typeof(bootTriggerType));
+            localElementDictionary.Add(RegistrationTriggerXName, typeof(registrationTriggerType));
+            localElementDictionary.Add(IdleTriggerXName, typeof(idleTriggerType));
+            localElementDictionary.Add(TimeTriggerXName, typeof(timeTriggerType));
+            localElementDictionary.Add(EventTriggerXName, typeof(eventTriggerType));
+            localElementDictionary.Add(LogonTriggerXName, typeof(logonTriggerType));
+            localElementDictionary.Add(SessionStateChangeTriggerXName, typeof(sessionStateChangeTriggerType));
+            localElementDictionary.Add(CalendarTriggerXName, typeof(calendarTriggerType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -885,25 +940,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<triggersType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(BootTriggerXName, typeof(bootTriggerType));
-            localElementDictionary.Add(RegistrationTriggerXName, typeof(registrationTriggerType));
-            localElementDictionary.Add(IdleTriggerXName, typeof(idleTriggerType));
-            localElementDictionary.Add(TimeTriggerXName, typeof(timeTriggerType));
-            localElementDictionary.Add(EventTriggerXName, typeof(eventTriggerType));
-            localElementDictionary.Add(LogonTriggerXName, typeof(logonTriggerType));
-            localElementDictionary.Add(SessionStateChangeTriggerXName, typeof(sessionStateChangeTriggerType));
-            localElementDictionary.Add(CalendarTriggerXName, typeof(calendarTriggerType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -913,44 +949,7 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public abstract partial class triggerBaseType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EnabledXName = System.Xml.Linq.XName.Get("Enabled", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StartBoundaryXName = System.Xml.Linq.XName.Get("StartBoundary", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EndBoundaryXName = System.Xml.Linq.XName.Get("EndBoundary", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RepetitionXName = System.Xml.Linq.XName.Get("Repetition", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ExecutionTimeLimitXName = System.Xml.Linq.XName.Get("ExecutionTimeLimit", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("triggerBaseType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator triggerBaseType(XElement xe) {  return (triggerBaseType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static triggerBaseType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName));
-        }
         
         /// <summary>
         /// <para>
@@ -959,6 +958,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public triggerBaseType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EnabledXName = System.Xml.Linq.XName.Get("Enabled", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? EnabledDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -974,12 +980,20 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return EnabledDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(EnabledXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StartBoundaryXName = System.Xml.Linq.XName.Get("StartBoundary", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -1002,6 +1016,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EndBoundaryXName = System.Xml.Linq.XName.Get("EndBoundary", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1023,6 +1041,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RepetitionXName = System.Xml.Linq.XName.Get("Repetition", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1034,12 +1056,22 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual repetitionType Repetition {
             get {
                 XElement x = this.GetElement(RepetitionXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((repetitionType)(x));
             }
             set {
                 this.SetElement(RepetitionXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ExecutionTimeLimitXName = System.Xml.Linq.XName.Get("ExecutionTimeLimit", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? ExecutionTimeLimitDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT72H");
         
         /// <summary>
         /// <para>
@@ -1055,12 +1087,20 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return ExecutionTimeLimitDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
                 this.SetElement(ExecutionTimeLimitXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -1070,6 +1110,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -1077,11 +1120,36 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("triggerBaseType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static triggerBaseType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(EnabledXName, typeof(bool));
+            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
+            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1104,18 +1172,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(EnabledXName, typeof(bool));
-            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
-            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1125,27 +1181,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class repetitionType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IntervalXName = System.Xml.Linq.XName.Get("Interval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DurationXName = System.Xml.Linq.XName.Get("Duration", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StopAtDurationEndXName = System.Xml.Linq.XName.Get("StopAtDurationEnd", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("repetitionType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator repetitionType(XElement xe) { return XTypedServices.ToXTypedElement<repetitionType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static repetitionType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<repetitionType>(this);
         }
         
         /// <summary>
@@ -1155,6 +1194,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public repetitionType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IntervalXName = System.Xml.Linq.XName.Get("Interval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -1173,6 +1216,10 @@ namespace Microsoft.Windows.Mit.Task {
                 this.SetElementWithValidation(IntervalXName, value, "Interval", IntervalLocalType.TypeDefinition);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DurationXName = System.Xml.Linq.XName.Get("Duration", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -1200,6 +1247,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StopAtDurationEndXName = System.Xml.Linq.XName.Get("StopAtDurationEnd", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? StopAtDurationEndDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1214,6 +1268,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return StopAtDurationEndDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
@@ -1221,11 +1279,30 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("repetitionType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static repetitionType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IntervalXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(DurationXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(StopAtDurationEndXName, typeof(bool));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1249,36 +1326,22 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<repetitionType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(IntervalXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(DurationXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(StopAtDurationEndXName, typeof(bool));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
         private class IntervalLocalType {
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, new System.TimeSpan(26784000000000), 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
             
             private IntervalLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, new System.TimeSpan(26784000000000), 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
         
         private class DurationLocalType {
             
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
-            
             private DurationLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
     }
     
@@ -1289,23 +1352,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class bootTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("bootTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator bootTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<bootTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static bootTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(DelayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<bootTriggerType>(this);
         }
         
         /// <summary>
@@ -1316,6 +1366,13 @@ namespace Microsoft.Windows.Mit.Task {
         public bootTriggerType() {
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? DelayDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1330,6 +1387,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DelayDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
@@ -1337,11 +1398,37 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("bootTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static bootTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(DelayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(EnabledXName, typeof(bool));
+            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
+            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(DelayXName, typeof(System.TimeSpan));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1363,23 +1450,6 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<bootTriggerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(EnabledXName, typeof(bool));
-            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
-            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(DelayXName, typeof(System.TimeSpan));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -1390,23 +1460,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class registrationTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("registrationTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator registrationTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<registrationTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static registrationTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(DelayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<registrationTriggerType>(this);
         }
         
         /// <summary>
@@ -1416,6 +1473,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public registrationTriggerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? DelayDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
         
         /// <summary>
         /// <para>
@@ -1431,6 +1495,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DelayDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
@@ -1438,37 +1506,15 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("registrationTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static registrationTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(DelayXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<registrationTriggerType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(EnabledXName, typeof(bool));
@@ -1479,46 +1525,18 @@ namespace Microsoft.Windows.Mit.Task {
             localElementDictionary.Add(DelayXName, typeof(System.TimeSpan));
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?)
-    /// </para>
-    /// </summary>
-    public partial class idleTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("idleTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-		public static explicit operator idleTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<idleTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static idleTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName));
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?)
-        /// </para>
-        /// </summary>
-        public idleTriggerType() {
-        }
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1541,10 +1559,38 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?)
+    /// </para>
+    /// </summary>
+    public partial class idleTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
+        
+		public static explicit operator idleTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<idleTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<idleTriggerType>(this);
         }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?)
+        /// </para>
+        /// </summary>
+        public idleTriggerType() {
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("idleTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static idleTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(EnabledXName, typeof(bool));
@@ -1554,8 +1600,39 @@ namespace Microsoft.Windows.Mit.Task {
             localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
@@ -1566,23 +1643,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class timeTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RandomDelayXName = System.Xml.Linq.XName.Get("RandomDelay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("timeTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator timeTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<timeTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static timeTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(RandomDelayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<timeTriggerType>(this);
         }
         
         /// <summary>
@@ -1592,6 +1656,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public timeTriggerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RandomDelayXName = System.Xml.Linq.XName.Get("RandomDelay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? RandomDelayDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
         
         /// <summary>
         /// <para>
@@ -1607,6 +1678,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return RandomDelayDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
@@ -1614,11 +1689,37 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("timeTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static timeTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(RandomDelayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(EnabledXName, typeof(bool));
+            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
+            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(RandomDelayXName, typeof(System.TimeSpan));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1641,23 +1742,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<timeTriggerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(EnabledXName, typeof(bool));
-            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
-            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(RandomDelayXName, typeof(System.TimeSpan));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -1667,26 +1751,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class namedValues : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValueXName = System.Xml.Linq.XName.Get("Value", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<namedValue> ValueField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("namedValues", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator namedValues(XElement xe) { return XTypedServices.ToXTypedElement<namedValues>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static namedValues() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ValueXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<namedValues>(this);
         }
         
         /// <summary>
@@ -1696,6 +1764,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public namedValues() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValueXName = System.Xml.Linq.XName.Get("Value", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<namedValue> ValueField;
         
         /// <summary>
         /// <para>
@@ -1727,11 +1802,32 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("namedValues", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static namedValues() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(ValueXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ValueXName, typeof(namedValue));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1754,36 +1850,22 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<namedValues>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ValueXName, typeof(namedValue));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class namedValue : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("namedValue", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
 		public static explicit operator namedValue(XElement xe) { return XTypedServices.ToXTypedElement<namedValue>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<namedValue>(this);
+        }
         
         public namedValue() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -1794,6 +1876,10 @@ namespace Microsoft.Windows.Mit.Task {
                 this.SetValueWithValidation(value, "TypedValue", global::Microsoft.Windows.Mit.Task.nonEmptyString.TypeDefinition);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nameXName = System.Xml.Linq.XName.Get("name", "");
         
         /// <summary>
         /// <para>
@@ -1810,6 +1896,12 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("namedValue", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -1830,14 +1922,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<namedValue>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -1847,43 +1931,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class eventTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SubscriptionXName = System.Xml.Linq.XName.Get("Subscription", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PeriodOfOccurrenceXName = System.Xml.Linq.XName.Get("PeriodOfOccurrence", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NumberOfOccurrencesXName = System.Xml.Linq.XName.Get("NumberOfOccurrences", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MatchingElementXName = System.Xml.Linq.XName.Get("MatchingElement", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValueQueriesXName = System.Xml.Linq.XName.Get("ValueQueries", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("eventTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator eventTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<eventTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static eventTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(SubscriptionXName), new NamedContentModelEntity(DelayXName), new NamedContentModelEntity(PeriodOfOccurrenceXName), new NamedContentModelEntity(NumberOfOccurrencesXName), new NamedContentModelEntity(MatchingElementXName), new NamedContentModelEntity(ValueQueriesXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<eventTriggerType>(this);
         }
         
         /// <summary>
@@ -1893,6 +1944,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public eventTriggerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SubscriptionXName = System.Xml.Linq.XName.Get("Subscription", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -1912,6 +1967,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? DelayDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1926,12 +1988,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DelayDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
                 this.SetElement(DelayXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PeriodOfOccurrenceXName = System.Xml.Linq.XName.Get("PeriodOfOccurrence", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? PeriodOfOccurrenceDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
         
         /// <summary>
         /// <para>
@@ -1947,12 +2020,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return PeriodOfOccurrenceDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
                 this.SetElement(PeriodOfOccurrenceXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NumberOfOccurrencesXName = System.Xml.Linq.XName.Get("NumberOfOccurrences", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Byte? NumberOfOccurrencesDefaultValue = System.Xml.XmlConvert.ToByte("1");
         
         /// <summary>
         /// <para>
@@ -1968,6 +2052,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return NumberOfOccurrencesDefaultValue;
+                }
                 return XTypedServices.ParseValue<byte>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedByte).Datatype);
             }
             set {
@@ -1980,6 +2068,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MatchingElementXName = System.Xml.Linq.XName.Get("MatchingElement", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -1991,6 +2083,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string MatchingElement {
             get {
                 XElement x = this.GetElement(MatchingElementXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -2003,6 +2098,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValueQueriesXName = System.Xml.Linq.XName.Get("ValueQueries", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2014,6 +2113,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual namedValues ValueQueries {
             get {
                 XElement x = this.GetElement(ValueQueriesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((namedValues)(x));
             }
             set {
@@ -2021,37 +2123,15 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("eventTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static eventTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(SubscriptionXName), new NamedContentModelEntity(DelayXName), new NamedContentModelEntity(PeriodOfOccurrenceXName), new NamedContentModelEntity(NumberOfOccurrencesXName), new NamedContentModelEntity(MatchingElementXName), new NamedContentModelEntity(ValueQueriesXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<eventTriggerType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(EnabledXName, typeof(bool));
@@ -2067,107 +2147,18 @@ namespace Microsoft.Windows.Mit.Task {
             localElementDictionary.Add(ValueQueriesXName, typeof(namedValues));
         }
         
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
-        
-        private class NumberOfOccurrencesLocalType {
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedByte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 32, 0, null, 1, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
-            
-            private NumberOfOccurrencesLocalType() {
-            }
-        }
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
-    /// </para>
-    /// </summary>
-    public partial class logonTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName UserIdXName = System.Xml.Linq.XName.Get("UserId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("logonTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
-		public static explicit operator logonTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<logonTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        static logonTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(UserIdXName), new NamedContentModelEntity(DelayXName));
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
-        /// </para>
-        /// </summary>
-        public logonTriggerType() {
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// <para>
-        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
-        /// </para>
-        /// </summary>
-        public virtual string UserId {
-            get {
-                XElement x = this.GetElement(UserIdXName);
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-            }
-            set {
-                if (value == null) {
-                    this.SetElement(UserIdXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
-                }
-                else {
-                    this.SetElementWithValidation(UserIdXName, value, "UserId", global::Microsoft.Windows.Mit.Task.nonEmptyString.TypeDefinition);
-                }
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: optional
-        /// </para>
-        /// <para>
-        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
-        /// </para>
-        /// </summary>
-        public virtual System.TimeSpan? Delay {
-            get {
-                XElement x = this.GetElement(DelayXName);
-                if ((x == null)) {
-                    return null;
-                }
-                return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
-            }
-            set {
-                this.SetElement(DelayXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
-            }
-        }
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2191,9 +2182,108 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private class NumberOfOccurrencesLocalType {
+            
+            private NumberOfOccurrencesLocalType() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedByte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 32, 0, null, 1, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
+    /// </para>
+    /// </summary>
+    public partial class logonTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
+        
+		public static explicit operator logonTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<logonTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return XTypedServices.CloneXTypedElement<logonTriggerType>(this);
         }
+        
+        /// <summary>
+        /// <para>
+        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
+        /// </para>
+        /// </summary>
+        public logonTriggerType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName UserIdXName = System.Xml.Linq.XName.Get("UserId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
+        /// </para>
+        /// </summary>
+        public virtual string UserId {
+            get {
+                XElement x = this.GetElement(UserIdXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                if (value == null) {
+                    this.SetElement(UserIdXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                }
+                else {
+                    this.SetElementWithValidation(UserIdXName, value, "UserId", global::Microsoft.Windows.Mit.Task.nonEmptyString.TypeDefinition);
+                }
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? DelayDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// <para>
+        /// Regular expression: (Enabled?, StartBoundary?, EndBoundary?, Repetition?, ExecutionTimeLimit?, UserId?, Delay?)
+        /// </para>
+        /// </summary>
+        public virtual System.TimeSpan? Delay {
+            get {
+                XElement x = this.GetElement(DelayXName);
+                if ((x == null)) {
+                    return null;
+                }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DelayDefaultValue;
+                }
+                return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
+            }
+            set {
+                this.SetElement(DelayXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("logonTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static logonTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(UserIdXName), new NamedContentModelEntity(DelayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(EnabledXName, typeof(bool));
@@ -2205,8 +2295,39 @@ namespace Microsoft.Windows.Mit.Task {
             localElementDictionary.Add(DelayXName, typeof(System.TimeSpan));
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
@@ -2227,6 +2348,9 @@ namespace Microsoft.Windows.Mit.Task {
     
     public sealed class sessionStateChangeTypeValidator {
         
+        private sessionStateChangeTypeValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "ConsoleConnect",
@@ -2235,9 +2359,6 @@ namespace Microsoft.Windows.Mit.Task {
                         "RemoteDisconnect",
                         "SessionLock",
                         "SessionUnlock"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private sessionStateChangeTypeValidator() {
-        }
     }
     
     /// <summary>
@@ -2247,31 +2368,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class sessionStateChangeTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName UserIdXName = System.Xml.Linq.XName.Get("UserId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StateChangeXName = System.Xml.Linq.XName.Get("StateChange", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("sessionStateChangeTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator sessionStateChangeTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<sessionStateChangeTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static sessionStateChangeTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(UserIdXName), new NamedContentModelEntity(DelayXName), new NamedContentModelEntity(StateChangeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<sessionStateChangeTriggerType>(this);
         }
         
         /// <summary>
@@ -2281,6 +2381,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public sessionStateChangeTriggerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName UserIdXName = System.Xml.Linq.XName.Get("UserId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2293,6 +2397,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string UserId {
             get {
                 XElement x = this.GetElement(UserIdXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -2304,6 +2411,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DelayXName = System.Xml.Linq.XName.Get("Delay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? DelayDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
         
         /// <summary>
         /// <para>
@@ -2319,12 +2433,20 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DelayDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
                 this.SetElement(DelayXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StateChangeXName = System.Xml.Linq.XName.Get("StateChange", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2337,11 +2459,32 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual Microsoft.Windows.Mit.Task.sessionStateChangeType StateChange {
             get {
                 XElement x = this.GetElement(StateChangeXName);
-                return ((Microsoft.Windows.Mit.Task.sessionStateChangeType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.sessionStateChangeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                return ((Microsoft.Windows.Mit.Task.sessionStateChangeType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.sessionStateChangeType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::Microsoft.Windows.Mit.Task.sessionStateChangeTypeValidator.TypeDefinition))));
             }
             set {
                 this.SetElementWithValidation(StateChangeXName, value.ToString(), "StateChange", global::Microsoft.Windows.Mit.Task.sessionStateChangeTypeValidator.TypeDefinition);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("sessionStateChangeTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static sessionStateChangeTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(UserIdXName), new NamedContentModelEntity(DelayXName), new NamedContentModelEntity(StateChangeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(EnabledXName, typeof(bool));
+            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
+            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(UserIdXName, typeof(string));
+            localElementDictionary.Add(DelayXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(StateChangeXName, typeof(string));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2349,6 +2492,13 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2371,25 +2521,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<sessionStateChangeTriggerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(EnabledXName, typeof(bool));
-            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
-            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(UserIdXName, typeof(string));
-            localElementDictionary.Add(DelayXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(StateChangeXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2399,39 +2530,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class calendarTriggerType : global::Microsoft.Windows.Mit.Task.triggerBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RandomDelayXName = System.Xml.Linq.XName.Get("RandomDelay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ScheduleByDayXName = System.Xml.Linq.XName.Get("ScheduleByDay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ScheduleByWeekXName = System.Xml.Linq.XName.Get("ScheduleByWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ScheduleByMonthXName = System.Xml.Linq.XName.Get("ScheduleByMonth", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ScheduleByMonthDayOfWeekXName = System.Xml.Linq.XName.Get("ScheduleByMonthDayOfWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("calendarTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator calendarTriggerType(XElement xe) { return XTypedServices.ToXTypedElement<calendarTriggerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static calendarTriggerType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(RandomDelayXName), new ChoiceContentModelEntity(new NamedContentModelEntity(ScheduleByDayXName), new NamedContentModelEntity(ScheduleByWeekXName), new NamedContentModelEntity(ScheduleByMonthXName), new NamedContentModelEntity(ScheduleByMonthDayOfWeekXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<calendarTriggerType>(this);
         }
         
         /// <summary>
@@ -2441,6 +2543,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public calendarTriggerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RandomDelayXName = System.Xml.Linq.XName.Get("RandomDelay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? RandomDelayDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0M");
         
         /// <summary>
         /// <para>
@@ -2456,12 +2565,20 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return RandomDelayDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
                 this.SetElement(RandomDelayXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ScheduleByDayXName = System.Xml.Linq.XName.Get("ScheduleByDay", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2477,12 +2594,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual dailyScheduleType ScheduleByDay {
             get {
                 XElement x = this.GetElement(ScheduleByDayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((dailyScheduleType)(x));
             }
             set {
                 this.SetElement(ScheduleByDayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ScheduleByWeekXName = System.Xml.Linq.XName.Get("ScheduleByWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2498,12 +2622,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual weeklyScheduleType ScheduleByWeek {
             get {
                 XElement x = this.GetElement(ScheduleByWeekXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((weeklyScheduleType)(x));
             }
             set {
                 this.SetElement(ScheduleByWeekXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ScheduleByMonthXName = System.Xml.Linq.XName.Get("ScheduleByMonth", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2519,12 +2650,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual monthlyScheduleType ScheduleByMonth {
             get {
                 XElement x = this.GetElement(ScheduleByMonthXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((monthlyScheduleType)(x));
             }
             set {
                 this.SetElement(ScheduleByMonthXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ScheduleByMonthDayOfWeekXName = System.Xml.Linq.XName.Get("ScheduleByMonthDayOfWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2540,6 +2678,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual monthlyDayOfWeekScheduleType ScheduleByMonthDayOfWeek {
             get {
                 XElement x = this.GetElement(ScheduleByMonthDayOfWeekXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((monthlyDayOfWeekScheduleType)(x));
             }
             set {
@@ -2547,11 +2688,41 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("calendarTriggerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static calendarTriggerType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(EnabledXName), new NamedContentModelEntity(StartBoundaryXName), new NamedContentModelEntity(EndBoundaryXName), new NamedContentModelEntity(RepetitionXName), new NamedContentModelEntity(ExecutionTimeLimitXName), new NamedContentModelEntity(RandomDelayXName), new ChoiceContentModelEntity(new NamedContentModelEntity(ScheduleByDayXName), new NamedContentModelEntity(ScheduleByWeekXName), new NamedContentModelEntity(ScheduleByMonthXName), new NamedContentModelEntity(ScheduleByMonthDayOfWeekXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(EnabledXName, typeof(bool));
+            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
+            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
+            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(RandomDelayXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(ScheduleByDayXName, typeof(dailyScheduleType));
+            localElementDictionary.Add(ScheduleByWeekXName, typeof(weeklyScheduleType));
+            localElementDictionary.Add(ScheduleByMonthXName, typeof(monthlyScheduleType));
+            localElementDictionary.Add(ScheduleByMonthDayOfWeekXName, typeof(monthlyDayOfWeekScheduleType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2574,27 +2745,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<calendarTriggerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(EnabledXName, typeof(bool));
-            localElementDictionary.Add(StartBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(EndBoundaryXName, typeof(System.DateTime));
-            localElementDictionary.Add(RepetitionXName, typeof(repetitionType));
-            localElementDictionary.Add(ExecutionTimeLimitXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(RandomDelayXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(ScheduleByDayXName, typeof(dailyScheduleType));
-            localElementDictionary.Add(ScheduleByWeekXName, typeof(weeklyScheduleType));
-            localElementDictionary.Add(ScheduleByMonthXName, typeof(monthlyScheduleType));
-            localElementDictionary.Add(ScheduleByMonthDayOfWeekXName, typeof(monthlyDayOfWeekScheduleType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -2604,19 +2754,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class dailyScheduleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DaysIntervalXName = System.Xml.Linq.XName.Get("DaysInterval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("dailyScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator dailyScheduleType(XElement xe) { return XTypedServices.ToXTypedElement<dailyScheduleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static dailyScheduleType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<dailyScheduleType>(this);
         }
         
         /// <summary>
@@ -2626,6 +2767,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public dailyScheduleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DaysIntervalXName = System.Xml.Linq.XName.Get("DaysInterval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2653,11 +2798,28 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("dailyScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static dailyScheduleType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DaysIntervalXName, typeof(uint));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2681,25 +2843,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<dailyScheduleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DaysIntervalXName, typeof(uint));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
         private class DaysIntervalLocalType {
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedInt), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 365u, 0, null, 1u, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
             
             private DaysIntervalLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedInt), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 365u, 0, null, 1u, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
     }
     
@@ -2710,23 +2860,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class weeklyScheduleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName WeeksIntervalXName = System.Xml.Linq.XName.Get("WeeksInterval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DaysOfWeekXName = System.Xml.Linq.XName.Get("DaysOfWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("weeklyScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator weeklyScheduleType(XElement xe) { return XTypedServices.ToXTypedElement<weeklyScheduleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static weeklyScheduleType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<weeklyScheduleType>(this);
         }
         
         /// <summary>
@@ -2736,6 +2873,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public weeklyScheduleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName WeeksIntervalXName = System.Xml.Linq.XName.Get("WeeksInterval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2763,6 +2904,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DaysOfWeekXName = System.Xml.Linq.XName.Get("DaysOfWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -2774,6 +2919,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual daysOfWeekType DaysOfWeek {
             get {
                 XElement x = this.GetElement(DaysOfWeekXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((daysOfWeekType)(x));
             }
             set {
@@ -2781,11 +2929,29 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("weeklyScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static weeklyScheduleType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(WeeksIntervalXName, typeof(byte));
+            localElementDictionary.Add(DaysOfWeekXName, typeof(daysOfWeekType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2809,26 +2975,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<weeklyScheduleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(WeeksIntervalXName, typeof(byte));
-            localElementDictionary.Add(DaysOfWeekXName, typeof(daysOfWeekType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
         private class WeeksIntervalLocalType {
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedByte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 52, 0, null, 1, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
             
             private WeeksIntervalLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedByte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 52, 0, null, 1, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
     }
     
@@ -2839,23 +2992,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class monthlyScheduleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DaysOfMonthXName = System.Xml.Linq.XName.Get("DaysOfMonth", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthsXName = System.Xml.Linq.XName.Get("Months", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("monthlyScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator monthlyScheduleType(XElement xe) { return XTypedServices.ToXTypedElement<monthlyScheduleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static monthlyScheduleType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<monthlyScheduleType>(this);
         }
         
         /// <summary>
@@ -2865,6 +3005,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public monthlyScheduleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DaysOfMonthXName = System.Xml.Linq.XName.Get("DaysOfMonth", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2877,12 +3021,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual daysOfMonthType DaysOfMonth {
             get {
                 XElement x = this.GetElement(DaysOfMonthXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((daysOfMonthType)(x));
             }
             set {
                 this.SetElement(DaysOfMonthXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthsXName = System.Xml.Linq.XName.Get("Months", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2895,6 +3046,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual monthsType Months {
             get {
                 XElement x = this.GetElement(MonthsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((monthsType)(x));
             }
             set {
@@ -2902,11 +3056,29 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("monthlyScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static monthlyScheduleType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DaysOfMonthXName, typeof(daysOfMonthType));
+            localElementDictionary.Add(MonthsXName, typeof(monthsType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2929,19 +3101,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<monthlyScheduleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DaysOfMonthXName, typeof(daysOfMonthType));
-            localElementDictionary.Add(MonthsXName, typeof(monthsType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -2951,27 +3110,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class monthlyDayOfWeekScheduleType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName WeeksXName = System.Xml.Linq.XName.Get("Weeks", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DaysOfWeekXName = System.Xml.Linq.XName.Get("DaysOfWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MonthsXName = System.Xml.Linq.XName.Get("Months", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("monthlyDayOfWeekScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator monthlyDayOfWeekScheduleType(XElement xe) { return XTypedServices.ToXTypedElement<monthlyDayOfWeekScheduleType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static monthlyDayOfWeekScheduleType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<monthlyDayOfWeekScheduleType>(this);
         }
         
         /// <summary>
@@ -2981,6 +3123,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public monthlyDayOfWeekScheduleType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName WeeksXName = System.Xml.Linq.XName.Get("Weeks", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -2993,12 +3139,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual weeksType Weeks {
             get {
                 XElement x = this.GetElement(WeeksXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((weeksType)(x));
             }
             set {
                 this.SetElement(WeeksXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DaysOfWeekXName = System.Xml.Linq.XName.Get("DaysOfWeek", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3018,6 +3171,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MonthsXName = System.Xml.Linq.XName.Get("Months", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -3029,6 +3186,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual monthsType Months {
             get {
                 XElement x = this.GetElement(MonthsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((monthsType)(x));
             }
             set {
@@ -3036,11 +3196,30 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("monthlyDayOfWeekScheduleType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static monthlyDayOfWeekScheduleType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(WeeksXName, typeof(weeksType));
+            localElementDictionary.Add(DaysOfWeekXName, typeof(daysOfWeekType));
+            localElementDictionary.Add(MonthsXName, typeof(monthsType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3063,20 +3242,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<monthlyDayOfWeekScheduleType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(WeeksXName, typeof(weeksType));
-            localElementDictionary.Add(DaysOfWeekXName, typeof(daysOfWeekType));
-            localElementDictionary.Add(MonthsXName, typeof(monthsType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -3086,43 +3251,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class daysOfWeekType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MondayXName = System.Xml.Linq.XName.Get("Monday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TuesdayXName = System.Xml.Linq.XName.Get("Tuesday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName WednesdayXName = System.Xml.Linq.XName.Get("Wednesday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ThursdayXName = System.Xml.Linq.XName.Get("Thursday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FridayXName = System.Xml.Linq.XName.Get("Friday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SaturdayXName = System.Xml.Linq.XName.Get("Saturday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SundayXName = System.Xml.Linq.XName.Get("Sunday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("daysOfWeekType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator daysOfWeekType(XElement xe) { return XTypedServices.ToXTypedElement<daysOfWeekType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static daysOfWeekType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<daysOfWeekType>(this);
         }
         
         /// <summary>
@@ -3132,6 +3264,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public daysOfWeekType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MondayXName = System.Xml.Linq.XName.Get("Monday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3144,12 +3280,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement Monday {
             get {
                 XElement x = this.GetElement(MondayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(MondayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TuesdayXName = System.Xml.Linq.XName.Get("Tuesday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3162,12 +3305,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement Tuesday {
             get {
                 XElement x = this.GetElement(TuesdayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(TuesdayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName WednesdayXName = System.Xml.Linq.XName.Get("Wednesday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3180,12 +3330,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement Wednesday {
             get {
                 XElement x = this.GetElement(WednesdayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(WednesdayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ThursdayXName = System.Xml.Linq.XName.Get("Thursday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3198,12 +3355,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement Thursday {
             get {
                 XElement x = this.GetElement(ThursdayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(ThursdayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FridayXName = System.Xml.Linq.XName.Get("Friday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3216,12 +3380,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement Friday {
             get {
                 XElement x = this.GetElement(FridayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(FridayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SaturdayXName = System.Xml.Linq.XName.Get("Saturday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3234,12 +3405,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement Saturday {
             get {
                 XElement x = this.GetElement(SaturdayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(SaturdayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SundayXName = System.Xml.Linq.XName.Get("Sunday", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3252,6 +3430,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement Sunday {
             get {
                 XElement x = this.GetElement(SundayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
@@ -3259,11 +3440,34 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("daysOfWeekType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static daysOfWeekType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(MondayXName, typeof(XTypedElement));
+            localElementDictionary.Add(TuesdayXName, typeof(XTypedElement));
+            localElementDictionary.Add(WednesdayXName, typeof(XTypedElement));
+            localElementDictionary.Add(ThursdayXName, typeof(XTypedElement));
+            localElementDictionary.Add(FridayXName, typeof(XTypedElement));
+            localElementDictionary.Add(SaturdayXName, typeof(XTypedElement));
+            localElementDictionary.Add(SundayXName, typeof(XTypedElement));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3286,24 +3490,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<daysOfWeekType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(MondayXName, typeof(XTypedElement));
-            localElementDictionary.Add(TuesdayXName, typeof(XTypedElement));
-            localElementDictionary.Add(WednesdayXName, typeof(XTypedElement));
-            localElementDictionary.Add(ThursdayXName, typeof(XTypedElement));
-            localElementDictionary.Add(FridayXName, typeof(XTypedElement));
-            localElementDictionary.Add(SaturdayXName, typeof(XTypedElement));
-            localElementDictionary.Add(SundayXName, typeof(XTypedElement));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -3313,63 +3499,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class monthsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName JanuaryXName = System.Xml.Linq.XName.Get("January", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FebruaryXName = System.Xml.Linq.XName.Get("February", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MarchXName = System.Xml.Linq.XName.Get("March", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AprilXName = System.Xml.Linq.XName.Get("April", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MayXName = System.Xml.Linq.XName.Get("May", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName JuneXName = System.Xml.Linq.XName.Get("June", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName JulyXName = System.Xml.Linq.XName.Get("July", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AugustXName = System.Xml.Linq.XName.Get("August", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SeptemberXName = System.Xml.Linq.XName.Get("September", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName OctoberXName = System.Xml.Linq.XName.Get("October", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NovemberXName = System.Xml.Linq.XName.Get("November", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DecemberXName = System.Xml.Linq.XName.Get("December", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("monthsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator monthsType(XElement xe) { return XTypedServices.ToXTypedElement<monthsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static monthsType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<monthsType>(this);
         }
         
         /// <summary>
@@ -3379,6 +3512,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public monthsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName JanuaryXName = System.Xml.Linq.XName.Get("January", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3391,12 +3528,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement January {
             get {
                 XElement x = this.GetElement(JanuaryXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(JanuaryXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FebruaryXName = System.Xml.Linq.XName.Get("February", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3409,12 +3553,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement February {
             get {
                 XElement x = this.GetElement(FebruaryXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(FebruaryXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MarchXName = System.Xml.Linq.XName.Get("March", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3427,12 +3578,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement March {
             get {
                 XElement x = this.GetElement(MarchXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(MarchXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AprilXName = System.Xml.Linq.XName.Get("April", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3445,12 +3603,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement April {
             get {
                 XElement x = this.GetElement(AprilXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(AprilXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MayXName = System.Xml.Linq.XName.Get("May", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3463,12 +3628,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement May {
             get {
                 XElement x = this.GetElement(MayXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(MayXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName JuneXName = System.Xml.Linq.XName.Get("June", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3481,12 +3653,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement June {
             get {
                 XElement x = this.GetElement(JuneXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(JuneXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName JulyXName = System.Xml.Linq.XName.Get("July", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3499,12 +3678,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement July {
             get {
                 XElement x = this.GetElement(JulyXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(JulyXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AugustXName = System.Xml.Linq.XName.Get("August", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3517,12 +3703,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement August {
             get {
                 XElement x = this.GetElement(AugustXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(AugustXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SeptemberXName = System.Xml.Linq.XName.Get("September", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3535,12 +3728,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement September {
             get {
                 XElement x = this.GetElement(SeptemberXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(SeptemberXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OctoberXName = System.Xml.Linq.XName.Get("October", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3553,12 +3753,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement October {
             get {
                 XElement x = this.GetElement(OctoberXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(OctoberXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NovemberXName = System.Xml.Linq.XName.Get("November", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3571,12 +3778,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement November {
             get {
                 XElement x = this.GetElement(NovemberXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
                 this.SetElement(NovemberXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DecemberXName = System.Xml.Linq.XName.Get("December", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -3589,6 +3803,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual XTypedElement December {
             get {
                 XElement x = this.GetElement(DecemberXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((XTypedElement)(x));
             }
             set {
@@ -3596,37 +3813,14 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("monthsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static monthsType() {
+            BuildElementDictionary();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<monthsType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(JanuaryXName, typeof(XTypedElement));
@@ -3643,8 +3837,36 @@ namespace Microsoft.Windows.Mit.Task {
             localElementDictionary.Add(DecemberXName, typeof(XTypedElement));
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
@@ -3655,26 +3877,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class daysOfMonthType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> DayField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("daysOfMonthType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator daysOfMonthType(XElement xe) { return XTypedServices.ToXTypedElement<daysOfMonthType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static daysOfMonthType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DayXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<daysOfMonthType>(this);
         }
         
         /// <summary>
@@ -3684,6 +3890,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public daysOfMonthType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DayXName = System.Xml.Linq.XName.Get("Day", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> DayField;
         
         /// <summary>
         /// <para>
@@ -3715,11 +3928,32 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("daysOfMonthType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static daysOfMonthType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(DayXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DayXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3742,28 +3976,16 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<daysOfMonthType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DayXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public sealed class dayOfMonthType {
         
+        private dayOfMonthType() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "[1-9]|[1-2][0-9]|3[0-1]|Last"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private dayOfMonthType() {
-        }
     }
     
     /// <summary>
@@ -3773,26 +3995,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class weeksType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName WeekXName = System.Xml.Linq.XName.Get("Week", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> WeekField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("weeksType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator weeksType(XElement xe) { return XTypedServices.ToXTypedElement<weeksType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static weeksType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(WeekXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<weeksType>(this);
         }
         
         /// <summary>
@@ -3802,6 +4008,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public weeksType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName WeekXName = System.Xml.Linq.XName.Get("Week", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> WeekField;
         
         /// <summary>
         /// <para>
@@ -3833,11 +4046,32 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("weeksType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static weeksType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(WeekXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(WeekXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -3860,28 +4094,16 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<weeksType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(WeekXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public sealed class weekType {
         
+        private weekType() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "[1-4]|Last"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private weekType() {
-        }
     }
     
     /// <summary>
@@ -3891,95 +4113,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class settingsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AllowStartOnDemandXName = System.Xml.Linq.XName.Get("AllowStartOnDemand", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RestartOnFailureXName = System.Xml.Linq.XName.Get("RestartOnFailure", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName MultipleInstancesPolicyXName = System.Xml.Linq.XName.Get("MultipleInstancesPolicy", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DisallowStartIfOnBatteriesXName = System.Xml.Linq.XName.Get("DisallowStartIfOnBatteries", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StopIfGoingOnBatteriesXName = System.Xml.Linq.XName.Get("StopIfGoingOnBatteries", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AllowHardTerminateXName = System.Xml.Linq.XName.Get("AllowHardTerminate", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StartWhenAvailableXName = System.Xml.Linq.XName.Get("StartWhenAvailable", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NetworkProfileNameXName = System.Xml.Linq.XName.Get("NetworkProfileName", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RunOnlyIfNetworkAvailableXName = System.Xml.Linq.XName.Get("RunOnlyIfNetworkAvailable", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName WakeToRunXName = System.Xml.Linq.XName.Get("WakeToRun", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName EnabledXName = System.Xml.Linq.XName.Get("Enabled", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName HiddenXName = System.Xml.Linq.XName.Get("Hidden", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DeleteExpiredTaskAfterXName = System.Xml.Linq.XName.Get("DeleteExpiredTaskAfter", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdleSettingsXName = System.Xml.Linq.XName.Get("IdleSettings", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NetworkSettingsXName = System.Xml.Linq.XName.Get("NetworkSettings", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ExecutionTimeLimitXName = System.Xml.Linq.XName.Get("ExecutionTimeLimit", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PriorityXName = System.Xml.Linq.XName.Get("Priority", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RunOnlyIfIdleXName = System.Xml.Linq.XName.Get("RunOnlyIfIdle", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName UseUnifiedSchedulingEngineXName = System.Xml.Linq.XName.Get("UseUnifiedSchedulingEngine", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DisallowStartOnRemoteAppSessionXName = System.Xml.Linq.XName.Get("DisallowStartOnRemoteAppSession", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("settingsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator settingsType(XElement xe) { return XTypedServices.ToXTypedElement<settingsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static settingsType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<settingsType>(this);
         }
         
         /// <summary>
@@ -3989,6 +4126,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public settingsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AllowStartOnDemandXName = System.Xml.Linq.XName.Get("AllowStartOnDemand", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? AllowStartOnDemandDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -4004,12 +4148,20 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return AllowStartOnDemandDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(AllowStartOnDemandXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RestartOnFailureXName = System.Xml.Linq.XName.Get("RestartOnFailure", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -4022,12 +4174,22 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual restartType RestartOnFailure {
             get {
                 XElement x = this.GetElement(RestartOnFailureXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((restartType)(x));
             }
             set {
                 this.SetElement(RestartOnFailureXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName MultipleInstancesPolicyXName = System.Xml.Linq.XName.Get("MultipleInstancesPolicy", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static Microsoft.Windows.Mit.Task.multipleInstancesPolicyType? MultipleInstancesPolicyDefaultValue = Microsoft.Windows.Mit.Task.multipleInstancesPolicyType.IgnoreNew;
         
         /// <summary>
         /// <para>
@@ -4043,7 +4205,11 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
-                return ((Microsoft.Windows.Mit.Task.multipleInstancesPolicyType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.multipleInstancesPolicyType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return MultipleInstancesPolicyDefaultValue;
+                }
+                return ((Microsoft.Windows.Mit.Task.multipleInstancesPolicyType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.multipleInstancesPolicyType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::Microsoft.Windows.Mit.Task.multipleInstancesPolicyTypeValidator.TypeDefinition))));
             }
             set {
                 if (value == null) {
@@ -4054,6 +4220,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DisallowStartIfOnBatteriesXName = System.Xml.Linq.XName.Get("DisallowStartIfOnBatteries", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? DisallowStartIfOnBatteriesDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -4069,12 +4242,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DisallowStartIfOnBatteriesDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(DisallowStartIfOnBatteriesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StopIfGoingOnBatteriesXName = System.Xml.Linq.XName.Get("StopIfGoingOnBatteries", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? StopIfGoingOnBatteriesDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -4090,12 +4274,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return StopIfGoingOnBatteriesDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(StopIfGoingOnBatteriesXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AllowHardTerminateXName = System.Xml.Linq.XName.Get("AllowHardTerminate", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? AllowHardTerminateDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -4111,12 +4306,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return AllowHardTerminateDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(AllowHardTerminateXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StartWhenAvailableXName = System.Xml.Linq.XName.Get("StartWhenAvailable", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? StartWhenAvailableDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4132,12 +4338,20 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return StartWhenAvailableDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(StartWhenAvailableXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NetworkProfileNameXName = System.Xml.Linq.XName.Get("NetworkProfileName", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -4150,12 +4364,22 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string NetworkProfileName {
             get {
                 XElement x = this.GetElement(NetworkProfileNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(NetworkProfileNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RunOnlyIfNetworkAvailableXName = System.Xml.Linq.XName.Get("RunOnlyIfNetworkAvailable", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? RunOnlyIfNetworkAvailableDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4171,12 +4395,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return RunOnlyIfNetworkAvailableDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(RunOnlyIfNetworkAvailableXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName WakeToRunXName = System.Xml.Linq.XName.Get("WakeToRun", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? WakeToRunDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4192,12 +4427,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return WakeToRunDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(WakeToRunXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EnabledXName = System.Xml.Linq.XName.Get("Enabled", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? EnabledDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -4213,12 +4459,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return EnabledDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(EnabledXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName HiddenXName = System.Xml.Linq.XName.Get("Hidden", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? HiddenDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4234,12 +4491,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return HiddenDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(HiddenXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DeleteExpiredTaskAfterXName = System.Xml.Linq.XName.Get("DeleteExpiredTaskAfter", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? DeleteExpiredTaskAfterDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT0S");
         
         /// <summary>
         /// <para>
@@ -4255,12 +4523,20 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DeleteExpiredTaskAfterDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
                 this.SetElement(DeleteExpiredTaskAfterXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdleSettingsXName = System.Xml.Linq.XName.Get("IdleSettings", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -4273,12 +4549,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual idleSettingsType IdleSettings {
             get {
                 XElement x = this.GetElement(IdleSettingsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((idleSettingsType)(x));
             }
             set {
                 this.SetElement(IdleSettingsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NetworkSettingsXName = System.Xml.Linq.XName.Get("NetworkSettings", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -4291,12 +4574,22 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual networkSettingsType NetworkSettings {
             get {
                 XElement x = this.GetElement(NetworkSettingsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((networkSettingsType)(x));
             }
             set {
                 this.SetElement(NetworkSettingsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ExecutionTimeLimitXName = System.Xml.Linq.XName.Get("ExecutionTimeLimit", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? ExecutionTimeLimitDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT72H");
         
         /// <summary>
         /// <para>
@@ -4312,12 +4605,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return ExecutionTimeLimitDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
                 this.SetElement(ExecutionTimeLimitXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PriorityXName = System.Xml.Linq.XName.Get("Priority", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.SByte? PriorityDefaultValue = System.Xml.XmlConvert.ToSByte("7");
         
         /// <summary>
         /// <para>
@@ -4333,6 +4637,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return PriorityDefaultValue;
+                }
                 return XTypedServices.ParseValue<sbyte>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Byte).Datatype);
             }
             set {
@@ -4344,6 +4652,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RunOnlyIfIdleXName = System.Xml.Linq.XName.Get("RunOnlyIfIdle", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? RunOnlyIfIdleDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4359,12 +4674,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return RunOnlyIfIdleDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(RunOnlyIfIdleXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName UseUnifiedSchedulingEngineXName = System.Xml.Linq.XName.Get("UseUnifiedSchedulingEngine", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? UseUnifiedSchedulingEngineDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4380,12 +4706,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return UseUnifiedSchedulingEngineDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(UseUnifiedSchedulingEngineXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DisallowStartOnRemoteAppSessionXName = System.Xml.Linq.XName.Get("DisallowStartOnRemoteAppSession", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? DisallowStartOnRemoteAppSessionDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4401,6 +4738,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DisallowStartOnRemoteAppSessionDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
@@ -4408,37 +4749,14 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                return localElementDictionary;
-            }
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("settingsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static settingsType() {
+            BuildElementDictionary();
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Fragment;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<settingsType>(this);
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(AllowStartOnDemandXName, typeof(bool));
@@ -4463,8 +4781,36 @@ namespace Microsoft.Windows.Mit.Task {
             localElementDictionary.Add(DisallowStartOnRemoteAppSessionXName, typeof(bool));
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                return localElementDictionary;
+            }
+        }
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Fragment;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
@@ -4481,24 +4827,24 @@ namespace Microsoft.Windows.Mit.Task {
     
     public sealed class multipleInstancesPolicyTypeValidator {
         
+        private multipleInstancesPolicyTypeValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Parallel",
                         "Queue",
                         "IgnoreNew",
                         "StopExisting"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private multipleInstancesPolicyTypeValidator() {
-        }
     }
     
     public sealed class priorityType {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Byte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 10, 0, null, 0, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
-        
         private priorityType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Byte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, 10, 0, null, 0, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
     }
     
     /// <summary>
@@ -4508,31 +4854,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class idleSettingsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DurationXName = System.Xml.Linq.XName.Get("Duration", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName WaitTimeoutXName = System.Xml.Linq.XName.Get("WaitTimeout", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName StopOnIdleEndXName = System.Xml.Linq.XName.Get("StopOnIdleEnd", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RestartOnIdleXName = System.Xml.Linq.XName.Get("RestartOnIdle", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("idleSettingsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator idleSettingsType(XElement xe) { return XTypedServices.ToXTypedElement<idleSettingsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static idleSettingsType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<idleSettingsType>(this);
         }
         
         /// <summary>
@@ -4542,6 +4867,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public idleSettingsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DurationXName = System.Xml.Linq.XName.Get("Duration", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? DurationDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT10M");
         
         /// <summary>
         /// <para>
@@ -4557,6 +4889,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return DurationDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
@@ -4568,6 +4904,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName WaitTimeoutXName = System.Xml.Linq.XName.Get("WaitTimeout", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.TimeSpan? WaitTimeoutDefaultValue = System.Xml.XmlConvert.ToTimeSpan("PT1H");
         
         /// <summary>
         /// <para>
@@ -4583,6 +4926,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return WaitTimeoutDefaultValue;
+                }
                 return XTypedServices.ParseValue<System.TimeSpan>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration).Datatype);
             }
             set {
@@ -4594,6 +4941,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StopOnIdleEndXName = System.Xml.Linq.XName.Get("StopOnIdleEnd", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? StopOnIdleEndDefaultValue = System.Xml.XmlConvert.ToBoolean("true");
         
         /// <summary>
         /// <para>
@@ -4609,12 +4963,23 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return StopOnIdleEndDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
                 this.SetElement(StopOnIdleEndXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RestartOnIdleXName = System.Xml.Linq.XName.Get("RestartOnIdle", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal static System.Boolean? RestartOnIdleDefaultValue = System.Xml.XmlConvert.ToBoolean("false");
         
         /// <summary>
         /// <para>
@@ -4630,6 +4995,10 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
+                if (((x != null) 
+                            && x.IsEmpty)) {
+                    return RestartOnIdleDefaultValue;
+                }
                 return XTypedServices.ParseValue<bool>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Boolean).Datatype);
             }
             set {
@@ -4637,11 +5006,31 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("idleSettingsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static idleSettingsType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(DurationXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(WaitTimeoutXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(StopOnIdleEndXName, typeof(bool));
+            localElementDictionary.Add(RestartOnIdleXName, typeof(bool));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4665,37 +5054,22 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<idleSettingsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(DurationXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(WaitTimeoutXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(StopOnIdleEndXName, typeof(bool));
-            localElementDictionary.Add(RestartOnIdleXName, typeof(bool));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
         private class DurationLocalType {
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
             
             private DurationLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
         
         private class WaitTimeoutLocalType {
             
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
-            
             private WaitTimeoutLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
     }
     
@@ -4706,23 +5080,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class networkSettingsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NameXName = System.Xml.Linq.XName.Get("Name", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IdXName = System.Xml.Linq.XName.Get("Id", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("networkSettingsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator networkSettingsType(XElement xe) { return XTypedServices.ToXTypedElement<networkSettingsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static networkSettingsType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<networkSettingsType>(this);
         }
         
         /// <summary>
@@ -4732,6 +5093,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public networkSettingsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NameXName = System.Xml.Linq.XName.Get("Name", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -4744,6 +5109,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Name {
             get {
                 XElement x = this.GetElement(NameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -4756,6 +5124,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IdXName = System.Xml.Linq.XName.Get("Id", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -4767,6 +5139,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Id {
             get {
                 XElement x = this.GetElement(IdXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -4779,11 +5154,29 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("networkSettingsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static networkSettingsType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(NameXName, typeof(string));
+            localElementDictionary.Add(IdXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4806,19 +5199,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<networkSettingsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(NameXName, typeof(string));
-            localElementDictionary.Add(IdXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -4828,23 +5208,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class restartType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName IntervalXName = System.Xml.Linq.XName.Get("Interval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CountXName = System.Xml.Linq.XName.Get("Count", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("restartType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator restartType(XElement xe) { return XTypedServices.ToXTypedElement<restartType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static restartType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<restartType>(this);
         }
         
         /// <summary>
@@ -4854,6 +5221,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public restartType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName IntervalXName = System.Xml.Linq.XName.Get("Interval", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -4873,6 +5244,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CountXName = System.Xml.Linq.XName.Get("Count", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -4891,11 +5266,29 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("restartType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static restartType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(IntervalXName, typeof(System.TimeSpan));
+            localElementDictionary.Add(CountXName, typeof(byte));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -4919,35 +5312,22 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<restartType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(IntervalXName, typeof(System.TimeSpan));
-            localElementDictionary.Add(CountXName, typeof(byte));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
         private class IntervalLocalType {
-            
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, new System.TimeSpan(26784000000000), 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
             
             private IntervalLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Duration), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(320)), null, 0, 0, null, new System.TimeSpan(26784000000000), 0, null, new System.TimeSpan(600000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
         
         private class CountLocalType {
             
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedByte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, 1, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
-            
             private CountLocalType() {
             }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.UnsignedByte), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, 1, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
         }
     }
     
@@ -4958,15 +5338,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class dataType : XTypedElement, IXMetaData {
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("dataType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static FSM validationStates;
-        
 		public static explicit operator dataType(XElement xe) { return XTypedServices.ToXTypedElement<dataType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static dataType() {
-            InitFSM();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<dataType>(this);
         }
         
         /// <summary>
@@ -4988,6 +5363,25 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("dataType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static FSM validationStates;
+        
+        FSM IXMetaData.GetValidationStates() {
+            return validationStates;
+        }
+        
+        private static void InitFSM() {
+            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
+            transitions.Add(1, new Transitions(new SingleTransition(new WildCard("##any", "http://schemas.microsoft.com/windows/2004/02/mit/task"), 2)));
+            validationStates = new FSM(1, new Set<int>(2), transitions);
+        }
+        
+        static dataType() {
+            InitFSM();
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
@@ -5008,20 +5402,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<dataType>(this);
-        }
-        
-        FSM IXMetaData.GetValidationStates() {
-            return validationStates;
-        }
-        
-        private static void InitFSM() {
-            Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
-            transitions.Add(1, new Transitions(new SingleTransition(new WildCard("##any", "http://schemas.microsoft.com/windows/2004/02/mit/task"), 2)));
-            validationStates = new FSM(1, new Set<int>(2), transitions);
-        }
     }
     
     /// <summary>
@@ -5031,23 +5411,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class principalsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PrincipalXName = System.Xml.Linq.XName.Get("Principal", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("principalsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator principalsType(XElement xe) { return XTypedServices.ToXTypedElement<principalsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static principalsType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrincipalXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<principalsType>(this);
         }
         
         /// <summary>
@@ -5057,6 +5424,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public principalsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PrincipalXName = System.Xml.Linq.XName.Get("Principal", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -5076,11 +5447,32 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("principalsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static principalsType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrincipalXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PrincipalXName, typeof(principalType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5103,18 +5495,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<principalsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PrincipalXName, typeof(principalType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -5124,47 +5504,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class principalType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName UserIdXName = System.Xml.Linq.XName.Get("UserId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LogonTypeXName = System.Xml.Linq.XName.Get("LogonType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName GroupIdXName = System.Xml.Linq.XName.Get("GroupId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DisplayNameXName = System.Xml.Linq.XName.Get("DisplayName", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RunLevelXName = System.Xml.Linq.XName.Get("RunLevel", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ProcessTokenSidTypeXName = System.Xml.Linq.XName.Get("ProcessTokenSidType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName RequiredPrivilegesXName = System.Xml.Linq.XName.Get("RequiredPrivileges", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("principalType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator principalType(XElement xe) { return XTypedServices.ToXTypedElement<principalType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static principalType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<principalType>(this);
         }
         
         /// <summary>
@@ -5174,6 +5517,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public principalType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName UserIdXName = System.Xml.Linq.XName.Get("UserId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -5186,6 +5533,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string UserId {
             get {
                 XElement x = this.GetElement(UserIdXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -5197,6 +5547,10 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LogonTypeXName = System.Xml.Linq.XName.Get("LogonType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -5212,7 +5566,7 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
-                return ((Microsoft.Windows.Mit.Task.logonType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.logonType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                return ((Microsoft.Windows.Mit.Task.logonType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.logonType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::Microsoft.Windows.Mit.Task.logonTypeValidator.TypeDefinition))));
             }
             set {
                 if (value == null) {
@@ -5223,6 +5577,10 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName GroupIdXName = System.Xml.Linq.XName.Get("GroupId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -5235,6 +5593,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string GroupId {
             get {
                 XElement x = this.GetElement(GroupIdXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -5247,6 +5608,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DisplayNameXName = System.Xml.Linq.XName.Get("DisplayName", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5258,12 +5623,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string DisplayName {
             get {
                 XElement x = this.GetElement(DisplayNameXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(DisplayNameXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RunLevelXName = System.Xml.Linq.XName.Get("RunLevel", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -5279,7 +5651,7 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
-                return ((Microsoft.Windows.Mit.Task.runLevelType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.runLevelType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                return ((Microsoft.Windows.Mit.Task.runLevelType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.runLevelType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::Microsoft.Windows.Mit.Task.runLevelTypeValidator.TypeDefinition))));
             }
             set {
                 if (value == null) {
@@ -5290,6 +5662,10 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ProcessTokenSidTypeXName = System.Xml.Linq.XName.Get("ProcessTokenSidType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -5305,7 +5681,7 @@ namespace Microsoft.Windows.Mit.Task {
                 if ((x == null)) {
                     return null;
                 }
-                return ((Microsoft.Windows.Mit.Task.processTokenSidType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.processTokenSidType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
+                return ((Microsoft.Windows.Mit.Task.processTokenSidType)(Enum.Parse(typeof(Microsoft.Windows.Mit.Task.processTokenSidType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::Microsoft.Windows.Mit.Task.processTokenSidTypeValidator.TypeDefinition))));
             }
             set {
                 if (value == null) {
@@ -5316,6 +5692,10 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RequiredPrivilegesXName = System.Xml.Linq.XName.Get("RequiredPrivileges", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -5328,12 +5708,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual requiredPrivilegesType RequiredPrivileges {
             get {
                 XElement x = this.GetElement(RequiredPrivilegesXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((requiredPrivilegesType)(x));
             }
             set {
                 this.SetElement(RequiredPrivilegesXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -5343,6 +5730,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
@@ -5350,11 +5740,34 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("principalType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static principalType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(UserIdXName, typeof(string));
+            localElementDictionary.Add(LogonTypeXName, typeof(string));
+            localElementDictionary.Add(GroupIdXName, typeof(string));
+            localElementDictionary.Add(DisplayNameXName, typeof(string));
+            localElementDictionary.Add(RunLevelXName, typeof(string));
+            localElementDictionary.Add(ProcessTokenSidTypeXName, typeof(string));
+            localElementDictionary.Add(RequiredPrivilegesXName, typeof(requiredPrivilegesType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5376,24 +5789,6 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<principalType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(UserIdXName, typeof(string));
-            localElementDictionary.Add(LogonTypeXName, typeof(string));
-            localElementDictionary.Add(GroupIdXName, typeof(string));
-            localElementDictionary.Add(DisplayNameXName, typeof(string));
-            localElementDictionary.Add(RunLevelXName, typeof(string));
-            localElementDictionary.Add(ProcessTokenSidTypeXName, typeof(string));
-            localElementDictionary.Add(RequiredPrivilegesXName, typeof(requiredPrivilegesType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -5410,15 +5805,15 @@ namespace Microsoft.Windows.Mit.Task {
     
     public sealed class logonTypeValidator {
         
+        private logonTypeValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "S4U",
                         "Password",
                         "InteractiveToken",
                         "InteractiveTokenOrPassword"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private logonTypeValidator() {
-        }
     }
     
     public enum runLevelType {
@@ -5430,13 +5825,13 @@ namespace Microsoft.Windows.Mit.Task {
     
     public sealed class runLevelTypeValidator {
         
+        private runLevelTypeValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "LeastPrivilege",
                         "HighestAvailable"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private runLevelTypeValidator() {
-        }
     }
     
     public enum processTokenSidType {
@@ -5448,13 +5843,13 @@ namespace Microsoft.Windows.Mit.Task {
     
     public sealed class processTokenSidTypeValidator {
         
+        private processTokenSidTypeValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "None",
                         "Unrestricted"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private processTokenSidTypeValidator() {
-        }
     }
     
     /// <summary>
@@ -5464,26 +5859,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class requiredPrivilegesType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName PrivilegeXName = System.Xml.Linq.XName.Get("Privilege", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> PrivilegeField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("requiredPrivilegesType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator requiredPrivilegesType(XElement xe) { return XTypedServices.ToXTypedElement<requiredPrivilegesType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static requiredPrivilegesType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrivilegeXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<requiredPrivilegesType>(this);
         }
         
         /// <summary>
@@ -5493,6 +5872,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public requiredPrivilegesType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName PrivilegeXName = System.Xml.Linq.XName.Get("Privilege", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> PrivilegeField;
         
         /// <summary>
         /// <para>
@@ -5524,11 +5910,32 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("requiredPrivilegesType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static requiredPrivilegesType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(PrivilegeXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(PrivilegeXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5550,18 +5957,6 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<requiredPrivilegesType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(PrivilegeXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
         }
     }
     
@@ -5640,6 +6035,9 @@ namespace Microsoft.Windows.Mit.Task {
     
     public sealed class privilegeTypeValidator {
         
+        private privilegeTypeValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "SeCreateTokenPrivilege",
@@ -5677,9 +6075,6 @@ namespace Microsoft.Windows.Mit.Task {
                         "SeIncreaseWorkingSetPrivilege",
                         "SeTimeZonePrivilege",
                         "SeCreateSymbolicLinkPrivilege"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private privilegeTypeValidator() {
-        }
     }
     
     /// <summary>
@@ -5689,51 +6084,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class actionsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ExecXName = System.Xml.Linq.XName.Get("Exec", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<execType> ExecField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ComHandlerXName = System.Xml.Linq.XName.Get("ComHandler", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<comHandlerType> ComHandlerField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SendEmailXName = System.Xml.Linq.XName.Get("SendEmail", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<sendEmailType> SendEmailField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ShowMessageXName = System.Xml.Linq.XName.Get("ShowMessage", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<showMessageType> ShowMessageField;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ContextXName = System.Xml.Linq.XName.Get("Context", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("actionsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator actionsType(XElement xe) { return XTypedServices.ToXTypedElement<actionsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static actionsType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(ExecXName), new NamedContentModelEntity(ComHandlerXName), new NamedContentModelEntity(SendEmailXName), new NamedContentModelEntity(ShowMessageXName)));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<actionsType>(this);
         }
         
         /// <summary>
@@ -5743,6 +6097,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public actionsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ExecXName = System.Xml.Linq.XName.Get("Exec", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<execType> ExecField;
         
         /// <summary>
         /// <para>
@@ -5777,6 +6138,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ComHandlerXName = System.Xml.Linq.XName.Get("ComHandler", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<comHandlerType> ComHandlerField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -5809,6 +6177,13 @@ namespace Microsoft.Windows.Mit.Task {
                 }
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SendEmailXName = System.Xml.Linq.XName.Get("SendEmail", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<sendEmailType> SendEmailField;
         
         /// <summary>
         /// <para>
@@ -5843,6 +6218,13 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ShowMessageXName = System.Xml.Linq.XName.Get("ShowMessage", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<showMessageType> ShowMessageField;
+        
         /// <summary>
         /// <para>
         /// Occurrence: required, choice
@@ -5876,6 +6258,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ContextXName = System.Xml.Linq.XName.Get("Context", "");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -5884,11 +6270,31 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Context {
             get {
                 XAttribute x = this.Attribute(ContextXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
             set {
                 this.SetAttribute(ContextXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Idref).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("actionsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static actionsType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new ChoiceContentModelEntity(new NamedContentModelEntity(ExecXName), new NamedContentModelEntity(ComHandlerXName), new NamedContentModelEntity(SendEmailXName), new NamedContentModelEntity(ShowMessageXName)));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ExecXName, typeof(execType));
+            localElementDictionary.Add(ComHandlerXName, typeof(comHandlerType));
+            localElementDictionary.Add(SendEmailXName, typeof(sendEmailType));
+            localElementDictionary.Add(ShowMessageXName, typeof(showMessageType));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5899,6 +6305,13 @@ namespace Microsoft.Windows.Mit.Task {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
                 return xName;
@@ -5918,35 +6331,18 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<actionsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ExecXName, typeof(execType));
-            localElementDictionary.Add(ComHandlerXName, typeof(comHandlerType));
-            localElementDictionary.Add(SendEmailXName, typeof(sendEmailType));
-            localElementDictionary.Add(ShowMessageXName, typeof(showMessageType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public abstract partial class actionBaseType : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("actionBaseType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
 		public static explicit operator actionBaseType(XElement xe) {  return (actionBaseType)XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public actionBaseType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName idXName = System.Xml.Linq.XName.Get("id", "");
         
         /// <summary>
         /// <para>
@@ -5956,11 +6352,20 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string id {
             get {
                 XAttribute x = this.Attribute(idXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
             set {
                 this.SetAttribute(idXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Id).Datatype);
             }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("actionBaseType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -5982,10 +6387,6 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return LinqToXsdTypeManager.Instance;
             }
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
         }
     }
     
@@ -5996,27 +6397,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class execType : global::Microsoft.Windows.Mit.Task.actionBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CommandXName = System.Xml.Linq.XName.Get("Command", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ArgumentsXName = System.Xml.Linq.XName.Get("Arguments", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName WorkingDirectoryXName = System.Xml.Linq.XName.Get("WorkingDirectory", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("execType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator execType(XElement xe) { return XTypedServices.ToXTypedElement<execType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static execType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<execType>(this);
         }
         
         /// <summary>
@@ -6026,6 +6410,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public execType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CommandXName = System.Xml.Linq.XName.Get("Command", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6045,6 +6433,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ArgumentsXName = System.Xml.Linq.XName.Get("Arguments", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -6056,12 +6448,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Arguments {
             get {
                 XElement x = this.GetElement(ArgumentsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(ArgumentsXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName WorkingDirectoryXName = System.Xml.Linq.XName.Get("WorkingDirectory", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6074,6 +6473,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string WorkingDirectory {
             get {
                 XElement x = this.GetElement(WorkingDirectoryXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
@@ -6086,11 +6488,30 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("execType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static execType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(CommandXName, typeof(string));
+            localElementDictionary.Add(ArgumentsXName, typeof(string));
+            localElementDictionary.Add(WorkingDirectoryXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6113,20 +6534,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<execType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(CommandXName, typeof(string));
-            localElementDictionary.Add(ArgumentsXName, typeof(string));
-            localElementDictionary.Add(WorkingDirectoryXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -6136,23 +6543,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class comHandlerType : global::Microsoft.Windows.Mit.Task.actionBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ClassIdXName = System.Xml.Linq.XName.Get("ClassId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName DataXName = System.Xml.Linq.XName.Get("Data", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("comHandlerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator comHandlerType(XElement xe) { return XTypedServices.ToXTypedElement<comHandlerType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static comHandlerType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<comHandlerType>(this);
         }
         
         /// <summary>
@@ -6162,6 +6556,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public comHandlerType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ClassIdXName = System.Xml.Linq.XName.Get("ClassId", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6181,6 +6579,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName DataXName = System.Xml.Linq.XName.Get("Data", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -6192,6 +6594,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual dataType Data {
             get {
                 XElement x = this.GetElement(DataXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((dataType)(x));
             }
             set {
@@ -6199,11 +6604,29 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("comHandlerType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static comHandlerType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ClassIdXName, typeof(string));
+            localElementDictionary.Add(DataXName, typeof(dataType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6226,29 +6649,16 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<comHandlerType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ClassIdXName, typeof(string));
-            localElementDictionary.Add(DataXName, typeof(dataType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public sealed class guidType {
         
+        private guidType() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "\\{([0-9a-fA-F]){8}(\\-[0-9a-fA-F]{4}){3}\\-[0-9a-fA-F]{12}\\}"}, 0, XmlSchemaWhiteSpace.Preserve));
-        
-        private guidType() {
-        }
     }
     
     /// <summary>
@@ -6258,55 +6668,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class sendEmailType : global::Microsoft.Windows.Mit.Task.actionBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ServerXName = System.Xml.Linq.XName.Get("Server", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName SubjectXName = System.Xml.Linq.XName.Get("Subject", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ToXName = System.Xml.Linq.XName.Get("To", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName CcXName = System.Xml.Linq.XName.Get("Cc", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BccXName = System.Xml.Linq.XName.Get("Bcc", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ReplyToXName = System.Xml.Linq.XName.Get("ReplyTo", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FromXName = System.Xml.Linq.XName.Get("From", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName HeaderFieldsXName = System.Xml.Linq.XName.Get("HeaderFields", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BodyXName = System.Xml.Linq.XName.Get("Body", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName AttachmentsXName = System.Xml.Linq.XName.Get("Attachments", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("sendEmailType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator sendEmailType(XElement xe) { return XTypedServices.ToXTypedElement<sendEmailType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static sendEmailType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<sendEmailType>(this);
         }
         
         /// <summary>
@@ -6316,6 +6681,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public sendEmailType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ServerXName = System.Xml.Linq.XName.Get("Server", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6335,6 +6704,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SubjectXName = System.Xml.Linq.XName.Get("Subject", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: optional
@@ -6346,12 +6719,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Subject {
             get {
                 XElement x = this.GetElement(SubjectXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(SubjectXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ToXName = System.Xml.Linq.XName.Get("To", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6364,12 +6744,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string To {
             get {
                 XElement x = this.GetElement(ToXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(ToXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CcXName = System.Xml.Linq.XName.Get("Cc", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6382,12 +6769,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Cc {
             get {
                 XElement x = this.GetElement(CcXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(CcXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BccXName = System.Xml.Linq.XName.Get("Bcc", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6400,12 +6794,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Bcc {
             get {
                 XElement x = this.GetElement(BccXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(BccXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ReplyToXName = System.Xml.Linq.XName.Get("ReplyTo", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6418,12 +6819,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string ReplyTo {
             get {
                 XElement x = this.GetElement(ReplyToXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(ReplyToXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FromXName = System.Xml.Linq.XName.Get("From", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6436,12 +6844,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string From {
             get {
                 XElement x = this.GetElement(FromXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(FromXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName HeaderFieldsXName = System.Xml.Linq.XName.Get("HeaderFields", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6454,12 +6869,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual headerFieldsType HeaderFields {
             get {
                 XElement x = this.GetElement(HeaderFieldsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((headerFieldsType)(x));
             }
             set {
                 this.SetElement(HeaderFieldsXName, value);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BodyXName = System.Xml.Linq.XName.Get("Body", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6472,12 +6894,19 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual string Body {
             get {
                 XElement x = this.GetElement(BodyXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
             set {
                 this.SetElement(BodyXName, value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AttachmentsXName = System.Xml.Linq.XName.Get("Attachments", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6490,6 +6919,9 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual attachmentsType Attachments {
             get {
                 XElement x = this.GetElement(AttachmentsXName);
+                if ((x == null)) {
+                    return null;
+                }
                 return ((attachmentsType)(x));
             }
             set {
@@ -6497,11 +6929,37 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("sendEmailType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static sendEmailType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(ServerXName, typeof(string));
+            localElementDictionary.Add(SubjectXName, typeof(string));
+            localElementDictionary.Add(ToXName, typeof(string));
+            localElementDictionary.Add(CcXName, typeof(string));
+            localElementDictionary.Add(BccXName, typeof(string));
+            localElementDictionary.Add(ReplyToXName, typeof(string));
+            localElementDictionary.Add(FromXName, typeof(string));
+            localElementDictionary.Add(HeaderFieldsXName, typeof(headerFieldsType));
+            localElementDictionary.Add(BodyXName, typeof(string));
+            localElementDictionary.Add(AttachmentsXName, typeof(attachmentsType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6524,27 +6982,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<sendEmailType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(ServerXName, typeof(string));
-            localElementDictionary.Add(SubjectXName, typeof(string));
-            localElementDictionary.Add(ToXName, typeof(string));
-            localElementDictionary.Add(CcXName, typeof(string));
-            localElementDictionary.Add(BccXName, typeof(string));
-            localElementDictionary.Add(ReplyToXName, typeof(string));
-            localElementDictionary.Add(FromXName, typeof(string));
-            localElementDictionary.Add(HeaderFieldsXName, typeof(headerFieldsType));
-            localElementDictionary.Add(BodyXName, typeof(string));
-            localElementDictionary.Add(AttachmentsXName, typeof(attachmentsType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -6554,26 +6991,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class headerFieldsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName HeaderFieldXName = System.Xml.Linq.XName.Get("HeaderField", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<headerFieldType> HeaderFieldField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("headerFieldsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator headerFieldsType(XElement xe) { return XTypedServices.ToXTypedElement<headerFieldsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static headerFieldsType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(HeaderFieldXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<headerFieldsType>(this);
         }
         
         /// <summary>
@@ -6583,6 +7004,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public headerFieldsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName HeaderFieldXName = System.Xml.Linq.XName.Get("HeaderField", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedList<headerFieldType> HeaderFieldField;
         
         /// <summary>
         /// <para>
@@ -6614,11 +7042,32 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("headerFieldsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static headerFieldsType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(HeaderFieldXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(HeaderFieldXName, typeof(headerFieldType));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6641,18 +7090,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<headerFieldsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(HeaderFieldXName, typeof(headerFieldType));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6662,23 +7099,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class headerFieldType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName NameXName = System.Xml.Linq.XName.Get("Name", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName ValueXName = System.Xml.Linq.XName.Get("Value", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("headerFieldType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator headerFieldType(XElement xe) { return XTypedServices.ToXTypedElement<headerFieldType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static headerFieldType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<headerFieldType>(this);
         }
         
         /// <summary>
@@ -6688,6 +7112,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public headerFieldType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NameXName = System.Xml.Linq.XName.Get("Name", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6707,6 +7135,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ValueXName = System.Xml.Linq.XName.Get("Value", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -6725,11 +7157,29 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("headerFieldType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static headerFieldType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(NameXName, typeof(string));
+            localElementDictionary.Add(ValueXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6752,19 +7202,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<headerFieldType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(NameXName, typeof(string));
-            localElementDictionary.Add(ValueXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
@@ -6774,26 +7211,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class attachmentsType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName FileXName = System.Xml.Linq.XName.Get("File", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> FileField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("attachmentsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator attachmentsType(XElement xe) { return XTypedServices.ToXTypedElement<attachmentsType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static attachmentsType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FileXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<attachmentsType>(this);
         }
         
         /// <summary>
@@ -6803,6 +7224,13 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public attachmentsType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName FileXName = System.Xml.Linq.XName.Get("File", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> FileField;
         
         /// <summary>
         /// <para>
@@ -6834,11 +7262,32 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("attachmentsType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static attachmentsType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(FileXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(FileXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6861,18 +7310,6 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<attachmentsType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(FileXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     /// <summary>
@@ -6882,23 +7319,10 @@ namespace Microsoft.Windows.Mit.Task {
     /// </summary>
     public partial class showMessageType : global::Microsoft.Windows.Mit.Task.actionBaseType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TitleXName = System.Xml.Linq.XName.Get("Title", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName BodyXName = System.Xml.Linq.XName.Get("Body", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("showMessageType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
 		public static explicit operator showMessageType(XElement xe) { return XTypedServices.ToXTypedElement<showMessageType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static showMessageType() {
-            BuildElementDictionary();
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<showMessageType>(this);
         }
         
         /// <summary>
@@ -6908,6 +7332,10 @@ namespace Microsoft.Windows.Mit.Task {
         /// </summary>
         public showMessageType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TitleXName = System.Xml.Linq.XName.Get("Title", "http://schemas.microsoft.com/windows/2004/02/mit/task");
         
         /// <summary>
         /// <para>
@@ -6927,6 +7355,10 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BodyXName = System.Xml.Linq.XName.Get("Body", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         /// <summary>
         /// <para>
         /// Occurrence: required
@@ -6945,11 +7377,29 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("showMessageType", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
+        static showMessageType() {
+            BuildElementDictionary();
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(TitleXName, typeof(string));
+            localElementDictionary.Add(BodyXName, typeof(string));
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -6972,36 +7422,45 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<showMessageType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(TitleXName, typeof(string));
-            localElementDictionary.Add(BodyXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public partial class Task : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private taskType ContentField;
+        public void Save(string xmlFile) {
+            XTypedServices.Save(xmlFile, Untyped);
+        }
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Task", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        public void Save(System.IO.TextWriter tw) {
+            XTypedServices.Save(tw, Untyped);
+        }
+        
+        public void Save(System.Xml.XmlWriter xmlWriter) {
+            XTypedServices.Save(xmlWriter, Untyped);
+        }
+        
+        public static Task Load(string xmlFile) {
+            return XTypedServices.Load<Task, taskType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static Task Load(System.IO.TextReader xmlFile) {
+            return XTypedServices.Load<Task, taskType>(xmlFile, LinqToXsdTypeManager.Instance);
+        }
+        
+        public static Task Parse(string xml) {
+            return XTypedServices.Parse<Task, taskType>(xml, LinqToXsdTypeManager.Instance);
+        }
         
 		public static explicit operator Task(XElement xe) { return XTypedServices.ToXTypedElement<Task, taskType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        public Task() {
-            SetInnerType(new taskType());
+        public override XTypedElement Clone() {
+            return new Task(((taskType)(this.Content.Clone())));
         }
         
-        public Task(taskType content) {
-            SetInnerType(content);
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private taskType ContentField;
+        
+        public Task() {
+            SetInnerType(new taskType());
         }
         
         public override XElement Untyped {
@@ -7018,6 +7477,15 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return ContentField;
             }
+        }
+        
+        private void SetInnerType(taskType ContentField) {
+            this.ContentField = ((taskType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        public Task(taskType content) {
+            SetInnerType(content);
         }
         
         /// <summary>
@@ -7136,6 +7604,8 @@ namespace Microsoft.Windows.Mit.Task {
             }
         }
         
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Task", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+        
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
@@ -7147,6 +7617,10 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -7169,103 +7643,14 @@ namespace Microsoft.Windows.Mit.Task {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public void Save(string xmlFile) {
-            XTypedServices.Save(xmlFile, Untyped);
-        }
-        
-        public void Save(System.IO.TextWriter tw) {
-            XTypedServices.Save(tw, Untyped);
-        }
-        
-        public void Save(System.Xml.XmlWriter xmlWriter) {
-            XTypedServices.Save(xmlWriter, Untyped);
-        }
-        
-        public static Task Load(string xmlFile) {
-            return XTypedServices.Load<Task, taskType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static Task Load(System.IO.TextReader xmlFile) {
-            return XTypedServices.Load<Task, taskType>(xmlFile, LinqToXsdTypeManager.Instance);
-        }
-        
-        public static Task Parse(string xml) {
-            return XTypedServices.Parse<Task, taskType>(xml, LinqToXsdTypeManager.Instance);
-        }
-        
-        public override XTypedElement Clone() {
-            return new Task(((taskType)(this.Content.Clone())));
-        }
-        
-        private void SetInnerType(taskType ContentField) {
-            this.ContentField = ((taskType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
-        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
-        
-        private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
         private LinqToXsdTypeManager() {
         }
         
-        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
-            get {
-                if ((schemaSet == null)) {
-                    XmlSchemaSet tempSet = new XmlSchemaSet();
-                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
-                }
-                return schemaSet;
-            }
-            set {
-                schemaSet = value;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
-            get {
-                return typeDictionary;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
-            get {
-                return elementDictionary;
-            }
-        }
-        
-        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
-            get {
-                return wrapperDictionary;
-            }
-        }
-        
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
+        private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildTypeDictionary() {
             typeDictionary.Add(System.Xml.Linq.XName.Get("taskType", "http://schemas.microsoft.com/windows/2004/02/mit/task"), typeof(global::Microsoft.Windows.Mit.Task.taskType));
@@ -7310,20 +7695,72 @@ namespace Microsoft.Windows.Mit.Task {
             typeDictionary.Add(System.Xml.Linq.XName.Get("showMessageType", "http://schemas.microsoft.com/windows/2004/02/mit/task"), typeof(global::Microsoft.Windows.Mit.Task.showMessageType));
         }
         
+        private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
         private static void BuildElementDictionary() {
             elementDictionary.Add(System.Xml.Linq.XName.Get("Task", "http://schemas.microsoft.com/windows/2004/02/mit/task"), typeof(global::Microsoft.Windows.Mit.Task.Task));
         }
         
+        private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
+        
         private static void BuildWrapperDictionary() {
             wrapperDictionary.Add(typeof(Microsoft.Windows.Mit.Task.Task), typeof(global::Microsoft.Windows.Mit.Task.taskType));
+        }
+        
+        private static XmlSchemaSet schemaSet;
+        
+        XmlSchemaSet ILinqToXsdTypeManager.Schemas {
+            get {
+                if ((schemaSet == null)) {
+                    XmlSchemaSet tempSet = new XmlSchemaSet();
+                    System.Threading.Interlocked.CompareExchange(ref schemaSet, tempSet, null);
+                }
+                return schemaSet;
+            }
+            set {
+                schemaSet = value;
+            }
         }
         
         protected internal static void AddSchemas(XmlSchemaSet schemas) {
             schemas.Add(schemaSet);
         }
         
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
+            get {
+                return typeDictionary;
+            }
+        }
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalElementDictionary {
+            get {
+                return elementDictionary;
+            }
+        }
+        
+        Dictionary<System.Type, System.Type> ILinqToXsdTypeManager.RootContentTypeMapping {
+            get {
+                return wrapperDictionary;
+            }
+        }
+        
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
+        }
+        
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("Task", "http://schemas.microsoft.com/windows/2004/02/mit/task")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -7335,27 +7772,7 @@ namespace Microsoft.Windows.Mit.Task {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public Task Task {  get {return rootObject as Task; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(Task root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -7454,26 +7871,6 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::Microsoft.Windows.Mit.Task.Task Task {  get {return rootObject as global::Microsoft.Windows.Mit.Task.Task; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::Microsoft.Windows.Mit.Task.Task root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -7485,6 +7882,26 @@ namespace Microsoft.Windows.Mit.Task {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(Task root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Task Task {  get {return rootObject as Task; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -7583,5 +8000,25 @@ namespace Microsoft.Windows.Mit.Task {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::Microsoft.Windows.Mit.Task.Task root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::Microsoft.Windows.Mit.Task.Task Task {  get {return rootObject as global::Microsoft.Windows.Mit.Task.Task; } }
     }
 }
