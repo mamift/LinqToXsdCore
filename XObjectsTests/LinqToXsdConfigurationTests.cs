@@ -6,7 +6,7 @@ namespace Xml.Schema.Linq.Tests;
 public class LinqToXsdConfigurationTests
 {
     [Test]
-    public void TestSetDefaultVisibility()
+    public void TestSetDefaultVisibility_EnumValueIsInternal()
     {
         var config = new Configuration();
         var ns1 = new Namespace() {

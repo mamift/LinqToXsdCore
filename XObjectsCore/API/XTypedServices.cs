@@ -419,7 +419,15 @@ namespace Xml.Schema.Linq
 
             var strValue  = ParseValue<string>(attribute.Value, attribute.Parent, datatype);
             var enumFacet = typeDef.RestrictionFacets.GetEnumFacet(strValue);
-            return enumFacet != null ? enumFacet.Member : strValue;
+            string enumFacetMemberValue = enumFacet != null ? enumFacet.Member : strValue;
+
+            // some enum values can be C# keywords, and to allow compilation, an '@' symbol is added to the name; 
+            // but when converting back, the '@' symbol needs to be removed so the Enum.Parse method can succeed
+            if (enumFacetMemberValue.Length > 0 && enumFacetMemberValue[0] == '@') {
+                return enumFacetMemberValue.Substring(1, enumFacetMemberValue.Length - 1);
+            }
+
+            return enumFacetMemberValue;
         }
         // Kept for backward compatibility with code generated in previous versions.
         // Current generator does not use this method anymore, as attributes with default properties
