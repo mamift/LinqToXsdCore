@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.15
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.15
+* https://www.nuget.org/packages/XObjectsCore/3.4.15
+  * [#88](https://github.com/mamift/LinqToXsdCore/pull/88).
+    * Fixes a bug which threw an exception when accessing the property getter for an element or attribute whose type is an enum type where the enum value shares the same name with a C# keyword, and thus the string value (ToString) returns a word prefixed with the '@' symbol.
+    * Fixes an issue with publishing new [XObjectsCodeGen](https://www.nuget.org/packages/XObjectsCodeGen) nuget releases.
+
 ## Version 3.4.14
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.14
