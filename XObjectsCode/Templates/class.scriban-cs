@@ -9,7 +9,7 @@
     " partial class "
     $1.Name
     " : "
-    $1.BaseType
+    $1.BaseTypeName
     ", IXMetaData"
     Settings.EnableServiceReference ? ", IXmlSerializable" : ""
 }} {
@@ -104,11 +104,40 @@
     {{- end }}
 
     {{- for $content in $1.Content }}
+    {{- if $content.IsAny }}
+
+    {{ $content.Comments | array.concat $1.RegexComments | comments '///' -}}
+    public virtual IEnumerable<XElement> Any {
+        get {
+            return this.GetWildCards(WildCard.DefaultWildCard);
+        }
+    }
+    {{- continue; end }}
     {{ include 'attribute.scriban-cs' $content $1 }}
     {{- end }}
 
     private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get({{ $1.XName | string.literal }}, {{ $1.XNamespace | string.literal }});
-        
+    
+    {{- if $1.HasWildcard }}
+    
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private static FSM validationStates;
+
+    FSM IXMetaData.GetValidationStates() {
+        return validationStates;
+    }
+
+    private static void InitFSM() {
+        Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
+        validationStates = new FSM(1, new Set<int>(1), transitions);
+    }
+
+    static {{ $1.Name }}() {
+        InitFSM();
+    }
+
+    {{- else }}
+
     {{- if !$1.LocalElements.empty? || $1.HasGroups }}
 
     static {{ $1.Name }}() {
@@ -155,7 +184,7 @@
         contentModel = {{ $1.Group | entity }};
         {{- end }}
     }
-    {{- end }}
+    {{- end # if LocalsElement || Groups }}
 
     {{- if !$1.LocalElements.empty? }}
 
@@ -184,7 +213,7 @@
         
     ContentModelEntity IXMetaData.GetContentModel() {
         return contentModel;
-    }    
+    }
 
     {{- else if !$1.IsDerived }}
 
@@ -195,6 +224,7 @@
     {{- 
         # else IsDerived: probably derived by restriction, use base content model 
         end # if ContentModel
+        end # if HasWildcard
     }}
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]

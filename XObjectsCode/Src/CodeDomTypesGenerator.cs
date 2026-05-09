@@ -40,6 +40,8 @@ namespace Xml.Schema.Linq.CodeGen
         public readonly List<CClass> AllElements = [];
         public readonly List<KeyValuePair<string, string>> AllWrappers = [];
 
+        private readonly List<(ClrContentTypeInfo info, CElement el)> derivedTypes = [];  // Must be fixed-up after all types are parsed
+
         public CodeDomTypesGenerator(LinqToXsdSettings settings)
         {
             this.settings = settings
@@ -102,6 +104,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
             }
 
+            foreach (var (info, el) in derivedTypes)
+                el.BaseType = GetClass(info.baseTypeClrName, info.baseTypeClrNs);
+
             ProcessWrapperTypes();
             FindRootNamespace();
 
@@ -115,9 +120,10 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (globalType)
                 currentNamespace = typeInfo.clrtypeNs;  // dependent on SetFullTypeName above
-
+            
             var element = new CElement(typeInfo);
             parent.Add(element);
+            if (typeInfo.baseType != null) derivedTypes.Add((typeInfo, element));
 
             ProcessProperties(typeInfo);
 
@@ -352,14 +358,13 @@ namespace Xml.Schema.Linq.CodeGen
                     }
 
                     currentNamespace = typeInfo.clrtypeNs;
-                    // TODO:
                     // wrapperBuilder.Init(innerTypeFullName, innerTypeNs, innerTypeAttributes);
                     // wrapperBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
                     // wrapperBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
                     // wrapperBuilder.ApplyAnnotations(typeInfo);
 
 
-                    cType = new CElementWrapper(typeInfo, innerTypeClass);
+                    cType = new CElementWrapper(typeInfo, innerTypeClass, innerTypeFullName);
                     AllElements.Add(cType);
                     AllWrappers.Add(new(typeInfo.clrFullTypeName, innerTypeNs + "." + innerTypeName));
 

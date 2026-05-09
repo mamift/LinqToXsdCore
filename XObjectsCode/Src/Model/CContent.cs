@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Xml.Schema;
 using Microsoft.VisualBasic;
@@ -9,16 +8,20 @@ namespace Xml.Schema.Linq.CodeGen.Model;
 /// <summary>
 /// Represents properties of an CElement: attributes or grouping of tag content
 /// </summary>
-public abstract class CContent(ContentInfo info)
+public abstract class CContent(ClrBasePropertyInfo info)
 {
     public ContentType ContentType => info.ContentType;
+    public bool ShouldGenerate => info.ShouldGenerate;
+    public bool IsLocalElement => info.IsLocalElement;
+    public IEnumerable<string> Comments => info.Annotations.Select(x => x.Text);
 }
 
 /// <summary>
 /// Represents a property depicting an element attribute in generated code
 /// </summary>
-public class CAttribute(ClrPropertyInfo info) : CContent(info)
+public sealed class CAttribute(ClrPropertyInfo info, CClass parent) : CContent(info)
 {
+    public CClass Parent => parent;
     public string XNamespace => info.PropertyNs;
     public string XName => info.SchemaName;
     public string XNameField { get; } = info.PropertyName + "XName";
@@ -31,7 +34,6 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
     public string ClrFullTypeName => info.TypeReference.ClrFullTypeName; // Yet another type, seems to be used for enums
     public string SimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: true);
     public string LocalSimpleTypeDefinition => info.GetSimpleTypeDefinition(disambiguateProperty: false);
-    public bool IsLocalElement => info.IsLocalElement;
     public bool IsNew => info.IsNew;
     public bool IsOverride => info.IsOverride;
     public bool HasSet => info.HasSet;    
@@ -48,8 +50,6 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
     public bool IsOptional => info.IsOptional;      // Whether element/attribute cardinality can be 0
     public bool CanBeAbsent => info.CanBeAbsent;    // Whether element/attribute is optional, or element is part of a choice
     public bool VerifyRequired => info.VerifyRequired;  // Whether property should throw when attempting to read a missing required element or attribute
-    public bool ShouldGenerate => info.ShouldGenerate;
-    public IEnumerable<string> Comments => info.Annotations.Select(x => x.Text);
     
     public bool IsSubstitution => info.IsSubstitutionHead;
     public List<XmlSchemaElement> SubstitutionMembers => info.SubstitutionMembers;
@@ -68,7 +68,10 @@ public class CAttribute(ClrPropertyInfo info) : CContent(info)
 }
 
 /// <summary>
-/// Represents a property depicting an element content in generated code
+/// Represents the Any property of elements with Wildcard content
 /// </summary>
-public class CGrouping(ContentInfo info) : CContent(info)
-{}
+public sealed class CAny(ClrWildCardPropertyInfo info, CClass parent) : CContent(info)
+{
+    public bool IsAny => true;  // Not nice OOP but Scriban is not an OOP scripting language
+    public CClass Parent => parent;
+}

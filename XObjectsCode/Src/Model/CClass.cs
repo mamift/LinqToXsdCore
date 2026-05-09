@@ -10,13 +10,23 @@ namespace Xml.Schema.Linq.CodeGen.Model;
 /// <summary>
 /// Represents a class in generated code, specialized into various kind of xsd source: simple type, element.
 /// </summary>
-public abstract class CClass
+public abstract class CClass(ClrTypeInfo info)
 {
     // Initially null until added to a namespace during processing.
     // Remains null for nested types.
     public CNamespace? Namespace { get; set; }
 
-    public abstract string Name { get; }
+    public string XName => info.schemaName;
+    public string XNamespace => info.schemaNs;
+    public virtual string Name => info.clrtypeName;
+    public bool IsAbstract => info.IsAbstract;
+
+    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
+    public IEnumerable<string> RegexComments 
+        => info.Annotations?
+            .Where(a => a.Section == "summaryRegEx")
+            .Select(a => a.Text) 
+            ?? [];
 
     // This isn't great OOP design but Scriban doesn't have first-class support for OOP (no `is` operator).
     // Maybe it'd be cleaner to put the `is CSimpleType` behind a global function.
@@ -34,48 +44,41 @@ public abstract class CClass
 /// <summary>
 /// Represents a class depicting an xsd element in generated code
 /// </summary>
-public class CElement(ClrContentTypeInfo info) : CClass, IHasTypes
+public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
 {
-    public string XName => info.schemaName;
-    public string XNamespace => info.schemaNs;
     public SchemaOrigin Origin => info.typeOrigin;
-    public override string Name => info.clrtypeName;
     public string Fqn => QualifiedName(Namespace!.Name, Name);
-    public bool IsAbstract => info.IsAbstract;
     public bool IsSealed => info.IsSealed;
     public bool IsSubstitutionHead => info.IsSubstitutionHead;
+    public bool HasWildcard => info.HasElementWildCard;
     public bool IsDerived => info.IsDerived;
-    public string BaseType => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";
+    public string BaseTypeName => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";
+    public CClass? BaseType { get; internal set; }
     public bool HasSaveMethods => info.typeOrigin == SchemaOrigin.Element && !info.IsDerived;
     public bool HasLoadMethods => info.typeOrigin == SchemaOrigin.Element;
-    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
-    public IEnumerable<string> RegexComments 
-        => info.Annotations?
-            .Where(a => a.Section == "summaryRegEx")
-            .Select(a => a.Text) 
-            ?? [];
 
-    public IEnumerable<CAttribute> Content => info.Content.SelectMany(FlattenContents).Where(x => x.ShouldGenerate);
+    public IEnumerable<CContent> Content => info.Content.SelectMany(FlattenContents).Where(x => x.ShouldGenerate);
     public bool HasGroups => info.Content.Any(x => x.ContentType == ContentType.Grouping);
     public ContentGroup? Group => info.Content
         .Where(x => x.ContentType == ContentType.Grouping)
         .Select(x => new ContentGroup(x))
         .FirstOrDefault();
 
-    public IEnumerable<CAttribute> LocalElements => info.Content.SelectMany(FlattenContents).Where(x => x.IsLocalElement);
+    public IEnumerable<CContent> LocalElements => info.Content.SelectMany(FlattenContents).Where(x => x.IsLocalElement);
 
     public List<CClass> Types { get; } = [];
 
     public void Add(CClass type) => Types.Add(type);
 
-    private static IEnumerable<CAttribute> FlattenContents(ContentInfo info)
+    private IEnumerable<CContent> FlattenContents(ContentInfo info)
     {
-        if (info.ContentType == ContentType.Property) 
-            return [new CAttribute((ClrPropertyInfo)info)];
-        if (info.ContentType == ContentType.Grouping) 
-            return info.Children.SelectMany(FlattenContents);
-        // TODO: wildcard
-        return [];
+        return info.ContentType switch 
+        {
+            ContentType.Property => [new CAttribute((ClrPropertyInfo)info, this)],
+            ContentType.Grouping => info.Children.SelectMany(FlattenContents),
+            ContentType.WildCardProperty => [new CAny((ClrWildCardPropertyInfo)info, this)],
+            _ => [],
+        };
     }
 
     public class ContentGroup(ContentInfo info)
@@ -98,21 +101,33 @@ public class CElement(ClrContentTypeInfo info) : CClass, IHasTypes
     }
 }
 
-public class CElementWrapper(ClrWrapperTypeInfo info, CClass wrapped) : CClass
+public class CElementWrapper(ClrWrapperTypeInfo info, CClass wrapped, string innerTypeName) : CClass(info)
 {
-    public string XName => info.schemaName;
-    public string XNamespace => info.schemaNs;
-    public override string Name => info.clrtypeName;
     public string Fqn => QualifiedName(Namespace!.Name, Name);
-    public string WrappedName => wrapped.Name;
-    public bool IsDerived => info.IsDerived;    
-    public string BaseType => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";
+    public CClass WrappedType => wrapped;
+    public string WrappedName => innerTypeName; // same-ish as wrapped.Name but sometimes prefixed with namespace, sometimes not
+    public bool WrappedIsAbstract => wrapped.IsAbstract;
+    public bool IsDerived => info.IsDerived;
+    public string BaseTypeName => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";
     public bool HasSaveMethods => info.typeOrigin == SchemaOrigin.Element && !info.IsDerived;
-    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
-    public IEnumerable<string> RegexComments => []; // TODO where from ?
-    public IEnumerable<CAttribute> Content => wrapped is CElement e ? e.Content : [];
+    public IEnumerable<CContent> Content => WalkBaseTypes(wrapped);
     public bool IsSubstitutionHead => info.IsSubstitutionHead;
     public bool IsSubstitutionMember => info.IsSubstitutionMember();
+
+    private static IEnumerable<CContent> WalkBaseTypes(CClass? wrapped)
+    {
+        // FIXME: this is more complicated than it needs, but it matches legacy codegen 1:1.
+        //        All properties are found in e.Content if we don't filter on ShouldGenerate.
+        //        The concrete type regex for the comments is also more complete/correct.
+        //        The "new" property modifier could simply be derived from ShouldGenerate.
+        // FIXME FIXME: actually... those inherited members hide their base counterparts (sometimes with 'new', sometimes not),
+        //              why not just skip their generation as they are already declared in base type??
+        while (wrapped is CElement e) 
+        {
+            foreach (var c in e.Content) yield return c;
+            wrapped = e.BaseType;
+        }
+    }
 }
 
 /// <summary>
@@ -122,7 +137,7 @@ public class CSimpleType(
     ClrSimpleTypeInfo info,
     Dictionary<XmlSchemaObject, string> nameMappings,
     LinqToXsdSettings settings)
-    : CClass
+    : CClass(info)
 {
     public override bool IsSimpleType => true;
 
@@ -139,10 +154,10 @@ public class CSimpleType(
 
     public CompiledFacets Restrictions => info.RestrictionFacets;
     
-    public IEnumerable<string> Comments 
-        => Namespace is null 
-        ? []    // no comments on nested simple types
-        : info.Annotations?.Select(a => a.Text) ?? [];
+    // public IEnumerable<string> Comments 
+    //     => Namespace is null 
+    //     ? []    // no comments on nested simple types
+    //     : info.Annotations?.Select(a => a.Text) ?? [];
 
     public bool IsEnum => info is EnumSimpleTypeInfo;
     public string EnumName => info.clrtypeName;
@@ -163,24 +178,22 @@ public class CSimpleType(
             .Select(x => new CSimpleType(x, nameMappings, settings));
 }
 
-public class CSimpleTypeWrapper(ClrWrapperTypeInfo info, ClrPropertyInfo propertyInfo) : CClass
+public class CSimpleTypeWrapper(ClrWrapperTypeInfo info, ClrPropertyInfo propertyInfo) : CClass(info)
 {
     public override bool IsSimpleType => true;
 
-    public string XName => info.schemaName;
-    public string XNamespace => info.schemaNs;
-    public override string Name => info.clrtypeName;
     public string Fqn => QualifiedName(Namespace!.Name, Name);
     public bool HasSaveMethods => info.typeOrigin == SchemaOrigin.Element && !info.IsDerived;
-    public bool IsDerived => info.IsDerived;    
-    public string BaseType => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";
+    public bool IsDerived => info.IsDerived;
+    public string BaseTypeName => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";
     public string WrappedName => info.InnerType.IsSchemaList 
         ? $"IList<{propertyInfo.ClrTypeName}>" 
         : propertyInfo.ClrTypeName;
+    public bool IsSubstitutionHead => info.IsSubstitutionHead;
+    public bool IsSubstitutionMember => info.IsSubstitutionMember();
     public bool NeedsEnumParse => info.InnerType.IsEnum && !info.InnerType.IsEquivalentTo(info.clrtypeName);
     public string EnumType => info.InnerType.ClrFullTypeName;
-    public CAttribute TypedValueProperty => new CAttribute(propertyInfo);
+    public CAttribute TypedValueProperty => new CAttribute(propertyInfo, this);
     public bool HasWildcard => info.HasElementWildCard; // Unused?    
     // public XmlTypeCode XmlTypeCode => info.InnerType.TypeCode;
-    public IEnumerable<string> Comments => info.Annotations?.Select(a => a.Text) ?? [];
 }

@@ -1,5 +1,5 @@
 {{ $1.Comments | comments '///' -}}
-public partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
+public {{ $1.IsAbstract ? "abstract " : "" -}} partial class {{ $1.Name }} : {{ $1.BaseTypeName }}, IXMetaData {
     
     {{- if $1.HasSaveMethods }}
 
@@ -20,22 +20,42 @@ public partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
     {{- $new = $1.IsSubstitutionMember ? "new " : "" }}
 
     public {{ $new -}} static {{ $1.Name }} Load(string xmlFile) {
+        {{- if $1.IsAbstract || $1.IsSubstitutionHead }}
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
+        {{- else }}
         return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
+        {{- end }}
     }
     
     public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
+        {{- if $1.IsAbstract || $1.IsSubstitutionHead }}
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
+        {{- else }}
         return XTypedServices.Load<{{ $1.Name }}, {{ $1.WrappedName }}>(xmlFile, LinqToXsdTypeManager.Instance);
+        {{- end }}
     }
     
     public {{ $new -}} static {{ $1.Name }} Parse(string xml) {
+        {{- if $1.IsAbstract || $1.IsSubstitutionHead }}
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Parse(xml), LinqToXsdTypeManager.Instance)));
+        {{- else }}
         return XTypedServices.Parse<{{ $1.Name }}, {{ $1.WrappedName }}>(xml, LinqToXsdTypeManager.Instance);
+        {{- end }}
     }
     
-    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}, {{ $1.WrappedName }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+    public static explicit operator {{ $1.Name }}(XElement xe) { {{
+        if $1.IsAbstract || $1.IsSubstitutionHead 
+        }} return ({{ $1.Name }})XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager);
+        {{- else -}} 
+        return XTypedServices.ToXTypedElement<{{ $1.Name }}, {{ $1.WrappedName }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager);
+        {{- end }} }
     
+    {{- if !$1.IsAbstract }}
+
     public override XTypedElement Clone() {
         return new {{ $1.Name }}((({{ $1.WrappedName }})(this.Content.Clone())));
     }
+    {{- end }}
 
     {{- if $1.IsSubstitutionHead }}
 
@@ -50,7 +70,12 @@ public partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
     {{ $1.Comments | comments '///' -}}
     public {{ $1.Name }}() {{- if $1.IsSubstitutionMember }} :
             base(true) {{- end }} {
+        {{- if $1.WrappedIsAbstract }}
+        {{- # Cannot construct wrappers of abstract types using the default constructor }}
+        throw new InvalidOperationException();
+        {{- else }}
         SetInnerType(new {{ $1.WrappedName }}());
+        {{- end }}
     }
     
     public override XElement Untyped {
@@ -103,9 +128,28 @@ public partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
 
     {{- for $content in $1.Content }}
     
-    {{~ # TODO: elements with FSM should include regex comment ~}}
-    {{ $content.Comments | array.concat $1.RegexComments | comments '///' -}}
-    public virtual {{ $content.Type | builtin }} {{ $content.Name }} {
+    {{- if $content.IsAny }}
+
+    {{ $content.Comments | array.concat $content.Parent.RegexComments | comments '///' -}}
+    public virtual IEnumerable<XElement> Any {
+        get {
+            return this.ContentField.Any;
+        }
+    }
+    {{- continue; end }}
+
+    {{ 
+        $name = $content.Name 
+        if $name == $1.Name
+            $name = $name + "1"
+        end
+        $comments = $content.Comments
+        if $content.Origin == "Element"
+            $comments = $comments | array.concat $content.Parent.RegexComments
+        end        
+        $comments | comments '///'        
+    -}}
+    public {{ $content.IsNew ? "new " : "" -}} virtual {{ $content.Type | builtin }} {{ $name }} {
         get {
             return this.ContentField.{{ $content.Name }};
         }

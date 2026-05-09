@@ -39,6 +39,7 @@ static class ScribanGlobals
     public static string? Builtin(string? type)
     {
         if (type is null) return null;
+        if (type == "") return "void";
 
         // FIXME: it would just be nicer to remove this, but I'm matching the legacy generation 1:1 for now
         if (type.EndsWith("?")) return type;

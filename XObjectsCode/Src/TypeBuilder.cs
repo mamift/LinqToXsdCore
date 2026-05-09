@@ -529,21 +529,10 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
-    internal class XWrapperTypedElementBuilder : TypeBuilder
+    internal class XWrapperTypedElementBuilder(LinqToXsdSettings settings) : TypeBuilder(settings)
     {
         string innerTypeName;
-        string memberName;
-        TypeAttributes innerTypeAttributes;
-
-        public XWrapperTypedElementBuilder(LinqToXsdSettings settings) : base(settings) { }
-
-        internal void Init(string innerTypeFullName, string innerTypeNs, TypeAttributes innerTypeAttributes)
-        {
-            base.InnerInit();
-            this.memberName = NameGenerator.ChangeClrName(Constants.CInnerTypePropertyName, NameOptions.MakeField);
-            this.innerTypeName = innerTypeFullName;
-            this.innerTypeAttributes = innerTypeAttributes;
-        }
+        string memberName = NameGenerator.ChangeClrName(Constants.CInnerTypePropertyName, NameOptions.MakeField);
 
         protected override string InnerType
         {
@@ -553,26 +542,26 @@ namespace Xml.Schema.Linq.CodeGen
         internal override void CreateDefaultConstructor(List<ClrAnnotation> annotations)
         {
             //create type field to wrap
-            CodeMemberField typeField =
-                CodeDomHelper.CreateMemberField(memberName, innerTypeName, false, MemberAttributes.Private);
-            CodeFieldReferenceExpression fieldRef = CodeDomHelper.CreateFieldReference("this", memberName);
+            // CodeMemberField typeField =
+            //     CodeDomHelper.CreateMemberField(memberName, innerTypeName, false, MemberAttributes.Private);
+            // CodeFieldReferenceExpression fieldRef = CodeDomHelper.CreateFieldReference("this", memberName);
 
-            //Create empty constructor
-            CodeConstructor emptyConstructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
-            if ((innerTypeAttributes & TypeAttributes.Abstract) == 0)
-            {
-                //New up inner type in default constructor only if inner type is not abstract
-                emptyConstructor.Statements.Add(
-                    CodeDomHelper.CreateMethodCall(null, Constants.SetInnerType,
-                        new CodeObjectCreateExpression(typeField.Type)));
-            }
-            else
-            {
-                //Cannot construct wrappers of abstract types using the default constructor
-                emptyConstructor.Statements.Add(
-                    new CodeThrowExceptionStatement(
-                        new CodeObjectCreateExpression("InvalidOperationException")));
-            }
+            // //Create empty constructor
+            // CodeConstructor emptyConstructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
+            // if ((innerTypeAttributes & TypeAttributes.Abstract) == 0)
+            // {
+            //     //New up inner type in default constructor only if inner type is not abstract
+            //     emptyConstructor.Statements.Add(
+            //         CodeDomHelper.CreateMethodCall(null, Constants.SetInnerType,
+            //             new CodeObjectCreateExpression(typeField.Type)));
+            // }
+            // else
+            // {
+            //     //Cannot construct wrappers of abstract types using the default constructor
+            //     emptyConstructor.Statements.Add(
+            //         new CodeThrowExceptionStatement(
+            //             new CodeObjectCreateExpression("InvalidOperationException")));
+            // }
 
             // CodeConstructor dummyConstructor = null;
             // if (clrTypeInfo.IsSubstitutionHead)
@@ -595,8 +584,8 @@ namespace Xml.Schema.Linq.CodeGen
 
             // ApplyAnnotations(emptyConstructor, annotations, null);
 
-            decl.Members.Add(typeField);
-            decl.Members.Add(emptyConstructor);
+            // decl.Members.Add(typeField);
+            // decl.Members.Add(emptyConstructor);
             // decl.Members.Add(CreateUntypedProperty(fieldRef));
             // decl.Members.Add(InnerTypeProperty());
             // decl.Members.Add(SetInnerType());
@@ -609,23 +598,24 @@ namespace Xml.Schema.Linq.CodeGen
 
         internal override CodeConstructor CreateFunctionalConstructor(List<ClrAnnotation> annotations)
         {
-            //Create Constructor that takes type to wrap
-            CodeConstructor constructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
-            if (clrTypeInfo.IsSubstitutionMember())
-            {
-                //If member of subst group, call dummy base constructor
-                constructor.BaseConstructorArgs.Add(new CodePrimitiveExpression(true));
-            }
+            // //Create Constructor that takes type to wrap
+            // CodeConstructor constructor = CodeDomHelper.CreateConstructor(DefaultVisibility.ToMemberAttribute());
+            // if (clrTypeInfo.IsSubstitutionMember())
+            // {
+            //     //If member of subst group, call dummy base constructor
+            //     constructor.BaseConstructorArgs.Add(new CodePrimitiveExpression(true));
+            // }
 
-            constructor.Parameters.Add(
-                new CodeParameterDeclarationExpression(
-                    new CodeTypeReference(innerTypeName), Constants.InnerTypeParamName));
+            // constructor.Parameters.Add(
+            //     new CodeParameterDeclarationExpression(
+            //         new CodeTypeReference(innerTypeName), Constants.InnerTypeParamName));
 
-            constructor.Statements.Add(CodeDomHelper.CreateMethodCall(null, Constants.SetInnerType,
-                new CodeVariableReferenceExpression(Constants.InnerTypeParamName))); //SetInnerType();
-            ApplyAnnotations(constructor, annotations, null);
-            decl.Members.Add(constructor);
-            return constructor;
+            // constructor.Statements.Add(CodeDomHelper.CreateMethodCall(null, Constants.SetInnerType,
+            //     new CodeVariableReferenceExpression(Constants.InnerTypeParamName))); //SetInnerType();
+            // ApplyAnnotations(constructor, annotations, null);
+            // decl.Members.Add(constructor);
+            // return constructor;
+            return null!;
         }
 
 
@@ -635,30 +625,30 @@ namespace Xml.Schema.Linq.CodeGen
             propertyInfo.AddToType(decl, annotations, DefaultVisibility);
         }
 
-        protected override void ImplementCommonIXMetaData()
-        {
-            CodeMemberProperty localElementDictionary = CodeDomHelper.CreateInterfaceImplProperty(
-                Constants.LocalElementsDictionary, Constants.IXMetaData,
-                CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName));
-            localElementDictionary.GetStatements.Add(CodeDomHelper.CreateCastToInterface(Constants.IXMetaData,
-                "schemaMetaData", Constants.CInnerTypePropertyName));
-            localElementDictionary.GetStatements.Add(
-                new CodeMethodReturnStatement(
-                    new CodePropertyReferenceExpression(
-                        new CodeVariableReferenceExpression("schemaMetaData"),
-                        Constants.LocalElementsDictionary)));
+        // protected override void ImplementCommonIXMetaData()
+        // {
+        //     CodeMemberProperty localElementDictionary = CodeDomHelper.CreateInterfaceImplProperty(
+        //         Constants.LocalElementsDictionary, Constants.IXMetaData,
+        //         CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName));
+        //     localElementDictionary.GetStatements.Add(CodeDomHelper.CreateCastToInterface(Constants.IXMetaData,
+        //         "schemaMetaData", Constants.CInnerTypePropertyName));
+        //     localElementDictionary.GetStatements.Add(
+        //         new CodeMethodReturnStatement(
+        //             new CodePropertyReferenceExpression(
+        //                 new CodeVariableReferenceExpression("schemaMetaData"),
+        //                 Constants.LocalElementsDictionary)));
 
-            CodeMemberProperty contentProperty = CodeDomHelper.CreateInterfaceImplProperty(
-                Constants.CInnerTypePropertyName, Constants.IXMetaData, new CodeTypeReference(Constants.XTypedElement));
-            contentProperty.GetStatements.Add(
-                new CodeMethodReturnStatement(
-                    new CodePropertyReferenceExpression(
-                        new CodeThisReferenceExpression(),
-                        Constants.CInnerTypePropertyName)));
+        //     CodeMemberProperty contentProperty = CodeDomHelper.CreateInterfaceImplProperty(
+        //         Constants.CInnerTypePropertyName, Constants.IXMetaData, new CodeTypeReference(Constants.XTypedElement));
+        //     contentProperty.GetStatements.Add(
+        //         new CodeMethodReturnStatement(
+        //             new CodePropertyReferenceExpression(
+        //                 new CodeThisReferenceExpression(),
+        //                 Constants.CInnerTypePropertyName)));
 
-            decl.Members.Add(localElementDictionary);
-            decl.Members.Add(contentProperty);
-        }
+        //     decl.Members.Add(localElementDictionary);
+        //     decl.Members.Add(contentProperty);
+        // }
 
         // protected override void ImplementContentModelMetaData()
         // {

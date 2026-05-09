@@ -1,5 +1,5 @@
 {{ $1.Comments | comments '///' -}}
-{{ $1.Namespace.AccessModifier }} partial class {{ $1.Name }} : {{ $1.BaseType }}, IXMetaData {
+{{ $1.Namespace.AccessModifier }} partial class {{ $1.Name }} : {{ $1.BaseTypeName }}, IXMetaData {
 
     {{- if $1.HasSaveMethods }}
 
@@ -20,19 +20,36 @@
     {{- $new = $1.IsDerived ? "new " : "" }}
 
     public {{ $new -}} static {{ $1.Name }} Load(string xmlFile) {
+        {{- if $1.IsSubstitutionHead }}
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
+        {{- else }}
         return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+        {{- end }}
     }
     
     public static {{ $1.Name }} Load(System.IO.TextReader xmlFile) {
+        {{- if $1.IsSubstitutionHead }}
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Load(xmlFile), LinqToXsdTypeManager.Instance)));
+        {{- else }}
         return XTypedServices.Load<{{ $1.Name }}>(xmlFile);
+        {{- end }}
     }
     
     public {{ $new -}} static {{ $1.Name }} Parse(string xml) {
+        {{- if $1.IsSubstitutionHead }}
+        return (({{ $1.Name }})(XTypedServices.ToXTypedElement(XElement.Parse(xml), LinqToXsdTypeManager.Instance)));
+        {{- else }}
         return XTypedServices.Parse<{{ $1.Name }}>(xml);
+        {{- end }}
     }
     
-    public static explicit operator {{ $1.Name }}(XElement xe) { return XTypedServices.ToXTypedElement<{{ $1.Name }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-    
+    public static explicit operator {{ $1.Name }}(XElement xe) { {{
+        if $1.IsSubstitutionHead 
+        }} return ({{ $1.Name }})XTypedServices.ToXTypedElement(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager);
+        {{- else -}} 
+        return XTypedServices.ToXTypedElement<{{ $1.Name }}>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager);
+        {{- end }} }
+
     public override XTypedElement Clone() {
         return XTypedServices.CloneXTypedElement<{{ $1.Name }}>(this);
     }
