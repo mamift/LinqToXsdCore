@@ -182,7 +182,7 @@
         BuildElementDictionary();
         {{- end }}
         {{- 
-            if $1.HasGroups
+            if $1.HasContentModel
                 func entity
                     case $0.Type
                         when 'Sequence'
@@ -243,7 +243,7 @@
 
     {{- end }}
     
-    {{- if $1.HasGroups }}
+    {{- if $1.HasContentModel }}
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private static ContentModelEntity contentModel;
@@ -260,7 +260,7 @@
 
     {{- 
         # else IsDerived: probably derived by restriction, use base content model 
-        end # if ContentModel
+        end # if HasContentModel
         end # if HasWildcard
     }}
 

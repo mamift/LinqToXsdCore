@@ -113,11 +113,12 @@ public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
     }
 
     public IEnumerable<CContent> Content => info.Content.SelectMany(FlattenContents).Where(x => x.ShouldGenerate);
+    public bool HasContentModel => Group?.Type != null;
     public bool HasGroups => info.Content.Any(x => x.ContentType == ContentType.Grouping);
     public ContentGroup? Group => info.Content
         .Where(x => x.ContentType == ContentType.Grouping)
         .Select(x => new ContentGroup(x))
-        .FirstOrDefault();
+        .FirstOrDefault();    
 
     public IEnumerable<CContent> LocalElements => info.Content.SelectMany(FlattenContents).Where(x => x.IsLocalElement);
 
