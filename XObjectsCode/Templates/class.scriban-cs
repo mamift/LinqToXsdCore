@@ -116,6 +116,14 @@
     {{ include 'attribute.scriban-cs' $content $1 }}
     {{- end }}
 
+    {{- for $choice in $1.ChoiceConstructors }}
+
+    public {{ $1.Name }}({{ $choice.Type }} {{ $choice.Name }}) {
+        this.{{ $choice.Name }} = {{ $choice.Name }};
+    }
+
+    {{- end }}
+
     private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get({{ $1.XName | string.literal }}, {{ $1.XNamespace | string.literal }});
     
     {{- if $1.HasWildcard }}

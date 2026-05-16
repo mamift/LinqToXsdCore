@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.CodeDom;
 using System.Diagnostics;
 using Xml.Schema.Linq.Extensions;
-using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -41,11 +40,6 @@ namespace Xml.Schema.Linq.CodeGen
             //Do Nothing
         }
 
-        public virtual bool IsRepeating
-        {
-            get { return false; }
-        }
-
         public static TypePropertyBuilder Create(ContentModelPropertyBuilder parentBuilder, GroupingInfo groupingInfo, CodeTypeDeclaration decl,
             CodeTypeDeclItems declItems, GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null)
         {
@@ -55,11 +49,11 @@ namespace Xml.Schema.Linq.CodeGen
                 case ContentModelType.All:
                     return new DefaultPropertyBuilder(decl, declItems, visibility, parentNs);
 
-                case ContentModelType.Sequence:
-                    return new SequencePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility, parentNs);
+                // case ContentModelType.Sequence:
+                //     return new SequencePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility, parentNs);
 
-                case ContentModelType.Choice:
-                    return new ChoicePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility, parentNs);
+                // case ContentModelType.Choice:
+                //     return new ChoicePropertyBuilder(parentBuilder, groupingInfo, decl, declItems, visibility, parentNs);
 
                 default:
                     throw new InvalidOperationException();
@@ -143,86 +137,6 @@ namespace Xml.Schema.Linq.CodeGen
                 Debug.Assert(str.IsNotEmpty());
 #endif
             }
-        }
-    }
-
-    internal class SequencePropertyBuilder : ContentModelPropertyBuilder
-    {
-        public SequencePropertyBuilder(ContentModelPropertyBuilder parentBuilder, GroupingInfo grouping,
-            CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null) :
-            base(parentBuilder, grouping, decl, declItems, visibility, parentNs)
-        {
-        }
-
-        public override CodeObjectCreateExpression CreateContentModelExpression()
-        {
-            return new CodeObjectCreateExpression(new CodeTypeReference(Constants.SequenceContentModelEntity));
-        }
-    }
-
-    internal class ChoicePropertyBuilder : ContentModelPropertyBuilder
-    {
-        List<CodeConstructor> choiceConstructors;
-        bool flatChoice; //No nested groups, no child groups and not repeating
-        bool hasDuplicateType;
-        Dictionary<string, ClrBasePropertyInfo> propertyTypeNameTable;
-
-        public ChoicePropertyBuilder(ContentModelPropertyBuilder parentBuilder, GroupingInfo grouping,
-            CodeTypeDeclaration decl, CodeTypeDeclItems declItems,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public, CodeNamespace parentNs = null) :
-            base(parentBuilder, grouping, decl, declItems, visibility, parentNs)
-        {
-            flatChoice = !grouping.IsNested && !grouping.IsRepeating && !grouping.HasChildGroups;
-            hasDuplicateType = false;
-            if (flatChoice)
-            {
-                propertyTypeNameTable = new Dictionary<string, ClrBasePropertyInfo>();
-            }
-        }
-
-        public override void GenerateConstructorCode(ClrBasePropertyInfo property)
-        {
-            if (flatChoice && !hasDuplicateType && property.ContentType != ContentType.WildCardProperty)
-            {
-                ClrBasePropertyInfo prevProperty = null;
-                string propertyReturnType = property.ClrTypeName;
-                if (propertyTypeNameTable.TryGetValue(propertyReturnType, out prevProperty))
-                {
-                    hasDuplicateType = true;
-                    return;
-                }
-                else
-                {
-                    propertyTypeNameTable.Add(propertyReturnType, property);
-                }
-
-                if (choiceConstructors == null)
-                {
-                    choiceConstructors = new List<CodeConstructor>();
-                }
-
-
-                CodeConstructor choiceConstructor = CodeDomHelper.CreateConstructor(visibility.ToMemberAttribute());
-                property.AddToConstructor(choiceConstructor);
-                choiceConstructors.Add(choiceConstructor);
-            }
-        }
-
-        public override void EndCodeGen()
-        {
-            if (choiceConstructors != null && !hasDuplicateType)
-            {
-                foreach (CodeConstructor choiceConst in choiceConstructors)
-                {
-                    decl.Members.Add(choiceConst);
-                }
-            }
-        }
-
-        public override CodeObjectCreateExpression CreateContentModelExpression()
-        {
-            return new CodeObjectCreateExpression(new CodeTypeReference(Constants.ChoiceContentModelEntity));
         }
     }
 

@@ -6,6 +6,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
 
@@ -153,6 +154,37 @@ public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
             ? g.Children.Select(x => new ContentGroup(x)) 
             : [];
     }    
+
+    public IEnumerable<CAttribute> ChoiceConstructors
+    {
+        get 
+        {
+            Dictionary<string, CAttribute>? choices = null;
+
+            foreach (var group in info.Content.SelectMany(TraverseGroupInfos))
+            {
+                if (!group.InChoice || group.IsNested || group.IsRepeating || group.HasChildGroups) continue;
+                choices ??= new();
+                foreach (var child in group.Children)
+                {
+                    if (child is not ClrPropertyInfo choiceInfo) continue;
+                    // FIXME: TryAdd not avail. in netstandard 2.0
+                    if (choices.ContainsKey(choiceInfo.ReturnTypeStr)) return [];
+                    choices.Add(choiceInfo.ReturnTypeStr, new CAttribute(choiceInfo, this));
+                }
+            }
+            
+            return choices != null ? choices.Values : [];
+        }
+    }
+
+    private static IEnumerable<GroupingInfo> TraverseGroupInfos(ContentInfo info)
+    {
+        if (info is not GroupingInfo g) yield break;
+        yield return g;
+        foreach (var x in g.Children.SelectMany(TraverseGroupInfos)) 
+            yield return x;
+    }
 }
 
 public class CElementWrapper(ClrWrapperTypeInfo info, CClass wrapped, string innerTypeName) : CClass(info)
