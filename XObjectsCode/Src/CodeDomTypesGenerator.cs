@@ -167,8 +167,7 @@ namespace Xml.Schema.Linq.CodeGen
             typeBuilder.CreateTypeDeclaration(typeInfo, cNamespace.Dom);
             //ProcessProperties(typeInfo.Content, typeInfo.Annotations);            
             typeBuilder.CreateFunctionalConstructor(typeInfo.Annotations);
-            // TODO: only FSM left to do in ImplementInterfaces            
-            typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
+            // typeBuilder.ImplementInterfaces(settings.EnableServiceReference);
 
             CodeTypeDeclaration builtType = typeBuilder.TypeDeclaration;
             

@@ -2,7 +2,9 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Xml.Linq;
 using System.Xml.Schema;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
@@ -50,12 +52,64 @@ public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
     public string Fqn => QualifiedName(Namespace!.Name, Name);
     public bool IsSealed => info.IsSealed;
     public bool IsSubstitutionHead => info.IsSubstitutionHead;
-    public bool HasWildcard => info.HasElementWildCard;
     public bool IsDerived => info.IsDerived;
     public string BaseTypeName => QualifiedName(info.baseTypeClrNs, info.baseTypeClrName, global: true) ?? "XTypedElement";
     public CClass? BaseType { get; internal set; }
     public bool HasSaveMethods => info.typeOrigin == SchemaOrigin.Element && !info.IsDerived;
     public bool HasLoadMethods => info.typeOrigin == SchemaOrigin.Element;
+
+    public bool HasWildcard => info.HasElementWildCard;
+
+    private FSM? fsm;
+    private HashSet<int>? reachableStates;
+
+    // Only meaningful for elements with wildcards
+    public IEnumerable<FSMTransition> FSMTransitions
+    {
+        get 
+        {            
+            fsm = info.CreateFSM(new StateNameSource());
+            reachableStates = new HashSet<int>();
+            return AddTransition(fsm.Start);
+            
+            IEnumerable<FSMTransition> AddTransition(int state)
+            {
+                if (!reachableStates.Add(state)) yield break;
+                if (!fsm.Trans.TryGetValue(state, out var trans) || trans.Count == 0) yield break;
+                var subStates = new HashSet<int>();
+                
+                foreach (var t in trans.nameTransitions ?? []) 
+                {
+                    subStates.Add(t.Value);
+                    yield return new FSMTransition(t.Value) { XName = t.Key };
+                }
+
+                foreach (var t in trans.wildCardTransitions ?? []) 
+                {
+                    subStates.Add(t.Value);
+                    yield return new FSMTransition(t.Value) { WildCard = t.Key };
+                }
+
+                foreach (var result in subStates.SelectMany(AddTransition))
+                    yield return result;
+            }
+        }
+    }
+
+    // Only read after reading FSMTransitions, which initializes `fsm`
+    public int FSMStartState => fsm!.Start;
+
+    // Only read after enumerating FSMTransitions, which initializes `fsm` and visits the graph to create `reachableStates`
+    public IEnumerable<int> FSMAcceptStates => fsm!.Accept.Intersect(reachableStates);
+
+    public class FSMTransition(int state)
+    {
+        public int State => state;
+        public WildCard? WildCard { get; init; } 
+        public string WildCardNs => WildCard!.NsList.Namespaces;
+        public string WildCardTargetNs => WildCard!.NsList.TargetNamespace;
+        public XName? XName { get; init; }
+    }
 
     public IEnumerable<CContent> Content => info.Content.SelectMany(FlattenContents).Where(x => x.ShouldGenerate);
     public bool HasGroups => info.Content.Any(x => x.ContentType == ContentType.Grouping);
@@ -69,7 +123,7 @@ public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
     public List<CClass> Types { get; } = [];
 
     public void Add(CClass type) => Types.Add(type);
-
+    
     private IEnumerable<CContent> FlattenContents(ContentInfo info)
     {
         return info.ContentType switch 
@@ -98,7 +152,7 @@ public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
         public IEnumerable<ContentGroup> Children => info is GroupingInfo g 
             ? g.Children.Select(x => new ContentGroup(x)) 
             : [];
-    }
+    }    
 }
 
 public class CElementWrapper(ClrWrapperTypeInfo info, CClass wrapped, string innerTypeName) : CClass(info)

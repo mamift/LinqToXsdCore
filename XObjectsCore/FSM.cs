@@ -8,64 +8,31 @@ using System.Text;
 
 namespace Xml.Schema.Linq
 {
-    public class FSM
+    public class FSM(int startState, Set<int> acceptStates, IDictionary<int, Transitions> trans)
     {
-        internal static int InvalidState = default(int);
+        internal const int InvalidState = 0;
 
-        private readonly int startState;
-        private readonly Set<int> acceptStates;
-        private readonly IDictionary<int, Transitions> trans;
+        public int Start => startState;
+        public Set<int> Accept => acceptStates;
+        public IDictionary<int, Transitions> Trans => trans;
 
-        public FSM(int startState, Set<int> acceptStates,
-            IDictionary<int, Transitions> trans)
-        {
-            this.startState = startState;
-            this.acceptStates = acceptStates;
-            this.trans = trans;
-        }
+        public override string ToString() => $"DFA start={startState}\naccept={acceptStates}";
 
-        public int Start
-        {
-            get { return startState; }
-        }
-
-        public Set<int> Accept
-        {
-            get { return acceptStates; }
-        }
-
-        public IDictionary<int, Transitions> Trans
-        {
-            get { return trans; }
-        }
-
-        public override String ToString()
-        {
-            return "DFA start=" + startState + "\naccept=" + acceptStates;
-        }
-
-        public bool isAccept(int state)
-        {
-            return this.acceptStates.Contains(state);
-        }
+        public bool IsAccept(int state) => acceptStates.Contains(state);
 
         internal void AddTransitions(FSM otherFSM)
         {
             foreach (KeyValuePair<int, Transitions> pair in otherFSM.Trans)
-            {
-                this.trans.Add(pair);
-            }
+                trans.Add(pair);
         }
 
         internal static void CloneTransitions(FSM srcFsm, int srcState, FSM destFsm, int destState)
         {
             //Clone the transitions from srcState to destState
-            Transitions srcTrans = null;
-            srcFsm.Trans.TryGetValue(srcState, out srcTrans);
+            srcFsm.Trans.TryGetValue(srcState, out var srcTrans);
             if (srcTrans == null) return;
 
-            Transitions destTrans = null;
-            destFsm.Trans.TryGetValue(destState, out destTrans);
+            destFsm.Trans.TryGetValue(destState, out var destTrans);
 
             if (destTrans == null)
             {
@@ -287,6 +254,8 @@ namespace Xml.Schema.Linq
         }
     }
 
+    // FIXME: today .NET has HashSet<T> but this is referenced in generated code, 
+    // so I'll change it after the transition to templates is validated and merged
     public class Set<T> : ICollection<T>
     {
         // Only the keys matter; the type bool used for the value is arbitrary

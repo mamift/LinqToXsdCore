@@ -74,7 +74,7 @@ public abstract partial class ContentInfo
                 bool hasNextStates =
                     currentState != nextState &&
                     this.HasNextStates(nextState, fsm);
-                if (fsm.isAccept(nextState))
+                if (fsm.IsAccept(nextState))
                 {
                     if (hasNextStates)
                     {
