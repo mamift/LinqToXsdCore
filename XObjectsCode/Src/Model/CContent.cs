@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Schema;
-using Microsoft.VisualBasic;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
 
@@ -29,6 +28,7 @@ public sealed class CAttribute(ClrPropertyInfo info, CClass parent) : CContent(i
     public SchemaOrigin Origin => info.Origin;
     public string Name => info.PropertyName;
     public string Type => info.ReturnTypeStr;
+    public string TypeWhenWrapped => info.ReturnTypeNested ?? info.ReturnTypeStr;
     public string NullableType => info.NullableType; // One more type... this differs at least for lists where this is the element type
     public string ClrType => info.ClrTypeName;  // TODO: clarify naming and usage, seems to be the underlying type (e.g., without nullable)
     public string ClrFullTypeName => info.TypeReference.ClrFullTypeName; // Yet another type, seems to be used for enums

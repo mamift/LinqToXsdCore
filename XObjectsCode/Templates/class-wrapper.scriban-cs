@@ -149,7 +149,7 @@ public {{ $1.IsAbstract ? "abstract " : "" -}} partial class {{ $1.Name }} : {{ 
         end        
         $comments | comments '///'        
     -}}
-    public {{ $content.IsNew ? "new " : "" -}} virtual {{ $content.Type | builtin }} {{ $name }} {
+    public {{ $content.IsNew ? "new " : "" -}} virtual {{ $content.TypeWhenWrapped | builtin }} {{ $name }} {
         get {
             return this.ContentField.{{ $content.Name }};
         }

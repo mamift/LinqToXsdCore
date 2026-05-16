@@ -285,7 +285,7 @@ namespace Xml.Schema.Linq.CodeGen
         public override XCodeTypeReference ReturnType
             => returnType ??= CreateReturnType(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
 
-        private string? returnTypeStr = null, returnTypeFqn = null;
+        private string? returnTypeStr = null, returnTypeNested = null;
 
         // TODO: rename after getting rid of CodeDom ReturnType property above
         public string ReturnTypeStr
@@ -293,18 +293,18 @@ namespace Xml.Schema.Linq.CodeGen
             get 
             {
                 if (returnTypeStr == null)
-                    (returnTypeStr, returnTypeFqn) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+                    (returnTypeStr, returnTypeNested) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
                 return returnTypeStr;
             }
         }
 
-        public string? ReturnTypeFqn
+        public string? ReturnTypeNested
         {
             get 
             {
                 if (returnTypeStr == null)
-                    (returnTypeStr, returnTypeFqn) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
-                return returnTypeFqn;
+                    (returnTypeStr, returnTypeNested) = CreateReturnTypeStr(IsEnum ? typeRef.ClrFullTypeName : clrTypeName);
+                return returnTypeNested;
             }            
         }
 
