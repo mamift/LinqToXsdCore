@@ -30,7 +30,7 @@ protected internal {{ $new -}} static readonly System.Xml.Linq.XName {{ $1.XName
 
 {{~ # TODO: review $1.Type for Union types, see. ClrPropertyInfo.CreateFixedDefaultValue ~}}
 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-private static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
+internal static {{ $1.Type | builtin }} {{ $1.FixedOrDefaultField }} = {{
     attr = $1 # funcs have their own local scope and non-global names won't resolve in parent scope :(
 
     func make_value
@@ -266,7 +266,7 @@ public {{
                 else
                     # Attributes default value is applied based on their presence above
                     if $1.DefaultValue && $1.Origin != "Attribute"
-                        "if (x != null && x.IsEmpty) {\n"
+                        "if (((x != null)\n\t&& x.IsEmpty)) {\n"
                         "   return " + $1.FixedOrDefaultField + ";\n"
                         "}\n"
                     end

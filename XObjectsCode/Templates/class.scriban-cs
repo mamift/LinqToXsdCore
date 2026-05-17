@@ -157,14 +157,17 @@
             , {{ $tran.State }})));
         {{- end }}
         validationStates = new FSM({{ $1.FSMStartState }}, new Set<int>(
-            {{- 
+            {{-
                 if $1.FSMAcceptStates | array.size == 1 
                     $1.FSMAcceptStates | array.first
                 else
-                    "new int[] { "
-                    $1.FSMAcceptStates | array.join ", "
-                    " }"
-                end
+                    "new int[] {"
+            }}
+            {{
+                    # new code block for indentation of new lines
+                    $1.FSMAcceptStates | array.join ",\n"
+                    "}"
+                end # if FSMAcceptStates
             -}}
             ), transitions);
     }
