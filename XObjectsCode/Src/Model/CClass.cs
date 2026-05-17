@@ -2,11 +2,9 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen.Model;
 
@@ -101,7 +99,7 @@ public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
     public int FSMStartState => fsm!.Start;
 
     // Only read after enumerating FSMTransitions, which initializes `fsm` and visits the graph to create `reachableStates`
-    public IEnumerable<int> FSMAcceptStates => fsm!.Accept.Intersect(reachableStates);
+    public IEnumerable<int> FSMAcceptStates => fsm!.Accept.Intersect(reachableStates!);
 
     public class FSMTransition(int state)
     {
@@ -241,11 +239,6 @@ public class CSimpleType(
 
     public CompiledFacets Restrictions => info.RestrictionFacets;
     
-    // public IEnumerable<string> Comments 
-    //     => Namespace is null 
-    //     ? []    // no comments on nested simple types
-    //     : info.Annotations?.Select(a => a.Text) ?? [];
-
     public bool IsEnum => info is EnumSimpleTypeInfo;
     public string EnumName => info.clrtypeName;
     public IEnumerable<string> EnumValues 

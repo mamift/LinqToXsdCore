@@ -65,6 +65,45 @@ public sealed class CAttribute(ClrPropertyInfo info, CClass parent) : CContent(i
         { DefaultValue: not null } => info.PropertyName + "DefaultValue",
         _ => null,
     };
+
+    public LocalEnumDef LocalEnum
+    {
+        get
+        {
+            // TODO: shenanigans around not generating enums more than once, 
+            //       e.g. if used multiple times in the same class, or if already present in the namespace?
+            var typeRef = info.TypeReference;
+            if (!typeRef.IsEnum || !typeRef.IsLocalType) return null;
+            
+            string name = typeRef.Name is { Length: > 0 } ? typeRef.Name : Name + "Enum";
+            
+            // Do not generate if parent class already generates the enum as a local type.
+            // Unclear to me in which circumstances this happens and when it does not...
+            if (parent is CElement { Types: var types } && types.Any(x => x is CSimpleType type && type.IsEnum && type.EnumName == name)) 
+                return null;
+            
+            var schema = (XmlSchemaSimpleType)typeRef.SchemaObject;
+            var facets = schema.GetEnumFacets();
+            var restrictions = new CompiledFacets(schema.Datatype);
+            restrictions.CompileFacets(schema);
+
+            return new LocalEnumDef(name)
+            {
+                Values = facets.Select(x => x.Member),
+                XmlTypeCode = schema.TypeCode,
+                Restrictions = restrictions,
+            };
+        }
+    }
+
+    public class LocalEnumDef(string name)
+    {
+        public string Name => name;
+        public IEnumerable<string> Values { get; init; }
+        public string Variety => "Atomic";
+        public XmlTypeCode XmlTypeCode { get; init; }
+        public CompiledFacets Restrictions { get; init; }
+    }
 }
 
 /// <summary>

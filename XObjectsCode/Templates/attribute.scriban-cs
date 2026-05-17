@@ -1,6 +1,26 @@
 {{~
     $new = $1.IsNew ? "new " : ""
+    $localEnum = $1.LocalEnum
+    if $localEnum
 ~}}
+
+public enum {{ $localEnum.Name }} {
+    {{- for $value in $localEnum.Values }}
+
+    {{ $value }},
+    {{- end }}
+}
+
+public sealed class {{ $localEnum.Name }}Validator {
+
+    private {{ $localEnum.Name }}Validator() {
+    }
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = {{
+        include 'simple-type-validator.scriban-cs' $localEnum }};
+}
+{{ end # if $localEnum ~}}
 
 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 [EditorBrowsable(EditorBrowsableState.Never)]
