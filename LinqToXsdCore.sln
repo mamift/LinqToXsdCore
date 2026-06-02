@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.2.11415.280 d18.0
+VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XObjectsCore", "XObjectsCore\XObjectsCore.csproj", "{71210419-4EA9-442B-ACA2-4FCD647929E3}"
 EndProject
@@ -151,6 +151,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestedChoiceTest", "GeneratedSchemaLibraries\NestedChoiceTest\NestedChoiceTest.csproj", "{962829C6-2FA5-696D-CE78-2DA01452F385}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Expression.Media.Catalog", "GeneratedSchemaLibraries\Microsoft.Expression.Media.Catalog\Microsoft.Expression.Media.Catalog.csproj", "{19AB6A3F-52F0-A9A4-5B41-F66F7D6B2261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParaParserXml", "GeneratedSchemaLibraries\ParaParserXml\ParaParserXml.csproj", "{5442DAC6-56E8-4B25-4399-45432CB2C1A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -422,6 +424,10 @@ Global
 		{19AB6A3F-52F0-A9A4-5B41-F66F7D6B2261}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19AB6A3F-52F0-A9A4-5B41-F66F7D6B2261}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19AB6A3F-52F0-A9A4-5B41-F66F7D6B2261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5442DAC6-56E8-4B25-4399-45432CB2C1A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5442DAC6-56E8-4B25-4399-45432CB2C1A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5442DAC6-56E8-4B25-4399-45432CB2C1A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5442DAC6-56E8-4B25-4399-45432CB2C1A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -488,6 +494,7 @@ Global
 		{1ED7C587-FF83-F2D8-9D29-3BA33170ED67} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{962829C6-2FA5-696D-CE78-2DA01452F385} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 		{19AB6A3F-52F0-A9A4-5B41-F66F7D6B2261} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
+		{5442DAC6-56E8-4B25-4399-45432CB2C1A3} = {E65C7EC3-E7E2-46C0-83E1-BFD629ED6C6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {515FF9D5-932D-4E95-A20B-E2A06A52858F}
