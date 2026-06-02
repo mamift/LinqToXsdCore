@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="paraparse.xsd" />
+    <EmbeddedResource Include="paraparse.xsd.config" />
+    <EmbeddedResource Include="paraparse.xsd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="paraparse.xsd" />
+    <None Remove="paraparse.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
+      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

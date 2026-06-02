@@ -242,6 +242,12 @@
       "commandLineArgs": "gen -a .\\basic\\ruleml.xsd",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\LegalRuleML",
       "hotReloadEnabled": false
+    },
+    "ParaParse": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\ParaParserXml",
+      "hotReloadEnabled": false
     }
   }
 }

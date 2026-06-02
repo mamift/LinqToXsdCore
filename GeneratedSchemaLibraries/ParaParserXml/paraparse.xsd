@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="paraparse" targetNamespace="urn:ParaParse.XML" elementFormDefault="qualified"
+  xmlns="urn:ParaParse.XML" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="Rule" abstract="true">
+    <xs:attribute name="Name" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:element name="Rule" type="Rule" abstract="true"/>
+
+  <xs:group name="RuleGroup">
+    <xs:choice>
+      <xs:element ref="NamedRule"/>
+      <xs:element ref="RecursiveRule"/>
+      <xs:element ref="StringRule"/>
+      <xs:element ref="CaseInvariantStringRule"/>
+      <xs:element ref="AnyCharRule"/>
+      <xs:element ref="CharRangeRule"/>
+      <xs:element ref="CharSetRule"/>
+      <xs:element ref="CharRule"/>
+      <xs:element ref="EndOfInputRule"/>
+      <xs:element ref="NodeRule"/>
+      <xs:element ref="ZeroOrMoreRule"/>
+      <xs:element ref="OneOrMoreRule"/>
+      <xs:element ref="CountedRule"/>
+      <xs:element ref="OptionalRule"/>
+      <xs:element ref="SequenceRule"/>
+      <xs:element ref="ChoiceRule"/>
+      <xs:element ref="AtRule"/>
+      <xs:element ref="NotAtRule"/>
+      <xs:element ref="OnFail"/>
+      <xs:element ref="BooleanRule"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:complexType name="SingleChildRule">
+    <xs:complexContent>
+      <xs:extension base="Rule">
+        <xs:sequence>
+          <xs:group ref="RuleGroup"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MultiChildRule">
+    <xs:complexContent>
+      <xs:extension base="Rule">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+          <xs:group ref="RuleGroup"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Concrete Rules -->
+
+  <xs:element name="NamedRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="SingleChildRule">
+          <xs:attribute name="RuleName" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RecursiveRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule"/>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StringRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule">
+          <xs:attribute name="Pattern" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CaseInvariantStringRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule">
+          <xs:attribute name="Pattern" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="AnyCharRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule"/>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CharRangeRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule">
+          <xs:attribute name="From" type="xs:string" use="required"/>
+          <xs:attribute name="To" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CharSetRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule">
+          <xs:attribute name="Chars" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CharRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule">
+          <xs:attribute name="Char" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="EndOfInputRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule"/>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="NodeRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="SingleChildRule">
+          <xs:attribute name="NodeName" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ZeroOrMoreRule" type="SingleChildRule" substitutionGroup="Rule"/>
+
+  <xs:element name="OneOrMoreRule" type="SingleChildRule" substitutionGroup="Rule"/>
+
+  <xs:element name="CountedRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="SingleChildRule">
+          <xs:attribute name="Min" type="xs:int" use="required"/>
+          <xs:attribute name="Max" type="xs:int" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="OptionalRule" type="SingleChildRule" substitutionGroup="Rule"/>
+
+  <xs:element name="SequenceRule" type="MultiChildRule" substitutionGroup="Rule"/>
+
+  <xs:element name="ChoiceRule" type="MultiChildRule" substitutionGroup="Rule"/>
+
+  <xs:element name="AtRule" type="SingleChildRule" substitutionGroup="Rule"/>
+
+  <xs:element name="NotAtRule" type="SingleChildRule" substitutionGroup="Rule"/>
+
+  <xs:element name="OnFail" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule">
+          <xs:sequence>
+            <xs:group ref="RuleGroup"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BooleanRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Rule">
+          <xs:attribute name="Value" type="xs:boolean" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="grammar">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:group ref="RuleGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
