@@ -859,7 +859,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (HasElementProperties)
             {
                 CreateStaticConstructor();
-                localElementDictionary = BuildLocalElementDictionary();
+                localElementDictionary = BuildLocalElementDictionaryCodeMemberProperty();
                 declItemsInfo.staticConstructor.Statements.Add(
                     CodeDomHelper.CreateMethodCall(null, "BuildElementDictionary"));
                 decl.Members.Add(localElementDictionary);
@@ -960,7 +960,7 @@ namespace Xml.Schema.Linq.CodeGen
             get { return propertyDictionaryAddStatements != null && propertyDictionaryAddStatements.Count > 0; }
         }
 
-        private CodeMemberProperty BuildLocalElementDictionary()
+        private CodeMemberProperty BuildLocalElementDictionaryCodeMemberProperty()
         {
             CodeMemberProperty localDictionaryProperty = CodeDomHelper.CreateInterfaceImplProperty(
                 Constants.LocalElementsDictionary, Constants.IXMetaData,
@@ -1213,8 +1213,12 @@ namespace Xml.Schema.Linq.CodeGen
                 ? "global::" + innerTypeName
                 : "global::" + innerTypeNs + "." + innerTypeName;
 
-            wrapperDictionaryStatements.Add(CodeDomHelper.CreateMethodCallFromField(Constants.WrapperDictionaryField,
-                "Add", CodeDomHelper.Typeof(clrTypeInfo.clrFullTypeName), CodeDomHelper.Typeof(innerTypeFullName)));
+            CodeMethodInvokeExpression addDictionaryKvp = CodeDomHelper.CreateMethodCallFromField(
+                fieldName: Constants.WrapperDictionaryField,
+                methodName: "Add", 
+                parameters: [CodeDomHelper.Typeof(clrTypeInfo.clrFullTypeName), CodeDomHelper.Typeof(innerTypeFullName)]
+            );
+            wrapperDictionaryStatements.Add(addDictionaryKvp);
         }
 
         private CodeMethodInvokeExpression SetNameMethodCall()
