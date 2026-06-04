@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="paraparse" targetNamespace="urn:ParaParse.XML" elementFormDefault="qualified"
+  xmlns="urn:ParaParse.XML" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="Rule" abstract="true">
+    <xs:attribute name="Name" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:element name="Rule" type="Rule" abstract="true"/>
+
+  <xs:group name="RuleGroup">
+    <xs:choice>
+      <xs:element ref="NamedRule"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:complexType name="SingleChildRule">
+    <xs:complexContent>
+      <xs:extension base="Rule">
+        <xs:sequence>
+          <xs:group ref="RuleGroup"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Concrete Rules -->
+
+  <xs:element name="NamedRule" substitutionGroup="Rule">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="SingleChildRule">
+          <xs:attribute name="RuleName" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

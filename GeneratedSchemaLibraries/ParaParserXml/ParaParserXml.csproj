@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="paraparse_xNameBug.xsd" />
     <EmbeddedResource Include="paraparse.xsd" />
     <EmbeddedResource Include="paraparse.xsd.config" />
     <EmbeddedResource Include="paraparse.xsd.cs" />

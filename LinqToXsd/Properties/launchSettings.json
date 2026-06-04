@@ -245,7 +245,7 @@
     },
     "ParaParse": {
       "commandName": "Project",
-      "commandLineArgs": "gen -a .",
+      "commandLineArgs": "gen -a .\\paraparse_xNameBug.xsd",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\ParaParserXml",
       "hotReloadEnabled": false
     }
