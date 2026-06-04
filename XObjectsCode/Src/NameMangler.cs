@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Globalization;
+using System.Linq;
 
 namespace Xml.Schema.Linq.CodeGen
 {
@@ -201,6 +202,30 @@ namespace Xml.Schema.Linq.CodeGen
         }
     }
 
+    internal class SymbolIdentifier
+    {
+        public string Identifier { get; }
+        public int IncrementNumber { get; }
+
+        public SymbolIdentifier(string identifier, int incrementNumber = 0)
+        {
+            Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
+            IncrementNumber = incrementNumber;
+        }
+
+        public override string ToString()
+        {
+            if (IncrementNumber > 0) {
+                return $"{Identifier}{IncrementNumber}";
+            }
+
+            return Identifier;
+        }
+
+        public static implicit operator SymbolIdentifier(string identifier) => new SymbolIdentifier(identifier);
+        public static implicit operator string(SymbolIdentifier symbolId) => symbolId.ToString();
+    }
+
     internal class GlobalSymbolTable
     {
         internal Dictionary<SymbolEntry, SymbolEntry> symbols;
@@ -306,7 +331,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (identifierName != null)
                 return identifierName;
             identifierName = NameGenerator.MakeValidIdentifier(element.QualifiedName.Name);
-            identifierName = getSymbol(identifierName, Constants.LocalElementConflictSuffix);
+            identifierName = getSymbol(identifierName, Constants.LocalElementConflictSuffix, out bool _);
             symbolToQName.Add(identifierName.ToUpper(CultureInfo.InvariantCulture), element.QualifiedName);
             qNameToSymbol.Add(element.QualifiedName, identifierName);
             return identifierName;
@@ -315,7 +340,7 @@ namespace Xml.Schema.Linq.CodeGen
         public string AddAttribute(XmlSchemaAttribute attribute)
         {
             string identifierName = NameGenerator.MakeValidIdentifier(attribute.QualifiedName.Name);
-            identifierName = getSymbol(identifierName, Constants.LocalAttributeConflictSuffix);
+            identifierName = getSymbol(identifierName, Constants.LocalAttributeConflictSuffix, out bool _);
             symbolToQName.Add(identifierName.ToUpper(CultureInfo.InvariantCulture), attribute.QualifiedName);
             return identifierName;
         }
@@ -345,7 +370,7 @@ namespace Xml.Schema.Linq.CodeGen
             foreach (AnonymousType at in anonymousTypes)
             {
                 ClrTypeReference typeReference = at.typeRefence;
-                string typeIdentifier = getSymbol(at.identifier, at.typeRefence.LocalSuffix);
+                string typeIdentifier = getSymbol(at.identifier, at.typeRefence.LocalSuffix, out bool _);
                 symbolToQName.Add(typeIdentifier.ToUpper(CultureInfo.InvariantCulture), XmlQualifiedName.Empty);
                 typeReference.Name = typeIdentifier;
                 at.identifier = typeIdentifier;
@@ -368,18 +393,20 @@ namespace Xml.Schema.Linq.CodeGen
         {
             // not making valid. Assuming this has already been done. 
             string outputSymbol = null;
-            outputSymbol = getSymbol(identifierName, String.Empty);
+            outputSymbol = getSymbol(identifierName, String.Empty, out bool _);
             symbolToQName.Add(outputSymbol.ToUpper(CultureInfo.InvariantCulture), identifierName);
 
             return outputSymbol;
         }
 
-        private string getSymbol(string identifierName, string suffix)
+        private string getSymbol(string identifierName, string suffix, out bool didIncrementIdWithNumber)
         {
+            didIncrementIdWithNumber = false;
+
             int id = 0;
             string symbol = identifierName;
             string symbolU = symbol.ToUpper(CultureInfo.InvariantCulture);
-            if (symbolToQName[symbolU] == null)
+            if (symbolToQName[symbolU] == null) 
             {
                 return symbol;
             }
@@ -392,11 +419,22 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 id++;
                 symbolU = temp + id.ToString(CultureInfo.InvariantCulture.NumberFormat);
+                didIncrementIdWithNumber = true;
             }
 
             if (id > 0)
                 symbol = symbol + id.ToString(CultureInfo.InvariantCulture.NumberFormat);
+
             return symbol;
+        }
+
+        private SymbolIdentifier GetSymbol(string identifierName, string suffix)
+        {
+            string symbolId = getSymbol(identifierName, suffix, out bool didIncrementIdWithNumber);
+
+            string incrementDigit = new string(symbolId.Where(char.IsDigit).ToArray());
+
+            return new SymbolIdentifier(symbolId, int.Parse(incrementDigit));
         }
     }
 }
