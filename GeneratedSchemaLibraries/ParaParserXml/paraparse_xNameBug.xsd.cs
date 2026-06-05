@@ -56,6 +56,10 @@ namespace urn.ParaParse.XML {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NamedRule1XName = System.Xml.Linq.XName.Get("NamedRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName RuleNameXName = System.Xml.Linq.XName.Get("RuleName", "");
         
         /// <summary>

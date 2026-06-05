@@ -56,6 +56,86 @@ namespace ParaParse.Xml {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NamedRule1XName = System.Xml.Linq.XName.Get("NamedRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RecursiveRuleXName = System.Xml.Linq.XName.Get("RecursiveRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StringRuleXName = System.Xml.Linq.XName.Get("StringRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CaseInvariantStringRuleXName = System.Xml.Linq.XName.Get("CaseInvariantStringRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnyCharRuleXName = System.Xml.Linq.XName.Get("AnyCharRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharRangeRuleXName = System.Xml.Linq.XName.Get("CharRangeRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharSetRuleXName = System.Xml.Linq.XName.Get("CharSetRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharRuleXName = System.Xml.Linq.XName.Get("CharRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EndOfInputRuleXName = System.Xml.Linq.XName.Get("EndOfInputRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NodeRuleXName = System.Xml.Linq.XName.Get("NodeRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ZeroOrMoreRuleXName = System.Xml.Linq.XName.Get("ZeroOrMoreRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OneOrMoreRuleXName = System.Xml.Linq.XName.Get("OneOrMoreRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CountedRuleXName = System.Xml.Linq.XName.Get("CountedRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OptionalRuleXName = System.Xml.Linq.XName.Get("OptionalRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SequenceRuleXName = System.Xml.Linq.XName.Get("SequenceRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ChoiceRuleXName = System.Xml.Linq.XName.Get("ChoiceRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AtRuleXName = System.Xml.Linq.XName.Get("AtRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NotAtRuleXName = System.Xml.Linq.XName.Get("NotAtRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OnFailXName = System.Xml.Linq.XName.Get("OnFail", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BooleanRuleXName = System.Xml.Linq.XName.Get("BooleanRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName RuleNameXName = System.Xml.Linq.XName.Get("RuleName", "");
         
         /// <summary>
@@ -667,6 +747,86 @@ namespace ParaParse.Xml {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NamedRuleXName = System.Xml.Linq.XName.Get("NamedRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RecursiveRuleXName = System.Xml.Linq.XName.Get("RecursiveRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StringRuleXName = System.Xml.Linq.XName.Get("StringRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CaseInvariantStringRuleXName = System.Xml.Linq.XName.Get("CaseInvariantStringRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnyCharRuleXName = System.Xml.Linq.XName.Get("AnyCharRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharRangeRuleXName = System.Xml.Linq.XName.Get("CharRangeRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharSetRuleXName = System.Xml.Linq.XName.Get("CharSetRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharRuleXName = System.Xml.Linq.XName.Get("CharRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EndOfInputRuleXName = System.Xml.Linq.XName.Get("EndOfInputRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NodeRule1XName = System.Xml.Linq.XName.Get("NodeRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ZeroOrMoreRuleXName = System.Xml.Linq.XName.Get("ZeroOrMoreRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OneOrMoreRuleXName = System.Xml.Linq.XName.Get("OneOrMoreRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CountedRuleXName = System.Xml.Linq.XName.Get("CountedRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OptionalRuleXName = System.Xml.Linq.XName.Get("OptionalRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SequenceRuleXName = System.Xml.Linq.XName.Get("SequenceRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ChoiceRuleXName = System.Xml.Linq.XName.Get("ChoiceRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AtRuleXName = System.Xml.Linq.XName.Get("AtRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NotAtRuleXName = System.Xml.Linq.XName.Get("NotAtRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OnFailXName = System.Xml.Linq.XName.Get("OnFail", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BooleanRuleXName = System.Xml.Linq.XName.Get("BooleanRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName NodeNameXName = System.Xml.Linq.XName.Get("NodeName", "");
         
         /// <summary>
@@ -785,6 +945,86 @@ namespace ParaParse.Xml {
         /// </summary>
         public CountedRule() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NamedRuleXName = System.Xml.Linq.XName.Get("NamedRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName RecursiveRuleXName = System.Xml.Linq.XName.Get("RecursiveRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName StringRuleXName = System.Xml.Linq.XName.Get("StringRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CaseInvariantStringRuleXName = System.Xml.Linq.XName.Get("CaseInvariantStringRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AnyCharRuleXName = System.Xml.Linq.XName.Get("AnyCharRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharRangeRuleXName = System.Xml.Linq.XName.Get("CharRangeRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharSetRuleXName = System.Xml.Linq.XName.Get("CharSetRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CharRuleXName = System.Xml.Linq.XName.Get("CharRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EndOfInputRuleXName = System.Xml.Linq.XName.Get("EndOfInputRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NodeRuleXName = System.Xml.Linq.XName.Get("NodeRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ZeroOrMoreRuleXName = System.Xml.Linq.XName.Get("ZeroOrMoreRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OneOrMoreRuleXName = System.Xml.Linq.XName.Get("OneOrMoreRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName CountedRule1XName = System.Xml.Linq.XName.Get("CountedRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OptionalRuleXName = System.Xml.Linq.XName.Get("OptionalRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName SequenceRuleXName = System.Xml.Linq.XName.Get("SequenceRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName ChoiceRuleXName = System.Xml.Linq.XName.Get("ChoiceRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName AtRuleXName = System.Xml.Linq.XName.Get("AtRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName NotAtRuleXName = System.Xml.Linq.XName.Get("NotAtRule", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName OnFailXName = System.Xml.Linq.XName.Get("OnFail", "urn:ParaParse.XML");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName BooleanRuleXName = System.Xml.Linq.XName.Get("BooleanRule", "urn:ParaParse.XML");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
