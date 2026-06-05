@@ -877,11 +877,14 @@ namespace Xml.Schema.Linq.CodeGen
                     //Create static constr for the content model of the type
                     CodeTypeReference cmType = new CodeTypeReference(Constants.ContentModelType);
 
-                    declItemsInfo.staticConstructor.Statements
-                                 .Add( // contentModel = new Sequence/Choice/AllContentModel(...);
-                                     new CodeAssignStatement(
-                                         new CodeVariableReferenceExpression(Constants.ContentModelMember),
-                                         declItemsInfo.contentModelExpression));
+                    // contentModel = new Sequence/Choice/AllContentModel(...);
+                    var codeAssignStatement = new CodeAssignStatement
+                    (
+                        left: new CodeVariableReferenceExpression(Constants.ContentModelMember),
+                        right: declItemsInfo.contentModelExpression
+                    );
+
+                    declItemsInfo.staticConstructor.Statements.Add(codeAssignStatement);
 
                     //Add static field to store the constructed content model
                     CodeMemberField contentModelField = new CodeMemberField(cmType, Constants.ContentModelMember);
