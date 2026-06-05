@@ -331,7 +331,8 @@ namespace Xml.Schema.Linq.CodeGen
             if (identifierName != null)
                 return identifierName;
             identifierName = NameGenerator.MakeValidIdentifier(element.QualifiedName.Name);
-            identifierName = getSymbol(identifierName, Constants.LocalElementConflictSuffix, out bool _);
+            SymbolIdentifier symbolIdentifier = GetSymbol(identifierName, Constants.LocalElementConflictSuffix);
+            identifierName = symbolIdentifier;
             symbolToQName.Add(identifierName.ToUpper(CultureInfo.InvariantCulture), element.QualifiedName);
             qNameToSymbol.Add(element.QualifiedName, identifierName);
             return identifierName;
@@ -430,15 +431,27 @@ namespace Xml.Schema.Linq.CodeGen
 
         private SymbolIdentifier GetSymbol(string identifierName, string suffix)
         {
-            string symbolId = getSymbol(identifierName, suffix, out bool didIncrementIdWithNumber);
-
-            if (didIncrementIdWithNumber) {
-                string incrementDigit = new string(symbolId.Where(char.IsDigit).ToArray());
-
-                return new SymbolIdentifier(symbolId, int.Parse(incrementDigit));
+            int id = 0;
+            string symbol = identifierName;
+            string symbolU = symbol.ToUpper(CultureInfo.InvariantCulture);
+            if (symbolToQName[symbolU] == null) {
+                return symbol;
             }
 
-            return new SymbolIdentifier(symbolId);
+            symbol = symbol + suffix;
+            symbolU = symbol.ToUpper(CultureInfo.InvariantCulture);
+            string temp = symbolU;
+
+            while (symbolToQName[symbolU] != null) {
+                id++;
+                symbolU = temp + id.ToString(CultureInfo.InvariantCulture.NumberFormat);
+            }
+
+            if (id > 0) {
+                return new SymbolIdentifier(symbol, id);
+            }
+
+            return symbol;
         }
     }
 }
