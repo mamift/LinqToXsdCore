@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Xml.Schema.Linq.Tests
@@ -117,8 +118,10 @@ namespace Xml.Schema.Linq.Tests
         /// Tests "linqtoxsd gen '(folder)' -a"
         /// </summary>
         [Test]
-        public void TestGenerateCodeFromSingleDirectoryWithAutoConfig()
+        public async Task TestGenerateCodeFromSingleDirectoryWithAutoConfig()
         {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+
             _copyOfSchemasFolder.Refresh();
             var microsoftBuildXsd = "Microsoft.Build.xsd";
             var msBuildXsd = _copyOfSchemasFolder.GetFiles(microsoftBuildXsd, SearchOption.AllDirectories).Single();
@@ -137,6 +140,8 @@ namespace Xml.Schema.Linq.Tests
 
             Assert.IsTrue(generatedCsFile.Any());
             var _ = generatedCsFile.Single();
+
+            await Task.Delay(TimeSpan.FromSeconds(2));
         }
 
         /// <summary>
