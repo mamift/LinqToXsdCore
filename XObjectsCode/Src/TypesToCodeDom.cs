@@ -668,7 +668,7 @@ namespace Xml.Schema.Linq.CodeGen
 
             // at this point we need to check if adding global:: to any of the above namespace imports is necessary to avoid ambiguity with the
             // generated code namespace. specifically what this fixes is that if the clrNamespace ends in a word that equals one of the starting
-            // words above (System or Xml), then a compiler errors are more likely to occur due to ambiguity between the namespace import and the generated code namespace
+            // words above (System or Xml), then compiler errors are more likely to occur due to ambiguity between the namespace import and the generated code namespace
             List<CodeNamespaceImport> imports = newCodeNamespace.Imports.Cast<CodeNamespaceImport>().ToList();
             List<string> firstNsComponentsFromImports = (from ns in imports.Select(i => i.Namespace)
                 let firstNsComponent = ns.Split(['.']).First()
