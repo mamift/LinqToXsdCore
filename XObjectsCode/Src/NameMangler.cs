@@ -432,9 +432,13 @@ namespace Xml.Schema.Linq.CodeGen
         {
             string symbolId = getSymbol(identifierName, suffix, out bool didIncrementIdWithNumber);
 
-            string incrementDigit = new string(symbolId.Where(char.IsDigit).ToArray());
+            if (didIncrementIdWithNumber) {
+                string incrementDigit = new string(symbolId.Where(char.IsDigit).ToArray());
 
-            return new SymbolIdentifier(symbolId, int.Parse(incrementDigit));
+                return new SymbolIdentifier(symbolId, int.Parse(incrementDigit));
+            }
+
+            return new SymbolIdentifier(symbolId);
         }
     }
 }
