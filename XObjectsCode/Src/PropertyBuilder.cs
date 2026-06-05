@@ -108,9 +108,11 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 if (property is ClrPropertyInfo prop)
                 {
-                    // Checks if the type has an XName field for the property and will create it if it does not exist.
-                    // Properties inherited don't need a declaration as there's an accessible declaration in parent class.
-                    if (!prop.FromBaseType && !decl.HasXNameFieldForProperty(property))
+                    // Create the XName field if it doesn't already exist in this type.
+                    // Don't rely on base types — wrapper types (elements) may not inherit
+                    // XName fields from the content type hierarchy (e.g. NamedRule : Rule wraps
+                    // SingleChildRule's content but doesn't inherit its XName fields).
+                    if (!decl.HasXNameFieldForProperty(property))
                     {
                         prop.CreateXNameField(decl);
 
