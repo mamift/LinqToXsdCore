@@ -4,8 +4,9 @@
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.16
 * https://www.nuget.org/packages/XObjectsCore/3.4.16
-  * [#88](https://github.com/mamift/LinqToXsdCore/pull/90).
-    * Fixed a code gen issue when an element definition is of a type that itself inherits from another type, the static `XName` fields that are usually generated for properties that are part of the element's content model, do not get generated at all. These are part of the element dictionary (`BuildElementDictionary()`) which is called in the static constructor for that element class. This bug affects `XObjectsCodeGen`. Affected code generation for *paraparse.xsd*.
+  * [#90](https://github.com/mamift/LinqToXsdCore/pull/90).
+    * When a user specified CLR namespace ends with System or Xml, then the `using` directives in the generated code will now start with `global::`` to prevent namespace resolution errors and uncompilable code.
+    * Fixed a code gen issue when an element definition is of a type that itself inherits from another type, the static `XName` fields that are usually generated for properties that are part of the element's content model, do not get generated at all. These are part of the element dictionary (`BuildElementDictionary()`) which is called in the static constructor for the that element class. This bug affects `XObjectsCodeGen`. Affected code generation for *paraparse.xsd*.
 
 ## Version 3.4.15
 Nuget packages:

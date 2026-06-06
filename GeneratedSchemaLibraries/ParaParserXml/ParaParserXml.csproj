@@ -10,6 +10,7 @@
     <EmbeddedResource Include="paraparse.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="paraparse_xNameBug.xsd" />
     <None Remove="paraparse.xsd" />
     <None Remove="paraparse.xsd.config" />
   </ItemGroup>
