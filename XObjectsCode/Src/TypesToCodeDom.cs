@@ -1,4 +1,5 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable enable
 
 using System;
 using System.Xml;
@@ -643,8 +644,10 @@ namespace Xml.Schema.Linq.CodeGen
             return null;
         }
 
-        private void AddDefaultImports(CodeNamespace newCodeNamespace)
+        private void AddDefaultImports(CodeNamespace newCodeNamespace, string clrNamespace)
         {
+            if (clrNamespace == null) throw new ArgumentNullException(nameof(clrNamespace));
+
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
@@ -654,6 +657,7 @@ namespace Xml.Schema.Linq.CodeGen
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Diagnostics"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Schema"));
+
             if (settings.EnableServiceReference)
             {
                 newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Serialization"));
@@ -661,6 +665,24 @@ namespace Xml.Schema.Linq.CodeGen
 
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("System.Xml.Linq"));
             newCodeNamespace.Imports.Add(new CodeNamespaceImport("Xml.Schema.Linq"));
+
+            // at this point we need to check if adding global:: to any of the above namespace imports is necessary to avoid ambiguity with the
+            // generated code namespace. specifically what this fixes is that if the clrNamespace ends in a word that equals one of the starting
+            // words above (System or Xml), then compiler errors are more likely to occur due to ambiguity between the namespace import and the generated code namespace
+            List<CodeNamespaceImport> imports = newCodeNamespace.Imports.Cast<CodeNamespaceImport>().ToList();
+            List<string> firstNsComponentsFromImports = (from ns in imports.Select(i => i.Namespace)
+                let firstNsComponent = ns.Split(['.']).First()
+                select firstNsComponent).Distinct().ToList();
+            string[] clrNamespaceComponents = clrNamespace.Split(['.']);
+            string last = clrNamespaceComponents.Last();
+            
+            if (firstNsComponentsFromImports.Any(c => c.EndsWith(last))) {
+                List<CodeNamespaceImport> theImports = imports.FindAll(i => i.Namespace.StartsWith(last));
+
+                foreach (CodeNamespaceImport import in theImports) {
+                    import.Namespace = "global::" + import.Namespace;
+                }
+            }
         }
 
         private TypeBuilder GetTypeBuilder()
@@ -758,7 +780,7 @@ namespace Xml.Schema.Linq.CodeGen
             if (!codeNamespacesTable.TryGetValue(clrNamespace, out CodeNamespace currentCodeNamespace))
             {
                 currentCodeNamespace = new CodeNamespace(clrNamespace);
-                AddDefaultImports(currentCodeNamespace);
+                AddDefaultImports(currentCodeNamespace, clrNamespace);
                 codeNamespacesTable.Add(clrNamespace, currentCodeNamespace);
             }
 

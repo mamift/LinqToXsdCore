@@ -38,6 +38,7 @@
       "GeneratedSchemaLibraries\\OpenPackagingConventions-XMLSchema\\OpenPackagingConventions-XMLSchema.csproj",
       "GeneratedSchemaLibraries\\Opml\\Opml.csproj",
       "GeneratedSchemaLibraries\\Pubmed\\Pubmed.csproj",
+      "GeneratedSchemaLibraries\\ParaParserXml\\ParaParserXml.csproj",
       "GeneratedSchemaLibraries\\Rss\\Rss.csproj",
       "GeneratedSchemaLibraries\\SBML\\SBML.csproj",
       "GeneratedSchemaLibraries\\SWRL\\SWRL.csproj",
