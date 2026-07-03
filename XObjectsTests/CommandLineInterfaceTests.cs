@@ -108,7 +108,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(genCodeResult == 0);
             Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd-g.cs", SearchOption.AllDirectories));
 
-            var generatedCsFile = _copyOfSchemasFolder.GetFiles($"{microsoftBuildXsd}.cs", SearchOption.AllDirectories);
+            var generatedCsFile = _copyOfSchemasFolder.GetFiles($"{microsoftBuildXsd}-g.cs", SearchOption.AllDirectories);
 
             Assert.IsTrue(generatedCsFile.Any());
             var _ = generatedCsFile.Single();
@@ -136,7 +136,7 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsTrue(genCodeResult == 0);
             Assert.IsNotEmpty(_copyOfSchemasFolder.GetFiles("*.xsd-g.cs", SearchOption.AllDirectories));
 
-            var generatedCsFile = _copyOfSchemasFolder.GetFiles($"{microsoftBuildXsd}.cs", SearchOption.AllDirectories);
+            var generatedCsFile = _copyOfSchemasFolder.GetFiles($"{microsoftBuildXsd}-g.cs", SearchOption.AllDirectories);
 
             Assert.IsTrue(generatedCsFile.Any());
             var _ = generatedCsFile.Single();
