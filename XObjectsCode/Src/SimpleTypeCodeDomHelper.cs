@@ -43,14 +43,14 @@ namespace Xml.Schema.Linq.CodeGen
             switch (typeInfo.Variety)
             {
                 case XmlSchemaDatatypeVariety.Atomic:
-                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.AtomicSimpleTypeValidator);
+                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.AtomicSimpleTypeValidatorNs);
                     expressions = simpleTypeCreate.Parameters;
                     expressions.Add(CreateGetBuiltInSimpleType(typeInfo.TypeCode));
                     expressions.Add(CreateFacets(typeInfo));
                     break;
 
                 case XmlSchemaDatatypeVariety.List:
-                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.ListSimpleTypeValidator);
+                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.ListSimpleTypeValidatorNs);
                     expressions = simpleTypeCreate.Parameters;
                     expressions.Add(CreateGetBuiltInSimpleType(typeInfo.TypeCode));
                     expressions.Add(CreateFacets(typeInfo));
@@ -61,14 +61,14 @@ namespace Xml.Schema.Linq.CodeGen
                     break;
 
                 case XmlSchemaDatatypeVariety.Union:
-                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.UnionSimpleTypeValidator);
+                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.UnionSimpleTypeValidatorNs);
                     expressions = simpleTypeCreate.Parameters;
                     expressions.Add(CreateGetBuiltInSimpleType(typeInfo.TypeCode));
                     expressions.Add(CreateFacets(typeInfo));
 
                     UnionSimpleTypeInfo unionType = typeInfo as UnionSimpleTypeInfo;
                     CodeArrayCreateExpression memberTypeCreate = new CodeArrayCreateExpression();
-                    memberTypeCreate.CreateType = new CodeTypeReference(Constants.SimpleTypeValidator);
+                    memberTypeCreate.CreateType = new CodeTypeReference(Constants.SimpleTypeValidatorNs);
                     foreach (ClrSimpleTypeInfo st in unionType.MemberTypes) {
                         var simpleTypeDef = CreateSimpleTypeDef(st, nameMappings, settings, true);
                         memberTypeCreate.Initializers.Add(simpleTypeDef);
@@ -95,7 +95,7 @@ namespace Xml.Schema.Linq.CodeGen
             CompiledFacets facets = type.RestrictionFacets;
 
             CodeObjectCreateExpression createFacets = new CodeObjectCreateExpression();
-            createFacets.CreateType = new CodeTypeReference(Constants.RestrictionFacets);
+            createFacets.CreateType = new CodeTypeReference(Constants.RestrictionFacetsNs);
 
             RestrictionFlags flags = facets.Flags;
 
@@ -103,7 +103,7 @@ namespace Xml.Schema.Linq.CodeGen
                 return new CodePrimitiveExpression(null);
             else
             {
-                CodeCastExpression cast = new CodeCastExpression(new CodeTypeReference(Constants.RestrictionFlags),
+                CodeCastExpression cast = new CodeCastExpression(new CodeTypeReference(Constants.RestrictionFlagsNs),
                     new CodePrimitiveExpression(
                         System.Convert.ToInt32(flags, CultureInfo.InvariantCulture.NumberFormat)));
                 createFacets.Parameters.Add(cast);

@@ -26,7 +26,7 @@ namespace LinqToXsd
                 {
                     var outputFilename = Path.GetFileName(kvp.Key);
                     if (!outputFilename.EndsWith(".cs"))
-                        outputFilename += ".cs";
+                        outputFilename += "-g.cs";
 
                     string outputFilePath = possibleOutputFolder == "-1"
                         ? Path.Combine(Path.GetDirectoryName(kvp.Key), outputFilename)

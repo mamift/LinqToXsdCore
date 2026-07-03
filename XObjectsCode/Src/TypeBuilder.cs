@@ -378,21 +378,24 @@ namespace Xml.Schema.Linq.CodeGen
             Dictionary<XmlSchemaObject, string> nameMappings,
             LinqToXsdSettings settings)
         {
+            if (Constants.PrefixGlobalNs != settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs) {
+                Constants.PrefixGlobalNs = settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs;
+            }
             string typeName = typeInfo is EnumSimpleTypeInfo ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
-            var simpleTypeDecl = new CodeTypeDeclaration(typeName);
+            CodeTypeDeclaration simpleTypeDecl = new CodeTypeDeclaration(typeName);
             // might need special handling when typeInfo.clrtypeNs is null, but returning default Visibility (public) when clrtypeNs is null works for now
-            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
+            TypeAttributes typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
             //simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.NestedAssembly;
 
             //Add private constructor so it cannot be instantiated
-            var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
+            CodeConstructor privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
             simpleTypeDecl.Members.Add(privateConst);
 
             //Create a static field for the XTypedSchemaSimpleType
-            var memberVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToMemberAttribute();
+            MemberAttributes memberVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToMemberAttribute();
             CodeMemberField typeField =
-                CodeDomHelper.CreateMemberField(Constants.SimpleTypeDefInnerType, Constants.SimpleTypeValidator, false, memberVisibility | MemberAttributes.Static);
+                CodeDomHelper.CreateMemberField(Constants.SimpleTypeDefInnerType, Constants.SimpleTypeValidatorNs, false, memberVisibility | MemberAttributes.Static);
             typeField.InitExpression =
                 SimpleTypeCodeDomHelper.CreateSimpleTypeDef(typeInfo, nameMappings, settings, false);
 

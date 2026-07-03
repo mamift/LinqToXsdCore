@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(graphify export *)",
+      "Bash(graphify query *)"
+    ]
+  }
+}

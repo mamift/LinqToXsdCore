@@ -119,5 +119,14 @@ namespace Xml.Schema.Linq.CodeGen
         public const string RestrictionFacets = "Xml.Schema.Linq.RestrictionFacets";
         public const string RestrictionFlags = "Xml.Schema.Linq.RestrictionFlags";
         public const string EqualityCheck = "Equals";
+
+        public static bool PrefixGlobalNs { get; internal set; } = false;
+
+        public static string SimpleTypeValidatorNs => PrefixGlobalNs ? ("global::" + SimpleTypeValidator) : SimpleTypeValidator;
+        public static string ListSimpleTypeValidatorNs => PrefixGlobalNs ? ("global::" + ListSimpleTypeValidator) : ListSimpleTypeValidator;
+        public static string AtomicSimpleTypeValidatorNs => PrefixGlobalNs ? ("global::" + AtomicSimpleTypeValidator) : AtomicSimpleTypeValidator;
+        public static string UnionSimpleTypeValidatorNs => PrefixGlobalNs ? ("global::" + UnionSimpleTypeValidator) : UnionSimpleTypeValidator;
+        public static string RestrictionFacetsNs => PrefixGlobalNs ? ("global::" + RestrictionFacets) : RestrictionFacets;
+        public static string RestrictionFlagsNs => PrefixGlobalNs ? ("global::" + RestrictionFlags) : RestrictionFlags;
     }
 }

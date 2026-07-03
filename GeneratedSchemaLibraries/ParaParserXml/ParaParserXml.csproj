@@ -2,17 +2,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ParaParseSchema.xsd" />
+    <EmbeddedResource Include="ParaParseSchema.xsd.config" />
     <EmbeddedResource Include="paraparse_xNameBug.xsd" />
-    <EmbeddedResource Include="paraparse.xsd" />
-    <EmbeddedResource Include="paraparse.xsd.config" />
-    <EmbeddedResource Include="paraparse.xsd.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="ParaParseSchema.xsd" />
+    <None Remove="ParaParseSchema.xsd.config" />
     <None Remove="paraparse_xNameBug.xsd" />
     <None Remove="paraparse.xsd" />
     <None Remove="paraparse.xsd.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="PolySharp" Version="1.16.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XObjectsCore\XObjectsCore.csproj">
