@@ -378,9 +378,6 @@ namespace Xml.Schema.Linq.CodeGen
             Dictionary<XmlSchemaObject, string> nameMappings,
             LinqToXsdSettings settings)
         {
-            if (Constants.PrefixGlobalNs != settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs) {
-                Constants.PrefixGlobalNs = settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs;
-            }
             string typeName = typeInfo is EnumSimpleTypeInfo ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
             CodeTypeDeclaration simpleTypeDecl = new CodeTypeDeclaration(typeName);
             // might need special handling when typeInfo.clrtypeNs is null, but returning default Visibility (public) when clrtypeNs is null works for now
@@ -394,8 +391,9 @@ namespace Xml.Schema.Linq.CodeGen
 
             //Create a static field for the XTypedSchemaSimpleType
             MemberAttributes memberVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToMemberAttribute();
+            string simpleTypeValidatorRef = Constants.SimpleTypeValidator.PrefixIf(settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs, "global::");
             CodeMemberField typeField =
-                CodeDomHelper.CreateMemberField(Constants.SimpleTypeDefInnerType, Constants.SimpleTypeValidatorNs, false, memberVisibility | MemberAttributes.Static);
+                CodeDomHelper.CreateMemberField(Constants.SimpleTypeDefInnerType, simpleTypeValidatorRef, false, memberVisibility | MemberAttributes.Static);
             typeField.InitExpression =
                 SimpleTypeCodeDomHelper.CreateSimpleTypeDef(typeInfo, nameMappings, settings, false);
 
@@ -503,7 +501,8 @@ namespace Xml.Schema.Linq.CodeGen
             CodeStatementCollection typeDictionaryStatements,
             CodeStatementCollection elementDictionaryStatements,
             CodeStatementCollection wrapperDictionaryStatements,
-            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public)
+            GeneratedTypesVisibility visibility = GeneratedTypesVisibility.Public,
+            bool prefixGlobalNsWhenReferringToXmlSchemaLinqNs = false)
         {
             //Create the services type class and add members
             string servicesClassName = NameGenerator.GetServicesClassName();
@@ -681,11 +680,12 @@ namespace Xml.Schema.Linq.CodeGen
             getRootType.Attributes = MemberAttributes.Static | memberVisibility;
             getRootType.Name = Constants.GetRootType;
             getRootType.ReturnType = new CodeTypeReference(Constants.SystemTypeName);
-            if (rootElementName.IsEmpty)
+            if (rootElementName.IsEmpty) 
             {
+                string xTypedElementClass = Constants.FullXTypedElement.PrefixIf(prefixGlobalNsWhenReferringToXmlSchemaLinqNs, "global::");
                 getRootType.Statements.Add(
                     new CodeMethodReturnStatement(
-                        CodeDomHelper.Typeof("Xml.Schema.Linq.XTypedElement")));
+                        CodeDomHelper.Typeof(xTypedElementClass)));
             }
             else
             {

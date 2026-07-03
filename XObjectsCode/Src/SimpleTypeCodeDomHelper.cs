@@ -43,17 +43,17 @@ namespace Xml.Schema.Linq.CodeGen
             switch (typeInfo.Variety)
             {
                 case XmlSchemaDatatypeVariety.Atomic:
-                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.AtomicSimpleTypeValidatorNs);
+                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.AtomicSimpleTypeValidator.PrefixIf(settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs, "global::"));
                     expressions = simpleTypeCreate.Parameters;
                     expressions.Add(CreateGetBuiltInSimpleType(typeInfo.TypeCode));
-                    expressions.Add(CreateFacets(typeInfo));
+                    expressions.Add(CreateFacets(typeInfo, settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs));
                     break;
 
                 case XmlSchemaDatatypeVariety.List:
-                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.ListSimpleTypeValidatorNs);
+                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.ListSimpleTypeValidator.PrefixIf(settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs, "global::"));
                     expressions = simpleTypeCreate.Parameters;
                     expressions.Add(CreateGetBuiltInSimpleType(typeInfo.TypeCode));
-                    expressions.Add(CreateFacets(typeInfo));
+                    expressions.Add(CreateFacets(typeInfo, settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs));
 
                     ListSimpleTypeInfo listType = typeInfo as ListSimpleTypeInfo;
                     ClrSimpleTypeInfo itemType = listType.ItemType;
@@ -61,14 +61,14 @@ namespace Xml.Schema.Linq.CodeGen
                     break;
 
                 case XmlSchemaDatatypeVariety.Union:
-                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.UnionSimpleTypeValidatorNs);
+                    simpleTypeCreate = new CodeObjectCreateExpression(Constants.UnionSimpleTypeValidator.PrefixIf(settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs, "global::"));
                     expressions = simpleTypeCreate.Parameters;
                     expressions.Add(CreateGetBuiltInSimpleType(typeInfo.TypeCode));
-                    expressions.Add(CreateFacets(typeInfo));
+                    expressions.Add(CreateFacets(typeInfo, settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs));
 
                     UnionSimpleTypeInfo unionType = typeInfo as UnionSimpleTypeInfo;
                     CodeArrayCreateExpression memberTypeCreate = new CodeArrayCreateExpression();
-                    memberTypeCreate.CreateType = new CodeTypeReference(Constants.SimpleTypeValidatorNs);
+                    memberTypeCreate.CreateType = new CodeTypeReference(Constants.SimpleTypeValidator.PrefixIf(settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs, "global::"));
                     foreach (ClrSimpleTypeInfo st in unionType.MemberTypes) {
                         var simpleTypeDef = CreateSimpleTypeDef(st, nameMappings, settings, true);
                         memberTypeCreate.Initializers.Add(simpleTypeDef);
@@ -90,12 +90,12 @@ namespace Xml.Schema.Linq.CodeGen
                 CodeDomHelper.CreateFieldReference(Constants.XmlTypeCode, typeCode.ToString()));
         }
 
-        public static CodeExpression CreateFacets(ClrSimpleTypeInfo type)
+        public static CodeExpression CreateFacets(ClrSimpleTypeInfo type, bool prefixGlobalNsWhenReferencingXmlSchemaLinqNs = false)
         {
             CompiledFacets facets = type.RestrictionFacets;
 
             CodeObjectCreateExpression createFacets = new CodeObjectCreateExpression();
-            createFacets.CreateType = new CodeTypeReference(Constants.RestrictionFacetsNs);
+            createFacets.CreateType = new CodeTypeReference(Constants.RestrictionFacets.PrefixIf(prefixGlobalNsWhenReferencingXmlSchemaLinqNs, "global::"));
 
             RestrictionFlags flags = facets.Flags;
 
@@ -103,7 +103,7 @@ namespace Xml.Schema.Linq.CodeGen
                 return new CodePrimitiveExpression(null);
             else
             {
-                CodeCastExpression cast = new CodeCastExpression(new CodeTypeReference(Constants.RestrictionFlagsNs),
+                CodeCastExpression cast = new CodeCastExpression(new CodeTypeReference(Constants.RestrictionFlags.PrefixIf(prefixGlobalNsWhenReferencingXmlSchemaLinqNs, "global::")),
                     new CodePrimitiveExpression(
                         System.Convert.ToInt32(flags, CultureInfo.InvariantCulture.NumberFormat)));
                 createFacets.Parameters.Add(cast);
