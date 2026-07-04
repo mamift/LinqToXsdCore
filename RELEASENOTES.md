@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.17
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.17
+* https://www.nuget.org/packages/XObjectsCore/3.4.17
+  * [#91](https://github.com/mamift/LinqToXsdCore/pull/91).
+    * Fixes a bug where `global::` wasn't being prefixed in all the necessary places (related to new code generation facilitiy introduced in 3.4.16).
+    * All generated code now ends with .xsd-g.cs (instead of .xsd.cs).
+
 ## Version 3.4.16
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.16
