@@ -1,5 +1,13 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.17
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.17
+* https://www.nuget.org/packages/XObjectsCore/3.4.17
+  * [#91](https://github.com/mamift/LinqToXsdCore/pull/91).
+    * Fixes a bug where `global::` wasn't being prefixed in all the necessary places (related to new code generation facilitiy introduced in 3.4.16).
+    * All generated code now ends with .xsd-g.cs (instead of .xsd.cs).
+
 ## Version 3.4.16
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.16
@@ -12,7 +20,7 @@ Nuget packages:
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.15
 * https://www.nuget.org/packages/XObjectsCore/3.4.15
-  * [#88](https://github.com/mamift/LinqToXsdCore/pull/88).
+  * [#89](https://github.com/mamift/LinqToXsdCore/pull/89).
     * Fixes a bug which threw an exception when accessing the property getter for an element or attribute whose type is an enum type where the enum value shares the same name with a C# keyword, and thus the string value (ToString) returns a word prefixed with the '@' symbol.
     * Fixes an issue with publishing new [XObjectsCodeGen](https://www.nuget.org/packages/XObjectsCodeGen) nuget releases.
 
@@ -20,7 +28,7 @@ Nuget packages:
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.14
 * https://www.nuget.org/packages/XObjectsCore/3.4.14
-  * [#87](https://github.com/mamift/LinqToXsdCore/pull/87).
+  * [#88](https://github.com/mamift/LinqToXsdCore/pull/88).
     * Fixes a code generation bug which did not properly generate the return type on a property getter when an element was of an XML Schema simple type with enumerations (this bug affected XSD string types like xs:string and xs:NMTOKEN, but should fix it for all simple enum types). Affected code generation for XQueryX.xsd.
     * Also fixed another code gen bug: when referencing an enum for the internal static field holding a default value, the member reference code was uncompilable when the default value in the XSD started with a number.
 

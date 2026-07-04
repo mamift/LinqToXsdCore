@@ -682,6 +682,10 @@ namespace Xml.Schema.Linq.CodeGen
                 foreach (CodeNamespaceImport import in theImports) {
                     import.Namespace = "global::" + import.Namespace;
                 }
+
+                // other parts of the app need to be informed that global:: is required when referring to the Xml.Schema.Linq namespace,
+                // so that the generated code will also use global:: when referencing the Xml.Schema.Linq namespace
+                settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs = true;
             }
         }
 

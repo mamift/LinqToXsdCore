@@ -52,6 +52,7 @@ namespace Xml.Schema.Linq.CodeGen
 
         //Classes / struct
         public const string XTypedElement = "XTypedElement";
+        public const string FullXTypedElement = "Xml.Schema.Linq.XTypedElement";
         public const string XTypedServices = "XTypedServices";
         public const string LinqToXsdTypeManager = "LinqToXsdTypeManager";
         public static readonly string XNameType = $"{SystemXmlLinqNamespaceQualifer}.{nameof(System.Xml.Linq.XName)}";

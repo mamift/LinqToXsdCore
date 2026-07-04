@@ -45,7 +45,7 @@ To use your new configuration file to generate code:
 linqtoxsd gen wss.xsd -c .\wss.xsd.config
 ```
 
-It will output code to *'file.xsd.cs'*, or in this case *'wss.xsd.cs'*.
+It will output code to *'file.xsd-g.cs'*, or in this case *'wss.xsd-g.cs'*.
 
 ### Regenerating code
 

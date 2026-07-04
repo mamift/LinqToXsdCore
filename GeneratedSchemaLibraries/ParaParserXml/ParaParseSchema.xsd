@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ParaParse.Xml"
+  xmlns="urn:ParaParse.Xml" elementFormDefault="qualified">
+  <xs:element name="Grammar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Start" type="xs:QName" minOccurs="1" nillable="true"/>
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Include">
+            <xs:annotation>
+              <xs:documentation>Include another Grammar XML file. All rules to be included need to be have name, otherwise they're ignored. The Start element in the child file is also ignored. Only the Start element from the parent is used.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:anyURI"/>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="Rules">
+            <xs:complexType>
+              <xs:group maxOccurs="unbounded" ref="Rules"/>
+              <xs:attribute name="Group" type="xs:QName"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="Version" type="VersionNumber">
+        <xs:annotation>
+          <xs:documentation>Specify the version of the grammar.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="WhitespaceUseAttrs">
+    <xs:attribute default="Collapse" name="WhitespaceUse" type="WhitespaceUse"/>
+  </xs:attributeGroup>
+  <xs:complexType name="CompositorType">
+    <xs:annotation>
+      <xs:documentation>Base type for multiple child rules.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Name" type="xs:QName"/>
+  </xs:complexType>
+  <xs:complexType name="SequenceType">
+    <xs:annotation>
+      <xs:documentation>For now, unused. Was the predecessor to the SequenceMarkupType.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CompositorType">
+        <xs:sequence maxOccurs="1">
+          <xs:group maxOccurs="unbounded" ref="Rules"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ChoiceType">
+    <xs:complexContent>
+      <xs:extension base="CompositorType">
+        <xs:sequence maxOccurs="unbounded" minOccurs="2">
+          <xs:group ref="Rules"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OptionalType">
+    <xs:complexContent>
+      <xs:extension base="CompositorType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MatchType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Base type for matching a single string segment.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Name" type="xs:QName"/>
+        <xs:attribute default="Collapse" name="WhitespaceUse" type="WhitespaceUse">
+          <xs:annotation>
+            <xs:documentation/>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="LiteralType">
+    <xs:simpleContent>
+      <xs:extension base="MatchType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RegexType">
+    <xs:annotation>
+      <xs:documentation>Match a valid Regular Expression.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="MatchType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="WrappedType">
+    <xs:annotation>
+      <xs:documentation>Matches the literal value between WrappedStart and WrappedEnd strings.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CompositorType">
+        <xs:sequence maxOccurs="1" minOccurs="1">
+          <xs:group ref="Rules" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="Values" type="WrapperValues" use="required"> </xs:attribute>
+        <xs:attribute default="Collapse" name="WhitespaceUse" type="WhitespaceUse">
+          <xs:annotation>
+            <xs:documentation/>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UnionType">
+    <xs:simpleContent>
+      <xs:extension base="UnionLiteral"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RefType">
+    <xs:simpleContent>
+      <xs:extension base="xs:QName"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:group name="Compositors">
+    <xs:choice>
+      <xs:element name="Choice" type="ChoiceType"/>
+      <xs:element name="Sequence" type="SequenceMarkupType"/>
+      <xs:element name="Optional" type="OptionalType"/>
+    </xs:choice>
+  </xs:group>
+  <xs:group name="Matchers">
+    <xs:choice>
+      <xs:element name="Literal" type="LiteralType">
+        <xs:annotation>
+          <xs:documentation>Match a literal string; matching will include all whitespace.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Regex" type="RegexType">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Wrapped" type="WrappedType">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Union" type="UnionType"/>
+    </xs:choice>
+  </xs:group>
+  <xs:group name="Rules">
+    <xs:choice>
+      <xs:group ref="Compositors"/>
+      <xs:group ref="Matchers"/>
+      <xs:element name="Ref" type="RefType">
+        <xs:annotation>
+          <xs:documentation>Refer to another rule; either a matcher or compositor rule.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:group>
+  <xs:simpleType name="VersionNumber">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="v\d+\.?\d*\.?\d*"/>
+      <xs:whiteSpace value="collapse"/>
+      <xs:minLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="WrapperValues">
+    <xs:annotation>
+      <xs:documentation>List (space-delimited) of strings.</xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="UnionLiteral">
+    <xs:list itemType="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="WhitespaceUse">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Collapse">
+        <xs:annotation>
+          <xs:documentation>
+            Collapse = reduce multiple WS chars to 1
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Consume">
+        <xs:annotation>
+          <xs:documentation>Consume = remove all whitespace</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Preserve">
+        <xs:annotation>
+          <xs:documentation>Preserve = keep all whitespace as is</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SequenceMarkupType">
+    <xs:complexContent mixed="true">
+      <xs:extension base="CompositorType">
+        <xs:sequence maxOccurs="unbounded">
+          <xs:group ref="Rules"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="NodeType">
+    <xs:attribute name="Name" type="xs:string"/>
+  </xs:complexType>
+  <xs:element name="Node">
+    <xs:annotation>
+      <xs:documentation>Root element for generated nodes during parsing.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:complexContent>
+        <xs:extension base="NodeType">
+          <xs:sequence>
+            <xs:element minOccurs="0" ref="Node"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

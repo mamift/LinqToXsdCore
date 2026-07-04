@@ -116,6 +116,7 @@ namespace Xml.Schema.Linq
         public bool UseDateTimeOffset { get; set; }
 
         public bool NullableReferences { get; set; }
+        public bool PrefixGlobalNsWhenReferencingXmlSchemaLinqNs { get; set; }
 
         private void GenerateNamespaceMapping(XElement namespaces)
         {
