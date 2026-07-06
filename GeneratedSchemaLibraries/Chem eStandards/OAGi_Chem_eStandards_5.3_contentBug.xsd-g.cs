@@ -331,7 +331,7 @@ namespace echem.contentBug {
         /// Regular expression: (Content | ExternalReference)
         /// </para>
         /// </summary>
-        public virtual Content Content {
+        public virtual Content Content1 {
             get {
                 return this.ContentField.Content;
             }

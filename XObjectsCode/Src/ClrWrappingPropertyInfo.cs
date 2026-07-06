@@ -61,7 +61,7 @@ public class ClrWrappingPropertyInfo : ClrBasePropertyInfo
 
     private string CheckPropertyName(string className)
     {
-        if (this.propertyName.Equals(className))
+        if (this.propertyName.Equals(className) || this.propertyName.Equals(Constants.CInnerTypePropertyName))
         {
             //This can happen as property names are checked against the wrapped complex type name and not against the global element name
             return this.propertyName + propertySuffixIndex.ToString(CultureInfo.InvariantCulture.NumberFormat);
