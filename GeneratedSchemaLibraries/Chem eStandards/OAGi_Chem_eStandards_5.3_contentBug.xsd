@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:cidx:names:specification:ces:schema:all:5:3"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:cidx:names:specification:ces:schema:all:5:3">
+  <xs:element name="Content" type="ContentType"/>
+  <xs:simpleType name="ContentType">
+    <xs:restriction base="cidxToken"/>
+  </xs:simpleType>
+  <xs:simpleType name="cidxToken">
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Comment" type="CommentType"/>
+  <xs:complexType name="CommentType">
+    <xs:choice>
+      <xs:element ref="Content"/>
+      <xs:element ref="ExternalReference"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:element name="ExternalReference" type="ExternalReferenceType"/>
+  <xs:simpleType name="ExternalReferenceType">
+    <xs:restriction base="cidxToken"/>
+  </xs:simpleType>  
+</xs:schema>

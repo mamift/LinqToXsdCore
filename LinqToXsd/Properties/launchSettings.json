@@ -254,6 +254,12 @@
       "commandLineArgs": "gen -a .",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\LandXML\\v1.2",
       "hotReloadEnabled": false
+    },
+    "Chem e-standards": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\Chem eStandards",
+      "hotReloadEnabled": false
     }
   }
 }
