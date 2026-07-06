@@ -6,7 +6,7 @@
   <ItemGroup>
     <EmbeddedResource Include="v1.2\LandXML-1.2.xsd" />
     <EmbeddedResource Include="v1.2\LandXML-1.2.xsd.config" />
-    <EmbeddedResource Include="v1.2\LandXML-1.2.xsd.cs" />
+    <EmbeddedResource Include="v1.2\LandXML-1.2.xsd-g.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="v1.2\LandXML-1.2.xsd" />

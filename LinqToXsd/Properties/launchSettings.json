@@ -248,6 +248,12 @@
       "commandLineArgs": "gen -a .\\ParaParseSchema.xsd",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\ParaParserXml",
       "hotReloadEnabled": false
+    },
+    "LandXML": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\LandXML\\v1.2",
+      "hotReloadEnabled": false
     }
   }
 }

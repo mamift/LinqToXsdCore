@@ -721,7 +721,9 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (IsEnum)
             {
-                var lambdaExpr = new CodeSnippetExpression($"item => ({this.TypeReference.ClrFullTypeName}) Enum.Parse(typeof({this.TypeReference.ClrFullTypeName}), item)");
+                // item is the element wrapper type (e.g. AdverseSE), not string.
+                // Use its TypedValue property to get the enum value directly.
+                var lambdaExpr = new CodeSnippetExpression("item => item.TypedValue");
                 var selectExpr = CodeDomHelper.CreateMethodCall(listFieldRef, "Select", lambdaExpr);
                 var toListExpr = new CodeMethodInvokeExpression(selectExpr, "ToList");
                 getStatements.Add(
@@ -798,7 +800,9 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (IsEnum)
             {
-                var lambdaExpr = new CodeSnippetExpression("item => item.ToString()");
+                // value is IList<EnumType> but the list stores element wrappers (e.g. AdverseSE).
+                // Convert each enum value to a new element wrapper instance via its string constructor.
+                var lambdaExpr = new CodeSnippetExpression($"item => new {NullableType}(item.ToString())");
                 var selectExpr = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
                 return new CodeMethodInvokeExpression(selectExpr, "ToList");
             }
@@ -1084,7 +1088,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else if (IsEnum)
                 {
-                    var lambdaExpr = new CodeSnippetExpression("item => item.ToString()");
+                    // value is IEnumerable<EnumType> but the list stores element wrappers.
+                    // Convert each enum value to a new element wrapper instance via its string constructor.
+                    var lambdaExpr = new CodeSnippetExpression($"item => new {NullableType}(item.ToString())");
                     nameOrValue = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
                 }
                 else

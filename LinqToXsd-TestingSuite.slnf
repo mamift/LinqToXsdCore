@@ -18,6 +18,7 @@
       "GeneratedSchemaLibraries\\GelML\\GelML.csproj",
       "GeneratedSchemaLibraries\\HL-7\\HL-7.csproj",
       "GeneratedSchemaLibraries\\HR-XML\\HR-XML.csproj",
+      "GeneratedSchemaLibraries\\LandXML\\LandXML.csproj",
       "GeneratedSchemaLibraries\\LegalRuleML\\LegalRuleML.csproj",
       "GeneratedSchemaLibraries\\MSBuild\\MSBuild.csproj",
       "GeneratedSchemaLibraries\\MetaLEX\\MetaLEX.csproj",

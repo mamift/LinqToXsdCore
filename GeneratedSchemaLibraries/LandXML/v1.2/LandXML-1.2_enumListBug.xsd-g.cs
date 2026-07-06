@@ -86,7 +86,7 @@ namespace LandXml_v1_2 {
                 if ((this.AdverseSEField == null)) {
                     this.AdverseSEField = new XSimpleList<AdverseSE>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, AdverseSEXName);
                 }
-                return this.AdverseSEField.Select(item => (LandXml_v1_2.adverseSEType) Enum.Parse(typeof(LandXml_v1_2.adverseSEType), item)).ToList();
+                return this.AdverseSEField.Select(item => item.TypedValue).ToList();
             }
             set {
                 if ((value == null)) {
@@ -94,10 +94,10 @@ namespace LandXml_v1_2 {
                 }
                 else {
                     if ((this.AdverseSEField == null)) {
-                        this.AdverseSEField = XSimpleList<AdverseSE>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value.Select(item => item.ToString()), AdverseSEXName);
+                        this.AdverseSEField = XSimpleList<AdverseSE>.Initialize(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value.Select(item => new AdverseSE(item.ToString())), AdverseSEXName);
                     }
                     else {
-                        XTypedServices.SetList<AdverseSE>(this.AdverseSEField, value.Select(item => item.ToString()).ToList());
+                        XTypedServices.SetList<AdverseSE>(this.AdverseSEField, value.Select(item => new AdverseSE(item.ToString())).ToList());
                     }
                 }
             }
