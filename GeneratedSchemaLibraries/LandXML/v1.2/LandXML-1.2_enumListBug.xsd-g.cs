@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace www.landxml.org.schema.LandXML.Item1.Item2 {
+namespace LandXml_v1_2 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -81,12 +81,12 @@ namespace www.landxml.org.schema.LandXML.Item1.Item2 {
         /// Regular expression: (AdverseSE*)+
         /// </para>
         /// </summary>
-        public virtual IList<www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType> AdverseSE {
+        public virtual IList<LandXml_v1_2.adverseSEType> AdverseSE {
             get {
                 if ((this.AdverseSEField == null)) {
                     this.AdverseSEField = new XSimpleList<AdverseSE>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, AdverseSEXName);
                 }
-                return this.AdverseSEField.Select(item => (www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType) Enum.Parse(typeof(www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType), item)).ToList();
+                return this.AdverseSEField.Select(item => (LandXml_v1_2.adverseSEType) Enum.Parse(typeof(LandXml_v1_2.adverseSEType), item)).ToList();
             }
             set {
                 if ((value == null)) {
@@ -207,20 +207,20 @@ namespace www.landxml.org.schema.LandXML.Item1.Item2 {
         }
         
         public AdverseSE(string content) {
-            this.TypedValue = ((www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType)(Enum.Parse(typeof(www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType), content)));
+            this.TypedValue = ((LandXml_v1_2.adverseSEType)(Enum.Parse(typeof(LandXml_v1_2.adverseSEType), content)));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
-        public virtual www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType TypedValue {
+        public virtual LandXml_v1_2.adverseSEType TypedValue {
             get {
                 XElement x = this.Untyped;
-                return ((www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType)(Enum.Parse(typeof(www.landxml.org.schema.LandXML.Item1.Item2.adverseSEType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::www.landxml.org.schema.LandXML.Item1.Item2.adverseSETypeValidator.TypeDefinition))));
+                return ((LandXml_v1_2.adverseSEType)(Enum.Parse(typeof(LandXml_v1_2.adverseSEType), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, global::LandXml_v1_2.adverseSETypeValidator.TypeDefinition))));
             }
             set {
-                this.SetValueWithValidation(value.ToString(), "TypedValue", global::www.landxml.org.schema.LandXML.Item1.Item2.adverseSETypeValidator.TypeDefinition);
+                this.SetValueWithValidation(value.ToString(), "TypedValue", global::LandXml_v1_2.adverseSETypeValidator.TypeDefinition);
             }
         }
         
@@ -260,8 +260,8 @@ namespace www.landxml.org.schema.LandXML.Item1.Item2 {
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
         private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Superelevation", "http://www.landxml.org/schema/LandXML-1.2"), typeof(global::www.landxml.org.schema.LandXML.Item1.Item2.Superelevation));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("AdverseSE", "http://www.landxml.org/schema/LandXML-1.2"), typeof(global::www.landxml.org.schema.LandXML.Item1.Item2.AdverseSE));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Superelevation", "http://www.landxml.org/schema/LandXML-1.2"), typeof(global::LandXml_v1_2.Superelevation));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("AdverseSE", "http://www.landxml.org/schema/LandXML-1.2"), typeof(global::LandXml_v1_2.AdverseSE));
         }
         
         private static XmlSchemaSet schemaSet;
@@ -576,20 +576,20 @@ namespace www.landxml.org.schema.LandXML.Item1.Item2 {
             }
         }
         
-        public XRoot(global::www.landxml.org.schema.LandXML.Item1.Item2.Superelevation root) {
+        public XRoot(global::LandXml_v1_2.Superelevation root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::www.landxml.org.schema.LandXML.Item1.Item2.Superelevation Superelevation {  get {return rootObject as global::www.landxml.org.schema.LandXML.Item1.Item2.Superelevation; } }
+		public global::LandXml_v1_2.Superelevation Superelevation {  get {return rootObject as global::LandXml_v1_2.Superelevation; } }
         
-        public XRoot(global::www.landxml.org.schema.LandXML.Item1.Item2.AdverseSE root) {
+        public XRoot(global::LandXml_v1_2.AdverseSE root) {
             this.doc = new XDocument(root.Untyped);
             this.rootObject = root;
         }
         
 
-		public global::www.landxml.org.schema.LandXML.Item1.Item2.AdverseSE AdverseSE {  get {return rootObject as global::www.landxml.org.schema.LandXML.Item1.Item2.AdverseSE; } }
+		public global::LandXml_v1_2.AdverseSE AdverseSE {  get {return rootObject as global::LandXml_v1_2.AdverseSE; } }
     }
 }
