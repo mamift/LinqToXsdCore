@@ -84,6 +84,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\GS1\GS1.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\HL-7\HL-7.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\HR-XML\HR-XML.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\LandXML\LandXML.csproj" />
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\LandXML\LandXML.csproj" />-->
     <ProjectReference Include="..\GeneratedSchemaLibraries\LegalRuleML\LegalRuleML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\MetaLEX\MetaLEX.csproj" />
