@@ -11,6 +11,7 @@
       "GeneratedSchemaLibraries\\BITS-2.0-XSD\\BITS-2.0-XSD.csproj",
       "GeneratedSchemaLibraries\\BasePropsTest\\BasePropsTest.csproj",
       "GeneratedSchemaLibraries\\CityGML\\CityGML.csproj",
+      "GeneratedSchemaLibraries\\Chem eStandards\\Chem eStandards.csproj",
       "GeneratedSchemaLibraries\\ContentModelTest\\ContentModelTest.csproj",
       "GeneratedSchemaLibraries\\EnumsTest\\EnumsTest.csproj",
       "GeneratedSchemaLibraries\\EnzymeML\\EnzymeML.csproj",
