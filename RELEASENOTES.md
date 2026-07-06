@@ -1,5 +1,12 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.18
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.18
+* https://www.nuget.org/packages/XObjectsCore/3.4.18
+  * [#92](https://github.com/mamift/LinqToXsdCore/pull/92).
+    * Fixes another code gen bug where an XSD element of a simple enum type in a repeating choice content model, generated bad code for a property's setter and getter (evidence: `LandXML-1.2_enumListBug.xsd`).
+
 ## Version 3.4.17
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.17
