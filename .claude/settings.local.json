@@ -4,5 +4,9 @@
       "Bash(graphify export *)",
       "Bash(graphify query *)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "code-review-graph"
+  ],
+  "enableAllProjectMcpServers": true
 }
