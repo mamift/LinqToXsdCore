@@ -23,7 +23,7 @@ namespace LandXml_v1_2 {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (AdverseSE*)+
+    /// Regular expression: (AdverseSE* | nillableAdverseSE<nil>*)+
     /// </para>
     /// </summary>
     public partial class Superelevation : XTypedElement, IXMetaData {
@@ -60,7 +60,7 @@ namespace LandXml_v1_2 {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (AdverseSE*)+
+        /// Regular expression: (AdverseSE* | nillableAdverseSE<nil>*)+
         /// </para>
         /// </summary>
         public Superelevation() {
@@ -78,7 +78,7 @@ namespace LandXml_v1_2 {
         /// Occurrence: optional, repeating, choice
         /// </para>
         /// <para>
-        /// Regular expression: (AdverseSE*)+
+        /// Regular expression: (AdverseSE* | nillableAdverseSE<nil>*)+
         /// </para>
         /// </summary>
         public virtual IList<LandXml_v1_2.adverseSEType> AdverseSE {
@@ -103,11 +103,48 @@ namespace LandXml_v1_2 {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName nillableAdverseSEXName = System.Xml.Linq.XName.Get("nillableAdverseSE", "");
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XSimpleList<string> nillableAdverseSEField;
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional, nillable, repeating, choice
+        /// </para>
+        /// <para>
+        /// Regular expression: (AdverseSE* | nillableAdverseSE<nil>*)+
+        /// </para>
+        /// </summary>
+        public virtual IList<LandXml_v1_2.adverseSEType?> nillableAdverseSE {
+            get {
+                if ((this.nillableAdverseSEField == null)) {
+                    this.nillableAdverseSEField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, nillableAdverseSEXName) { SupportsXsiNil = true };
+                }
+                return this.nillableAdverseSEField.Select(item => item == null ? (LandXml_v1_2.adverseSEType?)null : item.TypedValue).ToList();
+            }
+            set {
+                if ((value == null)) {
+                    this.nillableAdverseSEField = null;
+                }
+                else {
+                    if ((this.nillableAdverseSEField == null)) {
+                        this.nillableAdverseSEField = XSimpleList<string>.InitializeNillable(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value.Select(item => item == null ? null : new System.String(item.ToString())), nillableAdverseSEXName);
+                    }
+                    else {
+                        XTypedServices.SetList<System.String>(this.nillableAdverseSEField, value.Select(item => item == null ? null : new System.String(item.ToString())).ToList());
+                    }
+                }
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Superelevation", "http://www.landxml.org/schema/LandXML-1.2");
         
         static Superelevation() {
             BuildElementDictionary();
-            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(AdverseSEXName));
+            contentModel = new ChoiceContentModelEntity(new NamedContentModelEntity(AdverseSEXName), new NamedContentModelEntity(nillableAdverseSEXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -115,6 +152,7 @@ namespace LandXml_v1_2 {
         
         private static void BuildElementDictionary() {
             localElementDictionary.Add(AdverseSEXName, typeof(AdverseSE));
+            localElementDictionary.Add(nillableAdverseSEXName, typeof(string));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

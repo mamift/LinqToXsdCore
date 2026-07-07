@@ -3,7 +3,8 @@
   <xs:element name="Superelevation">
     <xs:complexType>
       <xs:choice maxOccurs="unbounded">
-        <xs:element ref="AdverseSE" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="AdverseSE" minOccurs="0" maxOccurs="unbounded" />
+		  <xs:element type="adverseSEType" minOccurs="0" maxOccurs="unbounded" name="nillableAdverseSE" nillable="true"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
@@ -13,5 +14,5 @@
       <xs:enumeration value="adverse"/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:element name="AdverseSE" type="adverseSEType"/>
+  <xs:element name="AdverseSE" type="adverseSEType" nillable="true"/>
 </xs:schema>
