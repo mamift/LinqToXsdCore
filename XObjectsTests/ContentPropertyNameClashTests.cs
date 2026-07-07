@@ -21,7 +21,6 @@ public class ContentPropertyNameClashTests: BaseTester
                         </Comment>
                         """.Trim();
 
-        var actual = comment.Untyped.ToString(SaveOptions.None);
-        Assert.AreEqual(xmlString, actual);
+        Assert.IsTrue(XNode.DeepEquals(XElement.Parse(xmlString), comment.Untyped));
     }
 }
