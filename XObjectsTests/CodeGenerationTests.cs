@@ -334,8 +334,8 @@ namespace Xml.Schema.Linq.Tests
             Assert.IsEmpty(stringComparison);
         }
 
-        [Test]
-        public void CompareFieldSummariesForEntireNamespaces()
+        [Test, TestCase(false)]
+        public void CompareFieldSummariesForEntireNamespaces(bool saveToFileForCompare)
         {
             var atomXsdFileInfo = new MockFileInfo(AllTestFiles, AtomXsdFilePath);
 
@@ -355,9 +355,12 @@ namespace Xml.Schema.Linq.Tests
                 var directoryName = Path.GetDirectoryName(existingAtomCode.FullName);
                 var fileName = Path.GetFileNameWithoutExtension(existingAtomCode.FullName);
                 // save the new one for comparison; file ext is csv to prevent hot reload from triggering during test debug
-                var comparisonFilePath = Path.Combine(directoryName!, fileName + ".2.csx");
-                ns1.WriteToFile(comparisonFilePath);
-                ns2.WriteToFile(existingAtomCode.FullName);
+
+                if (saveToFileForCompare) {
+                    var comparisonFilePath = Path.Combine(directoryName!, fileName + ".2.csx");
+                    ns1.WriteToFile(comparisonFilePath);
+                    ns2.WriteToFile(existingAtomCode.FullName);
+                }
             }
             
             Assert.IsEmpty(ns1.CompareProperties(ns2));

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.landxml.org/schema/LandXML-1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.landxml.org/schema/LandXML-1.2" version="1.2">
+  <xs:element name="Superelevation">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="AdverseSE" minOccurs="0" maxOccurs="unbounded" />
+		  <xs:element type="adverseSEType" minOccurs="0" maxOccurs="unbounded" name="nillableAdverseSE" nillable="true"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="adverseSEType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="non-adverse"/>
+      <xs:enumeration value="adverse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AdverseSE" type="adverseSEType" nillable="true"/>
+</xs:schema>

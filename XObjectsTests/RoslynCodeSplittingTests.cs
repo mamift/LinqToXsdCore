@@ -12,7 +12,7 @@ namespace Xml.Schema.Linq.Tests;
 
 internal class RoslynCodeSplittingTests
 {
-    [Test]
+    [Test, Explicit("Prototype/utility test; not intended to run in CI")]
     public void PrototypeSplitByNamespaceAndClass()
     {
         DirectoryInfo schemaLibFolder = new DirectoryInfo(Environment.CurrentDirectory).AscendToFolder("GeneratedSchemaLibraries");
