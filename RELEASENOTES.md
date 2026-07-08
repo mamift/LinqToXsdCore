@@ -5,7 +5,7 @@ Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.18
 * https://www.nuget.org/packages/XObjectsCore/3.4.18
   * [#92](https://github.com/mamift/LinqToXsdCore/pull/92).
-    * Fixes a code gen bug where an XSD element of a simple enum type in a repeating choice content model, generated bad code for a property's setter and getter (evidence: `LandXML-1.2_enumListBug.xsd`).
+      * Fixes a code gen bug where an XSD element of a simple enum type in a repeating choice content model, generated bad code for a property's setter and getter (evidence: `LandXML-1.2_enumListBug.xsd`). This fix also added some extra edge case-handling logic for nillable schema elements. 
     * Fixes a code gen bug where an element called 'Content' conflicted with the internal `Content` property for a complex element type (the property is simply named with 1 at the end, i.e. 'Content1').
 
 ## Version 3.4.17
