@@ -2,11 +2,17 @@
   "permissions": {
     "allow": [
       "Bash(graphify export *)",
-      "Bash(graphify query *)"
+      "Bash(graphify query *)",
+      "PowerShell(git stash *)",
+      "PowerShell(dotnet run *)",
+      "PowerShell(git checkout *)",
+      "PowerShell(git check-ignore *)",
+      "PowerShell(git restore *)",
+      "PowerShell(dotnet test *)"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "code-review-graph"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
