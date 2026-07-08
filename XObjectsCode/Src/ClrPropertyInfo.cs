@@ -721,11 +721,23 @@ namespace Xml.Schema.Linq.CodeGen
 
             if (IsEnum)
             {
-                // item is the element wrapper type (e.g. AdverseSE), not string.
-                // Use its TypedValue property to get the enum value directly.
-                var lambdaExpr = IsNillable
-                    ? new CodeSnippetExpression($"item => item == null ? ({typeRef.ClrFullTypeName}?)null : item.TypedValue")
-                    : new CodeSnippetExpression("item => item.TypedValue");
+                CodeExpression lambdaExpr;
+                if (IsRef)
+                {
+                    // item is the element wrapper type (e.g. AdverseSE), not string.
+                    // Use its TypedValue property to get the enum value directly.
+                    lambdaExpr = IsNillable
+                        ? new CodeSnippetExpression($"item => item == null ? ({typeRef.ClrFullTypeName}?)null : item.TypedValue")
+                        : new CodeSnippetExpression("item => item.TypedValue");
+                }
+                else
+                {
+                    // item is the underlying type (e.g. string). Parse it to the enum type.
+                    var enumType = typeRef.ClrFullTypeName;
+                    lambdaExpr = IsNillable
+                        ? new CodeSnippetExpression($"item => item == null ? ({enumType}?)null : ({enumType})Enum.Parse(typeof({enumType}), item)")
+                        : new CodeSnippetExpression($"item => ({enumType})Enum.Parse(typeof({enumType}), item)");
+                }
                 var selectExpr = CodeDomHelper.CreateMethodCall(listFieldRef, "Select", lambdaExpr);
                 var toListExpr = new CodeMethodInvokeExpression(selectExpr, "ToList");
                 getStatements.Add(
@@ -802,11 +814,23 @@ namespace Xml.Schema.Linq.CodeGen
         {
             if (IsEnum)
             {
-                // value is IList<EnumType> but the list stores element wrappers (e.g. AdverseSE).
-                // Convert each enum value to a new element wrapper instance via its string constructor.
-                var lambdaExpr = IsNillable
-                    ? new CodeSnippetExpression($"item => item == null ? null : new {QualifiedType}(item.ToString())")
-                    : new CodeSnippetExpression($"item => new {QualifiedType}(item.ToString())");
+                CodeExpression lambdaExpr;
+                if (IsRef)
+                {
+                    // value is IList<EnumType> but the list stores element wrappers (e.g. AdverseSE).
+                    // Convert each enum value to a new element wrapper instance via its string constructor.
+                    lambdaExpr = IsNillable
+                        ? new CodeSnippetExpression($"item => item == null ? null : new {QualifiedType}(item.ToString())")
+                        : new CodeSnippetExpression($"item => new {QualifiedType}(item.ToString())");
+                }
+                else
+                {
+                    // value is IList<EnumType> but the list stores the underlying type (e.g. string).
+                    // Convert each enum value to its string representation.
+                    lambdaExpr = IsNillable
+                        ? new CodeSnippetExpression("item => item == null ? null : item.ToString()")
+                        : new CodeSnippetExpression("item => item.ToString()");
+                }
                 var selectExpr = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
                 return new CodeMethodInvokeExpression(selectExpr, "ToList");
             }
@@ -1092,11 +1116,23 @@ namespace Xml.Schema.Linq.CodeGen
                 }
                 else if (IsEnum)
                 {
-                    // value is IEnumerable<EnumType> but the list stores element wrappers.
-                    // Convert each enum value to a new element wrapper instance via its string constructor.
-                    var lambdaExpr = IsNillable
-                        ? new CodeSnippetExpression($"item => item == null ? null : new {QualifiedType}(item.ToString())")
-                        : new CodeSnippetExpression($"item => new {QualifiedType}(item.ToString())");
+                    CodeExpression lambdaExpr;
+                    if (IsRef)
+                    {
+                        // value is IEnumerable<EnumType> but the list stores element wrappers.
+                        // Convert each enum value to a new element wrapper instance via its string constructor.
+                        lambdaExpr = IsNillable
+                            ? new CodeSnippetExpression($"item => item == null ? null : new {QualifiedType}(item.ToString())")
+                            : new CodeSnippetExpression($"item => new {QualifiedType}(item.ToString())");
+                    }
+                    else
+                    {
+                        // value is IEnumerable<EnumType> but the list stores the underlying type (e.g. string).
+                        // Convert each enum value to its string representation.
+                        lambdaExpr = IsNillable
+                            ? new CodeSnippetExpression("item => item == null ? null : item.ToString()")
+                            : new CodeSnippetExpression("item => item.ToString()");
+                    }
                     nameOrValue = CodeDomHelper.CreateMethodCall(CodeDomHelper.SetValue(), "Select", lambdaExpr);
                 }
                 else

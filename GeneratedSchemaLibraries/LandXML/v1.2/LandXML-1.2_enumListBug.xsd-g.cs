@@ -108,7 +108,7 @@ namespace LandXml_v1_2 {
         protected internal static readonly System.Xml.Linq.XName nillableAdverseSEXName = System.Xml.Linq.XName.Get("nillableAdverseSE", "");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XSimpleList<string> nillableAdverseSEField;
+        private XSimpleList<System.String?> nillableAdverseSEField;
         
         /// <summary>
         /// <para>
@@ -121,9 +121,9 @@ namespace LandXml_v1_2 {
         public virtual IList<LandXml_v1_2.adverseSEType?> nillableAdverseSE {
             get {
                 if ((this.nillableAdverseSEField == null)) {
-                    this.nillableAdverseSEField = new XSimpleList<string>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, nillableAdverseSEXName) { SupportsXsiNil = true };
+                    this.nillableAdverseSEField = new XSimpleList<System.String?>(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, nillableAdverseSEXName) { SupportsXsiNil = true };
                 }
-                return this.nillableAdverseSEField.Select(item => item == null ? (LandXml_v1_2.adverseSEType?)null : item.TypedValue).ToList();
+                return this.nillableAdverseSEField.Select(item => item == null ? (LandXml_v1_2.adverseSEType?)null : (LandXml_v1_2.adverseSEType)Enum.Parse(typeof(LandXml_v1_2.adverseSEType), item)).ToList();
             }
             set {
                 if ((value == null)) {
@@ -131,10 +131,10 @@ namespace LandXml_v1_2 {
                 }
                 else {
                     if ((this.nillableAdverseSEField == null)) {
-                        this.nillableAdverseSEField = XSimpleList<string>.InitializeNillable(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value.Select(item => item == null ? null : new System.String(item.ToString())), nillableAdverseSEXName);
+                        this.nillableAdverseSEField = XSimpleList<System.String?>.InitializeNillable(this, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, value.Select(item => item == null ? null : item.ToString()), nillableAdverseSEXName);
                     }
                     else {
-                        XTypedServices.SetList<System.String>(this.nillableAdverseSEField, value.Select(item => item == null ? null : new System.String(item.ToString())).ToList());
+                        XTypedServices.SetList<System.String?>(this.nillableAdverseSEField, value.Select(item => item == null ? null : item.ToString()).ToList());
                     }
                 }
             }
