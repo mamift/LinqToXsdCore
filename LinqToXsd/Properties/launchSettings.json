@@ -260,6 +260,12 @@
       "commandLineArgs": "gen -a .",
       "workingDirectory": "..\\GeneratedSchemaLibraries\\Chem eStandards",
       "hotReloadEnabled": false
+    },
+    "XInclude": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\XInclude",
+      "hotReloadEnabled": false
     }
   }
 }

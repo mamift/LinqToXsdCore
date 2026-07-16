@@ -8,7 +8,8 @@
       "PowerShell(git checkout *)",
       "PowerShell(git check-ignore *)",
       "PowerShell(git restore *)",
-      "PowerShell(dotnet test *)"
+      "PowerShell(dotnet test *)",
+      "Bash(dir *)"
     ]
   },
   "enableAllProjectMcpServers": true,
