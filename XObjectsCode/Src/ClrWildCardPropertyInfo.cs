@@ -1,6 +1,7 @@
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Reflection;
 using XObjects;
 
 namespace Xml.Schema.Linq.CodeGen;
@@ -50,7 +51,12 @@ public partial class ClrWildCardPropertyInfo : ClrBasePropertyInfo
 
         CodeMemberProperty property = CodeDomHelper.CreateProperty(ReturnType, false, visibility.ToMemberAttribute());
         property.Name = PropertyName;
-        //property.Attributes = (property.Attributes & ~MemberAttributes.AccessMask) | visibility.ToMemberAttribute();
+
+        if ((decl.TypeAttributes & TypeAttributes.Sealed) == TypeAttributes.Sealed)
+        {
+            // Sealed types cannot have virtual members; CodeDom defaults to virtual.
+            property.Attributes |= MemberAttributes.Final;
+        }
 
         AddGetStatements(property.GetStatements);
 
