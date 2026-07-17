@@ -35,6 +35,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Remove="XInclude\xinclude.xsd" />
+    <None Remove="XInclude\xinclude.xsd.config" />
     <None Remove="XsdFeatureTests\Elements\ElementsTests.xsd" />
     <None Remove="XsdFeatureTests\Elements\ElementsWithComplexTypes.xsd" />
     <None Remove="XsdFeatureTests\Elements\ElementsWithTypes.xsd" />
@@ -42,6 +44,8 @@
     <None Remove="XsdFeatureTests\SimpleTypeUnion\StuDateAndTime.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="XInclude\xinclude.xsd" />
+    <EmbeddedResource Include="XInclude\xinclude.xsd.config" />
     <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsTests.xsd" />
     <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithComplexTypes.xsd" />
     <EmbeddedResource Include="XsdFeatureTests\Elements\ElementsWithTypes.xsd" />
@@ -241,8 +245,5 @@
     <None Update="XsdFeatureTests\ImportsXmlNamespace\ImportsXmlAttributes.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="XInclude\" />
   </ItemGroup>
 </Project>
