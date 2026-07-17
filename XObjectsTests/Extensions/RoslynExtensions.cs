@@ -129,6 +129,18 @@ public static class RoslynExtensions
         return list;
     }
 
+    public static List<NameAndMemberTuple> GetAllProperties(this ClassDeclarationSyntax cs)
+    {
+        var list = new List<NameAndMemberTuple>();
+        foreach (MemberDeclarationSyntax member in cs.Members) {
+            if (member is not PropertyDeclarationSyntax p) continue;
+            var id = p.Identifier.ValueText + $"_{cs.Identifier.ValueText}_Property";
+            list.Add((id, member));
+        }
+
+        return list;
+    }
+
     /// <summary>
     /// Performs the following steps to clean a namespace for comparison. 1) sort all types and their members by name. 2) remove all doc comments
     /// 3) normalise whitespace.

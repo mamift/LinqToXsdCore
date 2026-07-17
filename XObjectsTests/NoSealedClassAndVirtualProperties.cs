@@ -33,7 +33,7 @@ public class NoSealedClassAndVirtualProperties: BaseTester
 
             Assert.True(type.Modifiers.Any(m => m.ValueText == "sealed"));
 
-            List<(string name, MemberDeclarationSyntax member)> props = type.GetAllPropertiesWithoutAttributes();
+            List<(string name, MemberDeclarationSyntax member)> props = type.GetAllProperties();
             foreach (var (name, member) in props) {
                 var pds = member as PropertyDeclarationSyntax;
                 Assert.NotNull(pds);
