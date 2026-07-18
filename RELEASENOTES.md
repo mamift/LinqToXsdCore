@@ -6,6 +6,7 @@ Nuget packages:
 * https://www.nuget.org/packages/XObjectsCore/3.4.19
   * [#95](https://github.com/mamift/LinqToXsdCore/pull/95).
       * Fixes a code gen bug where virtual properties were still being generated inside `sealed` classes.
+      * Fixed another code generation bug where if any user specified Clr Namespace (like in an xsd.config file) had a component that matched any of the namespace components used by default by LinqToXsd, added the `global::` prefix to minimise the chances of generating uncompilable code.
 
 ## Version 3.4.18
 Nuget packages:
