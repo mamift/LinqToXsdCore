@@ -3,6 +3,7 @@
 using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq
@@ -44,6 +45,13 @@ namespace Xml.Schema.Linq
             Load(XDocument.Load(configFile));
         }
 
+        /// <summary>
+        /// Loads the configuration settings from the provided XDocument. Unfortunately, the LinqToXsdConfiguration.xsd schema was something
+        /// retrofitted many years after the initial version of LinqToXsd, so here we manually read the XML and populate the settings.
+        /// </summary>
+        /// <param name="configDocument"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public void Load(XDocument configDocument)
         {
             if (configDocument?.Root == null) throw new ArgumentNullException(nameof(configDocument));
@@ -51,6 +59,11 @@ namespace Xml.Schema.Linq
             var rootElement = configDocument.Root;
 
             var namespacesElement = rootElement.Element(XName.Get("Namespaces", Constants.TypedXLinqNs));
+            if (namespacesElement == null)
+            {
+                throw new InvalidOperationException("The configuration document does not contain a Namespaces element.");
+            }
+
             GenerateNamespaceMapping(namespacesElement);
             GenerateNamespaceVisibilityMapping(namespacesElement);
             GenerateNamespaceFileMapping(namespacesElement);
@@ -64,6 +77,8 @@ namespace Xml.Schema.Linq
             var splitFilesElement = codegenElement?.Element(XName.Get("SplitCodeFiles", Constants.TypedXLinqNs));
             SplitFilesByNamespace = splitFilesElement?.Attribute("By")?.Value == "Namespace";
 
+            XAttribute alwaysPrefixGlobalAttr = namespacesElement.Attribute("AlwaysPrefixGlobal");
+            AlwaysPrefixGlobalInUsingDirectives = bool.Parse(alwaysPrefixGlobalAttr?.Value ?? "false");
 
             var nullableRefsName = XName.Get("NullableReferences", Constants.TypedXLinqNs);
             NullableReferences =
@@ -117,6 +132,7 @@ namespace Xml.Schema.Linq
 
         public bool NullableReferences { get; set; }
         public bool PrefixGlobalNsWhenReferencingXmlSchemaLinqNs { get; set; }
+        public bool AlwaysPrefixGlobalInUsingDirectives { get; set; }
 
         private void GenerateNamespaceMapping(XElement namespaces)
         {

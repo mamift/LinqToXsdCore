@@ -673,26 +673,42 @@ namespace Xml.Schema.Linq.CodeGen
 
             List<string> clrNsComponents = clrNamespace.Split(['.']).Distinct().ToList();
 
-            foreach (string clrNsComponent in clrNsComponents)
+            const string shouldPrefixGlobalDictKey = "ShouldPrefixGlobal";
+
+            // when this setting is on, always prefix global:: to all namespace imports, regardless of whether or not
+            // the generated code namespace is ambiguous with any of the namespace imports
+            if (settings.AlwaysPrefixGlobalInUsingDirectives)
             {
                 foreach (CodeNamespaceImport import in newCodeNamespace.Imports)
                 {
-                    string[] importComponents = import.Namespace.Split(['.']);
-                    bool importComponentMatchesUserClrNamespaceComponent = importComponents.Any(ic =>
-                        ic.Equals(clrNsComponent, StringComparison.CurrentCultureIgnoreCase));
-                    if (importComponentMatchesUserClrNamespaceComponent)
+                    import.UserData.AddIfNotAlreadyExists(shouldPrefixGlobalDictKey, true);
+                }
+            }
+            else
+            {
+                // else try to auto-determine which ones to auto-prefix
+                foreach (string clrNsComponent in clrNsComponents)
+                {
+                    foreach (CodeNamespaceImport import in newCodeNamespace.Imports)
                     {
-                        import.UserData.AddIfNotAlreadyExists("ShouldPrefixGlobal", importComponentMatchesUserClrNamespaceComponent);
+                        string[] importComponents = import.Namespace.Split(['.']);
+                        bool importComponentMatchesUserClrNamespaceComponent = importComponents.Any(ic =>
+                            ic.Equals(clrNsComponent, StringComparison.CurrentCultureIgnoreCase));
+                        if (importComponentMatchesUserClrNamespaceComponent)
+                        {
+                            import.UserData.AddIfNotAlreadyExists(shouldPrefixGlobalDictKey, importComponentMatchesUserClrNamespaceComponent);
+                        }
                     }
                 }
             }
-            List<CodeNamespaceImport> prefixedGlobalImports = imports.Where(i => i.UserData.TryGetValueForKey<string, bool>("ShouldPrefixGlobal"))
+
+            List<CodeNamespaceImport> prefixedGlobalImports = imports.Where(i => i.UserData.TryGetValueForKey<string, bool>(shouldPrefixGlobalDictKey))
                 .ToList();
             // other parts of the app need to be informed that global:: is required when referring to the Xml.Schema.Linq namespace,
             // so that the generated code will also use global:: when referencing the Xml.Schema.Linq namespace
             settings.PrefixGlobalNsWhenReferencingXmlSchemaLinqNs = prefixedGlobalImports.Any(i => i.Namespace == "Xml.Schema.Linq");
 
-            if (prefixedGlobalImports.Any()) 
+            if (prefixedGlobalImports.Any())
             {
                 foreach (CodeNamespaceImport import in prefixedGlobalImports)
                 {
