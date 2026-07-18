@@ -79,7 +79,7 @@ namespace XObjects
             }
         }
 
-        public static bool AddIfNotAlreadyExists<TKey, TVal>(this IDictionary dictionary, TKey key, TVal val)
+        public static bool SetValueIfNotAlreadyExists<TKey, TVal>(this IDictionary dictionary, TKey key, TVal val)
         {
             if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
 

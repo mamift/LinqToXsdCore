@@ -681,7 +681,7 @@ namespace Xml.Schema.Linq.CodeGen
             {
                 foreach (CodeNamespaceImport import in newCodeNamespace.Imports)
                 {
-                    import.UserData.AddIfNotAlreadyExists(shouldPrefixGlobalDictKey, true);
+                    import.UserData.SetValueIfNotAlreadyExists(shouldPrefixGlobalDictKey, true);
                 }
             }
             else
@@ -696,7 +696,7 @@ namespace Xml.Schema.Linq.CodeGen
                             ic.Equals(clrNsComponent, StringComparison.CurrentCultureIgnoreCase));
                         if (importComponentMatchesUserClrNamespaceComponent)
                         {
-                            import.UserData.AddIfNotAlreadyExists(shouldPrefixGlobalDictKey, importComponentMatchesUserClrNamespaceComponent);
+                            import.UserData.SetValueIfNotAlreadyExists(shouldPrefixGlobalDictKey, importComponentMatchesUserClrNamespaceComponent);
                         }
                     }
                 }
