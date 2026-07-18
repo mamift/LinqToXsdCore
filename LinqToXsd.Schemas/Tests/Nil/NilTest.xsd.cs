@@ -19,7 +19,7 @@ namespace LinqToXsd.Schemas.Test.NilTest {
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Linq;
-    using Xml.Schema.Linq;
+    using global::Xml.Schema.Linq;
     
     
     /// <summary>

@@ -14,7 +14,7 @@ public class NoSealedClassAndVirtualProperties: BaseTester
 
     public NoSealedClassAndVirtualProperties()
     {
-        TestFiles = Utilities.GetAssemblyFileSystem(typeof(LinqToXsd.Schemas.XInclude.fallbackType).Assembly);
+        TestFiles = Utilities.GetAssemblyFileSystem(typeof(LinqToXsd.Schemas.Xml.XInclude.fallbackType).Assembly);
     }
 
     [Test]

@@ -18,7 +18,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Linq;
-    using Xml.Schema.Linq;
+    using global::Xml.Schema.Linq;
     
     
     /// <summary>
@@ -280,7 +280,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.DateTime(630822816000000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date), new global::Xml.Schema.Linq.RestrictionFacets(((global::Xml.Schema.Linq.RestrictionFlags)(256)), null, 0, 0, null, null, 0, null, new System.DateTime(630822816000000000), 0, null, 0, XmlSchemaWhiteSpace.Collapse));
     }
     
     public sealed class HoursTime {
@@ -289,7 +289,7 @@ namespace LinqToXsd.Schemas.Test.DateOnlyTest {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
+        public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Time), new global::Xml.Schema.Linq.RestrictionFacets(((global::Xml.Schema.Linq.RestrictionFlags)(8)), null, 0, 0, null, null, 0, null, null, 0, new string[] {
                         "\\d{2}:00:00"}, 0, XmlSchemaWhiteSpace.Collapse));
     }
     
