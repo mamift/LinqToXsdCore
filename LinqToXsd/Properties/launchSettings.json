@@ -60,7 +60,7 @@
     },
     "StuDateTime": {
       "commandName": "Project",
-      "commandLineArgs": "gen \"StuDateAndTime.xsd\" -a",
+      "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\SimpleTypeUnion",
       "hotReloadEnabled": false
     },

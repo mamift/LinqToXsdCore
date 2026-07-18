@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 
 namespace LinqToXsd.Schemas.XsdFeatureTests.SimpleTypeUnion {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Diagnostics;
-    using System.Xml;
-    using System.Xml.Schema;
-    using System.Xml.Linq;
-    using Xml.Schema.Linq;
+    using global::System;
+    using global::System.Collections;
+    using global::System.Collections.Generic;
+    using global::System.ComponentModel;
+    using global::System.IO;
+    using global::System.Linq;
+    using global::System.Diagnostics;
+    using global::System.Xml;
+    using global::System.Xml.Schema;
+    using global::System.Xml.Linq;
+    using global::Xml.Schema.Linq;
     
     
     public partial class element1 : XTypedElement, IXMetaData {
@@ -113,9 +113,9 @@ namespace LinqToXsd.Schemas.XsdFeatureTests.SimpleTypeUnion {
             }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new Xml.Schema.Linq.SimpleTypeValidator[] {
-                        new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date), null),
-                        new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime), null)});
+            public static global::Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new global::Xml.Schema.Linq.UnionSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.AnyAtomicType), null, new global::Xml.Schema.Linq.SimpleTypeValidator[] {
+                        new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Date), null),
+                        new global::Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.DateTime), null)});
         }
     }
     
