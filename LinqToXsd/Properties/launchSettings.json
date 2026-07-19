@@ -266,6 +266,12 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\LinqToXsd.Schemas\\XInclude",
       "hotReloadEnabled": false
+    },
+    "Elements": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .\\",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\Elements",
+      "hotReloadEnabled": false
     }
   }
 }
