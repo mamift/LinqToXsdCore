@@ -28,11 +28,22 @@ namespace LinqToXsd
                     if (!outputFilename.EndsWith(".cs"))
                         outputFilename += "-g.cs";
 
-                    string outputFilePath = possibleOutputFolder == "-1"
-                        ? Path.Combine(Path.GetDirectoryName(kvp.Key), outputFilename)
-                        : possibleOutputFolder.IsNotEmpty()
-                            ? Path.Combine(possibleOutputFolder, outputFilename)
-                            : Path.GetFullPath(outputFilename);
+                    string outputFilePath;
+                    if (possibleOutputFolder == "-1")
+                    {
+                        outputFilePath = Path.Combine(Path.GetDirectoryName(kvp.Key), outputFilename);
+                    }
+                    else
+                    {
+                        if (possibleOutputFolder.IsNotEmpty())
+                        {
+                            outputFilePath = Path.Combine(possibleOutputFolder, outputFilename);
+                        }
+                        else
+                        {
+                            outputFilePath = Path.GetFullPath(outputFilename);
+                        }
+                    }
 
                     var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
 
