@@ -10,9 +10,8 @@
 
   <!-- Package defaults -->
   <PropertyGroup>
-    <Copyright>Copyright (C) Muhammad Miftah, GitHub Contributors (2019-2022) &amp; Microsoft Corporation (2008-2011)</Copyright>
+    <Copyright>Copyright (C) 2008-2011 Microsoft Corp, (C) 2019-2026 github.com/mamift et al</Copyright>
     <Authors>https://github.com/mamift</Authors>
-    <Company>Microsoft Corporation</Company>
     <RepositoryUrl>https://github.com/mamift/LinqToXsdCore</RepositoryUrl>
 
     <PackageId>$(MSBuildProjectName)</PackageId>
@@ -23,7 +22,6 @@
     <PackageOutputPath>$(MSBuildProjectDirectory)\nupkg</PackageOutputPath>
     
     <IncludeSymbols>True</IncludeSymbols>
-    <!-- <SymbolPackageFormat>snupkg</SymbolPackageFormat> -->
     <SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
   </PropertyGroup>
 
