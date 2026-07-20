@@ -1,8 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(graphify export *)",
-      "Bash(graphify query *)",
       "PowerShell(git stash *)",
       "PowerShell(dotnet run *)",
       "PowerShell(git checkout *)",
