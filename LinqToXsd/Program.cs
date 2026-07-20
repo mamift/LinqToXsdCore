@@ -83,8 +83,9 @@ namespace LinqToXsd
         /// <param name="args"></param>
         internal static void ParseCliArgsAndDispatch(string[] args)
         {
-            using (Parser.Default) {
-                var parserResult = Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
+            using (var parser = Parser.Default)
+            {
+                var parserResult = parser.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
                 var generateHandlerAction = GenerateDisposalWrapper<GenerateOptions>(HandleGenerateCode);
                 parserResult.WithParsed<GenerateOptions>(generateHandlerAction);
