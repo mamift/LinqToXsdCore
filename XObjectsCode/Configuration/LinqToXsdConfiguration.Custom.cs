@@ -141,22 +141,43 @@ namespace Xml.Schema.Linq
         /// Returns a new, default <see cref="Configuration"/> instance with no <see cref="Namespaces"/> present.
         /// </summary>
         /// <returns></returns>
-        public static Configuration GetBlankConfigurationInstance()
+        public static Configuration GetBlankConfigurationInstance(bool withOptionalDebugTags = false)
         {
-            return new Configuration {
+            var codeGeneration = new CodeGeneration() {
+                NullableReferences  = false,
+                UseDateOnly = false,
+                UseDateTimeOffset = false,
+                UseTimeOnly = false,
+            };
+
+            // currently the below code is disabled as the feature does not entirely work
+#if false
+            var lastConfigChild = codeGeneration.Untyped.DescendantNodes().Last();
+            lastConfigChild.AddAfterSelf(new XComment(new SplitCodeFiles() { By = SplitCodeFiles.ByEnum.Class }.Untyped.ToString(SaveOptions.DisableFormatting)));
+            lastConfigChild.AddAfterSelf(new XComment("Uncomment the below tag to enable splitting the generate code into multiple files; defaults to one C# source code file"));
+#endif
+
+            var blankConfigurationInstance = new Configuration {
+                CodeGeneration = codeGeneration,
                 Namespaces = new Namespaces {
                     Namespace = new List<Namespace>()
                 },
                 NullableReferences = new NullableReferences(false),
-                Transformation = new Transformation {
+            };
+
+            if (withOptionalDebugTags)
+            {
+                blankConfigurationInstance.Transformation = new Transformation {
                     Deanonymize = new Deanonymize {
                         strict = false
                     }
-                },
-                Validation = new Validation {
+                };
+                blankConfigurationInstance.Validation = new Validation {
                     VerifyRequired = new VerifyRequired(false)
-                },
-            };
+                };
+            }
+
+            return blankConfigurationInstance;
         }
 
         /// <summary>

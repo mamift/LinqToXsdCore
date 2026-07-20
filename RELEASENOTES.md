@@ -1,10 +1,21 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.19
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.19
+* https://www.nuget.org/packages/XObjectsCore/3.4.19
+  * [#95](https://github.com/mamift/LinqToXsdCore/pull/95).
+      * Fixes a code gen bug where virtual properties were still being generated inside `sealed` classes.
+      * Fixed another code generation bug where if any user specified Clr Namespace (like in an xsd.config file) had a component that matched any of the namespace components used by default by LinqToXsd, added the `global::` prefix to minimise the chances of generating uncompilable code.
+      * Also added a new configuration XML element to forcibly prefix `global::` on every using directive in the namespace header of generated code.
+      * Added copyright notice on startup of CLI tool as this allows logging which version ran on build servers.
+      * Add a warning when the CLI tool generates code and detects existing files using the legacy file extension.
+
 ## Version 3.4.18
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.18
 * https://www.nuget.org/packages/XObjectsCore/3.4.18
-  * [#92](https://github.com/mamift/LinqToXsdCore/pull/92).
+  * [#93](https://github.com/mamift/LinqToXsdCore/pull/93).
       * Fixes a code gen bug where an XSD element of a simple enum type in a repeating choice content model, generated bad code for a property's setter and getter (evidence: `LandXML-1.2_enumListBug.xsd`). This fix also added some extra edge case-handling logic for nillable schema elements. 
     * Fixes a code gen bug where an element called 'Content' conflicted with the internal `Content` property for a complex element type (the property is simply named with 1 at the end, i.e. 'Content1').
 
@@ -13,7 +24,7 @@ Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.17
 * https://www.nuget.org/packages/XObjectsCore/3.4.17
   * [#91](https://github.com/mamift/LinqToXsdCore/pull/91).
-    * Fixes a bug where `global::` wasn't being prefixed in all the necessary places (related to new code generation facilitiy introduced in 3.4.16).
+    * Fixes a bug where `global::` wasn't being prefixed in all the necessary places (related to new code generation facility introduced in 3.4.16).
     * All generated code now ends with .xsd-g.cs (instead of .xsd.cs).
 
 ## Version 3.4.16

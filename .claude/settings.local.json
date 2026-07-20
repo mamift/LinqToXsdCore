@@ -1,14 +1,18 @@
 {
   "permissions": {
     "allow": [
-      "Bash(graphify export *)",
-      "Bash(graphify query *)",
       "PowerShell(git stash *)",
       "PowerShell(dotnet run *)",
       "PowerShell(git checkout *)",
       "PowerShell(git check-ignore *)",
       "PowerShell(git restore *)",
-      "PowerShell(dotnet test *)"
+      "PowerShell(dotnet test *)",
+      "Bash(dir *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet run *)",
+      "Bash(DOTNET_MULTILEVEL_LOOKUP=0 dotnet exec \"LinqToXsd/bin/Debug/net7.0/LinqToXsd.dll\" gen \"LinqToXsd.Schemas/XInclude/xinclude.xsd\" -c \"LinqToXsd.Schemas/XInclude/xinclude.xsd.config\" -o \"LinqToXsd.Schemas/XInclude/xinclude.xsd-g.cs\")",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(git stash *)"
     ]
   },
   "enableAllProjectMcpServers": true,

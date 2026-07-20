@@ -61,6 +61,9 @@ namespace LinqToXsd
         /// <returns></returns>
         public static int Main(string[] args)
         {
+            var version = typeof(Program).Assembly.GetName().Version?.ToString() ?? "Unknown";
+            PrintLn(("LinqToXsdCore v" + version).DarkGray());
+            PrintLn(($"Copyright (C) 2008-2011 Microsoft Corp, (C) 2019-{DateTime.Now.Year} github.com/mamift et al" + Environment.NewLine).White());
 #if !DEBUG
             try {
                 ParseCliArgsAndDispatch(args);
@@ -80,8 +83,9 @@ namespace LinqToXsd
         /// <param name="args"></param>
         internal static void ParseCliArgsAndDispatch(string[] args)
         {
-            using (Parser.Default) {
-                var parserResult = Parser.Default.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
+            using (var parser = Parser.Default)
+            {
+                var parserResult = parser.ParseArguments<CommandLineOptions, ConfigurationOptions, GenerateOptions>(args);
 
                 var generateHandlerAction = GenerateDisposalWrapper<GenerateOptions>(HandleGenerateCode);
                 parserResult.WithParsed<GenerateOptions>(generateHandlerAction);

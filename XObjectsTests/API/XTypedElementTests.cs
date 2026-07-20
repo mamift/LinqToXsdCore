@@ -12,6 +12,8 @@ using W3C.XSD;
 
 namespace Xml.Schema.Linq.Tests.API
 {
+    using schema = W3C.XSD.schema;
+
     public class XTypedElementTests: BaseTester
     {
         /// <summary>

@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using W3C.XSD;
 
 namespace Xml.Schema.Linq.Tests;
+
+using schema =  W3C.XSD.schema;
 
 public class XsdCodeUseTests: BaseTester
 {

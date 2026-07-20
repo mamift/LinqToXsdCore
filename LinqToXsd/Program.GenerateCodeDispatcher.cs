@@ -19,20 +19,46 @@ namespace LinqToXsd
             /// </summary>
             internal static void HandleWriteOutputToMultipleFiles(GenerateOptions options, Dictionary<string, TextWriter> textWriters)
             {
-                var possibleOutputFolder = options.Output;
+                string possibleOutputFolder = options.Output;
 
-                PrintLn($"Outputting {textWriters.Count} files...".Gray());
+                PrintLn(($"Outputting {textWriters.Count} files..." + Environment.NewLine).Gray());
                 foreach (var kvp in textWriters)
                 {
                     var outputFilename = Path.GetFileName(kvp.Key);
+                    var legacyOutputFileName = Path.GetFileName(kvp.Key) + ".cs";
                     if (!outputFilename.EndsWith(".cs"))
+                    {
                         outputFilename += "-g.cs";
+                    }
 
-                    string outputFilePath = possibleOutputFolder == "-1"
-                        ? Path.Combine(Path.GetDirectoryName(kvp.Key), outputFilename)
-                        : possibleOutputFolder.IsNotEmpty()
-                            ? Path.Combine(possibleOutputFolder, outputFilename)
-                            : Path.GetFullPath(outputFilename);
+                    string outputFilePath;
+                    string legacyOutputFilePath;
+                    if (possibleOutputFolder == "-1")
+                    {
+                        string directoryName = Path.GetDirectoryName(kvp.Key) ??
+                                               throw new InvalidOperationException("Unable to get dir for: " + kvp.Key);
+                        outputFilePath = Path.Combine(directoryName, outputFilename);
+                        legacyOutputFilePath = Path.Combine(directoryName, legacyOutputFileName);
+                    }
+                    else
+                    {
+                        if (possibleOutputFolder.IsNotEmpty())
+                        {
+                            outputFilePath = Path.Combine(possibleOutputFolder, outputFilename);
+                            legacyOutputFilePath = Path.Combine(possibleOutputFolder, legacyOutputFileName);
+                        }
+                        else
+                        {
+                            outputFilePath = Path.GetFullPath(outputFilename);
+                            legacyOutputFilePath = Path.GetFullPath(legacyOutputFileName);
+                        }
+                    }
+
+                    if (File.Exists(legacyOutputFilePath))
+                    {
+                        PrintLn("NOTE: Since v3.4.17, the default output file extension has changed. ".Yellow());
+                        PrintLn($"You should delete the existing source code file: {legacyOutputFileName}".DarkYellow());
+                    }
 
                     var fullPathOfContainingDir = Path.GetDirectoryName(outputFilePath);
 
@@ -42,13 +68,21 @@ namespace LinqToXsd
                         Directory.CreateDirectory(fullPathOfContainingDir);
                     }
 
-                    PrintLn($"{kvp.Key} => {outputFilePath}".Gray());
+
+                    PrintLn($"Source:".White());
+                    PrintLn(kvp.Key.Gray());
+                    
+                    
+                    PrintLn($"Output:".White());
+                    PrintLn(outputFilePath.DarkGreen());
 
                     using (var outputFileStream = File.Open(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
                     using (var fileWriter = new StreamWriter(outputFileStream))
                     {
                         fileWriter.Write(kvp.Value);
                     }
+
+                    PrintLn("");
                 }
             }
 

@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Schema;
 using Xml.Schema.Linq.Extensions;
 using XObjects;
@@ -374,19 +375,32 @@ namespace Xml.Schema.Linq.CodeGen
             this.parentTypeFullName = typeRef.IsEnum ? typeRef.UpdateClrFullEnumTypeName(this, currentTypeScope, currentNamespaceScope) : currentTypeScope;
         }
 
-        public void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility)
+        public void SetPropertyAttributes(CodeMemberProperty clrProperty, MemberAttributes visibility, bool isParentSealed)
         {
             if (isVirtual)
             {
                 clrProperty.Attributes =
                     ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
                      visibility);
+                if (isParentSealed)
+                {
+                    clrProperty.Attributes |= MemberAttributes.Final;
+                }
             }
             else if (isOverride)
             {
                 clrProperty.Attributes =
                     ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
                      MemberAttributes.Public | MemberAttributes.Override);
+            }
+            else if (isParentSealed)
+            {
+                // Sealed types cannot have virtual members.
+                // CodeDom defaults to virtual when no scope modifier is set,
+                // so explicitly mark as Final to suppress the virtual keyword.
+                clrProperty.Attributes =
+                    ((clrProperty.Attributes & ~MemberAttributes.ScopeMask & ~MemberAttributes.AccessMask) |
+                     MemberAttributes.Final | visibility);
             }
         }
 
@@ -405,7 +419,8 @@ namespace Xml.Schema.Linq.CodeGen
             CreateFixedDefaultValue(parentTypeDecl);
             CodeMemberProperty clrProperty = CodeDomHelper.CreateProperty(ReturnType, hasSet, visibility.ToMemberAttribute());
             clrProperty.Name = propertyName;
-            SetPropertyAttributes(clrProperty, visibility.ToMemberAttribute());
+            bool isParentSealed = (parentTypeDecl.TypeAttributes & TypeAttributes.Sealed) == TypeAttributes.Sealed;
+            SetPropertyAttributes(clrProperty, visibility.ToMemberAttribute(), isParentSealed);
             if (IsNew)
             {
                 clrProperty.Attributes |= MemberAttributes.New;

@@ -26,8 +26,8 @@
 
   <ItemGroup>
     <PackageReference Include="Alba.CsConsoleFormat.ColorfulConsole" Version="1.0.0" />
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.1" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Portable.System.DateTimeOnly" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework) != 'netstandard2.0'">

@@ -261,10 +261,4 @@ __pycache__/
 *.pyc
 Samples/
 *.diff
-LinqToXsd/Properties/launchSettings.json
 LinqToXsd.Schemas/_temp/
-
-graphify-out/cache/
-graphify-out/**/manifest.json
-graphify-out/**/cost.json
-graphify-out/.graphify_python
