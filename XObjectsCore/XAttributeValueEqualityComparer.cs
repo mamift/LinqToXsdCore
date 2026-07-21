@@ -22,5 +22,7 @@ namespace Xml.Schema.Linq
         {
             return obj.Value.GetHashCode();
         }
+
+        public static readonly XAttributeValueEqualityComparer Default = new XAttributeValueEqualityComparer();
     }
 }
