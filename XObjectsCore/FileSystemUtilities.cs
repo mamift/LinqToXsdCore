@@ -60,14 +60,14 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public static List<string> ResolvePossibleFileAndFolderPathsToProcessableSchemas(IEnumerable<string> filesOrFolders)
         {
-            var files = ResolveFileAndFolderPathsToJustFiles(filesOrFolders, "*.xsd");
+            List<string> files = ResolveFileAndFolderPathsToJustFiles(filesOrFolders, "*.xsd");
 
             // convert files to XDocuments and check if they are proper W3C schemas
-            var pairs = files.Select(f => new KeyValuePair<string, XDocument>(f, XDocument.Load(f)));
-            var xDocs = pairs.Where(kvp => kvp.Value.IsAnXmlSchema())
-                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            IEnumerable<(string fileName, XDocument schema)> pairs = files.Select(f => (fileName: f, schema: XDocument.Load(f)));
+            Dictionary<string, XDocument> xDocs = pairs.Where(kvp => kvp.schema.IsAnXmlSchema())
+                .ToDictionary(t => t.fileName, t => t.schema);
 
-            var filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key).ToList();
+            List<string> filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key).ToList();
             
             var resolvedSchemaFiles = files.Except(filteredIncludeAndImportRefs).Distinct().ToList();
 

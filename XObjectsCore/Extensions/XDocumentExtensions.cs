@@ -35,19 +35,19 @@ namespace Xml.Schema.Linq.Extensions
         /// <returns></returns>
         public static Dictionary<string, XDocument> FilterOutSchemasThatAreIncludedOrImported(this Dictionary<string, XDocument> xDocs)
         {
-            var actualSchemas = xDocs.Where(kvp => kvp.Value.IsAnXmlSchema()).ToList();
-            var allImportReferences = actualSchemas.SelectMany(kvp => kvp.Value.Descendants(ImportXName));
-            var allIncludeReferences = actualSchemas.SelectMany(kvp => kvp.Value.Descendants(IncludeXName));
+            List<KeyValuePair<string, XDocument>> actualSchemas = xDocs.Where(kvp => kvp.Value.IsAnXmlSchema()).ToList();
+            IEnumerable<XElement> allImportReferences = actualSchemas.SelectMany(kvp => kvp.Value.Descendants(ImportXName));
+            IEnumerable<XElement> allIncludeReferences = actualSchemas.SelectMany(kvp => kvp.Value.Descendants(IncludeXName));
 
-            var importAndIncludeElements = allIncludeReferences.Union(allImportReferences).ToList();
-            var schemaLocationXName = XName.Get("schemaLocation");
+            List<XElement> importAndIncludeElements = allIncludeReferences.Union(allImportReferences).ToList();
+            XName schemaLocationXName = XName.Get("schemaLocation");
 
-            var filesReferredToInImportAndIncludeElements = importAndIncludeElements
+            IEnumerable<string> filesReferredToInImportAndIncludeElements = importAndIncludeElements
                                                             .SelectMany(iie => iie.Attributes(schemaLocationXName))
                                                             .Distinct(new XAttributeValueEqualityComparer())
                                                             .Select(attr => attr.Value);
 
-            var theXDocsReferencedByImportOrInclude = from xDoc in xDocs
+            IEnumerable<KeyValuePair<string, XDocument>> theXDocsReferencedByImportOrInclude = from xDoc in xDocs
                                                       where filesReferredToInImportAndIncludeElements.Any(f =>
                                                           string.Equals(f, Path.GetFileName(xDoc.Key), StringComparison.InvariantCultureIgnoreCase))
                                                       select xDoc;
