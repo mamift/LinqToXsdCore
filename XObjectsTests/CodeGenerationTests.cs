@@ -100,7 +100,7 @@ namespace Xml.Schema.Linq.Tests
         /// </summary>
         [Test]
         [TestCase("1707_ISYBAU_XML_Schema"), TestCase("AbstractTypeTest"), TestCase("AkomaNtoso"), TestCase("AkomaNtoso30-CSD13-D2f"), TestCase("AspNetSiteMaps"), TestCase("Atom"), TestCase("ContentModelTest"), TestCase("EnumsTest"), TestCase("EnzymeML"), TestCase("MetaLEX"), TestCase("Microsoft Search"), TestCase("Multi-namespaces"), TestCase("mzIdentML"), TestCase("mzML"), TestCase("mzQuantML"), TestCase("NameMangled"), TestCase("NHS CDS"), TestCase("OcmContracts"), 
-         //TestCase("OfficeOpenXML-XMLSchema-Strict"), TestCase("OfficeOpenXML-XMLSchema-Transitional"),
+         TestCase("OfficeOpenXML-XMLSchema-Strict"), TestCase("OfficeOpenXML-XMLSchema-Transitional"),
          TestCase("OFMX"), TestCase("Opml"), TestCase("Pubmed"), TestCase("Rss"), TestCase("SharePoint2010"), TestCase("ThermoML"), TestCase("Toy schemas"), TestCase("TraML"), TestCase("Windows"), TestCase("W3C.XML"), TestCase("XMLSpec"), TestCase("XQueryX")]
         // these are failing tests due reasons besides typeof(void)
         /* [TestCase("CityGML"), TestCase("GelML"), TestCase("GS1"), TestCase("HL-7"), TestCase("HR-XML"), TestCase("LegalRuleML"), TestCase("Office 2003 Reference schemas"), TestCase("OPC"),
