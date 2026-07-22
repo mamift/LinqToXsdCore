@@ -33,6 +33,7 @@ namespace Xml.Schema.Linq.Extensions
         /// instance, as XDocuments do not contain any information about the file name or where the XML document was/is stored.</remarks>
         /// <param name="xDocs"></param>
         /// <returns></returns>
+        [Obsolete("Use the " + nameof(FindEntryPointSchemas) + " method")]
         public static Dictionary<string, XDocument> FilterOutSchemasThatAreIncludedOrImported(this Dictionary<string, XDocument> xDocs)
         {
             List<KeyValuePair<string, XDocument>> actualSchemas = xDocs.Where(kvp => kvp.Value.IsAnXmlSchema()).ToList();
