@@ -14,7 +14,7 @@ public class FileSystemUtilitiesTests
     [Test]
     public void TestResolvePossibleFileAndFolderPathsToProcessableSchemasGithubIssue71()
     {
-        var dir = new DirectoryInfo(Environment.CurrentDirectory).AscendToFolder("LinqToXsdCore").DescendToFolder("GithubIssue71");
+        var dir = new DirectoryInfo(Environment.CurrentDirectory).AscendToFolder("XObjectsTests").AscendByLevel(1).DescendToFolder("GithubIssue71");
 
         IEnumerable<string> filesOrFolders = dir.GetFiles().Select(f => f.FullName);
         List<string>? entryPointSchemas =
