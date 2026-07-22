@@ -78,6 +78,106 @@ namespace Xml.Schema.Linq
         }
 
         /// <summary>
+        /// Scans a folder for XSD files and produces a textual report showing which schemas each schema imports or
+        /// includes. Each line follows the format:
+        /// <c>ImporterFile.xsd &lt;- imp: ImportedFile.xsd, inc: IncludedFile.xsd</c>
+        /// or <c>ImporterFile.xsd &lt;- (none)</c> if the schema imports/includes no other schema.
+        /// </summary>
+        /// <param name="folderPath">Path to a folder containing XSD files.</param>
+        /// <returns>An array of formatted lines, one per XSD found in the folder, sorted alphabetically by file name.</returns>
+        public static string[] GenerateImportIncludeReport(string folderPath)
+        {
+            if (string.IsNullOrWhiteSpace(folderPath))
+                throw new ArgumentNullException(nameof(folderPath));
+
+            var dir = new DirectoryInfo(folderPath);
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException($"Directory not found: {folderPath}");
+
+            FileInfo[] xsdFiles = dir.GetFiles("*.xsd");
+            if (xsdFiles.Length == 0)
+                return Array.Empty<string>();
+
+            XName includeXName = XDocumentExtensions.IncludeXName;
+            XName importXName = XDocumentExtensions.ImportXName;
+            XName schemaLocationXName = XName.Get("schemaLocation");
+
+            // Build a forward map: for each XSD (by filename), collect what it imports/includes.
+            // Key: importer file name, Value: list of "imp: ImportedFileName" or "inc: IncludedFileName"
+            var importsBy = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (FileInfo xsdFile in xsdFiles)
+            {
+                XDocument xDoc;
+                try
+                {
+                    xDoc = XDocument.Load(xsdFile.FullName);
+                }
+                catch
+                {
+                    continue; // skip unparseable files
+                }
+
+                if (!xDoc.IsAnXmlSchema())
+                    continue;
+
+                string importerName = xsdFile.Name;
+
+                // Collect all xs:import and xs:include elements
+                foreach (var element in xDoc.Descendants(importXName))
+                {
+                    var sl = element.Attribute(schemaLocationXName);
+                    if (sl != null && !string.IsNullOrWhiteSpace(sl.Value))
+                    {
+                        string referencedFileName = Path.GetFileName(sl.Value);
+                        if (!string.IsNullOrEmpty(referencedFileName))
+                            AddImportEntry(importsBy, importerName, $"imp: {referencedFileName}");
+                    }
+                }
+
+                foreach (var element in xDoc.Descendants(includeXName))
+                {
+                    var sl = element.Attribute(schemaLocationXName);
+                    if (sl != null && !string.IsNullOrWhiteSpace(sl.Value))
+                    {
+                        string referencedFileName = Path.GetFileName(sl.Value);
+                        if (!string.IsNullOrEmpty(referencedFileName))
+                            AddImportEntry(importsBy, importerName, $"inc: {referencedFileName}");
+                    }
+                }
+            }
+
+            // Produce one line per XSD file
+            var lines = new List<string>();
+            foreach (FileInfo xsdFile in xsdFiles.OrderBy(f => f.Name, StringComparer.OrdinalIgnoreCase))
+            {
+                string fileName = xsdFile.Name;
+                if (importsBy.TryGetValue(fileName, out var imports) && imports.Count > 0)
+                {
+                    lines.Add($"{fileName} <- {string.Join(", ", imports.OrderBy(i => i, StringComparer.OrdinalIgnoreCase))}");
+                }
+                else
+                {
+                    lines.Add($"{fileName} <- (none)");
+                }
+            }
+
+            return lines.ToArray();
+        }
+
+        private static void AddImportEntry(Dictionary<string, List<string>> importsBy, string importerName, string entry)
+        {
+            if (!importsBy.TryGetValue(importerName, out var list))
+            {
+                list = new List<string>();
+                importsBy[importerName] = list;
+            }
+
+            if (!list.Contains(entry))
+                list.Add(entry);
+        }
+
+        /// <summary>
         /// Assuming that other XSDs exist in the same directory as the given <paramref name="fileName"/>, this will pre-load those
         /// additional XSDs into an <see cref="XmlPreloadedResolver"/> and use them if they are referenced by the file.
         /// </summary>

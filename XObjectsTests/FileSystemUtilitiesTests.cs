@@ -42,6 +42,38 @@ public class FileSystemUtilitiesTests
         Assert.IsNotEmpty(entryPointSchemas);
     }
 
+    [Test]
+    public void TestGenerateImportIncludeReport()
+    {
+        var dir = new DirectoryInfo(Environment.CurrentDirectory).AscendToFolder("XObjectsTests").AscendByLevel(1).DescendToFolder("GithubIssue71");
+
+        string[] report = FileSystemUtilities.GenerateImportIncludeReport(dir.FullName);
+
+        Assert.NotNull(report);
+        Assert.AreEqual(6, report.Length); // 6 XSD files in the folder
+
+        // Find each file's line (each line starts with the file name)
+        string FindLine(string fileName) => report.Single(l => l.StartsWith(fileName, StringComparison.OrdinalIgnoreCase));
+
+        // AppProtocol: imports nothing
+        Assert.AreEqual("V2G_CI_AppProtocol.xsd <- (none)", FindLine("V2G_CI_AppProtocol.xsd"));
+
+        // MsgBody: imports MsgDef and MsgDataTypes
+        Assert.AreEqual("V2G_CI_MsgBody.xsd <- imp: V2G_CI_MsgDataTypes.xsd, imp: V2G_CI_MsgDef.xsd", FindLine("V2G_CI_MsgBody.xsd"));
+
+        // MsgDataTypes: imports MsgBody
+        Assert.AreEqual("V2G_CI_MsgDataTypes.xsd <- imp: V2G_CI_MsgBody.xsd", FindLine("V2G_CI_MsgDataTypes.xsd"));
+
+        // MsgDef: imports MsgHeader
+        Assert.AreEqual("V2G_CI_MsgDef.xsd <- imp: V2G_CI_MsgHeader.xsd", FindLine("V2G_CI_MsgDef.xsd"));
+
+        // MsgHeader: imports MsgDef, MsgDataTypes, and xmldsig-core-schema
+        Assert.AreEqual("V2G_CI_MsgHeader.xsd <- imp: V2G_CI_MsgDataTypes.xsd, imp: V2G_CI_MsgDef.xsd, imp: xmldsig-core-schema.xsd", FindLine("V2G_CI_MsgHeader.xsd"));
+
+        // xmldsig: imports nothing
+        Assert.AreEqual("xmldsig-core-schema.xsd <- (none)", FindLine("xmldsig-core-schema.xsd"));
+    }
+
     private static IEnumerable<object[]> GetPhysicalFolderPathsForGeneratedSchemaLibraries()
     {
         var cwd = new DirectoryInfo(Environment.CurrentDirectory);
