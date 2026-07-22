@@ -54,5 +54,154 @@ namespace Xml.Schema.Linq.Extensions
 
             return theXDocsReferencedByImportOrInclude.ToDictionary(key => key.Key, kvp => kvp.Value);
         }
+
+        /// <summary>
+        /// Builds a directed graph of import/include relationships between XSD schemas.
+        /// For each schema (keyed by its file path), returns the set of schema file names it imports or includes.
+        /// </summary>
+        /// <param name="xDocs">Dictionary of file path → XDocument for each XSD in the set.</param>
+        /// <returns>A dictionary where keys are file paths and values are the set of file paths that the key imports/includes.</returns>
+        private static Dictionary<string, HashSet<string>> BuildImportGraph(this Dictionary<string, XDocument> xDocs)
+        {
+            var graph = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+            XName schemaLocationXName = XName.Get("schemaLocation");
+
+            foreach (var kvp in xDocs)
+            {
+                if (!kvp.Value.IsAnXmlSchema()) continue;
+
+                var imports = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                var importAndIncludeElements = kvp.Value.Descendants(ImportXName)
+                    .Union(kvp.Value.Descendants(IncludeXName));
+
+                foreach (var element in importAndIncludeElements)
+                {
+                    var schemaLocationAttr = element.Attribute(schemaLocationXName);
+                    if (schemaLocationAttr == null || string.IsNullOrWhiteSpace(schemaLocationAttr.Value))
+                        continue;
+
+                    // Resolve the schemaLocation to a full path by matching against the known file names
+                    var referencedFileName = schemaLocationAttr.Value;
+                    var match = xDocs.Keys.FirstOrDefault(k =>
+                        string.Equals(Path.GetFileName(k), referencedFileName, StringComparison.InvariantCultureIgnoreCase));
+                    if (match != null)
+                        imports.Add(match);
+                }
+
+                graph[kvp.Key] = imports;
+            }
+
+            return graph;
+        }
+
+        /// <summary>
+        /// Finds the minimum set of entry-point schemas such that every XSD in the collection
+        /// is transitively reachable from at least one entry point via xs:import/xs:include references.
+        /// Uses Tarjan's algorithm to find strongly connected components (SCCs) which correctly handles
+        /// cycles in the import graph, then picks one representative from each source SCC (in-degree 0
+        /// in the condensed graph).
+        /// </summary>
+        /// <param name="xDocs">Dictionary of file path → XDocument for each XSD in the set.</param>
+        /// <returns>The file paths of the minimum set of entry-point schemas.</returns>
+        public static List<string> FindEntryPointSchemas(this Dictionary<string, XDocument> xDocs)
+        {
+            var graph = xDocs.BuildImportGraph();
+
+            // If there's only one schema or no imports at all, all are entry points
+            if (graph.Count <= 1)
+                return graph.Keys.ToList();
+
+            // Tarjan's SCC algorithm
+            var index = 0;
+            var stack = new Stack<string>();
+            var indices = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var lowLink = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var onStack = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var sccs = new List<List<string>>();
+
+            void StrongConnect(string v)
+            {
+                indices[v] = index;
+                lowLink[v] = index;
+                index++;
+                stack.Push(v);
+                onStack.Add(v);
+
+                if (graph.TryGetValue(v, out var neighbors))
+                {
+                    foreach (var w in neighbors)
+                    {
+                        if (!indices.ContainsKey(w))
+                        {
+                            StrongConnect(w);
+                            lowLink[v] = Math.Min(lowLink[v], lowLink[w]);
+                        }
+                        else if (onStack.Contains(w))
+                        {
+                            lowLink[v] = Math.Min(lowLink[v], indices[w]);
+                        }
+                    }
+                }
+
+                // If v is a root node, pop the stack and form an SCC
+                if (lowLink[v] == indices[v])
+                {
+                    var scc = new List<string>();
+                    string w;
+                    do
+                    {
+                        w = stack.Pop();
+                        onStack.Remove(w);
+                        scc.Add(w);
+                    } while (!string.Equals(w, v, StringComparison.OrdinalIgnoreCase));
+
+                    sccs.Add(scc);
+                }
+            }
+
+            foreach (var v in graph.Keys)
+            {
+                if (!indices.ContainsKey(v))
+                    StrongConnect(v);
+            }
+
+            // Build mapping: node → its SCC index
+            var nodeToScc = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            for (int i = 0; i < sccs.Count; i++)
+            {
+                foreach (var node in sccs[i])
+                    nodeToScc[node] = i;
+            }
+
+            // Compute in-degree of each SCC in the condensed graph
+            var sccInDegree = new int[sccs.Count];
+            foreach (var kvp in graph)
+            {
+                var fromScc = nodeToScc[kvp.Key];
+                foreach (var target in kvp.Value)
+                {
+                    var toScc = nodeToScc[target];
+                    if (fromScc != toScc)
+                        sccInDegree[toScc]++;
+                }
+            }
+
+            // Source SCCs (in-degree 0) each need one representative
+            var entryPoints = new List<string>();
+            for (int i = 0; i < sccs.Count; i++)
+            {
+                if (sccInDegree[i] == 0)
+                {
+                    // Pick the first schema in the SCC as the representative
+                    entryPoints.Add(sccs[i][0]);
+                }
+            }
+
+            // If no entry points found (all in one cycle with no source), pick any one
+            if (entryPoints.Count == 0 && sccs.Count > 0)
+                entryPoints.Add(sccs[0][0]);
+
+            return entryPoints;
+        }
     }
 }

@@ -53,8 +53,9 @@ namespace Xml.Schema.Linq
         /// <summary>
         /// THe next logical step after <see cref="ResolveFileAndFolderPathsToJustFiles"/>, takes those resolved file paths
         /// and then narrows down the list to a list of file paths that refer to schemas that LinqToXsd can processes.
-        /// <para>Filters out schemas that are themselves included or imported (invokes
-        /// <see cref="XDocumentExtensions.FilterOutSchemasThatAreIncludedOrImported"/>).</para>
+        /// <para>Uses SCC-based entry point detection (<see cref="XDocumentExtensions.FindEntryPointSchemas"/>) to find the
+        /// minimum set of XSDs whose transitive imports/includes cover all XSDs in the set. This correctly handles
+        /// cyclic import/include relationships (e.g. A imports B and B imports A).</para>
         /// </summary>
         /// <param name="filesOrFolders"></param>
         /// <returns></returns>
@@ -67,17 +68,11 @@ namespace Xml.Schema.Linq
             Dictionary<string, XDocument> xDocs = pairs.Where(kvp => kvp.schema.IsAnXmlSchema())
                 .ToDictionary(t => t.fileName, t => t.schema);
 
-            List<string> filteredIncludeAndImportRefs = xDocs.FilterOutSchemasThatAreIncludedOrImported().Select(kvp => kvp.Key).ToList();
-            
-            var resolvedSchemaFiles = files.Except(filteredIncludeAndImportRefs).Distinct().ToList();
+            if (xDocs.Count == 0)
+                return new List<string>();
 
-
-            if (filteredIncludeAndImportRefs.Count == files.Count && !resolvedSchemaFiles.Any()) {
-                throw new LinqToXsdException("Cannot decide which XSD files to process as the specified " +
-                                             "XSD files or folder of XSD files recursively import and/or " +
-                                             "include each other! In this case you must explicitly provide" +
-                                             "a file path and not a folder path.");
-            }
+            // Use SCC-based entry point detection to correctly handle cycles in the import graph
+            List<string> resolvedSchemaFiles = xDocs.FindEntryPointSchemas();
 
             return resolvedSchemaFiles;
         }

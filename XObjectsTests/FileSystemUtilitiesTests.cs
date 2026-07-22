@@ -11,26 +11,35 @@ namespace Xml.Schema.Linq.Tests;
 [TestFixture]
 public class FileSystemUtilitiesTests
 {
+    [Test]
+    public void TestResolvePossibleFileAndFolderPathsToProcessableSchemasGithubIssue71()
+    {
+        var dir = new DirectoryInfo(Environment.CurrentDirectory).AscendToFolder("LinqToXsdCore").DescendToFolder("GithubIssue71");
+
+        IEnumerable<string> filesOrFolders = dir.GetFiles().Select(f => f.FullName);
+        List<string>? entryPointSchemas =
+            FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(filesOrFolders);
+
+        Assert.NotNull(entryPointSchemas);
+        Assert.IsNotEmpty(entryPointSchemas);
+        // The minimum set of entry points: V2G_CI_AppProtocol.xsd (standalone, no imports)
+        // plus one representative from the cyclic SCC {MsgBody, MsgDataTypes, MsgDef, MsgHeader}
+        // which transitively covers xmldsig-core-schema.xsd via MsgHeader's import.
+        Assert.AreEqual(2, entryPointSchemas.Count);
+        Assert.That(entryPointSchemas.Any(f => f.EndsWith("V2G_CI_AppProtocol.xsd")), "Should include the standalone AppProtocol schema");
+        Assert.That(entryPointSchemas.Any(f => f.EndsWith("V2G_CI_MsgDataTypes.xsd")), "Should include one representative from the cyclic SCC");
+    }
+
     [Test,TestCaseSource(nameof(GetPhysicalFolderPathsForGeneratedSchemaLibraries))]
     public void TestResolvePossibleFileAndFolderPathsToProcessableSchemas(object folderPath)
     {
         var dir = new DirectoryInfo((string)folderPath);
-        IEnumerable<string> filesOrFolders = dir.GetFiles().Select(f => f.FullName);
+        IEnumerable<string> filesOrFolders = dir.GetFiles("*", SearchOption.AllDirectories).Select(f => f.FullName);
         List<string>? entryPointSchemas =
             FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(filesOrFolders);
 
         Assert.NotNull(entryPointSchemas);
-    }
-
-    public void TestResolvePossibleFileAndFolderPathsToProcessableSchemasGithubIssue71()
-    {
-        string folderPath = "";
-        var dir = new DirectoryInfo((string)folderPath);
-        IEnumerable<string> filesOrFolders = dir.GetFiles().Select(f => f.FullName);
-        List<string>? entryPointSchemas =
-            FileSystemUtilities.ResolvePossibleFileAndFolderPathsToProcessableSchemas(filesOrFolders);
-
-        Assert.NotNull(entryPointSchemas);
+        Assert.IsNotEmpty(entryPointSchemas);
     }
 
     private static IEnumerable<object[]> GetPhysicalFolderPathsForGeneratedSchemaLibraries()
@@ -47,8 +56,10 @@ public class FileSystemUtilitiesTests
         foreach (var project in generatedSchemaLibProjectsInSlnFilter.EnumerateArray())
         {
             var projectPath = project.GetString();
+            if (projectPath.EndsWith("XObjectsCore")) continue;
             var containerDir = Path.GetDirectoryName(projectPath);
             var fullyQualifiedDir = Path.Combine(linqToXsdSlnFolder.FullName, containerDir);
+            if (!fullyQualifiedDir.Contains(baseFolder.Name)) continue;
             yield return new object[] { fullyQualifiedDir };
         }
     }
