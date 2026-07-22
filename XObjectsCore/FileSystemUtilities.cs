@@ -17,30 +17,30 @@ namespace Xml.Schema.Linq
         /// and it returns another sequence of strings that are ONLY file paths.
         /// </summary>
         /// <param name="sequenceOfFileAndOrFolderPaths"></param>
-        /// <param name="filter"></param>
+        /// <param name="subdirFileFilter">Filter for filtering subdirectories only. Use <paramref name="sequenceFilterFunctor"/> to filter files in the immediate child folder.</param>
         /// <param name="sequenceFilterFunctor">Optionally provide a <see cref="Func{TResult}"/> that filters the <paramref name="sequenceOfFileAndOrFolderPaths"/> </param>
         /// <returns></returns>
         /// <exception cref="T:System.IO.IOException">This file is being used by another process.</exception>
         /// <exception cref="T:System.IO.DirectoryNotFoundException">When any of the paths given represents a directory and is invalid, such as being on an unmapped drive, or the directory cannot be found.</exception>
         /// <exception cref="T:System.IO.PathTooLongException">The fully qualified path and file name is 260 or more characters.</exception>
         public static List<string> ResolveFileAndFolderPathsToJustFiles(IEnumerable<string> sequenceOfFileAndOrFolderPaths,
-            string filter = "*.*",
+            string subdirFileFilter = "*.*",
             Func<IEnumerable<string>, IEnumerable<string>> sequenceFilterFunctor = null)
         {
             if (sequenceOfFileAndOrFolderPaths == null) throw new ArgumentNullException(nameof(sequenceOfFileAndOrFolderPaths));
 
-            var enumeratedFileAndOrFolderPaths = sequenceOfFileAndOrFolderPaths.ToList();
+            List<string> enumeratedFileAndOrFolderPaths = sequenceOfFileAndOrFolderPaths.ToList();
 
             if (!enumeratedFileAndOrFolderPaths.Any())
                 throw new InvalidOperationException("There are no file or folder paths present in the enumerable!");
 
-            var dirs = enumeratedFileAndOrFolderPaths.Where(sf => File.GetAttributes(sf).HasFlag(FileAttributes.Directory)).ToArray();
-            var files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(Path.GetFullPath).ToList();
-            var filteredFiles = dirs.SelectMany(d => new DirectoryInfo(d).GetFiles(filter, SearchOption.AllDirectories));
+            string[] dirs = enumeratedFileAndOrFolderPaths.Where(sf => File.GetAttributes(sf).HasFlag(FileAttributes.Directory)).ToArray();
+            List<string> files = enumeratedFileAndOrFolderPaths.Except(dirs).Select(Path.GetFullPath).ToList();
+            IEnumerable<FileInfo> filteredFiles = dirs.SelectMany(d => new DirectoryInfo(d).GetFiles(subdirFileFilter, SearchOption.AllDirectories));
             files.AddRange(filteredFiles.Select(fi => fi.FullName));
             if (sequenceFilterFunctor == null) return files;
             // whatever is in this result will be filtered out of the return value
-            var filteredOut = sequenceFilterFunctor(enumeratedFileAndOrFolderPaths) ?? new List<string>(); // can't be certain that the return value is not null
+            IEnumerable<string> filteredOut = sequenceFilterFunctor(enumeratedFileAndOrFolderPaths);
             return files.Except(filteredOut).Distinct().ToList();
         }
 
@@ -60,7 +60,7 @@ namespace Xml.Schema.Linq
         /// <returns></returns>
         public static List<string> ResolvePossibleFileAndFolderPathsToProcessableSchemas(IEnumerable<string> filesOrFolders)
         {
-            List<string> files = ResolveFileAndFolderPathsToJustFiles(filesOrFolders, "*.xsd");
+            List<string> files = ResolveFileAndFolderPathsToJustFiles(filesOrFolders, "*.xsd", files => files.Where(s => !s.EndsWith(".xsd")));
 
             // convert files to XDocuments and check if they are proper W3C schemas
             IEnumerable<(string fileName, XDocument schema)> pairs = files.Select(f => (fileName: f, schema: XDocument.Load(f)));
