@@ -13,6 +13,7 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = $PSScriptRoot
 $slnfPath = Join-Path $repoRoot 'LinqToXsd-TestingSuite.slnf'
 $linqToXsdProject = Join-Path $repoRoot 'LinqToXsd' 'LinqToXsd.csproj'
+$logPath = Join-Path $repoRoot ('RegenerateLog_{0:yyyyMMdd_HHmmss}.log' -f (Get-Date))
 
 if (-not (Test-Path $slnfPath)) {
     Write-Error "Solution filter not found: $slnfPath"
@@ -50,14 +51,18 @@ foreach ($proj in $projects) {
 
     Push-Location $absProjDir
     try {
-        dotnet run -v q --framework netframework472 --project $linqToXsdProject -- gen -a .
+        $output = & dotnet run -v q --framework netframework472 --project $linqToXsdProject -- gen -a . 2>&1
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  OK" -ForegroundColor Green
             $succeeded++
         }
         else {
             Write-Host "  FAILED (exit code: $LASTEXITCODE)" -ForegroundColor Red
-            $failed += $projDir
+            $failed += [PSCustomObject]@{
+                Project  = $projDir
+                ExitCode = $LASTEXITCODE
+                Output   = $output | Out-String
+            }
         }
     }
     finally {
@@ -70,6 +75,26 @@ Write-Host "Done. Succeeded: $succeeded, Failed: $($failed.Count)" -ForegroundCo
 
 if ($failed.Count -gt 0) {
     Write-Host "`nFailed projects:" -ForegroundColor Red
-    $failed | ForEach-Object { Write-Host "  $_" -ForegroundColor Red }
+    $failed | ForEach-Object { Write-Host "  $($_.Project) (exit code: $($_.ExitCode))" -ForegroundColor Red }
+
+    # Write detailed log file
+    $logLines = @()
+    $logLines += "LinqToXsd regeneration log — $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $logLines += "============================================================"
+    $logLines += "Succeeded: $succeeded"
+    $logLines += "Failed:    $($failed.Count)"
+    $logLines += ""
+    foreach ($f in $failed) {
+        $logLines += "--- FAILED: $($f.Project) (exit code: $($f.ExitCode)) ---"
+        $logLines += $f.Output
+        $logLines += ""
+    }
+    $logLines | Out-File -FilePath $logPath -Encoding UTF8
+    Write-Host "`nFull output written to: $logPath" -ForegroundColor Yellow
     exit 1
+}
+else {
+    # Write a success-only log as well
+    "LinqToXsd regeneration log — $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')`nAll $succeeded projects succeeded." |
+        Out-File -FilePath $logPath -Encoding UTF8
 }
