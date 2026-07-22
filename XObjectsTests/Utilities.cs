@@ -249,8 +249,9 @@ namespace Xml.Schema.Linq.Tests
                 DtdProcessing = DtdProcessing.Ignore,
                 CloseInput = true
             };
-            var schemaSet = XmlReader.Create(xsdFile.OpenRead(), xmlReaderSettings)
-                .ToXmlSchemaSet(xmlPreloadedResolver);
+            using FileSystemStream fileSystemStream = xsdFile.OpenRead();
+            using var xmlReader = XmlReader.Create(fileSystemStream, xmlReaderSettings);
+            var schemaSet = xmlReader.ToXmlSchemaSet(xmlPreloadedResolver);
 
             return schemaSet;
         }
