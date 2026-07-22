@@ -84,8 +84,9 @@ namespace Xml.Schema.Linq
         /// or <c>ImporterFile.xsd &lt;- (none)</c> if the schema imports/includes no other schema.
         /// </summary>
         /// <param name="folderPath">Path to a folder containing XSD files.</param>
+        /// <param name="dirSearch"></param>
         /// <returns>An array of formatted lines, one per XSD found in the folder, sorted alphabetically by file name.</returns>
-        public static string[] GenerateImportIncludeReport(string folderPath)
+        public static string[] GenerateImportIncludeReport(string folderPath, SearchOption dirSearch = SearchOption.AllDirectories)
         {
             if (string.IsNullOrWhiteSpace(folderPath))
                 throw new ArgumentNullException(nameof(folderPath));
@@ -94,7 +95,7 @@ namespace Xml.Schema.Linq
             if (!dir.Exists)
                 throw new DirectoryNotFoundException($"Directory not found: {folderPath}");
 
-            FileInfo[] xsdFiles = dir.GetFiles("*.xsd");
+            FileInfo[] xsdFiles = dir.GetFiles("*.xsd", dirSearch);
             if (xsdFiles.Length == 0)
                 return Array.Empty<string>();
 

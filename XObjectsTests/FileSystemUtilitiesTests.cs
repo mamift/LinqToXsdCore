@@ -42,8 +42,19 @@ public class FileSystemUtilitiesTests
         Assert.IsNotEmpty(entryPointSchemas);
     }
 
+    [Test, TestCaseSource(nameof(GetPhysicalFolderPathsForGeneratedSchemaLibraries))]
+    public void TestGenerateImportIncludeReport(string folderPath)
+    {
+        var dir = new DirectoryInfo(folderPath);
+
+        string[] report = FileSystemUtilities.GenerateImportIncludeReport(dir.FullName);
+
+        Assert.NotNull(report);
+        Assert.IsNotEmpty(report);
+    }
+
     [Test]
-    public void TestGenerateImportIncludeReport()
+    public void TestGenerateImportIncludeReportGitHubIssue71()
     {
         var dir = new DirectoryInfo(Environment.CurrentDirectory).AscendToFolder("XObjectsTests").AscendByLevel(1).DescendToFolder("GithubIssue71");
 
