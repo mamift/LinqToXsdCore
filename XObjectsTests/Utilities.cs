@@ -6,6 +6,7 @@ using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -272,13 +273,15 @@ namespace Xml.Schema.Linq.Tests
             return (CSharpSyntaxTree)tree;
         }
 
-        public static OneOf<CSharpSyntaxTree, Exception> GenerateSyntaxTreeOrError(IFileInfo xsdFile, IMockFileDataAccessor mfs)
+        public static OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> GenerateSyntaxTreeOrError(IFileInfo xsdFile, IMockFileDataAccessor mfs)
         {
             try {
                 return GenerateSyntaxTree(xsdFile, mfs);
             }
-            catch (Exception ex) {
-                return ex;
+            catch (Exception ex)
+            {
+                ExceptionDispatchInfo er = ExceptionDispatchInfo.Capture(ex);
+                return er;
             }
         }
 

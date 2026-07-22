@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -14,6 +15,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MoreLinq;
 using NUnit.Framework;
 using ObjectsComparer;
+using OneOf;
 using Xml.Schema.Linq.Extensions;
 using Xml.Schema.Linq.Tests.Extensions;
 
@@ -120,12 +122,12 @@ namespace Xml.Schema.Linq.Tests
             var allProcessableXsds =
                 AllTestFiles.ResolvePossibleFileAndFolderPathsToProcessableSchemas(xsdsToProcess);
 
-            var failingXsds = new List<(IFileInfo file, Exception exception)>(allProcessableXsds.Capacity);
+            var failingXsds = new List<(IFileInfo file, ExceptionDispatchInfo exception)>(allProcessableXsds.Capacity);
 
             var toProcess = randomSubset > 0 ? allProcessableXsds.RandomSubset(100) : allProcessableXsds;
 
             foreach (var xsd in toProcess) {
-                var generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
+                OneOf<CSharpSyntaxTree, ExceptionDispatchInfo> generateResult = Utilities.GenerateSyntaxTreeOrError(xsd, AllTestFiles);
 
                 if (generateResult.IsT1) {
                     failingXsds.Add((xsd, generateResult.AsT1));
@@ -162,7 +164,7 @@ namespace Xml.Schema.Linq.Tests
                     var message = $"{file} failed to generated code.";
                     TestContext.Out.WriteLine(message);
 
-                    throw new LinqToXsdException(message, pair.exception);
+                    throw new LinqToXsdException(message, pair.exception.SourceException);
                 }
             }
         }
