@@ -278,6 +278,18 @@
       "commandLineArgs": "gen -a .\\",
       "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\Attributes",
       "hotReloadEnabled": false
+    },
+    "GhIssue71": {
+      "commandName": "Project",
+      "commandLineArgs": "gen -a .",
+      "workingDirectory": "..\\LinqToXsd.Schemas\\Tests\\GithubIssue71",
+      "hotReloadEnabled": false
+    },
+    "1707_ISYBAU_XML_Schema": {
+      "commandName": "Project",
+      "commandLineArgs": "config -e .",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\1707_ISYBAU_XML_Schema",
+      "hotReloadEnabled": false
     }
   }
 }
