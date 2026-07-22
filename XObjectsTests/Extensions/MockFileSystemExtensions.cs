@@ -61,8 +61,8 @@ public static class MockFileSystemExtensions
                 return new List<IFileInfo>();
 
             // Use SCC-based entry point detection to correctly handle cycles in the import graph
-            var resolvedSchemaFilePaths = xDocs.FindEntryPointSchemas();
-            var resolvedSchemaFiles = resolvedSchemaFilePaths.Select(fn => mfs.FileInfo.New(fn)).ToList();
+            var resolvedSchemaFilePaths = xDocs.FilterOutSchemasThatAreIncludedOrImported();
+            var resolvedSchemaFiles = resolvedSchemaFilePaths.Select(fn => mfs.FileInfo.New(fn.Key)).ToList();
 
             return resolvedSchemaFiles;
         }
