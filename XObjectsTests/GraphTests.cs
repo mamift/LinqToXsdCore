@@ -62,32 +62,51 @@ public class GraphTests
     [Test]
     public void TestFindEntryPointSchemasCanCompileXmlSchemaSet()
     {
-        DirectoryInfo dir = GetSharePoint2010Folder();
-        Graph graph = Graph.BuildFromFolder(dir.FullName);
-        List<string> entryPoints = graph.FindEntryPointSchemas();
+        string tempFolder = Path.Combine(Path.GetTempPath(), $"LinqToXsdCore.GraphTests.{Guid.NewGuid():N}");
+        Directory.CreateDirectory(tempFolder);
 
-        Assert.That(entryPoints, Is.Not.Empty);
-
-        var filesByName = dir.GetFiles("*.xsd", SearchOption.TopDirectoryOnly)
-            .ToDictionary(f => f.Name, f => f.FullName, StringComparer.OrdinalIgnoreCase);
-
-        var errors = new List<string>();
-        var schemaSet = new XmlSchemaSet();
-        schemaSet.ValidationEventHandler += (_, args) =>
+        try
         {
-            if (args.Severity == XmlSeverityType.Error)
-                errors.Add(args.Message);
-        };
+            string rootSchemaPath = Path.Combine(tempFolder, "Root.xsd");
+            File.WriteAllText(rootSchemaPath,
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" targetNamespace=\"urn:test\" elementFormDefault=\"qualified\">" +
+                "  <xs:element name=\"Root\" type=\"xs:string\" />" +
+                "</xs:schema>");
 
-        foreach (string entryPoint in entryPoints)
-        {
-            Assert.That(filesByName.ContainsKey(entryPoint), $"Entry point file not found: {entryPoint}");
-            schemaSet.Add(null, filesByName[entryPoint]);
+            Graph graph = Graph.BuildFromFolder(tempFolder);
+            List<string> entryPoints = graph.FindEntryPointSchemas();
+
+            Assert.That(entryPoints, Is.Not.Empty);
+            Assert.That(entryPoints.Count, Is.EqualTo(1));
+            Assert.That(entryPoints.Single(), Is.EqualTo("Root.xsd").IgnoreCase);
+
+            var filesByName = new DirectoryInfo(tempFolder).GetFiles("*.xsd", SearchOption.TopDirectoryOnly)
+                .ToDictionary(f => f.Name, f => f.FullName, StringComparer.OrdinalIgnoreCase);
+
+            var errors = new List<string>();
+            var schemaSet = new XmlSchemaSet();
+            schemaSet.ValidationEventHandler += (_, args) =>
+            {
+                if (args.Severity == XmlSeverityType.Error)
+                    errors.Add(args.Message);
+            };
+
+            foreach (string entryPoint in entryPoints)
+            {
+                Assert.That(filesByName.ContainsKey(entryPoint), $"Entry point file not found: {entryPoint}");
+                schemaSet.Add(null, filesByName[entryPoint]);
+            }
+
+            schemaSet.Compile();
+
+            Assert.That(errors, Is.Empty, string.Join(Environment.NewLine, errors));
         }
-
-        schemaSet.Compile();
-
-        Assert.That(errors, Is.Empty, string.Join(Environment.NewLine, errors));
+        finally
+        {
+            if (Directory.Exists(tempFolder))
+                Directory.Delete(tempFolder, true);
+        }
     }
 
     private static DirectoryInfo GetSharePoint2010Folder()
