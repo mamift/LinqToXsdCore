@@ -91,6 +91,12 @@
       "workingDirectory": "..\\LinqToXsd.Schemas\\XsdFeatureTests\\ImportsXmlNamespace",
       "hotReloadEnabled": false
     },
+    "XImportGraph": {
+      "commandName": "Project",
+      "commandLineArgs": "gen \"XImportGraph.xsd\" -a",
+      "workingDirectory": "..\\XObjectsCode",
+      "hotReloadEnabled": false
+    },
     "XQueryX": {
       "commandName": "Project",
       "commandLineArgs": "gen -a .\\",

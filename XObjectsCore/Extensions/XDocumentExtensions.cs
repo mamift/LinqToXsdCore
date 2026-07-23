@@ -12,6 +12,26 @@ namespace Xml.Schema.Linq.Extensions
         public static readonly XName IncludeXName = XName.Get("include", W3CXmlSchemaNamespaceUri);
         public static readonly XName ImportXName = XName.Get("import", W3CXmlSchemaNamespaceUri);
 
+        public static IEnumerable<XElement> GetIncludeElements(this XDocument xDocument)
+        {
+            if (xDocument.Root != null)
+            {
+                return xDocument.Root.Descendants().Where(e => e.Name.LocalName == "include");
+            }
+            
+            return Enumerable.Empty<XElement>();
+        }
+
+        public static IEnumerable<XElement> GetImportElements(this XDocument xDocument)
+        {
+            if (xDocument.Root != null)
+            {
+                return xDocument.Root.Descendants().Where(e => e.Name.LocalName == "import");
+            }
+            
+            return Enumerable.Empty<XElement>();
+        }
+
         /// <summary>
         /// Determines if the current <see cref="XDocument"/> is a W3C Xml Schema by checking for the presence of the
         /// W3C namespace URI in the root element.
