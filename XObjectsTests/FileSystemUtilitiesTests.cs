@@ -85,7 +85,7 @@ public class FileSystemUtilitiesTests
         Assert.AreEqual("xmldsig-core-schema.xsd <- (none)", FindLine("xmldsig-core-schema.xsd"));
     }
 
-    private static IEnumerable<object[]> GetPhysicalFolderPathsForGeneratedSchemaLibraries()
+    public static IEnumerable<object[]> GetPhysicalFolderPathsForGeneratedSchemaLibraries()
     {
         var cwd = new DirectoryInfo(Environment.CurrentDirectory);
         DirectoryInfo linqToXsdSlnFolder = cwd.AscendToFolder("LinqToXsdCore");

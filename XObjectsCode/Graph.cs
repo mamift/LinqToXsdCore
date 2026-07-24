@@ -15,8 +15,9 @@ public partial class Graph
     /// </summary>
     /// <param name="directory"></param>
     /// <param name="searchOption"></param>
+    /// <param name="skipSchemasWithNoImportsOrIncludes"></param>
     /// <returns></returns>
-    public static Graph BuildFromFolder(string directory, SearchOption searchOption = SearchOption.TopDirectoryOnly)
+    public static Graph BuildFromFolder(string directory, SearchOption searchOption = SearchOption.TopDirectoryOnly, bool skipSchemasWithNoImportsOrIncludes = false)
     {
         DirectoryInfo dir = new DirectoryInfo(directory);
         FileInfo[] files = dir.GetFiles("*.xsd", searchOption);
@@ -33,7 +34,6 @@ public partial class Graph
 
             var schemaEl = new Schema() {
                 Name = file.Name,
-                
             };
 
             if (includes.Any())
@@ -49,6 +49,9 @@ public partial class Graph
                     Schema = imports.Select(i => new Schema() { Name = i.Attribute("schemaLocation")?.Value }).ToList()
                 };
             }
+
+            if (skipSchemasWithNoImportsOrIncludes && schemaEl.Includes is null && schemaEl.Imports is null)
+                continue;
             
             graph.Schema.Add(schemaEl);
         }
@@ -56,12 +59,51 @@ public partial class Graph
         return graph;
     }
 
+    public List<Schema> GetSchemasThatImportsOrIncludeOthers()
+    {
+        return this.Schema.Where(s => (s.Imports?.Schema != null && s.Imports.Schema.Any()) ||
+                                      (s.Includes?.Schema != null && s.Includes.Schema.Any())).ToList();
+    }
+
+    public List<Schema> GetSchemasThatDoNotImportAndIncludeOthers()
+    {
+        return this.Schema.Where(s => (s.Imports?.Schema == null || s.Imports?.Schema?.Count == 0) &&
+                                      (s.Includes?.Schema == null || s.Includes?.Schema?.Count == 0)).ToList();
+    }
+
+    public List<Schema> GetSchemasThatAreIncludedByOthers()
+    {
+        return (from s in Schema
+            where s.Includes?.Schema is not null && s.Includes.Schema.Any()
+            from i in s.Includes.Schema
+            select i).Distinct().ToList();
+    }
+
+    public List<Schema> GetSchemasThatAreImportedByOthers()
+    {
+        IEnumerable<string> named = (from s in Schema
+            where s.Imports?.Schema is not null && s.Imports.Schema.Any()
+            from i in s.Imports.Schema
+            select i.Name).Distinct();
+
+        return SchemaField.Where(sc => named.Contains(sc.Name)).ToList();
+    }
+
+    public List<Schema> FindEntryPointSchemas()
+    {
+        var entryPointNames = FindEntryPointSchemaNames();
+
+        return this.SchemaField
+            .Where(sc => entryPointNames.Any(e => e.Equals(sc.Name, StringComparison.CurrentCultureIgnoreCase)))
+            .ToList();
+    }
+
     /// <summary>
     /// Finds the minimum set of graph schema entry points that should be added to an <see cref="System.Xml.Schema.XmlSchemaSet"/>.
     /// One schema representative is selected from each source strongly connected component in the include/import graph.
     /// </summary>
     /// <returns>Schema file names suitable as entry points.</returns>
-    public List<string> FindEntryPointSchemas()
+    public List<string> FindEntryPointSchemaNames()
     {
         if (Schema.Count == 0)
             return new List<string>();
@@ -165,7 +207,7 @@ public partial class Graph
         var entryPoints = new List<string>();
         for (int i = 0; i < sccs.Count; i++)
         {
-            if (sccInDegree[i] == 0)
+            if (sccInDegree[i] == 0) 
                 entryPoints.Add(sccs[i][0]);
         }
 
