@@ -243,7 +243,7 @@ public class CSimpleType(
     // so suffix "Validator" is added to the simple type class holding the `TypeDefinition`.
     public override string Name { get; } = info.clrtypeName + (info is EnumSimpleTypeInfo ? "Validator" : "");
 
-    public string FullyQualifiedName { get; } = info.FullyQualifiedName(nameMappings, settings);
+    public string FullyQualifiedName { get; } = info.FullyQualifiedName(nameMappings, settings) + (info is EnumSimpleTypeInfo ? "Validator" : "");
 
     public XmlSchemaDatatypeVariety Variety => info.Variety;
     public XmlTypeCode XmlTypeCode => info.TypeCode;

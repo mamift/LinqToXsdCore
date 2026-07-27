@@ -12,7 +12,7 @@ public sealed class {{ $2.Name }}Validator {
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
-        {{ $2 | enum_values | array.join ",\n" do; ret '"' + $0 + '"'; end -}}
+        {{ $2 | enum_values | array.join ",\n" @value_literal -}}
         }, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
 }
 

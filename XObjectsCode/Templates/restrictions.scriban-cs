@@ -9,7 +9,13 @@ new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)({{ $1.
     if $1 | has_restriction "Enumeration"
         "new object[] {"
         "\n                    " # match previous CodeDom formatting for now :(
-            $1.Enumeration | array.join ",\n                    " @value_literal
+        # Note: Scriban array.map always coerces array values to array before 
+        #       passing them to its mapping function, which severly limits its usefulness.
+        #       here we want to keep non-string objects as non-string literals.
+        for $value in $1.Enumeration
+            if !for.first; ",\n                    "; end
+            $value | value_literal
+        end
         "}"
     else
         "null"
@@ -22,19 +28,19 @@ new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)({{ $1.
     $1 | has_restriction "Length" ? $1.Length : 0
     ", "
 
-    $1 | has_restriction "MaxExclusive" ? ($1.MaxExclusive | @value_literal) : "null"
+    $1 | has_restriction "MaxExclusive" ? ($1.MaxExclusive | value_literal) : "null"
     ", "
 
-    $1 | has_restriction "MaxInclusive" ? ($1.MaxInclusive | @value_literal) : "null"
+    $1 | has_restriction "MaxInclusive" ? ($1.MaxInclusive | value_literal) : "null"
     ", "
 
     $1 | has_restriction "MaxLength" ? $1.MaxLength: 0
     ", "
 
-    $1 | has_restriction "MinExclusive" ? ($1.MinExclusive | @value_literal) : "null"
+    $1 | has_restriction "MinExclusive" ? ($1.MinExclusive | value_literal) : "null"
     ", "
 
-    $1 | has_restriction "MinInclusive" ? ($1.MinInclusive | @value_literal) : "null"
+    $1 | has_restriction "MinInclusive" ? ($1.MinInclusive | value_literal) : "null"
     ", "
 
     $1 | has_restriction "MinLength" ? $1.MinLength : 0
