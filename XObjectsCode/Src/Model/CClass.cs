@@ -62,44 +62,55 @@ public class CElement(ClrContentTypeInfo info) : CClass(info), IHasTypes
     private FSM? fsm;
     private HashSet<int>? reachableStates;
 
-    // Only meaningful for elements with wildcards
-    public IEnumerable<FSMTransition> FSMTransitions
+    // Only meaningful for elements with wildcards.
+    // Returns states in DFS order from the start state, with their outgoing transitions.
+    public IEnumerable<FSMState> FSMStates
     {
         get 
         {            
             fsm = info.CreateFSM(new StateNameSource());
             reachableStates = new HashSet<int>();
-            return AddTransition(fsm.Start);
+            return AddStateGroups(fsm.Start);
             
-            IEnumerable<FSMTransition> AddTransition(int state)
+            IEnumerable<FSMState> AddStateGroups(int state)
             {
                 if (!reachableStates.Add(state)) yield break;
                 if (!fsm.Trans.TryGetValue(state, out var trans) || trans.Count == 0) yield break;
+
+                var transitions = new List<FSMTransition>();
                 var subStates = new HashSet<int>();
                 
                 foreach (var t in trans.nameTransitions ?? []) 
                 {
                     subStates.Add(t.Value);
-                    yield return new FSMTransition(t.Value) { XName = t.Key };
+                    transitions.Add(new FSMTransition(t.Value) { XName = t.Key });
                 }
 
                 foreach (var t in trans.wildCardTransitions ?? []) 
                 {
                     subStates.Add(t.Value);
-                    yield return new FSMTransition(t.Value) { WildCard = t.Key };
+                    transitions.Add(new FSMTransition(t.Value) { WildCard = t.Key });
                 }
 
-                foreach (var result in subStates.SelectMany(AddTransition))
+                yield return new FSMState(state, transitions);
+
+                foreach (var result in subStates.SelectMany(AddStateGroups))
                     yield return result;
             }
         }
     }
 
-    // Only read after reading FSMTransitions, which initializes `fsm`
+    // Only read after reading FSMTransitionsByState, which initializes `fsm`
     public int FSMStartState => fsm!.Start;
 
-    // Only read after enumerating FSMTransitions, which initializes `fsm` and visits the graph to create `reachableStates`
+    // Only read after enumerating FSMTransitionsByState, which initializes `fsm` and visits the graph to create `reachableStates`
     public IEnumerable<int> FSMAcceptStates => fsm!.Accept.Intersect(reachableStates!);
+
+    public class FSMState(int state, IEnumerable<FSMTransition> transitions)
+    {
+        public int State => state;
+        public IEnumerable<FSMTransition> Transitions => transitions;
+    }
 
     public class FSMTransition(int state)
     {

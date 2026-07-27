@@ -137,24 +137,29 @@
 
     private static void InitFSM() {
         Dictionary<int, Transitions> transitions = new Dictionary<int, Transitions>();
-        {{- for $tran in $1.FSMTransitions }}
-        transitions.Add(1, new Transitions(new SingleTransition(
-            {{- 
-                if $tran.WildCard 
-                    "new WildCard(" 
-                    $tran.WildCardNs | string.literal 
+        {{- for $state in $1.FSMStates }}
+        transitions.Add({{ $state.State }}, new Transitions({{
+            for $tran in $state.Transitions
+                if !for.first; ", "; end
+                "new SingleTransition("
+                if $tran.WildCard
+                    "new WildCard("
+                    $tran.WildCardNs | string.literal
                     ", "
                     $tran.WildCardTargetNs | string.literal
-                    ")"                    
+                    ")"
                 else
-                    "new System.Xml.Linq.XName.Get("
+                    "System.Xml.Linq.XName.Get("
                     $tran.XName.LocalName | string.literal
                     ", "
                     $tran.XName.Namespace.NamespaceName | string.literal
                     ")"
                 end
-            -}}
-            , {{ $tran.State }})));
+                ", "
+                $tran.State
+                ")"
+            end
+        }}));
         {{- end }}
         validationStates = new FSM({{ $1.FSMStartState }}, new Set<int>(
             {{-
